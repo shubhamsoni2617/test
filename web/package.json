@@ -1,0 +1,38 @@
+{
+  "name": "sistic",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
+    "react-scripts": "0.9.5",
+    "react-router-dom": "^5.0.0",
+    "react-helmet": "^5.2.0"
+  },
+  "devDependencies": {
+    "cross-env": "^5.2.0",
+    "md5-file": "^4.0.0",
+    "ignore-styles": "^5.0.1",
+    "fs-extra": "7.0.1",
+    "express": "4.16.4",
+    "@babel/core": "^7.4.5",
+    "@babel/runtime": "^7.4.5",
+    "@babel/plugin-proposal-class-properties": "^7.4.4",
+    "@babel/plugin-syntax-dynamic-import": "^7.0.0",
+    "@babel/polyfill": "^7.0.0",
+    "@babel/register": "^7.0.0",
+    "babel-plugin-dynamic-import-node": "^2.1.0",
+    "babel-eslint": "10.0.1",
+    "babel-jest": "^24.8.0",
+    "babel-loader": "8.0.5",
+    "babel-plugin-named-asset-import": "^0.3.2",
+    "babel-preset-react-app": "^9.0.0"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "serve": "node ./server/index.js",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  }
+}
