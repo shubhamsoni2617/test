@@ -10,10 +10,13 @@ ENV PATH /home/node/app/node_modules/.bin:$PATH
 # Install app dependencies
 # A wildcard is used to ensure both package.json AND package-lock.json are copied
 # where available (npm@5+)
+
 COPY package*.json ./
 RUN npm install
-COPY . .
-RUN npm run build
+COPY src ./src
+COPY server ./server
+COPY public ./public
+# RUN npm run build
 
 # # start app
 # CMD ["npm", "start"]

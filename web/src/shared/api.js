@@ -1,5 +1,4 @@
 import axios from 'axios';
-import { Alert, AsyncStorage } from 'react-native'
 import Constants from "./constants";
 
 
