@@ -4,9 +4,8 @@ services:
 
   web:
     build: web
-    command: "npm run serve"
     environment:
-      - NODE_ENV=production
+      - NODE_ENV=development
     ports:
       - "3000:3000"
       - "35729:35729"

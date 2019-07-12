@@ -21,7 +21,7 @@ app.get("*", (req, res, next) => {
     : Promise.resolve()
 
   promise.then((response) => {
-    const context = { data: response.data.items }
+    const context = { data: response.data }
     const modules = [];
     const markup = renderToString(
       <StaticRouter location={req.url} context={context}>
@@ -52,7 +52,7 @@ app.get("*", (req, res, next) => {
       <body>
         <div id="app">${markup}</div>
         ${extraChunks.join('')}
-        <script>window.__INITIAL_DATA__ = ${serialize(response.data.items)}</script>
+        <script>window.__INITIAL_DATA__ = ${serialize(response.data)}</script>
       </body>
     </html>
   `)

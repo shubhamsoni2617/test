@@ -13,10 +13,10 @@ ENV PATH /home/node/app/node_modules/.bin:$PATH
 
 COPY package*.json ./
 RUN npm install
-COPY src ./src
-COPY server ./server
-COPY public ./public
-# RUN npm run build
+RUN npm install react-scripts@3.0.1 -g --silent
+COPY . .
+RUN npm run build
 
-# # start app
-# CMD ["npm", "start"]
+EXPOSE 3000
+
+CMD ["npm", "start"]

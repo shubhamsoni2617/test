@@ -17,7 +17,7 @@ const Routes = ({ match }) => {
               )}
             />
           ))}
-          {/* <Route render={(props) => <NoMatch {...props} />} /> */}
+          {/*  <Route render={(props) => <NoMatch {...props} />} /> */}
         </Switch>
     
   );

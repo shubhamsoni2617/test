@@ -10,7 +10,7 @@ export default class Home extends Component {
     return (
       <div>
         <Helmet title="My Title - Test!" />
-        <p>Home Web new page test 123</p>
+        <p>Home Web new page test 12345</p>
         <Link to="/event">Event Page</Link>
       </div>
     )
