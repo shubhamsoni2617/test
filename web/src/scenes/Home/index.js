@@ -2,7 +2,8 @@ import React, { Component } from 'react'
 import Helmet from 'react-helmet';
 import { Link } from "react-router-dom";
 import './style.scss';
-import CurrentlyShowing from '../../shared/components/Sliders/CurrentlyShowing';
+import CurrentlyShowing from '../../shared/components/Sliders/CurrentlyShowing/CurrentlyShowing';
+
 
 export default class Home extends Component {
 
@@ -399,6 +400,7 @@ export default class Home extends Component {
               </div>
           </section>
            {/* featured events section end  */}
+
            {/* currently showing section start  */}
             <CurrentlyShowing />
            {/* currently showing section end  */}
