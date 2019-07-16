@@ -1,8 +1,8 @@
 import React from "react";
 
-// import Footer from "./Footer";
+import Footer from "./Footer";
 import Navigator from "./Navigator";
-// import TopNav from "./TopNav";
+import TopNav from "./TopNav";
 
 import "./style.css";
 
@@ -22,17 +22,26 @@ export default class App extends React.Component {
   };
 
   render() {
-    return (
-      
-        <div id="wrapper test">
+    return (      
+        // SISTIC wrapper start
+        <div className="st-wrapper">  
+          <div className="st-top-advertisment">
+            <div className="container-fluid">
+                <div className="st-advertisment-image">
+                    <img src="assets/images/Header-banner.png" alt="Advertisment-image" className="img-fluid" />
+                </div>
+                <a href="" className="st-advertisment-close"><img src="assets/images/close-adv.svg" className="img-fluid"
+                        alt="close" /></a>
+            </div>
+          </div>
           {/* TopNav */}
-          {/* <TopNav /> */}
+          <TopNav />
 
           {/* Main Content */}
           <Navigator {...this.props} />
           
           {/* Footer */}
-          {/* <Footer /> */}
+          <Footer />
         </div>
         
     );
