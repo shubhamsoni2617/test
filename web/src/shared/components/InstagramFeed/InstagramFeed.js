@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import Slider from "react-slick";
+
 import axios from 'axios';
 
 
@@ -29,28 +31,43 @@ class InstagramFeed extends Component {
     }
 
     render() {
+        const settings = {
+            centerMode: false,
+            infinite: true,
+            slidesToScroll: 4,
+            centerPadding: "60px",
+            slidesToShow: 7,
+            speed: 500
+          };
+
         const { error, isLoaded, items } = this.state;
         if (error) {
             return <div>Error: {error.message}</div>;
         } else if (!isLoaded) {
             return <div>Loading...</div>;
         } else {
-            console.log('items', items)
             return (
                 <section className="st-sistic-moments">
                     <div className="container-fluid">
                         <h3 className="st-section-title">#SISTICMoments</h3>
                     </div>
-                    <div className="st-moments-wrapper grid-container">
-                        {items && items.map(item => (
-                            <img src={item.images.thumbnail.url} alt="" />
-                        ))}
+                    <div className="">
 
+                    <Slider {...settings}>
+                        {items && items.map(item => (
+                            <img key={item.id} src={item.images.thumbnail.url} alt="" />
+                        ))}
+                    </Slider>
                     </div>
                 </section>
             );
         }
     }
 }
+
+
+        
+
+
 
 export default InstagramFeed;
