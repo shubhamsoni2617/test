@@ -2,15 +2,13 @@ import React, { Component } from 'react'
 import Helmet from 'react-helmet';
 import { Link } from "react-router-dom";
 import './style.scss';
-import CurrentlyShowing from '../../shared/components/Sliders/CurrentlyShowing/CurrentlyShowing';
+import CurrentlyShowing from './CurrentlyShowing/CurrentlyShowing';
+import WhatsNew from "./WhatsNew/WhatsNew";
 
 
 export default class Home extends Component {
-
   render() {
-    
     return (
-        
         <div>
           {/* Home page Banner start */}
           <section className="st-banner">
@@ -233,172 +231,172 @@ export default class Home extends Component {
            {/* Gift-card section end  */}
   
            {/* featured events section start  */}
-          <section className="st-featured-events">
-              <div className="container-fluid">
-                  <div className="st-section-top-wrapper">
-                      <h3 className="st-section-title">Featured Events</h3>
-                      <div className="st-carousel-dots">
-                          <a href="javascript:void(0);">See all <img src="assets/images/right-arrow.svg" className="img-fluid"
-                                  alt="arrow" /></a>
-                          <div className="st-dots-group">
-                              <span className="active"><a href="javascript:void(0);"></a></span>
-                              <span><a href="javascript:void(0);"></a></span>
-                              <span><a href="javascript:void(0);"></a></span>
-                          </div>
-                      </div>
-                  </div>
-                  <div className="grid-container">
-                      <div className="item">
-                          <div className="st-item-wrapper">
-                              <div className="st-featured-item-img">
-                                  <div className="st-item-img">
-                                      <img src="assets/images/explore.png" className="img-fluid" alt="explore" />
-                                  </div>
-                                  <span className="st-category">Dance</span>
-                              </div>
-                              <a href="javascript:void(0);" className="st-item-title">SSO Red Balloon Series: Rhythums, Rites
+           <section className="st-featured-events">
+                <div className="container-fluid">
+                    <div className="st-section-top-wrapper">
+                        <h3 className="st-section-title">Featured Events</h3>
+                        <div className="st-carousel-dots">
+                            <a href="javascript:void(0);">See all <img src="assets/images/right-arrow.svg" className="img-fluid"
+                                alt="arrow" /></a>
+                            <div className="st-dots-group">
+                                <span className="active"><a href="javascript:void(0);"></a></span>
+                                <span><a href="javascript:void(0);"></a></span>
+                                <span><a href="javascript:void(0);"></a></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="grid-container">
+                        <div className="item">
+                            <div className="st-item-wrapper">
+                                <div className="st-featured-item-img">
+                                    <div className="st-item-img">
+                                        <img src="assets/images/explore.png" className="img-fluid" alt="explore" />
+                                    </div>
+                                    <span className="st-category">Dance</span>
+                                </div>
+                                <a href="javascript:void(0);" className="st-item-title">SSO Red Balloon Series: Rhythums, Rites
                               </a>
-                              <p className="st-featured-date">Fri, 3 May 2019</p>
-                              <p className="st-featured-desc">Esplanade Concert Hall</p>
-                          </div>
-  
-                          <div className="st-item-wrapper">
-                              <div className="st-featured-item-img">
-                                  <div className="st-item-img">
-                                      <img src="assets/images/pretty-girls.jpg" className="img-fluid" alt="pretty-girls" />
-                                  </div>
-                                  <span className="st-category">Dance</span>
-                              </div>
-                              <a href="javascript:void(0);" className="st-item-title">This is what happens to pretty girls</a>
-                              <p className="st-featured-date">Fri, 3 May 2019</p>
-                              <p className="st-featured-desc">Esplanade Concert Hall</p>
-                          </div>
-                      </div>
-  
-                      <div className="item">
-                          <div className="st-item-wrapper">
-                              <div className="st-featured-item-img">
-                                  <div className="st-item-img">
-                                      <img src="assets/images/dance-theature.jpg" className="img-fluid"
-                                          alt="dance-theature" />
-                                  </div>
-                                  <span className="st-category">Dance</span>
-                              </div>
-                              <a href="javascript:void(0);" className="st-item-title">Singapore Dance Theatre - Season Pass
+                                <p className="st-featured-date">Fri, 3 May 2019</p>
+                                <p className="st-featured-desc">Esplanade Concert Hall</p>
+                            </div>
+
+                            <div className="st-item-wrapper">
+                                <div className="st-featured-item-img">
+                                    <div className="st-item-img">
+                                        <img src="assets/images/pretty-girls.jpg" className="img-fluid" alt="pretty-girls" />
+                                    </div>
+                                    <span className="st-category">Dance</span>
+                                </div>
+                                <a href="javascript:void(0);" className="st-item-title">This is what happens to pretty girls</a>
+                                <p className="st-featured-date">Fri, 3 May 2019</p>
+                                <p className="st-featured-desc">Esplanade Concert Hall</p>
+                            </div>
+                        </div>
+
+                        <div className="item">
+                            <div className="st-item-wrapper">
+                                <div className="st-featured-item-img">
+                                    <div className="st-item-img">
+                                        <img src="assets/images/dance-theature.jpg" className="img-fluid"
+                                            alt="dance-theature" />
+                                    </div>
+                                    <span className="st-category">Dance</span>
+                                </div>
+                                <a href="javascript:void(0);" className="st-item-title">Singapore Dance Theatre - Season Pass
                                   2019</a>
-                              <p className="st-featured-date">Fri, 3 May 2019</p>
-                              <p className="st-featured-desc">Esplanade Concert Hall</p>
-                          </div>
-  
-                          <div className="st-item-wrapper">
-                              <div className="st-featured-item-img">
-                                  <div className="st-item-img">
-                                      <img src="assets/images/hetty-keos.jpg" className="img-fluid" alt="hetty-keos" />
-                                  </div>
-                                  <span className="st-category">Dance</span>
-                              </div>
-                              <a href="javascript:void(0);" className="st-item-title">SSO Red Balloon Series: Rhythums, Rites
+                                <p className="st-featured-date">Fri, 3 May 2019</p>
+                                <p className="st-featured-desc">Esplanade Concert Hall</p>
+                            </div>
+
+                            <div className="st-item-wrapper">
+                                <div className="st-featured-item-img">
+                                    <div className="st-item-img">
+                                        <img src="assets/images/hetty-keos.jpg" className="img-fluid" alt="hetty-keos" />
+                                    </div>
+                                    <span className="st-category">Dance</span>
+                                </div>
+                                <a href="javascript:void(0);" className="st-item-title">SSO Red Balloon Series: Rhythums, Rites
                               </a>
-                              <p className="st-featured-date">Fri, 3 May 2019</p>
-                              <p className="st-featured-desc">Esplanade Concert Hall</p>
-                          </div>
-                      </div>
-  
-                      <div className="item">
-                          <div className="st-item-wrapper">
-                              <div className="st-featured-item-img">
-                                  <div className="st-item-img">
-                                      <img src="assets/images/aladdin.jpg" className="img-fluid" alt="aladdin" />
-                                  </div>
-                                  <span className="st-category">Dance</span>
-                              </div>
-                              <a href="javascript:void(0);" className="st-item-title">Aladdin - The Hit Broadway Musical </a>
-                              <p className="st-featured-date">Fri, 3 May 2019</p>
-                              <p className="st-featured-desc">Esplanade Concert Hall</p>
-                          </div>
-  
-                          <div className="st-item-wrapper">
-                              <div className="st-featured-item-img">
-                                  <div className="st-item-img">
-                                      <img src="assets/images/voice-legends.jpg" className="img-fluid" alt="voice-legends" />
-                                  </div>
-                                  <span className="st-category">Dance</span>
-                              </div>
-                              <a href="javascript:void(0);" className="st-item-title">Voice of Legends 2019</a>
-                              <p className="st-featured-date">Fri, 3 May 2019</p>
-                              <p className="st-featured-desc">Esplanade Concert Hall</p>
-                          </div>
-                      </div>
-  
-                      <div className="item">
-                          <div className="st-item-wrapper">
-                              <div className="st-featured-item-img">
-                                  <div className="st-item-img">
-                                      <img src="assets/images/pride-passion.jpg" className="img-fluid" alt="pride-passion" />
-                                  </div>
-                                  <span className="st-category">Dance</span>
-                              </div>
-                              <a href="javascript:void(0);" className="st-item-title">Singapore Dance Theatre - Season Pass
+                                <p className="st-featured-date">Fri, 3 May 2019</p>
+                                <p className="st-featured-desc">Esplanade Concert Hall</p>
+                            </div>
+                        </div>
+
+                        <div className="item">
+                            <div className="st-item-wrapper">
+                                <div className="st-featured-item-img">
+                                    <div className="st-item-img">
+                                        <img src="assets/images/aladdin.jpg" className="img-fluid" alt="aladdin" />
+                                    </div>
+                                    <span className="st-category">Dance</span>
+                                </div>
+                                <a href="javascript:void(0);" className="st-item-title">Aladdin - The Hit Broadway Musical </a>
+                                <p className="st-featured-date">Fri, 3 May 2019</p>
+                                <p className="st-featured-desc">Esplanade Concert Hall</p>
+                            </div>
+
+                            <div className="st-item-wrapper">
+                                <div className="st-featured-item-img">
+                                    <div className="st-item-img">
+                                        <img src="assets/images/voice-legends.jpg" className="img-fluid" alt="voice-legends" />
+                                    </div>
+                                    <span className="st-category">Dance</span>
+                                </div>
+                                <a href="javascript:void(0);" className="st-item-title">Voice of Legends 2019</a>
+                                <p className="st-featured-date">Fri, 3 May 2019</p>
+                                <p className="st-featured-desc">Esplanade Concert Hall</p>
+                            </div>
+                        </div>
+
+                        <div className="item">
+                            <div className="st-item-wrapper">
+                                <div className="st-featured-item-img">
+                                    <div className="st-item-img">
+                                        <img src="assets/images/pride-passion.jpg" className="img-fluid" alt="pride-passion" />
+                                    </div>
+                                    <span className="st-category">Dance</span>
+                                </div>
+                                <a href="javascript:void(0);" className="st-item-title">Singapore Dance Theatre - Season Pass
                                   2019</a>
-                              <p className="st-featured-date">Fri, 3 May 2019</p>
-                              <p className="st-featured-desc">Esplanade Concert Hall</p>
-                          </div>
-  
-                          <div className="st-item-wrapper">
-                              <div className="st-featured-item-img">
-                                  <div className="st-item-img">
-                                      <img src="assets/images/hetty-keos.jpg" className="img-fluid" alt="hetty-keos" />
-                                  </div>
-                                  <span className="st-category">Dance</span>
-                              </div>
-                              <a href="javascript:void(0);" className="st-item-title">SSO Red Balloon Series: Rhythums, Rites
+                                <p className="st-featured-date">Fri, 3 May 2019</p>
+                                <p className="st-featured-desc">Esplanade Concert Hall</p>
+                            </div>
+
+                            <div className="st-item-wrapper">
+                                <div className="st-featured-item-img">
+                                    <div className="st-item-img">
+                                        <img src="assets/images/hetty-keos.jpg" className="img-fluid" alt="hetty-keos" />
+                                    </div>
+                                    <span className="st-category">Dance</span>
+                                </div>
+                                <a href="javascript:void(0);" className="st-item-title">SSO Red Balloon Series: Rhythums, Rites
                               </a>
-                              <p className="st-featured-date">Fri, 3 May 2019</p>
-                              <p className="st-featured-desc">Esplanade Concert Hall</p>
-                          </div>
-                      </div>
-  
-                      <div className="item">
-                          <div className="st-item-wrapper">
-                              <div className="st-featured-item-img">
-                                  <div className="st-item-img">
-                                      <img src="assets/images/aladdin.jpg" className="img-fluid" alt="aladdin" />
-                                  </div>
-                                  <span className="st-category">Dance</span>
-                              </div>
-                              <a href="javascript:void(0);" className="st-item-title">Aladdin - The Hit Broadway Musical</a>
-                              <p className="st-featured-date">Fri, 3 May 2019</p>
-                              <p className="st-featured-desc">Esplanade Concert Hall</p>
-                          </div>
-  
-                          <div className="st-item-wrapper">
-                              <div className="st-featured-item-img">
-                                  <div className="st-item-img">
-                                      <img src="assets/images/voice-legends.jpg" className="img-fluid" alt="voice-legends" />
-                                  </div>
-                                  <span className="st-category">Dance</span>
-                              </div>
-                              <a href="javascript:void(0);" className="st-item-title">SSO Red Balloon Series: Rhythums, Rites
+                                <p className="st-featured-date">Fri, 3 May 2019</p>
+                                <p className="st-featured-desc">Esplanade Concert Hall</p>
+                            </div>
+                        </div>
+
+                        <div className="item">
+                            <div className="st-item-wrapper">
+                                <div className="st-featured-item-img">
+                                    <div className="st-item-img">
+                                        <img src="assets/images/aladdin.jpg" className="img-fluid" alt="aladdin" />
+                                    </div>
+                                    <span className="st-category">Dance</span>
+                                </div>
+                                <a href="javascript:void(0);" className="st-item-title">Aladdin - The Hit Broadway Musical</a>
+                                <p className="st-featured-date">Fri, 3 May 2019</p>
+                                <p className="st-featured-desc">Esplanade Concert Hall</p>
+                            </div>
+
+                            <div className="st-item-wrapper">
+                                <div className="st-featured-item-img">
+                                    <div className="st-item-img">
+                                        <img src="assets/images/voice-legends.jpg" className="img-fluid" alt="voice-legends" />
+                                    </div>
+                                    <span className="st-category">Dance</span>
+                                </div>
+                                <a href="javascript:void(0);" className="st-item-title">SSO Red Balloon Series: Rhythums, Rites
                               </a>
-                              <p className="st-featured-date">Fri, 3 May 2019</p>
-                              <p className="st-featured-desc">Esplanade Concert Hall</p>
-                          </div>
-                      </div>
-                  </div>
-                  <div className="st-carousel-navigation">
-                      <div className="st-left-navigation">
-                          <a href="javascript:void(0);">
-                              <img src="assets/images/left-arrow-blue.svg" className="img-fluid" alt="left-navigation" />
-                          </a>
-                      </div>
-                      <div className="st-right-navigation">
-                          <a href="javascript:void(0);">
-                              <img src="assets/images/right-arrow-blue.svg" className="img-fluid" alt="right-navigation" />
-                          </a>
-                      </div>
-                  </div>
-              </div>
-          </section>
+                                <p className="st-featured-date">Fri, 3 May 2019</p>
+                                <p className="st-featured-desc">Esplanade Concert Hall</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="st-carousel-navigation">
+                        <div className="st-left-navigation">
+                            <a href="javascript:void(0);">
+                                <img src="assets/images/left-arrow-blue.svg" className="img-fluid" alt="left-navigation" />
+                            </a>
+                        </div>
+                        <div className="st-right-navigation">
+                            <a href="javascript:void(0);">
+                                <img src="assets/images/right-arrow-blue.svg" className="img-fluid" alt="right-navigation" />
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </section>
            {/* featured events section end  */}
 
            {/* currently showing section start  */}
@@ -652,116 +650,7 @@ export default class Home extends Component {
            {/* Trending now section end  */}
   
            {/* What's new section start  */}
-          <section className="st-whats-new">
-              <div className="container-fluid">
-                  <div className="st-section-top-wrapper">
-                      <h3 className="st-section-title">What's New</h3>
-                      <div className="st-carousel-dots">
-                          <a href="javascript:void(0);">See all <img src="assets/images/right-arrow.svg" className="img-fluid"
-                                  alt="arrow" /></a>
-                          <div className="st-dots-group">
-                              <span className="active"><a href="javascript:void(0);"></a></span>
-                              <span><a href="javascript:void(0);"></a></span>
-                              <span><a href="javascript:void(0);"></a></span>
-                          </div>
-                      </div>
-                  </div>
-                  <div className="grid-container">
-                      <div className="item">
-                          <div className="st-item-wrapper">
-                              <div className="st-currently-showing-img">
-                                  <div className="st-item-img">
-                                      <img src="assets/images/atul-khatri.jpg" className="img-fluid" alt="atul-khatri" />
-                                  </div>
-                              </div>
-                              <span className="st-category st-comedy">Comedy</span>
-                              <p className="st-currently-showing-date">Thu, 2 May 2019</p>
-                              <p className="st-item-title">Atul Khatri - Live in Singapore</p>
-                              <p className="st-currently-showing-place">Sota Concert Hall</p>
-                          </div>
-                      </div>
-                      <div className="item">
-                          <div className="st-item-wrapper">
-                              <div className="st-currently-showing-img">
-                                  <div className="st-item-img">
-                                      <img src="assets/images/kurios.png" className="img-fluid" alt="Kurios" />
-                                  </div>
-                              </div>
-                              <span className="st-category st-musical">Musical</span>
-                              <p className="st-currently-showing-date">Sun, 21 Jul 2019</p>
-                              <p className="st-item-title">KURIOS – Cabinet of Curiosities</p>
-                              <p className="st-currently-showing-place">Marina Bay Sands Singapore</p>
-                          </div>
-                      </div>
-                      <div className="item">
-                          <div className="st-item-wrapper">
-                              <div className="st-currently-showing-img">
-                                  <div className="st-item-img">
-                                      <img src="assets/images/panthom-of-opera.jpg" className="img-fluid"
-                                          alt="panthom-of-opera" />
-                                  </div>
-                              </div>
-                              <span className="st-category st-musical">Musical</span>
-                              <p className="st-currently-showing-date">Thu, 2 May 2019</p>
-                              <p className="st-item-title">Atul Khatri - Live in Singapore</p>
-                              <p className="st-currently-showing-place">Sota Concert Hall</p>
-                          </div>
-                      </div>
-                      <div className="item">
-                          <div className="st-item-wrapper">
-                              <div className="st-currently-showing-img">
-                                  <div className="st-item-img">
-                                      <img src="assets/images/atul-khatri.jpg" className="img-fluid" alt="atul-khatri" />
-                                  </div>
-                              </div>
-                              <span className="st-category st-comedy">Comedy</span>
-                              <p className="st-currently-showing-date">Sun, 21 Jul 2019</p>
-                              <p className="st-item-title">KURIOS – Cabinet of Curiosities</p>
-                              <p className="st-currently-showing-place">Marina Bay Sands Singapore</p>
-                          </div>
-                      </div>
-                      <div className="item">
-                          <div className="st-item-wrapper">
-                              <div className="st-currently-showing-img">
-                                  <div className="st-item-img">
-                                      <img src="assets/images/kurios.png" className="img-fluid" alt="Kurios" />
-                                  </div>
-                              </div>
-                              <span className="st-category st-musical">Musical</span>
-                              <p className="st-currently-showing-date">Sat, 8 Jun 2019</p>
-                              <p className="st-item-title">The Phantom of Opera</p>
-                              <p className="st-currently-showing-place">Sands Theatre at Marina Bay </p>
-                          </div>
-                      </div>
-                      <div className="item">
-                          <div className="st-item-wrapper">
-                              <div className="st-currently-showing-img">
-                                  <div className="st-item-img">
-                                      <img src="assets/images/panthom-of-opera.jpg" className="img-fluid"
-                                          alt="panthom-of-opera" />
-                                  </div>
-                              </div>
-                              <span className="st-category st-musical">Musical</span>
-                              <p className="st-currently-showing-date">Sat, 8 Jun 2019</p>
-                              <p className="st-item-title">The Phantom of Opera</p>
-                              <p className="st-currently-showing-place">Sands Theatre at Marina Bay </p>
-                          </div>
-                      </div>
-                  </div>
-                  <div className="st-carousel-navigation">
-                      <div className="st-left-navigation">
-                          <a href="javascript:void(0);">
-                              <img src="assets/images/left-arrow-blue.svg" className="img-fluid" alt="left-navigation" />
-                          </a>
-                      </div>
-                      <div className="st-right-navigation">
-                          <a href="javascript:void(0);">
-                              <img src="assets/images/right-arrow-blue.svg" className="img-fluid" alt="right-navigation" />
-                          </a>
-                      </div>
-                  </div>
-              </div>
-          </section>
+            <WhatsNew />
            {/* What's new section end  */}
   
            {/* explore section start  */}
