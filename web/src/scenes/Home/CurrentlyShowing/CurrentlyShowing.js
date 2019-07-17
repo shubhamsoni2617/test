@@ -77,11 +77,11 @@ class CurrentlyShowing extends Component {
                             <h3 className="st-section-title">Currently Showing</h3>
                             <div className="st-carousel-dots">
                                 <a href="/">See all <img src="assets/images/right-arrow.svg" className="img-fluid"
-                                    alt="arrow" /></a>
+                                    alt="arrow" />&nbsp;</a>
                                 <div className="st-dots-group">
-                                    <span className="active"><a href="/"></a></span>
-                                    <span><a href="/"></a></span>
-                                    <span><a href="/"></a></span>
+                                    <span className="active"><a href="/">&nbsp;</a></span>
+                                    <span><a href="/">&nbsp;</a></span>
+                                    <span><a href="/">&nbsp;</a></span>
                                 </div>
                             </div>
                         </div>

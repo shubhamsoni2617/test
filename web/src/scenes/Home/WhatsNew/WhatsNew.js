@@ -68,17 +68,17 @@ class whatsNew extends Component {
         ];
 
         return (
-            <section className="st-whats-new">
+            <section className="whats-new">
                 <div className="container-fluid">
-                    <div className="st-section-top-wrapper">
-                        <h3 className="st-section-title">What's New</h3>
-                        <div className="st-carousel-dots">
+                    <div className="section-top-wrapper">
+                        <h2 className="section-title">What's New</h2>
+                        <div className="carousel-dots">
                             <a href="/">See all <img src="assets/images/right-arrow.svg" className="img-fluid"
                                 alt="arrow" /></a>
-                            <div className="st-dots-group">
-                                <span className="active"><a href="/"></a></span>
-                                <span><a href="/"></a></span>
-                                <span><a href="/"></a></span>
+                            <div className="dots-group">
+                                <span className="active"><a href="/">&nbsp;</a></span>
+                                <span><a href="/">&nbsp;</a></span>
+                                <span><a href="/">&nbsp;</a></span>
                             </div>
                         </div>
                     </div>

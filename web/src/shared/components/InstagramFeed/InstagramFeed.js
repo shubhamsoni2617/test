@@ -47,11 +47,11 @@ class InstagramFeed extends Component {
             return <div>Loading...</div>;
         } else {
             return (
-                <section className="st-sistic-moments">
+                <section className="sistic-moments">
                     <div className="container-fluid">
-                        <h3 className="st-section-title">#SISTICMoments</h3>
+                        <h2>#SISTICMoments</h2>
                     </div>
-                    <div className="">
+                    <div className="moments-wrapper grid-container">
 
                     <Slider {...settings}>
                         {items && items.map(item => (
