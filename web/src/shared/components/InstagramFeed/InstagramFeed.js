@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import Slider from "react-slick";
-
 import axios from 'axios';
-
+import Constant from '../../constants';
 
 class InstagramFeed extends Component {
     constructor(props) {
@@ -10,24 +9,23 @@ class InstagramFeed extends Component {
         this.state = {
             error: null,
             isLoaded: false,
-            items: []
+            feeds: []
         };
     }
 
     componentDidMount() {
-        axios.get('https://api.instagram.com/v1/users/self/media/recent/?access_token=3225660226.f09c095.d66beeb477664e4091320bcfe6e3991a')
-            .then((result) => {
-                console.log('result',result)
-                this.setState({
-                    isLoaded: true,
-                    items: result.data.data
-                });
-            }).catch((error) => {
-                this.setState({
-                    isLoaded: false,
-                    error
-                });
-            })
+        axios.get('https://api.instagram.com/v1/users/self/media/recent/?access_token='+ Constant.INSTAGRAM_ACCESS_TOKEN)
+        .then((result) => {
+            this.setState({
+                isLoaded: true,
+                feeds: result.data.data
+            });
+        }).catch((error) => {
+            this.setState({
+                isLoaded: false,
+                error
+            });
+        })
     }
 
     render() {
@@ -40,7 +38,7 @@ class InstagramFeed extends Component {
             speed: 500
           };
 
-        const { error, isLoaded, items } = this.state;
+        const { error, isLoaded, feeds } = this.state;
         if (error) {
             return <div>Error: {error.message}</div>;
         } else if (!isLoaded) {
@@ -51,23 +49,15 @@ class InstagramFeed extends Component {
                     <div className="container-fluid">
                         <h3 className="st-section-title">#SISTICMoments</h3>
                     </div>
-                    <div className="">
-
                     <Slider {...settings}>
-                        {items && items.map(item => (
-                            <img key={item.id} src={item.images.thumbnail.url} alt="" />
+                        {feeds && feeds.map(feed => (
+                            <img key={feed.id} src={feed.images.thumbnail.url} alt="" />
                         ))}
                     </Slider>
-                    </div>
                 </section>
             );
         }
     }
 }
-
-
-        
-
-
 
 export default InstagramFeed;
