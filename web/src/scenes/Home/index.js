@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import Helmet from 'react-helmet';
 import { Link } from "react-router-dom";
 import './style.scss';
+import InstagramFeed from '../../shared/components/InstagramFeed/InstagramFeed';
 import CurrentlyShowing from './CurrentlyShowing/CurrentlyShowing';
 import WhatsNew from "./WhatsNew/WhatsNew";
 
@@ -737,24 +738,7 @@ export default class Home extends Component {
            {/* explore section end  */}
   
            {/* SISTIC Moments Start  */}
-          <section className="st-sistic-moments">
-              <div className="container-fluid">
-                  <h3 className="st-section-title">#SISTICMoments</h3>
-              </div>
-              <div className="st-moments-wrapper grid-container">
-                  <img src="assets/images/moments.png" alt="" />
-                  <img src="assets/images/moments.png" alt="" />
-                  <img src="assets/images/moments.png" alt="" />
-                  <img src="assets/images/moments.png" alt="" />
-                  <img src="assets/images/moments.png" alt="" />
-                  <img src="assets/images/moments.png" alt="" />
-                  <img src="assets/images/moments.png" alt="" />
-                  <img src="assets/images/moments.png" alt="" />
-                  <img src="assets/images/moments.png" alt="" />
-                  <img src="assets/images/moments.png" alt="" />
-                  <img src="assets/images/moments.png" alt="" />
-              </div>
-          </section>
+           <InstagramFeed />
            {/* SISTIC Moments End  */}
         </div>   
     )
