@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -11,22 +11,28 @@ const Carousel = (props) => {
         dots: true,
         infinite: false,
         speed: 500,
-        slidesToShow: 5,
-        slidesToScroll: 5,
+        slidesToShow: 6,
+        slidesToScroll: 6,
         initialSlide: 0,
-
-        customPaging: i => (
-            <div className="st-dots-group">
-                <span className={i === 0 ? "active" : ""}></span>
-            </div>
-        ),
+        appendDots: (dots) => {
+            return (
+                <ul style={{ margin: "0px" }}> {dots} </ul>
+            );
+        },
+        customPaging: (i) => {
+            return (
+                <div className="st-dots-group">
+                    <span className="active"><a href="/"></a></span>
+                </div>
+            );
+        },
         responsive: [
             {
                 breakpoint: 1024,
                 settings: {
                     slidesToShow: 3,
                     slidesToScroll: 3,
-                    infinite: true,
+                    infinite: false,
                     dots: true
                 }
             },
@@ -42,21 +48,18 @@ const Carousel = (props) => {
                 breakpoint: 480,
                 settings: {
                     slidesToShow: 1,
-                    slidesToScroll: 1
+                    slidesToScroll: 1,
                 }
             }
         ]
     };
 
-
-
-
     return (
         <Slider {...settings}>
             {
-                imgArray.map((elem) => {
+                imgArray.map((elem, i) => {
                     return (
-                        <div className="grid-container">
+                        <div className="grid-container" key={i}>
                             <div className="item">
                                 <div className="st-item-wrapper">
                                     <div className="st-currently-showing-img">
@@ -76,6 +79,5 @@ const Carousel = (props) => {
             }
         </Slider>
     );
-};
-
+}
 export default Carousel;
