@@ -1426,9 +1426,9 @@ p {
 		}
 	}
 	.grid-container {
-		display: grid;
+		/*display: grid;
 		grid-template-columns: repeat(4, minmax(20%, 1fr));
-		grid-gap: 25px;
+		grid-gap: 25px;*/
 		@media(max-width: 991px) {
 			grid-template-columns: repeat(4, minmax(37%, 1fr));
 		}
