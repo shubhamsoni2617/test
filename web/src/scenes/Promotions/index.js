@@ -14,9 +14,13 @@ export default class Promotions extends Component {
 
   render() {
     return (
-      <div>
-        <Tabs />
-      </div>
+        <section className="promotions-wrapper">
+               <div className="container-fluid">
+                  <div className="container">
+                    <Tabs />
+                </div>
+            </div>
+        </section>
     )
   }
 }
