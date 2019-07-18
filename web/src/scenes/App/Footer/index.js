@@ -14,19 +14,19 @@ export default class Footer extends Component {
                     <h3>Our Company</h3>
                     <ul>
                        <li>
-                          <a href="">About Us</a>
+                          <a href="/">About Us</a>
                        </li>
                        <li>
-                          <a href="">Sell with Us</a>
+                          <a href="/">Sell with Us</a>
                        </li>
                        <li>
-                          <a href="">Ticketing Technology</a>
+                          <a href="/">Ticketing Technology</a>
                        </li>
                        <li>
-                          <a href="">partner with Us</a>
+                          <a href="/">partner with Us</a>
                        </li>
                        <li>
-                          <a href="">Careers</a>
+                          <a href="/">Careers</a>
                        </li>
                     </ul>
                  </div>
@@ -35,36 +35,36 @@ export default class Footer extends Component {
                     <div className="footer-groups">
                        <ul>
                           <li>
-                             <a href="">Where to Buy Tickets</a>
+                             <a href="/">Where to Buy Tickets</a>
                           </li>
                           <li>
-                             <a href="">Locate an Agent</a>
+                             <a href="/">Locate an Agent</a>
                           </li>
                           <li>
-                             <a href="">Locate a Venue</a>
+                             <a href="/">Locate a Venue</a>
                           </li>
                           <li>
-                             <a href="">Blog</a>
+                             <a href="/">Blog</a>
                           </li>
                           <li>
-                             <a href="">Media</a>
+                             <a href="/">Media</a>
                           </li>
                        </ul>
                        <ul>
                           <li>
-                             <a href="">My Account</a>
+                             <a href="/">My Account</a>
                           </li>
                           <li>
-                             <a href="">Gift Vouchers</a>
+                             <a href="/">Gift Vouchers</a>
                           </li>
                           <li>
-                             <a href="">FAQ</a>
+                             <a href="/">FAQ</a>
                           </li>
                           <li>
-                             <a href="">Cancellations/Refunds</a>
+                             <a href="/">Cancellations/Refunds</a>
                           </li>
                           <li>
-                             <a href="">Contact Us</a>
+                             <a href="/">Contact Us</a>
                           </li>
                        </ul>
                     </div>
@@ -72,14 +72,14 @@ export default class Footer extends Component {
                  <div className="footer-links">
                     <h3>SISTIC on Mobile</h3>
                     <div className="download-option">
-                       <a href="#">
+                       <a href="/">
                        <img src="assets/images/apple.svg" className="ios" alt=""/>
                        <span>
                        Available on the<br/>
                        <strong>App Store</strong>
                        </span>
                        </a>
-                       <a href="#">
+                       <a href="/">
                        <img src="assets/images/android.png" className="android" alt=""/>
                        <span>
                        Get it on<br/>
@@ -95,7 +95,7 @@ export default class Footer extends Component {
                           <input type="text" className="form-control" placeholder="Enter Your email"
                              aria-label="Username" aria-describedby="basic-addon1" />
                           <div className="input-group-prepend">
-                             <a className="input-group-text" href="" id="basic-addon1"><img src="assets/images/send.svg"
+                             <a className="input-group-text" href="/" id="basic-addon1"><img src="assets/images/send.svg"
                                 className="img-fluid" alt="send" /></a>
                           </div>
                        </div>
@@ -104,13 +104,13 @@ export default class Footer extends Component {
                        <h3>Follow us on</h3>
                        <ul className="social">
                           <li>
-                             <a href="">
+                             <a href="/">
                              <img src="assets/images/fb.svg" className="" alt=""/>
                              <img src="assets/images/fb-fill.svg" className="active" alt=""/>
                              </a>
                           </li>
                           <li>
-                             <a href="">
+                             <a href="/">
                              <img src="assets/images/insta-unfill.svg" className="" alt=""/>
                              <img src="assets/images/insta-fill.svg" className="active" alt=""/>
                              </a>
@@ -126,10 +126,10 @@ export default class Footer extends Component {
                  </div>
                  <ul className="footer-btm-links">
                     <li>
-                       <a href="">Privacy Policy</a>
+                       <a href="/">Privacy Policy</a>
                     </li>
                     <li>
-                       <a href="">Terms & Conditions</a>
+                       <a href="/">Terms & Conditions</a>
                     </li>
                  </ul>
                  <div className="hotline-number">

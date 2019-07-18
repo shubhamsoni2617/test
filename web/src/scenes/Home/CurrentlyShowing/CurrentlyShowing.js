@@ -71,14 +71,14 @@ class CurrentlyShowing extends Component {
         return (
             <div>
                 {/* currently showing section start  */}
-                <section className="st-currently-showing">
+                <section className="currently-showing">
                     <div className="container-fluid">
-                        <div className="st-section-top-wrapper">
-                            <h3 className="st-section-title">Currently Showing</h3>
-                            <div className="st-carousel-dots">
+                        <div className="section-top-wrapper">
+                            <h3 className="section-title">Currently Showing</h3>
+                            <div className="carousel-dots">
                                 <a href="/">See all <img src="assets/images/right-arrow.svg" className="img-fluid"
                                     alt="arrow" />&nbsp;</a>
-                                <div className="st-dots-group">
+                                <div className="dots-group">
                                     <span className="active"><a href="/">&nbsp;</a></span>
                                     <span><a href="/">&nbsp;</a></span>
                                     <span><a href="/">&nbsp;</a></span>

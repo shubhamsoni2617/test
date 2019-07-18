@@ -10,7 +10,7 @@ import WhatsNew from "./WhatsNew/WhatsNew";
 export default class Home extends Component {
   render() {
     return (
-        <div>
+        <div className="home-page-wrapper">
           {/* Home page Banner start */}
           <section className="banner">
                <div className="banner-carousel">
@@ -24,12 +24,12 @@ export default class Home extends Component {
                   </ul>
                   <div className="carousel-navigation">
                      <div className="left-navigation">
-                        <a href="javascript:void(0);">
+                        <a href="/">
                         <img src="assets/images/left-arrow-white.svg" className="img-fluid" alt="left-navigation" />
                         </a>
                      </div>
                      <div className="right-navigation">
-                        <a href="javascript:void(0);">
+                        <a href="/">
                         <img src="assets/images/right-arrow-white.svg" className="img-fluid" alt="right-navigation" />
                         </a>
                      </div>
@@ -37,43 +37,43 @@ export default class Home extends Component {
                </div>
                <div className="banner-thumbnail">
                   <ul>
-                     <li><a href="javascript:void(0);"><img src="assets/images/thumbnail.png" className="img-fluid"
+                     <li><a href="/"><img src="assets/images/thumbnail.png" className="img-fluid"
                         alt="" /></a></li>
-                     <li><a href="javascript:void(0);"><img src="assets/images/thumbnail.png" className="img-fluid"
+                     <li><a href="/"><img src="assets/images/thumbnail.png" className="img-fluid"
                         alt="" /></a></li>
-                     <li><a href="javascript:void(0);"><img src="assets/images/thumbnail.png" className="img-fluid"
+                     <li><a href="/"><img src="assets/images/thumbnail.png" className="img-fluid"
                         alt="" /></a></li>
-                     <li><a href="javascript:void(0);"><img src="assets/images/thumbnail.png" className="img-fluid"
+                     <li><a href="/"><img src="assets/images/thumbnail.png" className="img-fluid"
                         alt="" /></a></li>
-                     <li><a href="javascript:void(0);"><img src="assets/images/thumbnail.png" className="img-fluid"
+                     <li><a href="/"><img src="assets/images/thumbnail.png" className="img-fluid"
                         alt="" /></a></li>
-                     <li><a href="javascript:void(0);"><img src="assets/images/thumbnail.png" className="img-fluid"
+                     <li><a href="/"><img src="assets/images/thumbnail.png" className="img-fluid"
                         alt="" /></a></li>
-                     <li><a href="javascript:void(0);"><img src="assets/images/thumbnail.png" className="img-fluid"
+                     <li><a href="/"><img src="assets/images/thumbnail.png" className="img-fluid"
                         alt="" /></a></li>
-                     <li><a href="javascript:void(0);"><img src="assets/images/thumbnail.png" className="img-fluid"
+                     <li><a href="/"><img src="assets/images/thumbnail.png" className="img-fluid"
                         alt="" /></a></li>
-                     <li><a href="javascript:void(0);"><img src="assets/images/thumbnail.png" className="img-fluid"
+                     <li><a href="/"><img src="assets/images/thumbnail.png" className="img-fluid"
                         alt="" /></a></li>
-                     <li><a href="javascript:void(0);"><img src="assets/images/thumbnail.png" className="img-fluid"
+                     <li><a href="/"><img src="assets/images/thumbnail.png" className="img-fluid"
                         alt="" /></a></li>
-                     <li><a href="javascript:void(0);"><img src="assets/images/thumbnail.png" className="img-fluid"
+                     <li><a href="/"><img src="assets/images/thumbnail.png" className="img-fluid"
                         alt="" /></a></li>
-                     <li><a href="javascript:void(0);"><img src="assets/images/thumbnail.png" className="img-fluid"
+                     <li><a href="/"><img src="assets/images/thumbnail.png" className="img-fluid"
                         alt="" /></a></li>
-                     <li><a href="javascript:void(0);"><img src="assets/images/thumbnail.png" className="img-fluid"
+                     <li><a href="/"><img src="assets/images/thumbnail.png" className="img-fluid"
                         alt="" /></a></li>
-                     <li><a href="javascript:void(0);"><img src="assets/images/thumbnail.png" className="img-fluid"
+                     <li><a href="/"><img src="assets/images/thumbnail.png" className="img-fluid"
                         alt="" /></a></li>
-                     <li><a href="javascript:void(0);"><img src="assets/images/thumbnail.png" className="img-fluid"
+                     <li><a href="/"><img src="assets/images/thumbnail.png" className="img-fluid"
                         alt="" /></a></li>
-                     <li><a href="javascript:void(0);"><img src="assets/images/thumbnail.png" className="img-fluid"
+                     <li><a href="/"><img src="assets/images/thumbnail.png" className="img-fluid"
                         alt="" /></a></li>
-                     <li><a href="javascript:void(0);"><img src="assets/images/thumbnail.png" className="img-fluid"
+                     <li><a href="/"><img src="assets/images/thumbnail.png" className="img-fluid"
                         alt="" /></a></li>
-                     <li><a href="javascript:void(0);"><img src="assets/images/thumbnail.png" className="img-fluid"
+                     <li><a href="/"><img src="assets/images/thumbnail.png" className="img-fluid"
                         alt="" /></a></li>
-                     <li><a href="javascript:void(0);"><img src="assets/images/thumbnail.png" className="img-fluid"
+                     <li><a href="/"><img src="assets/images/thumbnail.png" className="img-fluid"
                         alt="" /></a></li>
                   </ul>
                </div>
@@ -107,7 +107,7 @@ export default class Home extends Component {
                               </div>
                            </div>
                            <h3>Kurios Cabinet of Curiosities</h3>
-                           <a href="javascript:void(0);" className="item-title-overlay"><span>BUY NOW </span><img
+                           <a href="/" className="item-title-overlay"><span>BUY NOW </span><img
                               src="assets/images/next-arrow.svg" className="img-fluid" alt="buy-now" /></a>
                         </div>
                      </div>
@@ -128,7 +128,7 @@ export default class Home extends Component {
                               </div>
                            </div>
                            <h3>Katya: Help Me I’m Dying</h3>
-                           <a href="javascript:void(0);" className="item-title-overlay"><span>BUY NOW </span><img
+                           <a href="/" className="item-title-overlay"><span>BUY NOW </span><img
                               src="assets/images/next-arrow.svg" className="img-fluid" alt="buy-now" /></a>
                         </div>
                      </div>
@@ -154,7 +154,7 @@ export default class Home extends Component {
                               </div>
                            </div>
                            <h3>Ballet Under The Stars Presented…</h3>
-                           <a href="javascript:void(0);" className="item-title-overlay"><span>BUY NOW </span><img
+                           <a href="/" className="item-title-overlay"><span>BUY NOW </span><img
                               src="assets/images/next-arrow.svg" className="img-fluid" alt="buy-now" /></a>
                         </div>
                      </div>
@@ -180,7 +180,7 @@ export default class Home extends Component {
                               </div>
                            </div>
                            <h3>The Phantom Of The Opera</h3>
-                           <a href="javascript:void(0);" className="item-title-overlay"><span>BUY NOW </span><img
+                           <a href="/" className="item-title-overlay"><span>BUY NOW </span><img
                               src="assets/images/next-arrow.svg" className="img-fluid" alt="buy-now" /></a>
                         </div>
                      </div>
@@ -206,7 +206,7 @@ export default class Home extends Component {
                               </div>
                            </div>
                            <h3>Kurios Cabinet of Curiosities</h3>
-                           <a href="javascript:void(0);" className="item-title-overlay"><span>BUY NOW </span><img
+                           <a href="/" className="item-title-overlay"><span>BUY NOW </span><img
                               src="assets/images/next-arrow.svg" className="img-fluid" alt="buy-now" /></a>
                         </div>
                      </div>
@@ -232,19 +232,19 @@ export default class Home extends Component {
                               </div>
                            </div>
                            <h3>Ballet Under The Stars Presented…</h3>
-                           <a href="javascript:void(0);" className="item-title-overlay"><span>BUY NOW </span><img
+                           <a href="/" className="item-title-overlay"><span>BUY NOW </span><img
                               src="assets/images/next-arrow.svg" className="img-fluid" alt="buy-now" /></a>
                         </div>
                      </div>
                   </div>
                   <div className="carousel-navigation">
                      <div className="left-navigation">
-                        <a href="javascript:void(0);">
+                        <a href="/">
                         <img src="assets/images/left-arrow-blue.svg" className="img-fluid" alt="left-navigation" />
                         </a>
                      </div>
                      <div className="right-navigation">
-                        <a href="javascript:void(0);">
+                        <a href="/">
                         <img src="assets/images/right-arrow-blue.svg" className="img-fluid" alt="right-navigation" />
                         </a>
                      </div>
@@ -267,12 +267,12 @@ export default class Home extends Component {
                   <div className="section-top-wrapper">
                      <h2>Featured Events</h2>
                      <div className="carousel-dots">
-                        <a href="javascript:void(0);">See all <img src="assets/images/right-arrow.svg" className="img-fluid"
+                        <a href="/">See all <img src="assets/images/right-arrow.svg" className="img-fluid"
                            alt="arrow" /></a>
                         <div className="dots-group">
-                           <span className="active"><a href="javascript:void(0);"></a></span>
-                           <span><a href="javascript:void(0);"></a></span>
-                           <span><a href="javascript:void(0);"></a></span>
+                           <span className="active"><a href="/"></a></span>
+                           <span><a href="/"></a></span>
+                           <span><a href="/"></a></span>
                         </div>
                      </div>
                   </div>
@@ -401,12 +401,12 @@ export default class Home extends Component {
                   </div>
                   <div className="carousel-navigation">
                      <div className="left-navigation">
-                        <a href="javascript:void(0);">
+                        <a href="/">
                         <img src="assets/images/left-arrow-blue.svg" className="img-fluid" alt="left-navigation" />
                         </a>
                      </div>
                      <div className="right-navigation">
-                        <a href="javascript:void(0);">
+                        <a href="/">
                         <img src="assets/images/right-arrow-blue.svg" className="img-fluid" alt="right-navigation" />
                         </a>
                      </div>
@@ -425,12 +425,12 @@ export default class Home extends Component {
                   <div className="section-top-wrapper">
                      <h2>Promotions <span className="promotions-animated-img"><img src="assets/images/illustration.svg" className="img-fluid" alt="promotions-image" /></span></h2>
                      <div className="carousel-dots">
-                        <a href="javascript:void(0);">See all <img src="assets/images/right-arrow.svg" className="img-fluid"
+                        <a href="/">See all <img src="assets/images/right-arrow.svg" className="img-fluid"
                            alt="arrow" /></a>
                         <div className="dots-group">
-                           <span className="active"><a href="javascript:void(0);"></a></span>
-                           <span><a href="javascript:void(0);"></a></span>
-                           <span><a href="javascript:void(0);"></a></span>
+                           <span className="active"><a href="/"></a></span>
+                           <span><a href="/"></a></span>
+                           <span><a href="/"></a></span>
                         </div>
                      </div>
                   </div>
@@ -517,12 +517,12 @@ export default class Home extends Component {
                   </div>
                   <div className="carousel-navigation">
                      <div className="left-navigation">
-                        <a href="javascript:void(0);">
+                        <a href="/">
                         <img src="assets/images/left-arrow-blue.svg" className="img-fluid" alt="left-navigation" />
                         </a>
                      </div>
                      <div className="right-navigation">
-                        <a href="javascript:void(0);">
+                        <a href="/">
                         <img src="assets/images/right-arrow-blue.svg" className="img-fluid" alt="right-navigation" />
                         </a>
                      </div>
@@ -672,7 +672,7 @@ export default class Home extends Component {
                   <div className="section-top-wrapper">
                      <h2>Explore</h2>
                      <div className="carousel-dots">
-                        <a href="javascript:void(0);">See all <img src="assets/images/right-arrow.svg" className="img-fluid"
+                        <a href="/">See all <img src="assets/images/right-arrow.svg" className="img-fluid"
                            alt="arrow" /></a>
                      </div>
                   </div>
