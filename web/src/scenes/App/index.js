@@ -24,16 +24,17 @@ export default class App extends React.Component {
   render() {
     return (      
         // SISTIC wrapper start
-        <div className="st-wrapper">  
-          <div className="st-top-advertisment">
-            <div className="container-fluid">
-                <div className="st-advertisment-image">
-                    <img src="assets/images/Header-banner.png" alt="Advertisment-image" className="img-fluid" />
-                </div>
-                <a href="" className="st-advertisment-close"><img src="assets/images/close-adv.svg" className="img-fluid"
-                        alt="close" /></a>
+        <div className="wrapper">  
+         {/* Top advertisment section start */}
+         <div class="top-ads">
+            <div class="container-fluid">
+               <div class="ads-image">
+                  <img src="assets/images/header-banner.png" alt="advertisment-image" class="img-fluid" />
+               </div>
+               <a href="" class="ads-close"><img src="assets/images/close-ad.svg" class="img-fluid" alt="close" /></a>
             </div>
-          </div>
+         </div>
+            {/* Top advertisment section end */}
           {/* TopNav */}
           <TopNav />
 
