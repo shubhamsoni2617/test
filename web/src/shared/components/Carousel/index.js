@@ -21,7 +21,7 @@ const Carousel = (props) => {
         },
         customPaging: (i) => {
             return (
-                <div className="st-dots-group">
+                <div className="dots-group">
                     <span className="active"><a href="/"></a></span>
                 </div>
             );
@@ -61,16 +61,16 @@ const Carousel = (props) => {
                     return (
                         <div className="grid-container" key={i}>
                             <div className="item">
-                                <div className="st-item-wrapper">
-                                    <div className="st-currently-showing-img">
-                                        <div className="st-item-img">
+                                <div className="item-wrapper">
+                                    <div className="currently-showing-img">
+                                        <div className="item-img">
                                             <img src={elem.img} className="img-fluid" alt="Kurios" />
                                         </div>
                                     </div>
-                                    <span className={elem.genre === "Musical" ? "st-category st-musical" : "st-category st-comedy"}>{elem.genre}</span>
-                                    <p className="st-currently-showing-date">Sun, 21 Jul 2019</p>
-                                    <p className="st-item-title">KURIOS – Cabinet of Curiosities</p>
-                                    <p className="st-currently-showing-place">Marina Bay Sands Singapore</p>
+                                    <span className={elem.genre === "Musical" ? "category musical" : "category comedy"}>{elem.genre}</span>
+                                    <p>Thu, 2 May 2019</p>
+                                    <h3>Atul Khatri - Live in Singapore</h3>
+                                    <p>Sota Concert Hall</p>
                                 </div>
                             </div>
                         </div>
