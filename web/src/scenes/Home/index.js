@@ -5,6 +5,7 @@ import './style.scss';
 import InstagramFeed from '../../shared/components/InstagramFeed/InstagramFeed';
 import CurrentlyShowing from './CurrentlyShowing/CurrentlyShowing';
 import WhatsNew from "./WhatsNew/WhatsNew";
+import PromotionCarousel from "./PromotionCarousel";
 
 
 export default class Home extends Component {
@@ -420,115 +421,7 @@ export default class Home extends Component {
            {/* currently showing section end  */}
   
            {/* Promotions section start  */}
-           <section className="promotions">
-               <div className="container-fluid">
-                  <div className="section-top-wrapper">
-                     <h2>Promotions <span className="promotions-animated-img"><img src="assets/images/illustration.svg" className="img-fluid" alt="promotions-image" /></span></h2>
-                     <div className="carousel-dots">
-                        <a href="/">See all <img src="assets/images/right-arrow.svg" className="img-fluid"
-                           alt="arrow" /></a>
-                        <div className="dots-group">
-                           <span className="active"><a href="/"></a></span>
-                           <span><a href="/"></a></span>
-                           <span><a href="/"></a></span>
-                        </div>
-                     </div>
-                  </div>
-                  <div className="grid-container">
-                     <div className="item">
-                        <div className="item-wrapper">
-                           <div className="promotions-img">
-                              <div className="item-img">
-                                 <img src="assets/images/headrock.jpg" className="img-fluid" alt="headrock" />
-                              </div>
-                              <div className="promotion-timer">
-                                 <ul>
-                                    <li className="timer-watch">
-                                       <img src="assets/images/stopwatch.svg" className="img-fluid" alt="watch" />
-                                    </li>
-                                    <li className="timer-days">
-                                       <span>70</span>
-                                       <span className="timer-label">Days</span>
-                                    </li>
-                                    <li className="timer-hours">
-                                       <span>11</span>
-                                       <span className="timer-label">Hrs</span>
-                                    </li>
-                                    <li className="timer-minutes">
-                                       <span>29</span>
-                                       <span className="timer-label">Mins</span>
-                                    </li>
-                                    <li className="timer-seconds">
-                                       <span>58</span>
-                                       <span className="timer-label">Sec</span>
-                                    </li>
-                                 </ul>
-                              </div>
-                           </div>
-                           <h3>HeadRock VR</h3>
-                        </div>
-                        <div className="item-wrapper">
-                           <div className="promotions-img">
-                              <div className="item-img">
-                                 <img src="assets/images/live-up.jpg" className="img-fluid" alt="headrock" />
-                              </div>
-                           </div>
-                           <h3>LiveUp Partnership</h3>
-                        </div>
-                     </div>
-                     <div className="item">
-                        <div className="item-wrapper">
-                           <div className="promotions-img">
-                              <div className="item-img">
-                                 <img src="assets/images/master-card.jpg" className="img-fluid" alt="privilage" />
-                              </div>
-                           </div>
-                           <h3>Book with Mastercard and enjoy these privileges!</h3>
-                        </div>
-                     </div>
-                     <div className="item">
-                        <div className="item-wrapper">
-                           <div className="promotions-img">
-                              <div className="item-img">
-                                 <img src="assets/images/mozart36.jpg" className="img-fluid" alt="privilage" />
-                              </div>
-                           </div>
-                           <h3>Mozart 36</h3>
-                        </div>
-                     </div>
-                     <div className="item">
-                        <div className="item-wrapper">
-                           <div className="promotions-img">
-                              <div className="item-img">
-                                 <img src="assets/images/headrock.jpg" className="img-fluid" alt="headrock" />
-                              </div>
-                           </div>
-                           <h3>HeadRock VR</h3>
-                        </div>
-                        <div className="item-wrapper">
-                           <div className="promotions-img">
-                              <div className="item-img">
-                                 <img src="assets/images/peter-blue.jpg" className="img-fluid" alt="headrock" />
-                              </div>
-                           </div>
-                           <h3>LiveUp Partnership</h3>
-                        </div>
-                     </div>
-                  </div>
-                  <div className="carousel-navigation">
-                     <div className="left-navigation">
-                        <a href="/">
-                        <img src="assets/images/left-arrow-blue.svg" className="img-fluid" alt="left-navigation" />
-                        </a>
-                     </div>
-                     <div className="right-navigation">
-                        <a href="/">
-                        <img src="assets/images/right-arrow-blue.svg" className="img-fluid" alt="right-navigation" />
-                        </a>
-                     </div>
-                  </div>
-               </div>
-            </section>
+            <PromotionCarousel />
            {/*Promotions section end */}
   
            {/*Trending now section start */}
