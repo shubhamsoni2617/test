@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import Card from '../Card';
+import PromotionCard from '../PromotionCard';
 import './style.scss';
 
 export default class Tab extends Component {
@@ -28,8 +28,8 @@ export default class Tab extends Component {
             </div>
             <div className="tab-content-wrapper">
                 <ul className="promotions-listing">
-                    <Card />
-                    <Card />
+                    <PromotionCard />
+                    <PromotionCard />
                 </ul>
             </div>
             <div className="promotion-load-more">

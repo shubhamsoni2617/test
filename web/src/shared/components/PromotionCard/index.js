@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import './style.scss';
 
-export default class Card extends Component {
+export default class PromotionCard extends Component {
   
   constructor(props){
     super(props);
