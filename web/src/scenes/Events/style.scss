@@ -1,0 +1,91 @@
+/********** Checkbox ******/
+.styled-checkbox {
+    position: absolute; // take it out of document flow
+    opacity: 0; // hide it
+  
+    & + label {
+      position: relative;
+      cursor: pointer;
+      padding: 0;
+      margin: 0;
+    }
+  
+    // Box.
+    & + label:before {
+      content: '';
+      margin-right: 4px;
+      display: inline-block;
+      vertical-align: text-top;
+      width: 10px;
+      height: 10px;
+      background: #FFF;
+      border: 1px solid #979797;
+      margin-top: 3px;
+    }
+  
+    // Box hover
+    &:hover + label:before {
+        background: #0098FF;
+        border: 1px solid #0098FF;
+        margin-top: 3px;
+    }
+    
+    // Box focus
+    &:focus + label:before {
+      box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.0);
+    }
+  
+    // Box checked
+    &:checked + label:before {
+      background: #0098FF;
+      border: 1px solid #0098FF;
+    }
+    
+    // Disabled state label.
+    &:disabled + label {
+      color: #626262;
+      cursor: auto;
+    }
+  
+    // Disabled box.
+    &:disabled + label:before {
+      box-shadow: none;
+      background: #ddd;
+    }
+  
+    // Checkmark. Could be replaced with an image
+    &:checked + label:after {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 7px;
+      background: white;
+      width: 2px;
+      height: 2px;
+      box-shadow: 
+        2px 0 0 white,
+        4px 0 0 white,
+        4px -2px 0 white,
+        4px -4px 0 white,
+        4px -6px 0 white,
+        4px -8px 0 white;
+      transform: rotate(45deg);
+    }
+}
+/******** Listing  **********/
+.wrapper-events-listing{
+    display: flex;
+
+    .events-listing {
+        width: calc(100% - 338px);
+        margin-left: 38px;
+       
+        .events-section{
+            display: flex;
+            flex-wrap: wrap;
+            flex-direction: row;
+            margin-top: 20px;
+           
+        }
+    }
+}
