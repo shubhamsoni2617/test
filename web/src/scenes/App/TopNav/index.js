@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import logo from '../../../assets/images/logo.png';
 import './style.scss';
-import FindAnEvent from '../../../shared/components/FindAnEvent';
-import { Dropdown } from 'react-bootstrap';
+import MegaMenu from '../../../shared/components/MegaMenu';
+import DropDown from '../../../shared/components/DropDown';
 
 
 export default class TopNav extends Component {
@@ -230,7 +230,7 @@ export default class TopNav extends Component {
                                 <ul>
                                     <li className="has-submenu">
                                         <a href="/">Events</a>
-                                        <FindAnEvent byGenreEvent={byGenreEvent} />
+                                        <MegaMenu byGenreEvent={byGenreEvent} />
                                     </li>
                                     <li><a href="/">Attractions</a></li>
                                     <li><a href="/">Promotions</a></li>
@@ -247,27 +247,11 @@ export default class TopNav extends Component {
                                         })
                                     }
                                     <li>
-                                        <Dropdown>
-                                            <Dropdown.Toggle variant="primary" id="dropdown-basic">
-                                                More
-                                                 <span className="dropdown-icon">
-                                                    <img
-                                                        src="assets/images/bottom-arrow.svg" 
-                                                        className="img-fluid"
-                                                        alt="arrow"
-                                                    />
-                                                </span>
-                                            </Dropdown.Toggle>
-                                            <Dropdown.Menu>
-                                                {
-                                                    byGenreEvent.slice(showElementsInHeader, byGenreEvent.length).map((event, index) => {
-                                                        return (
-                                                            <Dropdown.Item href="/" key={event.id}> {event.name}</Dropdown.Item>
-                                                        );
-                                                    })
-                                                }
-                                            </Dropdown.Menu>
-                                        </Dropdown>
+                                        <DropDown
+                                            showElementsInHeader={showElementsInHeader}
+                                            byGenreEvent={byGenreEvent}
+                                        />
+                                      
                                         {/* <a href="/">More
                                             <span className="dropdown-icon">
                                                 <img
