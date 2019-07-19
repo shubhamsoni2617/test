@@ -807,11 +807,17 @@
 //home section common design
 .home-page-wrapper{
 	section {
-		padding: 40px 0px 0px;
+		padding: 40px 0px;
 		position: relative;
 		@media (max-width: 767px) {
 			padding: 20px 0px 0px;
-		}
+        }
+        &.gift-cart{
+            padding: 0;
+        }
+        &.featured-events{
+            padding-bottom: 0;
+        }
 	}
 	h2 {
 		font-size: 30px;
@@ -2089,7 +2095,8 @@ p {
 								position: absolute;
 								transition: 0.5s opacity;
 								opacity: 0;
-								bottom: -5px;
+                                bottom: -5px;
+                                left: 0;
 							}
 							&:hover {
 								img.active {
@@ -2128,7 +2135,7 @@ p {
 			.input-group {
 				margin-bottom: 25px;
 				width: 100%;
-				@media (max-width: 1366px) and (min-width: 991px){
+				@media (max-width: 1280px) and (min-width: 991px){
 					width: 80%;
 				}
 				@media (max-width: 767px) {
@@ -2295,7 +2302,7 @@ p {
 		}
 	}
 	.stay-connected-wrapper{
-		@media(max-width: 1366px) and (min-width: 991px){
+		@media(max-width: 1280px) and (min-width: 991px){
 			display: grid;
 			grid-template-columns: repeat(2, 1fr);
 			grid-column: 1/4;			
