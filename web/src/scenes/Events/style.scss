@@ -13,21 +13,18 @@
     // Box.
     & + label:before {
       content: '';
-      margin-right: 4px;
+      margin-right: 6px;
       display: inline-block;
       vertical-align: text-top;
       width: 10px;
       height: 10px;
-      background: #FFF;
-      border: 1px solid #979797;
+      background: url(../../assets/images/checkbox.png) no-repeat;
       margin-top: 3px;
     }
   
     // Box hover
     &:hover + label:before {
         background: #0098FF;
-        border: 1px solid #0098FF;
-        margin-top: 3px;
     }
     
     // Box focus
@@ -37,8 +34,7 @@
   
     // Box checked
     &:checked + label:before {
-      background: #0098FF;
-      border: 1px solid #0098FF;
+        background: url(../../assets/images/checkbox-checked.svg) no-repeat;
     }
     
     // Disabled state label.
@@ -52,25 +48,7 @@
       box-shadow: none;
       background: #ddd;
     }
-  
-    // Checkmark. Could be replaced with an image
-    &:checked + label:after {
-      content: '';
-      position: absolute;
-      left: 0;
-      top: 7px;
-      background: white;
-      width: 2px;
-      height: 2px;
-      box-shadow: 
-        2px 0 0 white,
-        4px 0 0 white,
-        4px -2px 0 white,
-        4px -4px 0 white,
-        4px -6px 0 white,
-        4px -8px 0 white;
-      transform: rotate(45deg);
-    }
+
 }
 /******** Listing  **********/
 .wrapper-events-listing{
@@ -84,8 +62,7 @@
             display: flex;
             flex-wrap: wrap;
             flex-direction: row;
-            margin-top: 20px;
-           
+            margin-top: 15px;
         }
     }
 }

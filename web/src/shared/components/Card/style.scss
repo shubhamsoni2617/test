@@ -1,12 +1,19 @@
 .event-block{
     display: flex;
     flex-direction: column;
-    border: 1px solid #EAEAEA;
+    box-shadow: 0 0 1px #EAEAEA;
+    border: 2px solid transparent;
     margin-right: 15px;
     margin-bottom: 35px;
     width: calc(33.33% - 15px);
+    transition: .5s ease-out;
     &:last-child{
         margin-right: 0;
+    }
+    &:hover{
+        box-shadow: 0 2px 27px 0 rgba(0,0,0,0.09);
+        border: 2px solid #0098FF;
+        transition: .5s ease-out;
     }
     .event-img{
         display: flex;
@@ -26,16 +33,19 @@
             color: #343434;
             padding: 10px 0;
             margin: 0;
+            font-weight: 600;
         }
         .event-date{
             color: #626262;
             font-size: 14px;
             margin-bottom: 5px;
+            padding: 0;
         }
         .event-place{
             color: #626262;
             font-size: 14px;
-            margin-bottom: 15px;
+            margin-bottom: 16px;
+            padding: 0;
         }
         .price-event{
             display: flex;
@@ -51,6 +61,7 @@
                     color: #343434;
                     font-size: 16px;
                     line-height: 11px;
+                    font-weight: 500;
                 }
             }
             .buy-btn{

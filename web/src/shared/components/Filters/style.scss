@@ -17,6 +17,7 @@
                 color: #0098ff;
                 text-decoration: none;
                 font-size: 12px;
+                font-family: 'Rubik', sans-serif;
             }
         }
     }
@@ -104,6 +105,7 @@
             display: flex;
             flex-wrap: wrap;
             margin-bottom: 10px;
+            position: relative;
             ul {
                 margin: 0;
                 padding: 0;
@@ -124,7 +126,105 @@
                     }
                 }
             }
-
+            /****** Filter Directory ******/
+            .filter-directory-panel{
+                box-sizing: border-box;
+                box-shadow: 0 2px 35px 0 rgba(176,176,176,0.5);
+                background: #FEFEFE;
+                width: 980px;
+                padding: 15px 25px;
+                overflow: hidden;
+                position: absolute;
+                bottom: 38px;
+                left: 0;
+                z-index: 5;
+                .FilterDirectory-titleBar{
+                    color: #adaeaf;
+                    padding: 0 0 12px 0;
+                    display: flex;
+                    flex-direction: column;
+                    .FilterDirectory-heading{
+                        display: flex;
+                        justify-content: space-between;
+                        margin-bottom: 5px;
+                        h3{
+                            color: #343434;		
+                            font-size: 15px;
+                            font-weight: 600;
+                            margin: 0;
+                        }
+                        .FilterDirectory-close{
+                            float: right;
+                            cursor: pointer;
+                            opacity: 0.7;
+                            margin-top: 10px;
+                            width: 14px;
+                            height: 14px;
+                        }
+                    }
+                    .FilterDirectory-indices-list{
+                        display: flex;
+                        .FilterDirectory-searchInput {
+                            margin: 0 20px 0 0;
+                            height: 30px;
+                            width: 281px;
+                            font-size: 14px;
+                            padding: 5px;
+                            border: 1px solid rgba(151,151,151,0.2);
+                            outline: none;
+                            text-transform: capitalize;
+                        }
+                        .FilterDirectory-indices{
+                            display: flex;
+                            flex-direction: row;
+                            flex: auto;
+                            margin: 0;
+                            padding: 0;
+                            list-style: none;
+                            li{
+                                width: 20px;
+                                height: 20px;
+                                display: inline-block;
+                                position: relative;
+                                text-align: center;
+                                cursor: pointer;
+                                text-transform: uppercase;
+                                color: #000000;
+                                font-weight: 600;
+                                font-size: 13px;
+                            }
+                        }
+                    }
+                }
+                .FilterDirectory-list{
+                    padding: 20px 18px 10px 0;
+                    height: 465px;
+                    display: flex;
+                    flex-direction: column;
+                    flex-wrap: wrap;
+                    align-items: flex-start;
+                    align-content: flex-start;
+                    white-space: nowrap;
+                    overflow-x: auto;
+                    overflow-y: hidden;
+                   
+                    li{
+                        margin: 0 10px 1px 0;
+                        font-size: 14px;
+                        padding: 5px 10px;
+                        padding-left: 0;
+                        width: 260px;
+                        &.FilterDirectory-listTitle{
+                            margin-bottom: 10px;
+                            font-weight: 600;
+                            text-transform: uppercase;
+                            color: #282c3f;
+                            font-size: 14px;
+                            margin-bottom: 0px;
+                        }
+                    }
+                }
+            }
             .form-group {
                 margin: 0;
                 width: 45%;

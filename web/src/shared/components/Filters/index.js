@@ -191,6 +191,344 @@ export default class Filters extends Component {
                     <a href="/" className="view-all-filters">
                         + 94 More
                     </a>
+                    <div className="filter-directory-panel">
+                        <div class="FilterDirectory-titleBar">
+                            <div className="FilterDirectory-heading">
+                                <h3>Venue</h3>
+                                <span class="FilterDirectory-close"> 
+                                    <img src="assets/images/close-icon.svg" alt="Close"/>
+                                </span>
+                            </div>
+                            <div className="FilterDirectory-indices-list">
+                                <input type="text" placeholder="Search brand" class="FilterDirectory-searchInput"/>
+                                <ul class="FilterDirectory-indices">
+                                    <li data-item="#" class="">#</li>
+                                    <li data-item="a" class="">a</li>
+                                    <li data-item="b" class="">b</li>
+                                    <li data-item="c" class="">c</li>
+                                    <li data-item="d" class="">d</li>
+                                    <li data-item="e" class="">e</li>
+                                    <li data-item="f" class="">f</li>
+                                    <li data-item="g" class="">g</li>
+                                    <li data-item="h" class="">h</li>
+                                    <li data-item="i" class="">i</li>
+                                    <li data-item="j" class="">j</li>
+                                    <li data-item="k" class="">k</li>
+                                    <li data-item="l" class="">l</li>
+                                    <li data-item="m" class="">m</li>
+                                    <li data-item="n" class="">n</li>
+                                    <li data-item="o" class="">o</li>
+                                    <li data-item="p" class="">p</li>
+                                    <li data-item="q" class="">q</li>
+                                    <li data-item="r" class="">r</li>
+                                    <li data-item="s" class="">s</li>
+                                    <li data-item="t" class="">t</li>
+                                    <li data-item="u" class="">u</li>
+                                    <li data-item="v" class="">v</li>
+                                    <li data-item="w" class="">w</li>
+                                    <li data-item="x" class="FilterDirectory-disabled">x</li>
+                                    <li data-item="y" class="">y</li>
+                                    <li data-item="z" class="">z</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <ul className="FilterDirectory-list">
+                            <li className="FilterDirectory-listTitle ">A</li>
+                            <li>
+                                <input className="styled-checkbox" type="checkbox" id="styled-checkbox-9" value="" />
+                                <label for="styled-checkbox-9">
+                                    General
+                                </label>
+                            </li>
+                            <li>
+                                <input className="styled-checkbox" type="checkbox" id="styled-checkbox-9" value="" />
+                                <label for="styled-checkbox-9">
+                                    General
+                                </label>
+                            </li>
+                            <li>
+                                <input className="styled-checkbox" type="checkbox" id="styled-checkbox-9" value="" />
+                                <label for="styled-checkbox-9">
+                                    General
+                                </label>
+                            </li>
+                            <li>
+                                <input className="styled-checkbox" type="checkbox" id="styled-checkbox-9" value="" />
+                                <label for="styled-checkbox-9">
+                                    General
+                                </label>
+                            </li>
+                            <li>
+                                <input className="styled-checkbox" type="checkbox" id="styled-checkbox-9" value="" />
+                                <label for="styled-checkbox-9">
+                                    General
+                                </label>
+                            </li>
+                            <li>
+                                <input className="styled-checkbox" type="checkbox" id="styled-checkbox-9" value="" />
+                                <label for="styled-checkbox-9">
+                                    General
+                                </label>
+                            </li>
+                            <li>
+                                <input className="styled-checkbox" type="checkbox" id="styled-checkbox-9" value="" />
+                                <label for="styled-checkbox-9">
+                                    General
+                                </label>
+                            </li>
+                            <li>
+                                <input className="styled-checkbox" type="checkbox" id="styled-checkbox-9" value="" />
+                                <label for="styled-checkbox-9">
+                                    General
+                                </label>
+                            </li>
+                            <li className="FilterDirectory-listTitle ">A</li>
+                            <li>
+                                <input className="styled-checkbox" type="checkbox" id="styled-checkbox-9" value="" />
+                                <label for="styled-checkbox-9">
+                                    General
+                                </label>
+                            </li>
+                            <li>
+                                <input className="styled-checkbox" type="checkbox" id="styled-checkbox-9" value="" />
+                                <label for="styled-checkbox-9">
+                                    General
+                                </label>
+                            </li>
+                            <li>
+                                <input className="styled-checkbox" type="checkbox" id="styled-checkbox-9" value="" />
+                                <label for="styled-checkbox-9">
+                                    General
+                                </label>
+                            </li>
+                            <li>
+                                <input className="styled-checkbox" type="checkbox" id="styled-checkbox-9" value="" />
+                                <label for="styled-checkbox-9">
+                                    General
+                                </label>
+                            </li>
+                            <li>
+                                <input className="styled-checkbox" type="checkbox" id="styled-checkbox-9" value="" />
+                                <label for="styled-checkbox-9">
+                                    General
+                                </label>
+                            </li>
+                            <li>
+                                <input className="styled-checkbox" type="checkbox" id="styled-checkbox-9" value="" />
+                                <label for="styled-checkbox-9">
+                                    General
+                                </label>
+                            </li>
+                            <li>
+                                <input className="styled-checkbox" type="checkbox" id="styled-checkbox-9" value="" />
+                                <label for="styled-checkbox-9">
+                                    General
+                                </label>
+                            </li>
+                            <li>
+                                <input className="styled-checkbox" type="checkbox" id="styled-checkbox-9" value="" />
+                                <label for="styled-checkbox-9">
+                                    General
+                                </label>
+                            </li>
+                            <li className="FilterDirectory-listTitle ">A</li>
+                            <li>
+                                <input className="styled-checkbox" type="checkbox" id="styled-checkbox-9" value="" />
+                                <label for="styled-checkbox-9">
+                                    General
+                                </label>
+                            </li>
+                            <li>
+                                <input className="styled-checkbox" type="checkbox" id="styled-checkbox-9" value="" />
+                                <label for="styled-checkbox-9">
+                                    General
+                                </label>
+                            </li>
+                            <li>
+                                <input className="styled-checkbox" type="checkbox" id="styled-checkbox-9" value="" />
+                                <label for="styled-checkbox-9">
+                                    General
+                                </label>
+                            </li>
+                            <li>
+                                <input className="styled-checkbox" type="checkbox" id="styled-checkbox-9" value="" />
+                                <label for="styled-checkbox-9">
+                                    General
+                                </label>
+                            </li>
+                            <li>
+                                <input className="styled-checkbox" type="checkbox" id="styled-checkbox-9" value="" />
+                                <label for="styled-checkbox-9">
+                                    General
+                                </label>
+                            </li>
+                            <li>
+                                <input className="styled-checkbox" type="checkbox" id="styled-checkbox-9" value="" />
+                                <label for="styled-checkbox-9">
+                                    General
+                                </label>
+                            </li>
+                            <li>
+                                <input className="styled-checkbox" type="checkbox" id="styled-checkbox-9" value="" />
+                                <label for="styled-checkbox-9">
+                                    General
+                                </label>
+                            </li>
+                            <li>
+                                <input className="styled-checkbox" type="checkbox" id="styled-checkbox-9" value="" />
+                                <label for="styled-checkbox-9">
+                                    General
+                                </label>
+                            </li>
+                            <li className="FilterDirectory-listTitle ">A</li>
+                            <li>
+                                <input className="styled-checkbox" type="checkbox" id="styled-checkbox-9" value="" />
+                                <label for="styled-checkbox-9">
+                                    General
+                                </label>
+                            </li>
+                            <li>
+                                <input className="styled-checkbox" type="checkbox" id="styled-checkbox-9" value="" />
+                                <label for="styled-checkbox-9">
+                                    General
+                                </label>
+                            </li>
+                            <li>
+                                <input className="styled-checkbox" type="checkbox" id="styled-checkbox-9" value="" />
+                                <label for="styled-checkbox-9">
+                                    General
+                                </label>
+                            </li>
+                            <li>
+                                <input className="styled-checkbox" type="checkbox" id="styled-checkbox-9" value="" />
+                                <label for="styled-checkbox-9">
+                                    General
+                                </label>
+                            </li>
+                            <li>
+                                <input className="styled-checkbox" type="checkbox" id="styled-checkbox-9" value="" />
+                                <label for="styled-checkbox-9">
+                                    General
+                                </label>
+                            </li>
+                            <li>
+                                <input className="styled-checkbox" type="checkbox" id="styled-checkbox-9" value="" />
+                                <label for="styled-checkbox-9">
+                                    General
+                                </label>
+                            </li>
+                            <li>
+                                <input className="styled-checkbox" type="checkbox" id="styled-checkbox-9" value="" />
+                                <label for="styled-checkbox-9">
+                                    General
+                                </label>
+                            </li>
+                            <li>
+                                <input className="styled-checkbox" type="checkbox" id="styled-checkbox-9" value="" />
+                                <label for="styled-checkbox-9">
+                                    General
+                                </label>
+                            </li>
+                            <li className="FilterDirectory-listTitle ">A</li>
+                            <li>
+                                <input className="styled-checkbox" type="checkbox" id="styled-checkbox-9" value="" />
+                                <label for="styled-checkbox-9">
+                                    General
+                                </label>
+                            </li>
+                            <li>
+                                <input className="styled-checkbox" type="checkbox" id="styled-checkbox-9" value="" />
+                                <label for="styled-checkbox-9">
+                                    General
+                                </label>
+                            </li>
+                            <li>
+                                <input className="styled-checkbox" type="checkbox" id="styled-checkbox-9" value="" />
+                                <label for="styled-checkbox-9">
+                                    General
+                                </label>
+                            </li>
+                            <li>
+                                <input className="styled-checkbox" type="checkbox" id="styled-checkbox-9" value="" />
+                                <label for="styled-checkbox-9">
+                                    General
+                                </label>
+                            </li>
+                            <li>
+                                <input className="styled-checkbox" type="checkbox" id="styled-checkbox-9" value="" />
+                                <label for="styled-checkbox-9">
+                                    General
+                                </label>
+                            </li>
+                            <li>
+                                <input className="styled-checkbox" type="checkbox" id="styled-checkbox-9" value="" />
+                                <label for="styled-checkbox-9">
+                                    General
+                                </label>
+                            </li>
+                            <li>
+                                <input className="styled-checkbox" type="checkbox" id="styled-checkbox-9" value="" />
+                                <label for="styled-checkbox-9">
+                                    General
+                                </label>
+                            </li>
+                            <li>
+                                <input className="styled-checkbox" type="checkbox" id="styled-checkbox-9" value="" />
+                                <label for="styled-checkbox-9">
+                                    General
+                                </label>
+                            </li>
+                            <li className="FilterDirectory-listTitle ">A</li>
+                            <li>
+                                <input className="styled-checkbox" type="checkbox" id="styled-checkbox-9" value="" />
+                                <label for="styled-checkbox-9">
+                                    General
+                                </label>
+                            </li>
+                            <li>
+                                <input className="styled-checkbox" type="checkbox" id="styled-checkbox-9" value="" />
+                                <label for="styled-checkbox-9">
+                                    General
+                                </label>
+                            </li>
+                            <li>
+                                <input className="styled-checkbox" type="checkbox" id="styled-checkbox-9" value="" />
+                                <label for="styled-checkbox-9">
+                                    General
+                                </label>
+                            </li>
+                            <li>
+                                <input className="styled-checkbox" type="checkbox" id="styled-checkbox-9" value="" />
+                                <label for="styled-checkbox-9">
+                                    General
+                                </label>
+                            </li>
+                            <li>
+                                <input className="styled-checkbox" type="checkbox" id="styled-checkbox-9" value="" />
+                                <label for="styled-checkbox-9">
+                                    General
+                                </label>
+                            </li>
+                            <li>
+                                <input className="styled-checkbox" type="checkbox" id="styled-checkbox-9" value="" />
+                                <label for="styled-checkbox-9">
+                                    General
+                                </label>
+                            </li>
+                            <li>
+                                <input className="styled-checkbox" type="checkbox" id="styled-checkbox-9" value="" />
+                                <label for="styled-checkbox-9">
+                                    General
+                                </label>
+                            </li>
+                            <li>
+                                <input className="styled-checkbox" type="checkbox" id="styled-checkbox-9" value="" />
+                                <label for="styled-checkbox-9">
+                                    General
+                                </label>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>
