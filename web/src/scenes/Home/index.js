@@ -8,6 +8,8 @@ import WhatsNew from "./WhatsNew/WhatsNew";
 import PromotionCarousel from "./PromotionCarousel";
 import TopPics from './TopPics';
 import FeaturedEvents from './FeaturedEvents';
+import TrendingNow from './TrendingNow';
+import Explore from './Explore';
 
 
 export default class Home extends Component {
@@ -108,134 +110,7 @@ export default class Home extends Component {
             {/*Promotions section end */}
 
             {/*Trending now section start */}
-            <section className="trending-now">
-               <div className="container-fluid">
-                  <h2>Trending Now</h2>
-                  <div className="grid-container">
-                     <div className="item">
-                        <div className="item-wrapper">
-                           <span className="category">Dance</span>
-                           <div className="trending-now-image">
-                              <div className="item-img">
-                                 <img src="assets/images/kurios.png" className="img-fluid" alt="kurios" />
-                              </div>
-                              <div className="video-icon">
-                                 <img src="assets/images/video-icon.svg" className="img-fluid" alt="video-icon" />
-                              </div>
-                           </div>
-                           <h3>Kurios Cabinet of Curiosities</h3>
-                           <p>Thu, 2 May 2019</p>
-                           <p>Esplanade Concert Hall</p>
-                        </div>
-                     </div>
-                     <div className="item">
-                        <div className="item-wrapper">
-                           <span className="category">Dance</span>
-                           <div className="trending-now-image">
-                              <div className="item-img">
-                                 <img src="assets/images/trending-now.jpg" className="img-fluid" alt="trending-now" />
-                              </div>
-                           </div>
-                           <h3>Singapore Dance Theatre- Season Pass…</h3>
-                           <p>Thu, 2 May 2019</p>
-                           <p>Various Venues</p>
-                        </div>
-                     </div>
-                     <div className="item">
-                        <div className="item-wrapper">
-                           <span className="category">Dance</span>
-                           <div className="trending-now-image">
-                              <div className="item-img">
-                                 <img src="assets/images/hetty-keos.jpg" className="img-fluid" alt="trending-hetty" />
-                              </div>
-                           </div>
-                           <h3>Hetty Koes Endang (Indonesia)</h3>
-                           <p>Thu, 2 May 2019</p>
-                           <p>Esplanade Concert Hall</p>
-                        </div>
-                     </div>
-                     <div className="item">
-                        <div className="item-wrapper">
-                           <span className="category">Dance</span>
-                           <div className="trending-now-image">
-                              <div className="item-img">
-                                 <img src="assets/images/trending-now.jpg" className="img-fluid" alt="trending-now" />
-                              </div>
-                           </div>
-                           <h3>Singapore Dance Theatre- Season Pass…</h3>
-                           <p>Thu, 2 May 2019</p>
-                           <p>Various Venues</p>
-                        </div>
-                     </div>
-                     <div className="item">
-                        <div className="item-wrapper">
-                           <span className="category">Dance</span>
-                           <div className="trending-now-image">
-                              <div className="item-img">
-                                 <img src="assets/images/hetty-keos.jpg" className="img-fluid" alt="hetty" />
-                              </div>
-                           </div>
-                           <h3>Hetty Koes Endang (Indonesia)</h3>
-                           <p>Sun, 21 Jul 2019</p>
-                           <p>Esplanade Concert Hall</p>
-                        </div>
-                     </div>
-                     <div className="item">
-                        <div className="item-wrapper">
-                           <span className="category">Dance</span>
-                           <div className="trending-now-image">
-                              <div className="item-img">
-                                 <img src="assets/images/aladdin.jpg" className="img-fluid" alt="aladdin" />
-                              </div>
-                           </div>
-                           <h3>Aladdin - The Hit Broadway Musical</h3>
-                           <p>Sun, 21 Jul 2019</p>
-                           <p>Marina Bay Sands</p>
-                        </div>
-                     </div>
-                     <div className="item">
-                        <div className="item-wrapper">
-                           <span className="category">Dance</span>
-                           <div className="trending-now-image">
-                              <div className="item-img">
-                                 <img src="assets/images/voice-legends.jpg" className="img-fluid" alt="voicelegends" />
-                              </div>
-                           </div>
-                           <h3>Voice of Legends 2019</h3>
-                           <p>Thu, 2 May 2019</p>
-                           <p>Suntec Convention Centre</p>
-                        </div>
-                     </div>
-                     <div className="item">
-                        <div className="item-wrapper">
-                           <span className="category">Dance</span>
-                           <div className="trending-now-image">
-                              <div className="item-img">
-                                 <img src="assets/images/trending-now.jpg" className="img-fluid" alt="trending-now" />
-                              </div>
-                           </div>
-                           <h3>Singapore Dance Theatre- Season Pass…</h3>
-                           <p>Thu, 2 May 2019</p>
-                           <p>Various Venues</p>
-                        </div>
-                     </div>
-                     <div className="item">
-                        <div className="item-wrapper">
-                           <span className="category">Dance</span>
-                           <div className="trending-now-image">
-                              <div className="item-img">
-                                 <img src="assets/images/hetty-keos.jpg" className="img-fluid" alt="hetty" />
-                              </div>
-                           </div>
-                           <h3>Hetty Koes Endang (Indonesia)</h3>
-                           <p>Thu, 2 May 2019</p>
-                           <p>Esplanade Concert Hall</p>
-                        </div>
-                     </div>
-                  </div>
-               </div>
-            </section>
-
+            <TrendingNow />
             {/* Trending now section end  */}
 
             {/* What's new section start  */}
@@ -243,76 +118,7 @@ export default class Home extends Component {
             {/* What's new section end  */}
 
             {/* explore section start  */}
-            <section className="explore">
-               <div className="container-fluid">
-                  <div className="section-top-wrapper">
-                     <h2>Explore</h2>
-                     <div className="carousel-dots">
-                        <a href="/">See all <img src="assets/images/right-arrow.svg" className="img-fluid"
-                           alt="arrow" /></a>
-                     </div>
-                  </div>
-                  <span className="explore-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas varius
-                  tortor nibh, sit amet tempor nibh finibus et. Aenean eu enim justo. </span>
-                  <div className="grid-container">
-                     <div className="item">
-                        <div className="item-wrapper explore-article">
-                           <div className="explore-image item-img">
-                              <img src="assets/images/explore-01.jpg" className="img-fluid" alt="explore" />
-                           </div>
-                           <div className="explore-text-wrapper">
-                              <span className="explore-category">Article</span>
-                              <h3>A Guide to SIFA 2019’s Music-centric Gems</h3>
-                           </div>
-                        </div>
-                     </div>
-                     <div className="item explore-rightside-content">
-                        <div className="item-wrapper">
-                           <div className="explore-image item-img">
-                              <img src="assets/images/explore-02.jpg" className="img-fluid" alt="explore" />
-                           </div>
-                           <div className="explore-text-wrapper">
-                              <span className="explore-category">Quiz</span>
-                              <h3>A Guide to SIFA 2019’s Music-centric Gems</h3>
-                           </div>
-                        </div>
-                     </div>
-                     <div className="item explore-rightside-content">
-                        <div className="item-wrapper">
-                           <div className="explore-image item-img">
-                              <img src="assets/images/explore-02.jpg" className="img-fluid" alt="explore" />
-                           </div>
-                           <div className="explore-text-wrapper">
-                              <span className="explore-category">Quiz</span>
-                              <h3>A Guide to SIFA 2019’s Music-centric Gems</h3>
-                           </div>
-                        </div>
-                     </div>
-                     <div className="item explore-rightside-content">
-                        <div className="item-wrapper">
-                           <div className="explore-image item-img">
-                              <img src="assets/images/explore-02.jpg" className="img-fluid" alt="explore" />
-                           </div>
-                           <div className="explore-text-wrapper">
-                              <span className="explore-category">Quiz</span>
-                              <h3>A Guide to SIFA 2019’s Music-centric Gems</h3>
-                           </div>
-                        </div>
-                     </div>
-                     <div className="item explore-rightside-content">
-                        <div className="item-wrapper">
-                           <div className="explore-image item-img">
-                              <img src="assets/images/explore-02.jpg" className="img-fluid" alt="explore" />
-                           </div>
-                           <div className="explore-text-wrapper">
-                              <span className="explore-category">Quiz</span>
-                              <h3>A Guide to SIFA 2019’s Music-centric Gems</h3>
-                           </div>
-                        </div>
-                     </div>
-                  </div>
-               </div>
-            </section>
+            <Explore />
             {/* explore section end  */}
 
             {/* SISTIC Moments Start  */}
