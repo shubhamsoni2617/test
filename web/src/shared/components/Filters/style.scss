@@ -42,6 +42,18 @@
             height: 30px;
             padding: 3px 40px 3px 10px;
             border-radius: 0;
+            &::-webkit-input-placeholder {
+                color: rgba(52,52,52,0.25);
+            }
+            &::-moz-placeholder { 
+                color: rgba(52,52,52,0.25);
+            }
+            &:-ms-input-placeholder { 
+                color: rgba(52,52,52,0.25);
+            }
+            &:-moz-placeholder { 
+                color: rgba(52,52,52,0.25);
+            }
         }
     }
 
@@ -128,6 +140,7 @@
             }
             /****** Filter Directory ******/
             .filter-directory-panel{
+                display: none;
                 box-sizing: border-box;
                 box-shadow: 0 2px 35px 0 rgba(176,176,176,0.5);
                 background: #FEFEFE;
@@ -138,12 +151,12 @@
                 bottom: 38px;
                 left: 0;
                 z-index: 5;
-                .FilterDirectory-titleBar{
+                .filter-directory-titlebar{
                     color: #adaeaf;
                     padding: 0 0 12px 0;
                     display: flex;
                     flex-direction: column;
-                    .FilterDirectory-heading{
+                    .filter-directory-heading{
                         display: flex;
                         justify-content: space-between;
                         margin-bottom: 5px;
@@ -153,7 +166,7 @@
                             font-weight: 600;
                             margin: 0;
                         }
-                        .FilterDirectory-close{
+                        .filter-directory-close{
                             float: right;
                             cursor: pointer;
                             opacity: 0.7;
@@ -162,9 +175,9 @@
                             height: 14px;
                         }
                     }
-                    .FilterDirectory-indices-list{
+                    .filter-directory-indices-list{
                         display: flex;
-                        .FilterDirectory-searchInput {
+                        .filter-directory-search-input {
                             margin: 0 20px 0 0;
                             height: 30px;
                             width: 281px;
@@ -173,8 +186,21 @@
                             border: 1px solid rgba(151,151,151,0.2);
                             outline: none;
                             text-transform: capitalize;
+                            background: url(../../../assets/images/search-blue.svg) 96% 4px no-repeat;
+                            &::-webkit-input-placeholder {
+                                color: rgba(52,52,52,0.25);
+                            }
+                            &::-moz-placeholder { 
+                                color: rgba(52,52,52,0.25);
+                            }
+                            &:-ms-input-placeholder { 
+                                color: rgba(52,52,52,0.25);
+                            }
+                            &:-moz-placeholder { 
+                                color: rgba(52,52,52,0.25);
+                            }
                         }
-                        .FilterDirectory-indices{
+                        .filter-directory-indices{
                             display: flex;
                             flex-direction: row;
                             flex: auto;
@@ -196,7 +222,7 @@
                         }
                     }
                 }
-                .FilterDirectory-list{
+                .filter-directory-list{
                     padding: 20px 18px 10px 0;
                     height: 465px;
                     display: flex;
@@ -214,7 +240,7 @@
                         padding: 5px 10px;
                         padding-left: 0;
                         width: 260px;
-                        &.FilterDirectory-listTitle{
+                        &.filter-directory-listTitle{
                             margin-bottom: 10px;
                             font-weight: 600;
                             text-transform: uppercase;

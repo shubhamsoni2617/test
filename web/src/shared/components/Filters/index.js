@@ -192,16 +192,16 @@ export default class Filters extends Component {
                         + 94 More
                     </a>
                     <div className="filter-directory-panel">
-                        <div class="FilterDirectory-titleBar">
-                            <div className="FilterDirectory-heading">
+                        <div class="filter-directory-titlebar">
+                            <div className="filter-directory-heading">
                                 <h3>Venue</h3>
-                                <span class="FilterDirectory-close"> 
+                                <span class="filter-directory-close"> 
                                     <img src="assets/images/close-icon.svg" alt="Close"/>
                                 </span>
                             </div>
-                            <div className="FilterDirectory-indices-list">
-                                <input type="text" placeholder="Search brand" class="FilterDirectory-searchInput"/>
-                                <ul class="FilterDirectory-indices">
+                            <div className="filter-directory-indices-list">
+                                <input type="text" placeholder="Search brand" class="filter-directory-search-input"/>
+                                <ul class="filter-directory-indices">
                                     <li data-item="#" class="">#</li>
                                     <li data-item="a" class="">a</li>
                                     <li data-item="b" class="">b</li>
@@ -226,14 +226,14 @@ export default class Filters extends Component {
                                     <li data-item="u" class="">u</li>
                                     <li data-item="v" class="">v</li>
                                     <li data-item="w" class="">w</li>
-                                    <li data-item="x" class="FilterDirectory-disabled">x</li>
+                                    <li data-item="x" class="filter-directory-disabled">x</li>
                                     <li data-item="y" class="">y</li>
                                     <li data-item="z" class="">z</li>
                                 </ul>
                             </div>
                         </div>
-                        <ul className="FilterDirectory-list">
-                            <li className="FilterDirectory-listTitle ">A</li>
+                        <ul className="filter-directory-list">
+                            <li className="filter-directory-list-title ">A</li>
                             <li>
                                 <input className="styled-checkbox" type="checkbox" id="styled-checkbox-9" value="" />
                                 <label for="styled-checkbox-9">
@@ -282,7 +282,7 @@ export default class Filters extends Component {
                                     General
                                 </label>
                             </li>
-                            <li className="FilterDirectory-listTitle ">A</li>
+                            <li className="filter-directory-listTitle ">A</li>
                             <li>
                                 <input className="styled-checkbox" type="checkbox" id="styled-checkbox-9" value="" />
                                 <label for="styled-checkbox-9">
@@ -331,7 +331,7 @@ export default class Filters extends Component {
                                     General
                                 </label>
                             </li>
-                            <li className="FilterDirectory-listTitle ">A</li>
+                            <li className="filter-directory-listTitle ">A</li>
                             <li>
                                 <input className="styled-checkbox" type="checkbox" id="styled-checkbox-9" value="" />
                                 <label for="styled-checkbox-9">
@@ -380,7 +380,7 @@ export default class Filters extends Component {
                                     General
                                 </label>
                             </li>
-                            <li className="FilterDirectory-listTitle ">A</li>
+                            <li className="filter-directory-listTitle ">A</li>
                             <li>
                                 <input className="styled-checkbox" type="checkbox" id="styled-checkbox-9" value="" />
                                 <label for="styled-checkbox-9">
@@ -429,7 +429,7 @@ export default class Filters extends Component {
                                     General
                                 </label>
                             </li>
-                            <li className="FilterDirectory-listTitle ">A</li>
+                            <li className="filter-directory-listTitle ">A</li>
                             <li>
                                 <input className="styled-checkbox" type="checkbox" id="styled-checkbox-9" value="" />
                                 <label for="styled-checkbox-9">
@@ -478,7 +478,7 @@ export default class Filters extends Component {
                                     General
                                 </label>
                             </li>
-                            <li className="FilterDirectory-listTitle ">A</li>
+                            <li className="filter-directory-list-title ">A</li>
                             <li>
                                 <input className="styled-checkbox" type="checkbox" id="styled-checkbox-9" value="" />
                                 <label for="styled-checkbox-9">

@@ -17,11 +17,14 @@ export default class Card extends Component {
                 <img src="assets/images/kurios.png" className="img-fluid" alt="Kurios"/>
             </div>
             <div className="event-details">
-                <span className="category musical">Musical</span>
-                <h3 className="item-title">Aladdin Lorem ipsum dolor sit consectetur adipiscing elit…
-                </h3>
-                <p className="event-date">Sun, 21 Jul - Sun, 1 Sep 2019</p>
-                <p className="event-place">Sands Theatre, Marina Bay Sands</p>
+                <div className="event-detail-prime">
+                    <span className="category musical">Musical</span>
+                    <h3 className="item-title">Aladdin Lorem ipsum dolor sit consectetur adipiscing elit Aladdin<br/> 
+                    Lorem ipsum dolor sit consectetur adipiscing elit…
+                    </h3>
+                    <p className="event-date">Sun, 21 Jul - Sun, 1 Sep 2019</p>
+                    <p className="event-place">Sands Theatre, Marina Bay Sands</p>
+                </div>
                 <div className="price-event">
                     <div className="price">
                         <span>Selling Fast</span>
@@ -32,7 +35,7 @@ export default class Card extends Component {
                     </button>
                 </div>
             </div>
-    </div>
+        </div>
     )
   }
 }

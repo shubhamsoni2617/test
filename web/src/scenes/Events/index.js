@@ -26,6 +26,16 @@ export default class Events extends Component {
                         <SortBy />
                         <div className="events-section">
                             <Card />
+                            <Card />
+                            <Card />
+                            <Card />
+                            <Card />
+                        </div>
+                        <div class="promotion-load-more">
+                           <a href="/" class="btn-link load-more-btn" target="">
+                               <span>Load More</span>
+                               <img src="assets/images/down-arrow-blue.svg" />
+                            </a>
                         </div>
                     </div>
                 </div>
