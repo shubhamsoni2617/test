@@ -6,14 +6,15 @@ import InstagramFeed from '../../shared/components/InstagramFeed/InstagramFeed';
 import CurrentlyShowing from './CurrentlyShowing/CurrentlyShowing';
 import WhatsNew from "./WhatsNew/WhatsNew";
 import PromotionCarousel from "./PromotionCarousel";
+import TopPics from './TopPics';
 
 
 export default class Home extends Component {
-  render() {
-    return (
-        <div className="home-page-wrapper">
-          {/* Home page Banner start */}
-          <section className="banner">
+   render() {
+      return (
+         <div className="home-page-wrapper">
+            {/* Home page Banner start */}
+            <section className="banner">
                <div className="banner-carousel">
                   <div className="active-banner-image">
                      <img src="assets/images/slide1.jpg" alt="active-slide" className="img-fluid" />
@@ -26,12 +27,12 @@ export default class Home extends Component {
                   <div className="carousel-navigation">
                      <div className="left-navigation">
                         <a href="/">
-                        <img src="assets/images/left-arrow-white.svg" className="img-fluid" alt="left-navigation" />
+                           <img src="assets/images/left-arrow-white.svg" className="img-fluid" alt="left-navigation" />
                         </a>
                      </div>
                      <div className="right-navigation">
                         <a href="/">
-                        <img src="assets/images/right-arrow-white.svg" className="img-fluid" alt="right-navigation" />
+                           <img src="assets/images/right-arrow-white.svg" className="img-fluid" alt="right-navigation" />
                         </a>
                      </div>
                   </div>
@@ -79,191 +80,22 @@ export default class Home extends Component {
                   </ul>
                </div>
             </section>
-          {/* Home page Banner end */}
-  
-          {/* Top-picks-for-you section start */}
-          <section className="top-picks">
-               <div className="container-fluid">
-                  <h2>Top Picks For You</h2>
-                  <div className="grid-container">
-                     <div className="item">
-                        <div className="item-wrapper">
-                           <div className="item-desc">
-                              <span className="video-icon"><img src="assets/images/video-icon.svg" /></span>
-                              <div className="item-img">
-                                 <img src="assets/images/kurios.png" className="img-fluid item-image" alt="kurios" />
-                              </div>
-                              <span className="category musical top-picks-category">Musical</span>
-                              <div className="item-overlay musical-overlay">
-                                 <div className="overlay-wrapper">
-                                    <h3>Kurios Cabinet of Curiosities</h3>
-                                    <p>Fri, 19 Apr- Sun, 19 May 2019</p>
-                                    <p>Under the big top Bayfront Avenue, beside Marina Bay
-                                       Sands
-                                    </p>
-                                    <p>Cirque du Soleil comes to Singapore with its most
-                                       acclaimed touring show, KURIOS – Cabinet of Curiosities. 
-                                    </p>
-                                 </div>
-                              </div>
-                           </div>
-                           <h3>Kurios Cabinet of Curiosities</h3>
-                           <a href="/" className="item-title-overlay"><span>BUY NOW </span><img
-                              src="assets/images/next-arrow.svg" className="img-fluid" alt="buy-now" /></a>
-                        </div>
-                     </div>
-                     <div className="item">
-                        <div className="item-wrapper">
-                           <div className="item-desc">
-                              <div className="item-img">
-                                 <img src="assets/images/katya.jpg" className="img-fluid item-image" alt="katya" />
-                              </div>
-                              <span className="category comedy top-picks-category">Comedy</span>
-                              <div className="item-overlay comedy-overlay">
-                                 <div className="overlay-wrapper">
-                                    <h3>Katya: Help Me I’m Dying</h3>
-                                    <p>Fri, 19 Apr- Sun, 19 May 2019</p>
-                                    <p>Under the big top Bayfront Avenue, beside Marina Bay Sands</p>
-                                    <p>Cirque du Soleil comes to Singapore with its most acclaimed touring show, KURIOS – Cabinet of Curiosities. </p>
-                                 </div>
-                              </div>
-                           </div>
-                           <h3>Katya: Help Me I’m Dying</h3>
-                           <a href="/" className="item-title-overlay"><span>BUY NOW </span><img
-                              src="assets/images/next-arrow.svg" className="img-fluid" alt="buy-now" /></a>
-                        </div>
-                     </div>
-                     <div className="item">
-                        <div className="item-wrapper">
-                           <div className="item-desc">
-                              <span className="video-icon"><img src="assets/images/video-icon.svg" /></span>
-                              <div className="item-img">
-                                 <img src="assets/images/ballet.jpg" className="img-fluid item-image" alt="ballet" />
-                              </div>
-                              <span className="category dance top-picks-category">Dance</span>
-                              <div className="item-overlay dance-overlay">
-                                 <div className="overlay-wrapper">
-                                    <h3>Ballet Under The Stars Presented…</h3>
-                                    <p>Fri, 19 Apr- Sun, 19 May 2019</p>
-                                    <p>Under the big top Bayfront Avenue, beside Marina Bay
-                                       Sands
-                                    </p>
-                                    <p>Cirque du Soleil comes to Singapore with its most
-                                       acclaimed touring show, KURIOS – Cabinet of Curiosities. 
-                                    </p>
-                                 </div>
-                              </div>
-                           </div>
-                           <h3>Ballet Under The Stars Presented…</h3>
-                           <a href="/" className="item-title-overlay"><span>BUY NOW </span><img
-                              src="assets/images/next-arrow.svg" className="img-fluid" alt="buy-now" /></a>
-                        </div>
-                     </div>
-                     <div className="item">
-                        <div className="item-wrapper">
-                           <div className="item-desc">
-                              <div className="item-img">
-                                 <img src="assets/images/panthom-of-opera.jpg" className="img-fluid item-image"
-                                    alt="panthom-of-opera" />
-                              </div>
-                              <span className="category musical top-picks-category">Musical</span>
-                              <div className="item-overlay musical-overlay">
-                                 <div className="overlay-wrapper">
-                                    <h3>The Phantom Of The Opera</h3>
-                                    <p>Fri, 19 Apr- Sun, 19 May 2019</p>
-                                    <p>Under the big top Bayfront Avenue, beside Marina Bay
-                                       Sands
-                                    </p>
-                                    <p>Cirque du Soleil comes to Singapore with its most
-                                       acclaimed touring show, KURIOS – Cabinet of Curiosities. 
-                                    </p>
-                                 </div>
-                              </div>
-                           </div>
-                           <h3>The Phantom Of The Opera</h3>
-                           <a href="/" className="item-title-overlay"><span>BUY NOW </span><img
-                              src="assets/images/next-arrow.svg" className="img-fluid" alt="buy-now" /></a>
-                        </div>
-                     </div>
-                     <div className="item">
-                        <div className="item-wrapper">
-                           <div className="item-desc">
-                              <span className="video-icon"><img src="assets/images/video-icon.svg" /></span>
-                              <div className="item-img">
-                                 <img src="assets/images/kurios.png" className="img-fluid item-image" alt="kurios" />
-                              </div>
-                              <span className="category musical top-picks-category">Musical</span>
-                              <div className="item-overlay musical-overlay">
-                                 <div className="overlay-wrapper">
-                                    <h3>Kurios Cabinet of Curiosities</h3>
-                                    <p>Fri, 19 Apr- Sun, 19 May 2019</p>
-                                    <p>Under the big top Bayfront Avenue, beside Marina Bay
-                                       Sands
-                                    </p>
-                                    <p>Cirque du Soleil comes to Singapore with its most
-                                       acclaimed touring show, KURIOS – Cabinet of Curiosities. 
-                                    </p>
-                                 </div>
-                              </div>
-                           </div>
-                           <h3>Kurios Cabinet of Curiosities</h3>
-                           <a href="/" className="item-title-overlay"><span>BUY NOW </span><img
-                              src="assets/images/next-arrow.svg" className="img-fluid" alt="buy-now" /></a>
-                        </div>
-                     </div>
-                     <div className="item">
-                        <div className="item-wrapper">
-                           <div className="item-desc">
-                              <span className="video-icon"><img src="assets/images/video-icon.svg" /></span>
-                              <div className="item-img">
-                                 <img src="assets/images/ballet.jpg" className="img-fluid item-image" alt="ballet" />
-                              </div>
-                              <span className="category dance top-picks-category">Dance</span>
-                              <div className="item-overlay dance-overlay">
-                                 <div className="overlay-wrapper">
-                                    <h3>Ballet Under The Stars Presented…</h3>
-                                    <p>Fri, 19 Apr- Sun, 19 May 2019</p>
-                                    <p>Under the big top Bayfront Avenue, beside Marina Bay
-                                       Sands
-                                    </p>
-                                    <p>Cirque du Soleil comes to Singapore with its most
-                                       acclaimed touring show, KURIOS – Cabinet of Curiosities. 
-                                    </p>
-                                 </div>
-                              </div>
-                           </div>
-                           <h3>Ballet Under The Stars Presented…</h3>
-                           <a href="/" className="item-title-overlay"><span>BUY NOW </span><img
-                              src="assets/images/next-arrow.svg" className="img-fluid" alt="buy-now" /></a>
-                        </div>
-                     </div>
-                  </div>
-                  <div className="carousel-navigation">
-                     <div className="left-navigation">
-                        <a href="/">
-                        <img src="assets/images/left-arrow-blue.svg" className="img-fluid" alt="left-navigation" />
-                        </a>
-                     </div>
-                     <div className="right-navigation">
-                        <a href="/">
-                        <img src="assets/images/right-arrow-blue.svg" className="img-fluid" alt="right-navigation" />
-                        </a>
-                     </div>
-                  </div>
+            {/* Home page Banner end */}
+
+            {/* Top-picks-for-you section start */}
+            <TopPics />
+            {/* Top-picks-for-you section end */}
+
+            {/* Gift-card section start  */}
+            <section className="gift-cart">
+               <div className="gift-cart-image">
+                  <img src="assets/images/gift-card.png" className="img-fluid" alt="Gift-cart" />
                </div>
             </section>
-          {/* Top-picks-for-you section end */}
-  
-          {/* Gift-card section start  */}
-          <section className="gift-cart">
-              <div className="gift-cart-image">
-                  <img src="assets/images/gift-card.png" className="img-fluid" alt="Gift-cart" />
-              </div>
-          </section>
-           {/* Gift-card section end  */}
-  
-           {/* featured events section start  */}
-           <section className="featured-events">
+            {/* Gift-card section end  */}
+
+            {/* featured events section start  */}
+            <section className="featured-events">
                <div className="container-fluid">
                   <div className="section-top-wrapper">
                      <h2>Featured Events</h2>
@@ -403,29 +235,29 @@ export default class Home extends Component {
                   <div className="carousel-navigation">
                      <div className="left-navigation">
                         <a href="/">
-                        <img src="assets/images/left-arrow-blue.svg" className="img-fluid" alt="left-navigation" />
+                           <img src="assets/images/left-arrow-blue.svg" className="img-fluid" alt="left-navigation" />
                         </a>
                      </div>
                      <div className="right-navigation">
                         <a href="/">
-                        <img src="assets/images/right-arrow-blue.svg" className="img-fluid" alt="right-navigation" />
+                           <img src="assets/images/right-arrow-blue.svg" className="img-fluid" alt="right-navigation" />
                         </a>
                      </div>
                   </div>
                </div>
             </section>
-           {/* featured events section end  */}
+            {/* featured events section end  */}
 
-           {/* currently showing section start  */}
+            {/* currently showing section start  */}
             <CurrentlyShowing />
-           {/* currently showing section end  */}
-  
-           {/* Promotions section start  */}
+            {/* currently showing section end  */}
+
+            {/* Promotions section start  */}
             <PromotionCarousel />
-           {/*Promotions section end */}
-  
-           {/*Trending now section start */}
-           <section className="trending-now">
+            {/*Promotions section end */}
+
+            {/*Trending now section start */}
+            <section className="trending-now">
                <div className="container-fluid">
                   <h2>Trending Now</h2>
                   <div className="grid-container">
@@ -552,15 +384,15 @@ export default class Home extends Component {
                   </div>
                </div>
             </section>
-          
-           {/* Trending now section end  */}
-  
-           {/* What's new section start  */}
+
+            {/* Trending now section end  */}
+
+            {/* What's new section start  */}
             <WhatsNew />
-           {/* What's new section end  */}
-  
-           {/* explore section start  */}
-           <section className="explore">
+            {/* What's new section end  */}
+
+            {/* explore section start  */}
+            <section className="explore">
                <div className="container-fluid">
                   <div className="section-top-wrapper">
                      <h2>Explore</h2>
@@ -630,12 +462,12 @@ export default class Home extends Component {
                   </div>
                </div>
             </section>
-           {/* explore section end  */}
-  
-           {/* SISTIC Moments Start  */}
-           <InstagramFeed />
-           {/* SISTIC Moments End  */}
-        </div>   
-    )
-  }
+            {/* explore section end  */}
+
+            {/* SISTIC Moments Start  */}
+            <InstagramFeed />
+            {/* SISTIC Moments End  */}
+         </div>
+      )
+   }
 }
