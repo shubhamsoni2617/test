@@ -14,22 +14,223 @@ export default class Filters extends Component {
 
   render() {
     return (
-
-
+        <div>
+            <div className="apply-filter-mob">
+                <div className="title">
+                    <a href="/"><img src="assets/images/bakcarrow.svg" /> Filters</a>
+                    <a href="/">Clear All</a>
+                </div>
+                <div className="filters-search">
+                    <button type="submit" className="search-btn">
+                        <img src="assets/images/search-blue.svg" className="img-fluid active" alt="search-icon" />
+                    </button>
+                    <input type="text" placeholder="Search experiences..." className="form-control" />
+                </div>
+                <Tabs>
+                    <TabList>
+                        <Tab>Price Range</Tab>
+                        <Tab>Genre <span></span></Tab>
+                        <Tab>Date Range</Tab>
+                        <Tab>Promotion</Tab>
+                        <Tab>Venue</Tab>
+                    </TabList>
+                    <TabPanel>
+                        <h2>Any content 1</h2>
+                    </TabPanel>
+                    <TabPanel>
+                    <div className="list-head">
+                            <div className="all-selection">
+                                <input className="styled-checkbox" type="checkbox" id="styled-checkbox-8" value="" />
+                                <label for="styled-checkbox-8">
+                                    Student discount
+                                </label>
+                            </div>
+                            <a href="/" className="clear">Clear</a>
+                        </div>
+                        <div className="filters-list">
+                            <ul>
+                                <li>
+                                    <input className="styled-checkbox" type="checkbox" id="styled-checkbox-8" value="" />
+                                    <label for="styled-checkbox-8">
+                                    Concert (23)
+                                    </label>
+                                </li>
+                                <li>
+                                    <input className="styled-checkbox" type="checkbox" id="styled-checkbox-8" value="" />
+                                    <label for="styled-checkbox-8">
+                                    Musical (34)
+                                    </label>
+                                </li>
+                                <li>
+                                    <input className="styled-checkbox" type="checkbox" id="styled-checkbox-8" value="" />
+                                    <label for="styled-checkbox-8">
+                                    Comedy (12)
+                                    </label>
+                                </li>
+                                <li>
+                                    <input className="styled-checkbox" type="checkbox" id="styled-checkbox-8" value="" />
+                                    <label for="styled-checkbox-8">
+                                    Dance (32)
+                                    </label>
+                                </li>
+                                <li>
+                                    <input className="styled-checkbox" type="checkbox" id="styled-checkbox-8" value="" />
+                                    <label for="styled-checkbox-8">
+                                    Family (2)
+                                    </label>
+                                </li>
+                                <li>
+                                    <input className="styled-checkbox" type="checkbox" id="styled-checkbox-8" value="" />
+                                    <label for="styled-checkbox-8">
+                                    Theatre (22)
+                                    </label>
+                                </li>
+                                <li>
+                                    <input className="styled-checkbox" type="checkbox" id="styled-checkbox-8" value="" />
+                                    <label for="styled-checkbox-8">
+                                    Sports (12)
+                                    </label>
+                                </li>
+                                <li>
+                                    <input className="styled-checkbox" type="checkbox" id="styled-checkbox-8" value="" />
+                                    <label for="styled-checkbox-8">
+                                    Orchestra (1)
+                                    </label>
+                                </li>
+                            </ul>
+                        </div>
+                    </TabPanel>
+                    <TabPanel>
+                        <h2>Any content 2</h2>
+                    </TabPanel>
+                    <TabPanel>
+                        <h2>Any content 2</h2>
+                    </TabPanel>
+                    <TabPanel>
+                        <div className="list-head">
+                            <div className="all-selection">
+                                <input className="styled-checkbox" type="checkbox" id="styled-checkbox-8" value="" />
+                                <label for="styled-checkbox-8">
+                                    Student discount
+                                </label>
+                            </div>
+                            <a href="/" className="clear">Clear</a>
+                        </div>
+                        <div className="filters-list">
+                            <ul>
+                                <li>
+                                    <input className="styled-checkbox" type="checkbox" id="styled-checkbox-8" value="" />
+                                    <label for="styled-checkbox-8">
+                                        Amara Singapore, Ballroom 1&2
+                                    </label>
+                                </li>
+                                <li>
+                                    <input className="styled-checkbox" type="checkbox" id="styled-checkbox-8" value="" />
+                                    <label for="styled-checkbox-8">
+                                    Anglo-Chinese Junior College
+                                    </label>
+                                </li>
+                                <li>
+                                    <input className="styled-checkbox" type="checkbox" id="styled-checkbox-8" value="" />
+                                    <label for="styled-checkbox-8">
+                                    Bay Front Avenue 
+                                    </label>
+                                </li>
+                                <li>
+                                    <input className="styled-checkbox" type="checkbox" id="styled-checkbox-8" value="" />
+                                    <label for="styled-checkbox-8">
+                                    Bay Front Avenue
+                                    </label>
+                                </li>
+                                <li>
+                                    <input className="styled-checkbox" type="checkbox" id="styled-checkbox-8" value="" />
+                                    <label for="styled-checkbox-8">
+                                    Bukit Jalil Extreme Park
+                                    </label>
+                                </li>
+                                <li>
+                                    <input className="styled-checkbox" type="checkbox" id="styled-checkbox-8" value="" />
+                                    <label for="styled-checkbox-8">
+                                    Capitol Theatre
+                                    </label>
+                                </li>
+                                <li>
+                                    <input className="styled-checkbox" type="checkbox" id="styled-checkbox-8" value="" />
+                                    <label for="styled-checkbox-8">
+                                    Capella Singapore
+                                    </label>
+                                </li>
+                                <li>
+                                    <input className="styled-checkbox" type="checkbox" id="styled-checkbox-8" value="" />
+                                    <label for="styled-checkbox-8">
+                                        Amara Singapore, Ballroom 1&2
+                                    </label>
+                                </li>
+                                <li>
+                                    <input className="styled-checkbox" type="checkbox" id="styled-checkbox-8" value="" />
+                                    <label for="styled-checkbox-8">
+                                    Anglo-Chinese Junior College
+                                    </label>
+                                </li>
+                                <li>
+                                    <input className="styled-checkbox" type="checkbox" id="styled-checkbox-8" value="" />
+                                    <label for="styled-checkbox-8">
+                                    Bay Front Avenue 
+                                    </label>
+                                </li>
+                                <li>
+                                    <input className="styled-checkbox" type="checkbox" id="styled-checkbox-8" value="" />
+                                    <label for="styled-checkbox-8">
+                                    Bay Front Avenue
+                                    </label>
+                                </li>
+                                <li>
+                                    <input className="styled-checkbox" type="checkbox" id="styled-checkbox-8" value="" />
+                                    <label for="styled-checkbox-8">
+                                    Bukit Jalil Extreme Park
+                                    </label>
+                                </li>
+                                <li>
+                                    <input className="styled-checkbox" type="checkbox" id="styled-checkbox-8" value="" />
+                                    <label for="styled-checkbox-8">
+                                    Capitol Theatre
+                                    </label>
+                                </li>
+                                <li>
+                                    <input className="styled-checkbox" type="checkbox" id="styled-checkbox-8" value="" />
+                                    <label for="styled-checkbox-8">
+                                    Capella Singapore
+                                    </label>
+                                </li>
+                            </ul>
+                        </div>
+                    </TabPanel>
+                </Tabs>
+                <button className="apply-filter" type="button">Apply</button>
+            </div>
+            <div className="mobileview-filter">
+                <div className="sortby-bg"></div>
+                <div className="sortby-filter">
+                    <div className="filter-title">
+                        <span>Sort By</span>
+                        <a href="/">
+                            <img src="assets/images/close-blue-color.svg" alt=""/>
+                        </a>
+                    </div>
+                    <ul>
+                        <li>Events - A to Z</li>
+                        <li>Events - Z to A</li>
+                        <li>Price Low to High</li>
+                        <li>Price High to Low</li>
+                        <li className="active">Date</li>
+                    </ul>
+                </div>
+            </div>
+            <div className="filters-mob">
+                <a href="/">Sort By</a>
+                <a href="/">Filter</a>
+            </div>
         <div className="filters">
-            <Tabs>
-    <TabList>
-      <Tab>Title 1</Tab>
-      <Tab>Title 2</Tab>
-    </TabList>
-
-    <TabPanel>
-      <h2>Any content 1</h2>
-    </TabPanel>
-    <TabPanel>
-      <h2>Any content 2</h2>
-    </TabPanel>
-  </Tabs>
             <div className="filter-heading">
                 <h3>Filters <a href="">Clear all</a></h3>
             </div>
@@ -209,47 +410,96 @@ export default class Filters extends Component {
                         + 94 More
                     </a>
                     <div className="filter-directory-panel">
-                        <div class="filter-directory-titlebar">
+                        <div className="filter-directory-titlebar">
                             <div className="filter-directory-heading">
                                 <h3>Venue</h3>
-                                <span class="filter-directory-close"> 
+                                <span className="filter-directory-close"> 
                                     <img src="assets/images/close-icon.svg" alt="Close"/>
                                 </span>
                             </div>
                             <div className="filter-directory-indices-list">
-                                <input type="text" placeholder="Search brand" class="filter-directory-search-input"/>
-                                <ul class="filter-directory-indices">
-                                    <li data-item="#" class="">#</li>
-                                    <li data-item="a" class="">a</li>
-                                    <li data-item="b" class="">b</li>
-                                    <li data-item="c" class="">c</li>
-                                    <li data-item="d" class="">d</li>
-                                    <li data-item="e" class="">e</li>
-                                    <li data-item="f" class="">f</li>
-                                    <li data-item="g" class="">g</li>
-                                    <li data-item="h" class="">h</li>
-                                    <li data-item="i" class="">i</li>
-                                    <li data-item="j" class="">j</li>
-                                    <li data-item="k" class="">k</li>
-                                    <li data-item="l" class="">l</li>
-                                    <li data-item="m" class="">m</li>
-                                    <li data-item="n" class="">n</li>
-                                    <li data-item="o" class="">o</li>
-                                    <li data-item="p" class="">p</li>
-                                    <li data-item="q" class="">q</li>
-                                    <li data-item="r" class="">r</li>
-                                    <li data-item="s" class="">s</li>
-                                    <li data-item="t" class="">t</li>
-                                    <li data-item="u" class="">u</li>
-                                    <li data-item="v" class="">v</li>
-                                    <li data-item="w" class="">w</li>
-                                    <li data-item="x" class="filter-directory-disabled">x</li>
-                                    <li data-item="y" class="">y</li>
-                                    <li data-item="z" class="">z</li>
+                                <input type="text" placeholder="Search brand" className="filter-directory-search-input"/>
+                                <ul className="filter-directory-indices">
+                                    <li data-item="#" className="">#</li>
+                                    <li data-item="a" className="">a</li>
+                                    <li data-item="b" className="">b</li>
+                                    <li data-item="c" className="">c</li>
+                                    <li data-item="d" className="">d</li>
+                                    <li data-item="e" className="">e</li>
+                                    <li data-item="f" className="">f</li>
+                                    <li data-item="g" className="">g</li>
+                                    <li data-item="h" className="">h</li>
+                                    <li data-item="i" className="">i</li>
+                                    <li data-item="j" className="">j</li>
+                                    <li data-item="k" className="">k</li>
+                                    <li data-item="l" className="">l</li>
+                                    <li data-item="m" className="">m</li>
+                                    <li data-item="n" className="">n</li>
+                                    <li data-item="o" className="">o</li>
+                                    <li data-item="p" className="">p</li>
+                                    <li data-item="q" className="">q</li>
+                                    <li data-item="r" className="">r</li>
+                                    <li data-item="s" className="">s</li>
+                                    <li data-item="t" className="">t</li>
+                                    <li data-item="u" className="">u</li>
+                                    <li data-item="v" className="">v</li>
+                                    <li data-item="w" className="">w</li>
+                                    <li data-item="x" className="filter-directory-disabled">x</li>
+                                    <li data-item="y" className="">y</li>
+                                    <li data-item="z" className="">z</li>
                                 </ul>
                             </div>
                         </div>
                         <ul className="filter-directory-list">
+                            <li className="filter-directory-list-title">A</li>
+                            <li>
+                                <input className="styled-checkbox" type="checkbox" id="styled-checkbox-9" value="" />
+                                <label for="styled-checkbox-9">
+                                    General
+                                </label>
+                            </li>
+                            <li>
+                                <input className="styled-checkbox" type="checkbox" id="styled-checkbox-9" value="" />
+                                <label for="styled-checkbox-9">
+                                    General
+                                </label>
+                            </li>
+                            <li>
+                                <input className="styled-checkbox" type="checkbox" id="styled-checkbox-9" value="" />
+                                <label for="styled-checkbox-9">
+                                    General
+                                </label>
+                            </li>
+                            <li>
+                                <input className="styled-checkbox" type="checkbox" id="styled-checkbox-9" value="" />
+                                <label for="styled-checkbox-9">
+                                    General
+                                </label>
+                            </li>
+                            <li>
+                                <input className="styled-checkbox" type="checkbox" id="styled-checkbox-9" value="" />
+                                <label for="styled-checkbox-9">
+                                    General
+                                </label>
+                            </li>
+                            <li>
+                                <input className="styled-checkbox" type="checkbox" id="styled-checkbox-9" value="" />
+                                <label for="styled-checkbox-9">
+                                    General
+                                </label>
+                            </li>
+                            <li>
+                                <input className="styled-checkbox" type="checkbox" id="styled-checkbox-9" value="" />
+                                <label for="styled-checkbox-9">
+                                    General
+                                </label>
+                            </li>
+                            <li>
+                                <input className="styled-checkbox" type="checkbox" id="styled-checkbox-9" value="" />
+                                <label for="styled-checkbox-9">
+                                    General
+                                </label>
+                            </li>
                             <li className="filter-directory-list-title ">A</li>
                             <li>
                                 <input className="styled-checkbox" type="checkbox" id="styled-checkbox-9" value="" />
@@ -299,7 +549,7 @@ export default class Filters extends Component {
                                     General
                                 </label>
                             </li>
-                            <li className="filter-directory-listTitle ">A</li>
+                            <li className="filter-directory-list-title ">A</li>
                             <li>
                                 <input className="styled-checkbox" type="checkbox" id="styled-checkbox-9" value="" />
                                 <label for="styled-checkbox-9">
@@ -348,7 +598,7 @@ export default class Filters extends Component {
                                     General
                                 </label>
                             </li>
-                            <li className="filter-directory-listTitle ">A</li>
+                            <li className="filter-directory-list-title ">A</li>
                             <li>
                                 <input className="styled-checkbox" type="checkbox" id="styled-checkbox-9" value="" />
                                 <label for="styled-checkbox-9">
@@ -397,56 +647,7 @@ export default class Filters extends Component {
                                     General
                                 </label>
                             </li>
-                            <li className="filter-directory-listTitle ">A</li>
-                            <li>
-                                <input className="styled-checkbox" type="checkbox" id="styled-checkbox-9" value="" />
-                                <label for="styled-checkbox-9">
-                                    General
-                                </label>
-                            </li>
-                            <li>
-                                <input className="styled-checkbox" type="checkbox" id="styled-checkbox-9" value="" />
-                                <label for="styled-checkbox-9">
-                                    General
-                                </label>
-                            </li>
-                            <li>
-                                <input className="styled-checkbox" type="checkbox" id="styled-checkbox-9" value="" />
-                                <label for="styled-checkbox-9">
-                                    General
-                                </label>
-                            </li>
-                            <li>
-                                <input className="styled-checkbox" type="checkbox" id="styled-checkbox-9" value="" />
-                                <label for="styled-checkbox-9">
-                                    General
-                                </label>
-                            </li>
-                            <li>
-                                <input className="styled-checkbox" type="checkbox" id="styled-checkbox-9" value="" />
-                                <label for="styled-checkbox-9">
-                                    General
-                                </label>
-                            </li>
-                            <li>
-                                <input className="styled-checkbox" type="checkbox" id="styled-checkbox-9" value="" />
-                                <label for="styled-checkbox-9">
-                                    General
-                                </label>
-                            </li>
-                            <li>
-                                <input className="styled-checkbox" type="checkbox" id="styled-checkbox-9" value="" />
-                                <label for="styled-checkbox-9">
-                                    General
-                                </label>
-                            </li>
-                            <li>
-                                <input className="styled-checkbox" type="checkbox" id="styled-checkbox-9" value="" />
-                                <label for="styled-checkbox-9">
-                                    General
-                                </label>
-                            </li>
-                            <li className="filter-directory-listTitle ">A</li>
+                            <li className="filter-directory-list-title ">A</li>
                             <li>
                                 <input className="styled-checkbox" type="checkbox" id="styled-checkbox-9" value="" />
                                 <label for="styled-checkbox-9">
@@ -548,6 +749,7 @@ export default class Filters extends Component {
                     </div>
                 </div>
             </div>
+        </div>
         </div>
     )
   }

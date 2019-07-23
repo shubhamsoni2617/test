@@ -7,6 +7,14 @@
     margin-bottom: 35px;
     width: calc(33.33% - 15px);
     transition: .5s ease-out;
+    @media (max-width: 767px) {
+        width: calc(50% - 10px);
+        margin: 0 5px 10px;
+    }
+    @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
+        width: calc(50% - 10px);
+        margin: 0 5px 10px;
+    }
     &:last-child{
         margin-right: 0;
     }
@@ -63,28 +71,52 @@
     .event-details{
             padding: 15px 15px 10px;
             display: block;
+            @media (max-width: 767px) {
+                padding: 15px 5px 10px;
+            }
+            @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
+                padding: 15px 5px 10px;
+            }
         .item-title{
             font-size: 17px;
             color: #343434;
             padding: 10px 0;
             margin: 0;
             font-weight: 600;
+            @media (max-width: 767px) {
+                font-size: 14px;
+            }
         }
         .event-date{
             color: #626262;
             font-size: 14px;
             margin-bottom: 5px;
             padding: 0;
+            @media (max-width: 767px) {
+                font-size: 12px;
+            }
         }
         .event-place{
             color: #626262;
             font-size: 14px;
             margin-bottom: 16px;
             padding: 0;
+            @media (max-width: 767px) {
+                font-size: 12px;
+            }
         }
         .price-event{
             display: flex;
             justify-content: space-between;
+            @media (max-width: 767px) {
+                flex-direction: column;
+            }
+            @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
+                flex-direction: column;
+            }
+            @media only screen and (min-device-width: 1025px) and (max-device-width: 1260px) {
+                flex-direction: column;
+            }
             .price{
                 span{
                     font-size: 12px;
@@ -97,6 +129,12 @@
                     font-size: 16px;
                     line-height: 11px;
                     font-weight: 500;
+                    @media (max-width: 767px) {
+                        margin-bottom: 5px;
+                    }
+                    @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
+                        margin-bottom: 5px;
+                    }
                 }
             }
             .buy-btn{
