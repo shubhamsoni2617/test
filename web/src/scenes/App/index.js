@@ -2,6 +2,7 @@ import React from "react";
 import Footer from "./Footer";
 import Navigator from "./Navigator";
 import TopNav from "./TopNav";
+import Breadcrumb from "./Breadcrumb";
 
 import "./style.css";
 
@@ -36,6 +37,9 @@ export default class App extends React.Component {
             {/* Top advertisment section end */}
           {/* TopNav */}
           <TopNav />
+          
+          {/* TopNav */}
+          <Breadcrumb />
 
           {/* Main Content */}
           <Navigator {...this.props} />
