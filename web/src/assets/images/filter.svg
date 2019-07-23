@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="59px" height="35px" viewBox="0 0 59 35" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 55.2 (78181) - https://sketchapp.com -->
+    <title>filter copy</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="filter-copy" fill="#FFFFFF">
+            <rect id="Rectangle" x="0" y="0" width="59" height="6.5" rx="3.25"></rect>
+            <path d="M11.25,14 L47.75,14 C49.5449254,14 51,15.4550746 51,17.25 C51,19.0449254 49.5449254,20.5 47.75,20.5 L11.25,20.5 C9.45507456,20.5 8,19.0449254 8,17.25 C8,15.4550746 9.45507456,14 11.25,14 Z" id="Rectangle-Copy"></path>
+            <path d="M20.25,28 L38.75,28 C40.5449254,28 42,29.4550746 42,31.25 C42,33.0449254 40.5449254,34.5 38.75,34.5 L20.25,34.5 C18.4550746,34.5 17,33.0449254 17,31.25 C17,29.4550746 18.4550746,28 20.25,28 Z" id="Rectangle-Copy-2"></path>
+        </g>
+    </g>
+</svg>
