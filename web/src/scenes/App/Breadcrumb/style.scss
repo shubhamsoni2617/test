@@ -1,7 +1,16 @@
-.banner {
+.breadcrumbs {
+    padding: 0px;
+    margin-top: -123px;
+    position: relative;
+    background-color: #DEE7F2;
+    overflow: hidden;
     @media(max-width: 991px) {
         position: relative;
         height: 200px;
+        margin: 0;
+    }
+    @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
+        margin-top: -100px;
     }
     &::after {
         @media(max-width: 991px) {
