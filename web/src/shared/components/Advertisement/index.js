@@ -11,18 +11,20 @@ class Advertisement extends Component {
     }
     render() {
         const { advertismentDisplay } = this.state;
-        const text = "Awesome Benefit Only Via SISTIC";
-        const img = "assets/images/pretty-girls.jpg";
-        const off = "Max. 15% Off";
+
+        const advertisement = [
+            { text: "Awesome Benefit Only Via SISTIC", img: "assets/images/pretty-girls.jpg", off: "Max. 15% Off" }
+        ];
+
         if (advertismentDisplay) {
             return (
                 <div className="container">
                     <div className="advertisment-container">
                         <div className="inline">
-                            <img className="advertisment-image" src={img} alt="" />
+                            <img className="advertisment-image" src={advertisement[0].img} alt="" />
                         </div>
-                        <div className="inline">{text}</div>
-                        <div className="inline">{off}</div>
+                        <div className="inline">{advertisement[0].text}</div>
+                        <div className="inline">{advertisement[0].off}</div>
                         <button
                             type="button"
                             className="close"
