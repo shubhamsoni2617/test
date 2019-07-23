@@ -4,6 +4,7 @@ import './style.scss';
 import MegaMenu from '../../../shared/components/MegaMenu';
 import DropDown from '../../../shared/components/DropDown';
 import HomePageSearch from '../../Home/HomePageSearch';
+import MiniCart from '../../Home/MiniCart';
 
 
 export default class TopNav extends Component {
@@ -35,6 +36,14 @@ export default class TopNav extends Component {
             { id: "14", name: "Orchestra", event_counts: "" },
         ];
 
+        const miniCart = [
+            { id: "1", img: "assets/images/explore.png" },
+            { id: "2", img: "assets/images/explore.png" },
+            { id: "3", img: "assets/images/explore.png" },
+            { id: "4", img: "assets/images/explore.png" },
+            { id: "5", img: "assets/images/explore.png" },
+
+        ];
 
         return (
             <header className="header">
@@ -54,64 +63,8 @@ export default class TopNav extends Component {
                                         className="img-fluid" alt="profile" /><span></span></a></li>
                                     <li className="cart-icon">
                                         <a href="/"><img src="assets/images/cart.svg" className="img-fluid"
-                                            alt="cart" /><span>5</span></a>
-                                        <div className="my-cart-popup">
-                                            <div className="my-cart-wrapper">
-                                                <div className="cart-head">
-                                                    <h3>My Cart (5)</h3>
-                                                    <a href="/" className="cart-close">X</a>
-                                                </div>
-                                                <div className="cart-body">
-                                                    <ul>
-                                                        <li>
-                                                            <div className="product-img">
-                                                                <img src="assets/images/explore.png" className="img-fluid"
-                                                                    alt="cart" />
-                                                            </div>
-                                                            <div className="product-details">
-                                                                <span className="product-date-time">Fri, 19 Apr- Sun, 19 May 2019</span>
-                                                                <h4 className="product-name">The Phantom Of The Opera</h4>
-                                                                <p className="product-desc">Sands Theatre, Marina Bay Sands</p>
-                                                                <span className="product-price">S$ 250 (Qty: 1)</span>
-                                                            </div>
-                                                        </li>
-                                                        <li>
-                                                            <div className="product-img">
-                                                                <img src="assets/images/explore.png" className="img-fluid"
-                                                                    alt="cart" />
-                                                            </div>
-                                                            <div className="product-details">
-                                                                <span className="product-date-time">Fri, 19 Apr- Sun, 19 May 2019</span>
-                                                                <h4 className="product-name">The Phantom Of The Opera</h4>
-                                                                <p className="product-desc">Sands Theatre, Marina Bay Sands</p>
-                                                                <span className="product-price">S$ 500 (Qty: 2)</span>
-                                                            </div>
-                                                        </li>
-                                                        <li>
-                                                            <div className="product-img">
-                                                                <img src="assets/images/explore.png" className="img-fluid"
-                                                                    alt="cart" />
-                                                            </div>
-                                                            <div className="product-details">
-                                                                <span className="product-date-time">Fri, 19 Apr- Sun, 19 May 2019</span>
-                                                                <h4 className="product-name">The Phantom Of The Opera</h4>
-                                                                <p className="product-desc">Sands Theatre, Marina Bay Sands</p>
-                                                                <span className="product-price">S$ 250 (Qty: 1)</span>
-                                                            </div>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                                <div className="cart-footer">
-                                                    <div className="cart-timer">
-                                                        <span className="timer-label">Time left</span>
-                                                        <span className="timer-time">14:59</span>
-                                                    </div>
-                                                    <div className="cart-checkout-btn">
-                                                        <button>Go to Cart</button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
+                                            alt="cart" /><span>{miniCart.length}</span></a>
+                                        <MiniCart miniCart={miniCart} />
                                     </li>
                                     <li className="ticket-withus"><a href="/">Ticket With Us</a></li>
                                 </ul>
@@ -143,7 +96,7 @@ export default class TopNav extends Component {
                                             showElementsInHeader={showElementsInHeader}
                                             byGenreEvent={byGenreEvent}
                                         />
-                                      
+
                                         {/* <a href="/">More
                                             <span className="dropdown-icon">
                                                 <img
