@@ -3,6 +3,7 @@ import logo from '../../../assets/images/logo.png';
 import './style.scss';
 import MegaMenu from '../../../shared/components/MegaMenu';
 import DropDown from '../../../shared/components/DropDown';
+import HomePageSearch from '../../Home/HomePageSearch';
 
 
 export default class TopNav extends Component {
@@ -45,116 +46,7 @@ export default class TopNav extends Component {
                                 <div className="site-logo">
                                     <img src={logo} className="img-fluid" alt="Logo" />
                                 </div>
-                                <div className="header-search">
-                                    <form>
-                                        <input type="text" placeholder="Search experiences..." className="form-control" />
-                                        <button type="submit" className="search-btn">
-                                            <img src="assets/images/search.svg" className="img-fluid" alt="search-icon" />
-                                            <img src="assets/images/search-blue.svg" className="img-fluid active" alt="search-icon" />
-                                        </button>
-                                        <div className="searched-wrapper">
-                                            <div className="header-search-fixed">
-                                                <div className="back-arrow">
-                                                    <img src="assets/images/prev-arrow-white.svg" className="" alt="" />
-                                                </div>
-                                                <div className="header-search">
-                                                    <input type="text" placeholder="Search experiences..." className="form-control" />
-                                                    <button type="submit" className="search-btn">
-                                                        <img src="assets/images/search.svg" className="img-fluid" alt="search-icon" />
-                                                        <img src="assets/images/search-blue.svg" className="img-fluid active" alt="search-icon" />
-                                                    </button>
-                                                </div>
-                                            </div>
-                                            <div className="recently-search">
-                                                <h3>Recently Searched</h3>
-                                                <ul>
-                                                    <li className="active">
-                                                        <span><img src="assets/images/recent-search-icon.svg" alt="" /> Music</span>
-                                                        <a href="/" className="search-listing-close-btn"><img src="assets/images/close-blue-color.svg" alt="" /></a>
-                                                    </li>
-                                                    <li>
-                                                        <span><img src="assets/images/recent-search-icon.svg" alt="" /> pretty</span>
-                                                        <a href="/" className="search-listing-close-btn"><img src="assets/images/close-blue-color.svg" alt="" /></a>
-                                                    </li>
-                                                    <li>
-                                                        <span><img src="assets/images/recent-search-icon.svg" alt="" /> dance india</span>
-                                                        <a href="/" className="search-listing-close-btn"><img src="assets/images/close-blue-color.svg" alt="" /></a>
-                                                    </li>
-                                                    <li>
-                                                        <span><img src="assets/images/recent-search-icon.svg" alt="" /> vivaratna</span>
-                                                        <a href="/" className="search-listing-close-btn"><img src="assets/images/close-blue-color.svg" alt="" /></a>
-                                                    </li>
-                                                    <li>
-                                                        <span><img src="assets/images/recent-search-icon.svg" alt="" /> kurio</span>
-                                                        <a href="/" className="search-listing-close-btn"><img src="assets/images/close-blue-color.svg" alt="" /></a>
-                                                    </li>
-                                                    <li>
-                                                        <span><img src="assets/images/recent-search-icon.svg" alt="" /> balle</span>
-                                                        <a href="/" className="search-listing-close-btn"><img src="assets/images/close-blue-color.svg" alt="" /></a>
-                                                    </li>
-                                                    <li>
-                                                        <span><img src="assets/images/recent-search-icon.svg" alt="" /> katy</span>
-                                                        <a href="/" className="search-listing-close-btn"><img src="assets/images/close-blue-color.svg" alt="" /></a>
-                                                    </li>
-                                                    <li>
-                                                        <span><img src="assets/images/recent-search-icon.svg" alt="" /> phant</span>
-                                                        <a href="/" className="search-listing-close-btn">
-                                                            <img src="assets/images/close-blue-color.svg" alt="" /></a>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                            <div className="most-viewed">
-                                                <h3>Most Viewed</h3>
-                                                <ul>
-                                                    <li>
-                                                        <img src="assets/images/kurios-joker.jpg" className="img-fluid" alt="" />
-                                                        <span className="category musical">Musical</span>
-                                                        <h4>KURIOS – Cabinet of Curiosities</h4>
-                                                    </li>
-                                                    <li>
-                                                        <img src="assets/images/kurios-joker.jpg" className="img-fluid" alt="" />
-                                                        <span className="category dance">Dance</span>
-                                                        <h4>Ballet Under The Stars</h4>
-                                                    </li>
-                                                    <li>
-                                                        <img src="assets/images/kurios-joker.jpg" className="img-fluid" alt="" />
-                                                        <span className="category musical">Musical</span>
-                                                        <h4>The Phantom of The Opera</h4>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                            <div className="searched-filter">
-                                                <ul>
-                                                    <li>
-                                                        <h4>The Phantom Of The Opera</h4>
-                                                        <a href="/" className="search-link musical category">Musical</a>
-                                                    </li>
-                                                    <li>
-                                                        <h4>Phantogram</h4>
-                                                        <a href="/" className="search-link musical category">Musical</a>
-                                                    </li>
-                                                    <li>
-                                                        <h4>Phangs lorem ipsum sit dolor amet</h4>
-                                                        <a href="/" className="search-link">FAQ</a>
-                                                    </li>
-                                                    <li>
-                                                        <h4>Phantom Personality</h4>
-                                                        <a href="/" className="search-link">Quiz</a>
-                                                    </li>
-                                                    <li>
-                                                        <h4>There Was a Phantom</h4>
-                                                        <a href="/" className="search-link">Article</a>
-                                                    </li>
-                                                    <li>
-                                                        <h4>Phantom offer</h4>
-                                                        <a href="/" className="search-link">Offers</a>
-                                                    </li>
-                                                    <li><a href="/" className="all-results-search">See all results from<strong>Ph</strong></a></li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </form>
-                                </div>
+                                <HomePageSearch />
                             </div>
                             <div className="top-header-right">
                                 <ul>
