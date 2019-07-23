@@ -5,6 +5,7 @@ import MegaMenu from '../../../shared/components/MegaMenu';
 import DropDown from '../../../shared/components/DropDown';
 import HomePageSearch from '../../Home/HomePageSearch';
 import MiniCart from '../../Home/MiniCart';
+import NewsTicker from '../../Home/NewsTicker';
 
 
 export default class TopNav extends Component {
@@ -109,6 +110,7 @@ export default class TopNav extends Component {
                                 </ul>
                             </div>
                         </nav>
+                        <NewsTicker />
                         <div className="responsive-nav-links">
                             <a href="/" className="responsive-nav-close">X</a>
                             <ul className="user-details">
