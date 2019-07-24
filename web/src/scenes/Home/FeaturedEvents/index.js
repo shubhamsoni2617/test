@@ -174,7 +174,7 @@ class FeaturedEvents extends Component {
             customPaging: (i) => {
                 return (
                     <div className="dots-group">
-                        <span className="active"><a href="/"></a></span>
+                        <span><a href="/"></a></span>
                     </div>
                 );
             },
@@ -212,11 +212,6 @@ class FeaturedEvents extends Component {
                         <div className="carousel-dots">
                             <a href="/">See all <img src="assets/images/right-arrow.svg" className="img-fluid"
                                 alt="arrow" /></a>
-                            <div className="dots-group">
-                                <span className="active"><a href="/"></a></span>
-                                <span><a href="/"></a></span>
-                                <span><a href="/"></a></span>
-                            </div>
                         </div>
                     </div>
                     <Slider {...settings}>
