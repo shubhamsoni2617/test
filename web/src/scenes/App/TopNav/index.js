@@ -6,6 +6,7 @@ import DropDown from '../../../shared/components/DropDown';
 import HomePageSearch from '../../Home/HomePageSearch';
 import MiniCart from '../../Home/MiniCart';
 import NewsTicker from '../../Home/NewsTicker';
+import Advertisement from '../../../shared/components/Advertisement';
 
 
 export default class TopNav extends Component {
@@ -50,6 +51,7 @@ export default class TopNav extends Component {
             <header className="header">
                 <div className="container-fluid">
                     <div className="row">
+                        <Advertisement />
                         <div className="top-header">
                             <div className="top-header-left">
                                 <div className="hamburger-icon"><span></span></div>
