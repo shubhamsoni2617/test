@@ -892,8 +892,8 @@
 		color: #343434;
 		font-family: "montserratmedium";
 		margin: 0px;
-        padding-bottom: 18px;
         padding: 0;
+        padding-bottom: 18px;
 		@media (max-width: 767px) {
 			font-size: 18px;
 			line-height: 20px;
@@ -1366,15 +1366,27 @@
 
 //featured events style end
 //currently showing/whats new style start
-.currently-showing,
-.whats-new {
+section.currently-showing,
+section.whats-new {
 	background-color: #092438;
 	padding-bottom: 40px;
 	@media (max-width: 767px) {
-		padding-bottom: 20px;
-	}
+		padding: 20px 0;
+    }
+    .slick-slider{
+        .slick-track{
+            .slick-slide{
+                padding: 0 5px;
+            }
+        }
+        .slick-dots{
+            top: -35px;
+            @media (max-width: 767px) {
+                top: -22px;
+            }
+        }
+    } 
 	.dots-group {
-        display: none;
 		span {
 			background-color: #ffffff;
 			&.active {
@@ -1389,19 +1401,7 @@
 		}
 	}
 	.grid-container {
-		display: grid;
-		grid-template-columns: repeat(6, 1fr);
 		color: #ffffff;
-		grid-gap: 10px;
-		@media(max-width: 991px) {
-			grid-template-columns: repeat(6, minmax(27%, 1fr));
-		}
-		@media(min-width: 992px) and (max-width: 1280px) {
-			grid-template-columns: repeat(6, minmax(22%, 1fr));
-		}
-		@media (max-width: 767px) {
-			grid-template-columns: repeat(6, minmax(38%, 1fr));
-		}
 		.item {
 			position: relative;
 			z-index: 1;
@@ -1464,7 +1464,8 @@
 		margin-bottom: 0px;
 		color: #ffffff;
 		min-height: 40px;
-		transition: 0.3s color;
+        transition: 0.3s color;
+        padding-bottom: 13px;
 		@media(max-width: 1366px) {
 			min-height: 40px;
 		}
@@ -1472,11 +1473,13 @@
 			min-height: auto;
 		}
 		@media (max-width: 767px) {
-			margin-bottom: 8px;
+            margin-bottom: 8px;
+            padding-bottom: 0;
 		}
 	}
 	p {
-		color: rgba(255, 255, 255, 0.7);
+        color: rgba(255, 255, 255, 0.7);
+        margin-bottom: 5px;
 	}
 }
 
