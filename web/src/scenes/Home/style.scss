@@ -1236,7 +1236,7 @@
         padding: 10px 0;
     }
     .slick-dots{
-        top: -20px;
+        top: -35px;
     }
 	.grid-container {
 		display: grid;
@@ -1777,7 +1777,8 @@ section.trending-now {
 				height: calc(100% - 22px);
 			}
 			@media (max-width: 767px) {
-				margin-bottom: 0px;
+                margin-bottom: 0px;
+                padding-bottom: 0;
 			}
 			.category {
 				position: absolute;
@@ -1861,7 +1862,7 @@ section.trending-now {
 
 //trending now style end
 //what's new style start
-.whats-new {
+section.whats-new {
 	background-color: #F0F9FF;
 	h2 {
 		color: #343434;
@@ -1872,7 +1873,11 @@ section.trending-now {
 	}
 	h3 {
 		color: #343434;
-		padding-bottom: 13px;
+        padding-bottom: 13px;
+        @media (max-width: 767px) {
+            margin-bottom: 8px;
+            padding-bottom: 0;  
+        }
 	}
 	p {
 		color: #626262;
