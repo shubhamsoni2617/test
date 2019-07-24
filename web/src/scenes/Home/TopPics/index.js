@@ -83,7 +83,7 @@ class TopPics extends Component {
                         slidesToShow: 3,
                         slidesToScroll: 3,
                         infinite: false,
-                        dots: true
+                        dots: false
                     }
                 },
                 {
@@ -124,13 +124,13 @@ class TopPics extends Component {
                                                     <div className={`item-overlay ${pic.category}-overlay`}>
                                                         <div className="overlay-wrapper">
                                                             <h3>Kurios Cabinet of Curiosities</h3>
-                                                            <p>Fri, 19 Apr- Sun, 19 May 2019</p>
+                                                            <span>Fri, 19 Apr- Sun, 19 May 2019</span>
                                                             <p>Under the big top Bayfront Avenue, beside Marina Bay
                                                                Sands
-                                                        </p>
+                                                            </p>
                                                             <p>Cirque du Soleil comes to Singapore with its most
                                                                acclaimed touring show, KURIOS – Cabinet of Curiosities.
-                                                        </p>
+                                                            </p>
                                                         </div>
                                                     </div>
                                                 </div>

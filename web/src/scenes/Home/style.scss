@@ -804,6 +804,52 @@
 
 //Banner style end
 
+// Slider Arrow common CSS
+.slick-slider{
+    .slick-prev, .slick-next{
+        height: 82px;	
+        width: 35px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        &::before, &::after{
+            display: none;
+        }
+    }
+    .slick-prev{
+        left: -50px;
+        background: rgba(0,0,0,0.05) url(../../assets/images/left-arrow-blue.svg) 10px 30px no-repeat;
+        &:hover{
+            background: rgba(0, 0, 0, 0.1) url(../../assets/images/left-arrow-blue.svg) 10px 30px no-repeat;
+        }
+        @media(min-width: 768px) and (max-width: 1023px) {
+            left: -30px;
+        }
+        @media (max-width: 767px) {
+            left: -10px;
+        }
+    }
+    .slick-next{
+        right: -50px;
+        background: rgba(0,0,0,0.05) url(../../assets/images/right-arrow-blue.svg) 12px 30px no-repeat;
+        &:hover{
+            background: rgba(0, 0, 0, 0.1) url(../../assets/images/right-arrow-blue.svg) 12px 30px no-repeat;
+        }
+        @media(min-width: 768px) and (max-width: 1023px) {
+            right: -30px;
+        }
+        @media (max-width: 767px) {
+            right: -10px;
+        }
+    }
+    .slick-dots{
+        top: -44px;
+        width: auto;
+        text-align: right;
+        right: 0; 
+    }
+}
+
 //home section common design
 .home-page-wrapper{
 	section {
@@ -818,6 +864,12 @@
         &.featured-events{
             padding-bottom: 0;
         }
+        &.top-picks{
+            padding-bottom: 20px;
+            @media (max-width: 767px) {
+                padding-bottom: 40px;
+            }
+        }
 	}
 	h2 {
 		font-size: 30px;
@@ -826,7 +878,8 @@
 		color: #343434;
 		font-family: "montserratmedium";
 		margin: 0px;
-		padding-bottom: 18px;
+        padding-bottom: 18px;
+        padding: 0;
 		@media (max-width: 767px) {
 			font-size: 18px;
 			line-height: 20px;
@@ -867,12 +920,26 @@
 		@media (max-width: 767px) {
 			padding-bottom: 10px;
 		}
-	}
+    }
+    .slick-slider{
+        .slick-track{
+            display: flex;
+            .slick-slide {
+                margin: 0 5px;
+                // @media(min-width: 992px) and (max-width: 1280px) {
+                //     grid-template-columns: repeat(6, minmax(23%, 1fr));
+                // }
+                // @media(max-width: 991px) {
+                //     grid-template-columns: repeat(6, minmax(27%, 1fr));
+                // }
+                // @media (max-width: 767px) {
+                //     grid-template-columns: repeat(6, minmax(35%, 1fr));
+                // }
+            }
+        }
+    }
 	.grid-container {
 		display: grid;
-		grid-template-columns: repeat(6, 1fr);
-		grid-gap: 11px;
-		justify-items: center;
 		@media(min-width: 992px) and (max-width: 1280px) {
 			grid-template-columns: repeat(6, minmax(23%, 1fr));
 		}
@@ -956,9 +1023,10 @@
 			h3 {
 				padding: 10px 7px;
 				transition: 0.3s transform, 0.3s opacity, 0.3s color;
-				margin-bottom: 0px;
+                margin-bottom: 0px;
+                min-height: 65px;
 				@media (max-width: 767px) {
-					padding: 5px 3px;
+                    min-height: auto;
 				}
 			}
 			.category {
@@ -1011,29 +1079,48 @@
 					line-height: 24px;
 					margin-bottom: 14px;
 					padding: 0px;
-					color: #fff;
+                    color: #fff;
+                    min-height: auto;
 					@media(min-width: 1600px) {
 						font-size: 24px;
 						line-height: 28px;
-					}
+                    }
+                    @media(min-width: 1024px) and (max-width: 1280px) {
+                        font-size: 17px;
+                        line-height: 20px;
+                        min-height: auto;
+                        margin-bottom: 5px;
+                    }
 				}
 				p {
 					font-size: 11.64px;
 					line-height: 14px;
 					color: #fff;
 					margin-bottom: 7px;
-					margin-top: 0px;
+                    margin-top: 0px;
+                    padding: 0;
 					@media(min-width: 1600px) {
 						font-size: 14px;
 						line-height: 17px;
-					}
+                    }
+                    @media(min-width: 1024px) and (max-width: 1280px) {
+                        display: none;
+                    }
 					&:first-child {
 						margin-bottom: 7px;
 					}
 					&:last-child {
 						margin-bottom: 0px;
 					}
-				}
+                }
+                span{
+                    font-size: 11.64px;
+					line-height: 14px;
+					color: #fff;
+					margin-bottom: 7px;
+                    margin-top: 0px;
+                    padding: 0;
+                }
 			}
 			&:hover {
 				@media(min-width: 767px) {
@@ -1264,6 +1351,7 @@
 		padding-bottom: 20px;
 	}
 	.dots-group {
+        display: none;
 		span {
 			background-color: #ffffff;
 			&.active {
