@@ -1,7 +1,7 @@
 import Home from '../Home'
 import Event from '../Event'
 import HomeService from '../../shared/services/HomeService'
-import PageNotFound from '../PageNotFound/index.1';
+import PageNotFound from '../PageNotFound/index';
 
 const routes =  [
   {
