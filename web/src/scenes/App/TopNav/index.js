@@ -7,36 +7,34 @@ import HomePageSearch from '../../Home/HomePageSearch';
 import MiniCart from '../../Home/MiniCart';
 import NewsTicker from '../../Home/NewsTicker';
 import Advertisement from '../../../shared/components/Advertisement';
+import HomeService from '../../../shared/services/HomeService';
 
 
 export default class TopNav extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            byGenreEvent: [],
             showElementsInHeader: 4,
         };
     }
 
+    componentDidMount() {
+        HomeService.getGenre()
+            .then((res) => {
+                var result = Object.keys(res.data.data).map((key) => {
+                    return res.data.data[key];
+                });
+                this.setState({ byGenreEvent: result })
+            })
+            .catch((err) => {
+                console.log(err)
+            })
+    }
+
     render() {
 
-        const { showElementsInHeader } = this.state;
-
-        const byGenreEvent = [
-            { id: "1", name: "Comedy", event_counts: "" },
-            { id: "2", name: "Family", event_counts: "" },
-            { id: "3", name: "Dance", event_counts: "" },
-            { id: "4", name: "LIfestyle", event_counts: "" },
-            { id: "5", name: "Musical", event_counts: "" },
-            { id: "6", name: "Movie", event_counts: "" },
-            { id: "7", name: "Food", event_counts: "" },
-            { id: "8", name: "Seminar", event_counts: "" },
-            { id: "9", name: "Sports", event_counts: "" },
-            { id: "10", name: "Theater", event_counts: "" },
-            { id: "11", name: "MICE", event_counts: "" },
-            { id: "12", name: "Merchandise", event_counts: "" },
-            { id: "13", name: "Concert", event_counts: "" },
-            { id: "14", name: "Orchestra", event_counts: "" },
-        ];
+        const { byGenreEvent, showElementsInHeader } = this.state;
 
         const miniCart = [
             { id: "1", img: "assets/images/explore.png" },
@@ -88,7 +86,7 @@ export default class TopNav extends Component {
                             <div className="bottom-header-right">
                                 <ul>
                                     {
-                                        byGenreEvent.slice(0, showElementsInHeader).map((event, index) => {
+                                        byGenreEvent && byGenreEvent.slice(0, showElementsInHeader).map((event, index) => {
                                             return (
                                                 <li key={event.id}><a href="/">{event.name}</a></li>
                                             );
@@ -99,15 +97,6 @@ export default class TopNav extends Component {
                                             showElementsInHeader={showElementsInHeader}
                                             byGenreEvent={byGenreEvent}
                                         />
-
-                                        {/* <a href="/">More
-                                            <span className="dropdown-icon">
-                                                <img
-                                                    src="assets/images/bottom-arrow.svg" className="img-fluid"
-                                                    alt="arrow"
-                                                />
-                                            </span>
-                                        </a> */}
                                     </li>
                                 </ul>
                             </div>
