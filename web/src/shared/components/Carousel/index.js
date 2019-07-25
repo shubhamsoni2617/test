@@ -27,9 +27,10 @@ class Carousel extends Component {
 
     render() {
 
-        var { imgArray } = this.props;
+        var { imgArray,arrows } = this.props;
 
         const settings = {
+            arrows:arrows,
             dots: true,
             infinite: false,
             speed: 500,
