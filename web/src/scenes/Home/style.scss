@@ -1237,6 +1237,9 @@
     }
     .slick-dots{
         top: -35px;
+        @media (max-width: 767px) {
+            top: -15px;
+        }
     }
 	.grid-container {
 		display: grid;
