@@ -30,7 +30,6 @@ class MegaMenu extends Component {
         ];
 
         const { byGenreEvent } = this.props;
-
         const byVenueEvent = [
             { id: "1", text: "Esplanade Concert Hall" },
             { id: "2", text: "Resorts World™ Sentosa Theatre, Resorts World Sentosa" },
@@ -50,7 +49,7 @@ class MegaMenu extends Component {
                         </p>
                         <ul>
                             {
-                                byGenreEvent.map((event, index) => {
+                                byGenreEvent && byGenreEvent.map((event, index) => {
                                     return (
                                         <li key={event.id}><a href="/">{event.name}</a></li>
                                     )

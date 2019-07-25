@@ -17,7 +17,7 @@ const DropDown = (props) => {
             </button>
             <div className="dropdown-content">
                 {
-                    byGenreEvent.slice(showElementsInHeader, byGenreEvent.length).map((event, index) => {
+                    byGenreEvent && byGenreEvent.slice(showElementsInHeader, byGenreEvent.length).map((event, index) => {
                         return (
                             <a href="/" key={event.id}> {event.name}</a>
                         );

@@ -9,6 +9,10 @@ class HomeService {
 	getNewsTicker(){
 		return API.get(`rest/view/news-ticker`)
 	}
+
+	getGenre(){
+		return API.get(`genres`)
+	}
 }
 
 export default new HomeService();
