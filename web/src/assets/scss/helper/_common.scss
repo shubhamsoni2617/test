@@ -137,7 +137,8 @@ ul {
 	}
 	@media(max-width: 1023px) {
 		padding-right: 30px;
-		padding-left: 30px;
+        padding-left: 30px;
+        overflow: hidden;
 	}
 	@media (max-width: 767px) {
 		padding-right: 10px;
