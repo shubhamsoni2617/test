@@ -1,21 +1,37 @@
 import React, { Component } from 'react';
 import './style.scss';
+import HomeService from '../../../shared/services/HomeService';
+
 
 class NewsTicker extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            newsTicker: []
+        };
+    }
+
+    componentDidMount() {
+        HomeService.getNewsTicker()
+        .then((res) => {
+            this.setState({ newsTicker: res.data.data })
+        })
+        .catch((err) => {
+            console.log(err)
+        })
+    }
+
     render() {
-        const newsTicker = [
-            { news: "Rahul Gandhi uses Trump's K-gaffe to launch fresh attack on PM Modi" },
-            { news: "Karnataka Crisis LIVE: SC to hear rebel MLAs' plea tomorrow if trust vote doesn't happen today" },
-            { news: "Jaishankar clarifies India's stand on Trump’s Kashmir remark" },
-            { news: "Ajay Devgn on 8 years of Singham: It's the love of the audience that the film still roars this loud" },
-        ];
+
+        const { newsTicker } = this.state;
+
         return (
             <div className="ticker-wrap" onClick={() => this.setState({ ticker: false })}>
                 <div className="ticker">
                     {
                         newsTicker.map((content, index) => {
                             return (
-                                <div key={content.news} className="ticker__item">{content.news}</div>
+                                <div key={content.title} className="ticker__item" dangerouslySetInnerHTML={{ __html: content.description }}></div>
                             );
                         })
                     }
