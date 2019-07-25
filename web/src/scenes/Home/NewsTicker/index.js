@@ -36,6 +36,7 @@ class NewsTicker extends Component {
                         })
                     }
                 </div>
+                <a href="/" className="close-ticker"><img src="assets/images/close-ad.svg" alt="Close" /></a>
             </div>
         );
     }
