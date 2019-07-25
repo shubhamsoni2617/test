@@ -16,6 +16,7 @@ const routes =  [
     fetchInitialData: (path = '') => HomeService.getData()
   },
   {
+    path : "*",
     component: PageNotFound
   }
 ]
