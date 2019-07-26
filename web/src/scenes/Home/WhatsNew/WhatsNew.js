@@ -77,7 +77,7 @@ class whatsNew extends Component {
                                 alt="arrow" /></a>
                         </div>
                     </div>
-                    <Carousel imgArray={imgArray} />
+                    <Carousel imgArray={imgArray} arrows={false} />
                 </div>
             </section>
         );
