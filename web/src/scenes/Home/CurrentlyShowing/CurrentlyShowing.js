@@ -80,7 +80,7 @@ class CurrentlyShowing extends Component {
                                     alt="arrow" />&nbsp;</a>
                             </div>
                         </div>
-                        <Carousel imgArray={imgArray} />
+                        <Carousel imgArray={imgArray} arrows={true} />
                     </div>
                 </section>
             </div>

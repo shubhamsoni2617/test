@@ -9,7 +9,7 @@ class Carousel extends Component {
         this.state = {
             width: window.innerWidth
         };
-        this.handleWindowResize = this.handleWindowResize.bind(this);
+        this.handleWindowResize=this.handleWindowResize.bind(this);
     }
 
     componentDidMount() {
@@ -21,7 +21,7 @@ class Carousel extends Component {
         window.removeEventListener('resize', this.handleWindowResize);
     }
 
-    handleWindowResize() {
+    handleWindowResize (){
         this.setState({ width: window.innerWidth })
     }
 
@@ -76,7 +76,7 @@ class Carousel extends Component {
                     this.state.width <= 480
                         ?
                         <div className="row">
-                            <div className="grid-container col-xs-6">
+                            <div className="grid-container">
                                 {
                                     imgArray.map((elem, i) => {
                                         return (
