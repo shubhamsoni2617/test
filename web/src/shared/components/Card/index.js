@@ -8,6 +8,7 @@ export default class Card extends Component {
   }
 
   componentDidMount () {
+      console.log('props',this.props)
   } 
 
   render() {
@@ -18,17 +19,16 @@ export default class Card extends Component {
             </div>
             <div className="event-details">
                 <div className="event-detail-prime">
-                    <span className="category musical">Musical</span>
-                    <h3 className="item-title">Aladdin Lorem ipsum dolor sit consectetur adipiscing elit Aladdin<br/> 
-                    Lorem ipsum dolor sit consectetur adipiscing elit…
+                    <span className="category musical">{this.props.eventsData.primary_genre}</span>
+                    <h3 className="item-title">{this.props.eventsData.title}
                     </h3>
-                    <p className="event-date">Sun, 21 Jul - Sun, 1 Sep 2019</p>
-                    <p className="event-place">Sands Theatre, Marina Bay Sands</p>
+                    <p className="event-date">{this.props.eventsData.event_date}</p>
+                    <p className="event-place">{this.props.eventsData.venue_name}</p>
                 </div>
                 <div className="price-event">
                     <div className="price">
                         <span>Selling Fast</span>
-                        <p>S$ 208 - S$ 667</p>
+                        <p>{this.props.eventsData.price}</p>
                     </div>
                     <button type="button" className="btn buy-btn">
                         Buy Tickets
