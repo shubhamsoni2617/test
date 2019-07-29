@@ -75,14 +75,9 @@ class whatsNew extends Component {
                         <div className="carousel-dots">
                             <a href="/">See all <img src="assets/images/right-arrow.svg" className="img-fluid"
                                 alt="arrow" /></a>
-                            <div className="dots-group">
-                                <span className="active"><a href="/">&nbsp;</a></span>
-                                <span><a href="/">&nbsp;</a></span>
-                                <span><a href="/">&nbsp;</a></span>
-                            </div>
                         </div>
                     </div>
-                    <Carousel imgArray={imgArray} />
+                    <Carousel imgArray={imgArray} arrows={false} />
                 </div>
             </section>
         );

@@ -36,14 +36,14 @@ body {
 	}
 }
 
-.grid-container {
-	@media(max-width: 991px) {
-		overflow-x: auto;
-	}
-	@media(min-width: 992px) and (max-width: 1280px) {
-		overflow-x: auto;
-	}
-}
+// .grid-container {
+// 	// @media(max-width: 991px) {
+// 	// 	overflow-x: auto;
+// 	// }
+// 	// @media(min-width: 992px) and (max-width: 1280px) {
+// 	// 	overflow-x: auto;
+// 	// }
+// }
 
 .accent-text {
 	color: #0098ff;
@@ -136,9 +136,10 @@ ul {
 		padding-right: 50px;
 		padding-left: 50px;
 	}
-	@media(max-width: 991px) {
+	@media(max-width: 1023px) {
 		padding-right: 30px;
-		padding-left: 30px;
+        padding-left: 30px;
+        overflow: hidden;
 	}
 	@media (max-width: 767px) {
 		padding-right: 10px;
@@ -257,9 +258,8 @@ button,
 
 .dots-group {
 	span {
-		height: 3px;
+		height: 2px;
 		width: 25px;
-		margin-right: 3px;
 		opacity: 0.1;
 		display: inline-block;
 		cursor: pointer;
@@ -273,9 +273,6 @@ button,
 			background-color: #0077c8;
 			opacity: 1;
 		}
-	}
-	@media (max-width: 767px) {
-		display: none;
 	}
 }
 
