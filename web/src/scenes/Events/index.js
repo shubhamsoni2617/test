@@ -17,11 +17,10 @@ export default class Events extends Component {
     this.loadEvents();
   }
 
-  loadEvents(){
-    let headers = {first: 1, limit:10};
-    EventsService.getData(headers)
+  loadEvents(first =1, limit = 10){
+    let params = {first: first, limit:limit};
+    EventsService.getData(params)
     .then((res) => {
-        debugger
         this.setState({ eventsData: res.data.data })
     })
     .catch((err) => {
