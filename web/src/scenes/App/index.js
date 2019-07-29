@@ -26,12 +26,12 @@ export default class App extends React.Component {
         // SISTIC wrapper start
         <div className="wrapper">  
          {/* Top advertisment section start */}
-         <div class="top-ads">
-            <div class="container-fluid">
-               <div class="ads-image">
-                  <img src="assets/images/header-banner.png" alt="advertisment-image" class="img-fluid" />
+         <div className="top-ads">
+            <div className="container-fluid">
+               <div className="ads-image">
+                  <img src="assets/images/header-banner.png" alt="advertisment-image" className="img-fluid" />
                </div>
-               <a href="" class="ads-close"><img src="assets/images/close-ad.svg" class="img-fluid" alt="close" /></a>
+               <a href="/" className="ads-close"><img src="assets/images/close-ad.svg" className="img-fluid" alt="close" /></a>
             </div>
          </div>
             {/* Top advertisment section end */}
