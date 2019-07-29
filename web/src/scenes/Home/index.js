@@ -7,6 +7,7 @@ import CurrentlyShowing from './CurrentlyShowing/CurrentlyShowing';
 import WhatsNew from "./WhatsNew/WhatsNew";
 import PromotionCarousel from "./PromotionCarousel";
 import TopPics from './TopPics';
+import HotShowPopup from '../../shared/components/HotShowPopup';
 import FeaturedEvents from './FeaturedEvents';
 import TrendingNow from './TrendingNow';
 import Explore from './Explore';
@@ -17,6 +18,7 @@ export default class Home extends Component {
       return (
          <div className="home-page-wrapper">
             {/* Home page Banner start */}
+            <HotShowPopup showPopup={true} eventCount={1} />
             <section className="banner">
                <div className="banner-carousel">
                   <div className="active-banner-image">
