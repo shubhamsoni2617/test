@@ -2,7 +2,8 @@ body,
 * {
 	font-size: 14px;
 	line-height: 17px;
-	font-weight: normal;
+    font-weight: normal;
+    font-family: 'Rubik', sans-serif;
 }
 
 body {
@@ -35,14 +36,14 @@ body {
 	}
 }
 
-.grid-container {
-	@media(max-width: 991px) {
-		overflow-x: auto;
-	}
-	@media(min-width: 992px) and (max-width: 1280px) {
-		overflow-x: auto;
-	}
-}
+// .grid-container {
+// 	// @media(max-width: 991px) {
+// 	// 	overflow-x: auto;
+// 	// }
+// 	// @media(min-width: 992px) and (max-width: 1280px) {
+// 	// 	overflow-x: auto;
+// 	// }
+// }
 
 .accent-text {
 	color: #0098ff;
@@ -135,9 +136,10 @@ ul {
 		padding-right: 50px;
 		padding-left: 50px;
 	}
-	@media(max-width: 991px) {
+	@media(max-width: 1023px) {
 		padding-right: 30px;
-		padding-left: 30px;
+        padding-left: 30px;
+        overflow: hidden;
 	}
 	@media (max-width: 767px) {
 		padding-right: 10px;
@@ -256,9 +258,8 @@ button,
 
 .dots-group {
 	span {
-		height: 3px;
+		height: 2px;
 		width: 25px;
-		margin-right: 3px;
 		opacity: 0.1;
 		display: inline-block;
 		cursor: pointer;
@@ -272,9 +273,6 @@ button,
 			background-color: #0077c8;
 			opacity: 1;
 		}
-	}
-	@media (max-width: 767px) {
-		display: none;
 	}
 }
 
@@ -369,7 +367,7 @@ button,
 	position: relative;
 	@media (max-width: 767px) {
 		display: none;
-	}
+    }
 	.filter-topbar {
 		height: auto;
 		border: 1px solid rgba(151, 151, 151, 0.2);
@@ -416,7 +414,6 @@ button,
 	ul {
 		border: 1px solid rgba(151, 151, 151, 0.2);
 		border-top: none;
-		background-color: #ffffff;
 		height: 0px;
 		opacity: 0;
 		transition: 0.3s height, 0.3s opacity;
@@ -424,7 +421,6 @@ button,
 		top: 100%;
 		width: 100%;
 		z-index: 1;
-		background: #ffffff;
 		&.active {
 			height: auto;
 			opacity: 1;
@@ -436,7 +432,6 @@ button,
 			font-family: 'rubikregular';
 			font-size: 14px;
 			line-height: 17px;
-			background-color: #ffffff;
 			transition: 0.3s background-color, 0.3s color;
 			&:hover {
 				background-color: rgba(0, 128, 215, 0.2);
@@ -465,11 +460,22 @@ button,
 		left: 0;
 		right: 0;
 		bottom: 0;
-		z-index: 1;
-		background-color: rgba(3, 13, 21, 0.5);
+		z-index: 2;
+        .sortby-bg{
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 100%;
+            background-color: rgba(3, 13, 21, 0.5);
+            height: 100%;
+            z-index: 1;
+        }
 		.sortby-filter {
 			margin-bottom: 0px;
-			display: block;
+            display: block;
+            background: #FFF;
+            position: relative;
+            z-index: 2;
 			ul {
 				position: relative;
 				top: 0;

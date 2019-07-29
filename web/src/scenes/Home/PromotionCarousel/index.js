@@ -85,7 +85,40 @@ export default class PromotionCarousel extends Component {
       infinite: true,
       speed: 500,
       slidesToShow: 4,
-      slidesToScroll: 3
+      slidesToScroll: 3,
+      customPaging: (i) => {
+            return (
+                <div className="dots-group">
+                    <span><a href="/"></a></span>
+                </div>
+            );
+        },
+        responsive: [
+            {
+                breakpoint: 1024,
+                settings: {
+                    slidesToShow: 3,
+                    slidesToScroll: 3,
+                    infinite: false,
+                    dots: true
+                }
+            },
+            {
+                breakpoint: 600,
+                settings: {
+                    slidesToShow: 2,
+                    slidesToScroll: 2,
+                    initialSlide: 2
+                }
+            },
+            {
+                breakpoint: 480,
+                settings: {
+                    slidesToShow: 1,
+                    slidesToScroll: 1,
+                }
+            }
+        ]
     };
     return (
       <section className="promotions">
@@ -95,21 +128,15 @@ export default class PromotionCarousel extends Component {
                      <div className="carousel-dots">
                         <a href="/">See all <img src="assets/images/right-arrow.svg" className="img-fluid"
                            alt="arrow" /></a>
-                        <div className="dots-group">
-                           <span className="active"><a href="/"></a></span>
-                           <span><a href="/"></a></span>
-                           <span><a href="/"></a></span>
-                        </div>
                      </div>
                   </div>
                   <div className="grid-container">
                   <Slider {...settings}>
                     {this.slides.promotions.map((promo) => {
                       return (
-                        <div>
+                        <div className="item">
                           {promo.slides.length == 2 && promo.slides.map((slide) => {
                             return (
-                              <div className="item">
                                   <div className="item-wrapper">
                                     <div className="promotions-img">
                                         <div className="item-img">
@@ -141,12 +168,10 @@ export default class PromotionCarousel extends Component {
                                     </div>
                                     <h3>HeadRock VR</h3>
                                   </div>
-                              </div>
                             )
                           })}
                           {promo.slides.length == 1 && promo.slides.map((slide) => {
                             return (
-                              <div className="item">
                               <div className="item-wrapper">
                                 <div className="promotions-img">
                                     <div className="item-img">
@@ -155,7 +180,6 @@ export default class PromotionCarousel extends Component {
                                 </div>
                                 <h3>Book with Mastercard and enjoy these privileges!</h3>
                               </div>
-                          </div>
                             )
                           })}
                         </div>

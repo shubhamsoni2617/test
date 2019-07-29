@@ -1,5 +1,4 @@
 import React from "react";
-
 import Footer from "./Footer";
 import Navigator from "./Navigator";
 import TopNav from "./TopNav";
@@ -31,7 +30,7 @@ export default class App extends React.Component {
                <div className="ads-image">
                   <img src="assets/images/header-banner.png" alt="advertisment-image" className="img-fluid" />
                </div>
-               <a href="/" className="ads-close"><img src="assets/images/close-ad.svg" className="img-fluid" alt="close" /></a>
+               <a href="" className="ads-close"><img src="assets/images/close-ad.svg" className="img-fluid" alt="close" /></a>
             </div>
          </div>
             {/* Top advertisment section end */}
