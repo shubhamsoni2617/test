@@ -1,9 +1,32 @@
 import React, { Component } from 'react';
 import Calender from '../Calender';
+import HomeService from '../../services/HomeService';
 
 class MegaMenu extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            byVenueEvent: []
+        };
+    }
+
+
+    componentDidMount() {
+        const first = 0;
+        const limit = 2;
+        const search = "abigo";
+
+        HomeService.getVenues(first, limit, search)
+        .then((res) => {
+            this.setState({ byVenueEvent: res.data.data })
+        })
+        .catch((err) => {
+            console.log(err)
+        })
+    }
 
     render() {
+        const { byVenueEvent } = this.state;
 
         const featuredEvents = [
             {
@@ -30,13 +53,6 @@ class MegaMenu extends Component {
         ];
 
         const { byGenreEvent } = this.props;
-        const byVenueEvent = [
-            { id: "1", text: "Esplanade Concert Hall" },
-            { id: "2", text: "Resorts World™ Sentosa Theatre, Resorts World Sentosa" },
-            { id: "3", text: "Sands Theatre at Marina Bay Sands" },
-            { id: "4", text: "The Star Theatre, The Star Performing Arts Centre" },
-            { id: "5", text: "Shine Auditorium" },
-        ];
 
         return (
             <div className="submenu">
@@ -77,9 +93,9 @@ class MegaMenu extends Component {
                         </ul>
                         <ul className="events-list">
                             {
-                                byVenueEvent.map((event, index) => {
+                                byVenueEvent && byVenueEvent.map((event, index) => {
                                     return (
-                                        <li key={event.id}>{event.text}</li>
+                                        <li key={event.id}>{event.name}</li>
                                     );
                                 })
                             }

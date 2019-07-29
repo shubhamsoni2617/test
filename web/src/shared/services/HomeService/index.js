@@ -13,6 +13,10 @@ class HomeService {
 	getGenre(){
 		return API.get(`genres`)
 	}
+
+	getVenues(first,limit,search){
+		return API.get(`rest/view/venue?first=${first}&limit=${limit}&search=${search}`)
+	}
 }
 
 export default new HomeService();
