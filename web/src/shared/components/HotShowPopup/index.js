@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 import './style.scss';
 
 export default class HotShowPopup extends Component {
