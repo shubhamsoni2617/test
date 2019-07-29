@@ -32,7 +32,7 @@ export default class EventCarousel extends Component {
       slidesToScroll: 1
     };
     return (
-      <div>
+      <div className="banner-carousel">
         <Slider {...settings}>
           <div>
             <img src={this.baseUrl + "/abstract01.jpg"} />
