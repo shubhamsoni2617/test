@@ -9,28 +9,28 @@ class Carousel extends Component {
         this.state = {
             width: window.innerWidth
         };
-        this.handleWindowResize=this.handleWindowResize.bind(this);
+        this.handleWindowResize = this.handleWindowResize.bind(this);
     }
 
     componentDidMount() {
         window.addEventListener('resize', this.handleWindowResize);
     }
 
-
     componentWillUnmount() {
         window.removeEventListener('resize', this.handleWindowResize);
     }
 
-    handleWindowResize (){
+    handleWindowResize() {
         this.setState({ width: window.innerWidth })
     }
 
     render() {
 
-        var { imgArray,arrows } = this.props;
+        var { imgArray, arrows } = this.props;
+        console.log(imgArray)
 
         const settings = {
-            arrows:arrows,
+            arrows: arrows,
             dots: true,
             infinite: false,
             speed: 500,
@@ -96,13 +96,13 @@ class Carousel extends Component {
                                                 <div className="item-wrapper">
                                                     <div className="currently-showing-img">
                                                         <div className="item-img">
-                                                            <img src={elem.img} className="img-fluid" alt="Kurios" />
+                                                            <img src={elem.thumb_image} className="img-fluid" alt="Kurios" />
                                                         </div>
                                                     </div>
                                                     <span className={elem.genre === "Musical" ? "category musical" : "category comedy"}>{elem.genre}</span>
-                                                    <p>Thu, 2 May 2019</p>
-                                                    <h3>Atul Khatri - Live in Singapore</h3>
-                                                    <p>Sota Concert Hall</p>
+                                                    <p>{elem.event_date}</p>
+                                                    <h3>{elem.title}</h3>
+                                                    <p>{elem.venue_name}</p>
                                                 </div>
                                             </div>
                                         </div>
