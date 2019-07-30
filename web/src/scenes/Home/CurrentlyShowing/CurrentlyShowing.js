@@ -6,63 +6,63 @@ class CurrentlyShowing extends Component {
     render() {
         var imgArray = [
             {
-                img: "assets/images/atul-khatri.jpg",
+                thumb_image: "assets/images/atul-khatri.jpg",
                 genre:"Musical"
             },
             {
-                img: "assets/images/kurios.png",
+                thumb_image: "assets/images/kurios.png",
                 genre:"Comedy"
             },
             {
-                img: "assets/images/panthom-of-opera.jpg",
+                thumb_image: "assets/images/panthom-of-opera.jpg",
                 genre:"Musical"
             },
             {
-                img: "assets/images/atul-khatri.jpg",
+                thumb_image: "assets/images/atul-khatri.jpg",
                 genre:"Comedy"
             },
             {
-                img: "assets/images/kurios.png",
+                thumb_image: "assets/images/kurios.png",
                 genre:"Musical"
             },
             {
-                img: "assets/images/panthom-of-opera.jpg",
+                thumb_image: "assets/images/panthom-of-opera.jpg",
                 genre:"Comedy"
             },
             {
-                img: "assets/images/atul-khatri.jpg",
+                thumb_image: "assets/images/atul-khatri.jpg",
                 genre:"Comedy"
             },
             {
-                img: "assets/images/kurios.png",
+                thumb_image: "assets/images/kurios.png",
                 genre:"Musical"
             },
             {
-                img: "assets/images/panthom-of-opera.jpg",
+                thumb_image: "assets/images/panthom-of-opera.jpg",
                 genre:"Comedy"
             },
             {
-                img: "assets/images/atul-khatri.jpg",
+                thumb_image: "assets/images/atul-khatri.jpg",
                 genre:"Musical"
             },
             {
-                img: "assets/images/atul-khatri.jpg",
+                thumb_image: "assets/images/atul-khatri.jpg",
                 genre:"Comedy"
             },
             {
-                img: "assets/images/kurios.png",
+                thumb_image: "assets/images/kurios.png",
                 genre:"Musical"
             },
             {
-                img: "assets/images/panthom-of-opera.jpg",
+                thumb_image: "assets/images/panthom-of-opera.jpg",
                 genre:"Comedy"
             },
             {
-                img: "assets/images/atul-khatri.jpg",
+                thumb_image: "assets/images/atul-khatri.jpg",
                 genre:"Comedy"
             },
             {
-                img: "assets/images/kurios.png",
+                thumb_image: "assets/images/kurios.png",
                 genre:"Musical"
             },
            
