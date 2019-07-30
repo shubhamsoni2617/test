@@ -92,7 +92,7 @@ ul {
 		}
 		a {
 			color: inherit;
-			font-family: 'rubikregular';
+			font-family: 'Rubik', sans-serif;
 			font-size: 14px;
 			line-height: 18px;
 			@media (max-width: 767px) {
@@ -156,7 +156,8 @@ button,
 	padding: 0 10px;
 	position: relative;
 	color: #ffffff;
-	font-family: montserratsemibold;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
 	font-size: 14px;
 	line-height: 30px;
 	overflow: hidden;
@@ -204,21 +205,22 @@ button,
 	text-align: right;
 	a {
 		color: #0098ff;
-		font-family: 'montserratsemibold';
+		font-family: 'Montserrat', sans-serif;
 		font-size: 16px;
 		font-weight: normal;
 		line-height: 19px;
 		padding-bottom: 14px;
-		text-decoration: none;
+        text-decoration: none;
+        font-weight: 600;
 		@media (max-width: 767px) {
-			font-family: 'montserratregular';
+			font-family: 'Montserrat', sans-serif;
 			font-size: 12px;
 			line-height: 18px;
 			padding-bottom: 0px;
 			font-weight: 600;
 		}
 		img {
-			padding-bottom: 8px;
+			padding-bottom: 5px;
 			margin-left: 2px;
 			transition: 0.3s transform;
 			@media (max-width: 767px) {
@@ -277,9 +279,9 @@ button,
 
 .category {
 	color: #fff;
-	font-family: 'montserratregular';
+	font-family: 'Montserrat', sans-serif;
 	font-size: 14px;
-	font-weight: 600;
+	font-weight: 500;
 	line-height: 20px;
 	height: 20px;
 	background-color: #5F4F8B;
@@ -388,7 +390,7 @@ button,
 		}
 		.sortby-text {
 			color: #343434;
-			font-family: "rubikmedium";
+			font-family: "'Rubik', sans-serif";
 			font-size: 14px;
 			line-height: 17px;
 			text-transform: uppercase;
@@ -397,7 +399,7 @@ button,
 		}
 		.active-filter {
 			color: #0098ff;
-			font-family: "rubikmedium";
+			font-family: "'Rubik', sans-serif";
 			font-size: 16px;
 			line-height: 19px;
 		}
@@ -405,7 +407,7 @@ button,
 		&:hover {
 			&+ul {
 				background-color: #fff;
-				font-family: 'rubikmedium';
+				font-family: 'Rubik', sans-serif;
 				cursor: pointer;
 			}
 		}
@@ -430,7 +432,7 @@ button,
 			padding: 12px 20px;
 			list-style: none;
 			color: #343434;
-			font-family: 'rubikregular';
+			font-family: 'Rubik', sans-serif;
 			font-size: 14px;
 			line-height: 17px;
 			background-color: #ffffff;
@@ -443,7 +445,7 @@ button,
 			&.active {
 				background-color: rgba(0, 128, 215, 0.2);
 				color: #0098ff;
-				font-family: 'rubikmedium';
+				font-family: 'Rubik', sans-serif;
 				cursor: pointer;
 			}
 		}
@@ -479,7 +481,7 @@ button,
 			flex-wrap: wrap;
 			padding: 12px 20px;
 			span {
-				font-family: 'rubikmedium';
+				font-family: 'Rubik', sans-serif;
 				font-size: 16px;
 				line-height: normal;
 				flex: 0 0 auto;
