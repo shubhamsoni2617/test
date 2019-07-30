@@ -3,6 +3,7 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import './style.scss';
+import Constants from '../../../shared/constants';
 
 class TopPics extends Component {
     constructor(props) {
@@ -107,14 +108,6 @@ class TopPics extends Component {
                         infinite: false,
                         dots: false
                     }
-                },
-                {
-                    breakpoint: 600,
-                    settings: {
-                        slidesToShow: 2,
-                        slidesToScroll: 2,
-                        initialSlide: 2
-                    }
                 }
             ]
         };
@@ -124,7 +117,7 @@ class TopPics extends Component {
                 <div className="container-fluid">
                     <h2>Top Picks For You</h2>
                     {
-                        width <= 480
+                        width <= Constants.MOBILE_BREAK_POINT
                             ?
                             <div className="col-xs-12">
                                 {
