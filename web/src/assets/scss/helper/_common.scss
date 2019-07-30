@@ -210,7 +210,8 @@ button,
 		font-weight: normal;
 		line-height: 19px;
 		padding-bottom: 14px;
-		text-decoration: none;
+        text-decoration: none;
+        font-weight: 600;
 		@media (max-width: 767px) {
 			font-family: 'Montserrat', sans-serif;
 			font-size: 12px;
@@ -219,7 +220,7 @@ button,
 			font-weight: 600;
 		}
 		img {
-			padding-bottom: 8px;
+			padding-bottom: 5px;
 			margin-left: 2px;
 			transition: 0.3s transform;
 			@media (max-width: 767px) {
@@ -280,7 +281,7 @@ button,
 	color: #fff;
 	font-family: 'Montserrat', sans-serif;
 	font-size: 14px;
-	font-weight: 600;
+	font-weight: 500;
 	line-height: 20px;
 	height: 20px;
 	background-color: #5F4F8B;
