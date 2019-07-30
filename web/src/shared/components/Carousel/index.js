@@ -71,7 +71,7 @@ const Carousel = (props) => {
                             {
                                 imgArray.map((elem, i) => {
                                     return (
-                                        <img src={elem.img} key={i} className="img-fluid" alt="Kurios" />
+                                        <CarouselSlide elem={elem} />
                                     );
                                 })
                             }
