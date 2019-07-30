@@ -36,14 +36,11 @@
 	@media(max-width: 991px) {
 		background-color: rgba(3, 13, 21, 0.8);
 	}
-	@media (max-width: 767px) {
-		position: fixed;
-		top: 0px;
-	}
 	.top-header {
 		display: flex;
 		flex-wrap: wrap;
-		width: 100%;
+        width: 100%;
+        position: relative;
 		@media(max-width: 991px) {
 			padding: 0 10px;
 		}
@@ -57,7 +54,7 @@
 				flex-wrap: wrap;
 			}
 			@media (max-width: 767px) {
-				margin-bottom: 10px;
+				margin-bottom: 20px;
 			}
 			.site-logo {
 				padding-right: 40px;
@@ -183,13 +180,13 @@
 				right: 20px;
 			}
 			@media (max-width: 767px) {
-				right: 10px;
+				right: 32px;
 			}
 			>ul {
 				display: flex;
 				flex-wrap: wrap;
 				margin-bottom: 0px;
-				align-items: center;
+				align-items: baseline;
 				padding: 0px;
 				>li {
 					list-style: none;
@@ -221,7 +218,7 @@
 					&.user-icon {
 						a {
 							display: inline-block;
-							position: relative;
+                            position: relative;
 							span {
 								height: 11px;
 								width: 11px;
@@ -245,7 +242,9 @@
 					&.cart-icon {
 						>a {
 							position: relative;
-							display: inline-block;
+                            display: inline-block;
+                            width: 27px;
+                            height: 23px;
 							&:after {
 								position: absolute;
 								content: "";
@@ -316,7 +315,7 @@
 								width: 100%;
 								opacity: 1;
 								top: 100%;
-								box-shadow: 0px 0px 15px 5px rgba(0, 0, 0, 0.3);
+								box-shadow: 0px 5px 10px rgba(0,0,0,0.2);
 								@media(max-width: 991px) {
 									min-width: 400px;
 									right: 0px;
@@ -372,15 +371,18 @@
 		}
 		.bottom-header-left,
 		.bottom-header-right {
-			>ul {
+		    >ul {
 				display: flex;
 				flex-wrap: wrap;
 				padding: 0px;
 				>li {
 					list-style: none;
-					padding: 0 16px;
+                    padding: 0 16px;
+                    &:first-child{
+                        padding-left: 0;
+                    }
 					&:hover {
-						>a {
+						a {
 							color: #0098ff;
 							&:before {
 								width: 100%;
@@ -409,16 +411,7 @@
 								width: 100%;
 							}
 						}
-						.dropdown-icon {
-							width: auto;
-							padding-left: 8px;
-							vertical-align: text-top;
-							display: inline-block;
-							margin-top: -2px;
-							img {
-								max-width: 10px;
-							}
-						}
+						
 					}
 					&:first-child {
 						a {
@@ -427,7 +420,8 @@
 					}
 					&:last-child {
 						a {
-							padding-right: 0px;
+                            padding-right: 0px;
+                            background: none;
 						}
 					}
 					&.has-submenu {
@@ -441,11 +435,12 @@
 							>a {
 								position: relative;
 								&:before {
-									opacity: 1;
-									bottom: 0px;
+									opacity: 0;
+                                    bottom: 0px;
+                                    display: none;
 								}
 								&:after {
-									position: absolute;
+                                    position: absolute;
 									content: "";
 									border-left: 8px solid transparent;
 									border-right: 8px solid transparent;
@@ -454,7 +449,7 @@
 									height: auto;
 									left: 50%;
 									border-bottom: 8px solid #fff;
-									margin-left: -10px;
+                                    margin-left: -10px;
 								}
 							}
 						}
@@ -483,8 +478,24 @@
 		}
 		.bottom-header-right {
 			margin-left: auto;
-			>ul li {
-				padding: 0px 15px;
+			ul li {
+                padding: 0px 15px;
+                &:last-child{
+                    padding-right: 0;
+                }
+                .dropdown-content{
+                    right: 0;
+                    background: #FFF;
+                    list-style: none;
+                    li{
+                        a{
+                            color: #333;
+                            &:hover{
+                                color: #0077C8;
+                            }
+                        }
+                    }
+                }
 				a {
 					font-size: 14px;
 					font-weight: 300;
@@ -494,7 +505,16 @@
 					color: #dedede;
 					&:before {
 						bottom: -2px;
-					}
+                    }
+                    .dropdown-icon {
+                        width: 10px;
+                        height: 10px;
+                        vertical-align: middle;
+                        display: inline-block;
+                        margin-left: 6px;
+                        background: url(../../assets/images/bottom-arrow.svg) no-repeat;
+                        margin-top: 2px;
+                    }
 				}
 			}
 		}
@@ -812,7 +832,7 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        z-index: 2;
+        z-index: 1;
         transition: 0.3s all ease-in-out;
         &::before, &::after{
             display: none;
@@ -1805,7 +1825,13 @@ section.trending-now {
                     min-height: auto;
                     margin-top: 10px;
                 }
-			}
+            }
+            p{
+                margin-bottom: 3px;
+            }
+            p + p{
+                margin-bottom: 0;
+            }
 		}
 		.item-wrapper {
 			margin-bottom: 0px;
@@ -1980,8 +2006,8 @@ section.explore {
                 margin-bottom: 15px;
             }
 			&:first-child {
-				grid-row: 1/2;
-				grid-column: 1/2;
+				grid-row: 1/3;
+                grid-column: 1/2;
 				@media (max-width: 991px) {
                     flex: 0 0 100%;
 				}
@@ -2647,7 +2673,8 @@ body.page-load {
 	top: 120%;
 	transition: 0.5s top;
 	opacity: 0;
-	overflow: hidden;
+    overflow: hidden;
+    z-index: 2;
 	.submenu-title {
 		color: #343434;
 		font-family: 'montserratmedium';
@@ -2668,10 +2695,12 @@ body.page-load {
 	.submenu-wrapper {
 		display: grid;
 		grid-template-columns: 20% 20% 20% 40%;
-		padding: 20px 32px;
-		@media(max-width: 1024px){
-			padding: 10px 15px;
-		}
+        padding: 20px 32px;
+        @media(max-width: 1280px) and (min-width: 990px){
+            grid-template-columns: repeat(3, 1fr);
+            grid-auto-flow: row;
+            padding: 10px 15px;
+        }
 		&>div {
 			position: relative;
 			padding: 0 20px;
@@ -2703,7 +2732,8 @@ body.page-load {
 				padding-left: 0px;
 			}
 			&:last-child {
-				padding-right: 0px;
+                padding-right: 0px;
+                grid-column: 1/-1;
 			}
 			.submenu-subtitle {
 				color: #343434;
@@ -2711,10 +2741,10 @@ body.page-load {
 				font-size: 14px;
 				font-weight: 600;
 				line-height: 18px;
-				margin-bottom: 20px;
+				margin-bottom: 10px;
 				display: flex;
 				align-items: center;
-				padding: 0px;
+				padding: 0px !important;
 				img {
 					padding-right: 5px;
 				}
@@ -2805,7 +2835,8 @@ body.page-load {
 							text-align: center;
 							border-radius: 50%;
 							border: 1px solid #E1E1E1;
-							transition: 0.3s background-color;
+                            transition: 0.3s background-color;
+                            margin-right: 3px;
 							img {
 								max-width: 14px;
 							}
@@ -2844,7 +2875,7 @@ body.page-load {
 							background-color: #0098ff;
 						}
 						&.calender-action-btn {
-							text-align: right;
+							text-align: center;
 							padding-right: 0px;
 						}
 					}
@@ -2875,7 +2906,7 @@ body.page-load {
 						font-size: 12px;
 						font-weight: 600;
 						line-height: 15px;
-						margin-bottom: 20px;
+						margin-bottom: 10px;
 						padding: 0px;
 						display: flex;
 						align-items: center;
@@ -2922,7 +2953,9 @@ body.page-load {
 							font-family: 'rubikmedium';
 							font-size: 14px;
 							font-weight: 500;
-							line-height: 17px;
+                            line-height: 17px;
+                            margin-top: 5px;
+                            display: block;
 						}
 					}
 				}
@@ -2957,6 +2990,95 @@ body.page-load {
 }
 
 .calender {
+    .month-cal{
+        .DayPicker {
+            width: calc(100% + 10px);
+            margin: 0 -5px;
+            .DayPicker-wrapper{
+                padding: 0;
+                .DayPicker-NavBar{
+                    position: absolute;
+                    right: 3px;
+                    top: -46px;
+                    .DayPicker-NavButton{
+                        right: 0;
+                    }
+                    .DayPicker-NavButton--prev{
+                        background: rgba(247,248,252,1) url(../../assets/images/right-arrow.svg) 6px 2px no-repeat;
+                        transform: rotate(180deg);
+                        border-radius: 50%;
+                        right: 5px;
+                    }
+                    .DayPicker-NavButton--next{
+                        background: rgba(247,248,252,1) url(../../assets/images/right-arrow.svg) 6px 3px no-repeat;
+                        border-radius: 50%;
+                    }
+                }
+                .DayPicker-Months{
+                    .DayPicker-Month{
+                        width: 100%;
+                        margin: 0;
+                        display: block;
+                        .DayPicker-Body{
+                            display: block;
+                        }
+                        .DayPicker-Caption{
+                            position: absolute;
+                            right: 50px;
+                            top: -30px;
+                            color: #343434;
+                            font-size: 14px;
+                            div{
+                                font-size: 14px;
+                            }
+                        }
+                        .DayPicker-Weekdays{
+                            display: flex;
+                            margin: 0;
+                            .DayPicker-WeekdaysRow{
+                                display: flex;
+                                justify-content: space-between;
+                                padding: 0;
+                                width: 100%;
+                            }
+                            .DayPicker-Weekday{
+                                abbr{
+                                    color: rgba(52,72,94,0.54);
+                                    font-size: 11px;
+                                    font-weight: 500;
+                                }
+                            }
+                        }
+                        .DayPicker-Week{
+                            display: flex;
+                            justify-content: space-between;
+                            .DayPicker-Day{
+                                font-size: 10px;
+                                display: flex;
+                                padding: 0;
+                                border-radius: 50%;
+                                vertical-align: middle;
+                                justify-content: center;
+                                cursor: pointer;
+                                width: 26px;
+                                height: 26px;
+                                margin: 2px 0;
+                                align-items: center;
+                                &.DayPicker-Day--selected{
+                                    background: #0098FF;
+                                    font-weight: 500;
+                                }
+                            }
+                            .DayPicker-Day--today{
+                                color: #FFF;
+                                background: #0098FF;
+                            }
+                        }
+                    }
+                }
+            }
+        }  
+    }
 	.cal-month-name {
 		margin-left: auto;
 		display: flex;
@@ -2987,53 +3109,6 @@ body.page-load {
 			}
 		}
 	}
-	.calendar-date {
-		padding: 0px;
-		display: grid;
-		grid-template-columns: repeat(7, 25px);
-		grid-gap: 10px;
-		box-sizing: border-box;
-		justify-content: space-between;
-		@media(max-width: 1024px){
-			grid-template-columns: repeat(7, auto);
-		}
-	}
-	.calendar-day {
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		height: 25px;
-		color: rgba(52, 72, 94, 0.54);
-		font-family: 'rubikregular';
-		font-size: 10.96px;
-		font-weight: 600;
-		line-height: 13px;
-	}
-	.calendar-number {
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		height: 25px;
-		color: #7C86A2;
-		font-family: 'rubikregular';
-		font-size: 10px;
-		line-height: 12px;
-		transition: 0.3s ease-in-out;
-		border-radius: 50%;
-		&.calendar-number-current,
-		&:hover {
-			background-color: #0098ff;
-			color: #fff;
-			cursor: pointer;
-			font-size: 10px;
-			font-weight: bold;
-			line-height: 12px;
-			border-radius: 50%;
-		}
-		&.calendar-prev-number {
-			color: #CBD4DE;
-		}
-	}
 }
 
 //cart-style
@@ -3042,14 +3117,14 @@ body.page-load {
 	max-width: 400px;
 	right: 30px;
 	opacity: 0;
-	margin-top: -47px;
+	margin-top: -2px;
 	overflow: hidden;
 	background-color: #fff;
 	position: absolute;
 	padding: 0px;
 	height: auto;
 	top: 150%;
-	z-index: 1;
+	z-index: 2;
 	transition: 0.5s top;
 	.my-cart-wrapper {
 		display: flex;
@@ -3094,7 +3169,7 @@ body.page-load {
 				li {
 					display: flex;
 					flex-wrap: wrap;
-					padding: 20px;
+					padding: 17px;
 					background-color: #F5F7F9;
 					border-bottom: 1px solid #fff;
 					@media (max-width: 767px) {
@@ -3126,7 +3201,7 @@ body.page-load {
 							font-family: 'rubikmedium';
 							font-weight: 500;
 							line-height: 19px;
-							padding-bottom: 5px;
+							padding-bottom: 0;
 							font-size: 16px;
 							max-width: 196px;
 							@media (max-width: 767px) {
@@ -3140,7 +3215,8 @@ body.page-load {
 							font-family: rubikregular;
 							font-size: 14px;
 							line-height: 17px;
-							padding-bottom: 5px;
+                            padding-bottom: 5px;
+                            margin: 0;
 							@media (max-width: 767px) {
 								font-size: 12px;
 								line-height: 15px;
@@ -3277,7 +3353,7 @@ body.page-load {
 	overflow: hidden;
 	left: 50%;
 	transform: translateX(-50%);
-	margin-top: 3px;
+	margin-top: 0px;
 	transition: 0.5s top;
 	.header-search-fixed {
 		display: none;

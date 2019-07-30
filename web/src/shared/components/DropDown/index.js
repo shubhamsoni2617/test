@@ -6,8 +6,7 @@ const DropDown = (props) => {
     return (
         <li className="dropdown">
             <a className="dropbtn" href="/">More
-                <span class="dropdown-icon"><img src="assets/images/bottom-arrow.svg" class="img-fluid"
-                    alt="arrow" />
+                <span class="dropdown-icon">
                 </span>
             </a>
             <ul className="dropdown-content">
