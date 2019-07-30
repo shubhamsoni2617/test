@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import './style.scss';
+import Constants from '../../../shared/constants';
 
 class TopPics extends Component {
     constructor(props) {
@@ -25,6 +27,7 @@ class TopPics extends Component {
     }
 
     render() {
+        const { width } = this.state;
         const topPics = [
             {
                 id: "1",
@@ -105,14 +108,6 @@ class TopPics extends Component {
                         infinite: false,
                         dots: false
                     }
-                },
-                {
-                    breakpoint: 600,
-                    settings: {
-                        slidesToShow: 2,
-                        slidesToScroll: 2,
-                        initialSlide: 2
-                    }
                 }
             ]
         };
@@ -122,18 +117,44 @@ class TopPics extends Component {
                 <div className="container-fluid">
                     <h2>Top Picks For You</h2>
                     {
-                        this.state.width <= 480
-                            ? <div className="row">
-                                <div className="col-xs-12">
-                                    {
-                                        topPics.map((elem, i) => {
-                                            return (
-                                                <img src={elem.img} key={i} className="img-fluid" alt="Kurios" />
+                        width <= Constants.MOBILE_BREAK_POINT
+                            ?
+                            <div className="col-xs-12">
+                                {
+                                    topPics.map((pic, i) => {
+                                        return (
+                                            <div className="grid-container" key={pic.id}>
+                                                <div className="item" >
+                                                    <div className="item-wrapper">
+                                                        <div className="item-desc">
+                                                            <span className="video-icon"><img src="assets/images/video-icon.svg" /></span>
+                                                            <div className="item-img">
+                                                                <img src={pic.img} className="img-fluid item-image" alt="kurios" />
+                                                            </div>
+                                                            <span className={`category ${pic.category} top-picks-category`}>{pic.category}</span>
+                                                            <div className={`item-overlay ${pic.category}-overlay`}>
+                                                                <div className="overlay-wrapper">
+                                                                    <h3>Kurios Cabinet of Curiosities</h3>
+                                                                    <span>Fri, 19 Apr- Sun, 19 May 2019</span>
+                                                                    <p>Under the big top Bayfront Avenue, beside Marina Bay
+                                                                       Sands
+                                                                    </p>
+                                                                    <p>Cirque du Soleil comes to Singapore with its most
+                                                                       acclaimed touring show, KURIOS – Cabinet of Curiosities.
+                                                                    </p>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <h3>Kurios Cabinet of Curiosities</h3>
+                                                        <a href="/" className="item-title-overlay"><span>BUY NOW </span><img
+                                                            src="assets/images/next-arrow.svg" className="img-fluid" alt="buy-now" /></a>
+                                                    </div>
+                                                </div>
+                                            </div>
 
-                                            );
-                                        })
-                                    }
-                                </div>
+                                        );
+                                    })
+                                }
                             </div>
                             :
                             <Slider {...settings}>

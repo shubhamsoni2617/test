@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import Slider from "react-slick";
+import './style.scss';
+import Constants from '../../../shared/constants';
 
 class FeaturedEvents extends Component {
     constructor(props) {
@@ -23,7 +25,7 @@ class FeaturedEvents extends Component {
     }
 
     render() {
-
+        const { width } = this.state;
         const featuredEvents = [
             {
                 id: "1",
@@ -207,13 +209,6 @@ class FeaturedEvents extends Component {
                         infinite: false,
                         dots: true
                     }
-                },
-                {
-                    breakpoint: 600,
-                    settings: {
-                        slidesToShow: 1,
-                        slidesPerRow: 2,
-                    }
                 }
             ]
         };
@@ -228,14 +223,27 @@ class FeaturedEvents extends Component {
                         </div>
                     </div>
                     {
-                        this.state.width <= 480
+                        width <= Constants.MOBILE_BREAK_POINT
                             ?
-                            <div style={{  width: "30em",overflowX:"auto",whiteSpace:"nowrap" }}>
+                            <div style={{ width: "30em", overflowX: "auto", whiteSpace: "nowrap" }}>
                                 {
-                                    featuredEvents.map((elem, i) => {
+                                    featuredEvents.map((event, i) => {
                                         return (
-                                            <img src={elem.img} key={i} className="img-fluid" alt="Kurios" height="150px" width="150px" />
-
+                                            <div className="grid-container" key={event.id}>
+                                                <div className="item">
+                                                    <div className="item-wrapper">
+                                                        <div className="featured-item-img">
+                                                            <div className="item-img">
+                                                                <img src={event.img} className="img-fluid" alt="explore" />
+                                                            </div>
+                                                            <span className="category">Dance</span>
+                                                        </div>
+                                                        <h3>SSO Red Balloon Series: Rhythums, Rites</h3>
+                                                        <p>Fri, 3 May 2019</p>
+                                                        <p>Esplanade Concert Hall</p>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         );
                                     })
                                 }

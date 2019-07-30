@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Slider from "react-slick";
+import Constants from "../../../shared/constants";
 
 export default class PromotionCarousel extends Component {
 
@@ -96,6 +97,7 @@ export default class PromotionCarousel extends Component {
   }
 
   render() {
+    const { width } = this.state;
     const settings = {
       dots: true,
       infinite: true,
@@ -118,14 +120,6 @@ export default class PromotionCarousel extends Component {
             infinite: false,
             dots: true
           }
-        },
-        {
-          breakpoint: 600,
-          settings: {
-            slidesToShow: 2,
-            slidesToScroll: 2,
-            initialSlide: 2
-          }
         }
       ]
     };
@@ -141,7 +135,7 @@ export default class PromotionCarousel extends Component {
           </div>
           <div className="grid-container">
             {
-              this.state.width <= 480
+              width <= Constants.MOBILE_BREAK_POINT
                 ?
                 <div>
                   {
