@@ -17,6 +17,10 @@ class HomeService {
 	getVenues(first,limit,search){
 		return API.get(`rest/view/venue?first=${first}&limit=${limit}&search=${search}`)
 	}
+
+	getHotShowPopupData(){
+		return API.get(`hot-show-page`);
+	}
 }
 
 export default new HomeService();
