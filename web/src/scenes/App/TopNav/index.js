@@ -92,12 +92,10 @@ export default class TopNav extends Component {
                                             );
                                         })
                                     }
-                                    <li>
-                                        <DropDown
-                                            showElementsInHeader={showElementsInHeader}
-                                            byGenreEvent={byGenreEvent}
-                                        />
-                                    </li>
+                                    <DropDown
+                                        showElementsInHeader={showElementsInHeader}
+                                        byGenreEvent={byGenreEvent}
+                                    />
                                 </ul>
                             </div>
                         </nav>
