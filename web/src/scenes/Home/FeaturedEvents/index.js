@@ -230,12 +230,25 @@ class FeaturedEvents extends Component {
                     {
                         this.state.width <= 480
                             ?
-                            <div style={{  width: "30em",overflowX:"auto",whiteSpace:"nowrap" }}>
+                            <div style={{ width: "30em", overflowX: "auto", whiteSpace: "nowrap" }}>
                                 {
-                                    featuredEvents.map((elem, i) => {
+                                    featuredEvents.map((event, i) => {
                                         return (
-                                            <img src={elem.img} key={i} className="img-fluid" alt="Kurios" height="150px" width="150px" />
-
+                                            <div className="grid-container" key={event.id}>
+                                                <div className="item">
+                                                    <div className="item-wrapper">
+                                                        <div className="featured-item-img">
+                                                            <div className="item-img">
+                                                                <img src={event.img} className="img-fluid" alt="explore" />
+                                                            </div>
+                                                            <span className="category">Dance</span>
+                                                        </div>
+                                                        <h3>SSO Red Balloon Series: Rhythums, Rites</h3>
+                                                        <p>Fri, 3 May 2019</p>
+                                                        <p>Esplanade Concert Hall</p>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         );
                                     })
                                 }
