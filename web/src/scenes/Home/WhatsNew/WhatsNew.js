@@ -1,70 +1,91 @@
 import React, { Component } from 'react';
 import Carousel from '../../../shared/components/Carousel';
+import HomeService from '../../../shared/services/HomeService';
 
 class whatsNew extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            newReleases: []
+        };
+    }
+    componentDidMount() {
+        const params = {
+            client: 1,
+            first: 1,
+            limit: 10,
+        };
+
+        HomeService.getNewRelease(params)
+            .then((res) => {
+                this.setState({ newReleases: res.data.data })
+            })
+            .catch((err) => {
+                console.log(err)
+            })
+    }
     render() {
         var imgArray = [
             {
                 img: "assets/images/atul-khatri.jpg",
-                genre:"Musical"
+                genre: "Musical"
             },
             {
                 img: "assets/images/kurios.png",
-                genre:"Comedy"
+                genre: "Comedy"
             },
             {
                 img: "assets/images/panthom-of-opera.jpg",
-                genre:"Musical"
+                genre: "Musical"
             },
             {
                 img: "assets/images/atul-khatri.jpg",
-                genre:"Comedy"
+                genre: "Comedy"
             },
             {
                 img: "assets/images/kurios.png",
-                genre:"Musical"
+                genre: "Musical"
             },
             {
                 img: "assets/images/panthom-of-opera.jpg",
-                genre:"Comedy"
+                genre: "Comedy"
             },
             {
                 img: "assets/images/atul-khatri.jpg",
-                genre:"Comedy"
+                genre: "Comedy"
             },
             {
                 img: "assets/images/kurios.png",
-                genre:"Musical"
+                genre: "Musical"
             },
             {
                 img: "assets/images/panthom-of-opera.jpg",
-                genre:"Comedy"
+                genre: "Comedy"
             },
             {
                 img: "assets/images/atul-khatri.jpg",
-                genre:"Musical"
+                genre: "Musical"
             },
             {
                 img: "assets/images/atul-khatri.jpg",
-                genre:"Comedy"
+                genre: "Comedy"
             },
             {
                 img: "assets/images/kurios.png",
-                genre:"Musical"
+                genre: "Musical"
             },
             {
                 img: "assets/images/panthom-of-opera.jpg",
-                genre:"Comedy"
+                genre: "Comedy"
             },
             {
                 img: "assets/images/atul-khatri.jpg",
-                genre:"Comedy"
+                genre: "Comedy"
             },
             {
                 img: "assets/images/kurios.png",
-                genre:"Musical"
+                genre: "Musical"
             },
-           
         ];
 
         return (
@@ -75,14 +96,9 @@ class whatsNew extends Component {
                         <div className="carousel-dots">
                             <a href="/">See all <img src="assets/images/right-arrow.svg" className="img-fluid"
                                 alt="arrow" /></a>
-                            <div className="dots-group">
-                                <span className="active"><a href="/">&nbsp;</a></span>
-                                <span><a href="/">&nbsp;</a></span>
-                                <span><a href="/">&nbsp;</a></span>
-                            </div>
                         </div>
                     </div>
-                    <Carousel imgArray={imgArray} />
+                    <Carousel imgArray={this.state.newReleases} arrows={false} />
                 </div>
             </section>
         );
