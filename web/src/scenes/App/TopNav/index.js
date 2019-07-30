@@ -65,7 +65,7 @@ export default class TopNav extends Component {
                                     <li className="cart-icon">
                                         <a href="/"><img src="assets/images/cart.svg" className="img-fluid"
                                             alt="cart" /><span>{miniCart.length}</span></a>
-                                        <MiniCart miniCart={miniCart} />
+                                        {/* <MiniCart miniCart={miniCart} /> */}
                                     </li>
                                     <li className="ticket-withus"><a href="/">Ticket With Us</a></li>
                                 </ul>
