@@ -1,30 +1,26 @@
 import React from 'react';
-import './style.css';
+import './style.scss';
 
 const DropDown = (props) => {
     const { showElementsInHeader, byGenreEvent } = props;
     return (
-        <div className="dropdown">
-            <button className="dropbtn">
-                More
-                        <span className="dropdown-icon">
-                    <img
-                        src="assets/images/bottom-arrow.svg"
-                        className="img-fluid"
-                        alt="arrow"
-                    />
+        <li className="dropdown">
+            <a className="dropbtn" href="/">More
+                <span class="dropdown-icon">
                 </span>
-            </button>
-            <div className="dropdown-content">
+            </a>
+            <ul className="dropdown-content">
                 {
                     byGenreEvent && byGenreEvent.slice(showElementsInHeader, byGenreEvent.length).map((event, index) => {
                         return (
-                            <a href="/" key={event.id}> {event.name}</a>
+                            <li key={event.id}>
+                                <a href="/"> {event.name}</a>
+                            </li>
                         );
                     })
                 }
-            </div>
-        </div>
+            </ul>
+        </li>
     );
 }
 

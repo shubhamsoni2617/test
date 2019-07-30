@@ -92,16 +92,13 @@ export default class TopNav extends Component {
                                             );
                                         })
                                     }
-                                    <li>
-                                        <DropDown
-                                            showElementsInHeader={showElementsInHeader}
-                                            byGenreEvent={byGenreEvent}
-                                        />
-                                    </li>
+                                    <DropDown
+                                        showElementsInHeader={showElementsInHeader}
+                                        byGenreEvent={byGenreEvent}
+                                    />
                                 </ul>
                             </div>
                         </nav>
-                        <NewsTicker />
                         <div className="responsive-nav-links">
                             <a href="/" className="responsive-nav-close">X</a>
                             <ul className="user-details">
@@ -168,6 +165,7 @@ export default class TopNav extends Component {
                         </div>
                     </div>
                 </div>
+                <NewsTicker />
             </header>
         );
     }
