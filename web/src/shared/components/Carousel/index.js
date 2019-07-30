@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import CarouselSlide from '../CarouselSlide';
 
 const Carousel = (props) => {
 
@@ -81,21 +82,7 @@ const Carousel = (props) => {
                         {
                             imgArray.map((elem, i) => {
                                 return (
-                                    <div className="grid-container" key={i}>
-                                        <div className="item">
-                                            <div className="item-wrapper">
-                                                <div className="currently-showing-img">
-                                                    <div className="item-img">
-                                                        <img src={elem.thumb_image} className="img-fluid" alt="Kurios" />
-                                                    </div>
-                                                </div>
-                                                <span className={elem.genre === "Musical" ? "category musical" : "category comedy"}>{elem.genre}</span>
-                                                <p>{elem.event_date}</p>
-                                                <h3>{elem.title}</h3>
-                                                <p>{elem.venue_name}</p>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    <CarouselSlide elem={elem} />
                                 );
                             })
                         }
