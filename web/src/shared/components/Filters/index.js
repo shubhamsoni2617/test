@@ -1,28 +1,19 @@
 import React, { Component } from 'react';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
-import InputRange from 'react-input-range';
 import VenueFilter from '../VenueFilter';
 import "react-tabs/style/react-tabs.css";
-import "react-input-range/lib/css/index.css";
 import './style.scss';
 
 export default class Filters extends Component {
 
     constructor(props) {
         super(props);
-        this.state = {
-            value: { min: 0, max: 0 },
-        };
     }
 
     componentDidMount() {
-
     }
 
     render() {
-        const { genreData, venueData, filterConfig } = this.props;
-        const { promotion_categories, price_config } = filterConfig;
-        
         return (
             <div>
                 <div className="apply-filter-mob">
@@ -260,11 +251,7 @@ export default class Filters extends Component {
                             </ul>
                         </div>
                         <div className="filters-panel">
-                            <InputRange
-                                maxValue={price_config && price_config.max_price}
-                                minValue={price_config && price_config.min_price}
-                                value={this.state.value}
-                                onChange={value => this.setState({ value })} />
+
                         </div>
                     </div>
                     <div className="filter-grid">
@@ -281,13 +268,48 @@ export default class Filters extends Component {
                         </div>
                         <div className="filters-panel">
                             <ul>
-                                {genreData && genreData.map((genre) => {
-                                    return <li key={genre.id}>
-                                        <input className="styled-checkbox" type="checkbox" id="styled-checkbox-1" value="" />
-                                        <label for="styled-checkbox-1">
-                                            {genre.name} ({genre.events_count})
-                        </label></li>
-                                })}
+                                <li>
+                                    <input className="styled-checkbox" type="checkbox" id="styled-checkbox-1" value="" />
+                                    <label for="styled-checkbox-1">
+                                        Concert (23)
+                            </label>
+                                </li>
+                                <li >
+                                    <input className="styled-checkbox" type="checkbox" id="styled-checkbox-2" value="" />
+                                    <label for="styled-checkbox-2">
+                                        Comedy (12)
+                            </label>
+                                </li>
+                                <li >
+                                    <input className="styled-checkbox" type="checkbox" id="styled-checkbox-3" value="" />
+                                    <label for="styled-checkbox-3">
+                                        Dance (32)
+                            </label>
+                                </li>
+                                <li >
+                                    <input className="styled-checkbox" type="checkbox" id="styled-checkbox-4" value="" />
+                                    <label for="styled-checkbox-4">
+                                        Family (2)
+                            </label>
+                                </li>
+                                <li >
+                                    <input className="styled-checkbox" type="checkbox" id="styled-checkbox-5" value="" />
+                                    <label for="styled-checkbox-5">
+                                        Theatre (22)
+                            </label>
+                                </li>
+                                <li >
+                                    <input className="styled-checkbox" type="checkbox" id="styled-checkbox-6" value="" />
+                                    <label for="styled-checkbox-6">
+                                        Sports (12)
+                            </label>
+                                </li>
+                                <li >
+                                    <input className="styled-checkbox" type="checkbox" id="styled-checkbox-7" value="" />
+                                    <label for="styled-checkbox-7">
+                                        Orchestra (1)
+                            </label>
+                                </li>
                             </ul>
                         </div>
                     </div>
@@ -325,23 +347,39 @@ export default class Filters extends Component {
                         </div>
                         <div className="filters-panel">
                             <ul>
-                                {promotion_categories && promotion_categories.map((promotion) => {
-                                    return <li key={promotion.id}>
-                                        <input className="styled-checkbox" type="checkbox" id="styled-checkbox-8" value="" />
-                                        <label for="styled-checkbox-8">
-                                            {promotion.name}
-                                        </label>
-                                    </li>
-                                })}
+                                <li>
+                                    <input className="styled-checkbox" type="checkbox" id="styled-checkbox-8" value="" />
+                                    <label for="styled-checkbox-8">
+                                        Student discount
+                            </label>
+                                </li>
+                                <li>
+                                    <input className="styled-checkbox" type="checkbox" id="styled-checkbox-9" value="" />
+                                    <label for="styled-checkbox-9">
+                                        General
+                            </label>
+                                </li>
+                                <li>
+                                    <input className="styled-checkbox" type="checkbox" id="styled-checkbox-10" value="" />
+                                    <label for="styled-checkbox-10">
+                                        Group discount
+                            </label>
+                                </li>
+                                <li>
+                                    <input className="styled-checkbox" type="checkbox" id="styled-checkbox-11" value="" />
+                                    <label for="styled-checkbox-11">
+                                        Flash sale
+                            </label>
+                                </li>
                             </ul>
-                            <a className="view-all-filters">
+                            <a href="/" className="view-all-filters">
                                 + 4 More
                     </a>
                         </div>
                     </div>
                     <div className="filter-grid">
                         {/* Venue filter component. */}
-                        <VenueFilter venue={venueData} />
+                        <VenueFilter />
                     </div>
                 </div>
             </div>
