@@ -38,7 +38,7 @@
         position: relative;
         .promotion-category {
             color: #0077C8;
-            font-family: "montserratsemibold";
+            font-family: 'Montserrat', sans-serif;
             font-size: 14px;
             line-height: 20px;
             height: 20px;
@@ -48,10 +48,11 @@
             display: inline-block;
             text-align: center;
             margin-bottom: 12px;
+            font-weight: 600;
         }
         h3 {
             color: #343434;
-            font-family: rubikmedium;
+            font-family: 'Rubik', sans-serif;
             font-size: 18px;
             line-height: 22px;
             margin-bottom: 0px;
@@ -68,7 +69,7 @@
             right: 0px;
             .timer-tagline {
                 color: #323232;
-                font-family: rubikregular;
+                font-family: 'Rubik', sans-serif;
                 font-size: 10.48px;
                 line-height: 13px;
                 padding-bottom: 3px;
@@ -82,13 +83,13 @@
                     span {
                         color: #343434;
                         font-size: 15px;
-                        font-family: "rubikmedium";
+                        font-family: 'Rubik', sans-serif;
                         font-weight: 500;
                     }
                     .timer-label {
                         font-size: 9px;
-                        font-family: 'rubikregular';
-                        font-weight: 100;
+                        font-family: 'Rubik', sans-serif;
+                        font-weight: 400;
                         line-height: 10px;
                     }
                 }
@@ -104,6 +105,9 @@
                 flex-wrap: wrap;
                 align-items: center;
                 justify-content: space-around;
+                span{
+                    font-weight: 600;
+                }
                 img {
                     padding-left: 7px;
                 }
@@ -152,7 +156,7 @@
             }
             p {
                 color: #6C6C6C;
-                font-family: rubikregular;
+                font-family: 'Rubik', sans-serif;
                 font-size: 14px;
                 line-height: 26px;
             }
