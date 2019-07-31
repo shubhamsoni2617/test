@@ -1,7 +1,7 @@
 * {
   box-sizing: border-box;
 }
-$duration: 40s;
+$duration: 250s;
 
 @-webkit-keyframes ticker {
   0% {
@@ -101,4 +101,12 @@ $duration: 40s;
             height: 15px;
         }
     }
+}
+
+div p{
+  display: inline-block
+}
+  
+span:hover{
+  cursor: pointer;
 }
