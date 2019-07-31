@@ -1,119 +1,91 @@
-import React, { Component } from 'react';
-import axios from 'axios';
+import React, { useState, useEffect } from 'react';
 import './style.scss';
+import HomeService from '../../services/HomeService';
+import nextarrow from '../../../assets/images/next-arrow.svg';
+import ReactPlayer from 'react-player';
 
-export default class HotShowPopup extends Component {
-    constructor(props){
-        super(props);
+const HotShowPopup = () => {
+
+    const [popupData, setPopupData] = useState([]);
+    const [error, setError] = useState(false);
+    const [showPopup, setFlag] = useState(sessionStorage.getItem('showPopup') ? JSON.parse(sessionStorage.getItem('showPopup')) : true)
+
+    useEffect(() => {
+        HomeService.getHotShowPopupData()
+            .then((res) => {
+                setPopupData(res.data.data)
+            })
+            .catch((err) => {
+                setError(true)
+            })
+    })
+
+    const closePopup = () => {
+        setFlag(false);
+        sessionStorage.setItem('showPopup', false);
     }
 
-    render() {
-        const { showPopup, eventCount } = this.props;
-        console.log("hot show popup===")
-        if (!showPopup) {
-            return null;
-        }
-        return (
-            <div className="hotshow">
-                <div className="hotshow-topbar">
-                    <div className="hotshow-topbar-left">
-                        <span>We are anticipating very high demand for the following show(s).</span>
-                    </div>
-                    <div className="hotshow-topbar-right">
-                        <span>Continue to SISTIC <img src={require('../../../assets/images/next-arrow.svg')} alt="" /></span>
-                    </div>
+    let eventCount = popupData && popupData.length;
+    if (!showPopup || error) {
+        return null;
+    }
+    return (
+        <div className="hotshow container">
+            <div className="hotshow-topbar">
+                <div className="hotshow-topbar-left">
+                    <span>We are anticipating very high demand for the following show(s).</span>
                 </div>
-                {eventCount == 1 &&
-                    <div className="hotshow-wrapper">
-                        <div className="hotshow-block">
+                <div className="hotshow-topbar-right">
+                    <span>Continue to SISTIC <img src={nextarrow} alt="" onClick={()=>closePopup()} /></span>
+                </div>
+            </div>
+
+            <div className="hotshow-wrapper">
+                {eventCount == 2 && popupData &&
+                    popupData.map((objData, index) => {
+                        return <div className="hotshow-block" key={index}>
+
                             <div className="hotshowimg">
-                                <img src={require('../../../assets/images/sweeney-tood-hotshow.jpg')} alt="" className="img-fluid" />
+                                {
+                                    objData.type && objData.type.id == 2
+                                        ? <ReactPlayer url={objData.video_url} controls={true} />
+                                        : <img src={objData.thumb_image} alt="" className="img-fluid" />
+                                }
                             </div>
+
                             <div className="hotshow-content">
-                                <ul>
-                                    <li>
-                                        <h3>Sweeney Todd: The Demon Barber of Fleet Street</h3>
-                                        <p>Sun, 21 Aug - Sun, 1 Sep 2019</p>
-                                        <p>Sands Theatre, Marina Bay Sands</p>
-                                    </li>
-                                    <li>
-                                        <h4>Public Sales Start Date</h4>
-                                        <p>Sun, 21 July 2019, 10AM (Singapore GMT+8)</p>
-                                    </li>
-                                    <li>
-                                        <h4>Ticket Prices <span>(excluding $4 booking fee per ticket)</span></h4>
-                                        <p>S$328, S$288, S$228, S$ 168, S$128, S$108</p>
-                                    </li>
-                                </ul>
-                                <span className="hotshow-note">* Limited to 8 tickets per transaction</span>
-                                <button>Hurry! Buy Tickets Now</button>
+                                {objData.description &&
+                                    <div dangerouslySetInnerHTML={{ __html: objData.description }}></div>
+                                }
+                                <a href={objData.buttons.b_url} target="_blank">{objData.buttons.b_name}</a>
                             </div>
                         </div>
-                        <div className="hotshow-block">
-                            <div className="hotshowimg">
-                                <img src={require('../../../assets/images/poster-kurios.jpg')} alt="" className="img-fluid" />
-                            </div>
-                            <div className="hotshow-content">
-                                <ul>
-                                    <li>
-                                        <h3>Sweeney Todd: The Demon Barber of Fleet Street</h3>
-                                        <p>Sun, 21 Aug - Sun, 1 Sep 2019</p>
-                                        <p>Sands Theatre, Marina Bay Sands</p>
-                                    </li>
-                                    <li>
-                                        <h4>Public Sales Start Date</h4>
-                                        <p>Sun, 21 July 2019, 10AM (Singapore GMT+8)</p>
-                                    </li>
-                                    <li>
-                                        <h4>Ticket Prices <span>(excluding $4 booking fee per ticket)</span></h4>
-                                        <p>S$328, S$288, S$228, S$ 168, S$128, S$108</p>
-                                    </li>
-                                </ul>
-                                <span className="hotshow-note">* Limited to 8 tickets per transaction</span>
-                                <button>Hurry! Buy Tickets Now</button>
-                            </div>
-                        </div>
-                        <div className="hotshow-block hotshow-block-fullwidth">
-                            <div className="hotshowimg">
-                                <img src={require('../../../assets/images/poster-kurios.jpg')} alt="" className="img-fluid" />
-                            </div>
-                            <div className="hotshow-content">
-                                <ul>
-                                    <li>
-                                        <h3>KURIOS – Cabinet of Curiosities</h3>
-                                        <p>Sun, 21 Aug - Sun, 1 Sep 2019</p>
-                                        <p>Sands Theatre, Marina Bay Sands</p>
-                                    </li>
-                                    <li>
-                                        <h4>Public Sales Start Date</h4>
-                                        <p>Sun, 21 July 2019, 10AM (Singapore GMT+8)</p>
-                                    </li>
-                                    <li>
-                                        <h4>Ticket Prices <span>(excluding $4 booking fee per ticket)</span></h4>
-                                        <p>S$328, S$288, S$228, S$ 168, S$128, S$108</p>
-                                    </li>
-                                </ul>
-                                <span className="hotshow-note">* Limited to 8 tickets per transaction</span>
-                                <button>Hurry! Buy Tickets Now</button>
-                            </div>
-                        </div>
-                    </div>
+                    })
                 }
-                {eventCount == 2 &&
-                    <div>
-                        <div className="hotshow-block">
+                {eventCount == 1 && popupData &&
+                    popupData.map((objData, index) => {
+                        return <div className="hotshow-block hotshow-block-fullwidth" key={index}>
+
                             <div className="hotshowimg">
-                                <img src="" />
+                                {
+                                    objData.type && objData.type.id == 2
+                                        ? <ReactPlayer url={objData.video_url} controls />
+                                        : <img src={objData.full_image} alt="" className="img-fluid" />
+                                }
                             </div>
-                            <div className="content">
-                                <h2> </h2>
-                                <div> It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).</div>
-                                <button>Hurry! Buy Tickets Now.</button>
+                            <div className="hotshow-content">
+                                {objData.description &&
+                                    <div dangerouslySetInnerHTML={{ __html: objData.description }}></div>
+                                }
+                                {objData.buttons && objData.buttons.b_name &&
+                                    <a href={objData.buttons.b_url} target="_blank">{objData.buttons.b_name}</a>
+                                }
                             </div>
                         </div>
-                    </div>
+                    })
                 }
             </div>
-        );
-    }
+        </div>
+    );
 }
+export default HotShowPopup;
