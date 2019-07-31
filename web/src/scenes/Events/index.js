@@ -5,13 +5,13 @@ import Card from '../../shared/components/Card';
 import EventsService from '../../shared/services/EventsService';
 import HomeService from '../../shared/services/HomeService';
 import './style.scss';
+import DownArrowBlue from '../../assets/images/down-arrow-blue.svg';
 
 export default class Events extends Component {
 
     constructor(props) {
         super(props);
         this.state = { eventsData: [], genre: [], venues: [], filterConfig:[],  first: 1, limit: 10 };
-        this.loadMoreEvents = this.loadMoreEvents.bind(this);
     }
 
     componentDidMount() {
@@ -65,7 +65,7 @@ export default class Events extends Component {
             })
     }
 
-    loadMoreEvents() {
+    loadMoreEvents = () => {
         const first = this.state.first + 10;
         const limit = this.state.limit + 10;
         this.loadEvents(first, limit);
@@ -73,7 +73,6 @@ export default class Events extends Component {
     }
 
     render() {
-        console.log('state',this.state);
         const {genre, venue, filterConfig} = this.state;
         return (
             <section className="promotions-wrapper">
@@ -88,9 +87,9 @@ export default class Events extends Component {
                                 })}
                             </div>
                             <div class="promotion-load-more">
-                                <a onClick={this.loadMoreEvents} class="btn-link load-more-btn" target="">
+                                <a onClick={() => this.loadMoreEvents()} class="btn-link load-more-btn" target="">
                                     <span>Load More</span>
-                                    <img src="assets/images/down-arrow-blue.svg" />
+                                    <img src={DownArrowBlue} />
                                 </a>
                             </div>
                         </div>
