@@ -8,6 +8,7 @@ export default class Card extends Component {
   }
 
   componentDidMount () {
+      console.log('props',this.props)
   } 
 
   render() {
