@@ -1,55 +1,80 @@
 import React, { Component } from 'react';
+import onClickOutside from 'react-onclickoutside';
 import './style.scss';
 
-
 class MiniCart extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            isOpen: false
+        }
+    }
+
+    toggle = () => {
+        this.setState({ isOpen: !this.state.isOpen })
+    }
+
+    handleClickOutside = () => {
+        this.setState({ isOpen: false })
+    };
 
     render() {
 
         const { miniCart } = this.props;
+        const { isOpen } = this.state;
 
         return (
-            <div className="my-cart-popup">
-                <div className="my-cart-wrapper">
-                    <div className="cart-head">
-                        <h3>My Cart ({miniCart.length})</h3>
-                        <a href="/" className="cart-close">X</a>
-                    </div>
-                    <div className="cart-body">
-                        <ul>
-                            {
-                                miniCart.map((cart, index) => {
-                                    return (
-                                        <li key={cart.id}>
-                                            <div className="product-img">
-                                                <img src={cart.img} className="img-fluid"
-                                                    alt="cart" />
-                                            </div>
-                                            <div className="product-details">
-                                                <span className="product-date-time">Fri, 19 Apr- Sun, 19 May 2019</span>
-                                                <h4 className="product-name">The Phantom Of The Opera</h4>
-                                                <p className="product-desc">Sands Theatre, Marina Bay Sands</p>
-                                                <span className="product-price">S$ 250 (Qty: 1)</span>
-                                            </div>
-                                        </li>
-                                    );
-                                })
-                            }
-                        </ul>
-                    </div>
-                    <div className="cart-footer">
-                        <div className="cart-timer">
-                            <span className="timer-label">Time left</span>
-                            <span className="timer-time">14:59</span>
+            <li className="cart-icon" onClick={this.toggle}>
+                <a><img src="assets/images/cart.svg" className="img-fluid"
+                    alt="cart" /><span>{miniCart.length}</span></a>
+                <div className="my-cart-popup" style={{ display: isOpen ? "block" : "none" }}>
+                    <div className="my-cart-wrapper">
+                        <div className="cart-head">
+                            <h3>My Cart ({miniCart.length})</h3>
+                            <a href="/" className="cart-close">X</a>
                         </div>
-                        <div className="cart-checkout-btn">
-                            <button>Go to Cart</button>
+                        <div className="cart-body">
+                            <ul>
+                                {
+                                    miniCart.map((cart, index) => {
+                                        return (
+                                            <li key={cart.id}>
+                                                <div className="product-img">
+                                                    <img src={cart.img} className="img-fluid"
+                                                        alt="cart" />
+                                                </div>
+                                                <div className="product-details">
+                                                    <span className="product-date-time">Fri, 19 Apr- Sun, 19 May 2019</span>
+                                                    <h4 className="product-name">The Phantom Of The Opera</h4>
+                                                    <p className="product-desc">Sands Theatre, Marina Bay Sands</p>
+                                                    <span className="product-price">S$ 250 (Qty: 1)</span>
+                                                </div>
+                                            </li>
+                                        );
+                                    })
+                                }
+                            </ul>
+                        </div>
+                        <div className="cart-footer">
+                            <div className="cart-timer">
+                                <span className="timer-label">Time left</span>
+                                <span className="timer-time">14:59</span>
+                            </div>
+                            <div className="cart-checkout-btn">
+                                <button>Go to Cart</button>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
+            </li>
         );
     }
 }
 
-export default MiniCart;
+var clickOutsideConfig = {
+    handleClickOutside: (instance) => {
+        return instance.handleClickOutside;
+    }
+};
+
+export default onClickOutside(MiniCart, clickOutsideConfig);
