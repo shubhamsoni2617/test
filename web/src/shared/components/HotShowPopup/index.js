@@ -18,72 +18,78 @@ const HotShowPopup = () => {
             .catch((err) => {
                 setError(true)
             })
-    })
+    },[])
 
     const closePopup = () => {
         setFlag(false);
         sessionStorage.setItem('showPopup', false);
     }
 
+    let body = document.body;
     let eventCount = popupData && popupData.length;
     if (!showPopup || error) {
+        body.classList.remove("hotshowpopup-overlay");
         return null;
     }
+    body.classList.add("hotshowpopup-overlay");
     return (
-        <div className="hotshow container">
-            <div className="hotshow-topbar">
-                <div className="hotshow-topbar-left">
-                    <span>We are anticipating very high demand for the following show(s).</span>
+        <div className="hotshow-popup">
+            <div className="hotshow-overlay"></div>
+            <div className="hotshow container">
+                <div className="hotshow-topbar">
+                    <div className="hotshow-topbar-left">
+                        <span>We are anticipating very high demand for the following show(s).</span>
+                    </div>
+                    <div className="hotshow-topbar-right">
+                        <span>Continue to SISTIC <img src={nextarrow} alt="" onClick={() => closePopup()} /></span>
+                    </div>
                 </div>
-                <div className="hotshow-topbar-right">
-                    <span>Continue to SISTIC <img src={nextarrow} alt="" onClick={()=>closePopup()} /></span>
-                </div>
-            </div>
 
-            <div className="hotshow-wrapper">
-                {eventCount == 2 && popupData &&
-                    popupData.map((objData, index) => {
-                        return <div className="hotshow-block" key={index}>
+                <div className="hotshow-wrapper">
+                    {eventCount == 2 && popupData &&
+                        popupData.map((objData, index) => {
+                            return <div className="hotshow-block" key={index}>
 
-                            <div className="hotshowimg">
-                                {
-                                    objData.type && objData.type.id == 2
-                                        ? <ReactPlayer url={objData.video_url} controls={true} />
-                                        : <img src={objData.thumb_image} alt="" className="img-fluid" />
-                                }
-                            </div>
+                                <div className="hotshowimg">
+                                    {
+                                        objData.type && objData.type.id == 2
+                                            ? <ReactPlayer url={objData.video_url} controls={true} />
+                                            : <img src={objData.thumb_image} alt="" className="img-fluid" />
+                                    }
+                                </div>
 
-                            <div className="hotshow-content">
-                                {objData.description &&
-                                    <div dangerouslySetInnerHTML={{ __html: objData.description }}></div>
-                                }
-                                <a href={objData.buttons.b_url} target="_blank">{objData.buttons.b_name}</a>
-                            </div>
-                        </div>
-                    })
-                }
-                {eventCount == 1 && popupData &&
-                    popupData.map((objData, index) => {
-                        return <div className="hotshow-block hotshow-block-fullwidth" key={index}>
-
-                            <div className="hotshowimg">
-                                {
-                                    objData.type && objData.type.id == 2
-                                        ? <ReactPlayer url={objData.video_url} controls />
-                                        : <img src={objData.full_image} alt="" className="img-fluid" />
-                                }
-                            </div>
-                            <div className="hotshow-content">
-                                {objData.description &&
-                                    <div dangerouslySetInnerHTML={{ __html: objData.description }}></div>
-                                }
-                                {objData.buttons && objData.buttons.b_name &&
+                                <div className="hotshow-content">
+                                    {objData.description &&
+                                        <div dangerouslySetInnerHTML={{ __html: objData.description }}></div>
+                                    }
                                     <a href={objData.buttons.b_url} target="_blank">{objData.buttons.b_name}</a>
-                                }
+                                </div>
                             </div>
-                        </div>
-                    })
-                }
+                        })
+                    }
+                    {eventCount == 1 && popupData &&
+                        popupData.map((objData, index) => {
+                            return <div className="hotshow-block hotshow-block-fullwidth" key={index}>
+
+                                <div className="hotshowimg">
+                                    {
+                                        objData.type && objData.type.id == 2
+                                            ? <ReactPlayer url={objData.video_url} controls />
+                                            : <img src={objData.full_image} alt="" className="img-fluid" />
+                                    }
+                                </div>
+                                <div className="hotshow-content">
+                                    {objData.description &&
+                                        <div dangerouslySetInnerHTML={{ __html: objData.description }}></div>
+                                    }
+                                    {objData.buttons && objData.buttons.b_name &&
+                                        <a href={objData.buttons.b_url} target="_blank">{objData.buttons.b_name}</a>
+                                    }
+                                </div>
+                            </div>
+                        })
+                    }
+                </div>
             </div>
         </div>
     );

@@ -10,7 +10,6 @@ body {
 	&.body-overlay {
 		position: relative;
 		&::after {
-			@media(max-width: 991px) {
 				position: absolute;
 				content: "";
 				background-color: #000000;
@@ -22,7 +21,6 @@ body {
 				left: 0px;
 				opacity: 0.6;
 				z-index: 1;
-			}
 		}
 	}
 	a {
