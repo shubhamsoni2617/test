@@ -1,7 +1,4 @@
-
-
 //event detail section
-
 .event-detail-wrapper .event-detail {
     background-color: #F0F9FF;
     padding: 22px 29px 15px;
@@ -42,7 +39,7 @@
             transition: 0.3s background-color;
             a{
                 color: #6A6A6A;
-                font-family: "montserratsemibold";
+                font-family: 'Montserrat', sans-serif;
                 font-size: 14px;
                 line-height: 18px;
                 transition: 0.3s color;
@@ -65,7 +62,7 @@
     }
     h2 {
         color: #343434;
-        font-family: 'montserratbold';
+        font-family: 'Montserrat', sans-serif;
         font-weight: bold;
         line-height: 32px;
         font-size: 26px;
@@ -92,7 +89,7 @@
             margin: 0px;
             span{
                 color: #6A6A6A;
-                font-family: 'rubikregular';
+                font-family: 'Rubik', sans-serif;
                 font-size: 18px;
                 line-height: 22px;
                 @media(max-width: 1280px){
@@ -122,7 +119,7 @@
     .price{
         label{
             color: #6A6A6A;
-            font-family: "montserratsemiBold";
+            font-family: 'Montserrat', sans-serif;
             font-size: 16px;
             line-height: 19px;
             margin-bottom: 5px;
@@ -133,11 +130,12 @@
         }
         span{
             color: #343434;
-            font-family: "rubikmedium";
+            font-family: 'Rubik', sans-serif;
             font-size: 22px;
             line-height: 27px;
             margin-bottom: 50px;
             display: block;
+            font-weight: 500;
             @media(max-width: 1280px){
                 font-size: 20px;
                 line-height: 22px;
@@ -153,10 +151,11 @@
         button{
             width: 100%;
             padding: 9px 0px;
-            font-family: "montserratsemibold";
+            font-family: 'Montserrat', sans-serif;
             font-size: 18px;
             line-height: 22px;
             text-align: center;
+            font-weight: 500;
         }
         @media(min-width: 768px) and (max-width: 980px){
             max-width: 300px;
@@ -196,7 +195,7 @@
 }
 .buy-packages{
     color: #FFFFFF;
-    font-family: "montserratsemibold";
+    font-family: 'Montserrat', sans-serif;
     font-size: 18px;
     line-height: 22px;
     text-align: center;
@@ -228,7 +227,7 @@
         border: 1px solid rgba(126, 126, 126, 0.2);
         a{
             padding: 3px 10px;
-            font-family: "montserratsemibold";
+            font-family: 'Montserrat', sans-serif;
             font-size: 14px;
             line-height: 18px;
             color: #626262;
@@ -275,7 +274,7 @@
         display: block;
         text-align: center;
         color: #0098FF;
-        font-family: "montserratsemibold";
+        font-family: 'Montserrat', sans-serif;
         font-size: 18px;
         line-height: 22px;
         padding: 9px 0px;
@@ -294,7 +293,7 @@
         li {
             list-style: none;
             color: #949494;
-            font-family: 'rubikregular';
+            font-family: 'Rubik', sans-serif;
             font-size: 16px;
             line-height: 26px;
             @media(max-width: 980px){
@@ -307,7 +306,7 @@
                 margin: 0px;
                 padding: 0px;
                 color: #626262;
-                font-family: 'rubikregular';
+                font-family: 'Rubik', sans-serif;
             }
             span{
                 margin-left: auto;
@@ -372,7 +371,8 @@
                 padding: 2px 7px;
                 opacity: 0.8;
                 color: rgb(0, 152, 255);
-                font-family: "montserratsemibold";
+                font-family: 'Montserrat', sans-serif;
+                font-weight: 600;
                 font-size: 14px;
                 display: inline-block;
                 line-height: 18px;
@@ -425,10 +425,10 @@
             flex: 0 0 75%;
         }
         h4, p{
-            font-family: 'montserratregular';
+            font-family: 'Montserrat', sans-serif;
             line-height: 18px;
             font-size: 14px;
-            font-weight: normal;
+            font-weight: 300;
             color: #fff;
             margin: 0px;
             @media(max-width: 1280px){
@@ -691,8 +691,8 @@
                 font-size: 30px;
                 line-height: 37px;
                 margin-bottom: 10px;
-                font-family: 'montserratbold';
-                font-weight: bold;
+                font-family: 'Montserrat', sans-serif;
+                font-weight: 800;
                 @media(max-width: 980px){
                     font-size: 24px;
                     line-height: 27px;
@@ -703,8 +703,8 @@
                 font-size: 18px;
                 line-height: 22px;
                 max-width: 430px;
-                font-family: 'montserratmedium';
-                font-weight: normal;
+                font-family: 'Montserrat', sans-serif;
+                font-weight: 400;
                 @media(max-width: 980px){
                     margin: 0px;
                     padding: 0px;
