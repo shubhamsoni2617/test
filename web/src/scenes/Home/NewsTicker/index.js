@@ -7,7 +7,7 @@ import HomeService from '../../../shared/services/HomeService';
 const NewsTicker = (props) => {
 
     const [newsTicker, setNewsTicker] = useState([]);
-    const [ticker, setTicker] = useState(true);
+    const [status, setStatus] = useState("open");
 
     useEffect(() => {
         HomeService.getNewsTicker()
@@ -23,7 +23,7 @@ const NewsTicker = (props) => {
     return (
         <>
             {
-                ticker
+                status === "open"
                     ?
                     <div className="ticker-wrap" >
                         <div className="ticker-container">
@@ -37,7 +37,7 @@ const NewsTicker = (props) => {
                                 }
                             </div>
                         </div>
-                        <span className="close-ticker" onClick={() => setTicker(false)}><img src={closeNews} alt="Close" /></span>
+                        <span className="close-ticker" onClick={() => setStatus("close")}><img src={closeNews} alt="Close" /></span>
                     </div>
                     :
                     null
