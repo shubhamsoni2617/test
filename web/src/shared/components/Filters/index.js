@@ -281,7 +281,7 @@ export default class Filters extends Component {
                         </div>
                         <div className="filters-panel">
                             <ul>
-                                {genreData && genreData.map((genre) => {
+                                {genreData.length && genreData.map((genre) => {
                                     return <li key={genre.id}>
                                         <input className="styled-checkbox" type="checkbox" id="styled-checkbox-1" value="" />
                                         <label for="styled-checkbox-1">
