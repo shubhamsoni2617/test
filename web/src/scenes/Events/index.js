@@ -24,7 +24,6 @@ export default class Events extends Component {
     getFilterConfig(){
         EventsService.getFilterConfig()
             .then((res) => {
-                console.log('filterconfig', res);
                 this.setState({ filterConfig: res.data })
             })
             .catch((err) => {
@@ -35,7 +34,6 @@ export default class Events extends Component {
     getGenre() {
         HomeService.getGenre()
             .then((res) => {
-                console.log('genre', res);
                 this.setState({ genre: res.data.data })
             })
             .catch((error) => {
@@ -44,9 +42,11 @@ export default class Events extends Component {
     }
 
     getVenue() {
-        HomeService.getVenues()
+        const first = 1;
+        const limit = 10;
+        const search = ''; 
+        HomeService.getVenues(first, limit, search)
             .then((res) => {
-                console.log('venues', res);
                 this.setState({ venues: res.data.data })
             })
             .catch((error) => {
@@ -73,12 +73,12 @@ export default class Events extends Component {
     }
 
     render() {
-        const {genre, venue, filterConfig} = this.state;
+        const {genre, venues, filterConfig} = this.state;
         return (
             <section className="promotions-wrapper">
                 <div className="container-fluid">
                     <div className="wrapper-events-listing">
-                        <Filters genreData={genre} venueData={venue} filterConfig={filterConfig} />
+                        <Filters genreData={genre} venueData={venues} filterConfig={filterConfig} />
                         <div className="events-listing">
                             <SortBy />
                             <div className="events-section">

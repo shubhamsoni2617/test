@@ -22,7 +22,7 @@ export default class Filters extends Component {
     render() {
         const { genreData, venueData, filterConfig } = this.props;
         const { promotion_categories, price_config } = filterConfig;
-        
+        console.log('venueData', venueData)
         return (
             <div>
                 <div className="apply-filter-mob">
@@ -341,7 +341,7 @@ export default class Filters extends Component {
                     </div>
                     <div className="filter-grid">
                         {/* Venue filter component. */}
-                        <VenueFilter venue={venueData} />
+                        <VenueFilter venueData={venueData} />
                     </div>
                 </div>
             </div>
