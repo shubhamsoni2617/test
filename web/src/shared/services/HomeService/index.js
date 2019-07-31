@@ -21,8 +21,13 @@ class HomeService {
 	getHotShowPopupData(){
 		return API.get(`hot-show-page`);
 	}
+
 	getNewRelease(params) {
 		return API.get(`homepage/new-release`, { params })
+	}
+
+	getCurrentlyShowing(params) {
+		return API.get(`homepage/this-week`, { params })
 	}
 
 }
