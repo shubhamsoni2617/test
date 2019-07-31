@@ -64,7 +64,7 @@ const Carousel = (props) => {
                             {
                                 imgArray.map((elem, i) => {
                                     return (
-                                        <CarouselSlide elem={elem} />
+                                        <CarouselSlide elem={elem} key={elem.id} />
                                     );
                                 })
                             }
@@ -75,7 +75,7 @@ const Carousel = (props) => {
                         {
                             imgArray.map((elem, i) => {
                                 return (
-                                    <CarouselSlide elem={elem} />
+                                    <CarouselSlide elem={elem} key={elem.id} />
                                 );
                             })
                         }
