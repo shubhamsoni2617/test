@@ -19,31 +19,21 @@ const NewsTicker = (props) => {
             })
     }, [])
 
-
     return (
-        <>
-            {
-                status === "open"
-                    ?
-                    <div className="ticker-wrap" >
-                        <div className="ticker-container">
-                            <div className="ticker">
-                                {
-                                    newsTicker.map((content, index) => {
-                                        return (
-                                            <div key={content.title} className="ticker__item" dangerouslySetInnerHTML={{ __html: content.description }}></div>
-                                        );
-                                    })
-                                }
-                            </div>
-                        </div>
-                        <span className="close-ticker" onClick={() => setStatus("close")}><img src={closeNews} alt="Close" /></span>
-                    </div>
-                    :
-                    null
-            }
-
-        </>
+        <div className={status === "open" ? "ticker-wrap" : "hide"}>
+            <div className="ticker-container">
+                <div className="ticker">
+                    {
+                        newsTicker.map((content, index) => {
+                            return (
+                                <div key={content.title} className="ticker__item" dangerouslySetInnerHTML={{ __html: content.description }}></div>
+                            );
+                        })
+                    }
+                </div>
+            </div>
+            <span className="close-ticker" onClick={() => setStatus("close")}><img src={closeNews} alt="Close" /></span>
+        </div>
     );
 }
 
