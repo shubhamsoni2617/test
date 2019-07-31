@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="10px" height="10px" viewBox="0 0 10 10" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: sketchtool 55.2 (78181) - https://sketchapp.com -->
+    <title>5CFA239F-2541-4B80-8C86-B7CD01439AE1</title>
+    <desc>Created with sketchtool.</desc>
+    <defs>
+        <path d="M12.0101525,11 L15.7907906,14.780638 C16.0697365,15.0595839 16.0697365,15.5118446 15.7907906,15.7907906 C15.5118446,16.0697365 15.0595839,16.0697365 14.780638,15.7907906 L11,12.0101525 L7.21936199,15.7907906 C6.94041606,16.0697365 6.48815536,16.0697365 6.20920944,15.7907906 C5.93026352,15.5118446 5.93026352,15.0595839 6.20920944,14.780638 L9.98984746,11 L6.20920944,7.21936199 C5.93026352,6.94041606 5.93026352,6.48815536 6.20920944,6.20920944 C6.48815536,5.93026352 6.94041606,5.93026352 7.21936199,6.20920944 L11,9.98984746 L14.780638,6.20920944 C15.0595839,5.93026352 15.5118446,5.93026352 15.7907906,6.20920944 C16.0697365,6.48815536 16.0697365,6.94041606 15.7907906,7.21936199 L12.0101525,11 Z" id="path-1"></path>
+    </defs>
+    <g id="Home" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Home-V8.0--Megamenu" transform="translate(-495.000000, -434.000000)">
+            <g id="Cross-off" transform="translate(489.000000, 428.000000)">
+                <mask id="mask-2" fill="white">
+                    <use xlink:href="#path-1"></use>
+                </mask>
+                <use fill="#949494" fill-rule="nonzero" xlink:href="#path-1"></use>
+            </g>
+        </g>
+    </g>
+</svg>

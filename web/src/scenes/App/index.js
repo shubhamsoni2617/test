@@ -1,5 +1,4 @@
 import React from "react";
-
 import Footer from "./Footer";
 import Navigator from "./Navigator";
 import TopNav from "./TopNav";
@@ -24,16 +23,17 @@ export default class App extends React.Component {
   render() {
     return (      
         // SISTIC wrapper start
-        <div className="st-wrapper">  
-          <div className="st-top-advertisment">
+        <div className="wrapper">  
+         {/* Top advertisment section start */}
+         <div className="top-ads">
             <div className="container-fluid">
-                <div className="st-advertisment-image">
-                    <img src="assets/images/Header-banner.png" alt="Advertisment-image" className="img-fluid" />
-                </div>
-                <a href="" className="st-advertisment-close"><img src="assets/images/close-adv.svg" className="img-fluid"
-                        alt="close" /></a>
+               <div className="ads-image">
+                  <img src="assets/images/header-banner.png" alt="advertisment-image" className="img-fluid" />
+               </div>
+               <a href="" className="ads-close"><img src="assets/images/close-ad.svg" className="img-fluid" alt="close" /></a>
             </div>
-          </div>
+         </div>
+            {/* Top advertisment section end */}
           {/* TopNav */}
           <TopNav />
 

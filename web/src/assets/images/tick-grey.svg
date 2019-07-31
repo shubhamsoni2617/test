@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="14px" height="10px" viewBox="0 0 14 10" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: sketchtool 55.2 (78181) - https://sketchapp.com -->
+    <title>1D339F32-EF44-4115-89DB-AA3C2C38E21F</title>
+    <desc>Created with sketchtool.</desc>
+    <defs>
+        <path d="M5.31315906,10.8406871 C5.01275576,10.5402838 4.52570578,10.5402838 4.22530248,10.8406871 C3.92489917,11.1410904 3.92489917,11.6281404 4.22530248,11.9285437 L8.07145632,15.7746975 C8.37185962,16.0751008 8.85890961,16.0751008 9.15931291,15.7746975 L17.6208514,7.31315906 C17.9212547,7.01275576 17.9212547,6.52570578 17.6208514,6.22530248 C17.3204481,5.92489917 16.8333981,5.92489917 16.5329948,6.22530248 L8.61538462,14.1429126 L5.31315906,10.8406871 Z" id="path-1"></path>
+    </defs>
+    <g id="Home" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Home-V8.0--Megamenu" transform="translate(-519.000000, -434.000000)">
+            <g id="tick-off" transform="translate(515.000000, 428.000000)">
+                <mask id="mask-2" fill="white">
+                    <use xlink:href="#path-1"></use>
+                </mask>
+                <use fill="#949494" fill-rule="nonzero" xlink:href="#path-1"></use>
+            </g>
+        </g>
+    </g>
+</svg>
