@@ -9,6 +9,10 @@ class EventsService {
 	getEventDetails(params){
 		return API.get(`/event-detail`,{ params : params})
 	}
+	getFilterConfig(){
+		return API.get(`/configurations/search`)
+	}
+
 }
 
 export default new EventsService();

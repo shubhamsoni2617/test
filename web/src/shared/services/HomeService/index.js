@@ -15,7 +15,7 @@ class HomeService {
 	}
 
 	getVenues(first, limit, search) {
-		return API.get(`rest/view/venue?first=${first}&limit=${limit}&search=${search}`)
+		return API.get(`venues?first=${first}&limit=${limit}&search=${search}`)
 	}
 
 	getHotShowPopupData(){
