@@ -8,7 +8,7 @@ import EventsService from '../../../shared/services/EventsService';
 import Constants from '../../../shared/constants';
 import calendarImg from '../../../assets/images/event-calender.svg';
 import locationImg from '../../../assets/images/location-blue.svg';
-// import stickyLocImg from '../../../assets/images/location-grey.svg'
+import BuyTicket from './BuyTicket';
 
 export default class EventsDetail extends Component {
 
@@ -16,7 +16,10 @@ export default class EventsDetail extends Component {
         super(props);
         this.state = {
             code : 'HOLLY999',
-            detailData : {}
+            detailData : {},
+            showBuyTicket : false,
+            synopsisLang : '',
+            getSynopsisData :  {languageArr : [], activeLang : '',desc :''}
         }
         this.children = [{
             'data': 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum',
@@ -24,7 +27,7 @@ export default class EventsDetail extends Component {
         }];
     }
 
-    componentDidMount() {
+    componentDidMount(){
         let params = {code : this.state.code, client : Constants.CLIENT}
         EventsService.getEventDetails(params)
             .then((res) => {
@@ -35,15 +38,52 @@ export default class EventsDetail extends Component {
             })
     }
 
+    openBuyTicketPopup= () =>{
+        let flag ;
+        if(this.state.showBuyTicket){
+            flag = false
+        }
+        else{
+            flag = true
+        }
+        this.setState({
+            showBuyTicket :flag
+        })
+    }
+
+    changeLang = (lang)=>{
+       this.setState({
+            synopsisLang : lang
+       })
+    }
+
     render() {
-        const { detailData } = this.state;
-        console.log("c vcxb",detailData);
+        const { detailData, showBuyTicket , getSynopsisData } = this.state;
+        getSynopsisData.languageArr = [];
+        let synopsis = ['synopsis'];
+        detailData && detailData.synopsis && detailData.synopsis.forEach((obj, idx) => {
+                if(obj.language){
+                    getSynopsisData.languageArr.push(obj.language)
+                }
+                if(this.state.synopsisLang == obj.language){
+                    getSynopsisData.desc = obj.description;
+                    getSynopsisData.activeLang = obj.language;
+                } else{
+                    getSynopsisData.desc = detailData.synopsis[0].description;
+                    getSynopsisData.activeLang = detailData.synopsis[0].language;
+                }
+                
+        }) 
         return (
             <div className="event-detail-wrapper">
+            {detailData && 
+            <div>
                 <section className="event-detail-banner">
-                    <div className="banner-carousel">
-                        <EventCarousel />
-                    </div>
+                    {detailData.images && detailData.images.length > 0 &&
+                        <div className="banner-carousel">
+                            <EventCarousel images={detailData.images} />
+                        </div>
+                    }
                     <div className="event-detail">
                         <div className="tickets-demo-img">
                             <img src="assets/images/kurios-joker.jpg" alt="joker" className="img-fluid" />
@@ -90,7 +130,8 @@ export default class EventsDetail extends Component {
                         </div>
                         <div className="tickets-button">
                             <div className="buy-tickets-btn">
-                                <button>Buy Tickets</button>
+                                <button onClick={()=> this.openBuyTicketPopup()}>Buy Tickets</button>
+                                { showBuyTicket && <BuyTicket /> }
                             </div>
                             <div className="shows-over">
                                 <div className="shows-over-icon">
@@ -117,7 +158,37 @@ export default class EventsDetail extends Component {
                 </div>
                 <section className="event-detail-section">
                     <div className="event-detail-panel">
-                        <AccordionSection />
+                        { detailData.synopsis && getSynopsisData.desc && 
+                             <AccordionSection title='Synopsis' 
+                                activeLang={getSynopsisData.activeLang}
+                                desc={getSynopsisData.desc}
+                                langArr ={getSynopsisData.languageArr}
+                                changeLang ={this.changeLang}
+                                preExpanded = {synopsis}
+                                uuid = 'synopsis'
+                            />
+                        }
+                        {
+                            detailData.tabs && detailData.tabs.length > 0 && 
+                            detailData.tabs.map((obj, idx) =>{
+                               return  <AccordionSection title={obj.title}  desc={obj.description} />
+                            })
+                        }
+                        {
+                            detailData.ticket_pricing && 
+                            <AccordionSection title='Price Details' 
+                                desc={detailData.ticket_pricing}
+                            />
+                        }
+                        {
+                            detailData.promotions && 
+                            detailData.promotions.map((obj,idx) =>{
+                                return  <AccordionSection title={obj.title} 
+                                    desc={obj.description}
+                                />
+                            })
+                           
+                        }
                     </div>
                     <div className="event-detail-sidebar">
                         <a href="" className="seat-map"><img src="assets/images/seatmap.svg" /> Seat Map</a>
@@ -136,6 +207,8 @@ export default class EventsDetail extends Component {
                 </section>
                 <ArticleSection />
                 <SimilarPicksSection />
+                </div>
+            }
             </div>
         );
     }
