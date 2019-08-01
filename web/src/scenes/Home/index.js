@@ -11,6 +11,7 @@ import HotShowPopup from '../../shared/components/HotShowPopup';
 import FeaturedEvents from './FeaturedEvents';
 import TrendingNow from './TrendingNow';
 import Explore from './Explore';
+import Cookies from '../../shared/components/Cookies';
 
 
 export default class Home extends Component {
@@ -125,6 +126,10 @@ export default class Home extends Component {
 
             {/* SISTIC Moments Start  */}
             <InstagramFeed />
+            {/* SISTIC Moments End  */}
+            
+            {/* SISTIC Moments End  */}
+            <Cookies/>
             {/* SISTIC Moments End  */}
          </div>
       )
