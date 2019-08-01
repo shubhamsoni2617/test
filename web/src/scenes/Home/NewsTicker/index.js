@@ -25,11 +25,11 @@ const NewsTicker = (props) => {
     return (
         <div className={status === "open" ? "ticker-wrap" : "hide"}>
             <div className="ticker-container">
-                <div className="ticker">
+                <div className="ticker">                 
                     {
                         newsTicker.map((content, index) => {
                             return (
-                                <div key={content.title} className="ticker__item" dangerouslySetInnerHTML={{ __html: content.description }}></div>
+                                <div key={content.title} dangerouslySetInnerHTML={{ __html: content.description }}></div>
                             );
                         })
                     }

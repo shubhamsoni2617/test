@@ -36,7 +36,7 @@ $duration: 250s;
     box-sizing: content-box;
     margin: 0 50px 0 35px;
     position: absolute;
-    bottom: -28px;
+    bottom: -30px;
     left: 0;
     z-index: 1;
     &::before{
@@ -62,8 +62,13 @@ $duration: 250s;
     .ticker-container{
         width: 100%;
         overflow: hidden;
+        display: flex;
+        justify-content: center;
+            align-items: center;
         .ticker {
-            display: inline-block;
+            display: flex;
+            justify-content: center;
+            align-items: center;
             height: 30px;
             line-height: 30px;
             white-space: nowrap;
@@ -88,6 +93,14 @@ $duration: 250s;
             }
             &:hover{
                 animation-play-state: paused
+            }
+            div{
+              display: flex;
+              margin-right: 10px;
+              p{
+                margin: 0;
+                padding: 0;
+              }
             }
         }
     }
