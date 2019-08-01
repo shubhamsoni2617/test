@@ -67,6 +67,108 @@ export default class PromotionCard extends Component {
                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut sit amet cursus lacus. Nullam elementum, dolor eu ullamcorper sodales, libero eros vehicula urna, vel egestas diam erat et neque. Donec vitae ante et nulla porta imperdiet. Aliquam maximus sem eget mi venenatis venenatis. In tortor urna, placerat ac augue eget, aliquet cursus odio. Nulla justo urna, bibendum sed nunc et, elementum eleifend erat. Sed eleifend orci ut volutpat ullamcorper. Duis pulvinar, libero ac posuere ultrices, quam tortor commodo turpis, quis suscipit risus odio ac justo. Mauris purus odio, sodales id volutpat sit amet, pharetra id felis. Pellentesque tempus a sapien eget finibus.</p>
                     <img src="assets/images/banner-image2.png" className="img-fluid" alt="" />
                     <p>Donec id sem et arcu fermentum pretium quis in metus. Ut dapibus sem ac iaculis pretium. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Donec malesuada feugiat odio in consequat. Sed non nisl tortor. Pellentesque luctus magna sollicitudin nulla accumsan, at molestie elit cursus. Phasellus et est justo. Vivamus nec risus bibendum, iaculis arcu a, tempus augue. Cras sollicitudin elit at vehicula pulvinar. In hac habitasse platea dictumst. Mauris facilisis risus et lorem dignissim placerat.</p>
+                    {/*  Related Events */}
+                    <section className="related-event">
+                        <div className="container-fluid">
+                            <div className="section-top-wrapper">
+                                <h2>Related Events</h2>
+                                <div className="carousel-dots">
+                                    <a href="/">See all <img src="assets/images/right-arrow.svg" alt="arrow"/></a>
+                                    <div className="dots-group">
+                                    <span className="active"><a href="/"></a></span>
+                                    <span><a href="/"></a></span>
+                                    <span><a href="/"></a></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="grid-container">
+                                <div className="item">
+                                    <div className="item-wrapper">
+                                    <div className="currently-showing-img">
+                                        <div className="item-img">
+                                            <img src="assets/images/atul-khatri.jpg" className="img-fluid" alt="atul-khatri"/>
+                                        </div>
+                                    </div>
+                                    <span className="category comedy">Comedy</span>
+                                    <p>Thu, 2 May 2019</p>
+                                    <h3>Atul Khatri - Live in Singapore</h3>
+                                    </div>
+                                </div>
+                                <div className="item">
+                                    <div className="item-wrapper">
+                                    <div className="currently-showing-img">
+                                        <div className="item-img">
+                                            <img src="assets/images/kurios.png" className="img-fluid" alt="Kurios"/>
+                                        </div>
+                                    </div>
+                                    <span className="category musical">Musical</span>
+                                    <p>Sun, 21 Jul 2019</p>
+                                    <h3>KURIOS – Cabinet of Curiosities</h3>
+                                    </div>
+                                </div>
+                                <div className="item">
+                                    <div className="item-wrapper">
+                                    <div className="currently-showing-img">
+                                        <div className="item-img">
+                                            <img src="assets/images/panthom-of-opera.jpg" className="img-fluid" alt="panthom-of-opera"/>
+                                        </div>
+                                    </div>
+                                    <span className="category musical">Musical</span>
+                                    <p>Thu, 2 May 2019</p>
+                                    <h3>Atul Khatri - Live in Singapore</h3>
+                                    </div>
+                                </div>
+                                <div className="item">
+                                    <div className="item-wrapper">
+                                    <div className="currently-showing-img">
+                                        <div className="item-img">
+                                            <img src="assets/images/atul-khatri.jpg" className="img-fluid" alt="atul-khatri"/>
+                                        </div>
+                                    </div>
+                                    <span className="category comedy">Comedy</span>
+                                    <p>Sun, 21 Jul 2019</p>
+                                    <h3>KURIOS – Cabinet of Curiosities</h3>
+                                    </div>
+                                </div>
+                                <div className="item">
+                                    <div className="item-wrapper">
+                                    <div className="currently-showing-img">
+                                        <div className="item-img">
+                                            <img src="assets/images/kurios.png" className="img-fluid" alt="Kurios"/>
+                                        </div>
+                                    </div>
+                                    <span className="category musical">Musical</span>
+                                    <p>Sat, 8 Jun 2019</p>
+                                    <h3>The Phantom of Opera</h3>
+                                    </div>
+                                </div>
+                                <div className="item">
+                                    <div className="item-wrapper">
+                                    <div className="currently-showing-img">
+                                        <div className="item-img">
+                                            <img src="assets/images/panthom-of-opera.jpg" className="img-fluid" alt="panthom-of-opera"/>
+                                        </div>
+                                    </div>
+                                    <span className="category musical">Musical</span>
+                                    <p>Sat, 8 Jun 2019</p>
+                                    <h3>The Phantom of Opera</h3>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="carousel-navigation">
+                                <div className="left-navigation">
+                                    <a href="/">
+                                    <img src="assets/images/left-arrow-blue.svg" alt="left-navigation"/>
+                                    </a>
+                                </div>
+                                <div className="right-navigation">
+                                    <a href="/">
+                                    <img src="assets/images/right-arrow-blue.svg" alt="right-navigation"/>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
                 </div>
             </div>
         </li>
