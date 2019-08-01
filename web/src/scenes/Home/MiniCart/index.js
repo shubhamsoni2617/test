@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import onClickOutside from 'react-onclickoutside';
 import './style.scss';
 
 class MiniCart extends Component {
@@ -11,12 +10,20 @@ class MiniCart extends Component {
     }
 
     toggle = () => {
+        if (!this.state.isOpen) {
+            window.addEventListener('click', this.handleOutsideClick, false);
+          } else {
+            window.removeEventListener('click', this.handleOutsideClick, false);
+          }
         this.setState({ isOpen: !this.state.isOpen })
     }
 
-    handleClickOutside = () => {
-        this.setState({ isOpen: false })
-    };
+    handleOutsideClick=(e)=> {
+        if (this.node.contains(e.target)) {
+            return;
+        }
+        this.toggle();
+    }
 
     render() {
 
@@ -24,7 +31,7 @@ class MiniCart extends Component {
         const { isOpen } = this.state;
 
         return (
-            <li className="cart-icon" onClick={this.toggle}>
+            <li className="cart-icon" onClick={this.toggle} ref={node => { this.node = node; }}>
                 <a><img src="assets/images/cart.svg" className="img-fluid"
                     alt="cart" /><span>{miniCart.length}</span></a>
                 <div className="my-cart-popup" style={{ display: isOpen ? "block" : "none" }}>
@@ -71,10 +78,4 @@ class MiniCart extends Component {
     }
 }
 
-var clickOutsideConfig = {
-    handleClickOutside: (instance) => {
-        return instance.handleClickOutside;
-    }
-};
-
-export default onClickOutside(MiniCart, clickOutsideConfig);
+export default MiniCart;
