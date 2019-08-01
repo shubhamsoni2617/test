@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './style.scss';
+import { ReactComponent as MiniCartLogo } from '../../../assets/images/cart.svg';
 
 class MiniCart extends Component {
     constructor(props) {
@@ -12,13 +13,13 @@ class MiniCart extends Component {
     toggle = () => {
         if (!this.state.isOpen) {
             window.addEventListener('click', this.handleOutsideClick, false);
-          } else {
+        } else {
             window.removeEventListener('click', this.handleOutsideClick, false);
-          }
+        }
         this.setState({ isOpen: !this.state.isOpen })
     }
 
-    handleOutsideClick=(e)=> {
+    handleOutsideClick = (e) => {
         if (this.node.contains(e.target)) {
             return;
         }
@@ -27,39 +28,36 @@ class MiniCart extends Component {
 
     render() {
 
-        const { miniCart } = this.props;
+        const { data } = this.props;
         const { isOpen } = this.state;
 
         return (
             <li className="cart-icon" onClick={this.toggle} ref={node => { this.node = node; }}>
-                <a><img src="assets/images/cart.svg" className="img-fluid"
-                    alt="cart" /><span>{miniCart.length}</span></a>
+                <a><MiniCartLogo className="img-fluid" /><span>{data.length}</span></a>
                 <div className="my-cart-popup" style={{ display: isOpen ? "block" : "none" }}>
                     <div className="my-cart-wrapper">
                         <div className="cart-head">
-                            <h3>My Cart ({miniCart.length})</h3>
+                            <h3>My Cart ({data.length})</h3>
                             <a href="/" className="cart-close">X</a>
                         </div>
                         <div className="cart-body">
                             <ul>
-                                {
-                                    miniCart.map((cart, index) => {
-                                        return (
-                                            <li key={cart.id}>
-                                                <div className="product-img">
-                                                    <img src={cart.img} className="img-fluid"
-                                                        alt="cart" />
-                                                </div>
-                                                <div className="product-details">
-                                                    <span className="product-date-time">Fri, 19 Apr- Sun, 19 May 2019</span>
-                                                    <h4 className="product-name">The Phantom Of The Opera</h4>
-                                                    <p className="product-desc">Sands Theatre, Marina Bay Sands</p>
-                                                    <span className="product-price">S$ 250 (Qty: 1)</span>
-                                                </div>
-                                            </li>
-                                        );
-                                    })
-                                }
+                                {data.map((cart, index) => {
+                                    return (
+                                        <li key={cart.id}>
+                                            <div className="product-img">
+                                                <img src={cart.img} className="img-fluid"
+                                                    alt="cart" />
+                                            </div>
+                                            <div className="product-details">
+                                                <span className="product-date-time">Fri, 19 Apr- Sun, 19 May 2019</span>
+                                                <h4 className="product-name">The Phantom Of The Opera</h4>
+                                                <p className="product-desc">Sands Theatre, Marina Bay Sands</p>
+                                                <span className="product-price">S$ 250 (Qty: 1)</span>
+                                            </div>
+                                        </li>
+                                    );
+                                })}
                             </ul>
                         </div>
                         <div className="cart-footer">

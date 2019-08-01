@@ -8,7 +8,9 @@ import MiniCart from '../../Home/MiniCart';
 import NewsTicker from '../../Home/NewsTicker';
 import Advertisement from '../../../shared/components/Advertisement';
 import HomeService from '../../../shared/services/HomeService';
-
+import { ReactComponent as ManLogo } from '../../../assets/images/man.svg';
+import AndroidLogo from '../../../assets/images/android.png';
+import { ReactComponent as AppleLogo } from '../../../assets/images/apple.svg';
 
 export default class TopNav extends Component {
     constructor(props) {
@@ -36,7 +38,7 @@ export default class TopNav extends Component {
 
         const { byGenreEvent, showElementsInHeader } = this.state;
 
-        const miniCart = [
+        const miniCartData = [
             { id: "1", img: "assets/images/explore.png" },
             { id: "2", img: "assets/images/explore.png" },
             { id: "3", img: "assets/images/explore.png" },
@@ -60,9 +62,8 @@ export default class TopNav extends Component {
                             </div>
                             <div className="top-header-right">
                                 <ul>
-                                    <li className="user-icon"><a href="/"><img src="assets/images/man.svg"
-                                        className="img-fluid" alt="profile" /><span></span></a></li>
-                                    <MiniCart miniCart={miniCart} />
+                                    <li className="user-icon"><a href="/"><ManLogo className="img-fluid" /><span></span></a></li>
+                                    <MiniCart data={miniCartData} />
                                     <li className="ticket-withus"><a href="/">Ticket With Us</a></li>
                                 </ul>
                             </div>
@@ -81,8 +82,7 @@ export default class TopNav extends Component {
                             </div>
                             <div className="bottom-header-right">
                                 <ul>
-                                    {
-                                        byGenreEvent && byGenreEvent.slice(0, showElementsInHeader).map((event, index) => {
+                                    {byGenreEvent && byGenreEvent.slice(0, showElementsInHeader).map((event, index) => {
                                             return (
                                                 <li key={event.id}><a href="/">{event.name}</a></li>
                                             );
@@ -99,8 +99,7 @@ export default class TopNav extends Component {
                             <a href="/" className="responsive-nav-close">X</a>
                             <ul className="user-details">
                                 <li className="user-icon"><a href="/">
-                                    <img src="assets/images/man.svg"
-                                        className="img-fluid" alt="profile" />
+                                <ManLogo className="img-fluid" />
                                     <span></span></a><span>Hello William</span></li>
                                 <li><a href="/">Ticket With Us</a></li>
                             </ul>
@@ -142,14 +141,14 @@ export default class TopNav extends Component {
                                     <span>Sistic on Mobile</span>
                                     <div className="download-option">
                                         <a href="/">
-                                            <img src="assets/images/apple.svg" className="ios" alt="" />
+                                            <AppleLogo className="ios" />
                                             <span>
                                                 Available on the<br />
                                                 <strong>App Store</strong>
                                             </span>
                                         </a>
                                         <a href="/">
-                                            <img src="assets/images/android.png" className="android" alt="" />
+                                            <img src={AndroidLogo} className="android" alt="" />
                                             <span>
                                                 Get it on<br />
                                                 <strong>Play Store</strong>
