@@ -6,8 +6,8 @@ class HomeService {
 		return API.get(`search/repositories?q=stars:>1+language:javascript&sort=stars&order=desc&type=Repositories`)
 	}
 
-	getNewsTicker() {
-		return API.get(`rest/view/news-ticker`)
+	getNewsTicker(params) {
+		return API.get(`news`,{params})
 	}
 
 	getGenre() {

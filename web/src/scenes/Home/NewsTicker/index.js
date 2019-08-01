@@ -10,7 +10,10 @@ const NewsTicker = (props) => {
     const [status, setStatus] = useState("open");
 
     useEffect(() => {
-        HomeService.getNewsTicker()
+        const params={
+            client:1
+        };
+        HomeService.getNewsTicker(params)
             .then((res) => {
                 setNewsTicker(res.data.data);
             })
