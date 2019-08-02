@@ -1,31 +1,52 @@
-import React from 'react';
-import './style.css';
+import React, { Component } from 'react';
+import './style.scss';
 
-const DropDown = (props) => {
-    const { showElementsInHeader, byGenreEvent } = props;
-    return (
-        <div className="dropdown">
-            <button className="dropbtn">
-                More
-                        <span className="dropdown-icon">
-                    <img
-                        src="assets/images/bottom-arrow.svg"
-                        className="img-fluid"
-                        alt="arrow"
-                    />
-                </span>
-            </button>
-            <div className="dropdown-content">
-                {
-                    byGenreEvent.slice(showElementsInHeader, byGenreEvent.length).map((event, index) => {
+class DropDown extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            isOpen: false
+        }
+    }
+
+    toggle = () => {
+        if (!this.state.isOpen) {
+            window.addEventListener('click', this.handleOutsideClick, false);
+        } else {
+            window.removeEventListener('click', this.handleOutsideClick, false);
+        }
+        this.setState({ isOpen: !this.state.isOpen })
+    }
+
+    handleOutsideClick = (e) => {
+        if (this.node.contains(e.target)) {
+            return;
+        }
+        this.toggle();
+    }
+    render() {
+
+        const { showElementsInHeader, byGenreEvent } = this.props;
+        const { isOpen } = this.state;
+
+        return (
+            <li className="dropdown">
+                <a className="dropbtn" onClick={this.toggle} ref={node => { this.node = node; }}>More
+                    <span class="dropdown-icon">
+                    </span>
+                </a>
+                <ul className="dropdown-content" style={{ display: isOpen ? "block" : "none" }}>
+                    {byGenreEvent && byGenreEvent.slice(showElementsInHeader, byGenreEvent.length).map((event, index) => {
                         return (
-                            <a href="/" key={event.id}> {event.name}</a>
+                            <li key={event.id}>
+                                <a href="/"> {event.name}</a>
+                            </li>
                         );
-                    })
-                }
-            </div>
-        </div>
-    );
+                    })}
+                </ul>
+            </li>
+        );
+    }
 }
 
 export default DropDown;

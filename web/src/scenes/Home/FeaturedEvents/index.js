@@ -1,9 +1,31 @@
 import React, { Component } from 'react';
 import Slider from "react-slick";
+import './style.scss';
+import Constants from '../../../shared/constants';
 
 class FeaturedEvents extends Component {
-    render() {
+    constructor(props) {
+        super(props);
+        this.state = {
+            width: window.innerWidth
+        };
+        this.handleWindowResize = this.handleWindowResize.bind(this);
+    }
 
+    componentDidMount() {
+        window.addEventListener('resize', this.handleWindowResize);
+    }
+
+    componentWillUnmount() {
+        window.removeEventListener('resize', this.handleWindowResize);
+    }
+
+    handleWindowResize() {
+        this.setState({ width: window.innerWidth })
+    }
+
+    render() {
+        const { width } = this.state;
         const featuredEvents = [
             {
                 id: "1",
@@ -158,8 +180,8 @@ class FeaturedEvents extends Component {
             },
         ];
         const settings = {
-            className:"center",
-            dots:true,
+            className: "center",
+            dots: true,
             centerMode: false,
             infinite: false,
             slidesToShow: 1,
@@ -174,7 +196,7 @@ class FeaturedEvents extends Component {
             customPaging: (i) => {
                 return (
                     <div className="dots-group">
-                        <span className="active"><a href="/"></a></span>
+                        <span><a href="/"></a></span>
                     </div>
                 );
             },
@@ -187,20 +209,6 @@ class FeaturedEvents extends Component {
                         infinite: false,
                         dots: true
                     }
-                },
-                {
-                    breakpoint: 600,
-                    settings: {
-                        slidesToShow: 1,
-                        slidesPerRow: 2,
-                    }
-                },
-                {
-                    breakpoint: 480,
-                    settings: {
-                        slidesToShow: 1,
-                        slidesPerRow: 1,
-                    }
                 }
             ]
         };
@@ -212,37 +220,61 @@ class FeaturedEvents extends Component {
                         <div className="carousel-dots">
                             <a href="/">See all <img src="assets/images/right-arrow.svg" className="img-fluid"
                                 alt="arrow" /></a>
-                            <div className="dots-group">
-                                <span className="active"><a href="/"></a></span>
-                                <span><a href="/"></a></span>
-                                <span><a href="/"></a></span>
-                            </div>
                         </div>
                     </div>
-                    <Slider {...settings}>
-                        {
-                            featuredEvents.map((event, index) => {
-                                return (
-                                    <div className="grid-container" key={event.id}>
-                                        <div className="item">
-                                            <div className="item-wrapper">
-                                                <div className="featured-item-img">
-                                                    <div className="item-img">
-                                                        <img src={event.img} className="img-fluid" alt="explore" />
+                    {
+                        width <= Constants.MOBILE_BREAK_POINT
+                            ?
+                            <div style={{ width: "30em", overflowX: "auto", whiteSpace: "nowrap" }}>
+                                {
+                                    featuredEvents.map((event, i) => {
+                                        return (
+                                            <div className="grid-container" key={event.id}>
+                                                <div className="item">
+                                                    <div className="item-wrapper">
+                                                        <div className="featured-item-img">
+                                                            <div className="item-img">
+                                                                <img src={event.img} className="img-fluid" alt="explore" />
+                                                            </div>
+                                                            <span className="category">Dance</span>
+                                                        </div>
+                                                        <h3>SSO Red Balloon Series: Rhythums, Rites</h3>
+                                                        <p>Fri, 3 May 2019</p>
+                                                        <p>Esplanade Concert Hall</p>
                                                     </div>
-                                                    <span className="category">Dance</span>
                                                 </div>
-                                                <h3>SSO Red Balloon Series: Rhythums, Rites</h3>
-                                                <p>Fri, 3 May 2019</p>
-                                                <p>Esplanade Concert Hall</p>
                                             </div>
-                                        </div>
-                                    </div>
-                                );
-                            })
-                        }
+                                        );
+                                    })
+                                }
+                            </div>
 
-                    </Slider>
+                            :
+                            <Slider {...settings}>
+                                {
+                                    featuredEvents.map((event, index) => {
+                                        return (
+                                            <div className="grid-container" key={event.id}>
+                                                <div className="item">
+                                                    <div className="item-wrapper">
+                                                        <div className="featured-item-img">
+                                                            <div className="item-img">
+                                                                <img src={event.img} className="img-fluid" alt="explore" />
+                                                            </div>
+                                                            <span className="category">Dance</span>
+                                                        </div>
+                                                        <h3>SSO Red Balloon Series: Rhythums, Rites</h3>
+                                                        <p>Fri, 3 May 2019</p>
+                                                        <p>Esplanade Concert Hall</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        );
+                                    })
+                                }
+
+                            </Slider>
+                    }
                 </div>
             </section >
         );
