@@ -44,6 +44,8 @@ const TopNav = (props) => {
         refValue.classList.remove("active");
     }
 
+    console.log(props)
+
     return (
         <header className="header">
             <div className="container-fluid">
@@ -78,7 +80,7 @@ const TopNav = (props) => {
                             <ul>
                                 {byGenreEvent && byGenreEvent.slice(0, showElementsInHeader).map((event, index) => {
                                     return (
-                                        <li key={event.id}><Link to="/events">{event.name}</Link></li>
+                                        <li key={event.id}><Link to={`/events/search?id=${event.id}`}>{event.name}</Link></li>
                                     );
                                 })
                                 }

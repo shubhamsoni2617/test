@@ -38,7 +38,10 @@ export default class Image extends Component {
   }
 
   render() {
-    const { src} = this.state;
+    let { src} = this.state;
+    if(! src){
+      src="assets.png"
+    }
     const {type} = this.props;
     return (
       <img
