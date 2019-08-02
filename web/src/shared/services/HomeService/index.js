@@ -6,8 +6,8 @@ class HomeService {
 		return API.get(`search/repositories?q=stars:>1+language:javascript&sort=stars&order=desc&type=Repositories`)
 	}
 
-	getNewsTicker() {
-		return API.get(`rest/view/news-ticker`)
+	getNewsTicker(params) {
+		return API.get(`news`,{params})
 	}
 
 	getGenre() {
@@ -21,8 +21,13 @@ class HomeService {
 	getHotShowPopupData(){
 		return API.get(`hot-show-page`);
 	}
+
 	getNewRelease(params) {
 		return API.get(`homepage/new-release`, { params })
+	}
+
+	getCurrentlyShowing(params) {
+		return API.get(`homepage/this-week`, { params })
 	}
 
 }
