@@ -8,19 +8,22 @@ import './style.scss';
 import DownArrowBlue from '../../assets/images/down-arrow-blue.svg';
 
 export default class Events extends Component {
-    
+
     constructor(props) {
         super(props);
-        this.state = { filteredGnere: [], 
-            filterSearch: '', 
-            filteredPromotions: [], 
-            filteredVenues: [], 
-            eventsData: [], 
-            genre: [], 
-            venues: [], 
-            filterConfig: [], 
-            first: 1, 
-            limit: 10 };
+        this.state = {
+            filteredGnere: [],
+            filterSearch: '',
+            filteredPromotions: [],
+            filteredVenues: [],
+            eventsData: [],
+            genre: [],
+            venues: [],
+            filterConfig: [],
+            first: 1,
+            limit: 10,
+            viewType: 'events-section'
+        };
     }
 
     componentDidMount() {
@@ -43,7 +46,10 @@ export default class Events extends Component {
     getGenre = () => {
         HomeService.getGenre()
             .then((res) => {
-                this.setState({ genre: res.data.data })
+                let genre = Object.keys(res.data.data).map((key) => {
+                    return res.data.data[key];
+                })
+                this.setState({ genre: genre })
             })
             .catch((error) => {
                 console.error(error)
@@ -63,8 +69,8 @@ export default class Events extends Component {
             });
     }
 
-    loadEvents = (first = 1, limit = 2) => {
-        let params = { first: first, limit: limit };
+    loadEvents = (params) => {
+        // let params = { first: first, limit: limit };
         EventsService.getData(params)
             .then((res) => {
                 this.setState({ eventsData: res.data.data })
@@ -81,64 +87,99 @@ export default class Events extends Component {
         this.setState({ first: first, limit: limit })
     }
 
+    handleListGridView = (type) => {
+        debugger
+        let viewType = [...this.state.viewType];
+
+        if (type == 'grid') {
+            viewType = 'events-section'
+        } else {
+            viewType = 'events-section list-view'
+        }
+        this.setState({ viewType });
+    }
 
     handleFilters = (type, value, isChecked) => {
-        
+        debugger
         let filteredPromotions = [...this.state.filteredPromotions];
         let filteredVenues = [...this.state.filteredVenues];
         let filterSearch = [...this.state.filterSearch];
         let filteredGnere = [...this.state.filteredGnere];
-        
-        if (type == 'promotions' && isChecked) {
+
+        if (type == 'promotions' && isChecked == true) {
             filteredPromotions.push(value);
-        } else {
+        } else if (type == 'promotions' && isChecked == false) {
             let index = filteredPromotions.indexOf(value);
             if (index > -1) filteredPromotions.splice(index, 1);
-        }
-        if (type == 'venue' && isChecked) {
+        } else if (type == 'venue' && isChecked == true) {
             filteredVenues.push(value);
-        } else {
+        } else if (type == 'venue' && isChecked == false) {
             let index = filteredVenues.indexOf(value);
             if (index > -1) filteredVenues.splice(index, 1);
-        }
-        if (type == 'genre' && isChecked) {
+        } else if (type == 'genre' && isChecked == true) {
             filteredGnere.push(value);
-        } else {
+        } else if (type == 'genre' && isChecked == false) {
             let index = filteredGnere.indexOf(value);
             if (index > -1) filteredGnere.splice(index, 1);
         }
-        if(type == 'search'){
+        if (type == 'search') {
             filterSearch = value;
         }
-        this.setState({filteredPromotions, filteredVenues, filterSearch},()=>{
-            console.log('this.state.filteredPromotions',this.state.filteredPromotions)
-            console.log('this.state.filteredVenues',this.state.filteredVenues)
-            console.log('this.state.filterSearch',this.state.filterSearch)
+        if (type == 'sort') {
+
+        }
+
+        let params = {
+            'promo_category': '',
+            'genre': '',
+            'venue': '',
+            'search': '',
+            'min_price': '',
+            'max_price': '',
+            'start_date': '',
+            'end_date': '',
+            'sort_order': '',
+            'first': '',
+            'list': ''
+
+        }
+
+        this.setState({ filteredPromotions, filteredVenues, filterSearch, filteredGnere }, () => {
+            // console.log('this.state.filteredPromotions', this.state.filteredPromotions)
+            // console.log('this.state.filteredVenues', this.state.filteredVenues)
+            // console.log('this.state.filterSearch', this.state.filterSearch)
+
+            this.loadEvents(params);
         })
     }
 
-    
-
     render() {
-        const { genre, venues, filterConfig } = this.state;
+        const { genre, venues, filterConfig, eventsData } = this.state;
         return (
             <section className="promotions-wrapper">
                 <div className="container-fluid">
                     <div className="wrapper-events-listing">
-                        <Filters handleFilters={this.handleFilters} genreData={genre} venueData={venues} filterConfig={filterConfig} />
+                        {genre.length > 0 && venues.length > 0 && filterConfig.price_config && filterConfig.promotion_categories &&
+                            <Filters handleFilters={this.handleFilters} genreData={genre} venueData={venues} filterConfig={filterConfig} />
+                        }
                         <div className="events-listing">
-                            <SortBy />
-                            <div className="events-section">
-                                {this.state.eventsData && this.state.eventsData.map((event) => {
+                            <SortBy handleListGridView={this.handleListGridView} handleFilters={this.handleFilters} />
+                            <div className={this.state.viewType}>
+                                {eventsData && eventsData.map((event) => {
                                     return <Card eventsData={event} />
                                 })}
                             </div>
-                            <div class="promotion-load-more">
-                                <a onClick={() => this.loadMoreEvents()} class="btn-link load-more-btn" target="">
-                                    <span>Load More</span>
-                                    <img src={DownArrowBlue} />
-                                </a>
-                            </div>
+                            {eventsData && eventsData.length > 10 &&
+                                <div class="promotion-load-more">
+                                    <a onClick={() => this.loadMoreEvents()} class="btn-link load-more-btn" target="">
+                                        <span>Load More</span>
+                                        <img src={DownArrowBlue} />
+                                    </a>
+                                </div>
+                            }
+                            {eventsData && eventsData.length == 0 &&
+                                <div>No Events Available</div>
+                            }
                         </div>
                     </div>
                 </div>

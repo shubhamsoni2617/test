@@ -16,15 +16,73 @@ export default class Filters extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            value: { min: 200, max: 800 },
+            priceRangeValue: { 
+                min: this.props.filterConfig.price_config.min_price, 
+                max: this.props.filterConfig.price_config.max_price }, 
+            promotionsData: this.props.filterConfig.promotion_categories,
+            venuesData: this.props.venueData,
+            genreData: this.props.genreData,
             from: undefined,
             to: undefined,
         };
-        this.handleFromChange = this.handleFromChange.bind(this);
-        this.handleToChange = this.handleToChange.bind(this);
     }
 
-    clearCalender() {
+    componentDidMount() {
+        this.applyIsChecked();  
+    }
+
+    applyIsChecked = () => {
+        this.state.promotionsData.map((promotion) => {
+            promotion.isChecked = false;
+        })
+
+        this.state.genreData.map((genre) => {
+            genre.isChecked = false;
+        })
+    }
+
+    checkUncheckAllPromotions = (status) => {
+        let promotionsData = this.state.promotionsData; 
+        promotionsData.map((promotion) => {
+            promotion.isChecked = status;
+        })
+        this.setState((promotionsData));
+    }
+
+    checkUncheckAllGenre = (status) => {
+        let genreData = this.state.genreData; 
+        genreData.map((genre) => {
+            genre.isChecked = status;
+        })
+        this.setState((genreData));
+    }
+
+    // Clear all the filters 
+    clearAllFilters = () => {
+        // this.setState();
+    }
+
+    // Clear calender on clear
+    clearCalender = () => {
+        this.setState({ from: undefined, to: undefined });
+    }
+
+    // Clear Price range on clear
+    clearPriceRange = (priceConfig) => {
+        let handleFilters = this.props.handleFilters;
+        this.setState({ priceRangeValue: { min: priceConfig.min_price, max: priceConfig.max_price } });
+        handleFilters('price-range', this.state.priceRangeValue,'')
+    }
+
+    // Set Price range on slide
+    setPriceRange = (priceRangeValue) => {
+        let handleFilters = this.props.handleFilters;
+        this.setState({ priceRangeValue });
+        handleFilters('price-range', priceRangeValue,'')
+    }
+
+    clearPromotionFilter = () => {
+        // this.setState()
     }
 
     showFromMonth() {
@@ -37,26 +95,20 @@ export default class Filters extends Component {
         }
     }
 
-    handleFromChange(from) {
-        // Change the from date and focus the "to" input field
+    handleFromChange = (from) => {
         this.setState({ from });
     }
 
-    handleToChange(to) {
+    handleToChange = (to) => {
         this.setState({ to }, this.showFromMonth);
-    }
-
-
-    componentDidMount() {
-
-    }
+    }    
 
     render() {
         const { genreData, venueData, filterConfig, handleFilters } = this.props;
-        const { promotion_categories, price_config } = filterConfig;
-        const { from, to } = this.state;
+        const { price_config } = filterConfig;
+        const { from, to, promotionsData} = this.state;
         const modifiers = { start: from, end: to };
-
+        
         return (
             <div>
                 <div className="apply-filter-mob">
@@ -79,11 +131,11 @@ export default class Filters extends Component {
                             <Tab>Venue</Tab>
                         </TabList>
                         <TabPanel>
-                            <InputRange
+                            {/* <InputRange
                                 maxValue={price_config && price_config.max_price}
                                 minValue={price_config && price_config.min_price}
                                 value={this.state.value}
-                                onChange={value => this.setState({ value })} />
+                                onChange={value => this.setState({ value })} /> */}
                         </TabPanel>
                         <TabPanel>
                             <div className="list-head">
@@ -107,75 +159,7 @@ export default class Filters extends Component {
                             </div>
                         </TabPanel>
                         <TabPanel>
-                            <label>From</label>
-                            <div className="InputFromTo">
 
-                                <DayPickerInput
-                                    ref={el => (this.from = el)}
-                                    value={from}
-                                    placeholder="mm/dd/yyyy"
-                                    format="MM/DD/YYYY"
-                                    formatDate={formatDate}
-                                    parseDate={parseDate}
-                                    dayPickerProps={{
-                                        selectedDays: [from, { from, to }],
-                                        disabledDays: { after: to },
-                                        toMonth: to,
-                                        modifiers,
-                                        numberOfMonths: 1,
-                                        onDayClick: () => this.to.getInput().focus(),
-                                    }}
-                                    onDayChange={this.handleFromChange}
-                                />
-                                <label>To</label>
-                                <span className="InputFromTo-to">
-
-                                    <DayPickerInput
-                                        ref={el => (this.to = el)}
-                                        value={to}
-                                        placeholder="mm/dd/yyyy"
-                                        format="MM/DD/YYYY"
-                                        formatDate={formatDate}
-                                        parseDate={parseDate}
-                                        dayPickerProps={{
-                                            selectedDays: [from, { from, to }],
-                                            disabledDays: { before: from },
-                                            modifiers,
-                                            month: from,
-                                            fromMonth: from,
-                                            numberOfMonths: 1,
-                                            onDayClick: () => this.from.getInput().focus(),
-
-                                        }}
-                                        onDayChange={this.handleToChange}
-                                    />
-                                </span>
-                                <Helmet>
-                                    <style>{`
-  .InputFromTo .DayPicker-Day--selected:not(.DayPicker-Day--start):not(.DayPicker-Day--end):not(.DayPicker-Day--outside) {
-    background-color: #f0f8ff !important;
-    color: #4a90e2;
-  }
-  .InputFromTo .DayPicker-Day {
-    border-radius: 0 !important;
-  }
-  .InputFromTo .DayPicker-Day--start {
-    border-top-left-radius: 50% !important;
-    border-bottom-left-radius: 50% !important;
-  }
-  .InputFromTo .DayPicker-Day--end {
-    border-top-right-radius: 50% !important;
-    border-bottom-right-radius: 50% !important;
-  }
-  .InputFromTo .DayPickerInput-Overlay {
-    width: 250px;
-  }
-  .InputFromTo-to .DayPickerInput-Overlay {
-    margin-left: 0px;
-  }
-`}</style>
-                                </Helmet>
-                            </div>
                         </TabPanel>
                         <TabPanel>
                             <h2>Any content 2</h2>
@@ -223,12 +207,12 @@ export default class Filters extends Component {
                     </div>
                 </div>
                 <div className="filters-mob">
-                    <a href="/">Sort By</a>
-                    <a href="/">Filter</a>
+                    <a>Sort By</a>
+                    <a>Filter</a>
                 </div>
                 <div className="filters">
                     <div className="filter-heading">
-                        <h3>Filters <a href="">Clear all</a></h3>
+                        <h3>Filters <a onClick={this.clearAllFilters}>Clear all</a></h3>
                     </div>
                     <div className="filters-search">
                         <button type="submit" className="search-btn">
@@ -241,7 +225,7 @@ export default class Filters extends Component {
                             <h3>Price Range</h3>
                             <ul>
                                 <li className="active">
-                                    <a href="">Clear</a>
+                                    <a onClick={()=>this.clearPriceRange(price_config)}>Clear</a>
                                 </li>
                             </ul>
                         </div>
@@ -249,8 +233,8 @@ export default class Filters extends Component {
                             <InputRange
                                 maxValue={price_config && price_config.max_price}
                                 minValue={price_config && price_config.min_price}
-                                value={this.state.value}
-                                onChange={value => this.setState({ value })} />
+                                value={this.state.priceRangeValue}
+                                onChange={(priceRangeValue)=>this.setPriceRange(priceRangeValue)} />
                         </div>
                     </div>
                     <div className="filter-grid">
@@ -258,10 +242,10 @@ export default class Filters extends Component {
                             <h3>Genre</h3>
                             <ul>
                                 <li>
-                                    <a href="">Select all</a>
+                                    <a onClick={()=>this.checkUncheckAllGenre(true)}>Select all</a>
                                 </li>
                                 <li className="active">
-                                    <a href="">Clear</a>
+                                    <a onClick={()=>this.checkUncheckAllGenre(false)}>Clear</a>
                                 </li>
                             </ul>
                         </div>
@@ -269,7 +253,7 @@ export default class Filters extends Component {
                             <ul>
                                 {genreData.length && genreData.map((genre) => {
                                     return <li key={genre.id}>
-                                        <input key={genre.id} className="styled-checkbox" type="checkbox" id="styled-checkbox-1" value="" />
+                                        <input checked={genre.isChecked} key={genre.id} className="styled-checkbox" type="checkbox" id="styled-checkbox-1" value="" />
                                         <label for="styled-checkbox-1">
                                             {genre.name} ({genre.events_count})
                         </label></li>
@@ -282,7 +266,7 @@ export default class Filters extends Component {
                             <h3>Date Range</h3>
                             <ul>
                                 <li className="active">
-                                    <a>Clear</a>
+                                    <a onClick={this.clearCalender}>Clear</a>
                                 </li>
                             </ul>
                         </div>
@@ -365,27 +349,27 @@ export default class Filters extends Component {
                             <h3>Promotion</h3>
                             <ul>
                                 <li>
-                                    <a href="">Select all</a>
+                                    <a onClick={()=>this.checkUncheckAllPromotions(true)} >Select all</a>
                                 </li>
                                 <li className="active">
-                                    <a href="">Clear</a>
+                                    <a onClick={()=>this.checkUncheckAllPromotions(false)} >Clear</a>
                                 </li>
                             </ul>
                         </div>
                         <div className="filters-panel">
                             <ul>
-                                {promotion_categories && promotion_categories.map((promotion) => {
+                                {promotionsData && promotionsData.map((promotion) => {
                                     return <li key={promotion.id}>
-                                        <input onChange={(e) => handleFilters('promotions', promotion.id, e.target.checked)} key={promotion.id} className="styled-checkbox" type="checkbox" id={promotion.id} />
+                                        <input checked={promotion.isChecked} onChange={(e) => handleFilters('promotions', promotion.id, e.target.checked)} key={promotion.id} className="styled-checkbox" type="checkbox" id={promotion.id} />
                                         <label htmlFor={promotion.id}>
                                             {promotion.name}
                                         </label>
                                     </li>
                                 })}
                             </ul>
-                            <a className="view-all-filters">
+                            {/* <a className="view-all-filters">
                                 + 4 More
-                    </a>
+                    </a> */}
                         </div>
                     </div>
                     <div className="filter-grid">
