@@ -6,7 +6,6 @@ import MegaMenu from '../../../shared/components/MegaMenu';
 import DropDown from '../../../shared/components/DropDown';
 import HomePageSearch from '../../Home/HomePageSearch';
 import MiniCart from '../../Home/MiniCart';
-import NewsTicker from '../../Home/NewsTicker';
 import Advertisement from '../../../shared/components/Advertisement';
 import HomeService from '../../../shared/services/HomeService';
 import { ReactComponent as ManLogo } from '../../../assets/images/man.svg';
@@ -14,7 +13,6 @@ import AndroidLogo from '../../../assets/images/android.png';
 import { ReactComponent as AppleLogo } from '../../../assets/images/apple.svg';
 
 const TopNav = (props) => {
-
     const [byGenreEvent, setByGenreEvent] = useState([]);
     const [showElementsInHeader, setShowElementsInHeader] = useState(4);
     let refValue = useRef();
@@ -23,7 +21,6 @@ const TopNav = (props) => {
         { id: "1", img: "assets/images/explore.png" },
         { id: "2", img: "assets/images/explore.png" },
         { id: "3", img: "assets/images/explore.png" }
-
     ];
 
     useEffect(() => {
@@ -56,7 +53,7 @@ const TopNav = (props) => {
                         <div className="top-header-left">
                             <div className="hamburger-icon" onClick={() => { handleNavigationOpen() }}><span></span></div>
                             <div className="site-logo">
-                                <Link to ="/"><img src={logo} className="img-fluid" alt="Logo" /></Link>
+                                <Link to="/"><img src={logo} className="img-fluid" alt="Logo" /></Link>
                             </div>
                             <HomePageSearch />
                         </div>
@@ -71,10 +68,7 @@ const TopNav = (props) => {
                     <nav className="bottom-header">
                         <div className="bottom-header-left">
                             <ul>
-                                <li className="has-submenu">
-                                    <Link to="/">Events</Link>
-                                    <MegaMenu byGenreEvent={byGenreEvent} />
-                                </li>
+                                <MegaMenu byGenreEvent={byGenreEvent} />
                                 <li><Link to="/">Attractions</Link></li>
                                 <li><Link to="/">Promotions</Link></li>
                                 <li><Link to="/">Explore</Link></li>
@@ -160,7 +154,6 @@ const TopNav = (props) => {
                     </div>
                 </div>
             </div>
-            <NewsTicker />
         </header>
     );
 }

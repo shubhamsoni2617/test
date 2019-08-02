@@ -4,7 +4,7 @@ import './style.scss';
 import HomeService from '../../../shared/services/HomeService';
 
 const NewsTicker = (props) => {
-
+    
     const [newsTicker, setNewsTicker] = useState([]);
     const [status, setStatus] = useState("open");
 
@@ -22,14 +22,14 @@ const NewsTicker = (props) => {
     }, [])
 
     return (
-        <div className={status === "open" ? "ticker-wrap" : "hide"}>
+        <div className={status === "open" && window.location.pathname === "/" ? "ticker-wrap" : "hide"}>
             <div className="ticker-container">
                 <div className="ticker">
                     {newsTicker.map((content, index) => {
-                            return (
-                                <div key={content.title} dangerouslySetInnerHTML={{ __html: content.description }}></div>
-                            );
-                        })
+                        return (
+                            <div key={content.title} dangerouslySetInnerHTML={{ __html: content.description }}></div>
+                        );
+                    })
                     }
                 </div>
             </div>

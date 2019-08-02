@@ -8,7 +8,6 @@ import "./style.css";
 export default class App extends React.Component {
   constructor(props) {
     super(props);
-
     this.state = {
       collapsed: false
     };
@@ -35,7 +34,7 @@ export default class App extends React.Component {
          </div>
             {/* Top advertisment section end */}
           {/* TopNav */}
-          <TopNav />
+          <TopNav {...this.props} />
 
           {/* Main Content */}
           <Navigator {...this.props} />

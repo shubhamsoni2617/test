@@ -689,13 +689,13 @@
 //Banner style start
 .banner {
 	padding: 0px;
-	margin-top: -123px;
+	// margin-top: -123px;
 	position: relative;
 	background-color: #DEE7F2;
 	overflow: hidden;
 	@media(max-width: 991px) {
 		background-color: transparent;
-		margin-top: -114px;
+		// margin-top: -114px;
 	}
 	.banner-carousel {
 		padding-top: 123px;
