@@ -1,7 +1,11 @@
 import React from 'react';
 import Image from '../Image';
 const CarouselSlide = (props) => {
-    const {elem}=props;
+    const { elem } = props;
+    let genre;
+    if (elem && elem.primary_genre) {
+        genre = elem.primary_genre.toLowerCase()
+    }
     return (
         <div className="grid-container" key={elem.id}>
             <div className="item">
@@ -11,7 +15,7 @@ const CarouselSlide = (props) => {
                             <Image src={elem.thumb_image} className="img-fluid" alt="Kurios" type='Vertical' />
                         </div>
                     </div>
-                    <span className={elem.genre === "Musical" ? "category musical" : "category comedy"}>{elem.primary_genre}</span>
+                    <span className={`category ${genre}`}>{elem.primary_genre}</span>
                     <p>{elem.event_date}</p>
                     <h3>{elem.title}</h3>
                     <p>{elem.venue_name}</p>

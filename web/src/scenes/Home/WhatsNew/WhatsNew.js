@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import {Link} from 'react-router-dom';
 import Carousel from '../../../shared/components/Carousel';
 import HomeService from '../../../shared/services/HomeService';
 
@@ -94,11 +95,11 @@ class whatsNew extends Component {
                     <div className="section-top-wrapper">
                         <h2 className="section-title">What's New</h2>
                         <div className="carousel-dots">
-                            <a href="/">See all <img src="assets/images/right-arrow.svg" className="img-fluid"
-                                alt="arrow" /></a>
+                            <Link to="/events">See all <img src="assets/images/right-arrow.svg" className="img-fluid"
+                                alt="arrow" /></Link>
                         </div>
                     </div>
-                    <Carousel imgArray={this.state.newReleases} arrows={false} />
+                    <Carousel imgArray={this.state.newReleases} arrows={false} slidesToShow={6} slidesToScroll={6}/>
                 </div>
             </section>
         );

@@ -82,7 +82,7 @@ class HomePageSearch extends Component {
                                 </li>
                             </ul>
                         </div>
-                        <div className="searched-filter">
+                        {/* <div className="searched-filter">
                             <ul>
                                 <li>
                                     <h4>The Phantom Of The Opera</h4>
@@ -110,7 +110,7 @@ class HomePageSearch extends Component {
                                 </li>
                                 <li><a href="/" className="all-results-search">See all results from<strong>Ph</strong></a></li>
                             </ul>
-                        </div>
+                        </div> */}
                     </div>
                 </form>
             </div>

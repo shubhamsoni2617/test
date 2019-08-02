@@ -29,7 +29,7 @@ export default class SimilarPicksSection extends Component {
                  </div>
               </div>
            </div>
-            <Carousel imgArray={data} arrows={true} />
+            <Carousel imgArray={data} arrows={true} slidesToShow={5} slidesToScroll={5} />
         </div>
      </section>
     );

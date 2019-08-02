@@ -1,26 +1,6 @@
-.container{
-    background-color: #212529
+.hide{
+    display:none
 }
-.advertisment-container{
-    color:white;
-    text-align: center;
-}
-
 .advertisment-image{
-    height: 100px;
-    width: 100px;
-}
-
-.inline{
-    display: inline-block;
-    width:30%;
-}
-
-.inline:nth-child(3){
-    font-weight: bold;
-    font-size: 40px
-}
-
-.close{
-    color:white;
+    max-width: 100%;
 }
