@@ -56,7 +56,7 @@ const TopNav = (props) => {
                         <div className="top-header-left">
                             <div className="hamburger-icon" onClick={() => { handleNavigationOpen() }}><span></span></div>
                             <div className="site-logo">
-                                <img src={logo} className="img-fluid" alt="Logo" />
+                                <Link to ="/"><img src={logo} className="img-fluid" alt="Logo" /></Link>
                             </div>
                             <HomePageSearch />
                         </div>
