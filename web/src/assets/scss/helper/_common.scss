@@ -25,23 +25,20 @@ body {
 		}
 	}
 	a {
-		text-decoration: none;
+        text-decoration: none;
+        outline: none;
 		&:hover,
 		&:focus,
 		&:active {
-			text-decoration: none;
+            text-decoration: none;
+            outline: none;
 		}
 	}
 }
-
-// .grid-container {
-// 	// @media(max-width: 991px) {
-// 	// 	overflow-x: auto;
-// 	// }
-// 	// @media(min-width: 992px) and (max-width: 1280px) {
-// 	// 	overflow-x: auto;
-// 	// }
-// }
+ul {
+	margin-bottom: 0px;
+	padding: 0px;
+}
 
 .accent-text {
 	color: #0098ff;
@@ -56,17 +53,8 @@ nav {
 	}
 }
 
-ul {
-	margin-bottom: 0px;
-	padding: 0px;
-}
 
-*:focus,
-*:active {
-	outline: none;
-}
-
-//breadcrumb style
+// Breadcrumb style
 .breadcrumb {
 	background-color: transparent;
 	padding: 0px;
@@ -110,7 +98,7 @@ ul {
 	}
 }
 
-//share
+// Share Icon
 .share {
 	position: absolute;
 	right: 20px;
@@ -236,6 +224,7 @@ button,
 	}
 }
 
+// See All Action Animation
 .seeall-btn {
 	&:hover {
 		img {
@@ -256,6 +245,7 @@ button,
 	}
 }
 
+// Slider Bullets Design
 .dots-group {
 	span {
 		height: 2px;
@@ -276,6 +266,7 @@ button,
 	}
 }
 
+// Category Label Style
 .category {
 	color: #fff;
 	font-family: 'Montserrat', sans-serif;
@@ -292,24 +283,22 @@ button,
 		font-size: 11px;
 		line-height: 18px;
 		height: 18px;
-	}
-}
-
-//category common classes
-.musical {
-	background-color: #07B3F0;
-}
-
-.dance {
-	background-color: #5F4F8B;
-}
-
-.comedy {
-	background-color: #F2B119;
-}
-
-.theatre {
-	background-color: #BF659A;
+    }
+    &.musical {
+        background-color: #07B3F0;
+    }
+    
+    &.dance {
+        background-color: #5F4F8B;
+    }
+    
+    &.comedy {
+        background-color: #F2B119;
+    }
+    
+    &.theatre {
+        background-color: #BF659A;
+    }
 }
 
 //carousel nav style
@@ -527,4 +516,19 @@ button,
 			}
 		}
 	}
+}
+
+// Website scroll bar 
+::-webkit-scrollbar {
+    width: 8px;
+}
+ 
+::-webkit-scrollbar-track {
+    background: #EEE;
+}
+ 
+::-webkit-scrollbar-thumb {
+  background-color: #DDD;
+  outline: 1px solid #DDD;
+  border-radius: 5px;
 }
