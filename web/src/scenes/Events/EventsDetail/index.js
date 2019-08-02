@@ -11,10 +11,10 @@ import locationImg from '../../../assets/images/location-blue.svg';
 import SeatMapImg from '../../../assets/images/seatmap.svg';
 import faceImg from '../../../assets/images/face.svg';
 import shareIcon from '../../../assets/images/share-icon.svg';
-import BuyTicket from './BuyTicket';
 import SeatMap from './SeatMap';
 import SocialShare from '../../../shared/components/SocialShare';
-
+import InfoPopup from '../../../shared/components/InfoPoup';
+import PopUpWithClose from '../../../shared/components/PopUpWithClose';
 
 export default class EventsDetail extends Component {
 
@@ -27,6 +27,8 @@ export default class EventsDetail extends Component {
             showBuyTicket: false,
             showSeatMap: false,
             showSocialShare: false,
+            showInfo :false,
+            showNotice : true,
             synopsisLang: '',
             similarEventsData: [],
             getSynopsisData: { languageArr: [], activeLang: '', desc: '' }
@@ -49,8 +51,7 @@ export default class EventsDetail extends Component {
                 })
                 console.log(err)
             })
-        let params2 = { code: this.state.code, client: Constants.CLIENT, first: 1, limit: 10 }
-        EventsService.getSimilarEvents(params2)
+        EventsService.getSimilarEvents(params)
             .then((res) => {
                 this.setState({ similarEventsData: res.data.data })
             })
@@ -73,29 +74,46 @@ export default class EventsDetail extends Component {
     }
 
     openSeatMap = () => {
-        let flag;
-        if (this.state.showSeatMap) {
-            flag = false
+        if (! this.state.showSeatMap) {
+            this.setState({
+                showSeatMap: true
+            }, () => {
+                document.addEventListener('click', this.closePopup);
+            })
         }
-        else {
-            flag = true
-        }
+
+    }
+
+    closePopup = () => {
         this.setState({
-            showSeatMap: flag
-        })
+            showSeatMap: false,
+            showSocialShare: false,
+            showInfo: false,
+        }, () => {
+            document.removeEventListener('click', this.closePopup);
+        });
     }
 
     openSocialShare = () => {
-        let flag;
-        if (this.state.showSocialShare) {
-            flag = false
+        if (! this.state.showSocialShare) {
+            this.setState({
+                showSocialShare: true
+            }, () => {
+                document.addEventListener('click', this.closePopup);
+            })
         }
-        else {
-            flag = true
+
+    }
+
+    openInfoPopup = (event) => {
+        event.stopPropagation()
+        if (!this.state.showInfo) {
+            this.setState({
+                showInfo: true
+            }, () => {
+                document.addEventListener('click', this.closePopup);
+            })
         }
-        this.setState({
-            showSocialShare: flag
-        })
     }
 
     changeLang = (lang) => {
@@ -104,15 +122,24 @@ export default class EventsDetail extends Component {
         })
     }
 
+    handleClose = () =>{
+        if (this.state.showNotice) {
+            this.setState({
+                showNotice: false
+            })
+        }
+    }
+
     render() {
         const { detailData, showBuyTicket, getSynopsisData, showSeatMap, similarEventsData,
-            showSocialShare, error } = this.state;
-        // if(error ){
-        //     return null;
-        // }
+            showSocialShare, error, showInfo,showNotice } = this.state;
+        let content = 'Please add to above price S$4 Booking Fee per ticket for tickets above S$40; S$3 Booking Fee per ticket for tickets between S$20.01 - S$40 and S$1 Booking Fee per ticket for tickets S$20 and below. Charges include GST where applicable.'
+        if(error ){
+            return null;
+        }
         let shareUrl = window.location.href;
         getSynopsisData.languageArr = [];
-        let synopsis = ['synopsis'];
+        let accrodian = ['synopsis','pricedetail'];
         detailData && detailData.synopsis && detailData.synopsis.forEach((obj, idx) => {
             if (obj.language) {
                 getSynopsisData.languageArr.push(obj.language)
@@ -145,6 +172,7 @@ export default class EventsDetail extends Component {
                         }
                         {detailData.is_available_for_booking == 1 &&
                             <div>
+                                {detailData.pop_up_message && showNotice && <PopUpWithClose content={detailData.pop_up_message.description} title={detailData.pop_up_message.title} handleClose={this.handleClose}  /> } 
                                 <section className="event-detail-banner">
                                     {detailData.images && detailData.images.length > 0 &&
                                         <div className="banner-carousel">
@@ -158,8 +186,12 @@ export default class EventsDetail extends Component {
                                         <div className="tickets-desc">
                                             <div className="breadcrumb-share">
                                                 <ul className="breadcrumb">
-                                                    <li><a href="">Home</a></li>
-                                                    <li><a href="">Musicals</a></li>
+                                                    <li>Home</li>
+                                                    {detailData.genres && detailData.genres.map((obj, index) => {
+                                                        if(obj.is_primary == 1){
+                                                          return  <li key={index}>{obj.name}</li>  
+                                                        }
+                                                    })}
                                                 </ul>
                                             </div>
                                             {detailData.genres && detailData.genres.length > 0 &&
@@ -201,7 +233,7 @@ export default class EventsDetail extends Component {
                                             {
                                                 detailData.buy_now_url ?
                                                     <div className="buy-tickets-btn">
-                                                        <a href={detailData.buy_now_url}>Buy Tickets</a>
+                                                        <a href={detailData.buy_now_url} target="_blank">Buy Tickets</a>
                                                     </div>
                                                     :
                                                     <div className="shows-over">
@@ -226,7 +258,7 @@ export default class EventsDetail extends Component {
                                                 desc={getSynopsisData.desc}
                                                 langArr={getSynopsisData.languageArr}
                                                 changeLang={this.changeLang}
-                                                preExpanded={synopsis}
+                                                preExpanded={accrodian}
                                                 uuid='synopsis'
                                             />
                                         }
@@ -249,17 +281,19 @@ export default class EventsDetail extends Component {
                                         }
                                         {
                                             detailData.ticket_pricing &&
-                                            <AccordionSection title='Price Details'
-                                                desc={detailData.ticket_pricing}
+                                            <AccordionSection title='Price Details' infoTag={true}  preExpanded={accrodian}
+                                                uuid='pricedetail'
+                                                desc={detailData.ticket_pricing} openInfoPopup={this.openInfoPopup} showInfo={showInfo}
                                             />
+                                            
                                         }
+                                        {showInfo && <InfoPopup content={content} />}
                                         {
                                             detailData.promotions &&
-                                            detailData.promotions.map((obj, idx) => {
-                                                return <AccordionSection title={obj.title}
-                                                    desc={obj.description}
+                                            detailData.promotions.length > 0 && 
+                                               <AccordionSection title='Promotion'
+                                                    children={detailData.promotions}
                                                 />
-                                            })
                                         }
 
                                     </div>
@@ -269,7 +303,9 @@ export default class EventsDetail extends Component {
                                         <div className="container-fluid">
                                             <ul>
                                                 {detailData.tags.map((obj, idx) => {
-                                                    return <li>{obj.name}</li>
+                                                    if(obj.name){
+                                                        return <li>{obj.name}</li>
+                                                    }
                                                 })}
                                             </ul>
                                         </div>

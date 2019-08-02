@@ -13,7 +13,6 @@ export default class Image extends Component {
   }
 
   onError = () => {
-    debugger;
     let newImg ;
     switch (this.props.type)
     {
