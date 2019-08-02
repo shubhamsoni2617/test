@@ -3,14 +3,16 @@ import closeNews from '../../../assets/images/close-ad.svg';
 import './style.scss';
 import HomeService from '../../../shared/services/HomeService';
 
-
 const NewsTicker = (props) => {
 
     const [newsTicker, setNewsTicker] = useState([]);
     const [status, setStatus] = useState("open");
 
     useEffect(() => {
-        HomeService.getNewsTicker()
+        const params = {
+            client: 1
+        };
+        HomeService.getNewsTicker(params)
             .then((res) => {
                 setNewsTicker(res.data.data);
             })
@@ -23,10 +25,9 @@ const NewsTicker = (props) => {
         <div className={status === "open" ? "ticker-wrap" : "hide"}>
             <div className="ticker-container">
                 <div className="ticker">
-                    {
-                        newsTicker.map((content, index) => {
+                    {newsTicker.map((content, index) => {
                             return (
-                                <div key={content.title} className="ticker__item" dangerouslySetInnerHTML={{ __html: content.description }}></div>
+                                <div key={content.title} dangerouslySetInnerHTML={{ __html: content.description }}></div>
                             );
                         })
                     }

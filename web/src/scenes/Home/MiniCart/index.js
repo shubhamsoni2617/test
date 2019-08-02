@@ -1,24 +1,48 @@
 import React, { Component } from 'react';
 import './style.scss';
-
+import { ReactComponent as MiniCartLogo } from '../../../assets/images/cart.svg';
 
 class MiniCart extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            isOpen: false
+        }
+    }
+
+    toggle = () => {
+        if (!this.state.isOpen) {
+            window.addEventListener('click', this.handleOutsideClick, false);
+        } else {
+            window.removeEventListener('click', this.handleOutsideClick, false);
+        }
+        this.setState({ isOpen: !this.state.isOpen })
+    }
+
+    handleOutsideClick = (e) => {
+        if (this.node.contains(e.target)) {
+            return;
+        }
+        this.toggle();
+    }
 
     render() {
 
-        const { miniCart } = this.props;
+        const { data } = this.props;
+        const { isOpen } = this.state;
 
         return (
-            <div className="my-cart-popup">
-                <div className="my-cart-wrapper">
-                    <div className="cart-head">
-                        <h3>My Cart ({miniCart.length})</h3>
-                        <a href="/" className="cart-close">X</a>
-                    </div>
-                    <div className="cart-body">
-                        <ul>
-                            {
-                                miniCart.map((cart, index) => {
+            <li className="cart-icon" onClick={this.toggle} ref={node => { this.node = node; }}>
+                <a><MiniCartLogo className="img-fluid" /><span>{data.length}</span></a>
+                <div className="my-cart-popup" style={{ display: isOpen ? "block" : "none" }}>
+                    <div className="my-cart-wrapper">
+                        <div className="cart-head">
+                            <h3>My Cart ({data.length})</h3>
+                            <a href="/" className="cart-close">X</a>
+                        </div>
+                        <div className="cart-body">
+                            <ul>
+                                {data.map((cart, index) => {
                                     return (
                                         <li key={cart.id}>
                                             <div className="product-img">
@@ -33,21 +57,21 @@ class MiniCart extends Component {
                                             </div>
                                         </li>
                                     );
-                                })
-                            }
-                        </ul>
-                    </div>
-                    <div className="cart-footer">
-                        <div className="cart-timer">
-                            <span className="timer-label">Time left</span>
-                            <span className="timer-time">14:59</span>
+                                })}
+                            </ul>
                         </div>
-                        <div className="cart-checkout-btn">
-                            <button>Go to Cart</button>
+                        <div className="cart-footer">
+                            <div className="cart-timer">
+                                <span className="timer-label">Time left</span>
+                                <span className="timer-time">14:59</span>
+                            </div>
+                            <div className="cart-checkout-btn">
+                                <button>Go to Cart</button>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
+            </li>
         );
     }
 }
