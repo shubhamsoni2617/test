@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import {Link} from 'react-router-dom';
 import Carousel from '../../../shared/components/Carousel';
 import HomeService from '../../../shared/services/HomeService';
 
@@ -30,11 +31,11 @@ const CurrentlyShowing = (props) => {
                     <div className="section-top-wrapper">
                         <h2>Currently Showing</h2>
                         <div className="carousel-dots">
-                            <a href="/">See all <img src="assets/images/right-arrow.svg" className="img-fluid"
-                                alt="arrow" />&nbsp;</a>
+                            <Link to="/events">See all <img src="assets/images/right-arrow.svg" className="img-fluid"
+                                alt="arrow" />&nbsp;</Link>
                         </div>
                     </div>
-                    <Carousel imgArray={currentlyShowing} arrows={true} />
+                    <Carousel imgArray={currentlyShowing} arrows={true} slidesToShow={6} slidesToScroll={6} />
                 </div>
             </section>
         </div>

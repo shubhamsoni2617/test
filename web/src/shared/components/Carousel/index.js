@@ -5,17 +5,45 @@ import "slick-carousel/slick/slick-theme.css";
 import CarouselSlide from '../CarouselSlide';
 import Constants from '../../constants';
 
+
+
+const SampleNextArrow = (props) => {
+    const { className, style, onClick } = props;
+    return (
+        <div
+            className={className}
+            style={{ ...style, display: "block" }}
+            onClick={onClick}
+        />
+    );
+}
+
+const SamplePrevArrow = (props) => {
+    const { className, style, onClick } = props;
+    return (
+        <div
+            className={className}
+            style={{ ...style, display: "block" }}
+            onClick={onClick}
+        />
+    );
+}
+
 const Carousel = (props) => {
 
     const [width, setWidth] = useState(window.innerWidth);
+    const { imgArray, arrows,slidesToShow, slidesToScroll } = props;
+
     const settings = {
         arrows: arrows,
         dots: true,
         infinite: false,
         speed: 500,
-        slidesToShow: 6,
-        slidesToScroll: 6,
+        slidesToShow: slidesToShow,
+        slidesToScroll: slidesToScroll,
         initialSlide: 0,
+        nextArrow: <SampleNextArrow />,
+        prevArrow: <SamplePrevArrow />,
         appendDots: (dots) => {
             return (
                 <ul style={{ margin: "0px" }}> {dots} </ul>
@@ -51,8 +79,6 @@ const Carousel = (props) => {
     const handleWindowResize = () => {
         setWidth(window.innerWidth);
     }
-
-    var { imgArray, arrows } = props;
 
     return (
         <>

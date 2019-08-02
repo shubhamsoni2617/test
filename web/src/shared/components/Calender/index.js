@@ -9,7 +9,6 @@ const Calender = (props) => {
     const [from, setFrom] = useState(null);
     const [to, setTo] = useState(null);
     const [enteredTo, setEnteredTo] = useState(null);
-    const [redirectTo, setRedirectTo] = useState(false);
 
     const isSelectingFirstDay = (from, to, day) => {
         const isBeforeFirstDay = from && DateUtils.isDayBefore(day, from);
@@ -44,10 +43,6 @@ const Calender = (props) => {
         setEnteredTo(null);
     }
 
-    const handleRedirectClick = () => {
-        setRedirectTo(true)
-    }
-
     const formatDate = (date) => {
         const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun",
             "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
@@ -63,21 +58,6 @@ const Calender = (props) => {
             backgroundColor: 'white',
         },
     };
-
-
-    if (redirectTo) {
-        return (
-            <Redirect
-                to={{
-                    pathname: '/event',
-                    data: {
-                        from: from,
-                        to: to
-                    }
-                }}
-            />
-        );
-    }
 
     const modifiers = { start: from, end: enteredTo, currentDay: new Date };
     const disabledDays = { before: from };
@@ -104,24 +84,38 @@ const Calender = (props) => {
                 <form>
                     <div className="form-group">
                         <label>From</label>
-                        <input type="text" className="form-control" placeholder="06 May 2019"
+                        <input type="text" className="form-control"
                             defaultValue={fromDateValue}
                             disabled
                         />
                     </div>
                     <div className="form-group">
                         <label>To</label>
-                        <input type="text" className="form-control" placeholder="15 May 2019"
+                        <input type="text" className="form-control"
                             defaultValue={toDateValue}
                             disabled
                         />
                     </div>
                     <div className="calender-action-btn">
-                        <Link to="/" className="cal-cancel-btn" onClick={handleResetClick}>
+                        <a  className="cal-cancel-btn" onClick={handleResetClick}>
                             <img src="assets/images/cross-grey.svg" className="" alt="" />
                             <img src="assets/images/cross-white.svg" alt="" className="active" />
-                        </Link>
-                        <Link to="/" className="cal-apply-btn active" onClick={handleRedirectClick}>
+                        </a>
+                        <Link 
+                            to={{
+                                pathname: 'events',
+                                state: {
+                                    data: {
+                                        from: from,
+                                        to: to
+                                    }
+                                }}
+                            } 
+                            className="cal-apply-btn active" 
+                            onClick={()=>{
+                                props.handleEnter(false)
+                            }}
+                        >
                             <img src="assets/images/tick-grey.svg" className="" alt="" />
                             <img src="assets/images/tick-white.svg" className="active" alt="" />
                         </Link>

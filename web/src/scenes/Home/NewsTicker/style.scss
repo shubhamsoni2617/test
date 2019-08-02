@@ -35,9 +35,9 @@ $duration: 250s;
     background-color: rgba(3, 13, 21, 0.8);
     box-sizing: content-box;
     margin: 0 50px 0 35px;
-    position: absolute;
-    bottom: -30px;
-    left: 0;
+    position: relative;
+    // bottom: -30px;
+    // left: 0;
     z-index: 1;
     &::before{
         content: "";
@@ -96,7 +96,7 @@ $duration: 250s;
             }
             div{
               display: flex;
-              margin-right: 10px;
+              margin-right: 350px;
               p{
                 margin: 0;
                 padding: 0;

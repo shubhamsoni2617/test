@@ -1,4 +1,5 @@
 import React from 'react';
+import NoImage from '../../../assets/images/Horizontal Tile.png';
 
 const CarouselSlide = (props) => {
     const { elem } = props;
@@ -12,7 +13,7 @@ const CarouselSlide = (props) => {
                 <div className="item-wrapper">
                     <div className="currently-showing-img">
                         <div className="item-img">
-                            <img src={elem.thumb_image} className="img-fluid" alt="Kurios" />
+                            <img src={elem.thumb_image ? elem.thumb_image : NoImage} className="img-fluid" alt="Kurios" />
                         </div>
                     </div>
                     <span className={`category ${genre}`}>{elem.primary_genre}</span>
