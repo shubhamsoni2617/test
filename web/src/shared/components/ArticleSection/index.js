@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
 import './style.scss';
 
+import ArrowBlue from '../../../assets/images/right-arrow-blue.svg'
+import Article1 from '../../../assets/images/article1.png'
+
+
 export default class ArticleSection extends Component {
   
   constructor(props){
@@ -19,14 +23,14 @@ export default class ArticleSection extends Component {
            <div className="section-top-wrapper">
               <h2>Articles</h2>
               <div className="carousel-dots">
-                 <a href="/">See all <img src="assets/images/right-arrow-blue.svg" className="img-fluid" alt="arrow"/></a>
+                 <a href="/">See all <img src={ArrowBlue} className="img-fluid" alt="arrow"/></a>
               </div>
            </div>
            <div className="grid-container">
               <div className="item">
                  <div className="item-wrapper">
                     <div className="item-img">
-                       <img src="assets/images/article1.png" className="img-fluid" alt="article" />
+                       <img src={Article1} className="img-fluid" alt="article" />
                     </div>
                     <h3>A Guide to SIFA 2019’s Music-centric Gems</h3>
                     <p>Artists who are ground-breaking in their fields have always inspired me... <a href="">More</a></p>
@@ -35,7 +39,7 @@ export default class ArticleSection extends Component {
               <div className="item">
                  <div className="item-wrapper">
                     <div className="item-img">
-                       <img src="assets/images/article2.png" className="img-fluid" alt="article" />
+                       <img src={Article1} className="img-fluid" alt="article" />
                     </div>
                     <h3>Best Ever Opera Lorem Ipsum Sit Dolor Amet</h3>
                     <p>Artists who are ground-breaking in their fields have always inspired me... <a href="">More</a></p>
@@ -44,7 +48,7 @@ export default class ArticleSection extends Component {
               <div className="item">
                  <div className="item-wrapper">                           
                     <div className="item-img">
-                       <img src="assets/images/article1.png" className="img-fluid" alt="article" />
+                       <img src={Article1} className="img-fluid" alt="article" />
                     </div>
                     <h3>Mauris malesuada nisi sit amet augue</h3>
                     <p>Artists who are ground-breaking in their fields have always inspired me... <a href="">More</a></p>
