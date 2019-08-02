@@ -13,6 +13,8 @@
     "react-player": "1.11.1",
     "react-router-dom": "^5.0.0",
     "react-scripts": "3.0.1",
+    "react-scroll": "^1.7.12",
+    "react-share": "^3.0.0",
     "react-slick": "^0.24.0",
     "serialize-javascript": "^1.7.0",
     "slick-carousel": "^1.8.1"
