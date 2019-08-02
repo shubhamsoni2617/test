@@ -2244,8 +2244,9 @@ section{
 			.follow-us{
 				@media (max-width: 767px){
 					display: flex;
-					flex-wrap: wrap;
-					align-items: center;
+                    flex-wrap: wrap;
+                    align-items: flex-start;
+                    flex-direction: column;
 				}
 				h3{
 					@media (max-width: 767px){
