@@ -1,5 +1,6 @@
 import Home from '../Home'
-import Event from '../Event'
+import Events from '../Events'
+import EventsDetail from '../Events/EventsDetail'
 import HomeService from '../../shared/services/HomeService'
 
 const routes =  [
@@ -9,9 +10,13 @@ const routes =  [
     component: Home,
   },
   {
-    path: '/event',
-    component: Event,
+    path: '/events',
+    component: Events,
     fetchInitialData: (path = '') => HomeService.getData()
+  },
+  {
+    path: '/events-detail',
+    component: EventsDetail,
   }
 ]
 
