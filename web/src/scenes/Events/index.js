@@ -11,7 +11,16 @@ export default class Events extends Component {
     
     constructor(props) {
         super(props);
-        this.state = { filteredPromotions: [], filteredVenues: [], eventsData: [], genre: [], venues: [], filterConfig: [], first: 1, limit: 10 };
+        this.state = { filteredGnere: [], 
+            filterSearch: '', 
+            filteredPromotions: [], 
+            filteredVenues: [], 
+            eventsData: [], 
+            genre: [], 
+            venues: [], 
+            filterConfig: [], 
+            first: 1, 
+            limit: 10 };
     }
 
     componentDidMount() {
@@ -21,7 +30,7 @@ export default class Events extends Component {
         this.getFilterConfig();
     }
 
-    getFilterConfig() {
+    getFilterConfig = () => {
         EventsService.getFilterConfig()
             .then((res) => {
                 this.setState({ filterConfig: res.data })
@@ -31,7 +40,7 @@ export default class Events extends Component {
             })
     }
 
-    getGenre() {
+    getGenre = () => {
         HomeService.getGenre()
             .then((res) => {
                 this.setState({ genre: res.data.data })
@@ -41,7 +50,7 @@ export default class Events extends Component {
             });
     }
 
-    getVenue() {
+    getVenue = () => {
         const first = 1;
         const limit = 10;
         const search = '';
@@ -54,7 +63,7 @@ export default class Events extends Component {
             });
     }
 
-    loadEvents(first = 1, limit = 2) {
+    loadEvents = (first = 1, limit = 2) => {
         let params = { first: first, limit: limit };
         EventsService.getData(params)
             .then((res) => {
@@ -74,9 +83,12 @@ export default class Events extends Component {
 
 
     handleFilters = (type, value, isChecked) => {
-        debugger
+        
         let filteredPromotions = [...this.state.filteredPromotions];
         let filteredVenues = [...this.state.filteredVenues];
+        let filterSearch = [...this.state.filterSearch];
+        let filteredGnere = [...this.state.filteredGnere];
+        
         if (type == 'promotions' && isChecked) {
             filteredPromotions.push(value);
         } else {
@@ -89,11 +101,23 @@ export default class Events extends Component {
             let index = filteredVenues.indexOf(value);
             if (index > -1) filteredVenues.splice(index, 1);
         }
-        this.setState({filteredPromotions, filteredVenues},()=>{
+        if (type == 'genre' && isChecked) {
+            filteredGnere.push(value);
+        } else {
+            let index = filteredGnere.indexOf(value);
+            if (index > -1) filteredGnere.splice(index, 1);
+        }
+        if(type == 'search'){
+            filterSearch = value;
+        }
+        this.setState({filteredPromotions, filteredVenues, filterSearch},()=>{
             console.log('this.state.filteredPromotions',this.state.filteredPromotions)
             console.log('this.state.filteredVenues',this.state.filteredVenues)
+            console.log('this.state.filterSearch',this.state.filterSearch)
         })
     }
+
+    
 
     render() {
         const { genre, venues, filterConfig } = this.state;
