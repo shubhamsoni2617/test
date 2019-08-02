@@ -2,7 +2,6 @@ import React from "react";
 import Footer from "./Footer";
 import Navigator from "./Navigator";
 import TopNav from "./TopNav";
-
 import "./style.css";
 
 export default class App extends React.Component {
@@ -43,7 +42,7 @@ export default class App extends React.Component {
           {/* Footer */}
           <Footer />
         </div>
-        
+
     );
   }
 }
