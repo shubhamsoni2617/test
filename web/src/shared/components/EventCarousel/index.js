@@ -1,54 +1,85 @@
-import React, { Component } from 'react';
+import React, { useState, useEffect } from 'react';
 import Slider from "react-slick";
-
 import './style.scss';
+import ReactPlayer from 'react-player';
 
-export default class EventCarousel extends Component {
-  baseUrl = 'https://s3.amazonaws.com/static.neostack.com/img/react-slick';
-  constructor(props){
-    super(props);
-    // this.baseUrl = 'https://s3.amazonaws.com/static.neostack.com/img/react-slick';
-    
-  }
-
-  componentDidMount () {
-    
-  } 
-
-  render() {
-    const settings = {
-      customPaging: function(i) {
-        return (
-          <a>
-            <img src={`${this.baseUrl}/abstract0${i + 1}.jpg`} />
-          </a>
-        );
-      },
-      dots: true,
-      dotsClass: "slick-dots slick-thumb",
-      infinite: true,
-      speed: 500,
-      slidesToShow: 1,
-      slidesToScroll: 1
-    };
-    return (
-      <div className="banner-carousel">
-        <Slider {...settings}>
-          <div>
-            <img src={this.baseUrl + "/abstract01.jpg"} />
-          </div>
-          <div>
-            <img src={this.baseUrl + "/abstract02.jpg"} />
-          </div>
-          <div>
-            <img src={this.baseUrl + "/abstract03.jpg"} />
-          </div>
-          <div>
-            <img src={this.baseUrl + "/abstract04.jpg"} />
-          </div>
-        </Slider>
-      </div>
-    );
-  }
+const Arrow = () => {
+  return null;
 }
 
+const EventCarousel = (props) => {
+
+  const [navLarge, setNavLarge] = useState(null);
+  const [navSmall, setNavSmall] = useState(null);
+
+  useEffect(() => {
+    setNavLarge(slider1);
+    setNavSmall(slider2);
+  }, [])
+
+  let slider1 ={};
+  let slider2 ={};
+
+  const settings1 = {
+    nextArrow: <Arrow />,
+    prevArrow: <Arrow />,
+    className: "center",
+    centerMode: true,
+  }
+
+  const settings2 = {
+    className: "center",
+    centerMode: true,
+  }
+
+  const { images } = props;
+
+  return (
+    <div>
+      <div className="banner-carousel">
+        <Slider
+          asNavFor={navSmall}
+          ref={slider => (slider1 = slider)}
+          {...settings1}
+          adaptiveHeight={true}
+        >
+          {images.map((obj, idx) => {
+            if (obj.type && obj.type.id == 1) {
+              return <div key={idx}>
+                <img src={obj.full_image} />
+              </div>
+            } else {
+              return <div key={idx}>
+                <ReactPlayer url={obj.video_url} controls={true} />
+              </div>
+            }
+          })}
+        </Slider>
+        
+        <Slider
+          asNavFor = {navLarge}
+          ref={slider => (slider2 = slider)}
+          slidesToShow={3}
+          swipeToSlide={true}
+          focusOnSelect={true}
+          {...settings2}
+        >
+          {images.map((obj, idx) => {
+            if (obj.type && obj.type.id == 1) {
+              return <div key={idx}>
+                <img src={obj.thumb_image} />
+              </div>
+            } else {
+              return <div className="videoimg" key={idx}>
+                <img src={obj.thumb_image} />
+              </div>
+            }
+          })}
+        </Slider>
+      </div>
+    </div>
+  );
+
+}
+
+export default EventCarousel;
