@@ -100,7 +100,7 @@ class MegaMenu extends Component {
                                     <h5 className="submenu-subtitle"><img src="assets/images/location.svg" className="" alt="" /> By Venue</h5>
                                 </li>
                                 <li className="seeall-veneus">
-                                    <a className="seeall-btn" href="/">See All Venues <img src="assets/images/right-arrow.svg" alt="" className="" /></a>
+                                    <a className="seeall-btn" >See All Venues <img src="assets/images/right-arrow.svg" alt="" className="" /></a>
                                 </li>
                             </ul>
                             <ul className="events-list">
@@ -143,7 +143,7 @@ class MegaMenu extends Component {
                         </div>
                     </div>
                     <div className="see-all-evevts">
-                        <a href="/" className="seeall-btn">See All Events
+                        <a href="/events" className="seeall-btn">See All Events
                         <img src="assets/images/right-arrow.svg" alt="" className="" /></a>
                     </div>
                 </div>

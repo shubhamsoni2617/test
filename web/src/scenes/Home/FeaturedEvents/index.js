@@ -233,7 +233,7 @@ const FeaturedEvents = (props) => {
                 <div className="section-top-wrapper">
                     <h2>Featured Events</h2>
                     <div className="carousel-dots">
-                        <a href="/">See all <img src="assets/images/right-arrow.svg" className="img-fluid"
+                        <a>See all <img src="assets/images/right-arrow.svg" className="img-fluid"
                             alt="arrow" /></a>
                     </div>
                 </div>

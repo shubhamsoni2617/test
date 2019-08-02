@@ -32,15 +32,15 @@ const SamplePrevArrow = (props) => {
 const Carousel = (props) => {
 
     const [width, setWidth] = useState(window.innerWidth);
-    var { imgArray, arrows } = props;
+    const { imgArray, arrows,slidesToShow, slidesToScroll } = props;
 
     const settings = {
         arrows: arrows,
         dots: true,
         infinite: false,
         speed: 500,
-        slidesToShow: 6,
-        slidesToScroll: 6,
+        slidesToShow: slidesToShow,
+        slidesToScroll: slidesToScroll,
         initialSlide: 0,
         nextArrow: <SampleNextArrow />,
         prevArrow: <SamplePrevArrow />,

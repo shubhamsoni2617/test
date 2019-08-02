@@ -84,14 +84,14 @@ const Calender = (props) => {
                 <form>
                     <div className="form-group">
                         <label>From</label>
-                        <input type="text" className="form-control" placeholder="06 May 2019"
+                        <input type="text" className="form-control"
                             defaultValue={fromDateValue}
                             disabled
                         />
                     </div>
                     <div className="form-group">
                         <label>To</label>
-                        <input type="text" className="form-control" placeholder="15 May 2019"
+                        <input type="text" className="form-control"
                             defaultValue={toDateValue}
                             disabled
                         />

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import {Link} from 'react-router-dom';
 import './style.scss';
 
 class DropDown extends Component {
@@ -39,7 +40,7 @@ class DropDown extends Component {
                     {byGenreEvent && byGenreEvent.slice(showElementsInHeader, byGenreEvent.length).map((event, index) => {
                         return (
                             <li key={event.id}>
-                                <a href="/"> {event.name}</a>
+                                <Link to="/events"> {event.name}</Link>
                             </li>
                         );
                     })}

@@ -59,9 +59,9 @@ const TopNav = (props) => {
                         </div>
                         <div className="top-header-right">
                             <ul>
-                                <li className="user-icon"><Link to="/"><ManLogo className="img-fluid" /><span></span></Link></li>
+                                <li className="user-icon"><Link><ManLogo className="img-fluid" /><span></span></Link></li>
                                 <MiniCart data={miniCartData} />
-                                <li className="ticket-withus"><Link to="/">Ticket With Us</Link></li>
+                                <li className="ticket-withus"><Link>Ticket With Us</Link></li>
                             </ul>
                         </div>
                     </div>
@@ -69,16 +69,16 @@ const TopNav = (props) => {
                         <div className="bottom-header-left">
                             <ul>
                                 <MegaMenu byGenreEvent={byGenreEvent} />
-                                <li><Link to="/">Attractions</Link></li>
-                                <li><Link to="/">Promotions</Link></li>
-                                <li><Link to="/">Explore</Link></li>
+                                <li><Link>Attractions</Link></li>
+                                <li><Link>Promotions</Link></li>
+                                <li><Link>Explore</Link></li>
                             </ul>
                         </div>
                         <div className="bottom-header-right">
                             <ul>
                                 {byGenreEvent && byGenreEvent.slice(0, showElementsInHeader).map((event, index) => {
                                     return (
-                                        <li key={event.id}><Link to="/">{event.name}</Link></li>
+                                        <li key={event.id}><Link to="/events">{event.name}</Link></li>
                                     );
                                 })
                                 }
