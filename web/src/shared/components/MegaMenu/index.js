@@ -79,7 +79,7 @@ class MegaMenu extends Component {
                                 {
                                     byGenreEvent && byGenreEvent.map((event, index) => {
                                         return (
-                                            <li key={event.id}><Link to={`/events/search?id=${event.id}`}>{event.name}</Link></li>
+                                            <li key={event.id}><Link to={`/events/search?id=${event.id}`} onClick={()=>{{this.handleEnter(false)}}}>{event.name}</Link></li>
                                         )
                                     })
                                 }
