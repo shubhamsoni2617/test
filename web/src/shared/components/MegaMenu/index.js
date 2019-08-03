@@ -16,7 +16,7 @@ class MegaMenu extends Component {
     componentDidMount() {
         const first = 0;
         const limit = 2;
-        const search = "abigo";
+        const search = "";
 
         HomeService.getVenues(first, limit, search)
             .then((res) => {
@@ -143,8 +143,8 @@ class MegaMenu extends Component {
                         </div>
                     </div>
                     <div className="see-all-evevts">
-                        <a href="/events" className="seeall-btn">See All Events
-                        <img src="assets/images/right-arrow.svg" alt="" className="" /></a>
+                        <Link to="/events" className="seeall-btn">See All Events
+                        <img src="assets/images/right-arrow.svg" alt="" className="" /></Link>
                     </div>
                 </div>
             </li>
