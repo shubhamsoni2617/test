@@ -31,8 +31,8 @@ class DropDown extends Component {
         const { isOpen } = this.state;
 
         return (
-            <li className="dropdown">
-                <a className="dropbtn" onClick={this.toggle} ref={node => { this.node = node; }}>More
+            <li className="dropdown" onClick={this.toggle} ref={node => { this.node = node; }}>
+                <a className="dropbtn">More
                     <span class="dropdown-icon">
                     </span>
                 </a>
