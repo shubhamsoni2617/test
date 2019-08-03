@@ -163,7 +163,7 @@ const TopPics = (props) => {
                                                         </div>
                                                     </div>
                                                     <h3>Kurios Cabinet of Curiosities</h3>
-                                                    <a href="/" className="item-title-overlay"><span>BUY NOW </span><img
+                                                    <a className="item-title-overlay"><span>BUY NOW </span><img
                                                         src="assets/images/next-arrow.svg" className="img-fluid" alt="buy-now" /></a>
                                                 </div>
                                             </div>
@@ -201,7 +201,7 @@ const TopPics = (props) => {
                                                         </div>
                                                     </div>
                                                     <h3>Kurios Cabinet of Curiosities</h3>
-                                                    <a href="/" className="item-title-overlay"><span>BUY NOW </span><img
+                                                    <a className="item-title-overlay"><span>BUY NOW </span><img
                                                         src="assets/images/next-arrow.svg" className="img-fluid" alt="buy-now" /></a>
                                                 </div>
                                             </div>
