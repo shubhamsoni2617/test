@@ -143,8 +143,8 @@ class MegaMenu extends Component {
                         </div>
                     </div>
                     <div className="see-all-evevts">
-                        <a href="/events" className="seeall-btn">See All Events
-                        <img src="assets/images/right-arrow.svg" alt="" className="" /></a>
+                        <Link to="/events" className="seeall-btn">See All Events
+                        <img src="assets/images/right-arrow.svg" alt="" className="" /></Link>
                     </div>
                 </div>
             </li>
