@@ -16,7 +16,7 @@ class MegaMenu extends Component {
     componentDidMount() {
         const first = 0;
         const limit = 2;
-        const search = "abigo";
+        const search = "";
 
         HomeService.getVenues(first, limit, search)
             .then((res) => {
@@ -79,7 +79,7 @@ class MegaMenu extends Component {
                                 {
                                     byGenreEvent && byGenreEvent.map((event, index) => {
                                         return (
-                                            <li key={event.id}><Link to={`/events/search?id=${event.id}`}>{event.name}</Link></li>
+                                            <li key={event.id}><Link to={`/events/search?id=${event.id}`} onClick={()=>{{this.handleEnter(false)}}}>{event.name}</Link></li>
                                         )
                                     })
                                 }
@@ -143,8 +143,8 @@ class MegaMenu extends Component {
                         </div>
                     </div>
                     <div className="see-all-evevts">
-                        <a href="/events" className="seeall-btn">See All Events
-                        <img src="assets/images/right-arrow.svg" alt="" className="" /></a>
+                        <Link to="/events" className="seeall-btn">See All Events
+                        <img src="assets/images/right-arrow.svg" alt="" className="" /></Link>
                     </div>
                 </div>
             </li>
