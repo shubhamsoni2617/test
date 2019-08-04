@@ -1,22 +1,38 @@
 import React, { Component } from 'react'
 import './style.scss';
+import defaultimg from '../../assets/images/404.png';
+import magic from '../../assets/images/cap.png';
+import CurrentlyShowing from '../Home/CurrentlyShowing/CurrentlyShowing';
 
-export default class PageNotFound extends Component {
-  
-  constructor(props){
-    super(props);
-  }
 
-  componentDidMount () {
-   
-  } 
+const PageNotFound = (props) => {
 
-  render() {
-    
-    return (
-      <div>
-         Page Not Found
+  return (
+    <div className="pagenotfound-wrapper">
+      <div className="container">
+        <div className="pagenotfound-banner">
+          <div className="pagenotfound-desc">
+            <span className="image-404">
+              <img src={defaultimg} alt="404" className="img-fluid" />
+            </span>
+            <h3>Opps! Page Not Found</h3>
+            <p>Don’t worry there are more exciting events waiting for you.</p>
+            <a href="/">Go to homepage</a>
+          </div>
+          <div className="pagenotfound-image">
+            <span className="">
+              <img src={magic} alt="" className="img-fluid" />
+            </span>
+          </div>
+        </div>
+        {/* currently showing section start  */}
+        <CurrentlyShowing />
+        {/* currently showing section end  */}
       </div>
-    )
-  }
+
+    </div>
+  )
+
 }
+
+export default PageNotFound;
