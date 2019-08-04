@@ -129,7 +129,7 @@ export default class PromotionCarousel extends Component {
           <div className="section-top-wrapper">
             <h2>Promotions <span className="promotions-animated-img"><img src="assets/images/illustration.svg" className="img-fluid" alt="promotions-image" /></span></h2>
             <div className="carousel-dots">
-              <a href="/">See all <img src="assets/images/right-arrow.svg" className="img-fluid"
+              <a>See all <img src="assets/images/right-arrow.svg" className="img-fluid"
                 alt="arrow" /></a>
             </div>
           </div>

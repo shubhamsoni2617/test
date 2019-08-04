@@ -11,6 +11,8 @@ import HotShowPopup from '../../shared/components/HotShowPopup';
 import FeaturedEvents from './FeaturedEvents';
 import TrendingNow from './TrendingNow';
 import Explore from './Explore';
+import Cookies from '../../shared/components/Cookies';
+import NewsTicker from './NewsTicker';
 
 
 export default class Home extends Component {
@@ -18,6 +20,7 @@ export default class Home extends Component {
       return (
          <div className="home-page-wrapper">
             {/* Home page Banner start */}
+            <NewsTicker />
             <HotShowPopup showPopup={true} eventCount={1} />
             <section className="banner">
                <div className="banner-carousel">
@@ -31,12 +34,12 @@ export default class Home extends Component {
                   </ul>
                   <div className="carousel-navigation">
                      <div className="left-navigation">
-                        <a href="/">
+                        <a>
                            <img src="assets/images/left-arrow-white.svg" className="img-fluid" alt="left-navigation" />
                         </a>
                      </div>
                      <div className="right-navigation">
-                        <a href="/">
+                        <a>
                            <img src="assets/images/right-arrow-white.svg" className="img-fluid" alt="right-navigation" />
                         </a>
                      </div>
@@ -44,43 +47,43 @@ export default class Home extends Component {
                </div>
                <div className="banner-thumbnail">
                   <ul>
-                     <li><a href="/"><img src="assets/images/thumbnail.png" className="img-fluid"
+                     <li><a><img src="assets/images/thumbnail.png" className="img-fluid"
                         alt="" /></a></li>
-                     <li><a href="/"><img src="assets/images/thumbnail.png" className="img-fluid"
+                     <li><a><img src="assets/images/thumbnail.png" className="img-fluid"
                         alt="" /></a></li>
-                     <li><a href="/"><img src="assets/images/thumbnail.png" className="img-fluid"
+                     <li><a><img src="assets/images/thumbnail.png" className="img-fluid"
                         alt="" /></a></li>
-                     <li><a href="/"><img src="assets/images/thumbnail.png" className="img-fluid"
+                     <li><a><img src="assets/images/thumbnail.png" className="img-fluid"
                         alt="" /></a></li>
-                     <li><a href="/"><img src="assets/images/thumbnail.png" className="img-fluid"
+                     <li><a><img src="assets/images/thumbnail.png" className="img-fluid"
                         alt="" /></a></li>
-                     <li><a href="/"><img src="assets/images/thumbnail.png" className="img-fluid"
+                     <li><a ><img src="assets/images/thumbnail.png" className="img-fluid"
                         alt="" /></a></li>
-                     <li><a href="/"><img src="assets/images/thumbnail.png" className="img-fluid"
+                     <li><a ><img src="assets/images/thumbnail.png" className="img-fluid"
                         alt="" /></a></li>
-                     <li><a href="/"><img src="assets/images/thumbnail.png" className="img-fluid"
+                     <li><a ><img src="assets/images/thumbnail.png" className="img-fluid"
                         alt="" /></a></li>
-                     <li><a href="/"><img src="assets/images/thumbnail.png" className="img-fluid"
+                     <li><a ><img src="assets/images/thumbnail.png" className="img-fluid"
                         alt="" /></a></li>
-                     <li><a href="/"><img src="assets/images/thumbnail.png" className="img-fluid"
+                     <li><a ><img src="assets/images/thumbnail.png" className="img-fluid"
                         alt="" /></a></li>
-                     <li><a href="/"><img src="assets/images/thumbnail.png" className="img-fluid"
+                     <li><a ><img src="assets/images/thumbnail.png" className="img-fluid"
                         alt="" /></a></li>
-                     <li><a href="/"><img src="assets/images/thumbnail.png" className="img-fluid"
+                     <li><a ><img src="assets/images/thumbnail.png" className="img-fluid"
                         alt="" /></a></li>
-                     <li><a href="/"><img src="assets/images/thumbnail.png" className="img-fluid"
+                     <li><a ><img src="assets/images/thumbnail.png" className="img-fluid"
                         alt="" /></a></li>
-                     <li><a href="/"><img src="assets/images/thumbnail.png" className="img-fluid"
+                     <li><a ><img src="assets/images/thumbnail.png" className="img-fluid"
                         alt="" /></a></li>
-                     <li><a href="/"><img src="assets/images/thumbnail.png" className="img-fluid"
+                     <li><a ><img src="assets/images/thumbnail.png" className="img-fluid"
                         alt="" /></a></li>
-                     <li><a href="/"><img src="assets/images/thumbnail.png" className="img-fluid"
+                     <li><a ><img src="assets/images/thumbnail.png" className="img-fluid"
                         alt="" /></a></li>
-                     <li><a href="/"><img src="assets/images/thumbnail.png" className="img-fluid"
+                     <li><a ><img src="assets/images/thumbnail.png" className="img-fluid"
                         alt="" /></a></li>
-                     <li><a href="/"><img src="assets/images/thumbnail.png" className="img-fluid"
+                     <li><a ><img src="assets/images/thumbnail.png" className="img-fluid"
                         alt="" /></a></li>
-                     <li><a href="/"><img src="assets/images/thumbnail.png" className="img-fluid"
+                     <li><a ><img src="assets/images/thumbnail.png" className="img-fluid"
                         alt="" /></a></li>
                   </ul>
                </div>
@@ -125,6 +128,10 @@ export default class Home extends Component {
 
             {/* SISTIC Moments Start  */}
             <InstagramFeed />
+            {/* SISTIC Moments End  */}
+            
+            {/* SISTIC Moments End  */}
+            <Cookies/>
             {/* SISTIC Moments End  */}
          </div>
       )

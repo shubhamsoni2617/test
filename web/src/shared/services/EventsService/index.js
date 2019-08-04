@@ -13,6 +13,10 @@ class EventsService {
 		return API.get(`/configurations/search`)
 	}
 
+	getSimilarEvents(params){
+		return API.get(`/similar-events`,{ params : params});
+	}
+
 }
 
 export default new EventsService();
