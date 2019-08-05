@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import {Link} from 'react-router-dom';
 import Carousel from '../../../shared/components/Carousel';
 import HomeService from '../../../shared/services/HomeService';
-import RightArrow from '../../../assets/images/right-arrow.svg'
+import rightArrow from '../../../assets/images/right-arrow.svg'
 
 
 const CurrentlyShowing = (props) => {
@@ -35,7 +35,7 @@ const CurrentlyShowing = (props) => {
                     <div className="section-top-wrapper">
                         <h2>Currently Showing</h2>
                         <div className="carousel-dots">
-                            <Link to="/events">See all <img src={RightArrow} className="img-fluid"
+                            <Link to="/events">See all <img src={rightArrow} className="img-fluid"
                                 alt="arrow" />&nbsp;</Link>
                         </div>
                     </div>
