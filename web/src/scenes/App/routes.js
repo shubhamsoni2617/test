@@ -10,14 +10,17 @@ const routes =  [
     component: Home,
   },
   {
+    path: '/events/:icc',
+    exact : true,
+    component: EventsDetail,
+  },
+  {
     path: '/events',
+    exact : true,
     component: Events,
     fetchInitialData: (path = '') => HomeService.getData()
   },
-  {
-    path: '/events-detail',
-    component: EventsDetail,
-  }
+
 ]
 
 export default routes
