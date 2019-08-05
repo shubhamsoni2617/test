@@ -40,7 +40,7 @@ class DropDown extends Component {
                     {byGenreEvent && byGenreEvent.slice(showElementsInHeader, byGenreEvent.length).map((event, index) => {
                         return (
                             <li key={event.id}>
-                                <Link to={ `/events/search?id=${event.id}`}> {event.name}</Link>
+                                <Link to={ `/events?c=${event.name}`}> {event.name}</Link>
                             </li>
                         );
                     })}
