@@ -34,12 +34,12 @@ export default class Home extends Component {
                   </ul>
                   <div className="carousel-navigation">
                      <div className="left-navigation">
-                        <a href="/">
+                        <a>
                            <img src="assets/images/left-arrow-white.svg" className="img-fluid" alt="left-navigation" />
                         </a>
                      </div>
                      <div className="right-navigation">
-                        <a href="/">
+                        <a>
                            <img src="assets/images/right-arrow-white.svg" className="img-fluid" alt="right-navigation" />
                         </a>
                      </div>
@@ -47,43 +47,43 @@ export default class Home extends Component {
                </div>
                <div className="banner-thumbnail">
                   <ul>
-                     <li><a href="/"><img src="assets/images/thumbnail.png" className="img-fluid"
+                     <li><a><img src="assets/images/thumbnail.png" className="img-fluid"
                         alt="" /></a></li>
-                     <li><a href="/"><img src="assets/images/thumbnail.png" className="img-fluid"
+                     <li><a><img src="assets/images/thumbnail.png" className="img-fluid"
                         alt="" /></a></li>
-                     <li><a href="/"><img src="assets/images/thumbnail.png" className="img-fluid"
+                     <li><a><img src="assets/images/thumbnail.png" className="img-fluid"
                         alt="" /></a></li>
-                     <li><a href="/"><img src="assets/images/thumbnail.png" className="img-fluid"
+                     <li><a><img src="assets/images/thumbnail.png" className="img-fluid"
                         alt="" /></a></li>
-                     <li><a href="/"><img src="assets/images/thumbnail.png" className="img-fluid"
+                     <li><a><img src="assets/images/thumbnail.png" className="img-fluid"
                         alt="" /></a></li>
-                     <li><a href="/"><img src="assets/images/thumbnail.png" className="img-fluid"
+                     <li><a ><img src="assets/images/thumbnail.png" className="img-fluid"
                         alt="" /></a></li>
-                     <li><a href="/"><img src="assets/images/thumbnail.png" className="img-fluid"
+                     <li><a ><img src="assets/images/thumbnail.png" className="img-fluid"
                         alt="" /></a></li>
-                     <li><a href="/"><img src="assets/images/thumbnail.png" className="img-fluid"
+                     <li><a ><img src="assets/images/thumbnail.png" className="img-fluid"
                         alt="" /></a></li>
-                     <li><a href="/"><img src="assets/images/thumbnail.png" className="img-fluid"
+                     <li><a ><img src="assets/images/thumbnail.png" className="img-fluid"
                         alt="" /></a></li>
-                     <li><a href="/"><img src="assets/images/thumbnail.png" className="img-fluid"
+                     <li><a ><img src="assets/images/thumbnail.png" className="img-fluid"
                         alt="" /></a></li>
-                     <li><a href="/"><img src="assets/images/thumbnail.png" className="img-fluid"
+                     <li><a ><img src="assets/images/thumbnail.png" className="img-fluid"
                         alt="" /></a></li>
-                     <li><a href="/"><img src="assets/images/thumbnail.png" className="img-fluid"
+                     <li><a ><img src="assets/images/thumbnail.png" className="img-fluid"
                         alt="" /></a></li>
-                     <li><a href="/"><img src="assets/images/thumbnail.png" className="img-fluid"
+                     <li><a ><img src="assets/images/thumbnail.png" className="img-fluid"
                         alt="" /></a></li>
-                     <li><a href="/"><img src="assets/images/thumbnail.png" className="img-fluid"
+                     <li><a ><img src="assets/images/thumbnail.png" className="img-fluid"
                         alt="" /></a></li>
-                     <li><a href="/"><img src="assets/images/thumbnail.png" className="img-fluid"
+                     <li><a ><img src="assets/images/thumbnail.png" className="img-fluid"
                         alt="" /></a></li>
-                     <li><a href="/"><img src="assets/images/thumbnail.png" className="img-fluid"
+                     <li><a ><img src="assets/images/thumbnail.png" className="img-fluid"
                         alt="" /></a></li>
-                     <li><a href="/"><img src="assets/images/thumbnail.png" className="img-fluid"
+                     <li><a ><img src="assets/images/thumbnail.png" className="img-fluid"
                         alt="" /></a></li>
-                     <li><a href="/"><img src="assets/images/thumbnail.png" className="img-fluid"
+                     <li><a ><img src="assets/images/thumbnail.png" className="img-fluid"
                         alt="" /></a></li>
-                     <li><a href="/"><img src="assets/images/thumbnail.png" className="img-fluid"
+                     <li><a ><img src="assets/images/thumbnail.png" className="img-fluid"
                         alt="" /></a></li>
                   </ul>
                </div>

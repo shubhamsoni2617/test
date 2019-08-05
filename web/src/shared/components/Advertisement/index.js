@@ -1,21 +1,26 @@
 import React, { useState } from 'react';
 import './style.scss';
-
+import closeAd from '../../../assets/images/close-ad.svg';
 const Advertisement = (props) => {
 
     const [advertismentDisplay, setAdvertismentDisplay] = useState(true);
 
     return (
-        <div className={advertismentDisplay ? "container-fluid" : "hide"}>
-            <img className="advertisment-image" src="assets/images/header-banner.png" alt="" />
+        
+        <div className="top-ads">
+            <div className={advertismentDisplay ? "container-fluid" : "hide"}>
+            <div className="ads-image">
+                <img src="assets/images/header-banner.png" alt="advertisment-image" className="img-fluid" />
+            </div>
             <button
                 type="button"
-                className="close"
+                className="ads-close"
                 aria-label="Close"
                 onClick={() => setAdvertismentDisplay(false)}
             >
-                <span aria-hidden="true">&times;</span>
+                <img src={closeAd} className="img-fluid" alt="close" />
             </button>
+            </div>
         </div>
     );
 }

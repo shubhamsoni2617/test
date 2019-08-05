@@ -1,6 +1,30 @@
+
+// Top-advertisment style start
+.top-ads {
+	background-color: #121212;
+	position: relative;
+	.ads-image {
+		text-align: center;
+		padding: 5px;
+		display: inline-block;
+		width: 100%;
+	}
+	.ads-close {
+		position: absolute;
+		right: 39px;
+        top: 18px;
+        background: transparent;
+        border: none;
+        padding: 0;
+        line-height: inherit;
+        &::after{
+            display: none;
+        }
+        img{
+            width: 14px;
+        }
+	}
+}
 .hide{
     display:none
-}
-.advertisment-image{
-    max-width: 100%;
 }
