@@ -2,11 +2,13 @@ import React, { useState, useEffect } from 'react';
 import {Link} from 'react-router-dom';
 import Carousel from '../../../shared/components/Carousel';
 import HomeService from '../../../shared/services/HomeService';
+import rightArrow from '../../../assets/images/right-arrow.svg'
 
 
 const CurrentlyShowing = (props) => {
 
     const [currentlyShowing, setCurrentlyShowing] = useState([]);
+    const [error, setError] = useState(false);
 
     useEffect(() => {
         const params = {
@@ -19,10 +21,12 @@ const CurrentlyShowing = (props) => {
                 setCurrentlyShowing(res.data.data)
             })
             .catch((err) => {
-                console.log(err)
+                setError(true);
             })
     }, [])
-
+    if(error){
+        return null;
+    }
     return (
         <div>
             {/* currently showing section start  */}
@@ -31,7 +35,7 @@ const CurrentlyShowing = (props) => {
                     <div className="section-top-wrapper">
                         <h2>Currently Showing</h2>
                         <div className="carousel-dots">
-                            <Link to="/events">See all <img src="assets/images/right-arrow.svg" className="img-fluid"
+                            <Link to="/events">See all <img src={rightArrow} className="img-fluid"
                                 alt="arrow" />&nbsp;</Link>
                         </div>
                     </div>
