@@ -6,7 +6,6 @@ import MegaMenu from '../../../shared/components/MegaMenu';
 import DropDown from '../../../shared/components/DropDown';
 import HomePageSearch from '../../Home/HomePageSearch';
 import MiniCart from '../../Home/MiniCart';
-import Advertisement from '../../../shared/components/Advertisement';
 import HomeService from '../../../shared/services/HomeService';
 import { ReactComponent as ManLogo } from '../../../assets/images/man.svg';
 import AndroidLogo from '../../../assets/images/android.png';
@@ -50,7 +49,6 @@ const TopNav = (props) => {
         <header className="header">
             <div className="container-fluid">
                 <div className="row">
-                    <Advertisement />
                     <div className="top-header">
                         <div className="top-header-left">
                             <div className="hamburger-icon" onClick={() => { handleNavigationOpen() }}><span></span></div>
@@ -80,7 +78,7 @@ const TopNav = (props) => {
                             <ul>
                                 {byGenreEvent && byGenreEvent.slice(0, showElementsInHeader).map((event, index) => {
                                     return (
-                                        <li key={event.id}><Link to={`/events/search?id=${event.id}`}>{event.name}</Link></li>
+                                        <li key={event.id}><Link to={`/events?c=${event.name}`}>{event.name}</Link></li>
                                     );
                                 })
                                 }

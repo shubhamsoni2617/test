@@ -621,3 +621,132 @@ button,
         margin-left: -10px;
     }
 }
+// Calender CSS 
+.calender {
+    .month-cal{
+        .DayPicker {
+            width: calc(100% + 10px);
+            margin: 0 -5px;
+            .DayPicker-wrapper{
+                padding: 0;
+                .DayPicker-NavBar{
+                    position: absolute;
+                    right: 3px;
+                    top: -46px;
+                    .DayPicker-NavButton{
+                        right: 0;
+                    }
+                    .DayPicker-NavButton--prev{
+                        background: rgba(247,248,252,1) url(../../assets/images/right-arrow.svg) 6px 2px no-repeat;
+                        transform: rotate(180deg);
+                        border-radius: 50%;
+                        right: 5px;
+                        outline: none;
+                    }
+                    .DayPicker-NavButton--next{
+                        background: rgba(247,248,252,1) url(../../assets/images/right-arrow.svg) 6px 3px no-repeat;
+                        border-radius: 50%;
+                        outline: none;
+                    }
+                }
+                .DayPicker-Months{
+                    .DayPicker-Month{
+                        width: 100%;
+                        margin: 0;
+                        display: block;
+                        .DayPicker-Body{
+                            display: block;
+                        }
+                        .DayPicker-Caption{
+                            position: absolute;
+                            right: 45px;
+                            top: -28px;
+                            color: #343434;
+                            font-size: 14px;
+                            div{
+                                font-size: 14px;
+                                font-weight: 400;
+                            }
+                        }
+                        .DayPicker-Weekdays{
+                            display: flex;
+                            margin: 0;
+                            .DayPicker-WeekdaysRow{
+                                display: flex;
+                                justify-content: space-between;
+                                padding: 0;
+                                width: 100%;
+                            }
+                            .DayPicker-Weekday{
+                                abbr{
+                                    color: rgba(52,72,94,0.54);
+                                    font-size: 11px;
+                                    font-weight: 500;
+                                }
+                            }
+                        }
+                        .DayPicker-Week{
+                            display: flex;
+                            justify-content: space-between;
+                            .DayPicker-Day{
+                                font-size: 10px;
+                                display: flex;
+                                padding: 0;
+                                border-radius: 50%;
+                                justify-content: center;
+                                cursor: pointer;
+                                width: 26px;
+                                height: 26px;
+                                margin: 2px 0;
+                                color: #7C86A2;
+                                align-items: center;
+                                line-height: initial;
+                                &.DayPicker-Day--selected{
+                                    background: #0098FF;
+                                    font-weight: 500;
+                                    color: #FFF;
+                                    &:not(.DayPicker-Day--start):not(.DayPicker-Day--end):not(.DayPicker-Day--outside){
+                                        color: #7C86A2;
+                                    }
+                                }
+                            }
+                            .DayPicker-Day--today{
+                                color: #0098FF !important;
+                            }
+                        }
+                    }
+                }
+            }
+        }  
+    }
+	.cal-month-name {
+		margin-left: auto;
+		display: flex;
+		align-items: center;
+		span {
+			color: #343434;
+			font-family: 'Rubik', sans-serif;
+			font-size: 14px;
+			line-height: 17px;
+			font-weight: normal;
+		}
+		.prev-month,
+		.next-month {
+			height: 15px;
+			width: 15px;
+			border-radius: 50%;
+			background-color: #F7F8FC;
+			text-align: center;
+			line-height: 12px;
+			img {
+				max-width: 6px;
+			}
+		}
+		.prev-month {
+			margin: 0px 8px 0px 6px;
+			img {
+				transform: rotate(180deg);
+			}
+		}
+	}
+}

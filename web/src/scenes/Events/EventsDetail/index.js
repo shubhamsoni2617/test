@@ -13,6 +13,7 @@ import faceImg from '../../../assets/images/face.svg';
 import shareIcon from '../../../assets/images/share-icon.svg';
 import Info from '../../../assets/images/info-sign.svg';
 import SeatMap from './SeatMap';
+import SeatMap from '../../../shared/components/SeatMap';
 import SocialShare from '../../../shared/components/SocialShare';
 import InfoPopup from '../../../shared/components/InfoPoup';
 import PopUpWithClose from '../../../shared/components/PopUpWithClose';
@@ -22,7 +23,7 @@ export default class EventsDetail extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            code: 'HOLLY999',
+            code: props.match.params.icc,
             detailData: {},
             error: false,
             showBuyTicket: false,
@@ -41,8 +42,8 @@ export default class EventsDetail extends Component {
     }
 
     componentDidMount() {
-        let params = { code: this.state.code, client: Constants.CLIENT }
-        EventsService.getEventDetails(params)
+        const payload = { code: this.state.code, client: Constants.CLIENT }
+        EventsService.getEventDetails(payload)
             .then((res) => {
                 this.setState({ detailData: res.data })
             })
@@ -52,7 +53,8 @@ export default class EventsDetail extends Component {
                 })
                 console.log(err)
             })
-        EventsService.getSimilarEvents(params)
+
+        EventsService.getSimilarEvents(payload)
             .then((res) => {
                 this.setState({ similarEventsData: res.data.data })
             })
@@ -78,8 +80,6 @@ export default class EventsDetail extends Component {
         if (! this.state.showSeatMap) {
             this.setState({
                 showSeatMap: true
-            }, () => {
-                document.addEventListener('click', this.closePopup);
             })
         }
 
@@ -87,7 +87,6 @@ export default class EventsDetail extends Component {
 
     closePopup = () => {
         this.setState({
-            showSeatMap: false,
             showSocialShare: false,
             showInfo: false,
         }, () => {
@@ -117,6 +116,14 @@ export default class EventsDetail extends Component {
         }
     }
 
+    openNotice = ()=>{
+      if (!this.state.showNotice) {
+        this.setState({
+            showNotice: true
+        })
+    }
+    }
+
     changeLang = (lang) => {
         this.setState({
             synopsisLang: lang
@@ -128,6 +135,11 @@ export default class EventsDetail extends Component {
             this.setState({
                 showNotice: false
             })
+        }
+        if(this.state.showSeatMap){
+          this.setState({
+            showSeatMap : false
+        })
         }
     }
 
@@ -173,7 +185,7 @@ export default class EventsDetail extends Component {
                         }
                         {detailData.is_available_for_booking == 1 &&
                             <div>
-                                {detailData.pop_up_message && showNotice && <PopUpWithClose content={detailData.pop_up_message.description} title={detailData.pop_up_message.title} handleClose={this.handleClose}  /> } 
+                                {detailData.pop_up_message && showNotice && <PopUpWithClose content={detailData.pop_up_message.description} title={detailData.pop_up_message.title} handleClose={this.handleClose}  /> }
                                 <section className="event-detail-banner">
                                     {detailData.images && detailData.images.length > 0 &&
                                             <EventCarousel images={detailData.images} />
@@ -188,7 +200,7 @@ export default class EventsDetail extends Component {
                                                     <li>Home</li>
                                                     {detailData.genres && detailData.genres.map((obj, index) => {
                                                         if(obj.is_primary == 1){
-                                                          return  <li key={index}>{obj.name}</li>  
+                                                          return  <li key={index}>{obj.name}</li>
                                                         }
                                                     })}
                                                 </ul>
@@ -201,8 +213,8 @@ export default class EventsDetail extends Component {
                                                 </ul>
                                             }
                                             <h2>{detailData.title}</h2>
-                                            <span className="info">
-                                                <img src={Info} className="" alt="" />
+                                            <span className="info" onClick={() => this.openNotice()}>
+                                                <img src={shareIcon} className="" alt="" />
                                             </span>
                                             <span className="share" onClick={() => this.openSocialShare()}>
                                                 <img src={shareIcon} className="" alt="" />
@@ -275,7 +287,7 @@ export default class EventsDetail extends Component {
                                     <div className="event-detail-sidebar">
                                         <a onClick={() => this.openSeatMap()} className="seat-map"><img src={SeatMapImg} /> Seat Map</a>
                                         {showSeatMap && detailData.seating_plan && detailData.seating_plan.length > 0 &&
-                                            <SeatMap imgArr={detailData.seating_plan} />
+                                            <SeatMap imgArr={detailData.seating_plan} heading ='Seat Map' handleClose={this.handleClose}/>
                                         }
                                         {
                                             detailData.buy_package_url &&
@@ -287,12 +299,12 @@ export default class EventsDetail extends Component {
                                                 uuid='pricedetail'
                                                 desc={detailData.ticket_pricing} openInfoPopup={this.openInfoPopup} showInfo={showInfo}
                                             />
-                                            
+
                                         }
                                         
                                         {
                                             detailData.promotions &&
-                                            detailData.promotions.length > 0 && 
+                                            detailData.promotions.length > 0 &&
                                                <AccordionSection title='Promotion'
                                                     children={detailData.promotions}
                                                 />
