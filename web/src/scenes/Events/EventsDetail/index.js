@@ -156,7 +156,7 @@ export default class EventsDetail extends Component {
         return (
             <div className="event-detail-wrapper">
                 {detailData &&
-                    < div >
+                    <div>
                         {detailData.is_available_for_booking == 0 &&
                             <div className="shows-over-banner">
                                 <div className="shows-over">
@@ -202,6 +202,9 @@ export default class EventsDetail extends Component {
                                                 </ul>
                                             }
                                             <h2>{detailData.title}</h2>
+                                            <span className="info">
+                                                <img src={shareIcon} className="" alt="" />
+                                            </span>
                                             <span className="share" onClick={() => this.openSocialShare()}>
                                                 <img src={shareIcon} className="" alt="" />
                                             </span>
