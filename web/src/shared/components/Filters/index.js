@@ -65,16 +65,22 @@ export default class Filters extends Component {
     // Text Search
     textFilter = (e) => {
         this.setState({ search: e.target.value });
-        this.props.handleFilters('search',this.state.search);
+        this.props.handleFilters('search', this.state.search);
     }
 
     //Genres 
     checkUncheckAllGenre = (status) => {
         let genreData = this.state.genreData;
+        let genreIds = [];
         genreData.map((genre) => {
             genre.isChecked = status;
+            genreIds.push(genre.id)
         })
         this.setState({ genreData: genreData });
+        if (!status) {
+            genreIds = [];
+        }
+        this.props.handleFilters('genre-check-uncheck', genreIds)
     }
 
     showMoreGenre = () => {
@@ -85,6 +91,7 @@ export default class Filters extends Component {
         let genreData = this.state.genreData
         genreData[key].isChecked = e.target.checked;
         this.setState({ genreData: genreData })
+        this.props.handleFilters('genre', genreData[key].id, e.target.checked)
     }
 
     // Promotions
@@ -92,14 +99,45 @@ export default class Filters extends Component {
         let promotionsData = this.state.promotionsData
         promotionsData[key].isChecked = e.target.checked;
         this.setState({ promotionsData: promotionsData })
+        this.props.handleFilters('promotions', promotionsData[key].id, e.target.checked)
     }
 
     checkUncheckAllPromotions = (status) => {
         let promotionsData = this.state.promotionsData;
+        let promotionsIds = [];
         promotionsData.map((promotion) => {
             promotion.isChecked = status;
+            promotionsIds.push(promotion.id);
         })
         this.setState({ promotionsData });
+        if (!status) {
+            promotionsIds = [];
+        }
+        this.props.handleFilters('promotions-check-uncheck', promotionsIds, status)
+    }
+
+    // Venues
+    checkUncheckAllVenues = (status) => {
+        let venuesData = this.state.venuesData;
+        let venuesIds = [];
+        venuesData.map((venue, key) => {
+            if (key < 5) {
+                venue.isChecked = status;
+                venuesIds.push(venue.id);
+            }
+        })
+        this.setState({ venuesData });
+        if (!status) {
+            venuesIds = [];
+        }
+        this.props.handleFilters('venues-check-uncheck', venuesIds, status)
+    }
+
+    checkUncheckVenues = (e, key) => {
+        let venuesData = this.state.venuesData
+        venuesData[key].isChecked = e.target.checked;
+        this.setState({ venuesData: venuesData })
+        this.props.handleFilters('venues', venuesData[key].id, e.target.checked)
     }
 
     // Clear calender on clear
@@ -110,8 +148,9 @@ export default class Filters extends Component {
     // Clear Price range on clear
     clearPriceRange = (priceConfig) => {
         let handleFilters = this.props.handleFilters;
-        this.setState({ priceRangeValue: { min: priceConfig.min_price, max: priceConfig.max_price } });
-        handleFilters('price-range', this.state.priceRangeValue, '')
+        this.setState({ priceRangeValue: { min: priceConfig.min_price, max: priceConfig.max_price } }, () => {
+            this.props.handleFilters('price-range', this.state.priceRangeValue, '');
+        });
     }
 
     // Set Price range on slide
@@ -134,31 +173,16 @@ export default class Filters extends Component {
     // Date Range methods
     handleFromChange = (from) => {
         this.setState({ from });
-        this.props.handleFilters('date-range', {from: moment(this.state.from).format('DD-MM-YYYY'), to: moment(this.state.to).format('DD-MM-YYYY')});
+        this.props.handleFilters('date-range', { from: moment(this.state.from).format('DD-MM-YYYY'), to: moment(this.state.to).format('DD-MM-YYYY') });
     }
 
     handleToChange = (to) => {
         this.setState({ to }, this.showFromMonth);
-        this.props.handleFilters('date-range', {from: moment(this.state.from).format('DD-MM-YYYY'), to: moment(this.state.to).format('DD-MM-YYYY')});
+        this.props.handleFilters('date-range', { from: moment(this.state.from).format('DD-MM-YYYY'), to: moment(this.state.to).format('DD-MM-YYYY') });
     }
 
     setOpenVenuePanel = (status) => {
         this.setState({ venueFilterPanelDisplay: status })
-    }
-
-    checkUncheckAllVenues = (status) => {
-        let venuesData = this.state.venuesData;
-        venuesData.map((venue) => {
-            venue.isChecked = status;
-        })
-        this.setState({ venuesData });
-    }
-
-    checkUncheckVenues = (e, key) => {
-        debugger
-        let venuesData = this.state.venuesData
-        venuesData[key].isChecked = e.target.checked;
-        this.setState({ venuesData: venuesData })
     }
 
     render() {

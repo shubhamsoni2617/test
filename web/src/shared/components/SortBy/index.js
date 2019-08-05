@@ -24,7 +24,7 @@ export default class SortBy extends Component {
             document.removeEventListener('click', this.closeSortMenu);
         });
         let handleFilters = this.props.handleFilters;
-        handleFilters('sort', sortBy, order);
+        handleFilters(sortBy, order);
     }
 
     showSortMenu = () => {
@@ -54,8 +54,8 @@ export default class SortBy extends Component {
                     {this.state.showSortMenu
                         ? (
                             <ul>
-                                <li onClick={() => this.setSortFilter('A to Z', '', 'ASC')}>Events - A to Z</li>
-                                <li onClick={() => this.setSortFilter('Z to A', '', 'DESC')}>Events - Z to A</li>
+                                <li onClick={() => this.setSortFilter('A to Z', 'sort', 'ASC')}>Events - A to Z</li>
+                                <li onClick={() => this.setSortFilter('Z to A', 'sort', 'DESC')}>Events - Z to A</li>
                                 <li onClick={() => this.setSortFilter('Price Low to High', 'price', 'ASC')}>Price Low to High</li>
                                 <li onClick={() => this.setSortFilter('Price High to Low', 'price', 'DESC')}>Price High to Low</li>
                                 <li onClick={() => this.setSortFilter('Date', 'date', '')}>Date</li>
