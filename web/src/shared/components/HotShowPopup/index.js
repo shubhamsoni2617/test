@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './style.scss';
 import HomeService from '../../services/HomeService';
-import nextarrow from '../../../assets/images/next-arrow.svg';
+import nextarrow from '../../../assets/images/next-arrow-white.svg';
 import ReactPlayer from 'react-player';
 
 const HotShowPopup = () => {
@@ -41,7 +41,7 @@ const HotShowPopup = () => {
                         <span>We are anticipating very high demand for the following show(s).</span>
                     </div>
                     <div className="hotshow-topbar-right">
-                        <span>Continue to SISTIC <img src={nextarrow} alt="" onClick={() => closePopup()} /></span>
+                        <span onClick={() => closePopup()}>Continue to SISTIC <img src={nextarrow} alt="" /></span>
                     </div>
                 </div>
 
