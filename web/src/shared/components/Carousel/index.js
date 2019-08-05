@@ -52,7 +52,7 @@ const Carousel = (props) => {
         customPaging: (i) => {
             return (
                 <div className="dots-group">
-                    <span className="active"><a href="/"></a></span>
+                    <span><a href="/"></a></span>
                 </div>
             );
         },

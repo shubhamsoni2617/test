@@ -98,11 +98,73 @@ nav {
 	}
 }
 
+// Common Heading 
+h2 {
+    font-size: 30px;
+    line-height: 37px;
+    font-weight: 600;
+    color: #343434;
+    font-family: 'Montserrat', sans-serif;
+    margin: 0px;
+    padding-bottom: 18px;
+}
+
+// Modal Design 
+.modal{
+    display: block;
+    opacity: 1;
+    background: rgba(0, 0, 0, 0.7);
+    .modal-dialog {
+        position: relative;
+        pointer-events: none;
+        margin: 1.75rem auto;
+        border-radius: 0;
+        .modal-content{
+            border-radius: 0;
+            .modal-header{
+                border-radius: 0;
+                border-color: #E8E8E8;
+                h5{
+                    font-size: 22px;
+                    color: #343434;
+                    font-family: 'Rubik', sans-serif;
+                    font-weight: 500;
+                }
+                .close{
+                    opacity: 1;
+                    outline: none;
+                    img{
+                        width: 16px;
+                    }
+                }
+            }
+            .modal-body {
+                border-radius: 0;
+            }
+        }
+        
+    }
+    .modal-dialog-scrollable {
+        -ms-flex-direction: column;
+        flex-direction: column;
+        -ms-flex-pack: center;
+        justify-content: center;
+        height: calc(100% - 2.5rem);
+        .modal-content {
+            max-height: calc(100vh - 1rem);
+            overflow: hidden;
+            .modal-body {
+                overflow-y: auto;
+            }
+        }
+    }
+}
+
 // Share Icon
-.share {
+.share, .info {
 	position: absolute;
-	right: 20px;
-	top: 15px;
+	right: 0px;
+	top: -10px;
 	border-radius: 50%;
 	padding: 0;
 	height: 28.27px;
@@ -207,9 +269,10 @@ button,
 			font-weight: 600;
 		}
 		img {
-			padding-bottom: 5px;
+			padding-bottom: 2px;
 			margin-left: 2px;
-			transition: 0.3s transform;
+            transition: 0.3s transform;
+            width: 8px;
 			@media (max-width: 767px) {
 				margin-left: 1px;
 				padding-bottom: 1px;

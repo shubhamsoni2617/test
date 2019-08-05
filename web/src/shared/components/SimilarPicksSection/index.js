@@ -22,11 +22,6 @@ export default class SimilarPicksSection extends Component {
               <div className="carousel-dots">
                  <a href="/">See all <img src={ArrowBlue} className="img-fluid"
                     alt="arrow" /></a>
-                 <div className="dots-group">
-                    <span className="active"><a href="/"></a></span>
-                    <span><a href="/"></a></span>
-                    <span><a href="/"></a></span>
-                 </div>
               </div>
            </div>
             <Carousel imgArray={data} arrows={true} slidesToShow={5} slidesToScroll={5} />
