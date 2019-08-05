@@ -114,6 +114,7 @@ h2 {
     display: block;
     opacity: 1;
     background: rgba(0, 0, 0, 0.7);
+    z-index: 101;
     .modal-dialog {
         position: relative;
         pointer-events: none;
@@ -129,6 +130,9 @@ h2 {
                     color: #343434;
                     font-family: 'Rubik', sans-serif;
                     font-weight: 500;
+                }
+                &.border-n{
+                    border: none;
                 }
                 .close{
                     opacity: 1;

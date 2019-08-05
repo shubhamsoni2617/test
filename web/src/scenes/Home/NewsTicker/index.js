@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import closeNews from '../../../assets/images/close-ad.svg';
 import './style.scss';
 import HomeService from '../../../shared/services/HomeService';
+import popupClose from '../../../assets/images/cross.svg';
 
 const NewsTicker = (props) => {
 
@@ -30,33 +31,44 @@ const NewsTicker = (props) => {
     }
 
     return (
-        <div className={status === "open" && window.location.pathname === "/" ? "ticker-wrap" : "hide"}>
-            <div className="ticker-container">
-                <div className="ticker">
-                    {newsTicker.map((content, index) => {
-                        let string = content.description
-                        let stringLength = 180;
-                        let trimmedString = string.substring(0, stringLength);
-                        return (
-                            <div
-                                key={content.title}
-                                dangerouslySetInnerHTML={{ __html: trimmedString }}
-                                onClick={() => { handleOnclick(content.description) }}
-                            ></div>
-                        );
-                    })
-                    }
+        <div>
+            <div className={status === "open" && window.location.pathname === "/" ? "ticker-wrap" : "hide"}>
+                <div className="ticker-container">
+                    <div className="ticker">
+                        {newsTicker.map((content, index) => {
+                            let string = content.description
+                            let stringLength = 180;
+                            let trimmedString = string.substring(0, stringLength);
+                            return (
+                                <div
+                                    key={content.title}
+                                    dangerouslySetInnerHTML={{ __html: trimmedString }}
+                                    onClick={() => { handleOnclick(content.description) }}
+                                ></div>
+                            );
+                        })
+                        }
+                    </div>
                 </div>
+                <span className="close-ticker" onClick={() => setStatus("close")}><img src={closeNews} alt="Close" /></span>
             </div>
-            <span className="close-ticker" onClick={() => setStatus("close")}><img src={closeNews} alt="Close" /></span>
-            <div style={{ display: show ? "block" : "none" }}>
-                <div className="popup-overlay"></div>
-                <div className="model-content">
-                    <span onClick={() => { setShow(false) }}>X</span>
-                    <div dangerouslySetInnerHTML={{ __html: des }}></div>
+            <div className="modal" style={{ display: show ? "block" : "none" }}>
+            <div className="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-lg ">
+                <div className="modal-content">
+                    <div className="modal-header border-n">
+                        <button type="button" className="close" onClick={() => { setShow(false) }}>
+                            <span aria-hidden="true"><img src={popupClose} alt="Close Popup" /></span>
+                        </button>
+                    </div>
+                    <div className="modal-body">
+                        <div className="notice">
+                            <div dangerouslySetInnerHTML={{ __html: des }}></div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
+    </div>
     );
 }
 

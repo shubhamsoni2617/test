@@ -475,6 +475,11 @@
                         padding-right: 14px;
                     }
                 }
+                &:hover{
+                    .dropdown-icon {
+                        background: url(../../assets/images/more-arrow-white-blue.svg) no-repeat;
+                    } 
+                }
                 .dropdown-content{
                     right: 0;
                     background: #FFF;
@@ -492,11 +497,16 @@
                         margin-left: -10px;
                     }
                     li{
+                        padding: 0;
+                        display: block;
                         a{
                             color: #333;
                             font-weight: 400;
+                            padding: 7px 15px;
+                            display: block;
                             &:hover{
                                 color: #0077C8;
+                                background: rgba(179, 209, 231, 0.17);
                             }
                         }
                     }
