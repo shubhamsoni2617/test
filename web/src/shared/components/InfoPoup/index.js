@@ -3,7 +3,7 @@ import React from 'react';
 
 const InfoPopup = (props) => {
     return (
-        <div>{props.content}</div>
+        <div className="info-popover">{props.content}</div>
     )
 } 
 
