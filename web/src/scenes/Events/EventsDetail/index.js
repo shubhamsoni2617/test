@@ -12,7 +12,6 @@ import SeatMapImg from '../../../assets/images/seatmap.svg';
 import faceImg from '../../../assets/images/face.svg';
 import shareIcon from '../../../assets/images/share-icon.svg';
 import Info from '../../../assets/images/info-sign.svg';
-import SeatMap from './SeatMap';
 import SeatMap from '../../../shared/components/SeatMap';
 import SocialShare from '../../../shared/components/SocialShare';
 import InfoPopup from '../../../shared/components/InfoPoup';
@@ -146,7 +145,7 @@ export default class EventsDetail extends Component {
     render() {
         const { detailData, showBuyTicket, getSynopsisData, showSeatMap, similarEventsData,
             showSocialShare, error, showInfo,showNotice } = this.state;
-       
+
         if(error ){
             return null;
         }
@@ -301,7 +300,7 @@ export default class EventsDetail extends Component {
                                             />
 
                                         }
-                                        
+
                                         {
                                             detailData.promotions &&
                                             detailData.promotions.length > 0 &&
