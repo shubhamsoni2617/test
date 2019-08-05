@@ -2,7 +2,8 @@
 // Top-advertisment style start
 .top-ads {
 	background-color: #121212;
-	position: relative;
+    position: relative;
+    z-index: 1;
 	.ads-image {
 		text-align: center;
 		padding: 5px;
