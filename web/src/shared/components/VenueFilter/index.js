@@ -11,35 +11,24 @@ export default class VenueFilter extends Component {
       super(props);
       this.state = {
          search: '',
-         venuesData: this.props.venueData,
-         openVenuePanel: false
+         display: this.props.venueFilterPanelDisplay ? 'block' : 'none',
+         venuesData: this.props.venueData
       }
+
    }
 
    componentDidMount() {
-      this.applyIsChecked();
    }
 
-   applyIsChecked = () => {
-      this.state.venuesData.map((venue) => {
-          venue.isChecked = false;
-      })
-  }
+   componentWillReceiveProps(props) {
+      this.setState({ display: props.venueFilterPanelDisplay ? 'block' : 'none' });
+   }
 
-   checkUncheckAllVenues = (status) => {
-      let venuesData = this.state.venuesData; 
-      venuesData.map((venue) => {
-         venue.isChecked = status;
-      })
-      this.setState((venuesData));
-  }
-
-   setOpenVenuePanel = (status) => {
-      this.setState({ openVenuePanel: status })
+   closeVenuePopup = () => {
+      this.setState({ display: 'none' });
    }
 
    sortAndGroup = (venues) => {
-      debugger
       this.groupedCollection = {};
       for (let i = 0; i < venues.length; i++) {//loop throug collection         
          let firstLetter = venues[i].name.charAt(0);
@@ -108,68 +97,42 @@ export default class VenueFilter extends Component {
 
    // Return Jsx
    render() {
-      // Filtered venue
-      const { venuesData, search, openVenuePanel } = this.state
+      const { venuesData, search, display } = this.state;
+      const { setOpenVenuePanel } = this.props;
       let filteredVenue = venuesData.length && venuesData.filter((venues) => {
          return venues.name.toLowerCase().indexOf(search) !== -1;
       })
       this.sortAndGroup(filteredVenue);
 
       return (
-         <div>
-            <div className="filter-grid-heading">
-               <h3>Venue</h3>
-               <ul>
-                  <li className="">
-                     <a onClick={() => this.checkUncheckAllVenues(true)}>Select All</a>
-                  </li>
-                  <li className="active">
-                     <a onClick={() => this.checkUncheckAllVenues(false)} >Clear</a>
-                  </li>
-               </ul>
-            </div>
-            <div className="filters-panel">
-               <ul>
-                  {venuesData && venuesData.slice(this.venueShowLimit).map((venue) => {
-                     return <li>
-                        <input checked={venue.isChecked} className="styled-checkbox" type="checkbox" id={venue.id} value="" />
-                        <label for={venue.id}>
-                           {venue.name}
-                        </label>
-                     </li>
-                  })}
-               </ul>
-               <a onClick={() => this.setOpenVenuePanel(true)} className="view-all-filters">
-                  + {venuesData.length - this.venueShowLimit} More
-                     </a>
-               <div className="filter-directory-panel" style={{ display: openVenuePanel ? 'block' : 'none' }}>
-                  <div className="filter-directory-titlebar">
-                     <div className="filter-directory-heading">
-                        <h3>Venue</h3>
-                        <span className="filter-directory-close">
-                           <img onClick={() => this.setOpenVenuePanel(false)} src={CloseIcon} alt="Close" />
-                        </span>
-                     </div>
-                     <div className="filter-directory-indices-list">
-                        <input type="text" value={search} onChange={(event) => this.updateSearch(event)} placeholder="Search brand" className="filter-directory-search-input" />
-                        <ul className="filter-directory-indices">
-                           {
-                              this.prepareAlphabets().map((alphabets) => {
-                                 return alphabets
-                              })
-                           }
-                        </ul>
-                     </div>
+         <div className="filters-panel">
+            <div className="filter-directory-panel" style={{ display: display }}>
+               <div className="filter-directory-titlebar">
+                  <div className="filter-directory-heading">
+                     <h3>Venue</h3>
+                     <span className="filter-directory-close">
+                        <img onClick={()=>setOpenVenuePanel(false)} src={CloseIcon} alt="Close" />
+                     </span>
                   </div>
-                  <div>
-                     <ul className="filter-directory-list">
+                  <div className="filter-directory-indices-list">
+                     <input type="text" value={search} onChange={(event) => this.updateSearch(event)} placeholder="Search brand" className="filter-directory-search-input" />
+                     <ul className="filter-directory-indices">
                         {
-                           this.groupeFilter(this.groupedCollection).map((lidata) => {
-                              return lidata;
+                           this.prepareAlphabets().map((alphabets) => {
+                              return alphabets
                            })
                         }
                      </ul>
                   </div>
+               </div>
+               <div>
+                  <ul className="filter-directory-list">
+                     {
+                        this.groupeFilter(this.groupedCollection).map((lidata) => {
+                           return lidata;
+                        })
+                     }
+                  </ul>
                </div>
             </div>
          </div>

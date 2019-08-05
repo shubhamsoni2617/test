@@ -5,7 +5,7 @@ import VenueFilter from '../VenueFilter';
 import moment from 'moment';
 import Helmet from 'react-helmet';
 import DayPickerInput from 'react-day-picker/DayPickerInput';
-import MomentLocaleUtils, { formatDate, parseDate } from 'react-day-picker/moment';
+import { formatDate, parseDate } from 'react-day-picker/moment';
 import 'react-day-picker/lib/style.css';
 import "react-tabs/style/react-tabs.css";
 import "react-input-range/lib/css/index.css";
@@ -13,22 +13,28 @@ import './style.scss';
 
 export default class Filters extends Component {
 
+    venueShowLimit = 5;
+
     constructor(props) {
         super(props);
         this.state = {
-            priceRangeValue: { 
-                min: this.props.filterConfig.price_config.min_price, 
-                max: this.props.filterConfig.price_config.max_price }, 
+            priceRangeValue: {
+                min: this.props.filterConfig.price_config.min_price,
+                max: this.props.filterConfig.price_config.max_price
+            },
             promotionsData: this.props.filterConfig.promotion_categories,
             venuesData: this.props.venueData,
             genreData: this.props.genreData,
+            genreShowLimit: (this.props.genreData.length > 5) ? this.props.genreData.length - 5 : 0,
+            venueFilterPanelDisplay: false,
+            search: '',
             from: undefined,
             to: undefined,
         };
     }
 
     componentDidMount() {
-        this.applyIsChecked();  
+        this.applyIsChecked();
     }
 
     applyIsChecked = () => {
@@ -39,27 +45,61 @@ export default class Filters extends Component {
         this.state.genreData.map((genre) => {
             genre.isChecked = false;
         })
-    }
 
-    checkUncheckAllPromotions = (status) => {
-        let promotionsData = this.state.promotionsData; 
-        promotionsData.map((promotion) => {
-            promotion.isChecked = status;
+        this.state.venuesData.map((venue) => {
+            venue.isChecked = false;
         })
-        this.setState((promotionsData));
-    }
-
-    checkUncheckAllGenre = (status) => {
-        let genreData = this.state.genreData; 
-        genreData.map((genre) => {
-            genre.isChecked = status;
-        })
-        this.setState((genreData));
     }
 
     // Clear all the filters 
     clearAllFilters = () => {
-        // this.setState();
+        this.setState({ search: '' });
+        this.applyIsChecked();
+        this.clearCalender();
+        this.clearPriceRange(this.props.filterConfig.price_config);
+        this.checkUncheckAllGenre(false);
+        this.checkUncheckAllPromotions(false);
+        this.checkUncheckAllVenues(false);
+    }
+
+    // Text Search
+    textFilter = (e) => {
+        this.setState({ search: e.target.value });
+        this.props.handleFilters('search',this.state.search);
+    }
+
+    //Genres 
+    checkUncheckAllGenre = (status) => {
+        let genreData = this.state.genreData;
+        genreData.map((genre) => {
+            genre.isChecked = status;
+        })
+        this.setState({ genreData: genreData });
+    }
+
+    showMoreGenre = () => {
+        this.setState({ genreShowLimit: 0 })
+    }
+
+    checkUnckeckGenre = (e, key) => {
+        let genreData = this.state.genreData
+        genreData[key].isChecked = e.target.checked;
+        this.setState({ genreData: genreData })
+    }
+
+    // Promotions
+    checkUncheckPromotions = (e, key) => {
+        let promotionsData = this.state.promotionsData
+        promotionsData[key].isChecked = e.target.checked;
+        this.setState({ promotionsData: promotionsData })
+    }
+
+    checkUncheckAllPromotions = (status) => {
+        let promotionsData = this.state.promotionsData;
+        promotionsData.map((promotion) => {
+            promotion.isChecked = status;
+        })
+        this.setState({ promotionsData });
     }
 
     // Clear calender on clear
@@ -71,18 +111,14 @@ export default class Filters extends Component {
     clearPriceRange = (priceConfig) => {
         let handleFilters = this.props.handleFilters;
         this.setState({ priceRangeValue: { min: priceConfig.min_price, max: priceConfig.max_price } });
-        handleFilters('price-range', this.state.priceRangeValue,'')
+        handleFilters('price-range', this.state.priceRangeValue, '')
     }
 
     // Set Price range on slide
     setPriceRange = (priceRangeValue) => {
         let handleFilters = this.props.handleFilters;
         this.setState({ priceRangeValue });
-        handleFilters('price-range', priceRangeValue,'')
-    }
-
-    clearPromotionFilter = () => {
-        // this.setState()
+        this.props.handleFilters('price-range', priceRangeValue, '')
     }
 
     showFromMonth() {
@@ -95,20 +131,41 @@ export default class Filters extends Component {
         }
     }
 
+    // Date Range methods
     handleFromChange = (from) => {
         this.setState({ from });
+        this.props.handleFilters('date-range', {from: moment(this.state.from).format('DD-MM-YYYY'), to: moment(this.state.to).format('DD-MM-YYYY')});
     }
 
     handleToChange = (to) => {
         this.setState({ to }, this.showFromMonth);
-    }    
+        this.props.handleFilters('date-range', {from: moment(this.state.from).format('DD-MM-YYYY'), to: moment(this.state.to).format('DD-MM-YYYY')});
+    }
+
+    setOpenVenuePanel = (status) => {
+        this.setState({ venueFilterPanelDisplay: status })
+    }
+
+    checkUncheckAllVenues = (status) => {
+        let venuesData = this.state.venuesData;
+        venuesData.map((venue) => {
+            venue.isChecked = status;
+        })
+        this.setState({ venuesData });
+    }
+
+    checkUncheckVenues = (e, key) => {
+        debugger
+        let venuesData = this.state.venuesData
+        venuesData[key].isChecked = e.target.checked;
+        this.setState({ venuesData: venuesData })
+    }
 
     render() {
-        const { genreData, venueData, filterConfig, handleFilters } = this.props;
+        const { venueData, filterConfig, handleFilters } = this.props;
         const { price_config } = filterConfig;
-        const { from, to, promotionsData} = this.state;
+        const { from, to, promotionsData, genreData, genreShowLimit, venuesData, search, venueFilterPanelDisplay } = this.state;
         const modifiers = { start: from, end: to };
-        
         return (
             <div>
                 <div className="apply-filter-mob">
@@ -141,7 +198,7 @@ export default class Filters extends Component {
                             <div className="list-head">
                                 <div className="all-selection">
                                     <input className="styled-checkbox" type="checkbox" id="styled-checkbox-8" value="" />
-                                    <label for="styled-checkbox-8">
+                                    <label htmlFor="styled-checkbox-8">
                                         Student discount
                                 </label>
                                 </div>
@@ -151,7 +208,7 @@ export default class Filters extends Component {
                                 <ul>
                                     <li>
                                         <input className="styled-checkbox" type="checkbox" id="styled-checkbox-8" value="" />
-                                        <label for="styled-checkbox-8">
+                                        <label htmlFor="styled-checkbox-8">
                                             Concert (23)
                                     </label>
                                     </li>
@@ -168,7 +225,7 @@ export default class Filters extends Component {
                             <div className="list-head">
                                 <div className="all-selection">
                                     <input className="styled-checkbox" type="checkbox" id="styled-checkbox-8" value="" />
-                                    <label for="styled-checkbox-8">
+                                    <label htmlFor="styled-checkbox-8">
                                         Student discount
                                 </label>
                                 </div>
@@ -178,7 +235,7 @@ export default class Filters extends Component {
                                 <ul>
                                     <li>
                                         <input className="styled-checkbox" type="checkbox" id="styled-checkbox-8" value="" />
-                                        <label for="styled-checkbox-8">
+                                        <label htmlFor="styled-checkbox-8">
                                             Amara Singapore, Ballroom 1&2
                                     </label>
                                     </li>
@@ -212,20 +269,20 @@ export default class Filters extends Component {
                 </div>
                 <div className="filters">
                     <div className="filter-heading">
-                        <h3>Filters <a onClick={this.clearAllFilters}>Clear all</a></h3>
+                        <h3>Filters <a onClick={() => this.clearAllFilters()}>Clear all</a></h3>
                     </div>
                     <div className="filters-search">
                         <button type="submit" className="search-btn">
                             <img src="assets/images/search-blue.svg" className="img-fluid active" alt="search-icon" />
                         </button>
-                        <input type="text" placeholder="Search experiences..." onChange={(e) => handleFilters('search', e.target.value, '')} className="form-control" />
+                        <input type="text" value={search} placeholder="Search experiences..." onChange={(e) => this.textFilter(e)} className="form-control" />
                     </div>
                     <div className="filter-grid">
                         <div className="filter-grid-heading">
                             <h3>Price Range</h3>
                             <ul>
                                 <li className="active">
-                                    <a onClick={()=>this.clearPriceRange(price_config)}>Clear</a>
+                                    <a onClick={() => this.clearPriceRange(price_config)}>Clear</a>
                                 </li>
                             </ul>
                         </div>
@@ -234,7 +291,7 @@ export default class Filters extends Component {
                                 maxValue={price_config && price_config.max_price}
                                 minValue={price_config && price_config.min_price}
                                 value={this.state.priceRangeValue}
-                                onChange={(priceRangeValue)=>this.setPriceRange(priceRangeValue)} />
+                                onChange={(priceRangeValue) => this.setPriceRange(priceRangeValue)} />
                         </div>
                     </div>
                     <div className="filter-grid">
@@ -242,23 +299,28 @@ export default class Filters extends Component {
                             <h3>Genre</h3>
                             <ul>
                                 <li>
-                                    <a onClick={()=>this.checkUncheckAllGenre(true)}>Select all</a>
+                                    <a onClick={() => this.checkUncheckAllGenre(true)}>Select all</a>
                                 </li>
                                 <li className="active">
-                                    <a onClick={()=>this.checkUncheckAllGenre(false)}>Clear</a>
+                                    <a onClick={() => this.checkUncheckAllGenre(false)}>Clear</a>
                                 </li>
                             </ul>
                         </div>
                         <div className="filters-panel">
                             <ul>
-                                {genreData.length && genreData.map((genre) => {
-                                    return <li key={genre.id}>
-                                        <input checked={genre.isChecked} key={genre.id} className="styled-checkbox" type="checkbox" id="styled-checkbox-1" value="" />
-                                        <label for="styled-checkbox-1">
+                                {genreData.length && genreData.map((genre, key) => {
+                                    let id = 'genre-' + genre.id;
+                                    return <li key={key}>
+                                        <input checked={genre.isChecked} onChange={(e) => this.checkUnckeckGenre(e, key)} className="styled-checkbox" type="checkbox" id={id} value="" />
+                                        <label htmlFor={id}>
                                             {genre.name} ({genre.events_count})
                         </label></li>
                                 })}
                             </ul>
+                            {/* {genreShowLimit > 0 &&
+                                <a onClick={() => this.showMoreGenre()} className="view-all-filters">
+                                    + {genreShowLimit} More
+                    </a>} */}
                         </div>
                     </div>
                     <div className="filter-grid">
@@ -340,8 +402,6 @@ export default class Filters extends Component {
 `}</style>
                                 </Helmet>
                             </div>
-
-
                         </div>
                     </div>
                     <div className="filter-grid">
@@ -349,19 +409,20 @@ export default class Filters extends Component {
                             <h3>Promotion</h3>
                             <ul>
                                 <li>
-                                    <a onClick={()=>this.checkUncheckAllPromotions(true)} >Select all</a>
+                                    <a onClick={() => this.checkUncheckAllPromotions(true)} >Select all</a>
                                 </li>
                                 <li className="active">
-                                    <a onClick={()=>this.checkUncheckAllPromotions(false)} >Clear</a>
+                                    <a onClick={() => this.checkUncheckAllPromotions(false)} >Clear</a>
                                 </li>
                             </ul>
                         </div>
                         <div className="filters-panel">
                             <ul>
-                                {promotionsData && promotionsData.map((promotion) => {
-                                    return <li key={promotion.id}>
-                                        <input checked={promotion.isChecked} onChange={(e) => handleFilters('promotions', promotion.id, e.target.checked)} key={promotion.id} className="styled-checkbox" type="checkbox" id={promotion.id} />
-                                        <label htmlFor={promotion.id}>
+                                {promotionsData && promotionsData.map((promotion, key) => {
+                                    let id = 'promotions-' + promotion.id;
+                                    return <li key={key}>
+                                        <input key={key} checked={promotion.isChecked} onChange={(e) => this.checkUncheckPromotions(e, key)} className="styled-checkbox" type="checkbox" id={id} />
+                                        <label htmlFor={id}>
                                             {promotion.name}
                                         </label>
                                     </li>
@@ -373,8 +434,38 @@ export default class Filters extends Component {
                         </div>
                     </div>
                     <div className="filter-grid">
+                        <div className="filter-grid-heading">
+                            <h3>Venue</h3>
+                            <ul>
+                                <li className="">
+                                    <a onClick={() => this.checkUncheckAllVenues(true)}>Select All</a>
+                                </li>
+                                <li className="active">
+                                    <a onClick={() => this.checkUncheckAllVenues(false)} >Clear</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div className="filters-panel">
+                            <ul>
+                                {venuesData && venuesData.map((venue, key) => {
+                                    let id = 'venue-' + venue.id;
+
+                                    if (key < 5) {
+                                        return <li key={key}>
+                                            <input checked={venue.isChecked} onChange={(e) => this.checkUncheckVenues(e, key)} className="styled-checkbox" type="checkbox" id={id} value="" />
+                                            <label for={id}>
+                                                {venue.name}
+                                            </label>
+                                        </li>
+                                    }
+                                })}
+                            </ul>
+                            <a onClick={() => this.setOpenVenuePanel(true)} className="view-all-filters">
+                                + {venuesData.length - this.venueShowLimit} More
+                     </a>
+                        </div>
                         {/* Venue filter component. */}
-                        <VenueFilter venueData={venueData} />
+                        <VenueFilter setOpenVenuePanel={this.setOpenVenuePanel} venueFilterPanelDisplay={venueFilterPanelDisplay} venueData={venueData} />
                     </div>
                 </div>
             </div>

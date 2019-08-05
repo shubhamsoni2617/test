@@ -16,6 +16,8 @@ export default class Events extends Component {
             filterSearch: '',
             filteredPromotions: [],
             filteredVenues: [],
+            filteredPriceRange:{},
+            filteredDateRange: {},
             eventsData: [],
             genre: [],
             venues: [],
@@ -27,7 +29,7 @@ export default class Events extends Component {
     }
 
     componentDidMount() {
-        this.loadEvents();
+        this.loadEvents({first:1,limit:10});
         this.getGenre();
         this.getVenue();
         this.getFilterConfig();
@@ -99,35 +101,8 @@ export default class Events extends Component {
         this.setState({ viewType });
     }
 
-    handleFilters = (type, value, isChecked) => {
+    handleFilters = (searchType, searchValue, isChecked) => {
         debugger
-        let filteredPromotions = [...this.state.filteredPromotions];
-        let filteredVenues = [...this.state.filteredVenues];
-        let filterSearch = [...this.state.filterSearch];
-        let filteredGnere = [...this.state.filteredGnere];
-
-        if (type == 'promotions' && isChecked == true) {
-            filteredPromotions.push(value);
-        } else if (type == 'promotions' && isChecked == false) {
-            let index = filteredPromotions.indexOf(value);
-            if (index > -1) filteredPromotions.splice(index, 1);
-        } else if (type == 'venue' && isChecked == true) {
-            filteredVenues.push(value);
-        } else if (type == 'venue' && isChecked == false) {
-            let index = filteredVenues.indexOf(value);
-            if (index > -1) filteredVenues.splice(index, 1);
-        } else if (type == 'genre' && isChecked == true) {
-            filteredGnere.push(value);
-        } else if (type == 'genre' && isChecked == false) {
-            let index = filteredGnere.indexOf(value);
-            if (index > -1) filteredGnere.splice(index, 1);
-        }
-        if (type == 'search') {
-            filterSearch = value;
-        }
-        if (type == 'sort') {
-
-        }
 
         let params = {
             'promo_category': '',
@@ -144,11 +119,59 @@ export default class Events extends Component {
 
         }
 
-        this.setState({ filteredPromotions, filteredVenues, filterSearch, filteredGnere }, () => {
+        let filteredPromotions = [...this.state.filteredPromotions];
+        let filteredVenues = [...this.state.filteredVenues];
+        let filterSearch = [...this.state.filterSearch];
+        let filteredGnere = [...this.state.filteredGnere];
+        let filteredPriceRange = {...this.state.filteredPriceRange};
+        let filteredDateRange = {...this.state.filteredDateRange};
+        
+
+        if (searchType == 'promotions' && isChecked == true) {
+            filteredPromotions.push(searchValue);
+        } else if (searchType == 'promotions' && isChecked == false) {
+            let index = filteredPromotions.indexOf(searchValue);
+            if (index > -1) filteredPromotions.splice(index, 1);
+        } else if (searchType == 'venue' && isChecked == true) {
+            filteredVenues.push(searchValue);
+        } else if (searchType == 'venue' && isChecked == false) {
+            let index = filteredVenues.indexOf(searchValue);
+            if (index > -1) filteredVenues.splice(index, 1);
+        } else if (searchType == 'genre' && isChecked == true) {
+            filteredGnere.push(searchValue);
+        } else if (searchType == 'genre' && isChecked == false) {
+            let index = filteredGnere.indexOf(searchValue);
+            if (index > -1) filteredGnere.splice(index, 1);
+        }
+        if (searchType == 'search') {
+            filterSearch = params.filterSearch = searchValue;
+        }
+
+        switch(searchType){
+            case 'price-range' : {
+                filteredPriceRange = searchValue;
+            }
+            break;
+            case 'date-range' : {
+                filteredDateRange = searchValue;
+            }
+            break
+        }
+        if (searchType == 'sort') {
+
+        }
+
+        
+
+        this.setState({ filteredPromotions, filteredVenues, filterSearch, filteredGnere, filteredPriceRange, filteredDateRange }, () => {
             // console.log('this.state.filteredPromotions', this.state.filteredPromotions)
             // console.log('this.state.filteredVenues', this.state.filteredVenues)
             // console.log('this.state.filterSearch', this.state.filterSearch)
-
+            params.search = this.state.filterSearch;
+            params.min_price = this.state.filteredPriceRange.min;
+            params.max_price = this.state.filteredPriceRange.max;
+            params.start_date = this.state.filteredDateRange.from;
+            params.end_date = this.state.filteredDateRange.to;
             this.loadEvents(params);
         })
     }
