@@ -23,6 +23,7 @@ export default class Filters extends Component {
                 max: this.props.filterConfig.price_config.max_price
             },
             promotionsData: this.props.filterConfig.promotion_categories,
+            tagsData: this.props.filterConfig.tags,
             venuesData: this.props.venueData,
             genreData: this.props.genreData,
             genreShowLimit: (this.props.genreData.length > 5) ? this.props.genreData.length - 5 : 0,
@@ -49,6 +50,10 @@ export default class Filters extends Component {
         this.state.venuesData.map((venue) => {
             venue.isChecked = false;
         })
+
+        this.state.tagsData.map((tag) => {
+            tag.isChecked = false;
+        })
     }
 
     // Clear all the filters 
@@ -57,9 +62,7 @@ export default class Filters extends Component {
         this.applyIsChecked();
         this.clearCalender();
         this.clearPriceRange(this.props.filterConfig.price_config);
-        this.checkUncheckAllGenre(false);
-        this.checkUncheckAllPromotions(false);
-        this.checkUncheckAllVenues(false);
+        this.props.resetFilters();
     }
 
     // Text Search
@@ -116,6 +119,28 @@ export default class Filters extends Component {
         this.props.handleFilters('promotions-check-uncheck', promotionsIds, status)
     }
 
+    // Tags
+    checkUncheckTags = (e, key) => {
+        let tagsData = this.state.tagsData
+        tagsData[key].isChecked = e.target.checked;
+        this.setState({ tagsData: tagsData })
+        this.props.handleFilters('tags', tagsData[key].id, e.target.checked)
+    }
+
+    checkUncheckAllTags = (status) => {
+        let tagsData = this.state.tagsData;
+        let tagsIds = [];
+        tagsData.map((tag) => {
+            tag.isChecked = status;
+            tagsIds.push(tag.id);
+        })
+        this.setState({ tagsData });
+        if (!status) {
+            tagsIds = [];
+        }
+        this.props.handleFilters('tags-check-uncheck', tagsIds, status)
+    }
+
     // Venues
     checkUncheckAllVenues = (status) => {
         let venuesData = this.state.venuesData;
@@ -133,9 +158,18 @@ export default class Filters extends Component {
         this.props.handleFilters('venues-check-uncheck', venuesIds, status)
     }
 
-    checkUncheckVenues = (e, key) => {
-        let venuesData = this.state.venuesData
-        venuesData[key].isChecked = e.target.checked;
+    checkUncheckVenues = (e, key, isChild) => {
+        let venuesData = this.state.venuesData;
+        if(isChild == 'child'){
+            venuesData && venuesData.filter((venue,vkey) => {
+                   if(venue.id === key){
+                      key = vkey;
+                      venuesData[key].isChecked = e.target.checked;
+                   }
+                })
+        }else{
+            venuesData[key].isChecked = e.target.checked;
+        }
         this.setState({ venuesData: venuesData })
         this.props.handleFilters('venues', venuesData[key].id, e.target.checked)
     }
@@ -188,7 +222,7 @@ export default class Filters extends Component {
     render() {
         const { venueData, filterConfig, handleFilters } = this.props;
         const { price_config } = filterConfig;
-        const { from, to, promotionsData, genreData, genreShowLimit, venuesData, search, venueFilterPanelDisplay } = this.state;
+        const { from, to, promotionsData, genreData, tagsData, genreShowLimit, venuesData, search, venueFilterPanelDisplay } = this.state;
         const modifiers = { start: from, end: to };
         return (
             <div>
@@ -369,7 +403,7 @@ export default class Filters extends Component {
                                     parseDate={parseDate}
                                     dayPickerProps={{
                                         selectedDays: [from, { from, to }],
-                                        disabledDays: { after: to },
+                                        disabledDays: {before: new Date()},
                                         toMonth: to,
                                         modifiers,
                                         numberOfMonths: 1,
@@ -389,7 +423,7 @@ export default class Filters extends Component {
                                         parseDate={parseDate}
                                         dayPickerProps={{
                                             selectedDays: [from, { from, to }],
-                                            disabledDays: { before: from },
+                                            disabledDays: {before: new Date()},
                                             modifiers,
                                             month: from,
                                             fromMonth: from,
@@ -426,6 +460,35 @@ export default class Filters extends Component {
 `}</style>
                                 </Helmet>
                             </div>
+                        </div>
+                    </div>
+                    <div className="filter-grid">
+                        <div className="filter-grid-heading">
+                            <h3>Tags</h3>
+                            <ul>
+                                <li>
+                                    <a onClick={() => this.checkUncheckAllTags(true)} >Select all</a>
+                                </li>
+                                <li className="active">
+                                    <a onClick={() => this.checkUncheckAllTags(false)} >Clear</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div className="filters-panel">
+                            <ul>
+                                {tagsData && tagsData.map((tag, key) => {
+                                    let id = 'tags-' + tag.id;
+                                    return <li key={key}>
+                                        <input key={key} checked={tag.isChecked} onChange={(e) => this.checkUncheckTags(e, key)} className="styled-checkbox" type="checkbox" id={id} />
+                                        <label htmlFor={id}>
+                                            {tag.name}
+                                        </label>
+                                    </li>
+                                })}
+                            </ul>
+                            {/* <a className="view-all-filters">
+                                + 4 More
+                    </a> */}
                         </div>
                     </div>
                     <div className="filter-grid">
@@ -473,7 +536,6 @@ export default class Filters extends Component {
                             <ul>
                                 {venuesData && venuesData.map((venue, key) => {
                                     let id = 'venue-' + venue.id;
-
                                     if (key < 5) {
                                         return <li key={key}>
                                             <input checked={venue.isChecked} onChange={(e) => this.checkUncheckVenues(e, key)} className="styled-checkbox" type="checkbox" id={id} value="" />
@@ -489,7 +551,7 @@ export default class Filters extends Component {
                      </a>
                         </div>
                         {/* Venue filter component. */}
-                        <VenueFilter setOpenVenuePanel={this.setOpenVenuePanel} venueFilterPanelDisplay={venueFilterPanelDisplay} venueData={venueData} />
+                        <VenueFilter checkUncheckVenues={this.checkUncheckVenues} setOpenVenuePanel={this.setOpenVenuePanel} venueFilterPanelDisplay={venueFilterPanelDisplay} venueData={venueData} />
                     </div>
                 </div>
             </div>

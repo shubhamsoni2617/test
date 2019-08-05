@@ -8,14 +8,13 @@ export default class Card extends Component {
   }
 
   componentDidMount () {
-      console.log('props',this.props)
   } 
 
   render() {
     return (
         <div className="event-block">
             <div className="event-img">
-                <img src="assets/images/kurios.png" className="img-fluid" alt="Kurios"/>
+                <img src={this.props.eventsData.thumb_image} className="img-fluid" alt="Kurios"/>
             </div>
             <div className="event-details">
                 <div className="event-detail-prime">

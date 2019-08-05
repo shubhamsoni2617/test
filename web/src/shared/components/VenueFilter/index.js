@@ -14,7 +14,6 @@ export default class VenueFilter extends Component {
          display: this.props.venueFilterPanelDisplay ? 'block' : 'none',
          venuesData: this.props.venueData
       }
-
    }
 
    componentDidMount() {
@@ -43,15 +42,18 @@ export default class VenueFilter extends Component {
       return this.groupedCollection;
    }
 
+   // Filter for grouped Data
    groupeFilter = (groupedCollection) => {
       let groupedData = [];
+      let id;
       Object.keys(groupedCollection).map((key) => {
          groupedData.push(<li id={key} className="filter-directory-list-title">{key}</li>);
-         groupedCollection[key].map(item => {
+         groupedCollection[key].map((venue) => {
+            id = 'venue-panel-' + venue.id;
             groupedData.push(<li>
-               <input className="styled-checkbox" type="checkbox" id="styled-checkbox-9" value="" />
-               <label for="styled-checkbox-9">
-                  {item.venue}
+               <input onChange={(e) => this.props.checkUncheckVenues(e, venue.id, 'child')} className="styled-checkbox" type="checkbox" id={id} />
+               <label htmlFor={id}>
+                  {venue.name}
                </label>
             </li>);
          }
@@ -77,24 +79,6 @@ export default class VenueFilter extends Component {
       return alphabets;;
    }
 
-   // Filter for grouped Data
-   groupeFilter = (groupedCollection) => {
-      let liData = [];
-      Object.keys(groupedCollection).map((key) => {
-         liData.push(<li id={key} className="filter-directory-list-title">{key}</li>);
-         groupedCollection[key].map(venue => {
-            liData.push(<li>
-               <input className="styled-checkbox" type="checkbox" id={venue.id + 'panel'} value="" />
-               <label for={venue.id + 'panel'}>
-                  {venue.name}
-               </label>
-            </li>);
-         }
-         )
-      })
-      return liData;
-   }
-
    // Return Jsx
    render() {
       const { venuesData, search, display } = this.state;
@@ -111,7 +95,7 @@ export default class VenueFilter extends Component {
                   <div className="filter-directory-heading">
                      <h3>Venue</h3>
                      <span className="filter-directory-close">
-                        <img onClick={()=>setOpenVenuePanel(false)} src={CloseIcon} alt="Close" />
+                        <img onClick={() => setOpenVenuePanel(false)} src={CloseIcon} alt="Close" />
                      </span>
                   </div>
                   <div className="filter-directory-indices-list">
