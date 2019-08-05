@@ -1,5 +1,7 @@
 import React from 'react';
 import Image from '../Image';
+import { Link } from 'react-router-dom';
+
 const CarouselSlide = (props) => {
     const { elem } = props;
     let genre;
@@ -17,7 +19,7 @@ const CarouselSlide = (props) => {
                     </div>
                     <span className={`category ${genre}`}>{elem.primary_genre}</span>
                     <p>{elem.event_date}</p>
-                    <h3>{elem.title}</h3>
+                    <Link to={`events/${elem.alias}`}><h3>{elem.title}</h3></Link>
                     <p>{elem.venue_name}</p>
                 </div>
             </div>
