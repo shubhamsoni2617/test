@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="10px" height="6px" viewBox="0 0 10 6" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 55.2 (78181) - https://sketchapp.com -->
+    <title>mdpi/More-arrow Copy</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Home" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round">
+        <g id="Home-V8.0---Dynamic-Section" transform="translate(-1320.000000, -96.000000)" stroke="#0098FF" stroke-width="1.25">
+            <g id="Group-8" transform="translate(0.000000, -204.000000)">
+                <g id="Header-bottom" transform="translate(0.000000, 204.000000)">
+                    <g id="Hamberger" transform="translate(965.000000, 79.000000)">
+                        <polyline id="More-arrow-Copy" transform="translate(360.000000, 20.000000) scale(-1, 1) rotate(-90.000000) translate(-360.000000, -20.000000) " points="362 16 358 20 362 24"></polyline>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

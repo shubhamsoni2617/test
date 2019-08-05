@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { Accordion, AccordionItem, AccordionItemButton, AccordionItemHeading, AccordionItemPanel } from 'react-accessible-accordion';
 import 'react-accessible-accordion/dist/fancy-example.css';
 import './style.scss';
+import InfoPopup from '../InfoPoup';
+import infoIcon from '../../../assets/images/info-icon.svg';
 
 
 
@@ -17,8 +19,9 @@ export default class AccordionSection extends Component {
 
 
     render() {
-        const { children, title, desc, activeLang, langArr, changeLang, uuid, preExpanded, infoTag ,openInfoPopup} = this.props;
+        const { children, title, desc, activeLang, langArr, changeLang, uuid, preExpanded, infoTag ,openInfoPopup, showInfo} = this.props;
         console.log(children, "sdfklnfklgnhklfgnh")
+        let content = 'Please add to above price S$4 Booking Fee per ticket for tickets above S$40; S$3 Booking Fee per ticket for tickets between S$20.01 - S$40 and S$1 Booking Fee per ticket for tickets S$20 and below. Charges include GST where applicable.'
         let arr = ['title']
         return (
             <div>
@@ -27,7 +30,14 @@ export default class AccordionSection extends Component {
                         <AccordionItemHeading>
                             <AccordionItemButton>
                                 {title}
-                                {infoTag && <div><span>(Excludes Booking Fee)</span><span onClick={(event) => openInfoPopup(event)}>(i)</span></div>}
+                                {infoTag && 
+                                <div>
+                                    <span>(Excludes Booking Fee)</span>
+                                    <span onClick={(event) => openInfoPopup(event)}>
+                                        <img src={infoIcon} alt="Info Icon"/>
+                                        {showInfo && <InfoPopup content={content} />}
+                                    </span>
+                                </div>}
                             </AccordionItemButton>
                         </AccordionItemHeading>
                         <AccordionItemPanel>

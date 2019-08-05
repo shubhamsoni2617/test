@@ -11,6 +11,7 @@ import locationImg from '../../../assets/images/location-blue.svg';
 import SeatMapImg from '../../../assets/images/seatmap.svg';
 import faceImg from '../../../assets/images/face.svg';
 import shareIcon from '../../../assets/images/share-icon.svg';
+import Info from '../../../assets/images/info-sign.svg';
 import SeatMap from './SeatMap';
 import SocialShare from '../../../shared/components/SocialShare';
 import InfoPopup from '../../../shared/components/InfoPoup';
@@ -133,7 +134,7 @@ export default class EventsDetail extends Component {
     render() {
         const { detailData, showBuyTicket, getSynopsisData, showSeatMap, similarEventsData,
             showSocialShare, error, showInfo,showNotice } = this.state;
-        let content = 'Please add to above price S$4 Booking Fee per ticket for tickets above S$40; S$3 Booking Fee per ticket for tickets between S$20.01 - S$40 and S$1 Booking Fee per ticket for tickets S$20 and below. Charges include GST where applicable.'
+       
         if(error ){
             return null;
         }
@@ -175,9 +176,7 @@ export default class EventsDetail extends Component {
                                 {detailData.pop_up_message && showNotice && <PopUpWithClose content={detailData.pop_up_message.description} title={detailData.pop_up_message.title} handleClose={this.handleClose}  /> } 
                                 <section className="event-detail-banner">
                                     {detailData.images && detailData.images.length > 0 &&
-                                        <div className="banner-carousel">
                                             <EventCarousel images={detailData.images} />
-                                        </div>
                                     }
                                     <div className="event-detail">
                                         <div className="tickets-demo-img">
@@ -203,7 +202,7 @@ export default class EventsDetail extends Component {
                                             }
                                             <h2>{detailData.title}</h2>
                                             <span className="info">
-                                                <img src={shareIcon} className="" alt="" />
+                                                <img src={Info} className="" alt="" />
                                             </span>
                                             <span className="share" onClick={() => this.openSocialShare()}>
                                                 <img src={shareIcon} className="" alt="" />
@@ -290,7 +289,7 @@ export default class EventsDetail extends Component {
                                             />
                                             
                                         }
-                                        {showInfo && <InfoPopup content={content} />}
+                                        
                                         {
                                             detailData.promotions &&
                                             detailData.promotions.length > 0 && 
