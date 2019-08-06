@@ -17,6 +17,8 @@ import SocialShare from '../../../shared/components/SocialShare';
 import InfoPopup from '../../../shared/components/InfoPoup';
 import PopUpWithClose from '../../../shared/components/PopUpWithClose';
 import Image from '../../../shared/components/Image';
+import ModalPopup from '../../../shared/components/Modal';
+
 
 export default class EventsDetail extends Component {
 
@@ -34,7 +36,7 @@ export default class EventsDetail extends Component {
       showNotice: true,
       synopsisLang: '',
       similarEventsData: [],
-      setHeader :false,
+      setHeader: false,
       getSynopsisData: { languageArr: [], activeLang: '', desc: '' }
     }
     this.children = [{
@@ -43,7 +45,7 @@ export default class EventsDetail extends Component {
     }];
   }
 
-  setOffsetTop =(elem) =>{
+  setOffsetTop = (elem) => {
     this.elemOffsetTop = elem.offsetTop
   }
 
@@ -77,19 +79,19 @@ export default class EventsDetail extends Component {
   }
 
   handleScroll = () => {
-    console.log(window.pageYOffset,this.elemOffsetTop,"handlescrolllllllllllllllllll");
-    if(! this.state.setHeader && window.pageYOffset >= this.elemOffsetTop){
+    console.log(window.pageYOffset, this.elemOffsetTop, "handlescrolllllllllllllllllll");
+    if (!this.state.setHeader && window.pageYOffset >= this.elemOffsetTop) {
       this.setState({
-        setHeader :true
-      },()=>{
-        console.log(this.state.setHeader,"setheader")
+        setHeader: true
+      }, () => {
+        console.log(this.state.setHeader, "setheader")
       })
     }
-    if(this.state.setHeader && window.pageYOffset <= this.elemOffsetTop ){
+    if (this.state.setHeader && window.pageYOffset <= this.elemOffsetTop) {
       this.setState({
-        setHeader : false
-      },()=>{
-        console.log(this.state.setHeader,"setheader")
+        setHeader: false
+      }, () => {
+        console.log(this.state.setHeader, "setheader")
       })
     }
   }
@@ -107,269 +109,271 @@ export default class EventsDetail extends Component {
     })
   }
 
-openSeatMap = () => {
-  if (!this.state.showSeatMap) {
-    this.setState({
-      showSeatMap: true
-    })
-  }
-
-}
-
-closePopup = () => {
-  this.setState({
-    showSocialShare: false,
-    showInfo: false,
-  }, () => {
-    document.removeEventListener('click', this.closePopup);
-  });
-}
-
-openSocialShare = () => {
-  if (!this.state.showSocialShare) {
-    this.setState({
-      showSocialShare: true
-    }, () => {
-      document.addEventListener('click', this.closePopup);
-    })
-  }
-
-}
-
-openInfoPopup = (event) => {
-  event.stopPropagation()
-  if (!this.state.showInfo) {
-    this.setState({
-      showInfo: true
-    }, () => {
-      document.addEventListener('click', this.closePopup);
-    })
-  }
-}
-
-openNotice = () => {
-  if (!this.state.showNotice) {
-    this.setState({
-      showNotice: true
-    })
-  }
-}
-
-changeLang = (lang) => {
-  this.setState({
-    synopsisLang: lang
-  })
-}
-
-handleClose = () => {
-  if (this.state.showNotice) {
-    this.setState({
-      showNotice: false
-    })
-  }
-  if (this.state.showSeatMap) {
-    this.setState({
-      showSeatMap: false
-    })
-  }
-}
-
-componentDidUpdate(){
-
-}
-
-render() {
-  const { detailData, showBuyTicket, getSynopsisData, showSeatMap, similarEventsData,
-    showSocialShare, error, showInfo, showNotice, setHeader } = this.state;
-
-  if (error) {
-    return null;
-  }
-  let shareUrl = window.location.href;
-  getSynopsisData.languageArr = [];
-  let accrodian = ['synopsis', 'pricedetail'];
-  detailData && detailData.synopsis && detailData.synopsis.forEach((obj, idx) => {
-    if (obj.language) {
-      getSynopsisData.languageArr.push(obj.language)
-    }
-    if (this.state.synopsisLang == obj.language) {
-      getSynopsisData.desc = obj.description;
-      getSynopsisData.activeLang = obj.language;
-    } else {
-      getSynopsisData.desc = detailData.synopsis[0].description;
-      getSynopsisData.activeLang = detailData.synopsis[0].language;
+  openSeatMap = () => {
+    if (!this.state.showSeatMap) {
+      this.setState({
+        showSeatMap: true
+      })
     }
 
-  })
-  return (
-    <div className="event-detail-wrapper">
-      {detailData &&
-        <div>
-          {detailData.is_available_for_booking == 0 &&
-            <div className="shows-over-banner">
-              <div className="shows-over">
-                <div className="shows-over-icon">
-                  <img src={faceImg} alt="" />
-                </div>
-                <div className="shows-over-desc">
-                  <h4>Show's over!</h4>
-                  <p>This event is no longer available for booking. But we have something which you might like</p>
+  }
+
+  closePopup = () => {
+    this.setState({
+      showSocialShare: false,
+      showInfo: false,
+    }, () => {
+      document.removeEventListener('click', this.closePopup);
+    });
+  }
+
+  openSocialShare = () => {
+    if (!this.state.showSocialShare) {
+      this.setState({
+        showSocialShare: true
+      }, () => {
+        document.addEventListener('click', this.closePopup);
+      })
+    }
+
+  }
+
+  openInfoPopup = (event) => {
+    event.stopPropagation()
+    if (!this.state.showInfo) {
+      this.setState({
+        showInfo: true
+      }, () => {
+        document.addEventListener('click', this.closePopup);
+      })
+    }
+  }
+
+  openNotice = () => {
+    if (!this.state.showNotice) {
+      this.setState({
+        showNotice: true
+      })
+    }
+  }
+
+  changeLang = (lang) => {
+    this.setState({
+      synopsisLang: lang
+    })
+  }
+
+  handleClose = () => {
+    if (this.state.showNotice) {
+      this.setState({
+        showNotice: false
+      })
+    }
+    if (this.state.showSeatMap) {
+      this.setState({
+        showSeatMap: false
+      })
+    }
+  }
+
+  componentDidUpdate() {
+
+  }
+
+  render() {
+    const { detailData, showBuyTicket, getSynopsisData, showSeatMap, similarEventsData,
+      showSocialShare, error, showInfo, showNotice, setHeader } = this.state;
+
+    if (error) {
+      return null;
+    }
+    let shareUrl = window.location.href;
+    getSynopsisData.languageArr = [];
+    let accrodian = ['synopsis', 'pricedetail'];
+    detailData && detailData.synopsis && detailData.synopsis.forEach((obj, idx) => {
+      if (obj.language) {
+        getSynopsisData.languageArr.push(obj.language)
+      }
+      if (this.state.synopsisLang == obj.language) {
+        getSynopsisData.desc = obj.description;
+        getSynopsisData.activeLang = obj.language;
+      } else {
+        getSynopsisData.desc = detailData.synopsis[0].description;
+        getSynopsisData.activeLang = detailData.synopsis[0].language;
+      }
+
+    })
+    return (
+      <div className="event-detail-wrapper">
+        {detailData &&
+          <div>
+            {detailData.is_available_for_booking == 0 &&
+              <div className="shows-over-banner">
+                <div className="shows-over">
+                  <div className="shows-over-icon">
+                    <img src={faceImg} alt="" />
+                  </div>
+                  <div className="shows-over-desc">
+                    <h4>Show's over!</h4>
+                    <p>This event is no longer available for booking. But we have something which you might like</p>
+                  </div>
                 </div>
               </div>
-            </div>
-          }
-          {detailData.is_available_for_booking == 1 &&
-            <div>
-              {detailData.pop_up_message && showNotice && <PopUpWithClose content={detailData.pop_up_message.description} title={detailData.pop_up_message.title} handleClose={this.handleClose} />}
-              <section className="event-detail-banner">
-                {detailData.images && detailData.images.length > 0 &&
-                  <EventCarousel images={detailData.images} />
-                }
-                <div className={`event-detail ${setHeader ? 'sticky-topbar' : ''}`}>
-                  <div className="tickets-demo-img">
-                    <Image src={detailData.images[0].thumb_image} alt="joker" className="img-fluid" type='Horizontal' />
+            }
+            {detailData.is_available_for_booking == 1 &&
+              <div>
+                {/* {detailData.pop_up_message && showNotice && <PopUpWithClose content={detailData.pop_up_message.description} title={detailData.pop_up_message.title} handleClose={this.handleClose} />} */}
+                {detailData.pop_up_message && showNotice && <ModalPopup showModal={showNotice} content={detailData.pop_up_message.description} title={detailData.pop_up_message.title} handleClose={this.handleClose} htmlContent={true}/>}
+
+                <section className="event-detail-banner">
+                  {detailData.images && detailData.images.length > 0 &&
+                    <EventCarousel images={detailData.images} />
+                  }
+                  <div className={`event-detail ${setHeader ? 'sticky-topbar' : ''}`}>
+                    <div className="tickets-demo-img">
+                      <Image src={detailData.images[0].thumb_image} alt="joker" className="img-fluid" type='Horizontal' />
+                    </div>
+                    <div className="tickets-desc">
+                      <div className="breadcrumb-share">
+                        <ul className="breadcrumb">
+                          <li>Home</li>
+                          {detailData.genres && detailData.genres.map((obj, index) => {
+                            if (obj.is_primary == 1) {
+                              return <li key={index}>{obj.name}</li>
+                            }
+                          })}
+                        </ul>
+                      </div>
+                      {detailData.genres && detailData.genres.length > 0 &&
+                        <ul className="zoner-group">
+                          {detailData.genres.map((obj, index) => {
+                            return <li className={`${obj.is_primary == 1 ? 'active' : ''}`} key={index}>{obj.name}</li>
+                          })}
+                        </ul>
+                      }
+                      <h2>{detailData.title}</h2>
+                      <span className="info" onClick={() => this.openNotice()}>
+                        <img src={shareIcon} className="" alt="" />
+                      </span>
+                      <span className="share" onClick={() => this.openSocialShare()}>
+                        <img src={shareIcon} className="" alt="" />
+                      </span>
+                      {showSocialShare && <SocialShare shareUrl={shareUrl} />}
+                      <div className="ticket-date-price">
+                        <ul className="date-address">
+                          {detailData.event_date &&
+                            <li className="event-date">
+                              <img src={calendarImg} alt="cal-icon" />
+                              <span>{detailData.event_date}</span>
+                            </li>
+                          }
+                          {detailData.venue_name &&
+                            <li className="event-address">
+                              <img className="location-icon" src={locationImg} alt="location" />
+                              <span>{detailData.venue_name.name}</span>
+                            </li>
+                          }
+                        </ul>
+                        {detailData.price &&
+                          <div className="price">
+                            <label>Price</label>
+                            <span>{detailData.price}</span>
+                          </div>
+                        }
+                      </div>
+                    </div>
+                    <div className="tickets-button">
+                      {
+                        detailData.buy_now_url ?
+                          <div className="buy-tickets-btn">
+                            <a href={detailData.buy_now_url} target="_blank">Buy Tickets</a>
+                          </div>
+                          :
+                          <div className="shows-over">
+                            <div className="shows-over-icon">
+                              <img src={faceImg} alt="" />
+                            </div>
+                            <div className="shows-over-desc">
+                              <h4>Shows over!</h4>
+                              <p>This event has ended and no longer available for booking.</p>
+                            </div>
+                          </div>
+                      }
+                    </div>
                   </div>
-                  <div className="tickets-desc">
-                    <div className="breadcrumb-share">
-                      <ul className="breadcrumb">
-                        <li>Home</li>
-                        {detailData.genres && detailData.genres.map((obj, index) => {
-                          if (obj.is_primary == 1) {
-                            return <li key={index}>{obj.name}</li>
+                </section>
+
+                <section className="event-detail-section" ref={this.setOffsetTop}>
+                  <div className="event-detail-panel">
+                    {detailData.synopsis && getSynopsisData.desc &&
+                      <AccordionSection title='Synopsis'
+                        activeLang={getSynopsisData.activeLang}
+                        desc={getSynopsisData.desc}
+                        langArr={getSynopsisData.languageArr}
+                        changeLang={this.changeLang}
+                        preExpanded={accrodian}
+                        uuid='synopsis'
+                      />
+                    }
+                    {
+                      detailData.tabs && detailData.tabs.length > 0 &&
+                      detailData.tabs.map((obj, idx) => {
+                        return <AccordionSection title={obj.title} desc={obj.description} />
+                      })
+                    }
+
+                  </div>
+                  <div className="event-detail-sidebar">
+                    <a onClick={() => this.openSeatMap()} className="seat-map"><img src={SeatMapImg} /> Seat Map</a>
+                    {showSeatMap && detailData.seating_plan && detailData.seating_plan.length > 0 &&
+                      <SeatMap imgArr={detailData.seating_plan} heading='Seat Map' handleClose={this.handleClose} />
+                    }
+                    {
+                      detailData.buy_package_url &&
+                      <a href={detailData.buy_package_url} target="_blank" className="buy-package">Buy Packages</a>
+                    }
+                    {
+                      detailData.ticket_pricing &&
+                      <AccordionSection title='Price Details' infoTag={true} preExpanded={accrodian}
+                        uuid='pricedetail'
+                        desc={detailData.ticket_pricing} openInfoPopup={this.openInfoPopup} showInfo={showInfo}
+                      />
+
+                    }
+
+                    {
+                      detailData.promotions &&
+                      detailData.promotions.length > 0 &&
+                      <AccordionSection title='Promotion'
+                        children={detailData.promotions}
+                      />
+                    }
+
+                  </div>
+                </section>
+                {detailData.tags && detailData.tags.length > 0 &&
+                  <section className="event-zoner-group">
+                    <div className="container-fluid">
+                      <ul>
+                        {detailData.tags.map((obj, idx) => {
+                          if (obj.name) {
+                            return <li>{obj.name}</li>
                           }
                         })}
                       </ul>
                     </div>
-                    {detailData.genres && detailData.genres.length > 0 &&
-                      <ul className="zoner-group">
-                        {detailData.genres.map((obj, index) => {
-                          return <li className={`${obj.is_primary == 1 ? 'active' : ''}`} key={index}>{obj.name}</li>
-                        })}
-                      </ul>
-                    }
-                    <h2>{detailData.title}</h2>
-                    <span className="info" onClick={() => this.openNotice()}>
-                      <img src={shareIcon} className="" alt="" />
-                    </span>
-                    <span className="share" onClick={() => this.openSocialShare()}>
-                      <img src={shareIcon} className="" alt="" />
-                    </span>
-                    {showSocialShare && <SocialShare shareUrl={shareUrl} />}
-                    <div className="ticket-date-price">
-                      <ul className="date-address">
-                        {detailData.event_date &&
-                          <li className="event-date">
-                            <img src={calendarImg} alt="cal-icon" />
-                            <span>{detailData.event_date}</span>
-                          </li>
-                        }
-                        {detailData.venue_name &&
-                          <li className="event-address">
-                            <img className="location-icon" src={locationImg} alt="location" />
-                            <span>{detailData.venue_name.name}</span>
-                          </li>
-                        }
-                      </ul>
-                      {detailData.price &&
-                        <div className="price">
-                          <label>Price</label>
-                          <span>{detailData.price}</span>
-                        </div>
-                      }
-                    </div>
-                  </div>
-                  <div className="tickets-button">
-                    {
-                      detailData.buy_now_url ?
-                        <div className="buy-tickets-btn">
-                          <a href={detailData.buy_now_url} target="_blank">Buy Tickets</a>
-                        </div>
-                        :
-                        <div className="shows-over">
-                          <div className="shows-over-icon">
-                            <img src={faceImg} alt="" />
-                          </div>
-                          <div className="shows-over-desc">
-                            <h4>Shows over!</h4>
-                            <p>This event has ended and no longer available for booking.</p>
-                          </div>
-                        </div>
-                    }
-                  </div>
-                </div>
-              </section>
-
-              <section className="event-detail-section" ref={this.setOffsetTop}>
-                <div className="event-detail-panel">
-                  {detailData.synopsis && getSynopsisData.desc &&
-                    <AccordionSection title='Synopsis'
-                      activeLang={getSynopsisData.activeLang}
-                      desc={getSynopsisData.desc}
-                      langArr={getSynopsisData.languageArr}
-                      changeLang={this.changeLang}
-                      preExpanded={accrodian}
-                      uuid='synopsis'
-                    />
-                  }
-                  {
-                    detailData.tabs && detailData.tabs.length > 0 &&
-                    detailData.tabs.map((obj, idx) => {
-                      return <AccordionSection title={obj.title} desc={obj.description} />
-                    })
-                  }
-
-                </div>
-                <div className="event-detail-sidebar">
-                  <a onClick={() => this.openSeatMap()} className="seat-map"><img src={SeatMapImg} /> Seat Map</a>
-                  {showSeatMap && detailData.seating_plan && detailData.seating_plan.length > 0 &&
-                    <SeatMap imgArr={detailData.seating_plan} heading='Seat Map' handleClose={this.handleClose} />
-                  }
-                  {
-                    detailData.buy_package_url &&
-                    <a href={detailData.buy_package_url} target="_blank" className="buy-package">Buy Packages</a>
-                  }
-                  {
-                    detailData.ticket_pricing &&
-                    <AccordionSection title='Price Details' infoTag={true} preExpanded={accrodian}
-                      uuid='pricedetail'
-                      desc={detailData.ticket_pricing} openInfoPopup={this.openInfoPopup} showInfo={showInfo}
-                    />
-
-                  }
-
-                  {
-                    detailData.promotions &&
-                    detailData.promotions.length > 0 &&
-                    <AccordionSection title='Promotion'
-                      children={detailData.promotions}
-                    />
-                  }
-
-                </div>
-              </section>
-              {detailData.tags && detailData.tags.length > 0 &&
-                <section className="event-zoner-group">
-                  <div className="container-fluid">
-                    <ul>
-                      {detailData.tags.map((obj, idx) => {
-                        if (obj.name) {
-                          return <li>{obj.name}</li>
-                        }
-                      })}
-                    </ul>
-                  </div>
-                </section>
-              }
-            </div>
-          }
-          <ArticleSection />
-          {similarEventsData && similarEventsData.length > 0 &&
-            <SimilarPicksSection data={similarEventsData} />
-          }
-        </div>
-      }
-    </div>
-  );
-}
+                  </section>
+                }
+              </div>
+            }
+            <ArticleSection />
+            {similarEventsData && similarEventsData.length > 0 &&
+              <SimilarPicksSection data={similarEventsData} />
+            }
+          </div>
+        }
+      </div>
+    );
+  }
 }
 
