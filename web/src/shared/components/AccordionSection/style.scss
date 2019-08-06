@@ -57,9 +57,9 @@
             &::before{
                 float: right;
                 margin-right: 0;
-                margin-top: 5px;
                 width: 9px;
                 height: 9px;
+                transition: 0.5s transform;
             }
             span{
                 color: #626262;
@@ -80,6 +80,7 @@
             padding: 100px 30px 25px;
             box-shadow: 0 2px 3px 0 rgba(201, 201, 201, 0.5);
             margin-top: -58px;
+            transition: 0.5s margin-top;
             @media(max-width: 1280px){
                 padding: 30px 20px 30px;
             }
@@ -142,6 +143,9 @@
                 padding: 15px 0 0 0;
                 box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
                 margin: 0;
+            }
+            &[hidden=""] {
+                margin-top: 20px;
             }
         }
         &.active{

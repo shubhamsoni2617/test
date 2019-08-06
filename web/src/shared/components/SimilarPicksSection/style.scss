@@ -39,7 +39,7 @@
     } 
 	.dots-group {
 		span {
-			background-color: #000;
+			background-color: rgba(0, 0, 0, 0.1);
 			&.active {
 				background-color: #0077C8;
 			}
@@ -52,7 +52,6 @@
 			transition: 0.5s box-shadow;
 			.category {
                 margin-bottom: 11px;
-                float: right;
 				@media (max-width: 767px) {
 					margin-bottom: 8px;
 				}

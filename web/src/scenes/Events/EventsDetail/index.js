@@ -8,7 +8,9 @@ import EventsService from '../../../shared/services/EventsService';
 import Constants from '../../../shared/constants';
 import calendarImg from '../../../assets/images/event-calender.svg';
 import locationImg from '../../../assets/images/location-blue.svg';
+import locationImgGrey from '../../../assets/images/location-grey.svg';
 import SeatMapImg from '../../../assets/images/seatmap.svg';
+import SeatMapWhite from '../../../assets/images/seatmap-white.svg';
 import faceImg from '../../../assets/images/face.svg';
 import shareIcon from '../../../assets/images/share-icon.svg';
 import Info from '../../../assets/images/info-sign.svg';
@@ -248,12 +250,12 @@ render() {
                       </ul>
                     }
                     <h2>{detailData.title}</h2>
-                    <span className="info" onClick={() => this.openNotice()}>
+                    <a className="info" onClick={() => this.openNotice()}>
                       <img src={shareIcon} className="" alt="" />
-                    </span>
-                    <span className="share" onClick={() => this.openSocialShare()}>
+                    </a>
+                    <a className="share" onClick={() => this.openSocialShare()}>
                       <img src={shareIcon} className="" alt="" />
-                    </span>
+                    </a>
                     {showSocialShare && <SocialShare shareUrl={shareUrl} />}
                     <div className="ticket-date-price">
                       <ul className="date-address">
@@ -266,6 +268,7 @@ render() {
                         {detailData.venue_name &&
                           <li className="event-address">
                             <img className="location-icon" src={locationImg} alt="location" />
+                            <img className="sticky-location-icon" src={locationImgGrey} alt="location" />
                             <span>{detailData.venue_name.name}</span>
                           </li>
                         }
@@ -320,7 +323,7 @@ render() {
 
                 </div>
                 <div className="event-detail-sidebar">
-                  <a onClick={() => this.openSeatMap()} className="seat-map"><img src={SeatMapImg} /> Seat Map</a>
+                  <a onClick={() => this.openSeatMap()} className="seat-map"><img src={SeatMapImg} /><img className="active" src={SeatMapWhite} /> Seat Map</a>
                   {showSeatMap && detailData.seating_plan && detailData.seating_plan.length > 0 &&
                     <SeatMap imgArr={detailData.seating_plan} heading='Seat Map' handleClose={this.handleClose} />
                   }
