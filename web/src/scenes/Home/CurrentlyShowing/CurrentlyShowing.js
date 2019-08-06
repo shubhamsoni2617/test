@@ -13,8 +13,8 @@ const CurrentlyShowing = (props) => {
     useEffect(() => {
         const params = {
             client: 1,
-            first: 0,
-            limit: 10
+            // first: 0,
+            // limit: 10
         };
         HomeService.getCurrentlyShowing(params)
             .then((res) => {

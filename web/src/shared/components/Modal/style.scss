@@ -1,0 +1,11 @@
+
+.react-modal{
+  z-index: 10;
+  top: 0;
+  .react-modal-overlay{
+    z-index: 101;
+  }
+  .react-modal-body{
+    z-index: 102;
+  }
+}
