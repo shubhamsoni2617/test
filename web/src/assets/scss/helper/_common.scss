@@ -27,11 +27,13 @@ body {
 	a {
         text-decoration: none;
         outline: none;
+        transition: 1s all; 
 		&:hover,
 		&:focus,
 		&:active {
             text-decoration: none;
             outline: none;
+            transition: 1s all; 
 		}
 	}
 }
@@ -107,6 +109,7 @@ h2 {
     font-family: 'Montserrat', sans-serif;
     margin: 0px;
     padding-bottom: 18px;
+    transition: 1s all; 
 }
 
 // Modal Design 
@@ -265,6 +268,7 @@ button,
 		padding-bottom: 14px;
         text-decoration: none;
         font-weight: 600;
+        cursor: pointer;
 		@media (max-width: 767px) {
 			font-family: 'Montserrat', sans-serif;
 			font-size: 12px;
@@ -285,7 +289,8 @@ button,
 		}
 		&:hover {
 			img {
-				animation: seeallbtn 0.5s linear;
+                animation: seeallbtn 0.5s linear;
+                animation-iteration-count: infinite;
 			}
 		}
 	}
@@ -295,7 +300,8 @@ button,
 .seeall-btn {
 	&:hover {
 		img {
-			animation: seeallbtn 0.5s linear;
+            animation: seeallbtn 0.5s linear;
+            animation-iteration-count: infinite;
 		}
 	}
 }

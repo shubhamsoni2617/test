@@ -13,12 +13,13 @@ class MiniCart extends Component {
     toggle = () => {
         if (!this.state.isOpen) {
             window.addEventListener('click', this.handleOutsideClick, false);
+            this.node.classList.add("active");
         } else {
             window.removeEventListener('click', this.handleOutsideClick, false);
+            this.node.classList.remove("active");
         }
         this.setState({ isOpen: !this.state.isOpen })
     }
-
     handleOutsideClick = (e) => {
         if (this.node.contains(e.target)) {
             return;
@@ -34,7 +35,7 @@ class MiniCart extends Component {
         return (
             <li className="cart-icon" onClick={this.toggle} ref={node => { this.node = node; }}>
                 <a><img src={MiniCartLogo} class="img-fluid" alt="cart"/><span>{data.length}</span></a>
-                <div className="my-cart-popup" style={{ display: isOpen ? "block" : "none" }}>
+                <div className="my-cart-popup">
                     <div className="my-cart-wrapper">
                         <div className="cart-head">
                             <h3>My Cart ({data.length})</h3>

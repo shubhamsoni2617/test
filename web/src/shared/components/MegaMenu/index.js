@@ -67,7 +67,7 @@ class MegaMenu extends Component {
         return (
             <li className="has-submenu">
                 <Link onMouseEnter={this.handleMouseEnter}>Events</Link>
-                <div className="submenu" style={{ display: show ? "block" : "none" }}>
+                <div className="submenu">
                     <h5 className="submenu-title">Find an Event</h5>
                     <div className="submenu-wrapper">
                         <div className="event-category">
@@ -124,8 +124,10 @@ class MegaMenu extends Component {
                                     featuredEvents.map((event, index) => {
                                         return (
                                             <li key={event.id}>
-                                                <img src={event.img} className="img-fluid"
-                                                    alt="" />
+                                                <div className="featured-event-img">
+                                                    <img src={event.img} className="img-fluid"
+                                                        alt="" />
+                                                </div>
                                                 <div className="featured-date-category">
                                                     <span className="date">{event.day}</span>
                                                     <span
