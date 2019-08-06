@@ -177,7 +177,7 @@ h2 {
 	padding: 0;
 	height: 28.27px;
 	width: 28.27px;
-	border: 2.27px solid rgba(126, 126, 126, 0.2);
+	border: 2px solid rgba(126, 126, 126, 0.2);
 	text-align: center;
 	img {
 		transform: translate(-50%, -50%);
@@ -185,6 +185,11 @@ h2 {
 		left: 50%;
 		position: absolute;
 	}
+}
+.share:hover, .info:hover{
+	cursor: pointer;
+	background-color: #fff;
+	border-color: #0098ff; 
 }
 
 .container-fluid {
@@ -612,10 +617,14 @@ button,
     bottom: 30px;
     width: 250px;
     background: #FFF;
-    padding: 12px;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
     border-radius: 5px;
-    line-height: 22px;
+	line-height: 22px;
+	opacity: 0;
+	transition: 0.3s height, 0.3s opacity;
+	height: 0;
+	padding: 0px;
+    overflow: hidden;
     &::before{
         position: absolute;
         content: "";
