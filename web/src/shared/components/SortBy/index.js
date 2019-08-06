@@ -13,12 +13,10 @@ export default class SortBy extends Component {
         }
     }
 
-    componentDidMount() {
-
+    componentDidMount() {   
     }
 
     setSortFilter = (tag, sortBy, order) => {
-        debugger
         this.setState({ sort: { tag: tag } })
         this.setState({ showSortMenu: false }, () => {
             document.removeEventListener('click', this.closeSortMenu);

@@ -13,8 +13,6 @@ import './style.scss';
 
 export default class Filters extends Component {
 
-    venueShowLimit = 5;
-
     constructor(props) {
         super(props);
         this.state = {
@@ -26,8 +24,10 @@ export default class Filters extends Component {
             tagsData: this.props.filterConfig.tags,
             venuesData: this.props.venueData,
             genreData: this.props.genreData,
-            genreShowLimit: (this.props.genreData.length > 5) ? this.props.genreData.length - 5 : 0,
             venueFilterPanelDisplay: false,
+            tagShowLimit: 5,
+            genreShowLimit: 5,
+            venueShowLimit: 5,
             search: '',
             from: undefined,
             to: undefined,
@@ -58,10 +58,15 @@ export default class Filters extends Component {
 
     // Clear all the filters 
     clearAllFilters = () => {
-        this.setState({ search: '' });
+        this.setState({
+            search: '', priceRangeValue: {
+                min: this.props.filterConfig.price_config.min_price,
+                max: this.props.filterConfig.price_config.max_price
+            }
+        });
         this.applyIsChecked();
         this.clearCalender();
-        this.clearPriceRange(this.props.filterConfig.price_config);
+        // this.clearPriceRange(this.props.filterConfig.price_config);
         this.props.resetFilters();
     }
 
@@ -87,7 +92,7 @@ export default class Filters extends Component {
     }
 
     showMoreGenre = () => {
-        this.setState({ genreShowLimit: 0 })
+        this.setState({ genreShowLimit: this.state.genreData.length })
     }
 
     checkUnckeckGenre = (e, key) => {
@@ -141,6 +146,10 @@ export default class Filters extends Component {
         this.props.handleFilters('tags-check-uncheck', tagsIds, status)
     }
 
+    showMoreTags = () => {
+        this.setState({ tagShowLimit: this.state.tagsData.length });
+    }
+
     // Venues
     checkUncheckAllVenues = (status) => {
         let venuesData = this.state.venuesData;
@@ -160,14 +169,14 @@ export default class Filters extends Component {
 
     checkUncheckVenues = (e, key, isChild) => {
         let venuesData = this.state.venuesData;
-        if(isChild == 'child'){
-            venuesData && venuesData.filter((venue,vkey) => {
-                   if(venue.id === key){
-                      key = vkey;
-                      venuesData[key].isChecked = e.target.checked;
-                   }
-                })
-        }else{
+        if (isChild == 'child') {
+            venuesData && venuesData.filter((venue, vkey) => {
+                if (venue.id === key) {
+                    key = vkey;
+                    venuesData[key].isChecked = e.target.checked;
+                }
+            })
+        } else {
             venuesData[key].isChecked = e.target.checked;
         }
         this.setState({ venuesData: venuesData })
@@ -183,7 +192,7 @@ export default class Filters extends Component {
     clearPriceRange = (priceConfig) => {
         let handleFilters = this.props.handleFilters;
         this.setState({ priceRangeValue: { min: priceConfig.min_price, max: priceConfig.max_price } }, () => {
-            this.props.handleFilters('price-range', this.state.priceRangeValue, '');
+            this.props.handleFilters('price-range', { min: '', max: '' }, '');
         });
     }
 
@@ -222,7 +231,8 @@ export default class Filters extends Component {
     render() {
         const { venueData, filterConfig, handleFilters } = this.props;
         const { price_config } = filterConfig;
-        const { from, to, promotionsData, genreData, tagsData, genreShowLimit, venuesData, search, venueFilterPanelDisplay } = this.state;
+        const { from, to, promotionsData, genreData, tagsData, venuesData, search, venueFilterPanelDisplay,
+            genreShowLimit, tagShowLimit, venueShowLimit } = this.state;
         const modifiers = { start: from, end: to };
         return (
             <div>
@@ -366,7 +376,7 @@ export default class Filters extends Component {
                         </div>
                         <div className="filters-panel">
                             <ul>
-                                {genreData.length && genreData.map((genre, key) => {
+                                {genreData.length && genreData.slice(0, genreShowLimit).map((genre, key) => {
                                     let id = 'genre-' + genre.id;
                                     return <li key={key}>
                                         <input checked={genre.isChecked} onChange={(e) => this.checkUnckeckGenre(e, key)} className="styled-checkbox" type="checkbox" id={id} value="" />
@@ -375,10 +385,11 @@ export default class Filters extends Component {
                         </label></li>
                                 })}
                             </ul>
-                            {/* {genreShowLimit > 0 &&
+                            {genreData.length > genreShowLimit &&
                                 <a onClick={() => this.showMoreGenre()} className="view-all-filters">
-                                    + {genreShowLimit} More
-                    </a>} */}
+                                    + {genreData.length - genreShowLimit} More
+                    </a>
+                            }
                         </div>
                     </div>
                     <div className="filter-grid">
@@ -403,7 +414,7 @@ export default class Filters extends Component {
                                     parseDate={parseDate}
                                     dayPickerProps={{
                                         selectedDays: [from, { from, to }],
-                                        disabledDays: {before: new Date()},
+                                        disabledDays: { before: new Date() },
                                         toMonth: to,
                                         modifiers,
                                         numberOfMonths: 1,
@@ -423,7 +434,7 @@ export default class Filters extends Component {
                                         parseDate={parseDate}
                                         dayPickerProps={{
                                             selectedDays: [from, { from, to }],
-                                            disabledDays: {before: new Date()},
+                                            disabledDays: { before: new Date() },
                                             modifiers,
                                             month: from,
                                             fromMonth: from,
@@ -476,7 +487,7 @@ export default class Filters extends Component {
                         </div>
                         <div className="filters-panel">
                             <ul>
-                                {tagsData && tagsData.map((tag, key) => {
+                                {tagsData && tagsData.slice(0, tagShowLimit).map((tag, key) => {
                                     let id = 'tags-' + tag.id;
                                     return <li key={key}>
                                         <input key={key} checked={tag.isChecked} onChange={(e) => this.checkUncheckTags(e, key)} className="styled-checkbox" type="checkbox" id={id} />
@@ -486,9 +497,12 @@ export default class Filters extends Component {
                                     </li>
                                 })}
                             </ul>
-                            {/* <a className="view-all-filters">
-                                + 4 More
-                    </a> */}
+                            {tagsData.length > tagShowLimit &&
+                                <a onClick={() => this.showMoreTags()} className="view-all-filters">
+                                    + {tagsData.length - tagShowLimit} More
+                    </a>
+                            }
+
                         </div>
                     </div>
                     <div className="filter-grid">
@@ -524,9 +538,9 @@ export default class Filters extends Component {
                         <div className="filter-grid-heading">
                             <h3>Venue</h3>
                             <ul>
-                                <li className="">
+                                {/* <li className="">
                                     <a onClick={() => this.checkUncheckAllVenues(true)}>Select All</a>
-                                </li>
+                                </li> */}
                                 <li className="active">
                                     <a onClick={() => this.checkUncheckAllVenues(false)} >Clear</a>
                                 </li>
@@ -547,7 +561,7 @@ export default class Filters extends Component {
                                 })}
                             </ul>
                             <a onClick={() => this.setOpenVenuePanel(true)} className="view-all-filters">
-                                + {venuesData.length - this.venueShowLimit} More
+                                + {venuesData.length - venueShowLimit} More
                      </a>
                         </div>
                         {/* Venue filter component. */}
