@@ -30,7 +30,7 @@ class HomePageSearch extends Component {
                         <div className="recently-search">
                             <h3>Recently Searched</h3>
                             <ul>
-                                <li className="active">
+                                <li>
                                     <span><img src="assets/images/recent-search-icon.svg" alt="" /> Music</span>
                                     <a className="search-listing-close-btn"><img src="assets/images/close-blue-color.svg" alt="" /></a>
                                 </li>
@@ -69,17 +69,22 @@ class HomePageSearch extends Component {
                             <h3>Most Viewed</h3>
                             <ul>
                                 <li>
-                                    <img src="assets/images/kurios-joker.jpg" className="img-fluid" alt="" />
+                                    <div className="most-viewed-img">
+                                        <img src="assets/images/kurios-joker.jpg" className="img-fluid" alt="" />
+                                    </div>
                                     <span className="category musical">Musical</span>
                                     <h4>KURIOS – Cabinet of Curiosities</h4>
                                 </li>
                                 <li>
-                                    <img src="assets/images/kurios-joker.jpg" className="img-fluid" alt="" />
-                                    <span className="category dance">Dance</span>
+                                    <div className="most-viewed-img">
+                                        <img src="assets/images/kurios-joker.jpg" className="img-fluid" alt="" />
+                                    </div>                                    <span className="category dance">Dance</span>
                                     <h4>Ballet Under The Stars</h4>
                                 </li>
                                 <li>
-                                    <img src="assets/images/kurios-joker.jpg" className="img-fluid" alt="" />
+                                    <div className="most-viewed-img">
+                                        <img src="assets/images/kurios-joker.jpg" className="img-fluid" alt="" />
+                                    </div>
                                     <span className="category musical">Musical</span>
                                     <h4>The Phantom of The Opera</h4>
                                 </li>

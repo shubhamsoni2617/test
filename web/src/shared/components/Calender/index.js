@@ -2,6 +2,10 @@ import React, { useState } from 'react';
 import DayPicker, { DateUtils } from 'react-day-picker';
 import { Link, Redirect } from 'react-router-dom';
 import 'react-day-picker/lib/style.css';
+import tickArrow from '../../../assets/images/tick-grey.svg';
+import tickArrowWhite from '../../../assets/images/tick-white.svg';
+import crossArrow from '../../../assets/images/cross-grey.svg';
+import crossArrowWhite from '../../../assets/images/cross-white.svg';
 import './style.scss';
 
 const Calender = (props) => {
@@ -98,8 +102,8 @@ const Calender = (props) => {
                     </div>
                     <div className="calender-action-btn">
                         <a  className="cal-cancel-btn" onClick={handleResetClick}>
-                            <img src="assets/images/cross-grey.svg" className="" alt="" />
-                            <img src="assets/images/cross-white.svg" alt="" className="active" />
+                            <img src={crossArrow} className="" alt="" />
+                            <img src={crossArrowWhite} alt="" className="active" />
                         </a>
                         <Link 
                             to={{
@@ -116,8 +120,8 @@ const Calender = (props) => {
                                 props.handleEnter(false)
                             }}
                         >
-                            <img src="assets/images/tick-grey.svg" className="" alt="" />
-                            <img src="assets/images/tick-white.svg" className="active" alt="" />
+                            <img src={tickArrow} className="" alt="" />
+                            <img src={tickArrowWhite} className="active" alt="" />
                         </Link>
                     </div>
                 </form>
