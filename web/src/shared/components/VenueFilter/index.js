@@ -12,7 +12,7 @@ export default class VenueFilter extends Component {
       this.state = {
          search: '',
          display: this.props.venueFilterPanelDisplay ? 'block' : 'none',
-         venuesData: this.props.venueData
+         venuesData: this.props.venueData, hoverEffect: '', alphabet: ''
       }
    }
 
@@ -26,6 +26,16 @@ export default class VenueFilter extends Component {
    closeVenuePopup = () => {
       this.setState({ display: 'none' });
    }
+
+   handleHoverOn = (alphabet) => {
+      this.setState({ hoverEffect: 'disable-venue', alphabet: alphabet });
+   }
+
+   handleHoverOff = () => {
+      this.setState({ hoverEffect: '', alphabet: '' });
+   }
+
+
 
    sortAndGroup = (venues) => {
       this.groupedCollection = {};
@@ -45,12 +55,17 @@ export default class VenueFilter extends Component {
    // Filter for grouped Data
    groupeFilter = (groupedCollection) => {
       let groupedData = [];
+      let addHoverClass;
       let id;
       Object.keys(groupedCollection).map((key) => {
-         groupedData.push(<li id={key} className="filter-directory-list-title">{key}</li>);
+
+         addHoverClass = (this.state.alphabet == key) ? '' : this.state.hoverEffect;
+         groupedData.push(<li id={key} className={"filter-directory-list-title " + addHoverClass}>{key}</li>);
+
          groupedCollection[key].map((venue) => {
             id = 'venue-panel-' + venue.id;
-            groupedData.push(<li>
+            addHoverClass = (this.state.alphabet == key) ? '' : this.state.hoverEffect;
+            groupedData.push(<li className={addHoverClass}>
                <input onChange={(e) => this.props.checkUncheckVenues(e, venue.id, 'child')} className="styled-checkbox" type="checkbox" id={id} />
                <label htmlFor={id}>
                   {venue.name}
@@ -73,7 +88,12 @@ export default class VenueFilter extends Component {
       for (let i = 65; i < 91; i++) {
          let createHref = '#' + String.fromCharCode(i);
          alphabets.push(
-            <li className="" key={i} ><a href={createHref} >{String.fromCharCode(i)}</a></li>
+            <li
+               onMouseOver={() => this.handleHoverOn(String.fromCharCode(i))}
+               onMouseLeave={() => this.handleHoverOff()}
+               key={i} >
+               <a href={createHref} >{String.fromCharCode(i)}</a>
+            </li>
          )
       }
       return alphabets;;

@@ -48,6 +48,7 @@ export default class Events extends Component {
             filteredDateRange: {},
             filteredSortType: 'date',
             filteredSortOrder: '',
+            isdataAvailable : false,
             eventsData: []
         }, () => {
             this.loadEvents(this.initialLimit);
@@ -94,7 +95,8 @@ export default class Events extends Component {
         EventsService.getData(params)
             .then((res) => {
                 const eventData = [...this.state.eventsData, ...res.data.data];
-                this.setState({ eventsData: eventData, totalRecords: res.data.total_records })
+                const isdataAvailable = eventData.length ? false  : true;
+                this.setState({ eventsData: eventData, totalRecords: res.data.total_records, isdataAvailable: isdataAvailable })
             })
             .catch((err) => {
                 console.log(err)
@@ -141,7 +143,6 @@ export default class Events extends Component {
     }
 
     handleFilters = (searchType, searchValue, isChecked) => {
-
 
         let filteredPromotions = [...this.state.filteredPromotions];
         let filteredVenues = [...this.state.filteredVenues];
@@ -235,7 +236,7 @@ export default class Events extends Component {
     }
 
     render() {
-        const { genre, venues, filterConfig, eventsData, totalRecords, limit } = this.state;
+        const { genre, venues, filterConfig, eventsData, totalRecords, isdataAvailable } = this.state;
         return (
             <div>
                 <Breadcrub breadCrumbData={this.breadCrumbData} />
@@ -262,7 +263,7 @@ export default class Events extends Component {
                                         </a>
                                     </div>
                                 }
-                                {eventsData && eventsData.length == 0 &&
+                                {isdataAvailable &&
                                     <div>No Events Available</div>
                                 }
                             </div>
