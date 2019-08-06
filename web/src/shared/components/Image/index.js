@@ -16,7 +16,7 @@ export default class Image extends Component {
     let newImg ;
     switch (this.props.type)
     {
-      
+
         case 'Vertical':
         newImg = Vertical
         break;
@@ -42,11 +42,12 @@ export default class Image extends Component {
     if(! src){
       src="assets.png"
     }
-    const {type} = this.props;
+    const {type, ...props} = this.props;
     return (
       <img
         src= {src}
         onError ={() => this.onError()}
+        {... props}
       />
     );
   }

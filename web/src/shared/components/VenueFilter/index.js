@@ -1,50 +1,73 @@
-import React, { useState } from 'react';
+import React, { Component } from 'react';
 import CloseIcon from '../../../assets/images/close-icon.svg';
 import './style.scss';
 
-const VenueFilter = (props) => {
+export default class VenueFilter extends Component {
 
-   const { venueData } = props;
-   const [search, setSearch] = useState('');
-   let groupedCollection;
+   groupedCollection;
+   venueShowLimit = 5;
 
-   const sortAndGroup = (venues) => {
-      groupedCollection = {};
+   constructor(props) {
+      super(props);
+      this.state = {
+         search: '',
+         display: this.props.venueFilterPanelDisplay ? 'block' : 'none',
+         venuesData: this.props.venueData
+      }
+   }
+
+   componentDidMount() {
+   }
+
+   componentWillReceiveProps(props) {
+      this.setState({ display: props.venueFilterPanelDisplay ? 'block' : 'none' });
+   }
+
+   closeVenuePopup = () => {
+      this.setState({ display: 'none' });
+   }
+
+   sortAndGroup = (venues) => {
+      this.groupedCollection = {};
       for (let i = 0; i < venues.length; i++) {//loop throug collection         
          let firstLetter = venues[i].name.charAt(0);
          if (!isNaN(firstLetter)) {
             firstLetter = '#';
          }
-         if (groupedCollection[firstLetter] == undefined) {
-            groupedCollection[firstLetter] = [];
+         if (this.groupedCollection[firstLetter] == undefined) {
+            this.groupedCollection[firstLetter] = [];
          }
-         groupedCollection[firstLetter].push(venues[i]);
+         this.groupedCollection[firstLetter].push(venues[i]);
       }
-      return groupedCollection;
+      return this.groupedCollection;
    }
 
-   const groupeFilter = (groupedCollection) => {
-      let liData = [];
+   // Filter for grouped Data
+   groupeFilter = (groupedCollection) => {
+      let groupedData = [];
+      let id;
       Object.keys(groupedCollection).map((key) => {
-         liData.push(<li id={key} className="filter-directory-list-title">{key}</li>);
-         groupedCollection[key].map(venue => {
-            liData.push(<li>
-               <input className="styled-checkbox" type="checkbox" id="styled-checkbox-9" value="" />
-               <label for="styled-checkbox-9">
+         groupedData.push(<li id={key} className="filter-directory-list-title">{key}</li>);
+         groupedCollection[key].map((venue) => {
+            id = 'venue-panel-' + venue.id;
+            groupedData.push(<li>
+               <input onChange={(e) => this.props.checkUncheckVenues(e, venue.id, 'child')} className="styled-checkbox" type="checkbox" id={id} />
+               <label htmlFor={id}>
                   {venue.name}
                </label>
             </li>);
          }
          )
       })
-      return liData;
+      return groupedData;
    }
 
-   const updateSearch = (event) => {
-      setSearch(event.target.value.substr(0, 20));
+   updateSearch = (event) => {
+      this.setState({ search: event.target.value.substr(0, 20) });
    }
 
-   const prepareAlphabets = () => {
+   // Prepare alphabests in Venue popup
+   prepareAlphabets = () => {
       let alphabets = [];
       alphabets.push(<li className="">#</li>);
       for (let i = 65; i < 91; i++) {
@@ -56,60 +79,30 @@ const VenueFilter = (props) => {
       return alphabets;;
    }
 
-   const filteredVenue = venueData.length && venueData.filter((venues) => {
-      // console.log(venues)  
-      return venues.name.toLowerCase().indexOf(search) !== -1;
-   })
+   // Return Jsx
+   render() {
+      const { venuesData, search, display } = this.state;
+      const { setOpenVenuePanel } = this.props;
+      let filteredVenue = venuesData.length && venuesData.filter((venues) => {
+         return venues.name.toLowerCase().indexOf(search) !== -1;
+      })
+      this.sortAndGroup(filteredVenue);
 
-   sortAndGroup(filteredVenue);
-
-   return (
-      <div>
-         <div className="filter-grid-heading">
-            <h3>Venue</h3>
-            <ul>
-               <li className="active">
-                  <a href="/">Clear</a>
-               </li>
-            </ul>
-         </div>
+      return (
          <div className="filters-panel">
-            <ul>
-               <li>
-                  <input className="styled-checkbox" type="checkbox" id="styled-checkbox-12" value="" />
-                  <label for="styled-checkbox-12">
-                     Esplanade Concert Hall
-                     </label>
-               </li>
-               <li>
-                  <input className="styled-checkbox" type="checkbox" id="styled-checkbox-13" value="" />
-                  <label for="styled-checkbox-13">
-                     Sands Theatre at Marina Bay Sands
-                     </label>
-               </li>
-               <li>
-                  <input className="styled-checkbox" type="checkbox" id="styled-checkbox-14" value="" />
-                  <label for="styled-checkbox-14">
-                     Victoria Theatre
-                     </label>
-               </li>
-            </ul>
-            <a href="/" className="view-all-filters">
-               + 94 More
-                     </a>
-            <div className="filter-directory-panel">
+            <div className="filter-directory-panel" style={{ display: display }}>
                <div className="filter-directory-titlebar">
                   <div className="filter-directory-heading">
                      <h3>Venue</h3>
                      <span className="filter-directory-close">
-                        <img src={CloseIcon} alt="Close" />
+                        <img onClick={() => setOpenVenuePanel(false)} src={CloseIcon} alt="Close" />
                      </span>
                   </div>
                   <div className="filter-directory-indices-list">
-                     <input type="text" value={search} onChange={(event) => updateSearch(event)} placeholder="Search brand" className="filter-directory-search-input" />
+                     <input type="text" value={search} onChange={(event) => this.updateSearch(event)} placeholder="Search brand" className="filter-directory-search-input" />
                      <ul className="filter-directory-indices">
                         {
-                           prepareAlphabets().map((alphabets) => {
+                           this.prepareAlphabets().map((alphabets) => {
                               return alphabets
                            })
                         }
@@ -119,7 +112,7 @@ const VenueFilter = (props) => {
                <div>
                   <ul className="filter-directory-list">
                      {
-                        groupeFilter(groupedCollection).map((lidata) => {
+                        this.groupeFilter(this.groupedCollection).map((lidata) => {
                            return lidata;
                         })
                      }
@@ -127,8 +120,6 @@ const VenueFilter = (props) => {
                </div>
             </div>
          </div>
-      </div>
-   )
+      )
+   }
 }
-
-export default VenueFilter;
