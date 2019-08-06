@@ -1,6 +1,7 @@
 import React from "react";
 import Modal from "react-animated-modal";
 import popupClose from '../../../assets/images/cross.svg';
+import './style.scss';
 export default class ModalPopup extends React.Component {
 
   render() {

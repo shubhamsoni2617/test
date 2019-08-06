@@ -8,7 +8,9 @@ import EventsService from '../../../shared/services/EventsService';
 import Constants from '../../../shared/constants';
 import calendarImg from '../../../assets/images/event-calender.svg';
 import locationImg from '../../../assets/images/location-blue.svg';
+import locationImgGrey from '../../../assets/images/location-grey.svg';
 import SeatMapImg from '../../../assets/images/seatmap.svg';
+import SeatMapWhite from '../../../assets/images/seatmap-white.svg';
 import faceImg from '../../../assets/images/face.svg';
 import shareIcon from '../../../assets/images/share-icon.svg';
 import Info from '../../../assets/images/info-sign.svg';
@@ -252,12 +254,12 @@ export default class EventsDetail extends Component {
                         </ul>
                       }
                       <h2>{detailData.title}</h2>
-                      <span className="info" onClick={() => this.openNotice()}>
+                      <a className="info" onClick={() => this.openNotice()}>
                         <img src={shareIcon} className="" alt="" />
-                      </span>
-                      <span className="share" onClick={() => this.openSocialShare()}>
+                      </a>
+                      <a className="share" onClick={() => this.openSocialShare()}>
                         <img src={shareIcon} className="" alt="" />
-                      </span>
+                      </a>
                       {showSocialShare && <SocialShare shareUrl={shareUrl} />}
                       <div className="ticket-date-price">
                         <ul className="date-address">
@@ -322,22 +324,22 @@ export default class EventsDetail extends Component {
                       })
                     }
 
-                  </div>
-                  <div className="event-detail-sidebar">
-                    <a onClick={() => this.openSeatMap()} className="seat-map"><img src={SeatMapImg} /> Seat Map</a>
-                    {showSeatMap && detailData.seating_plan && detailData.seating_plan.length > 0 &&
-                      <SeatMap imgArr={detailData.seating_plan} heading='Seat Map' handleClose={this.handleClose} />
-                    }
-                    {
-                      detailData.buy_package_url &&
-                      <a href={detailData.buy_package_url} target="_blank" className="buy-package">Buy Packages</a>
-                    }
-                    {
-                      detailData.ticket_pricing &&
-                      <AccordionSection title='Price Details' infoTag={true} preExpanded={accrodian}
-                        uuid='pricedetail'
-                        desc={detailData.ticket_pricing} openInfoPopup={this.openInfoPopup} showInfo={showInfo}
-                      />
+                </div>
+                <div className="event-detail-sidebar">
+                  <a onClick={() => this.openSeatMap()} className="seat-map"><img src={SeatMapImg} /><img className="active" src={SeatMapWhite} /> Seat Map</a>
+                  {showSeatMap && detailData.seating_plan && detailData.seating_plan.length > 0 &&
+                    <SeatMap imgArr={detailData.seating_plan} heading='Seat Map' handleClose={this.handleClose} />
+                  }
+                  {
+                    detailData.buy_package_url &&
+                    <a href={detailData.buy_package_url} target="_blank" className="buy-package">Buy Packages</a>
+                  }
+                  {
+                    detailData.ticket_pricing &&
+                    <AccordionSection title='Price Details' infoTag={true} preExpanded={accrodian}
+                      uuid='pricedetail'
+                      desc={detailData.ticket_pricing} openInfoPopup={this.openInfoPopup} showInfo={showInfo}
+                    />
 
                     }
 

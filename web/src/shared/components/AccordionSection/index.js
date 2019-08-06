@@ -16,11 +16,9 @@ export default class AccordionSection extends Component {
         }
     }
 
-
-
     render() {
         const { children, title, desc, activeLang, langArr, changeLang, uuid, preExpanded, infoTag ,openInfoPopup, showInfo} = this.props;
-        console.log(children, "sdfklnfklgnhklfgnh")
+        // console.log(children, "sdfklnfklgnhklfgnh")
         let content = 'Please add to above price S$4 Booking Fee per ticket for tickets above S$40; S$3 Booking Fee per ticket for tickets between S$20.01 - S$40 and S$1 Booking Fee per ticket for tickets S$20 and below. Charges include GST where applicable.'
         let arr = ['title']
         return (
@@ -33,10 +31,10 @@ export default class AccordionSection extends Component {
                                 {infoTag && 
                                 <div>
                                     <span>(Excludes Booking Fee)</span>
-                                    <span onClick={(event) => openInfoPopup(event)}>
-                                        <img src={infoIcon} alt="Info Icon"/>
-                                        {showInfo && <InfoPopup content={content} />}
-                                    </span>
+                                    <span className="price-info-icon">
+                                       <img src={infoIcon} alt="Info Icon"/>
+                                       <InfoPopup content={content} />
+                                   </span>
                                 </div>}
                             </AccordionItemButton>
                         </AccordionItemHeading>

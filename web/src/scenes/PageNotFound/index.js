@@ -8,7 +8,7 @@ import CurrentlyShowing from '../Home/CurrentlyShowing/CurrentlyShowing';
 const PageNotFound = (props) => {
 
   return (
-    <div>
+    <div className="pagenotfound">
         <div className="pagenotfound-wrapper">
             <div className="container">
                 <div className="pagenotfound-banner">
