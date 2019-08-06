@@ -8,7 +8,8 @@ const HotShowPopup = () => {
 
     const [popupData, setPopupData] = useState([]);
     const [error, setError] = useState(false);
-    const [showPopup, setFlag] = useState(sessionStorage.getItem('showPopup') ? JSON.parse(sessionStorage.getItem('showPopup')) : true)
+    // const [showPopup, setFlag] = useState(sessionStorage.getItem('showPopup') ? JSON.parse(sessionStorage.getItem('showPopup')) : true)
+    const [showPopup, setFlag] = useState(true);
 
     useEffect(() => {
         HomeService.getHotShowPopupData()
@@ -22,7 +23,7 @@ const HotShowPopup = () => {
 
     const closePopup = () => {
         setFlag(false);
-        sessionStorage.setItem('showPopup', false);
+        // sessionStorage.setItem('showPopup', false);
     }
 
     let body = document.body;
@@ -32,6 +33,15 @@ const HotShowPopup = () => {
         return null;
     }
     body.classList.add("hotshowpopup-overlay");
+    let getButtonStyle = (styleObj, index) => { 
+        let t = '';
+
+        if(styleObj.b_color || styleObj.b_font_color){
+
+            return t + (".hotshow_buttons"+index+" {background-color : "+styleObj.b_color+",color : "+styleObj.b_font_color+"}");
+        }
+    }
+
     return (
         <div className="hotshow-popup">
             <div className="hotshow-overlay"></div>
@@ -44,7 +54,7 @@ const HotShowPopup = () => {
                         <span onClick={() => closePopup()}>Continue to SISTIC <img src={nextarrow} alt="" /></span>
                     </div>
                 </div>
-
+                
                 <div className="hotshow-wrapper">
                     {eventCount == 2 && popupData &&
                         popupData.map((objData, index) => {
@@ -62,7 +72,12 @@ const HotShowPopup = () => {
                                     {objData.description &&
                                         <div dangerouslySetInnerHTML={{ __html: objData.description }}></div>
                                     }
-                                    <a href={objData.buttons.b_url} target="_blank">{objData.buttons.b_name}</a>
+                                    {objData.buttons && 
+                                        <div>
+                                            <style dangerouslySetInnerHTML={{ __html:getButtonStyle(objData.buttons, index)}}></style>
+                                            <a className="hotshow_buttons" href={objData.buttons.b_url} target="_blank">{objData.buttons.b_name}</a>
+                                        </div>
+                                    }
                                 </div>
                             </div>
                         })
