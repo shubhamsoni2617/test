@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import LazyLoad from 'react-lazyload';
 import BigBanner from '../../../assets/images/big_banner.png';
 import Horizontal from  '../../../assets/images/horizontal.png';
 import Vertical from  '../../../assets/images/vertical.png';
@@ -42,13 +43,15 @@ export default class Image extends Component {
     if(! src){
       src="assets.png"
     }
-    const {type, ...props} = this.props;
+    const {type, className} = this.props;
     return (
+      <LazyLoad height={200}>
       <img
         src= {src}
         onError ={() => this.onError()}
-        {... props}
+        className = {className}
       />
+      </LazyLoad>
     );
   }
 }
