@@ -1,25 +1,37 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import { BrowserHistory } from 'react-router-dom';
 import Filters from '../../shared/components/Filters';
 import SortBy from '../../shared/components/SortBy';
 import Card from '../../shared/components/Card';
 import EventsService from '../../shared/services/EventsService';
 import HomeService from '../../shared/services/HomeService';
-import './style.scss';
 import DownArrowBlue from '../../assets/images/down-arrow-blue.svg';
 import Breadcrub from '../../scenes/App/Breadcrumb';
+import './style.scss';
+
 export default class Events extends Component {
 
     constructor(props) {
         super(props);
+
+        this.initialLimit = { first: 0, limit: 10, sort_type: 'date' };
         this.state = {
             filteredGnere: [], filteredSearch: [], filteredPromotions: [], filteredVenues: [], filteredTags: [],
-            filteredPriceRange: {}, filteredDateRange: {}, filteredSortType: '', filteredSortOrder: '',
-            eventsData: [], genre: [], venues: [], filterConfig: [], first: 1, limit: 2, viewType: 'events-section'
+            filteredPriceRange: {}, filteredDateRange: {}, filteredSortType: 'date', filteredSortOrder: '',
+            eventsData: [], genre: [], venues: [], filterConfig: [], first: 0, limit: 10, viewType: 'events-section', totalRecords: 0
         };
+
+        this.breadCrumbData = {
+            'page_banner': 'assets/images/promotions-banner.png',
+            'page': 'Events',
+            'count': '24',
+            'breadcrumb_slug': [{ 'path': '/', 'title': 'Home' }, { 'path': '/events', 'title': 'Events' }]
+        };
+
     }
 
     componentDidMount() {
-        this.loadEvents({ first: 1, limit: 2 });
+        this.loadEvents({ first: 0, limit: 10 });
         this.getGenre();
         this.getVenue();
         this.getFilterConfig();
@@ -34,10 +46,11 @@ export default class Events extends Component {
             filteredTags: [],
             filteredPriceRange: {},
             filteredDateRange: {},
-            filteredSortType: '',
+            filteredSortType: 'date',
             filteredSortOrder: '',
+            eventsData: []
         }, () => {
-            this.loadEvents({ first: 1, limit: 2 });
+            this.loadEvents(this.initialLimit);
         })
     }
 
@@ -80,10 +93,8 @@ export default class Events extends Component {
     loadEvents = (params) => {
         EventsService.getData(params)
             .then((res) => {
-                console.log('res.data.data', res.data.data);
-                const eventData = [...this.state.eventsData, ...res.data.data]; 
-                console.log('eventData',eventData);
-                this.setState({ eventsData: eventData })
+                const eventData = [...this.state.eventsData, ...res.data.data];
+                this.setState({ eventsData: eventData, totalRecords: res.data.total_records })
             })
             .catch((err) => {
                 console.log(err)
@@ -91,9 +102,8 @@ export default class Events extends Component {
     }
 
     loadMoreEvents = () => {
-        // let paging = { first: this.state.first + 2, limit: this.state.limit };
         let params = this.setFilterParams();
-        params.first = this.state.first + 2;
+        params.first = this.state.first + 10;
         this.loadEvents(params);
         this.setState({ first: params.first, limit: params.limit })
     }
@@ -124,11 +134,10 @@ export default class Events extends Component {
         params.end_date = this.state.filteredDateRange.to;
         params.sort_order = this.state.filteredSortOrder;
         params.sort_type = this.state.filteredSortType;
-        params.first = 1;
-        params.limit = 2;
+        params.first = this.initialLimit.first;
+        params.limit = this.initialLimit.limit;
 
         return params;
-
     }
 
     handleFilters = (searchType, searchValue, isChecked) => {
@@ -214,43 +223,53 @@ export default class Events extends Component {
             filteredSortOrder
         }, () => {
             this.setState({ eventsData: [] })
-            this.setState({ first: 0, limit: 2 });
+            this.setState({ first: 0, limit: 10 });
             let params = this.setFilterParams()
             this.loadEvents(params);
         })
     }
 
+    redirectToTarget = (alias) => {
+        debugger
+        this.props.history.push(`events/`+alias)
+    }
+
     render() {
-        const { genre, venues, filterConfig, eventsData } = this.state;
+        const { genre, venues, filterConfig, eventsData, totalRecords, limit } = this.state;
         return (
-            <section className="promotions-wrapper">
-                <div className="container-fluid">
-                    <div className="wrapper-events-listing">
-                        {genre.length > 0 && venues.length > 0 && filterConfig.price_config && filterConfig.promotion_categories &&
-                            <Filters resetFilters={this.resetFilters} handleFilters={this.handleFilters} genreData={genre} venueData={venues} filterConfig={filterConfig} />
-                        }
-                        <div className="events-listing">
-                            <SortBy handleListGridView={this.handleListGridView} handleFilters={this.handleFilters} />
-                            <div className={this.state.viewType}>
-                                {eventsData && eventsData.map((event) => {
-                                    return <Card eventsData={event} />
-                                })}
-                            </div>
-                            {eventsData && eventsData.length > 1 &&
-                                <div class="promotion-load-more">
-                                    <a onClick={() => this.loadMoreEvents()} class="btn-link load-more-btn" target="">
-                                        <span>Load More</span>
-                                        <img src={DownArrowBlue} />
-                                    </a>
+            <div>
+                <Breadcrub breadCrumbData={this.breadCrumbData} />
+                <section className="promotions-wrapper">
+                    <div className="container-fluid">
+                        <div className="wrapper-events-listing">
+                            {genre.length > 0 && venues.length > 0 && filterConfig.price_config && filterConfig.promotion_categories &&
+                                <Filters resetFilters={this.resetFilters} handleFilters={this.handleFilters} genreData={genre} venueData={venues} filterConfig={filterConfig} />
+                            }
+                            <div className="events-listing">
+                                <SortBy handleListGridView={this.handleListGridView} handleFilters={this.handleFilters} />
+                                <div  className={this.state.viewType}>
+                                    {eventsData && eventsData.map((event) => {
+                                        return <div onClick={() => this.redirectToTarget(event.alias)}>
+                                            <Card  eventsData={event} />
+                                        </div>
+                                    })}
                                 </div>
-                            }
-                            {eventsData && eventsData.length == 0 &&
-                                <div>No Events Available</div>
-                            }
+                                {eventsData.length < totalRecords &&
+                                    <div class="promotion-load-more">
+                                        <a onClick={() => this.loadMoreEvents()} class="btn-link load-more-btn" target="">
+                                            <span>Load More</span>
+                                            <img src={DownArrowBlue} />
+                                        </a>
+                                    </div>
+                                }
+                                {eventsData && eventsData.length == 0 &&
+                                    <div>No Events Available</div>
+                                }
+                            </div>
                         </div>
                     </div>
-                </div>
-            </section>
+                </section>
+            </div>
         )
     }
 }
