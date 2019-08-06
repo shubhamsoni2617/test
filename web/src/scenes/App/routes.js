@@ -2,6 +2,7 @@ import Home from '../Home'
 import Events from '../Events'
 import EventsDetail from '../Events/EventsDetail'
 import HomeService from '../../shared/services/HomeService'
+import Promotions from '../Promotions';
 
 const routes =  [
   {
@@ -17,7 +18,12 @@ const routes =  [
   {
     path: '/events-detail',
     component: EventsDetail,
-  }
+  },
+  {
+    path: '/promotions',
+    exact: true,
+    component: Promotions,
+  },
 ]
 
 export default routes

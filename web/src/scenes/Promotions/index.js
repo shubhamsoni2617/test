@@ -3,24 +3,24 @@ import Tabs from '../../shared/components/Tabs';
 import './style.scss';
 
 export default class Promotions extends Component {
-  
-  constructor(props){
+
+  constructor(props) {
     super(props);
   }
 
-  componentDidMount () {
-    
-  } 
+  componentDidMount() {
+
+  }
 
   render() {
     return (
-        <section className="promotions-wrapper">
-               <div className="container-fluid">
-                  <div className="container">
-                    <Tabs />
-                </div>
-            </div>
-        </section>
+      <section className="promotions-wrapper">
+        <div className="container-fluid">
+          <div className="container">
+            <Tabs />
+          </div>
+        </div>
+      </section>
     )
   }
 }

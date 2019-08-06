@@ -13,8 +13,11 @@ class DropDown extends Component {
     toggle = () => {
         if (!this.state.isOpen) {
             window.addEventListener('click', this.handleOutsideClick, false);
+            this.node.classList.add("active");
         } else {
             window.removeEventListener('click', this.handleOutsideClick, false);
+            this.node.classList.remove("active");
+
         }
         this.setState({ isOpen: !this.state.isOpen })
     }

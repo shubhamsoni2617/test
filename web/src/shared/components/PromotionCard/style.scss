@@ -273,7 +273,7 @@
     //         opacity: 0.58;
     //     }
     // }
-  
+
     .related-event {
         padding: 20px 0px 0;
         position: relative;
@@ -407,4 +407,10 @@
             }
         }
     }
+}
+
+
+.show{
+  display:block;
+  cursor: pointer;
 }
