@@ -33,7 +33,7 @@ const HotShowPopup = () => {
         return null;
     }
     body.classList.add("hotshowpopup-overlay");
-    let getButtonStyle = (styleObj, index) => { 
+    let getButtonStyle = (styleObj, index) => {
         let t = '';
 
         if(styleObj.b_color || styleObj.b_font_color){
@@ -54,7 +54,7 @@ const HotShowPopup = () => {
                         <span onClick={() => closePopup()}>Continue to SISTIC <img src={nextarrow} alt="" /></span>
                     </div>
                 </div>
-                
+
                 <div className="hotshow-wrapper">
                     {eventCount == 2 && popupData &&
                         popupData.map((objData, index) => {
@@ -72,7 +72,7 @@ const HotShowPopup = () => {
                                     {objData.description &&
                                         <div dangerouslySetInnerHTML={{ __html: objData.description }}></div>
                                     }
-                                    {objData.buttons && 
+                                    {objData.buttons &&
                                         <div>
                                             <style dangerouslySetInnerHTML={{ __html:getButtonStyle(objData.buttons, index)}}></style>
                                             <a className="hotshow_buttons" href={objData.buttons.b_url} target="_blank">{objData.buttons.b_name}</a>
