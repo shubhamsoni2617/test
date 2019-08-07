@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
+import scrollTop from '../../../assets/images/arrow-to-top.svg';
 import './style.scss'
 
 const Footer = () => {
@@ -140,6 +141,10 @@ const Footer = () => {
                </div>
             </div>
          </section>
+         <a href="/" className="scroll-top">
+            <img src={scrollTop} alt="Scroll to top" />
+            TOP
+        </a>
       </footer>
    )
 }
