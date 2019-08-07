@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import {useSpring, animated} from 'react-spring';
 import './style.scss';
 import HomeService from '../../services/HomeService';
 import nextarrow from '../../../assets/images/next-arrow-white.svg';
@@ -10,6 +11,10 @@ const HotShowPopup = () => {
     const [error, setError] = useState(false);
     // const [showPopup, setFlag] = useState(sessionStorage.getItem('showPopup') ? JSON.parse(sessionStorage.getItem('showPopup')) : true)
     const [showPopup, setFlag] = useState(true);
+    const [propsAnimation, set, stop] = useSpring(() => ({opacity: 0}))
+
+    set({opacity: showPopup ? 1 : 0})
+    stop()
 
     useEffect(() => {
         HomeService.getHotShowPopupData()
@@ -22,8 +27,8 @@ const HotShowPopup = () => {
     },[])
 
     const closePopup = () => {
-        setFlag(false);
-        // sessionStorage.setItem('showPopup', false);
+        set({opacity: 0})
+        setTimeout(() => setFlag(false),1000);
     }
 
     let body = document.body;
@@ -43,7 +48,7 @@ const HotShowPopup = () => {
     }
 
     return (
-        <div className="hotshow-popup">
+        <animated.div style={propsAnimation} className="hotshow-popup">
             <div className="hotshow-overlay"></div>
             <div className="hotshow container">
                 <div className="hotshow-topbar">
@@ -106,7 +111,7 @@ const HotShowPopup = () => {
                     }
                 </div>
             </div>
-        </div>
+        </animated.div>
     );
 }
 export default HotShowPopup;
