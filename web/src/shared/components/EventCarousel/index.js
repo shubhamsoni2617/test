@@ -59,18 +59,19 @@ const EventCarousel = (props) => {
             <Slider
             asNavFor = {navLarge}
             ref={slider => (slider2 = slider)}
-            slidesToShow={6}
+            slidesToShow={images.length}
+            variableWidth ={true}
             swipeToSlide={true}
             focusOnSelect={true}
             {...settings2}
             >
             {images.map((obj, idx) => {
                 if (obj.type && obj.type.id == 1) {
-                return <div key={idx}>
+                return <div key={idx} style={{width : 130}}>
                     <img src={obj.thumb_image} />
                 </div>
                 } else {
-                return <div className="videoimg" key={idx}>
+                return <div className="videoimg" key={idx} style={{width : 130}}>
                     <img src={obj.thumb_image} />
                 </div>
                 }
