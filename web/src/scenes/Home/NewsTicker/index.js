@@ -58,8 +58,7 @@ const NewsTicker = (props) => {
       <div className="modal" style={{ display: show ? "block" : "none" }}>
         <div className="modal-dialog modal-dialog-scrollable modal-dialog-centered">
           <div className="modal-content">
-            <div className="modal-header border-n">
-              <button type="button" className="close" onClick={() => { refMarquee.current.start();setShow(false) }}>
+            <div className="modal-header border-n"><button type="button" className="close" onClick={() => { refMarquee.current.start();setShow(false) }}>
                 <span aria-hidden="true"><img src={popupClose} alt="Close Popup" /></span>
               </button>
             </div>
@@ -68,6 +67,7 @@ const NewsTicker = (props) => {
                 <div dangerouslySetInnerHTML={{ __html: des }}></div>
               </div>
             </div>
+            <div className="modal-footer border-n"></div>
           </div>
         </div>
       </div>
