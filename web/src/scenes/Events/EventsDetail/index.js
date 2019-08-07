@@ -328,7 +328,7 @@ export default class EventsDetail extends Component {
                 <div className="event-detail-sidebar">
                   <a onClick={() => this.openSeatMap()} className="seat-map"><img src={SeatMapImg} /><img className="active" src={SeatMapWhite} /> Seat Map</a>
                   {showSeatMap && detailData.seating_plan && detailData.seating_plan.length > 0 &&
-                    <SeatMap imgArr={detailData.seating_plan} heading='Seat Map' handleClose={this.handleClose} />
+                    <SeatMap imgArr={detailData.seating_plan} showModal={showSeatMap} heading='Seat Map' handleClose={this.handleClose} />
                   }
                   {
                     detailData.buy_package_url &&
