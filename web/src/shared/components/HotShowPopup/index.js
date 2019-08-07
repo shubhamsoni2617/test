@@ -14,7 +14,7 @@ const HotShowPopup = () => {
     const [propsAnimation, set, stop] = useSpring(() => ({opacity: 0}))
 
     set({opacity: showPopup ? 1 : 0})
-    stop()
+    //stop()
 
     useEffect(() => {
         HomeService.getHotShowPopupData()

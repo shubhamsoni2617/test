@@ -1,124 +1,107 @@
-* {
-  box-sizing: border-box;
-}
-$duration: 100s;
+$duration: 10s;
 
 @-webkit-keyframes ticker {
-  0% {
-    -webkit-transform: translate3d(0, 0, 0);
-    transform: translate3d(0, 0, 0);
-    visibility: visible;
-  }
+0% {
+-webkit-transform: translate3d(0, 0, 0);
+transform: translate3d(0, 0, 0);
+visibility: visible;
+}
 
-  100% {
-    -webkit-transform: translate3d(-100%, 0, 0);
-    transform: translate3d(-100%, 0, 0);
-  }
+100% {
+-webkit-transform: translate3d(-100%, 0, 0);
+transform: translate3d(-100%, 0, 0);
+}
 }
 
 @keyframes ticker {
-  0% {
-    -webkit-transform: translate3d(0, 0, 0);
-    transform: translate3d(0, 0, 0);
-    visibility: visible;
-  }
-
-  100% {
-    -webkit-transform: translate3d(-100%, 0, 0);
-    transform: translate3d(-100%, 0, 0);
-  }
+0% {
+-webkit-transform: translate3d(0, 0, 0);
+transform: translate3d(0, 0, 0);
+visibility: visible;
 }
 
-/* Make it move */
-@keyframes marquee {
-  0%   { text-indent: 27.5em }
-  100% { text-indent: -105em }
+100% {
+-webkit-transform: translate3d(-100%, 0, 0);
+transform: translate3d(-100%, 0, 0);
+}
 }
 
 .ticker-wrap {
-    width: 100%;
-    background-color: rgba(3, 13, 21, 0.8);
-    padding: 0 60px 0 35px;
-    position: relative;
-    z-index: 2;
-    max-height: 0;
-    transition: max-height 0.3s ease-out;
-    overflow: hidden;
-    &.hide-news{
-        max-height: 40px;
-        transition: max-height 0.3s ease-in;
-    }
-    .ticker-container{
-        width: 100%;
-        overflow: hidden;
-        display: flex;
-        justify-content: center;
-            align-items: center;
-        height: 30px;
+width: 100%;
+background-color: rgba(3, 13, 21, 0.8);
+padding: 0 60px 0 35px;
+position: relative;
+z-index: 2;
+max-height: 0;
+transition: max-height 0.5s ease-out;
+overflow: hidden;
+&.hide-news{
+max-height: 40px;
+transition: max-height 0.5s ease-in;
+}
+.ticker-container{
+width: 100%;
+overflow: hidden;
+display: flex;
+justify-content: center;
+align-items: center;
+height: 30px;
+.ticker {
+  cursor: pointer;
+display: flex;
+justify-content: center;
+align-items: center;
+height: 30px;
+line-height: 30px;
+white-space: nowrap;
+box-sizing: content-box;
+color: #FFF;
+// -webkit-animation-iteration-count: infinite;
+// animation-iteration-count: infinite;
+// -webkit-animation-timing-function: linear;
+// animation-timing-function: linear;
+// -webkit-animation-name: ticker;
+// animation-name: ticker;
+// -webkit-animation-duration: $duration;
+// animation-duration: $duration;
+font-size: 14px;
 
-        .ticker {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 30px;
-            line-height: 30px;
-            white-space: nowrap;
-            padding-left: 100%;
-            box-sizing: content-box;
-            color: #FFF;
-            animation: ticker 50s linear infinite;
-            // -webkit-animation-iteration-count: infinite;
-            // animation-iteration-count: infinite;
-            // -webkit-animation-timing-function: linear;
-            // animation-timing-function: linear;
-            // -webkit-animation-name: ticker;
-            // animation-name: ticker;
-            // -webkit-animation-duration: $duration;
-            // animation-duration: $duration;
-            font-size: 14px;
-            &__item {
-            display: inline-block;
-            padding: 0 2rem;
-            font-size: 14px;
-            color: white;
-            font-weight: 300;
-            }
-            &:hover{
-                animation-play-state: paused
-            }
-            div{
-                display: flex;
-                margin-right: 350px;
-                font-size: 14px;
-                color: white;
-                font-weight: 300;
-                p{
-                    margin: 0;
-                    padding: 0;
-                    font-size: 14px;
-                    color: white;
-                    font-weight: 300;
-                }
-            }
-        }
-    }
-    .close-ticker{
-        position: absolute;
-        right: 40px;
-        top: 5px;
-        z-index: 2;
-        img{
-            width: 15px;
-            height: 15px;
-        }
-    }
-    span:hover{
-        cursor: pointer;
-      }
-
-    .hide{
-    display:none
-    }
+&:hover{
+animation-play-state: paused
+}
+div{
+display: flex;
+margin-right: 150px;
+font-size: 14px;
+color: white;
+font-weight: 300;
+white-space: nowrap;
+p{
+margin: 0;
+padding: 0;
+font-size: 14px;
+color: white;
+font-weight: 300;
+white-space: nowrap;
+}
+}
+}
+}
+.close-ticker{
+position: absolute;
+right: 40px;
+top: 5px;
+z-index: 2;
+img{
+width: 15px;
+height: 15px;
+}
+}
+span:hover{
+cursor: pointer;
 }
 
-
+.hide{
+display:none
+}
+}
