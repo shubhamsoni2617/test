@@ -40,7 +40,7 @@
             input {
                 border: 1px solid rgba(151,151,151,0.2);
                 height: 36px;
-                padding: 3px 40px 3px 10px;
+                padding: 7px 40px 7px 10px;
                 border-radius: 0;
                 &::-webkit-input-placeholder {
                     color: rgba(52,52,52,0.25);
@@ -185,19 +185,22 @@
     .filter-heading {
         border-bottom: 1px solid rgba(126,126,126,0.1);
         display: flex;
-        padding-bottom: 12px;
+        padding-bottom: 9px;
+        min-height: 43px;
         h3 {
             color: #343434;
             margin: 0;
-            font-weight: 600;
+            font-weight: bold;
             font-family: 'Montserrat', sans-serif;
             font-size: 16px;
+            line-height: 19px;
             width: 100%;
             a {
                 float: right;
                 color: #0098ff;
                 text-decoration: none;
                 font-size: 12px;
+                line-height: 14px;
                 font-family: 'Rubik', sans-serif;
             }
         }
@@ -211,11 +214,13 @@
         .search-btn {
             position: absolute;
             right: 16px;
-            top: 12px;
+            top: 50%;
             z-index: 1;
             background: transparent;
             border: none;
             padding: 0;
+            transform: translateY(-50%);
+            margin-top: 2px;
         }
 
         input {
@@ -284,6 +289,7 @@
                         font-family: 'Rubik', sans-serif;
                         font-size: 12px;
                         line-height: 14px;
+                        cursor: pointer;
 
                         &:hover {
                             color: #0098ff;
@@ -299,6 +305,38 @@
             flex-wrap: wrap;
             margin-bottom: 10px;
             position: relative;
+            .input-range__track--active {
+                background: #0098FF;
+                height: 7px;
+                margin-top: -3px;
+            }
+            .input-range__slider{
+                background: #FFF;
+                border: 5px solid #0098FF;
+                height: 15px;
+                width: 15px;
+                margin-top: -11px;
+            }
+            .input-range__track--background{
+                height: 2px;
+            }
+            span.input-range__label-container {
+                height: 26px;
+                width: 60px;
+                border: 1px solid rgba(126, 126, 126, 0.2);
+                display: inline-block;
+                text-align: center;
+                line-height: 26px;
+                color: #7E7E7E;
+            }
+            .input-range__label.input-range__label--min, .input-range__label.input-range__label--max{
+                .input-range__label-container{
+                    display: none;
+                }
+            }
+            .input-range__label--value{
+                top: -48px;
+            }
             ul {
                 margin: 0;
                 padding: 0;
@@ -313,10 +351,9 @@
                     font-family: 'Rubik', sans-serif;
                     font-size: 14px;
                     color: #626262;
-
                     &.active {
                         color: #0098ff;
-                    }
+                    }                   
                 }
             }
             /****** Filter Directory ******/
@@ -325,8 +362,9 @@
                 box-sizing: border-box;
                 box-shadow: 0 2px 35px 0 rgba(176,176,176,0.5);
                 background: #FEFEFE;
-                width: 980px;
-                padding: 15px 25px;
+                width: 1060px;
+                height: 520px;
+                padding: 17px 25px;
                 overflow: hidden;
                 position: absolute;
                 bottom: 38px;
@@ -340,24 +378,26 @@
                     .filter-directory-heading{
                         display: flex;
                         justify-content: space-between;
-                        margin-bottom: 5px;
+                        margin-bottom: 15px;
                         h3{
                             color: #343434;		
                             font-size: 15px;
-                            font-weight: 600;
+                            line-height: 18px;
+                            font-weight: 500;
                             margin: 0;
                         }
                         .filter-directory-close{
                             float: right;
                             cursor: pointer;
                             opacity: 0.7;
-                            margin-top: 10px;
+                            margin-top: 0px;
                             width: 14px;
                             height: 14px;
                         }
                     }
                     .filter-directory-indices-list{
                         display: flex;
+                        align-items: center;
                         .filter-directory-search-input {
                             margin: 0 20px 0 0;
                             height: 30px;
@@ -367,7 +407,7 @@
                             border: 1px solid rgba(151,151,151,0.2);
                             outline: none;
                             text-transform: capitalize;
-                            background: url(../../../assets/images/search-blue.svg) 96% 4px no-repeat;
+                            background: url(../../../assets/images/search-grey.png) 96% 4px no-repeat;
                             &::-webkit-input-placeholder {
                                 color: rgba(52,52,52,0.25);
                             }
@@ -399,13 +439,24 @@
                                 color: #000000;
                                 font-weight: 600;
                                 font-size: 13px;
+                                padding: 0px;
+                                a{
+                                    color: #343434;
+                                    font-family: 'Rubik', sans-serif;
+                                    font-size: 14px;
+                                    padding-right: 4.67px;
+                                    line-height: 17px;
+                                    &:hover{
+                                        color: #2698ff;
+                                    }
+                                }
                             }
                         }
                     }
                 }
                 .filter-directory-list{
                     padding: 20px 18px 10px 0;
-                    height: 465px;
+                    height: 410px;
                     display: flex;
                     flex-direction: column;
                     flex-wrap: wrap;
@@ -414,13 +465,12 @@
                     white-space: nowrap;
                     overflow-x: auto;
                     overflow-y: hidden;
-                   
                     li{
                         margin: 0 10px 1px 0;
                         font-size: 14px;
-                        padding: 5px 10px;
+                        padding: 6px 10px;
                         padding-left: 0;
-                        width: 260px;
+                        width: 270px;
                         &.filter-directory-listTitle{
                             margin-bottom: 10px;
                             font-weight: 600;
@@ -428,6 +478,25 @@
                             color: #282c3f;
                             font-size: 14px;
                             margin-bottom: 0px;
+                        }
+                        &.filter-directory-list-title{
+                            color: #343434;
+                            font-weight: 500;
+                            font-size: 15px;
+                            line-height: 18px;
+                            margin-top: 10px;
+                        }
+                        .styled-checkbox + label{
+                            white-space: nowrap;
+                            text-overflow: ellipsis;
+                            width: 100%;
+                            overflow: hidden;
+                            margin-bottom: 0px;
+                            color: rgba(98, 98, 98, 0.8);
+                            font-size: 14px;
+                            line-height: 17px;
+                            text-transform: capitalize;
+                            font-family: 'Rubik', sans-serif;
                         }
                     }
                 }
@@ -460,6 +529,87 @@
                 color: #0098ff;
                 padding: 5px 0;
                 margin-top: 15px;
+                cursor: pointer;
+            }
+            // dateinput
+            label{
+                color: rgba(98, 98, 98, 0.8);
+                font-family: 'Rubik', sans-serif;
+                font-size: 14px;
+                line-height: 17px;
+                display: block;
+                width: 100%;
+                margin-bottom: 0px;
+            }
+            .date-input-to, .date-input-from {
+                margin-right: 10px;
+                label{
+                    font-size: 12px;
+                    line-height: 14px;
+                }
+            }
+            .DayPickerInput{
+                input{
+                    height: 26px;
+                    width: 120px;
+                    border: 1px solid #E1E1E1;
+                    padding: 0px 7px;
+                    color: rgba(98, 98, 98, 0.8);
+                }
+                .DayPickerInput-OverlayWrapper{
+                    .DayPicker-wrapper{
+                        height: 246px;
+                        width: 283px;
+                        background-color: #FFFFFF;
+                        box-shadow: 0 2px 4px 1px rgba(190,190,190,0.5);
+                    }
+                    .DayPicker-Caption {
+                        color: #343434;
+                        font-size: 11.4px;
+                        line-height: 14px;
+                        font-weight: 500;
+                        text-align: center;
+                    }
+                    .DayPicker-Weekday abbr[title]{
+                        color: rgba(52,72,94,0.54);
+                        font-size: 11px;
+                        line-height: 12px;
+                    }
+                    .DayPicker-Day{
+                        text-align: center;
+                        cursor: pointer;
+                        color: #CBD4DE;
+                        font-size: 10px;
+                        line-height: 12px;
+                    }
+                    .DayPicker-NavBar {
+                        position: absolute;
+                        width: 100%;
+                        height: 15px;
+                        top: 15px;
+                        .DayPicker-NavButton--prev{
+                            background-image: url(../../../assets/images/left-arrow-blue.svg);
+                            max-width: 10px;
+                            margin: 0;
+                            top: 50%;
+                            left: 20%;
+                            transform: translateY(-50%);
+                         }
+                         .DayPicker-NavButton--next{
+                             background-image: url(../../../assets/images/right-arrow-blue.svg);
+                             max-width: 10px;
+                             top: 50%;
+                             right: 20%;
+                             transform: translateY(-50%);
+                             margin: 0px;
+                         }
+                    }
+                }
+            }
+        }
+        &.filter-price-range{
+            .filter-grid-heading {
+                padding-bottom: 55px;
             }
         }
     }

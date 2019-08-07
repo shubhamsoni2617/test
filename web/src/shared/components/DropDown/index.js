@@ -35,7 +35,7 @@ class DropDown extends Component {
         return (
             <li className="dropdown" onClick={this.toggle} ref={node => { this.node = node; }}>
                 <a className="dropbtn">More
-                    <span class="dropdown-icon">
+                    <span className="dropdown-icon">
                     </span>
                 </a>
                 <ul className="dropdown-content">

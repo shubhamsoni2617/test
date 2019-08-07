@@ -34,7 +34,7 @@ class MiniCart extends Component {
 
         return (
             <li className="cart-icon" onClick={this.toggle} ref={node => { this.node = node; }}>
-                <a><img src={MiniCartLogo} class="img-fluid" alt="cart"/><span>{data.length}</span></a>
+                <a><img src={MiniCartLogo} className="img-fluid" alt="cart"/><span>{data.length}</span></a>
                 <div className="my-cart-popup">
                     <div className="my-cart-wrapper">
                         <div className="cart-head">

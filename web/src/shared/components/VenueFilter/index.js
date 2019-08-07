@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import CloseIcon from '../../../assets/images/close-icon.svg';
+import CloseIcon from '../../../assets/images/close-blue.svg';
 import './style.scss';
 
 export default class VenueFilter extends Component {
@@ -119,7 +119,7 @@ export default class VenueFilter extends Component {
                      </span>
                   </div>
                   <div className="filter-directory-indices-list">
-                     <input type="text" value={search} onChange={(event) => this.updateSearch(event)} placeholder="Search brand" className="filter-directory-search-input" />
+                     <input type="text" value={search} onChange={(event) => this.updateSearch(event)} placeholder="Search in Venues" className="filter-directory-search-input" />
                      <ul className="filter-directory-indices">
                         {
                            this.prepareAlphabets().map((alphabets) => {
