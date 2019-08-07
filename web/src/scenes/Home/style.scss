@@ -310,9 +310,9 @@
 									bottom: 0;
 									max-width: 100%;
                                     margin-top: 102px;
-                                   
+
                                 }
-                                
+
 							}
 						}
 					}
@@ -391,7 +391,7 @@
                                 background: url(../../assets/images/more-arrow-white-blue.svg) no-repeat;
                             }
 						}
-						
+
 					}
 					&:first-child {
 						a {
@@ -410,11 +410,11 @@
                         }
 						&:hover {
 							.submenu {
-								top: 100%;
-								padding: 0px;
-								width: 100%;
-                                opacity: 1;
-                                overflow: inherit;
+								// top: 100%;
+								// padding: 0px;
+								// width: 100%;
+                //                 opacity: 1;
+                                // overflow: inherit;
 							}
 							>a {
 								position: relative;
@@ -473,7 +473,7 @@
                 &.active{
                     .dropdown-icon {
                         background: url(../../assets/images/more-arrow-white-blue.svg) no-repeat;
-                    } 
+                    }
                     .dropdown-content{
                         right: 0;
                         background: #FFF;
@@ -514,7 +514,7 @@
                         }
                     }
                 }
-               
+
 				a {
 					font-size: 14px;
 					font-weight: 300;
@@ -847,7 +847,7 @@
 // Slider Arrow common CSS
 .slick-slider{
     .slick-prev, .slick-next{
-        height: 82px;	
+        height: 82px;
         width: 35px;
         display: flex;
         justify-content: center;
@@ -888,14 +888,14 @@
         top: -26px;
         width: auto;
         text-align: right;
-        right: 0; 
+        right: 0;
         li{
             width: 25px;
             height: 20px;
             margin: 0 2px;
             cursor: pointer;
             &.slick-active{
-                span{  
+                span{
                     opacity: 1;
                     background-color: #0077C8;
                 }
@@ -1282,7 +1282,7 @@
             padding: 10px 0;
         }
     }
-    
+
     .slick-dots{
         top: -10px;
         @media (max-width: 767px) {
@@ -1440,7 +1440,7 @@ section.whats-new {
                 }
             }
         }
-    } 
+    }
 	.dots-group {
 		span {
 			background-color: rgba(255, 255, 255, 0.1);
@@ -1592,7 +1592,7 @@ p {
                 top: -26px;
             }
         }
-    } 
+    }
 	.section-top-wrapper {
 		padding-bottom: 16px;
 		max-height: 54px;
@@ -1794,7 +1794,7 @@ section.trending-now {
 		grid-gap: 16px;
         grid-template-columns: 1.4fr repeat(4, 1fr);
 		@media(max-width: 991px) {
-			grid-template-columns: repeat(5, minmax(37%, 1fr));    
+			grid-template-columns: repeat(5, minmax(37%, 1fr));
             grid-gap: 10px;
             overflow-x: auto;
 		}
@@ -1981,7 +1981,7 @@ section.whats-new {
         padding-bottom: 13px;
         @media (max-width: 767px) {
             margin-bottom: 8px;
-            padding-bottom: 0;  
+            padding-bottom: 0;
         }
 	}
 	p {
@@ -2077,7 +2077,7 @@ section.explore {
             }
             h3{
                 color: #343434;
-                transition: 1s all; 
+                transition: 1s all;
             }
 			.explore-image {
 				margin-bottom: 16px;
@@ -2145,7 +2145,7 @@ section.explore {
                 }
                 h3{
                     color: #0098ff;
-                    transition: 1s all; 
+                    transition: 1s all;
                 }
 			}
 		}
@@ -2200,7 +2200,7 @@ section.explore {
 }
 
 //explore style end
-// SISTICMoments Start 
+// SISTICMoments Start
 section{
     &.sistic-moments {
         background: #F0F9FF;
@@ -2228,8 +2228,8 @@ section{
                         }
                     }
                 }
-            } 
-        } 
+            }
+        }
         .moments-wrapper {
             display: flex;
             justify-content: center;
@@ -2240,7 +2240,7 @@ section{
 
 
 // SISTICMoments End
-// Footer Start 
+// Footer Start
 .footer {
 	border-top: 1px solid rgba(151, 151, 151, 0.2);
 	padding: 40px 0px 0px;
@@ -2552,7 +2552,7 @@ section{
 		@media(max-width: 1280px) and (min-width: 991px){
 			display: grid;
 			grid-template-columns: repeat(2, 1fr);
-			grid-column: 1/4;			
+			grid-column: 1/4;
 		}
 	}
 }
@@ -2729,17 +2729,17 @@ body.page-load {
 //submenu calender style
 .submenu {
 	position: absolute;
-	width: 0px;
+	// width: 0px;
 	left: 0;
 	right: 0px;
 	background-color: #ffffff;
 	padding: 0;
 	height: auto;
-	top: 120%;
-	transition: 0.5s top;
-	opacity: 0;
+	// top: 120%;
+	// transition: 0.5s top;
+	opacity: 1;
     z-index: 2;
-    overflow: hidden;
+    // overflow: hidden;
     &::before{
         position: absolute;
         content: "";
