@@ -1,11 +1,12 @@
-import React from 'react';
-import Slider from "react-slick";
-import popupClose from '../../../assets/images/cross.svg';
-import Image from '../../../shared/components/Image';
+import React, { useState } from 'react';
+import Modal from "react-animated-modal";
+import Lightbox from 'react-image-lightbox';
+import 'react-image-lightbox/style.css';
 
 const SeatMap = (props) => {
 
-  const { imgArr, heading, handleClose } = props; // these two are required props
+  const { imgArr, heading, handleClose, showModal } = props; // these two are required props
+  const [photoIndex, setPhotoIdx] = useState(0);
 
   const settings1 = {
     infinite: true,
@@ -16,31 +17,16 @@ const SeatMap = (props) => {
     centerMode: true,
   }
 
+
   return (
-    <div className="modal" id="exampleModal">
-      <div className="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-lg" role="document">
-        <div className="modal-content">
-          <div className="modal-header">
-            {heading && <h5 className="modal-title" id="exampleModalLabel">{heading}</h5>}
-            <button type="button" className="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true"><img src={popupClose} onClick={() => handleClose()} alt="Close Popup" /></span>
-            </button>
-          </div>
-          <div className="modal-body">
-            <div className="seatmap-gallery">
-              <Slider
-                {...settings1}
-                adaptiveHeight={false}
-              >
-                {imgArr.map((obj, idx) => {
-                  return <Image src={obj} type='BigBanner' />
-                })}
-              </Slider>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+    <Lightbox
+      mainSrc={imgArr[photoIndex]}
+      nextSrc={imgArr[(photoIndex + 1) % imgArr.length]}
+      prevSrc={imgArr[(photoIndex + imgArr.length - 1) % imgArr.length]}
+      onCloseRequest={() => handleClose()}
+      onMovePrevRequest={() => setPhotoIdx((photoIndex + imgArr.length - 1) % imgArr.length)}
+      onMoveNextRequest={() => setPhotoIdx((photoIndex + 1) % imgArr.length)}
+    />
   )
 }
 
