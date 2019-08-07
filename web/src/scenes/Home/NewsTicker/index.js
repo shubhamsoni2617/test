@@ -35,7 +35,7 @@ const NewsTicker = (props) => {
 
     return (
         <div>
-            <div className={window.location.pathname === "/" ? "ticker-wrap hide-news" : "hide"} ref={refValue}>
+            <div className={"ticker-wrap hide-news"} ref={refValue}>
                 <div className="ticker-container">
                     <div className="ticker">
                         {newsTicker.map((content, index) => {
