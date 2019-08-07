@@ -259,7 +259,7 @@ export class MainSlider extends React.Component {
                             <span >Left</span>
                         </div>
                     </div>
-                    <div className="" >
+                    <div>
                         <div >
                             <span >Right</span>
                         </div>
