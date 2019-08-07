@@ -98,7 +98,7 @@ export default class Home extends Component {
                     <li className="slide"><img src="assets/images/slide1.jpg" className="img-fluid" alt="slide3" /></li>
                 </ul>
                 <div className="carousel-navigation">
-                    <div className="left-navigation"> 
+                    <div className="left-navigation">
                         <a href="/">
                             <img src={leftArrow} className="img-fluid" alt="left-navigation" />
                         </a>

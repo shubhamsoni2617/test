@@ -9,7 +9,23 @@
     }
 }
 
+.hotshow-enter {
+  opacity: 0;
+}
 
+.hotshow-enter.hotshow-enter-active {
+  opacity: 1;
+  transition: all 1s ease-in-out;
+}
+
+.hotshow-leave {
+  opacity: 1;
+}
+
+.hotshow-leave.hotshow-leave-active {
+  opacity: 0;
+  transition: all 1s ease-in-out;
+}
 
 //header style start
 .header {
@@ -2912,7 +2928,7 @@ body.page-load {
                             display: flex;
                         }
                         &>div {
-                            flex: 0 0 40%;
+                            flex: 0 0 39%;
                             padding-right: 5px;
                             height: 100%;
                             margin-bottom: 0;
