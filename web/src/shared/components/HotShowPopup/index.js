@@ -72,7 +72,7 @@ const HotShowPopup = () => {
                                     {objData.description &&
                                         <div dangerouslySetInnerHTML={{ __html: objData.description }}></div>
                                     }
-                                    {objData.buttons &&
+                                    {objData.buttons && objData.buttons.b_name &&
                                         <div>
                                             <style dangerouslySetInnerHTML={{ __html:getButtonStyle(objData.buttons, index)}}></style>
                                             <a className="hotshow_buttons" href={objData.buttons.b_url} target="_blank">{objData.buttons.b_name}</a>
