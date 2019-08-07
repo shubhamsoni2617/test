@@ -17,9 +17,7 @@ export default class ModalPopup extends React.Component {
           <div className="modal-content">
             <div className="modal-header">
               <h5 className="modal-title" id="exampleModalLabel">{title}</h5>
-              {/* <button type="button" className="close" onClick={() => handleClose()}>
-                    <span aria-hidden="true"><img src={popupClose} alt="Close Popup" /></span>
-                  </button> */}
+             
             </div>
             <div className="modal-body">
               {htmlContent ?

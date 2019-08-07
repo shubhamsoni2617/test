@@ -767,3 +767,46 @@ button,
 		}
 	}
 }
+
+// Scroll to top 
+.scroll-top{
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    background: #0098FF;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 15px;
+    color: #FFF;
+    font-family: 'Rubik', sans-serif;
+    font-weight: 500;
+    z-index: 2;
+    img{
+        margin-bottom: 2px;
+    }
+    &:hover{
+        color: #FFF;
+        background: #0077C8;
+        box-shadow: 0 4px 7px #ccc;
+        img{
+            animation: scrolltop 0.5s linear;
+            animation-iteration-count: infinite;
+        }
+    }
+}
+@keyframes scrolltop {
+	0% {
+		transform: translateY(0px);
+	}
+	50% {
+		transform: translateY(-5px);
+	}
+	100% {
+		transform: translateY(0px);
+	}
+}

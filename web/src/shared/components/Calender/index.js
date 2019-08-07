@@ -104,7 +104,7 @@ const Calender = (props) => {
           </div>
           <div className="calender-action-btn">
             <a className="cal-cancel-btn" onClick={handleResetClick}>
-              <img src={crossArrow} className="" alt="" />
+              <img src={crossArrow} alt="" />
               <img src={crossArrowWhite} alt="" className="active" />
             </a>
             <Link
@@ -123,7 +123,7 @@ const Calender = (props) => {
                 props.handleEnter(false)
               }}
             >
-              <img src={tickArrow} className="" alt="" />
+              <img src={tickArrow} alt="" />
               <img src={tickArrowWhite} className="active" alt="" />
             </Link>
           </div>

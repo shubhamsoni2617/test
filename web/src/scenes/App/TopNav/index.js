@@ -146,10 +146,10 @@ const TopNav = (props) => {
                 <span>Follow us on</span>
                 <ul className="social">
                   <li>
-                    <Link to="/"><img src="assets/images/fb.svg" className="" alt="" /></Link>
+                    <Link to="/"><img src="assets/images/fb.svg" alt="" /></Link>
                   </li>
                   <li>
-                    <img src="assets/images/insta-unfill.svg" className="" alt="" />
+                    <img src="assets/images/insta-unfill.svg" alt="" />
                   </li>
                 </ul>
               </li>

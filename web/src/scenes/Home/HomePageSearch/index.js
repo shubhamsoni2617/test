@@ -17,7 +17,7 @@ class HomePageSearch extends Component {
                     <div className="searched-wrapper">
                         <div className="header-search-fixed">
                             <div className="back-arrow">
-                                <img src="assets/images/prev-arrow-white.svg" className="" alt="" />
+                                <img src="assets/images/prev-arrow-white.svg" alt="" />
                             </div>
                             <div className="header-search">
                                 <input type="text" placeholder="Search experiences..." className="form-control" />
