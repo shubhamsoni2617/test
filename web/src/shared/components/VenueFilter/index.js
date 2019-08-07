@@ -1,11 +1,10 @@
-import React, { Component } from 'react';
+import React, { Component,createRef } from 'react';
 import CloseIcon from '../../../assets/images/close-icon.svg';
 import './style.scss';
 
 export default class VenueFilter extends Component {
 
    groupedCollection;
-   venueShowLimit = 5;
 
    constructor(props) {
       super(props);
@@ -14,6 +13,8 @@ export default class VenueFilter extends Component {
          display: this.props.venueFilterPanelDisplay ? 'block' : 'none',
          venuesData: this.props.venueData, hoverEffect: '', alphabet: ''
       }
+
+      this.myRef = createRef();
    }
 
    componentDidMount() {
@@ -35,6 +36,11 @@ export default class VenueFilter extends Component {
       this.setState({ hoverEffect: '', alphabet: '' });
    }
 
+   scrollToRef = (ref) => {
+      // debugger
+      this.myRef.scrollTo(ref.clientX,ref.clientY);
+      // window.scrollTo(this.myRef.offsetLeft, 0)   
+   }
 
 
    sortAndGroup = (venues) => {
@@ -86,13 +92,14 @@ export default class VenueFilter extends Component {
       let alphabets = [];
       alphabets.push(<li className="">#</li>);
       for (let i = 65; i < 91; i++) {
-         let createHref = '#' + String.fromCharCode(i);
+         // let createHref = '#' + String.fromCharCode(i);
          alphabets.push(
-            <li
+            <li 
                onMouseOver={() => this.handleHoverOn(String.fromCharCode(i))}
                onMouseLeave={() => this.handleHoverOff()}
-               key={i} >
-               <a href={createHref} >{String.fromCharCode(i)}</a>
+               key={i}
+               onClick={this.scrollToRef} >
+               {String.fromCharCode(i)}
             </li>
          )
       }
@@ -130,7 +137,7 @@ export default class VenueFilter extends Component {
                   </div>
                </div>
                <div>
-                  <ul className="filter-directory-list">
+                  <ul id="venueContainer" ref={(node)=>this.myRef=node} className="filter-directory-list">
                      {
                         this.groupeFilter(this.groupedCollection).map((lidata) => {
                            return lidata;

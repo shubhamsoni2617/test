@@ -14,7 +14,7 @@ export default class Events extends Component {
     constructor(props) {
         super(props);
 
-        this.initialLimit = { first: 0, limit: 10, sort_type: 'date' };
+        this.initialLimit = { client: 1, first: 0, limit: 10, sort_type: 'date' };
         this.state = {
             filteredGnere: [], filteredSearch: [], filteredPromotions: [], filteredVenues: [], filteredTags: [],
             filteredPriceRange: {}, filteredDateRange: {}, filteredSortType: 'date', filteredSortOrder: '',
@@ -28,16 +28,63 @@ export default class Events extends Component {
             'breadcrumb_slug': [{ 'path': '/', 'title': 'Home' }, { 'path': '/events', 'title': 'Events' }]
         };
 
+        this.tabsSort = {
+            isSortBy: true,
+            sortList: [
+                {
+                    sortType: 'sort',
+                    sortOrder: 'ASC',
+                    sortTitle: 'A to Z',
+                    sortTag: 'Events - A to Z'
+                },
+                {
+                    sortType: 'sort',
+                    sortOrder: 'DESC',
+                    sortTitle: 'Z to A',
+                    sortTag: 'Events - Z to A'
+                },
+                {
+                    sortType: 'price',
+                    sortOrder: 'ASC',
+                    sortTitle: 'Price Low to High',
+                    sortTag: 'Price Low to High'
+                },
+                {
+                    sortType: 'price',
+                    sortOrder: 'DESC',
+                    sortTitle: 'Price High to Low',
+                    sortTag: 'Price High to Low'
+                },
+                {
+                    sortType: 'date',
+                    sortOrder: '',
+                    sortTitle: 'Date',
+                    sortTag: 'Date'
+                }
+            ]
+        };
+
     }
 
     componentDidMount() {
-        this.loadEvents({ first: 0, limit: 10 });
         this.getGenre();
         this.getVenue();
         this.getFilterConfig();
+        this.loadEvents(this.getRoutesParams());
+    }
+
+    getRoutesParams = () =>{
+        const query = new URLSearchParams(this.props.location.search);
+        let genre = query.get('c') ? query.get('c') : '';
+        let venue = query.get('v') ? query.get('v') : '';
+
+        this.initialLimit.search = genre;
+        this.initialLimit.venue = venue;
+        return this.initialLimit;
     }
 
     resetFilters = () => {
+        this.initialLimit.search = '';
         this.setState({
             filteredGnere: [],
             filteredSearch: [],
@@ -48,7 +95,7 @@ export default class Events extends Component {
             filteredDateRange: {},
             filteredSortType: 'date',
             filteredSortOrder: '',
-            isdataAvailable : false,
+            isdataAvailable: false,
             eventsData: []
         }, () => {
             this.loadEvents(this.initialLimit);
@@ -95,7 +142,7 @@ export default class Events extends Component {
         EventsService.getData(params)
             .then((res) => {
                 const eventData = [...this.state.eventsData, ...res.data.data];
-                const isdataAvailable = eventData.length ? false  : true;
+                const isdataAvailable = eventData.length ? false : true;
                 this.setState({ eventsData: eventData, totalRecords: res.data.total_records, isdataAvailable: isdataAvailable })
             })
             .catch((err) => {
@@ -232,13 +279,13 @@ export default class Events extends Component {
 
     redirectToTarget = (alias) => {
         debugger
-        this.props.history.push(`events/`+alias)
+        this.props.history.push(`events/` + alias)
     }
 
     render() {
         const { genre, venues, filterConfig, eventsData, totalRecords, isdataAvailable } = this.state;
         return (
-            <div>
+            <div> 
                 <Breadcrub breadCrumbData={this.breadCrumbData} />
                 <section className="promotions-wrapper">
                     <div className="container-fluid">
@@ -247,11 +294,11 @@ export default class Events extends Component {
                                 <Filters resetFilters={this.resetFilters} handleFilters={this.handleFilters} genreData={genre} venueData={venues} filterConfig={filterConfig} />
                             }
                             <div className="events-listing">
-                                <SortBy handleListGridView={this.handleListGridView} handleFilters={this.handleFilters} />
-                                <div  className={this.state.viewType}>
+                                <SortBy sortList={this.tabsSort.sortList} handleListGridView={this.handleListGridView} handleFilters={this.handleFilters} />
+                                <div className={this.state.viewType}>
                                     {eventsData && eventsData.map((event) => {
                                         return <div onClick={() => this.redirectToTarget(event.alias)}>
-                                            <Card  eventsData={event} />
+                                            <Card eventsData={event} />
                                         </div>
                                     })}
                                 </div>
