@@ -20,7 +20,7 @@ export default class Events extends Component {
         this.state = {
             filteredGnere: [], filteredSearch: [], filteredPromotions: [], filteredVenues: [], filteredTags: [],
             filteredPriceRange: {}, filteredDateRange: {}, filteredSortType: 'date', filteredSortOrder: '',
-            eventsData: [], genre: [], venues: [], filterConfig: [], first: 0, limit: 10, viewType: 'events-section', totalRecords: 0
+            eventsData: [], genre: [], venues: [], filterConfig: [], first: 0, limit: 10, viewType:'list', viewTypeClass: 'events-section', totalRecords: 0
         };
 
         this.breadCrumbData = {
@@ -98,7 +98,8 @@ export default class Events extends Component {
             filteredSortType: 'date',
             filteredSortOrder: '',
             isdataAvailable: false,
-            eventsData: []
+            eventsData: [],
+            totalRecords:0
         }, () => {
             this.loadEvents(this.initialLimit);
         })
@@ -159,19 +160,20 @@ export default class Events extends Component {
         this.setState({ first: params.first, limit: params.limit })
     }
 
-    handleListGridView = (type) => {
-        let viewType = [...this.state.viewType];
-        if (type == 'grid') {
-            viewType = 'events-section'
+    handleListGridView = (getViewType) => {
+        let viewTypeClass = [...this.state.viewTypeClass];
+        if (getViewType == 'grid') {
+            viewTypeClass = 'events-section'
         } else {
-            viewType = 'events-section list-view'
+            
+            viewTypeClass = 'events-section list-view'
         }
-        this.setState({ viewType });
+        this.setState({ viewTypeClass:viewTypeClass, viewType: getViewType });
     }
 
     setFilterParams = () => {
         let params = {
-            'first': '', 'limit': this.state.limit, 'promo_category': '', 'genre': '', 'venue': '', 'tags': '', 'search': '', 'min_price': '',
+            'client': 1, 'first': '', 'limit': this.state.limit, 'promo_category': '', 'genre': '', 'venue': '', 'tags': '', 'search': '', 'min_price': '',
             'max_price': '', 'start_date': '', 'end_date': '', 'sort_type': '', 'sort_order': ''
         }
         params.promo_category = this.state.filteredPromotions.toString();
@@ -272,7 +274,7 @@ export default class Events extends Component {
             filteredSortType,
             filteredSortOrder
         }, () => {
-            this.setState({ eventsData: [] })
+            this.setState({ eventsData: [], totalRecords:0 })
             this.setState({ first: 0, limit: 10 });
             let params = this.setFilterParams()
             this.loadEvents(params);
@@ -285,7 +287,8 @@ export default class Events extends Component {
     }
 
     render() {
-        const { genre, venues, filterConfig, eventsData, totalRecords, isdataAvailable } = this.state;
+        const { genre, venues, filterConfig, eventsData, totalRecords, isdataAvailable, viewType } = this.state;
+        const viewTypeActive = (viewType == 'list') ? 'active' : '';
         return (
             <div> 
                 <Breadcrub breadCrumbData={this.breadCrumbData} />
@@ -297,17 +300,17 @@ export default class Events extends Component {
                             }
                             <div className="events-listing">
                                 <div className="event-listing-sorting">
-                                    <SortBy handleListGridView={this.handleListGridView} handleFilters={this.handleFilters} />
+                                    <SortBy sortList={this.tabsSort.sortList} handleListGridView={this.handleListGridView} handleFilters={this.handleFilters} />
                                     <ul className="sortby-view">
-                                        <li className="active">
+                                        <li className={(viewType == 'grid') ? 'active' : ''}>
                                             <a><img onClick={() => this.handleListGridView('grid')} src={GridView} alt="Grid" /></a>
                                         </li>
-                                        <li>
+                                        <li className={(viewType == 'list') ? 'active' : ''}>
                                             <a><img onClick={() => this.handleListGridView('list')} src={ListView} alt="List" /></a>
                                         </li>
                                     </ul>
                                 </div>
-                                <div className={this.state.viewType}>
+                                <div className={this.state.viewTypeClass}>
                                     {eventsData && eventsData.map((event) => {
                                         return <div onClick={() => this.redirectToTarget(event.alias)}>
                                             <Card eventsData={event} />
