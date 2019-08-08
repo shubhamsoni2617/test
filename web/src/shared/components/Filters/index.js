@@ -411,7 +411,7 @@ export default class Filters extends Component {
                                         value={from}
                                         placeholder="mm/dd/yyyy"
                                         format="MM/DD/YYYY"
-                                        showOverlay={true}
+                                        showOverlay={false}
                                         formatDate={formatDate}
                                         parseDate={parseDate}
                                         dayPickerProps={{
@@ -434,7 +434,7 @@ export default class Filters extends Component {
                                         value={to}
                                         placeholder="mm/dd/yyyy"
                                         format="MM/DD/YYYY"
-                                        showOverlay={true}
+                                        showOverlay={false}
                                         formatDate={formatDate}
                                         parseDate={parseDate}
                                         dayPickerProps={{
@@ -451,22 +451,39 @@ export default class Filters extends Component {
                                     />
                                 </span>
                             </div>
+                            <a class="cal-apply-btn active" href="events">
+                                <img src="/static/media/tick-grey.0af2386c.svg" alt="" />
+                                <img src="/static/media/tick-white.a08b5f03.svg" class="active" alt="" />
+                            </a>
                             <Helmet>
                                 <style>{`
-                                    .InputFromTo .DayPicker-Day--selected:not(.DayPicker-Day--start):not(.DayPicker-Day--end):not(.DayPicker-Day--outside) {
-                                        background-color: #f0f8ff !important;
-                                        color: #4a90e2;
+                                    .InputFromTo .DayPicker-Day--selected:not(.DayPicker-Day--start):not(.DayPicker-Day--end):not(.DayPicker-Day--outside),
+                                    .InputFromTo-to .DayPicker-Day--selected:not(.DayPicker-Day--start):not(.DayPicker-Day--end):not(.DayPicker-Day--outside) {
+                                        background-color: #E8F4FF;
+                                        color: #7C86A2;
+                                        border-radius: 0px;
                                     }
-                                    .InputFromTo .DayPicker-Day {
-                                        border-radius: 0 !important;
+                                    .InputFromTo .DayPicker-Day--selected,
+                                    .InputFromTo-to .DayPicker-Day--selected{
+                                        background-color: #0098FF;
+                                        color: #ffffff;
                                     }
-                                    .InputFromTo .DayPicker-Day--start {
-                                        border-top-left-radius: 50% !important;
-                                        border-bottom-left-radius: 50% !important;
+                                    .InputFromTo .DayPicker-Day,
+                                    .InputFromTo-to .DayPicker-Day{
+                                        border-radius: 0px;
+                                        color: #7C86A2;
+                                        height: 25px;
+                                        width: 25px;
                                     }
-                                    .InputFromTo .DayPicker-Day--end {
-                                        border-top-right-radius: 50% !important;
-                                        border-bottom-right-radius: 50% !important;
+                                    .InputFromTo .DayPicker-Day--start,
+                                    .InputFromTo-to .DayPicker-Day--start {
+                                        font-weight: bold !important;
+                                        color: #FFFFFF !important;
+                                    }
+                                    .InputFromTo .DayPicker-Day--end,
+                                    .InputFromTo-to .DayPicker-Day--end {                                        
+                                        font-weight: bold !important;
+                                        color: #FFFFFF !important;                              
                                     }
                                     .InputFromTo .DayPickerInput-Overlay {
                                         width: 250px;
@@ -474,6 +491,27 @@ export default class Filters extends Component {
                                     .InputFromTo-to .DayPickerInput-Overlay {
                                         margin-left: 0px;
                                     }
+                                    .InputFromTo-to .DayPicker-Day.DayPicker-Day--start, .InputFromTo-to .DayPicker-Day.DayPicker-Day--end{
+                                        position: relative;
+                                        &:before{
+                                            position: absolute;
+                                            content: "";
+                                            background-color: red;
+                                            width: 25px;
+                                            height: 25px;
+                                            left: 100%;
+                                            right: auto;
+                                            top: 50%;
+                                            transform: translate(-50%, -50%);
+                                            z-index: -1;
+                                        }
+                                     }
+                                    .InputFromTo-to .DayPicker-Day.DayPicker-Day--end{
+                                        &:before{
+                                            left: auto;
+                                            right: 100%;
+                                        }
+                                     }
                                     `}</style>
                             </Helmet>
                         </div>
