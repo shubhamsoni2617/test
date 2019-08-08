@@ -3,6 +3,7 @@ import Slider from "react-slick";
 import './style.scss';
 import ReactPlayer from 'react-player';
 import playIcon from '../../../assets/images/play.svg';
+import videoImage from '../../../assets/images/slide1.jpg';
 
 const Arrow = () => {
   return null;
@@ -54,7 +55,7 @@ const EventCarousel = (props) => {
             </div>
           } else {
             return <div className="videoimg" key={idx} style={{ width: '100%' }}>
-              <img src='http://192.168.10.195:8081/sistic/docroot/sites/default/files/2019-08/slide1%20%282%29_0.jpg' />
+              <img src={videoImage} />
               <ReactPlayer url={obj.video_url} controls={true} />
             </div>
           }
