@@ -37,9 +37,14 @@ export default class VenueFilter extends Component {
    }
 
    scrollToRef = (ref) => {
-      // debugger
-      this.myRef.scrollTo(ref.clientX,ref.clientY);
-      // window.scrollTo(this.myRef.offsetLeft, 0)   
+      let el = document.getElementById('li-'+ref.target.id);
+      if(el !== null){
+         this.myRef.scrollTo({
+            top :0,
+            left: el.offsetLeft-25,
+            behavior: 'smooth',
+         });
+      }
    }
 
 
@@ -66,7 +71,7 @@ export default class VenueFilter extends Component {
       Object.keys(groupedCollection).map((key) => {
 
          addHoverClass = (this.state.alphabet == key) ? '' : this.state.hoverEffect;
-         groupedData.push(<li id={key} className={"filter-directory-list-title " + addHoverClass}>{key}</li>);
+         groupedData.push(<li id={"li-"+key} className={"filter-directory-list-title " + addHoverClass}>{key}</li>);
 
          groupedCollection[key].map((venue) => {
             id = 'venue-panel-' + venue.id;
@@ -94,7 +99,7 @@ export default class VenueFilter extends Component {
       for (let i = 65; i < 91; i++) {
          // let createHref = '#' + String.fromCharCode(i);
          alphabets.push(
-            <li 
+            <li id={String.fromCharCode(i)} 
                onMouseOver={() => this.handleHoverOn(String.fromCharCode(i))}
                onMouseLeave={() => this.handleHoverOff()}
                key={i}
