@@ -16,7 +16,15 @@
         width: 260px;
         .filter-topbar{
             box-shadow: none;
-            padding: 7px 11px;
+            padding: 5px 11px;
+            height: 30px;
+            .sortby-text{
+                font-weight: 600;
+            }
+            .active-filter{
+                font-weight: 500;
+                cursor: pointer;
+            }
         }
     }
 }
