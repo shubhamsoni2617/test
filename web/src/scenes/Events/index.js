@@ -326,7 +326,7 @@ export default class Events extends Component {
                                     </div>
                                 }
                                 {isdataAvailable &&
-                                    <div>No Events Available</div>
+                                    <div className="no-data">No Events Available</div>
                                 }
                             </div>
                         </div>
