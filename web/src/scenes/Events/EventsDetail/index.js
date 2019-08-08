@@ -1,28 +1,26 @@
-import React, { Component } from "react";
-import AccordionSection from "../../../shared/components/AccordionSection";
-import EventCarousel from "../../../shared/components/EventCarousel";
-import ArticleSection from "../../../shared/components/ArticleSection";
-import SimilarPicksSection from "../../../shared/components/SimilarPicksSection";
-import "./style.scss";
-import EventsService from "../../../shared/services/EventsService";
-import Constants from "../../../shared/constants";
-import calendarImg from "../../../assets/images/event-calender.svg";
-import locationImg from "../../../assets/images/location-blue.svg";
-import locationImgGrey from "../../../assets/images/location-grey.svg";
-import SeatMapImg from "../../../assets/images/seatmap.svg";
-import SeatMapWhite from "../../../assets/images/seatmap-white.svg";
-import faceImg from "../../../assets/images/face.svg";
-import shareIcon from "../../../assets/images/share-icon.svg";
-import Info from "../../../assets/images/info-sign.svg";
-import SeatMap from "../../../shared/components/SeatMap";
-import SocialShare from "../../../shared/components/SocialShare";
-import InfoPopup from "../../../shared/components/InfoPoup";
-import PopUpWithClose from "../../../shared/components/PopUpWithClose";
-import Image from "../../../shared/components/Image";
-import ModalPopup from "../../../shared/components/Modal";
-import { Spring } from "react-spring/renderprops";
-import { CSSTransitionGroup, TransitionGroup } from "react-transition-group";
+import React, { Component, lazy ,Suspense} from 'react';
+import AccordionSection from '../../../shared/components/AccordionSection';
+import EventCarousel from '../../../shared/components/EventCarousel';
+import ArticleSection from '../../../shared/components/ArticleSection';
+import './style.scss';
+import EventsService from '../../../shared/services/EventsService';
+import Constants from '../../../shared/constants';
+import calendarImg from '../../../assets/images/event-calender.svg';
+import locationImg from '../../../assets/images/location-blue.svg';
+import SeatMapImg from '../../../assets/images/seatmap.svg';
+import SeatMapWhite from '../../../assets/images/seatmap-white.svg';
+import faceImg from '../../../assets/images/face.svg';
+import shareIcon from '../../../assets/images/share-icon.svg';
+import Info from '../../../assets/images/info-sign.svg';
+import SeatMap from '../../../shared/components/SeatMap';
+import SocialShare from '../../../shared/components/SocialShare';
+import PopUpWithClose from '../../../shared/components/PopUpWithClose';
+import Image from '../../../shared/components/Image';
+import ModalPopup from '../../../shared/components/Modal';
+import ShimmerEffect from '../../../shared/components/ShimmerEffect';
 import StickyHeader from "../../../shared/components/StickyHeader";
+const SimilarPicksSection =  lazy(()=>import('../../../shared/components/SimilarPicksSection'));
+
 
 export default class EventsDetail extends Component {
   constructor(props) {
@@ -369,9 +367,11 @@ export default class EventsDetail extends Component {
               </div>
             )}
             <ArticleSection />
-            {similarEventsData && similarEventsData.length > 0 && (
-              <SimilarPicksSection data={similarEventsData} />
-            )}
+            {similarEventsData && similarEventsData.length > 0 &&
+              <Suspense fallback={<ShimmerEffect  height={150} count={5}  type="grid"/>}>
+                <SimilarPicksSection data={similarEventsData} />
+                </Suspense>
+            }
           </div>
         )}
       </div>

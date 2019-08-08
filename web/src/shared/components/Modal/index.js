@@ -12,12 +12,12 @@ export default class ModalPopup extends React.Component {
         <Modal
           visible={showModal}
           closemodal={() => handleClose()}
-          type="bounceIn"
+          type="fadeInDown"
         >
           <div className="modal-content">
             <div className="modal-header">
               <h5 className="modal-title" id="exampleModalLabel">{title}</h5>
-             
+
             </div>
             <div className="modal-body">
               {htmlContent ?
