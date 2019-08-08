@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, createRef } from 'react'
 import Helmet from 'react-helmet';
 import { Link } from "react-router-dom";
 import './style.scss';
@@ -65,11 +65,12 @@ export default class Home extends Component {
       offsetRadius: 0,
       showNavigation: '',
       config: {},
-      slides : slides,
-      slideTotal: slides.length -1  ,
-      thumbnail :thumbnail,
-      slideDir : "right"
-    }
+      slides: slides,
+      slideTotal: slides.length - 1,
+      thumbnail: thumbnail,
+      slideDir: "right"
+    };
+    this.homePageRef = createRef()
   }
 
 
@@ -78,20 +79,20 @@ export default class Home extends Component {
     let slide = []
     slides.forEach(slid => {
       let slideobject = {
-          class: "slider-single proactivede",
-          element: slid
+        class: "slider-single proactivede",
+        element: slid
       }
       slide.push(slideobject);
     });
     return (
-      <div className="home-page-wrapper">
+      <div className="home-page-wrapper" ref={this.homePageRef}>
         {/* Home page Banner start */}
-        <NewsTicker />
+        <NewsTicker homePageRef={this.homePageRef} />
         <HotShowPopup showPopup={true} eventCount={1} />
         <section className="banner">
-            <img src={primeSlider} alt="prime Slider" />
+          <img src={primeSlider} alt="prime Slider" />
         </section>
-          {/* <MainSlider
+        {/* <MainSlider
             slides={slide}
             thumbnail = {thumbnail}
             auto = {true}
