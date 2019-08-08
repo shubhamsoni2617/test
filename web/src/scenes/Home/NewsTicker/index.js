@@ -24,6 +24,7 @@ const NewsTicker = (props) => {
   const handleClose = () => {
     refValue.current.classList.remove("hide-news");
   }
+  console.log('news ticker');
   const handleOnclick = (des) => {
     refMarquee.current.stop();
     setDes(des);
@@ -42,7 +43,7 @@ const NewsTicker = (props) => {
                   let trimmedString = string.substring(0, stringLength);
                   return <div
                     key={content.title}
-                    dangerouslySetInnerHTML={{ __html: content.description }}
+                    dangerouslySetInnerHTML={{ __html: content.title }}
                     onClick={() => {
 
                       handleOnclick(content.description)
