@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
+import scrollTop from '../../../assets/images/arrow-to-top.svg';
 import './style.scss'
 
 const Footer = () => {
@@ -104,14 +105,12 @@ const Footer = () => {
                         <ul className="social">
                            <li>
                               <a href="https://www.facebook.com/SISTICsingapore" target="_blank">
-                                 <img src="assets/images/fb.svg" className="" alt="" />
-                                 <img src="assets/images/fb-fill.svg" className="active" alt="" />
+                                 <img src="assets/images/fb.svg" alt="" />
                               </a>
                            </li>
                            <li>
                               <Link>
-                                 <img src="assets/images/insta-unfill.svg" className="" alt="" />
-                                 <img src="assets/images/insta-fill.svg" className="active" alt="" />
+                                 <img src="assets/images/insta-unfill.svg" alt="" />
                               </Link>
                            </li>
                         </ul>
@@ -122,7 +121,7 @@ const Footer = () => {
                   <div className="copyrights">
 
                      <a href="https://sealsplash.geotrust.com/splash?&dn=*.sistic.com.sg" target="_blank">
-                        <img src="assets/images/stix.png" className="" alt="" />
+                        <img src="assets/images/stix.png" alt="" />
                      </a>
                      <span>Copyright 1998 - 2019. © SISTIC.com Pte Ltd</span>
                   </div>
@@ -140,6 +139,10 @@ const Footer = () => {
                </div>
             </div>
          </section>
+         <a href="/" className="scroll-top">
+            <img src={scrollTop} alt="Scroll to top" />
+            TOP
+        </a>
       </footer>
    )
 }
