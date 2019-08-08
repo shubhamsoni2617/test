@@ -491,21 +491,6 @@ export default class Filters extends Component {
                                     .InputFromTo-to .DayPickerInput-Overlay {
                                         margin-left: 0px;
                                     }
-                                    .InputFromTo-to .DayPicker-Day.DayPicker-Day--start, .InputFromTo-to .DayPicker-Day.DayPicker-Day--end{
-                                        position: relative;
-                                        &:before{
-                                            position: absolute;
-                                            content: "";
-                                            background-color: red;
-                                            width: 25px;
-                                            height: 25px;
-                                            left: 100%;
-                                            right: auto;
-                                            top: 50%;
-                                            transform: translate(-50%, -50%);
-                                            z-index: -1;
-                                        }
-                                     }
                                     .InputFromTo-to .DayPicker-Day.DayPicker-Day--end{
                                         &:before{
                                             left: auto;
