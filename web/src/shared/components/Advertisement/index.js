@@ -1,6 +1,7 @@
 import React, { useRef } from 'react';
 import './style.scss';
 import closeAd from '../../../assets/images/close-ad.svg';
+import headerBanner from '../../../assets/images/header-banner.png';
 
 const Advertisement = (props) => {
     const refValue = useRef();
@@ -9,11 +10,11 @@ const Advertisement = (props) => {
     }
 
     return (
-        
+
         <div className="top-ads hide-ad" ref={refValue}>
             <div className="container-fluid">
             <div className="ads-image">
-                <img src="assets/images/header-banner.png" alt="advertisment-image" className="img-fluid" />
+                <img src={headerBanner} alt="advertisment-image" className="img-fluid" />
             </div>
             <button
                 type="button"
