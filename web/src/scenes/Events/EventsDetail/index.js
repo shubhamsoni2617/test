@@ -1,14 +1,12 @@
-import React, { Component } from 'react';
+import React, { Component, lazy ,Suspense} from 'react';
 import AccordionSection from '../../../shared/components/AccordionSection';
 import EventCarousel from '../../../shared/components/EventCarousel';
 import ArticleSection from '../../../shared/components/ArticleSection';
-import SimilarPicksSection from '../../../shared/components/SimilarPicksSection';
 import './style.scss';
 import EventsService from '../../../shared/services/EventsService';
 import Constants from '../../../shared/constants';
 import calendarImg from '../../../assets/images/event-calender.svg';
 import locationImg from '../../../assets/images/location-blue.svg';
-import locationImgGrey from '../../../assets/images/location-grey.svg';
 import SeatMapImg from '../../../assets/images/seatmap.svg';
 import SeatMapWhite from '../../../assets/images/seatmap-white.svg';
 import faceImg from '../../../assets/images/face.svg';
@@ -16,10 +14,11 @@ import shareIcon from '../../../assets/images/share-icon.svg';
 import Info from '../../../assets/images/info-sign.svg';
 import SeatMap from '../../../shared/components/SeatMap';
 import SocialShare from '../../../shared/components/SocialShare';
-import InfoPopup from '../../../shared/components/InfoPoup';
 import PopUpWithClose from '../../../shared/components/PopUpWithClose';
 import Image from '../../../shared/components/Image';
 import ModalPopup from '../../../shared/components/Modal';
+import ShimmerEffect from '../../../shared/components/ShimmerEffect';
+const SimilarPicksSection =  lazy(()=>import('../../../shared/components/SimilarPicksSection'));
 
 
 export default class EventsDetail extends Component {
@@ -58,11 +57,13 @@ export default class EventsDetail extends Component {
     const payload = { code: this.state.code, client: Constants.CLIENT }
     EventsService.getEventDetails(payload)
       .then((res) => {
-        this.setState({ detailData: res.data })
+        this.setState({
+          detailData: res.data,
+        })
       })
       .catch((err) => {
         this.setState({
-          error: true
+          error: true,
         })
         console.log(err)
       })
@@ -186,7 +187,7 @@ export default class EventsDetail extends Component {
 
   render() {
     const { detailData, showBuyTicket, getSynopsisData, showSeatMap, similarEventsData,
-      showSocialShare, error, showInfo, showNotice, setHeader } = this.state;
+      showSocialShare, error, showInfo, showNotice, setHeader} = this.state;
 
     if (error) {
       return null;
@@ -372,7 +373,9 @@ export default class EventsDetail extends Component {
             }
             <ArticleSection />
             {similarEventsData && similarEventsData.length > 0 &&
-              <SimilarPicksSection data={similarEventsData} />
+              <Suspense fallback={<ShimmerEffect  height={150} count={5}  type="grid"/>}>
+                <SimilarPicksSection data={similarEventsData} />
+                </Suspense>
             }
           </div>
         }
