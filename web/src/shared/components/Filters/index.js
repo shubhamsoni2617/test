@@ -9,6 +9,7 @@ import { formatDate, parseDate } from 'react-day-picker/moment';
 import 'react-day-picker/lib/style.css';
 import "react-tabs/style/react-tabs.css";
 import "react-input-range/lib/css/index.css";
+import SearchIcon from '../../../assets/images/search-grey.png';
 import './style.scss';
 
 export default class Filters extends Component {
@@ -337,15 +338,15 @@ export default class Filters extends Component {
                 </div>
                 <div className="filters">
                     <div className="filter-heading">
-                        <h3>Filters <a onClick={() => this.clearAllFilters()}>Clear all</a></h3>
+                        <h3>FILTERS <a onClick={() => this.clearAllFilters()}>Clear all</a></h3>
                     </div>
                     <div className="filters-search">
                         <button type="submit" className="search-btn">
-                            <img src="assets/images/search-blue.svg" className="img-fluid active" alt="search-icon" />
+                            <img src={SearchIcon} className="img-fluid active" alt="search-icon" />
                         </button>
-                        <input type="text" value={search} placeholder="Search experiences..." onChange={(e) => this.textFilter(e)} className="form-control" />
+                        <input type="text" value={search} placeholder="Search in events" onChange={(e) => this.textFilter(e)} className="form-control" />
                     </div>
-                    <div className="filter-grid">
+                    <div className="filter-grid filter-price-range">
                         <div className="filter-grid-heading">
                             <h3>Price Range</h3>
                             <ul>
@@ -402,34 +403,38 @@ export default class Filters extends Component {
                             </ul>
                         </div>
                         <div className="filters-panel">
-                            <label>From</label>
-                            <div className="InputFromTo">
-
-                                <DayPickerInput
-                                    ref={el => (this.from = el)}
-                                    value={from}
-                                    placeholder="mm/dd/yyyy"
-                                    format="MM/DD/YYYY"
-                                    formatDate={formatDate}
-                                    parseDate={parseDate}
-                                    dayPickerProps={{
-                                        selectedDays: [from, { from, to }],
-                                        disabledDays: { before: new Date() },
-                                        toMonth: to,
-                                        modifiers,
-                                        numberOfMonths: 1,
-                                        onDayClick: () => this.to.getInput().focus(),
-                                    }}
-                                    onDayChange={this.handleFromChange}
-                                />
+                            <div className="date-input-to">
+                                <label>From</label>
+                                <span className="InputFromTo">
+                                    <DayPickerInput
+                                        ref={el => (this.from = el)}
+                                        value={from}
+                                        placeholder="mm/dd/yyyy"
+                                        format="MM/DD/YYYY"
+                                        showOverlay={false}
+                                        formatDate={formatDate}
+                                        parseDate={parseDate}
+                                        dayPickerProps={{
+                                            selectedDays: [from, { from, to }],
+                                            disabledDays: { before: new Date() },
+                                            toMonth: to,
+                                            modifiers,
+                                            numberOfMonths: 1,
+                                            onDayClick: () => this.to.getInput().focus(),
+                                        }}
+                                        onDayChange={this.handleFromChange}
+                                    />
+                                </span>
+                            </div>
+                            <div className="date-input-from">
                                 <label>To</label>
                                 <span className="InputFromTo-to">
-
                                     <DayPickerInput
                                         ref={el => (this.to = el)}
                                         value={to}
                                         placeholder="mm/dd/yyyy"
                                         format="MM/DD/YYYY"
+                                        showOverlay={false}
                                         formatDate={formatDate}
                                         parseDate={parseDate}
                                         dayPickerProps={{
@@ -445,32 +450,70 @@ export default class Filters extends Component {
                                         onDayChange={this.handleToChange}
                                     />
                                 </span>
-                                <Helmet>
-                                    <style>{`
-  .InputFromTo .DayPicker-Day--selected:not(.DayPicker-Day--start):not(.DayPicker-Day--end):not(.DayPicker-Day--outside) {
-    background-color: #f0f8ff !important;
-    color: #4a90e2;
-  }
-  .InputFromTo .DayPicker-Day {
-    border-radius: 0 !important;
-  }
-  .InputFromTo .DayPicker-Day--start {
-    border-top-left-radius: 50% !important;
-    border-bottom-left-radius: 50% !important;
-  }
-  .InputFromTo .DayPicker-Day--end {
-    border-top-right-radius: 50% !important;
-    border-bottom-right-radius: 50% !important;
-  }
-  .InputFromTo .DayPickerInput-Overlay {
-    width: 250px;
-  }
-  .InputFromTo-to .DayPickerInput-Overlay {
-    margin-left: 0px;
-  }
-`}</style>
-                                </Helmet>
                             </div>
+                            <a class="cal-apply-btn active" href="events">
+                                <img src="/static/media/tick-grey.0af2386c.svg" alt="" />
+                                <img src="/static/media/tick-white.a08b5f03.svg" class="active" alt="" />
+                            </a>
+                            <Helmet>
+                                <style>{`
+                                    .InputFromTo .DayPicker-Day--selected:not(.DayPicker-Day--start):not(.DayPicker-Day--end):not(.DayPicker-Day--outside),
+                                    .InputFromTo-to .DayPicker-Day--selected:not(.DayPicker-Day--start):not(.DayPicker-Day--end):not(.DayPicker-Day--outside) {
+                                        background-color: #E8F4FF;
+                                        color: #7C86A2;
+                                        border-radius: 0px;
+                                    }
+                                    .InputFromTo .DayPicker-Day--selected,
+                                    .InputFromTo-to .DayPicker-Day--selected{
+                                        background-color: #0098FF;
+                                        color: #ffffff;
+                                    }
+                                    .InputFromTo .DayPicker-Day,
+                                    .InputFromTo-to .DayPicker-Day{
+                                        border-radius: 0px;
+                                        color: #7C86A2;
+                                        height: 25px;
+                                        width: 25px;
+                                    }
+                                    .InputFromTo .DayPicker-Day--start,
+                                    .InputFromTo-to .DayPicker-Day--start {
+                                        font-weight: bold !important;
+                                        color: #FFFFFF !important;
+                                    }
+                                    .InputFromTo .DayPicker-Day--end,
+                                    .InputFromTo-to .DayPicker-Day--end {                                        
+                                        font-weight: bold !important;
+                                        color: #FFFFFF !important;                              
+                                    }
+                                    .InputFromTo .DayPickerInput-Overlay {
+                                        width: 250px;
+                                    }
+                                    .InputFromTo-to .DayPickerInput-Overlay {
+                                        margin-left: 0px;
+                                    }
+                                    .InputFromTo-to .DayPicker-Day.DayPicker-Day--start, .InputFromTo-to .DayPicker-Day.DayPicker-Day--end{
+                                        position: relative;
+                                        &:before{
+                                            position: absolute;
+                                            content: "";
+                                            background-color: red;
+                                            width: 25px;
+                                            height: 25px;
+                                            left: 100%;
+                                            right: auto;
+                                            top: 50%;
+                                            transform: translate(-50%, -50%);
+                                            z-index: -1;
+                                        }
+                                     }
+                                    .InputFromTo-to .DayPicker-Day.DayPicker-Day--end{
+                                        &:before{
+                                            left: auto;
+                                            right: 100%;
+                                        }
+                                     }
+                                    `}</style>
+                            </Helmet>
                         </div>
                     </div>
                     <div className="filter-grid">

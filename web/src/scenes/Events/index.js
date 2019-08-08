@@ -7,6 +7,8 @@ import EventsService from '../../shared/services/EventsService';
 import HomeService from '../../shared/services/HomeService';
 import DownArrowBlue from '../../assets/images/down-arrow-blue.svg';
 import Breadcrub from '../../scenes/App/Breadcrumb';
+import ListView from '../../assets/images/list-view.svg';
+import GridView from '../../assets/images/grid-view.svg';
 import './style.scss';
 
 export default class Events extends Component {
@@ -294,7 +296,17 @@ export default class Events extends Component {
                                 <Filters resetFilters={this.resetFilters} handleFilters={this.handleFilters} genreData={genre} venueData={venues} filterConfig={filterConfig} />
                             }
                             <div className="events-listing">
-                                <SortBy sortList={this.tabsSort.sortList} handleListGridView={this.handleListGridView} handleFilters={this.handleFilters} />
+                                <div className="event-listing-sorting">
+                                    <SortBy handleListGridView={this.handleListGridView} handleFilters={this.handleFilters} />
+                                    <ul className="sortby-view">
+                                        <li className="active">
+                                            <a><img onClick={() => this.handleListGridView('grid')} src={GridView} alt="Grid" /></a>
+                                        </li>
+                                        <li>
+                                            <a><img onClick={() => this.handleListGridView('list')} src={ListView} alt="List" /></a>
+                                        </li>
+                                    </ul>
+                                </div>
                                 <div className={this.state.viewType}>
                                     {eventsData && eventsData.map((event) => {
                                         return <div onClick={() => this.redirectToTarget(event.alias)}>
@@ -303,8 +315,8 @@ export default class Events extends Component {
                                     })}
                                 </div>
                                 {eventsData.length < totalRecords &&
-                                    <div class="promotion-load-more">
-                                        <a onClick={() => this.loadMoreEvents()} class="btn-link load-more-btn" target="">
+                                    <div className="promotion-load-more">
+                                        <a onClick={() => this.loadMoreEvents()} className="btn-link load-more-btn" target="">
                                             <span>Load More</span>
                                             <img src={DownArrowBlue} />
                                         </a>

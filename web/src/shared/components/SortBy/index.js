@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-import { GridView } from '../../../assets/images/grid-view.svg';
-import { ListView } from '../../../assets/images/list-view.svg';
 import './style.scss';
 
 export default class SortBy extends Component {
@@ -62,14 +60,6 @@ export default class SortBy extends Component {
                         : (null)
                     }
                 </div>
-                                {/* <ul className="sortby-view">
-                <li className="active">
-                <a><img onClick={() => handleListGridView('grid')} src={GridView} alt="Grid" /></a>
-                </li>
-                <li>
-                <a><img onClick={() => handleListGridView('list')} src={ListView} alt="List" /></a>
-                </li>
-                </ul> */}
             </div>
         )
     }
