@@ -5,8 +5,17 @@
     }
     .banner{
         margin-top: -136px;
-        padding: 0;
-    }
+		padding: 0;
+		transition: 0.3s margin-top;
+		img{
+			width: 100%;
+		}
+	}
+	&.news-ticker-hide{
+		.banner{
+			margin-top: -106px;
+		}
+	}
 }
 
 .hotshow-enter {
@@ -36,6 +45,7 @@
 	padding: 0px;
 	position: relative;
 	z-index: 3;
+	transition: 0.3s ease-in;
 	@media(max-width: 991px) {
 		background-color: rgba(3, 13, 21, 0.8);
 	}
@@ -936,11 +946,11 @@
         top: -24px;
         width: auto;
         text-align: right;
-        right: 0;
+		right: 0;
         li{
             width: 25px;
             height: 20px;
-            margin: 0 2px;
+            margin: 0 3px;
             cursor: pointer;
             &.slick-active{
                 span{
@@ -949,7 +959,7 @@
                 }
             }
         }
-    }
+	}
 }
 
 //home section common design
@@ -1494,8 +1504,26 @@ section.whats-new {
 	.dots-group {
 		span {
 			background-color: rgba(255, 255, 255, 0.1);
+			position: relative;
 			&.active {
+				background-color: #0077C8;				
+				&:after{
+					content: none;
+				}
+			}
+			&:after{
+				position: absolute;
+				content: "";
+				height: 100%;
 				background-color: #0077C8;
+				left: 0px;
+				width: 0px;
+				transition: 0.3s width;
+			}
+			&:hover{
+				&:after{
+					width: 100%;
+				}
 			}
 		}
 	}
@@ -1640,7 +1668,26 @@ p {
             }
             @media (max-width: 767px) {
                 top: -26px;
-            }
+			}
+			li{
+				span{
+					position: relative;
+					&:after{
+						position: absolute;
+						content: "";
+						height: 100%;
+						background-color: #0077C8;
+						left: 0px;
+						width: 0px;
+						transition: 0.3s width;
+					}
+					&:hover{
+						&:after{
+							width: 100%;
+						}
+					}
+				}
+			}
         }
     }
 	.section-top-wrapper {
@@ -2041,8 +2088,7 @@ section.whats-new {
 		margin-bottom: 11px;
 	}
 	.dots-group span {
-		background-color: #CDCDCD;
-		opacity: 0.58;
+		background-color: rgba(205, 205, 205, 0.58);		
 	}
 }
 
@@ -2251,6 +2297,9 @@ section.explore {
 
 //explore style end
 // SISTICMoments Start
+.instafeeds-loading{
+	text-align: center;
+}
 section{
     &.sistic-moments {
         background: #F0F9FF;
@@ -2385,21 +2434,32 @@ section{
 						a {
 							transition: 0.8s opacity;
 							position: relative;
-                            overflow: hidden;
+							overflow: hidden;
+							height: 23px;
+							width: 23px;
+							display: block;
+							img{
+								position: absolute;
+								width: 100%;
+								height: 100%;
+								top: 0px;
+								left: 0px;
+								right: 0px;
+								bottom: 0px;
+								transition: 0.5s top;
+								&.active{
+									top: 100%;
+								}
+							}
 							&:hover {
 								img {
-                                    animation: roll 0.8s infinite;
+									top: -100%;
+									&.active{
+										top:0px;
+									}
 								}
                             }
-                            @keyframes roll {
-                                0% {
-                                    transform: rotate(0);
-                                }
-                                100% {
-                                    transform: rotate(20deg);
-                                }
-                            }
-                    }
+                    	}
 					}
 				}
 				li {
@@ -2913,6 +2973,9 @@ body.page-load {
 							display: block;
 							text-decoration: none;
 							transition: 0.3s color, 0.3s background-color;
+							@media(min-width: 1280px) and (max-width: 1600px){
+								font-size: 13px;
+							}
 							&:before {
 								display: none;
 							}
@@ -2923,7 +2986,7 @@ body.page-load {
 						}
 						&:nth-child(2n) {
 							a {
-								margin-left: 30px;
+								margin-left: 5px;
 							}
 						}
 					}
@@ -3138,6 +3201,9 @@ body.page-load {
 								text-align: center;
 								padding: 0px;
 								margin-left: auto;
+								&:empty{
+									padding: 0px;
+								}
 							}
 						}
 						.featured-event-title {
@@ -3440,7 +3506,7 @@ body.page-load {
 	overflow: hidden;
 	left: 50%;
 	transform: translateX(-50%);
-	margin-top: 0px;
+	margin-top: 3px;
 	transition: 0.5s top;
 	.header-search-fixed {
 		display: none;

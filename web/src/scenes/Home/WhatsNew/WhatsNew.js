@@ -99,7 +99,7 @@ class whatsNew extends Component {
                                 alt="arrow" /></Link>
                         </div>
                     </div>
-                    <Carousel imgArray={this.state.newReleases} arrows={false} slidesToShow={6} slidesToScroll={6}/>
+                    <Carousel imgArray={this.state.newReleases} arrows={true} slidesToShow={6} slidesToScroll={6}/>
                 </div>
             </section>
         );
