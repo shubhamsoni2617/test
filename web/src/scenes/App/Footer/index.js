@@ -106,11 +106,13 @@ const Footer = () => {
                            <li>
                               <a href="https://www.facebook.com/SISTICsingapore" target="_blank">
                                  <img src="assets/images/fb.svg" alt="" />
+                                 <img className="active" src="assets/images/fb-fill.svg" alt="" />
                               </a>
                            </li>
                            <li>
                               <Link>
                                  <img src="assets/images/insta-unfill.svg" alt="" />
+                                 <img className="active" src="assets/images/insta-fill.svg" alt="" />
                               </Link>
                            </li>
                         </ul>

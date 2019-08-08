@@ -217,11 +217,14 @@ export default class Filters extends Component {
     // Date Range methods
     handleFromChange = (from) => {
         this.setState({ from });
-        this.props.handleFilters('date-range', { from: moment(this.state.from).format('DD-MM-YYYY'), to: moment(this.state.to).format('DD-MM-YYYY') });
+        // this.props.handleFilters('date-range', { from: moment(this.state.from).format('DD-MM-YYYY'), to: moment(this.state.to).format('DD-MM-YYYY') });
     }
 
     handleToChange = (to) => {
         this.setState({ to }, this.showFromMonth);
+    }
+
+    filterByDateRange = () => {
         this.props.handleFilters('date-range', { from: moment(this.state.from).format('DD-MM-YYYY'), to: moment(this.state.to).format('DD-MM-YYYY') });
     }
 
@@ -451,7 +454,7 @@ export default class Filters extends Component {
                                     />
                                 </span>
                             </div>
-                            <a class="cal-apply-btn active" href="events">
+                            <a onClick={this.filterByDateRange} class="cal-apply-btn active">
                                 <img src="/static/media/tick-grey.0af2386c.svg" alt="" />
                                 <img src="/static/media/tick-white.a08b5f03.svg" class="active" alt="" />
                             </a>
@@ -491,21 +494,6 @@ export default class Filters extends Component {
                                     .InputFromTo-to .DayPickerInput-Overlay {
                                         margin-left: 0px;
                                     }
-                                    .InputFromTo-to .DayPicker-Day.DayPicker-Day--start, .InputFromTo-to .DayPicker-Day.DayPicker-Day--end{
-                                        position: relative;
-                                        &:before{
-                                            position: absolute;
-                                            content: "";
-                                            background-color: red;
-                                            width: 25px;
-                                            height: 25px;
-                                            left: 100%;
-                                            right: auto;
-                                            top: 50%;
-                                            transform: translate(-50%, -50%);
-                                            z-index: -1;
-                                        }
-                                     }
                                     .InputFromTo-to .DayPicker-Day.DayPicker-Day--end{
                                         &:before{
                                             left: auto;

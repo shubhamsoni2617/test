@@ -185,12 +185,12 @@
     .filter-heading {
         border-bottom: 1px solid rgba(126,126,126,0.1);
         display: flex;
-        padding-bottom: 9px;
-        min-height: 43px;
+        min-height: 39px;
+        padding: 4px 6px 9px;
         h3 {
             color: #343434;
             margin: 0;
-            font-weight: bold;
+            font-weight: 800;
             font-family: 'Montserrat', sans-serif;
             font-size: 16px;
             line-height: 19px;
@@ -251,7 +251,7 @@
             border: none;
         }
         .filter-grid-heading {
-            padding: 0 5px 15px;
+            padding: 0 5px 10px;
             display: flex;
             justify-content: space-between;
             
@@ -305,6 +305,10 @@
             flex-wrap: wrap;
             margin-bottom: 10px;
             position: relative;
+            .input-range{
+                width: calc(100% - 12px);
+                margin-left: 5px;
+            }
             .input-range__track--active {
                 background: #0098FF;
                 height: 7px;
@@ -318,7 +322,7 @@
                 margin-top: -11px;
             }
             .input-range__track--background{
-                height: 2px;
+                height: 1px;
             }
             span.input-range__label-container {
                 height: 26px;
@@ -327,7 +331,9 @@
                 display: inline-block;
                 text-align: center;
                 line-height: 26px;
-                color: #7E7E7E;
+                color: #343434;
+                font-family: 'Rubik', sans-serif;
+                background: #FFF;
             }
             .input-range__label.input-range__label--min, .input-range__label.input-range__label--max{
                 .input-range__label-container{
@@ -353,7 +359,15 @@
                     color: #626262;
                     &.active {
                         color: #0098ff;
-                    }                   
+                    } 
+                    &:hover{ 
+                        label{
+                            color: #0098ff;
+                        } 
+                    } 
+                    input[type="checkbox"]:checked + label {
+                        color: #0098ff;
+                    }               
                 }
             }
             /****** Filter Directory ******/
@@ -527,7 +541,7 @@
                 flex: 0 0 100%;
                 font-size: 14px;
                 color: #0098ff;
-                padding: 5px 0;
+                padding: 5px 0 0;
                 margin-top: 15px;
                 cursor: pointer;
             }
@@ -553,9 +567,8 @@
             .cal-apply-btn{
                 flex: 0 0 10%;
                 align-self: center;
-                height: 26px;
+                height: 28px;
                 width: 26px;
-                line-height: 26px;
                 background-color: #fff;
                 border-radius: 50%;
                 text-align: center;
@@ -567,7 +580,7 @@
                 &.active{
                     flex: 0 0 10%;
                     align-self: center;
-                    height: 26px;
+                    height: 28px;
                     width: 26px;
                     line-height: 26px;
                     background-color: #0098FF;
@@ -683,8 +696,7 @@
                                  }
                                  &.DayPicker-Day--start, &.DayPicker-Day--end{
                                     border-radius: 50% !important;
-                                    width: 25px !important;
-                                    height: 25px !important;
+                                    background-color: transparent !important;
                                     padding: 0px !important;
                                     color: #fff !important;
                                     min-width: auto;
@@ -703,26 +715,33 @@
                                         z-index: -1;
                                     }
                                  }
-                                 &.DayPicker-Day--start, &.DayPicker-Day--end{
+                                 &.DayPicker-Day--start + .DayPicker-Day--selected{
                                     position: relative;
-                                    z-index: 2;
                                     &:before{
                                         position: absolute;
                                         content: "";
                                         background-color: #E8F4FF;
                                         width: 25px;
                                         height: 25px;
-                                        left: 100%;
+                                        left: -10px;
                                         right: auto;
                                         top: 50%;
                                         transform: translate(-50%, -50%);
-                                        z-index: -1;
+                                        z-index: 0;
                                     }
-                                 }
+                                }
                                 &.DayPicker-Day--end{
                                     &:before{
                                         left: auto;
-                                        right: 0px;
+                                        right: 5px;
+                                        position: absolute;
+                                        content: "";
+                                        background-color: #E8F4FF;
+                                        width: 25px;
+                                        height: 25px;
+                                        top: 50%;
+                                        transform: translate(-50%, -50%);
+                                        z-index: -1;
                                     }
                                  }
                                  &.DayPicker-Day--disabled {
