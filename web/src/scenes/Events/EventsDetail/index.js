@@ -48,7 +48,9 @@ export default class EventsDetail extends Component {
   }
 
   setOffsetTop = (elem) => {
-    this.elemOffsetTop = elem.offsetTop
+    if(elem) {
+      this.elemOffsetTop = elem.offsetTop
+    }
   }
 
   componentDidMount() {
@@ -225,16 +227,16 @@ export default class EventsDetail extends Component {
             {detailData.is_available_for_booking == 1 &&
               <div>
                 {/* {detailData.pop_up_message && showNotice && <PopUpWithClose content={detailData.pop_up_message.description} title={detailData.pop_up_message.title} handleClose={this.handleClose} />} */}
-                {detailData.pop_up_message && showNotice && <ModalPopup showModal={showNotice} content={detailData.pop_up_message.description} title={detailData.pop_up_message.title} handleClose={this.handleClose} htmlContent={true}/>}
+                {detailData.pop_up_message && detailData.pop_up_message.description && showNotice && <ModalPopup showModal={showNotice} content={detailData.pop_up_message.description} title={detailData.pop_up_message.title} handleClose={this.handleClose} htmlContent={true}/>}
 
                 <section className="event-detail-banner">
                   {detailData.images && detailData.images.length > 0 &&
                     <EventCarousel images={detailData.images} />
                   }
                   <div className={`event-detail ${setHeader ? 'sticky-topbar' : ''}`}>
-                    <div className="tickets-demo-img">
-                      <Image src={detailData.images[0].thumb_image} alt="joker" className="img-fluid" type='Horizontal' />
-                    </div>
+                    {detailData.images && <div className="tickets-demo-img">
+                      <Image src={detailData.images.thumb_image} alt="joker" className="img-fluid" type='Horizontal' />
+                    </div>}
                     <div className="tickets-desc">
                       <div className="breadcrumb-share">
                         <ul className="breadcrumb">
