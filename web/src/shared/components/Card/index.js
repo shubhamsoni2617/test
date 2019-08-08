@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import './style.scss';
+import Image from '../../components/Image';
 
 export default class Card extends Component {
   
@@ -8,14 +9,13 @@ export default class Card extends Component {
   }
 
   componentDidMount () {
-      console.log('props',this.props)
   } 
 
   render() {
     return (
         <div className="event-block">
             <div className="event-img">
-                <img src="assets/images/kurios.png" className="img-fluid" alt="Kurios"/>
+                <Image src={this.props.eventsData.thumb_image} />
             </div>
             <div className="event-details">
                 <div className="event-detail-prime">

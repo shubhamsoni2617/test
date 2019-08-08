@@ -27,11 +27,13 @@ body {
 	a {
         text-decoration: none;
         outline: none;
+        transition: 1s all; 
 		&:hover,
 		&:focus,
 		&:active {
             text-decoration: none;
             outline: none;
+            transition: 1s all; 
 		}
 	}
 }
@@ -107,6 +109,7 @@ h2 {
     font-family: 'Montserrat', sans-serif;
     margin: 0px;
     padding-bottom: 18px;
+    transition: 1s all; 
 }
 
 // Modal Design 
@@ -114,6 +117,7 @@ h2 {
     display: block;
     opacity: 1;
     background: rgba(0, 0, 0, 0.7);
+    z-index: 101;
     .modal-dialog {
         position: relative;
         pointer-events: none;
@@ -130,9 +134,13 @@ h2 {
                     font-family: 'Rubik', sans-serif;
                     font-weight: 500;
                 }
+                &.border-n{
+                    border: none;
+                }
                 .close{
                     opacity: 1;
                     outline: none;
+                    right: 10px;
                     img{
                         width: 16px;
                     }
@@ -169,7 +177,7 @@ h2 {
 	padding: 0;
 	height: 28.27px;
 	width: 28.27px;
-	border: 2.27px solid rgba(126, 126, 126, 0.2);
+	border: 2px solid rgba(126, 126, 126, 0.2);
 	text-align: center;
 	img {
 		transform: translate(-50%, -50%);
@@ -177,6 +185,11 @@ h2 {
 		left: 50%;
 		position: absolute;
 	}
+}
+.share:hover, .info:hover{
+	cursor: pointer;
+	background-color: #fff;
+	border-color: #0098ff; 
 }
 
 .container-fluid {
@@ -261,6 +274,7 @@ button,
 		padding-bottom: 14px;
         text-decoration: none;
         font-weight: 600;
+        cursor: pointer;
 		@media (max-width: 767px) {
 			font-family: 'Montserrat', sans-serif;
 			font-size: 12px;
@@ -281,7 +295,8 @@ button,
 		}
 		&:hover {
 			img {
-				animation: seeallbtn 0.5s linear;
+                animation: seeallbtn 0.5s linear;
+                animation-iteration-count: infinite;
 			}
 		}
 	}
@@ -291,7 +306,8 @@ button,
 .seeall-btn {
 	&:hover {
 		img {
-			animation: seeallbtn 0.5s linear;
+            animation: seeallbtn 0.5s linear;
+            animation-iteration-count: infinite;
 		}
 	}
 }
@@ -313,10 +329,9 @@ button,
 	span {
 		height: 2px;
 		width: 25px;
-		opacity: 0.1;
 		display: inline-block;
 		cursor: pointer;
-		background-color: #000000;
+		background-color: rgba(0, 0, 0, 0.1);
 		transition: 0.3s opacity;
 		&.active {
 			opacity: 1;
@@ -466,13 +481,12 @@ button,
 	ul {
 		border: 1px solid rgba(151, 151, 151, 0.2);
 		border-top: none;
-		height: 0px;
-		opacity: 0;
 		transition: 0.3s height, 0.3s opacity;
 		position: absolute;
 		top: 100%;
 		width: 100%;
-		z-index: 1;
+		z-index: 2;
+		background: #FFF;
 		&.active {
 			height: auto;
 			opacity: 1;
@@ -594,4 +608,205 @@ button,
   background-color: #DDD;
   outline: 1px solid #DDD;
   border-radius: 5px;
+}
+
+// Popover CSS 
+.info-popover{
+    position: absolute;
+    right: -6px;
+    bottom: 30px;
+    width: 250px;
+    background: #FFF;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+	line-height: 22px;
+	opacity: 0;
+	transition: 0.3s height, 0.3s opacity;
+	height: 0;
+	padding: 0px;
+    overflow: hidden;
+    &::before{
+        position: absolute;
+        content: "";
+        border-left: 8px solid transparent;
+        border-right: 8px solid transparent;
+        width: auto;
+        bottom: -8px;
+        height: auto;
+        right: 8px;
+        border-top: 8px solid #ffffff;
+        margin-left: -10px;
+    }
+}
+// Calender CSS 
+.calender {
+    .month-cal{
+        .DayPicker {
+            width: calc(100% + 10px);
+            margin: 0 -5px;
+            .DayPicker-wrapper{
+                padding: 0;
+                .DayPicker-NavBar{
+                    position: absolute;
+                    right: 3px;
+                    top: -46px;
+                    .DayPicker-NavButton{
+                        right: 0;
+                    }
+                    .DayPicker-NavButton--prev{
+                        background: rgba(247,248,252,1) url(../../assets/images/right-arrow.svg) 6px 2px no-repeat;
+                        transform: rotate(180deg);
+                        border-radius: 50%;
+                        right: 5px;
+                        outline: none;
+                    }
+                    .DayPicker-NavButton--next{
+                        background: rgba(247,248,252,1) url(../../assets/images/right-arrow.svg) 6px 3px no-repeat;
+                        border-radius: 50%;
+                        outline: none;
+                    }
+                }
+                .DayPicker-Months{
+                    .DayPicker-Month{
+                        width: 100%;
+                        margin: 0;
+                        display: block;
+                        .DayPicker-Body{
+                            display: block;
+                        }
+                        .DayPicker-Caption{
+                            position: absolute;
+                            right: 45px;
+                            top: -28px;
+                            color: #343434;
+                            font-size: 14px;
+                            div{
+                                font-size: 14px;
+                                font-weight: 400;
+                            }
+                        }
+                        .DayPicker-Weekdays{
+                            display: flex;
+                            margin: 0;
+                            .DayPicker-WeekdaysRow{
+                                display: flex;
+                                justify-content: space-between;
+                                padding: 0;
+                                width: 100%;
+                            }
+                            .DayPicker-Weekday{
+                                abbr{
+                                    color: rgba(52,72,94,0.54);
+                                    font-size: 11px;
+                                    font-weight: 500;
+                                }
+                            }
+                        }
+                        .DayPicker-Week{
+                            display: flex;
+                            justify-content: space-between;
+                            .DayPicker-Day{
+                                font-size: 10px;
+                                display: flex;
+                                padding: 0;
+                                border-radius: 50%;
+                                justify-content: center;
+                                cursor: pointer;
+                                width: 26px;
+                                height: 26px;
+                                margin: 2px 0;
+                                color: #7C86A2;
+                                align-items: center;
+                                line-height: initial;
+                                &.DayPicker-Day--selected{
+                                    background: #0098FF;
+                                    font-weight: 500;
+                                    color: #FFF;
+                                    &:not(.DayPicker-Day--start):not(.DayPicker-Day--end):not(.DayPicker-Day--outside){
+                                        color: #7C86A2;
+                                    }
+                                }
+                            }
+                            .DayPicker-Day--today{
+                                color: #0098FF !important;
+                            }
+                        }
+                    }
+                }
+            }
+        }  
+    }
+	.cal-month-name {
+		margin-left: auto;
+		display: flex;
+		align-items: center;
+		span {
+			color: #343434;
+			font-family: 'Rubik', sans-serif;
+			font-size: 14px;
+			line-height: 17px;
+			font-weight: normal;
+		}
+		.prev-month,
+		.next-month {
+			height: 15px;
+			width: 15px;
+			border-radius: 50%;
+			background-color: #F7F8FC;
+			text-align: center;
+			line-height: 12px;
+			img {
+				max-width: 6px;
+			}
+		}
+		.prev-month {
+			margin: 0px 8px 0px 6px;
+			img {
+				transform: rotate(180deg);
+			}
+		}
+	}
+}
+
+// Scroll to top 
+.scroll-top{
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    background: #0098FF;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 15px;
+    color: #FFF;
+    font-family: 'Rubik', sans-serif;
+    font-weight: 500;
+    z-index: 2;
+    img{
+        margin-bottom: 2px;
+    }
+    &:hover{
+        color: #FFF;
+        background: #0077C8;
+        box-shadow: 0 4px 7px #ccc;
+        img{
+            animation: scrolltop 0.5s linear;
+            animation-iteration-count: infinite;
+        }
+    }
+}
+@keyframes scrolltop {
+	0% {
+		transform: translateY(0px);
+	}
+	50% {
+		transform: translateY(-5px);
+	}
+	100% {
+		transform: translateY(0px);
+	}
 }

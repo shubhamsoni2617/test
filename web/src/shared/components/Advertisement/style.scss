@@ -1,6 +1,35 @@
-.hide{
-    display:none
-}
-.advertisment-image{
-    max-width: 100%;
+
+// Top-advertisment style start
+.top-ads {
+	background-color: #121212;
+    position: relative;
+    z-index: 2;
+    max-height: 0;
+    transition: max-height 0.5s ease-out;
+    overflow: hidden;
+    &.hide-ad{
+        max-height: 150px;
+        transition: max-height 0.5s ease-in;
+    }
+	.ads-image {
+		text-align: center;
+		padding: 5px;
+		display: inline-block;
+		width: 100%;
+	}
+	.ads-close {
+		position: absolute;
+		right: 39px;
+        top: 18px;
+        background: transparent;
+        border: none;
+        padding: 0;
+        line-height: inherit;
+        &::after{
+            display: none;
+        }
+        img{
+            width: 14px;
+        }
+	}
 }

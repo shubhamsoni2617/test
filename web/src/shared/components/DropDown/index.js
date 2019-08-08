@@ -17,7 +17,6 @@ class DropDown extends Component {
         } else {
             window.removeEventListener('click', this.handleOutsideClick, false);
             this.node.classList.remove("active");
-
         }
         this.setState({ isOpen: !this.state.isOpen })
     }
@@ -39,11 +38,11 @@ class DropDown extends Component {
                     <span class="dropdown-icon">
                     </span>
                 </a>
-                <ul className="dropdown-content" style={{ display: isOpen ? "block" : "none" }}>
+                <ul className="dropdown-content">
                     {byGenreEvent && byGenreEvent.slice(showElementsInHeader, byGenreEvent.length).map((event, index) => {
                         return (
                             <li key={event.id}>
-                                <Link to={ `/events/search?id=${event.id}`}> {event.name}</Link>
+                                <Link to={ `/events?c=${event.name}`}> {event.name}</Link>
                             </li>
                         );
                     })}

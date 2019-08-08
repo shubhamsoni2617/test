@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './style.scss';
-import { ReactComponent as MiniCartLogo } from '../../../assets/images/cart.svg';
+import MiniCartLogo from '../../../assets/images/cart.svg';
 
 class MiniCart extends Component {
     constructor(props) {
@@ -20,7 +20,6 @@ class MiniCart extends Component {
         }
         this.setState({ isOpen: !this.state.isOpen })
     }
-
     handleOutsideClick = (e) => {
         if (this.node.contains(e.target)) {
             return;
@@ -35,8 +34,8 @@ class MiniCart extends Component {
 
         return (
             <li className="cart-icon" onClick={this.toggle} ref={node => { this.node = node; }}>
-                <a><MiniCartLogo className="img-fluid" /><span>{data.length}</span></a>
-                <div className="my-cart-popup" style={{ display: isOpen ? "block" : "none" }}>
+                <a><img src={MiniCartLogo} class="img-fluid" alt="cart"/><span>{data.length}</span></a>
+                <div className="my-cart-popup">
                     <div className="my-cart-wrapper">
                         <div className="cart-head">
                             <h3>My Cart ({data.length})</h3>

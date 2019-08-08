@@ -35,12 +35,12 @@ const EventCarousel = (props) => {
   const { images } = props;
 
   return (
-    <div>
       <div className="banner-carousel">
         <Slider
           asNavFor={navSmall}
           ref={slider => (slider1 = slider)}
           {...settings1}
+          variableWidth ={true}
           adaptiveHeight={true}
         >
           {images.map((obj, idx) => {
@@ -49,35 +49,36 @@ const EventCarousel = (props) => {
                 <img src={obj.full_image} />
               </div>
             } else {
-              return <div key={idx}>
-                <ReactPlayer url={obj.video_url} controls={true} />
-              </div>
-            }
-          })}
-        </Slider>
-        
-        <Slider
-          asNavFor = {navLarge}
-          ref={slider => (slider2 = slider)}
-          slidesToShow={3}
-          swipeToSlide={true}
-          focusOnSelect={true}
-          {...settings2}
-        >
-          {images.map((obj, idx) => {
-            if (obj.type && obj.type.id == 1) {
-              return <div key={idx}>
-                <img src={obj.thumb_image} />
-              </div>
-            } else {
               return <div className="videoimg" key={idx}>
-                <img src={obj.thumb_image} />
+                <ReactPlayer url={obj.video_url} controls={true} width='100%' height='100%' />
               </div>
             }
           })}
         </Slider>
+        <div className="carousel-thumbnails">
+            <Slider
+            asNavFor = {navLarge}
+            ref={slider => (slider2 = slider)}
+            slidesToShow={images.length}
+            variableWidth ={true}
+            swipeToSlide={true}
+            focusOnSelect={true}
+            {...settings2}
+            >
+            {images.map((obj, idx) => {
+                if (obj.type && obj.type.id == 1) {
+                return <div key={idx} style={{width : 130}}>
+                    <img src={obj.thumb_image} />
+                </div>
+                } else {
+                return <div className="videoimg" key={idx} style={{width : 130}}>
+                    <img src={obj.thumb_image} />
+                </div>
+                }
+            })}
+            </Slider>
+        </div>
       </div>
-    </div>
   );
 
 }

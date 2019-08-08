@@ -13,8 +13,8 @@ class whatsNew extends Component {
     componentDidMount() {
         const params = {
             client: 1,
-            first: 1,
-            limit: 10,
+            // first: 1,
+            // limit: 10,
         };
 
         HomeService.getNewRelease(params)
