@@ -1,7 +1,8 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
 import scrollTop from '../../../assets/images/arrow-to-top.svg';
-import './style.scss'
+import './style.scss';
+import sendImage from '../../../assets/images/send.svg';
 
 const Footer = () => {
 
@@ -95,7 +96,7 @@ const Footer = () => {
                            <input type="text" className="form-control" placeholder="Enter Your email"
                               aria-label="Username" aria-describedby="basic-addon1" />
                            <div className="input-group-prepend">
-                              <Link className="input-group-text" id="basic-addon1"><img src="assets/images/send.svg"
+                              <Link className="input-group-text" id="basic-addon1"><img src={sendImage}
                                  className="img-fluid" alt="send" /></Link>
                            </div>
                         </div>
