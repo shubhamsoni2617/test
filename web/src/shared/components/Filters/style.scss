@@ -683,8 +683,7 @@
                                  }
                                  &.DayPicker-Day--start, &.DayPicker-Day--end{
                                     border-radius: 50% !important;
-                                    width: 25px !important;
-                                    height: 25px !important;
+                                    background-color: transparent !important;
                                     padding: 0px !important;
                                     color: #fff !important;
                                     min-width: auto;
@@ -703,26 +702,33 @@
                                         z-index: -1;
                                     }
                                  }
-                                 &.DayPicker-Day--start, &.DayPicker-Day--end{
+                                 &.DayPicker-Day--start + .DayPicker-Day--selected{
                                     position: relative;
-                                    z-index: 2;
                                     &:before{
                                         position: absolute;
                                         content: "";
                                         background-color: #E8F4FF;
                                         width: 25px;
                                         height: 25px;
-                                        left: 100%;
+                                        left: -10px;
                                         right: auto;
                                         top: 50%;
                                         transform: translate(-50%, -50%);
-                                        z-index: -1;
+                                        z-index: 0;
                                     }
-                                 }
+                                }
                                 &.DayPicker-Day--end{
                                     &:before{
                                         left: auto;
-                                        right: 0px;
+                                        right: 5px;
+                                        position: absolute;
+                                        content: "";
+                                        background-color: #E8F4FF;
+                                        width: 25px;
+                                        height: 25px;
+                                        top: 50%;
+                                        transform: translate(-50%, -50%);
+                                        z-index: -1;
                                     }
                                  }
                                  &.DayPicker-Day--disabled {
