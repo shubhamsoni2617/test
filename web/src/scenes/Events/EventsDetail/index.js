@@ -255,10 +255,10 @@ export default class EventsDetail extends Component {
                       }
                       <h2>{detailData.title}</h2>
                       <a className="info" onClick={() => this.openNotice()}>
-                        <img src={shareIcon} className="" alt="" />
+                        <img src={Info} alt="" />
                       </a>
                       <a className="share" onClick={() => this.openSocialShare()}>
-                        <img src={shareIcon} className="" alt="" />
+                        <img src={shareIcon} alt="" />
                       </a>
                       {showSocialShare && <SocialShare shareUrl={shareUrl} />}
                       <div className="ticket-date-price">

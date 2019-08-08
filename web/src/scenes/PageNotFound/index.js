@@ -21,7 +21,7 @@ const PageNotFound = (props) => {
                         <a href="/">Go to homepage</a>
                     </div>
                     <div className="pagenotfound-image">
-                        <span className="">
+                        <span>
                         <img src={magic} alt="" className="img-fluid" />
                         </span>
                     </div>

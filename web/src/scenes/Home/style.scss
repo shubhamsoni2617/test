@@ -9,7 +9,23 @@
     }
 }
 
+.hotshow-enter {
+  opacity: 0;
+}
 
+.hotshow-enter.hotshow-enter-active {
+  opacity: 1;
+  transition: all 1s ease-in-out;
+}
+
+.hotshow-leave {
+  opacity: 1;
+}
+
+.hotshow-leave.hotshow-leave-active {
+  opacity: 0;
+  transition: all 1s ease-in-out;
+}
 
 //header style start
 .header {
@@ -2369,20 +2385,21 @@ section{
 						a {
 							transition: 0.8s opacity;
 							position: relative;
-							overflow: hidden;
-							img.active {
-								position: absolute;
-								transition: 0.8s opacity;
-								opacity: 0;
-                                bottom: -5px;
-                                left: 0;
-							}
+                            overflow: hidden;
 							&:hover {
-								img.active {
-									opacity: 1;
+								img {
+                                    animation: roll 0.8s infinite;
 								}
-							}
-						}
+                            }
+                            @keyframes roll {
+                                0% {
+                                    transform: rotate(0);
+                                }
+                                100% {
+                                    transform: rotate(20deg);
+                                }
+                            }
+                    }
 					}
 				}
 				li {
@@ -2440,34 +2457,53 @@ section{
 						border: 1px solid rgba(0, 152, 255, 0.6);
 					}
 					&::-webkit-input-placeholder {
-						color: #4B5562;
+						color: #b1b3b5;
 					}
 					&::-moz-placeholder {
-						color: #4B5562;
+						color: #b1b3b5;
 					}
 					&:-moz-placeholder {
-						color: #4B5562;
+						color: #b1b3b5;
 					}
 				}
 				.input-group-text {
 					background-color: #0098ff;
 					border-color: #0098ff;
 					border-radius: 0;
-					padding: 5px;
+                    padding: 5px;
+                    overflow: hidden;
 					&:hover {
 						background-color: #0098ff;
 						border-color: #0098ff;
-						opacity: 0.8;
+                        opacity: 0.8;
+                        img{
+                            animation: submit-arrow 0.5s linear;
+                        }
 					}
 					@media (max-width: 767px) {
 						padding: 2px;
 					}
 					img {
-						max-width: 30px;
+                        max-width: 30px;
+                        position: relative;
 						@media (max-width: 767px) {
 							max-width: 25px;
 						}
-					}
+                    }
+                    @keyframes submit-arrow {
+                        0% {
+                            transform: translateX(0px);
+                            top: 0;
+                        }
+                        50% {
+                            transform: translateX(15px);
+                            top: -15px;
+                        }
+                        100% {
+                            transform: translateX(0px);
+                            top: 0;
+                        }
+                    }
 				}
 			}
 		}
@@ -2912,7 +2948,7 @@ body.page-load {
                             display: flex;
                         }
                         &>div {
-                            flex: 0 0 40%;
+                            flex: 0 0 39%;
                             padding-right: 5px;
                             height: 100%;
                             margin-bottom: 0;

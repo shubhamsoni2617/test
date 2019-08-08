@@ -36,7 +36,7 @@ const MegaMenu = (props) => {
       <div className="submenu-wrapper">
         <div className="event-category">
           <p className="submenu-subtitle">
-            <img src="assets/images/event.svg" className="" alt="" />
+            <img src="assets/images/event.svg" alt="" />
             By Genre
           </p>
           <ul>
@@ -52,7 +52,7 @@ const MegaMenu = (props) => {
         <div className="calender">
           <ul>
             <li className="month submenu-subtitle"><img src="assets/images/cal.svg"
-              className="" alt="" /> By Date</li>
+              alt="" /> By Date</li>
           </ul>
           <div className="month-cal">
             <Calender handleEnter={props.handleMouseStatus} />
@@ -61,10 +61,10 @@ const MegaMenu = (props) => {
         <div className="events-listing">
           <ul>
             <li>
-              <h5 className="submenu-subtitle"><img src="assets/images/location.svg" className="" alt="" /> By Venue</h5>
+              <h5 className="submenu-subtitle"><img src="assets/images/location.svg" alt="" /> By Venue</h5>
             </li>
             <li className="seeall-veneus">
-              <a className="seeall-btn" >See All Venues <img src="assets/images/right-arrow.svg" alt="" className="" /></a>
+              <a className="seeall-btn" >See All Venues <img src="assets/images/right-arrow.svg" alt="" /></a>
             </li>
           </ul>
           <ul className="events-list">
@@ -110,7 +110,7 @@ const MegaMenu = (props) => {
       </div>
       <div className="see-all-evevts">
         <Link to="/events" className="seeall-btn">See All Events
-                        <img src="assets/images/right-arrow.svg" alt="" className="" /></Link>
+                        <img src="assets/images/right-arrow.svg" alt="" /></Link>
       </div>
     </div>
 
