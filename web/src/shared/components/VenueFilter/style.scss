@@ -197,6 +197,7 @@
                 float: right;
                 color: #0098ff;
                 text-decoration: none;
+                cursor: pointer;
                 font-size: 12px;
                 font-family: 'Rubik', sans-serif;
             }
@@ -234,6 +235,11 @@
             }
             &:-moz-placeholder { 
                 color: rgba(52,52,52,0.25);
+            }
+            &:focus{
+                outline: none;
+                box-shadow: none;
+                border: 1px solid rgb(38, 152, 255);
             }
         }
     }

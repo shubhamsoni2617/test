@@ -39,7 +39,7 @@ const CurrentlyShowing = (props) => {
                                 alt="arrow" />&nbsp;</Link>
                         </div>
                     </div>
-                    <Carousel imgArray={currentlyShowing} arrows={true} slidesToShow={6} slidesToScroll={6} />
+                    <Carousel imgArray={currentlyShowing} arrows={false} slidesToShow={6} slidesToScroll={6} />
                 </div>
             </section>
         </div>

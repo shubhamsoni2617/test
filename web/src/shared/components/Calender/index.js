@@ -3,10 +3,10 @@ import DayPicker, { DateUtils } from 'react-day-picker';
 import { Link, Redirect } from 'react-router-dom';
 import 'react-day-picker/lib/style.css';
 import tickArrow from '../../../assets/images/tick-grey.svg';
+import moment from 'moment';
 import tickArrowWhite from '../../../assets/images/tick-white.svg';
 import crossArrow from '../../../assets/images/cross-grey.svg';
 import crossArrowWhite from '../../../assets/images/cross-white.svg';
-import moment from 'moment';
 import './style.scss';
 
 const Calender = (props) => {

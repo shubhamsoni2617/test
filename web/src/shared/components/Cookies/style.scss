@@ -38,25 +38,12 @@
             margin-right: 45px;
             overflow: hidden;
             position: relative;
-            &::after {
-                height: calc(100% + 50px);
-                position: absolute;
-                content: "";
-                width: 20%;
-                background-color: rgb(255, 255, 255);
-                left: -20px;
-                opacity: 0;
-                transform: rotate(35deg);
-                transition: 0.5s left, 0.5s opacity;
-                filter: blur(10px);
-                top: -30px;
-            }
+            border: 1px solid transparent;
             &:hover {
                 cursor: pointer;
-                &::after {
-                    left: calc(100% + 35px);
-                    opacity: 1;
-                }
+                background-color: transparent;
+                color: #0098FF;	
+                border: 1px solid #0098FF;
             }
         }
         .hide-cookie{

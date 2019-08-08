@@ -43,18 +43,14 @@
             line-height: normal;
             text-decoration: none;
             background-color: #ffffff;
-            transition: 0.3s background-color, 0.1s border;
+            transition: 0.9s background-color, 0.1s border;
 
             &:hover {
-                background-color: #0098ff;
+                background-color: #FFF;
                 border: 1px solid #0098ff;
-
+                color: #0098ff
                 span {
-                    color: #ffffff;
-                }
-
-                img {
-                    filter: brightness(0) invert(1);
+                    color: #0098ff;
                 }
             }
 
@@ -64,13 +60,13 @@
                 font-size: 14px;
                 line-height: 18px;
                 font-weight: 500;
-                transition: 0.3s color;
+                transition: 0.9s color;
             }
 
             img {
                 padding-left: 10px;
                 padding-bottom: 4px;
-                transition: 0.3s filter;
+                transition: 0.9s filter;
             }
         }
     }

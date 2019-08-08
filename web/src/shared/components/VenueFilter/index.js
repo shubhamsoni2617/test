@@ -1,11 +1,10 @@
-import React, { Component } from 'react';
-import CloseIcon from '../../../assets/images/close-icon.svg';
+import React, { Component, createRef } from 'react';
+import CloseIcon from '../../../assets/images/close-blue.svg';
 import './style.scss';
 
 export default class VenueFilter extends Component {
 
    groupedCollection;
-   venueShowLimit = 5;
 
    constructor(props) {
       super(props);
@@ -14,6 +13,8 @@ export default class VenueFilter extends Component {
          display: this.props.venueFilterPanelDisplay ? 'block' : 'none',
          venuesData: this.props.venueData, hoverEffect: '', alphabet: ''
       }
+
+      this.myRef = createRef();
    }
 
    componentDidMount() {
@@ -35,6 +36,16 @@ export default class VenueFilter extends Component {
       this.setState({ hoverEffect: '', alphabet: '' });
    }
 
+   scrollToRef = (ref) => {
+      let el = document.getElementById('li-'+ref.target.id);
+      if(el !== null){
+         this.myRef.scrollTo({
+            top :0,
+            left: el.offsetLeft-25,
+            behavior: 'smooth',
+         });
+      }
+   }
 
 
    sortAndGroup = (venues) => {
@@ -60,7 +71,7 @@ export default class VenueFilter extends Component {
       Object.keys(groupedCollection).map((key) => {
 
          addHoverClass = (this.state.alphabet == key) ? '' : this.state.hoverEffect;
-         groupedData.push(<li id={key} className={"filter-directory-list-title " + addHoverClass}>{key}</li>);
+         groupedData.push(<li id={"li-"+key} className={"filter-directory-list-title " + addHoverClass}>{key}</li>);
 
          groupedCollection[key].map((venue) => {
             id = 'venue-panel-' + venue.id;
@@ -86,13 +97,14 @@ export default class VenueFilter extends Component {
       let alphabets = [];
       alphabets.push(<li className="">#</li>);
       for (let i = 65; i < 91; i++) {
-         let createHref = '#' + String.fromCharCode(i);
+         // let createHref = '#' + String.fromCharCode(i);
          alphabets.push(
-            <li
+            <li id={String.fromCharCode(i)} 
                onMouseOver={() => this.handleHoverOn(String.fromCharCode(i))}
                onMouseLeave={() => this.handleHoverOff()}
-               key={i} >
-               <a href={createHref} >{String.fromCharCode(i)}</a>
+               key={i}
+               onClick={this.scrollToRef} >
+               {String.fromCharCode(i)}
             </li>
          )
       }
@@ -119,7 +131,7 @@ export default class VenueFilter extends Component {
                      </span>
                   </div>
                   <div className="filter-directory-indices-list">
-                     <input type="text" value={search} onChange={(event) => this.updateSearch(event)} placeholder="Search brand" className="filter-directory-search-input" />
+                     <input type="text" value={search} onChange={(event) => this.updateSearch(event)} placeholder="Search in Venues" className="filter-directory-search-input" />
                      <ul className="filter-directory-indices">
                         {
                            this.prepareAlphabets().map((alphabets) => {
@@ -130,7 +142,7 @@ export default class VenueFilter extends Component {
                   </div>
                </div>
                <div>
-                  <ul className="filter-directory-list">
+                  <ul id="venueContainer" ref={(node)=>this.myRef=node} className="filter-directory-list">
                      {
                         this.groupeFilter(this.groupedCollection).map((lidata) => {
                            return lidata;
