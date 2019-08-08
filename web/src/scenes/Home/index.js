@@ -14,6 +14,7 @@ import Explore from './Explore';
 import Cookies from '../../shared/components/Cookies';
 import NewsTicker from './NewsTicker';
 import { MainSlider } from '../../shared/components/MainSlider';
+import primeSlider from '../../assets/images/main-banner.png';
 import mainSliderImg from '../../assets/images/slide1.jpg';
 import thumbnailImg from '../../assets/images/thumb-img-one.png';
 import thumbnailImg1 from '../../assets/images/thumb-img1.png';
@@ -88,58 +89,7 @@ export default class Home extends Component {
         <NewsTicker />
         <HotShowPopup showPopup={true} eventCount={1} />
         <section className="banner">
-            <div className="banner-carousel">
-                <div className="active-banner-image">
-                    <img src="assets/images/slide1.jpg" alt="active-slide" className="img-fluid" />
-                </div>
-                <ul>
-                    <li className="slide"><img src="assets/images/slide1.jpg" className="img-fluid" alt="slide1" /></li>
-                    <li className="slide active"><img src="assets/images/slide1.jpg" className="img-fluid" alt="slide2" /></li>
-                    <li className="slide"><img src="assets/images/slide1.jpg" className="img-fluid" alt="slide3" /></li>
-                </ul>
-                <div className="carousel-navigation">
-                    <div className="left-navigation">
-                        <a href="/">
-                            <img src={leftArrow} className="img-fluid" alt="left-navigation" />
-                        </a>
-                    </div>
-                    <div className="right-navigation">
-                        <a href="/">
-                            <img src={rightArrow} className="img-fluid" alt="right-navigation" />
-                        </a>
-                    </div>
-                </div>
-            </div>
-            <div className="banner-thumbnail">
-                <a href="/" className="prev"><img src={rightThumbArrrow} alt="Previous Button" /></a>
-                <a href="/" className="next"><img src={leftThumbArrrow} alt="Previous Button" /></a>
-                  <ul>
-                     <li><a href="/"><img src={thumbnailImg1} className="img-fluid" alt="" /></a></li>
-                     <li><a href="/"><img src={thumbnailImg1} className="img-fluid" alt="" /></a></li>
-                     <li><a href="/"><img src={thumbnailImg3} className="img-fluid" alt="" /></a></li>
-                     <li><a href="/"><img src={thumbnailImg2} className="img-fluid" alt="" /></a></li>
-                     <li><a href="/"><img src={thumbnailImg4} className="img-fluid" alt="" /></a></li>
-                     <li><a href="/"><img src={thumbnailImg1} className="img-fluid" alt="" /></a></li>
-                     <li><a href="/"><img src={thumbnailImg2} className="img-fluid" alt="" /></a></li>
-                     <li><a href="/"><img src={thumbnailImg3} className="img-fluid" alt="" /></a></li>
-                     <li><a href="/"><img src={thumbnailImg2} className="img-fluid" alt="" /></a></li>
-                     <li><a href="/"><img src={thumbnailImg4} className="img-fluid" alt="" /></a></li>
-                     <li><a href="/"><img src={thumbnailImg1} className="img-fluid" alt="" /></a></li>
-                     <li><a href="/"><img src={thumbnailImg2} className="img-fluid" alt="" /></a></li>
-                     <li><a href="/"><img src={thumbnailImg3} className="img-fluid" alt="" /></a></li>
-                     <li><a href="/"><img src={thumbnailImg2} className="img-fluid" alt="" /></a></li>
-                     <li><a href="/"><img src={thumbnailImg4} className="img-fluid" alt="" /></a></li>
-                     <li><a href="/"><img src={thumbnailImg1} className="img-fluid" alt="" /></a></li>
-                     <li><a href="/"><img src={thumbnailImg2} className="img-fluid" alt="" /></a></li>
-                     <li><a href="/"><img src={thumbnailImg3} className="img-fluid" alt="" /></a></li>
-                     <li><a href="/"><img src={thumbnailImg2} className="img-fluid" alt="" /></a></li>
-                    <li><a href="/"><img src={thumbnailImg4} className="img-fluid" alt="" /></a></li>
-                    <li><a href="/"><img src={thumbnailImg1} className="img-fluid"
-                    alt="" /></a></li>
-                    <li><a href="/"><img src={thumbnailImg2} className="img-fluid"
-                    alt="" /></a></li>
-                  </ul>
-               </div>
+            <img src={primeSlider} alt="prime Slider" />
         </section>
           {/* <MainSlider
             slides={slide}

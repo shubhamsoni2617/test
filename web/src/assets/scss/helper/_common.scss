@@ -791,8 +791,7 @@ button,
     }
     &:hover{
         color: #FFF;
-        background: #0077C8;
-        box-shadow: 0 4px 7px #ccc;
+        box-shadow: 0 0 10px #DDD;
         img{
             animation: scrolltop 0.5s linear;
             animation-iteration-count: infinite;
