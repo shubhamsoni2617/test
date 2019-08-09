@@ -16,16 +16,16 @@ export default class StickyHeader extends Component {
 
     return (
       <div className={`event-detail ${sticky ? 'sticky-topbar' : ''} ${sticky && setHeader ? "animate" : ""}`}>
-        {detailData.images && (
+        { detailData.images && detailData.images.length > 0 &&
           <div className="tickets-demo-img">
             <Image
-              src={detailData.images.thumb_image}
+              src={detailData.images[0].thumb_image}
               alt="joker"
               className="img-fluid"
               type="Horizontal"
             />
           </div>
-        )}
+        }
         <div className="tickets-desc">
           <div className="breadcrumb-share">
             <ul className="breadcrumb">
