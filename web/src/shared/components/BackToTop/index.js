@@ -35,7 +35,6 @@ class BackToTop extends React.Component {
           return (
               <a className="scroll-top" onClick={this.scrollToTop}>
                   <img src={scrollTop} alt="Scroll to top" />
-                  TOP
               </a>
           )
       }

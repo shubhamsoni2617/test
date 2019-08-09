@@ -331,9 +331,9 @@ export default class Events extends Component {
                                 }
                                 {isdataAvailable &&
                                     <div className="no-data">
+                                        <img src={noEvent} alt="No Event Data" />
                                         <p><strong>No events found</strong></p>
                                         <p>Try again with more general search events</p>
-                                        <img src={noEvent} alt="No Event Data" />
                                     </div>
                                 }
                             </div>

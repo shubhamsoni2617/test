@@ -57,11 +57,13 @@ const NewsTicker = props => {
                 {newsTicker.map((content, index) => {
                   let string = content.description;
                   let stringLength = 180;
-                  let trimmedString = string.substring(0, stringLength);
+                  if(string.length > 180) string = `${string.substring(0, stringLength)}...`;
+
                   return (
                     <div
+                      key={index}
                       key={content.title}
-                      dangerouslySetInnerHTML={{ __html: content.title }}
+                      dangerouslySetInnerHTML={{ __html: string }}
                       onClick={() => {
                         handleOnclick(content.description);
                       }}
