@@ -83,7 +83,7 @@ const HotShowPopup = (props) => {
                         <ReactPlayer url={objData.video_url} controls={true} />
                       ) : (
                           <img
-                            src={objData.thumb_image}
+                            src={objData.full_image}
                             alt=""
                             className="img-fluid"
                           />
