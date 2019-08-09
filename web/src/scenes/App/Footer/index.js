@@ -143,7 +143,7 @@ const Footer = () => {
                </div>
             </div>
          </section>
-         <BackToTop scrollStepInPx="50" delayInMs="0" />
+         <BackToTop scrollStepInPx="50" delayInMs="20" />
       </footer>
    )
 }
