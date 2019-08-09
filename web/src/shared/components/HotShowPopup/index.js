@@ -25,7 +25,7 @@ const HotShowPopup = (props) => {
   const body = document.body;
   const removeOverlayClass = () => {
     setFlag(false);
-    body.classList.add("hotshowpopup-overlay");
+    body.classList.remove("hotshowpopup-overlay");
   }
 
   const addOverlayClass = () => body.classList.add("hotshowpopup-overlay");
