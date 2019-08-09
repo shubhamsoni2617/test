@@ -32,7 +32,7 @@ export default class StickyHeader extends Component {
               <li>Home</li>
               {detailData.genres &&
                 detailData.genres.map((obj, index) => {
-                  if (obj.is_primary == 1) {
+                  if (obj.is_primary === 1) {
                     return <li key={index}>{obj.name}</li>;
                   }
                 })}
@@ -43,7 +43,7 @@ export default class StickyHeader extends Component {
               {detailData.genres.map((obj, index) => {
                 return (
                   <li
-                    className={`${obj.is_primary == 1 ? "active" : ""}`}
+                    className={`${obj.is_primary === 1 ? "active" : ""}`}
                     key={index}
                   >
                     {obj.name}
