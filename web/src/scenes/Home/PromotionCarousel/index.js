@@ -144,7 +144,7 @@ export default class PromotionCarousel extends Component {
                         <div className="item">
                           {promo.slides.length == 2 && promo.slides.map((slide) => {
                             return (
-                              <div className="item-wrapper">
+                              <div key={slide.url} className="item-wrapper">
                                 <div className="promotions-img">
                                   <div className="item-img">
                                     <img src="assets/images/headrock.jpg" className="img-fluid" alt="headrock" />
@@ -179,7 +179,7 @@ export default class PromotionCarousel extends Component {
                           })}
                           {promo.slides.length == 1 && promo.slides.map((slide) => {
                             return (
-                              <div className="item-wrapper">
+                              <div key={slide.url} className="item-wrapper">
                                 <div className="promotions-img">
                                   <div className="item-img">
                                     <img src="assets/images/master-card.jpg" className="img-fluid" alt="privilage" />
@@ -196,12 +196,12 @@ export default class PromotionCarousel extends Component {
                 </div>
                 :
                 <Slider {...settings}>
-                  {this.slides.promotions.map((promo) => {
+                  {this.slides.promotions.map((promo, index) => {
                     return (
-                      <div className="item">
+                      <div key={index} className="item">
                         {promo.slides.length == 2 && promo.slides.map((slide) => {
                           return (
-                            <div className="item-wrapper">
+                            <div key={slide.url} className="item-wrapper">
                               <div className="promotions-img">
                                 <div className="item-img">
                                   <img src="assets/images/headrock.jpg" className="img-fluid" alt="headrock" />
@@ -236,7 +236,7 @@ export default class PromotionCarousel extends Component {
                         })}
                         {promo.slides.length == 1 && promo.slides.map((slide) => {
                           return (
-                            <div className="item-wrapper">
+                            <div key={slide.url} className="item-wrapper">
                               <div className="promotions-img">
                                 <div className="item-img">
                                   <img src="assets/images/master-card.jpg" className="img-fluid" alt="privilage" />

@@ -76,7 +76,7 @@ class TrendingNow extends Component {
                         {
                             trendingNow.slice(1, trendingNow.length).map((now, index) => {
                                 return (
-                                    <div className="item">
+                                    <div key={index} className="item">
                                         <div className="item-wrapper">
                                             <span className="category">Dance</span>
                                             <div className="trending-now-image">
