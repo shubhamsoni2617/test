@@ -73,8 +73,9 @@ export default class Filters extends Component {
 
     // Text Search
     textFilter = (e) => {
-        this.setState({ search: e.target.value });
-        this.props.handleFilters('search', this.state.search);
+        this.setState({ search: e.target.value }, () => {
+            this.props.handleFilters('search', this.state.search);
+        });
     }
 
     //Genres 
@@ -365,6 +366,7 @@ export default class Filters extends Component {
                                 value={this.state.priceRangeValue}
                                 onChange={(priceRangeValue) => this.setPriceRange(priceRangeValue)} />
                         </div>
+                        
                     </div>
                     <div className="filter-grid">
                         <div className="filter-grid-heading">
@@ -419,7 +421,7 @@ export default class Filters extends Component {
                                         parseDate={parseDate}
                                         dayPickerProps={{
                                             selectedDays: [from, { from, to }],
-                                            disabledDays: { before: new Date() },
+                                            disabledDays: { before: new Date(), after: to },
                                             toMonth: to,
                                             modifiers,
                                             numberOfMonths: 1,
@@ -442,7 +444,7 @@ export default class Filters extends Component {
                                         parseDate={parseDate}
                                         dayPickerProps={{
                                             selectedDays: [from, { from, to }],
-                                            disabledDays: { before: new Date() },
+                                            disabledDays: { before: from },
                                             modifiers,
                                             month: from,
                                             fromMonth: from,

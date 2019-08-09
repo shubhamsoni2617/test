@@ -10,6 +10,7 @@ import noEvent from '../../assets/images/no-event.svg';
 import Breadcrub from '../../scenes/App/Breadcrumb';
 import ListView from '../../assets/images/list-view.svg';
 import GridView from '../../assets/images/grid-view.svg';
+import EventBreadcrumbImage from '../../assets/images/events.png';
 import './style.scss';
 
 export default class Events extends Component {
@@ -17,17 +18,17 @@ export default class Events extends Component {
     constructor(props) {
         super(props);
 
-        this.initialLimit = { client: 1, first: 0, limit: 10, sort_type: 'date' };
+        this.initialLimit = { client: 1, first: 0, limit: 9, sort_type: 'date' };
         this.state = {
             filteredGnere: [], filteredSearch: [], filteredPromotions: [], filteredVenues: [], filteredTags: [],
             filteredPriceRange: {}, filteredDateRange: {}, filteredSortType: 'date', filteredSortOrder: '',
-            eventsData: [], genre: [], venues: [], filterConfig: [], first: 0, limit: 10, viewType:'list', viewTypeClass: 'events-section', totalRecords: 0
+            eventsData: [], genre: [], venues: [], filterConfig: [], first: 0, limit: 9, viewType:'grid', viewTypeClass: 'events-section', totalRecords: 0
         };
 
         this.breadCrumbData = {
-            'page_banner': 'assets/images/promotions-banner.png',
+            'page_banner': EventBreadcrumbImage,
             'page': 'Events',
-            'count': '24',
+            'count': 0,
             'breadcrumb_slug': [{ 'path': '/', 'title': 'Home' }, { 'path': '/events', 'title': 'Events' }]
         };
 
@@ -35,13 +36,13 @@ export default class Events extends Component {
             isSortBy: true,
             sortList: [
                 {
-                    sortType: 'sort',
+                    sortType: 'title',
                     sortOrder: 'ASC',
                     sortTitle: 'A to Z',
                     sortTag: 'Events - A to Z'
                 },
                 {
-                    sortType: 'sort',
+                    sortType: 'title',
                     sortOrder: 'DESC',
                     sortTitle: 'Z to A',
                     sortTag: 'Events - Z to A'
@@ -130,7 +131,7 @@ export default class Events extends Component {
     }
 
     getVenue = () => {
-        const first = 1;
+        const first = 0;
         const limit = 100;
         const search = '';
         HomeService.getVenues(first, limit, search)
@@ -156,7 +157,7 @@ export default class Events extends Component {
 
     loadMoreEvents = () => {
         let params = this.setFilterParams();
-        params.first = this.state.first + 10;
+        params.first = this.state.first + 9;
         this.loadEvents(params);
         this.setState({ first: params.first, limit: params.limit })
     }
@@ -199,7 +200,7 @@ export default class Events extends Component {
         let filteredPromotions = [...this.state.filteredPromotions];
         let filteredVenues = [...this.state.filteredVenues];
         let filteredTags = [...this.state.filteredTags];
-        let filteredSearch = [...this.state.filteredSearch];
+        let filteredSearch = this.state.filteredSearch;
         let filteredGnere = [...this.state.filteredGnere];
         let filteredPriceRange = { ...this.state.filteredPriceRange };
         let filteredDateRange = { ...this.state.filteredDateRange };
@@ -258,8 +259,9 @@ export default class Events extends Component {
                 break;
             case 'sort':
             case 'price':
-            case 'date': {
-                filteredSortType = (searchType == 'sort') ? '' : searchType;
+            case 'date':
+            case 'title': {
+                filteredSortType = searchType;
                 filteredSortOrder = searchValue;
             }
         }
@@ -276,8 +278,9 @@ export default class Events extends Component {
             filteredSortOrder
         }, () => {
             this.setState({ eventsData: [], totalRecords:0 })
-            this.setState({ first: 0, limit: 10 });
+            this.setState({ first: 0, limit: 9 });
             let params = this.setFilterParams()
+            debugger
             this.loadEvents(params);
         })
     }
@@ -328,9 +331,9 @@ export default class Events extends Component {
                                 }
                                 {isdataAvailable &&
                                     <div className="no-data">
+                                        <img src={noEvent} alt="No Event Data" />
                                         <p><strong>No events found</strong></p>
                                         <p>Try again with more general search events</p>
-                                        <img src={noEvent} alt="No Event Data" />
                                     </div>
                                 }
                             </div>

@@ -1,6 +1,5 @@
 import React from 'react'
 import { a } from 'react-router-dom';
-import scrollTop from '../../../assets/images/arrow-to-top.svg';
 import './style.scss';
 import sendImage from '../../../assets/images/send.svg';
 import BackToTop from '../../../shared/components/BackToTop'

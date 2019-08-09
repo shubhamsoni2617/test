@@ -190,7 +190,7 @@
         h3 {
             color: #343434;
             margin: 0;
-            font-weight: 800;
+            font-weight: 700;
             font-family: 'Montserrat', sans-serif;
             font-size: 16px;
             line-height: 19px;
@@ -557,8 +557,8 @@
             }
             .date-input-to, .date-input-from {
                 margin-right: 10px;
-                flex: 0 0 calc(45% - 10px);
-                width: calc(45% - 10px);
+                flex: 0 0 calc(44% - 10px);
+                width: calc(44% - 10px);
                 label{
                     font-size: 12px;
                     line-height: 14px;
@@ -600,7 +600,11 @@
                     width: 120px;
                     border: 1px solid #E1E1E1;
                     padding: 0px 7px;
-                    color: rgba(98, 98, 98, 0.8);
+                    color: #626262;
+                    &::placeholder {
+                        color: rgba(98, 98, 98, 0.8);
+                        color: #626262;
+                    }
                 }
                 .DayPickerInput-OverlayWrapper{
                     position: relative;

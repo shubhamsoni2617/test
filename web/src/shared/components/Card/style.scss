@@ -112,6 +112,17 @@
                 font-size: 14px;
                 height: 32px;
                 font-weight: 500;
+                border: 1px transparent solid;
+                transition: 0.8s all;
+                &::after{
+                    display: none;
+                }
+                &:hover{
+                    border: 1px #0098FF solid;
+                    background: #FFF;
+                    color: #0098FF;
+                    transition: 0.8s all;
+                }
             }
         }
     }
