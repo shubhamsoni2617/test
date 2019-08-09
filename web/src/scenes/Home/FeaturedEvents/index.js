@@ -198,7 +198,7 @@ const FeaturedEvents = (props) => {
         centerMode: false,
         infinite: false,
         slidesToShow: 1,
-        speed: 500,
+        speed: 1500,
         rows: 2,
         slidesPerRow: 5,
         nextArrow: <SampleNextArrow />,
