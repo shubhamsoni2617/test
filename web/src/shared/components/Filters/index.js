@@ -480,13 +480,13 @@ export default class Filters extends Component {
                                     }
                                     .InputFromTo .DayPicker-Day--start,
                                     .InputFromTo-to .DayPicker-Day--start {
-                                        font-weight: bold !important;
-                                        color: #FFFFFF !important;
+                                        font-weight: bold;
+                                        color: #FFFFFF;
                                     }
                                     .InputFromTo .DayPicker-Day--end,
                                     .InputFromTo-to .DayPicker-Day--end {                                        
-                                        font-weight: bold !important;
-                                        color: #FFFFFF !important;                              
+                                        font-weight: bold;
+                                        color: #FFFFFF;                              
                                     }
                                     .InputFromTo .DayPickerInput-Overlay {
                                         width: 250px;

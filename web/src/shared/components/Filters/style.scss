@@ -577,18 +577,12 @@
                 display: flex;
                 justify-content: center;
                 border: 1px solid #9a9a9a;
-                &.active{
-                    flex: 0 0 10%;
-                    align-self: center;
-                    height: 28px;
-                    width: 26px;
+                cursor: pointer;
+                transition: 0.3s background-color, 0.3s border-color;
+                &.active, &:hover{
                     line-height: 26px;
-                    background-color: #0098FF;
-                    border-radius: 50%;
-                    text-align: center;
-                    justify-self: center;
-                    margin-top: 11px;
-                    border: 1px solid #0098FF;
+                    background-color: #0098FF;                    
+                    border-color:#0098FF;
                     img{
                         display: none;
                         &.active{
@@ -625,7 +619,7 @@
                         box-shadow: 0 2px 4px 1px rgba(190,190,190,0.5);
                     }
                     .DayPicker-Caption {
-                       color: #343434;
+                        color: #343434;
                         font-size: 11.4px;
                         line-height: 14px;
                         font-weight: 500;
@@ -635,125 +629,12 @@
                         width: 100%;
                         margin: 0px;
                     }
-                    .DayPicker-Weekdays{
-                         display: flex;
-                         flex-wrap: wrap;
-                         margin-top: 0px;
-                         width: 100%;
-                         padding: 10px 0px 5px;
-                         .DayPicker-WeekdaysRow {
-                             display: flex;
-                            flex-wrap: wrap;
-                            width: 100%;
-                             justify-content: space-between;
-                             .DayPicker-Weekday {
-                                display: flex;
-                                 flex: 0 0 auto;
-                                 color: #8B9898;
-                                 font-size: 0.875em;
-                                 padding: 0px;
-                                 width: 25px;
-                                height: 25px;
-                               line-height: 25px;
-                               text-align: center;
-                               abbr[title]{
-                                  color: rgba(52, 72, 94, 0.54);
-                                   font-size: 11px;
-                                     line-height: 25px;
-                                    width: 25px;
-                                     height: 25px;
-                                }
-                            }
-                         }
-                     }
-                     .DayPicker-Body {
-                        display: flex;
-                        flex-wrap: wrap;
-                         text-align: center;
-                         .DayPicker-Week {
-                             display: flex;
-                             flex: 0 0 100%;
-                             justify-content: center;
-                             margin-bottom: 10px;
-                             .DayPicker-Day{
-                                 text-align: center;
-                                 cursor: pointer;
-                                 color: #7C86A2;
-                                 font-size: 10px;
-                                 width: 38px;
-                                 height: 25px;
-                                 line-height: 25px;
-                                padding: 0px;
-                                font-family: 'Rubik', sans-serif;
-                                 font-weight: 400;
-                                &:first-child{
-                                     border-top-left-radius: 5px !important;
-                                     border-bottom-left-radius: 5px !important;
-                                 }
-                                 &:last-child{
-                                     border-top-right-radius: 5px !important;
-                                     border-bottom-right-radius: 5px !important;
-                                 }
-                                 &.DayPicker-Day--start, &.DayPicker-Day--end{
-                                    border-radius: 50% !important;
-                                    background-color: transparent !important;
-                                    padding: 0px !important;
-                                    color: #fff !important;
-                                    min-width: auto;
-                                    position: relative;
-                                    z-index: 2;
-                                    &:after{
-                                        position: absolute;
-                                        content: "";
-                                        background-color: #2698ff;
-                                        width: 25px;
-                                        height: 25px;
-                                        border-radius: 50%;
-                                        left: 50%;
-                                        top: 50%;
-                                        transform: translate(-50%, -50%);
-                                        z-index: -1;
-                                    }
-                                 }
-                                 &.DayPicker-Day--start + .DayPicker-Day--selected{
-                                    position: relative;
-                                    &:before{
-                                        position: absolute;
-                                        content: "";
-                                        background-color: #E8F4FF;
-                                        width: 25px;
-                                        height: 25px;
-                                        left: -10px;
-                                        right: auto;
-                                        top: 50%;
-                                        transform: translate(-50%, -50%);
-                                        z-index: 0;
-                                    }
-                                }
-                                &.DayPicker-Day--end{
-                                    &:before{
-                                        left: auto;
-                                        right: 5px;
-                                        position: absolute;
-                                        content: "";
-                                        background-color: #E8F4FF;
-                                        width: 25px;
-                                        height: 25px;
-                                        top: 50%;
-                                        transform: translate(-50%, -50%);
-                                        z-index: -1;
-                                    }
-                                 }
-                                 &.DayPicker-Day--disabled {
-                                    color: #CBD4DE;
-                                 }
-                                 &.DayPicker-Day--today{
-                                     color: #2698ff;
-                                     font-weight: bold;
-                                 }                        
-                             }
-                         }
-                     }
+                    .DayPicker-Weekday {
+                        width: 38px;
+                    }
+                    .DayPicker-Day{
+                        width: 38px;
+                    }
                      .DayPicker-NavBar {
                          position: absolute;
                          width: 100%;

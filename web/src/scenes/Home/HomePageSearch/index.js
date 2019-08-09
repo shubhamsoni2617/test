@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './style.scss';
+import recentSearch from '../../../assets/images/recent-search-icon.svg';
 
 class HomePageSearch extends Component {
   handleSubmit=(e)=>{
@@ -31,35 +32,35 @@ class HomePageSearch extends Component {
                             <h3>Recently Searched</h3>
                             <ul>
                                 <li>
-                                    <span><img src="/assets/images/recent-search-icon.svg" alt="" /> Music</span>
+                                    <span><img src={recentSearch} alt="" /> Music</span>
                                     <a className="search-listing-close-btn"><img src="/assets/images/close-blue-color.svg" alt="" /></a>
                                 </li>
                                 <li>
-                                    <span><img src="/assets/images/recent-search-icon.svg" alt="" /> pretty</span>
+                                    <span><img src={recentSearch} alt="" /> pretty</span>
                                     <a className="search-listing-close-btn"><img src="/assets/images/close-blue-color.svg" alt="" /></a>
                                 </li>
                                 <li>
-                                    <span><img src="/assets/images/recent-search-icon.svg" alt="" /> dance india</span>
+                                    <span><img src={recentSearch} alt="" /> dance india</span>
                                     <a className="search-listing-close-btn"><img src="/assets/images/close-blue-color.svg" alt="" /></a>
                                 </li>
                                 <li>
-                                    <span><img src="/assets/images/recent-search-icon.svg" alt="" /> vivaratna</span>
+                                    <span><img src={recentSearch} alt="" /> vivaratna</span>
                                     <a className="search-listing-close-btn"><img src="/assets/images/close-blue-color.svg" alt="" /></a>
                                 </li>
                                 <li>
-                                    <span><img src="/assets/images/recent-search-icon.svg" alt="" /> kurio</span>
+                                    <span><img src={recentSearch} alt="" /> kurio</span>
                                     <a className="search-listing-close-btn"><img src="/assets/images/close-blue-color.svg" alt="" /></a>
                                 </li>
                                 <li>
-                                    <span><img src="/assets/images/recent-search-icon.svg" alt="" /> balle</span>
+                                    <span><img src={recentSearch} alt="" /> balle</span>
                                     <a className="search-listing-close-btn"><img src="/assets/images/close-blue-color.svg" alt="" /></a>
                                 </li>
                                 <li>
-                                    <span><img src="/assets/images/recent-search-icon.svg" alt="" /> katy</span>
+                                    <span><img src={recentSearch} alt="" /> katy</span>
                                     <a className="search-listing-close-btn"><img src="/assets/images/close-blue-color.svg" alt="" /></a>
                                 </li>
                                 <li>
-                                    <span><img src="/assets/images/recent-search-icon.svg" alt="" /> phant</span>
+                                    <span><img src={recentSearch} alt="" /> phant</span>
                                     <a className="search-listing-close-btn">
                                         <img src="/assets/images/close-blue-color.svg" alt="" /></a>
                                 </li>

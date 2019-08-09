@@ -1,7 +1,23 @@
 .Range .DayPicker-Day--selected:not(.DayPicker-Day--start):not(.DayPicker-Day--end):not(.DayPicker-Day--outside) {
-  background-color: #f0f8ff !important;
+  background-color: #EFF7FF;
   color: #4a90e2;
 }
+.Range .DayPicker-Day--selected:not(.DayPicker-Day--start):not(.DayPicker-Day--end):not(.DayPicker-Day--outside):hover{
+  position: relative;
+  background-color: transparent;
+  &:after{
+    position: absolute;
+    content: "";
+    background-color: #2698ff;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    z-index: -1;
+  }
+}
 .Range .DayPicker-Day {
-  border-radius: 50% !important;
+  border-radius: 0px;
 }
