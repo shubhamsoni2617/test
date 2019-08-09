@@ -20,7 +20,7 @@ class whatsNew extends Component {
 
     HomeService.getNewRelease(params)
       .then(res => {
-        this.setState({ newReleases: [...res.data.data, ...res.data.data] });
+        this.setState({ newReleases: res.data.data });
       })
       .catch(err => {
         console.log(err);
