@@ -36,6 +36,35 @@
                 background-color: #fff;
             }
         }
+        .social-share{
+            position: absolute;
+            top: -5px;
+            right: 31px;
+            max-width: 0;
+            overflow: hidden;
+            transition: max-width 0.5s, overflow 0s;
+            padding-right: 0;
+            .social-share-wrapper{
+                background: #FFF;
+                border-radius: 5px;
+                display: flex;
+                box-shadow: 0 0px 7px #ddd;
+                padding: 5px 3px;
+                position: relative;
+                overflow: hidden;
+                transition: max-width 0.5s, overflow 0.5s 0.5s;
+            }
+            &.share-visible{
+                height: auto;
+                overflow: inherit;
+                max-width: 10em;
+                transition: max-width 0.5s, overflow 0.5s 0.5s;
+                padding-right: 10px;
+            }
+            .SocialMediaShareButton{
+                margin: 0 3px;
+            }
+        }
         .info{
             height: 33.5px;
             width: 33.5px;

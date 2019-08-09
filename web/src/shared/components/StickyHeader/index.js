@@ -59,8 +59,8 @@ export default class StickyHeader extends Component {
           </a>
           <a className="share" onClick={() => this.props.openSocialShare()}>
             <img src={shareIcon} alt="" />
+            <SocialShare shareUrl={shareUrl} showSocialShare={showSocialShare} />
           </a>
-          <SocialShare shareUrl={shareUrl} showSocialShare={showSocialShare} />
           <div className="ticket-date-price">
             <ul className="date-address">
               {detailData.event_date && (
