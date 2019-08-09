@@ -28,8 +28,8 @@ export default class Card extends Component {
                 </div>
                 <div className="price-event">
                     <div className="price">
-                        <span>Selling Fast</span>
-                        <p>{this.props.eventsData.price}</p>
+                        <span>{this.props.eventsData.event_status}</span>
+                        <p>{(this.props.eventsData.price)? this.props.eventsData.price : ' '}</p>
                     </div>
                     <button type="button" className="btn buy-btn">
                         Buy Tickets
