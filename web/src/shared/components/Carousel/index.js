@@ -4,8 +4,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import CarouselSlide from '../CarouselSlide';
 import Constants from '../../constants';
-
-
+import './style.scss';
 
 const SampleNextArrow = (props) => {
   const { className, style, onClick } = props;
@@ -32,12 +31,13 @@ const SamplePrevArrow = (props) => {
 const Carousel = (props) => {
 
   const [width, setWidth] = useState(window.innerWidth);
-  const { imgArray, arrows, slidesToShow, slidesToScroll } = props;
+  const { imgArray, arrows, slidesToShow, slidesToScroll, autoplay, infinite } = props;
 
   const settings = {
     arrows: arrows,
     dots: true,
-    infinite: false,
+    infinite: infinite || false,
+    autoplay: autoplay || false,
     speed: 500,
     slidesToShow: slidesToShow,
     slidesToScroll: slidesToScroll,

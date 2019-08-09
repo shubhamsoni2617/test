@@ -82,9 +82,9 @@ const TopNav = (props) => {
             </div>
             <div className="top-header-right">
               <ul>
-                <li className="user-icon"><Link><ManLogo className="img-fluid" /><span></span></Link></li>
+                <li className="user-icon"><ManLogo className="img-fluid" /><span></span></li>
                 <MiniCart data={miniCartData} />
-                <li className="ticket-withus"><Link>Ticket With Us</Link></li>
+                <li className="ticket-withus"><a>Ticket With Us</a></li>
               </ul>
             </div>
           </div>
@@ -92,17 +92,18 @@ const TopNav = (props) => {
             <div className="bottom-header-left">
               <ul>
                 <li className="has-submenu" onMouseEnter={() => handleMouseStatus(true)} onMouseLeave={() => handleMouseStatus(false)}>
-                  <Link>Events</Link>
+                  <a>Events</a>
                   <CSSTransitionGroup
                     transitionName="mega"
-                    transitionEnter={300}
+                    transitionEnter={true}
+                    transitionEnterTimeout={300}
                     transitionLeaveTimeout={300}>
                     {showMegaMenu && <MegaMenu handleMouseStatus={handleMouseStatus} byGenreEvent={byGenreEvent} byVenueEvent={byVenueEvent} />}
                   </CSSTransitionGroup>
                 </li>
-                <li><Link>Attractions</Link></li>
-                <li><Link>Promotions</Link></li>
-                <li><Link>Explore</Link></li>
+                <li><a>Attractions</a></li>
+                <li><a>Promotions</a></li>
+                <li><a>Explore</a></li>
               </ul>
             </div>
             <div className="bottom-header-right">
@@ -126,7 +127,7 @@ const TopNav = (props) => {
               <li className="user-icon"><Link to="/">
                 <ManLogo className="img-fluid" />
                 <span></span></Link><span>Hello William</span></li>
-              <li><Link to="/">Ticket With Us</Link></li>
+              <li><a>Ticket With Us</a></li>
             </ul>
             <ul>
               <li className="has-submenu">

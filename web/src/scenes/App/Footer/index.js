@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link } from 'react-router-dom';
+import { a } from 'react-router-dom';
 import scrollTop from '../../../assets/images/arrow-to-top.svg';
 import './style.scss';
 import sendImage from '../../../assets/images/send.svg';
@@ -16,57 +16,57 @@ const Footer = () => {
                      <h3>Our Company</h3>
                      <ul>
                         <li>
-                           <Link>About Us</Link>
+                           <a>About Us</a>
                         </li>
                         <li>
-                           <Link>Sell with Us</Link>
+                           <a>Sell with Us</a>
                         </li>
                         <li>
-                           <Link>Ticketing Technology</Link>
+                           <a>Ticketing Technology</a>
                         </li>
                         <li>
-                           <Link>partner with Us</Link>
+                           <a>partner with Us</a>
                         </li>
                         <li>
-                           <Link>Careers</Link>
+                           <a>Careers</a>
                         </li>
                      </ul>
                   </div>
                   <div className="footer-links helpful-links">
-                     <h3>Helpful Links</h3>
+                     <h3>Helpful as</h3>
                      <div className="footer-groups">
                         <ul>
                            <li>
-                              <Link>Where to Buy Tickets</Link>
+                              <a>Where to Buy Tickets</a>
                            </li>
                            <li>
-                              <Link>Locate an Agent</Link>
+                              <a>Locate an Agent</a>
                            </li>
                            <li>
-                              <Link>Locate a Venue</Link>
+                              <a>Locate a Venue</a>
                            </li>
                            <li>
-                              <Link>Blog</Link>
+                              <a>Blog</a>
                            </li>
                            <li>
-                              <Link>Media</Link>
+                              <a>Media</a>
                            </li>
                         </ul>
                         <ul>
                            <li>
-                              <Link>My Account</Link>
+                              <a>My Account</a>
                            </li>
                            <li>
-                              <Link>Gift Vouchers</Link>
+                              <a>Gift Vouchers</a>
                            </li>
                            <li>
-                              <Link>FAQ</Link>
+                              <a>FAQ</a>
                            </li>
                            <li>
-                              <Link>Cancellations/Refunds</Link>
+                              <a>Cancellations/Refunds</a>
                            </li>
                            <li>
-                              <Link>Contact Us</Link>
+                              <a>Contact Us</a>
                            </li>
                         </ul>
                      </div>
@@ -74,20 +74,20 @@ const Footer = () => {
                   <div className="footer-links">
                      <h3>SISTIC on Mobile</h3>
                      <div className="download-option">
-                        <Link>
+                        <a>
                            <img src="assets/images/apple.svg" className="ios" alt="" />
                            <span>
                               Available on the<br />
                               <strong>App Store</strong>
                            </span>
-                        </Link>
-                        <Link>
+                        </a>
+                        <a>
                            <img src="assets/images/android.png" className="android" alt="" />
                            <span>
                               Get it on<br />
                               <strong>Play Store</strong>
                            </span>
-                        </Link>
+                        </a>
                      </div>
                   </div>
                   <div className="footer-links stay-connected-wrapper">
@@ -97,8 +97,8 @@ const Footer = () => {
                            <input type="text" className="form-control" placeholder="Enter Your email"
                               aria-label="Username" aria-describedby="basic-addon1" />
                            <div className="input-group-prepend">
-                              <Link className="input-group-text" id="basic-addon1"><img src={sendImage}
-                                 className="img-fluid" alt="send" /></Link>
+                              <a className="input-group-text" id="basic-addon1"><img src={sendImage}
+                                 className="img-fluid" alt="send" /></a>
                            </div>
                         </div>
                      </div>
@@ -112,10 +112,10 @@ const Footer = () => {
                               </a>
                            </li>
                            <li>
-                              <Link>
+                              <a>
                                  <img src="assets/images/insta-unfill.svg" alt="" />
                                  <img className="active" src="assets/images/insta-fill.svg" alt="" />
-                              </Link>
+                              </a>
                            </li>
                         </ul>
                      </div>
@@ -131,10 +131,10 @@ const Footer = () => {
                   </div>
                   <ul className="footer-btm-links">
                      <li>
-                        <Link>Privacy Policy</Link>
+                        <a>Privacy Policy</a>
                      </li>
                      <li>
-                        <Link>Terms & Conditions</Link>
+                        <a>Terms & Conditions</a>
                      </li>
                   </ul>
                   <div className="hotline-number">
@@ -143,7 +143,7 @@ const Footer = () => {
                </div>
             </div>
          </section>
-         <BackToTop scrollStepInPx="50" delayInMs="0" />
+         <BackToTop scrollStepInPx="50" delayInMs="20" />
       </footer>
    )
 }

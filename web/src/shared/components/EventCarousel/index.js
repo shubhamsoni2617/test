@@ -74,6 +74,7 @@ const EventCarousel = (props) => {
               </div>
             } else {
               return <div className="videoimg" key={idx} style={{ width: 130 }} >
+                <img src={playIcon} className="play-icon" alt="Play Icon" />
                 <img src={obj.thumb_image} />
               </div>
             }

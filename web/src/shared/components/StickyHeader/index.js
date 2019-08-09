@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import calendarImg from "../../../assets/images/event-calender.svg";
 import locationImg from "../../../assets/images/location-blue.svg";
+import locationGray from "../../../assets/images/location-gray.svg";
 import faceImg from "../../../assets/images/face.svg";
 import shareIcon from "../../../assets/images/share-icon.svg";
 import Info from "../../../assets/images/info-sign.svg";
@@ -16,23 +17,23 @@ export default class StickyHeader extends Component {
 
     return (
       <div className={`event-detail ${sticky ? 'sticky-topbar' : ''} ${sticky && setHeader ? "animate" : ""}`}>
-        {detailData.images && (
+        { detailData.images && detailData.images.length > 0 &&
           <div className="tickets-demo-img">
             <Image
-              src={detailData.images.thumb_image}
+              src={detailData.images[0].thumb_image}
               alt="joker"
               className="img-fluid"
               type="Horizontal"
             />
           </div>
-        )}
+        }
         <div className="tickets-desc">
           <div className="breadcrumb-share">
             <ul className="breadcrumb">
               <li>Home</li>
               {detailData.genres &&
                 detailData.genres.map((obj, index) => {
-                  if (obj.is_primary == 1) {
+                  if (obj.is_primary === 1) {
                     return <li key={index}>{obj.name}</li>;
                   }
                 })}
@@ -43,7 +44,7 @@ export default class StickyHeader extends Component {
               {detailData.genres.map((obj, index) => {
                 return (
                   <li
-                    className={`${obj.is_primary == 1 ? "active" : ""}`}
+                    className={`${obj.is_primary === 1 ? "active" : ""}`}
                     key={index}
                   >
                     {obj.name}
@@ -59,7 +60,7 @@ export default class StickyHeader extends Component {
           <a className="share" onClick={() => this.props.openSocialShare()}>
             <img src={shareIcon} alt="" />
           </a>
-          {showSocialShare && <SocialShare shareUrl={shareUrl} />}
+          <SocialShare shareUrl={shareUrl} showSocialShare={showSocialShare} />
           <div className="ticket-date-price">
             <ul className="date-address">
               {detailData.event_date && (
@@ -70,6 +71,11 @@ export default class StickyHeader extends Component {
               )}
               {detailData.venue_name && (
                 <li className="event-address">
+                  <img
+                    className="location-gray"
+                    src={locationGray}
+                    alt="location"
+                  />
                   <img
                     className="location-icon"
                     src={locationImg}

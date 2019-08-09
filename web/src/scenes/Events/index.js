@@ -6,6 +6,7 @@ import Card from '../../shared/components/Card';
 import EventsService from '../../shared/services/EventsService';
 import HomeService from '../../shared/services/HomeService';
 import DownArrowBlue from '../../assets/images/down-arrow-blue.svg';
+import noEvent from '../../assets/images/no-event.svg';
 import Breadcrub from '../../scenes/App/Breadcrumb';
 import ListView from '../../assets/images/list-view.svg';
 import GridView from '../../assets/images/grid-view.svg';
@@ -326,7 +327,11 @@ export default class Events extends Component {
                                     </div>
                                 }
                                 {isdataAvailable &&
-                                    <div className="no-data">No Events Available</div>
+                                    <div className="no-data">
+                                        <p><strong>No events found</strong></p>
+                                        <p>Try again with more general search events</p>
+                                        <img src={noEvent} alt="No Event Data" />
+                                    </div>
                                 }
                             </div>
                         </div>

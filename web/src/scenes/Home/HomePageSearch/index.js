@@ -1,4 +1,10 @@
 import React, { Component } from 'react';
+import searchImage from '../../../assets/images/search.svg';
+import searchImageBlue from '../../../assets/images/search-blue.svg';
+import prevArrowWhiteImage from '../../../assets/images/prev-arrow-white.svg';
+import recentSearchIconImage from '../../../assets/images/recent-search-icon.svg';
+import closeBlueColorImage from '../../../assets/images/close-blue-color.svg';
+import eventImage from '../../../assets/images/kurios-joker.jpg';
 import './style.scss';
 import recentSearch from '../../../assets/images/recent-search-icon.svg';
 
@@ -10,21 +16,21 @@ class HomePageSearch extends Component {
         return (
             <div className="header-search">
                 <form onSubmit={this.handleSubmit}>
-                    <input type="text" placeholder="Search experiences..." className="form-control" />
+                    <input type="text" placeholder="Search experiences" className="form-control" />
                     <button type="submit" className="search-btn">
-                        <img src="/assets/images/search.svg" className="img-fluid" alt="search-icon" />
-                        <img src="/assets/images/search-blue.svg" className="img-fluid active" alt="search-icon" />
+                        <img src={searchImage} className="img-fluid" alt="search-icon" />
+                        <img src={searchImageBlue} className="img-fluid active" alt="search-icon" />
                     </button>
                     <div className="searched-wrapper">
                         <div className="header-search-fixed">
                             <div className="back-arrow">
-                                <img src="/assets/images/prev-arrow-white.svg" alt="" />
+                                <img src={prevArrowWhiteImage} alt="" />
                             </div>
                             <div className="header-search">
                                 <input type="text" placeholder="Search experiences..." className="form-control" />
                                 <button type="submit" className="search-btn">
-                                    <img src="/assets/images/search.svg" className="img-fluid" alt="search-icon" />
-                                    <img src="/assets/images/search-blue.svg" className="img-fluid active" alt="search-icon" />
+                                    <img src={searchImage} className="img-fluid" alt="search-icon" />
+                                    <img src={searchImageBlue} className="img-fluid active" alt="search-icon" />
                                 </button>
                             </div>
                         </div>
@@ -32,37 +38,37 @@ class HomePageSearch extends Component {
                             <h3>Recently Searched</h3>
                             <ul>
                                 <li>
-                                    <span><img src={recentSearch} alt="" /> Music</span>
-                                    <a className="search-listing-close-btn"><img src="/assets/images/close-blue-color.svg" alt="" /></a>
+                                    <span><img src={recentSearchIconImage} alt="" /> Music</span>
+                                    <a onClick={(e) => e.preventDefault()} className="search-listing-close-btn"><img src={closeBlueColorImage} alt="" /></a>
                                 </li>
                                 <li>
-                                    <span><img src={recentSearch} alt="" /> pretty</span>
-                                    <a className="search-listing-close-btn"><img src="/assets/images/close-blue-color.svg" alt="" /></a>
+                                    <span><img src={recentSearchIconImage} alt="" /> pretty</span>
+                                    <a onClick={(e) => e.preventDefault()} className="search-listing-close-btn"><img src={closeBlueColorImage} alt="" /></a>
                                 </li>
                                 <li>
-                                    <span><img src={recentSearch} alt="" /> dance india</span>
-                                    <a className="search-listing-close-btn"><img src="/assets/images/close-blue-color.svg" alt="" /></a>
+                                    <span><img src={recentSearchIconImage} alt="" /> dance india</span>
+                                    <a onClick={(e) => e.preventDefault()} className="search-listing-close-btn"><img src={closeBlueColorImage} alt="" /></a>
                                 </li>
                                 <li>
-                                    <span><img src={recentSearch} alt="" /> vivaratna</span>
-                                    <a className="search-listing-close-btn"><img src="/assets/images/close-blue-color.svg" alt="" /></a>
+                                    <span><img src={recentSearchIconImage} alt="" /> vivaratna</span>
+                                    <a onClick={(e) => e.preventDefault()} className="search-listing-close-btn"><img src={closeBlueColorImage} alt="" /></a>
                                 </li>
                                 <li>
-                                    <span><img src={recentSearch} alt="" /> kurio</span>
-                                    <a className="search-listing-close-btn"><img src="/assets/images/close-blue-color.svg" alt="" /></a>
+                                    <span><img src={recentSearchIconImage} alt="" /> kurio</span>
+                                    <a onClick={(e) => e.preventDefault()} className="search-listing-close-btn"><img src={closeBlueColorImage} alt="" /></a>
                                 </li>
                                 <li>
-                                    <span><img src={recentSearch} alt="" /> balle</span>
-                                    <a className="search-listing-close-btn"><img src="/assets/images/close-blue-color.svg" alt="" /></a>
+                                    <span><img src={recentSearchIconImage} alt="" /> balle</span>
+                                    <a onClick={(e) => e.preventDefault()} className="search-listing-close-btn"><img src={closeBlueColorImage} alt="" /></a>
                                 </li>
                                 <li>
-                                    <span><img src={recentSearch} alt="" /> katy</span>
-                                    <a className="search-listing-close-btn"><img src="/assets/images/close-blue-color.svg" alt="" /></a>
+                                    <span><img src={recentSearchIconImage} alt="" /> katy</span>
+                                    <a onClick={(e) => e.preventDefault()} className="search-listing-close-btn"><img src={closeBlueColorImage} alt="" /></a>
                                 </li>
                                 <li>
-                                    <span><img src={recentSearch} alt="" /> phant</span>
-                                    <a className="search-listing-close-btn">
-                                        <img src="/assets/images/close-blue-color.svg" alt="" /></a>
+                                    <span><img src={recentSearchIconImage} alt="" /> phant</span>
+                                    <a onClick={(e) => e.preventDefault()} className="search-listing-close-btn">
+                                        <img src={closeBlueColorImage} alt="" /></a>
                                 </li>
                             </ul>
                         </div>
@@ -71,20 +77,20 @@ class HomePageSearch extends Component {
                             <ul>
                                 <li>
                                     <div className="most-viewed-img">
-                                        <img src="/assets/images/kurios-joker.jpg" className="img-fluid" alt="" />
+                                        <img src={eventImage} className="img-fluid" alt="" />
                                     </div>
                                     <span className="category musical">Musical</span>
                                     <h4>KURIOS – Cabinet of Curiosities</h4>
                                 </li>
                                 <li>
                                     <div className="most-viewed-img">
-                                        <img src="/assets/images/kurios-joker.jpg" className="img-fluid" alt="" />
+                                        <img src={eventImage} className="img-fluid" alt="" />
                                     </div>                                    <span className="category dance">Dance</span>
                                     <h4>Ballet Under The Stars</h4>
                                 </li>
                                 <li>
                                     <div className="most-viewed-img">
-                                        <img src="/assets/images/kurios-joker.jpg" className="img-fluid" alt="" />
+                                        <img src={eventImage} className="img-fluid" alt="" />
                                     </div>
                                     <span className="category musical">Musical</span>
                                     <h4>The Phantom of The Opera</h4>

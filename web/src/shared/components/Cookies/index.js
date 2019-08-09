@@ -3,27 +3,39 @@ import {useSpring, animated} from 'react-spring';
 import { Link } from 'react-router-dom';
 import closeIcon from '../../../assets/images/close-ad.svg';
 import './style.scss';
+import Utilities from '../../utilities';
 
 const Cookies = (props) => {
 
-    const [cookie, setcookie] = useState(false);
+    const [showConsent, setShowConsent] = useState(false);
     const [elheight, setElHeight] = useState(0);
     const el = useRef();
     const [propsAnimation, set, stop] = useSpring(() => ({bottom: -1000}))
 
-    set({bottom: cookie ? -elheight : 0})
-    stop()
-
     useEffect(
       () => {
-        setElHeight(el.current.clientHeight);
+        if(!Utilities.getCookie('SisticConsent')){
+          set({bottom: 0})
+        }
+
+        if(el && el.current){
+         setElHeight(el.current.clientHeight);
+        }
       },
       [elheight]
     );
 
-    const handleAccept = () => setcookie(true);
+    let handleAccept = () => {
+       Utilities.setCookie('SisticConsent', 'Yes', 15);
+       set({bottom: -elheight})
+    }
 
-    const handleDecline = () => setcookie(true);
+    let handleDecline = () => {
+      set({bottom: -elheight});
+    }
+    if(Utilities.getCookie('SisticConsent')){
+      return null;
+    }
 
     return (
       <animated.div className={'cookies'} style={propsAnimation} ref={el}>
