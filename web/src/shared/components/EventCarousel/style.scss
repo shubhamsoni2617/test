@@ -70,10 +70,11 @@
                     padding: 0;
                     justify-content: center;
                     .slick-slide{
-                        padding: 3px 3px 0px;
+                        padding: 3px 2px 0px;
                         height: 100%;
                         position: relative;
                         display: flex;
+                        cursor: pointer;
                         .videoimg{
                             display: flex;
                             height: 100%;
@@ -93,6 +94,7 @@
                                 width: auto;
                                 margin: -12px 0 0 -10px;
                                 cursor: pointer;
+                                z-index: 3;
                             }
                         }
                         div{

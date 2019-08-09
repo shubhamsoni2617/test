@@ -32,6 +32,11 @@ const NewsTicker = props => {
     setDes(des);
     setShow(true);
   };
+
+  if(newsTicker.length == 0){
+    return null;
+  }
+
   return (
     <div>
       <div
@@ -75,6 +80,7 @@ const NewsTicker = props => {
         <div className="modal-dialog modal-dialog-scrollable modal-dialog-centered">
           <div className="modal-content">
             <div className="modal-header border-n">
+              <h5 className="modal-title" id="exampleModalLabel">News Ticker</h5>
               <button
                 type="button"
                 className="close"

@@ -10,22 +10,22 @@ import {
 
   const SocialShare = (props) => {
 
-        const { shareUrl } = props;
+        const { shareUrl ,showSocialShare } = props;
         return (
-            <div>
-                <FacebookShareButton 
+            <div className={`${showSocialShare ? 'share-visible' :''}`}>
+                <FacebookShareButton
                     url={shareUrl}
                     title='Facebook'>
                     <FacebookIcon size={32}
                     round />
                </FacebookShareButton>
-               <TelegramShareButton 
+               <TelegramShareButton
                     url={shareUrl}
                     title='Telegram'>
                     <TelegramIcon size={32}
                     round />
                </TelegramShareButton>
-               <EmailShareButton 
+               <EmailShareButton
                     url={shareUrl}
                     title='Telegram'>
                     <EmailIcon size={32}
