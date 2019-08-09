@@ -7,16 +7,17 @@ import Utilities from '../../utilities';
 
 const Cookies = (props) => {
 
-    const [showConsent, setShowConsent] = useState(sessionStorage.getItem('showConsent') ? JSON.parse(sessionStorage.getItem('showConsent')) : true)
+    const [showConsent, setShowConsent] = useState(false);
     const [elheight, setElHeight] = useState(0);
     const el = useRef();
     const [propsAnimation, set, stop] = useSpring(() => ({bottom: -1000}))
 
-    set({bottom: showConsent ? 0 : -elheight})
-    stop()
-
     useEffect(
       () => {
+        if(!Utilities.getCookie('SisticConsent')){
+          set({bottom: 0})
+        }
+
         if(el && el.current){
          setElHeight(el.current.clientHeight);
         }
@@ -26,15 +27,13 @@ const Cookies = (props) => {
 
     let handleAccept = () => {
        Utilities.setCookie('SisticConsent', 'Yes', 15);
-       setShowConsent(false);
+       set({bottom: -elheight})
     }
 
     let handleDecline = () => {
-      sessionStorage.setItem('showConsent' ,false);
-      setShowConsent(false);
+      set({bottom: -elheight});
     }
-    console.log(Utilities.getCookie('SisticConsent'))
-    if(Utilities.getCookie('SisticConsent') || !showConsent){
+    if(Utilities.getCookie('SisticConsent')){
       return null;
     }
 
