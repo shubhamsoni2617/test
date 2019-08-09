@@ -81,9 +81,10 @@ nav {
 		}
 		a {
 			color: inherit;
-			font-family: 'Rubik', sans-serif;
+			font-family: 'Montserrat', sans-serif;
 			font-size: 14px;
-			line-height: 18px;
+            line-height: 18px;
+            font-weight: 300;
 			@media (max-width: 767px) {
 				font-size: 12px;
 				line-height: 15px;
@@ -333,13 +334,27 @@ button,
 		cursor: pointer;
 		background-color: rgba(0, 0, 0, 0.1);
 		transition: 0.3s opacity;
+		position: relative;
+		&:after{
+			position: absolute;
+			content: "";
+			height: 100%;
+			background-color: #0077C8;
+			left: 0px;
+			width: 0px;
+			transition: 0.3s width;
+		}
 		&.active {
 			opacity: 1;
 			background-color: #0077C8;
+			&:after{
+				content: none;
+			}
 		}
-		&:hover {
-			background-color: #0077c8;
-			opacity: 1;
+		&:hover{
+			&:after{
+				width: 100%;
+			}
 		}
 	}
 }
@@ -361,7 +376,10 @@ button,
 		font-size: 11px;
 		line-height: 18px;
 		height: 18px;
-    }
+	}
+	&:empty{
+		padding: 0px;
+	}
     &.musical {
         background-color: #07B3F0;
     }
@@ -449,7 +467,7 @@ button,
 			right: 10px;
 			width: 15px;
 			height: 10px;
-			// background-image: url(../../images/down-arrow-grey.png);
+			background-image: url(../../assets/images/down-arrow-grey.png);
 			background-repeat: no-repeat;
 			top: 50%;
 			transform: translateY(-50%);
@@ -785,14 +803,14 @@ button,
     color: #FFF;
     font-family: 'Rubik', sans-serif;
     font-weight: 500;
-    z-index: 2;
+	z-index: 2;
+	cursor: pointer;
     img{
         margin-bottom: 2px;
     }
     &:hover{
         color: #FFF;
-        background: #0077C8;
-        box-shadow: 0 4px 7px #ccc;
+        box-shadow: 0 0 10px #DDD;
         img{
             animation: scrolltop 0.5s linear;
             animation-iteration-count: infinite;
@@ -809,4 +827,11 @@ button,
 	100% {
 		transform: translateY(0px);
 	}
+}
+
+// No data 
+.no-data{
+    padding: 50px 0;
+    text-align: center;
+    display: block;
 }

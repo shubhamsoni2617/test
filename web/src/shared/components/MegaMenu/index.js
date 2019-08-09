@@ -28,6 +28,10 @@ const MegaMenu = (props) => {
     },
   ];
 
+  const first = 0;
+  const limit = 5;
+  const search = "";
+
   const { byGenreEvent } = props;
 
   return (
@@ -43,7 +47,7 @@ const MegaMenu = (props) => {
             {
               byGenreEvent && byGenreEvent.map((event, index) => {
                 return (
-                  <li key={event.id}><Link to={`/events?c=${event.name}`} onClick={() => { { props.handleMouseStatus(false) } }}>{event.name}</Link></li>
+                  <li key={event.id}><Link to={`/events/search?c=${event.name}`} onClick={() => { { props.handleMouseStatus(false) } }}>{event.name}</Link></li>
                 )
               })
             }
@@ -71,7 +75,7 @@ const MegaMenu = (props) => {
             {
               props.byVenueEvent && props.byVenueEvent.map((event, index) => {
                 return (
-                  <li key={event.id}>{event.name}</li>
+                  <li key={event.id}><Link to={`/events/search?v=${event.id}`} onClick={() => { { props.handleMouseStatus(false) } }}>{event.name}</Link></li>
                 );
               })
             }

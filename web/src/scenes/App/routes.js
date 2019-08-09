@@ -11,6 +11,11 @@ const routes =  [
     component: Home,
   },
   {
+    path: '/events/search',
+    exact : true,
+    component: Events,
+  },
+  {
     path: '/events/:icc',
     exact : true,
     component: EventsDetail,
@@ -19,7 +24,6 @@ const routes =  [
     path: '/events',
     exact : true,
     component: Events,
-    exact :true,
     fetchInitialData: (path = '') => HomeService.getData()
   },
   {

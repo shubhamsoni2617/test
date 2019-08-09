@@ -3,7 +3,9 @@ import closeNews from '../../../assets/images/close-ad.svg';
 import './style.scss';
 import HomeService from '../../../shared/services/HomeService';
 import popupClose from '../../../assets/images/cross.svg';
+
 const NewsTicker = (props) => {
+  const { homePageRef } = props;
   const [newsTicker, setNewsTicker] = useState([]);
   const [des, setDes] = useState();
   const [show, setShow] = useState(false);
@@ -23,6 +25,7 @@ const NewsTicker = (props) => {
   }, [])
   const handleClose = () => {
     refValue.current.classList.remove("hide-news");
+    homePageRef.current.classList.add("news-ticker-hide");
   }
   const handleOnclick = (des) => {
     refMarquee.current.stop();
@@ -42,7 +45,7 @@ const NewsTicker = (props) => {
                   let trimmedString = string.substring(0, stringLength);
                   return <div
                     key={content.title}
-                    dangerouslySetInnerHTML={{ __html: content.description }}
+                    dangerouslySetInnerHTML={{ __html: content.title }}
                     onClick={() => {
 
                       handleOnclick(content.description)
@@ -58,9 +61,9 @@ const NewsTicker = (props) => {
       <div className="modal" style={{ display: show ? "block" : "none" }}>
         <div className="modal-dialog modal-dialog-scrollable modal-dialog-centered">
           <div className="modal-content">
-            <div className="modal-header border-n"><button type="button" className="close" onClick={() => { refMarquee.current.start();setShow(false) }}>
-                <span aria-hidden="true"><img src={popupClose} alt="Close Popup" /></span>
-              </button>
+            <div className="modal-header border-n"><button type="button" className="close" onClick={() => { refMarquee.current.start(); setShow(false) }}>
+              <span aria-hidden="true"><img src={popupClose} alt="Close Popup" /></span>
+            </button>
             </div>
             <div className="modal-body">
               <div className="notice">

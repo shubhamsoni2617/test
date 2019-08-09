@@ -42,7 +42,7 @@ class InstagramFeed extends Component {
         if (error) {
             return <div>Error: {error.message}</div>;
         } else if (!isLoaded) {
-            return <div>Loading...</div>;
+            return <div className="instafeeds-loading">Loading...</div>;
         } else {
             return (
                 <section className="sistic-moments">

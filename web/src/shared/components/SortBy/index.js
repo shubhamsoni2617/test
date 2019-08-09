@@ -1,19 +1,19 @@
 import React, { Component } from 'react';
-import { GridView } from '../../../assets/images/grid-view.svg';
-import { ListView } from '../../../assets/images/list-view.svg';
 import './style.scss';
 
 export default class SortBy extends Component {
 
     constructor(props) {
         super(props);
+        console.log('props', props)
         this.state = {
             sort: { tag: 'Date', active: '' },
             showSortMenu: false
         }
     }
 
-    componentDidMount() {   
+    componentDidMount() {
+
     }
 
     setSortFilter = (tag, sortBy, order) => {
@@ -39,7 +39,7 @@ export default class SortBy extends Component {
 
 
     render() {
-        const { handleListGridView, handleFilters } = this.props
+        const { handleListGridView, sortList } = this.props
         const { sort } = this.state;
 
         return (
@@ -52,24 +52,14 @@ export default class SortBy extends Component {
                     {this.state.showSortMenu
                         ? (
                             <ul>
-                                <li onClick={() => this.setSortFilter('A to Z', 'sort', 'ASC')}>Events - A to Z</li>
-                                <li onClick={() => this.setSortFilter('Z to A', 'sort', 'DESC')}>Events - Z to A</li>
-                                <li onClick={() => this.setSortFilter('Price Low to High', 'price', 'ASC')}>Price Low to High</li>
-                                <li onClick={() => this.setSortFilter('Price High to Low', 'price', 'DESC')}>Price High to Low</li>
-                                <li onClick={() => this.setSortFilter('Date', 'date', '')}>Date</li>
+                                {sortList && sortList.map((list, index) => {
+                                    return <li key={index} onClick={() => this.setSortFilter(list.sortTitle, list.sortType, list.sortOrder)}>{list.sortTag}</li>
+                                })}
                             </ul>
                         )
                         : (null)
                     }
                 </div>
-                <ul className="sortby-view">
-                    <li className="active">
-                        <a><img onClick={() => handleListGridView('grid')} src={GridView} alt="Grid" /></a>
-                    </li>
-                    <li>
-                        <a><img onClick={() => handleListGridView('list')} src={ListView} alt="List" /></a>
-                    </li>
-                </ul>
             </div>
         )
     }

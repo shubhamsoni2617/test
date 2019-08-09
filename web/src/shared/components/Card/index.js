@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import './style.scss';
 import Image from '../../components/Image';
+import Utilities from '../../utilities';
 
 export default class Card extends Component {
   
@@ -20,7 +21,7 @@ export default class Card extends Component {
             <div className="event-details">
                 <div className="event-detail-prime">
                     <span className="category musical">{this.props.eventsData.primary_genre}</span>
-                    <h3 className="item-title">{this.props.eventsData.title}
+                    <h3 className="item-title">{Utilities.showLimitedChars(this.props.eventsData.title, 70)} {}
                     </h3>
                     <p className="event-date">{this.props.eventsData.event_date}</p>
                     <p className="event-place">{this.props.eventsData.venue_name}</p>
