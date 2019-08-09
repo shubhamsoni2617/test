@@ -89,7 +89,7 @@ export default class Home extends Component {
         {/* Home page Banner start */}
         <NewsTicker homePageRef={this.homePageRef} />
 
-        <HotShowPopup showPopup={true} eventCount={1} />
+        <HotShowPopup />
         <section className="banner">
           <img src={primeSlider} alt="prime Slider" />
         </section>
