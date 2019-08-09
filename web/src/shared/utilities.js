@@ -37,7 +37,36 @@ class Utilities {
 	static showLimitedChars = (string, limit) => {
 		if (string.length > limit) string = string.substring(0, limit)+'...';
 		return string;
-	}
+  }
+
+  static  setCookie(cname, cvalue, exdays) {
+    var d = new Date();
+    d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+    var expires = "Expires=" + d.toUTCString();
+    document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+  }
+
+  static getCookie(cname) {
+    try{
+        let name = cname + "=";
+        let decodedCookie;
+        decodedCookie = decodeURIComponent(document.cookie);
+        let ca = decodedCookie.split(';');
+        for (var i = 0; i < ca.length; i++) {
+            var c = ca[i];
+            while (c.charAt(0) == ' ') {
+                c = c.substring(1);
+            }
+            if (c.indexOf(name) == 0) {
+                return c.substring(name.length, c.length);
+            }
+        }
+    } catch (e) {
+        console.log("ERROR: While getting cookie: ", e.toString());
+    }
+
+    return "";
+}
 
 
 }

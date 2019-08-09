@@ -15,7 +15,7 @@ const CarouselSlide = (props) => {
                 <div className="item-wrapper">
                     <div className="currently-showing-img">
                         <div className="item-img">
-                            <Image src={elem.thumb_image} className="img-fluid" alt="Kurios" type='Vertical' />
+                            <Image src={elem.thumb_image} className="img-fluid"  type='Horizontal' />
                         </div>
                     </div>
                     <span className={`category ${genre}`}>{elem.primary_genre}</span>
