@@ -5,8 +5,6 @@ import "slick-carousel/slick/slick-theme.css";
 import CarouselSlide from '../CarouselSlide';
 import Constants from '../../constants';
 
-
-
 const SampleNextArrow = (props) => {
   const { className, style, onClick } = props;
   return (

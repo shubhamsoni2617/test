@@ -31,7 +31,7 @@ class Explore extends Component {
             },
         ];
         return (
-            <section className="explore">
+            <section className="explore" >
                 <div className="container-fluid">
                     <div className="section-top-wrapper">
                         <h2>Explore</h2>

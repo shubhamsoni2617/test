@@ -2,6 +2,7 @@ import Home from '../Home'
 import Events from '../Events'
 import EventsDetail from '../Events/EventsDetail'
 import HomeService from '../../shared/services/HomeService'
+import Promotions from '../Promotions';
 import PageNotFound from '../PageNotFound/index';
 
 const routes =  [
@@ -25,6 +26,11 @@ const routes =  [
     exact : true,
     component: Events,
     fetchInitialData: (path = '') => HomeService.getData()
+  },
+  {
+    path: '/promotions',
+    exact: true,
+    component: Promotions,
   },
   {
     path : "*",

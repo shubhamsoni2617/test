@@ -10,6 +10,10 @@ class PromotionService {
     return API.get(`promotions`,{params})
   }
 
+  getPromotionDetail(params) {
+    return API.get(`promotion-detail`,{params})
+  }
+
 }
 
 export default new PromotionService();
