@@ -35,13 +35,13 @@ export default class Events extends Component {
             isSortBy: true,
             sortList: [
                 {
-                    sortType: 'sort',
+                    sortType: 'title',
                     sortOrder: 'ASC',
                     sortTitle: 'A to Z',
                     sortTag: 'Events - A to Z'
                 },
                 {
-                    sortType: 'sort',
+                    sortType: 'title',
                     sortOrder: 'DESC',
                     sortTitle: 'Z to A',
                     sortTag: 'Events - Z to A'
@@ -130,7 +130,7 @@ export default class Events extends Component {
     }
 
     getVenue = () => {
-        const first = 1;
+        const first = 0;
         const limit = 100;
         const search = '';
         HomeService.getVenues(first, limit, search)
@@ -156,7 +156,7 @@ export default class Events extends Component {
 
     loadMoreEvents = () => {
         let params = this.setFilterParams();
-        params.first = this.state.first + 10;
+        params.first = this.state.first + 9;
         this.loadEvents(params);
         this.setState({ first: params.first, limit: params.limit })
     }
@@ -258,8 +258,9 @@ export default class Events extends Component {
                 break;
             case 'sort':
             case 'price':
-            case 'date': {
-                filteredSortType = (searchType == 'sort') ? '' : searchType;
+            case 'date':
+            case 'title': {
+                filteredSortType = searchType;
                 filteredSortOrder = searchValue;
             }
         }

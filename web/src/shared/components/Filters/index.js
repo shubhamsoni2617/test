@@ -365,6 +365,7 @@ export default class Filters extends Component {
                                 value={this.state.priceRangeValue}
                                 onChange={(priceRangeValue) => this.setPriceRange(priceRangeValue)} />
                         </div>
+                        
                     </div>
                     <div className="filter-grid">
                         <div className="filter-grid-heading">
