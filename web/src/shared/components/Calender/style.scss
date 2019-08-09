@@ -18,6 +18,15 @@
     z-index: -1;
   }
 }
-.Range .DayPicker-Day {
+.Range .DayPicker-Day{
   border-radius: 0px;
+}
+.Range .DayPicker-Weekday, .Range .DayPicker-Day{
+  width: 38px !important;
+  @media(min-width: 1600px){
+    width: 48px !important;
+  }
+}
+.Range .DayPicker-Day.DayPicker-Day--today.DayPicker-Day--selected{
+  background-color: #EFF7FF !important;
 }

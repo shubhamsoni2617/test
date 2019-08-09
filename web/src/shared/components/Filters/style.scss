@@ -617,6 +617,9 @@
                         padding: 15px 5px;
                         background-color: #FFFFFF;
                         box-shadow: 0 2px 4px 1px rgba(190,190,190,0.5);
+                        .DayPicker-Body .DayPicker-Week{
+                            justify-content: space-between;
+                        }
                     }
                     .DayPicker-Caption {
                         color: #343434;
@@ -630,10 +633,10 @@
                         margin: 0px;
                     }
                     .DayPicker-Weekday {
-                        width: 38px;
+                        width: 39px;
                     }
                     .DayPicker-Day{
-                        width: 38px;
+                        width: 39px;
                     }
                      .DayPicker-NavBar {
                          position: absolute;
