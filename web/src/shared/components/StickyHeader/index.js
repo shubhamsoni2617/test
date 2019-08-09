@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import calendarImg from "../../../assets/images/event-calender.svg";
 import locationImg from "../../../assets/images/location-blue.svg";
+import locationGray from "../../../assets/images/location-gray.svg";
 import faceImg from "../../../assets/images/face.svg";
 import shareIcon from "../../../assets/images/share-icon.svg";
 import Info from "../../../assets/images/info-sign.svg";
@@ -70,6 +71,11 @@ export default class StickyHeader extends Component {
               )}
               {detailData.venue_name && (
                 <li className="event-address">
+                  <img
+                    className="location-gray"
+                    src={locationGray}
+                    alt="location"
+                  />
                   <img
                     className="location-icon"
                     src={locationImg}

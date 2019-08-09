@@ -35,7 +35,10 @@ body {
             outline: none;
             transition: 1s all; 
 		}
-	}
+    }
+    b, strong{
+        font-weight: 500;
+    }
 }
 ul {
 	margin-bottom: 0px;
@@ -631,11 +634,11 @@ button,
 // Popover CSS 
 .info-popover{
     position: absolute;
-    right: -6px;
+    right: -115px;
     bottom: 30px;
     width: 250px;
     background: #FFF;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.1);
     border-radius: 5px;
 	line-height: 22px;
 	opacity: 0;
@@ -643,6 +646,7 @@ button,
 	height: 0;
 	padding: 0px;
     overflow: hidden;
+    font-size: 13px;
     &::before{
         position: absolute;
         content: "";
@@ -651,7 +655,7 @@ button,
         width: auto;
         bottom: -8px;
         height: auto;
-        right: 8px;
+        right: 117px;
         border-top: 8px solid #ffffff;
         margin-left: -10px;
     }
@@ -834,4 +838,20 @@ button,
     padding: 50px 0;
     text-align: center;
     display: block;
+    p{
+        margin-bottom: 2px;
+        font-weight: 500;
+        color: #7C86A2;
+        strong{
+            font-weight: 700;
+            font-size: 18px;
+            color: #343434;
+        }
+        & + p{
+            margin-bottom: 45px;
+        }
+    }
+    img{
+        width: 70%;
+    }
 }
