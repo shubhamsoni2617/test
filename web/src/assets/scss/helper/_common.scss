@@ -519,11 +519,14 @@ button,
 			font-family: 'Rubik', sans-serif;
 			font-size: 14px;
 			line-height: 17px;
-			transition: 0.3s background-color, 0.3s color;
+			transition: 0.3s all;
 			&:hover {
 				background-color: rgba(0, 128, 215, 0.2);
 				color: #0098ff;
-				cursor: pointer;
+                cursor: pointer;
+                font-weight: 500;
+                transition: 0.8s all;
+                padding-left: 23px;
 			}
 			&.active {
 				background-color: rgba(0, 128, 215, 0.2);

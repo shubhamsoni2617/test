@@ -87,6 +87,15 @@
                 > div{
                     flex: 0 0 100%;
                     width: 100%;
+                    &:last-child{
+                        .event-block{
+                            border-bottom: none;
+                            &:hover{
+                                border-bottom: 2px solid #0098FF;
+                                padding: 3px 0 3px;
+                            }
+                        }
+                    }
                 }
             }
         }
