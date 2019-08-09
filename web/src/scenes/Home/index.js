@@ -25,7 +25,6 @@ import leftArrow from '../../assets/images/left-arrow-white.svg';
 import rightArrow from '../../assets/images/right-arrow-white.svg';
 import leftThumbArrrow from '../../assets/images/left-thumb-arrow.svg';
 import rightThumbArrrow from '../../assets/images/right-thumb-arrow.svg';
-import { CSSTransitionGroup } from 'react-transition-group';
 
 const slides = [
   <img src={mainSliderImg} alt="1" />,
@@ -89,13 +88,8 @@ export default class Home extends Component {
       <div className="home-page-wrapper" ref={this.homePageRef}>
         {/* Home page Banner start */}
         <NewsTicker homePageRef={this.homePageRef} />
-        <CSSTransitionGroup
-                    transitionName="mega"
-                    transitionEnter={true}
-                    transitionEnterTimeout={300}
-                    transitionLeaveTimeout={300}>
+
         <HotShowPopup showPopup={true} eventCount={1} />
-        </CSSTransitionGroup>
         <section className="banner">
           <img src={primeSlider} alt="prime Slider" />
         </section>
