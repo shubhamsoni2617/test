@@ -30,25 +30,6 @@ const HotShowPopup = (props) => {
 
   const addOverlayClass = () => body.classList.add("hotshowpopup-overlay");
 
-  const getButtonStyle = (styleArr, index) => {
-    let t = [];
-    t.push(styleArr.map((styleObj,idx) => {
-      if (styleObj.b_color || styleObj.b_font_color) {
-        return (
-          t +
-          (".hotshow_buttons" +
-            index + idx +
-            " {background-color : " +
-            styleObj.b_color +
-            ",color : " +
-            styleObj.b_font_color +
-            "}")
-        );
-      }
-    }))
-    return t;
-  };
-
   return (
     <CSSTransitionGroup
       transitionName="hotshow"
@@ -99,19 +80,13 @@ const HotShowPopup = (props) => {
                         />
                       )}
                       {objData.buttons && objData.buttons.length > 0 && (
-                        <style
-                          dangerouslySetInnerHTML={{
-                            __html: getButtonStyle(objData.buttons, index)
-                          }}
-                        />
-                      )}
-                      {objData.buttons && objData.buttons.length > 0 && (
                         objData.buttons.map((obj, idx) => {
+                          let styleObj ={background :obj.b_color, color: obj.b_font_color}
                           return <div>
                             <a
-                              className={`hotshow_buttons${index}${idx}`}
                               href={obj.b_url}
                               target="_blank"
+                              style={styleObj}
                             >
                               {obj.b_name}
                             </a>
@@ -150,20 +125,15 @@ const HotShowPopup = (props) => {
                           }}
                         />
                       )}
-                       {objData.buttons && objData.buttons.length > 0 && (
-                        <style
-                          dangerouslySetInnerHTML={{
-                            __html: getButtonStyle(objData.buttons, index)
-                          }}
-                        />
-                      )}
+
                       {objData.buttons && objData.buttons.length > 0 && (
                         objData.buttons.map((obj, idx) => {
+                          let styleObj ={background :obj.b_color, color: obj.b_font_color}
                           return <div>
                             <a
-                              className={`hotshow_buttons${index}${idx}`}
                               href={obj.b_url}
                               target="_blank"
+                              style={styleObj}
                             >
                               {obj.b_name}
                             </a>
