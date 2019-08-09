@@ -419,7 +419,7 @@ export default class Filters extends Component {
                                         parseDate={parseDate}
                                         dayPickerProps={{
                                             selectedDays: [from, { from, to }],
-                                            disabledDays: { before: new Date() },
+                                            disabledDays: { before: new Date(), after: to },
                                             toMonth: to,
                                             modifiers,
                                             numberOfMonths: 1,
@@ -442,7 +442,7 @@ export default class Filters extends Component {
                                         parseDate={parseDate}
                                         dayPickerProps={{
                                             selectedDays: [from, { from, to }],
-                                            disabledDays: { before: new Date() },
+                                            disabledDays: { before: from },
                                             modifiers,
                                             month: from,
                                             fromMonth: from,

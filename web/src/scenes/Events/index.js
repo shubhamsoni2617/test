@@ -9,6 +9,7 @@ import DownArrowBlue from '../../assets/images/down-arrow-blue.svg';
 import Breadcrub from '../../scenes/App/Breadcrumb';
 import ListView from '../../assets/images/list-view.svg';
 import GridView from '../../assets/images/grid-view.svg';
+import EventBreadcrumbImage from '../../assets/images/events.png';
 import './style.scss';
 
 export default class Events extends Component {
@@ -16,17 +17,17 @@ export default class Events extends Component {
     constructor(props) {
         super(props);
 
-        this.initialLimit = { client: 1, first: 0, limit: 10, sort_type: 'date' };
+        this.initialLimit = { client: 1, first: 0, limit: 9, sort_type: 'date' };
         this.state = {
             filteredGnere: [], filteredSearch: [], filteredPromotions: [], filteredVenues: [], filteredTags: [],
             filteredPriceRange: {}, filteredDateRange: {}, filteredSortType: 'date', filteredSortOrder: '',
-            eventsData: [], genre: [], venues: [], filterConfig: [], first: 0, limit: 10, viewType:'list', viewTypeClass: 'events-section', totalRecords: 0
+            eventsData: [], genre: [], venues: [], filterConfig: [], first: 0, limit: 9, viewType:'grid', viewTypeClass: 'events-section', totalRecords: 0
         };
 
         this.breadCrumbData = {
-            'page_banner': 'assets/images/promotions-banner.png',
+            'page_banner': EventBreadcrumbImage,
             'page': 'Events',
-            'count': '24',
+            'count': 0,
             'breadcrumb_slug': [{ 'path': '/', 'title': 'Home' }, { 'path': '/events', 'title': 'Events' }]
         };
 
@@ -275,7 +276,7 @@ export default class Events extends Component {
             filteredSortOrder
         }, () => {
             this.setState({ eventsData: [], totalRecords:0 })
-            this.setState({ first: 0, limit: 10 });
+            this.setState({ first: 0, limit: 9 });
             let params = this.setFilterParams()
             this.loadEvents(params);
         })

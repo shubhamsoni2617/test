@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Link } from "react-router-dom";
-import BreadcumbBanner from '../../../assets/images/promotions-banner.png';
 import './style.scss'
 
 const Breadcrumb = (props) => {
@@ -8,7 +7,7 @@ const Breadcrumb = (props) => {
     return (
         <section className="breadcrumbs">
             <div className="banner-wrapper">
-                <img src={BreadcumbBanner} className="img-fluid" alt="page-banner" />
+                <img src={breadCrumbData.page_banner} className="img-fluid" alt="page-banner" />
             </div>
             <div className="banner-overlay">
                 <div className="container-fluid">
