@@ -1,20 +1,10 @@
 import React, { Component } from 'react';
-import './style.scss';
-
 import ArrowBlue from '../../../assets/images/right-arrow-blue.svg'
 import Article1 from '../../../assets/images/article1.png'
 import Image from '../Image';
+import './style.scss';
 
 export default class ArticleSection extends Component {
-
-  constructor(props){
-    super(props);
-
-  }
-
-  componentDidMount () {
-
-  }
 
   render() {
     return (
@@ -23,7 +13,7 @@ export default class ArticleSection extends Component {
            <div className="section-top-wrapper">
               <h2>Articles</h2>
               <div className="carousel-dots">
-                 <a >See all <img src={ArrowBlue} className="img-fluid" alt="arrow"/></a>
+                 <a>See all <img src={ArrowBlue} className="img-fluid" alt="arrow"/></a>
               </div>
            </div>
            <div className="grid-container">
