@@ -32,7 +32,7 @@ export default class AccordionSection extends Component {
         let content = 'Please add to above price S$4 Booking Fee per ticket for tickets above S$40; S$3 Booking Fee per ticket for tickets between S$20.01 - S$40 and S$1 Booking Fee per ticket for tickets S$20 and below. Charges include GST where applicable.'
         let arr = ['title']
         return (
-            <div>
+            <div className="sidebar-accordion">
               {/* <div className={`heading ${showSection ? 'active' : ''}`} onClick ={() => this.toggleSection()}>
                 {title}
               </div>

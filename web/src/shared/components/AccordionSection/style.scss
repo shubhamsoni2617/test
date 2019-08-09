@@ -123,16 +123,10 @@
 
             .accordion__item{
                 margin: 0;
-                &:last-child{
-                    .accordion__button{
-                        border-bottom: none;
-                    }
-                }
                 .accordion__heading{
-                    border-bottom: 1px solid rgba(58,58,58,0.15);
+                    border-bottom: 2px solid rgba(58,58,58,0.10);
                 }
                 .accordion__button{
-                    border-bottom: 2px solid rgba(58, 58, 58, 0.07);
                     display: inline-block;
                     width: 100%;
                     margin-bottom: 0;
@@ -162,6 +156,7 @@
                 padding: 15px 0 0 0;
                 box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
                 margin: 0;
+                border-bottom: 2px solid rgba(58,58,58,0.10);
             }
             &[hidden=""] {
                 margin-top: 20px;

@@ -112,6 +112,10 @@
                     &.sticky-location-icon {
                         display: none;
                     }
+                    &.location-gray{
+                        display: none;
+                    }
+
                 }
                 &.event-date {
                     margin-bottom: 15px;
@@ -171,7 +175,7 @@
             font-size: 18px;
             line-height: 22px;
             text-align: center;
-            font-weight: 600;
+            font-weight: 500;
             border: 1px solid transparent;
             @media(min-width: 768px) and (max-width: 980px){
                 max-width: 300px;
@@ -524,6 +528,9 @@
 
 .event-detail.sticky-topbar.animate{
   opacity: 1 !important;
+  overflow: auto;
+  min-height: 104px;
+  height: auto;
 }
 
 // sticky topbar
@@ -542,9 +549,11 @@
     bottom: auto;
     opacity: 0;
     z-index: 2;
-    min-height: 104px;
     margin-top: 0px;
     transition: opacity .5s ease-in-out;
+    min-height: auto;
+    height: 0;
+    overflow: hidden;
     @media(max-width: 1280px){
         padding: 5px 10px;
     }
@@ -626,7 +635,7 @@
                 li {
                     margin: 0px;
                     margin-right: 15px;
-                    border-right: 1px solid #979797;
+                    border-right: 1px solid rgba(151,151,151,0.4);
                     padding-right: 20px;
                     @media(max-width: 1280px){
                         margin: 0px;
@@ -652,6 +661,9 @@
                         display: none;
                     }
                     &.sticky-location-icon {
+                        display: block;
+                    }
+                    &.location-gray{
                         display: block;
                     }
                     @media(max-width: 1280px){

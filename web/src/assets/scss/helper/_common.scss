@@ -638,7 +638,7 @@ button,
     bottom: 30px;
     width: 250px;
     background: #FFF;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.1);
     border-radius: 5px;
 	line-height: 22px;
 	opacity: 0;
@@ -838,4 +838,20 @@ button,
     padding: 50px 0;
     text-align: center;
     display: block;
+    p{
+        margin-bottom: 2px;
+        font-weight: 500;
+        color: #7C86A2;
+        strong{
+            font-weight: 700;
+            font-size: 18px;
+            color: #343434;
+        }
+        & + p{
+            margin-bottom: 45px;
+        }
+    }
+    img{
+        width: 70%;
+    }
 }
