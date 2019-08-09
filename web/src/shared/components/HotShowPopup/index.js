@@ -61,13 +61,13 @@ const HotShowPopup = () => {
                 </div>
 
                 <div className="hotshow-wrapper">
-                    {eventCount == 2 && popupData &&
+                    {eventCount === 2 && popupData &&
                         popupData.map((objData, index) => {
                             return <div className="hotshow-block" key={index}>
 
                                 <div className="hotshowimg">
                                     {
-                                        objData.type && objData.type.id == 2
+                                        objData.type && objData.type.id === 2
                                             ? <ReactPlayer url={objData.video_url} controls={true} />
                                             : <img src={objData.thumb_image} alt="" className="img-fluid" />
                                     }
@@ -87,13 +87,13 @@ const HotShowPopup = () => {
                             </div>
                         })
                     }
-                    {eventCount == 1 && popupData &&
+                    {eventCount === 1 && popupData &&
                         popupData.map((objData, index) => {
                             return <div className="hotshow-block hotshow-block-fullwidth" key={index}>
 
                                 <div className="hotshowimg">
                                     {
-                                        objData.type && objData.type.id == 2
+                                        objData.type && objData.type.id === 2
                                             ? <ReactPlayer url={objData.video_url} controls />
                                             : <img src={objData.full_image} alt="" className="img-fluid" />
                                     }
