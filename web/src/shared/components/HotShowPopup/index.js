@@ -23,7 +23,10 @@ const HotShowPopup = (props) => {
   }, []);
 
   const body = document.body;
-  const removeOverlayClass = () => body.classList.add("hotshowpopup-overlay");
+  const removeOverlayClass = () => {
+    setFlag(false);
+    body.classList.remove("hotshowpopup-overlay");
+  }
 
   const addOverlayClass = () => body.classList.add("hotshowpopup-overlay");
 
@@ -63,7 +66,7 @@ const HotShowPopup = (props) => {
               </span>
             </div>
             <div className="hotshow-topbar-right">
-              <span onClick={() => setFlag(false)}>
+              <span onClick={() => removeOverlayClass()}>
                 Continue to SISTIC <img src={nextarrow} alt="" />
               </span>
             </div>
