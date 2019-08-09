@@ -12,7 +12,7 @@ const Footer = () => {
          <section className="footer">
             <div className="container-fluid">
                <div className="footer-top">
-                  <div className="footer-as">
+                  <div className="footer-links">
                      <h3>Our Company</h3>
                      <ul>
                         <li>
@@ -32,7 +32,7 @@ const Footer = () => {
                         </li>
                      </ul>
                   </div>
-                  <div className="footer-as helpful-as">
+                  <div className="footer-links helpful-links">
                      <h3>Helpful as</h3>
                      <div className="footer-groups">
                         <ul>
@@ -71,7 +71,7 @@ const Footer = () => {
                         </ul>
                      </div>
                   </div>
-                  <div className="footer-as">
+                  <div className="footer-links">
                      <h3>SISTIC on Mobile</h3>
                      <div className="download-option">
                         <a>
@@ -90,7 +90,7 @@ const Footer = () => {
                         </a>
                      </div>
                   </div>
-                  <div className="footer-as stay-connected-wrapper">
+                  <div className="footer-links stay-connected-wrapper">
                      <div className="stay-connect">
                         <h3>Stay Connected</h3>
                         <div className="input-group">
@@ -129,7 +129,7 @@ const Footer = () => {
                      </a>
                      <span>Copyright 1998 - 2019. © SISTIC.com Pte Ltd</span>
                   </div>
-                  <ul className="footer-btm-as">
+                  <ul className="footer-btm-links">
                      <li>
                         <a>Privacy Policy</a>
                      </li>
