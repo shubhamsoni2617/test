@@ -200,7 +200,7 @@ export default class Events extends Component {
         let filteredPromotions = [...this.state.filteredPromotions];
         let filteredVenues = [...this.state.filteredVenues];
         let filteredTags = [...this.state.filteredTags];
-        let filteredSearch = [...this.state.filteredSearch];
+        let filteredSearch = this.state.filteredSearch;
         let filteredGnere = [...this.state.filteredGnere];
         let filteredPriceRange = { ...this.state.filteredPriceRange };
         let filteredDateRange = { ...this.state.filteredDateRange };
@@ -280,6 +280,7 @@ export default class Events extends Component {
             this.setState({ eventsData: [], totalRecords:0 })
             this.setState({ first: 0, limit: 9 });
             let params = this.setFilterParams()
+            debugger
             this.loadEvents(params);
         })
     }

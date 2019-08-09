@@ -73,8 +73,9 @@ export default class Filters extends Component {
 
     // Text Search
     textFilter = (e) => {
-        this.setState({ search: e.target.value });
-        this.props.handleFilters('search', this.state.search);
+        this.setState({ search: e.target.value }, () => {
+            this.props.handleFilters('search', this.state.search);
+        });
     }
 
     //Genres 
