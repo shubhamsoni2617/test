@@ -57,7 +57,16 @@ const TopNav = (props) => {
     refValue.classList.remove("active");
   }
 
-  const handleMouseStatus = (status) => setTimeout(() => setShowMegaMenu(status), 0);
+  const handleMouseStatus = (status) => {
+    if (status === true) {
+      setTimeout(() => setShowMegaMenu(status), 0);
+      document.body.classList.add('body-overlay');
+    }
+    if (status === false) {
+      setTimeout(() => setShowMegaMenu(status), 0);
+      document.body.classList.remove('body-overlay');
+    }
+  }
 
   return (
     <header className="header">

@@ -8,12 +8,8 @@
 		padding: 0;
 		transition: 0.3s margin-top;
 		img{
-			width: 100%;
-		}
-	}
-	&.news-ticker-hide{
-		.banner{
-			margin-top: -106px;
+			max-width: 100%;
+			height: auto;
 		}
 	}
 }
@@ -254,7 +250,7 @@
 								color: #fff;
 								font-family: 'Montserrat', sans-serif;
 								font-weight: 500;
-								line-height: 14px;
+								line-height: 15px;
 								position: absolute;
 								top: -5px;
 								left: 13px;
@@ -2458,7 +2454,7 @@ section{
 						font-size: 16px;
 						line-height: 19px;
 						text-decoration: none;
-						transition: 0.8s color;
+						transition: 0.8s color, 0.5s transform;
 						word-break: break-word;
 						@media (max-width: 767px) {
 							font-size: 14px;
@@ -2466,7 +2462,7 @@ section{
 						}
 						&:hover {
                             color: #0098ff;
-                            transition: 0.8s color;
+							transform: translateX(3px);
 						}
 					}
 				}
@@ -2513,14 +2509,35 @@ section{
 					border-color: #0098ff;
 					border-radius: 0;
                     padding: 5px;
-                    overflow: hidden;
+					overflow: hidden;
+					position: relative;
+					&:after{
+						position: absolute;
+						content: "";
+						top: 100%;
+						right: 0;
+						left: -30px;
+						bottom: 0;
+						z-index: 1;
+						width: 0px;
+						height: 32px;
+						background-image: url(../../assets/images/send.svg);
+						background-repeat: no-repeat;
+						background-color: #2698ff;
+						background-size: 100%;
+						transform: translate(0%, 0%);
+					}
 					&:hover {
 						background-color: #0098ff;
 						border-color: #0098ff;
                         opacity: 0.8;
                         img{
-                            animation: submit-arrow 0.5s linear;
-                        }
+                            animation: submit-arrow 0.2s linear;
+						}
+						&:after{
+							width: 32px;
+							animation: submit-arrow-after 0.2s linear;
+						}
 					}
 					@media (max-width: 767px) {
 						padding: 2px;
@@ -2538,14 +2555,37 @@ section{
                             top: 0;
                         }
                         50% {
+							transform: translateX(5px);
+							top: -5px;
+                        }
+                        95% {
                             transform: translateX(15px);
-                            top: -15px;
+							top: -15px;
+						}
+						100%{
+							opacity: 0;
+						}
+                    }
+					@keyframes submit-arrow-after {
+                        0% {
+							transform: translate(-50%, -50%);
+							top: 100%;
+							left: 0%;
+							opacity: 0;
+						}
+						50% {
+                            transform: translate(-50%, -50%);
+							top: 80%;
+							left: 20%;
+							opacity: 1;
                         }
                         100% {
-                            transform: translateX(0px);
-                            top: 0;
+							transform: translate(-50%, -50%);
+							top: 50%;
+							left: 50%;
+							opacity: 1;
                         }
-                    }
+					}
 				}
 			}
 		}
@@ -2934,6 +2974,7 @@ body.page-load {
 				padding: 0px !important;
 				img {
 					padding-right: 5px;
+					transition: 0.3s transform;
 				}
 			}
 			&.event-category {
@@ -2954,7 +2995,7 @@ body.page-load {
 							padding: 4px 5px !important;
 							display: block;
 							text-decoration: none;
-							transition: 0.3s color, 0.3s background-color;
+							transition: 0.3s color, 0.3s background-color, 0.5s transform;
 							@media(min-width: 1280px) and (max-width: 1600px){
 								font-size: 13px;
 							}
@@ -2964,6 +3005,7 @@ body.page-load {
 							&:hover {
 								color: #0098ff !important;
 								background-color: rgba(179, 209, 231, 0.17);
+								transform: translateX(3px);
 							}
 						}
 						&:nth-child(2n) {
@@ -3039,7 +3081,7 @@ body.page-load {
                                 border-radius: 50%;
                                 border: 1px solid #E1E1E1;
                                 transition: 0.3s background-color;
-                                margin-right: 3px;
+								margin-right: 3px;
                                 cursor: pointer;
                                 img {
                                     max-width: 12px;
@@ -3109,9 +3151,11 @@ body.page-load {
                             color: #343434;
                             font-family: 'Rubik', sans-serif;
                             line-height: 17px;
-                            font-size: 14px;
+							font-size: 14px;
+							transition: 0.5s transform;
                             &:hover{
-                                color: #0077C8;
+								color: #0077C8;
+								transform: translateX(3px)
                             }
                         }
 					}
@@ -3207,6 +3251,13 @@ body.page-load {
 				font-size: 14px;
 				font-weight: 600;
 				padding: 0px
+			}
+			&:hover{
+				.submenu-subtitle{
+					img{						
+						transform: rotate(20deg);
+					}
+				}
 			}
 		}
 	}

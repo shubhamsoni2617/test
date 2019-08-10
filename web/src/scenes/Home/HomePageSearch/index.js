@@ -6,6 +6,7 @@ import recentSearchIconImage from '../../../assets/images/recent-search-icon.svg
 import closeBlueColorImage from '../../../assets/images/close-blue-color.svg';
 import eventImage from '../../../assets/images/kurios-joker.jpg';
 import './style.scss';
+import recentSearch from '../../../assets/images/recent-search-icon.svg';
 
 class HomePageSearch extends Component {
   handleSubmit=(e)=>{
