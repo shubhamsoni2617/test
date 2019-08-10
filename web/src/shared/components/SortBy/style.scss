@@ -18,12 +18,12 @@
             box-shadow: none;
             padding: 5px 11px;
             height: 30px;
+            cursor: pointer;
             .sortby-text{
                 font-weight: 500;
             }
             .active-filter{
                 font-weight: 500;
-                cursor: pointer;
                 font-size: 15px;
             }
         }
