@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react'
 import { Link } from 'react-router-dom';
-import { CSSTransitionGroup, TransitionGroup } from 'react-transition-group';
+import { CSSTransitionGroup } from 'react-transition-group';
 import logo from '../../../assets/images/logo.png';
 import './style.scss';
 import MegaMenu from '../../../shared/components/MegaMenu';

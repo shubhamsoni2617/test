@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { CSSTransitionGroup } from 'react-transition-group';
 import './style.scss';
 
 export default class SortBy extends Component {
@@ -49,6 +50,11 @@ export default class SortBy extends Component {
                         <span className="sortby-text">Sort by:</span>
                         <span className="active-filter">{sort.tag}</span>
                     </div>
+                    <CSSTransitionGroup
+                    transitionName="dropdown"
+                    transitionEnter={true}
+                    transitionEnterTimeout={300}
+                    transitionLeaveTimeout={300}>
                     {this.state.showSortMenu
                         ? (
                             <ul>
@@ -59,6 +65,7 @@ export default class SortBy extends Component {
                         )
                         : (null)
                     }
+                    </CSSTransitionGroup>
                 </div>
             </div>
         )

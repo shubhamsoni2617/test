@@ -1,21 +1,18 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, memo } from "react";
 import closeNews from "../../../assets/images/close-ad.svg";
 import "./style.scss";
 import HomeService from "../../../shared/services/HomeService";
-import popupClose from "../../../assets/images/cross.svg";
 
 const NewsTicker = props => {
+  console.log("news");
   const { homePageRef } = props;
   const [newsTicker, setNewsTicker] = useState([]);
-  const [des, setDes] = useState();
-  const [show, setShow] = useState(false);
   const refValue = useRef();
   const refMarquee = useRef();
   useEffect(() => {
-    const params = {
+    HomeService.getNewsTicker({
       client: 1
-    };
-    HomeService.getNewsTicker(params)
+    })
       .then(res => {
         setNewsTicker(res.data.data);
       })
@@ -23,41 +20,44 @@ const NewsTicker = props => {
         console.log(err);
       });
   }, []);
+
+  useEffect(() => {
+    if (!props.modal && refMarquee.current) refMarquee.current.start();
+  }, [refMarquee.current, props.modal]);
+
   const handleClose = () => {
     refValue.current.classList.remove("hide-news");
     homePageRef.current.classList.add("news-ticker-hide");
   };
-  const handleOnclick = des => {
+  const handleOnclick = desc => {
     refMarquee.current.stop();
-    setDes(des);
-    setShow(true);
+    props.showNewsTicker({ modal: true, modalContent: desc });
+  };
+  const handleMarquee = () => {
+    if (!props.modal) refMarquee.current.start();
   };
 
-  if(newsTicker.length == 0){
+  if (newsTicker.length == 0) {
     return null;
   }
 
   return (
-    <div>
-      <div
-        className={
-          window.location.pathname === "/" ? "ticker-wrap hide-news" : "hide"
-        }
-        ref={refValue}
-      >
+    <>
+      <div className="ticker-wrap hide-news" ref={refValue}>
         <div className="ticker-container">
           <div className="ticker">
             <marquee
               behavior="scroll"
               onMouseEnter={() => refMarquee.current.stop()}
-              onMouseLeave={() => refMarquee.current.start()}
+              onMouseLeave={() => handleMarquee()}
               ref={refMarquee}
             >
               <div>
                 {newsTicker.map((content, index) => {
                   let string = content.description;
                   let stringLength = 180;
-                  if(string.length > 180) string = `${string.substring(0, stringLength)}...`;
+                  if (string.length > 180)
+                    string = `${string.substring(0, stringLength)}...`;
 
                   return (
                     <div
@@ -78,34 +78,7 @@ const NewsTicker = props => {
           <img src={closeNews} alt="Close" />
         </span>
       </div>
-      <div className="modal" style={{ display: show ? "block" : "none" }}>
-        <div className="modal-dialog modal-dialog-scrollable modal-dialog-centered">
-          <div className="modal-content">
-            <div className="modal-header border-n">
-              <h5 className="modal-title" id="exampleModalLabel">News Ticker</h5>
-              <button
-                type="button"
-                className="close"
-                onClick={() => {
-                  refMarquee.current.start();
-                  setShow(false);
-                }}
-              >
-                <span aria-hidden="true">
-                  <img src={popupClose} alt="Close Popup" />
-                </span>
-              </button>
-            </div>
-            <div className="modal-body">
-              <div className="notice">
-                <div dangerouslySetInnerHTML={{ __html: des }} />
-              </div>
-            </div>
-            <div className="modal-footer border-n" />
-          </div>
-        </div>
-      </div>
-    </div>
+    </>
   );
 };
-export default NewsTicker;
+export default memo(NewsTicker);

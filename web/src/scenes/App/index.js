@@ -2,14 +2,16 @@ import React from "react";
 import Footer from "./Footer";
 import Navigator from "./Navigator";
 import TopNav from "./TopNav";
-import "./style.css";
 import Advertisement from '../../shared/components/Advertisement';
+import "./style.css";
+
 export default class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       collapsed: false
     };
+
   }
 
   toggle() {
@@ -19,19 +21,11 @@ export default class App extends React.Component {
   };
 
   render() {
-    return (      
-        // SISTIC wrapper start
-        <div className="wrapper">  
-         {/* Top advertisment section start */}
-         <Advertisement />
-            {/* Top advertisment section end */}
-          {/* TopNav */}
+    return (
+        <div className="wrapper">
+          <Advertisement {...this.props} />
           <TopNav {...this.props} />
-
-          {/* Main Content */}
           <Navigator {...this.props} />
-          
-          {/* Footer */}
           <Footer />
         </div>
 

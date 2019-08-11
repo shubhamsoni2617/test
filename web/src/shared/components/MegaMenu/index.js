@@ -1,27 +1,31 @@
 import React, { Component, useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Calender from '../Calender';
+import thumbnailImg1 from "../../../assets/images/pretty-girls.jpg";
+import thumbnailImg2 from "../../../assets/images/hetty-keos.jpg";
+import locationImage from "../../../assets/images/location.svg";
+import rightArrowImage from "../../../assets/images/right-arrow.svg";
 
 const MegaMenu = (props) => {
 
   const featuredEvents = [
     {
       id: "1",
-      img: "assets/images/pretty-girls.jpg",
+      img: thumbnailImg1,
       day: "Sun, 26 May 2019",
       genre: "Theatre",
       text: "This Is What Happens To Pretty Girls"
     },
     {
       id: "2",
-      img: "assets/images/pretty-girls.jpg",
+      img: thumbnailImg1,
       day: "Sun, 26 May 2019",
       genre: "Theatre",
       text: "This Is What Happens To Pretty Girls"
     },
     {
       id: "3",
-      img: "assets/images/hetty-keos.jpg",
+      img: thumbnailImg2,
       day: "Sun, 26 May 2019",
       genre: "Dance",
       text: "Hetty Koes Endang (Indonesia)"
@@ -65,10 +69,10 @@ const MegaMenu = (props) => {
         <div className="events-listing">
           <ul>
             <li>
-              <h5 className="submenu-subtitle"><img src="assets/images/location.svg" alt="" /> By Venue</h5>
+              <h5 className="submenu-subtitle"><img src={locationImage} alt="" /> By Venue</h5>
             </li>
             <li className="seeall-veneus">
-              <a className="seeall-btn" >See All Venues <img src="assets/images/right-arrow.svg" alt="" /></a>
+              <a className="seeall-btn" >See All Venues <img src={rightArrowImage} alt="" /></a>
             </li>
           </ul>
           <ul className="events-list">
