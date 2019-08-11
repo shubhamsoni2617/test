@@ -167,7 +167,7 @@ export default class Events extends Component {
         if (getViewType == 'grid') {
             viewTypeClass = 'events-section'
         } else {
-            
+
             viewTypeClass = 'events-section list-view'
         }
         this.setState({ viewTypeClass:viewTypeClass, viewType: getViewType });
@@ -294,7 +294,7 @@ export default class Events extends Component {
         const { genre, venues, filterConfig, eventsData, totalRecords, isdataAvailable, viewType } = this.state;
         const viewTypeActive = (viewType == 'list') ? 'active' : '';
         return (
-            <div> 
+            <div>
                 <Breadcrub breadCrumbData={this.breadCrumbData} />
                 <section className="promotions-wrapper">
                     <div className="container-fluid">

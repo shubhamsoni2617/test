@@ -1,4 +1,5 @@
 import React, { Component, createRef } from 'react';
+import { CSSTransitionGroup } from 'react-transition-group';
 import CloseIcon from '../../../assets/images/close-blue.svg';
 import './style.scss';
 
@@ -10,7 +11,7 @@ export default class VenueFilter extends Component {
       super(props);
       this.state = {
          search: '',
-         display: this.props.venueFilterPanelDisplay ? 'block' : 'none',
+         display: false,
          venuesData: this.props.venueData, hoverEffect: '', alphabet: ''
       }
 
@@ -21,11 +22,11 @@ export default class VenueFilter extends Component {
    }
 
    componentWillReceiveProps(props) {
-      this.setState({ display: props.venueFilterPanelDisplay ? 'block' : 'none' });
+      this.setState({ display: props.venueFilterPanelDisplay ? true : false });
    }
 
    closeVenuePopup = () => {
-      this.setState({ display: 'none' });
+      this.setState({ display: false });
    }
 
    handleHoverOn = (alphabet) => {
@@ -50,7 +51,7 @@ export default class VenueFilter extends Component {
 
    sortAndGroup = (venues) => {
       this.groupedCollection = {};
-      for (let i = 0; i < venues.length; i++) {//loop throug collection         
+      for (let i = 0; i < venues.length; i++) {//loop throug collection
          let firstLetter = venues[i].name.charAt(0);
          if (!isNaN(firstLetter)) {
             firstLetter = '#';
@@ -99,7 +100,7 @@ export default class VenueFilter extends Component {
       for (let i = 65; i < 91; i++) {
          // let createHref = '#' + String.fromCharCode(i);
          alphabets.push(
-            <li id={String.fromCharCode(i)} 
+            <li id={String.fromCharCode(i)}
                onMouseOver={() => this.handleHoverOn(String.fromCharCode(i))}
                onMouseLeave={() => this.handleHoverOff()}
                key={i}
@@ -122,7 +123,12 @@ export default class VenueFilter extends Component {
 
       return (
          <div className="filters-panel">
-            <div className="filter-directory-panel" style={{ display: display }}>
+         <CSSTransitionGroup
+                    transitionName="dropdown"
+                    transitionEnter={true}
+                    transitionEnterTimeout={300}
+                    transitionLeaveTimeout={300}>
+            {display && <div className="filter-directory-panel">
                <div className="filter-directory-titlebar">
                   <div className="filter-directory-heading">
                      <h3>Venue</h3>
@@ -150,7 +156,8 @@ export default class VenueFilter extends Component {
                      }
                   </ul>
                </div>
-            </div>
+            </div>}
+            </CSSTransitionGroup>
          </div>
       )
    }
