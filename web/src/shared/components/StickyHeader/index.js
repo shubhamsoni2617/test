@@ -31,10 +31,10 @@ export default class StickyHeader extends Component {
           <div className="breadcrumb-share">
             <ul className="breadcrumb">
               <li>Home</li>
-              {detailData.genres &&
+              {detailData.genres && detailData.genres.length > 0 &&
                 detailData.genres.map((obj, index) => {
-                  if (obj.is_primary === 1) {
-                    return <li key={index}>{obj.name}</li>;
+                  if (obj.is_primary == 1) {
+                    return <li key={index}>{obj.name}</li>
                   }
                 })}
             </ul>
@@ -44,7 +44,7 @@ export default class StickyHeader extends Component {
               {detailData.genres.map((obj, index) => {
                 return (
                   <li
-                    className={`${obj.is_primary === 1 ? "active" : ""}`}
+                    className={`${obj.is_primary == 1 ? "active" : ""}`}
                     key={index}
                   >
                     {obj.name}
