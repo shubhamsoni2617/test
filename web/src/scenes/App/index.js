@@ -14,6 +14,13 @@ export default class App extends React.Component {
 
   }
 
+  componentDidMount(){
+    setTimeout(() => {
+      document.body.classList.remove("fix-height");
+      document.getElementById('loader').classList.add("loaded");
+    }, 1000);
+  }
+
   toggle() {
     this.setState({
       collapsed: !this.state.collapsed
