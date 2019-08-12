@@ -147,8 +147,8 @@ export default class VenueFilter extends Component {
                      </ul>
                   </div>
                </div>
-               <div>
-                  <ul id="venueContainer" ref={(node)=>this.myRef=node} className="filter-directory-list">
+               <div className="filter-directory-list">
+                  <ul id="venueContainer" ref={(node)=>this.myRef=node}>
                      {
                         this.groupeFilter(this.groupedCollection).map((lidata) => {
                            return lidata;
