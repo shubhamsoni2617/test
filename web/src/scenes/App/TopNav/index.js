@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react'
 import { Link } from 'react-router-dom';
-import { CSSTransitionGroup, TransitionGroup } from 'react-transition-group';
+import { CSSTransitionGroup } from 'react-transition-group';
 import logo from '../../../assets/images/logo.png';
 import './style.scss';
 import MegaMenu from '../../../shared/components/MegaMenu';
@@ -57,7 +57,16 @@ const TopNav = (props) => {
     refValue.classList.remove("active");
   }
 
-  const handleMouseStatus = (status) => setTimeout(() => setShowMegaMenu(status), 0);
+  const handleMouseStatus = (status) => {
+    if (status === true) {
+      setTimeout(() => setShowMegaMenu(status), 0);
+      document.body.classList.add('body-overlay');
+    }
+    if (status === false) {
+      setTimeout(() => setShowMegaMenu(status), 0);
+      document.body.classList.remove('body-overlay');
+    }
+  }
 
   return (
     <header className="header">
@@ -101,7 +110,7 @@ const TopNav = (props) => {
               <ul>
                 {byGenreEvent && byGenreEvent.slice(0, showElementsInHeader).map((event, index) => {
                   return (
-                    <li key={event.id}><Link to={`/events?c=${event.name}`}>{event.name}</Link></li>
+                    <li key={event.id}><Link to={`/events?c=${event.id}`}>{event.name}</Link></li>
                   );
                 })
                 }

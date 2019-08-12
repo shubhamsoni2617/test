@@ -18,12 +18,12 @@
             box-shadow: none;
             padding: 5px 11px;
             height: 30px;
+            cursor: pointer;
             .sortby-text{
                 font-weight: 500;
             }
             .active-filter{
                 font-weight: 500;
-                cursor: pointer;
                 font-size: 15px;
             }
         }
@@ -55,4 +55,21 @@
             }
         }
     }
+}
+.dropdown-enter {
+  opacity: 0;
+}
+
+.dropdown-enter.dropdown-enter-active {
+  opacity: 1;
+  transition: all 300ms ease-in-out;
+}
+
+.dropdown-leave {
+  opacity: 1;
+}
+
+.dropdown-leave.dropdown-leave-active {
+  opacity: 0;
+  transition: all 300ms ease-in-out;
 }
