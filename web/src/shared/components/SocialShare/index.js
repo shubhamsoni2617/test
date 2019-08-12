@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React from 'react';
 
 import {
     FacebookShareButton,FacebookIcon,
@@ -16,19 +16,19 @@ import {
                 <div className="social-share-wrapper">
                     <FacebookShareButton
                         url={shareUrl}
-                        title='Facebook'>
+                        quote='Facebook'>
                         <FacebookIcon size={32}
                         round />
                     </FacebookShareButton>
                     <TelegramShareButton
                             url={shareUrl}
-                            title='Telegram'>
+                            quote='Telegram'>
                             <TelegramIcon size={32}
                             round />
                     </TelegramShareButton>
                     <EmailShareButton
                             url={shareUrl}
-                            title='Telegram'>
+                            quote='Telegram'>
                             <EmailIcon size={32}
                             round />
                     </EmailShareButton>
