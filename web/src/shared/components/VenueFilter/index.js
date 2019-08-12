@@ -38,11 +38,11 @@ export default class VenueFilter extends Component {
    }
 
    scrollToRef = (ref) => {
-      let el = document.getElementById('li-'+ref.target.id);
-      if(el !== null){
+      let el = document.getElementById('li-' + ref.target.id);
+      if (el !== null) {
          this.myRef.scrollTo({
-            top :0,
-            left: el.offsetLeft-25,
+            top: 0,
+            left: el.offsetLeft - 25,
             behavior: 'smooth',
          });
       }
@@ -51,8 +51,8 @@ export default class VenueFilter extends Component {
 
    sortAndGroup = (venues) => {
       this.groupedCollection = {};
-      for (let i = 0; i < venues.length; i++) {//loop throug collection
-         let firstLetter = venues[i].name.charAt(0);
+      for (let i = 0; i < venues.length; i++) {//loop throug collection         
+         let firstLetter = venues[i].name.charAt(0).toUpperCase();
          if (!isNaN(firstLetter)) {
             firstLetter = '#';
          }
@@ -72,7 +72,7 @@ export default class VenueFilter extends Component {
       Object.keys(groupedCollection).map((key) => {
 
          addHoverClass = (this.state.alphabet == key) ? '' : this.state.hoverEffect;
-         groupedData.push(<li id={"li-"+key} className={"filter-directory-list-title " + addHoverClass}>{key}</li>);
+         groupedData.push(<li id={"li-" + key} className={"filter-directory-list-title " + addHoverClass}>{key}</li>);
 
          groupedCollection[key].map((venue) => {
             id = 'venue-panel-' + venue.id;
@@ -96,26 +96,28 @@ export default class VenueFilter extends Component {
    // Prepare alphabests in Venue popup
    prepareAlphabets = () => {
       let alphabets = [];
-      alphabets.push(<li className="">#</li>);
+      alphabets.push(<li id="#"
+         onMouseOver={() => this.handleHoverOn('#')}
+         onMouseLeave={() => this.handleHoverOff()}
+         onClick={this.scrollToRef} >#</ li>);
       for (let i = 65; i < 91; i++) {
-         // let createHref = '#' + String.fromCharCode(i);
-         alphabets.push(
-            <li id={String.fromCharCode(i)}
-               onMouseOver={() => this.handleHoverOn(String.fromCharCode(i))}
-               onMouseLeave={() => this.handleHoverOff()}
-               key={i}
-               onClick={this.scrollToRef} >
-               {String.fromCharCode(i)}
-            </li>
-         )
+            alphabets.push(
+               <li id={String.fromCharCode(i)}
+                  onMouseOver={() => this.handleHoverOn(String.fromCharCode(i))}
+                  onMouseLeave={() => this.handleHoverOff()}
+                  key={i}
+                  onClick={this.scrollToRef} >
+                  {String.fromCharCode(i).toUpperCase()}
+               </li>
+            )
+         }
+         return alphabets;;
       }
-      return alphabets;;
-   }
-
-   // Return Jsx
+   
+      // Return Jsx
    render() {
-      const { venuesData, search, display } = this.state;
-      const { setOpenVenuePanel } = this.props;
+      const {venuesData, search, display } = this.state;
+      const {setOpenVenuePanel} = this.props;
       let filteredVenue = venuesData.length && venuesData.filter((venues) => {
          return venues.name.toLowerCase().indexOf(search) !== -1;
       })
@@ -159,6 +161,6 @@ export default class VenueFilter extends Component {
             </div>}
             </CSSTransitionGroup>
          </div>
-      )
-   }
+         )
+      }
 }

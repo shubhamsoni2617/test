@@ -51,7 +51,7 @@ const MegaMenu = (props) => {
             {
               byGenreEvent && byGenreEvent.map((event, index) => {
                 return (
-                  <li key={event.id}><Link to={`/events/search?c=${event.name}`} onClick={() => { { props.handleMouseStatus(false) } }}>{event.name}</Link></li>
+                  <li key={event.id}><Link to={`/events/search?c=${event.id}`} onClick={() => { { props.handleMouseStatus(false) } }}>{event.name}</Link></li>
                 )
               })
             }
