@@ -1,4 +1,4 @@
-import React, { Component, useState, useEffect } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import Calender from '../Calender';
 import thumbnailImg1 from "../../../assets/images/pretty-girls.jpg";

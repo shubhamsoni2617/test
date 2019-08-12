@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect ,createRef } from 'react';
 import Slider from "react-slick";
 import './style.scss';
 import ReactPlayer from 'react-player';
@@ -19,8 +19,8 @@ const EventCarousel = (props) => {
     setNavSmall(slider2);
   }, [])
 
-  let slider1 = {};
-  let slider2 = {};
+  let slider1 = createRef()
+  let slider2 = createRef()
 
 
 
@@ -33,7 +33,7 @@ const EventCarousel = (props) => {
 
   const settings2 = {
     className: "center",
-    centerMode: true,
+    centerMode: false,
     variableWidth: true,
     infinite: false,
     focusOnSelect: true
