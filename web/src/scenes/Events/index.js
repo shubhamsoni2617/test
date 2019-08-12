@@ -5,12 +5,15 @@ import SortBy from '../../shared/components/SortBy';
 import Card from '../../shared/components/Card';
 import EventsService from '../../shared/services/EventsService';
 import HomeService from '../../shared/services/HomeService';
+import Image from '../../shared/components/Image';
 import DownArrowBlue from '../../assets/images/down-arrow-blue.svg';
 import noEvent from '../../assets/images/no-event.svg';
 import Breadcrub from '../../scenes/App/Breadcrumb';
 import ListView from '../../assets/images/list-view.svg';
 import GridView from '../../assets/images/grid-view.svg';
+import loaderImage from '../../assets/images/loader-tick.gif';
 import EventBreadcrumbImage from '../../assets/images/events.png';
+import ShimmerEffect from '../../shared/components/ShimmerEffect';
 import './style.scss';
 
 export default class Events extends Component {
@@ -20,9 +23,11 @@ export default class Events extends Component {
 
         this.initialLimit = { client: 1, first: 0, limit: 9, sort_type: 'date' };
         this.state = {
+            shimmer: true,
             filteredGnere: [], filteredSearch: [], filteredPromotions: [], filteredVenues: [], filteredTags: [],
             filteredPriceRange: {}, filteredDateRange: {}, filteredSortType: 'date', filteredSortOrder: '',
-            eventsData: [], genre: [], venues: [], filterConfig: [], first: 0, limit: 9, viewType:'grid', viewTypeClass: 'events-section', totalRecords: 0
+            eventsData: [], genre: [], venues: [], filterConfig: [], first: 0, limit: 9, viewType: 'grid', viewTypeClass: 'events-section', totalRecords: 0,
+            loader: false
         };
 
         this.breadCrumbData = {
@@ -77,13 +82,12 @@ export default class Events extends Component {
         this.loadEvents(this.getRoutesParams());
     }
 
-    getRoutesParams = () =>{
+    getRoutesParams = () => {
         const query = new URLSearchParams(this.props.location.search);
-        let genre = query.get('c') ? query.get('c') : '';
-        let venue = query.get('v') ? query.get('v') : '';
-
-        this.initialLimit.search = genre;
-        this.initialLimit.venue = venue;
+        let genreId = query.get('c') ? query.get('c') : '';
+        let venueId = query.get('v') ? query.get('v') : '';
+        this.initialLimit.genre = genreId;
+        this.initialLimit.venue = venueId;
         return this.initialLimit;
     }
 
@@ -101,7 +105,7 @@ export default class Events extends Component {
             filteredSortOrder: '',
             isdataAvailable: false,
             eventsData: [],
-            totalRecords:0
+            totalRecords: 0
         }, () => {
             this.loadEvents(this.initialLimit);
         })
@@ -143,12 +147,13 @@ export default class Events extends Component {
             });
     }
 
-    loadEvents = (params) => {
+    loadEvents = (params, isLoadMore) => {
         EventsService.getData(params)
             .then((res) => {
+                if(!isLoadMore) this.setState({eventsData : []});
                 const eventData = [...this.state.eventsData, ...res.data.data];
                 const isdataAvailable = eventData.length ? false : true;
-                this.setState({ eventsData: eventData, totalRecords: res.data.total_records, isdataAvailable: isdataAvailable })
+                this.setState({ loader:false, eventsData: eventData, shimmer: false, totalRecords: res.data.total_records, isdataAvailable: isdataAvailable })
             })
             .catch((err) => {
                 console.log(err)
@@ -158,7 +163,7 @@ export default class Events extends Component {
     loadMoreEvents = () => {
         let params = this.setFilterParams();
         params.first = this.state.first + 9;
-        this.loadEvents(params);
+        this.loadEvents(params, true);
         this.setState({ first: params.first, limit: params.limit })
     }
 
@@ -170,7 +175,7 @@ export default class Events extends Component {
 
             viewTypeClass = 'events-section list-view'
         }
-        this.setState({ viewTypeClass:viewTypeClass, viewType: getViewType });
+        this.setState({ viewTypeClass: viewTypeClass, viewType: getViewType });
     }
 
     setFilterParams = () => {
@@ -277,21 +282,23 @@ export default class Events extends Component {
             filteredSortType,
             filteredSortOrder
         }, () => {
-            this.setState({ eventsData: [], totalRecords:0 })
+            this.setState({totalRecords: 0 ,loader:true})
             this.setState({ first: 0, limit: 9 });
             let params = this.setFilterParams()
-            debugger
-            this.loadEvents(params);
+
+            setTimeout(()=>{
+                this.loadEvents(params, false);
+            }, 200)
+            
         })
     }
 
-    redirectToTarget = (alias) => {
-        debugger
+    redirectToTarget = alias => {
         this.props.history.push(`events/` + alias)
     }
 
     render() {
-        const { genre, venues, filterConfig, eventsData, totalRecords, isdataAvailable, viewType } = this.state;
+        const { loader, genre, venues, filterConfig, eventsData, totalRecords, isdataAvailable, viewType, shimmer } = this.state;
         const viewTypeActive = (viewType == 'list') ? 'active' : '';
         return (
             <div>
@@ -315,6 +322,8 @@ export default class Events extends Component {
                                     </ul>
                                 </div>
                                 <div className={this.state.viewTypeClass}>
+                                {/* {shimmer && <ShimmerEffect propCls="shm_col-xs-6" height={150} count={6} type="grid" />} */}
+                                    {loader && <img src={loaderImage} />}
                                     {eventsData && eventsData.map((event) => {
                                         return <div onClick={() => this.redirectToTarget(event.alias)}>
                                             <Card eventsData={event} />

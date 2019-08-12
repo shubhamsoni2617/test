@@ -370,7 +370,7 @@ button,
 	font-weight: 500;
 	line-height: 20px;
 	height: 20px;
-	background-color: #5F4F8B;
+	background-color: #225275;
 	display: inline-block;
 	text-align: center;
 	text-transform: capitalize;
@@ -397,6 +397,9 @@ button,
     
     &.theatre {
         background-color: #BF659A;
+    }
+    &.concert{
+        background-color: #75AA46;
     }
 }
 

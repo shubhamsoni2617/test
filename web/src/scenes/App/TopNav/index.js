@@ -110,7 +110,7 @@ const TopNav = (props) => {
               <ul>
                 {byGenreEvent && byGenreEvent.slice(0, showElementsInHeader).map((event, index) => {
                   return (
-                    <li key={event.id}><Link to={`/events?c=${event.name}`}>{event.name}</Link></li>
+                    <li key={event.id}><Link to={`/events?c=${event.id}`}>{event.name}</Link></li>
                   );
                 })
                 }

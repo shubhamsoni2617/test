@@ -35,7 +35,7 @@ export default class ShimmerEffect extends Component {
       var h = [];
       for (let i = 0; i < count; i++) {
         h.push(
-          <div key={i} className="shm_col-xs-5">
+          <div key={i} className={props.propCls}>
             <div className="contentLoader ListView">
               <div className="shm_row">
                 <div className="shm_col-sm-12">
