@@ -12,6 +12,8 @@ import ListView from '../../assets/images/list-view.svg';
 import GridView from '../../assets/images/grid-view.svg';
 import EventBreadcrumbImage from '../../assets/images/events.png';
 import './style.scss';
+import ShimmerEffect from '../../shared/components/ShimmerEffect';
+
 
 export default class Events extends Component {
 
@@ -20,9 +22,10 @@ export default class Events extends Component {
 
         this.initialLimit = { client: 1, first: 0, limit: 9, sort_type: 'date' };
         this.state = {
+            shimmer: true,
             filteredGnere: [], filteredSearch: [], filteredPromotions: [], filteredVenues: [], filteredTags: [],
             filteredPriceRange: {}, filteredDateRange: {}, filteredSortType: 'date', filteredSortOrder: '',
-            eventsData: [], genre: [], venues: [], filterConfig: [], first: 0, limit: 9, viewType:'grid', viewTypeClass: 'events-section', totalRecords: 0
+            eventsData: [], genre: [], venues: [], filterConfig: [], first: 0, limit: 9, viewType: 'grid', viewTypeClass: 'events-section', totalRecords: 0
         };
 
         this.breadCrumbData = {
@@ -77,7 +80,7 @@ export default class Events extends Component {
         this.loadEvents(this.getRoutesParams());
     }
 
-    getRoutesParams = () =>{
+    getRoutesParams = () => {
         const query = new URLSearchParams(this.props.location.search);
         let genre = query.get('c') ? query.get('c') : '';
         let venue = query.get('v') ? query.get('v') : '';
@@ -101,7 +104,7 @@ export default class Events extends Component {
             filteredSortOrder: '',
             isdataAvailable: false,
             eventsData: [],
-            totalRecords:0
+            totalRecords: 0
         }, () => {
             this.loadEvents(this.initialLimit);
         })
@@ -148,7 +151,7 @@ export default class Events extends Component {
             .then((res) => {
                 const eventData = [...this.state.eventsData, ...res.data.data];
                 const isdataAvailable = eventData.length ? false : true;
-                this.setState({ eventsData: eventData, totalRecords: res.data.total_records, isdataAvailable: isdataAvailable })
+                this.setState({ eventsData: eventData, shimmer: false, totalRecords: res.data.total_records, isdataAvailable: isdataAvailable })
             })
             .catch((err) => {
                 console.log(err)
@@ -167,10 +170,10 @@ export default class Events extends Component {
         if (getViewType == 'grid') {
             viewTypeClass = 'events-section'
         } else {
-            
+
             viewTypeClass = 'events-section list-view'
         }
-        this.setState({ viewTypeClass:viewTypeClass, viewType: getViewType });
+        this.setState({ viewTypeClass: viewTypeClass, viewType: getViewType });
     }
 
     setFilterParams = () => {
@@ -277,7 +280,7 @@ export default class Events extends Component {
             filteredSortType,
             filteredSortOrder
         }, () => {
-            this.setState({ eventsData: [], totalRecords:0 })
+            this.setState({ eventsData: [], totalRecords: 0 })
             this.setState({ first: 0, limit: 9 });
             let params = this.setFilterParams()
             debugger
@@ -291,11 +294,12 @@ export default class Events extends Component {
     }
 
     render() {
-        const { genre, venues, filterConfig, eventsData, totalRecords, isdataAvailable, viewType } = this.state;
+        const { genre, venues, filterConfig, eventsData, totalRecords, isdataAvailable, viewType, shimmer } = this.state;
         const viewTypeActive = (viewType == 'list') ? 'active' : '';
         return (
-            <div> 
+            <div>
                 <Breadcrub breadCrumbData={this.breadCrumbData} />
+
                 <section className="promotions-wrapper">
                     <div className="container-fluid">
                         <div className="wrapper-events-listing">
@@ -303,6 +307,7 @@ export default class Events extends Component {
                                 <Filters resetFilters={this.resetFilters} handleFilters={this.handleFilters} genreData={genre} venueData={venues} filterConfig={filterConfig} />
                             }
                             <div className="events-listing">
+                            {shimmer && <ShimmerEffect propCls="shm_col-xs-6" height={150} count={6} type="grid" />}
                                 <div className="event-listing-sorting">
                                     <SortBy sortList={this.tabsSort.sortList} handleListGridView={this.handleListGridView} handleFilters={this.handleFilters} />
                                     <ul className="sortby-view">
@@ -315,6 +320,7 @@ export default class Events extends Component {
                                     </ul>
                                 </div>
                                 <div className={this.state.viewTypeClass}>
+                                    
                                     {eventsData && eventsData.map((event) => {
                                         return <div onClick={() => this.redirectToTarget(event.alias)}>
                                             <Card eventsData={event} />
