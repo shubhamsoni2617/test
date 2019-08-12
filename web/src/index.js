@@ -3,6 +3,8 @@ import ReactDOM from 'react-dom';
 import App from './scenes/App';
 import { Router } from "react-router-dom";
 import { createBrowserHistory } from "history";
+import 'core-js/es/map';
+import 'core-js/es/set';
 // import * as serviceWorker from './serviceWorker';
 import "./assets/scss/main.scss";
 
