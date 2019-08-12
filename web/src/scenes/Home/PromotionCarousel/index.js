@@ -200,7 +200,7 @@ export default class PromotionCarousel extends Component {
                       {promo.slides.length === 1 &&
                         promo.slides.map(slide => {
                           return (
-                            <div key={slide.url} className="item-wrapper">
+                            <div key={slide.url} className="item-wrapper full-promo">
                               <div className="promotions-img">
                                 <div className="item-img">
                                   <img
@@ -272,7 +272,7 @@ export default class PromotionCarousel extends Component {
                       {promo.slides.length === 1 &&
                         promo.slides.map(slide => {
                           return (
-                            <div key={slide.url} className="item-wrapper">
+                            <div key={slide.url} className="item-wrapper full-promo">
                               <div className="promotions-img">
                                 <div className="item-img">
                                   <img
