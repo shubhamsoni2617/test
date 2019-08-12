@@ -29,7 +29,6 @@ const routes =  [
   },
   {
     path: '/promotions',
-    exact: true,
     component: Promotions,
   },
   {

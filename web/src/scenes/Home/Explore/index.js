@@ -57,7 +57,7 @@ class Explore extends Component {
                         {
                             explore.slice(1, explore.length).map((exp, index) => {
                                 return (
-                                    <div className="item explore-rightside-content">
+                                    <div key={index} className="item explore-rightside-content">
                                         <div className="item-wrapper">
                                             <div className="explore-image item-img">
                                                 <img src={exp.img} className="img-fluid" alt="explore" />

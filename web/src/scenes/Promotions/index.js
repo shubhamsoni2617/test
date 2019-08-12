@@ -149,6 +149,8 @@ export default class Promotions extends Component {
       .catch((err) => {
         console.log(err)
       })
+      let randomString = Math.random().toString(36).substring(7);
+      window.history.pushState("string", "Title", `/promotions#${randomString}`);
   }
 
   handleActiveTab = (data) => {

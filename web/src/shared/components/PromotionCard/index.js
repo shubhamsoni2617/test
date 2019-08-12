@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, Suspense } from 'react'
 import './style.scss';
 import Carousel from '../../../shared/components/Carousel';
 import Timer from '../Timer';
@@ -17,6 +17,7 @@ const PromotionCard = (props) => {
     custom_label_color,
     custom_label_text,
     description,
+    events,
     featured_image,
     featured_label_color,
     is_featured,
@@ -25,34 +26,6 @@ const PromotionCard = (props) => {
     short_description,
     show_timer,
   } = promotionDetail
-  // alias: "abcdef"
-  // buttons: [{…}]
-  // custom_label_color: "FFFFFF"
-  // custom_label_text: "Buy Now"
-  // description: "<p>Book tickets with Mastercard and enjoy 10% off!</p>
-  // ↵, rich_text"
-  // events: [{…}]
-  // featured_image: "http://192.168.10.195:8081/sistic/docroot/sites/default/files/2019-07/sample%20image%202%20_0.jpg"
-  // featured_label_color: "ff00ff"
-  // featured_label_text: "New Promotion"
-  // id: "178"
-  // image: "http://192.168.10.195:8081/sistic/docroot/sites/default/files/styles/thumbnail/public/2019-07/sample%20image%20_0.jpg?itok=nlZmhaqy"
-  // is_featured: "1"
-  // publish_end_date: "Sun, 29 Sep 2019"
-  // publish_start_date: "Mon, 05 Aug 2019"
-  // short_description: "Book tickets with Mastercard and enjoy 10% off!, rich_text"
-  // show_timer: "1"
-  // title: "ANDY GRIFFITHS"
-  const data1 = [
-    {
-      id: 1,
-      thumb_image: "",
-      title: "",
-      venue_name: "",
-      primary_genre: "",
-      event_date: ""
-    }
-  ];
 
   const [socialShare, setSocialShare] = useState(false)
 
@@ -67,7 +40,7 @@ const PromotionCard = (props) => {
           <img src={data.featured_image} className="img-fluid" alt="" />
         </div>
         <div className="promotion-desc">
-          <span className="promotion-category" style={{ color: data.featured_label_color }}>{data.featured_label_text}</span>
+          <span className="promotion-category" style={{ color:`#${data.featured_label_color}`}}>{data.featured_label_text}</span>
           <span className="share" onClick={handleSocialShare} >
             {socialShare ? "X" : <img src="assets/images/share-icon.svg" alt="" />}
             <span style={{ display: socialShare ? "block" : "none" }}><SocialShare /></span>
@@ -75,7 +48,7 @@ const PromotionCard = (props) => {
           <h3>{data.title}</h3>
           <div className="promotion-btn-wrapper">
             <a href={data.buttons.length > 0 && data.buttons[0].url ? data.buttons[0].url : undefined}>
-              <button style={{ color: data.buttons.length > 0 && data.buttons[0].color }}>
+              <button style={{ color: data.buttons.length > 0 ?`#${data.buttons[0].color}`: "" }}>
                 <span>{data.buttons.length > 0 && data.buttons[0].text}</span>
                 <img src="assets/images/next-arrow-white.svg" alt="" />
               </button>
@@ -106,7 +79,7 @@ const PromotionCard = (props) => {
           {/* <p>{short_description}</p> */}
           <p dangerouslySetInnerHTML={{ __html: description }}></p>
           <img src={featured_image} className="img-fluid" alt="" />
-          <p>Donec id sem et arcu fermentum pretium quis in metus. Ut dapibus sem ac iaculis pretium. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Donec malesuada feugiat odio in consequat. Sed non nisl tortor. Pellentesque luctus magna sollicitudin nulla accumsan, at molestie elit cursus. Phasellus et est justo. Vivamus nec risus bibendum, iaculis arcu a, tempus augue. Cras sollicitudin elit at vehicula pulvinar. In hac habitasse platea dictumst. Mauris facilisis risus et lorem dignissim placerat.</p>
+          {/* <p>Donec id sem et arcu fermentum pretium quis in metus. Ut dapibus sem ac iaculis pretium. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Donec malesuada feugiat odio in consequat. Sed non nisl tortor. Pellentesque luctus magna sollicitudin nulla accumsan, at molestie elit cursus. Phasellus et est justo. Vivamus nec risus bibendum, iaculis arcu a, tempus augue. Cras sollicitudin elit at vehicula pulvinar. In hac habitasse platea dictumst. Mauris facilisis risus et lorem dignissim placerat.</p> */}
           {/* Related Events */}
           <section className="related-event">
             <div className="container-fluid">
@@ -208,7 +181,7 @@ const PromotionCard = (props) => {
                   </a>
                 </div>
               </div> */}
-              <Carousel imgArray={data1} arrows={true} slidesToShow={6} slidesToScroll={6} />
+              <Carousel imgArray={events} arrows={true} slidesToShow={6} slidesToScroll={6} />
             </div>
           </section>
         </div>
