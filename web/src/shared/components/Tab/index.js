@@ -3,6 +3,7 @@ import PromotionCard from '../PromotionCard';
 import './style.scss';
 import SortBy from '../SortBy';
 import ShimmerEffect from '../../../shared/components/ShimmerEffect';
+import DownArrow from '../../../assets/images/down-arrow-blue.svg';
 
 const Tab = (props) => {
 
@@ -32,7 +33,7 @@ const Tab = (props) => {
             <div className="promotion-load-more" onClick={() => handleLoadMore((first + limit))}>
               <a className="btn-link load-more-btn">
                 <span>Load More ({totalRecords - listingArray.length})</span>
-                <img src="assets/images/down-arrow-blue.svg" alt="down-arrow" />
+                <img src={DownArrow} alt="down-arrow" />
               </a>
             </div>
           }

@@ -28,9 +28,15 @@ const routes =  [
     fetchInitialData: (path = '') => HomeService.getData()
   },
   {
-    path: '/promotions',
+    path: '/promotions/:promo_id',
     component: Promotions,
   },
+  {
+    path: '/promotions',
+    exact : true,
+    component: Promotions,
+  },
+
   {
     path : "*",
     component: PageNotFound

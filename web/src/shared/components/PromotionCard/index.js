@@ -1,13 +1,18 @@
-import React, { useState, Suspense } from 'react'
+import React, { useState } from 'react';
 import './style.scss';
 import Carousel from '../../../shared/components/Carousel';
 import Timer from '../Timer';
 import SocialShare from '../../../shared/components/SocialShare';
+import CloseIcon from '../../../assets/images/close-blue.svg';
+import ShareIcon from '../../../assets/images/share-icon.svg';
+import NextArrow from '../../../assets/images/next-arrow-white.svg';
+import RightArrow from '../../../assets/images/right-arrow.svg';
+import StopWatch from '../../../assets/images/stopwatch-grey.svg';
 
 const PromotionCard = (props) => {
 
   const { data, fetchPromotionDetailData, handlePromotionDetailTab } = props;
-  const { promotionDetail, promotionTab, tabDetailId } = props.state;
+  const { promotionDetail, promotionTab, tabDetailId, shareUrl } = props.state;
   const {
     id,
     title,
@@ -37,20 +42,20 @@ const PromotionCard = (props) => {
     <li className="promotion-block">
       <div className="promotions-listing-wrapper" onClick={() => fetchPromotionDetailData(data.alias, data.id)}>
         <div className="promotion-image">
-          <img src={data.featured_image} className="img-fluid" alt="" />
+          <img src={data.featured_image} className="img-fluid" alt="feature-image" />
         </div>
         <div className="promotion-desc">
-          <span className="promotion-category" style={{ color:`#${data.featured_label_color}`}}>{data.featured_label_text}</span>
+          <span className="promotion-category" style={{ color: `#${data.featured_label_color}` }}>{data.featured_label_text}</span>
           <span className="share" onClick={handleSocialShare} >
-            {socialShare ? "X" : <img src="assets/images/share-icon.svg" alt="" />}
-            <span style={{ display: socialShare ? "block" : "none" }}><SocialShare /></span>
+            {socialShare ? "X" : <img src={ShareIcon} alt="share-icon" />}
+            <span style={{ display: socialShare ? "block" : "none" }}><SocialShare shareUrl={shareUrl && shareUrl} /></span>
           </span>
           <h3>{data.title}</h3>
           <div className="promotion-btn-wrapper">
             <a href={data.buttons.length > 0 && data.buttons[0].url ? data.buttons[0].url : undefined}>
-              <button style={{ color: data.buttons.length > 0 ?`#${data.buttons[0].color}`: "" }}>
+              <button style={{ color: data.buttons.length > 0 ? `#${data.buttons[0].color}` : "" }}>
                 <span>{data.buttons.length > 0 && data.buttons[0].text}</span>
-                <img src="assets/images/next-arrow-white.svg" alt="" />
+                <img src={NextArrow} alt="next-arrow" />
               </button>
             </a>
             {data.show_timer === "1" ?
@@ -58,7 +63,7 @@ const PromotionCard = (props) => {
                 <span className="timer-tagline">{data.custom_label_text} Promotion ends in:</span>
                 <ul>
                   <li className="timer-watch">
-                    <img src="assets/images/stopwatch-grey.svg" className="img-fluid" alt="watch" />
+                    <img src={StopWatch} className="img-fluid" alt="watch" />
                   </li>
                   <Timer endDate={data.publish_end_date} />
                 </ul>
@@ -72,13 +77,13 @@ const PromotionCard = (props) => {
       <div className="promotion-dropdown-height"></div>
       <div className={promotionTab === "open" && tabDetailId === data.id ? "show" : "promotion-tab-dropdown"} >
         <a className="promotion-tab-close-btn" onClick={() => handlePromotionDetailTab("close")}>
-          <img src="assets/images/close-blue.svg" alt="" />
+          <img src={CloseIcon} alt="close-icon" />
         </a>
         <span className="top-dropdown-bar"></span>
         <div className="promotion-tab-dropdown-content">
           {/* <p>{short_description}</p> */}
           <p dangerouslySetInnerHTML={{ __html: description }}></p>
-          <img src={featured_image} className="img-fluid" alt="" />
+          <img src={featured_image} className="img-fluid" alt="feature-image" />
           {/* <p>Donec id sem et arcu fermentum pretium quis in metus. Ut dapibus sem ac iaculis pretium. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Donec malesuada feugiat odio in consequat. Sed non nisl tortor. Pellentesque luctus magna sollicitudin nulla accumsan, at molestie elit cursus. Phasellus et est justo. Vivamus nec risus bibendum, iaculis arcu a, tempus augue. Cras sollicitudin elit at vehicula pulvinar. In hac habitasse platea dictumst. Mauris facilisis risus et lorem dignissim placerat.</p> */}
           {/* Related Events */}
           <section className="related-event">
@@ -86,7 +91,7 @@ const PromotionCard = (props) => {
               <div className="section-top-wrapper">
                 <h2>Related Events</h2>
                 <div className="carousel-dots">
-                  <a >See all <img src="assets/images/right-arrow.svg" alt="arrow" /></a>
+                  <a >See all <img src={RightArrow} alt="arrow" /></a>
                   <div className="dots-group">
                     <span className="active"><a ></a></span>
                     <span><a ></a></span>

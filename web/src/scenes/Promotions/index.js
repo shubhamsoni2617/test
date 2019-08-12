@@ -4,6 +4,7 @@ import './style.scss';
 import PromotionService from '../../shared/services/PromotionService';
 import Constants from '../../shared/constants';
 import Breadcrumb from '../App/Breadcrumb';
+import PageBanner from '../../assets/images/promotions-banner.png';
 
 export default class Promotions extends Component {
   constructor(props) {
@@ -18,6 +19,7 @@ export default class Promotions extends Component {
       promotionDetail:"",
       promotionTab: "close",
       tabDetailId:"",
+      shareUrl:undefined
     };
     this.tabsSort = {
       isSortBy: true,
@@ -43,7 +45,7 @@ export default class Promotions extends Component {
       ]
     };
     this.breadCrumbData = {
-      'page_banner': 'assets/images/promotions-banner.png',
+      'page_banner': PageBanner,
       'page': 'Promotions',
       'count': '24',
       'breadcrumb_slug': [{ 'path': '/', 'title': 'Home' }, { 'path': '/promotions', 'title': 'Promotions' }]
@@ -149,8 +151,10 @@ export default class Promotions extends Component {
       .catch((err) => {
         console.log(err)
       })
-      let randomString = Math.random().toString(36).substring(7);
-      window.history.pushState("string", "Title", `/promotions#${randomString}`);
+      let shareUrl=`/promotions/${id}`;
+      // let randomString = Math.random().toString(36).substring(7);
+      window.history.pushState("string", "Title",shareUrl);
+      this.setState({shareUrl:shareUrl})
   }
 
   handleActiveTab = (data) => {
