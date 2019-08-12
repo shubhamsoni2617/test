@@ -48,12 +48,13 @@
             display: block;
             font-size: 18px;
             line-height: 22px;
-            padding: 18px 45px 18px 20px;
+            padding: 18px 45px 18px 30px;
             display: block;
             color: #343434;
             font-family: 'Montserrat', sans-serif;
             font-weight: 600;
             outline: none;
+            word-break: break-word;
             @media(max-width: 1280px){
                 padding: 18px 20px;
             }
@@ -86,9 +87,10 @@
         }
         .accordion__panel{
             display: block !important;
-            max-height: 1000px;
+            max-height: 100%;
             transition: 1s all;
             overflow: hidden;
+            padding: 25px 30px;
             .panel-inner{
               padding: 25px 30px 25px;
               box-shadow: 0 2px 3px 0 rgba(201, 201, 201, 0.5);

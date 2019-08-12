@@ -621,7 +621,7 @@ button,
 
 // Website scroll bar 
 ::-webkit-scrollbar {
-    width: 8px;
+    width: 10px;
 }
  
 ::-webkit-scrollbar-track {
@@ -629,9 +629,9 @@ button,
 }
  
 ::-webkit-scrollbar-thumb {
-  background-color: #DDD;
-  outline: 1px solid #DDD;
-  border-radius: 5px;
+  background-color: #999;
+  outline: 1px solid #999;
+  border-radius: 0px;
 }
 
 // Popover CSS 
@@ -971,4 +971,9 @@ button,
         width: 50%;
         margin-bottom: 35px;
     }
+}
+strong{
+	em{
+		font-weight: 600;
+	}
 }

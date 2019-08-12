@@ -63,6 +63,10 @@
             }
             .SocialMediaShareButton{
                 margin: 0 3px;
+                transition: 0.5s opacity;
+                &:hover{
+                    opacity: 0.8;
+                }
             }
         }
         .info{
@@ -76,7 +80,7 @@
                 display: inline-block;
                 list-style: none;
                 margin: 0px 4px 4px 0;
-                border: 2px solid rgba(106, 106, 106, 0.25);
+                border: 1px solid rgba(106, 106, 106, 0.25);
                 padding: 0px 5px;
                 background-color: transparent;
                 transition: 0.3s background-color;
@@ -84,7 +88,7 @@
                 font-family: 'Montserrat', sans-serif;
                 font-size: 14px;
                 line-height: 18px;
-                font-weight: 600;
+                font-weight: 500;
                 &.active{
                     background-color: #07B3F0;
                     border-color: #07B3F0;
@@ -197,7 +201,7 @@
         a{
             display: block;
             width: 100%;
-            padding: 9px 0px;
+            padding: 8px 0px;
             background-color: #0098ff;
             color: #FFF;
             font-family: 'Montserrat', sans-serif;
@@ -320,7 +324,7 @@
     .buy-package{
         display: block;
         width: 100%;
-        padding: 9px 0px;
+        padding: 8px 0px;
         background-color: #0098ff;
         color: #FFF;
         font-family: 'Montserrat', sans-serif;
@@ -358,32 +362,44 @@
         border: 1px solid #0098FF;
         display: block;
         text-align: center;
-        color: #0098FF;
-        font-family: 'Montserrat', sans-serif;
-        font-size: 18px;
-        line-height: 22px;
-        padding: 9px 0px;
+        padding: 8px 0px;
         display: flex;
+        flex-wrap: wrap;
         justify-content: center;
         align-items: center;
         margin-bottom: 15px;
-        transition: 0.8s background-color , 0.8s color;
-        font-weight: 600;
+        transition: 0.3s ease-in;
         @media(max-width: 980px){
             margin: 0 15px 15px;
         }
-        img{
+        .seat-map-text{
+            color: #0098FF;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 18px;
+            line-height: 22px;
+            font-weight: 600;
+        }
+        .seat-map-img{
+            position: relative;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            flex: 0 0 auto;
             margin-right: 10px;
-            display: block;
-            transition: 0.8s all;
-            opacity: 1;
-            height: auto;
-            overflow: inherit;
-            &.active{
-                opacity: 0;
-                height: 0;
-                overflow: hidden;
-                margin: 0;
+            img{
+                transition: 0.8s all;
+                opacity: 1;
+                overflow: inherit;
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                right: auto;
+                left: 0;
+                top: 50%;
+                transform: translateY(-50%);
+                &.active{
+                    opacity: 0;
+                }
             }
         }
         &:hover{
@@ -391,17 +407,13 @@
             cursor: pointer;
             color: #fff;
             img{
-                transition: 0.8s all;
                 opacity: 0;
-                height: 0;
-                overflow: hidden;
-                margin: 0;
                 &.active{
                     opacity: 1;
-                    height: auto;
-                    overflow: inherit;
-                    margin-right: 10px;
                 }
+            }
+            .seat-map-text{
+                color: #fff;
             }
         }
     }
@@ -625,23 +637,29 @@
             padding-left: 10px;
             flex: 0 0 63%;
         }
-        .share, .info {
+        .info-tooltip, .share-tooltip {
             position: relative;
-            right: 0px;
-            top: 8px;
+            right: auto;
             display: inline-block;
-            margin-left: 15px;
-            margin-top: -15px;
-            transition: 0.3s background-color, 0.3s border-color;
-            @media(max-width: 1280px){
-                margin-left: 10px;
-                margin-top: -14px;
+            top: auto;
+            .share, .info {
+                position: relative;
+                right: 0px;
+                top: 8px;
+                display: inline-block;
+                margin-left: 15px;
+                margin-top: -15px;
+                transition: 0.3s background-color, 0.3s border-color;
+                @media(max-width: 1280px){
+                    margin-left: 10px;
+                    margin-top: -14px;
+               }
+               .share:hover, .info:hover{
+                cursor: pointer;
+                background-color: #fff;
+                border-color: #0098ff;
+                }        
             }
-        }
-        .share:hover, .info:hover{
-            cursor: pointer;
-            background-color: #fff;
-            border-color: #0098ff;
         }
         h2{
             font-size: 22px;
@@ -900,4 +918,55 @@
     &::after{
         display: none;
     }
+}
+.event-detail-wrapper{
+    .react-modal-body{
+        .modal-body{
+            max-height: 350px;
+            overflow-y: auto;
+        }
+        .modal-title{
+            padding-right: 25px;
+        }
+    }
+}
+//tooltip design
+.info-tooltip, .share-tooltip{
+    position: absolute;
+    right: 0px;
+    top: 2px;
+    .info, .share{
+        .tooltip-text {
+            position: absolute;
+            background-color: #000;
+            padding: 5px 10px;
+            color: #fff;
+            border-radius: 5px;
+            left: 50%;
+            top: 100%;
+            margin-top: 0px;
+            opacity: 0;
+            transform: translateX(-50%);
+            transition: 0.5s margin-top, 0.5s opacity;
+            &:after{
+                position: absolute;
+                content: "";
+                top: 0px;
+                margin-top: -7px;
+                left: 50%;
+                transform: translateX(-50%);
+                width: auto;
+                border-left: 7px solid transparent;
+                border-right: 7px solid transparent;
+                border-bottom: 7px solid #000;
+            }
+        }
+        &:hover{
+            .tooltip-text{
+                margin-top: 15px;
+                opacity: 1
+            }
+        }
+    }
+    
 }
