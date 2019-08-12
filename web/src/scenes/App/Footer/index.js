@@ -24,7 +24,7 @@ const Footer = () => {
                            <a>Ticketing Technology</a>
                         </li>
                         <li>
-                           <a>partner with Us</a>
+                           <a>Partner with Us</a>
                         </li>
                         <li>
                            <a>Careers</a>
@@ -32,7 +32,7 @@ const Footer = () => {
                      </ul>
                   </div>
                   <div className="footer-links helpful-links">
-                     <h3>Helpful as</h3>
+                     <h3>Helpful Links</h3>
                      <div className="footer-groups">
                         <ul>
                            <li>
