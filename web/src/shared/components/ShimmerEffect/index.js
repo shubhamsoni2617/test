@@ -35,18 +35,18 @@ export default class ShimmerEffect extends Component {
       var h = [];
       for (let i = 0; i < count; i++) {
         h.push(
-          <div key={i} className={props.propCls}>
+          <div key={i} className='shm_col-xs-5'>
             <div className="contentLoader ListView">
               <div className="shm_row">
                 <div className="shm_col-sm-12">
                   <div className="animated-background " style={{ height: props.height }}> </div>
                 </div>
                 <div className="shm_col-sm-12">
-                  <div className="animated-backgroundlarge firstRow" style={{ height: '25px', width: '88%', marginBottom: '15px' }}> </div>
-                  <div className="animated-backgroundlarge secondRow" style={{ height: '10px', width: '85%', marginBottom: '15px' }}> </div>
-                  <div className="animated-backgroundlarge secondRow" style={{ height: '10px', width: '75%', marginBottom: '15px' }}> </div>
-                  <div className="animated-backgroundlarge secondRow" style={{ height: '10px', width: '65%', marginBottom: '15px' }}> </div>
-                  <div className="animated-backgroundlarge secondRow" style={{ height: '10px', width: '55%', marginBottom: '15px' }}> </div>
+                  <div className="animated-backgroundlarge firstRow" style={{ height: '25px' , marginBottom: '15px' }}> </div>
+                  <div className="animated-backgroundlarge secondRow" style={{ height: '10px', marginBottom: '15px' }}> </div>
+                  <div className="animated-backgroundlarge secondRow" style={{ height: '10px',  marginBottom: '15px' }}> </div>
+                  <div className="animated-backgroundlarge secondRow" style={{ height: '10px', marginBottom: '15px' }}> </div>
+                  <div className="animated-backgroundlarge secondRow" style={{ height: '10px',  marginBottom: '15px' }}> </div>
                 </div>
 
               </div>
