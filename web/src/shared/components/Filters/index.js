@@ -580,7 +580,7 @@ export default class Filters extends Component {
                 <style>{`
                                     .InputFromTo .DayPicker-Day--selected:not(.DayPicker-Day--start):not(.DayPicker-Day--end):not(.DayPicker-Day--outside),
                                     .InputFromTo-to .DayPicker-Day--selected:not(.DayPicker-Day--start):not(.DayPicker-Day--end):not(.DayPicker-Day--outside) {
-                                        background-color: #E8F4FF;
+                                        background-color: #EFF7FF;
                                         color: #7C86A2;
                                         border-radius: 0px;
                                     }

@@ -4,6 +4,8 @@ import Calender from '../Calender';
 import thumbnailImg1 from "../../../assets/images/pretty-girls.jpg";
 import thumbnailImg2 from "../../../assets/images/hetty-keos.jpg";
 import locationImage from "../../../assets/images/location.svg";
+import eventGenere from "../../../assets/images/event.svg";
+import eventCalender from "../../../assets/images/cal.svg";
 import rightArrowImage from "../../../assets/images/right-arrow.svg";
 
 const MegaMenu = (props) => {
@@ -44,7 +46,7 @@ const MegaMenu = (props) => {
       <div className="submenu-wrapper">
         <div className="event-category">
           <p className="submenu-subtitle">
-            <img src="assets/images/event.svg" alt="" />
+            <img src={eventGenere} alt="" />
             By Genre
           </p>
           <ul>
@@ -59,8 +61,7 @@ const MegaMenu = (props) => {
         </div>
         <div className="calender">
           <ul>
-            <li className="month submenu-subtitle"><img src="assets/images/cal.svg"
-              alt="" /> By Date</li>
+            <li className="month submenu-subtitle"><img src={eventCalender} alt="" /> By Date</li>
           </ul>
           <div className="month-cal">
             <Calender handleEnter={props.handleMouseStatus} />
