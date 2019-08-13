@@ -49,10 +49,7 @@ const Calender = (props) => {
   }
 
   const formatDate = (date) => {
-
-    return (
-      date.getDate() + '-' + monthNames[date.getMonth()] + '-' + date.getFullYear()
-    );
+    return moment(date).format('DD MMM YYYY');
   }
 
   const modifiersStyles = {
@@ -76,7 +73,7 @@ const Calender = (props) => {
         numberOfMonths={1}
         fromMonth={from}
         selectedDays={selectedDays}
-        disabledDays={disabledDays}
+        disabledDays={{before: new Date()}}
         modifiers={modifiers}
         modifiersStyles={modifiersStyles}
         onDayClick={handleDayClick}
