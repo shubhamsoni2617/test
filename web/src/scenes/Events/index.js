@@ -27,7 +27,7 @@ export default class Events extends Component {
             filteredGnere: [], filteredSearch: [], filteredPromotions: [], filteredVenues: [], filteredTags: [],
             filteredPriceRange: {}, filteredDateRange: {}, filteredSortType: 'date', filteredSortOrder: '',
             eventsData: [], genre: [], venues: [], filterConfig: [], first: 0, limit: 9, viewType: 'grid', viewTypeClass: 'events-section', totalRecords: 0,
-            loader: false
+            loader: false, queryParams:{}
         };
 
         this.breadCrumbData = {
@@ -86,6 +86,9 @@ export default class Events extends Component {
         const query = new URLSearchParams(this.props.location.search);
         let genreId = query.get('c') ? query.get('c') : '';
         let venueId = query.get('v') ? query.get('v') : '';
+        
+        this.setState({queryParams : {genreId : genreId, venueId: venueId}});
+
         this.initialLimit.genre = genreId;
         this.initialLimit.venue = venueId;
         return this.initialLimit;
@@ -298,7 +301,7 @@ export default class Events extends Component {
     }
 
     render() {
-        const { loader, genre, venues, filterConfig, eventsData, totalRecords, isdataAvailable, viewType, shimmer } = this.state;
+        const { queryParams, loader, genre, venues, filterConfig, eventsData, totalRecords, isdataAvailable, viewType, shimmer } = this.state;
         const viewTypeActive = (viewType == 'list') ? 'active' : '';
         return (
             <div>
@@ -307,7 +310,7 @@ export default class Events extends Component {
                     <div className="container-fluid">
                         <div className="wrapper-events-listing">
                             {genre.length > 0 && venues.length > 0 && filterConfig.price_config && filterConfig.promotion_categories &&
-                                <Filters resetFilters={this.resetFilters} handleFilters={this.handleFilters} genreData={genre} venueData={venues} filterConfig={filterConfig} />
+                                <Filters queryParams={queryParams} resetFilters={this.resetFilters} handleFilters={this.handleFilters} genreData={genre} venueData={venues} filterConfig={filterConfig} />
                             }
                             <div className="events-listing">
                                 <div className="event-listing-sorting">

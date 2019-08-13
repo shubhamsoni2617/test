@@ -42,7 +42,7 @@ export default class VenueFilter extends Component {
       if (el !== null) {
          this.myRef.scrollTo({
             top: 0,
-            left: el.offsetLeft - 25,
+            left: el.offsetLeft,
             behavior: 'smooth',
          });
       }
