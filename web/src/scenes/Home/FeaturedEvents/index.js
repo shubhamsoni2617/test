@@ -251,7 +251,7 @@ const FeaturedEvents = (props) => {
                                                         <div className="item-img">
                                                             <img src={event.img} className="img-fluid" alt="explore" />
                                                         </div>
-                                                        <span className="category">Dance</span>
+                                                        <span className="category dance">Dance</span>
                                                     </div>
                                                     <h3>SSO Red Balloon Series: Rhythums, Rites</h3>
                                                     <p>Fri, 3 May 2019</p>
@@ -276,7 +276,7 @@ const FeaturedEvents = (props) => {
                                                         <div className="item-img">
                                                             <img src={event.img} className="img-fluid" alt="explore" />
                                                         </div>
-                                                        <span className="category">Dance</span>
+                                                        <span className="category dance">Dance</span>
                                                     </div>
                                                     <h3>SSO Red Balloon Series: Rhythums, Rites</h3>
                                                     <p>Fri, 3 May 2019</p>
