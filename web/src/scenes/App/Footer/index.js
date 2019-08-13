@@ -1,7 +1,9 @@
 import React from 'react'
 import { a } from 'react-router-dom';
 import './style.scss';
+import appleImage from '../../../assets/images/apple.svg';
 import sendImage from '../../../assets/images/send.svg';
+import androidImage from '../../../assets/images/android.png';
 import BackToTop from '../../../shared/components/BackToTop'
 
 const Footer = () => {
@@ -74,14 +76,14 @@ const Footer = () => {
                      <h3>SISTIC on Mobile</h3>
                      <div className="download-option">
                         <a>
-                           <img src="assets/images/apple.svg" className="ios" alt="" />
+                           <img src={appleImage} className="ios" alt="" />
                            <span>
                               Available on the<br />
                               <strong>App Store</strong>
                            </span>
                         </a>
                         <a>
-                           <img src="assets/images/android.png" className="android" alt="" />
+                           <img src={androidImage} className="android" alt="" />
                            <span>
                               Get it on<br />
                               <strong>Play Store</strong>
