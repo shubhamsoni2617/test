@@ -555,7 +555,7 @@
                 margin-bottom: 0px;
             }
             .date-input-to, .date-input-from {
-                margin-right: 10px;
+                margin-right: 8px;
                 flex: 0 0 calc(44% - 10px);
                 width: calc(44% - 10px);
                 label{
@@ -579,6 +579,7 @@
                 border: 1px solid #9a9a9a;
                 cursor: pointer;
                 transition: 0.3s background-color, 0.3s border-color;
+                margin-top: 18px;
                 &.active, &:hover{
                     line-height: 26px;
                     background-color: #0098FF;
@@ -597,7 +598,7 @@
             .DayPickerInput{
                 input{
                     height: 26px;
-                    width: 120px;
+                    width: 100%;
                     border: 1px solid #E1E1E1;
                     padding: 0px 7px;
                     color: #626262;
