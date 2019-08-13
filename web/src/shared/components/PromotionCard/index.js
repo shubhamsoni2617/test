@@ -6,6 +6,7 @@ import SocialShare from '../../../shared/components/SocialShare';
 import CloseIcon from '../../../assets/images/close-blue.svg';
 import ShareIcon from '../../../assets/images/share-icon.svg';
 import NextArrow from '../../../assets/images/next-arrow-white.svg';
+import NextArrowBlue from '../../../assets/images/next-arrow-blue.svg';
 import RightArrow from '../../../assets/images/right-arrow.svg';
 import StopWatch from '../../../assets/images/stopwatch-grey.svg';
 
@@ -53,20 +54,20 @@ const PromotionCard = (props) => {
         <div className="promotion-desc">
           <span className="promotion-category" style={{ color: `#${data.featured_label_color}` }}>{data.featured_label_text}</span>
           <span className="share" onClick={handleSocialShare} >
-            {socialShare ? "X" : <img src={ShareIcon} alt="share-icon" />}
-            <span style={{ display: socialShare ? "block" : "none" }}><SocialShare shareUrl={shareUrl && shareUrl} /></span>
-          </span>
+            <img src={ShareIcon} alt="share-icon" />
+            <SocialShare showSocialShare={socialShare ? "share-visible" : ""} shareUrl={shareUrl && shareUrl} /></span>
           <h3>{data.title}</h3>
           <div className="promotion-btn-wrapper">
             <a href={data.buttons.length > 0 && data.buttons[0].url ? data.buttons[0].url : undefined}>
               <button style={{ color: data.buttons.length > 0 ? `#${data.buttons[0].color}` : "" }}>
                 <span>{data.buttons.length > 0 && data.buttons[0].text}</span>
                 <img src={NextArrow} alt="next-arrow" />
+                <img className="active" src={NextArrowBlue} alt="next-arrow" />
               </button>
             </a>
             {data.show_timer === "1" ?
               <div className="promotion-timer">
-                {!expiredText ? <span className="timer-tagline">Promotion ends in:</span> : null}
+                {!expiredText ? <span className="timer-tagline">Hurry! Promotion ends in:</span> : null}
                 <ul>
                   <li className="timer-watch">
                     <img src={StopWatch} className="img-fluid" alt="watch" />
