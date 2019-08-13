@@ -66,8 +66,8 @@ const Calender = (props) => {
   const disabledDays = { before: from };
   const selectedDays = [from, { from, to: enteredTo }];
 
-  var fromDateValue = from ? formatDate(from) : null;
-  var toDateValue = to ? formatDate(to) : null;
+  let fromDateValue = from ? formatDate(from) : null;
+  let toDateValue = to ? formatDate(to) : null;
 
   return (
     <div>
@@ -108,16 +108,7 @@ const Calender = (props) => {
               <img src={crossArrowWhite} alt="" className="active" />
             </a>
             <Link
-              to={{
-                pathname: 'events',
-                state: {
-                  data: {
-                    from: from,
-                    to: to
-                  }
-                }
-              }
-              }
+              to={'/events/search?s=' + moment(fromDateValue).format('DD-MM-YYYY') + '--' + moment(toDateValue).format('DD-MM-YYYY')}
               className="cal-apply-btn active"
               onClick={() => {
                 props.handleEnter(false)
