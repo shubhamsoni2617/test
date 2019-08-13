@@ -10,7 +10,7 @@ import { CSSTransitionGroup } from 'react-transition-group';
 import "react-day-picker/lib/style.css";
 import "react-tabs/style/react-tabs.css";
 import "react-input-range/lib/css/index.css";
-import SearchIcon from "../../../assets/images/search-grey.png";
+import SearchIcon from "../../../assets/images/search-icon-gray.svg";
 import "./style.scss";
 
 export default class Filters extends Component {
@@ -42,7 +42,6 @@ export default class Filters extends Component {
 
 
   applyIsChecked = () => {
-      debugger
       console.log(this.props)
     this.state.promotionsData.map(promotion => {
       promotion.isChecked = false;
@@ -297,7 +296,7 @@ export default class Filters extends Component {
           <div className="filters-search">
             <button type="submit" className="search-btn">
               <img
-                src="assets/images/search-blue.svg"
+                src={SearchIcon}
                 className="img-fluid active"
                 alt="search-icon"
               />

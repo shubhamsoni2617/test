@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './style.scss';
 import MiniCartLogo from '../../../assets/images/cart.svg';
+import exploreImg from '../../../assets/images/explore.png';
 
 class MiniCart extends Component {
     constructor(props) {
@@ -47,7 +48,7 @@ class MiniCart extends Component {
                                     return (
                                         <li key={cart.id}>
                                             <div className="product-img">
-                                                <img src={cart.img} className="img-fluid"
+                                                <img src={exploreImg} className="img-fluid"
                                                     alt="cart" />
                                             </div>
                                             <div className="product-details">

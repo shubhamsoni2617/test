@@ -7,6 +7,7 @@ import locationImage from "../../../assets/images/location.svg";
 import eventGenere from "../../../assets/images/event.svg";
 import eventCalender from "../../../assets/images/cal.svg";
 import rightArrowImage from "../../../assets/images/right-arrow.svg";
+import seeAllEvent from "../../../assets/images/right-arrow.svg";
 
 const MegaMenu = (props) => {
 
@@ -119,7 +120,7 @@ const MegaMenu = (props) => {
       </div>
       <div className="see-all-evevts">
         <Link to="/events" className="seeall-btn">See All Events
-                        <img src="assets/images/right-arrow.svg" alt="" /></Link>
+                        <img src={seeAllEvent} alt="" /></Link>
       </div>
     </div>
 

@@ -226,8 +226,10 @@ button,
     font-weight: 700;
 	font-size: 14px;
 	line-height: 30px;
-	overflow: hidden;
-	&::after {
+    overflow: hidden;
+    border: 1px solid transparent;
+    transition: 0.8s all;
+	/*&::after {
 		height: calc(100% + 50px);
 		position: absolute;
 		content: "";
@@ -239,8 +241,12 @@ button,
 		transition: 0.5s left, 0.5s opacity;
 		filter: blur(10px);
 		top: -30px;
-	}
+	}*/
 	&:hover {
+        background-color: #FFF;
+        color: #0098ff;
+        border: 1px solid #0098ff;
+        transition: 0.8s all;
 		cursor: pointer;
 		&::after {
 			left: calc(100% + 35px);
@@ -653,6 +659,7 @@ button,
 	padding: 0px;
     overflow: hidden;
     font-size: 13px;
+    z-index: 3;
     &::before{
         position: absolute;
         content: "";
@@ -693,13 +700,15 @@ button,
                     width: 14.28%;
 					line-height: 25px;
 					text-align: center;
-					justify-content: center;
+                    justify-content: center;
+                    
 				  abbr[title]{
 					 color: rgba(52, 72, 94, 0.54);
 					  font-size: 11px;
 						line-height: 25px;
 					   width: 25px;
-						height: 25px;
+                        height: 25px;
+                        cursor: default;
 				   }
 			   }
 			}
@@ -834,7 +843,10 @@ button,
 					}
 					&.DayPicker-Day--today{
 						color: #2698ff !important;
-						font-weight: bold;
+                        font-weight: bold;
+                        &.DayPicker-Day--end{
+                            color: #FFF !important;
+                        }
 						&:hover{
 							color: #fff !important;
 						}

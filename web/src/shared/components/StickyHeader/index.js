@@ -77,17 +77,19 @@ export default class StickyHeader extends Component {
               )}
               {detailData.venue_name && (
                 <li className="event-address">
-                  <img
-                    className="location-gray"
-                    src={locationGray}
-                    alt="location"
-                  />
-                  <img
-                    className="location-icon"
-                    src={locationImg}
-                    alt="location"
-                  />
-                  <span>{detailData.venue_name.name}</span>
+                    <a>
+                        <img
+                            className="location-gray"
+                            src={locationGray}
+                            alt="location"
+                        />
+                        <img
+                            className="location-icon"
+                            src={locationImg}
+                            alt="location"
+                        />
+                        <span>{detailData.venue_name.name}</span>
+                  </a>
                 </li>
               )}
             </ul>
