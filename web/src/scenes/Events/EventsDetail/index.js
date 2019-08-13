@@ -5,18 +5,11 @@ import ArticleSection from '../../../shared/components/ArticleSection';
 import './style.scss';
 import EventsService from '../../../shared/services/EventsService';
 import Constants from '../../../shared/constants';
-import calendarImg from '../../../assets/images/event-calender.svg';
-import locationImg from '../../../assets/images/location-blue.svg';
 import SeatMapImg from '../../../assets/images/seatmap.svg';
 import SeatMapWhite from '../../../assets/images/seatmap-white.svg';
 import faceImg from '../../../assets/images/face.svg';
-import shareIcon from '../../../assets/images/share-icon.svg';
 import giftCardImage from '../../../assets/images/gift-card.png';
-import Info from '../../../assets/images/info-sign.svg';
 import SeatMap from '../../../shared/components/SeatMap';
-import SocialShare from '../../../shared/components/SocialShare';
-import PopUpWithClose from '../../../shared/components/PopUpWithClose';
-import Image from '../../../shared/components/Image';
 import ModalPopup from '../../../shared/components/Modal';
 import ShimmerEffect from '../../../shared/components/ShimmerEffect';
 import StickyHeader from "../../../shared/components/StickyHeader";
@@ -58,6 +51,7 @@ export default class EventsDetail extends Component {
   };
 
   componentDidMount() {
+    window.scrollTo(0,0)
     window.addEventListener("scroll", this.handleScroll);
     const payload = { code: this.state.code, client: Constants.CLIENT };
     EventsService.getEventDetails(payload)
@@ -198,7 +192,7 @@ export default class EventsDetail extends Component {
       error,
       showInfo,
       showNotice,
-      setHeader
+      setHeader,
     } = this.state;
 
     if (error) {
@@ -382,7 +376,7 @@ export default class EventsDetail extends Component {
              </div>
            </section>}
             {similarEventsData && similarEventsData.length > 0 &&
-              <Suspense fallback={<ShimmerEffect  height={150} count={5}  type="grid"/>}>
+              <Suspense fallback={<ShimmerEffect  height={150} count={5}  type="grid" propCls='shm_col-xs-5'/>}>
                 <SimilarPicksSection data={similarEventsData} />
                 </Suspense>
             }
