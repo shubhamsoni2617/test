@@ -11,6 +11,7 @@ import SeatMapImg from '../../../assets/images/seatmap.svg';
 import SeatMapWhite from '../../../assets/images/seatmap-white.svg';
 import faceImg from '../../../assets/images/face.svg';
 import shareIcon from '../../../assets/images/share-icon.svg';
+import giftCardImage from '../../../assets/images/gift-card.png';
 import Info from '../../../assets/images/info-sign.svg';
 import SeatMap from '../../../shared/components/SeatMap';
 import SocialShare from '../../../shared/components/SocialShare';
@@ -224,7 +225,7 @@ export default class EventsDetail extends Component {
       <div className="event-detail-wrapper">
         {detailData && (
           <div>
-            {detailData.is_available_for_booking == 0 && (
+            {detailData.is_available_for_booking === 0 && (
               <div className="shows-over-banner">
                 <div className="shows-over">
                   <div className="shows-over-icon">
@@ -240,7 +241,7 @@ export default class EventsDetail extends Component {
                 </div>
               </div>
             )}
-            {detailData.is_available_for_booking == 1 && (
+            {detailData.is_available_for_booking === 1 && (
               <div>
                 {/* {detailData.pop_up_message && showNotice && <PopUpWithClose content={detailData.pop_up_message.description} title={detailData.pop_up_message.title} handleClose={this.handleClose} />} */}
                 {detailData.pop_up_message &&
@@ -308,8 +309,11 @@ export default class EventsDetail extends Component {
                   </div>
                   <div className="event-detail-sidebar">
                     <a onClick={() => this.openSeatMap()} className="seat-map">
-                      <img src={SeatMapImg} />
-                      <img className="active" src={SeatMapWhite} /> Seat Map
+                      <span className="seat-map-img">
+                        <img src={SeatMapImg} />
+                        <img className="active" src={SeatMapWhite} />
+                      </span>
+                      <span className="seat-map-text">Seat Map</span>
                     </a>
                     {showSeatMap &&
                       detailData.seating_plan &&
@@ -364,14 +368,25 @@ export default class EventsDetail extends Component {
                     </div>
                   </section>
                 )}
+                <ArticleSection />
               </div>
             )}
-            <ArticleSection />
+            {detailData.is_available_for_booking === 0 &&
+             <section className="gift-cart">
+             <div className="gift-cart-image">
+               <img
+                 src={giftCardImage}
+                 className="img-fluid"
+                 alt="Gift-cart"
+               />
+             </div>
+           </section>}
             {similarEventsData && similarEventsData.length > 0 &&
               <Suspense fallback={<ShimmerEffect  height={150} count={5}  type="grid"/>}>
                 <SimilarPicksSection data={similarEventsData} />
                 </Suspense>
             }
+            {detailData.is_available_for_booking === 0 && <ArticleSection />}
           </div>
         )}
       </div>

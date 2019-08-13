@@ -78,7 +78,7 @@ export default class VenueFilter extends Component {
             id = 'venue-panel-' + venue.id;
             addHoverClass = (this.state.alphabet == key) ? '' : this.state.hoverEffect;
             groupedData.push(<li className={addHoverClass}>
-               <input onChange={(e) => this.props.checkUncheckVenues(e, venue.id, 'child')} className="styled-checkbox" type="checkbox" id={id} />
+               <input onChange={(e) => this.props.checkUncheckVenues(e, venue.id, 'child')} checked={venue.isChecked} className="styled-checkbox" type="checkbox" id={id} />
                <label htmlFor={id}>
                   {venue.name}
                </label>
@@ -95,29 +95,41 @@ export default class VenueFilter extends Component {
 
    // Prepare alphabests in Venue popup
    prepareAlphabets = () => {
+
+      let keys = [];
+      let isKeyAvailable;
       let alphabets = [];
+      let applyDisabledClass = '';
+
+      //find the keys form object
+      keys = Object.keys(this.groupedCollection);
+
       alphabets.push(<li id="#"
          onMouseOver={() => this.handleHoverOn('#')}
          onMouseLeave={() => this.handleHoverOff()}
          onClick={this.scrollToRef} >#</ li>);
       for (let i = 65; i < 91; i++) {
-            alphabets.push(
-               <li id={String.fromCharCode(i)}
-                  onMouseOver={() => this.handleHoverOn(String.fromCharCode(i))}
-                  onMouseLeave={() => this.handleHoverOff()}
-                  key={i}
-                  onClick={this.scrollToRef} >
-                  {String.fromCharCode(i).toUpperCase()}
-               </li>
-            )
-         }
-         return alphabets;;
+         isKeyAvailable = keys.find((val) => {
+            return (val === String.fromCharCode(i)) ? true : false;
+         })
+         applyDisabledClass = (isKeyAvailable) ? '' : 'disabled'
+         alphabets.push(
+            <li className={applyDisabledClass} id={String.fromCharCode(i)}
+               onMouseOver={() => this.handleHoverOn(String.fromCharCode(i))}
+               onMouseLeave={() => this.handleHoverOff()}
+               key={i}
+               onClick={this.scrollToRef} >
+               {String.fromCharCode(i).toUpperCase()}
+            </li>
+         )
       }
-   
-      // Return Jsx
+      return alphabets;
+   }
+
+   // Return Jsx
    render() {
-      const {venuesData, search, display } = this.state;
-      const {setOpenVenuePanel} = this.props;
+      const { venuesData, search, display } = this.state;
+      const { setOpenVenuePanel } = this.props;
       let filteredVenue = venuesData.length && venuesData.filter((venues) => {
          return venues.name.toLowerCase().indexOf(search) !== -1;
       })
@@ -125,42 +137,42 @@ export default class VenueFilter extends Component {
 
       return (
          <div className="filters-panel">
-         <CSSTransitionGroup
-                    transitionName="dropdown"
-                    transitionEnter={true}
-                    transitionEnterTimeout={300}
-                    transitionLeaveTimeout={300}>
-            {display && <div className="filter-directory-panel">
-               <div className="filter-directory-titlebar">
-                  <div className="filter-directory-heading">
-                     <h3>Venue</h3>
-                     <span className="filter-directory-close">
-                        <img onClick={() => setOpenVenuePanel(false)} src={CloseIcon} alt="Close" />
-                     </span>
+            <CSSTransitionGroup
+               transitionName="dropdown"
+               transitionEnter={true}
+               transitionEnterTimeout={300}
+               transitionLeaveTimeout={300}>
+               {display && <div className="filter-directory-panel">
+                  <div className="filter-directory-titlebar">
+                     <div className="filter-directory-heading">
+                        <h3>Venue</h3>
+                        <span className="filter-directory-close">
+                           <img onClick={() => setOpenVenuePanel(false)} src={CloseIcon} alt="Close" />
+                        </span>
+                     </div>
+                     <div className="filter-directory-indices-list">
+                        <input type="text" value={search} onChange={(event) => this.updateSearch(event)} placeholder="Search in Venues" className="filter-directory-search-input" />
+                        <ul className="filter-directory-indices">
+                           {
+                              this.prepareAlphabets().map((alphabets) => {
+                                 return alphabets
+                              })
+                           }
+                        </ul>
+                     </div>
                   </div>
-                  <div className="filter-directory-indices-list">
-                     <input type="text" value={search} onChange={(event) => this.updateSearch(event)} placeholder="Search in Venues" className="filter-directory-search-input" />
-                     <ul className="filter-directory-indices">
+                  <div>
+                     <ul id="venueContainer" ref={(node) => this.myRef = node} className="filter-directory-list">
                         {
-                           this.prepareAlphabets().map((alphabets) => {
-                              return alphabets
+                           this.groupeFilter(this.groupedCollection).map((lidata) => {
+                              return lidata;
                            })
                         }
                      </ul>
                   </div>
-               </div>
-               <div className="filter-directory-list">
-                  <ul id="venueContainer" ref={(node)=>this.myRef=node}>
-                     {
-                        this.groupeFilter(this.groupedCollection).map((lidata) => {
-                           return lidata;
-                        })
-                     }
-                  </ul>
-               </div>
-            </div>}
+               </div>}
             </CSSTransitionGroup>
          </div>
-         )
-      }
+      )
+   }
 }

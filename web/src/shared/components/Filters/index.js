@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, createRef } from "react";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import InputRange from "react-input-range";
 import VenueFilter from "../VenueFilter";
@@ -33,11 +33,24 @@ export default class Filters extends Component {
       from: undefined,
       to: undefined
     };
+
   }
 
   componentDidMount() {
     this.applyIsChecked();
+    this.getRoutesParams();
   }
+
+  getRoutesParams = () => {
+    //   console.log('this.props.location', this.props)
+    // const query = new URLSearchParams(this.props.location.search);
+    // console.log('query', query)
+    // let genreId = query.get('c') ? query.get('c') : '';
+    // let venueId = query.get('v') ? query.get('v') : '';
+    
+}
+
+
 
   applyIsChecked = () => {
     this.state.promotionsData.map(promotion => {
@@ -244,8 +257,9 @@ export default class Filters extends Component {
     });
   };
 
-  setOpenVenuePanel = status => {
+  setOpenVenuePanel = (status, ref) => {
     this.setState({ venueFilterPanelDisplay: status });
+    window.scrollTo(0, 1000);
   };
 
   render() {
@@ -432,8 +446,8 @@ export default class Filters extends Component {
             <div className="filters-panel">
               <InputRange
                 ref="input_range"
-                maxValue={price_config && price_config.max_price}
-                minValue={price_config && price_config.min_price}
+                maxValue={parseInt(price_config && price_config.max_price)}
+                minValue={parseInt(price_config && price_config.min_price)}
                 value={this.state.priceRangeValue}
                 onChange={value => this.setPriceRange(value)}
                 onChangeComplete={(value) => this.props.handleFilters("price-range", value, "")}
@@ -729,14 +743,14 @@ export default class Filters extends Component {
                   })}
               </ul>
               <a
-                onClick={() => this.setOpenVenuePanel(true)}
+                onClick={() => this.setOpenVenuePanel(true, this.venuePopUpRef)}
                 className="view-all-filters"
               >
                 + {venuesData.length - venueShowLimit} More
               </a>
             </div>
             {/* Venue filter component. */}
-            <VenueFilter
+            <VenueFilter ref={(node) => this.venuePopUpRef = node}
               checkUncheckVenues={this.checkUncheckVenues}
               setOpenVenuePanel={this.setOpenVenuePanel}
               venueFilterPanelDisplay={venueFilterPanelDisplay}

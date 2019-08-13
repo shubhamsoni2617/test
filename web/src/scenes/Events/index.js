@@ -294,7 +294,7 @@ export default class Events extends Component {
     }
 
     redirectToTarget = alias => {
-        this.props.history.push(`events/` + alias)
+        this.props.history.push(`/events/` + alias)
     }
 
     render() {
@@ -323,7 +323,7 @@ export default class Events extends Component {
                                 </div>
                                 <div className={this.state.viewTypeClass}>
                                 {/* {shimmer && <ShimmerEffect propCls="shm_col-xs-6" height={150} count={6} type="grid" />} */}
-                                    {loader && <img src={loaderImage} />}
+                                    {loader && <img className="filter-loader" src={loaderImage} />}
                                     {eventsData && eventsData.map((event) => {
                                         return <div onClick={() => this.redirectToTarget(event.alias)}>
                                             <Card eventsData={event} />

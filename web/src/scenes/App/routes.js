@@ -23,8 +23,8 @@ const routes =  [
   },
   {
     path: '/events',
-    exact : true,
     component: Events,
+    exact : true,
     fetchInitialData: (path = '') => HomeService.getData()
   },
   {

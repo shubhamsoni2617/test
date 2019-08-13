@@ -405,6 +405,10 @@
                                 color: #000000;
                                 font-weight: 600;
                                 font-size: 13px;
+                                &.disabled{
+                                    opacity: 0.2;
+                                    pointer-events: none;
+                                }
                             }
                         }
                     }
