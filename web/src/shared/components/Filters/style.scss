@@ -637,10 +637,12 @@
                         margin: 0px;
                     }
                     .DayPicker-Weekday {
-                        width: 39px;
+                        flex: 0 0 14.28%;
+                        width: 14.28%;
                     }
                     .DayPicker-Day{
-                        width: 39px;
+                        flex: 0 0 14.28%;
+                        width: 14.28%;
                     }
                      .DayPicker-NavBar {
                          position: absolute;
