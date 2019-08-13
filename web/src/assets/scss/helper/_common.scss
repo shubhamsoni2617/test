@@ -684,8 +684,7 @@ button,
 				width: 100%;
 				justify-content: center;
 				.DayPicker-Weekday {
-					display: flex;
-					flex: 0 0 14.28%;
+					display: flex;					
 					color: #8B9898;
 					font-size: 0.875em;
 					padding: 0px;
@@ -709,6 +708,7 @@ button,
 		   display: flex;
 		   flex-wrap: wrap;
 			text-align: center;
+			width: 100%;
 			.DayPicker-Week {
 				display: flex;
 				flex: 0 0 100%;
@@ -752,8 +752,28 @@ button,
 					   border-top-right-radius: 5px;
 					   border-bottom-right-radius: 5px;
 				   }
+				   &.DayPicker-Day--outside{
+					   pointer-events: none;
+					   &:after{
+						   content: none;
+					   }
+				   }
+				   &.DayPicker-Day--start{
+					& + .DayPicker-Day--end{
+						&:before{
+							content: none;
+						}
+					}
+					&:hover{
+						&:before{
+							content: none;
+						}
+						& + .DayPicker-Day--selected:before{
+							content: none;
+						}
+					}
+				   }
 					&.DayPicker-Day--start, &.DayPicker-Day--end{
-					   border-radius: 50%;
 					   background-color: transparent;
 					   padding: 0px;
 					   color: #fff;
@@ -780,8 +800,8 @@ button,
 						   position: absolute;
 						   content: "";
 						   background-color: #EFF7FF;
-						   width: 25px;
-						   height: 25px;
+						   width: 70%;
+						   height: 100%;
 						   left: -10px;
 						   right: auto;
 						   top: 50%;
@@ -801,8 +821,8 @@ button,
 						   position: absolute;
 						   content: "";
 						   background-color: #EFF7FF;
-						   width: 30px;
-						   height: 25px;
+						   width: 70%;
+						   height: 100%;
 						   top: 50%;
 						   transform: translate(-50%, -50%);
 						   z-index: -1;
