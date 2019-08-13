@@ -13,6 +13,7 @@ import ListView from '../../assets/images/list-view.svg';
 import GridView from '../../assets/images/grid-view.svg';
 import loaderImage from '../../assets/images/loader-tick.gif';
 import EventBreadcrumbImage from '../../assets/images/events.png';
+import moment from "moment";
 import ShimmerEffect from '../../shared/components/ShimmerEffect';
 import './style.scss';
 
@@ -27,7 +28,7 @@ export default class Events extends Component {
             filteredGnere: [], filteredSearch: [], filteredPromotions: [], filteredVenues: [], filteredTags: [],
             filteredPriceRange: {}, filteredDateRange: {}, filteredSortType: 'date', filteredSortOrder: '',
             eventsData: [], genre: [], venues: [], filterConfig: [], first: 0, limit: 9, viewType: 'grid', viewTypeClass: 'events-section', totalRecords: 0,
-            loader: false, queryParams:{}
+            loader: false, queryParams: {}
         };
 
         this.breadCrumbData = {
@@ -82,15 +83,33 @@ export default class Events extends Component {
         this.loadEvents(this.getRoutesParams());
     }
 
+    componentDidUpdate(prevProps) {
+        if (this.props.location.search && this.props.location.search != prevProps.location.search) {
+            this.loadEvents(this.getRoutesParams());
+        }
+    }
+
     getRoutesParams = () => {
         const query = new URLSearchParams(this.props.location.search);
         let genreId = query.get('c') ? query.get('c') : '';
         let venueId = query.get('v') ? query.get('v') : '';
-        
-        this.setState({queryParams : {genreId : genreId, venueId: venueId}});
+        let dateRange = query.get('s') ? query.get('s') : '';
+        if (dateRange != '') {
+            dateRange = dateRange.split('--');
+            dateRange = { from: dateRange[0], to: dateRange[1] }
+        }
+        this.state.filteredGnere = [];
+        this.state.filteredVenues = [];
+        this.state.filteredGnere.push(genreId);
+        this.state.filteredVenues.push(venueId);
+
+        this.setState({ queryParams: { genreId: genreId, venueId: venueId, dateRange: dateRange } });
 
         this.initialLimit.genre = genreId;
         this.initialLimit.venue = venueId;
+        this.initialLimit.start_date = dateRange.from;
+        this.initialLimit.end_date = dateRange.to;
+
         return this.initialLimit;
     }
 
@@ -153,10 +172,10 @@ export default class Events extends Component {
     loadEvents = (params, isLoadMore) => {
         EventsService.getData(params)
             .then((res) => {
-                if(!isLoadMore) this.setState({eventsData : []});
+                if (!isLoadMore) this.setState({ eventsData: [] });
                 const eventData = [...this.state.eventsData, ...res.data.data];
                 const isdataAvailable = eventData.length ? false : true;
-                this.setState({ loader:false, eventsData: eventData, shimmer: false, totalRecords: res.data.total_records, isdataAvailable: isdataAvailable })
+                this.setState({ loader: false, eventsData: eventData, shimmer: false, totalRecords: res.data.total_records, isdataAvailable: isdataAvailable })
             })
             .catch((err) => {
                 console.log(err)
@@ -285,14 +304,14 @@ export default class Events extends Component {
             filteredSortType,
             filteredSortOrder
         }, () => {
-            this.setState({totalRecords: 0 ,loader:true})
+            this.setState({ totalRecords: 0, loader: true })
             this.setState({ first: 0, limit: 9 });
             let params = this.setFilterParams()
 
-            setTimeout(()=>{
+            setTimeout(() => {
                 this.loadEvents(params, false);
             }, 200)
-            
+
         })
     }
 
@@ -325,7 +344,7 @@ export default class Events extends Component {
                                     </ul>
                                 </div>
                                 <div className={this.state.viewTypeClass}>
-                                {/* {shimmer && <ShimmerEffect propCls="shm_col-xs-6" height={150} count={6} type="grid" />} */}
+                                    {/* {shimmer && <ShimmerEffect propCls="shm_col-xs-6" height={150} count={6} type="grid" />} */}
                                     {loader && <img className="filter-loader" src={loaderImage} />}
                                     {eventsData && eventsData.map((event) => {
                                         return <div onClick={() => this.redirectToTarget(event.alias)}>
