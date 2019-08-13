@@ -3551,6 +3551,7 @@ body.page-load {
 	transform: translateX(-50%);
 	margin-top: 3px;
 	transition: 0.5s top;
+	box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
 	.header-search-fixed {
 		display: none;
 		@media (max-width: 767px) {
@@ -3647,6 +3648,7 @@ body.page-load {
 		ul {
 			display: flex;
 			flex-wrap: wrap;
+			width: calc(100% + 10px);
 			@media (max-width: 767px) {
 				flex-wrap: unset;
 			}
@@ -3677,9 +3679,6 @@ body.page-load {
                         color: #0098ff;
                     }
                 }
-				&:last-child {
-					padding-right: 0px;
-				}
 				img {
 					max-width: 100%;
                     max-height: 200px;
