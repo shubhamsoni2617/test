@@ -36,39 +36,45 @@ export default class Filters extends Component {
 
   }
 
-  componentDidMount() {
+  componentWillMount() {
     this.applyIsChecked();
-    this.getRoutesParams();
   }
-
-  getRoutesParams = () => {
-    //   console.log('this.props.location', this.props)
-    // const query = new URLSearchParams(this.props.location.search);
-    // console.log('query', query)
-    // let genreId = query.get('c') ? query.get('c') : '';
-    // let venueId = query.get('v') ? query.get('v') : '';
-    
-}
-
 
 
   applyIsChecked = () => {
+      debugger
+      console.log(this.props)
     this.state.promotionsData.map(promotion => {
       promotion.isChecked = false;
     });
 
     this.state.genreData.map(genre => {
-      genre.isChecked = false;
+        if(genre.id == this.props.queryParams.genreId){
+            genre.isChecked = true;
+        }else{
+            genre.isChecked = false;
+        }
+      
     });
 
     this.state.venuesData.map(venue => {
-      venue.isChecked = false;
+        if(venue.id == this.props.queryParams.venueId){
+            venue.isChecked = true;
+        }else{
+            venue.isChecked = false;
+        }
     });
 
     this.state.tagsData.map(tag => {
       tag.isChecked = false;
     });
+
+    this.applyDefaultCheck();
   };
+
+  applyDefaultCheck = () => {
+
+  }
 
   // Clear all the filters
   clearAllFilters = () => {
@@ -259,7 +265,7 @@ export default class Filters extends Component {
 
   setOpenVenuePanel = (status, ref) => {
     this.setState({ venueFilterPanelDisplay: status });
-    window.scrollTo(0, 1000);
+    // window.scrollTo(0, 1000);
   };
 
   render() {
@@ -520,7 +526,6 @@ export default class Filters extends Component {
                 <label>From</label>
                 <span className="InputFromTo">
                   <DayPickerInput
-                    ref={el => (this.from = el)}
                     value={from}
                     placeholder="mm/dd/yyyy"
                     format="MM/DD/YYYY"
@@ -557,7 +562,7 @@ export default class Filters extends Component {
                       month: from,
                       fromMonth: from,
                       numberOfMonths: 1,
-                      onDayClick: () => this.from.getInput().focus()
+                    //   onDayClick: () => this.from.getInput().focus()
                     }}
                     onDayChange={this.handleToChange}
                   />
@@ -575,7 +580,7 @@ export default class Filters extends Component {
                 <style>{`
                                     .InputFromTo .DayPicker-Day--selected:not(.DayPicker-Day--start):not(.DayPicker-Day--end):not(.DayPicker-Day--outside),
                                     .InputFromTo-to .DayPicker-Day--selected:not(.DayPicker-Day--start):not(.DayPicker-Day--end):not(.DayPicker-Day--outside) {
-                                        background-color: #E8F4FF;
+                                        background-color: #EFF7FF;
                                         color: #7C86A2;
                                         border-radius: 0px;
                                     }

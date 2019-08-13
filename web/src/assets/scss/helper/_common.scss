@@ -684,13 +684,13 @@ button,
 				width: 100%;
 				justify-content: center;
 				.DayPicker-Weekday {
-					display: flex;
-					flex: 0 0 auto;
+					display: flex;					
 					color: #8B9898;
 					font-size: 0.875em;
 					padding: 0px;
-					width: 48px;
-					height: 25px;
+                    height: 25px;
+                    flex: 0 0 14.28%;
+                    width: 14.28%;
 					line-height: 25px;
 					text-align: center;
 					justify-content: center;
@@ -708,6 +708,7 @@ button,
 		   display: flex;
 		   flex-wrap: wrap;
 			text-align: center;
+			width: 100%;
 			.DayPicker-Week {
 				display: flex;
 				flex: 0 0 100%;
@@ -718,7 +719,8 @@ button,
 				   cursor: pointer;
 				   color: #7C86A2;
 				   font-size: 10px;
-				   width: 48px;
+                   flex: 0 0 14.28%;
+                   width: 14.28%;
 				   height: 25px;
 				   line-height: 27px;
 				   padding: 0px;
@@ -750,8 +752,28 @@ button,
 					   border-top-right-radius: 5px;
 					   border-bottom-right-radius: 5px;
 				   }
+				   &.DayPicker-Day--outside{
+					   pointer-events: none;
+					   &:after{
+						   content: none;
+					   }
+				   }
+				   &.DayPicker-Day--start{
+					& + .DayPicker-Day--end{
+						&:before{
+							content: none;
+						}
+					}
+					&:hover{
+						&:before{
+							content: none;
+						}
+						& + .DayPicker-Day--selected:before{
+							content: none;
+						}
+					}
+				   }
 					&.DayPicker-Day--start, &.DayPicker-Day--end{
-					   border-radius: 50%;
 					   background-color: transparent;
 					   padding: 0px;
 					   color: #fff;
@@ -777,14 +799,19 @@ button,
 					   &:before{
 						   position: absolute;
 						   content: "";
-						   background-color: #E8F4FF;
-						   width: 25px;
-						   height: 25px;
+						   background-color: #EFF7FF;
+						   width: 70%;
+						   height: 100%;
 						   left: -10px;
 						   right: auto;
 						   top: 50%;
 						   transform: translate(-50%, -50%);
 						   z-index: 0;
+					   }
+					   &:hover{
+							&:before{
+								width: 0px;
+							}
 					   }
 				   }
 				   &.DayPicker-Day--end{
@@ -793,9 +820,9 @@ button,
 						   right: 5px;
 						   position: absolute;
 						   content: "";
-						   background-color: #E8F4FF;
-						   width: 30px;
-						   height: 25px;
+						   background-color: #EFF7FF;
+						   width: 70%;
+						   height: 100%;
 						   top: 50%;
 						   transform: translate(-50%, -50%);
 						   z-index: -1;
@@ -916,7 +943,7 @@ button,
 .scroll-top{
     position: fixed;
     right: 5px;
-    bottom: 10px;
+    bottom: 80px;
     background: #0098FF;
     width: 50px;
     height: 50px;

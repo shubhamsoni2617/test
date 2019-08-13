@@ -58,7 +58,7 @@ class TrendingNow extends Component {
                     <div className="grid-container">
                         <div className="item">
                             <div className="item-wrapper">
-                                <span className="category">Dance</span>
+                                <span className="category dance">Dance</span>
                                 <div className="trending-now-image">
                                     <div className="item-img">
                                         <img src={trendingNow[0].img} className="img-fluid" alt="kurios" />
@@ -78,7 +78,7 @@ class TrendingNow extends Component {
                                 return (
                                     <div key={index} className="item">
                                         <div className="item-wrapper">
-                                            <span className="category">Dance</span>
+                                            <span className="category dance">Dance</span>
                                             <div className="trending-now-image">
                                                 <div className="item-img">
                                                     <img src={now.img} className="img-fluid" alt="trending-now" />
