@@ -685,7 +685,7 @@ button,
 				justify-content: center;
 				.DayPicker-Weekday {
 					display: flex;
-					flex: 0 0 auto;
+					flex: 0 0 14.28%;
 					color: #8B9898;
 					font-size: 0.875em;
 					padding: 0px;
@@ -777,7 +777,7 @@ button,
 					   &:before{
 						   position: absolute;
 						   content: "";
-						   background-color: #E8F4FF;
+						   background-color: #EFF7FF;
 						   width: 25px;
 						   height: 25px;
 						   left: -10px;
@@ -786,6 +786,11 @@ button,
 						   transform: translate(-50%, -50%);
 						   z-index: 0;
 					   }
+					   &:hover{
+							&:before{
+								width: 0px;
+							}
+					   }
 				   }
 				   &.DayPicker-Day--end{
 					   &:before{
@@ -793,7 +798,7 @@ button,
 						   right: 5px;
 						   position: absolute;
 						   content: "";
-						   background-color: #E8F4FF;
+						   background-color: #EFF7FF;
 						   width: 30px;
 						   height: 25px;
 						   top: 50%;
