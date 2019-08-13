@@ -14,7 +14,7 @@ class Timer extends Component {
 
   componentDidMount() {
     this.mount = true;
-    const { endDate } = this.props;
+    const { endDate,promotionExpired } = this.props;
     var countDownDate = new Date(endDate).getTime();
     var x = setInterval(() => {
       var now = new Date().getTime();
@@ -37,6 +37,7 @@ class Timer extends Component {
       if (distance < 0) {
         clearInterval(x);
         if (this.mount) {
+          promotionExpired("EXPIRED");
           this.setState({
             expired: "EXPIRED"
           });
@@ -48,11 +49,12 @@ class Timer extends Component {
   componentWillUnmount() {
     this.mount = false;
   }
+
   render() {
     const { days, hours, minutes, seconds, expired } = this.state;
     return (
       <Fragment>
-        {expired === "EXPIRED" ? null :
+        {expired === "EXPIRED" ? expired :
           <Fragment>
             <li className="timer-days">
               <span>{days}</span>

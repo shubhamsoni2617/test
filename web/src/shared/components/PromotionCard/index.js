@@ -32,14 +32,20 @@ const PromotionCard = (props) => {
     show_timer,
   } = promotionDetail
 
-  const [socialShare, setSocialShare] = useState(false)
+  const [socialShare, setSocialShare] = useState(false);
+  const [expiredText, setExpiredText,] = useState('');
+
 
   const handleSocialShare = () => {
     setSocialShare(!socialShare)
   }
 
+  const handlePromotionExpired = (text) => {
+    setExpiredText(text)
+  }
+
   return (
-    <li className="promotion-block">
+    <li className={promotionTab === "open" && tabDetailId === data.id ? "promotion-block active" : "promotion-block"}>
       <div className="promotions-listing-wrapper" onClick={() => fetchPromotionDetailData(data.alias, data.id)}>
         <div className="promotion-image">
           <img src={data.featured_image} className="img-fluid" alt="feature-image" />
@@ -60,12 +66,12 @@ const PromotionCard = (props) => {
             </a>
             {data.show_timer === "1" ?
               <div className="promotion-timer">
-                <span className="timer-tagline">{data.custom_label_text} Promotion ends in:</span>
+                {!expiredText ? <span className="timer-tagline">Promotion ends in:</span> : null}
                 <ul>
                   <li className="timer-watch">
                     <img src={StopWatch} className="img-fluid" alt="watch" />
                   </li>
-                  <Timer endDate={data.publish_end_date} />
+                  <Timer endDate={data.publish_end_date} promotionExpired={handlePromotionExpired} />
                 </ul>
               </div>
               :
@@ -75,7 +81,7 @@ const PromotionCard = (props) => {
         </div>
       </div>
       <div className="promotion-dropdown-height"></div>
-      <div className={promotionTab === "open" && tabDetailId === data.id ? "show" : "promotion-tab-dropdown"} >
+      <div className="promotion-tab-dropdown" >
         <a className="promotion-tab-close-btn" onClick={() => handlePromotionDetailTab("close")}>
           <img src={CloseIcon} alt="close-icon" />
         </a>

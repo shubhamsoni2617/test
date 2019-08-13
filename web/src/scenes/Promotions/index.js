@@ -16,10 +16,10 @@ export default class Promotions extends Component {
       first: 0,
       totalRecords: 0,
       listingArray: [],
-      promotionDetail:"",
+      promotionDetail: "",
       promotionTab: "close",
-      tabDetailId:"",
-      shareUrl:undefined
+      tabDetailId: "",
+      shareUrl: undefined
     };
     this.tabsSort = {
       isSortBy: true,
@@ -47,7 +47,7 @@ export default class Promotions extends Component {
     this.breadCrumbData = {
       'page_banner': PageBanner,
       'page': 'Promotions',
-      'count': '24',
+      // 'count': '24',
       'breadcrumb_slug': [{ 'path': '/', 'title': 'Home' }, { 'path': '/promotions', 'title': 'Promotions' }]
     };
   }
@@ -128,7 +128,7 @@ export default class Promotions extends Component {
   }
 
 
-  fetchPromotionDetailData = (alias,id) => {
+  fetchPromotionDetailData = (alias, id) => {
     const params = {
       client: Constants.CLIENT,
       alias: alias.split("/")[1]
@@ -139,11 +139,11 @@ export default class Promotions extends Component {
           this.setState({
             promotionDetail: res.data.data[0],
             promotionTab: "open",
-            tabDetailId:id
+            tabDetailId: id
           })
         } else {
           this.setState({
-            promotionDetail:"",
+            promotionDetail: "",
             promotionTab: "close"
           })
         }
@@ -151,10 +151,10 @@ export default class Promotions extends Component {
       .catch((err) => {
         console.log(err)
       })
-      let shareUrl=`/promotions/${id}`;
-      // let randomString = Math.random().toString(36).substring(7);
-      window.history.pushState("string", "Title",shareUrl);
-      this.setState({shareUrl:shareUrl})
+    let shareUrl = window.location.origin + `/promotions/${id}`;
+    // let randomString = Math.random().toString(36).substring(7);
+    window.history.pushState("string", "Title", shareUrl);
+    this.setState({ shareUrl: shareUrl })
   }
 
   handleActiveTab = (data) => {

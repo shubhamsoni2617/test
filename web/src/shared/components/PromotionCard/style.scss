@@ -414,3 +414,28 @@
   display:block;
   cursor: pointer;
 }
+
+.mega-enter {
+  top: 120%;
+  opacity: 0;
+}
+
+.mega-enter.mega-enter-active {
+  top: 100%;
+  opacity: 1;
+  transition: all 300ms ease-in-out;
+}
+
+.mega-leave {
+  top: 100%;
+  opacity: 1;
+}
+
+.mega-leave.mega-leave-active {
+  top: 120%;
+  opacity: 0;
+  transition: all 300ms ease-in-out;
+}
+a{
+  cursor: pointer;
+}
