@@ -689,8 +689,9 @@ button,
 					color: #8B9898;
 					font-size: 0.875em;
 					padding: 0px;
-					width: 48px;
-					height: 25px;
+                    height: 25px;
+                    flex: 0 0 14.28%;
+                    width: 14.28%;
 					line-height: 25px;
 					text-align: center;
 					justify-content: center;
@@ -718,7 +719,8 @@ button,
 				   cursor: pointer;
 				   color: #7C86A2;
 				   font-size: 10px;
-				   width: 48px;
+                   flex: 0 0 14.28%;
+                   width: 14.28%;
 				   height: 25px;
 				   line-height: 27px;
 				   padding: 0px;
@@ -916,7 +918,7 @@ button,
 .scroll-top{
     position: fixed;
     right: 5px;
-    bottom: 10px;
+    bottom: 80px;
     background: #0098FF;
     width: 50px;
     height: 50px;

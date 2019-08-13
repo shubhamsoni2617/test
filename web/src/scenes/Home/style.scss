@@ -1574,11 +1574,11 @@ section.whats-new {
 		transition: 0.3s color;
 		margin-bottom: 0px;
 		color: #ffffff;
-		min-height: 40px;
+		min-height: 54px;
         transition: 0.3s color;
         padding-bottom: 13px;
 		@media(max-width: 1366px) {
-			min-height: 40px;
+			min-height: 54px;
 		}
 		@media(max-width: 991px) {
 			min-height: auto;
@@ -2436,6 +2436,7 @@ section{
 								}
 							}
 							&:hover {
+                                transform: translateX(0) !important;
 								img {
                                     top: -100%;
                                     transform: translateX(0) !important;
@@ -2502,13 +2503,13 @@ section{
 						border: 1px solid rgba(0, 152, 255, 0.6);
 					}
 					&::-webkit-input-placeholder {
-						color: #b1b3b5;
+						color: #4B5562;
 					}
 					&::-moz-placeholder {
-						color: #b1b3b5;
+						color: #4B5562;
 					}
 					&:-moz-placeholder {
-						color: #b1b3b5;
+						color: #4B5562;
 					}
 				}
 				.input-group-text {
