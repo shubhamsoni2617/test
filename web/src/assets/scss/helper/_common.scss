@@ -1008,7 +1008,16 @@ button,
     }
 }
 strong{
+  font-size: inherit;
 	em{
-		font-weight: 600;
+    font-weight: 600;
+    font-size: inherit;
+	}
+}
+em{
+  font-size: inherit;
+	strong{
+    font-weight: 600;
+    font-size: inherit;
 	}
 }
