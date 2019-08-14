@@ -11,6 +11,8 @@ import "react-day-picker/lib/style.css";
 import "react-tabs/style/react-tabs.css";
 import "react-input-range/lib/css/index.css";
 import SearchIcon from "../../../assets/images/search-icon-gray.svg";
+import backArrowImage from "../../../assets/images/bakcarrow.svg";
+import colorBlueCloseImage from "../../../assets/images/close-blue-color.svg";
 import "./style.scss";
 
 export default class Filters extends Component {
@@ -309,7 +311,7 @@ export default class Filters extends Component {
                 <div className="apply-filter-mob">
                     <div className="title">
                         <a>
-                            <img src="assets/images/bakcarrow.svg" /> Filters
+                            <img src={backArrowImage} /> Filters
             </a>
                         <a>Clear All</a>
                     </div>
@@ -419,7 +421,7 @@ export default class Filters extends Component {
                         <div className="filter-title">
                             <span>Sort By</span>
                             <a href="/">
-                                <img src="assets/images/close-blue-color.svg" alt="" />
+                                <img src={colorBlueCloseImage} alt="" />
                             </a>
                         </div>
                         <ul>
