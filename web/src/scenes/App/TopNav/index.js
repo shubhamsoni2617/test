@@ -11,7 +11,8 @@ import HomeService from '../../../shared/services/HomeService';
 import { ReactComponent as ManLogo } from '../../../assets/images/man.svg';
 import AndroidLogo from '../../../assets/images/android.png';
 import { ReactComponent as AppleLogo } from '../../../assets/images/apple.svg';
-
+import fb from '../../../assets/images/fb.svg';
+import insta from '../../../assets/images/insta-unfill.svg';
 const TopNav = (props) => {
   let refValue = useRef();
   const [showMegaMenu, setShowMegaMenu] = useState(false);
@@ -156,10 +157,10 @@ const TopNav = (props) => {
                 <span>Follow us on</span>
                 <ul className="social">
                   <li>
-                    <Link to="/"><img src="assets/images/fb.svg" alt="" /></Link>
+                    <Link to="/"><img src={fb} alt="" /></Link>
                   </li>
                   <li>
-                    <img src="assets/images/insta-unfill.svg" alt="" />
+                    <img src={insta} alt="" />
                   </li>
                 </ul>
               </li>
