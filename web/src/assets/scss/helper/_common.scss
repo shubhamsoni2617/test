@@ -27,13 +27,13 @@ body {
 	a {
         text-decoration: none;
         outline: none;
-        transition: 1s all; 
+        transition: 1s all;
 		&:hover,
 		&:focus,
 		&:active {
             text-decoration: none;
             outline: none;
-            transition: 1s all; 
+            transition: 1s all;
 		}
     }
     b, strong{
@@ -104,7 +104,7 @@ nav {
 	}
 }
 
-// Common Heading 
+// Common Heading
 h2 {
     font-size: 30px;
     line-height: 37px;
@@ -113,10 +113,10 @@ h2 {
     font-family: 'Montserrat', sans-serif;
     margin: 0px;
     padding-bottom: 18px;
-    transition: 1s all; 
+    transition: 1s all;
 }
 
-// Modal Design 
+// Modal Design
 .modal{
     display: block;
     opacity: 1;
@@ -154,7 +154,7 @@ h2 {
                 border-radius: 0;
             }
         }
-        
+
     }
     .modal-dialog-scrollable {
         -ms-flex-direction: column;
@@ -193,7 +193,7 @@ h2 {
 .share:hover, .info:hover{
 	cursor: pointer;
 	background-color: #fff;
-	border-color: #0098ff; 
+	border-color: #0098ff;
 }
 
 .container-fluid {
@@ -210,6 +210,11 @@ h2 {
 		padding-right: 10px;
 		padding-left: 10px;
 	}
+}
+
+// Slider
+.slick-track{
+  margin: 0;
 }
 
 button,
@@ -386,15 +391,15 @@ button,
     &.musical {
         background-color: #07B3F0;
     }
-    
+
     &.dance {
         background-color: #5F4F8B;
     }
-    
+
     &.comedy {
         background-color: #F2B119;
     }
-    
+
     &.theatre {
         background-color: #BF659A;
     }
@@ -622,22 +627,22 @@ button,
 	}
 }
 
-// Website scroll bar 
+// Website scroll bar
 ::-webkit-scrollbar {
     width: 10px;
 }
- 
+
 ::-webkit-scrollbar-track {
     background: #EEE;
 }
- 
+
 ::-webkit-scrollbar-thumb {
   background-color: #999;
   outline: 1px solid #999;
   border-radius: 0px;
 }
 
-// Popover CSS 
+// Popover CSS
 .info-popover{
     position: absolute;
     right: -115px;
@@ -666,7 +671,7 @@ button,
         margin-left: -10px;
     }
 }
-// Calender CSS 
+// Calender CSS
 .DayPicker {
 	width: calc(100% + 10px);
 	margin: 0 -5px;
@@ -684,7 +689,7 @@ button,
 				width: 100%;
 				justify-content: center;
 				.DayPicker-Weekday {
-					display: flex;					
+					display: flex;
 					color: #8B9898;
 					font-size: 0.875em;
 					padding: 0px;
@@ -863,7 +868,7 @@ button,
 								z-index: -1;
 							}
 					   }
-					}                        
+					}
 				}
 			}
 		}
@@ -939,7 +944,7 @@ button,
 	}
 }
 
-// Scroll to top 
+// Scroll to top
 .scroll-top{
     position: fixed;
     right: 5px;
@@ -982,7 +987,7 @@ button,
 	}
 }
 
-// No data 
+// No data
 .no-data{
     padding: 50px 0;
     text-align: center;
