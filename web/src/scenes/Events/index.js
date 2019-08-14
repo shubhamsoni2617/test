@@ -11,7 +11,7 @@ import noEvent from '../../assets/images/no-event.svg';
 import Breadcrub from '../../scenes/App/Breadcrumb';
 import ListView from '../../assets/images/list-view.svg';
 import GridView from '../../assets/images/grid-view.svg';
-import loaderImage from '../../assets/images/loader-tick.gif';
+import loaderImage from '../../assets/images/loader.svg';
 import EventBreadcrumbImage from '../../assets/images/events.png';
 import moment from "moment";
 import ShimmerEffect from '../../shared/components/ShimmerEffect';
