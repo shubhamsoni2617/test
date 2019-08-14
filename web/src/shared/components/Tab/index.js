@@ -21,10 +21,23 @@ const Tab = (props) => {
           </div>
           <div className="tab-content-wrapper">
             <ul className="promotions-listing">
-              {listingArray && listingArray.map((elem, index) => {
-                return (
-                  <PromotionCard data={elem} key={index} {...props} />
-                );
+              {listingArray && listingArray.map((elem, index, array) => {
+                if (index % 2 === 0) {
+                  if (array[index] && array[index + 1]) {
+                    return (
+                      <div key={index}>
+                        <PromotionCard data={array[index]} {...props} />
+                        <PromotionCard data={array[index + 1]} {...props}/>
+                      </div>
+                    );
+                  } else if (array[index]) {
+                    return (
+                      <div>
+                        <PromotionCard data={array[index]} {...props} />
+                      </div>
+                    )
+                  }
+                }
               })
               }
             </ul>
