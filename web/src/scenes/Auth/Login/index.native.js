@@ -22,7 +22,6 @@ export default class Login extends Component {
           this.storeToken(response.data);
         })
         .catch(error => {
-                  debugger				
           console.log(error);
         });
       }
