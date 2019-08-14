@@ -57,14 +57,12 @@ export default class StickyHeader extends Component {
           <div className="info-tooltip">
             <a className="info" onClick={() => this.props.openNotice()}>
               <img src={Info} alt="" />
-              <span className="tooltip-text">Information</span>
             </a>
           </div>
           <div className="share-tooltip">
             <a className="share" onClick={() => this.props.openSocialShare()}>
               <img src={shareIcon} alt="" />
               <SocialShare shareUrl={shareUrl} showSocialShare={showSocialShare} />
-              <span className="tooltip-text">Share</span>
             </a>
           </div>
           <div className="ticket-date-price">
