@@ -8,7 +8,7 @@ import fb from '../../../assets/images/fb.svg';
 import fbFill from '../../../assets/images/fb-fill.svg';
 import insta from '../../../assets/images/insta-unfill.svg';
 import instaFill from '../../../assets/images/insta-fill.svg';
-import stixImage from '../../../assets/images/stix.svg';
+import stixImage from '../../../assets/images/stix.png';
 import BackToTop from '../../../shared/components/BackToTop'
 
 const Footer = () => {
