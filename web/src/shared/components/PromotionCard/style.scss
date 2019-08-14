@@ -1,5 +1,16 @@
+.promotion-events-row{
+    display: flex;
+    width: 100%;
+    flex-wrap: wrap;
+    position: relative;
+    margin-bottom: 25px;
+    .promotion-block:first-child{
+        margin-right: 30px;
+    }
+}
 .promotion-block {
-    flex: 0 0 50%;
+    flex: 0 0 calc(50% - 15px);
+    width :calc(50% - 15px);
     list-style: none;
     margin-bottom: 0px;
     .promotions-listing-wrapper {
