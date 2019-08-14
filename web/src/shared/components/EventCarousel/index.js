@@ -31,7 +31,7 @@ const EventCarousel = (props) => {
     variableWidth: true
   }
 
-  const settings2 = {
+  let settings2 = {
     className: "center",
     centerMode: false,
     variableWidth: true,
@@ -39,8 +39,17 @@ const EventCarousel = (props) => {
     focusOnSelect: true
   }
 
-  const { images } = props;
 
+
+
+
+
+
+  const { images } = props;
+  //  if(images.length <= 7){
+  //   settings2.nextArrow = <Arrow />
+  //   settings2.prevArrow = <Arrow />
+  // }
   return (
     <div className="banner-carousel">
       <Slider
@@ -66,6 +75,7 @@ const EventCarousel = (props) => {
           asNavFor={navLarge}
           ref={slider => (slider2 = slider)}
           {...settings2}
+
         >
           {images.map((obj, idx) => {
             if (obj.type && obj.type.id == 1) {

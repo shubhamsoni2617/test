@@ -219,7 +219,7 @@ export default class EventsDetail extends Component {
       <div className="event-detail-wrapper">
         {detailData && (
           <div>
-            {detailData.is_available_for_booking === 0 && (
+            {detailData.is_show_over === 1 && (
               <div className="shows-over-banner">
                 <div className="shows-over">
                   <div className="shows-over-icon">
@@ -235,7 +235,7 @@ export default class EventsDetail extends Component {
                 </div>
               </div>
             )}
-            {detailData.is_available_for_booking === 1 && (
+            {detailData.is_show_over === 0 && (
               <div>
                 {/* {detailData.pop_up_message && showNotice && <PopUpWithClose content={detailData.pop_up_message.description} title={detailData.pop_up_message.title} handleClose={this.handleClose} />} */}
                 {detailData.pop_up_message &&
@@ -286,8 +286,8 @@ export default class EventsDetail extends Component {
                         desc={getSynopsisData.desc}
                         langArr={getSynopsisData.languageArr}
                         changeLang={this.changeLang}
-                        preExpanded={accrodian}
-                        uuid="synopsis"
+                        preExpanded = {accrodian}
+                        uuid= {`${detailData.is_available_for_booking == 1 ? 'synopsis' : ''}`}
                       />
                     )}
                     {detailData.tabs &&
@@ -332,8 +332,8 @@ export default class EventsDetail extends Component {
                       <AccordionSection
                         title="Price Details"
                         infoTag={true}
-                        preExpanded={accrodian}
-                        uuid="pricedetail"
+                        preExpanded= {accrodian}
+                        uuid= {`${detailData.is_available_for_booking == 1 ? 'pricedetail' : ''}`}
                         desc={detailData.ticket_pricing}
                         openInfoPopup={this.openInfoPopup}
                         showInfo={showInfo}
@@ -365,7 +365,7 @@ export default class EventsDetail extends Component {
                 <ArticleSection />
               </div>
             )}
-            {detailData.is_available_for_booking === 0 &&
+            {detailData.is_show_over === 1 &&
              <section className="gift-cart">
              <div className="gift-cart-image">
                <img
@@ -380,7 +380,7 @@ export default class EventsDetail extends Component {
                 <SimilarPicksSection data={similarEventsData} />
                 </Suspense>
             }
-            {detailData.is_available_for_booking === 0 && <ArticleSection />}
+            {detailData.is_show_over === 1 && <ArticleSection />}
           </div>
         )}
       </div>
