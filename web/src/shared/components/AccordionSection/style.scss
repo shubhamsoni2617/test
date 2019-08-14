@@ -8,7 +8,9 @@
     .sidebar-accordion{
         .accordion__item{
             .accordion__panel{
-                box-shadow: 0 2px 3px 0 rgba(201, 201, 201, 0.5);
+                border: 1px solid rgba(201, 201, 201, 0.2);
+                border-top: none;
+                // box-shadow: 0 2px 3px 0 rgba(201, 201, 201, 0.5);
             }
         }
     }
@@ -87,7 +89,6 @@
         }
         .accordion__panel{
             display: block !important;
-            max-height: 1000px;
             transition: 1s all;
             overflow: hidden;
             padding: 25px 30px;
