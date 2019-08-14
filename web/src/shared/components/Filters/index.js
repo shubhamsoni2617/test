@@ -10,7 +10,7 @@ import { CSSTransitionGroup } from 'react-transition-group';
 import "react-day-picker/lib/style.css";
 import "react-tabs/style/react-tabs.css";
 import "react-input-range/lib/css/index.css";
-import SearchIcon from "../../../assets/images/search-grey.png";
+import SearchIcon from "../../../assets/images/search-icon-gray.svg";
 import "./style.scss";
 
 export default class Filters extends Component {
@@ -316,7 +316,7 @@ export default class Filters extends Component {
                     <div className="filters-search">
                         <button type="submit" className="search-btn">
                             <img
-                                src="assets/images/search-blue.svg"
+                                src={SearchIcon}
                                 className="img-fluid active"
                                 alt="search-icon"
                             />
@@ -712,12 +712,12 @@ export default class Filters extends Component {
                         <div className="filter-grid-heading">
                             <h3>Promotion</h3>
                             <ul>
-                                <li className={this.state.checkUncheckPromotionsActiveClass ? 'active': ''}>
+                                <li className={this.state.checkUncheckPromotionsActiveClass ? 'active' : ''}>
                                     <a onClick={() => this.checkUncheckAllPromotions(true)}>
                                         Select all
                   </a>
                                 </li>
-                                <li className={this.state.checkUncheckPromotionsActiveClass ? '': 'active'}>
+                                <li className={this.state.checkUncheckPromotionsActiveClass ? '' : 'active'}>
                                     <a onClick={() => this.checkUncheckAllPromotions(false)}>
                                         Clear
                   </a>

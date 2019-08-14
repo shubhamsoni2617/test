@@ -35,6 +35,9 @@
                 background: transparent;
                 border: none;
                 padding: 0;
+                img{
+                    width: 18px;
+                }
             }
 
             input {
@@ -221,6 +224,9 @@
             padding: 0;
             transform: translateY(-50%);
             margin-top: 2px;
+            img{
+                width: 18px;
+            }
         }
 
         input {
@@ -378,9 +384,9 @@
                 width: 1060px;
                 height: 520px;
                 padding: 17px 25px;
-                position: absolute;
-                bottom: 38px;
-                left: 0;
+                position: fixed;
+                bottom: 8px;
+                left: 40px;
                 z-index: 5;
                 .filter-directory-titlebar{
                     color: #adaeaf;
@@ -601,9 +607,17 @@
                     border: 1px solid #E1E1E1;
                     padding: 0px 7px;
                     color: #626262;
+                    &::-webkit-input-placeholder {
+						color: rgba(98, 98, 98, 0.8);
+					}
+					&::-moz-placeholder {
+						color: rgba(98, 98, 98, 0.8);
+					}
+					&:-moz-placeholder {
+						color: rgba(98, 98, 98, 0.8);
+					}
                     &::placeholder {
                         color: rgba(98, 98, 98, 0.8);
-                        color: #626262;
                     }
                 }
                 .DayPickerInput-OverlayWrapper{
