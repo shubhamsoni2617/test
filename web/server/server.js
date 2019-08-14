@@ -6,7 +6,7 @@ import serialize from "serialize-javascript"
 import Helmet from "react-helmet";
 // import App from '../src/scenes/App'
 // import routes from '../src/scenes/App/routes'
-// import manifest from '../build/asset-manifest.json';
+import manifest from '../build/asset-manifest.json';
 var path = require('path');
 
 const app = express()
