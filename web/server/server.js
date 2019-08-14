@@ -3,7 +3,7 @@ import React from "react"
 // import { renderToString } from "react-dom/server"
 // import { StaticRouter, matchPath } from "react-router-dom"
 import serialize from "serialize-javascript"
-// import Helmet from "react-helmet";
+import Helmet from "react-helmet";
 // import App from '../src/scenes/App'
 // import routes from '../src/scenes/App/routes'
 // import manifest from '../build/asset-manifest.json';
@@ -28,19 +28,19 @@ app.get("*", (req, res, next) => {
   //       <App />
   //     </StaticRouter>
   //   )
-  //   // Let's give ourself a function to load all our page-specific JS assets for code splitting
-  //   const extractAssets = (assets, chunks) =>
-  //     Object.keys(assets)
-  //       .filter(asset => chunks.indexOf(asset.replace('.js', '')) > -1)
-  //       .map(k => assets[k]);
+    // Let's give ourself a function to load all our page-specific JS assets for code splitting
+    const extractAssets = (assets, chunks) =>
+      Object.keys(assets)
+        .filter(asset => chunks.indexOf(asset.replace('.js', '')) > -1)
+        .map(k => assets[k]);
 
-  //   // Let's format those assets into pretty <script> tags
-  //   const extraChunks = extractAssets(manifest, modules).map(
-  //     c => `<script type="text/javascript" src="/${c.replace(/^\//, '')}"></script>`
-  //   );
+    // Let's format those assets into pretty <script> tags
+    const extraChunks = extractAssets(manifest, modules).map(
+      c => `<script type="text/javascript" src="/${c.replace(/^\//, '')}"></script>`
+    );
 
   //   // We need to tell Helmet to compute the right meta tags, title, and such
-  //   const helmet = Helmet.renderStatic();
+    const helmet = Helmet.renderStatic();
 
   //   res.send(`<!doctype html>
   //   <html>
@@ -68,7 +68,6 @@ app.get("*", (req, res, next) => {
       <body>
         <div id="app"></div>
         ${extraChunks.join('')}
-        <script>window.__INITIAL_DATA__ = ${serialize(response.data)}</script>
       </body>
     </html>
   `)
