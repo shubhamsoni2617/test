@@ -37,19 +37,22 @@ export default class Filters extends Component {
   }
 
   componentWillMount() {
-    this.applyIsChecked();
+    this.applyIsChecked(true); //Value true passed for check route params
   }
 
+  componentDidUpdate(preProps){
+    if (this.props.queryParams.genreId != preProps.queryParams.genreId) {
+        this.applyIsChecked(true); //Value true passed for check route params
+    }
+  }
 
-  applyIsChecked = () => {
-      debugger
-      console.log(this.props)
+  applyIsChecked = (status) => {
     this.state.promotionsData.map(promotion => {
       promotion.isChecked = false;
     });
 
     this.state.genreData.map(genre => {
-        if(genre.id == this.props.queryParams.genreId){
+        if(genre.id == this.props.queryParams.genreId && status){
             genre.isChecked = true;
         }else{
             genre.isChecked = false;
@@ -69,12 +72,14 @@ export default class Filters extends Component {
       tag.isChecked = false;
     });
 
-    this.applyDefaultCheck();
+    this.setRoutedParams(status);
+    
   };
 
-  applyDefaultCheck = () => {
-
+  setRoutedParams = (status) => {
+    if(status && this.props.queryParams.dateRange) this.setState({from: moment(this.props.queryParams.dateRange.from, 'DD-MM-YYYY').format('MM/DD/YYYY'), to: moment(this.props.queryParams.dateRange.to, 'DD-MM-YYYY').format('MM/DD/YYYY')})
   }
+
 
   // Clear all the filters
   clearAllFilters = () => {
@@ -85,9 +90,8 @@ export default class Filters extends Component {
         max: this.props.filterConfig.price_config.max_price
       }
     });
-    this.applyIsChecked();
+    this.applyIsChecked(false);
     this.clearCalender();
-    // this.clearPriceRange(this.props.filterConfig.price_config);
     this.props.resetFilters();
   };
 
@@ -113,8 +117,12 @@ export default class Filters extends Component {
     this.props.handleFilters("genre-check-uncheck", genreIds);
   };
 
-  showMoreGenre = () => {
-    this.setState({ genreShowLimit: this.state.genreData.length });
+  showMoreLessGenre = status => {
+    if(status){
+        this.setState({ genreShowLimit: this.state.genreData.length });
+    }else{
+        this.setState({ genreShowLimit: 5 });
+    }
   };
 
   checkUnckeckGenre = (e, key) => {
@@ -172,8 +180,12 @@ export default class Filters extends Component {
     this.props.handleFilters("tags-check-uncheck", tagsIds, status);
   };
 
-  showMoreTags = () => {
-    this.setState({ tagShowLimit: this.state.tagsData.length });
+  showMoreLessTags = status => {
+      if(status){
+        this.setState({ tagShowLimit: this.state.tagsData.length });
+      }else{
+        this.setState({ tagShowLimit: 5 });
+      }
   };
 
   // Venues
@@ -213,6 +225,10 @@ export default class Filters extends Component {
   // Clear calender on clear
   clearCalender = () => {
     this.setState({ from: undefined, to: undefined });
+    this.props.handleFilters("date-range", {
+        from: '',
+        to: ''
+    });
   };
 
   // Clear Price range on clear
@@ -265,7 +281,7 @@ export default class Filters extends Component {
 
   setOpenVenuePanel = (status, ref) => {
     this.setState({ venueFilterPanelDisplay: status });
-    // window.scrollTo(0, 1000);
+    window.scrollTo(0, 1000);
   };
 
   render() {
@@ -452,6 +468,7 @@ export default class Filters extends Component {
             <div className="filters-panel">
               <InputRange
                 ref="input_range"
+                formatLabel={value => `${'S$'+value}`}
                 maxValue={parseInt(price_config && price_config.max_price)}
                 minValue={parseInt(price_config && price_config.min_price)}
                 value={this.state.priceRangeValue}
@@ -504,10 +521,76 @@ export default class Filters extends Component {
               </ul>
               {genreData.length > genreShowLimit && (
                 <a
-                  onClick={() => this.showMoreGenre()}
+                  onClick={() => this.showMoreLessGenre(true)}
                   className="view-all-filters"
                 >
                   + {genreData.length - genreShowLimit} More
+                </a>
+              )}
+              {genreData.length == genreShowLimit && (
+                <a
+                  onClick={() => this.showMoreLessGenre(false)}
+                  className="view-all-filters"
+                >
+                  Show Less
+                </a>
+              )}
+            </div>
+          </div>
+          <div className="filter-grid">
+            <div className="filter-grid-heading">
+              <h3>Tags</h3>
+              <ul>
+                <li>
+                  <a onClick={() => this.checkUncheckAllTags(true)}>
+                    Select all
+                  </a>
+                </li>
+                <li className="active">
+                  <a onClick={() => this.checkUncheckAllTags(false)}>Clear</a>
+                </li>
+              </ul>
+            </div>
+            <div className="filters-panel">
+              <ul>
+              <CSSTransitionGroup
+                    transitionName="dropdown"
+                    transitionEnter={true}
+                    transitionEnterTimeout={300}
+                    transitionLeaveTimeout={300}>
+                {tagsData &&
+                  tagsData.slice(0, tagShowLimit).map((tag, key) => {
+                    let id = "tags-" + tag.id;
+                    return (
+                      <li key={key}>
+                        <input
+                          key={key}
+                          checked={tag.isChecked}
+                          onChange={e => this.checkUncheckTags(e, key)}
+                          className="styled-checkbox"
+                          type="checkbox"
+                          id={id}
+                        />
+                        <label htmlFor={id}>{tag.name}</label>
+                      </li>
+                    );
+                  })}
+                  </CSSTransitionGroup>
+              </ul>
+              {tagsData.length > tagShowLimit && (
+                <a
+                  onClick={() => this.showMoreLessTags(true)}
+                  className="view-all-filters"
+                >
+                  + {tagsData.length - tagShowLimit} More
+                </a>
+              )}
+              {tagsData.length == tagShowLimit  && (
+                <a
+                  onClick={() => this.showMoreLessTags(false)}
+                  className="view-all-filters"
+                >
+                  Show Less
                 </a>
               )}
             </div>
@@ -620,56 +703,6 @@ export default class Filters extends Component {
                                      }
                                     `}</style>
               </Helmet>
-            </div>
-          </div>
-          <div className="filter-grid">
-            <div className="filter-grid-heading">
-              <h3>Tags</h3>
-              <ul>
-                <li>
-                  <a onClick={() => this.checkUncheckAllTags(true)}>
-                    Select all
-                  </a>
-                </li>
-                <li className="active">
-                  <a onClick={() => this.checkUncheckAllTags(false)}>Clear</a>
-                </li>
-              </ul>
-            </div>
-            <div className="filters-panel">
-              <ul>
-              <CSSTransitionGroup
-                    transitionName="dropdown"
-                    transitionEnter={true}
-                    transitionEnterTimeout={300}
-                    transitionLeaveTimeout={300}>
-                {tagsData &&
-                  tagsData.slice(0, tagShowLimit).map((tag, key) => {
-                    let id = "tags-" + tag.id;
-                    return (
-                      <li key={key}>
-                        <input
-                          key={key}
-                          checked={tag.isChecked}
-                          onChange={e => this.checkUncheckTags(e, key)}
-                          className="styled-checkbox"
-                          type="checkbox"
-                          id={id}
-                        />
-                        <label htmlFor={id}>{tag.name}</label>
-                      </li>
-                    );
-                  })}
-                  </CSSTransitionGroup>
-              </ul>
-              {tagsData.length > tagShowLimit && (
-                <a
-                  onClick={() => this.showMoreTags()}
-                  className="view-all-filters"
-                >
-                  + {tagsData.length - tagShowLimit} More
-                </a>
-              )}
             </div>
           </div>
           <div className="filter-grid">
