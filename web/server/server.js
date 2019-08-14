@@ -1,12 +1,12 @@
 import express from "express"
 import React from "react"
-import { renderToString } from "react-dom/server"
-import { StaticRouter, matchPath } from "react-router-dom"
+// import { renderToString } from "react-dom/server"
+// import { StaticRouter, matchPath } from "react-router-dom"
 import serialize from "serialize-javascript"
-import Helmet from "react-helmet";
-import App from '../src/scenes/App'
-import routes from '../src/scenes/App/routes'
-import manifest from '../build/asset-manifest.json';
+// import Helmet from "react-helmet";
+// import App from '../src/scenes/App'
+// import routes from '../src/scenes/App/routes'
+// import manifest from '../build/asset-manifest.json';
 var path = require('path');
 
 const app = express()
