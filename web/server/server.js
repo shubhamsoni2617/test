@@ -14,35 +14,51 @@ const app = express()
 app.use(express.static(path.join(__dirname, '../build')));
 
 app.get("*", (req, res, next) => {
-  const activeRoute = routes.find((route) => matchPath(req.url, route)) || {}
+  // const activeRoute = routes.find((route) => matchPath(req.url, route)) || {}
 
-  const promise = activeRoute.fetchInitialData
-    ? activeRoute.fetchInitialData(req.path)
-    : Promise.resolve()
+  // const promise = activeRoute.fetchInitialData
+  //   ? activeRoute.fetchInitialData(req.path)
+  //   : Promise.resolve()
 
-  promise.then((response) => {
-    const context = { data: response.data }
-    const modules = [];
-    const markup = renderToString(
-      <StaticRouter location={req.url} context={context}>
-        <App />
-      </StaticRouter>
-    )
-    // Let's give ourself a function to load all our page-specific JS assets for code splitting
-    const extractAssets = (assets, chunks) =>
-      Object.keys(assets)
-        .filter(asset => chunks.indexOf(asset.replace('.js', '')) > -1)
-        .map(k => assets[k]);
+  // promise.then((response) => {
+  //   const context = { data: response.data }
+  //   const modules = [];
+  //   const markup = renderToString(
+  //     <StaticRouter location={req.url} context={context}>
+  //       <App />
+  //     </StaticRouter>
+  //   )
+  //   // Let's give ourself a function to load all our page-specific JS assets for code splitting
+  //   const extractAssets = (assets, chunks) =>
+  //     Object.keys(assets)
+  //       .filter(asset => chunks.indexOf(asset.replace('.js', '')) > -1)
+  //       .map(k => assets[k]);
 
-    // Let's format those assets into pretty <script> tags
-    const extraChunks = extractAssets(manifest, modules).map(
-      c => `<script type="text/javascript" src="/${c.replace(/^\//, '')}"></script>`
-    );
+  //   // Let's format those assets into pretty <script> tags
+  //   const extraChunks = extractAssets(manifest, modules).map(
+  //     c => `<script type="text/javascript" src="/${c.replace(/^\//, '')}"></script>`
+  //   );
 
-    // We need to tell Helmet to compute the right meta tags, title, and such
-    const helmet = Helmet.renderStatic();
+  //   // We need to tell Helmet to compute the right meta tags, title, and such
+  //   const helmet = Helmet.renderStatic();
 
-    res.send(`<!doctype html>
+  //   res.send(`<!doctype html>
+  //   <html>
+  //     <head>
+  //       ${helmet.htmlAttributes.toString()}
+  //       ${helmet.title.toString()}
+  //       ${helmet.meta.toString()}
+  //     </head>
+  //     <body>
+  //       <div id="app">${markup}</div>
+  //       ${extraChunks.join('')}
+  //       <script>window.__INITIAL_DATA__ = ${serialize(response.data)}</script>
+  //     </body>
+  //   </html>
+  // `)
+  // }).catch(next)
+
+  res.send(`<!doctype html>
     <html>
       <head>
         ${helmet.htmlAttributes.toString()}
@@ -50,13 +66,14 @@ app.get("*", (req, res, next) => {
         ${helmet.meta.toString()}
       </head>
       <body>
-        <div id="app">${markup}</div>
+        <div id="app"></div>
         ${extraChunks.join('')}
         <script>window.__INITIAL_DATA__ = ${serialize(response.data)}</script>
       </body>
     </html>
   `)
-  }).catch(next)
+
+
 })
 
 app.listen(3000, () => {
