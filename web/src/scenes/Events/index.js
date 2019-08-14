@@ -100,8 +100,8 @@ export default class Events extends Component {
         }
         this.state.filteredGnere = [];
         this.state.filteredVenues = [];
-        this.state.filteredGnere.push(genreId);
-        this.state.filteredVenues.push(venueId);
+        if(genreId != '') this.state.filteredGnere.push(genreId);
+        if(venueId != '') this.state.filteredVenues.push(venueId);
 
         this.setState({ queryParams: { genreId: genreId, venueId: venueId, dateRange: dateRange } });
 
@@ -223,7 +223,6 @@ export default class Events extends Component {
     }
 
     handleFilters = (searchType, searchValue, isChecked) => {
-
         let filteredPromotions = [...this.state.filteredPromotions];
         let filteredVenues = [...this.state.filteredVenues];
         let filteredTags = [...this.state.filteredTags];
