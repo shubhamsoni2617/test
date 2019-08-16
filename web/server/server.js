@@ -15,7 +15,7 @@ const app = express()
 app.use(express.static(path.join(__dirname, '../build')));
 
 app.get('/sistic/docroot/**', function(req, res) {
-  var newurl = `http://${req.host === 'localhost' ? '192.168.10.195': req.host}:8081/${req.originalUrl}`;
+  var newurl = `http://${req.host}:8081/${req.originalUrl}`;
   request(newurl).pipe(res);
 });
 app.get("*", (req, res, next) => {
