@@ -16,7 +16,8 @@ RUN npm install
 RUN npm install react-scripts@3.0.1 -g --silent
 COPY . .
 RUN npm run build
-
+# RUN npm run serve
+# COPY . .
 EXPOSE 3000
 
-CMD ["npm", "start"]
+CMD ["npm", "run", "serve"]

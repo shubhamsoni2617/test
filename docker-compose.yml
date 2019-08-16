@@ -5,15 +5,7 @@ services:
   web:
     build: web
     environment:
-      - NODE_ENV=development
+      - NODE_ENV=production
     ports:
       - "3000:3000"
-      - "35729:35729"
     user: "root"
-    volumes:
-      - ./web:/home/node/app
-      - /home/node/app/node_modules
-
-volumes:
-  data: {}
-  public: {}
