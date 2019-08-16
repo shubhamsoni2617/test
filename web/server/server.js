@@ -1,4 +1,5 @@
 import express from "express"
+import request from "request";
 import React from "react"
 // import { renderToString } from "react-dom/server"
 // import { StaticRouter, matchPath } from "react-router-dom"
@@ -13,34 +14,39 @@ const app = express()
 
 app.use(express.static(path.join(__dirname, '../build')));
 
+app.get('/sistic/docroot/**', function(req, res) {
+  var newurl = `http://${req.host === 'localhost' ? '192.168.10.195': req.host}:8081/${req.originalUrl}`;
+  request(newurl).pipe(res);
+});
 app.get("*", (req, res, next) => {
+  res.status(200).sendFile(path.resolve(__dirname, "../build", "index.html"));
   // const activeRoute = routes.find((route) => matchPath(req.url, route)) || {}
 
   // const promise = activeRoute.fetchInitialData
   //   ? activeRoute.fetchInitialData(req.path)
   //   : Promise.resolve()
 
+    // const modules = [];
   // promise.then((response) => {
   //   const context = { data: response.data }
-  //   const modules = [];
   //   const markup = renderToString(
   //     <StaticRouter location={req.url} context={context}>
   //       <App />
   //     </StaticRouter>
   //   )
     // Let's give ourself a function to load all our page-specific JS assets for code splitting
-    const extractAssets = (assets, chunks) =>
-      Object.keys(assets)
-        .filter(asset => chunks.indexOf(asset.replace('.js', '')) > -1)
-        .map(k => assets[k]);
+    // const extractAssets = (assets, chunks) =>
+    //   Object.keys(assets)
+    //     .filter(asset => asset.indexOf('.js') > -1 && asset.indexOf('.js.map') === -1 && asset !== 'service-worker.js')
+    //     .map(k => assets[k]);
 
     // Let's format those assets into pretty <script> tags
-    const extraChunks = extractAssets(manifest, modules).map(
-      c => `<script type="text/javascript" src="/${c.replace(/^\//, '')}"></script>`
-    );
+    // const extraChunks = extractAssets(manifest.files, modules).map(
+    //   c => `<script type="text/javascript" src="/${c.replace(/^\//, '')}"></script>`
+    // );
 
   //   // We need to tell Helmet to compute the right meta tags, title, and such
-    const helmet = Helmet.renderStatic();
+    // const helmet = Helmet.renderStatic();
 
   //   res.send(`<!doctype html>
   //   <html>
@@ -58,19 +64,19 @@ app.get("*", (req, res, next) => {
   // `)
   // }).catch(next)
 
-  res.send(`<!doctype html>
-    <html>
-      <head>
-        ${helmet.htmlAttributes.toString()}
-        ${helmet.title.toString()}
-        ${helmet.meta.toString()}
-      </head>
-      <body>
-        <div id="app"></div>
-        ${extraChunks.join('')}
-      </body>
-    </html>
-  `)
+  // res.send(`<!doctype html>
+  //   <html>
+  //     <head>
+  //       ${helmet.htmlAttributes.toString()}
+  //       ${helmet.title.toString()}
+  //       ${helmet.meta.toString()}
+  //     </head>
+  //     <body>
+  //       <div id="app"></div>
+  //       ${extraChunks.join('')}
+  //     </body>
+  //   </html>
+  // `)
 
 
 })
