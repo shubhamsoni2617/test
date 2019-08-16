@@ -9,9 +9,6 @@ import SocialShare from "../../../shared/components/SocialShare";
 import Image from "../../../shared/components/Image";
 
 export default class StickyHeader extends Component {
-  constructor(props) {
-    super(props);
-  }
   render() {
     const { detailData, sticky, showSocialShare, shareUrl, setHeader } = this.props;
 
