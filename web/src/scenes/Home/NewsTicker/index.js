@@ -4,7 +4,6 @@ import "./style.scss";
 import HomeService from "../../../shared/services/HomeService";
 
 const NewsTicker = props => {
-  console.log("news");
   const { homePageRef } = props;
   const [newsTicker, setNewsTicker] = useState([]);
   const refValue = useRef();
