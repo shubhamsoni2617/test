@@ -1,4 +1,4 @@
-import React, { Component, createRef } from "react";
+import React, { Component } from "react";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import InputRange from "react-input-range";
 import VenueFilter from "../VenueFilter";
@@ -46,7 +46,7 @@ export default class Filters extends Component {
     }
 
     componentDidUpdate(preProps) {
-        if (this.props.queryParams.genreId != preProps.queryParams.genreId) {
+        if (this.props.queryParams.genreId !== preProps.queryParams.genreId) {
             this.applyIsChecked(true); //Value true passed for check route params
         }
     }

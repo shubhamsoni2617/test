@@ -184,7 +184,6 @@ export default class EventsDetail extends Component {
   render() {
     const {
       detailData,
-      showBuyTicket,
       getSynopsisData,
       showSeatMap,
       similarEventsData,
@@ -207,7 +206,7 @@ export default class EventsDetail extends Component {
         if (obj.language) {
           getSynopsisData.languageArr.push(obj.language);
         }
-        if (this.state.synopsisLang == obj.language) {
+        if (this.state.synopsisLang === obj.language) {
           getSynopsisData.desc = obj.description;
           getSynopsisData.activeLang = obj.language;
         } else {
