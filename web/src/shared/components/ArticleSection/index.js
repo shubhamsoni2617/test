@@ -13,7 +13,7 @@ export default class ArticleSection extends Component {
            <div className="section-top-wrapper">
               <h2>Articles</h2>
               <div className="carousel-dots">
-                 <a>See all <img src={ArrowBlue} className="img-fluid" alt="arrow"/></a>
+                 <a href="/" onClick={() => {}}>See all <img src={ArrowBlue} className="img-fluid" alt="arrow"/></a>
               </div>
            </div>
            <div className="grid-container">
@@ -23,7 +23,7 @@ export default class ArticleSection extends Component {
                        <Image src={Article1} className="img-fluid" alt="article" type='Vertical' />
                     </div>
                     <h3>A Guide to SIFA 2019’s Music-centric Gems</h3>
-                    <p>Artists who are ground-breaking in their fields have always inspired me... <a >More</a></p>
+                    <p>Artists who are ground-breaking in their fields have always inspired me... <a href="/" onClick={() => {}}>More</a></p>
                  </div>
               </div>
               <div className="item">
@@ -32,7 +32,7 @@ export default class ArticleSection extends Component {
                        <Image src={Article1} className="img-fluid" alt="article" type='Vertical'/>
                     </div>
                     <h3>Best Ever Opera Lorem Ipsum Sit Dolor Amet</h3>
-                    <p>Artists who are ground-breaking in their fields have always inspired me... <a >More</a></p>
+                    <p>Artists who are ground-breaking in their fields have always inspired me... <a href="/" onClick={() => {}}>More</a></p>
                  </div>
               </div>
               <div className="item">
@@ -41,7 +41,7 @@ export default class ArticleSection extends Component {
                        <Image src={Article1} className="img-fluid" alt="article"  type='Vertical'/>
                     </div>
                     <h3>Mauris malesuada nisi sit amet augue</h3>
-                    <p>Artists who are ground-breaking in their fields have always inspired me... <a >More</a></p>
+                    <p>Artists who are ground-breaking in their fields have always inspired me... <a href="/" onClick={() => {}}>More</a></p>
                  </div>
               </div>
            </div>

@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, useState } from 'react';
+import React, { useRef, useEffect } from 'react';
 import './style.scss';
 import closeAd from '../../../assets/images/close-ad.svg';
 import headerBanner from '../../../assets/images/header-banner.png';
@@ -25,7 +25,7 @@ const Advertisement = (props) => {
       return () => {
         unlisten();
       };
-    }, [])
+    }, [refValue])
 
     return (
 
