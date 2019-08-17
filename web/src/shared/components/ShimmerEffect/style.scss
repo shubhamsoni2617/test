@@ -57,4 +57,5 @@ $black-opacity-10:rgba($black,.15);
   .contentLoader.ListView .animated-background { width: 95%; margin-bottom:0px;}
   .contentLoader.ListView .animated-background { margin-left: 0;  margin-right:10px;  }
   .contentLoader.ListView .animated-backgroundlarge { margin-left: 0px;}
+  .contentLoader .animated-background.boxLoader { display: inline-block; width: 15%; height: 100px;}
 }

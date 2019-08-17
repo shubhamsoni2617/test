@@ -10,6 +10,35 @@
     .banner-carousel{
         position: relative;
         height: 100%;
+        .image-gallery-thumbnails{
+          padding: 0;
+        }
+        .image-gallery-thumbnail {
+              width: 130px;
+              margin-left: 4px;
+              margin-top: 4px;
+              border: 0;
+              border-bottom: 4px solid transparent;
+          }
+          .image-gallery-thumbnail.active {
+            border-bottom: 4px solid #337ab7;
+        }
+          .image-gallery-custom-nav{
+            position: absolute;
+    bottom: -84px;
+    z-index: 2;
+    height: 80px;
+    width: 34px;
+          }
+          .next{
+            right: 0;
+            background: rgba(3,13,21,0.72)  url(../../../assets/images/right-arrow-white.svg) 12px 30px no-repeat;
+          }
+          .prev{
+              left: 0;
+              background: rgba(3,13,21,0.72)  url(../../../assets/images/left-arrow-white.svg) 10px 30px no-repeat;
+          }
+
         .slick-slider{
             display: flex;
             flex-wrap: nowrap;

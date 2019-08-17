@@ -6,6 +6,7 @@
     top: 30px;
     margin-top: -30px;
     opacity: 1;
+
     @media(max-width: 1280px){
         padding: 20px 20px 15px;
     }
@@ -663,7 +664,7 @@
                 cursor: pointer;
                 background-color: #fff;
                 border-color: #0098ff;
-                }        
+                }
             }
         }
         h2{
@@ -929,6 +930,9 @@
     }
 }
 .event-detail-wrapper{
+  .contentLoader{
+    border: 0;
+  }
     .react-modal-body{
         min-height: inherit;
         .modal-body{
@@ -978,5 +982,5 @@
             }
         }
     }
-    
+
 }
