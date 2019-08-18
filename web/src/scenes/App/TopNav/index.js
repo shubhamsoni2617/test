@@ -16,6 +16,8 @@ import insta from '../../../assets/images/insta-unfill.svg';
 const TopNav = (props) => {
   let refValue = useRef();
   const [showMegaMenu, setShowMegaMenu] = useState(false);
+  const [menuActive, setMenuActive] = useState(false);
+  const [headerClass, setHeaderClass] = useState(false);
   const [byVenueEvent, setByVenueEvent] = useState([]);
   const [byGenreEvent, setByGenreEvent] = useState([]);
   const [showElementsInHeader, setShowElementsInHeader] = useState(4);
@@ -48,8 +50,36 @@ const TopNav = (props) => {
       .catch((err) => {
         console.log(err)
       });
+
+      if(props.history.location.pathname) processPath(props.history.location);
+
+      const unlisten = props.history.listen((location) => {
+        processPath(location);
+      });
+      return () => {
+        unlisten();
+      };
+
   }, []);
 
+  const processPath = (location) => {
+    if(location.pathname){
+      let pathArr = location.pathname.split('/');
+      if(pathArr.length && pathArr[1] == 'events'){
+        setMenuActive(true);
+
+        //For event header class
+        if(location.search === ''){
+          setHeaderClass(true);
+        }else{
+          setHeaderClass(false);
+        }
+      }else{
+        setMenuActive(false);
+        setHeaderClass(false);
+      }
+    }
+  }
   const handleNavigationOpen = () => {
     refValue.classList.add("active");
   }
@@ -70,7 +100,7 @@ const TopNav = (props) => {
   }
 
   return (
-    <header className="header">
+    <header className={`header ${headerClass ? 'header-light' : ''}`}>
       <div className="container-fluid">
         <div className="row">
           <div className="top-header">
@@ -92,7 +122,7 @@ const TopNav = (props) => {
           <nav className="bottom-header">
             <div className="bottom-header-left">
               <ul>
-                <li className="has-submenu" onMouseEnter={() => handleMouseStatus(true)} onMouseLeave={() => handleMouseStatus(false)}>
+                <li className={`has-submenu ${menuActive ? 'active' : ''}`} onMouseEnter={() => handleMouseStatus(true)} onMouseLeave={() => handleMouseStatus(false)}>
                   <a>Events</a>
                   <CSSTransitionGroup
                     transitionName="mega"

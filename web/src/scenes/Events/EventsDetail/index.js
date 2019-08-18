@@ -56,7 +56,10 @@ export default class EventsDetail extends Component {
     const payload = { code: this.state.code, client: Constants.CLIENT };
     EventsService.getEventDetails(payload)
       .then(res => {
-        this.setState({ detailData: res.data });
+        setTimeout(() => {
+          this.setState({ detailData: res.data });
+
+        }, 1000);
       })
       .catch(err => {
         this.setState({
@@ -216,6 +219,13 @@ export default class EventsDetail extends Component {
       });
     return (
       <div className="event-detail-wrapper">
+      {!detailData.images && <ShimmerEffect
+                    propCls="shm_col-xs-6 col-md-12"
+                    height={400}
+                    count={2}
+                    type="grid"
+                    detail={true}
+                  />}
         {detailData && (
           <div>
             {detailData.is_show_over === 1 && (
@@ -250,6 +260,7 @@ export default class EventsDetail extends Component {
                   )}
 
                 <section className="event-detail-banner">
+
                   {detailData.images && detailData.images.length > 0 && (
                     <EventCarousel images={detailData.images} />
                   )}
