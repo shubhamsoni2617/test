@@ -27,17 +27,17 @@ $duration: 10s;
 }
 
 .ticker-wrap {
+  position: absolute;
+  top: 106px;
   width: 100%;
   background-color: rgba(3, 13, 21, 0.8);
   padding: 0 60px 0 35px;
-  position: relative;
   z-index: 2;
   max-height: 0;
   transition: max-height 0.5s ease-out;
   overflow: hidden;
   &.hide-news {
     max-height: 40px;
-    transition: max-height 0.5s ease-in;
   }
   .ticker-container {
     width: 100%;
@@ -45,7 +45,7 @@ $duration: 10s;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 30px;
+    height: 27px;
     .ticker {
       cursor: pointer;
       display: flex;

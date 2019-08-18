@@ -51,11 +51,11 @@ export default class StickyHeader extends Component {
             </ul>
           )}
           <h2>{detailData.title}</h2>
-          <div className="info-tooltip">
+          {detailData.pop_up_message.title && <div className="info-tooltip">
             <a className="info" onClick={() => this.props.openNotice()}>
-              <img src={Info} alt="" />
+              <img src={Info} alt="Info" />
             </a>
-          </div>
+          </div>}
           <div className="share-tooltip">
             <a className="share" onClick={() => this.props.openSocialShare()}>
               <img src={shareIcon} alt="" />
