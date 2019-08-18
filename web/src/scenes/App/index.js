@@ -30,7 +30,7 @@ export default class App extends React.Component {
   render() {
     return (
         <div className="wrapper">
-          {/* <Advertisement {...this.props} /> */}
+          <Advertisement {...this.props} />
           <TopNav {...this.props} />
           <Navigator {...this.props} />
           <Footer />

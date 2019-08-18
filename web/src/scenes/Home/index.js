@@ -15,15 +15,14 @@ import Cookies from "../../shared/components/Cookies";
 import NewsTicker from "./NewsTicker";
 import ModalPopup from "../../shared/components/Modal";
 import primeSlider from "../../assets/images/main-banner.png";
-
+import ShimmerEffect from '../../shared/components/ShimmerEffect';
 import HomeService from "../../shared/services/HomeService";
 
 const preLoadImgage = (src) => {
-      let img = new Image();
-      img.src = src;
+  let img = new Image();
+  img.src = src;
 }
 preLoadImgage(primeSlider);
-
 class Home extends Component {
   constructor(props) {
     super(props);
@@ -33,9 +32,21 @@ class Home extends Component {
       config: {},
       modal: false,
       modalContent: "",
-      newsTickerStatus: true
+      newsTickerStatus: true,
+      imageUrl: ''
     };
     this.homePageRef = createRef();
+    // this.preLoadImgage(primeSlider);
+  }
+
+  preLoadImgage = (src) => {
+    let img = new Image();
+    img.onload = () => {
+      setTimeout(() => {
+        this.setState({imageUrl: src});
+      }, 100000);
+    };
+    img.src = src;
   }
 
   showNewsTicker = data => {
@@ -46,16 +57,16 @@ class Home extends Component {
 
     return (
       <div className="home-page-wrapper" ref={this.homePageRef}>
-        {/* <NewsTicker
+        <NewsTicker
           homePageRef={this.homePageRef}
           showNewsTicker={this.showNewsTicker}
           modal={this.state.modal}
-        /> */}
-        {/* <HotShowPopup /> */}
+        />
+        <HotShowPopup />
         <div className="banner">
           <img src={primeSlider} alt="prime Slider" />
         </div>
-        {/* <TopPics />
+        <TopPics />
         <section className="gift-cart">
           <div className="gift-cart-image">
             <img
@@ -91,7 +102,7 @@ class Home extends Component {
           title="News Ticker"
           handleClose={() => this.setState({ modal: false, modalContent: "" })}
           htmlContent={true}
-        /> */}
+        />
       </div>
     );
   }

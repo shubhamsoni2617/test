@@ -86,7 +86,7 @@ export default class ShimmerEffect extends Component {
               <div className="shm_row">
               <div className="col-md-8">
               <div className="shm_col-sm-12">
-                  <div className="animated-background " style={{ height: props.height }}> </div>
+                  <div className="animated-background main" style={{ height: props.height }}> </div>
                 </div>
                 <div className="shm_col-sm-12">
                   <div className="animated-background boxLoader"> </div>
@@ -113,11 +113,36 @@ export default class ShimmerEffect extends Component {
 
     }
 
+    let bannerShimmer = () => {
+      return (
+        <div className={props.propCls}>
+          <div className="contentLoader ListView">
+            <div className="shm_row">
+            <div className="col-md-12">
+            <div className="shm_col-sm-12">
+                <div className="animated-background main" style={{ height: props.height }}> </div>
+              </div>
+              <div className="shm_col-sm-12">
+                <div className="animated-background boxLoader"> </div>
+                <div className="animated-background boxLoader"> </div>
+                <div className="animated-background boxLoader"> </div>
+                <div className="animated-background boxLoader"> </div>
+                <div className="animated-background boxLoader"> </div>
+              </div>
+            </div>
+
+            </div>
+          </div>
+        </div>
+      );
+
+  }
+
     // if (!props.visible) return null;
     return (
       <div className="shm_row">
         {/* {props.visible ? (props.type == 'list' ? listShimmer() : (props.type == 'grid' ? gridShimmer() : shimmer())) : ''} */}
-        {props.detail ? detailShimmer() : listShimmer()}
+        {props.detail ? props.homepage ? bannerShimmer() : detailShimmer() : listShimmer()}
       </div>
     )
   };

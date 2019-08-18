@@ -6,6 +6,7 @@ const Advertisement = (props) => {
     const refValue = useRef();
 
     const handleClose=()=>{
+      sessionStorage.setItem('advertisment', false);
       refValue.current.flag = false;
        refValue.current.classList.remove("show-add");
     }
@@ -13,14 +14,17 @@ const Advertisement = (props) => {
     useEffect(() => {
       refValue.current.flag = true;
       if(props.history.location.pathname === '/'){
-        refValue.current.classList.add("show-add");
+        !sessionStorage.getItem('advertisment') && refValue.current.classList.add("show-add");
       }
-      const unlisten = props.history.listen((location, action) => {
-        if(location.pathname !== '/'){
-          refValue.current.classList.remove("show-add");
-        }else if(refValue.current.flag){
-          refValue.current.classList.add("show-add");
-        }
+      const unlisten = props.history.listen((location) => {
+        setTimeout(() => {
+          if(location.pathname !== '/'){
+            refValue.current.classList.remove("show-add");
+          }else if(refValue.current.flag){
+            !sessionStorage.getItem('advertisment') && refValue.current.classList.add("show-add");
+          }
+
+        }, 2000);
       });
       return () => {
         unlisten();

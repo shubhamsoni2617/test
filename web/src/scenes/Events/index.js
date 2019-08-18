@@ -105,6 +105,7 @@ export default class Events extends Component {
       this.props.location.search &&
       this.props.location.search != prevProps.location.search
     ) {
+      this.setState({shimmer: true});
       this.loadEvents(this.getRoutesParams());
     }
   }
@@ -195,6 +196,7 @@ export default class Events extends Component {
   };
 
   loadEvents = (params, isLoadMore) => {
+
     // this.setState({shimmer: true});
     EventsService.getData(params)
       .then(res => {
@@ -209,7 +211,7 @@ export default class Events extends Component {
             totalRecords: res.data.total_records,
             isdataAvailable: isdataAvailable
           });
-        }, 1000);
+        }, 5000);
       })
       .catch(err => {
         console.log(err);
@@ -220,7 +222,7 @@ export default class Events extends Component {
     let params = this.setFilterParams();
     params.first = this.state.first + 9;
     this.loadEvents(params, true);
-    this.setState({ first: params.first, limit: params.limit });
+    this.setState({ first: params.first, limit: params.limit, shimmer: true });
   };
 
   handleListGridView = getViewType => {
