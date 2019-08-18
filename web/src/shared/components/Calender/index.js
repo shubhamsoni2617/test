@@ -52,13 +52,6 @@ const Calender = (props) => {
     return moment(date).format('DD MMM YYYY');
   }
 
-  const modifiersStyles = {
-    currentDay: {
-      color: 'red',
-      backgroundColor: 'white',
-    },
-  };
-
   const modifiers = { start: from, end: enteredTo, currentDay: new Date };
   const disabledDays = { before: from };
   const selectedDays = [from, { from, to: enteredTo }];
@@ -75,7 +68,6 @@ const Calender = (props) => {
         selectedDays={selectedDays}
         disabledDays={{before: new Date()}}
         modifiers={modifiers}
-        modifiersStyles={modifiersStyles}
         onDayClick={handleDayClick}
         onDayMouseEnter={handleDayMouseEnter}
         captionElement={({ date, localeUtils }) => (

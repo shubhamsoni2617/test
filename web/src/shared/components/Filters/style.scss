@@ -339,16 +339,27 @@
                 height: 1px;
             }
             span.input-range__label-container {
-                height: 26px;
-                width: 60px;
-                border: 1px solid rgba(126, 126, 126, 0.2);
-                display: inline-block;
-                text-align: center;
-                line-height: 26px;
-                color: #343434;
-                font-family: 'Rubik', sans-serif;
-                background: #FFF;
+              display: none;
             }
+            span.input-range-label-container {
+              position: absolute;
+              top: -30px;
+              height: 26px;
+              width: 60px;
+              border: 1px solid rgba(126, 126, 126, 0.2);
+              display: inline-block;
+              text-align: center;
+              line-height: 26px;
+              color: #343434;
+              font-family: 'Rubik', sans-serif;
+              background: #FFF;
+          }
+          span.input-range-label-container.min {
+            left: 5px;
+          }
+          span.input-range-label-container.max {
+            right: 5px;
+          }
             .input-range__label.input-range__label--min, .input-range__label.input-range__label--max{
                 .input-range__label-container{
                     display: none;
@@ -609,6 +620,7 @@
                 }
             }
             .DayPickerInput{
+
                 input{
                     height: 26px;
                     width: 100%;

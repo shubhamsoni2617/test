@@ -26,6 +26,16 @@
 	transition: 0.3s ease-in;
     &.header-light{
         background-color: #373E45;
+        .top-header{
+          .top-header-left{
+            .header-search{
+              input {
+                background-color: #50565d;
+              }
+            }
+          }
+        }
+
     }
 	.top-header {
 		display: flex;
@@ -436,13 +446,13 @@
 					}
 					&.has-submenu.active {
 						.submenu {
-							top: 100%;
-							padding: 33px;
-							width: 100%;
-							opacity: 1;
-							@media(max-width: 991px) {
-								padding: 20px 10px;
-							}
+							// top: 100%;
+							// padding: 33px;
+							// width: 100%;
+							// opacity: 1;
+							// @media(max-width: 991px) {
+							// 	padding: 20px 10px;
+							// }
 						}
 					}
 					&.active {

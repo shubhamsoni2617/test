@@ -10,17 +10,39 @@ import ImageGallery from 'react-image-gallery';
 const EventCarousel = (props) => {
 
   const [imageArray, setImageArray] = useState([]);
-  // const [navSmall, setNavSmall] = useState(null);
 
-  useEffect(() => {
+  const renderItem = (item) => {
+    return (
+      <div class="image-gallery-image">
+        {item.video_url !== '' && (
+          <div className="videoimg" style={{ width: '100%' }}>
+          <img src={videoImage} />
+          <ReactPlayer url={item.video_url} controls={true} />
+          </div>
+        )}
+        {item.video_url === '' && <img src={item.full_image} />}
+      </div>
+    )
+  }
 
-    let temp = [];
-    for(let i=0; i<props.images.length; i++){
-
-      temp.push({original: props.images[i].full_image, thumbnail: props.images[i].thumb_image})
-    }
-    setImageArray(temp);
-  }, [props.images])
+  const renderThumbInner = (item) => {
+    return (
+      <div className="image-gallery-thumbnail-inner">
+        {item.video_url !== '' && (
+            <div className="videoimg" style={{ width: 130 }} >
+        <img src={playIcon} className="play-icon" alt="Play Icon" />
+        <img src={item.thumb_image} />
+        </div>
+        )}
+        {item.video_url === '' && (
+          <div style={{ width: 130 }}>
+          <img src={item.thumb_image} />
+          </div>
+        )}
+        <span className="border-bottom-active"></span>
+      </div>
+    )
+  }
 
   const renderLeftNav = (onClick, disabled) => {
     return (
@@ -43,9 +65,13 @@ const EventCarousel = (props) => {
   return (
     <div className="banner-carousel">
     <ImageGallery
-      items={imageArray}
-      renderLeftNav={renderLeftNav}
-      renderRightNav={renderRightNav} />
+      items={props.images}
+      renderItem={renderItem}
+      renderThumbInner={renderThumbInner}
+      infinite={false}
+      showNav={false}
+      showFullscreenButton={false}
+      showPlayButton={false}/>
     </div>
   );
 

@@ -1,10 +1,10 @@
 //event detail section
 .event-detail {
     background-color: #F0F9FF;
-    padding: 22px 29px 15px;
+    padding: 22px 29px 0px;
     position: relative;
-    top: 30px;
-    margin-top: -30px;
+    // top: 30px;
+    // margin-top: -30px;
     opacity: 1;
 
     @media(max-width: 1280px){
@@ -215,6 +215,7 @@
             text-align: center;
             font-weight: 500;
             border: 1px solid transparent;
+            margin-top: -10px;
             @media(min-width: 768px) and (max-width: 980px){
                 max-width: 300px;
             }

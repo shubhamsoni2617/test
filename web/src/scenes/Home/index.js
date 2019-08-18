@@ -52,10 +52,10 @@ class Home extends Component {
           modal={this.state.modal}
         /> */}
         {/* <HotShowPopup /> */}
-        <section className="banner">
+        <div className="banner">
           <img src={primeSlider} alt="prime Slider" />
-        </section>
-        <TopPics />
+        </div>
+        {/* <TopPics />
         <section className="gift-cart">
           <div className="gift-cart-image">
             <img
@@ -91,7 +91,7 @@ class Home extends Component {
           title="News Ticker"
           handleClose={() => this.setState({ modal: false, modalContent: "" })}
           htmlContent={true}
-        />
+        /> */}
       </div>
     );
   }
