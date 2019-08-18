@@ -211,7 +211,7 @@ export default class Events extends Component {
             totalRecords: res.data.total_records,
             isdataAvailable: isdataAvailable
           });
-        }, 5000);
+        }, 1000);
       })
       .catch(err => {
         console.log(err);
