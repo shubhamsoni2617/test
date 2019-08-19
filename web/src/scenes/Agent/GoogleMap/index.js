@@ -3,7 +3,7 @@ import { Map, InfoWindow, Marker, GoogleApiWrapper } from 'google-maps-react';
 
 const GoogleMap = (props) => {
 
-  const { google, multipleMarker, popUpDetail } = props;
+  const { google, multipleMarker } = props;
 
   const [showingInfoWindow, setShowingInfoWindow] = useState(false);
   const [activeMarker, setActiveMarker] = useState({});
@@ -27,18 +27,11 @@ const GoogleMap = (props) => {
     setShowingInfoWindow(false);
   }
 
-  const popUpRemoved = () => {
-    if(popUpDetail.current){
-      console.log(popUpDetail.current)
-      // popUpDetail.current.className="active"
-    }
-  }
-
   if (!google) {
     return <div>Loading...</div>;
   }
   return (
-    <div onClick={popUpRemoved}>
+    <div>
       <Map google={google}
         style={{ width: '100%', height: '100%' }}
         zoom={12}

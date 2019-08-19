@@ -44,21 +44,15 @@ const Agent = (props) => {
     },
   ];
 
-  const [popUpDetail, setPopUpDetail] = useState('');
-
-  const removePopUpDetail = (popUp) => {
-    setPopUpDetail(popUp);
-  }
-
   return (
     <section className="">
       <CountryRegion />
       <div className="container-fluid row">
         <div className="col-lg-4">
-          <SearchAgent initialItems={filterAgent} removePopUpDetail={removePopUpDetail} />
+          <SearchAgent initialItems={filterAgent} />
         </div>
-        <div className="col-lg-8">
-          <GoogleMap multipleMarker={filterAgent} popUpDetail={popUpDetail} />
+        <div className="col-lg-8" >
+          <GoogleMap multipleMarker={filterAgent} />
         </div>
       </div>
     </section>

@@ -4,13 +4,13 @@ import './style.scss';
 
 const SearchAgent = (props) => {
 
-  const { initialItems, removePopUpDetail } = props;
+  const { initialItems } = props;
 
   const popUpRef = useRef();
 
   const [filter, setFilter] = useState('');
   const [popUpDetail, setPopUpDetail] = useState('');
-
+  const [isOpen, setIsOpen] = useState(false);
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -23,7 +23,25 @@ const SearchAgent = (props) => {
 
   const showPopUp = (detail) => {
     setPopUpDetail(detail);
-    removePopUpDetail(popUpRef);
+  }
+
+
+  const toggle = () => {
+    if (!isOpen) {
+      window.addEventListener('click', handleOutsideClick, false);
+      // popUpRef.current.classList.add("active");
+    } else {
+      window.removeEventListener('click', handleOutsideClick, false);
+      // popUpRef.current.classList.remove("active");
+    }
+    setIsOpen(!isOpen)
+  }
+
+  const handleOutsideClick = (e) => {
+    if (popUpRef.current.contains(e.target)) {
+      return;
+    }
+    toggle();
   }
 
   // ------------------------------Array filtering-----------------------------
@@ -52,14 +70,17 @@ const SearchAgent = (props) => {
           </div>
         </div>
       </form>
-      <ul className="list-group">
+      <ul className="list-group" onClick={toggle} ref={popUpRef}>
         {
           filteredData && filteredData.map((item, index) => {
             return (
               <ul key={index} onClick={() => showPopUp(item)}>
                 <li><strong>{item.id}</strong> <span><a>{item.shownOnMap}</a></span></li>
                 <li>{item.address}</li>
-                <div className="pop-up" ref={popUpRef} style={{ display: item.id === popUpDetail.id ? "block" : "none" }}>
+                <div
+                  className={item.id === popUpDetail.id ? "pop-up active" : "pop-up"}
+                  style={{ display: item.id === popUpDetail.id ? "block" : "none" }}
+                >
                   {popUpDetail.address}
                 </div>
                 <hr />
