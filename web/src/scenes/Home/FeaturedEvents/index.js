@@ -43,153 +43,153 @@ const FeaturedEvents = (props) => {
         {
             id: "1",
             img: "assets/images/explore.png",
-
+            category: 'dance'
         },
         {
             id: "2",
             img: "assets/images/pretty-girls.jpg",
-
+            category: 'comedy'
         },
         {
             id: "3",
             img: "assets/images/dance-theature.jpg",
-
+            category: 'theatre'
         },
         {
             id: "4",
             img: "assets/images/hetty-keos.jpg",
-
+            category: 'dance'
         },
         {
             id: "5",
             img: "assets/images/aladdin.jpg",
-
+            category: 'comedy'
         },
         {
             id: "6",
             img: "assets/images/voice-legends.jpg",
-
+            category: 'theatre'
         },
         {
             id: "7",
             img: "assets/images/pride-passion.jpg",
-
+            category: 'dance'
         },
         {
             id: "8",
             img: "assets/images/hetty-keos.jpg",
-
+            category: 'comedy'
         },
         {
             id: "9",
             img: "assets/images/aladdin.jpg",
-
+            category: 'theatre'
         },
         {
             id: "10",
             img: "assets/images/voice-legends.jpg",
-
+            category: 'dance'
         },
 
         {
             id: "11",
             img: "assets/images/explore.png",
-
+            category: 'comedy'
         },
         {
             id: "12",
             img: "assets/images/pretty-girls.jpg",
-
+            category: 'dance'
         },
         {
             id: "13",
             img: "assets/images/dance-theature.jpg",
-
+            category: 'comedy'
         },
         {
             id: "14",
             img: "assets/images/hetty-keos.jpg",
-
+            category: 'theatre'
         },
         {
             id: "15",
             img: "assets/images/aladdin.jpg",
-
+            category: 'theatre'
         },
         {
             id: "16",
             img: "assets/images/voice-legends.jpg",
-
+            category: 'comedy'
         },
         {
             id: "17",
             img: "assets/images/pride-passion.jpg",
-
+            category: 'dance'
         },
         {
             id: "18",
             img: "assets/images/hetty-keos.jpg",
-
+            category: 'comedy'
         },
         {
             id: "19",
             img: "assets/images/aladdin.jpg",
-
+            category: 'concert'
         },
         {
             id: "20",
             img: "assets/images/voice-legends.jpg",
-
+            category: 'dance'
         },
         {
             id: "21",
             img: "assets/images/explore.png",
-
+            category: 'concert'
         },
         {
             id: "22",
             img: "assets/images/pretty-girls.jpg",
-
+            category: 'dance'
         },
         {
             id: "23",
             img: "assets/images/dance-theature.jpg",
-
+            category: 'comedy'
         },
         {
             id: "24",
             img: "assets/images/hetty-keos.jpg",
-
+            category: 'dance'
         },
         {
             id: "25",
             img: "assets/images/aladdin.jpg",
-
+            category: 'comedy'
         },
         {
             id: "26",
             img: "assets/images/voice-legends.jpg",
-
+            category: 'comedy'
         },
         {
             id: "27",
             img: "assets/images/pride-passion.jpg",
-
+            category: 'dance'
         },
         {
             id: "28",
             img: "assets/images/hetty-keos.jpg",
-
+            category: 'comedy'
         },
         {
             id: "29",
             img: "assets/images/aladdin.jpg",
-
+            category: 'comedy'
         },
         {
             id: "30",
             img: "assets/images/voice-legends.jpg",
-
+            category: 'dance'
         },
     ];
     const settings = {
@@ -251,7 +251,7 @@ const FeaturedEvents = (props) => {
                                                         <div className="item-img">
                                                             <img src={event.img} className="img-fluid" alt="explore" />
                                                         </div>
-                                                        <span className="category dance">Dance</span>
+                                                        <span className={`category ${event.category}`}>{event.category.toLocaleUpperCase()}</span>
                                                     </div>
                                                     <h3>SSO Red Balloon Series: Rhythums, Rites</h3>
                                                     <p>Fri, 3 May 2019</p>
@@ -276,7 +276,7 @@ const FeaturedEvents = (props) => {
                                                         <div className="item-img">
                                                             <img src={event.img} className="img-fluid" alt="explore" />
                                                         </div>
-                                                        <span className="category dance">Dance</span>
+                                                        <span className={`category ${event.category}`}>{event.category.toLocaleUpperCase()}</span>
                                                     </div>
                                                     <h3>SSO Red Balloon Series: Rhythums, Rites</h3>
                                                     <p>Fri, 3 May 2019</p>
