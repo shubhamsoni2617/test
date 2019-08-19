@@ -78,7 +78,7 @@ class TrendingNow extends Component {
                                 return (
                                     <div key={index} className="item">
                                         <div className="item-wrapper">
-                                        <span className={`category ${now.category}`}>{now.category.toLocaleUpperCase()}</span>
+                                        <span className={`category ${now.category}`}>{now.category}</span>
                                             <div className="trending-now-image">
                                                 <div className="item-img">
                                                     <img src={now.img} className="img-fluid" alt="trending-now" />
