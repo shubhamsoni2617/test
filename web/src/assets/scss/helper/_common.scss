@@ -49,6 +49,13 @@ ul {
 	color: #0098ff;
 }
 
+// Buttons 
+button{
+    &:focus{
+        outline: none;
+    }
+}
+
 //nav
 nav {
 	a {
