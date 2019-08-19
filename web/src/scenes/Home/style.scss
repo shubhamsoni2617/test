@@ -3077,7 +3077,7 @@ section{
 				}
 				.calender-action{
                     margin: 0 -6px;
-                    width: calc(100% + 12px);
+                    width: calc(100% + 18px);
                     form {
                         display: flex;
                         flex-wrap: wrap;
@@ -3088,8 +3088,8 @@ section{
                             display: flex;
                         }
                         &>div {
-							flex: 0 0 39%;
-							width: 39%;
+							flex: 0 0 38%;
+							width: 38%;
                             padding-right: 5px;
                             height: 100%;
                             margin-bottom: 0;
@@ -3212,7 +3212,7 @@ section{
 							font-size: 14px;
 							transition: 0.5s transform;
                             &:hover{
-								color: #0077C8;
+								color: #0098ff;
 								transform: translateX(3px)
                             }
                         }
