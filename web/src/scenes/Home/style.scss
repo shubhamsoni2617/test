@@ -2862,24 +2862,24 @@ section{
 	.grid-container .item .item-wrapper {
 		position: relative;
 		overflow: hidden;
-		background-color: #fff;
+		// background-color: #fff;
 		// padding: 10px;
-		border: 1px solid #eaeaea;
-		box-shadow: 0 5px 15px #eaeaea;
+		// border: 1px solid #eaeaea;
+		// box-shadow: 0 5px 15px #eaeaea;
     // margin: 0px 5px 10px;
 
 		*:not(div):not(img) {
 			background: #ededed;
 			opacity: 1;
 			color: transparent;
-			margin-top: 10px;
+			// margin-top: 10px;
 			// height: 15px;
-			min-height: 15px;
+			// min-height: 15px;
 			padding: 0px;
 			line-height: 0px;
 			font-size: 0px;
 			display: block;
-      margin-bottom: 10px;
+      // margin-bottom: 10px;
 		}
 		&:after {
       content: '';
@@ -2901,7 +2901,23 @@ section{
 			animation-timing-function: linear;
 			background: -webkit-gradient(linear, left top, right top, from(rgba(255, 255, 255, 0)), color-stop(30%, rgba(255, 255, 255, .6)), color-stop(81%, rgba(255, 255, 255, 0)));
 			background: linear-gradient(to right, rgba(255, 255, 255, 0) 0, rgba(255, 255, 255, .6) 30%, rgba(255, 255, 255, 0) 81%);
-		}
+    }
+    span{
+      width: 30%;
+      height: 20px;
+      margin-bottom: 11px;
+    }
+    p{
+      width: 80%;
+      height: 16px;
+      margin-bottom: 10px;
+    }
+    a{
+      width: 95%;
+      height: 36px;
+      margin-bottom: 15px;
+      overflow: hidden;
+    }
 		.item-img {
 			position: relative;
 			img {
