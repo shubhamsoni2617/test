@@ -3,7 +3,7 @@ import './style.scss';
 import defaultImage from '../../assets/images/404.png';
 import magic from '../../assets/images/cap.png';
 import CarouselConatiner from '../Home/CarouselConatiner';
-
+import HomeService from "../../shared/services/HomeService";
 
 const PageNotFound = (props) => {
 
@@ -29,7 +29,12 @@ const PageNotFound = (props) => {
             </div>
         </div>
         {/* currently showing section start  */}
-        <CarouselConatiner />
+        <CarouselConatiner
+        title="Currently Showing"
+        classStr="currently-showing"
+        autoplay={true}
+        infinite={true}
+        api={HomeService.getCurrentlyShowing} />
     </div>
   )
 
