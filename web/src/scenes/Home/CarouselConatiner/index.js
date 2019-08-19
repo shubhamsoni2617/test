@@ -102,13 +102,6 @@ const CarouselConatiner = props => {
   }, []);
 
   useEffect(() => {
-      window.addEventListener("scroll", scrollHandler, true);
-      return () => {
-        window.removeEventListener("scroll", scrollHandler, true);
-      };
-  }, []);
-
-  useEffect(() => {
     const params = {
       client: 1
     };
@@ -129,7 +122,7 @@ const CarouselConatiner = props => {
   }, [callAPI]);
 
   const scrollHandler = () => {
-    if (!callAPI && window.pageYOffset >= element.current.offsetTop - 400 && element.current.offsetTop > 600) {
+    if (!callAPI && window.pageYOffset >= element.current.offsetTop - 400) {
       setCallAPI(true);
     }
   }
