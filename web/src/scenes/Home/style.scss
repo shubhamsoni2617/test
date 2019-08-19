@@ -104,7 +104,7 @@
 					&:focus {
 						background: linear-gradient(to bottom, #fcfcfc, #f3f3f3, #eaeaea, #E1E1E0, #d8d8d8);
 						opacity: 1;
-						color: #626262;
+						color: #343434;
 						box-shadow: none;
 						&::placeholder {
 							color: #626262;
@@ -1077,6 +1077,7 @@
 					top: 6px;
 					left: 13px;
 					line-height: 10px;
+					z-index: 1;
 					img {
 						width: 13px;
 						height: 16px;
@@ -1403,7 +1404,8 @@
 					}
 					.category {
 						position: absolute;
-						right: 7px;
+						left: 7px;
+						right: auto;
 						top: 8px;
 						opacity: 0;
 						transition: 0.7s opacity;
@@ -1553,11 +1555,11 @@ section.whats-new {
 					width: 100%;
 					height: auto;
 					transition: 0.5s transform;
-					@media(max-width: 1366px) {
-						height: 100%;
-						width: 100%;
-						object-fit: cover;
-					}
+					// @media(max-width: 1366px) {
+					// 	height: 100%;
+					// 	width: 100%;
+					// 	object-fit: cover;
+					// }
 					@media (max-width: 767px) {
 						height: auto;
 						width: auto;
@@ -1993,7 +1995,8 @@ section.trending-now {
 			}
 			.category {
 				position: absolute;
-				right: 15px;
+				left: 15px;
+				right: auto;
 				top: 15px;
 				z-index: 1;
 				opacity: 0;
@@ -2528,13 +2531,13 @@ section{
 						border: 1px solid rgba(0, 152, 255, 0.6);
 					}
 					&::-webkit-input-placeholder {
-						color: #4B5562;
+						color: #afafaf;
 					}
 					&::-moz-placeholder {
-						color: #4B5562;
+						color: #afafaf;
 					}
 					&:-moz-placeholder {
-						color: #4B5562;
+						color: #afafaf;
 					}
 				}
 				.input-group-text {
@@ -3053,6 +3056,11 @@ section{
 					padding-right: 5px;
 					transition: 0.3s transform;
 				}
+				&:hover{
+					img{
+						transform: rotate(20deg);
+					}
+				}
 			}
 			&.event-category {
 				ul {
@@ -3333,13 +3341,6 @@ section{
 				font-size: 14px;
 				font-weight: 600;
 				padding: 0px
-			}
-			&:hover{
-				.submenu-subtitle{
-					img{
-						transform: rotate(20deg);
-					}
-				}
 			}
 		}
 	}
