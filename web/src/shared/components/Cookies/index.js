@@ -7,7 +7,6 @@ import Utilities from '../../utilities';
 
 const Cookies = (props) => {
 
-    const [showConsent, setShowConsent] = useState(false);
     const [elheight, setElHeight] = useState(0);
     const el = useRef();
     const [propsAnimation, set, stop] = useSpring(() => ({bottom: -1000}))
@@ -15,7 +14,8 @@ const Cookies = (props) => {
     useEffect(
       () => {
         if(!Utilities.getCookie('SisticConsent')){
-          set({bottom: 0})
+          set({bottom: 0});
+          stop();
         }
 
         if(el && el.current){

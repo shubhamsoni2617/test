@@ -9,7 +9,7 @@ export default class Image extends Component {
     super(props);
     this.state = {
       src: props.src,
-      errored: false,
+      errored: false
     };
   }
 
@@ -43,15 +43,13 @@ export default class Image extends Component {
     if(! src){
       src="assets.png"
     }
-    const {type, className} = this.props;
+    const {className} = this.props;
     return (
-      <LazyLoad height={200}>
-      <img
-        src= {src}
+     <img
+       className = {className}
+        src={src}
         onError ={() => this.onError()}
-        className = {className}
       />
-      </LazyLoad>
     );
   }
 }
