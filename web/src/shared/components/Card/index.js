@@ -20,7 +20,7 @@ export default class Card extends Component {
             </div>
             <div className="event-details">
                 <div className="event-detail-prime">
-                    <span className="category musical">{this.props.eventsData.primary_genre}</span>
+                    <span className={'category '+ this.props.eventsData.primary_genre.toLowerCase()}>{this.props.eventsData.primary_genre}</span>
                     <h3 className="item-title">{Utilities.showLimitedChars(this.props.eventsData.title, 70)} {}
                     </h3>
                     <p className="event-date">{this.props.eventsData.event_date}</p>

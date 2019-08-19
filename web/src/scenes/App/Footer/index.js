@@ -8,6 +8,7 @@ import fb from '../../../assets/images/fb.svg';
 import fbFill from '../../../assets/images/fb-fill.svg';
 import insta from '../../../assets/images/insta-unfill.svg';
 import instaFill from '../../../assets/images/insta-fill.svg';
+import stixImage from '../../../assets/images/stix.png';
 import BackToTop from '../../../shared/components/BackToTop'
 
 const Footer = () => {
@@ -130,7 +131,7 @@ const Footer = () => {
                   <div className="copyrights">
 
                      <a href="https://sealsplash.geotrust.com/splash?&dn=*.sistic.com.sg" target="_blank">
-                        <img src="assets/images/stix.png" alt="" />
+                        <img src={stixImage} alt="" />
                      </a>
                      <span>Copyright 1998 - 2019. © SISTIC.com Pte Ltd</span>
                   </div>
