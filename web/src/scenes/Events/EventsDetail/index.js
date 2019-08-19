@@ -33,6 +33,7 @@ export default class EventsDetail extends Component {
       similarEventsData: [],
       setHeader: false,
       animation: true,
+      shimmer: true,
       getSynopsisData: { languageArr: [], activeLang: "", desc: "" }
     };
     this.children = [
@@ -56,14 +57,15 @@ export default class EventsDetail extends Component {
     const payload = { code: this.state.code, client: Constants.CLIENT };
     EventsService.getEventDetails(payload)
       .then(res => {
+        this.setState({ detailData: res.data });
         setTimeout(() => {
-          this.setState({ detailData: res.data });
-
+          this.setState({ shimmer: false });
         }, 1000);
       })
       .catch(err => {
         this.setState({
-          error: true
+          error: true,
+          shimmer: false
         });
         console.log(err);
       });
@@ -76,6 +78,9 @@ export default class EventsDetail extends Component {
         console.log(err);
       });
   }
+
+
+
 
   componentWillUnmount() {
     window.removeEventListener("scroll", this.handleScroll);
@@ -195,6 +200,7 @@ export default class EventsDetail extends Component {
       showInfo,
       showNotice,
       setHeader,
+      shimmer
     } = this.state;
 
     if (error) {
@@ -219,7 +225,7 @@ export default class EventsDetail extends Component {
       });
     return (
       <div className="event-detail-wrapper">
-      {!detailData.images && <ShimmerEffect
+      {shimmer && <ShimmerEffect
                     propCls="shm_col-xs-6 col-md-12"
                     height={400}
                     count={2}
@@ -351,7 +357,9 @@ export default class EventsDetail extends Component {
                     )}
 
                     {detailData.promotions &&
-                      detailData.promotions.length > 0 && (
+                      detailData.promotions.length > 0 &&
+                      detailData.promotions[0].title
+                       && (
                         <AccordionSection
                           title="Promotion"
                           children={detailData.promotions}
