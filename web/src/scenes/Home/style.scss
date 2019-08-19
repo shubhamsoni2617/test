@@ -727,6 +727,13 @@
     // background-position: 54% 80%;
     width: 100%;
     min-height: 600px;
+    .main-image{
+      opacity: 0;
+      transition: opacity .5s;
+    }
+    .show-image{
+        opacity: 1 !important;
+    }
 	@media(max-width: 991px) {
 		background-color: transparent;
 		// margin-top: -114px;
