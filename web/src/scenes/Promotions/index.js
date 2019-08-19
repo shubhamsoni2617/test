@@ -79,7 +79,6 @@ export default class Promotions extends Component {
       PromotionService.getPromotionList(params)
         .then((res) => {
           if (res.data && res.data.data) {
-            console.log("response", res);
             this.setState({
               totalRecords: res.data.total_records,
               listingArray: prevState.first !== first ? [...listingArray, ...res.data.data] : res.data.data
