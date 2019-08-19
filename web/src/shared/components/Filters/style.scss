@@ -589,9 +589,8 @@
                 }
             }
             .cal-apply-btn{
-                flex: 0 0 10%;
                 align-self: center;
-                height: 28px;
+                height: 26px;
                 width: 26px;
                 background-color: #fff;
                 border-radius: 50%;
@@ -602,6 +601,9 @@
                 justify-content: center;
                 border: 1px solid #9a9a9a;
                 cursor: pointer;
+                left: 86%;
+                top: 8px;
+                position: absolute;
                 transition: 0.3s background-color, 0.3s border-color;
                 margin-top: 18px;
                 &.active, &:hover{

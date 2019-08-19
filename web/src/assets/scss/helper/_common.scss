@@ -49,6 +49,13 @@ ul {
 	color: #0098ff;
 }
 
+// Buttons 
+button{
+    &:focus{
+        outline: none;
+    }
+}
+
 //nav
 nav {
 	a {
@@ -181,13 +188,14 @@ h2 {
 	padding: 0;
 	height: 28.27px;
 	width: 28.27px;
-	border: 2px solid rgba(126, 126, 126, 0.2);
+	border: 1.5px solid rgba(126, 126, 126, 0.2);
 	text-align: center;
 	img {
 		transform: translate(-50%, -50%);
 		top: 50%;
 		left: 50%;
-		position: absolute;
+        position: absolute;
+        width: 15px;
 	}
 }
 .share:hover, .info:hover{
@@ -664,6 +672,7 @@ button,
     overflow: hidden;
     font-size: 13px;
     z-index: 3;
+    pointer-events: none;
     &::before{
         position: absolute;
         content: "";
@@ -675,6 +684,7 @@ button,
         right: 117px;
         border-top: 8px solid #ffffff;
         margin-left: -10px;
+        pointer-events: none;
     }
 }
 // Calender CSS
