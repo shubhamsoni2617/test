@@ -16,7 +16,7 @@ class HomePageSearch extends Component {
         return (
             <div className="header-search">
                 <form onSubmit={this.handleSubmit}>
-                    <input type="text" placeholder="Search experiences" className="form-control" />
+                    <input type="text" placeholder="Search experiences..." className="form-control" />
                     <button type="submit" className="search-btn">
                         <img src={searchImage} className="img-fluid" alt="search-icon" />
                         <img src={searchImageBlue} className="img-fluid active" alt="search-icon" />

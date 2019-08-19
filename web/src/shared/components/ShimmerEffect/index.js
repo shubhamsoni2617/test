@@ -35,7 +35,7 @@ export default class ShimmerEffect extends Component {
       var h = [];
       for (let i = 0; i < count; i++) {
         h.push(
-          <div key={i} className='shm_col-xs-5'>
+          <div key={i} className={props.propCls}>
             <div className="contentLoader ListView">
               <div className="shm_row">
                 <div className="shm_col-sm-12">
@@ -79,11 +79,70 @@ export default class ShimmerEffect extends Component {
 
     }
 
+    let detailShimmer = () => {
+        return (
+          <div className={props.propCls}>
+            <div className="contentLoader ListView">
+              <div className="shm_row">
+              <div className="col-md-8">
+              <div className="shm_col-sm-12">
+                  <div className="animated-background main" style={{ height: props.height }}> </div>
+                </div>
+                <div className="shm_col-sm-12">
+                  <div className="animated-background boxLoader"> </div>
+                  <div className="animated-background boxLoader"> </div>
+                  <div className="animated-background boxLoader"> </div>
+                  <div className="animated-background boxLoader"> </div>
+                  <div className="animated-background boxLoader"> </div>
+                </div>
+              </div>
+              <div className="col-md-4">
+              <div className="shm_col-sm-12">
+                  <div className="animated-backgroundlarge secondRow" style={{ height: '25px' , marginBottom: '50px' }}> </div>
+                  <div className="animated-backgroundlarge secondRow" style={{ height: '25px', marginBottom: '50px' }}> </div>
+                  <div className="animated-backgroundlarge firstRow" style={{ height: '50px',  marginBottom: '50px' }}> </div>
+                  <div className="animated-backgroundlarge firstRow" style={{ height: '25px', marginBottom: '50px' }}> </div>
+                  <div className="animated-backgroundlarge secondRow" style={{ height: '40px',  marginBottom: '50px' }}> </div>
+                </div>
+              </div>
+
+              </div>
+            </div>
+          </div>
+        );
+
+    }
+
+    let bannerShimmer = () => {
+      return (
+        <div className={props.propCls}>
+          <div className="contentLoader ListView">
+            <div className="shm_row">
+            <div className="col-md-12">
+            <div className="shm_col-sm-12">
+                <div className="animated-background main" style={{ height: props.height }}> </div>
+              </div>
+              <div className="shm_col-sm-12">
+                <div className="animated-background boxLoader"> </div>
+                <div className="animated-background boxLoader"> </div>
+                <div className="animated-background boxLoader"> </div>
+                <div className="animated-background boxLoader"> </div>
+                <div className="animated-background boxLoader"> </div>
+              </div>
+            </div>
+
+            </div>
+          </div>
+        </div>
+      );
+
+  }
+
     // if (!props.visible) return null;
     return (
       <div className="shm_row">
         {/* {props.visible ? (props.type == 'list' ? listShimmer() : (props.type == 'grid' ? gridShimmer() : shimmer())) : ''} */}
-        {listShimmer()}
+        {props.detail ? props.homepage ? bannerShimmer() : detailShimmer() : listShimmer()}
       </div>
     )
   };

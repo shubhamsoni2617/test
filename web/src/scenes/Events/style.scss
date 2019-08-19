@@ -2,7 +2,7 @@
 .styled-checkbox {
     position: absolute; // take it out of document flow
     opacity: 0; // hide it
-  
+
     & + label {
       position: relative;
       cursor: pointer;
@@ -10,7 +10,7 @@
       margin: 0;
       color: rgba(98, 98, 98, 0.8);
     }
-  
+
     // Box.
     & + label:before {
       content: '';
@@ -22,28 +22,28 @@
       background: url(../../assets/images/checkbox.png) no-repeat;
       margin-top: 3px;
     }
-  
+
     // Box hover
     &:hover + label:before {
         background: #0098FF;
     }
-    
+
     // Box focus
     &:focus + label:before {
       box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.0);
     }
-  
+
     // Box checked
     &:checked + label:before {
         background: url(../../assets/images/checkbox-checked.svg) no-repeat;
     }
-    
+
     // Disabled state label.
     &:disabled + label {
       color: #626262;
       cursor: auto;
     }
-  
+
     // Disabled box.
     &:disabled + label:before {
       box-shadow: none;
@@ -60,6 +60,9 @@
         margin-left: 38px;
         position: relative;
         overflow: hidden;
+        .contentLoader{
+          margin-top: -10px;
+        }
         @media (max-width: 767px) {
             margin-left: 0;
             width: 100%;
@@ -146,11 +149,14 @@
 		}
 	}
 }
-// Filter Loader 
+// Filter Loader
 .filter-loader{
     position: fixed;
     left: 50%;
     top: 50%;
     margin: -30px 0 0 -30px;
     width: 60px;
+    box-shadow: 0 0 10px #DDD;
+    border-radius: 50%;
+    overflow: hidden;
 }

@@ -11,19 +11,23 @@ const HotShowPopup = props => {
   const [flag, setFlag] = useState(false);
 
   useEffect(() => {
-    setTimeout(() => setFlag(true), 1000);
-    HomeService.getHotShowPopupData()
-      .then(res => {
-        setPopupData(res.data.data);
-        if (res.data.data.length) addOverlayClass();
-      })
-      .catch(err => {
-        removeOverlayClass();
-      });
+    if(!sessionStorage.getItem('hotshow')){
+
+      setTimeout(() => setFlag(true), 1000);
+      HomeService.getHotShowPopupData()
+        .then(res => {
+          setPopupData(res.data.data);
+          if (res.data.data.length) addOverlayClass();
+        })
+        .catch(err => {
+          removeOverlayClass();
+        });
+    }
   }, []);
 
   const body = document.body;
   const removeOverlayClass = () => {
+    sessionStorage.setItem('hotshow', false);
     setFlag(false);
     body.classList.remove("hotshowpopup-overlay");
   };

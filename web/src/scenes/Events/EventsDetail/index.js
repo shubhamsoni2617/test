@@ -56,7 +56,10 @@ export default class EventsDetail extends Component {
     const payload = { code: this.state.code, client: Constants.CLIENT };
     EventsService.getEventDetails(payload)
       .then(res => {
-        this.setState({ detailData: res.data });
+        setTimeout(() => {
+          this.setState({ detailData: res.data });
+
+        }, 1000);
       })
       .catch(err => {
         this.setState({
@@ -184,7 +187,6 @@ export default class EventsDetail extends Component {
   render() {
     const {
       detailData,
-      showBuyTicket,
       getSynopsisData,
       showSeatMap,
       similarEventsData,
@@ -207,7 +209,7 @@ export default class EventsDetail extends Component {
         if (obj.language) {
           getSynopsisData.languageArr.push(obj.language);
         }
-        if (this.state.synopsisLang == obj.language) {
+        if (this.state.synopsisLang === obj.language) {
           getSynopsisData.desc = obj.description;
           getSynopsisData.activeLang = obj.language;
         } else {
@@ -217,9 +219,16 @@ export default class EventsDetail extends Component {
       });
     return (
       <div className="event-detail-wrapper">
+      {!detailData.images && <ShimmerEffect
+                    propCls="shm_col-xs-6 col-md-12"
+                    height={400}
+                    count={2}
+                    type="grid"
+                    detail={true}
+                  />}
         {detailData && (
           <div>
-            {detailData.is_available_for_booking === 0 && (
+            {detailData.is_show_over === 1 && (
               <div className="shows-over-banner">
                 <div className="shows-over">
                   <div className="shows-over-icon">
@@ -235,7 +244,7 @@ export default class EventsDetail extends Component {
                 </div>
               </div>
             )}
-            {detailData.is_available_for_booking === 1 && (
+            {detailData.is_show_over === 0 && (
               <div>
                 {/* {detailData.pop_up_message && showNotice && <PopUpWithClose content={detailData.pop_up_message.description} title={detailData.pop_up_message.title} handleClose={this.handleClose} />} */}
                 {detailData.pop_up_message &&
@@ -251,6 +260,7 @@ export default class EventsDetail extends Component {
                   )}
 
                 <section className="event-detail-banner">
+
                   {detailData.images && detailData.images.length > 0 && (
                     <EventCarousel images={detailData.images} />
                   )}
@@ -286,8 +296,8 @@ export default class EventsDetail extends Component {
                         desc={getSynopsisData.desc}
                         langArr={getSynopsisData.languageArr}
                         changeLang={this.changeLang}
-                        preExpanded={accrodian}
-                        uuid="synopsis"
+                        preExpanded = {accrodian}
+                        uuid= {`${detailData.is_available_for_booking == 1 ? 'synopsis' : ''}`}
                       />
                     )}
                     {detailData.tabs &&
@@ -332,8 +342,8 @@ export default class EventsDetail extends Component {
                       <AccordionSection
                         title="Price Details"
                         infoTag={true}
-                        preExpanded={accrodian}
-                        uuid="pricedetail"
+                        preExpanded= {accrodian}
+                        uuid= {`${detailData.is_available_for_booking == 1 ? 'pricedetail' : ''}`}
                         desc={detailData.ticket_pricing}
                         openInfoPopup={this.openInfoPopup}
                         showInfo={showInfo}
@@ -365,7 +375,7 @@ export default class EventsDetail extends Component {
                 <ArticleSection />
               </div>
             )}
-            {detailData.is_available_for_booking === 0 &&
+            {detailData.is_show_over === 1 &&
              <section className="gift-cart">
              <div className="gift-cart-image">
                <img
@@ -380,7 +390,7 @@ export default class EventsDetail extends Component {
                 <SimilarPicksSection data={similarEventsData} />
                 </Suspense>
             }
-            {detailData.is_available_for_booking === 0 && <ArticleSection />}
+            {detailData.is_show_over === 1 && <ArticleSection />}
           </div>
         )}
       </div>

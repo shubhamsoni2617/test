@@ -35,6 +35,9 @@
                 background: transparent;
                 border: none;
                 padding: 0;
+                img{
+                    width: 18px;
+                }
             }
 
             input {
@@ -182,6 +185,14 @@
     @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
         width: 260px;
     }
+    .contentLoader{
+      border: 0;
+      padding-top: 0;
+    margin-top: 0;
+    }
+    .animated-background {
+      display: none;
+    }
     .filter-heading {
         border-bottom: 1px solid rgba(126,126,126,0.1);
         display: flex;
@@ -221,6 +232,9 @@
             padding: 0;
             transform: translateY(-50%);
             margin-top: 2px;
+            img{
+                width: 18px;
+            }
         }
 
         input {
@@ -325,16 +339,27 @@
                 height: 1px;
             }
             span.input-range__label-container {
-                height: 26px;
-                width: 60px;
-                border: 1px solid rgba(126, 126, 126, 0.2);
-                display: inline-block;
-                text-align: center;
-                line-height: 26px;
-                color: #343434;
-                font-family: 'Rubik', sans-serif;
-                background: #FFF;
+              display: none;
             }
+            span.input-range-label-container {
+              position: absolute;
+              top: -30px;
+              height: 26px;
+              width: 60px;
+              border: 1px solid rgba(126, 126, 126, 0.2);
+              display: inline-block;
+              text-align: center;
+              line-height: 26px;
+              color: #343434;
+              font-family: 'Rubik', sans-serif;
+              background: #FFF;
+          }
+          span.input-range-label-container.min {
+            left: 5px;
+          }
+          span.input-range-label-container.max {
+            right: 5px;
+          }
             .input-range__label.input-range__label--min, .input-range__label.input-range__label--max{
                 .input-range__label-container{
                     display: none;
@@ -378,9 +403,9 @@
                 width: 1060px;
                 height: 520px;
                 padding: 17px 25px;
-                position: absolute;
-                bottom: 38px;
-                left: 0;
+                position: fixed;
+                bottom: 8px;
+                left: 40px;
                 z-index: 5;
                 .filter-directory-titlebar{
                     color: #adaeaf;
@@ -595,15 +620,24 @@
                 }
             }
             .DayPickerInput{
+
                 input{
                     height: 26px;
                     width: 100%;
                     border: 1px solid #E1E1E1;
                     padding: 0px 7px;
                     color: #626262;
+                    &::-webkit-input-placeholder {
+						color: rgba(98, 98, 98, 0.8);
+					}
+					&::-moz-placeholder {
+						color: rgba(98, 98, 98, 0.8);
+					}
+					&:-moz-placeholder {
+						color: rgba(98, 98, 98, 0.8);
+					}
                     &::placeholder {
                         color: rgba(98, 98, 98, 0.8);
-                        color: #626262;
                     }
                 }
                 .DayPickerInput-OverlayWrapper{

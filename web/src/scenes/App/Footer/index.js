@@ -4,6 +4,11 @@ import './style.scss';
 import appleImage from '../../../assets/images/apple.svg';
 import sendImage from '../../../assets/images/send.svg';
 import androidImage from '../../../assets/images/android.png';
+import fb from '../../../assets/images/fb.svg';
+import fbFill from '../../../assets/images/fb-fill.svg';
+import insta from '../../../assets/images/insta-unfill.svg';
+import instaFill from '../../../assets/images/insta-fill.svg';
+import stixImage from '../../../assets/images/stix.png';
 import BackToTop from '../../../shared/components/BackToTop'
 
 const Footer = () => {
@@ -108,14 +113,14 @@ const Footer = () => {
                         <ul className="social">
                            <li>
                               <a href="https://www.facebook.com/SISTICsingapore" target="_blank">
-                                 <img src="assets/images/fb.svg" alt="" />
-                                 <img className="active" src="assets/images/fb-fill.svg" alt="" />
+                                 <img src={fb} alt="" />
+                                 <img className="active" src={fbFill} alt="" />
                               </a>
                            </li>
                            <li>
                               <a>
-                                 <img src="assets/images/insta-unfill.svg" alt="" />
-                                 <img className="active" src="assets/images/insta-fill.svg" alt="" />
+                                 <img src={insta} alt="" />
+                                 <img className="active" src={instaFill} alt="" />
                               </a>
                            </li>
                         </ul>
@@ -126,7 +131,7 @@ const Footer = () => {
                   <div className="copyrights">
 
                      <a href="https://sealsplash.geotrust.com/splash?&dn=*.sistic.com.sg" target="_blank">
-                        <img src="assets/images/stix.png" alt="" />
+                        <img src={stixImage} alt="" />
                      </a>
                      <span>Copyright 1998 - 2019. © SISTIC.com Pte Ltd</span>
                   </div>

@@ -5,7 +5,6 @@ export class MainSlider extends React.Component {
 
     constructor(props) {
         super(props)
-        console.log(this.props,"xzbvxcbk");
         this.state = {
           slideTotal: this.props.slides.length -1 ,
           slideCurrent: 0,
@@ -68,7 +67,7 @@ export class MainSlider extends React.Component {
                     slideCurrent : slideCounter,
                     interval : interval,
                 }),()=>{
-                    console.log(self.state.slideCurrent,"count","interval",interval, self.state.interval);
+
                 })
             } , 3000);
     }
@@ -83,13 +82,13 @@ export class MainSlider extends React.Component {
             updateTnail.push(slideobject);
         });
         let { slideTotal } = this.state;
-        console.log("state thumbnail", slideCurrent)
+
         if (slideCurrent < slideTotal) {
             slideCurrent++;
         } else {
             slideCurrent = 0;
         }
-        console.log("current thumbnail", slideCurrent);
+
         let activethumbnail = updateTnail[slideCurrent];
         activethumbnail.class = 'active';
         this.setState({
@@ -99,7 +98,7 @@ export class MainSlider extends React.Component {
 
     slideInRight() {
         let { slideCurrent, slideTotal, slides } = this.state;
-        console.log("in right sliding current slider", this.state.slideCurrent)
+
         let preactiveSlide, proactiveSlide;
         let slide = this.state.slides;
 
@@ -144,7 +143,7 @@ export class MainSlider extends React.Component {
     slideInLeft() {
         let { slideCurrent, slideTotal } = this.state;
         let preactiveSlide, proactiveSlide;
-        console.log("in left sliding current slider is", this.state.slideCurrent)
+
         let slide = this.state.slides;
         if (slideCurrent < slideTotal) {
             proactiveSlide = slide[slideCurrent + 1];
@@ -192,7 +191,7 @@ export class MainSlider extends React.Component {
                     interval : 0
                 },
                 ()=>{
-                    console.log(this.state.interval,"setstate");
+
                 })
                 this.playAutoSlider(this.props.slideCurrent);
                 this.setState((state) => ({
@@ -205,7 +204,7 @@ export class MainSlider extends React.Component {
 
     render() {
         const { slides, thumbnail } = this.state;
-        console.log(slides,thumbnail)
+
         return (
             <div>
                 <div className="react-3d-carousel" style={{ height: this.state.height }}>

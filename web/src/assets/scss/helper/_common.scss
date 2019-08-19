@@ -27,13 +27,13 @@ body {
 	a {
         text-decoration: none;
         outline: none;
-        transition: 1s all; 
+        transition: 1s all;
 		&:hover,
 		&:focus,
 		&:active {
             text-decoration: none;
             outline: none;
-            transition: 1s all; 
+            transition: 1s all;
 		}
     }
     b, strong{
@@ -104,7 +104,7 @@ nav {
 	}
 }
 
-// Common Heading 
+// Common Heading
 h2 {
     font-size: 30px;
     line-height: 37px;
@@ -113,10 +113,10 @@ h2 {
     font-family: 'Montserrat', sans-serif;
     margin: 0px;
     padding-bottom: 18px;
-    transition: 1s all; 
+    transition: 1s all;
 }
 
-// Modal Design 
+// Modal Design
 .modal{
     display: block;
     opacity: 1;
@@ -154,7 +154,7 @@ h2 {
                 border-radius: 0;
             }
         }
-        
+
     }
     .modal-dialog-scrollable {
         -ms-flex-direction: column;
@@ -193,7 +193,7 @@ h2 {
 .share:hover, .info:hover{
 	cursor: pointer;
 	background-color: #fff;
-	border-color: #0098ff; 
+	border-color: #0098ff;
 }
 
 .container-fluid {
@@ -211,6 +211,10 @@ h2 {
 		padding-left: 10px;
 	}
 }
+// Slider
+.slick-track{
+  margin: 0;
+}
 
 button,
 .btn-link {
@@ -226,8 +230,10 @@ button,
     font-weight: 700;
 	font-size: 14px;
 	line-height: 30px;
-	overflow: hidden;
-	&::after {
+    overflow: hidden;
+    border: 1px solid transparent;
+    transition: 0.8s all;
+	/*&::after {
 		height: calc(100% + 50px);
 		position: absolute;
 		content: "";
@@ -239,8 +245,12 @@ button,
 		transition: 0.5s left, 0.5s opacity;
 		filter: blur(10px);
 		top: -30px;
-	}
+	}*/
 	&:hover {
+        background-color: #FFF;
+        color: #0098ff;
+        border: 1px solid #0098ff;
+        transition: 0.8s all;
 		cursor: pointer;
 		&::after {
 			left: calc(100% + 35px);
@@ -386,15 +396,15 @@ button,
     &.musical {
         background-color: #07B3F0;
     }
-    
+
     &.dance {
         background-color: #5F4F8B;
     }
-    
+
     &.comedy {
         background-color: #F2B119;
     }
-    
+
     &.theatre {
         background-color: #BF659A;
     }
@@ -622,22 +632,22 @@ button,
 	}
 }
 
-// Website scroll bar 
+// Website scroll bar
 ::-webkit-scrollbar {
     width: 10px;
 }
- 
+
 ::-webkit-scrollbar-track {
     background: #EEE;
 }
- 
+
 ::-webkit-scrollbar-thumb {
   background-color: #999;
   outline: 1px solid #999;
   border-radius: 0px;
 }
 
-// Popover CSS 
+// Popover CSS
 .info-popover{
     position: absolute;
     right: -115px;
@@ -653,6 +663,7 @@ button,
 	padding: 0px;
     overflow: hidden;
     font-size: 13px;
+    z-index: 3;
     &::before{
         position: absolute;
         content: "";
@@ -666,7 +677,7 @@ button,
         margin-left: -10px;
     }
 }
-// Calender CSS 
+// Calender CSS
 .DayPicker {
 	width: calc(100% + 10px);
 	margin: 0 -5px;
@@ -684,7 +695,7 @@ button,
 				width: 100%;
 				justify-content: center;
 				.DayPicker-Weekday {
-					display: flex;					
+					display: flex;
 					color: #8B9898;
 					font-size: 0.875em;
 					padding: 0px;
@@ -693,13 +704,15 @@ button,
                     width: 14.28%;
 					line-height: 25px;
 					text-align: center;
-					justify-content: center;
+                    justify-content: center;
+
 				  abbr[title]{
 					 color: rgba(52, 72, 94, 0.54);
 					  font-size: 11px;
 						line-height: 25px;
 					   width: 25px;
-						height: 25px;
+                        height: 25px;
+                        cursor: default;
 				   }
 			   }
 			}
@@ -776,7 +789,7 @@ button,
 					&.DayPicker-Day--start, &.DayPicker-Day--end{
 					   background-color: transparent;
 					   padding: 0px;
-					   color: #fff;
+					   color: #fff !important;
 					   font-weight: bold;
 					   min-width: auto;
 					   position: relative;
@@ -833,8 +846,11 @@ button,
 						pointer-events: none;
 					}
 					&.DayPicker-Day--today{
-						color: #2698ff !important;
-						font-weight: bold;
+						// color: #2698ff;
+                        font-weight: bold;
+                        &.DayPicker-Day--end{
+                            color: #FFF !important;
+                        }
 						&:hover{
 							color: #fff !important;
 						}
@@ -863,7 +879,7 @@ button,
 								z-index: -1;
 							}
 					   }
-					}                        
+					}
 				}
 			}
 		}
@@ -939,7 +955,7 @@ button,
 	}
 }
 
-// Scroll to top 
+// Scroll to top
 .scroll-top{
     position: fixed;
     right: 5px;
@@ -982,7 +998,7 @@ button,
 	}
 }
 
-// No data 
+// No data
 .no-data{
     padding: 50px 0;
     text-align: center;
@@ -1003,7 +1019,16 @@ button,
     }
 }
 strong{
+  font-size: inherit;
 	em{
-		font-weight: 600;
+    font-weight: 600;
+    font-size: inherit;
+	}
+}
+em{
+  font-size: inherit;
+	strong{
+    font-weight: 600;
+    font-size: inherit;
 	}
 }
