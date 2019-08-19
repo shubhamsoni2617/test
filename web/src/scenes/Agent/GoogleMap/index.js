@@ -1,53 +1,87 @@
-import React, { useState, useEffect } from 'react';
-import GoogleMapReact from 'google-map-react';
+import React, { useState } from 'react';
+import { Map, InfoWindow, Marker, GoogleApiWrapper } from 'google-maps-react';
 
 const GoogleMap = (props) => {
 
-  let [multipleMarker, setMultipleMarker] = useState([]);
+  const { google, multipleMarker, popUpDetail } = props;
 
-  useEffect(() => {
-    const markers = [
-      {
-        name: 'Mountain View High School',
-        lat: 37.3605,
-        lng: -122.0675,
-      },
-      {
-        name: 'FreeStyle',
-        lat: 37.3599588,
-        lng: -122.0653,
-      },
-      {
-        name: 'Alta Vista',
-        lat: 37.360188,
-        lng: -122.064,
-      }
-    ];
-    multipleMarker = [...multipleMarker, ...markers];
-    setMultipleMarker(multipleMarker)
-  }, []);
+  const [showingInfoWindow, setShowingInfoWindow] = useState(false);
+  const [activeMarker, setActiveMarker] = useState({});
+  const [selectedPlace, setSelectedPlace] = useState({});
 
-  const renderMarkers = (map, maps) => {
-    multipleMarker && multipleMarker.map((marker, index)=>{
-      new maps.Marker({
-        position: {lat: marker.lat,lng: marker.lng,},
-        map,
-        title: marker.name
-      });
-    })
+
+  const onMapClicked = (props) => {
+    if (showingInfoWindow) {
+      setShowingInfoWindow(false);
+      setActiveMarker(null);
+    }
+  };
+
+  const onMarkerClick = (props, marker, e) => {
+    setSelectedPlace(props);
+    setActiveMarker(marker);
+    setShowingInfoWindow(true);
   }
 
+  const infoWindowHasClosed = () => {
+    setShowingInfoWindow(false);
+  }
+
+  const popUpRemoved = () => {
+    if(popUpDetail.current){
+      console.log(popUpDetail.current)
+      // popUpDetail.current.className="active"
+    }
+  }
+
+  if (!google) {
+    return <div>Loading...</div>;
+  }
   return (
-    <div style={{ height: '160vh', width: '110%' }}>
-      <GoogleMapReact
-        // bootstrapURLKeys={{ key: /* YOUR KEY HERE */ }}
-        defaultCenter={{ lat: 37.3596049, lng: -122.0665 }}
-        defaultZoom={16}
-        onGoogleApiLoaded={({ map, maps }) => renderMarkers(map, maps)}
+    <div onClick={popUpRemoved}>
+      <Map google={google}
+        style={{ width: '100%', height: '100%' }}
+        zoom={12}
+        onClick={onMapClicked}
+
       >
-      </GoogleMapReact>
+        {
+          multipleMarker && multipleMarker.map((elem, index) => {
+            return (
+              <Marker
+                key={elem.id}
+                onClick={onMarkerClick}
+                position={{ lat: elem.position.lat, lng: elem.position.lng }}
+                id={elem.id}
+                address={elem.address}
+                imgPath="https://www.jquery-az.com/html/images/banana.jpg"
+              />
+            )
+          })
+        }
+
+        <InfoWindow
+          marker={activeMarker}
+          visible={showingInfoWindow}
+          onClose={infoWindowHasClosed}
+        >
+          <div className="row">
+            <div className="col-lg-3">
+              <img height="50" width="100" src={selectedPlace.imgPath} title="Title of image" alt="alt text here" />
+            </div>
+            <div className="col-lg-6">
+              <div>{selectedPlace.id}</div>
+              <div>{selectedPlace.address}</div>
+            </div>
+          </div>
+        </InfoWindow>
+        <div>
+        </div>
+      </Map>
     </div>
   );
 };
 
-export default GoogleMap;
+export default GoogleApiWrapper({
+  apiKey: "AIzaSyAyesbQMyKVVbBgKVi2g6VX7mop2z96jBo"
+})(GoogleMap);

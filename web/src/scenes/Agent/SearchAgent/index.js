@@ -1,43 +1,16 @@
-import React, { Fragment, useState } from 'react';
+import React, { Fragment, useState, useRef } from 'react';
 import SearchIcon from '../../../assets/images/search-grey.png';
 import './style.scss';
 
 const SearchAgent = (props) => {
 
-  const [filter, setFilter] = useState('');
+  const { initialItems, removePopUpDetail } = props;
 
-  const [initialItems] = useState([
-    {
-      id: "112 Katong",
-      shownOnMap: "Shown on Map",
-      address: "112 East Coast Road Singapore 428802 Coincierge Counter, Level1"
-    },
-    {
-      id: "114 Somerset",
-      shownOnMap: "Shown on Map",
-      address: "112 East Coast Road Singapore 428802 Coincierge Counter, Level1"
-    },
-    {
-      id: "11 Anchorpoint",
-      shownOnMap: "Shown on Map",
-      address: "112 East Coast Road Singapore 428802 Coincierge Counter, Level1"
-    },
-    {
-      id: "12 Capitol",
-      shownOnMap: "Shown on Map",
-      address: "112 East Coast Road Singapore 428802 Coincierge Counter, Level1"
-    },
-    {
-      id: "2 ChangiAirpots",
-      shownOnMap: "Shown on Map",
-      address: "112 East Coast Road Singapore 428802 Coincierge Counter, Level1"
-    },
-    {
-      id: "ChinaPoint Town",
-      shownOnMap: "Shown on Map",
-      address: "112 East Coast Road Singapore 428802 Coincierge Counter, Level12"
-    },
-  ]);
+  const popUpRef = useRef();
+
+  const [filter, setFilter] = useState('');
+  const [popUpDetail, setPopUpDetail] = useState('');
+
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -47,6 +20,12 @@ const SearchAgent = (props) => {
     const { value } = event.target;
     setFilter(value);
   }
+
+  const showPopUp = (detail) => {
+    setPopUpDetail(detail);
+    removePopUpDetail(popUpRef);
+  }
+
   // ------------------------------Array filtering-----------------------------
   const lowerCasedFilter = filter.toLowerCase();
   const filteredData = initialItems.filter(item => {
@@ -77,9 +56,12 @@ const SearchAgent = (props) => {
         {
           filteredData && filteredData.map((item, index) => {
             return (
-              <ul key={index}>
+              <ul key={index} onClick={() => showPopUp(item)}>
                 <li><strong>{item.id}</strong> <span><a>{item.shownOnMap}</a></span></li>
                 <li>{item.address}</li>
+                <div className="pop-up" ref={popUpRef} style={{ display: item.id === popUpDetail.id ? "block" : "none" }}>
+                  {popUpDetail.address}
+                </div>
                 <hr />
               </ul>
             )
