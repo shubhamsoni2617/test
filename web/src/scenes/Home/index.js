@@ -36,15 +36,15 @@ class Home extends Component {
       imageUrl: ''
     };
     this.homePageRef = createRef();
-    // this.preLoadImgage(primeSlider);
+    this.preLoadImgage(primeSlider);
   }
 
   preLoadImgage = (src) => {
     let img = new Image();
     img.onload = () => {
-      setTimeout(() => {
+      // setTimeout(() => {
         this.setState({imageUrl: src});
-      }, 100000);
+      // }, 5000);
     };
     img.src = src;
   }
@@ -63,8 +63,8 @@ class Home extends Component {
           modal={this.state.modal}
         />
         <HotShowPopup />
-        <div className="banner">
-          <img src={primeSlider} alt="prime Slider" />
+        <div className={`banner`}>
+          <img class={`main-image ${this.state.imageUrl ? 'show-image' : ''}`} src={primeSlider} alt="prime Slider" />
         </div>
         <TopPics />
         <section className="gift-cart">

@@ -17,6 +17,7 @@
   .react-modal-body{
     z-index: 102;
     width: 600px;
+    min-height: inherit;
     .modal-content{
         background: none;
         border: none;
