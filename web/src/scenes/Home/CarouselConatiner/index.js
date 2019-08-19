@@ -111,7 +111,7 @@ const CarouselConatiner = props => {
         setCurrentlyShowing(res.data.data);
         setTimeout(() => {
           preloadImages(res.data.data, () => setLoading(false));
-        }, 2000);
+        }, 1000);
 
       })
       .catch(err => {
