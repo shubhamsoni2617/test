@@ -1,3 +1,38 @@
+.main-container{
+  opacity: 1;
+  transition: opacity .5s;
+  &.shimmer{
+    opacity: 0;
+  }
+}
+.shimmer-enter {
+  top: 120%;
+  opacity: 0;
+}
+.event-detail-wrapper{
+  .shimmer-container{
+    position: absolute;
+    width: 100%;
+    background: #FFFFFF;
+    z-index: 2;
+  }
+}
+.shimmer-enter.shimmer-enter-active {
+  top: 100%;
+  opacity: 1;
+  transition: all 500ms;
+}
+
+.shimmer-leave {
+  top: 100%;
+  opacity: 1;
+}
+
+.shimmer-leave.shimmer-leave-active {
+  top: 120%;
+  opacity: 0;
+  transition: all 500ms;
+}
 //event detail section
 .event-detail {
     background-color: #F0F9FF;
@@ -74,6 +109,9 @@
             height: 33.5px;
             width: 33.5px;
             right: 43px;
+            img{
+                width: 10px;
+            }
         }
         .zoner-group{
             margin-bottom: 22px;
