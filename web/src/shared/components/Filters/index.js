@@ -66,6 +66,18 @@ export default class Filters extends Component {
 
         });
 
+        let obj = this.state.genreData.find((genre) => {
+          return genre.id === this.props.queryParams.genreId && status
+        })
+        if(obj){
+          let arr = this.state.genreData.filter((genre) => {
+            return genre.id !== this.props.queryParams.genreId && status
+          })
+          arr.unshift(obj);
+          this.setState({genreData: arr});
+        }
+
+
         this.state.venuesData.map(venue => {
             if (venue.id == this.props.queryParams.venueId) {
                 venue.isChecked = true;

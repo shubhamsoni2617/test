@@ -49,6 +49,13 @@ ul {
 	color: #0098ff;
 }
 
+// Buttons 
+button{
+    &:focus{
+        outline: none;
+    }
+}
+
 //nav
 nav {
 	a {
@@ -181,14 +188,18 @@ h2 {
 	padding: 0;
 	height: 28.27px;
 	width: 28.27px;
-	border: 2px solid rgba(126, 126, 126, 0.2);
+	border: 1.5px solid rgba(126, 126, 126, 0.2);
 	text-align: center;
 	img {
 		transform: translate(-50%, -50%);
 		top: 50%;
 		left: 50%;
-		position: absolute;
+        position: absolute;
+        width: 15px;
 	}
+}
+.info img{
+	width: 10px;
 }
 .share:hover, .info:hover{
 	cursor: pointer;
@@ -664,6 +675,7 @@ button,
     overflow: hidden;
     font-size: 13px;
     z-index: 3;
+    pointer-events: none;
     &::before{
         position: absolute;
         content: "";
@@ -675,6 +687,7 @@ button,
         right: 117px;
         border-top: 8px solid #ffffff;
         margin-left: -10px;
+        pointer-events: none;
     }
 }
 // Calender CSS
@@ -770,13 +783,11 @@ button,
 					   &:after{
 						   content: none;
 					   }
+				   }				 
+				   &.DayPicker-Day--start.DayPicker-Day--selected{
+					z-index: 4 !important;
 				   }
 				   &.DayPicker-Day--start{
-					& + .DayPicker-Day--end{
-						&:before{
-							content: none;
-						}
-					}
 					&:hover{
 						&:before{
 							content: none;
@@ -785,6 +796,26 @@ button,
 							content: none;
 						}
 					}
+					&:before{
+						content: none;
+					}
+					& + .DayPicker-Day--selected:before{
+						left: auto;
+						right: 0px;
+						position: absolute;
+						content: "";
+						background-color: #EFF7FF;
+						width: 100%;
+						height: 100%;
+						top: 50%;
+						transform: translate(-50%, -50%);
+						z-index: -1;
+					}				
+				   }
+				   &.DayPicker-Day--start.DayPicker-Day--end.DayPicker-Day--selected{
+					   &:before{
+						   content: none !important;
+					   }
 				   }
 					&.DayPicker-Day--start, &.DayPicker-Day--end{
 					   background-color: transparent;
@@ -806,26 +837,12 @@ button,
 						   transform: translate(-50%, -50%);
 						   z-index: -1;
 					   }
+					   &.DayPicker-Day--selected{
+						   z-index: 3;
+					   }
 					}
 					&.DayPicker-Day--start + .DayPicker-Day--selected{
-					   position: relative;
-					   &:before{
-						   position: absolute;
-						   content: "";
-						   background-color: #EFF7FF;
-						   width: 70%;
-						   height: 100%;
-						   left: -10px;
-						   right: auto;
-						   top: 50%;
-						   transform: translate(-50%, -50%);
-						   z-index: 0;
-					   }
-					   &:hover{
-							&:before{
-								width: 0px;
-							}
-					   }
+					   position: relative;					   
 				   }
 				   &.DayPicker-Day--end{
 					   &:before{
@@ -839,7 +856,7 @@ button,
 						   top: 50%;
 						   transform: translate(-50%, -50%);
 						   z-index: -1;
-					   }
+					   }					
 					}
 					&.DayPicker-Day--disabled {
 					   color: #CBD4DE;
@@ -856,6 +873,7 @@ button,
 						}
 						&.DayPicker-Day--start{
 							color: #ffffff;
+							background-color: transparent !important;
 						}
 						&.DayPicker-Day--selected{
 							background-color: #EFF7FF;
@@ -1031,4 +1049,61 @@ em{
     font-weight: 600;
     font-size: inherit;
 	}
+}
+.DayPickerInput-Overlay .DayPicker-Day--start ~ .DayPicker-Day:hover:before{
+	left: auto;
+    right: 5px;
+    position: absolute;
+    content: "";
+    background-color: #EFF7FF;
+    width: 70%;
+    height: 100%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    z-index: -1;
+}
+.DayPickerInput-Overlay .DayPicker-Day:hover{
+	&:before{
+		content: none !important;
+	}
+}
+.DayPickerInput-Overlay .DayPicker .DayPicker-wrapper .DayPicker-Body .DayPicker-Week .DayPicker-Day.DayPicker-Day--start + .DayPicker-Day--selected:before {
+	left: auto;
+    right: 15px;
+    position: absolute;
+    content: "";
+    background-color: #eff7ff;
+    width: 70%;
+    height: 100%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 0;
+}
+
+.DayPickerInput-Overlay .DayPicker .DayPicker-wrapper .DayPicker-Body .DayPicker-Week .DayPicker-Day.DayPicker-Day--start{
+	z-index: 3;
+}
+.DayPickerInput-Overlay .DayPicker .DayPicker-wrapper .DayPicker-Body .DayPicker-Week .DayPicker-Day.DayPicker-Day--start + .DayPicker-Day--end.DayPicker-Day--selected:before{
+	left: auto;
+    right: 0px;
+    position: absolute;
+    content: "";
+    background-color: #eff7ff;
+    width: 100%;
+    height: 100%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    z-index: -1;
+}
+.DayPickerInput-Overlay .DayPicker .DayPicker-wrapper .DayPicker-Body .DayPicker-Week .DayPicker-Day.DayPicker-Day--end:before {
+    left: auto;
+    right: 5px;
+    position: absolute;
+    content: "";
+    background-color: #eff7ff;
+    width: 80%;
+    height: 100%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    z-index: -1;
 }
