@@ -6,6 +6,7 @@ import SocialShare from '../../../shared/components/SocialShare';
 import CloseIcon from '../../../assets/images/close-blue.svg';
 import ShareIcon from '../../../assets/images/share-icon.svg';
 import NextArrow from '../../../assets/images/next-arrow-white.svg';
+import NextArrowBlue from '../../../assets/images/next-arrow-blue.svg';
 import RightArrow from '../../../assets/images/right-arrow.svg';
 import StopWatch from '../../../assets/images/stopwatch-grey.svg';
 
@@ -45,7 +46,7 @@ const PromotionCard = (props) => {
   }
 
   return (
-      <li className={promotionTab === "open" && tabDetailId === data.id ? "promotion-block active" : "promotion-block"}>
+      <div className={promotionTab === "open" && tabDetailId === data.id ? "promotion-block active" : "promotion-block"}>
         <div className="promotions-listing-wrapper" onClick={() => fetchPromotionDetailData(data.alias, data.id)}>
           <div className="promotion-image">
             <img src={data.featured_image} className="img-fluid" alt="feature-image" />
@@ -105,99 +106,12 @@ const PromotionCard = (props) => {
                     </div>
                   </div>
                 </div>
-                {/* <div className="grid-container">
-                <div className="item">
-                  <div className="item-wrapper">
-                    <div className="currently-showing-img">
-                      <div className="item-img">
-                        <img src="assets/images/atul-khatri.jpg" className="img-fluid" alt="atul-khatri" />
-                      </div>
-                    </div>
-                    <span className="category comedy">Comedy</span>
-                    <p>Thu, 2 May 2019</p>
-                    <h3>Atul Khatri - Live in Singapore</h3>
-                  </div>
-                </div>
-                <div className="item">
-                  <div className="item-wrapper">
-                    <div className="currently-showing-img">
-                      <div className="item-img">
-                        <img src="assets/images/kurios.png" className="img-fluid" alt="Kurios" />
-                      </div>
-                    </div>
-                    <span className="category musical">Musical</span>
-                    <p>Sun, 21 Jul 2019</p>
-                    <h3>KURIOS – Cabinet of Curiosities</h3>
-                  </div>
-                </div>
-                <div className="item">
-                  <div className="item-wrapper">
-                    <div className="currently-showing-img">
-                      <div className="item-img">
-                        <img src="assets/images/panthom-of-opera.jpg" className="img-fluid" alt="panthom-of-opera" />
-                      </div>
-                    </div>
-                    <span className="category musical">Musical</span>
-                    <p>Thu, 2 May 2019</p>
-                    <h3>Atul Khatri - Live in Singapore</h3>
-                  </div>
-                </div>
-                <div className="item">
-                  <div className="item-wrapper">
-                    <div className="currently-showing-img">
-                      <div className="item-img">
-                        <img src="assets/images/atul-khatri.jpg" className="img-fluid" alt="atul-khatri" />
-                      </div>
-                    </div>
-                    <span className="category comedy">Comedy</span>
-                    <p>Sun, 21 Jul 2019</p>
-                    <h3>KURIOS – Cabinet of Curiosities</h3>
-                  </div>
-                </div>
-                <div className="item">
-                  <div className="item-wrapper">
-                    <div className="currently-showing-img">
-                      <div className="item-img">
-                        <img src="assets/images/kurios.png" className="img-fluid" alt="Kurios" />
-                      </div>
-                    </div>
-                    <span className="category musical">Musical</span>
-                    <p>Sat, 8 Jun 2019</p>
-                    <h3>The Phantom of Opera</h3>
-                  </div>
-                </div>
-                <div className="item">
-                  <div className="item-wrapper">
-                    <div className="currently-showing-img">
-                      <div className="item-img">
-                        <img src="assets/images/panthom-of-opera.jpg" className="img-fluid" alt="panthom-of-opera" />
-                      </div>
-                    </div>
-                    <span className="category musical">Musical</span>
-                    <p>Sat, 8 Jun 2019</p>
-                    <h3>The Phantom of Opera</h3>
-                  </div>
-                </div>
-              </div>
-
-              <div className="carousel-navigation">
-                <div className="left-navigation">
-                  <a href="/">
-                    <img src="assets/images/left-arrow-blue.svg" alt="left-navigation" />
-                  </a>
-                </div>
-                <div className="right-navigation">
-                  <a href="/">
-                    <img src="assets/images/right-arrow-blue.svg" alt="right-navigation" />
-                  </a>
-                </div>
-              </div> */}
                 <Carousel imgArray={events} arrows={true} slidesToShow={6} slidesToScroll={6} />
               </div>
             </section>
           </div>
         </div>
-      </li>
+      </div>
   )
 }
 

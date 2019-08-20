@@ -20,27 +20,27 @@ const Tab = (props) => {
             {tabsSort && tabsSort.isSortBy && <SortBy handleFilters={handleFilters} sortList={tabsSort.sortList} />}
           </div>
           <div className="tab-content-wrapper">
-            <ul className="promotions-listing">
+            <div className="promotions-listing">
               {listingArray && listingArray.map((elem, index, array) => {
                 if (index % 2 === 0) {
                   if (array[index] && array[index + 1]) {
                     return (
-                      <div key={index}>
+                      <div className="promotion-events-row" key={index}>
                         <PromotionCard data={array[index]} {...props} />
-                        <PromotionCard data={array[index + 1]} {...props}/>
+                        <PromotionCard data={array[index + 1]} {...props} />
                       </div>
                     );
                   } else if (array[index]) {
                     return (
-                      <div>
-                        <PromotionCard data={array[index]} {...props} />
+                      <div className="promotion-events-row">
+                        <PromotionCard data={array[index]} {...props} arrayIndex={index} />
                       </div>
                     )
                   }
                 }
               })
               }
-            </ul>
+            </div>
           </div>
           {totalRecords - listingArray.length > 0 &&
             <div className="promotion-load-more" onClick={() => handleLoadMore((first + limit))}>

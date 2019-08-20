@@ -1,4 +1,4 @@
-import React, { Component, createRef } from "react";
+import React, { Component } from "react";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import InputRange from "react-input-range";
 import VenueFilter from "../VenueFilter";
@@ -13,6 +13,7 @@ import "react-input-range/lib/css/index.css";
 import SearchIcon from "../../../assets/images/search-icon-gray.svg";
 import backArrowImage from "../../../assets/images/bakcarrow.svg";
 import colorBlueCloseImage from "../../../assets/images/close-blue-color.svg";
+import tickWhite from "../../../assets/images/tick-white.svg";
 import "./style.scss";
 
 export default class Filters extends Component {
@@ -46,7 +47,7 @@ export default class Filters extends Component {
     }
 
     componentDidUpdate(preProps) {
-        if (this.props.queryParams.genreId != preProps.queryParams.genreId) {
+        if (this.props.queryParams.genreId !== preProps.queryParams.genreId) {
             this.applyIsChecked(true); //Value true passed for check route params
         }
     }
@@ -471,6 +472,8 @@ export default class Filters extends Component {
                             </ul>
                         </div>
                         <div className="filters-panel">
+                        <span className="input-range-label-container min">S$ {this.state.priceRangeValue.min}</span>
+                        <span className="input-range-label-container max">S$ {this.state.priceRangeValue.max}</span>
                             <InputRange
                                 ref="input_range"
                                 formatLabel={value => `${'S$' + value}`}
@@ -656,14 +659,13 @@ export default class Filters extends Component {
                                     />
                                 </span>
                             </div>
-                            <a onClick={this.filterByDateRange} class="cal-apply-btn active">
-                                <img src="/static/media/tick-grey.0af2386c.svg" alt="" />
+                            {(from && to) && <a onClick={this.filterByDateRange} class="cal-apply-btn active">
                                 <img
-                                    src="/static/media/tick-white.a08b5f03.svg"
+                                    src={tickWhite}
                                     class="active"
-                                    alt=""
+                                    alt="tick"
                                 />
-                            </a>
+                            </a>}
                             <Helmet>
                                 <style>{`
                                     .InputFromTo .DayPicker-Day--selected:not(.DayPicker-Day--start):not(.DayPicker-Day--end):not(.DayPicker-Day--outside),
@@ -687,7 +689,7 @@ export default class Filters extends Component {
                                     .InputFromTo .DayPicker-Day--start,
                                     .InputFromTo-to .DayPicker-Day--start {
                                         font-weight: bold;
-                                        color: #FFFFFF;
+                                        color: #FFFFFF !important;
                                     }
                                     .InputFromTo .DayPicker-Day--end,
                                     .InputFromTo-to .DayPicker-Day--end {

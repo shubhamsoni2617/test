@@ -4,7 +4,6 @@ import "./style.scss";
 import HomeService from "../../../shared/services/HomeService";
 
 const NewsTicker = props => {
-  console.log("news");
   const { homePageRef } = props;
   const [newsTicker, setNewsTicker] = useState([]);
   const refValue = useRef();
@@ -26,6 +25,7 @@ const NewsTicker = props => {
   }, [refMarquee.current, props.modal]);
 
   const handleClose = () => {
+    sessionStorage.setItem('ticker', false);
     refValue.current.classList.remove("hide-news");
     homePageRef.current.classList.add("news-ticker-hide");
   };
@@ -43,7 +43,7 @@ const NewsTicker = props => {
 
   return (
     <>
-      <div className="ticker-wrap hide-news" ref={refValue}>
+      <div className={`ticker-wrap ${!sessionStorage.getItem('ticker') ? 'hide-news' : ''}`} ref={refValue}>
         <div className="ticker-container">
           <div className="ticker">
             <marquee

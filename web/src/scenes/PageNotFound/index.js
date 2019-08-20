@@ -2,7 +2,7 @@ import React from 'react'
 import './style.scss';
 import defaultImage from '../../assets/images/404.png';
 import magic from '../../assets/images/cap.png';
-import CurrentlyShowing from '../Home/CurrentlyShowing/CurrentlyShowing';
+import CarouselConatiner from '../Home/CarouselConatiner';
 
 
 const PageNotFound = (props) => {
@@ -29,7 +29,7 @@ const PageNotFound = (props) => {
             </div>
         </div>
         {/* currently showing section start  */}
-        <CurrentlyShowing />
+        <CarouselConatiner />
     </div>
   )
 
