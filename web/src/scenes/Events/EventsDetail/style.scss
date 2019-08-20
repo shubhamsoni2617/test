@@ -13,6 +13,8 @@
   .shimmer-container{
     position: absolute;
     width: 100%;
+    background: #FFFFFF;
+    z-index: 2;
   }
 }
 .shimmer-enter.shimmer-enter-active {
