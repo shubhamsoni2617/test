@@ -81,6 +81,7 @@ export default class ShimmerEffect extends Component {
 
     let detailShimmer = () => {
         return (
+          <div className="shimmer-container">
           <div className={props.propCls}>
             <div className="contentLoader ListView">
               <div className="shm_row">
@@ -108,6 +109,7 @@ export default class ShimmerEffect extends Component {
 
               </div>
             </div>
+          </div>
           </div>
         );
 

@@ -1,4 +1,5 @@
 import React, { Component, lazy ,Suspense} from 'react';
+import { CSSTransitionGroup } from 'react-transition-group';
 import AccordionSection from '../../../shared/components/AccordionSection';
 import EventCarousel from '../../../shared/components/EventCarousel';
 import ArticleSection from '../../../shared/components/ArticleSection';
@@ -85,8 +86,9 @@ export default class EventsDetail extends Component {
     this.setState({ shimmer: true });
     EventsService.getEventDetails(payload)
       .then(res => {
+        this.setState({ detailData: res.data });
         preloadImages(res.data.images, () => {
-            setTimeout(() => {this.setState({ detailData: res.data, shimmer: false });}, 1000);
+            setTimeout(() => {this.setState({ shimmer: false });}, 1000);
           });
       })
       .catch(err => {
@@ -251,6 +253,11 @@ export default class EventsDetail extends Component {
       });
     return (
       <div className="event-detail-wrapper">
+      <CSSTransitionGroup
+                    transitionName="shimmer"
+                    transitionEnter={true}
+                    transitionEnterTimeout={500}
+                    transitionLeaveTimeout={500}>
       {shimmer && <ShimmerEffect
                     propCls="shm_col-xs-6 col-md-12"
                     height={400}
@@ -258,8 +265,9 @@ export default class EventsDetail extends Component {
                     type="grid"
                     detail={true}
                   />}
-        {!shimmer && detailData && (
-          <div>
+        </CSSTransitionGroup>
+        {detailData && (
+          <div className={`main-container ${shimmer ? 'shimmer' : ''}`}>
             {detailData.is_show_over === 1 && (
               <div className="shows-over-banner">
                 <div className="shows-over">
