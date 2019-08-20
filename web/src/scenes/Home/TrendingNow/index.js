@@ -8,47 +8,47 @@ class TrendingNow extends Component {
             {
                 id: "1",
                 img: "assets/images/kurios.png",
-
+                category: 'dance'
             },
             {
                 id: "2",
                 img: "assets/images/trending-now.jpg",
-
+                category: 'concert'
             },
             {
                 id: "3",
                 img: "assets/images/hetty-keos.jpg",
-
+                category: 'concert'
             },
             {
                 id: "4",
                 img: "assets/images/trending-now.jpg",
-
+                category: 'comedy'
             },
             {
                 id: "5",
                 img: "assets/images/hetty-keos.jpg",
-
+                category: 'theatre'
             },
             {
                 id: "6",
                 img: "assets/images/voice-legends.jpg",
-
+                category: 'theatre'
             },
             {
                 id: "7",
                 img: "assets/images/hetty-keos.jpg",
-
+                category: 'comedy'
             },
             {
                 id: "8",
                 img: "assets/images/aladdin.jpg",
-
+                category: 'concert'
             },
             {
                 id: "9",
                 img: "assets/images/voice-legends.jpg",
-
+                category: 'dance'
             },
         ];
         return (
@@ -78,7 +78,7 @@ class TrendingNow extends Component {
                                 return (
                                     <div key={index} className="item">
                                         <div className="item-wrapper">
-                                            <span className="category dance">Dance</span>
+                                        <span className={`category ${now.category}`}>{now.category}</span>
                                             <div className="trending-now-image">
                                                 <div className="item-img">
                                                     <img src={now.img} className="img-fluid" alt="trending-now" />
