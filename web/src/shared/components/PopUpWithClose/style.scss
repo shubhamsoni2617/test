@@ -3,7 +3,17 @@
     text-align: center;
 }
 .notice{
-    padding: 0 25px;    
+    padding: 0 25px;  
+    pre{
+        font-size: 15px;
+        line-height: 22px;
+        color: #343434;
+        font-family: 'Rubik', sans-serif;
+        display: block;
+        overflow: inherit;
+        width: 100%;
+        white-space: inherit;
+    }  
     p{
         font-size: 15px;
         line-height: 22px;
