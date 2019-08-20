@@ -1,0 +1,31 @@
+
+.react-modal{
+  z-index: 10;
+  top: 0;
+  .react-modal-body-close:after, .react-modal-body-close:before{
+      background: #0098FF;
+      width: 20px;
+      border-radius: 0;
+  }
+  .react-modal-body-close{
+      z-index: 5;
+      top: 18px;
+  }
+  .react-modal-overlay{
+    z-index: 101;
+  }
+  .react-modal-body{
+    z-index: 102;
+    width: 600px;
+    min-height: inherit;
+    .modal-content{
+        background: none;
+        border: none;
+        .modal-title{
+            font-size: 22px;
+            color: #343434;
+            font-weight: 500;
+        }
+    }
+  }
+}

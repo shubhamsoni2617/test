@@ -1,0 +1,80 @@
+.event-articles{
+    padding: 40px 30px;
+    background-color: #F0F9FF;
+    @media(max-width: 980px){
+        padding: 30px 0px;
+    }
+    .carousel-dots{
+        margin-top: 15px;
+    }
+    .grid-container{
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-gap: 16px;
+        @media(max-width: 980px) {
+			grid-template-columns: repeat(3, minmax(42%, 1fr));
+		}
+		@media(min-width: 992px) and (max-width: 1280px) {
+			grid-template-columns: repeat(3, minmax(27%, 1fr));
+		}
+		@media (max-width: 767px) {
+            grid-template-columns: repeat(3, minmax(85%, 1fr));
+            grid-gap: 10px;
+		}
+    }
+    .item{
+        &:hover{
+            h3{
+                color: #07B3F0;
+                transition: 0.3s all;
+            }
+            .item-img{
+                img{
+                    transform: scale(1.05);
+                }
+            }
+        }
+        .item-img {
+            margin-bottom: 10px;
+            overflow: hidden;
+            img{
+                width: 100%;
+                height: auto;
+                transition: 0.9s transform;
+            }
+        }
+        h3 {
+            font-size: 17px;
+            line-height: 20px;
+            font-weight: 500;
+            font-family: 'Rubik', sans-serif;
+            color: #343434;
+            margin-bottom: 8px;
+            transition: 0.3s all;
+            @media (max-width: 767px) {
+                font-size: 14px;
+                line-height: 18px;
+            }
+        }
+        p {
+            font-size: 14px;
+            line-height: 22px;
+            font-weight: normal;
+            font-family: 'Rubik', sans-serif;
+            color: #626262;
+            margin: 0px;
+            @media(max-width: 767px) {
+                font-size: 13px;
+                line-height: 15px;
+            }
+            a{
+                color: #007bff;
+                transition: 0.3s all;
+                &:hover{
+                    color: #000;
+                    transition: 0.3s all;
+                }
+            }
+        }
+    }
+}

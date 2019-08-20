@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="14px" height="14px" viewBox="0 0 14 14" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: sketchtool 55.2 (78181) - https://sketchapp.com -->
+    <title>C34DD514-F1AD-4618-B849-D633C924302C</title>
+    <desc>Created with sketchtool.</desc>
+    <defs>
+        <path d="M941.414214,44 L946.707107,49.2928932 C947.097631,49.6834175 947.097631,50.3165825 946.707107,50.7071068 C946.316582,51.0976311 945.683418,51.0976311 945.292893,50.7071068 L940,45.4142136 L934.707107,50.7071068 C934.316582,51.0976311 933.683418,51.0976311 933.292893,50.7071068 C932.902369,50.3165825 932.902369,49.6834175 933.292893,49.2928932 L938.585786,44 L933.292893,38.7071068 C932.902369,38.3165825 932.902369,37.6834175 933.292893,37.2928932 C933.683418,36.9023689 934.316582,36.9023689 934.707107,37.2928932 L940,42.5857864 L945.292893,37.2928932 C945.683418,36.9023689 946.316582,36.9023689 946.707107,37.2928932 C947.097631,37.6834175 947.097631,38.3165825 946.707107,38.7071068 L941.414214,44 Z" id="path-1"></path>
+    </defs>
+    <g id="PromotionListing-Page" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Promotion-Listing-V8.0" transform="translate(-1134.000000, -853.000000)">
+            <g id="Collapse-detail-card" transform="translate(201.000000, 816.000000)">
+                <mask id="mask-2" fill="white">
+                    <use xlink:href="#path-1"></use>
+                </mask>
+                <use id="Combined-Shape" fill="#0098ff" fill-rule="nonzero" xlink:href="#path-1"></use>
+            </g>
+        </g>
+    </g>
+</svg>

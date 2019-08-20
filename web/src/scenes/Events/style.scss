@@ -1,0 +1,165 @@
+/********** Checkbox ******/
+.styled-checkbox {
+    position: absolute; // take it out of document flow
+    opacity: 0; // hide it
+
+    & + label {
+      position: relative;
+      cursor: pointer;
+      padding: 0;
+      margin: 0;
+      color: rgba(98, 98, 98, 0.8);
+    }
+
+    // Box.
+    & + label:before {
+      content: '';
+      margin-right: 6px;
+      display: inline-block;
+      vertical-align: text-top;
+      width: 10px;
+      height: 10px;
+      background: url(../../assets/images/checkbox.png) no-repeat;
+      margin-top: 3px;
+    }
+
+    // Box hover
+    &:hover + label:before {
+        background: #0098FF;
+    }
+
+    // Box focus
+    &:focus + label:before {
+      box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.0);
+    }
+
+    // Box checked
+    &:checked + label:before {
+        background: url(../../assets/images/checkbox-checked.svg) no-repeat;
+    }
+
+    // Disabled state label.
+    &:disabled + label {
+      color: #626262;
+      cursor: auto;
+    }
+
+    // Disabled box.
+    &:disabled + label:before {
+      box-shadow: none;
+      background: #ddd;
+    }
+
+}
+/******** Listing  **********/
+.wrapper-events-listing{
+    display: flex;
+    padding-top: 45px;
+    .events-listing {
+        width: calc(100% - 338px);
+        margin-left: 38px;
+        position: relative;
+        overflow: hidden;
+        .contentLoader{
+          margin-top: -10px;
+        }
+        @media (max-width: 767px) {
+            margin-left: 0;
+            width: 100%;
+        }
+        @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
+            margin-left: 20px;
+            width: calc(100% - 280px);
+        }
+        .events-section{
+            display: flex;
+            flex-wrap: wrap;
+            flex-direction: row;
+            margin-top: 22px;
+            margin-bottom: 15px;
+            width: calc(100% + 17px);
+            padding-left: 1px;
+            padding-right: 1px;
+            @media (max-width: 767px) {
+                margin-bottom: 20px;
+            }
+            > div{
+                flex: 0 0 calc(33.33% - 17px);
+                width: calc(33.33% - 17px);
+                margin-right: 17px;
+                // &:nth-child(3n){
+                //     margin-right: 0px;
+                // }
+            }
+            &.list-view{
+                > div{
+                    flex: 0 0 100%;
+                    width: 100%;
+                    &:last-child{
+                        .event-block{
+                            border-bottom: 1px solid transparent;
+                            &:hover{
+                                border-bottom: 1px solid #0098FF;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+//load more button
+.promotion-load-more {
+	display: block;
+	text-align: center;
+	width: 100%;
+	padding-bottom: 71px;
+	@media(max-width: 991px) {
+		padding-bottom: 30px;
+	}
+	.load-more-btn {
+		border: 1px solid #dedede;
+		border-radius: 20px;
+		padding: 5px 18px;
+		vertical-align: middle;
+		display: inline-block;
+		line-height: normal;
+		text-decoration: none;
+		background-color: #ffffff;
+		transition: 0.9s all;
+		&:hover {
+            background-color: #FFF;
+            border: 1px solid #0098ff;
+            color: #0098ff;
+            transition: 0.9s all;
+			span {
+				color: #0098ff;
+			}
+		}
+		span {
+			color: #949494;
+			font-family: 'Montserrat', sans-serif;
+			font-size: 14px;
+			line-height: 18px;
+			transition: 0.9s all;
+		}
+		img {
+			padding-left: 10px;
+			padding-bottom: 4px;
+			transition: 0.9s filter;
+		}
+	}
+}
+// Filter Loader
+.filter-loader{
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    width: 60px;
+    box-shadow: 0 0 10px #DDD;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-left: 150px;
+    margin-top: 70px;
+}

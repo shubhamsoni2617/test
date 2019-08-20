@@ -1,0 +1,62 @@
+$black:#24272c;
+$black-opacity-10:rgba($black,.15);
+@-webkit-keyframes placeHolderShimmerlarge {
+  0% { background-position: 35% 0 }
+  100% { background-position: -35% 0 }
+}
+@keyframes placeHolderShimmerlarge {
+  0% { background-position: 30% 0 }
+  100% { background-position: -30% 0 }
+}
+.shm_row{
+  display: flex;
+  flex-wrap: wrap;
+  &> div{
+    padding: 0 10px;
+  }
+  .shm_col-sm-8{
+    width: 75%;
+  }
+  .shm_col-sm-4{
+    width: 25%;
+  }
+  .shm_col-xs-5{
+    width: 20%;
+  }
+  .shm_col-sm-12{
+    width: 100%;
+  }
+  .shm_col-xs-8{
+    width: 75%;
+  }
+  .shm_col-xs-4{
+    width: 25%;
+  }
+}
+.shm_col-xs-12{
+  width: 100%;
+}
+.contentLoader { background-color: #fff; color: #141823; padding-top: 20px; padding-bottom: 20px; border: 1px solid $black-opacity-10; width: 100%; margin: 20px auto; }
+.contentLoader .animated-background {margin: 0 15px; -webkit-animation-duration: 1s; animation-duration: 1s; -webkit-animation-fill-mode: forwards; animation-fill-mode: forwards; -webkit-animation-iteration-count: infinite; animation-iteration-count: infinite; -webkit-animation-name: placeHolderShimmerlarge; animation-name: placeHolderShimmerlarge; -webkit-animation-timing-function: linear; animation-timing-function: linear; background: #f6f7f8; background: #eeeeee; background: -webkit-gradient(linear, left top, right top, color-stop(8%, #eeeeee), color-stop(18%, #dddddd), color-stop(33%, #eeeeee)); background: -webkit-linear-gradient(left, #eeeeee 8%, #dddddd 18%, #eeeeee 33%); background: linear-gradient(to right, #eeeeee 8%, #dddddd 18%, #eeeeee 33%); -webkit-background-size: 400% 16px; background-size: 400% 16px; height: 16px; position: relative; margin-bottom: 10px; }
+.contentLoader .animated-backgroundlarge {    margin: 0 15px 10px; -webkit-animation-duration: 1s; animation-duration: 1s; -webkit-animation-fill-mode: forwards; animation-fill-mode: forwards; -webkit-animation-iteration-count: infinite; animation-iteration-count: infinite; -webkit-animation-name: placeHolderShimmerlarge; animation-name: placeHolderShimmerlarge; -webkit-animation-timing-function: linear; animation-timing-function: linear; background: #f6f7f8; background: #eeeeee; background: -webkit-gradient(linear, left top, right top, color-stop(8%, #eeeeee), color-stop(18%, #dddddd), color-stop(33%, #eeeeee)); background: -webkit-linear-gradient(left, #eeeeee 8%, #dddddd 18%, #eeeeee 33%); background: linear-gradient(to right, #eeeeee 8%, #dddddd 18%, #eeeeee 33%); -webkit-background-size: 400% 16px; background-size: 400% 16px; height: 16px; position: relative; margin-bottom: 10px; }
+.contentLoader .animated-background.firstRow { width: 85%; }
+.contentLoader .animated-backgroundlarge.secondRow { width: 70%; }
+.contentLoader .animated-background.boxLoader { display: inline-block; width: 15%; height: 10px; margin: 15px 8% 15px 0; }
+
+.contentLoader.ListView .animated-background { width: 89%; margin-left: 0;  margin-right:15px;}
+.contentLoader.ListView {
+  .animated-backgroundlarge {
+    margin-left: 15px;
+    &.firstRow{
+      margin-top: 10px;
+    }
+  }
+}
+
+@media screen and (min-width:768px) {
+  .contentLoader.ListView .animated-background { width: 100%; margin-bottom:0px;}
+  .contentLoader.ListView .animated-background { margin-left: 0;  margin-right:10px;  }
+  .contentLoader.ListView .animated-background.main { margin-left: 0;  margin-right:0px;  }
+  .contentLoader.ListView .animated-backgroundlarge { margin-left: 0px;}
+  .contentLoader .animated-background.boxLoader { display: inline-block; width: 15%; height: 100px;}
+}
