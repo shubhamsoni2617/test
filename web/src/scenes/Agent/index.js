@@ -1,8 +1,10 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import './style.scss';
 import CountryRegion from './CountryRegion';
 import SearchAgent from './SearchAgent';
 import GoogleMap from './GoogleMap';
+import AgentService from '../../shared/services/AgentService';
+import Constants from '../../shared/constants'
 
 const Agent = (props) => {
   let filterAgent = [
@@ -44,15 +46,51 @@ const Agent = (props) => {
     },
   ];
 
+  const [countryNRegion, setCountryNRegion] = useState([]);
+  const [agentList, setAgentList] = useState([]);
+
+
+  useEffect(() => {
+    fetchAgentCountryNRegion();
+    fetchAgents();
+  }, [])
+
+  const fetchAgentCountryNRegion = () => {
+    AgentService.getAgentsCountryNRegion()
+      .then((res) => {
+        setCountryNRegion(res.data.data)
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+  }
+
+
+  const fetchAgents = () => {
+    const params={
+      client:Constants.CLIENT,
+      first:null,
+      limit:null,
+    }
+    AgentService.getAgents(params)
+      .then((res) => {
+        console.log(res);
+        setAgentList(res.data.data)
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+  }
+
   return (
     <section className="">
-      <CountryRegion />
-      <div className="container-fluid row">
+      <CountryRegion countryNRegion={countryNRegion} />
+      <div className="container-fluid row agent-list">
         <div className="col-lg-4">
-          <SearchAgent initialItems={filterAgent} />
+          <SearchAgent initialItems={agentList} />
         </div>
-        <div className="col-lg-8" >
-          <GoogleMap multipleMarker={filterAgent} />
+        <div className="col-lg-8">
+          <GoogleMap multipleMarker={agentList} />
         </div>
       </div>
     </section>

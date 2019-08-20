@@ -34,9 +34,8 @@ const GoogleMap = (props) => {
     <div>
       <Map google={google}
         style={{ width: '100%', height: '100%' }}
-        zoom={12}
+        zoom={2}
         onClick={onMapClicked}
-
       >
         {
           multipleMarker && multipleMarker.map((elem, index) => {
@@ -44,10 +43,10 @@ const GoogleMap = (props) => {
               <Marker
                 key={elem.id}
                 onClick={onMarkerClick}
-                position={{ lat: elem.position.lat, lng: elem.position.lng }}
+                position={{ lat: elem.latitude, lng: elem.longitude }}
                 id={elem.id}
                 address={elem.address}
-                imgPath="https://www.jquery-az.com/html/images/banana.jpg"
+                imgPath={elem.image}
               />
             )
           })

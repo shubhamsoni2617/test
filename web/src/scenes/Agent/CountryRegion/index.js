@@ -1,60 +1,12 @@
 import React, { useState } from 'react';
 import './style.scss';
 
-const CountryRegion = () => {
-  const [countryRegion] = useState([
-    {
-      country: "Singapore",
-      regions: [
-        { region: "East-Singapore" },
-        { region: "West-Singapore" },
-        { region: "South-Singapore" },
-        { region: "North-Singapore" },
-        { region: "East-Singapore" },
-        { region: "West-Singapore" },
-        { region: "South-Singapore" },
-        { region: "North-Singapore" },
-      ]
-    },
-    {
-      country: "Indonesia",
-      regions: [
-        { region: "East-Indonesia" },
-        { region: "West-Indonesia" },
-        { region: "South-Indonesia" },
-        { region: "North-Indonesia" },
-      ]
-    },
-    {
-      country: "Malaysia",
-      regions: [
-        { region: "East-Malaysia" },
-        { region: "West-Malaysia" },
-        { region: "South-Malaysia" },
-        { region: "North-Malaysia" },
-      ]
-    },
-    {
-      country: "Macau",
-      regions: [
-        { region: "East-Macau" },
-        { region: "West-Macau" },
-        { region: "South-Macau" },
-        { region: "North-Macau" },
-      ]
-    },
-    {
-      country: "Vietnam",
-      regions: [
-        { region: "East-Vietnam" },
-        { region: "West-Vietnam" },
-        { region: "South-Vietnam" },
-        { region: "North-Vietnam" },
-      ]
-    },
-  ]);
+const CountryRegion = (props) => {
+
+  const { countryNRegion } = props;
+
   const [country, setCountry] = useState("Singapore");
-  const [region, setRegion] = useState("East-Singapore");
+  const [region, setRegion] = useState("Central");
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -65,19 +17,10 @@ const CountryRegion = () => {
     setCountry(value);
     switch (value) {
       case "Singapore":
-        setRegion("East-Singapore");
-        break;
-      case "Indonesia":
-        setRegion("East-Indonesia");
+        setRegion("Central");
         break;
       case "Malaysia":
-        setRegion("East-Malaysia");
-        break;
-      case "Macau":
-        setRegion("East-Macau");
-        break;
-      case "Vietnam":
-        setRegion("East-Vietnam");
+        setRegion("");
         break;
     }
   }
@@ -98,13 +41,13 @@ const CountryRegion = () => {
             <div className="col-lg-5">
               <select className="form-control" onChange={handleCountryChange} value={country}>
                 {
-                  countryRegion.map((elem, index) => {
+                  countryNRegion && countryNRegion.map((elem, index) => {
                     return (
                       <option
-                        key={elem.country}
-                        value={elem.country}
+                        key={elem.name}
+                        value={elem.name}
                       >
-                        {elem.country}
+                        {elem.name}
                       </option>
                     )
                   })
@@ -114,19 +57,21 @@ const CountryRegion = () => {
             <div className="col-lg-5">
               <select className="form-control" onChange={handleRegionChange} value={region}>
                 {
-                  countryRegion.map((elem, index) => {
-                    return elem.regions.map((e, i) => {
-                      if (elem.country === country) {
-                        return (
-                          <option
-                            key={i}
-                            value={e.region}
-                          >
-                            {e.region}
-                          </option>
-                        )
-                      }
-                    })
+                  countryNRegion && countryNRegion.map((elem, index) => {
+                    if (elem.regions.length > 0) {
+                      return elem.regions.map((e, i) => {
+                        if (elem.name === country) {
+                          return (
+                            <option
+                              key={i}
+                              value={e.name}
+                            >
+                              {e.name}
+                            </option>
+                          )
+                        }
+                      })
+                    }
                   })
                 }
               </select>

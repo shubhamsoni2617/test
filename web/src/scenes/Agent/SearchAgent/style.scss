@@ -3,3 +3,25 @@ ul {
   margin: 0;
   padding: 0;
 }
+
+.pop-up-container:hover .active{
+  display:block;
+}
+
+.pop-up-container:hover{
+  cursor: pointer;
+  background: navajowhite
+}
+
+.pop-up-list{
+  display:none;
+  border: 2px solid blue;
+  position: absolute;
+  width:500px;
+  height:400px;
+  left:350px;
+  margin:5%;
+  padding: 2%;
+  z-index: 1;
+  background: white;
+}

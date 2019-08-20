@@ -2,12 +2,12 @@ import API from "../../../shared/api";
 
 class AgentService {
 
-	getAgents() {
-		return API.get()
-	}
+	getAgentsCountryNRegion() {
+		return API.get(`agent-countries-regions`)
+  }
 
-	getAgentsCountryNRegion(params) {
-		return API.get()
+  getAgents(params) {
+		return API.get(`agents`,{params})
 	}
 
 	getVenues(params) {
