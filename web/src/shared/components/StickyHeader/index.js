@@ -97,7 +97,7 @@ export default class StickyHeader extends Component {
           </div>
         </div>
         <div className="tickets-button">
-          {detailData.buy_now_url && (
+          {detailData.is_available_for_booking === 1 && (
             <div className="buy-tickets-btn">
               <a href={detailData.buy_now_url} target="_blank">
                 Buy Tickets
