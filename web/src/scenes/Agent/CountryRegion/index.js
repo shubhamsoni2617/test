@@ -70,7 +70,7 @@ const CountryRegion = (props) => {
               {
                 country === "Singapore" ?
                   <select className="form-control" onChange={handleRegionChange} value={region}>
-                    <option>All locations</option>
+                    <option>Region</option>
                     {
                       countryNRegion && countryNRegion.map((elem, index) => {
                         if (elem.regions.length > 0) {
@@ -91,7 +91,7 @@ const CountryRegion = (props) => {
                     }
                   </select>
                   :
-                  <div  className="form-control text-left">All locations</div>
+                  <div  className="form-control text-left">Region</div>
               }
 
             </div>

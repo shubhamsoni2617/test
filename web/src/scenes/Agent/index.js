@@ -104,7 +104,10 @@ const Agent = (props) => {
           <SearchAgent initialItems={agentList} />
         </div>
         <div className="col-lg-8">
-          <GoogleMap multipleMarker={agentList} markerClick={markerClick} />
+          <GoogleMap
+            multipleMarker={agentList}
+            // markerClick={markerClick}
+          />
         </div>
       </div>
     </section>

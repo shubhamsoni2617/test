@@ -21,11 +21,11 @@ const GoogleMap = (props) => {
     setSelectedPlace(props);
     setActiveMarker(marker);
     setShowingInfoWindow(true);
-    const params = {
-      latitude: props.position.lat,
-      longitude: props.position.lng
-    }
-    markerClick(params);
+    // const params = {
+    //   latitude: props.position.lat,
+    //   longitude: props.position.lng
+    // }
+    // markerClick(params);
   }
 
   const infoWindowHasClosed = () => {
