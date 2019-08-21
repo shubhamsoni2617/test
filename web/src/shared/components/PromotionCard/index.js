@@ -62,12 +62,11 @@ const PromotionCard = (props) => {
               <a href={data.buttons.length > 0 && data.buttons[0].url ? data.buttons[0].url : undefined}>
                 <button style={{ color: data.buttons.length > 0 ? `#${data.buttons[0].color}` : "" }}>
                   <span>{data.buttons.length > 0 && data.buttons[0].text}</span>
-                  <img src={NextArrow} alt="next-arrow" />
                 </button>
               </a>
               {data.show_timer === "1" ?
                 <div className="promotion-timer">
-                  {!expiredText ? <span className="timer-tagline">Promotion ends in:</span> : null}
+                  {!expiredText ? <span className="timer-tagline">Hurry! Promotion ends in:</span> : null}
                   <ul>
                     <li className="timer-watch">
                       <img src={StopWatch} className="img-fluid" alt="watch" />
@@ -97,14 +96,6 @@ const PromotionCard = (props) => {
               <div className="container-fluid">
                 <div className="section-top-wrapper">
                   <h2>Related Events</h2>
-                  <div className="carousel-dots">
-                    <a >See all <img src={RightArrow} alt="arrow" /></a>
-                    <div className="dots-group">
-                      <span className="active"><a ></a></span>
-                      <span><a ></a></span>
-                      <span><a ></a></span>
-                    </div>
-                  </div>
                 </div>
                 <Carousel imgArray={events} arrows={true} slidesToShow={6} slidesToScroll={6} />
               </div>
