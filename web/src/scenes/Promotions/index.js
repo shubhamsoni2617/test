@@ -19,7 +19,8 @@ export default class Promotions extends Component {
       promotionDetail: "",
       promotionTab: "close",
       tabDetailId: "",
-      shareUrl: undefined
+      shareUrl: undefined,
+      count: 0
     };
     this.tabsSort = {
       isSortBy: true,
@@ -47,7 +48,7 @@ export default class Promotions extends Component {
     this.breadCrumbData = {
       'page_banner': PageBanner,
       'page': 'Promotions',
-      // 'count': '24',
+      'count': '0',
       'breadcrumb_slug': [{ 'path': '/', 'title': 'Home' }, { 'path': '/promotions', 'title': 'Promotions' }]
     };
   }
@@ -95,11 +96,22 @@ export default class Promotions extends Component {
     };
     PromotionService.getPromotionCategories(params)
       .then((res) => {
-        this.setState({ tabsArray: res.data.data });
+        const category = res.data.data;
+        this.setState({
+          tabsArray: category,
+          count: this.calculateSum(category)
+        });
       })
       .catch((err) => {
         console.log(err)
       })
+  }
+
+  calculateSum = (data) => {
+    let count = data && data.filter((item) => Number(item.promotions))
+      .map((item) => +Number(item.promotions))
+      .reduce((sum, current) => sum + current);
+    return count;
   }
 
   fetchPromotionListingData = () => {
@@ -179,6 +191,7 @@ export default class Promotions extends Component {
   }
 
   render() {
+    this.breadCrumbData.count = this.state.count;
     return (
       <div>
         <Breadcrumb breadCrumbData={this.breadCrumbData} />

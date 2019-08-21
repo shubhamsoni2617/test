@@ -11,9 +11,9 @@ const Tab = (props) => {
   const { first, listingArray, totalRecords } = props.state;
 
   return (
-    <div>
+    <>
       {listingArray.length === 0 ?
-        <ShimmerEffect height={150} count={5} type="grid" />
+        <ShimmerEffect height={150} count={4} type="list" propCls ='shm_col-xs-2 col-md-5'/>
         :
         <div className="promotion-grid">
           <div className="sortby-filter">
@@ -52,7 +52,7 @@ const Tab = (props) => {
           }
         </div>
       }
-    </div>
+    </>
   )
 }
 

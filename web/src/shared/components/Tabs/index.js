@@ -12,6 +12,10 @@ const Tabs = (props) => {
       <div className="promotions-nav">
         <ul className="nav nav-tabs" id="nav-tab" role="tablist">
           {tabsArray && tabsArray.map((category, i) => {
+            // console.log(Number(category.promotions),"category")
+
+            let count=Number(category.promotions);
+            console.log(count,"count")
             return (
               <li key={category.id}>
                 <a
