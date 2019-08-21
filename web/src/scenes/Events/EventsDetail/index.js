@@ -1,4 +1,5 @@
 import React, { Component, lazy ,Suspense} from 'react';
+import { CSSTransitionGroup } from 'react-transition-group';
 import AccordionSection from '../../../shared/components/AccordionSection';
 import EventCarousel from '../../../shared/components/EventCarousel';
 import ArticleSection from '../../../shared/components/ArticleSection';
@@ -15,6 +16,20 @@ import ShimmerEffect from '../../../shared/components/ShimmerEffect';
 import StickyHeader from "../../../shared/components/StickyHeader";
 const SimilarPicksSection =  lazy(()=>import('../../../shared/components/SimilarPicksSection'));
 
+function preloadImages(srcs, callback) {
+  var img;
+  var remaining = srcs.length;
+  for (var i = 0; i < srcs.length; i++) {
+      img = new Image();
+      img.onload = function() {
+          --remaining;
+          if (remaining <= 0) {
+              callback();
+          }
+      };
+      img.src = srcs[i].thumb_image;
+  }
+}
 
 export default class EventsDetail extends Component {
   constructor(props) {
@@ -52,15 +67,29 @@ export default class EventsDetail extends Component {
   };
 
   componentDidMount() {
-    window.scrollTo(0,0)
     window.addEventListener("scroll", this.handleScroll);
     const payload = { code: this.state.code, client: Constants.CLIENT };
+    this.unlisten = this.props.history.listen((location) => {
+      let pathArr = location.pathname.split('/');
+      if(pathArr.length && pathArr[1] == 'events'){
+        if(location.search === '' && pathArr[2]){
+          payload.code = pathArr[2];
+          this.callAPI(payload);
+        }
+      }
+    });
+    this.callAPI(payload);
+  }
+
+  callAPI(payload){
+    window.scrollTo(0,0);
+    this.setState({ shimmer: true });
     EventsService.getEventDetails(payload)
       .then(res => {
         this.setState({ detailData: res.data });
-        setTimeout(() => {
-          this.setState({ shimmer: false });
-        }, 1000);
+        preloadImages(res.data.images, () => {
+            setTimeout(() => {this.setState({ shimmer: false });}, 1000);
+          });
       })
       .catch(err => {
         this.setState({
@@ -80,10 +109,9 @@ export default class EventsDetail extends Component {
   }
 
 
-
-
   componentWillUnmount() {
     window.removeEventListener("scroll", this.handleScroll);
+    this.unlisten();
   }
 
   handleScroll = () => {
@@ -225,6 +253,11 @@ export default class EventsDetail extends Component {
       });
     return (
       <div className="event-detail-wrapper">
+      <CSSTransitionGroup
+                    transitionName="shimmer"
+                    transitionEnter={true}
+                    transitionEnterTimeout={500}
+                    transitionLeaveTimeout={500}>
       {shimmer && <ShimmerEffect
                     propCls="shm_col-xs-6 col-md-12"
                     height={400}
@@ -232,8 +265,9 @@ export default class EventsDetail extends Component {
                     type="grid"
                     detail={true}
                   />}
+        </CSSTransitionGroup>
         {detailData && (
-          <div>
+          <div className={`main-container ${shimmer ? 'shimmer' : ''}`}>
             {detailData.is_show_over === 1 && (
               <div className="shows-over-banner">
                 <div className="shows-over">
