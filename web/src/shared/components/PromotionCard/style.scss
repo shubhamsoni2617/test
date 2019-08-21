@@ -371,6 +371,9 @@
                     transition: 0.5s box-shadow;
                     .category {
                         margin-bottom: 3px;
+                        height: auto;
+                        line-height: 15px;
+                        padding: 3px 5px;
                         @media (max-width: 767px) {
                             margin-bottom: 8px;
                         }

@@ -135,7 +135,8 @@
                 }
             }
             .hotshow-content{
-                padding: 20px;
+                padding: 0 20px;
+                margin: 20px 0;
                 max-height: 360px;
                 overflow: auto;
                 @media(max-width: 860px){
@@ -230,7 +231,6 @@
                     background: #0077C8;
                     color: #FFF;
                     margin-top: 10px;
-                    margin-bottom: 5px;
                     @media(max-width: 860px){
                         font-size: 14px;
                         line-height: 18px;
