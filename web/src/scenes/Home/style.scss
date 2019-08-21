@@ -374,7 +374,7 @@
 				padding: 0px;
 				>li {
 					list-style: none;
-                    padding: 0 16px;
+                    padding: 0 11px;
 					&:hover {
 						a {
 							color: #0098ff;
@@ -388,7 +388,7 @@
 						font-weight: normal;
 						line-height: 19px;
 						font-family: 'Rubik', sans-serif;
-                        padding: 9px 0px 14px;
+                        padding: 9px 5px 14px;
                         font-weight: 300;
 						&:before {
 							left: 0;
@@ -411,11 +411,6 @@
                             }
 						}
 
-					}
-					&:first-child {
-						a {
-							padding-left: 0px;
-						}
 					}
 					&:last-child {
 						a {
