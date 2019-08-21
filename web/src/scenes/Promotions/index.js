@@ -130,7 +130,7 @@ export default class Promotions extends Component {
   fetchPromotionDetailData = (alias, id) => {
     const params = {
       client: Constants.CLIENT,
-      alias: alias.split("/")[1]
+      alias: alias.split("/")[1]+"/"+alias.split("/")[2]
     };
     PromotionService.getPromotionDetail(params)
       .then((res) => {
