@@ -28,7 +28,7 @@ const routes =  [
     fetchInitialData: (path = '') => HomeService.getData()
   },
   {
-    path: '/promotions/:promo_id',
+    path: '/promotions/:promoId',
     component: Promotions,
   },
   {

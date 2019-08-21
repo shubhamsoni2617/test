@@ -32,7 +32,7 @@ const Tab = (props) => {
                     );
                   } else if (array[index]) {
                     return (
-                      <div className="promotion-events-row">
+                      <div className="promotion-events-row" key={index}>
                         <PromotionCard data={array[index]} {...props} arrayIndex={index} />
                       </div>
                     )
