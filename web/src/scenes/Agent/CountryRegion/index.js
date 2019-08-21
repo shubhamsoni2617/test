@@ -3,26 +3,37 @@ import './style.scss';
 
 const CountryRegion = (props) => {
 
-  const { countryNRegion } = props;
+  const { countryNRegion, onSubmit } = props;
 
   const [country, setCountry] = useState("Singapore");
-  const [region, setRegion] = useState("Central");
+  const [region, setRegion] = useState("All locations");
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    let countryId;
+    let regionId;
+    countryNRegion.map((elem) => {
+      if (elem.name === country) {
+        countryId = elem.id;
+        if (country === "Singapore") {
+          elem.regions.map((e) => {
+            if (e.name === region) {
+              regionId = e.id;
+            }
+          })
+        }
+      }
+      const params = {
+        country: countryId,
+        region: regionId
+      }
+      onSubmit(params);
+    });
   }
 
   const handleCountryChange = (event) => {
     const { value } = event.target;
     setCountry(value);
-    switch (value) {
-      case "Singapore":
-        setRegion("Central");
-        break;
-      case "Malaysia":
-        setRegion("");
-        break;
-    }
   }
 
   const handleRegionChange = (event) => {
@@ -38,7 +49,7 @@ const CountryRegion = (props) => {
       <div className="text-center">
         <form onSubmit={handleSubmit}>
           <div className="form-group row">
-            <div className="col-lg-5">
+            <div className="col-lg-5 text-left">
               <select className="form-control" onChange={handleCountryChange} value={country}>
                 {
                   countryNRegion && countryNRegion.map((elem, index) => {
@@ -54,27 +65,35 @@ const CountryRegion = (props) => {
                 }
               </select>
             </div>
+
             <div className="col-lg-5">
-              <select className="form-control" onChange={handleRegionChange} value={region}>
-                {
-                  countryNRegion && countryNRegion.map((elem, index) => {
-                    if (elem.regions.length > 0) {
-                      return elem.regions.map((e, i) => {
-                        if (elem.name === country) {
-                          return (
-                            <option
-                              key={i}
-                              value={e.name}
-                            >
-                              {e.name}
-                            </option>
-                          )
+              {
+                country === "Singapore" ?
+                  <select className="form-control" onChange={handleRegionChange} value={region}>
+                    <option>All locations</option>
+                    {
+                      countryNRegion && countryNRegion.map((elem, index) => {
+                        if (elem.regions.length > 0) {
+                          return elem.regions.map((e, i) => {
+                            if (elem.name === country) {
+                              return (
+                                <option
+                                  key={i}
+                                  value={e.name}
+                                >
+                                  {e.name}
+                                </option>
+                              )
+                            }
+                          })
                         }
                       })
                     }
-                  })
-                }
-              </select>
+                  </select>
+                  :
+                  <div  className="form-control text-left">All locations</div>
+              }
+
             </div>
             <button className="col-lg-1" type="submit">GO</button>
           </div>

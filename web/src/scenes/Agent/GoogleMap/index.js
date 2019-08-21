@@ -3,7 +3,7 @@ import { Map, InfoWindow, Marker, GoogleApiWrapper } from 'google-maps-react';
 
 const GoogleMap = (props) => {
 
-  const { google, multipleMarker } = props;
+  const { google, multipleMarker, markerClick } = props;
 
   const [showingInfoWindow, setShowingInfoWindow] = useState(false);
   const [activeMarker, setActiveMarker] = useState({});
@@ -21,6 +21,11 @@ const GoogleMap = (props) => {
     setSelectedPlace(props);
     setActiveMarker(marker);
     setShowingInfoWindow(true);
+    const params = {
+      latitude: props.position.lat,
+      longitude: props.position.lng
+    }
+    markerClick(params);
   }
 
   const infoWindowHasClosed = () => {

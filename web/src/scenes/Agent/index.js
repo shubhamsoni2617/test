@@ -51,8 +51,9 @@ const Agent = (props) => {
 
 
   useEffect(() => {
+    const params = {}
     fetchAgentCountryNRegion();
-    fetchAgents();
+    fetchAgents(params);
   }, [])
 
   const fetchAgentCountryNRegion = () => {
@@ -66,12 +67,15 @@ const Agent = (props) => {
   }
 
 
-  const fetchAgents = () => {
-    const params={
-      client:Constants.CLIENT,
-      first:null,
-      limit:null,
+  const fetchAgents = (params) => {
+    debugger
+    if (params.region === undefined) {
+      params.region = null;
     }
+    params.client = Constants.CLIENT;
+    params.sort_type = "name";
+    params.sort_order = "ASC";
+
     AgentService.getAgents(params)
       .then((res) => {
         console.log(res);
@@ -82,15 +86,25 @@ const Agent = (props) => {
       })
   }
 
+  const submitCountryNRegion = (params) => {
+    if (params.country) {
+      fetchAgents(params)
+    }
+  }
+
+  const markerClick = (params) => {
+    fetchAgents(params)
+  }
+
   return (
     <section className="">
-      <CountryRegion countryNRegion={countryNRegion} />
+      <CountryRegion countryNRegion={countryNRegion} onSubmit={submitCountryNRegion} />
       <div className="container-fluid row agent-list">
         <div className="col-lg-4">
           <SearchAgent initialItems={agentList} />
         </div>
         <div className="col-lg-8">
-          <GoogleMap multipleMarker={agentList} />
+          <GoogleMap multipleMarker={agentList} markerClick={markerClick} />
         </div>
       </div>
     </section>

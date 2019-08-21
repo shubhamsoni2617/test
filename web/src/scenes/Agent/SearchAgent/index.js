@@ -6,13 +6,11 @@ import { ReactComponent as Watch } from '../../../assets/images/stopwatch-grey.s
 const SearchAgent = (props) => {
 
   const { initialItems } = props;
-
-  const popUpRef = useRef();
   const activePopUpRef = useRef();
 
   const [filter, setFilter] = useState('');
   const [popUpDetail, setPopUpDetail] = useState('');
-  const [isOpen, setIsOpen] = useState(false);
+  const [openPopUp, setOpenUp] = useState(false);
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -24,43 +22,17 @@ const SearchAgent = (props) => {
   }
 
   const showPopUp = (detail) => {
-    if (activePopUpRef.current) {
-      // activePopUpRef.current.style.display = "block";
-      activePopUpRef.current.classList.add("active");
-    }
     setPopUpDetail(detail);
-
-  }
-
-  const removePopUp = () => {
     if (activePopUpRef.current) {
-      // activePopUpRef.current.style.display = "none";
-      activePopUpRef.current.classList.remove("active");
-
+      if (openPopUp) {
+        activePopUpRef.current.classList.remove("active");
+        setOpenUp(false);
+      } else {
+        activePopUpRef.current.classList.add("active");
+        setOpenUp(true);
+      }
     }
   }
-
-
-  // const toggle = () => {
-  //   if (!isOpen) {
-  //     if (activePopUpRef.current) {
-  //       // activePopUpRef.current.style.display="none"
-  //     }
-  //     window.addEventListener('click', handleOutsideClick, false);
-  //     // popUpRef.current.classList.add("active");
-  //   } else {
-  //     window.removeEventListener('click', handleOutsideClick, false);
-  //     // popUpRef.current.classList.remove("active");
-  //   }
-  //   setIsOpen(!isOpen)
-  // }
-
-  // const handleOutsideClick = (e) => {
-  //   if (popUpRef.current.contains(e.target)) {
-  //     return;
-  //   }
-  //   toggle();
-  // }
 
   // ------------------------------Array filtering-----------------------------
   const lowerCasedFilter = filter.toLowerCase();
@@ -88,25 +60,23 @@ const SearchAgent = (props) => {
           </div>
         </div>
       </form>
-      <ul
-        className="list-group"
-        // onClick={toggle}
-        // ref={popUpRef}
-      >
+      <h6 className="festive-hour" onClick={() => { }}>
+        <a>Festive Period Operating Hours</a>
+      </h6>
+      <ul className="list-group">
         {
           filteredData && filteredData.map((item, index) => {
             return (
-              <ul className="pop-up-container" key={index} onMouseEnter={() => showPopUp(item)} onMouseLeave={removePopUp}>
+              <ul className="pop-up-container" key={index} onMouseEnter={() => showPopUp(item)} onMouseLeave={showPopUp}>
                 <li><strong>{item.name}</strong> <span><a>shown On Map</a></span></li>
                 <li>{item.address},{item.country}</li>
                 <div
                   className={item.id === popUpDetail.id ? "pop-up-list active" : "pop-up-list"}
-                  // style={{ display: item.id === popUpDetail.id ? "block" : "none" }}
                   ref={item.id === popUpDetail.id ? activePopUpRef : null}
                 >
                   <div>
                     <strong>How To Get There</strong>
-                    <blockquote>{popUpDetail.how_to_get_there}</blockquote>
+                    <p>{popUpDetail.how_to_get_there}</p>
                   </div>
                   <div>
                     <strong>Parking</strong>
