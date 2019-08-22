@@ -3,7 +3,7 @@ import { Map, InfoWindow, Marker, GoogleApiWrapper } from 'google-maps-react';
 
 const GoogleMap = (props) => {
 
-  const { google, multipleMarker, markerClick } = props;
+  const { google, multipleMarker } = props;
 
   const [showingInfoWindow, setShowingInfoWindow] = useState(false);
   const [activeMarker, setActiveMarker] = useState({});
@@ -39,8 +39,12 @@ const GoogleMap = (props) => {
     <div>
       <Map google={google}
         style={{ width: '100%', height: '100%' }}
-        zoom={2}
+        zoom={13}
         onClick={onMapClicked}
+        initialCenter={{
+          lat: 1.257681,
+          lng: 103.82222290000004
+        }}
       >
         {
           multipleMarker && multipleMarker.map((elem, index) => {

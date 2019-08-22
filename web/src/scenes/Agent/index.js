@@ -50,6 +50,7 @@ const Agent = (props) => {
   const [agentList, setAgentList] = useState([]);
 
 
+
   useEffect(() => {
     const params = {}
     fetchAgentCountryNRegion();
@@ -68,7 +69,7 @@ const Agent = (props) => {
 
 
   const fetchAgents = (params) => {
-    debugger
+    // debugger
     if (params.region === undefined) {
       params.region = null;
     }
@@ -92,10 +93,6 @@ const Agent = (props) => {
     }
   }
 
-  const markerClick = (params) => {
-    fetchAgents(params)
-  }
-
   return (
     <section className="">
       <CountryRegion countryNRegion={countryNRegion} onSubmit={submitCountryNRegion} />
@@ -106,7 +103,6 @@ const Agent = (props) => {
         <div className="col-lg-8">
           <GoogleMap
             multipleMarker={agentList}
-            // markerClick={markerClick}
           />
         </div>
       </div>

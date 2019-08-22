@@ -37,9 +37,12 @@ const SearchAgent = (props) => {
   // ------------------------------Array filtering-----------------------------
   const lowerCasedFilter = filter.toLowerCase();
   const filteredData = initialItems && initialItems.filter(item => {
-    return Object.keys(item).some(key =>
-      item[key].toLowerCase().includes(lowerCasedFilter)
-    );
+    return Object.keys(item).some(key => {
+      if (item[key] === null) {
+        return
+      }
+      return item[key].toLowerCase().includes(lowerCasedFilter)
+    });
   });
 
   return (
@@ -61,7 +64,15 @@ const SearchAgent = (props) => {
         </div>
       </form>
       <h6 className="festive-hour" onClick={() => { }}>
-        <a>Festive Period Operating Hours</a>
+        {initialItems && initialItems.map((item, index) => {
+          if (item && item.festive_hours !== undefined) {
+            return (
+              <a href={item.festive_hours_file} download>Festive Period Operating Hours</a>
+            )
+          }
+        })
+        }
+
       </h6>
       <ul className="list-group">
         {
