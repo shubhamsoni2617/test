@@ -1,7 +1,7 @@
 import React, { Fragment, useState, useRef } from 'react';
 import SearchIcon from '../../../assets/images/search-grey.png';
 import './style.scss';
-import { ReactComponent as Watch } from '../../../assets/images/stopwatch-grey.svg';
+import Watch from '../../../assets/images/stopwatch-grey.svg';
 
 const SearchAgent = (props) => {
 
@@ -46,23 +46,21 @@ const SearchAgent = (props) => {
   });
 
   return (
-    <Fragment>
-      <h1>Agents in Singapore</h1>
-      <form onSubmit={handleSubmit}>
-        <div className="form-group row">
-          <div className="col-lg-10">
-            <input
-              className="form-control"
-              type="text" value={filter}
-              onChange={handleSearchAgent}
-              placeholder="Search for an agent"
-            />
-          </div>
-          <div className="col-lg-1">
-            <button type="submit"><img src={SearchIcon} alt="search-icon" /></button>
-          </div>
-        </div>
-      </form>
+    <div className="search-agent">
+        <h2>Agents in Singapore</h2>
+        <form onSubmit={handleSubmit}>
+            <div className="agent-search">
+                <button type="submit" className="search-btn">
+                    <img src={SearchIcon} alt="search-icon" />
+                </button>
+                <input
+                    className="form-control"
+                    type="text" value={filter}
+                    onChange={handleSearchAgent}
+                    placeholder="Search for an agent"
+                />
+            </div>
+        </form>
       <h6 className="festive-hour" onClick={() => { }}>
         {initialItems && initialItems.map((item, index) => {
           if (item && item.festive_hours !== undefined) {
@@ -78,41 +76,79 @@ const SearchAgent = (props) => {
         {
           filteredData && filteredData.map((item, index) => {
             return (
-              <ul className="pop-up-container" key={index} onMouseEnter={() => showPopUp(item)} onMouseLeave={showPopUp}>
-                <li><strong>{item.name}</strong> <span><a>shown On Map</a></span></li>
-                <li>{item.address},{item.country}</li>
+              <li className="pop-up-container" key={index} onMouseEnter={() => showPopUp(item)} onMouseLeave={showPopUp}>
+                <h3><strong>{item.name}</strong> <span><a>shown On Map</a></span></h3>
+                <p>{item.address},{item.country}</p>
                 <div
                   className={item.id === popUpDetail.id ? "pop-up-list active" : "pop-up-list"}
                   ref={item.id === popUpDetail.id ? activePopUpRef : null}
                 >
-                  <div>
-                    <strong>How To Get There</strong>
-                    <p>{popUpDetail.how_to_get_there}</p>
+                  <div className="agent-info">
+                        <div className="icon">
+                            <img src={Watch} alt="Watch icon" />
+                        </div>
+                        <div className="details">
+                            <h3>How To Get There</h3>
+                            <p>{popUpDetail.how_to_get_there}</p>
+                        </div>
                   </div>
-                  <div>
-                    <strong>Parking</strong>
-                    <p>{popUpDetail.parking}</p>
+                  <div className="agent-info">
+                        <div className="icon">
+                            <img src={Watch} alt="Watch icon" />
+                        </div>
+                        <div className="details">
+                            <h3>Parking</h3>
+                            <p>{popUpDetail.parking}</p>
+                        </div>
                   </div>
-                  <div>
-                    <strong>Operating Hours</strong>
-                    <p>{popUpDetail.operating_hours}</p>
+                  <div className="agent-info">
+                        <div className="icon">
+                            <img src={Watch} alt="Watch icon" />
+                        </div>
+                        <div className="details">
+                            <h3>Operating Hours</h3>
+                            <p>{popUpDetail.operating_hours}</p>
+                        </div>
                   </div>
-                  <div>
-                    <strong>Payment Mode</strong>
-                    <p>{popUpDetail.payment_mode}</p>
+                  <div className="agent-info">
+                        <div className="icon">
+                            <img src={Watch} alt="Watch icon" />
+                        </div>
+                        <div className="details">
+                            <h3>Payment Mode</h3>
+                            <p>{popUpDetail.payment_mode}</p>
+                        </div>
                   </div>
-                  <div>
-                    <strong><Watch /> Ticket pick up Reminder</strong>
-                    <p>{popUpDetail.reminder}</p>
+                  <div className="agent-info">
+                        <div className="icon">
+                            <img src={Watch} alt="Watch icon" />
+                        </div>
+                        <div className="details">
+                            <h3>Ticket pick up Reminder</h3>
+                            <p>{popUpDetail.reminder}</p>
+                        </div>
+                  </div>
+                  <div className="agent-info">
+                        <div className="icon">
+                            <img src={Watch} alt="Watch icon" />
+                        </div>
+                        <div className="details">
+                            <h3>Currently Showing</h3>
+                            <ul className="currently-list">
+                                <li>
+                                    <img src="" alt="" />
+                                    <p>SSO Red Balloon Series: Rhythums, Rites </p>
+                                </li>
+                            </ul>
+                        </div>
                   </div>
                 </div>
-                <hr />
-              </ul>
+              </li>
             )
           })
         }
       </ul>
-    </Fragment>
+    </div>
   );
 };
 

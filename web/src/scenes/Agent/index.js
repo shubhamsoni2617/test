@@ -94,16 +94,18 @@ const Agent = (props) => {
   }
 
   return (
-    <section className="">
+    <section>
       <CountryRegion countryNRegion={countryNRegion} onSubmit={submitCountryNRegion} />
-      <div className="container-fluid row agent-list">
-        <div className="col-lg-4">
-          <SearchAgent initialItems={agentList} />
-        </div>
-        <div className="col-lg-8">
-          <GoogleMap
-            multipleMarker={agentList}
-          />
+      <div className="font-agent-wrapper">
+        <div className="container-fluid row agent-list">
+            <div className="col-lg-4">
+                <SearchAgent initialItems={agentList} />
+            </div>
+            <div className="col-lg-8">
+                <GoogleMap
+                    multipleMarker={agentList}
+                />
+            </div>
         </div>
       </div>
     </section>
