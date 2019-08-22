@@ -10,7 +10,7 @@ import StopWatch from '../../../assets/images/stopwatch-grey.svg';
 const PromotionCard = (props) => {
 
   const { data, fetchPromotionDetailData, handlePromotionDetailTab } = props;
-  const { promotionDetail, promotionTab, tabDetailId, shareUrl } = props.state;
+  const { promotionDetail, promotionTab, tabDetailId } = props.state;
   const {
     id,
     title,
@@ -41,6 +41,8 @@ const PromotionCard = (props) => {
   const handlePromotionExpired = (text) => {
     setExpiredText(text)
   }
+
+  let shareUrl = window.location.origin + `/promotions/${data.id}`;
 
   return (
     <div className={promotionTab === 1 && tabDetailId === data.id ? "promotion-block active" : "promotion-block"}>
@@ -79,7 +81,7 @@ const PromotionCard = (props) => {
         </div>
       </div>
       <div className="promotion-dropdown-height"></div>
-      <div className="promotion-tab-dropdown" id="someDiv">
+      <div className="promotion-tab-dropdown" id="">
         <a className="promotion-tab-close-btn" onClick={() => handlePromotionDetailTab("close")}>
           <img src={CloseIcon} alt="close-icon" />
         </a>
@@ -87,7 +89,7 @@ const PromotionCard = (props) => {
         <div className="promotion-tab-dropdown-content">
           {/* <p>{short_description}</p> */}
           <p dangerouslySetInnerHTML={{ __html: description }}></p>
-          <img src={featured_image} className="img-fluid" alt="feature-image" />
+          {/* <img src={featured_image} className="img-fluid" alt="feature-image" /> */}
           {/* <p>Donec id sem et arcu fermentum pretium quis in metus. Ut dapibus sem ac iaculis pretium. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Donec malesuada feugiat odio in consequat. Sed non nisl tortor. Pellentesque luctus magna sollicitudin nulla accumsan, at molestie elit cursus. Phasellus et est justo. Vivamus nec risus bibendum, iaculis arcu a, tempus augue. Cras sollicitudin elit at vehicula pulvinar. In hac habitasse platea dictumst. Mauris facilisis risus et lorem dignissim placerat.</p> */}
           {/* Related Events */}
           <div>

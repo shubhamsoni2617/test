@@ -133,7 +133,7 @@ const TopNav = (props) => {
                   </CSSTransitionGroup>
                 </li>
                 <li><a>Attractions</a></li>
-                <li><a>Promotions</a></li>
+                <li><Link to="/promotions">Promotions</Link></li>
                 <li><a>Explore</a></li>
               </ul>
             </div>

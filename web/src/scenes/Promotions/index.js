@@ -19,7 +19,6 @@ export default class Promotions extends Component {
       promotionDetail: "",
       promotionTab: 0,
       tabDetailId: "",
-      shareUrl: undefined,
       count: 0
     };
     this.tabsSort = {
@@ -139,17 +138,28 @@ export default class Promotions extends Component {
   }
 
 
+  getPosition = (element) => {
+    var xPosition = 0;
+    var yPosition = 0;
+
+    while (element) {
+      xPosition += (element.offsetLeft - element.scrollLeft + element.clientLeft);
+      yPosition += (element.offsetTop - element.scrollTop + element.clientTop);
+      element = element.offsetParent;
+    }
+    console.log(yPosition, "yPosition")
+
+    return { x: xPosition, y: yPosition };
+  }
+
+
   fetchPromotionDetailData = (alias, id) => {
-    // console.log(window.screen.height,"window-height");
-    // window.scrollTo(0,window.screen.height+200)
-
-  //   window.addEventListener('scroll', function(ev) {
-
-  //     var someDiv = document.getElementById('someDiv');
-  //     var distanceToTop = someDiv.getBoundingClientRect().top;
-
-  //     console.log(distanceToTop);
-  //  });
+    // var element = document.getElementsByClassName("promotion-events-row");
+    // for (var i = 0; i < element.length; i++) {
+    //   // console.log(element.item(i),"class");
+    //   this.getPosition(element.item(i))
+    // }
+    // console.log(element, "element")
     const params = {
       client: Constants.CLIENT,
       alias: alias
@@ -175,7 +185,6 @@ export default class Promotions extends Component {
     let shareUrl = window.location.origin + `/promotions/${id}`;
     // let randomString = Math.random().toString(36).substring(7);
     window.history.pushState("string", "Title", shareUrl);
-    this.setState({ shareUrl: shareUrl })
   }
 
   handleActiveTab = (data) => {
