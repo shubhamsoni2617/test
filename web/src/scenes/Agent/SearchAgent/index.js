@@ -5,7 +5,7 @@ import { ReactComponent as Watch } from '../../../assets/images/stopwatch-grey.s
 
 const SearchAgent = (props) => {
 
-  const { initialItems } = props;
+  const { initialItems,countryFile,onClick } = props;
   const activePopUpRef = useRef();
 
   const [filter, setFilter] = useState('');
@@ -45,6 +45,7 @@ const SearchAgent = (props) => {
     });
   });
 
+
   return (
     <Fragment>
       <h1>Agents in Singapore</h1>
@@ -63,23 +64,15 @@ const SearchAgent = (props) => {
           </div>
         </div>
       </form>
-      <h6 className="festive-hour" onClick={() => { }}>
-        {initialItems && initialItems.map((item, index) => {
-          if (item && item.festive_hours !== undefined) {
-            return (
-              <a href={item.festive_hours_file} download>Festive Period Operating Hours</a>
-            )
-          }
-        })
-        }
-
+      <h6 className="festive-hour">
+        {countryFile && <a href={countryFile} download target="_blank">Festive Period Operating Hours</a>}
       </h6>
       <ul className="list-group">
         {
           filteredData && filteredData.map((item, index) => {
             return (
               <ul className="pop-up-container" key={index} onMouseEnter={() => showPopUp(item)} onMouseLeave={showPopUp}>
-                <li><strong>{item.name}</strong> <span><a>shown On Map</a></span></li>
+                <li><strong>{item.name}</strong> <span><a onClick={(e)=>{onClick(e,item)}}>shown On Map</a></span></li>
                 <li>{item.address},{item.country}</li>
                 <div
                   className={item.id === popUpDetail.id ? "pop-up-list active" : "pop-up-list"}
@@ -105,6 +98,9 @@ const SearchAgent = (props) => {
                     <strong><Watch /> Ticket pick up Reminder</strong>
                     <p>{popUpDetail.reminder}</p>
                   </div>
+                  {popUpDetail.festive_hours && <div>
+                    <a href={popUpDetail.festive_hours_file} download target="_blank">Festive Period Operating Hours</a>
+                  </div>}
                 </div>
                 <hr />
               </ul>
