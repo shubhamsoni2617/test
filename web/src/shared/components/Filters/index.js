@@ -19,41 +19,46 @@ import "./style.scss";
 export default class Filters extends Component {
     constructor(props) {
         super(props);
+        console.log('props', props)
         this.state = {
             priceRangeValue: {
-                min: this.props.filterConfig.price_config.min_price,
-                max: this.props.filterConfig.price_config.max_price
+                min: this.props.filterConfig ? this.props.filterConfig.price_config.min_price : null,
+                max: this.props.filterConfig ? this.props.filterConfig.price_config.max_price : null
             },
-            promotionsData: this.props.filterConfig.promotion_categories,
-            tagsData: this.props.filterConfig.tags,
-            venuesData: this.props.venueData,
-            genreData: this.props.genreData,
+            promotionsData: this.props.filterConfig ? this.props.filterConfig.promotion_categories : [],
+            tagsData: this.props.filterConfig ? this.props.filterConfig.tags : [],
+            venuesData: this.props.venueData ? this.props.venueData : [],
+            genreData: this.props.genreData ? this.props.genreData : [],
+            attractionCategoryData: this.props.attractionCategories ? this.props.attractionCategories : [],
             venueFilterPanelDisplay: false,
-            tagShowLimit: 5,
-            genreShowLimit: 5,
-            venueShowLimit: 5,
+            tagShowLimit: this.props.filterConfig ? (this.props.filterConfig.tags.length > 5 ? 5 : this.props.filterConfig.tags.length ) : 0,
+            genreShowLimit: this.props.genreData ? (this.props.genreData.length > 5 ? 5 : this.props.genreData.length ) : 0,
+            venueShowLimit: this.props.venuesData ? (this.props.venuesData.length > 5 ? 5 : this.props.venuesData.length ) : 0,
+            categoryShowLimit: this.props.attractionCategories ? (this.props.attractionCategories.length > 5 ? 5 : this.props.attractionCategories.length ) : 0,
             search: "",
             from: undefined,
             to: undefined,
             checkUncheckGnereActiveClass: false,
             checkUncheckTagsActiveClass: false,
-            checkUncheckPromotionsActiveClass: false
+            checkUncheckPromotionsActiveClass: false,
+            checkUncheckCategoryActiveClass: false
         };
-
     }
 
-    componentWillMount() {
+    componentDidMount() {
+        debugger
         this.applyIsChecked(true); //Value true passed for check route params
     }
 
     componentDidUpdate(preProps) {
+        debugger
         if (this.props.queryParams.genreId !== preProps.queryParams.genreId) {
             this.applyIsChecked(true); //Value true passed for check route params
         }
     }
 
     applyIsChecked = (status) => {
-        this.state.promotionsData.map(promotion => {
+        this.state.promotionsData && this.state.promotionsData.map(promotion => {
             promotion.isChecked = false;
         });
 
@@ -67,16 +72,15 @@ export default class Filters extends Component {
         });
 
         let obj = this.state.genreData.find((genre) => {
-          return genre.id === this.props.queryParams.genreId && status
+            return genre.id === this.props.queryParams.genreId && status
         })
-        if(obj){
-          let arr = this.state.genreData.filter((genre) => {
-            return genre.id !== this.props.queryParams.genreId && status
-          })
-          arr.unshift(obj);
-          this.setState({genreData: arr});
+        if (obj) {
+            let arr = this.state.genreData.filter((genre) => {
+                return genre.id !== this.props.queryParams.genreId && status
+            })
+            arr.unshift(obj);
+            this.setState({ genreData: arr });
         }
-
 
         this.state.venuesData.map(venue => {
             if (venue.id == this.props.queryParams.venueId) {
@@ -90,9 +94,13 @@ export default class Filters extends Component {
             tag.isChecked = false;
         });
 
-        this.setRoutedParams(status);
+        this.state.attractionCategoryData && this.state.attractionCategoryData.map(category => {
+            debugger
+            category.isChecked = false;
+        });
 
-    };
+        this.setRoutedParams(status);
+    }
 
     setRoutedParams = (status) => {
         if (status && this.props.queryParams.dateRange) this.setState({ from: moment(this.props.queryParams.dateRange.from, 'DD-MM-YYYY').format('MM/DD/YYYY'), to: moment(this.props.queryParams.dateRange.to, 'DD-MM-YYYY').format('MM/DD/YYYY') })
@@ -104,8 +112,8 @@ export default class Filters extends Component {
         this.setState({
             search: "",
             priceRangeValue: {
-                min: this.props.filterConfig.price_config.min_price,
-                max: this.props.filterConfig.price_config.max_price
+                min: this.props.filterConfig ? this.props.filterConfig.price_config.min_price : null,
+                max: this.props.filterConfig ? this.props.filterConfig.price_config.max_price : null
             }
         });
         this.applyIsChecked(false);
@@ -240,6 +248,37 @@ export default class Filters extends Component {
         this.props.handleFilters("venues", venuesData[key].id, e.target.checked);
     };
 
+    // Categories
+    checkUncheckCategories = (e, key) => {
+        debugger
+        let categoryData = this.state.attractionCategoryData;
+        categoryData[key].isChecked = e.target.checked;
+        this.setState({ attractionCategoryData: categoryData });
+        this.props.handleFilters("category", categoryData[key].id, e.target.checked);
+    };
+
+    checkUncheckAllCategories = status => {
+        let categoryData = this.state.attractionCategoryData;
+        let categoryIds = [];
+        categoryData.map(category => {
+            category.isChecked = status;
+            categoryIds.push(category.id);
+        });
+        this.setState({ attractionCategoryData: categoryData, checkUncheckCategoryActiveClass: status });
+        if (!status) {
+            categoryIds = [];
+        }
+        this.props.handleFilters("category-check-uncheck", categoryIds, status);
+    };
+
+    showMoreLessCategories = status => {
+        if (status) {
+            this.setState({ categoryShowLimit: this.state.attractionCategoryData.length });
+        } else {
+            this.setState({ categoryShowLimit: 5 });
+        }
+    };
+
     // Clear calender on clear
     clearCalender = () => {
         this.setState({ from: undefined, to: undefined });
@@ -304,10 +343,11 @@ export default class Filters extends Component {
 
     render() {
         const { venueData, filterConfig, handleFilters } = this.props;
-        const { price_config } = filterConfig;
+        const { price_config } = filterConfig ? filterConfig : 0;
         const {
             from,
             to,
+            attractionCategoryData,
             promotionsData,
             genreData,
             tagsData,
@@ -316,8 +356,10 @@ export default class Filters extends Component {
             venueFilterPanelDisplay,
             genreShowLimit,
             tagShowLimit,
-            venueShowLimit
+            venueShowLimit,
+            categoryShowLimit
         } = this.state;
+
         const modifiers = { start: from, end: to };
         return (
             <div>
@@ -472,7 +514,7 @@ export default class Filters extends Component {
                             className="form-control"
                         />
                     </div>
-                    <div className="filter-grid filter-price-range">
+                    {price_config != undefined && <div className="filter-grid filter-price-range">
                         <div className="filter-grid-heading">
                             <h3>Price Range</h3>
                             <ul>
@@ -484,8 +526,8 @@ export default class Filters extends Component {
                             </ul>
                         </div>
                         <div className="filters-panel">
-                        <span className="input-range-label-container min">S$ {this.state.priceRangeValue.min}</span>
-                        <span className="input-range-label-container max">S$ {this.state.priceRangeValue.max}</span>
+                            <span className="input-range-label-container min">S$ {this.state.priceRangeValue.min}</span>
+                            <span className="input-range-label-container max">S$ {this.state.priceRangeValue.max}</span>
                             <InputRange
                                 ref="input_range"
                                 formatLabel={value => `${'S$' + value}`}
@@ -496,8 +538,8 @@ export default class Filters extends Component {
                                 onChangeComplete={(value) => this.props.handleFilters("price-range", value, "")}
                             />
                         </div>
-                    </div>
-                    <div className="filter-grid">
+                    </div>}
+                    {genreData && genreData.length > 0 && <div className="filter-grid">
                         <div className="filter-grid-heading">
                             <h3>Genre</h3>
                             <ul>
@@ -556,8 +598,8 @@ export default class Filters extends Component {
                 </a>
                             )}
                         </div>
-                    </div>
-                    <div className="filter-grid">
+                    </div>}
+                    {tagsData && tagsData.length > 0 && <div className="filter-grid">
                         <div className="filter-grid-heading">
                             <h3>Tags</h3>
                             <ul>
@@ -614,8 +656,8 @@ export default class Filters extends Component {
                 </a>
                             )}
                         </div>
-                    </div>
-                    <div className="filter-grid">
+                    </div>}
+                    {this.props.showCalendar && <div className="filter-grid">
                         <div className="filter-grid-heading">
                             <h3>Date Range</h3>
                             <ul>
@@ -723,8 +765,8 @@ export default class Filters extends Component {
                                     `}</style>
                             </Helmet>
                         </div>
-                    </div>
-                    <div className="filter-grid">
+                    </div>}
+                    {promotionsData && promotionsData.length > 0 && <div className="filter-grid">
                         <div className="filter-grid-heading">
                             <h3>Promotion</h3>
                             <ul>
@@ -742,36 +784,29 @@ export default class Filters extends Component {
                         </div>
                         <div className="filters-panel">
                             <ul>
-                                {promotionsData &&
-                                    promotionsData.map((promotion, key) => {
-                                        let id = "promotions-" + promotion.id;
-                                        return (
-                                            <li key={key}>
-                                                <input
-                                                    key={key}
-                                                    checked={promotion.isChecked}
-                                                    onChange={e => this.checkUncheckPromotions(e, key)}
-                                                    className="styled-checkbox"
-                                                    type="checkbox"
-                                                    id={id}
-                                                />
-                                                <label htmlFor={id}>{promotion.name}</label>
-                                            </li>
-                                        );
-                                    })}
+                                {promotionsData.length > 0 && promotionsData.map((promotion, key) => {
+                                    let id = "promotions-" + promotion.id;
+                                    return (
+                                        <li key={key}>
+                                            <input
+                                                key={key}
+                                                checked={promotion.isChecked}
+                                                onChange={e => this.checkUncheckPromotions(e, key)}
+                                                className="styled-checkbox"
+                                                type="checkbox"
+                                                id={id}
+                                            />
+                                            <label htmlFor={id}>{promotion.name}</label>
+                                        </li>
+                                    );
+                                })}
                             </ul>
-                            {/* <a className="view-all-filters">
-                                + 4 More
-                    </a> */}
                         </div>
-                    </div>
-                    <div className="filter-grid">
+                    </div>}
+                    {venuesData && venuesData.length > 0 && <div className="filter-grid">
                         <div className="filter-grid-heading">
                             <h3>Venue</h3>
                             <ul>
-                                {/* <li className="">
-                                    <a onClick={() => this.checkUncheckAllVenues(true)}>Select All</a>
-                                </li> */}
                                 <li className="active">
                                     <a onClick={() => this.checkUncheckAllVenues(false)}>Clear</a>
                                 </li>
@@ -813,7 +848,43 @@ export default class Filters extends Component {
                             venueFilterPanelDisplay={venueFilterPanelDisplay}
                             venueData={venueData}
                         />
-                    </div>
+                    </div>}
+
+                    {attractionCategoryData && attractionCategoryData.length > 0 && <div className="filter-grid">
+                        <div className="filter-grid-heading">
+                            <h3>Categories</h3>
+                            <ul>
+                                <li className={this.state.checkUncheckCategoryActiveClass ? 'active' : ''} >
+                                    <a onClick={() => this.checkUncheckAllCategories(true)}>Select All</a>
+                                </li>
+                                <li className={this.state.checkUncheckCategoryActiveClass ? '' : 'active'}>
+                                    <a onClick={() => this.checkUncheckAllCategories(false)}>Clear</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div className="filters-panel">
+                            <ul>
+                                {attractionCategoryData &&
+                                    attractionCategoryData.slice(0, categoryShowLimit).map((category, key) => {
+                                        let id = "category-" + category.id;
+                                        return (
+                                            <li key={key}>
+                                                <input
+                                                    checked={category.isChecked}
+                                                    onChange={e => this.checkUncheckCategories(e, key)}
+                                                    className="styled-checkbox"
+                                                    type="checkbox"
+                                                    id={id}
+                                                    value=""
+                                                />
+                                                <label for={id}>{category.name} ({category.attractions})</label>
+                                            </li>
+                                        );
+                                    })}
+                            </ul>
+
+                        </div>
+                    </div>}
                 </div>
             </div>
         );

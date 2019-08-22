@@ -411,6 +411,8 @@ export default class Events extends Component {
                     genreData={genre}
                     venueData={venues}
                     filterConfig={filterConfig}
+                    showCalendar={true}
+
                   />
                 )}
 
@@ -453,7 +455,7 @@ export default class Events extends Component {
                     eventsData.map(event => {
                       return (
                         <div onClick={() => this.redirectToTarget(event.alias)}>
-                          <Card eventsData={event} />
+                          <Card cardData={event} />
                         </div>
                       );
                     })}
