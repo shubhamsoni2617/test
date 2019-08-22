@@ -5,9 +5,6 @@ import Timer from '../Timer';
 import SocialShare from '../../../shared/components/SocialShare';
 import CloseIcon from '../../../assets/images/close-blue.svg';
 import ShareIcon from '../../../assets/images/share-icon.svg';
-import NextArrow from '../../../assets/images/next-arrow-white.svg';
-import NextArrowBlue from '../../../assets/images/next-arrow-blue.svg';
-import RightArrow from '../../../assets/images/right-arrow.svg';
 import StopWatch from '../../../assets/images/stopwatch-grey.svg';
 
 const PromotionCard = (props) => {
@@ -46,7 +43,7 @@ const PromotionCard = (props) => {
   }
 
   return (
-    <div className={promotionTab === "open" && tabDetailId === data.id ? "promotion-block active" : "promotion-block"}>
+    <div className={promotionTab === 1 && tabDetailId === data.id ? "promotion-block active" : "promotion-block"}>
       <div className="promotions-listing-wrapper">
         <div className="promotion-image">
           <img src={data.featured_image} className="img-fluid" alt="feature-image" />
@@ -82,7 +79,7 @@ const PromotionCard = (props) => {
         </div>
       </div>
       <div className="promotion-dropdown-height"></div>
-      <div className="promotion-tab-dropdown" >
+      <div className="promotion-tab-dropdown" id="someDiv">
         <a className="promotion-tab-close-btn" onClick={() => handlePromotionDetailTab("close")}>
           <img src={CloseIcon} alt="close-icon" />
         </a>

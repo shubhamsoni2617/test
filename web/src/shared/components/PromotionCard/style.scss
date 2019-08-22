@@ -66,9 +66,12 @@
             position: absolute;
             right: 0px;
             top: 0;
+            img{
+                width: 12px;
+            }
             .social-share{
                 position: absolute;
-                top: -5px;
+                top: -10px;
                 right: 31px;
                 max-width: 0;
                 overflow: hidden;
@@ -165,7 +168,6 @@
                 border: 1px solid #0098ff;
                 background-color: #0098ff;
                 transition: 0.5s background-color;
-                padding-right: 30px;
                 &:after{
                     content: none;
                 }
@@ -174,7 +176,6 @@
                     font-family: 'Montserrat', sans-serif;
                     font-weight: 500;
                     transition: 0.5s color;
-                    padding-right: 7px;
                 }
                 img {
                     padding-left: 0;
@@ -224,7 +225,7 @@
             top: 0;
         }
         .top-dropdown-bar {
-            border: 5px solid #0098ff;
+            border: 3px solid #0098ff;
             width: 100%;
             display: block;
             @media(max-width: 991px) {
@@ -260,7 +261,7 @@
             border-right: 20px solid transparent;
             width: auto;
             height: auto;
-            left: 70px;
+            left: 50px;
             right: auto;
             top: 20px;
             opacity: 0;
@@ -334,35 +335,11 @@
             transform: none;
         }
     }
-    //what's new style start
-    // .whats-new {
-    //     background-color: #F0F9FF;
-    //     h2 {
-    //         color: #343434;
-    //         padding-bottom: 18px;
-    //         @media (max-width: 767px) {
-    //             padding-bottom: 20px;
-    //         }
-    //     }
-    //     h3 {
-    //         color: #343434;
-    //         padding-bottom: 13px;
-    //     }
-    //     p {
-    //         color: #626262;
-    //     }
-    //     .category {
-    //         margin-bottom: 11px;
-    //     }
-    //     .dots-group span {
-    //         background-color: #CDCDCD;
-    //         opacity: 0.58;
-    //     }
-    // }
 
     .related-event {
         padding: 20px 0px 0;
         position: relative;
+        border-top: 1px solid rgba(151,151,151,0.2);
         @media (max-width: 767px) {
             padding-bottom: 20px;
         }
@@ -376,16 +353,6 @@
                     right: -25px;
                 }
             }
-            .dots-group {
-                position: relative;
-                top: -7px;
-                span {
-                    background-color: rgba(255, 255, 255, 0.1);
-                    &.active {
-                        background-color: #0077C8;
-                    }
-                }
-            }
             h2 {
                 color: #343434;
                 font-size: 22px;
@@ -397,6 +364,7 @@
             }
             .grid-container {
                 color: #ffffff;
+                padding: 0 5px;
                 .item {
                     position: relative;
                     z-index: 1;
@@ -412,20 +380,23 @@
                     }
                     .currently-showing-img {
                         margin: 0 0 10px;
-                        img {
-                            width: 100%;
-                            height: auto;
-                            transition: 0.5s transform;
-                            padding: 0;
-                            @media(max-width: 1366px) {
-                                height: 100%;
+                        .item-img{
+                            min-height: 118px;
+                            img {
                                 width: 100%;
-                                object-fit: cover;
-                            }
-                            @media (max-width: 767px) {
                                 height: auto;
-                                width: auto;
-                                max-width: 100%;
+                                transition: 0.5s transform;
+                                padding: 0;
+                                @media(max-width: 1366px) {
+                                    height: 100%;
+                                    width: 100%;
+                                    object-fit: cover;
+                                }
+                                @media (max-width: 767px) {
+                                    height: auto;
+                                    width: auto;
+                                    max-width: 100%;
+                                }
                             }
                         }
                     }
@@ -478,7 +449,7 @@
                     p {
                         color: #626262;
                         margin: 0;
-                        padding: 0;
+                        padding: 3px 0;
                     }
                 }
             }
@@ -487,7 +458,7 @@
     &:nth-child(2n){
         .promotion-tab-dropdown{
             &:before{
-                right: 70px;
+                right: 50px;
                 left: auto;
             }
         }

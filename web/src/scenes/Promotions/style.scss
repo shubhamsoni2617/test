@@ -4,5 +4,13 @@
 	@media(max-width: 991px) {
 		padding: 20px 0px 0px;
 	}
-	
+	.shm_row{
+        justify-content: space-between;
+        >div{
+            flex: 0 0 50%;
+        }
+        .shm_col-sm-12{
+            flex: 0 0 100%;
+        }
+    }
 }

@@ -35,9 +35,9 @@ class Timer extends Component {
       }
 
       if (distance < 0) {
-        clearInterval(x);
-        if (this.mount) {
-          promotionExpired("EXPIRED");
+        if(this.mount){
+          clearInterval(x);
+          promotionExpired('EXPIRED')
         }
       }
     }, 1000);

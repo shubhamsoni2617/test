@@ -17,7 +17,7 @@ export default class Promotions extends Component {
       totalRecords: 0,
       listingArray: [],
       promotionDetail: "",
-      promotionTab: "close",
+      promotionTab: 0,
       tabDetailId: "",
       shareUrl: undefined,
       count: 0
@@ -140,6 +140,16 @@ export default class Promotions extends Component {
 
 
   fetchPromotionDetailData = (alias, id) => {
+    // console.log(window.screen.height,"window-height");
+    // window.scrollTo(0,window.screen.height+200)
+
+  //   window.addEventListener('scroll', function(ev) {
+
+  //     var someDiv = document.getElementById('someDiv');
+  //     var distanceToTop = someDiv.getBoundingClientRect().top;
+
+  //     console.log(distanceToTop);
+  //  });
     const params = {
       client: Constants.CLIENT,
       alias: alias
@@ -149,13 +159,13 @@ export default class Promotions extends Component {
         if (res.data.data.length > 0 && res.data.data[0]) {
           this.setState({
             promotionDetail: res.data.data[0],
-            promotionTab: "open",
+            promotionTab: 1,
             tabDetailId: id
           })
         } else {
           this.setState({
             promotionDetail: "",
-            promotionTab: "close"
+            promotionTab: 0
           })
         }
       })
@@ -171,7 +181,7 @@ export default class Promotions extends Component {
   handleActiveTab = (data) => {
     this.setState({
       defaultTabId: data,
-      promotionTab: "close"
+      promotionTab: 0
     });
   }
 
@@ -182,7 +192,7 @@ export default class Promotions extends Component {
   handleFilters = (sortBy, sortOrder) => {
     this.setState({
       sortBy: sortOrder,
-      promotionTab: "close"
+      promotionTab: 0
     })
   }
 
