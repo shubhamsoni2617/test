@@ -2,6 +2,7 @@ import Home from '../Home'
 import Events from '../Events'
 import EventsDetail from '../Events/EventsDetail'
 import HomeService from '../../shared/services/HomeService'
+import Promotions from '../Promotions';
 import PageNotFound from '../PageNotFound/index';
 import Attraction from '../Attraction'
 
@@ -27,6 +28,16 @@ const routes =  [
     exact : true,
     fetchInitialData: (path = '') => HomeService.getData()
   },
+  // {
+  //   path: '/promotions/:promoId',
+  //   component: Promotions,
+  // },
+  {
+    path: '/promotions',
+    exact : true,
+    component: Promotions,
+  },
+
   {
     path: '/attraction',
     component: Attraction,

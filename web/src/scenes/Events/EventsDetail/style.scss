@@ -1,7 +1,42 @@
+.main-container{
+  opacity: 1;
+  transition: opacity .5s;
+  &.shimmer{
+    opacity: 0;
+  }
+}
+.shimmer-enter {
+  top: 120%;
+  opacity: 0;
+}
+.event-detail-wrapper{
+  .shimmer-container{
+    position: absolute;
+    width: 100%;
+    background: #FFFFFF;
+    z-index: 2;
+  }
+}
+.shimmer-enter.shimmer-enter-active {
+  top: 100%;
+  opacity: 1;
+  transition: all 500ms;
+}
+
+.shimmer-leave {
+  top: 100%;
+  opacity: 1;
+}
+
+.shimmer-leave.shimmer-leave-active {
+  top: 120%;
+  opacity: 0;
+  transition: all 500ms;
+}
 //event detail section
 .event-detail {
     background-color: #F0F9FF;
-    padding: 22px 29px 0px;
+    padding: 22px 29px 10px;
     position: relative;
     // top: 30px;
     // margin-top: -30px;
@@ -124,7 +159,7 @@
             }
         }
         .date-address {
-            margin: 0px 0 70px;
+            margin: 0px 0 60px;
             @media(max-width: 1280px){
                 margin: 30px 0 30px;
             }
@@ -650,10 +685,10 @@
             flex: 0 0 63%;
         }
         .info-tooltip, .share-tooltip {
-            position: relative;
-            right: auto;
+            position: absolute;
+            right: 15px;
             display: inline-block;
-            top: auto;
+            top: 5px;
             .share, .info {
                 position: relative;
                 right: 0px;
@@ -673,6 +708,9 @@
                 }
             }
         }
+        .info-tooltip{
+            right: 60px;
+        }
         h2{
             font-size: 22px;
             line-height: 27px;
@@ -680,6 +718,7 @@
             display: inline-block;
             color: #3A3A3A;
             min-height: inherit;
+            width: 84%;
             @media(max-width: 1280px){
                 font-size: 20px;
                 line-height: 24px;
