@@ -35,12 +35,9 @@ class Timer extends Component {
       }
 
       if (distance < 0) {
-        clearInterval(x);
-        if (this.mount) {
-          promotionExpired("EXPIRED");
-          this.setState({
-            expired: "EXPIRED"
-          });
+        if(this.mount){
+          clearInterval(x);
+          promotionExpired('EXPIRED')
         }
       }
     }, 1000);
@@ -54,7 +51,7 @@ class Timer extends Component {
     const { days, hours, minutes, seconds, expired } = this.state;
     return (
       <Fragment>
-        {expired === "EXPIRED" ? expired :
+        {expired === "EXPIRED" ? null :
           <Fragment>
             <li className="timer-days">
               <span>{days}</span>

@@ -17,9 +17,9 @@ export default class Promotions extends Component {
       totalRecords: 0,
       listingArray: [],
       promotionDetail: "",
-      promotionTab: "close",
+      promotionTab: 0,
       tabDetailId: "",
-      shareUrl: undefined
+      count: 0
     };
     this.tabsSort = {
       isSortBy: true,
@@ -47,7 +47,7 @@ export default class Promotions extends Component {
     this.breadCrumbData = {
       'page_banner': PageBanner,
       'page': 'Promotions',
-      // 'count': '24',
+      'count': '0',
       'breadcrumb_slug': [{ 'path': '/', 'title': 'Home' }, { 'path': '/promotions', 'title': 'Promotions' }]
     };
   }
@@ -95,11 +95,22 @@ export default class Promotions extends Component {
     };
     PromotionService.getPromotionCategories(params)
       .then((res) => {
-        this.setState({ tabsArray: res.data.data });
+        const category = res.data.data;
+        this.setState({
+          tabsArray: category,
+          count: this.calculateSum(category)
+        });
       })
       .catch((err) => {
         console.log(err)
       })
+  }
+
+  calculateSum = (data) => {
+    let count = data && data.filter((item) => Number(item.promotions))
+      .map((item) => +Number(item.promotions))
+      .reduce((sum, current) => sum + current);
+    return count;
   }
 
   fetchPromotionListingData = () => {
@@ -127,7 +138,28 @@ export default class Promotions extends Component {
   }
 
 
+  getPosition = (element) => {
+    var xPosition = 0;
+    var yPosition = 0;
+
+    while (element) {
+      xPosition += (element.offsetLeft - element.scrollLeft + element.clientLeft);
+      yPosition += (element.offsetTop - element.scrollTop + element.clientTop);
+      element = element.offsetParent;
+    }
+    console.log(yPosition, "yPosition")
+
+    return { x: xPosition, y: yPosition };
+  }
+
+
   fetchPromotionDetailData = (alias, id) => {
+    // var element = document.getElementsByClassName("promotion-events-row");
+    // for (var i = 0; i < element.length; i++) {
+    //   // console.log(element.item(i),"class");
+    //   this.getPosition(element.item(i))
+    // }
+    // console.log(element, "element")
     const params = {
       client: Constants.CLIENT,
       alias: alias
@@ -137,13 +169,13 @@ export default class Promotions extends Component {
         if (res.data.data.length > 0 && res.data.data[0]) {
           this.setState({
             promotionDetail: res.data.data[0],
-            promotionTab: "open",
+            promotionTab: 1,
             tabDetailId: id
           })
         } else {
           this.setState({
             promotionDetail: "",
-            promotionTab: "close"
+            promotionTab: 0
           })
         }
       })
@@ -153,13 +185,12 @@ export default class Promotions extends Component {
     let shareUrl = window.location.origin + `/promotions/${id}`;
     // let randomString = Math.random().toString(36).substring(7);
     window.history.pushState("string", "Title", shareUrl);
-    this.setState({ shareUrl: shareUrl })
   }
 
   handleActiveTab = (data) => {
     this.setState({
       defaultTabId: data,
-      promotionTab: "close"
+      promotionTab: 0
     });
   }
 
@@ -170,7 +201,7 @@ export default class Promotions extends Component {
   handleFilters = (sortBy, sortOrder) => {
     this.setState({
       sortBy: sortOrder,
-      promotionTab: "close"
+      promotionTab: 0
     })
   }
 
@@ -179,6 +210,7 @@ export default class Promotions extends Component {
   }
 
   render() {
+    this.breadCrumbData.count = this.state.count;
     return (
       <div>
         <Breadcrumb breadCrumbData={this.breadCrumbData} />
