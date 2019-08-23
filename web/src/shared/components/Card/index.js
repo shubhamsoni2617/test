@@ -42,7 +42,7 @@ export default class Card extends Component {
                             <span>{this.props.cardData.event_status}</span>
                             <p>{(this.props.cardData.price) ? this.props.cardData.price : ' '}</p>
                         </div>
-                        <button type="button" className="btn buy-btn attaction-buy">
+                        <button type="button" className={this.props.cardButtonClass}>
                             Buy Tickets
                         </button>
                     </div>

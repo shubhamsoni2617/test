@@ -300,8 +300,8 @@ export default class Attractions extends Component {
                   {attractionsData &&
                     attractionsData.map(attraction => {
                       return (
-                        <div onClick={() => this.redirectToTarget(attraction.alias)}>
-                          <Card cardData={attraction} />
+                        <div onClick={() => this.redirectToTarget(attraction.event_alias)}>
+                          <Card cardData={attraction} cardButtonClass="btn buy-btn attaction-buy"/>
                         </div>
                       );
                     })}
