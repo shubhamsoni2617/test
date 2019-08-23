@@ -5,7 +5,7 @@ import { ReactComponent as Watch } from '../../../assets/images/stopwatch-grey.s
 
 const SearchAgent = (props) => {
 
-  const { initialItems,countryFile,onClick } = props;
+  const { initialItems, countryFile, onClick,getDirectionDetail } = props;
   const activePopUpRef = useRef();
 
   const [filter, setFilter] = useState('');
@@ -72,12 +72,16 @@ const SearchAgent = (props) => {
           filteredData && filteredData.map((item, index) => {
             return (
               <ul className="pop-up-container" key={index} onMouseEnter={() => showPopUp(item)} onMouseLeave={showPopUp}>
-                <li><strong>{item.name}</strong> <span><a onClick={(e)=>{onClick(e,item)}}>shown On Map</a></span></li>
+                <li><strong>{item.name}</strong> <span><a onClick={(e) => { onClick(e, item) }}>shown On Map</a></span></li>
                 <li>{item.address},{item.country}</li>
                 <div
                   className={item.id === popUpDetail.id ? "pop-up-list active" : "pop-up-list"}
                   ref={item.id === popUpDetail.id ? activePopUpRef : null}
                 >
+                  <div onClick={()=>{getDirectionDetail(popUpDetail)}}>
+                    <a>Go on google map</a>
+                    <p>{popUpDetail.how_to_get_there}</p>
+                  </div>
                   <div>
                     <strong>How To Get There</strong>
                     <p>{popUpDetail.how_to_get_there}</p>

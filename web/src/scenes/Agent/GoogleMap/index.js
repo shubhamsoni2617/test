@@ -1,13 +1,15 @@
 import React, { useState, useEffect } from 'react';
-import { Map, InfoWindow, Marker, GoogleApiWrapper } from 'google-maps-react';
+import { Map, InfoWindow, Marker, GoogleApiWrapper, DirectionsRenderer } from 'google-maps-react';
 
 const GoogleMap = (props) => {
-
-  const { google, multipleMarker, selectedItem } = props;
+  const { google, multipleMarker, selectedItem,directionDetail } = props;
+  const { DirectionsService, DirectionsRenderer, DirectionsTravelMode, TravelMode, DirectionsStatus } = google.maps;
 
   const [showingInfoWindow, setShowingInfoWindow] = useState(false);
   const [activeMarker, setActiveMarker] = useState({});
   const [selectedPlace, setSelectedPlace] = useState({});
+  const [directions, setDirections] = useState(null);
+
 
 
   const onMapClicked = (props) => {
@@ -43,9 +45,32 @@ const GoogleMap = (props) => {
     // setActiveMarker({})
   }, [selectedItem.id])
 
+  const getDirection = () => {
 
-  console.log(selectedItem.id, "selectedItem");
-  console.log(selectedPlace, "selectedPlace");
+    console.log("getdirection called")
+    const directionsService = new DirectionsService();
+    const origin = { lat: 40.756795, lng: -73.954298 };
+    const destination = { lat: 41.756795, lng: -78.954298 };
+
+    directionsService.route(
+      {
+        origin: origin,
+        destination: destination,
+        travelMode: TravelMode.DRIVING
+      },
+      (result, status) => {
+        if (status === DirectionsStatus.OK) {
+          console.log(result,"output");
+          setDirections(result);
+          // this.setState({
+          //   directions: result
+          // });
+        } else {
+          console.error(`error fetching directions ${result}`);
+        }
+      }
+    );
+  }
 
   if (!google) {
     return <div>Loading...</div>;
@@ -63,6 +88,7 @@ const GoogleMap = (props) => {
               lng: 103.82222290000004
             }}
           >
+
             {
               multipleMarker && multipleMarker.map((elem, index) => {
                 return (
@@ -93,7 +119,6 @@ const GoogleMap = (props) => {
                 </div>
               </div>
             </InfoWindow>
-
             <div>
             </div>
           </Map>
@@ -136,6 +161,7 @@ const GoogleMap = (props) => {
                   icon={{
                     url: "http://maps.google.com/mapfiles/ms/icons/blue-dot.png"
                   }}
+                  onClick={getDirection}
                 >
                   <div className="row">
                     <div className="col-lg-3">

@@ -50,6 +50,7 @@ const Agent = (props) => {
   const [agentList, setAgentList] = useState([]);
   const [file, setCountryFile] = useState('');
   const [selectedItem, setSelectedItem] = useState('');
+  const [directionDetail, setDirectionDetail] = useState(null);
 
 
   useEffect(() => {
@@ -108,6 +109,10 @@ const Agent = (props) => {
     setSelectedItem(selectedItem);
   }
 
+  const getDirectionDetail=(detail)=>{
+    setDirectionDetail(detail);
+  }
+
   return (
     <section className="">
       <CountryRegion
@@ -127,6 +132,7 @@ const Agent = (props) => {
           <GoogleMap
             multipleMarker={agentList}
             selectedItem={selectedItem}
+            directionDetail={directionDetail}
           />
         </div>
       </div>
