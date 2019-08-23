@@ -46,7 +46,7 @@ export default class Events extends Component {
       queryParams: {}
     };
 
-    this.breadCrumbData = {
+    this.breadCrumbData = {   
       page_banner: EventBreadcrumbImage,
       page: "Events",
       count: 0,

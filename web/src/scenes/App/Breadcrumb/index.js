@@ -1,9 +1,12 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+
 import { Link } from "react-router-dom";
 import './style.scss'
 
 const Breadcrumb = (props) => {
     const { breadCrumbData } = props;
+    console.log("length", props.breadCrumbData.breadcrumb_slug)
     return (
         <section className="breadcrumbs">
             <div className="banner-wrapper">
@@ -17,6 +20,7 @@ const Breadcrumb = (props) => {
                             return <li><Link to={link.path}>{link.title}</Link></li>
                         })}
                     </ul>
+                    
                 </div>
             </div>
         </section>
@@ -24,3 +28,5 @@ const Breadcrumb = (props) => {
 }
 
 export default Breadcrumb;
+
+

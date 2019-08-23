@@ -1,46 +1,51 @@
-import Home from '../Home'
-import Events from '../Events'
-import EventsDetail from '../Events/EventsDetail'
-import HomeService from '../../shared/services/HomeService'
-import Promotions from '../Promotions';
-import PageNotFound from '../PageNotFound/index';
+import Home from "../Home";
+import Events from "../Events";
+import EventsDetail from "../Events/EventsDetail";
+import HomeService from "../../shared/services/HomeService";
+import Promotions from "../Promotions";
+import PageNotFound from "../PageNotFound/index";
+import WhereBuyTickets from "../WhereBuyTickets";
 
-const routes =  [
+const routes = [
   {
-    path: '/',
+    path: "/",
     exact: true,
-    component: Home,
+    component: Home
   },
   {
-    path: '/events/search',
-    exact : true,
+    path: "/events/search",
+    exact: true,
+    component: Events
+  },
+  {
+    path: "/events/:icc",
+    exact: true,
+    component: EventsDetail
+  },
+  {
+    path: "/events",
     component: Events,
+    exact: true,
+    fetchInitialData: (path = "") => HomeService.getData()
   },
   {
-    path: '/events/:icc',
-    exact : true,
-    component: EventsDetail,
+    path: "/promotions/:promo_id",
+    component: Promotions
   },
   {
-    path: '/events',
-    component: Events,
-    exact : true,
-    fetchInitialData: (path = '') => HomeService.getData()
+    path: "/promotions",
+    exact: true,
+    component: Promotions
   },
   {
-    path: '/promotions/:promo_id',
-    component: Promotions,
+    path: "/where-to-buy-tickets",
+    exact: true,
+    component: WhereBuyTickets
   },
   {
-    path: '/promotions',
-    exact : true,
-    component: Promotions,
-  },
-
-  {
-    path : "*",
+    path: "*",
     component: PageNotFound
   }
-]
+];
 
-export default routes
+export default routes;
