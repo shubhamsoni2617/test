@@ -1,4 +1,4 @@
-import React, { useState,useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Map, InfoWindow, Marker, GoogleApiWrapper } from 'google-maps-react';
 
 const GoogleMap = (props) => {
@@ -28,7 +28,7 @@ const GoogleMap = (props) => {
     // markerClick(params);
   }
 
-  const click=(props, marker)=>{
+  const click = (props, marker) => {
     setSelectedPlace(props);
     setActiveMarker(marker);
     setShowingInfoWindow(true);
@@ -44,8 +44,8 @@ const GoogleMap = (props) => {
   }, [selectedItem.id])
 
 
-  console.log(selectedItem,"selectedItem");
-  console.log(selectedPlace,"selectedPlace");
+  console.log(selectedItem.id, "selectedItem");
+  console.log(selectedPlace, "selectedPlace");
 
   if (!google) {
     return <div>Loading...</div>;
@@ -56,7 +56,7 @@ const GoogleMap = (props) => {
         selectedPlace && selectedPlace.id ?
           <Map google={google}
             style={{ width: '100%', height: '100%' }}
-            zoom={13}
+            zoom={5}
             onClick={onMapClicked}
             initialCenter={{
               lat: 1.257681,
@@ -93,6 +93,7 @@ const GoogleMap = (props) => {
                 </div>
               </div>
             </InfoWindow>
+
             <div>
             </div>
           </Map>
@@ -101,7 +102,7 @@ const GoogleMap = (props) => {
 
           <Map google={google}
             style={{ width: '100%', height: '100%' }}
-            zoom={13}
+            zoom={10}
             initialCenter={{
               lat: 1.257681,
               lng: 103.82222290000004
@@ -117,35 +118,43 @@ const GoogleMap = (props) => {
                     id={elem.id}
                     address={elem.address}
                     imgPath={elem.image}
+                    icon={{
+                      url: elem.id === selectedItem.id ? "http://maps.google.com/mapfiles/ms/icons/blue-dot.png" : null
+                    }}
                   />
                 )
               })
             }
+            {
+              selectedItem.id ?
+                <InfoWindow
+                  visible={true}
+                  position={{
+                    lat: selectedItem.latitude,
+                    lng: selectedItem.longitude
+                  }}
+                  icon={{
+                    url: "http://maps.google.com/mapfiles/ms/icons/blue-dot.png"
+                  }}
+                >
+                  <div className="row">
+                    <div className="col-lg-3">
+                      <img height="50" width="100" src={selectedItem.imgPath} title="Title of image" alt="alt text here" />
+                    </div>
+                    <div className="col-lg-6">
+                      <div>{selectedItem.id}</div>
+                      <div>{selectedItem.address}</div>
+                    </div>
+                  </div>
+                </InfoWindow>
+                :
+                null
+            }
 
-            <InfoWindow
-              visible={true}
-              position={{
-                lat: selectedItem.latitude,
-                lng: selectedItem.longitude
-              }}
-            >
-              <div className="row">
-                <div className="col-lg-3">
-                  <img height="50" width="100" src={selectedItem.imgPath} title="Title of image" alt="alt text here" />
-                </div>
-                <div className="col-lg-6">
-                  <div>{selectedItem.id}</div>
-                  <div>{selectedItem.address}</div>
-                </div>
-              </div>
-            </InfoWindow>
             <div>
             </div>
           </Map>
       }
-
-
-
 
     </div>
   );
