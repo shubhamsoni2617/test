@@ -10,7 +10,7 @@ export default class Promotions extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      defaultTabId: "30",
+      defaultTabId: "31",
       tabsArray: [],
       sortBy: "Date",
       first: 0,
@@ -96,6 +96,9 @@ export default class Promotions extends Component {
     PromotionService.getPromotionCategories(params)
       .then((res) => {
         const category = res.data.data;
+        category.sort((a, b) => {
+          return a.name.localeCompare(b.name);
+        });
         this.setState({
           tabsArray: category,
           count: this.calculateSum(category)
@@ -217,17 +220,19 @@ export default class Promotions extends Component {
         <section className="promotions-wrapper">
           <div className="container-fluid">
             <div className="container">
-              <Tabs
-                state={this.state}
-                tabsSort={this.tabsSort}
-                handleSortBy={this.handleSortBy}
-                handleLoadMore={this.handleLoadMore}
-                handleActiveTab={this.handleActiveTab}
-                handleFilters={this.handleFilters}
-                limit={Constants.LIMIT}
-                fetchPromotionDetailData={this.fetchPromotionDetailData}
-                handlePromotionDetailTab={this.handlePromotionDetailTab}
-              />
+              {this.state.listingArray &&
+                <Tabs
+                  state={this.state}
+                  tabsSort={this.tabsSort}
+                  handleSortBy={this.handleSortBy}
+                  handleLoadMore={this.handleLoadMore}
+                  handleActiveTab={this.handleActiveTab}
+                  handleFilters={this.handleFilters}
+                  limit={Constants.LIMIT}
+                  fetchPromotionDetailData={this.fetchPromotionDetailData}
+                  handlePromotionDetailTab={this.handlePromotionDetailTab}
+                />
+              }
             </div>
           </div>
         </section>
