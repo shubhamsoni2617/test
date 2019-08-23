@@ -19,7 +19,6 @@ import "./style.scss";
 export default class Filters extends Component {
     constructor(props) {
         super(props);
-        console.log('props', props)
         this.state = {
             priceRangeValue: {
                 min: this.props.filterConfig ? this.props.filterConfig.price_config.min_price : null,
@@ -46,12 +45,10 @@ export default class Filters extends Component {
     }
 
     componentDidMount() {
-        debugger
         this.applyIsChecked(true); //Value true passed for check route params
     }
 
     componentDidUpdate(preProps) {
-        debugger
         if (this.props.queryParams.genreId !== preProps.queryParams.genreId) {
             this.applyIsChecked(true); //Value true passed for check route params
         }
@@ -95,7 +92,6 @@ export default class Filters extends Component {
         });
 
         this.state.attractionCategoryData && this.state.attractionCategoryData.map(category => {
-            debugger
             category.isChecked = false;
         });
 
@@ -109,6 +105,7 @@ export default class Filters extends Component {
 
     // Clear all the filters
     clearAllFilters = () => {
+        debugger
         this.setState({
             search: "",
             priceRangeValue: {

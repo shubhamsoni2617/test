@@ -23,7 +23,7 @@ export default class Attractions extends Component {
   constructor(props) {
     super(props);
 
-    this.initialLimit = { client: 1, first: 0, limit: 9, sort_type: "title", sort_order: 'ASC' };
+    this.initialLimit = { client: 1, first: 0, limit: 9, sort_type: "title", sort_order: 'ASC', search:'' };
     this.state = {
       shimmer: true,
       attractionCategories: [],
@@ -39,7 +39,8 @@ export default class Attractions extends Component {
       viewTypeClass: "events-section",
       totalRecords: 0,
       loader: false,
-      queryParams: {}
+      queryParams: {},
+      count:0
     };
 
     this.breadCrumbData = {
@@ -78,12 +79,12 @@ export default class Attractions extends Component {
   }
 
   resetFilters = () => {
-    this.initialLimit.search = "";
     this.setState(
       {
         filteredCategory: [],
+        filteredSearch: '',
         filteredSortType: "title",
-        filteredSortOrder: "",
+        filteredSortOrder: "ASC",
         isdataAvailable: false,
         eventsData: [],
         attractionsData: [],
@@ -98,7 +99,7 @@ export default class Attractions extends Component {
   getAttractionsCategory = () => {
     AttractionsService.getAttractionsCategory()
       .then(res => {
-        this.setState({ attractionCategories: res.data.data });
+        this.setState({ attractionCategories: res.data.data, count: this.calculateTotalAttractions(res.data.data) });
       })
       .catch(err => {
         console.log(err);
@@ -186,8 +187,6 @@ export default class Attractions extends Component {
       }
         break;
       case "sort":
-      case "price":
-      case "date":
       case "title": {
         filteredSortType = searchType;
         filteredSortOrder = searchValue;
@@ -218,9 +217,13 @@ export default class Attractions extends Component {
     this.props.history.push(`/events/` + alias);
   };
 
-  calculateTotalAttractions = () => {
-    
+  calculateTotalAttractions = (data) => {
+    let count = data && data.filter((item) => Number(item.attractions))
+      .map((item) => +Number(item.attractions))
+      .reduce((sum, current) => sum + current);
+    return count;
   }
+
 
   render() {
     const {
@@ -231,8 +234,11 @@ export default class Attractions extends Component {
       totalRecords,
       isdataAvailable,
       viewType,
-      shimmer
+      shimmer,
+      count
     } = this.state;
+    this.breadCrumbData.count = count;
+
 
     // const viewTypeActive = viewType == "list" ? "active" : "";
     return (
