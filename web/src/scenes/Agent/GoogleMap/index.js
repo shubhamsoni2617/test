@@ -1,16 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import { Map, InfoWindow, Marker, GoogleApiWrapper, DirectionsRenderer } from 'google-maps-react';
+import { Map, InfoWindow, Marker, GoogleApiWrapper } from 'google-maps-react';
+import DirectionIcon from '../../../../src/assets/images/direction.png';
 
 const GoogleMap = (props) => {
-  const { google, multipleMarker, selectedItem,directionDetail } = props;
-  const { DirectionsService, DirectionsRenderer, DirectionsTravelMode, TravelMode, DirectionsStatus } = google.maps;
+  const { google, multipleMarker, selectedItem } = props;
 
   const [showingInfoWindow, setShowingInfoWindow] = useState(false);
   const [activeMarker, setActiveMarker] = useState({});
   const [selectedPlace, setSelectedPlace] = useState({});
   const [directions, setDirections] = useState(null);
-
-
 
   const onMapClicked = (props) => {
     if (showingInfoWindow) {
@@ -45,33 +43,6 @@ const GoogleMap = (props) => {
     // setActiveMarker({})
   }, [selectedItem.id])
 
-  const getDirection = () => {
-
-    console.log("getdirection called")
-    const directionsService = new DirectionsService();
-    const origin = { lat: 40.756795, lng: -73.954298 };
-    const destination = { lat: 41.756795, lng: -78.954298 };
-
-    directionsService.route(
-      {
-        origin: origin,
-        destination: destination,
-        travelMode: TravelMode.DRIVING
-      },
-      (result, status) => {
-        if (status === DirectionsStatus.OK) {
-          console.log(result,"output");
-          setDirections(result);
-          // this.setState({
-          //   directions: result
-          // });
-        } else {
-          console.error(`error fetching directions ${result}`);
-        }
-      }
-    );
-  }
-
   if (!google) {
     return <div>Loading...</div>;
   }
@@ -81,7 +52,7 @@ const GoogleMap = (props) => {
         selectedPlace && selectedPlace.id ?
           <Map google={google}
             style={{ width: '100%', height: '100%' }}
-            zoom={5}
+            zoom={8}
             onClick={onMapClicked}
             initialCenter={{
               lat: 1.257681,
@@ -117,6 +88,11 @@ const GoogleMap = (props) => {
                   <div>{selectedPlace.id}</div>
                   <div>{selectedPlace.address}</div>
                 </div>
+                <div className="text-right">
+                  <a href={`https://www.google.com/maps/dir//${selectedPlace.address}`} target="_blank">
+                    <img height='20' width='20' src={DirectionIcon} alt="direction" />
+                  </a>
+                </div>
               </div>
             </InfoWindow>
             <div>
@@ -127,7 +103,7 @@ const GoogleMap = (props) => {
 
           <Map google={google}
             style={{ width: '100%', height: '100%' }}
-            zoom={10}
+            zoom={8}
             initialCenter={{
               lat: 1.257681,
               lng: 103.82222290000004
@@ -158,10 +134,6 @@ const GoogleMap = (props) => {
                     lat: selectedItem.latitude,
                     lng: selectedItem.longitude
                   }}
-                  icon={{
-                    url: "http://maps.google.com/mapfiles/ms/icons/blue-dot.png"
-                  }}
-                  onClick={getDirection}
                 >
                   <div className="row">
                     <div className="col-lg-3">
@@ -171,12 +143,16 @@ const GoogleMap = (props) => {
                       <div>{selectedItem.id}</div>
                       <div>{selectedItem.address}</div>
                     </div>
+                    <div className="text-right">
+                      <a href={`https://www.google.com/maps/dir//${selectedItem.address}`} target="_blank">
+                        <img height='20' width='20' src={DirectionIcon} alt="direction" />
+                      </a>
+                    </div>
                   </div>
                 </InfoWindow>
                 :
                 null
             }
-
             <div>
             </div>
           </Map>

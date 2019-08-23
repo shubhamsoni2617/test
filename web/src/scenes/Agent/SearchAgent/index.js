@@ -2,10 +2,12 @@ import React, { Fragment, useState, useRef } from 'react';
 import SearchIcon from '../../../assets/images/search-grey.png';
 import './style.scss';
 import { ReactComponent as Watch } from '../../../assets/images/stopwatch-grey.svg';
+import DirectionIcon from '../../../../src/assets/images/direction.png';
+
 
 const SearchAgent = (props) => {
 
-  const { initialItems, countryFile, onClick,getDirectionDetail } = props;
+  const { initialItems, countryFile, onClick, getDirectionDetail } = props;
   const activePopUpRef = useRef();
 
   const [filter, setFilter] = useState('');
@@ -78,9 +80,10 @@ const SearchAgent = (props) => {
                   className={item.id === popUpDetail.id ? "pop-up-list active" : "pop-up-list"}
                   ref={item.id === popUpDetail.id ? activePopUpRef : null}
                 >
-                  <div onClick={()=>{getDirectionDetail(popUpDetail)}}>
-                    <a>Go on google map</a>
-                    <p>{popUpDetail.how_to_get_there}</p>
+                  <div className="text-right">
+                    <a href={`https://www.google.com/maps/dir//${popUpDetail.address}`} target="_blank">
+                      <img height='20' width='20' src={DirectionIcon} alt="direction" />
+                    </a>
                   </div>
                   <div>
                     <strong>How To Get There</strong>
