@@ -27,10 +27,10 @@ const routes =  [
     exact : true,
     fetchInitialData: (path = '') => HomeService.getData()
   },
-  // {
-  //   path: '/promotions/:promoId',
-  //   component: Promotions,
-  // },
+  {
+    path: '/promotions/:promoId',
+    component: Promotions,
+  },
   {
     path: '/promotions',
     exact : true,
