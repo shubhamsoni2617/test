@@ -105,7 +105,6 @@ export default class Filters extends Component {
 
     // Clear all the filters
     clearAllFilters = () => {
-        debugger
         this.setState({
             search: "",
             priceRangeValue: {
@@ -247,7 +246,6 @@ export default class Filters extends Component {
 
     // Categories
     checkUncheckCategories = (e, key) => {
-        debugger
         let categoryData = this.state.attractionCategoryData;
         categoryData[key].isChecked = e.target.checked;
         this.setState({ attractionCategoryData: categoryData });

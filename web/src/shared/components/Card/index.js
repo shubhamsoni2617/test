@@ -21,7 +21,7 @@ export default class Card extends Component {
             category = cardData.category.name;
         }
         return (
-            <div className="event-block attraction-block">
+            <div className={this.props.cardClass.cardBlock}>
                 {this.props.cardData && this.props.cardData.is_featured == '1' && <span className="featured-tag">Featured</span>}
                 <div className="event-img">
                     <Image src={this.props.cardData.thumb_image} />
@@ -42,7 +42,7 @@ export default class Card extends Component {
                             <span>{this.props.cardData.event_status}</span>
                             <p>{(this.props.cardData.price) ? this.props.cardData.price : ' '}</p>
                         </div>
-                        <button type="button" className={this.props.cardButtonClass}>
+                        <button type="button" className={this.props.cardClass.cardButton}>
                             Buy Tickets
                         </button>
                     </div>

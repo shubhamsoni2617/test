@@ -455,7 +455,7 @@ export default class Events extends Component {
                     eventsData.map(event => {
                       return (
                         <div onClick={() => this.redirectToTarget(event.alias)}>
-                          <Card cardData={event} />
+                          <Card cardData={event} cardClass={{cardBlock: 'event-block', cardButton: 'btn buy-btn'}}/>
                         </div>
                       );
                     })}
