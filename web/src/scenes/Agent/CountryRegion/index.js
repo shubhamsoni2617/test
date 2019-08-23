@@ -3,7 +3,7 @@ import './style.scss';
 
 const CountryRegion = (props) => {
 
-  const { countryNRegion, onSubmit } = props;
+  const { countryNRegion, onSubmit,filterCountryFile } = props;
 
   const [country, setCountry] = useState("Singapore");
   const [region, setRegion] = useState("All locations");
@@ -41,6 +41,8 @@ const CountryRegion = (props) => {
     setRegion(value);
   }
 
+  filterCountryFile(country);
+
   return (
     <div className="find-an-agent text-center">
       <div className="authorised-agent">
@@ -53,7 +55,7 @@ const CountryRegion = (props) => {
                   countryNRegion && countryNRegion.map((elem, index) => {
                     return (
                       <option
-                        key={elem.name}
+                        key={index}
                         value={elem.name}
                       >
                         {elem.name}

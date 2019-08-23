@@ -41,9 +41,14 @@
             &:-moz-placeholder {
                 color: rgba(52,52,52,0.25);
             }
+            &:focus{
+                outline: none;
+                box-shadow: none;
+            }
         }
     }
     .festive-hour{
+        margin: 0;
         a{
             color: #FF8300;
             padding: 1% 0%;
@@ -51,6 +56,9 @@
             font-size: 16px;	
             line-height: 19px;
             font-weight: 600;
+            img{
+                margin: 0 0 3px 5px;
+            }
         }
       }
       
@@ -107,7 +115,7 @@
         box-shadow: 0 2px 33px 0 rgba(0,0,0,0.23);
         &:after, &:before {
             right: 100%;
-            top: 90px;
+            top: 80px;
             border: solid transparent;
             content: " ";
             height: 0;
@@ -119,14 +127,19 @@
         &:after {
             border-color: rgba(136, 183, 213, 0);
             border-right-color: #FFF;
-            border-width: 15px;
-            margin-top: -15px;
+            border-width: 10px;
+            margin-top: -10px;
         }
         &:before {
             border-color: rgba(194, 225, 245, 0);
             border-right-color: #0098FF;
-            border-width: 18px;
-            margin-top: -18px;
+            border-width: 13px;
+            margin-top: -13px;
+        }
+        .direction{
+            position: absolute;
+            right: 15px;
+            top: 15px;
         }
         .agent-info{
             padding: 8px 0;
@@ -152,9 +165,12 @@
                     margin-left: -6px;
                     width: calc(100% + 12px);
                     li{
-                        margin: 0 6px;
                         flex: 0 0 25%;
-                        padding: 0;
+                        padding: 0 6px;
+                        border: none;
+                        img{
+                            max-width: 100%;
+                        }
                         p{
                             color: #343434;	
                             font-size: 13px;	

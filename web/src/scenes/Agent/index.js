@@ -48,7 +48,8 @@ const Agent = (props) => {
 
   const [countryNRegion, setCountryNRegion] = useState([]);
   const [agentList, setAgentList] = useState([]);
-
+  const [file, setCountryFile] = useState('');
+  const [selectedItem, setSelectedItem] = useState('');
 
 
   useEffect(() => {
@@ -93,21 +94,45 @@ const Agent = (props) => {
     }
   }
 
+  const filterCountryFile = (file) => {
+    let filteredFile;
+    countryNRegion && countryNRegion.filter((item) => {
+      if (item.name === file) {
+        filteredFile = item.festive_hours_file;
+      }
+    })
+    setCountryFile(filteredFile);
+  }
+
+  const showInfo = (e, selectedItem) => {
+    setSelectedItem(selectedItem);
+  }
+
   return (
-    <section>
-      <CountryRegion countryNRegion={countryNRegion} onSubmit={submitCountryNRegion} />
+
+    <section className="">
+      <CountryRegion
+        countryNRegion={countryNRegion}
+        onSubmit={submitCountryNRegion}
+        filterCountryFile={filterCountryFile}
+      />
       <div className="font-agent-wrapper">
         <div className="container-fluid row agent-list">
             <div className="col-lg-4">
-                <SearchAgent initialItems={agentList} />
+            <SearchAgent
+                initialItems={agentList}
+                countryFile={file}
+                onClick={showInfo}
+            />
             </div>
             <div className="col-lg-8">
-                <GoogleMap
-                    multipleMarker={agentList}
-                />
+            <GoogleMap
+                multipleMarker={agentList}
+                selectedItem={selectedItem}
+            />
             </div>
         </div>
-      </div>
+        </div>
     </section>
   );
 }
