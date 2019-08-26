@@ -16,6 +16,7 @@ import download from '../../../assets/images/download-blue.svg';
 import downloadOrange from '../../../assets/images/download-orange.svg';
 import eventImg from '../../../assets/images/explore.png';
 import DirectionIcon from '../../../../src/assets/images/direction.png';
+import Carousel from '../../../shared/components/Carousel';
 
 
 const SearchAgent = (props) => {
@@ -66,13 +67,13 @@ const SearchAgent = (props) => {
       <h2>Agents in Singapore</h2>
       <form onSubmit={handleSubmit}>
         <div className="agent-search">
-        <button type="submit" className="search-btn"><img src={SearchIcon} alt="search-icon" /></button>
-            <input
-              className="form-control"
-              type="text" value={filter}
-              onChange={handleSearchAgent}
-              placeholder="Search for an agent"
-            />
+          <button type="submit" className="search-btn"><img src={SearchIcon} alt="search-icon" /></button>
+          <input
+            className="form-control"
+            type="text" value={filter}
+            onChange={handleSearchAgent}
+            placeholder="Search for an agent"
+          />
         </div>
       </form>
       <h6 className="festive-hour">
@@ -83,99 +84,100 @@ const SearchAgent = (props) => {
           filteredData && filteredData.map((item, index) => {
             return (
               <li className="pop-up-container" key={index} onMouseEnter={() => showPopUp(item)} onMouseLeave={showPopUp}>
-                <div><strong>{item.name}</strong> <span><a onClick={(e)=>{onClick(e,item)}}>shown On Map</a></span></div>
+                <div><strong>{item.name}</strong> <span><a onClick={(e) => { onClick(e, item) }}>shown On Map</a></span></div>
                 <div>{item.address},{item.country}</div>
                 <div
                   className={item.id === popUpDetail.id ? "pop-up-list active" : "pop-up-list"}
                   ref={item.id === popUpDetail.id ? activePopUpRef : null}
                 >
-                   
-                    <a href={`https://www.google.com/maps/dir//${popUpDetail.address}`} className="direction" target="_blank">
-                      <img height='20' width='20' src={redirect} alt="direction" />
-                    </a>
-                    <div className="agent-info">
-                        <div className="icon">
-                            <img src={address} alt="icon" />
-                        </div>
-                        <div className="details">
-                            <h3>How To Get There</h3>
-                            <p>{popUpDetail.how_to_get_there}</p>
-                        </div>
+
+                  <a href={`https://www.google.com/maps/dir//${popUpDetail.address}`} className="direction" target="_blank">
+                    <img height='20' width='20' src={redirect} alt="direction" />
+                  </a>
+                  <div className="agent-info">
+                    <div className="icon">
+                      <img src={address} alt="icon" />
+                    </div>
+                    <div className="details">
+                      <h3>How To Get There</h3>
+                      <p>{popUpDetail.how_to_get_there}</p>
+                    </div>
                   </div>
                   <div className="agent-info">
-                        <div className="icon">
-                            <img src={parking} alt="icon" />
-                        </div>
-                        <div className="details">
-                            <h3>Parking</h3>
-                            <p>{popUpDetail.parking}</p>
-                        </div>
+                    <div className="icon">
+                      <img src={parking} alt="icon" />
+                    </div>
+                    <div className="details">
+                      <h3>Parking</h3>
+                      <p>{popUpDetail.parking}</p>
+                    </div>
                   </div>
                   <div className="agent-info">
-                        <div className="icon">
-                            <img src={clock} alt="icon" />
-                        </div>
-                        <div className="details">
-                            <h3>Operating Hours</h3>
-                            <p>{popUpDetail.operating_hours}</p>
-                        </div>
+                    <div className="icon">
+                      <img src={clock} alt="icon" />
+                    </div>
+                    <div className="details">
+                      <h3>Operating Hours</h3>
+                      <p>{popUpDetail.operating_hours}</p>
+                    </div>
                   </div>
                   <div className="agent-info">
-                        <div className="icon">
-                            <img src={price} alt="icon" />
-                        </div>
-                        <div className="details">
-                            <h3>Payment Mode</h3>
-                            <p>{popUpDetail.payment_mode}</p>
-                        </div>
+                    <div className="icon">
+                      <img src={price} alt="icon" />
+                    </div>
+                    <div className="details">
+                      <h3>Payment Mode</h3>
+                      <p>{popUpDetail.payment_mode}</p>
+                    </div>
                   </div>
                   <div className="agent-info">
-                        <div className="icon">
-                            <img src={notification} alt="icon" />
-                        </div>
-                        <div className="details">
-                            <h3>Ticket pick up Reminder</h3>
-                            <p>{popUpDetail.reminder}</p>
-                        </div>
+                    <div className="icon">
+                      <img src={notification} alt="icon" />
+                    </div>
+                    <div className="details">
+                      <h3>Ticket pick up Reminder</h3>
+                      <p>{popUpDetail.reminder}</p>
+                    </div>
                   </div>
                   <div className="agent-info">
-                        <div className="icon">
-                            <img src={event} alt="icon" />
-                        </div>
-                        <div className="details">
-                            <h3>Currently Showing</h3>
-                            <ul className="currently-list">
-                                <li>
-                                    <img src={eventImg} alt="" />
-                                    <p>SSO Red Balloon Series: Rhythums, Rites </p>
-                                </li>
-                                <li>
-                                    <img src={eventImg} alt="" />
-                                    <p>SSO Red Balloon Series: Rhythums, Rites </p>
-                                </li>
-                                <li>
-                                    <img src={eventImg} alt="" />
-                                    <p>SSO Red Balloon Series: Rhythums, Rites </p>
-                                </li>
-                                <li>
-                                    <img src={eventImg} alt="" />
-                                    <p>SSO Red Balloon Series: Rhythums, Rites </p>
-                                </li>
-                            </ul>
-                        </div>
+                    <div className="icon">
+                      <img src={event} alt="icon" />
+                    </div>
+                    <div className="details">
+                      <h3>Currently Showing</h3>
+                      {/* <ul className="currently-list">
+                        <li>
+                          <img src={eventImg} alt="" />
+                          <p>SSO Red Balloon Series: Rhythums, Rites </p>
+                        </li>
+                        <li>
+                          <img src={eventImg} alt="" />
+                          <p>SSO Red Balloon Series: Rhythums, Rites </p>
+                        </li>
+                        <li>
+                          <img src={eventImg} alt="" />
+                          <p>SSO Red Balloon Series: Rhythums, Rites </p>
+                        </li>
+                        <li>
+                          <img src={eventImg} alt="" />
+                          <p>SSO Red Balloon Series: Rhythums, Rites </p>
+                        </li>
+                      </ul> */}
+                      <Carousel imgArray={''} arrows={true} slidesToShow={6} slidesToScroll={6} dots={false}/>
+                    </div>
                   </div>
                   {popUpDetail.festive_hours &&
-                  <div className="agent-info">
-                        <div className="icon">
-                            <img src={event} alt="icon" />
-                        </div>
-                        <div className="details">
-                            <h3>Festive hours</h3>
-                            <p><a href={popUpDetail.festive_hours_file} download target="_blank"> 
-                                Festive Hours file <img src={download} alt="Download" />
-                             </a></p>
-                        </div>
-                  </div>}
+                    <div className="agent-info">
+                      <div className="icon">
+                        <img src={event} alt="icon" />
+                      </div>
+                      <div className="details">
+                        <h3>Festive hours</h3>
+                        <p><a href={popUpDetail.festive_hours_file} download target="_blank">
+                          Festive Hours file <img src={download} alt="Download" />
+                        </a></p>
+                      </div>
+                    </div>}
                 </div>
               </li>
             )
