@@ -4,6 +4,7 @@ import EventsDetail from '../Events/EventsDetail'
 import HomeService from '../../shared/services/HomeService'
 import Promotions from '../Promotions';
 import PageNotFound from '../PageNotFound/index';
+import Attraction from '../Attraction'
 
 const routes =  [
   {
@@ -37,6 +38,11 @@ const routes =  [
     component: Promotions,
   },
 
+  {
+    path: '/attraction',
+    component: Attraction,
+    exact : true
+  },
   {
     path : "*",
     component: PageNotFound
