@@ -139,13 +139,13 @@ const SearchAgent = (props) => {
                       <p>{popUpDetail.reminder}</p>
                     </div>
                   </div>
-                  <div className="agent-info">
+                  {/* <div className="agent-info">
                     <div className="icon">
                       <img src={event} alt="icon" />
                     </div>
                     <div className="details">
                       <h3>Currently Showing</h3>
-                      {/* <ul className="currently-list">
+                      <ul className="currently-list">
                         <li>
                           <img src={eventImg} alt="" />
                           <p>SSO Red Balloon Series: Rhythums, Rites </p>
@@ -162,10 +162,10 @@ const SearchAgent = (props) => {
                           <img src={eventImg} alt="" />
                           <p>SSO Red Balloon Series: Rhythums, Rites </p>
                         </li>
-                      </ul> */}
+                      </ul>
                       <Carousel imgArray={''} arrows={true} slidesToShow={6} slidesToScroll={6} dots={false}/>
                     </div>
-                  </div>
+                  </div> */}
                   {popUpDetail.festive_hours &&
                     <div className="agent-info">
                       <div className="icon">
