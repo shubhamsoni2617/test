@@ -10,7 +10,6 @@ const GoogleMap = (props) => {
   const [showingInfoWindow, setShowingInfoWindow] = useState(false);
   const [activeMarker, setActiveMarker] = useState({});
   const [selectedPlace, setSelectedPlace] = useState({});
-  const [directions, setDirections] = useState(null);
 
   const onMapClicked = (props) => {
     if (showingInfoWindow) {
@@ -23,11 +22,6 @@ const GoogleMap = (props) => {
     setSelectedPlace(props);
     setActiveMarker(marker);
     setShowingInfoWindow(true);
-    // const params = {
-    //   latitude: props.position.lat,
-    //   longitude: props.position.lng
-    // }
-    // markerClick(params);
   }
 
   const click = (props, marker) => {
@@ -61,13 +55,12 @@ const GoogleMap = (props) => {
               lng: 103.82222290000004
             }}
           >
-
             {
               multipleMarker && multipleMarker.map((elem, index) => {
                 return (
                   <Marker
-                    key={elem.id}
                     onClick={onMarkerClick}
+                    key={elem.id}
                     position={{ lat: elem.latitude, lng: elem.longitude }}
                     id={elem.id}
                     address={elem.address}
@@ -76,14 +69,13 @@ const GoogleMap = (props) => {
                 )
               })
             }
-
             <InfoWindow
               marker={activeMarker}
               visible={showingInfoWindow}
               onClose={infoWindowHasClosed}
             >
               <div className="map-info-popup">
-              <div className="map-img">
+                <div className="map-img">
                   <img height="50" width="100" src={selectedPlace.imgPath} title="Title of image" alt="alt text here" />
                 </div>
                 <div className="map-name-address">
@@ -95,15 +87,11 @@ const GoogleMap = (props) => {
                 </div>
               </div>
             </InfoWindow>
-            <div>
-            </div>
           </Map>
-
           :
-
           <Map google={google}
             style={{ width: '100%', height: '600px', position: 'relative' }}
-            zoom={8}
+            zoom={selectedItem.id ? 8 : 8}
             initialCenter={{
               lat: 1.257681,
               lng: 103.82222290000004
@@ -135,27 +123,24 @@ const GoogleMap = (props) => {
                     lng: selectedItem.longitude
                   }}
                 >
-                    <div className="map-info-popup">
-                        <div className="map-img">
-                            <img height="50" width="100" src={selectedItem.imgPath} title="Title of image" alt="alt text here" />
-                        </div>
-                        <div className="map-name-address">
-                            <h5>{selectedItem.id}</h5>
-                            <p>{selectedItem.address}</p>
-                            <a href={`https://www.google.com/maps/dir//${selectedItem.address}`} className="direcrtion-icn" target="_blank">
-                                <img height='20' width='20' src={redirect} alt="direction" />
-                            </a>
-                        </div>
+                  <div className="map-info-popup">
+                    <div className="map-img">
+                      <img height="50" width="100" src={selectedItem.imgPath} title="Title of image" alt="alt text here" />
                     </div>
+                    <div className="map-name-address">
+                      <h5>{selectedItem.id}</h5>
+                      <p>{selectedItem.address}</p>
+                      <a href={`https://www.google.com/maps/dir//${selectedItem.address}`} className="direcrtion-icn" target="_blank">
+                        <img height='20' width='20' src={redirect} alt="direction" />
+                      </a>
+                    </div>
+                  </div>
                 </InfoWindow>
                 :
                 null
             }
-            <div>
-            </div>
           </Map>
       }
-
     </div>
   );
 };
