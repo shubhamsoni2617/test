@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import './style.scss';
 import Carousel from '../../../shared/components/Carousel';
 import Timer from '../Timer';
@@ -10,7 +11,7 @@ import StopWatch from '../../../assets/images/stopwatch-grey.svg';
 const PromotionCard = (props) => {
 
   const { data, fetchPromotionDetailData, handlePromotionDetailTab } = props;
-  const { promotionDetail, promotionTab, tabDetailId } = props.state;
+  const { promotionDetail, promotionTab, tabDetailId, defaultTabId } = props.state;
   const {
     id,
     title,
@@ -67,7 +68,14 @@ const PromotionCard = (props) => {
                 <span>{data.buttons.length > 0 && data.buttons[0].text}</span>
               </button>
             </a> */}
-            <button onClick={() => fetchPromotionDetailData(data.alias, data.id)}><span>See More</span></button>
+            <Link to={{
+              pathname: `/promotions/${data.id}-${defaultTabId}-${data.alias}`,
+              promotionDetailData:{
+                defaultTabId: defaultTabId,
+                alias: data.alias,
+                id: data.id
+              }
+            }}><button onClick={() => fetchPromotionDetailData(data.alias, data.id,defaultTabId,promotionTab)}><span>See More</span></button></Link>
             {data.show_timer === "1" ?
               <div className="promotion-timer">
                 {!expiredText ? <span className="timer-tagline"> Hurry! Promotion ends in:</span> : null}
@@ -119,7 +127,7 @@ const PromotionCard = (props) => {
           </section>
         </div>
       </div>
-    </div>
+    </div >
   )
 }
 
