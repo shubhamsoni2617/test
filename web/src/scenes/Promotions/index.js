@@ -53,18 +53,17 @@ export default class Promotions extends Component {
   }
 
   componentWillMount() {
-    const url=window.location.href;
-    const allParams=url.split('/')[4].split('-');
-    const aliasPart=url.split('/')[5];
-
-    const id=allParams[0];
-    const defaultTabId=allParams[1];
-    const alias=allParams[2]+"/"+aliasPart;
-
-    if(id && defaultTabId && aliasPart && alias){
-      this.setState({defaultTabId:defaultTabId});
+    const url = window.location.href;
+    const allParams = url.split('/')[4];
+    if (allParams) {
+      const getParams = allParams.split('-');
+      const id = getParams[0];
+      const defaultTabId = getParams[1];
+      const alias = getParams[2] + "/" + id;
+      if (id && defaultTabId && alias) {
+        this.setState({ defaultTabId: defaultTabId });
+      }
     }
-
   }
 
   componentDidMount() {
@@ -171,7 +170,8 @@ export default class Promotions extends Component {
   }
 
 
-  fetchPromotionDetailData = (alias, id, defaultTabId) => {
+  fetchPromotionDetailData = (alias, id, defaultTabId,promotionTab) => {
+
     // var element = document.getElementsByClassName("promotion-events-row");
     // for (var i = 0; i < element.length; i++) {
     //   // console.log(element.item(i),"class");
@@ -200,7 +200,7 @@ export default class Promotions extends Component {
       .catch((err) => {
         console.log(err)
       })
-    let shareUrl = window.location.origin + `/promotions/${id}-${defaultTabId}-${alias}`;
+    let shareUrl = window.location.origin + `/promotions/${id}-${defaultTabId}-vandana-${alias}`;
     // let randomString = Math.random().toString(36).substring(7);
     window.history.pushState("string", "Title", shareUrl);
   }
