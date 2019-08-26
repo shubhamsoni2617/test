@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import InputRange from "react-input-range";
 import VenueFilter from "../VenueFilter";
+import FilterGrid from "../FilterGrid";
 import moment from "moment";
 import Helmet from "react-helmet";
 import DayPickerInput from "react-day-picker/DayPickerInput";
@@ -43,7 +44,7 @@ export default class Filters extends Component {
     }
 
     componentWillMount() {
-        this.applyIsChecked(true); //Value true passed for check route params
+        this.applyIsChecked(true);  //Value true passed for check route params
     }
 
     componentDidUpdate(preProps) {
@@ -497,66 +498,7 @@ export default class Filters extends Component {
                             />
                         </div>
                     </div>
-                    <div className="filter-grid">
-                        <div className="filter-grid-heading">
-                            <h3>Genre</h3>
-                            <ul>
-                                <li className={this.state.checkUncheckGnereActiveClass ? 'active' : ''}>
-                                    <a onClick={() => this.checkUncheckAllGenre(true)}>
-                                        Select all
-                  </a>
-                                </li>
-                                <li className={this.state.checkUncheckGnereActiveClass ? '' : 'active'}>
-                                    <a onClick={() => this.checkUncheckAllGenre(false)}>Clear</a>
-                                </li>
-                            </ul>
-                        </div>
-                        <div className="filters-panel">
-                            <ul>
-                                <CSSTransitionGroup
-                                    transitionName="dropdown"
-                                    transitionEnter={true}
-                                    transitionEnterTimeout={300}
-                                    transitionLeaveTimeout={300}>
-                                    {genreData.length &&
-                                        genreData.slice(0, genreShowLimit).map((genre, key) => {
-                                            let id = "genre-" + genre.id;
-                                            return (
-                                                <li key={key}>
-                                                    <input
-                                                        checked={genre.isChecked}
-                                                        onChange={e => this.checkUnckeckGenre(e, key)}
-                                                        className="styled-checkbox"
-                                                        type="checkbox"
-                                                        id={id}
-                                                        value=""
-                                                    />
-                                                    <label htmlFor={id}>
-                                                        {genre.name} ({genre.events_count})
-                        </label>
-                                                </li>
-                                            );
-                                        })}
-                                </CSSTransitionGroup>
-                            </ul>
-                            {genreData.length > genreShowLimit && (
-                                <a
-                                    onClick={() => this.showMoreLessGenre(true)}
-                                    className="view-all-filters"
-                                >
-                                    + {genreData.length - genreShowLimit} More
-                </a>
-                            )}
-                            {genreData.length == genreShowLimit && (
-                                <a
-                                    onClick={() => this.showMoreLessGenre(false)}
-                                    className="view-all-filters"
-                                >
-                                    Show Less
-                </a>
-                            )}
-                        </div>
-                    </div>
+                    <FilterGrid handleFilters={handleFilters} genreData={genreData} />
                     <div className="filter-grid">
                         <div className="filter-grid-heading">
                             <h3>Tags</h3>
