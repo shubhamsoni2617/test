@@ -1,5 +1,5 @@
 import React, { Fragment, useState, useRef } from 'react';
-import SearchIcon from '../../../assets/images/search-grey.png';
+import SearchIcon from '../../../assets/images/search-icon-gray.svg';
 import './style.scss';
 import Watch from '../../../assets/images/stopwatch-grey.svg';
 import food from '../../../assets/images/food.svg';
@@ -15,8 +15,7 @@ import clock from '../../../assets/images/clock.svg';
 import download from '../../../assets/images/download-blue.svg';
 import downloadOrange from '../../../assets/images/download-orange.svg';
 import eventImg from '../../../assets/images/explore.png';
-import DirectionIcon from '../../../../src/assets/images/direction.png';
-
+import downArrow from '../../../assets/images/downarrow-blue.svg';
 
 const SearchAgent = (props) => {
 
@@ -83,6 +82,7 @@ const SearchAgent = (props) => {
           filteredData && filteredData.map((item, index) => {
             return (
               <li className="pop-up-container" key={index} onMouseEnter={() => showPopUp(item)} onMouseLeave={showPopUp}>
+                <img src={downArrow} className="active-arrow" alt="Down Arrow"/>
                 <div><strong>{item.name}</strong> <span><a onClick={(e)=>{onClick(e,item)}}>shown On Map</a></span></div>
                 <div>{item.address},{item.country}</div>
                 <div

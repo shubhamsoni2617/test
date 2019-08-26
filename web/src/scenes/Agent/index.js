@@ -5,6 +5,7 @@ import SearchAgent from './SearchAgent';
 import GoogleMap from './GoogleMap';
 import AgentService from '../../shared/services/AgentService';
 import Constants from '../../shared/constants'
+import grayArrow from '../../assets/images/down-arrow-grey.svg';
 
 const Agent = (props) => {
   let filterAgent = [
@@ -121,7 +122,7 @@ const Agent = (props) => {
         onSubmit={submitCountryNRegion}
         filterCountryFile={filterCountryFile}
       />
-        <div className="font-agent-wrapper">
+        <div className="find-agent-wrapper">
             <div className="container-fluid row agent-list">
                 <div className="col-lg-4">
                     <SearchAgent
@@ -131,6 +132,7 @@ const Agent = (props) => {
                     />
                 </div>
                 <div className="col-lg-8">
+                    <a href="/" className="find-map-mob">Find in map <img src={grayArrow} alt="Arrow"/></a>
                     <GoogleMap
                         multipleMarker={agentList}
                         selectedItem={selectedItem}

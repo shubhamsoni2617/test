@@ -43,11 +43,11 @@ const GoogleMap = (props) => {
     return <div>Loading...</div>;
   }
   return (
-    <div>
+    <div className="gmap">
       {
         selectedPlace && selectedPlace.id ?
           <Map google={google}
-            style={{ width: '100%', height: '600px' }}
+            style={{ width: '100%', height: '600px', position: 'relative' }}
             zoom={8}
             onClick={onMapClicked}
             initialCenter={{
@@ -90,7 +90,7 @@ const GoogleMap = (props) => {
           </Map>
           :
           <Map google={google}
-            style={{ width: '100%', height: '600px' }}
+            style={{ width: '100%', height: '600px', position: 'relative' }}
             zoom={selectedItem.id ? 8 : 8}
             initialCenter={{
               lat: 1.257681,
