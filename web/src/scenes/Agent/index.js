@@ -114,28 +114,31 @@ const Agent = (props) => {
   }
 
   return (
+
     <section className="">
       <CountryRegion
         countryNRegion={countryNRegion}
         onSubmit={submitCountryNRegion}
         filterCountryFile={filterCountryFile}
       />
-      <div className="container-fluid row agent-list">
-        <div className="col-lg-4">
-          <SearchAgent
-            initialItems={agentList}
-            countryFile={file}
-            onClick={showInfo}
-          />
+        <div className="font-agent-wrapper">
+            <div className="container-fluid row agent-list">
+                <div className="col-lg-4">
+                    <SearchAgent
+                        initialItems={agentList}
+                        countryFile={file}
+                        onClick={showInfo}
+                    />
+                </div>
+                <div className="col-lg-8">
+                    <GoogleMap
+                        multipleMarker={agentList}
+                        selectedItem={selectedItem}
+                        directionDetail={directionDetail}
+                    />
+                </div>
+            </div>
         </div>
-        <div className="col-lg-8">
-          <GoogleMap
-            multipleMarker={agentList}
-            selectedItem={selectedItem}
-            directionDetail={directionDetail}
-          />
-        </div>
-      </div>
     </section>
   );
 }

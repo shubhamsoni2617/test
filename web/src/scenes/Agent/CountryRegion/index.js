@@ -48,10 +48,8 @@ const CountryRegion = (props) => {
       <div className="authorised-agent">
         Find an Authorised Agent
       </div>
-      <div className="text-center">
         <form onSubmit={handleSubmit}>
-          <div className="form-group row">
-            <div className="col-lg-5 text-left">
+          <div className="find-agent-form">
               <select className="form-control" onChange={handleCountryChange} value={country}>
                 {
                   countryNRegion && countryNRegion.map((elem, index) => {
@@ -66,9 +64,8 @@ const CountryRegion = (props) => {
                   })
                 }
               </select>
-            </div>
+            
 
-            <div className="col-lg-5">
               {
                 country === "Singapore" ?
                   <select className="form-control" onChange={handleRegionChange} value={region}>
@@ -93,14 +90,12 @@ const CountryRegion = (props) => {
                     }
                   </select>
                   :
-                  <div  className="form-control text-left">Region</div>
+                  <div  className="form-control agent-val">Region</div>
               }
 
-            </div>
-            <button className="col-lg-1" type="submit">GO</button>
+            <button className="go-btn" type="submit">GO</button>
           </div>
         </form>
-      </div>
     </div>
   );
 };
