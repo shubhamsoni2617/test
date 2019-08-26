@@ -1,10 +1,42 @@
 .find-an-agent{
-  background: url('../../././../assets//images/agent-banner.png') no-repeat;
+  background: url('../../././../assets/images/agent-banner.png') no-repeat;
   height: 200px;
+  .authorised-agent{
+    padding: 45px 0 40px;
+    font-size: 30px;
+    font-family: 'Montserrat', sans-serif;
+    color:#FFF;
+    display: block;
+    font-weight: 600;
+  }
+  .find-agent-form{
+      margin: 0 auto;
+      width: 640px;
+      display: flex;
+      background: #FFF;
+      .form-control{
+          border: none;
+          border-radius: 0;
+          box-shadow: 0 0 0 #ffff inset;
+          height: 38px !important;
+          font-size: 15px;
+          font-weight: 500;
+          color: #343434;
+          &:first-child{
+              border-right: 2px solid rgba(52,52,52,0.21);
+          }
+      }
+      .agent-val{
+        padding-top: 8px;
+        text-align: left;
+      }
+      .go-btn{
+        flex: 0 0 55px;
+        font-size: 16px;
+        font-family: 'Montserrat', sans-serif;
+        font-weight: 600;
+      }
+  }
+  
 }
-.authorised-agent{
-  padding: 3% 0%;
-  font-size: 30px;
-  font-weight: bold;
-  color:white;
-}
+

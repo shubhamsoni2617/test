@@ -1,7 +1,11 @@
-.agent-list{
-  height:600px;
-  overflow: hidden;
+.font-agent-wrapper{
+    display: flex;
+    padding-top: 45px;
+    .agent-list{
+        
+    }
+    .agent-map{
+        width:100px;
+    }
 }
-.agent-map{
-  width:100px;
-}
+
