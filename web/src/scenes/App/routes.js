@@ -4,6 +4,7 @@ import EventsDetail from "../Events/EventsDetail";
 import HomeService from "../../shared/services/HomeService";
 import Promotions from "../Promotions";
 import PageNotFound from "../PageNotFound/index";
+import Attraction from "../Attraction";
 import WhereBuyTickets from "../WhereBuyTickets";
 
 const routes = [
@@ -29,7 +30,7 @@ const routes = [
     fetchInitialData: (path = "") => HomeService.getData()
   },
   {
-    path: "/promotions/:promo_id",
+    path: "/promotions/:promoId",
     component: Promotions
   },
   {
@@ -41,6 +42,11 @@ const routes = [
     path: "/where-to-buy-tickets",
     exact: true,
     component: WhereBuyTickets
+  },
+  {
+    path: "/attraction",
+    component: Attraction,
+    exact: true
   },
   {
     path: "*",
