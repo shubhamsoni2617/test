@@ -82,16 +82,14 @@ const GoogleMap = (props) => {
               visible={showingInfoWindow}
               onClose={infoWindowHasClosed}
             >
-              <div className="row">
-                <div className="col-lg-3">
+              <div className="map-info-popup">
+              <div className="map-img">
                   <img height="50" width="100" src={selectedPlace.imgPath} title="Title of image" alt="alt text here" />
                 </div>
-                <div className="col-lg-6">
-                  <div>{selectedPlace.id}</div>
-                  <div>{selectedPlace.address}</div>
-                </div>
-                <div className="text-right">
-                  <a href={`https://www.google.com/maps/dir//${selectedPlace.address}`} target="_blank">
+                <div className="map-name-address">
+                  <h5>{selectedPlace.id}</h5>
+                  <p>{selectedPlace.address}</p>
+                  <a href={`https://www.google.com/maps/dir//${selectedPlace.address}`} className="direcrtion-icn" target="_blank">
                     <img height='20' width='20' src={DirectionIcon} alt="direction" />
                   </a>
                 </div>
@@ -144,7 +142,7 @@ const GoogleMap = (props) => {
                         <div className="map-name-address">
                             <h5>{selectedItem.id}</h5>
                             <p>{selectedItem.address}</p>
-                            <a href={`https://www.google.com/maps/dir//${selectedItem.address}`} target="_blank">
+                            <a href={`https://www.google.com/maps/dir//${selectedItem.address}`} className="direcrtion-icn" target="_blank">
                                 <img height='20' width='20' src={redirect} alt="direction" />
                             </a>
                         </div>
