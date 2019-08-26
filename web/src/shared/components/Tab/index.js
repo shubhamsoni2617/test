@@ -1,4 +1,4 @@
-import React,{useRef} from 'react'
+import React, { useRef } from 'react'
 import PromotionCard from '../PromotionCard';
 import './style.scss';
 import SortBy from '../SortBy';
@@ -28,16 +28,16 @@ const Tab = (props) => {
 
   return (
     <>
-      {listingArray.length === 0 ?
-        <ShimmerEffect height={150} count={4} type="list" propCls='shm_col-xs-2 col-md-5' />
-        :
-        <div className="promotion-grid">
-          <div className="sortby-filter">
-            {tabsSort && tabsSort.isSortBy && <SortBy handleFilters={handleFilters} sortList={tabsSort.sortList} />}
-          </div>
-          <div className="tab-content-wrapper">
-            <div className="promotions-listing">
-              {listingArray && listingArray.map((elem, index, array) => {
+      <div className="promotion-grid">
+        <div className="sortby-filter">
+          {tabsSort && tabsSort.isSortBy && <SortBy handleFilters={handleFilters} sortList={tabsSort.sortList} />}
+        </div>
+        <div className="tab-content-wrapper">
+          <div className="promotions-listing">
+            {listingArray.length === 0 ?
+              <ShimmerEffect height={150} count={4} type="list" propCls='shm_col-xs-2 col-md-5' />
+              :
+              listingArray.map((elem, index, array) => {
                 if (index % 2 === 0) {
                   if (array[index] && array[index + 1]) {
                     return (
@@ -55,19 +55,18 @@ const Tab = (props) => {
                   }
                 }
               })
-              }
+            }
             </div>
-          </div>
-          {totalRecords - listingArray.length > 0 &&
-            <div className="promotion-load-more" onClick={() => handleLoadMore((first + limit))}>
-              <a className="btn-link load-more-btn">
-                <span>Load More ({totalRecords - listingArray.length})</span>
-                <img src={DownArrow} alt="down-arrow" />
-              </a>
-            </div>
-          }
         </div>
-      }
+        {totalRecords - listingArray.length > 0 &&
+          <div className="promotion-load-more" onClick={() => handleLoadMore((first + limit))}>
+            <a className="btn-link load-more-btn">
+              <span>Load More ({totalRecords - listingArray.length})</span>
+              <img src={DownArrow} alt="down-arrow" />
+            </a>
+          </div>
+        }
+      </div>
     </>
   )
 }
