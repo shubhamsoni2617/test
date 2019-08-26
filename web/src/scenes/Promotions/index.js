@@ -10,9 +10,9 @@ export default class Promotions extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      defaultTabId: "31",
+      defaultTabId: "30",
       tabsArray: [],
-      sortBy: "Date",
+      sortBy: "ASC",
       first: 0,
       totalRecords: 0,
       listingArray: [],
@@ -93,9 +93,13 @@ export default class Promotions extends Component {
       PromotionService.getPromotionList(params)
         .then((res) => {
           if (res.data && res.data.data) {
+            const listing = res.data.data;
+            listing.sort((a, b) => {
+              return a.title.localeCompare(b.title);
+            });
             this.setState({
               totalRecords: res.data.total_records,
-              listingArray: prevState.first !== first ? [...listingArray, ...res.data.data] : res.data.data
+              listingArray: prevState.first !== first ? [...listingArray, ...listing] : listing
               // prevProps === defaultTabId ? [...listingArray, ...res.data.data[0]] : res.data.data[0]
             });
           }
@@ -110,9 +114,6 @@ export default class Promotions extends Component {
     PromotionService.getPromotionCategories(params)
       .then((res) => {
         const category = res.data.data;
-        category.sort((a, b) => {
-          return a.name.localeCompare(b.name);
-        });
         this.setState({
           tabsArray: category,
           count: this.calculateSum(category)
@@ -145,9 +146,13 @@ export default class Promotions extends Component {
       .then((res) => {
         if (res.data && res.data.data) {
           console.log("response", res);
+          const listing = res.data.data;
+          listing.sort((a, b) => {
+            return a.title.localeCompare(b.title);
+          });
           this.setState({
             totalRecords: res.data.total_records,
-            listingArray: res.data.data
+            listingArray: listing
             // prevProps === defaultTabId ? [...listingArray, ...res.data.data[0]] : res.data.data[0]
           });
         }
@@ -170,7 +175,7 @@ export default class Promotions extends Component {
   }
 
 
-  fetchPromotionDetailData = (alias, id, defaultTabId,promotionTab) => {
+  fetchPromotionDetailData = (alias, id, defaultTabId, promotionTab) => {
 
     // var element = document.getElementsByClassName("promotion-events-row");
     // for (var i = 0; i < element.length; i++) {
@@ -200,7 +205,7 @@ export default class Promotions extends Component {
       .catch((err) => {
         console.log(err)
       })
-    let shareUrl = window.location.origin + `/promotions/${id}-${defaultTabId}-vandana-${alias}`;
+    let shareUrl = window.location.origin + `/promotions/${id}-${defaultTabId}-${alias}`;
     // let randomString = Math.random().toString(36).substring(7);
     window.history.pushState("string", "Title", shareUrl);
   }
@@ -217,6 +222,8 @@ export default class Promotions extends Component {
   }
 
   handleFilters = (sortBy, sortOrder) => {
+    console.log(sortOrder,"sortBy")
+
     this.setState({
       sortBy: sortOrder,
       promotionTab: 0

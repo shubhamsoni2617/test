@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
 import './style.scss';
 import Carousel from '../../../shared/components/Carousel';
 import Timer from '../Timer';
@@ -67,15 +66,7 @@ const PromotionCard = (props) => {
               <button style={{ color: data.buttons.length > 0 ? `#${data.buttons[0].color}` : "" }}>
                 <span>{data.buttons.length > 0 && data.buttons[0].text}</span>
               </button>
-            </a> */}
-            <Link to={{
-              pathname: `/promotions/${data.id}-${defaultTabId}-${data.alias}`,
-              promotionDetailData:{
-                defaultTabId: defaultTabId,
-                alias: data.alias,
-                id: data.id
-              }
-            }}><button onClick={() => fetchPromotionDetailData(data.alias, data.id,defaultTabId,promotionTab)}><span>See More</span></button></Link>
+            </a> */}<button onClick={() => fetchPromotionDetailData(data.alias, data.id,defaultTabId,promotionTab)}><span>See More</span></button>
             {data.show_timer === "1" ?
               <div className="promotion-timer">
                 {!expiredText ? <span className="timer-tagline"> Hurry! Promotion ends in:</span> : null}
@@ -106,10 +97,11 @@ const PromotionCard = (props) => {
           {/* Related Events */}
 
           {buttons && buttons.length > 0 && buttons.map((e, i) => {
+            console.log(e.color,"color")
             return (
               <div key={i}>
                 <a href={e && e.url ? e.url : undefined}>
-                  <button style={{ color: e && e.color ? `#${e.color}` : "" }}>
+                  <button style={{ backgroundColor: e && e.color ? `#${e.color}` : "" }}>
                     <span>{e && e.text ? e.text : ""}</span>
                   </button>
                 </a>
