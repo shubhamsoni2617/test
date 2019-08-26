@@ -390,7 +390,6 @@ export default class Events extends Component {
     return (
       <div>
         <Breadcrub breadCrumbData={this.breadCrumbData} />
-        <section className="promotions-wrapper">
           <div className="container-fluid">
             <div className="wrapper-events-listing">
               <div className="filters">
@@ -490,7 +489,7 @@ export default class Events extends Component {
               </div>
             </div>
           </div>
-        </section>
+        
       </div>
     );
   }
