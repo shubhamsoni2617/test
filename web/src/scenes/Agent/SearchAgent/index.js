@@ -15,10 +15,13 @@ import clock from '../../../assets/images/clock.svg';
 import download from '../../../assets/images/download-blue.svg';
 import downloadOrange from '../../../assets/images/download-orange.svg';
 import eventImg from '../../../assets/images/explore.png';
+import { ReactComponent as Watch } from '../../../assets/images/stopwatch-grey.svg';
+import DirectionIcon from '../../../../src/assets/images/direction.png';
+
 
 const SearchAgent = (props) => {
 
-  const { initialItems,countryFile,onClick } = props;
+  const { initialItems, countryFile, onClick, getDirectionDetail } = props;
   const activePopUpRef = useRef();
 
   const [filter, setFilter] = useState('');
@@ -87,8 +90,9 @@ const SearchAgent = (props) => {
                   className={item.id === popUpDetail.id ? "pop-up-list active" : "pop-up-list"}
                   ref={item.id === popUpDetail.id ? activePopUpRef : null}
                 >
-                    <a href="/" className="direction">
-                        <img src={redirect} alt="" />
+                   
+                    <a href={`https://www.google.com/maps/dir//${popUpDetail.address}`} target="_blank">
+                      <img height='20' width='20' src={redirect} alt="direction" />
                     </a>
                     <div className="agent-info">
                         <div className="icon">

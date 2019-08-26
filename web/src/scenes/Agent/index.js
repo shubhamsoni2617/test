@@ -50,6 +50,7 @@ const Agent = (props) => {
   const [agentList, setAgentList] = useState([]);
   const [file, setCountryFile] = useState('');
   const [selectedItem, setSelectedItem] = useState('');
+  const [directionDetail, setDirectionDetail] = useState(null);
 
 
   useEffect(() => {
@@ -108,6 +109,10 @@ const Agent = (props) => {
     setSelectedItem(selectedItem);
   }
 
+  const getDirectionDetail=(detail)=>{
+    setDirectionDetail(detail);
+  }
+
   return (
 
     <section className="">
@@ -116,22 +121,23 @@ const Agent = (props) => {
         onSubmit={submitCountryNRegion}
         filterCountryFile={filterCountryFile}
       />
-      <div className="font-agent-wrapper">
-        <div className="container-fluid row agent-list">
-            <div className="col-lg-4">
-            <SearchAgent
-                initialItems={agentList}
-                countryFile={file}
-                onClick={showInfo}
-            />
+        <div className="font-agent-wrapper">
+            <div className="container-fluid row agent-list">
+                <div className="col-lg-4">
+                    <SearchAgent
+                        initialItems={agentList}
+                        countryFile={file}
+                        onClick={showInfo}
+                    />
+                </div>
+                <div className="col-lg-8">
+                    <GoogleMap
+                        multipleMarker={agentList}
+                        selectedItem={selectedItem}
+                        directionDetail={directionDetail}
+                    />
+                </div>
             </div>
-            <div className="col-lg-8">
-            <GoogleMap
-                multipleMarker={agentList}
-                selectedItem={selectedItem}
-            />
-            </div>
-        </div>
         </div>
     </section>
   );
