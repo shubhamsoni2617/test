@@ -1,8 +1,34 @@
-.font-agent-wrapper{
+.find-agent-wrapper{
     display: flex;
     padding-top: 45px;
+    @media (max-width: 992px) {
+        padding-top: 20px;
+    }
     .agent-list{
-        
+        .find-map-mob{
+            background-color: #fafafa;
+            padding: 20px;
+            color: #343434;
+            font-size: 15px;
+            display: block;
+            font-weight: 500;
+            width: calc(100% + 90px);
+            margin-left: -45px;
+            @media (max-width: 767px) {
+                width: calc(100% + 50px);
+                margin-left: -25px;
+            }
+            img{
+                float: right;
+                margin: 4px 0 0 0;
+                transform: rotate(270deg);
+            }
+            &.active{
+                img{
+                    transform: rotate(0deg);
+                }
+            }
+        }
     }
     .agent-map{
         width:100px;
