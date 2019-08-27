@@ -4,56 +4,50 @@ import { CSSTransitionGroup } from "react-transition-group";
 const FilterGrid = props => {
   const [limit, setLimit] = useState(5);
   const [activeClass, setActiveClass] = useState('');
-  const [genreData, setGenreData] = useState(props.genreData);
-  //Genres
-  const checkUncheckAllGenre = status => {
-    let genreData = props.genreData;
-    let genreIds = [];
-    genreData.map(genre => {
-      genre.isChecked = status;
-      genreIds.push(genre.id);
+  const [data, setData] = useState(props.data);
+
+  const selectAll = status => {
+    let items = [...data];
+    let ids = [];
+    items.map(item => {
+      item.isChecked = status;
+      ids.push(item.id);
     });
-    // this.setState({
-    //   genreData: genreData,
-    //   checkUncheckGnereActiveClass: status
-    // });
     setActiveClass(status);
     if (!status) {
-      genreIds = [];
+      ids = [];
     }
-    props.handleFilters("genre-check-uncheck", genreIds);
+    props.handleFilters(`${props.category}-check-uncheck`, ids);
   };
 
-  const showMoreLessGenre = status => {
+  const toggle = status => {
     if (status) {
-      setLimit(props.genreData.length);
+      setLimit(props.data.length);
     } else {
       setLimit(5);
     }
   };
 
-  const checkUnckeckGenre = (e, key) => {
-    let genreData = props.genreData;
-    genreData[key].isChecked = e.target.checked;
-    setGenreData(genreData);
-    // this.setState({ genreData: genreData });
-    props.handleFilters("genre", genreData[key].id, e.target.checked);
+  const onChange = (e, key) => {
+    let temp = [...data];
+    temp[key].isChecked = e.target.checked;
+    setData(temp);
+    props.handleFilters(props.category, temp[key].id, e.target.checked);
   };
-
   return (
     <div className="filter-grid">
       <div className="filter-grid-heading">
-        <h3>Genre</h3>
+        <h3>{props.title}</h3>
         <ul>
           <li
             className={activeClass ? "active" : ""}
           >
-            <a onClick={() => checkUncheckAllGenre(true)}>Select all</a>
+            <a onClick={() => selectAll(true)}>Select all</a>
           </li>
           <li
             className={activeClass ? "" : "active"}
           >
-            <a onClick={() => checkUncheckAllGenre(false)}>Clear</a>
+            <a onClick={() => selectAll(false)}>Clear</a>
           </li>
         </ul>
       </div>
@@ -65,38 +59,38 @@ const FilterGrid = props => {
             transitionEnterTimeout={300}
             transitionLeaveTimeout={300}
           >
-            {genreData.length &&
-              genreData.slice(0, limit).map((genre, key) => {
+            {data.length &&
+              data.slice(0, limit).map((genre, key) => {
                 let id = "genre-" + genre.id;
                 return (
                   <li key={key}>
                     <input
                       checked={genre.isChecked}
-                      onChange={e => checkUnckeckGenre(e, key)}
+                      onChange={e => onChange(e, key)}
                       className="styled-checkbox"
                       type="checkbox"
                       id={id}
                       value=""
                     />
                     <label htmlFor={id}>
-                      {genre.name} ({genre.events_count})
+                      {genre.name} {genre.events_count ? `(${genre.events_count})` : ''}
                     </label>
                   </li>
                 );
               })}
           </CSSTransitionGroup>
         </ul>
-        {genreData.length > limit && (
+        {data.length > limit && (
           <a
-            onClick={() => showMoreLessGenre(true)}
+            onClick={() => toggle(true)}
             className="view-all-filters"
           >
-            + {genreData.length - limit} More
+            + {data.length - limit} More
           </a>
         )}
-        {genreData.length == limit && (
+        {data.length == limit && (
           <a
-            onClick={() => showMoreLessGenre(false)}
+            onClick={() => toggle(false)}
             className="view-all-filters"
           >
             Show Less

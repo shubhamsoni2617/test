@@ -401,7 +401,7 @@ export default class Events extends Component {
                     propCls="shm_col-xs-6 col-md-12"
                     height={150}
                     count={1}
-                    type="grid"
+                    type="LIST"
                   />}
               {!shimmerFilter && genre.length > 0 &&
                 venues.length > 0 &&
@@ -466,7 +466,7 @@ export default class Events extends Component {
                     propCls="shm_col-xs-6 col-md-4"
                     height={150}
                     count={3}
-                    type="grid"
+                    type="LIST"
                   />
                 )}
                 {eventsData.length < totalRecords && (
