@@ -6,6 +6,7 @@ import Promotions from '../Promotions';
 import PageNotFound from '../PageNotFound/index';
 import Agent from '../Agent';
 import Attraction from '../Attraction'
+import Venue from '../Venue';
 
 const routes =  [
   {
@@ -47,6 +48,11 @@ const routes =  [
   {
     path: '/attraction',
     component: Attraction,
+    exact : true
+  },
+  {
+    path: '/venues',
+    component: Venue,
     exact : true
   },
   {
