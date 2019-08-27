@@ -8,23 +8,35 @@ import Constants from '../../shared/constants'
 import grayArrow from '../../assets/images/down-arrow-grey.svg';
 
 const Agent = (props) => {
-  const {venue,text}=props;
+
+  const { venue } = props;
+
   const [countryNRegion, setCountryNRegion] = useState([]);
   const [agentList, setAgentList] = useState([]);
   const [file, setCountryFile] = useState('');
   const [selectedItem, setSelectedItem] = useState('');
-  const [directionDetail, setDirectionDetail] = useState(null);
 
   useEffect(() => {
     const params = {}
-    fetchAgentCountryNRegion();
-    fetchAgents(params);
+    venue ? fetchVenueCountryNRegion() : fetchAgentCountryNRegion();
+    venue ? fetchVenues(params) : fetchAgents(params);
   }, [])
 
   const fetchAgentCountryNRegion = () => {
     AgentService.getAgentsCountryNRegion()
       .then((res) => {
-        console.log("countries",res.data)
+        console.log("agent countries", res.data)
+        setCountryNRegion(res.data.data)
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+  }
+
+  const fetchVenueCountryNRegion = () => {
+    AgentService.getVenuesCountryNRegion()
+      .then((res) => {
+        console.log("venue countries", res.data)
         setCountryNRegion(res.data.data)
       })
       .catch((err) => {
@@ -44,7 +56,26 @@ const Agent = (props) => {
 
     AgentService.getAgents(params)
       .then((res) => {
-        console.log(res);
+        console.log("getAgents", res);
+        setAgentList(res.data.data)
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+  }
+
+  const fetchVenues = (params) => {
+    // debugger
+    if (params.region === undefined) {
+      params.region = null;
+    }
+    params.client = Constants.CLIENT;
+    params.sort_type = "name";
+    params.sort_order = "ASC";
+
+    AgentService.getVenues(params)
+      .then((res) => {
+        console.log("getVenues", res);
         setAgentList(res.data.data)
       })
       .catch((err) => {
@@ -72,10 +103,6 @@ const Agent = (props) => {
     setSelectedItem(selectedItem);
   }
 
-  const getDirectionDetail=(detail)=>{
-    setDirectionDetail(detail);
-  }
-
   return (
 
     <section className="">
@@ -85,25 +112,26 @@ const Agent = (props) => {
         filterCountryFile={filterCountryFile}
         {...props}
       />
-        <div className="find-agent-wrapper">
-            <div className="container-fluid row agent-list">
-                <div className="col-lg-4">
-                    <SearchAgent
-                        initialItems={agentList}
-                        countryFile={file}
-                        onClick={showInfo}
-                    />
-                </div>
-                <div className="col-lg-8">
-                    {/* <a href="/" className="find-map-mob">Find in map <img src={grayArrow} alt="Arrow"/></a> */}
-                    <GoogleMap
-                        multipleMarker={agentList}
-                        selectedItem={selectedItem}
-                        directionDetail={directionDetail}
-                    />
-                </div>
-            </div>
+      <div className="find-agent-wrapper">
+        <div className="container-fluid row agent-list">
+          <div className="col-lg-4">
+            <SearchAgent
+              initialItems={agentList}
+              countryFile={file}
+              onClick={showInfo}
+              {...props}
+            />
+          </div>
+          <div className="col-lg-8">
+            {/* <a href="/" className="find-map-mob">Find in map <img src={grayArrow} alt="Arrow"/></a> */}
+            <GoogleMap
+              multipleMarker={agentList}
+              selectedItem={selectedItem}
+              {...props}
+            />
+          </div>
         </div>
+      </div>
     </section>
   );
 }

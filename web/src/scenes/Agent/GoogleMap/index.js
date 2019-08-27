@@ -5,7 +5,8 @@ import './style.scss';
 import DirectionIcon from '../../../../src/assets/images/direction.png';
 
 const GoogleMap = (props) => {
-  const { google, multipleMarker, selectedItem } = props;
+
+  const { google, multipleMarker, selectedItem, venue, zoom } = props;
 
   const [showingInfoWindow, setShowingInfoWindow] = useState(false);
   const [activeMarker, setActiveMarker] = useState({});
@@ -42,13 +43,14 @@ const GoogleMap = (props) => {
   if (!google) {
     return <div>Loading...</div>;
   }
+
   return (
     <div className="gmap">
       {
         selectedPlace && selectedPlace.id ?
           <Map google={google}
             style={{ width: '100%', height: '600px', position: 'relative' }}
-            zoom={8}
+            zoom={venue ? zoom : 8}
             onClick={onMapClicked}
             initialCenter={{
               lat: 1.257681,
@@ -91,7 +93,7 @@ const GoogleMap = (props) => {
           :
           <Map google={google}
             style={{ width: '100%', height: '600px', position: 'relative' }}
-            zoom={selectedItem.id ? 8 : 8}
+            zoom={venue && selectedItem.id ? zoom : (selectedItem.id ? 8 : 8)}
             initialCenter={{
               lat: 1.257681,
               lng: 103.82222290000004
@@ -125,7 +127,7 @@ const GoogleMap = (props) => {
                 >
                   <div className="map-info-popup">
                     <div className="map-img">
-                      <img height="50" width="100" src={selectedItem.imgPath} title="Title of image" alt="alt text here" />
+                      <img height="50" width="100" src={selectedItem.image} title="Title of image" alt="alt text here" />
                     </div>
                     <div className="map-name-address">
                       <h5>{selectedItem.id}</h5>

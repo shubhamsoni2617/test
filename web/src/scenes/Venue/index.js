@@ -1,14 +1,16 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import Agent from '../Agent';
 
 const Venue = (props) => {
   return (
-    <div>
+    <Fragment>
       <Agent
         venue={true}
-        text="Find a Venue"
+        countrySearchTitle="Find a Venue"
+        venueSearchTitle="Venues in Singapore"
+        zoom={12}
       />
-    </div>
+    </Fragment>
   );
 };
 
