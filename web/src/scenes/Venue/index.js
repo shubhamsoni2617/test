@@ -5,7 +5,8 @@ const Venue = (props) => {
   return (
     <div>
       <Agent
-        // venue={true}
+        venue={true}
+        text="Find a Venue"
       />
     </div>
   );

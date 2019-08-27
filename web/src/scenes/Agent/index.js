@@ -8,51 +8,12 @@ import Constants from '../../shared/constants'
 import grayArrow from '../../assets/images/down-arrow-grey.svg';
 
 const Agent = (props) => {
-  let filterAgent = [
-    {
-      id: "112 Katong",
-      shownOnMap: "Shown on Map",
-      address: "112 East Coast Road Singapore 428802 Coincierge Counter, Level1",
-      position: { lat: 37.759703, lng: -122.428093 }
-    },
-    {
-      id: "114 Somerset",
-      shownOnMap: "Shown on Map",
-      address: "112 East Coast Road Singapore 428802 Coincierge Counter, Level1",
-      position: { lat: 37.778519, lng: -122.405640 }
-    },
-    {
-      id: "11 Anchorpoint",
-      shownOnMap: "Shown on Map",
-      address: "112 East Coast Road Singapore 428802 Coincierge Counter, Level1",
-      position: { lat: 37.762391, lng: -122.439192 }
-    },
-    {
-      id: "12 Capitol",
-      shownOnMap: "Shown on Map",
-      address: "112 East Coast Road Singapore 428802 Coincierge Counter, Level1",
-      position: { lat: 37.782394, lng: -122.419190 }
-    },
-    {
-      id: "2 ChangiAirpots",
-      shownOnMap: "Shown on Map",
-      address: "112 East Coast Road Singapore 428802 Coincierge Counter, Level1",
-      position: { lat: 37.702391, lng: -122.469192 }
-    },
-    {
-      id: "ChinaPoint Town",
-      shownOnMap: "Shown on Map",
-      address: "112 East Coast Road Singapore 428802 Coincierge Counter, Level12",
-      position: { lat: 37.792391, lng: -122.416192 }
-    },
-  ];
-
+  const {venue,text}=props;
   const [countryNRegion, setCountryNRegion] = useState([]);
   const [agentList, setAgentList] = useState([]);
   const [file, setCountryFile] = useState('');
   const [selectedItem, setSelectedItem] = useState('');
   const [directionDetail, setDirectionDetail] = useState(null);
-
 
   useEffect(() => {
     const params = {}
@@ -63,6 +24,7 @@ const Agent = (props) => {
   const fetchAgentCountryNRegion = () => {
     AgentService.getAgentsCountryNRegion()
       .then((res) => {
+        console.log("countries",res.data)
         setCountryNRegion(res.data.data)
       })
       .catch((err) => {
@@ -121,6 +83,7 @@ const Agent = (props) => {
         countryNRegion={countryNRegion}
         onSubmit={submitCountryNRegion}
         filterCountryFile={filterCountryFile}
+        {...props}
       />
         <div className="find-agent-wrapper">
             <div className="container-fluid row agent-list">
