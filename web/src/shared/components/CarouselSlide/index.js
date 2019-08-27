@@ -15,11 +15,11 @@ const CarouselSlide = (props) => {
                 <div className="item-wrapper">
                     <div className="currently-showing-img">
                         <div className="item-img">
-                            <Image src={elem.thumb_image} className="img-fluid"  type='Horizontal' />
+                            <Image src={elem.thumb_image} className="img-fluid"  type='Tile' />
                         </div>
                     </div>
                     <span className={`category ${genre}`}>{elem.primary_genre}</span>
-                    <p>{elem.event_date}</p>
+                    <p className="date-event">{elem.event_date}</p>
                     <Link to={`/events/${elem.alias}`}><h3>{Utilities.showLimitedChars(elem.title, 40)}</h3></Link>
                     <p>{elem.venue_name}</p>
                 </div>

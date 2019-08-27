@@ -3,6 +3,7 @@ import LazyLoad from 'react-lazyload';
 import BigBanner from '../../../assets/images/big_banner.png';
 import Horizontal from  '../../../assets/images/horizontal.png';
 import Vertical from  '../../../assets/images/vertical.png';
+import Tile from  '../../../assets/images/Vertical Tile.png';
 
 export default class Image extends Component {
   constructor(props) {
@@ -20,6 +21,10 @@ export default class Image extends Component {
 
         case 'Vertical':
         newImg = Vertical
+        break;
+
+        case 'Tile':
+        newImg = Tile
         break;
 
         case 'BigBanner':

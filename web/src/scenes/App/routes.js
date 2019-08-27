@@ -5,6 +5,7 @@ import HomeService from '../../shared/services/HomeService'
 import Promotions from '../Promotions';
 import PageNotFound from '../PageNotFound/index';
 import Agent from '../Agent';
+import Attraction from '../Attraction'
 
 const routes =  [
   {
@@ -34,7 +35,7 @@ const routes =  [
     exact : true,
   },
   {
-    path: '/promotions/:promo_id',
+    path: '/promotions/:promoId',
     component: Promotions,
   },
   {
@@ -43,6 +44,11 @@ const routes =  [
     component: Promotions,
   },
 
+  {
+    path: '/attraction',
+    component: Attraction,
+    exact : true
+  },
   {
     path : "*",
     component: PageNotFound

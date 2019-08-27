@@ -24,6 +24,7 @@ export default class Events extends Component {
     this.initialLimit = { client: 1, first: 0, limit: 9, sort_type: "date" };
     this.state = {
       shimmer: true,
+      shimmerFilter: true,
       filteredGnere: [],
       filteredSearch: [],
       filteredPromotions: [],
@@ -175,7 +176,8 @@ export default class Events extends Component {
         let genre = Object.keys(res.data.data).map(key => {
           return res.data.data[key];
         });
-        this.setState({ genre: genre });
+
+        this.setState({ shimmerFilter: false, genre: genre });
       })
       .catch(error => {
         console.error(error);
@@ -211,7 +213,7 @@ export default class Events extends Component {
             totalRecords: res.data.total_records,
             isdataAvailable: isdataAvailable
           });
-        }, 1000);
+        }, 10000);
       })
       .catch(err => {
         console.log(err);
@@ -384,23 +386,23 @@ export default class Events extends Component {
       totalRecords,
       isdataAvailable,
       viewType,
-      shimmer
+      shimmer,
+      shimmerFilter
     } = this.state;
     const viewTypeActive = viewType == "list" ? "active" : "";
     return (
       <div>
         <Breadcrub breadCrumbData={this.breadCrumbData} />
-        <section className="promotions-wrapper">
           <div className="container-fluid">
             <div className="wrapper-events-listing">
               <div className="filters">
-              {shimmer && <ShimmerEffect
+              {shimmerFilter && <ShimmerEffect
                     propCls="shm_col-xs-6 col-md-12"
                     height={150}
                     count={1}
                     type="grid"
                   />}
-              {!shimmer && genre.length > 0 &&
+              {!shimmerFilter && genre.length > 0 &&
                 venues.length > 0 &&
                 filterConfig.price_config &&
                 filterConfig.promotion_categories && (
@@ -411,6 +413,8 @@ export default class Events extends Component {
                     genreData={genre}
                     venueData={venues}
                     filterConfig={filterConfig}
+                    showCalendar={true}
+
                   />
                 )}
 
@@ -453,7 +457,7 @@ export default class Events extends Component {
                     eventsData.map(event => {
                       return (
                         <div onClick={() => this.redirectToTarget(event.alias)}>
-                          <Card eventsData={event} />
+                          <Card cardData={event} cardClass={{cardBlock: 'event-block', cardButton: 'btn buy-btn'}}/>
                         </div>
                       );
                     })}
@@ -490,7 +494,7 @@ export default class Events extends Component {
               </div>
             </div>
           </div>
-        </section>
+        
       </div>
     );
   }
