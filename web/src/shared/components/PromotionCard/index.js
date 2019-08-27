@@ -10,7 +10,7 @@ import StopWatch from '../../../assets/images/stopwatch-grey.svg';
 const PromotionCard = (props) => {
 
   const { data, fetchPromotionDetailData, handlePromotionDetailTab } = props;
-  const { promotionDetail, promotionTab, tabDetailId } = props.state;
+  const { promotionDetail, promotionTab, tabDetailId, defaultTabId } = props.state;
   const {
     id,
     title,
@@ -66,8 +66,7 @@ const PromotionCard = (props) => {
               <button style={{ color: data.buttons.length > 0 ? `#${data.buttons[0].color}` : "" }}>
                 <span>{data.buttons.length > 0 && data.buttons[0].text}</span>
               </button>
-            </a> */}
-            <button onClick={() => fetchPromotionDetailData(data.alias, data.id)}><span>See More</span></button>
+            </a> */}<button onClick={() => fetchPromotionDetailData(data.alias, data.id,defaultTabId,promotionTab)}><span>See More</span></button>
             {data.show_timer === "1" ?
               <div className="promotion-timer">
                 {!expiredText ? <span className="timer-tagline"> Hurry! Promotion ends in:</span> : null}
@@ -98,10 +97,11 @@ const PromotionCard = (props) => {
           {/* Related Events */}
 
           {buttons && buttons.length > 0 && buttons.map((e, i) => {
+            console.log(e.color,"color")
             return (
               <div key={i}>
                 <a href={e && e.url ? e.url : undefined}>
-                  <button style={{ color: e && e.color ? `#${e.color}` : "" }}>
+                  <button style={{ backgroundColor: e && e.color ? `#${e.color}` : "" }}>
                     <span>{e && e.text ? e.text : ""}</span>
                   </button>
                 </a>
@@ -119,7 +119,7 @@ const PromotionCard = (props) => {
           </section>
         </div>
       </div>
-    </div>
+    </div >
   )
 }
 
