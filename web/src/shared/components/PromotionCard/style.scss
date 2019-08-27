@@ -35,7 +35,6 @@
         transition: 0.5s height, 0.5s bottom;
     }
     .promotion-image {
-        height: 257px;
         overflow: hidden;
         img {
             width: 100%;
@@ -303,8 +302,8 @@
             }
             .promotion-tab-close-btn {
                 position: absolute;
-                right: 17px;
-                top: 37px;
+                right: 23px;
+                top: 40px;
                 opacity: 1;
                 @media(max-width: 768px) {
                     right: 15px;
@@ -313,6 +312,9 @@
                 @media (max-width: 767px) {
                     right: 15px;
                     top: 25px;
+                }
+                img{
+                    width: 15px;
                 }
             }
             &::before {
@@ -343,6 +345,7 @@
         padding: 20px 0px 0;
         position: relative;
         border-top: 1px solid rgba(151,151,151,0.2);
+        margin-top: 25px;
         @media (max-width: 767px) {
             padding-bottom: 20px;
         }
@@ -456,6 +459,9 @@
                         color: #626262;
                         margin: 0;
                         padding: 3px 0;
+                        &.date-event{
+                            font-size: 10px;
+                        }
                     }
                 }
             }
