@@ -41,12 +41,12 @@ class GiftVouchers extends Component {
       GiftVouchersDetails && (
         <Fragment>
           <GiftVoucherHeader
-            bannerDescription={GiftVouchersDetails[0].banner_description}
+            bannerDescription={GiftVouchersDetails.banner_description}
           />
-          <h1>{GiftVouchersDetails[0].title}</h1>
+          <h1>{GiftVouchersDetails.title}</h1>
           <div
             dangerouslySetInnerHTML={{
-              __html: GiftVouchersDetails[0].description
+              __html: GiftVouchersDetails.description
             }}
           />
           <h1>Pick a Voucher that suits you best</h1>
