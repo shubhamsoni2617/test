@@ -1,8 +1,6 @@
 import React from "react";
 import "./style.scss";
-
 import Logo from "../../../../assets/images/Logo.png";
-
 import { Link } from "react-router-dom";
 
 const Voucher = ({ voucherdetail }) => {

@@ -1,8 +1,8 @@
 import API from "../../api";
 
 class GiftVouchersService {
-  getGiftVouchers() {
-    return API.get(`gift-vouchers`);
+  getGiftVouchers(params) {
+    return API.get(`gift-vouchers`, { params });
   }
 }
 
