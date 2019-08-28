@@ -4,9 +4,9 @@ import EventsDetail from '../Events/EventsDetail'
 import HomeService from '../../shared/services/HomeService'
 import Promotions from '../Promotions';
 import PageNotFound from '../PageNotFound/index';
-import Agent from '../Agent';
+import Agents from '../Agents';
 import Attraction from '../Attraction'
-import Venue from '../Venue';
+import Venues from '../Venues';
 
 const routes =  [
   {
@@ -32,7 +32,7 @@ const routes =  [
   },
   {
     path: '/agents',
-    component: Agent,
+    component: Agents,
     exact : true,
   },
   {
@@ -52,7 +52,7 @@ const routes =  [
   },
   {
     path: '/venues',
-    component: Venue,
+    component: Venues,
     exact : true
   },
   {

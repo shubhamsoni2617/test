@@ -1,25 +1,26 @@
 import React, { useState, useRef } from 'react';
-import SearchIcon from '../../../assets/images/search-icon-gray.svg';
+import SearchIcon from '../../../../assets/images/search-icon-gray.svg';
 import './style.scss';
-import food from '../../../assets/images/food.svg';
-import parking from '../../../assets/images/parking.svg';
-import contact from '../../../assets/images/contact.svg';
-import seat from '../../../assets/images/seat.svg';
-import event from '../../../assets/images/current-event.svg';
-import address from '../../../assets/images/address.svg';
-import redirect from '../../../assets/images/redirect.svg';
-import notification from '../../../assets/images/notification.svg';
-import price from '../../../assets/images/price.svg';
-import clock from '../../../assets/images/clock.svg';
-import download from '../../../assets/images/download-blue.svg';
-import downloadOrange from '../../../assets/images/download-orange.svg';
-import eventImg from '../../../assets/images/explore.png';
-import downArrow from '../../../assets/images/downarrow-blue.svg';
-import Carousel from '../../../shared/components/Carousel';
+import food from '../../../../assets/images/food.svg';
+import parking from '../../../../assets/images/parking.svg';
+import contact from '../../../../assets/images/contact.svg';
+import seat from '../../../../assets/images/seat.svg';
+import event from '../../../../assets/images/current-event.svg';
+import address from '../../../../assets/images/address.svg';
+import redirect from '../../../../assets/images/redirect.svg';
+import notification from '../../../../assets/images/notification.svg';
+import price from '../../../../assets/images/price.svg';
+import clock from '../../../../assets/images/clock.svg';
+import download from '../../../../assets/images/download-blue.svg';
+import downloadOrange from '../../../../assets/images/download-orange.svg';
+import eventImg from '../../../../assets/images/explore.png';
+import downArrow from '../../../../assets/images/downarrow-blue.svg';
+import Carousel from '../../../../shared/components/Carousel';
+import AgentService from '../../../services/AgentService';
 
 const SearchAgent = (props) => {
 
-  const { initialItems, countryFile, onClick, venue, venueSearchTitle } = props;
+  const { initialItems, countryFile, onClick, venue, countryName, handleAttractionValue, handleEventValue } = props;
   const activePopUpRef = useRef();
 
   const [filter, setFilter] = useState('');
@@ -27,6 +28,8 @@ const SearchAgent = (props) => {
   const [openPopUp, setOpenUp] = useState(false);
   const [attraction, setAttraction] = useState(false);
   const [onGoingEvents, setOngoingEvents] = useState(false);
+  const [specificEvents, setSpecificEvents] = useState([]);
+
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -37,7 +40,26 @@ const SearchAgent = (props) => {
     setFilter(value);
   }
 
-  const showPopUp = (detail) => {
+  const showPopUp = async(detail) => {
+    if (venue) {
+      const params = {
+        venue_id: detail.id
+      };
+      let res=await AgentService.getVenueSpecificEvents(params);
+      let data=await res.data;
+      // AgentService.getVenueSpecificEvents(params)
+      //   .then((res) => {
+      //     setSpecificEvents(res.data.data)
+      //   })
+      //   .catch((err) => {
+      //     console.log(err)
+      //   })
+
+      detail.specificEvent=data;
+      console.log(detail,"specificEvents")
+    }
+    // console.log(specificEvents, "venue-specific-events");
+
     setPopUpDetail(detail);
     if (activePopUpRef.current) {
       if (openPopUp) {
@@ -51,18 +73,22 @@ const SearchAgent = (props) => {
   }
 
   const handleAttraction = () => {
-    if (attraction) {
-      setAttraction(false)
-    } else {
+    if (!attraction) {
+      handleAttractionValue(1)
       setAttraction(true)
+    } else {
+      handleAttractionValue(undefined)
+      setAttraction(false)
     }
   }
 
   const handleOngoingEvents = () => {
-    if (onGoingEvents) {
-      setOngoingEvents(false)
-    } else {
+    if (!onGoingEvents) {
+      handleEventValue(1)
       setOngoingEvents(true)
+    } else {
+      handleEventValue(undefined)
+      setOngoingEvents(false)
     }
   }
 
@@ -77,12 +103,9 @@ const SearchAgent = (props) => {
     });
   });
 
-  console.log(attraction,"attraction");
-  console.log(onGoingEvents,"attraction");
-
   return (
     <div className="search-agent">
-      <h2>{venue ? venueSearchTitle : "Agents in Singapore"}</h2>
+      <h2>{venue ? "Venue in " : "Agents in "} {countryName ? countryName : "Singapore"}</h2>
       <form onSubmit={handleSubmit}>
         <div className="agent-search">
           <button type="submit" className="search-btn"><img src={SearchIcon} alt="search-icon" /></button>

@@ -3,13 +3,15 @@ import './style.scss';
 
 const CountryRegion = (props) => {
 
-  const { countryNRegion, onSubmit, filterCountryFile, venue, countrySearchTitle } = props;
+  const { countryNRegion, onSubmit, filterCountryFile, handleCountryName, venue } = props;
 
   const [country, setCountry] = useState("Singapore");
   const [region, setRegion] = useState("All locations");
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    //setting country name in parent component
+    handleCountryName(country);
     let countryId;
     let regionId;
     countryNRegion.map((elem) => {
@@ -23,12 +25,12 @@ const CountryRegion = (props) => {
           })
         }
       }
-      const params = {
-        country: countryId,
-        region: regionId
-      }
-      onSubmit(params);
     });
+    const params = {
+      country: countryId,
+      region: regionId
+    }
+    onSubmit(params);
   }
 
   const handleCountryChange = (event) => {
@@ -46,7 +48,7 @@ const CountryRegion = (props) => {
   return (
     <div className="find-an-agent text-center">
       <div className="authorised-agent">
-        {venue ? countrySearchTitle : "Find an Authorised Agent"}
+        {venue ? "Find a Venue" : "Find an Authorised Agent"}
       </div>
       <form onSubmit={handleSubmit}>
         <div className="find-agent-form">
@@ -67,23 +69,22 @@ const CountryRegion = (props) => {
           {country === "Singapore" ?
             <select className="form-control" onChange={handleRegionChange} value={region}>
               <option>Region</option>
-              {
-                countryNRegion && countryNRegion.map((elem, index) => {
-                  if (elem.regions.length > 0) {
-                    return elem.regions.map((e, i) => {
-                      if (elem.name === country) {
-                        return (
-                          <option
-                            key={i}
-                            value={e.name}
-                          >
-                            {e.name}
-                          </option>
-                        )
-                      }
-                    })
-                  }
-                })
+              {countryNRegion && countryNRegion.map((elem, index) => {
+                if (elem.regions.length > 0) {
+                  return elem.regions.map((e, i) => {
+                    if (elem.name === country) {
+                      return (
+                        <option
+                          key={i}
+                          value={e.name}
+                        >
+                          {e.name}
+                        </option>
+                      )
+                    }
+                  })
+                }
+              })
               }
             </select>
             :

@@ -16,7 +16,11 @@ class AgentService {
 
   getVenuesCountryNRegion() {
 		return API.get(`venue-countries-regions`)
-	}
+  }
+
+  getVenueSpecificEvents(params){
+    return API.get(`venue-specific-events`,{params})
+  }
 
 }
 
