@@ -7,6 +7,8 @@ import PageNotFound from "../PageNotFound/index";
 import Agent from "../Agent";
 import Attraction from "../Attraction";
 import WhereBuyTickets from "../WhereBuyTickets";
+import TermsConditions from "../TermsConditions";
+import PrivacyPolicy from "../PrivacyPolicy";
 
 const routes = [
   {
@@ -52,6 +54,16 @@ const routes = [
   {
     path: "/attraction",
     component: Attraction,
+    exact: true
+  },
+  {
+    path: "/terms-and-conditions",
+    component: TermsConditions,
+    exact: true
+  },
+  {
+    path: "/privacy",
+    component: PrivacyPolicy,
     exact: true
   },
   {
