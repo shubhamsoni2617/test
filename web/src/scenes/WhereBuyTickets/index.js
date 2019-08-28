@@ -1,45 +1,30 @@
-import React, { Component, Fragment } from "react";
-import EventBreadcrumbImage from "../../assets/images/events.png";
-
+import React, { Component, useState, useEffect, Fragment } from "react";
+import banner from "../../assets/images/Bitmap Copy 2.png";
 import Constants from "../../shared/constants";
 import Buttontext from "./ButtonText";
 import IconsNavigate from "./IconsNavigate";
 import Images from "./Images";
-
 import WhereBuyTicketsService from "../../shared/services/WhereBuyTicketsService";
 import ApiPartnerService from "../../shared/services/ApiPartnersService";
 
-class WhereBuyTickets extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      whereBuyTicketsDetails: [],
-      apiPartners: []
-    };
-  }
+const WhereBuyTickets = () => {
+  const [whereBuyTicketsDetails, setwhereBuyTicketsDetails] = useState(null);
+  const [apiPartners, setapiPartners] = useState(null);
 
-  componentDidMount() {
-    this.fetchWhereBuyTickets();
-
-    this.fetchApiPartners();
-  }
-
-  fetchWhereBuyTickets = () => {
+  const fetchWhereBuyTickets = () => {
     const params = {
       client: Constants.CLIENT
     };
     WhereBuyTicketsService.getWhereBuyTickets(params)
       .then(res => {
-        this.setState({
-          whereBuyTicketsDetails: res.data.data
-        });
+        setwhereBuyTicketsDetails(res.data.data);
       })
       .catch(err => {
         console.log(err);
       });
   };
 
-  fetchApiPartners = () => {
+  const fetchApiPartners = () => {
     const params = {
       client: Constants.CLIENT,
       first: 0,
@@ -47,16 +32,20 @@ class WhereBuyTickets extends Component {
     };
     ApiPartnerService.getApiPartnersService(params)
       .then(res => {
-        this.setState({
-          apiPartners: res.data.data
-        });
+        console.log(res.data.data);
+        setapiPartners(res.data.data);
       })
       .catch(err => {
         console.log(err);
       });
   };
 
-  titleWithDescription(title, description) {
+  useEffect(() => {
+    fetchWhereBuyTickets();
+    fetchApiPartners();
+  }, []);
+
+  const titleWithDescription = (title, description) => {
     return (
       <div>
         <h1 id={title}>{title}</h1>
@@ -70,57 +59,41 @@ class WhereBuyTickets extends Component {
         <Buttontext title={title} />
       </div>
     );
-  }
+  };
 
-  render() {
-    console.table(this.state.apiPartners);
-    let { whereBuyTicketsDetails } = this.state;
-    return (
-      <Fragment>
-        <img
-          src={EventBreadcrumbImage}
-          className="img-fluid"
-          alt="page-banner"
-        />
-        <div>
-          <h1>Where to Buy Tickets</h1>
-        </div>
-        {whereBuyTicketsDetails && (
+  return (
+    <Fragment>
+      <img src={banner} className="img-fluid" alt="page-banner" />
+      <div>
+        <h1>Where to Buy Tickets</h1>
+      </div>
+      {whereBuyTicketsDetails && (
+        <Fragment>
           <IconsNavigate tabsArray={whereBuyTicketsDetails} />
-        )}
-        {whereBuyTicketsDetails &&
-          whereBuyTicketsDetails.map((category, i) => {
-            return (
-              <div
-                key={category.title}
-                style={{ display: "flex", flexDirection: "row" }}
-              >
-                {i % 2 === 0 ? (
-                  <Fragment>
-                    {this.titleWithDescription(
-                      category.title,
-                      category.description
-                    )}
-                    <Images title={category.title} />
-                  </Fragment>
-                ) : (
-                  <Fragment>
-                    <Images
-                      title={category.title}
-                      apiPartners={this.state.apiPartners}
-                    />
-                    {this.titleWithDescription(
-                      category.title,
-                      category.description
-                    )}
-                  </Fragment>
-                )}
-              </div>
-            );
-          })}
-      </Fragment>
-    );
-  }
-}
+          {whereBuyTicketsDetails.map((category, i) => (
+            <div
+              key={category.title}
+              style={{ display: "flex", flexDirection: "row" }}
+            >
+              {i % 2 === 0 ? (
+                <Fragment>
+                  {titleWithDescription(category.title, category.description)}
+                  <Images title={category.title} />
+                </Fragment>
+              ) : (
+                <Fragment>
+                  {apiPartners && (
+                    <Images title={category.title} apiPartners={apiPartners} />
+                  )}
+                  {titleWithDescription(category.title, category.description)}
+                </Fragment>
+              )}
+            </div>
+          ))}
+        </Fragment>
+      )}
+    </Fragment>
+  );
+};
 
 export default WhereBuyTickets;
