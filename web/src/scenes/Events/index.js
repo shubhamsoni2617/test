@@ -1,11 +1,9 @@
 import React, { Component } from "react";
-import { BrowserHistory } from "react-router-dom";
 import Filters from "../../shared/components/Filters";
 import SortBy from "../../shared/components/SortBy";
 import Card from "../../shared/components/Card";
 import EventsService from "../../shared/services/EventsService";
 import HomeService from "../../shared/services/HomeService";
-import Image from "../../shared/components/Image";
 import DownArrowBlue from "../../assets/images/down-arrow-blue.svg";
 import noEvent from "../../assets/images/no-event.svg";
 import Breadcrub from "../../scenes/App/Breadcrumb";
@@ -13,7 +11,6 @@ import ListView from "../../assets/images/list-view.svg";
 import GridView from "../../assets/images/grid-view.svg";
 import loaderImage from "../../assets/images/loader.svg";
 import EventBreadcrumbImage from "../../assets/images/events.png";
-import moment from "moment";
 import ShimmerEffect from "../../shared/components/ShimmerEffect";
 import "./style.scss";
 
@@ -21,7 +18,6 @@ export default class Events extends Component {
   constructor(props) {
     super(props);
 
-    this.initialLimit = { client: 1, first: 0, limit: 9, sort_type: "date" };
     this.state = {
       shimmer: true,
       shimmerFilter: true,
@@ -98,7 +94,9 @@ export default class Events extends Component {
     this.getGenre();
     this.getVenue();
     this.getFilterConfig();
-    this.loadEvents(this.getRoutesParams());
+    const payload = this.getInitialFilters();
+    this.setInitialFilters(payload);
+    this.loadEvents(payload);
   }
 
   componentDidUpdate(prevProps) {
@@ -106,59 +104,14 @@ export default class Events extends Component {
       this.props.location.search &&
       this.props.location.search != prevProps.location.search
     ) {
-      this.setState({shimmer: true});
-      this.loadEvents(this.getRoutesParams());
+      debugger;
+      this.setState({ shimmer: true });
+      const payload = this.getInitialFilters();
+      this.setInitialFilters(payload);
+      this.loadEvents(payload);
+      debugger;
     }
   }
-
-  getRoutesParams = () => {
-    const query = new URLSearchParams(this.props.location.search);
-    let genreId = query.get("c") ? query.get("c") : "";
-    let venueId = query.get("v") ? query.get("v") : "";
-    let dateRange = query.get("s") ? query.get("s") : "";
-    if (dateRange != "") {
-      dateRange = dateRange.split("--");
-      dateRange = { from: dateRange[0], to: dateRange[1] };
-    }
-    this.state.filteredGnere = [];
-    this.state.filteredVenues = [];
-    if (genreId != "") this.state.filteredGnere.push(genreId);
-    if (venueId != "") this.state.filteredVenues.push(venueId);
-
-    this.setState({
-      queryParams: { genreId: genreId, venueId: venueId, dateRange: dateRange }
-    });
-
-    this.initialLimit.genre = genreId;
-    this.initialLimit.venue = venueId;
-    this.initialLimit.start_date = dateRange.from;
-    this.initialLimit.end_date = dateRange.to;
-
-    return this.initialLimit;
-  };
-
-  resetFilters = () => {
-    this.initialLimit.search = "";
-    this.setState(
-      {
-        filteredGnere: [],
-        filteredSearch: [],
-        filteredPromotions: [],
-        filteredVenues: [],
-        filteredTags: [],
-        filteredPriceRange: {},
-        filteredDateRange: {},
-        filteredSortType: "date",
-        filteredSortOrder: "",
-        isdataAvailable: false,
-        eventsData: [],
-        totalRecords: 0
-      },
-      () => {
-        this.loadEvents(this.initialLimit);
-      }
-    );
-  };
 
   getFilterConfig = () => {
     EventsService.getFilterConfig()
@@ -198,7 +151,6 @@ export default class Events extends Component {
   };
 
   loadEvents = (params, isLoadMore) => {
-
     // this.setState({shimmer: true});
     EventsService.getData(params)
       .then(res => {
@@ -213,7 +165,7 @@ export default class Events extends Component {
             totalRecords: res.data.total_records,
             isdataAvailable: isdataAvailable
           });
-        }, 10000);
+        }, 1000);
       })
       .catch(err => {
         console.log(err);
@@ -221,7 +173,7 @@ export default class Events extends Component {
   };
 
   loadMoreEvents = () => {
-    let params = this.setFilterParams();
+    let params = this.getFilters();
     params.first = this.state.first + 9;
     this.loadEvents(params, true);
     this.setState({ first: params.first, limit: params.limit, shimmer: true });
@@ -237,36 +189,70 @@ export default class Events extends Component {
     this.setState({ viewTypeClass: viewTypeClass, viewType: getViewType });
   };
 
-  setFilterParams = () => {
+  getInitialFilters = (reset=false) => {
+    const query = new URLSearchParams(this.props.location.search);
+    let genreId = query.get("c") ? query.get("c") : "";
+    let venueId = query.get("v") ? query.get("v") : "";
+    let dateRange = query.get("s") ? query.get("s") : "";
+    if (dateRange != "") {
+      dateRange = dateRange.split("--");
+      dateRange = { from: dateRange[0], to: dateRange[1] };
+    }
+
+    const payload = {
+      first: 0,
+      limit: 9,
+      genre: reset ? '' : genreId,
+      venue: reset ? '' : venueId,
+      start_date: reset ? '' : dateRange.from,
+      end_date: reset ? '' : dateRange.to
+    };
+
+    return payload;
+  };
+
+  setInitialFilters({ genre, venue, start_date, end_date }) {
+    const dateRange =
+      start_date && end_date ? { from: start_date, to: end_date } : null;
+    this.setState({
+      queryParams: { genreId: genre, venueId: venue, dateRange: dateRange },
+      filteredGnere: genre ? [genre] : [],
+      filteredVenues: venue ? [venue] : [],
+      filteredDateRange: dateRange
+    });
+  }
+
+  getFilters = () => {
+    const {
+      first,
+      limit,
+      filteredPromotions,
+      filteredGnere,
+      filteredVenues,
+      filteredTags,
+      filteredSearch,
+      filteredPriceRange,
+      filteredDateRange,
+      filteredSortOrder,
+      filteredSortType
+    } = this.state;
+
     let params = {
       client: 1,
-      first: "",
-      limit: this.state.limit,
-      promo_category: "",
-      genre: "",
-      venue: "",
-      tags: "",
-      search: "",
-      min_price: "",
-      max_price: "",
-      start_date: "",
-      end_date: "",
-      sort_type: "",
-      sort_order: ""
+      first: first,
+      limit: limit,
+      promo_category: filteredPromotions.toString(),
+      genre: filteredGnere.toString(),
+      venue: filteredVenues.toString(),
+      tags: filteredTags.toString(),
+      search: filteredSearch,
+      min_price: filteredPriceRange.min,
+      max_price: filteredPriceRange.max,
+      start_date: filteredDateRange.from,
+      end_date: filteredDateRange.to,
+      sort_type: filteredSortType,
+      sort_order: filteredSortOrder
     };
-    params.promo_category = this.state.filteredPromotions.toString();
-    params.genre = this.state.filteredGnere.toString();
-    params.venue = this.state.filteredVenues.toString();
-    params.tags = this.state.filteredTags.toString();
-    params.search = this.state.filteredSearch;
-    params.min_price = this.state.filteredPriceRange.min;
-    params.max_price = this.state.filteredPriceRange.max;
-    params.start_date = this.state.filteredDateRange.from;
-    params.end_date = this.state.filteredDateRange.to;
-    params.sort_order = this.state.filteredSortOrder;
-    params.sort_type = this.state.filteredSortType;
-    params.first = this.initialLimit.first;
-    params.limit = this.initialLimit.limit;
 
     return params;
   };
@@ -349,6 +335,10 @@ export default class Events extends Component {
 
     this.setState(
       {
+        first: 0,
+        limit: 9,
+        totalRecords: 0,
+        loader: true,
         filteredPromotions,
         filteredVenues,
         filteredTags,
@@ -360,13 +350,33 @@ export default class Events extends Component {
         filteredSortOrder
       },
       () => {
-        this.setState({ totalRecords: 0, loader: true });
-        this.setState({ first: 0, limit: 9 });
-        let params = this.setFilterParams();
-
         setTimeout(() => {
-          this.loadEvents(params, false);
+          this.loadEvents(this.getFilters(), false);
         }, 200);
+      }
+    );
+  };
+
+  resetFilters = () => {
+    this.setState(
+      {
+        filteredGnere: [],
+        filteredSearch: [],
+        filteredPromotions: [],
+        filteredVenues: [],
+        filteredTags: [],
+        filteredPriceRange: {},
+        filteredDateRange: {},
+        filteredSortType: "date",
+        filteredSortOrder: "",
+        isdataAvailable: false,
+        eventsData: [],
+        totalRecords: 0
+      },
+      () => {
+        const payload = this.getInitialFilters(true);
+        this.setInitialFilters(payload);
+        this.loadEvents(payload);
       }
     );
   };
@@ -387,7 +397,14 @@ export default class Events extends Component {
       isdataAvailable,
       viewType,
       shimmer,
-      shimmerFilter
+      shimmerFilter,
+      filteredSearch,
+      filteredPriceRange,
+      filteredGnere,
+      filteredPromotions,
+      filteredVenues,
+      filteredTags,
+      filteredDateRange
     } = this.state;
     const viewTypeActive = viewType == "list" ? "active" : "";
     return (
@@ -397,28 +414,36 @@ export default class Events extends Component {
           <div className="container-fluid">
             <div className="wrapper-events-listing">
               <div className="filters">
-              {shimmerFilter && <ShimmerEffect
+                {shimmerFilter && (
+                  <ShimmerEffect
                     propCls="shm_col-xs-6 col-md-12"
                     height={150}
                     count={1}
                     type="LIST"
-                  />}
-              {!shimmerFilter && genre.length > 0 &&
-                venues.length > 0 &&
-                filterConfig.price_config &&
-                filterConfig.promotion_categories && (
-                  <Filters
-                    queryParams={queryParams}
-                    resetFilters={this.resetFilters}
-                    handleFilters={this.handleFilters}
-                    genreData={genre}
-                    venueData={venues}
-                    filterConfig={filterConfig}
                   />
                 )}
-
+                {!shimmerFilter &&
+                  genre.length > 0 &&
+                  venues.length > 0 &&
+                  filterConfig.price_config &&
+                  filterConfig.promotion_categories && (
+                    <Filters
+                      queryParams={queryParams}
+                      resetFilters={this.resetFilters}
+                      handleFilters={this.handleFilters}
+                      genreData={genre}
+                      venueData={venues}
+                      filterConfig={filterConfig}
+                      filteredSearch={filteredSearch}
+                      filteredPriceRange={filteredPriceRange}
+                      filteredGnere={filteredGnere}
+                      filteredPromotions={filteredPromotions}
+                      filteredVenues={filteredVenues}
+                      filteredTags={filteredTags}
+                      filteredDateRange={filteredDateRange}
+                    />
+                  )}
               </div>
-
 
               <div className="events-listing">
                 <div className="event-listing-sorting">
@@ -455,7 +480,10 @@ export default class Events extends Component {
                   {eventsData &&
                     eventsData.map(event => {
                       return (
-                        <div onClick={() => this.redirectToTarget(event.alias)}>
+                        <div
+                          key={event.id}
+                          onClick={() => this.redirectToTarget(event.alias)}
+                        >
                           <Card eventsData={event} />
                         </div>
                       );

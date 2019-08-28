@@ -3,20 +3,23 @@ import { CSSTransitionGroup } from "react-transition-group";
 
 const FilterGrid = props => {
   const [limit, setLimit] = useState(5);
-  const [activeClass, setActiveClass] = useState('');
-  const [data, setData] = useState(props.data);
+  const [activeClass, setActiveClass] = useState("");
+  const [data, setData] = useState([]);
 
-  const selectAll = status => {
-    let items = [...data];
+  useEffect(() => {
+    let data = [...props.data];
+    setData(data);
+  }, [props.data]);
+
+  const selectAll = (status) => {
     let ids = [];
-    items.map(item => {
-      item.isChecked = status;
-      ids.push(item.id);
-    });
-    setActiveClass(status);
-    if (!status) {
-      ids = [];
+    if (status){
+      let items = [...props.data];
+      items.map(item => {
+        ids.push(item.id);
+      });
     }
+    setActiveClass(status);
     props.handleFilters(`${props.category}-check-uncheck`, ids);
   };
 
@@ -29,24 +32,20 @@ const FilterGrid = props => {
   };
 
   const onChange = (e, key) => {
-    let temp = [...data];
-    temp[key].isChecked = e.target.checked;
-    setData(temp);
-    props.handleFilters(props.category, temp[key].id, e.target.checked);
+    props.handleFilters(props.category, data[key].id, e.target.checked);
   };
+
+  if(!data.length) return null;
+
   return (
     <div className="filter-grid">
       <div className="filter-grid-heading">
         <h3>{props.title}</h3>
         <ul>
-          <li
-            className={activeClass ? "active" : ""}
-          >
+          <li className={activeClass ? "active" : ""}>
             <a onClick={() => selectAll(true)}>Select all</a>
           </li>
-          <li
-            className={activeClass ? "" : "active"}
-          >
+          <li className={activeClass ? "" : "active"}>
             <a onClick={() => selectAll(false)}>Clear</a>
           </li>
         </ul>
@@ -60,12 +59,16 @@ const FilterGrid = props => {
             transitionLeaveTimeout={300}
           >
             {data.length &&
-              data.slice(0, limit).map((genre, key) => {
-                let id = "genre-" + genre.id;
+              data.slice(0, limit).map((item, key) => {
+                let id = "item-" + item.id;
+                let isChecked = false;
+                if (props.selectedFilter && props.selectedFilter.indexOf(item.id) > -1) {
+                  isChecked = true;
+                }
                 return (
                   <li key={key}>
                     <input
-                      checked={genre.isChecked}
+                      checked={isChecked}
                       onChange={e => onChange(e, key)}
                       className="styled-checkbox"
                       type="checkbox"
@@ -73,7 +76,8 @@ const FilterGrid = props => {
                       value=""
                     />
                     <label htmlFor={id}>
-                      {genre.name} {genre.events_count ? `(${genre.events_count})` : ''}
+                      {item.name}{" "}
+                      {item.events_count ? `(${item.events_count})` : ""}
                     </label>
                   </li>
                 );
@@ -81,18 +85,12 @@ const FilterGrid = props => {
           </CSSTransitionGroup>
         </ul>
         {data.length > limit && (
-          <a
-            onClick={() => toggle(true)}
-            className="view-all-filters"
-          >
+          <a onClick={() => toggle(true)} className="view-all-filters">
             + {data.length - limit} More
           </a>
         )}
         {data.length == limit && (
-          <a
-            onClick={() => toggle(false)}
-            className="view-all-filters"
-          >
+          <a onClick={() => toggle(false)} className="view-all-filters">
             Show Less
           </a>
         )}
