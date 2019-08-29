@@ -81,6 +81,18 @@ export default class Events extends Component {
           sortTag: "Price High to Low"
         },
         {
+          sortType: "venue",
+          sortOrder: "ASC",
+          sortTitle: "A to Z",
+          sortTag: "Venue - A to Z"
+        },
+        {
+          sortType: "venue",
+          sortOrder: "DESC",
+          sortTitle: "Z to A",
+          sortTag: "Venue - Z to A"
+        },
+        {
           sortType: "date",
           sortOrder: "",
           sortTitle: "Date",
@@ -252,7 +264,7 @@ export default class Events extends Component {
     return params;
   };
 
-  handleFilters = (searchType, searchValue, isChecked) => {
+  handleFilters = (searchType) => {
     this.setState(
       {
         first: 0,
