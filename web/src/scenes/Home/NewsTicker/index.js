@@ -62,10 +62,9 @@ const NewsTicker = props => {
                   return (
                     <div
                       key={index}
-                      key={content.title}
                       dangerouslySetInnerHTML={{ __html: string }}
                       onClick={() => {
-                        handleOnclick(content.description);
+                        handleOnclick(content.rich_description);
                       }}
                     />
                   );
