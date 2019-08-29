@@ -1,9 +1,11 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
+import { CSSTransitionGroup } from 'react-transition-group';
 import Utilities from "../../../shared/utilities";
 import Carousel from "../../../shared/components/Carousel";
 import rightArrow from "../../../assets/images/right-arrow.svg";
 import ShimmerEffect from "../../../shared/components/ShimmerEffect";
+import "./style.scss";
 
 const CarouselConatiner = props => {
   const element = useRef(null);
@@ -52,7 +54,7 @@ const CarouselConatiner = props => {
   }
 
   return (
-    <div ref={element}>
+    <div ref={element} className="carousel-container">
       <section className={props.classStr}>
         <div className="container-fluid">
           <div className="section-top-wrapper">
@@ -65,15 +67,27 @@ const CarouselConatiner = props => {
               </Link>
             </div>
           </div>
-          {loading ? (
+          <CSSTransitionGroup
+                    transitionName="shimmer-carousel"
+                    transitionEnter={true}
+                    transitionEnterTimeout={1000}
+                    transitionLeaveTimeout={1000}>
+          {loading && (
             <ShimmerEffect
               propCls="shm_col-xs-6 col-md-2"
               height={298}
               count={6}
               type="TILE"
             />
-          ) : (
-            <>
+          )}
+          </CSSTransitionGroup>
+          <CSSTransitionGroup
+                    transitionName="shimmer-carousel"
+                    transitionEnter={true}
+                    transitionEnterTimeout={1000}
+                    transitionLeaveTimeout={1000}>
+
+          {!loading &&
               <Carousel
                 imgArray={data}
                 arrows={props.arrows}
@@ -82,8 +96,8 @@ const CarouselConatiner = props => {
                 autoplay={props.autoplay}
                 infinite={props.infinite}
               />
-            </>
-          )}
+          }
+          </CSSTransitionGroup>
         </div>
       </section>
     </div>
