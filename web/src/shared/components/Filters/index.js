@@ -22,10 +22,8 @@ function SearchFilter(props) {
 
   // Text Search
   const textFilter = e => {
-    if (e.target.value !== '') {
       setSearch(e.target.value);
       props.handleFilters({filteredSearch: e.target.value});
-    }
   };
 
   return (

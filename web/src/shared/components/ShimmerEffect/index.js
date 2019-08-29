@@ -190,7 +190,7 @@ export default class ShimmerEffect extends Component {
 
     // if (!props.visible) return null;
     return (
-      <div className="shm_row">
+      <div className="shim-container shm_row">
       {shimmer}
         {/* {props.visible ? (props.type == 'list' ? listShimmer() : (props.type == 'grid' ? gridShimmer() : shimmer())) : ''} */}
         {/* {props.detail ? props.homepage ? bannerShimmer() : detailShimmer() : listShimmer()} */}
