@@ -209,8 +209,8 @@ h2 {
 
 .container-fluid {
 	@media(min-width: 767px) {
-		padding-right: 40px;
-		padding-left: 40px;
+		padding-right: 50px;
+		padding-left: 50px;
 	}
 	@media(max-width: 1023px) {
 		padding-right: 30px;
@@ -222,7 +222,6 @@ h2 {
 		padding-left: 10px;
 	}
 }
-
 // Slider
 .slick-track{
   margin: 0;
@@ -245,6 +244,19 @@ button,
     overflow: hidden;
     border: 1px solid transparent;
     transition: 0.8s all;
+	/*&::after {
+		height: calc(100% + 50px);
+		position: absolute;
+		content: "";
+		width: 20%;
+		background-color: rgb(255, 255, 255);
+		left: -20px;
+		opacity: 0;
+		transform: rotate(35deg);
+		transition: 0.5s left, 0.5s opacity;
+		filter: blur(10px);
+		top: -30px;
+	}*/
 	&:hover {
         background-color: #FFF;
         color: #0098ff;
@@ -258,12 +270,6 @@ button,
 	}
 }
 
-// Wrapper 
-.wrapper{
-    overflow: hidden;
-} 
-
-// Overlay Background 
 .dance-overlay {
 	background: linear-gradient(180deg, rgba(242, 177, 25, 0) -5%, #5F4F8B 70%);
 }

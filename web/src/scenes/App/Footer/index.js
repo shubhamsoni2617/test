@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link } from 'react-router-dom';
+import { a } from 'react-router-dom';
 import './style.scss';
 import appleImage from '../../../assets/images/apple.svg';
 import sendImage from '../../../assets/images/send.svg';
@@ -46,7 +46,7 @@ const Footer = () => {
                               <a>Where to Buy Tickets</a>
                            </li>
                            <li>
-                              <Link to="/agents">Locate an Agent</Link>
+                              <a>Locate an Agent</a>
                            </li>
                            <li>
                               <a>Locate a Venue</a>

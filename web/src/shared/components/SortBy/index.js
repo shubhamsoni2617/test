@@ -7,7 +7,7 @@ export default class SortBy extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            sort: { tag: this.props.defaultSortType, active: '' },
+            sort: { tag: 'Date', active: '' },
             showSortMenu: false
         }
     }
