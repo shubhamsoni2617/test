@@ -9,6 +9,7 @@ import Attraction from "../Attraction";
 import WhereBuyTickets from "../WhereBuyTickets";
 import TermsConditions from "../TermsConditions";
 import PrivacyPolicy from "../PrivacyPolicy";
+import GiftVouchers from "../GiftVouchers";
 
 const routes = [
   {
@@ -64,6 +65,11 @@ const routes = [
   {
     path: "/privacy",
     component: PrivacyPolicy,
+    exact: true
+  },
+  {
+    path: "/gift-vouchers",
+    component: GiftVouchers,
     exact: true
   },
   {
