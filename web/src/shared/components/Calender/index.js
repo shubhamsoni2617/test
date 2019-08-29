@@ -97,7 +97,7 @@ const Calender = (props) => {
               <img src={crossArrowWhite} alt="" className="active" />
             </a>
             <Link
-              to={'/events/search?s=' + moment(fromDateValue).format('YYYY-MM-DD') + '--' + moment(toDateValue).format('YYYY-MM-DD')}
+              to={'/events/search?s=' + moment(fromDateValue).format('DD-MM-YYYY') + '--' + moment(toDateValue).format('DD-MM-YYYY')}
               className="cal-apply-btn active"
               onClick={() => {
                 props.handleEnter(false)
