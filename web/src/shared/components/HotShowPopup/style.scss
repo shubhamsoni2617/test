@@ -111,7 +111,7 @@
         display: flex;
         flex-wrap: wrap;
         width: 100%;
-        align-items: flex-start;
+        align-items: baseline;
         .hotshow-block{
             padding: 3px;
             background-color: #ffffff;
@@ -135,8 +135,7 @@
                 }
             }
             .hotshow-content{
-                padding: 0 20px;
-                margin: 20px 0;
+                padding: 20px;
                 max-height: 360px;
                 overflow: auto;
                 @media(max-width: 860px){
@@ -245,7 +244,6 @@
             display: flex;
             flex-wrap: wrap;
             padding: 14px;
-            align-items: flex-start;
             @media(max-width: 991px){
                 padding: 3px;
             }

@@ -3,19 +3,6 @@
 	padding: 57px 0px 0px;
 	@media(max-width: 991px) {
 		padding: 20px 0px 0px;
-    }
-    .container{
-        @media (min-width: 1200px){
-            max-width: 1020px;
-        }
-    }
-	.shm_row{
-        justify-content: space-between;
-        >div{
-            flex: 0 0 50%;
-        }
-        .shm_col-sm-12{
-            flex: 0 0 100%;
-        }
-    }
+	}
+	
 }

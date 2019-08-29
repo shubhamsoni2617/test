@@ -4,50 +4,39 @@ import Image from '../../components/Image';
 import Utilities from '../../utilities';
 
 export default class Card extends Component {
+  
+  constructor(props){
+    super(props);
+  }
 
-    constructor(props) {
-        super(props);
-    }
+  componentDidMount () {
+  } 
 
-    componentDidMount() {
-    }
-
-    render() {
-        let { cardData } = this.props;
-        let category;
-        if (cardData && cardData.hasOwnProperty('primary_genre')) {
-            category = cardData.primary_genre;
-        } else if (cardData && cardData.hasOwnProperty('category')) {
-            category = cardData.category.name;
-        }
-        return (
-            <div className={this.props.cardClass.cardBlock}>
-                {this.props.cardData && this.props.cardData.is_featured == '1' && <span className="featured-tag">Featured</span>}
-                <div className="event-img">
-                    <Image src={this.props.cardData.thumb_image} />
+  render() {
+    return (
+        <div className="event-block">
+            <div className="event-img">
+                <Image src={this.props.eventsData.thumb_image} />
+            </div>
+            <div className="event-details">
+                <div className="event-detail-prime">
+                    <span className={'category '+ this.props.eventsData.primary_genre.toLowerCase()}>{this.props.eventsData.primary_genre}</span>
+                    <h3 className="item-title">{Utilities.showLimitedChars(this.props.eventsData.title, 70)} {}
+                    </h3>
+                    <p className="event-date">{this.props.eventsData.event_date}</p>
+                    <p className="event-place">{this.props.eventsData.venue_name}</p>
                 </div>
-                <div className="event-details">
-                    <div className="event-detail-prime">
-                        <span className={`category ${category.toLowerCase()}`}>
-                            {category}
-                        </span>
-                        <h3 className="item-title">{Utilities.showLimitedChars(this.props.cardData.title, 70)} {}
-                        </h3>
-                        {this.props.cardData.synopsis && <span dangerouslySetInnerHTML={{__html:Utilities.showLimitedChars(this.props.cardData.synopsis, 70)}}></span>}
-                        <p className="event-date">{this.props.cardData.event_date}</p>
-                        <p className="event-place">{this.props.cardData.venue_name}</p>
+                <div className="price-event">
+                    <div className="price">
+                        <span>{this.props.eventsData.event_status}</span>
+                        <p>{(this.props.eventsData.price)? this.props.eventsData.price : ' '}</p>
                     </div>
-                    <div className="price-event">
-                        <div className="price">
-                            <span>{this.props.cardData.event_status}</span>
-                            <p>{(this.props.cardData.price) ? this.props.cardData.price : ' '}</p>
-                        </div>
-                        <button type="button" className={this.props.cardClass.cardButton}>
-                            Buy Tickets
-                        </button>
-                    </div>
+                    <button type="button" className="btn buy-btn">
+                        Buy Tickets
+                    </button>
                 </div>
             </div>
-        )
-    }
+        </div>
+    )
+  }
 }
