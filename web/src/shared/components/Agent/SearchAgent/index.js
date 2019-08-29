@@ -15,7 +15,6 @@ import download from '../../../../assets/images/download-blue.svg';
 import downloadOrange from '../../../../assets/images/download-orange.svg';
 import eventImg from '../../../../assets/images/explore.png';
 import downArrow from '../../../../assets/images/downarrow-blue.svg';
-import Carousel from '../../../../shared/components/Carousel';
 import AgentService from '../../../services/AgentService';
 
 const SearchAgent = (props) => {
@@ -28,7 +27,7 @@ const SearchAgent = (props) => {
   const [openPopUp, setOpenUp] = useState(false);
   const [attraction, setAttraction] = useState(false);
   const [onGoingEvents, setOngoingEvents] = useState(false);
-  const [specificEvents, setSpecificEvents] = useState([]);
+  const [specificEvent, setSpecificEvent] = useState([]);
 
 
   const handleSubmit = (event) => {
@@ -40,27 +39,64 @@ const SearchAgent = (props) => {
     setFilter(value);
   }
 
-  const showPopUp = async(detail) => {
+  const showPopUp = (detail) => {
     if (venue) {
       const params = {
         venue_id: detail.id
       };
-      let res=await AgentService.getVenueSpecificEvents(params);
-      let data=await res.data;
-      // AgentService.getVenueSpecificEvents(params)
-      //   .then((res) => {
-      //     setSpecificEvents(res.data.data)
-      //   })
-      //   .catch((err) => {
-      //     console.log(err)
-      //   })
-
-      detail.specificEvent=data;
-      console.log(detail,"specificEvents")
+      if (params.venue_id) {
+        setPopUpDetail(detail);
+        setSpecificEvent([]);
+        var timeleft = 3;
+        var downloadTimer = setInterval(() => {
+          timeleft -= 1;
+          if (timeleft <= 0) {
+            AgentService.getVenueSpecificEvents(params)
+              .then((res) => {
+                if (res.data && res.data.data) {
+                  detail.specificEvent = res.data.data;
+                  let specificEvent = res.data.data;
+                  setSpecificEvent(specificEvent);
+                  setPopUpDetail(detail);
+                }
+              })
+              .catch((err) => {
+                console.log(err)
+              })
+            clearInterval(downloadTimer);
+          }
+        }, 1000);
+        // AgentService.getVenueSpecificEvents(params)
+        //   .then((res) => {
+        //     if (res.data && res.data.data) {
+        //       detail.specificEvent = res.data.data;
+        //       let specificEvent = res.data.data;
+        //       setSpecificEvent(specificEvent);
+        //       setPopUpDetail(detail);
+        //     }
+        //   })
+        //   .catch((err) => {
+        //     console.log(err)
+        //   })
+        handleActivePopUp();
+      }
+    } else {
+      setPopUpDetail(detail);
+      handleActivePopUp();
     }
-    // console.log(specificEvents, "venue-specific-events");
+  }
 
-    setPopUpDetail(detail);
+  const startTimer = () => {
+    var timeleft = 3;
+    var downloadTimer = setInterval(() => {
+      console.log(timeleft, "timeleft")
+      timeleft -= 1;
+      if (timeleft <= 0)
+        clearInterval(downloadTimer);
+    }, 1000);
+  };
+
+  const handleActivePopUp = () => {
     if (activePopUpRef.current) {
       if (openPopUp) {
         activePopUpRef.current.classList.remove("active");
@@ -193,33 +229,32 @@ const SearchAgent = (props) => {
                       <p>{venue ? popUpDetail.seating_capacity : popUpDetail.reminder}</p>
                     </div>
                   </div>
-                  {venue ? <div className="agent-info">
-                    <div className="icon">
-                      <img src={event} alt="icon" />
+                  {venue && popUpDetail.specificEvent && popUpDetail.specificEvent.length > 0 ?
+                    <div className="agent-info">
+                      <div className="icon">
+                        <img src={event} alt="icon" />
+                      </div>
+                      <div className="details">
+                        <h3>Currently Showing</h3>
+                        <ul className="currently-list">
+                          {specificEvent && specificEvent.length > 0 ?
+                            specificEvent.map((elem, index) => {
+                              return (
+                                <li key={index}>
+                                  <img src={elem.thumb_image} alt="specific-event" />
+                                  <p>{elem.title}</p>
+                                </li>
+                              )
+                            })
+                            :
+                            <p>Loading...</p>
+                          }
+                        </ul>
+                      </div>
                     </div>
-                    <div className="details">
-                      <h3>Currently Showing</h3>
-                      <ul className="currently-list">
-                        <li>
-                          <img src={eventImg} alt="" />
-                          <p>SSO Red Balloon Series: Rhythums, Rites </p>
-                        </li>
-                        <li>
-                          <img src={eventImg} alt="" />
-                          <p>SSO Red Balloon Series: Rhythums, Rites </p>
-                        </li>
-                        <li>
-                          <img src={eventImg} alt="" />
-                          <p>SSO Red Balloon Series: Rhythums, Rites </p>
-                        </li>
-                        <li>
-                          <img src={eventImg} alt="" />
-                          <p>SSO Red Balloon Series: Rhythums, Rites </p>
-                        </li>
-                      </ul>
-                      {/* <Carousel imgArray={''} arrows={true} slidesToShow={6} slidesToScroll={6} dots={false} /> */}
-                    </div>
-                  </div> : null}
+                    :
+                    null
+                  }
                   {popUpDetail.festive_hours &&
                     <div className="agent-info">
                       <div className="icon">

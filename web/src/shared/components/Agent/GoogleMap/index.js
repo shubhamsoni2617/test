@@ -65,9 +65,9 @@ const GoogleMap = (props) => {
                 id={elem.id}
                 address={elem.address}
                 imgPath={elem.image}
-                // icon={{
-                //   url: venue ? require("../../../../../src/assets/images/pin.svg") : null
-                // }}
+              // icon={{
+              //   url: venue ? require("../../../../../src/assets/images/pin.svg") : null
+              // }}
               />
             )
           })

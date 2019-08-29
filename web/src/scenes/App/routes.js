@@ -7,28 +7,30 @@ import PageNotFound from '../PageNotFound/index';
 import Agents from '../Agents';
 import Attraction from '../Attraction'
 import Venues from '../Venues';
+import WhereBuyTickets from "../WhereBuyTickets";
+import GiftVouchers from "../GiftVouchers";
 
-const routes =  [
+const routes = [
   {
-    path: '/',
+    path: "/",
     exact: true,
-    component: Home,
+    component: Home
   },
   {
-    path: '/events/search',
-    exact : true,
+    path: "/events/search",
+    exact: true,
+    component: Events
+  },
+  {
+    path: "/events/:icc",
+    exact: true,
+    component: EventsDetail
+  },
+  {
+    path: "/events",
     component: Events,
-  },
-  {
-    path: '/events/:icc',
-    exact : true,
-    component: EventsDetail,
-  },
-  {
-    path: '/events',
-    component: Events,
-    exact : true,
-    fetchInitialData: (path = '') => HomeService.getData()
+    exact: true,
+    fetchInitialData: (path = "") => HomeService.getData()
   },
   {
     path: '/agents',
@@ -36,19 +38,28 @@ const routes =  [
     exact : true,
   },
   {
-    path: '/promotions/:promoId',
-    component: Promotions,
+    path: "/promotions/:promoId",
+    component: Promotions
   },
   {
-    path: '/promotions',
-    exact : true,
-    component: Promotions,
+    path: "/promotions",
+    exact: true,
+    component: Promotions
   },
-
   {
-    path: '/attraction',
+    path: "/where-to-buy-tickets",
+    exact: true,
+    component: WhereBuyTickets
+  },
+  {
+    path: "/attraction",
     component: Attraction,
-    exact : true
+    exact: true
+  },
+  {
+    path: "/gift-vouchers",
+    component: GiftVouchers,
+    exact: true
   },
   {
     path: '/venues',
@@ -59,6 +70,6 @@ const routes =  [
     path : "*",
     component: PageNotFound
   }
-]
+];
 
-export default routes
+export default routes;
