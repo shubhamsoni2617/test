@@ -3,55 +3,57 @@ import { CSSTransitionGroup } from "react-transition-group";
 
 const FilterGrid = props => {
   const [limit, setLimit] = useState(5);
-  const [activeClass, setActiveClass] = useState("");
-  const [data, setData] = useState([]);
-
-  useEffect(() => {
-    let data = [...props.data];
-    setData(data);
-  }, [props.data]);
-
-  const selectAll = (status) => {
-    let items = [];
-    if (status) items = [...props.data].map(item => item.id);
+  const [activeClass, setActiveClass] = useState('');
+  const [genreData, setGenreData] = useState(props.genreData);
+  //Genres
+  const checkUncheckAllGenre = status => {
+    let genreData = props.genreData;
+    let genreIds = [];
+    genreData.map(genre => {
+      genre.isChecked = status;
+      genreIds.push(genre.id);
+    });
+    // this.setState({
+    //   genreData: genreData,
+    //   checkUncheckGnereActiveClass: status
+    // });
     setActiveClass(status);
-    let newFilterObject = {};
-    newFilterObject[props.category] = items;
-    props.handleFilters(newFilterObject);
+    if (!status) {
+      genreIds = [];
+    }
+    props.handleFilters("genre-check-uncheck", genreIds);
   };
 
-  const toggle = status => {
+  const showMoreLessGenre = status => {
     if (status) {
-      setLimit(props.data.length);
+      setLimit(props.genreData.length);
     } else {
       setLimit(5);
     }
   };
 
-  const onChange = (e, key) => {
-    let newFilterValue = [...props.selectedFilter];
-    if(e.target.checked){
-      newFilterValue.push(data[key].id);
-    }else{
-      newFilterValue.splice(key, 1)
-    }
-    let newFilterObject = {};
-    newFilterObject[props.category] = newFilterValue;
-    props.handleFilters(newFilterObject);
+  const checkUnckeckGenre = (e, key) => {
+    let genreData = props.genreData;
+    genreData[key].isChecked = e.target.checked;
+    setGenreData(genreData);
+    // this.setState({ genreData: genreData });
+    props.handleFilters("genre", genreData[key].id, e.target.checked);
   };
-
-  if(!data.length) return null;
 
   return (
     <div className="filter-grid">
       <div className="filter-grid-heading">
-        <h3>{props.title}</h3>
+        <h3>Genre</h3>
         <ul>
-          <li className={activeClass ? "active" : ""}>
-            <a onClick={() => selectAll(true)}>Select all</a>
+          <li
+            className={activeClass ? "active" : ""}
+          >
+            <a onClick={() => checkUncheckAllGenre(true)}>Select all</a>
           </li>
-          <li className={activeClass ? "" : "active"}>
-            <a onClick={() => selectAll(false)}>Clear</a>
+          <li
+            className={activeClass ? "" : "active"}
+          >
+            <a onClick={() => checkUncheckAllGenre(false)}>Clear</a>
           </li>
         </ul>
       </div>
@@ -63,39 +65,40 @@ const FilterGrid = props => {
             transitionEnterTimeout={300}
             transitionLeaveTimeout={300}
           >
-            {data.length &&
-              data.slice(0, limit).map((item, key) => {
-                let id = "item-" + item.id;
-                let isChecked = false;
-                if (props.selectedFilter && props.selectedFilter.indexOf(item.id) > -1) {
-                  isChecked = true;
-                }
+            {genreData.length &&
+              genreData.slice(0, limit).map((genre, key) => {
+                let id = "genre-" + genre.id;
                 return (
                   <li key={key}>
                     <input
-                      checked={isChecked}
-                      onChange={e => onChange(e, key)}
+                      checked={genre.isChecked}
+                      onChange={e => checkUnckeckGenre(e, key)}
                       className="styled-checkbox"
                       type="checkbox"
                       id={id}
                       value=""
                     />
                     <label htmlFor={id}>
-                      {item.name}{" "}
-                      {item.events_count ? `(${item.events_count})` : ""}
+                      {genre.name} ({genre.events_count})
                     </label>
                   </li>
                 );
               })}
           </CSSTransitionGroup>
         </ul>
-        {data.length > limit && (
-          <a onClick={() => toggle(true)} className="view-all-filters">
-            + {data.length - limit} More
+        {genreData.length > limit && (
+          <a
+            onClick={() => showMoreLessGenre(true)}
+            className="view-all-filters"
+          >
+            + {genreData.length - limit} More
           </a>
         )}
-        {data.length == limit && (
-          <a onClick={() => toggle(false)} className="view-all-filters">
+        {genreData.length == limit && (
+          <a
+            onClick={() => showMoreLessGenre(false)}
+            className="view-all-filters"
+          >
             Show Less
           </a>
         )}
