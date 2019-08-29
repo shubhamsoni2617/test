@@ -7,6 +7,7 @@ import PageNotFound from "../PageNotFound/index";
 import Agent from "../Agent";
 import Attraction from "../Attraction";
 import WhereBuyTickets from "../WhereBuyTickets";
+import Faq from "../Faq";
 
 const routes = [
   {
@@ -52,6 +53,11 @@ const routes = [
   {
     path: "/attraction",
     component: Attraction,
+    exact: true
+  },
+  {
+    path: "/faq/",
+    component: Faq,
     exact: true
   },
   {
