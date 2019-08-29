@@ -7,6 +7,7 @@ import PageNotFound from "../PageNotFound/index";
 import Agent from "../Agent";
 import Attraction from "../Attraction";
 import WhereBuyTickets from "../WhereBuyTickets";
+import GiftVouchers from "../GiftVouchers";
 import Faq from "../Faq";
 
 const routes = [
@@ -56,10 +57,11 @@ const routes = [
     exact: true
   },
   {
-    path: "/faq/",
-    component: Faq,
+    path: "/gift-vouchers",
+    component: GiftVouchers,
     exact: true
   },
+  { path: "/faq", exact: true, component: Faq },
   {
     path: "*",
     component: PageNotFound
