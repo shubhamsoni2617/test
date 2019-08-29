@@ -1,52 +1,69 @@
-import Home from '../Home'
-import Events from '../Events'
-import EventsDetail from '../Events/EventsDetail'
-import HomeService from '../../shared/services/HomeService'
-import Promotions from '../Promotions';
-import PageNotFound from '../PageNotFound/index';
-import Attraction from '../Attraction'
+import Home from "../Home";
+import Events from "../Events";
+import EventsDetail from "../Events/EventsDetail";
+import HomeService from "../../shared/services/HomeService";
+import Promotions from "../Promotions";
+import PageNotFound from "../PageNotFound/index";
+import Agent from "../Agent";
+import Attraction from "../Attraction";
+import WhereBuyTickets from "../WhereBuyTickets";
+import GiftVouchers from "../GiftVouchers";
 
-const routes =  [
+const routes = [
   {
-    path: '/',
+    path: "/",
     exact: true,
-    component: Home,
+    component: Home
   },
   {
-    path: '/events/search',
-    exact : true,
+    path: "/events/search",
+    exact: true,
+    component: Events
+  },
+  {
+    path: "/events/:icc",
+    exact: true,
+    component: EventsDetail
+  },
+  {
+    path: "/events",
     component: Events,
+    exact: true,
+    fetchInitialData: (path = "") => HomeService.getData()
   },
   {
-    path: '/events/:icc',
-    exact : true,
-    component: EventsDetail,
+    path: "/agents",
+    component: Agent,
+    exact: true
   },
   {
-    path: '/events',
-    component: Events,
-    exact : true,
-    fetchInitialData: (path = '') => HomeService.getData()
+    path: "/promotions/:promoId",
+    component: Promotions
   },
   {
-    path: '/promotions/:promoId',
-    component: Promotions,
+    path: "/promotions",
+    exact: true,
+    component: Promotions
   },
   {
-    path: '/promotions',
-    exact : true,
-    component: Promotions,
+    path: "/where-to-buy-tickets",
+    exact: true,
+    component: WhereBuyTickets
   },
-
   {
-    path: '/attraction',
+    path: "/attraction",
     component: Attraction,
-    exact : true
+    exact: true
   },
   {
-    path : "*",
+    path: "/gift-vouchers",
+    component: GiftVouchers,
+    exact: true
+  },
+  {
+    path: "*",
     component: PageNotFound
   }
-]
+];
 
-export default routes
+export default routes;
