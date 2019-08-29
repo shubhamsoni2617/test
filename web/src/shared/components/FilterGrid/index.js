@@ -12,15 +12,12 @@ const FilterGrid = props => {
   }, [props.data]);
 
   const selectAll = (status) => {
-    let ids = [];
-    if (status){
-      let items = [...props.data];
-      items.map(item => {
-        ids.push(item.id);
-      });
-    }
+    let items = [];
+    if (status) items = [...props.data].map(item => item.id);
     setActiveClass(status);
-    props.handleFilters(`${props.category}-check-uncheck`, ids);
+    let newFilterObject = {};
+    newFilterObject[props.category] = items;
+    props.handleFilters(newFilterObject);
   };
 
   const toggle = status => {
@@ -32,7 +29,15 @@ const FilterGrid = props => {
   };
 
   const onChange = (e, key) => {
-    props.handleFilters(props.category, data[key].id, e.target.checked);
+    let newFilterValue = [...props.selectedFilter];
+    if(e.target.checked){
+      newFilterValue.push(data[key].id);
+    }else{
+      newFilterValue.splice(key, 1)
+    }
+    let newFilterObject = {};
+    newFilterObject[props.category] = newFilterValue;
+    props.handleFilters(newFilterObject);
   };
 
   if(!data.length) return null;

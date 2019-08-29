@@ -22,9 +22,9 @@ function SearchFilter(props) {
 
   // Text Search
   const textFilter = e => {
-    if (e.target.value) {
+    if (e.target.value !== '') {
       setSearch(e.target.value);
-      props.handleFilters("search", e.target.value);
+      props.handleFilters({filteredSearch: e.target.value});
     }
   };
 
@@ -62,7 +62,7 @@ function PriceRangeFilter(props) {
       min: parseInt(priceConfig.min_price) || null,
       max: parseInt(priceConfig.max_price) || null
     });
-    if(reset) props.handleFilters("price-range", { min: "", max: "" }, "");
+    if(reset) props.handleFilters({filteredPriceRange: { min: "", max: "" }});
   };
 
   return (
@@ -89,7 +89,7 @@ function PriceRangeFilter(props) {
           value={priceRange}
           onChange={value => setPriceRange(value)}
           onChangeComplete={value =>
-            props.handleFilters("price-range", value, "")
+            props.handleFilters({filteredPriceRange: value})
           }
         />
       </div>
@@ -114,10 +114,10 @@ function DateRangeFilter(props) {
   }, [props.filteredDateRange]);
 
   const clearCalender = () => {
-      props.handleFilters("date-range", {
+      props.handleFilters({filteredDateRange: {
       from: "",
       to: ""
-    });
+    }});
   };
 
   const showFromMonth = () => {
@@ -141,10 +141,10 @@ function DateRangeFilter(props) {
   };
 
   const filterByDateRange = () => {
-    props.handleFilters("date-range", {
+    props.handleFilters({filteredDateRange: {
       from: moment(from).format("YYYY-MM-DD"),
       to: moment(to).format("YYYY-MM-DD")
-    });
+    }});
   };
 
   const modifiers = { start: from, end: to };
@@ -267,7 +267,7 @@ export default class Filters extends Component {
     if (!status) {
       venuesIds = [];
     }
-    this.props.handleFilters("venues-check-uncheck", venuesIds, status);
+    this.props.handleFilters({filteredVenues: venuesIds});
   };
 
   checkUncheckVenues = (e, key, isChild) => {
@@ -283,8 +283,15 @@ export default class Filters extends Component {
     } else {
       venuesData[key].isChecked = e.target.checked;
     }
-    this.setState({ venuesData: venuesData });
-    this.props.handleFilters("venues", venuesData[key].id, e.target.checked);
+    this.setState({ venuesData });
+
+    let filteredVenues = [...this.props.filteredVenues];
+    if(e.target.checked){
+      filteredVenues.push(venuesData[key].id);
+    }else{
+      filteredVenues.splice(key, 1)
+    }
+    this.props.handleFilters({filteredVenues});
   };
 
   setOpenVenuePanel = (status, ref) => {
@@ -311,14 +318,14 @@ export default class Filters extends Component {
           )}
           <FilterGrid
             title="Genre"
-            category="genre"
+            category="filteredGnere"
             handleFilters={handleFilters}
             data={this.props.genreData ? this.props.genreData : []}
             selectedFilter={filteredGnere}
           />
           <FilterGrid
             title="Tags"
-            category="tags"
+            category="filteredTags"
             handleFilters={handleFilters}
             data={filterConfig ? filterConfig.tags : []}
             selectedFilter={filteredTags}
@@ -328,7 +335,7 @@ export default class Filters extends Component {
           )} */}
           <FilterGrid
             title="Promotion"
-            category="promotions"
+            category="filteredPromotions"
             handleFilters={handleFilters}
             data={
               filterConfig

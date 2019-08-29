@@ -198,7 +198,6 @@ export default class Events extends Component {
       dateRange = dateRange.split("--");
       dateRange = { from: dateRange[0], to: dateRange[1] };
     }
-
     const payload = {
       first: 0,
       limit: 9,
@@ -207,13 +206,11 @@ export default class Events extends Component {
       start_date: reset ? '' : dateRange.from,
       end_date: reset ? '' : dateRange.to
     };
-
     return payload;
   };
 
   setInitialFilters({ genre, venue, start_date, end_date }) {
-    const dateRange =
-      start_date && end_date ? { from: start_date, to: end_date } : null;
+    const dateRange =  {from: start_date || "", to: end_date || "" };
     this.setState({
       queryParams: { genreId: genre, venueId: venue, dateRange: dateRange },
       filteredGnere: genre ? [genre] : [],
@@ -258,96 +255,96 @@ export default class Events extends Component {
   };
 
   handleFilters = (searchType, searchValue, isChecked) => {
-    let filteredPromotions = [...this.state.filteredPromotions];
-    let filteredVenues = [...this.state.filteredVenues];
-    let filteredTags = [...this.state.filteredTags];
-    let filteredSearch = this.state.filteredSearch;
-    let filteredGnere = [...this.state.filteredGnere];
-    let filteredPriceRange = { ...this.state.filteredPriceRange };
-    let filteredDateRange = { ...this.state.filteredDateRange };
-    let filteredSortType = this.state.filteredSortType;
-    let filteredSortOrder = this.state.filteredSortOrder;
+    // let filteredPromotions = [...this.state.filteredPromotions];
+    // let filteredVenues = [...this.state.filteredVenues];
+    // let filteredTags = [...this.state.filteredTags];
+    // let filteredSearch = this.state.filteredSearch;
+    // let filteredGnere = [...this.state.filteredGnere];
+    // let filteredPriceRange = { ...this.state.filteredPriceRange };
+    // let filteredDateRange = { ...this.state.filteredDateRange };
+    // let filteredSortType = this.state.filteredSortType;
+    // let filteredSortOrder = this.state.filteredSortOrder;
 
-    if (searchType == "promotions" && isChecked == true) {
-      filteredPromotions.push(searchValue);
-    } else if (searchType == "promotions" && isChecked == false) {
-      let index = filteredPromotions.indexOf(searchValue);
-      if (index > -1) filteredPromotions.splice(index, 1);
-    } else if (searchType == "venues" && isChecked == true) {
-      filteredVenues.push(searchValue);
-    } else if (searchType == "venues" && isChecked == false) {
-      let index = filteredVenues.indexOf(searchValue);
-      if (index > -1) filteredVenues.splice(index, 1);
-    } else if (searchType == "genre" && isChecked == true) {
-      filteredGnere.push(searchValue);
-    } else if (searchType == "genre" && isChecked == false) {
-      let index = filteredGnere.indexOf(searchValue);
-      if (index > -1) filteredGnere.splice(index, 1);
-    } else if (searchType == "tags" && isChecked == true) {
-      filteredTags.push(searchValue);
-    } else if (searchType == "tags" && isChecked == false) {
-      let index = filteredTags.indexOf(searchValue);
-      if (index > -1) filteredTags.splice(index, 1);
-    }
-    if (searchType == "search") {
-      filteredSearch = searchValue;
-    }
+    // if (searchType == "promotions" && isChecked == true) {
+    //   filteredPromotions.push(searchValue);
+    // } else if (searchType == "promotions" && isChecked == false) {
+    //   let index = filteredPromotions.indexOf(searchValue);
+    //   if (index > -1) filteredPromotions.splice(index, 1);
+    // } else if (searchType == "venues" && isChecked == true) {
+    //   filteredVenues.push(searchValue);
+    // } else if (searchType == "venues" && isChecked == false) {
+    //   let index = filteredVenues.indexOf(searchValue);
+    //   if (index > -1) filteredVenues.splice(index, 1);
+    // } else if (searchType == "genre" && isChecked == true) {
+    //   filteredGnere.push(searchValue);
+    // } else if (searchType == "genre" && isChecked == false) {
+    //   let index = filteredGnere.indexOf(searchValue);
+    //   if (index > -1) filteredGnere.splice(index, 1);
+    // } else if (searchType == "tags" && isChecked == true) {
+    //   filteredTags.push(searchValue);
+    // } else if (searchType == "tags" && isChecked == false) {
+    //   let index = filteredTags.indexOf(searchValue);
+    //   if (index > -1) filteredTags.splice(index, 1);
+    // }
+    // if (searchType == "search") {
+    //   filteredSearch = searchValue;
+    // }
 
-    switch (searchType) {
-      case "promotions-check-uncheck":
-        {
-          filteredPromotions = searchValue;
-        }
-        break;
-      case "genre-check-uncheck":
-        {
-          filteredGnere = searchValue;
-        }
-        break;
-      case "venues-check-uncheck":
-        {
-          filteredVenues = searchValue;
-        }
-        break;
-      case "tags-check-uncheck":
-        {
-          filteredTags = searchValue;
-        }
-        break;
-      case "price-range":
-        {
-          filteredPriceRange = searchValue;
-        }
-        break;
-      case "date-range":
-        {
-          filteredDateRange = searchValue;
-        }
-        break;
-      case "sort":
-      case "price":
-      case "date":
-      case "title": {
-        filteredSortType = searchType;
-        filteredSortOrder = searchValue;
-      }
-    }
-
+    // switch (searchType) {
+    //   case "promotions-check-uncheck":
+    //     {
+    //       filteredPromotions = searchValue;
+    //     }
+    //     break;
+    //   case "genre-check-uncheck":
+    //     {
+    //       filteredGnere = searchValue;
+    //     }
+    //     break;
+    //   case "venues-check-uncheck":
+    //     {
+    //       filteredVenues = searchValue;
+    //     }
+    //     break;
+    //   case "tags-check-uncheck":
+    //     {
+    //       filteredTags = searchValue;
+    //     }
+    //     break;
+    //   case "price-range":
+    //     {
+    //       filteredPriceRange = searchValue;
+    //     }
+    //     break;
+    //   case "date-range":
+    //     {
+    //       filteredDateRange = searchValue;
+    //     }
+    //     break;
+    //   case "sort":
+    //   case "price":
+    //   case "date":
+    //   case "title": {
+    //     filteredSortType = searchType;
+    //     filteredSortOrder = searchValue;
+    //   }
+    // }
     this.setState(
       {
         first: 0,
         limit: 9,
         totalRecords: 0,
         loader: true,
-        filteredPromotions,
-        filteredVenues,
-        filteredTags,
-        filteredSearch,
-        filteredGnere,
-        filteredPriceRange,
-        filteredDateRange,
-        filteredSortType,
-        filteredSortOrder
+        ...searchType
+        // filteredPromotions,
+        // filteredVenues,
+        // filteredTags,
+        // filteredSearch,
+        // filteredGnere,
+        // filteredPriceRange,
+        // filteredDateRange,
+        // filteredSortType,
+        // filteredSortOrder
       },
       () => {
         setTimeout(() => {
