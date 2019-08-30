@@ -20,6 +20,7 @@ const GoogleMap = (props) => {
   };
 
   const onMarkerClick = (props, marker, e) => {
+    console.log(props)
     setSelectedPlace(props);
     setActiveMarker(marker);
     setShowingInfoWindow(true);

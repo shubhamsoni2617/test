@@ -10,7 +10,7 @@ const CountryRegion = (props) => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    //setting country name in parent component
+    //set country name in parent component
     handleCountryName(country);
     let countryId;
     let regionId;

@@ -27,16 +27,19 @@ const Agent = (props) => {
       sort_type: "name",
       sort_order: "ASC"
     };
+    scrollToTop();
     fetchCountryNRegion();
     fetchAgentsNVenues(params);
-  }, [])
+  }, []);
 
+  const scrollToTop=()=>{
+    window.scrollTo(0,0);
+  }
   //Fetch countries & their respective regions
   const fetchCountryNRegion = () => {
     const eventSelection = venue ? AgentService.getVenuesCountryNRegion() : AgentService.getAgentsCountryNRegion();
     eventSelection
       .then((res) => {
-        console.log("fetchCountryNRegion", res);
         setCountryNRegion(res.data.data)
       })
       .catch((err) => {
@@ -46,7 +49,6 @@ const Agent = (props) => {
 
   //Fetch agents or venues based on selection event
   const fetchAgentsNVenues = (params) => {
-    // debugger
     if (params.region === undefined) {
       params.region = null;
     }
@@ -63,7 +65,6 @@ const Agent = (props) => {
     const eventSelection = venue ? AgentService.getVenues(params) : AgentService.getAgents(params);
     eventSelection
       .then((res) => {
-        console.log("fetchAgentsNVenues", res);
         setAgentList(res.data.data)
       })
       .catch((err) => {
@@ -71,12 +72,13 @@ const Agent = (props) => {
       })
   }
 
+  // fetch agents or venues after submission
   const submitCountryNRegion = (params) => {
     if (params.country) {
       fetchAgentsNVenues(params);
     }
   }
-
+  // filter file for selected country
   const filterCountryFile = (file) => {
     let filteredFile;
     countryNRegion && countryNRegion.filter((item) => {
@@ -87,24 +89,24 @@ const Agent = (props) => {
     setCountryFile(filteredFile);
   }
 
-  const showInfo = (e, selectedItem) => {
+  // set selected list data in parent component
+  const showInfo = (e, selectedItem,activePopUpRef) => {
+    if(activePopUpRef.current){
+      activePopUpRef.current.classList.remove("active");
+    }
     setSelectedItem(selectedItem);
   }
-
+  // set selected country in parent component
   const handleCountryName = (country) => {
     setCountryName(country);
   }
-
+  // set selected attracion in parent component
   const handleAttractionValue = (value) => {
     setAttractionValue(value)
   }
-
+  // set selected event in parent component
   const handleEventValue = (value) => {
     setEventValue(value)
-  }
-
-  const fetchVenueSpecificEvents=(data)=>{
-
   }
 
   return (

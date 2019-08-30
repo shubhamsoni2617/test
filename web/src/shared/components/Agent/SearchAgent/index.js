@@ -28,8 +28,7 @@ const SearchAgent = (props) => {
   const [attraction, setAttraction] = useState(false);
   const [onGoingEvents, setOngoingEvents] = useState(false);
   const [specificEvent, setSpecificEvent] = useState([]);
-  // let timer = null;
-
+  let timer;
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -39,55 +38,48 @@ const SearchAgent = (props) => {
     const { value } = event.target;
     setFilter(value);
   }
-  let timer;
 
+  // timer set when mouse-enter event occurs
+  const showPopUp = (detail) => {
+    handleActivePopUp();
+    const params = {
+      venue_id: detail.id
+    };
+    if (venue) {
+      timer = setTimeout(() => {
+        handleSpecificEvents(params, detail);
+      }, 600);
+    } else {
+      timer = setTimeout(() => {
+        setPopUpDetail(detail)
+      }, 600);
+    }
+  }
+
+  // timer cleared when mouse-leave event occurs
   const hidePopUp = (detail) => {
-    console.log("out")
     clearTimeout(timer);
     handleActivePopUp();
     setPopUpDetail(detail);
   }
 
-  const showPopUp = (detail) => {
-    handleActivePopUp();
-    if(venue){
-      const params = {
-        venue_id: detail.id
-      };
-      console.log(params)
-      timer = setTimeout(() => {
-        console.log("done");
-        setPopUpDetail(detail);
-      }, 1000)
-    }else{
-      setPopUpDetail(detail);
-    }
-    // if (venue) {
-      // const params = {
-      //   venue_id: detail.id
-      // };
-
-    //   if (params.venue_id) {
-    //     setPopUpDetail(detail);
-    //     setSpecificEvent([]);
-    //     var timer;
-    //     clearTimeout(timer);
-    //         timer = setTimeout(function(){
-    //           //  alert("hi");
-    //            handleActivePopUp();
-    //         }, 3000);
-    //     }
-
-    // } else {
-    // setPopUpDetail(detail);
-    // handleActivePopUp();
-    // }
+  //fetch specific-events data from api
+  const handleSpecificEvents = (params, detail) => {
+    AgentService.getVenueSpecificEvents(params)
+      .then((res) => {
+        if (res.data && res.data.data) {
+          detail.specificEvent = res.data.data;
+          let specificEvent = res.data.data;
+          setSpecificEvent(specificEvent);
+          setPopUpDetail(detail);
+        }
+      })
+      .catch((err) => {
+        console.log(err)
+      })
   }
 
-  const handleSpecificEvents=()=>{
-
-  }
-
+  //pop-up show and hide function
   const handleActivePopUp = () => {
     if (activePopUpRef.current) {
       if (openPopUp) {
@@ -166,7 +158,7 @@ const SearchAgent = (props) => {
             return (
               <li className="pop-up-container" key={index} onMouseEnter={() => showPopUp(item)} onMouseLeave={hidePopUp}>
                 <img src={downArrow} className="active-arrow" alt="Down Arrow" />
-                <div><strong>{item.name}</strong> <span><a onClick={(e) => { onClick(e, item) }}>shown On Map</a></span></div>
+                <div><strong>{item.name}</strong> <span><a onClick={(e) => { onClick(e, item, activePopUpRef) }}>shown On Map</a></span></div>
                 <div>{item.address},{item.country}</div>
                 <div
                   className={item.id === popUpDetail.id ? "pop-up-list active" : "pop-up-list"}
