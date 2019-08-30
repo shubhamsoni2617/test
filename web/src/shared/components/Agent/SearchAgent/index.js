@@ -41,20 +41,31 @@ const SearchAgent = (props) => {
   }
   let timer;
 
-  const hidePopUp = (detail) =>{
+  const hidePopUp = (detail) => {
+    console.log("out")
     clearTimeout(timer);
+    handleActivePopUp();
+    setPopUpDetail(detail);
   }
 
   const showPopUp = (detail) => {
-    setPopUpDetail(detail);
     handleActivePopUp();
-    timer = setTimeout(function(){
-      alert("hello")
-    }, 3000)
+    if(venue){
+      const params = {
+        venue_id: detail.id
+      };
+      console.log(params)
+      timer = setTimeout(() => {
+        console.log("done");
+        setPopUpDetail(detail);
+      }, 1000)
+    }else{
+      setPopUpDetail(detail);
+    }
     // if (venue) {
-    //   const params = {
-    //     venue_id: detail.id
-    //   };
+      // const params = {
+      //   venue_id: detail.id
+      // };
 
     //   if (params.venue_id) {
     //     setPopUpDetail(detail);
@@ -68,20 +79,14 @@ const SearchAgent = (props) => {
     //     }
 
     // } else {
-    //   setPopUpDetail(detail);
-    //   handleActivePopUp();
+    // setPopUpDetail(detail);
+    // handleActivePopUp();
     // }
   }
 
-  const startTimer = () => {
-    var timeleft = 3;
-    var downloadTimer = setInterval(() => {
-      console.log(timeleft, "timeleft")
-      timeleft -= 1;
-      if (timeleft <= 0)
-        clearInterval(downloadTimer);
-    }, 1000);
-  };
+  const handleSpecificEvents=()=>{
+
+  }
 
   const handleActivePopUp = () => {
     if (activePopUpRef.current) {
