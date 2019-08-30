@@ -28,6 +28,7 @@ const SearchAgent = (props) => {
   const [attraction, setAttraction] = useState(false);
   const [onGoingEvents, setOngoingEvents] = useState(false);
   const [specificEvent, setSpecificEvent] = useState([]);
+  // let timer = null;
 
 
   const handleSubmit = (event) => {
@@ -38,52 +39,38 @@ const SearchAgent = (props) => {
     const { value } = event.target;
     setFilter(value);
   }
+  let timer;
+
+  const hidePopUp = (detail) =>{
+    clearTimeout(timer);
+  }
 
   const showPopUp = (detail) => {
-    if (venue) {
-      const params = {
-        venue_id: detail.id
-      };
-      if (params.venue_id) {
-        setPopUpDetail(detail);
-        setSpecificEvent([]);
-        var timeleft = 3;
-        var downloadTimer = setInterval(() => {
-          timeleft -= 1;
-          if (timeleft <= 0) {
-            AgentService.getVenueSpecificEvents(params)
-              .then((res) => {
-                if (res.data && res.data.data) {
-                  detail.specificEvent = res.data.data;
-                  let specificEvent = res.data.data;
-                  setSpecificEvent(specificEvent);
-                  setPopUpDetail(detail);
-                }
-              })
-              .catch((err) => {
-                console.log(err)
-              })
-            clearInterval(downloadTimer);
-          }
-        }, 1000);
-        // AgentService.getVenueSpecificEvents(params)
-        //   .then((res) => {
-        //     if (res.data && res.data.data) {
-        //       detail.specificEvent = res.data.data;
-        //       let specificEvent = res.data.data;
-        //       setSpecificEvent(specificEvent);
-        //       setPopUpDetail(detail);
-        //     }
-        //   })
-        //   .catch((err) => {
-        //     console.log(err)
-        //   })
-        handleActivePopUp();
-      }
-    } else {
-      setPopUpDetail(detail);
-      handleActivePopUp();
-    }
+    setPopUpDetail(detail);
+    handleActivePopUp();
+    timer = setTimeout(function(){
+      alert("hello")
+    }, 3000)
+    // if (venue) {
+    //   const params = {
+    //     venue_id: detail.id
+    //   };
+
+    //   if (params.venue_id) {
+    //     setPopUpDetail(detail);
+    //     setSpecificEvent([]);
+    //     var timer;
+    //     clearTimeout(timer);
+    //         timer = setTimeout(function(){
+    //           //  alert("hi");
+    //            handleActivePopUp();
+    //         }, 3000);
+    //     }
+
+    // } else {
+    //   setPopUpDetail(detail);
+    //   handleActivePopUp();
+    // }
   }
 
   const startTimer = () => {
@@ -172,7 +159,7 @@ const SearchAgent = (props) => {
         {
           filteredData && filteredData.map((item, index) => {
             return (
-              <li className="pop-up-container" key={index} onMouseEnter={() => showPopUp(item)} onMouseLeave={showPopUp}>
+              <li className="pop-up-container" key={index} onMouseEnter={() => showPopUp(item)} onMouseLeave={hidePopUp}>
                 <img src={downArrow} className="active-arrow" alt="Down Arrow" />
                 <div><strong>{item.name}</strong> <span><a onClick={(e) => { onClick(e, item) }}>shown On Map</a></span></div>
                 <div>{item.address},{item.country}</div>
