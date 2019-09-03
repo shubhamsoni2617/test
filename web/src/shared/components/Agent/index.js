@@ -112,7 +112,6 @@ const Agent = (props) => {
   }
 
   const handleMapClick = (event) => {
-    console.log(event,"event")
     setMapClick(event);
   }
 
