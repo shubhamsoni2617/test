@@ -205,8 +205,8 @@ function DateRangeFilter(props) {
           </span>
         </div>
         {from && to && (
-          <a onClick={filterByDateRange} class="cal-apply-btn active">
-            <img src={tickWhite} class="active" alt="tick" />
+          <a onClick={filterByDateRange} className="cal-apply-btn active">
+            <img src={tickWhite} className="active" alt="tick" />
           </a>
         )}
       </div>

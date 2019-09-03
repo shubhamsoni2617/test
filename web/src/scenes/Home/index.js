@@ -64,7 +64,7 @@ class Home extends Component {
         />
         <HotShowPopup />
         <div className={`banner`}>
-          <img class={`main-image ${this.state.imageUrl ? 'show-image' : ''}`} src={primeSlider} alt="prime Slider" />
+          <img className={`main-image ${this.state.imageUrl ? 'show-image' : ''}`} src={primeSlider} alt="prime Slider" />
         </div>
         <TopPics />
         <section className="gift-cart">
