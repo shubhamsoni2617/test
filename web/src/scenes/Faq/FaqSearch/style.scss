@@ -1,65 +1,37 @@
-.find-an-agent {
-  background: url("../../././../assets/images/agent-banner.png") no-repeat;
-  height: 200px;
-  @media (max-width: 992px) {
-    height: auto;
-  }
-  .authorised-agent {
-    padding: 45px 0 40px;
-    font-size: 30px;
-    font-family: "Montserrat", sans-serif;
-    color: #fff;
-    display: block;
-    font-weight: 600;
-    @media (max-width: 767px) {
-      line-height: 30px;
-      padding: 25px 0;
-    }
-  }
-  form {
-    @media (max-width: 992px) {
-      background: #104065;
-      padding: 25px;
-    }
-  }
-  .find-agent-form {
-    margin: 0 auto;
-    width: 640px;
-    display: flex;
-    background: #fff;
-    @media (max-width: 992px) {
-      flex-direction: column;
-      background: none;
-      margin: 0;
-      width: 100%;
-    }
-    .form-control {
-      border: none;
-      border-radius: 0;
-      box-shadow: 0 0 0 #ffff inset;
-      height: 38px !important;
-      font-size: 15px;
-      font-weight: 500;
-      color: #343434;
-      &:first-child {
-        border-right: 2px solid rgba(52, 52, 52, 0.21);
-      }
-      @media (max-width: 992px) {
-        margin-bottom: 10px;
-      }
-    }
-    .agent-val {
-      padding-top: 8px;
-      text-align: left;
-    }
-    .go-btn {
-      flex: 0 0 55px;
-      font-size: 16px;
-      font-family: "Montserrat", sans-serif;
-      font-weight: 600;
-      @media (max-width: 992px) {
-        flex: 0 0 40px;
-      }
-    }
-  }
+.inputAuto {
+  border: 1px solid #999;
+  padding: 0.5rem;
+  width: 300px;
+}
+
+.no-suggestions {
+  color: #999;
+  padding: 0.5rem;
+}
+
+.suggestions {
+  border: 1px solid #999;
+  border-top-width: 0;
+  list-style: none;
+  margin-top: 0;
+  max-height: 143px;
+  overflow-y: auto;
+  padding-left: 0;
+  width: calc(300px + 1rem);
+}
+
+.suggestions li {
+  padding: 0.5rem;
+}
+
+.suggestion-active,
+.suggestions li:hover {
+  background-color: #008f68;
+  color: #fae042;
+  cursor: pointer;
+  font-weight: 700;
+}
+
+.suggestions li:not(:last-of-type) {
+  border-bottom: 1px solid #999;
 }

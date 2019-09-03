@@ -2,6 +2,8 @@
   display: block;
   width: 100%;
   padding-bottom: 13px;
+  padding-bottom: 30px;
+
   @media (max-width: 991px) {
     padding-bottom: 30px;
   }
@@ -10,9 +12,15 @@
   }
   .nav-tabs {
     display: flex;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     justify-content: space-between;
     border-bottom: 5px solid rgba(52, 52, 52, 0.1);
+    overflow-x: auto;
+    justify-content: normal;
+    border-bottom: none;
+    padding-left: 0px;
+    padding-right: 0px;
+
     @media (max-width: 991px) {
       justify-content: normal;
       border-bottom: none;
@@ -44,9 +52,12 @@
       line-height: 19px;
       font-weight: normal;
       border: none;
-      position: relative;
-      padding: 9px 30px;
+      position: absolute;
+      padding: 0 24px;
+      // padding: 9px 30px;
       transition: 0.2s color;
+      border-bottom: 5px solid rgba(52, 52, 52, 0.1);
+
       cursor: pointer;
       @media (max-width: 991px) {
         border-bottom: 5px solid rgba(52, 52, 52, 0.1);

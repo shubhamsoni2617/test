@@ -1,39 +1,34 @@
-import React, { Fragment } from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
 const FaqCategory = props => {
+  const [id, setId] = useState(props.id);
+  console.log("dhhsjkhd", props.id);
   let param = "About Us";
   let final = { a: `/faq/${param.replace(/\s/g, "-").toLowerCase()}` };
+
   return (
-    <section className="footer">
+    <section className="promotions-nav">
       <div className="container-fluid">
-        <div className="footer-top">
-          <div className="footer-links">
-            <h3>Our Company</h3>
-            <ul>
-              <li>
-                <Link to="faq/about/1" onClick={() => props.onIdChange(1)}>
-                  About Us
+        <div className="nav-tabs">
+          <ul>
+            {props.categories.map(category => {
+              return (
+                <Link
+                  key={category.id}
+                  className={
+                    props.id === category.id
+                      ? "nav-item nav-link active"
+                      : "nav-item nav-link"
+                  }
+                  to={`/faq/${category.name.replace(/\s/g, "-").toLowerCase()}`}
+                  onClick={() => props.onIdChange(category.id)}
+                >
+                  {category.name}
                 </Link>
-              </li>
-              <li>
-                <Link to="/faq/sell/2" onClick={() => props.onIdChange(2)}>
-                  Sell with Us
-                </Link>
-              </li>
-              <li>
-                <Link to="/faq/ticket/3" onClick={() => props.onIdChange(3)}>
-                  Ticketing Technology
-                </Link>
-              </li>
-              <li>
-                <Link to="/faq/4">Partner with Us</Link>
-              </li>
-              <li>
-                <Link to="/faq/5">Careers</Link>
-              </li>
-            </ul>
-          </div>
+              );
+            })}
+          </ul>
         </div>
       </div>
     </section>
