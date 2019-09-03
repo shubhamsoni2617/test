@@ -3,15 +3,21 @@ import './style.scss';
 
 const CountryRegion = (props) => {
 
-  const { countryNRegion, onSubmit, filterCountryFile, handleCountryName, venue } = props;
+  const { countryNRegion, onSubmit, filterCountryFile, handleCountryName, venue, handleMapClick } = props;
 
   const [country, setCountry] = useState("Singapore");
   const [region, setRegion] = useState("All locations");
+  const [toggleMapCondition, setToggleMapCondition] = useState(true);
+
 
   const handleSubmit = (event) => {
     event.preventDefault();
     //set country name in parent component
     handleCountryName(country);
+    // set map click event in parent component
+    handleMapClick(toggleMapCondition);
+
+    setToggleMapCondition(!toggleMapCondition);
     let countryId;
     let regionId;
     countryNRegion.map((elem) => {

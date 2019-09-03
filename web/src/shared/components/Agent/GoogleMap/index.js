@@ -6,7 +6,7 @@ import DirectionIcon from '../../../../assets/images/direction.png';
 
 const GoogleMap = (props) => {
 
-  const { google, multipleMarker, selectedItem, venue, zoom } = props;
+  const { google, multipleMarker, selectedItem, venue, zoom, mapClick } = props;
 
   const [showingInfoWindow, setShowingInfoWindow] = useState(false);
   const [activeMarker, setActiveMarker] = useState({});
@@ -38,8 +38,13 @@ const GoogleMap = (props) => {
 
   useEffect(() => {
     setSelectedPlace({});
-    // setActiveMarker({})
+    // setActiveMarker({});
+    setShowingInfoWindow(true);
   }, [selectedItem.id])
+
+  useEffect(()=>{
+    setShowingInfoWindow(false);
+  },[mapClick])
 
   if (!google) {
     return <div>Loading...</div>;
@@ -94,6 +99,7 @@ const GoogleMap = (props) => {
         </Map>
         :
         <Map google={google}
+          onClick={onMapClicked}
           style={{ width: '100%', height: '600px', position: 'relative' }}
           zoom={venue && selectedItem.id ? zoom : (selectedItem.id ? 11 : 11)}
           initialCenter={{
@@ -119,7 +125,7 @@ const GoogleMap = (props) => {
           }
           {selectedItem.id ?
             <InfoWindow
-              visible={true}
+              visible={showingInfoWindow}
               position={{
                 lat: selectedItem.latitude,
                 lng: selectedItem.longitude

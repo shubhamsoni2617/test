@@ -48,11 +48,11 @@ const SearchAgent = (props) => {
     if (venue) {
       timer = setTimeout(() => {
         handleSpecificEvents(params, detail);
-      }, 600);
+      }, 1000);
     } else {
       timer = setTimeout(() => {
         setPopUpDetail(detail)
-      }, 600);
+      }, 1000);
     }
   }
 

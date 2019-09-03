@@ -19,6 +19,8 @@ const Agent = (props) => {
   const [countryName, setCountryName] = useState('');
   const [attractionValue, setAttractionValue] = useState(undefined);
   const [eventValue, setEventValue] = useState(undefined);
+  const [mapClick, setMapClick] = useState(true);
+
 
   useEffect(() => {
     const params = {
@@ -32,8 +34,8 @@ const Agent = (props) => {
     fetchAgentsNVenues(params);
   }, []);
 
-  const scrollToTop=()=>{
-    window.scrollTo(0,0);
+  const scrollToTop = () => {
+    window.scrollTo(0, 0);
   }
   //Fetch countries & their respective regions
   const fetchCountryNRegion = () => {
@@ -90,8 +92,8 @@ const Agent = (props) => {
   }
 
   // set selected list data in parent component
-  const showInfo = (e, selectedItem,activePopUpRef) => {
-    if(activePopUpRef.current){
+  const showInfo = (e, selectedItem, activePopUpRef) => {
+    if (activePopUpRef.current) {
       activePopUpRef.current.classList.remove("active");
     }
     setSelectedItem(selectedItem);
@@ -109,6 +111,11 @@ const Agent = (props) => {
     setEventValue(value)
   }
 
+  const handleMapClick = (event) => {
+    console.log(event,"event")
+    setMapClick(event);
+  }
+
   return (
 
     <section className="">
@@ -117,6 +124,7 @@ const Agent = (props) => {
         onSubmit={submitCountryNRegion}
         filterCountryFile={filterCountryFile}
         handleCountryName={handleCountryName}
+        handleMapClick={handleMapClick}
         {...props}
       />
       <div className="find-agent-wrapper">
@@ -137,6 +145,7 @@ const Agent = (props) => {
             <GoogleMap
               multipleMarker={agentList}
               selectedItem={selectedItem}
+              mapClick={mapClick}
               {...props}
             />
           </div>
