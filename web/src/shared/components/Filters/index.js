@@ -170,7 +170,7 @@ function DateRangeFilter(props) {
               parseDate={parseDate}
               dayPickerProps={{
                 selectedDays: [from, {from, to}],
-                disabledDays: { before: new Date() },
+                disabledDays: { before: new Date(), after: to },
                 toMonth: to ? new Date(moment(to).format("YYYY-MM-DD")) : null,
                 modifiers,
                 numberOfMonths: 1,
@@ -193,7 +193,7 @@ function DateRangeFilter(props) {
               parseDate={parseDate}
               dayPickerProps={{
                 selectedDays: [from, {from, to}],
-                disabledDays: { before: new Date(), after: to },
+                disabledDays: { before: from },
                 modifiers,
                 month: from ? new Date(moment(from).format("YYYY-MM-DD")) : null,
                 fromMonth: from ? new Date(moment(from).format("YYYY-MM-DD")) : null,
@@ -205,8 +205,8 @@ function DateRangeFilter(props) {
           </span>
         </div>
         {from && to && (
-          <a onClick={filterByDateRange} class="cal-apply-btn active">
-            <img src={tickWhite} class="active" alt="tick" />
+          <a onClick={filterByDateRange} className="cal-apply-btn active">
+            <img src={tickWhite} className="active" alt="tick" />
           </a>
         )}
       </div>
@@ -217,90 +217,16 @@ function DateRangeFilter(props) {
 export default class Filters extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      venuesData: this.props.venueData ? this.props.venueData : [],
-      venueFilterPanelDisplay: false,
-      venueShowLimit: this.props.venuesData ? (this.props.venuesData.length > 5 ? 5 : this.props.venuesData.length ) : 0,
-    };
   }
-
-  componentDidMount() {
-    this.applyIsChecked(true); //Value true passed for check route params
-  }
-
-  componentDidUpdate(preProps) {
-    // if (this.props.queryParams.genreId !== preProps.queryParams.genreId) {
-    //   this.applyIsChecked(true); //Value true passed for check route params
-    // }
-  }
-
-  applyIsChecked = status => {
-
-    this.state.venuesData.map(venue => {
-      if (venue.id == this.props.queryParams.venueId) {
-        venue.isChecked = true;
-      } else {
-        venue.isChecked = false;
-      }
-    });
-  };
-
 
   clearAllFilters = () => {
     this.applyIsChecked(false);
     this.props.resetFilters();
   };
 
-  // Venues
-  checkUncheckAllVenues = status => {
-    let venuesData = this.state.venuesData;
-    let venuesIds = [];
-    venuesData.map((venue, key) => {
-      if (key < 5) {
-        venue.isChecked = status;
-        venuesIds.push(venue.id);
-      }
-    });
-    this.setState({ venuesData });
-    if (!status) {
-      venuesIds = [];
-    }
-    this.props.handleFilters({filteredVenues: venuesIds});
-  };
-
-  checkUncheckVenues = (e, key, isChild) => {
-    let venuesData = this.state.venuesData;
-    if (isChild == "child") {
-      venuesData &&
-        venuesData.filter((venue, vkey) => {
-          if (venue.id === key) {
-            key = vkey;
-            venuesData[key].isChecked = e.target.checked;
-          }
-        });
-    } else {
-      venuesData[key].isChecked = e.target.checked;
-    }
-    this.setState({ venuesData });
-
-    let filteredVenues = [...this.props.filteredVenues];
-    if(e.target.checked){
-      filteredVenues.push(venuesData[key].id);
-    }else{
-      filteredVenues.splice(key, 1)
-    }
-    this.props.handleFilters({filteredVenues});
-  };
-
-  setOpenVenuePanel = (status, ref) => {
-    this.setState({ venueFilterPanelDisplay: status });
-    window.scrollTo(0, 1000);
-  };
-
   render() {
-    const { venueData, filterConfig, handleFilters, filteredSearch, filteredDateRange, filteredPriceRange, filteredGnere, filteredPromotions, filteredTags, filteredVenues } = this.props;
+    const { filterConfig, handleFilters, filteredSearch, filteredDateRange, filteredPriceRange, filteredGnere, filteredPromotions, filteredTags, filteredVenues } = this.props;
     const { price_config } = filterConfig ? filterConfig : 0;
-    const { venuesData, venueFilterPanelDisplay, venueShowLimit } = this.state;
 
     return (
       <div>
@@ -342,63 +268,17 @@ export default class Filters extends Component {
             }
             selectedFilter={filteredPromotions}
           />
-          {venuesData && venuesData.length > 0 && (
-            <div className="filter-grid">
-              <div className="filter-grid-heading">
-                <h3>Venue</h3>
-                <ul>
-                  <li className="active">
-                    <a onClick={() => this.checkUncheckAllVenues(false)}>
-                      Clear
-                    </a>
-                  </li>
-                </ul>
-              </div>
-              <div className="filters-panel">
-                <ul>
-                  {venuesData &&
-                    venuesData.map((venue, key) => {
-                      let id = "venue-" + venue.id;
-                      let isChecked = false;
-                      if (filteredVenues && filteredVenues.indexOf(venue.id) > -1) {
-                        isChecked = true;
-                      }
-                      if (key < 5) {
-                        return (
-                          <li key={key}>
-                            <input
-                              checked={isChecked}
-                              onChange={e => this.checkUncheckVenues(e, key)}
-                              className="styled-checkbox"
-                              type="checkbox"
-                              id={id}
-                              value=""
-                            />
-                            <label for={id}>{venue.name}</label>
-                          </li>
-                        );
-                      }
-                    })}
-                </ul>
-                <a
-                  onClick={() =>
-                    this.setOpenVenuePanel(true, this.venuePopUpRef)
-                  }
-                  className="view-all-filters"
-                >
-                  + {venuesData.length - venueShowLimit} More
-                </a>
-              </div>
-              {/* Venue filter component. */}
-              <VenueFilter
-                ref={node => (this.venuePopUpRef = node)}
-                checkUncheckVenues={this.checkUncheckVenues}
-                setOpenVenuePanel={this.setOpenVenuePanel}
-                venueFilterPanelDisplay={venueFilterPanelDisplay}
-                venueData={venueData}
-              />
-            </div>
-          )}
+          <FilterGrid
+            title="Venue"
+            category="filteredVenues"
+            handleFilters={handleFilters}
+            data={
+              this.props.venueData
+                ? this.props.venueData
+                : []
+            }
+            showPanel={true}
+            selectedFilter={filteredVenues} />
           <FilterGrid
             title="Categories"
             category="category"
@@ -408,7 +288,6 @@ export default class Filters extends Component {
                 ? this.props.attractionCategories
                 : []
             }
-            reset={this.state.reset}
           />
         </div>
       </div>
