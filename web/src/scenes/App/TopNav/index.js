@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react'
 import { Link } from 'react-router-dom';
 import { CSSTransitionGroup } from 'react-transition-group';
-import logo from '../../../assets/images/logo.png';
+
 import './style.scss';
 import MegaMenu from '../../../shared/components/MegaMenu';
 import DropDown from '../../../shared/components/DropDown';
@@ -10,6 +10,7 @@ import MiniCart from '../../Home/MiniCart';
 import HomeService from '../../../shared/services/HomeService';
 import { ReactComponent as ManLogo } from '../../../assets/images/man.svg';
 import AndroidLogo from '../../../assets/images/android.png';
+import logo from '../../../assets/images/Logo.png';
 import { ReactComponent as AppleLogo } from '../../../assets/images/apple.svg';
 import fb from '../../../assets/images/fb.svg';
 import insta from '../../../assets/images/insta-unfill.svg';
