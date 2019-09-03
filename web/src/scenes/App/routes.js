@@ -8,6 +8,7 @@ import Agent from "../Agent";
 import Attraction from "../Attraction";
 import WhereBuyTickets from "../WhereBuyTickets";
 import GiftVouchers from "../GiftVouchers";
+import ContactUs from "../ContactUs";
 
 const routes = [
   {
@@ -58,6 +59,11 @@ const routes = [
   {
     path: "/gift-vouchers",
     component: GiftVouchers,
+    exact: true
+  },
+  {
+    path: "/contact-us",
+    component: ContactUs,
     exact: true
   },
   {

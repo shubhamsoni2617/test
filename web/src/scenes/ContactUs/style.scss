@@ -1,0 +1,38 @@
+.contact-us{
+  background: url('../../assets//images/agent-banner.png') no-repeat;
+  height: 1000px;
+  @media (max-width: 992px) {
+      height: auto;
+  }
+  .authorised-agent{
+    padding: 45px 0 40px;
+    font-size: 30px;
+    font-family: 'Montserrat', sans-serif;
+    color:#FFF;
+    display: block;
+    font-weight: 600;
+    @media (max-width: 767px) {
+        line-height: 30px;
+        padding: 25px 0;
+    }
+  }
+}
+
+.contact-us-header{
+  color:white;
+  padding:5% 0%;
+}
+.heading-text{
+  padding: 5% 0%;
+}
+.main-context{
+  background-color:#FFF;
+  margin:0% auto;
+}
+.row-data{
+  margin: 3%;
+  padding: 3%;
+}
+.find-us-content{
+  margin:5% 2%;
+}
