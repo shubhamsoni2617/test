@@ -59,7 +59,7 @@ export default class AccordionSection extends Component {
                     <span>(Excludes Booking Fee)</span>
                     <span className="price-info-icon">
                       <img src={infoIcon} alt="Info Icon" />
-                      <InfoPopup content={content} />
+                      <InfoPopup content={infoTag} />
                     </span>
                   </div>
                 )}
