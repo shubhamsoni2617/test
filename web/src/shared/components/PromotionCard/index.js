@@ -6,6 +6,7 @@ import SocialShare from '../../../shared/components/SocialShare';
 import CloseIcon from '../../../assets/images/close-blue.svg';
 import ShareIcon from '../../../assets/images/share-icon.svg';
 import StopWatch from '../../../assets/images/stopwatch-grey.svg';
+import Horizontal from '../../../assets/images/horizontal.png';
 
 const PromotionCard = (props) => {
 
@@ -48,7 +49,11 @@ const PromotionCard = (props) => {
     <div className={promotionTab === 1 && tabDetailId === data.id ? "promotion-block active" : "promotion-block"}>
       <div className="promotions-listing-wrapper">
         <div className="promotion-image">
-          <img src={data.featured_image} className="img-fluid" alt="feature-image" />
+          <img
+            src={(data.featured_image === null || data.featured_image === "" || data.featured_image === undefined) ? Horizontal : data.featured_image}
+            className="img-fluid"
+            alt="feature-image"
+          />
         </div>
         <div className="promotion-desc">
           {data && data.custom_label_text ?
@@ -66,7 +71,7 @@ const PromotionCard = (props) => {
               <button style={{ color: data.buttons.length > 0 ? `#${data.buttons[0].color}` : "" }}>
                 <span>{data.buttons.length > 0 && data.buttons[0].text}</span>
               </button>
-            </a> */}<button onClick={() => fetchPromotionDetailData(data.alias, data.id,defaultTabId,promotionTab)}><span>See More</span></button>
+            </a> */}<button onClick={() => fetchPromotionDetailData(data.alias, data.id, defaultTabId, promotionTab)}><span>See More</span></button>
             {data.show_timer === "1" ?
               <div className="promotion-timer">
                 {!expiredText ? <span className="timer-tagline"> Hurry! Promotion ends in:</span> : null}
@@ -97,7 +102,7 @@ const PromotionCard = (props) => {
           {/* Related Events */}
 
           {buttons && buttons.length > 0 && buttons.map((e, i) => {
-            console.log(e.color,"color")
+            console.log(e.color, "color")
             return (
               <div key={i}>
                 <a href={e && e.url ? e.url : undefined}>
