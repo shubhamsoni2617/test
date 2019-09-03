@@ -81,7 +81,7 @@ class Home extends Component {
           title="Currently Showing"
           classStr="currently-showing"
           autoplay={true}
-          infinite={true}
+          infinite={false}
           api={HomeService.getCurrentlyShowing}
           />
         <PromotionCarousel />
