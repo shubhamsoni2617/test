@@ -1,11 +1,12 @@
-import Home from "../Home";
-import Events from "../Events";
-import EventsDetail from "../Events/EventsDetail";
-import HomeService from "../../shared/services/HomeService";
-import Promotions from "../Promotions";
-import PageNotFound from "../PageNotFound/index";
-import Agent from "../Agent";
-import Attraction from "../Attraction";
+import Home from '../Home'
+import Events from '../Events'
+import EventsDetail from '../Events/EventsDetail'
+import HomeService from '../../shared/services/HomeService'
+import Promotions from '../Promotions';
+import PageNotFound from '../PageNotFound/index';
+import Agents from '../Agents';
+import Attraction from '../Attraction'
+import Venues from '../Venues';
 import WhereBuyTickets from "../WhereBuyTickets";
 import TermsConditions from "../TermsConditions";
 import PrivacyPolicy from "../PrivacyPolicy";
@@ -34,9 +35,9 @@ const routes = [
     fetchInitialData: (path = "") => HomeService.getData()
   },
   {
-    path: "/agents",
-    component: Agent,
-    exact: true
+    path: '/agents',
+    component: Agents,
+    exact : true,
   },
   {
     path: "/promotions/:promoId",
@@ -73,7 +74,12 @@ const routes = [
     exact: true
   },
   {
-    path: "*",
+    path: '/venues',
+    component: Venues,
+    exact : true
+  },
+  {
+    path : "*",
     component: PageNotFound
   }
 ];

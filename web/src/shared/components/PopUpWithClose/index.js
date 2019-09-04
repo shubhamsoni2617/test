@@ -16,7 +16,7 @@ const PopUpWithClose = (props) => {
                     </div>
                     <div className="modal-body">
                         <div className="notice">
-                            {content}
+                            <p>{content}</p>
                         </div>
                     </div>
                 </div>
