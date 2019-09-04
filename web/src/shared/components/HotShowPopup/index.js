@@ -68,8 +68,11 @@ const HotShowPopup = props => {
                       <div className="hotshowimg">
                         {objData.type && objData.type.id === 2 ? (
                           <ReactPlayer
+                            className="react-player"
                             url={objData.video_url}
                             controls={true}
+                            width='100%'
+                            height='100%'
                           />
                         ) : (
                           <img
