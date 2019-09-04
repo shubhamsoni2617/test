@@ -15,13 +15,15 @@ class ContactUs extends Component {
       file: "",
       message: "",
       setErrorClass: false,
-      enquiryCategory:[]
+      enquiryCategory:[],
+      contactDetail:""
     };
   }
 
   componentDidMount() {
     window.scrollTo(0, 0);
     this.fetchEnquiry();
+    this.fetchContactDetail()
   }
 
   handleSubmit = (e) => {
@@ -68,6 +70,18 @@ class ContactUs extends Component {
       })
   }
 
+  fetchContactDetail = () => {
+    ContactUsService.getContactDetail()
+      .then((res) => {
+        if(res && res.data)
+        console.log(res.data.data);
+        this.setState({contactDetail:res.data.data})
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+  }
+
   submitForm = (data) => {
     ContactUsService.formSubmission(data)
       .then((res) => {
@@ -96,7 +110,6 @@ class ContactUs extends Component {
                         <option key={enq.id} value={enq.id}>{enq.name}</option>
                       )
                     })}
-                    {/* <option value="no">No</option> */}
                   </select>
                 </div>
                 <div className="form-group">
