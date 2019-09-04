@@ -13,7 +13,7 @@ const EventCarousel = (props) => {
 
   const renderItem = (item) => {
     return (
-      <div class="image-gallery-image">
+      <div className="image-gallery-image">
         {item.video_url !== '' && (
           <div className="videoimg" style={{ width: '100%' }}>
           <img src={videoImage} />

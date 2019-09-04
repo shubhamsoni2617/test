@@ -50,18 +50,19 @@ export default class StickyHeader extends Component {
               })}
             </ul>
           )}
-          <h2>{detailData.title}</h2>
-          {detailData.pop_up_message.title && <div className="info-tooltip">
-            <a className="info" onClick={() => this.props.openNotice()}>
-              <img src={Info} alt="Info" />
-            </a>
-          </div>}
-          <div className="share-tooltip">
-            <a className="share" onClick={() => this.props.openSocialShare()}>
-              <img src={shareIcon} alt="" />
-              <SocialShare shareUrl={shareUrl} showSocialShare={showSocialShare} />
-            </a>
-          </div>
+          <h2>{detailData.title}
+            {detailData.pop_up_message.title && <div className="info-tooltip">
+                <a className="info" onClick={() => this.props.openNotice()}>
+                <img src={Info} alt="Info" />
+                </a>
+            </div>}
+            <div className="share-tooltip">
+                <a className="share" onClick={() => this.props.openSocialShare()}>
+                <img src={shareIcon} alt="" />
+                <SocialShare shareUrl={shareUrl} showSocialShare={showSocialShare} />
+                </a>
+            </div>
+          </h2>
           <div className="ticket-date-price">
             <ul className="date-address">
               {detailData.event_date && (
@@ -97,7 +98,7 @@ export default class StickyHeader extends Component {
           </div>
         </div>
         <div className="tickets-button">
-          {detailData.is_available_for_booking === 1 && (
+          {(detailData.buy_now_url && detailData.is_available_for_booking === 1) && (
             <div className="buy-tickets-btn">
               <a href={detailData.buy_now_url} target="_blank">
                 Buy Tickets

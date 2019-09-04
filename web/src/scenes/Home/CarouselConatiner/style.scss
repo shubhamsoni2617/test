@@ -1,0 +1,29 @@
+.shimmer-carousel-enter {
+  opacity: 0 !important;
+}
+.shimmer-carousel-enter.shimmer-carousel-enter-active {
+  opacity: 1 !important;
+  transition: all 1000ms;
+}
+
+.shimmer-carousel-leave {
+  opacity: 1 !important;
+}
+
+.shimmer-carousel-leave.shimmer-carousel-leave-active {
+  opacity: 0 !important;
+  transition: all 1000ms;
+}
+.carousel-container{
+  overflow: hidden;
+  section{
+    min-height: 598px;
+    .shim-container{
+      position: absolute;
+      height: 298px;
+      width: 99%;
+      margin: 0 -45px;
+      padding: 0 45px;
+    }
+  }
+}
