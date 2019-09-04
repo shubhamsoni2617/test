@@ -3,6 +3,7 @@ import { Map, InfoWindow, Marker, GoogleApiWrapper } from 'google-maps-react';
 import redirect from '../../../../assets/images/redirect.svg';
 import './style.scss';
 import DirectionIcon from '../../../../assets/images/direction.png';
+import DefaultImg from '../../../../assets/images/horizontal.png';
 
 const GoogleMap = (props) => {
 
@@ -42,9 +43,9 @@ const GoogleMap = (props) => {
     setShowingInfoWindow(true);
   }, [selectedItem.id])
 
-  useEffect(()=>{
+  useEffect(() => {
     setShowingInfoWindow(false);
-  },[mapClick])
+  }, [mapClick])
 
   if (!google) {
     return <div>Loading...</div>;
@@ -85,7 +86,13 @@ const GoogleMap = (props) => {
           >
             <div className="map-info-popup">
               <div className="map-img">
-                <img height="50" width="100" src={selectedPlace.imgPath} title="Title of image" alt="alt text here" />
+                <img
+                  height="50"
+                  width="100"
+                  src={selectedPlace.imgPath === "" || selectedPlace.imgPath === undefined || selectedPlace.imgPath === null ? DefaultImg : selectedPlace.imgPath}
+                  title="Title of image"
+                  alt="alt text here"
+                />
               </div>
               <div className="map-name-address">
                 <h5>{selectedPlace.id}</h5>
@@ -133,7 +140,13 @@ const GoogleMap = (props) => {
             >
               <div className="map-info-popup">
                 <div className="map-img">
-                  <img height="50" width="100" src={selectedItem.image} title="Title of image" alt="alt text here" />
+                  <img
+                    height="50"
+                    width="100"
+                    src={selectedItem.image === "" || selectedItem.image === undefined || selectedItem.image === null ? DefaultImg : selectedItem.image}
+                    title="Title of image"
+                    alt="alt text here"
+                  />
                 </div>
                 <div className="map-name-address">
                   <h5>{selectedItem.id}</h5>
