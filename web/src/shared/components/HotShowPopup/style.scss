@@ -111,7 +111,7 @@
         display: flex;
         flex-wrap: wrap;
         width: 100%;
-        align-items: baseline;
+        align-items: start;
         .hotshow-block{
             padding: 3px;
             background-color: #ffffff;
@@ -127,11 +127,17 @@
                 margin-left: auto;
             }
             .hotshowimg{
+              position: relative;
                 min-height: 190px;
                 background-color: #e8e8e8;
-                img, div {
+                img, div{
                     width: 100% !important;
                     height: auto;
+                }
+                .react-player{
+                  position: absolute;
+                  top: 0;
+                  left: 0;
                 }
             }
             .hotshow-content{
