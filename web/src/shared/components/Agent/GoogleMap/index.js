@@ -89,7 +89,7 @@ const GoogleMap = (props) => {
                 <img
                   height="50"
                   width="100"
-                  src={selectedPlace.imgPath === "" || selectedPlace.imgPath === undefined || selectedPlace.imgPath === null ? DefaultImg : selectedPlace.imgPath}
+                  src={selectedPlace.imgPath == "" || selectedPlace.imgPath === undefined || selectedPlace.imgPath === null ? DefaultImg : selectedPlace.imgPath}
                   title="Title of image"
                   alt="alt text here"
                 />
