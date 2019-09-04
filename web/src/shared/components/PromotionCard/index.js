@@ -75,12 +75,12 @@ const PromotionCard = (props) => {
             {data.show_timer === "1" ?
               <div className="promotion-timer">
                 {!expiredText ? <span className="timer-tagline"> Hurry! Promotion ends in:</span> : null}
-                <ul>
+                {!expiredText ? <ul>
                   <li className="timer-watch">
                     <img src={StopWatch} className="img-fluid" alt="watch" />
                   </li>
                   <Timer endDate={data.publish_end_date} promotionExpired={handlePromotionExpired} />
-                </ul>
+                </ul> : null}
               </div>
               :
               null
