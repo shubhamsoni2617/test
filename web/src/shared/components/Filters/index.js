@@ -22,8 +22,8 @@ function SearchFilter(props) {
 
   // Text Search
   const textFilter = e => {
-      setSearch(e.target.value);
-      props.handleFilters({filteredSearch: e.target.value});
+    setSearch(e.target.value);
+    props.handleFilters({ filteredSearch: e.target.value });
   };
 
   return (
@@ -43,24 +43,25 @@ function SearchFilter(props) {
 }
 
 function PriceRangeFilter(props) {
-  const {priceConfig, filteredPriceRange} = props;
+  const { priceConfig, filteredPriceRange } = props;
   const [priceRange, setPriceRange] = useState({
     min: parseInt(priceConfig.min_price) || null,
     max: parseInt(priceConfig.max_price) || null
   });
 
   useEffect(() => {
-    if(!filteredPriceRange.min){
+    if (!filteredPriceRange.min) {
       clearPriceRange(false);
     }
   }, [filteredPriceRange]);
 
-  const clearPriceRange = (reset=true) => {
+  const clearPriceRange = (reset = true) => {
     setPriceRange({
       min: parseInt(priceConfig.min_price) || null,
       max: parseInt(priceConfig.max_price) || null
     });
-    if(reset) props.handleFilters({filteredPriceRange: { min: "", max: "" }});
+    if (reset)
+      props.handleFilters({ filteredPriceRange: { min: "", max: "" } });
   };
 
   return (
@@ -87,7 +88,7 @@ function PriceRangeFilter(props) {
           value={priceRange}
           onChange={value => setPriceRange(value)}
           onChangeComplete={value =>
-            props.handleFilters({filteredPriceRange: value})
+            props.handleFilters({ filteredPriceRange: value })
           }
         />
       </div>
@@ -101,21 +102,30 @@ function DateRangeFilter(props) {
   const [from, setFrom] = useState("");
 
   useEffect(() => {
-
-    const getDate = (dateStr) => {
+    const getDate = dateStr => {
       const date = new Date(dateStr);
-      return date.toString() === 'Invalid Date' ? '' : date;
-    }
+      return date.toString() === "Invalid Date" ? "" : date;
+    };
 
-    setTo(props.filteredDateRange && props.filteredDateRange.to ? getDate(props.filteredDateRange.to) : "");
-    setFrom(props.filteredDateRange && props.filteredDateRange.from ? getDate(props.filteredDateRange.from) : "");
+    setTo(
+      props.filteredDateRange && props.filteredDateRange.to
+        ? getDate(props.filteredDateRange.to)
+        : ""
+    );
+    setFrom(
+      props.filteredDateRange && props.filteredDateRange.from
+        ? getDate(props.filteredDateRange.from)
+        : ""
+    );
   }, [props.filteredDateRange]);
 
   const clearCalender = () => {
-      props.handleFilters({filteredDateRange: {
-      from: "",
-      to: ""
-    }});
+    props.handleFilters({
+      filteredDateRange: {
+        from: "",
+        to: ""
+      }
+    });
   };
 
   const showFromMonth = () => {
@@ -139,10 +149,12 @@ function DateRangeFilter(props) {
   };
 
   const filterByDateRange = () => {
-    props.handleFilters({filteredDateRange: {
-      from: moment(from).format("YYYY-MM-DD"),
-      to: moment(to).format("YYYY-MM-DD")
-    }});
+    props.handleFilters({
+      filteredDateRange: {
+        from: moment(from).format("YYYY-MM-DD"),
+        to: moment(to).format("YYYY-MM-DD")
+      }
+    });
   };
 
   const modifiers = { start: from, end: to };
@@ -169,7 +181,7 @@ function DateRangeFilter(props) {
               formatDate={formatDate}
               parseDate={parseDate}
               dayPickerProps={{
-                selectedDays: [from, {from, to}],
+                selectedDays: [from, { from, to }],
                 disabledDays: { before: new Date(), after: to },
                 toMonth: to ? new Date(moment(to).format("YYYY-MM-DD")) : null,
                 modifiers,
@@ -192,11 +204,15 @@ function DateRangeFilter(props) {
               formatDate={formatDate}
               parseDate={parseDate}
               dayPickerProps={{
-                selectedDays: [from, {from, to}],
+                selectedDays: [from, { from, to }],
                 disabledDays: { before: from },
                 modifiers,
-                month: from ? new Date(moment(from).format("YYYY-MM-DD")) : null,
-                fromMonth: from ? new Date(moment(from).format("YYYY-MM-DD")) : null,
+                month: from
+                  ? new Date(moment(from).format("YYYY-MM-DD"))
+                  : null,
+                fromMonth: from
+                  ? new Date(moment(from).format("YYYY-MM-DD"))
+                  : null,
                 numberOfMonths: 1
                 //   onDayClick: () => this.from.getInput().focus()
               }}
@@ -247,9 +263,16 @@ export default class Filters extends Component {
               FILTERS <a onClick={() => this.clearAllFilters()}>Clear all</a>
             </h3>
           </div>
-          <SearchFilter handleFilters={handleFilters} searchText={filteredSearch} />
+          <SearchFilter
+            handleFilters={handleFilters}
+            searchText={filteredSearch}
+          />
           {price_config != undefined && (
-            <PriceRangeFilter priceConfig={price_config} filteredPriceRange={filteredPriceRange} handleFilters={handleFilters}  />
+            <PriceRangeFilter
+              priceConfig={price_config}
+              filteredPriceRange={filteredPriceRange}
+              handleFilters={handleFilters}
+            />
           )}
           <FilterGrid
             title="Genre"
@@ -265,31 +288,27 @@ export default class Filters extends Component {
             data={filterConfig ? filterConfig.tags : []}
             selectedFilter={filteredTags}
           />
-          <DateRangeFilter filteredDateRange={filteredDateRange} handleFilters={handleFilters} />
-          {/* {this.props.showCalendar && (
-          )} */}
+          {!this.props.hideCalendar && (
+            <DateRangeFilter
+              filteredDateRange={filteredDateRange}
+              handleFilters={handleFilters}
+            />
+          )}
           <FilterGrid
             title="Promotion"
             category="filteredPromotions"
             handleFilters={handleFilters}
-            data={
-              filterConfig
-                ? filterConfig.promotion_categories
-                : []
-            }
+            data={filterConfig ? filterConfig.promotion_categories : []}
             selectedFilter={filteredPromotions}
           />
           <FilterGrid
             title="Venue"
             category="filteredVenues"
             handleFilters={handleFilters}
-            data={
-              this.props.venueData
-                ? this.props.venueData
-                : []
-            }
+            data={this.props.venueData ? this.props.venueData : []}
             showPanel={true}
-            selectedFilter={filteredVenues} />
+            selectedFilter={filteredVenues}
+          />
           <FilterGrid
             title="Categories"
             category="filteredCategory"
