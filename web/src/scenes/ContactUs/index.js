@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import './style.scss';
 import ContactUsService from '../../shared/services/ContactUsService';
+import { ReactComponent as Location } from '../../assets/images/location-blue.svg';
+import attach from '../../assets/images/attach.png';
 
 class ContactUs extends Component {
   constructor(props) {
@@ -107,27 +109,40 @@ class ContactUs extends Component {
                   <textarea name="message" className="form-control" rows="5" cols="30" value={message} onChange={this.handleChange} />
                 </div>
                 <div className="form-group">
-                  <label>Attach Documents</label>
-                  <input className="form-control" type="file" onChange={this.handleFile} accept=".jpeg,.png,.pdf" />
-                  <p className={setErrorClass ? "text-danger" : ""}>*File Size should be maximum 5mb and it can be pdf,jpeg,png</p>
+                  <div className="row">
+                    <div className="col-lg-4">
+                      Attach Documents
+                    </div>
+                    <div className="col-lg-4">
+                      <label htmlFor="file-upload" className="custom-file-upload  form-control text-right">
+                        <img src={attach} height="20" width="20" />
+                      </label>
+                      <input id="file-upload" className="form-control" type="file" onChange={this.handleFile} accept=".jpeg,.png,.pdf" size="60" />
+                      <p className={setErrorClass ? "text-danger" : ""}>*File Size should be maximum 5mb and it can be pdf,jpeg,png</p>
+                    </div>
+                  </div>
                 </div>
                 <input className="form-control btn-info" type="submit" value="Submit" />
               </form>
             </div>
             <div className="col-lg-4 row-data">
               <h3 className="heading-text">Find Us</h3>
-              <div className="find-us-content">
-                <div className="img"></div>
-                <h6 className="text">SISTIC.com Pte Ltd</h6>
-                <div>10 Eunos Road 8,#03-04,Singapore</div>
-                <div>Post Center Singapore 408600</div>
-                <a>Open in Maps</a>
+              <div className="find-us-content row">
+                <div className="img col-lg-2"><Location /></div>
+                <div className="col-lg-6">
+                  <h6 className="text">SISTIC.com Pte Ltd</h6>
+                  <div>10 Eunos Road 8,#03-04,Singapore</div>
+                  <div>Post Center Singapore 408600</div>
+                  <a>Open in Maps</a>
+                </div>
               </div>
-              <div className="find-us-content">
-                <div className="img"></div>
-                <h6 className="text">+65 6348 5555</h6>
-                <div>Mon to Sat : 10pm-8pm</div>
-                <div>Sun and PH : 12pm-8pm</div>
+              <div className="find-us-content row">
+                <div className="img col-lg-2"></div>
+                <div className="col-lg-6">
+                  <h6 className="text ">+65 6348 5555</h6>
+                  <div>Mon to Sat : 10pm-8pm</div>
+                  <div>Sun and PH : 12pm-8pm</div>
+                </div>
               </div>
               <div className="find-us-content">
                 <div className="img"></div>
