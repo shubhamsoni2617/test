@@ -4,8 +4,9 @@ import EventsDetail from "../Events/EventsDetail";
 import HomeService from "../../shared/services/HomeService";
 import Promotions from "../Promotions";
 import PageNotFound from "../PageNotFound/index";
-import Agent from "../Agent";
+import Agents from "../Agents";
 import Attraction from "../Attraction";
+import Venues from "../Venues";
 import WhereBuyTickets from "../WhereBuyTickets";
 import GiftVouchers from "../GiftVouchers";
 import Faq from "../Faq";
@@ -33,7 +34,7 @@ const routes = [
   },
   {
     path: "/agents",
-    component: Agent,
+    component: Agents,
     exact: true
   },
   {
@@ -61,10 +62,16 @@ const routes = [
     exact: true
   },
   {
+    path: "/venues",
+    component: Venues,
+    exact: true
+  },
+  {
     path: "/faq/:id",
     component: Faq,
     exact: true
   },
+
   {
     path: "*",
     component: PageNotFound

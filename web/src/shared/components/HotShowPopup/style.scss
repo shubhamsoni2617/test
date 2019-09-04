@@ -296,7 +296,7 @@
     .hotshow-overlay {
         position: fixed;
         background-color: #000000;
-        width: 100%;
+        width: calc(100% - 12px);
         height: 100%;
         top: 0;
         right: 0px;

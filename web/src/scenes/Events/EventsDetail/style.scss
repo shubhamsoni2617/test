@@ -619,7 +619,6 @@
 .event-detail.sticky-topbar.animate{
   opacity: 1 !important;
   overflow: auto;
-  min-height: 104px;
   height: auto;
 }
 
@@ -713,12 +712,12 @@
         }
         h2{
             font-size: 22px;
-            line-height: 27px;
-            padding-bottom: 15px;
+            line-height: 31px;
+            padding-bottom: 10px;
             display: inline-block;
             color: #3A3A3A;
             min-height: inherit;
-            width: 84%;
+            margin-top: 10px;
             @media(max-width: 1280px){
                 font-size: 20px;
                 line-height: 24px;
@@ -729,6 +728,7 @@
             display: flex;
             flex-wrap: wrap;
             align-items: center;
+            margin-bottom: 10px;
             .date-address{
                 display: flex;
                 flex-wrap: wrap;
