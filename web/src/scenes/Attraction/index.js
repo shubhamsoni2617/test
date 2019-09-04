@@ -1,20 +1,13 @@
 import React, { Component } from "react";
-import { BrowserHistory } from "react-router-dom";
 import Filters from "../../shared/components/Filters";
 import SortBy from "../../shared/components/SortBy";
 import Card from "../../shared/components/Card";
-import EventsService from "../../shared/services/EventsService";
 import AttractionsService from "../../shared/services/AttractionsService";
-import HomeService from "../../shared/services/HomeService";
-import Image from "../../shared/components/Image";
 import DownArrowBlue from "../../assets/images/down-arrow-blue.svg";
 import noEvent from "../../assets/images/no-event.svg";
 import Breadcrub from "../../scenes/App/Breadcrumb";
-import ListView from "../../assets/images/list-view.svg";
-import GridView from "../../assets/images/grid-view.svg";
 import loaderImage from "../../assets/images/loader.svg";
 import AttractionBreadcrumbImage from "../../assets/images/attractionbanner.png";
-import moment from "moment";
 import ShimmerEffect from "../../shared/components/ShimmerEffect";
 import LoadMoreOnScroll from "../../shared/components/LoadMoreOnScroll";
 import "./style.scss";
@@ -23,7 +16,6 @@ export default class Attractions extends Component {
   constructor(props) {
     super(props);
 
-    this.initialLimit = { client: 1, first: 0, limit: 9, sort_type: "title", sort_order: 'ASC', search:'' };
     this.state = {
       shimmer: true,
       attractionCategories: [],
@@ -75,7 +67,7 @@ export default class Attractions extends Component {
 
   componentDidMount() {
     this.getAttractionsCategory();
-    this.loadAttractions(this.initialLimit);
+    this.loadAttractions(this.getInitialFilters(true));
   }
 
   resetFilters = () => {
@@ -91,10 +83,26 @@ export default class Attractions extends Component {
         totalRecords: 0
       },
       () => {
-        this.loadAttractions(this.initialLimit);
+        const payload = this.getInitialFilters(true);
+        this.setInitialFilters(payload);
+        this.loadAttractions(payload);
       }
     );
   };
+
+  getInitialFilters = (reset=false) => {
+    const payload = {
+      first: 0,
+      limit: 9,
+    };
+    return payload;
+  };
+
+  setInitialFilters({ first, limit }) {
+    this.setState({
+
+    });
+  }
 
   getAttractionsCategory = () => {
     AttractionsService.getAttractionsCategory()
@@ -133,81 +141,41 @@ export default class Attractions extends Component {
     this.setState({ first: params.first, limit: params.limit, shimmer: true });
   };
 
-  // handleListGridView = getViewType => {
-  //   let viewTypeClass = [...this.state.viewTypeClass];
-  //   if (getViewType == "grid") {
-  //     viewTypeClass = "events-section";
-  //   } else {
-  //     viewTypeClass = "events-section list-view";
-  //   }
-  //   this.setState({ viewTypeClass: viewTypeClass, viewType: getViewType });
-  // };
+  getFilters = () => {
+    const {
+      first,
+      limit,
+      filteredCategory,
+      filteredSearch,
+      filteredSortOrder,
+      filteredSortType
+    } = this.state;
 
-  setFilterParams = () => {
     let params = {
       client: 1,
-      first: "",
-      limit: this.state.limit,
-      category: "",
-      search: "",
-      sort_type: "",
-      sort_order: ""
+      first: first,
+      limit: limit,
+      category: filteredCategory.toString(),
+      search: filteredSearch,
+      sort_type: filteredSortType,
+      sort_order: filteredSortOrder
     };
-
-    params.category = this.state.filteredCategory.toString();
-    params.search = this.state.filteredSearch;
-    params.sort_order = this.state.filteredSortOrder;
-    params.sort_type = this.state.filteredSortType;
-    params.first = this.initialLimit.first;
-    params.limit = this.initialLimit.limit;
 
     return params;
   };
 
-  handleFilters = (searchType, searchValue, isChecked) => {
-    let filteredSearch = this.state.filteredSearch;
-    let filteredCategory = [...this.state.filteredCategory];
-    let filteredSortType = this.state.filteredSortType;
-    let filteredSortOrder = this.state.filteredSortOrder;
-
-    if (searchType == "category" && isChecked == true) {
-      filteredCategory.push(searchValue);
-    } else if (searchType == "category" && isChecked == false) {
-      let index = filteredCategory.indexOf(searchValue);
-      if (index > -1) filteredCategory.splice(index, 1);
-    }
-
-    switch (searchType) {
-      case "category-check-uncheck": {
-        filteredCategory = searchValue;
-      }
-        break;
-      case "search": {
-        filteredSearch = searchValue;
-      }
-        break;
-      case "sort":
-      case "title": {
-        filteredSortType = searchType;
-        filteredSortOrder = searchValue;
-      }
-        break
-    }
-
+  handleFilters = (searchType) => {
     this.setState(
       {
-        filteredSearch,
-        filteredCategory,
-        filteredSortType,
-        filteredSortOrder
+        first: 0,
+        limit: 9,
+        totalRecords: 0,
+        loader: true,
+        ...searchType
       },
       () => {
-        this.setState({ totalRecords: 0, loader: true });
-        this.setState({ first: 0, limit: 9 });
-        let params = this.setFilterParams();
-
         setTimeout(() => {
-          this.loadAttractions(params, false);
+          this.loadAttractions(this.getFilters(), false);
         }, 200);
       }
     );
@@ -224,7 +192,6 @@ export default class Attractions extends Component {
     return count;
   }
 
-
   render() {
     const {
       attractionCategories,
@@ -235,12 +202,12 @@ export default class Attractions extends Component {
       isdataAvailable,
       viewType,
       shimmer,
-      count
+      count,
+      filteredCategory,
+      filteredSearch
     } = this.state;
     this.breadCrumbData.count = count;
 
-
-    // const viewTypeActive = viewType == "list" ? "active" : "";
     return (
       <div>
         <Breadcrub breadCrumbData={this.breadCrumbData} />
@@ -259,8 +226,10 @@ export default class Attractions extends Component {
                       queryParams={queryParams}
                       resetFilters={this.resetFilters}
                       handleFilters={this.handleFilters}
-                      showCalendar={false}
+                      hideCalendar={true}
                       attractionCategories={attractionCategories}
+                      filteredSearch={filteredSearch}
+                      filteredCategory={filteredCategory}
                     />
                   )}
               </div>
@@ -272,26 +241,6 @@ export default class Attractions extends Component {
                     handleFilters={this.handleFilters}
                     defaultSortType={this.tabsSort.defaultSortType}
                   />
-                  {/* <ul className="sortby-view">
-                    <li className={viewType == "grid" ? "active" : ""}>
-                      <a>
-                        <img
-                          onClick={() => this.handleListGridView("grid")}
-                          src={GridView}
-                          alt="Grid"
-                        />
-                      </a>
-                    </li>
-                    <li className={viewType == "list" ? "active" : ""}>
-                      <a>
-                        <img
-                          onClick={() => this.handleListGridView("list")}
-                          src={ListView}
-                          alt="List"
-                        />
-                      </a>
-                    </li>
-                  </ul> */}
                 </div>
                 <div className={this.state.viewTypeClass}>
                   {loader && (
@@ -322,7 +271,6 @@ export default class Attractions extends Component {
                 {attractionsData.length < totalRecords && (
                   <div className="promotion-load-more">
                     <a
-                      // onClick={() => this.loadMoreEvents()}
                       className="btn-link load-more-btn"
                       target=""
                     >
