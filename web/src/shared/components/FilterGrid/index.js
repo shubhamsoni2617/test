@@ -1,17 +1,27 @@
-import React, { useState, useEffect, memo } from "react";
+import React, { useState, useEffect, useRef, memo } from "react";
 import { CSSTransitionGroup } from "react-transition-group";
+import VenueFilter from "../VenueFilter";
+function ShowMoreButton(props) {
+  return (
+    <a onClick={() => props.onClick()} className="view-all-filters">
+      {props.title}
+    </a>
+  );
+}
 
 const FilterGrid = props => {
   const [limit, setLimit] = useState(5);
   const [activeClass, setActiveClass] = useState("");
   const [data, setData] = useState([]);
+  const [panelDisplay, setPanelDisplay] = useState(false);
+  const element = useRef(null);
 
   useEffect(() => {
     let data = [...props.data];
     setData(data);
   }, [props.data]);
 
-  const selectAll = (status) => {
+  const selectAll = status => {
     let items = [];
     if (status) items = [...props.data].map(item => item.id);
     setActiveClass(status);
@@ -28,19 +38,20 @@ const FilterGrid = props => {
     }
   };
 
-  const onChange = (e, key) => {
+  const onChange = (e, id) => {
     let newFilterValue = [...props.selectedFilter];
-    if(e.target.checked){
-      newFilterValue.push(data[key].id);
-    }else{
-      newFilterValue.splice(key, 1)
+   if (e.target.checked) {
+      newFilterValue.push(id);
+    } else {
+      const index = props.selectedFilter.indexOf(id);
+      if (index > -1) newFilterValue.splice(index, 1);
     }
     let newFilterObject = {};
     newFilterObject[props.category] = newFilterValue;
     props.handleFilters(newFilterObject);
   };
 
-  if(!data.length) return null;
+  if (!data.length) return null;
 
   return (
     <div className="filter-grid">
@@ -67,14 +78,16 @@ const FilterGrid = props => {
               data.slice(0, limit).map((item, key) => {
                 let id = "item-" + item.id;
                 let isChecked = false;
-                if (props.selectedFilter && props.selectedFilter.indexOf(item.id) > -1) {
-                  isChecked = true;
+                let index;
+                if (props.selectedFilter) {
+                  index = props.selectedFilter.indexOf(item.id);
+                  isChecked = index > -1;
                 }
                 return (
                   <li key={key}>
                     <input
                       checked={isChecked}
-                      onChange={e => onChange(e, key)}
+                      onChange={e => onChange(e, data[key].id)}
                       className="styled-checkbox"
                       type="checkbox"
                       id={id}
@@ -89,16 +102,26 @@ const FilterGrid = props => {
               })}
           </CSSTransitionGroup>
         </ul>
-        {data.length > limit && (
-          <a onClick={() => toggle(true)} className="view-all-filters">
-            + {data.length - limit} More
-          </a>
+        {!(data.length < limit) && (
+          <ShowMoreButton
+            title={`+ ${
+              data.length > limit ? `${data.length - limit} More` : "Show Less"
+            }`}
+            onClick={() => {
+              props.showPanel
+                ? setPanelDisplay(true)
+                : toggle(data.length != limit);
+            }}
+          />
         )}
-        {data.length == limit && (
-          <a onClick={() => toggle(false)} className="view-all-filters">
-            Show Less
-          </a>
-        )}
+        <VenueFilter
+          ref={element}
+          onChange={onChange}
+          setPanelDisplay={setPanelDisplay}
+          panelDisplay={panelDisplay}
+          venueData={data}
+          {...props}
+        />
       </div>
     </div>
   );

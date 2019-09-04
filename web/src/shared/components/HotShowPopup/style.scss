@@ -127,11 +127,17 @@
                 margin-left: auto;
             }
             .hotshowimg{
+              position: relative;
                 min-height: 190px;
                 background-color: #e8e8e8;
-                img, div {
+                img, div{
                     width: 100% !important;
                     height: auto;
+                }
+                .react-player{
+                  position: absolute;
+                  top: 0;
+                  left: 0;
                 }
             }
             .hotshow-content{
@@ -296,7 +302,7 @@
     .hotshow-overlay {
         position: fixed;
         background-color: #000000;
-        width: 100%;
+        width: calc(100% - 12px);
         height: 100%;
         top: 0;
         right: 0px;

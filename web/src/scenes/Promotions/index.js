@@ -27,13 +27,13 @@ export default class Promotions extends Component {
         {
           sortType: '',
           sortOrder: 'ASC',
-          sortTitle: 'A to Z',
+          sortTitle: 'Promotions - A to Z',
           sortTag: 'Promotions - A to Z'
         },
         {
           sortType: '',
           sortOrder: 'DESC',
-          sortTitle: 'Z to A',
+          sortTitle: 'Promotions - Z to A',
           sortTag: 'Promotions - Z to A'
         },
         {
