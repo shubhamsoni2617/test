@@ -20,7 +20,7 @@ class DropDown extends Component {
         }
         this.setState({ isOpen: !this.state.isOpen })
     }
-      
+
     handleOutsideClick = (e) => {
         if (this.node.contains(e.target)) {
             return;

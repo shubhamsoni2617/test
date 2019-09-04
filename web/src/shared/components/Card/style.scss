@@ -7,6 +7,7 @@
     width: 100%;
     transition: .5s ease-out;
     cursor: pointer;
+    position: relative;
     @media (max-width: 767px) {
         width: calc(50% - 10px);
         margin: 0 5px 10px;
@@ -22,6 +23,86 @@
         border: 2px solid #0098FF;
         transition: .5s ease-out;
         box-shadow: 0 2px 27px 0 rgba(0,0,0,0.09);
+    }
+    &.attraction-block{
+        padding-bottom: 30px;
+        position: relative;
+        &:hover{
+            .event-details {
+                .price-event{
+                    .buy-btn{
+                        background: #0098FF url(../../../assets/images/buy-arrow.png) 94% 15px no-repeat;
+                        font-size: 18px;
+                        color: #FFF;
+                        line-height: 22px;
+                        border: none;
+                    }
+                }
+            }
+        }
+        .event-details {
+            .price-event{
+                .buy-btn{
+                    position: absolute;
+                    left: 0;
+                    bottom: 0;
+                    height: auto;
+                    text-align: left;
+                    width: 100%;
+                    background: #FFF;
+                    font-size: 18px;
+                    color: #0098FF;
+                    line-height: 22px;
+                    padding: 15px;
+                    text-transform: uppercase;
+                    border: none;
+                    background: url(../../../assets/images/buy-arrow-b.png) 94% 15px no-repeat;
+                    &:hover{
+                        background: #0098FF url(../../../assets/images/buy-arrow.png) 94% 15px no-repeat;
+                        font-size: 18px;
+                        color: #FFF;
+                        line-height: 22px;
+                        border: none;
+                    }
+                }
+            }
+        }
+    }
+    .featured-tag{
+        position: absolute;
+        left: -6px;
+        top: 7px;
+        height: 24px;
+        width: 85px;
+        background: linear-gradient(90deg, #670E00 0%, #E21A1F 100%);
+        color: #FFFFFF;
+        font-size: 14px;
+        line-height: 18px;
+        text-align: center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding-left: 9px;
+        &::before{
+            content: "";
+            position: absolute;
+            top: 23px;
+            left: 0px;
+            border-right: 3px solid #670E00;
+            border-left: 3px solid transparent;
+            border-bottom: 3px solid transparent;
+            border-top: 2px solid #670E00;
+        }
+        &::after{
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 100%;
+            border-left: 6px solid #E21A1F;
+            border-right: 10px solid transparent;
+            border-bottom: 10px solid transparent;
+            border-top: 14px solid #E21A1F;
+        }
     }
     .event-img{
         display: flex;
@@ -128,6 +209,7 @@
                     color: #0098FF;
                     transition: 0.8s all;
                 }
+                
             }
         }
     }
