@@ -2,6 +2,7 @@
   background: url('../../assets//images/agent-banner.png') no-repeat;
   height: 1000px;
 }
+
 .contact-us-header{
   color:white;
   padding:5% 0%;
@@ -25,4 +26,7 @@ input[type="file"] {
 }
 .custom-file-upload {
   cursor: pointer;
+}
+.row-data:nth-child(2){
+  background-color: rgb(89, 243, 230)
 }

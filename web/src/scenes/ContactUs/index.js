@@ -15,6 +15,7 @@ class ContactUs extends Component {
       file: "",
       message: "",
       setErrorClass: false,
+      enquiryCategory:[]
     };
   }
 
@@ -48,7 +49,7 @@ class ContactUs extends Component {
     const file = e.target.files[0];
     const sizeInMB = (file.size / (1024 * 1024));
     const fileSize = Math.round(sizeInMB * 1000) / 1000;
-    if (fileSize < 5) {
+    if (fileSize > 5) {
       this.setState({ setErrorClass: true })
     } else {
       this.setState({ file: e.target.files[0] });
@@ -58,7 +59,9 @@ class ContactUs extends Component {
   fetchEnquiry = () => {
     ContactUsService.getEnquiry()
       .then((res) => {
+        if(res && res.data)
         console.log(res.data.data);
+        this.setState({enquiryCategory:res.data.data})
       })
       .catch((err) => {
         console.log(err)
@@ -76,7 +79,7 @@ class ContactUs extends Component {
   }
 
   render() {
-    const { enquiry, name, email, phone, file, message, setErrorClass } = this.state;
+    const { enquiry, name, email, phone, file, message, setErrorClass,enquiryCategory } = this.state;
     return (
       <div className="contact-us">
         <h1 className="text-center contact-us-header">Contact Us</h1>
@@ -88,36 +91,40 @@ class ContactUs extends Component {
                 <div className="form-group">
                   <select name="enquiry" className="form-control" onChange={this.handleChange} value={enquiry}>
                     <option>Select an Enquiry</option>
-                    <option value="yes">Yes</option>
-                    <option value="no">No</option>
+                    {enquiryCategory && enquiryCategory.map((enq,index)=>{
+                      return(
+                        <option key={enq.id} value={enq.id}>{enq.name}</option>
+                      )
+                    })}
+                    {/* <option value="no">No</option> */}
                   </select>
                 </div>
                 <div className="form-group">
                   <label>Name<span className="text-danger">*</span></label>
-                  <input name="name" className="form-control" type="text" value={name} onChange={this.handleChange} />
+                  <input name="name" className="form-control" type="text" value={name} onChange={this.handleChange} required/>
                 </div>
                 <div className="form-group">
                   <label>Email Address<span className="text-danger">*</span></label>
-                  <input name="email" className="form-control" type="text" value={email} onChange={this.handleChange} />
+                  <input name="email" className="form-control" type="text" value={email} onChange={this.handleChange} required/>
                 </div>
                 <div className="form-group">
                   <label>Phone Number<span className="text-danger">*</span></label>
-                  <input name="phone" className="form-control" type="number" value={phone} onChange={this.handleChange} />
+                  <input name="phone" className="form-control" type="number" value={phone} onChange={this.handleChange} required/>
                 </div>
                 <div className="form-group">
                   <label>Message<span className="text-danger">*</span></label>
-                  <textarea name="message" className="form-control" rows="5" cols="30" value={message} onChange={this.handleChange} />
+                  <textarea name="message" className="form-control" rows="5" cols="30" value={message} onChange={this.handleChange} required/>
                 </div>
                 <div className="form-group">
                   <div className="row">
                     <div className="col-lg-4">
                       Attach Documents
                     </div>
-                    <div className="col-lg-4">
+                    <div className="col-lg-8">
                       <label htmlFor="file-upload" className="custom-file-upload  form-control text-right">
                         <img src={attach} height="20" width="20" />
                       </label>
-                      <input id="file-upload" className="form-control" type="file" onChange={this.handleFile} accept=".jpeg,.png,.pdf" size="60" />
+                      <input id="file-upload" className="form-control" type="file" onChange={this.handleFile} accept=".jpeg,.png,.pdf" size="60" required/>
                       <p className={setErrorClass ? "text-danger" : ""}>*File Size should be maximum 5mb and it can be pdf,jpeg,png</p>
                     </div>
                   </div>
