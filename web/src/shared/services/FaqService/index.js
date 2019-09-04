@@ -1,8 +1,12 @@
 import API from "../../api";
 
 class FaqService {
-  getFaqService(params) {
-    return API.get(`contact-us/faq`, { params });
+  getFaqCategoriesService(params) {
+    return API.get(`faq-categories`, { params });
+  }
+
+  getFaqContentService(params) {
+    return API.get(`faq`, { params });
   }
 }
 

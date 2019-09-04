@@ -62,7 +62,8 @@ const routes = [
   },
   {
     path: "/faq/:id",
-    component: Faq
+    component: Faq,
+    exact: true
   },
   {
     path: "*",

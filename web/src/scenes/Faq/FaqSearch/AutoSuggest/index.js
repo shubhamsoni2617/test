@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from "react";
-import { Link } from "react-scroll";
+import { Link } from "react-router-dom";
 class Autocomplete extends Component {
   static defaultProps = {
     suggestions: []
@@ -11,34 +11,50 @@ class Autocomplete extends Component {
     this.state = {
       filteredSuggestions: [],
       showSuggestions: false,
-      userInput: ""
+      userInput: "",
+      helperText: null
     };
   }
 
   onChange = e => {
-    const { suggestions } = this.props;
-    const userInput = e.currentTarget.value;
-    const filteredSuggestions = suggestions.filter(
+    const { suggestions, categories } = this.props;
+    let allSuggestions = [];
+    suggestions.flatMap(element => {
+      return element.category_id.map(x => {
+        return categories.findIndex((category, i) => {
+          if (category.id === x) {
+            allSuggestions.push({
+              ...element,
+              category_id: x,
+              category_name: category.name
+            });
+          }
+        });
+      });
+    });
+
+    let userInput = e.currentTarget.value;
+    let helperText = null;
+    let filteredSuggestions = allSuggestions.filter(
       suggestion =>
         suggestion.question.toLowerCase().indexOf(userInput.toLowerCase()) > -1
     );
+    if (userInput.length < 3) {
+      console.log(userInput);
+      filteredSuggestions = [];
+
+      helperText = "Please enter atleast 3 characters";
+    }
     this.setState({
       filteredSuggestions,
       showSuggestions: true,
-      userInput: e.currentTarget.value
+      userInput: e.currentTarget.value,
+      helperText
     });
   };
 
-  onClick = (e, categoryId) => {
-    this.props.onIdChange(categoryId);
-    this.props.categories.findIndex(category => {
-      return category.id === categoryId
-        ? this.props.history.push(
-            `/faq/${category.name.replace(/\s/g, "-").toLowerCase()}`
-          )
-        : null;
-    });
-
+  onClick = (e, categoryId, questionId) => {
+    this.props.onQuestionIdChange(questionId);
     console.log(categoryId);
     this.setState({
       filteredSuggestions: [],
@@ -60,29 +76,17 @@ class Autocomplete extends Component {
           <ul className="suggestions">
             {filteredSuggestions.map((suggestion, index) => {
               return (
-                // <li
-                //   key={suggestion.id + index}
-                //   onClick={e => {
-                //     onClick(e, suggestion.category_id);
-                //   }}
-                // >
-                //   {suggestion.question}
-                // </li>
-                <div>
+                <div key={suggestion.id + suggestion.category_id}>
                   <Link
-                    onClick={e => {
-                      onClick(e, suggestion.category_id);
-                    }}
-                    key={suggestion.id + index}
-                    activeClass="active"
-                    to={suggestion.id}
-                    spy={true}
-                    smooth={true}
-                    offset={0}
-                    duration={500}
+                    to={`/faq/${suggestion.category_name
+                      .replace(/\s/g, "-")
+                      .toLowerCase()}`}
                     className="nav-item"
+                    onClick={e => {
+                      onClick(e, suggestion.category_id, suggestion.id);
+                    }}
                   >
-                    {suggestion.question}
+                    {suggestion.question} in {suggestion.category_name}
                   </Link>
                   <br />
                 </div>
@@ -106,6 +110,7 @@ class Autocomplete extends Component {
           onChange={onChange}
           value={userInput}
         />
+        {this.state.helperText ? <em>{this.state.helperText}</em> : null}
         {suggestionsListComponent}
       </Fragment>
     );

@@ -2,10 +2,17 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
 const FaqCategory = props => {
-  const [id, setId] = useState(props.id);
-  console.log("dhhsjkhd", props.id);
-  let param = "About Us";
-  let final = { a: `/faq/${param.replace(/\s/g, "-").toLowerCase()}` };
+  const spreadData = props.faqContentData.flatMap(element => {
+    return element.category_id.map(x => ({ ...element, category_id: x }));
+  });
+
+  const setQuestionId = categoryId => {
+    let value = spreadData.find(obj => {
+      return obj.category_id === categoryId;
+    });
+    console.log(value);
+    props.onQuestionIdChange(value.id);
+  };
 
   return (
     <section className="promotions-nav">
@@ -17,12 +24,14 @@ const FaqCategory = props => {
                 <Link
                   key={category.id}
                   className={
-                    props.id === category.id
+                    props.categoryId === category.id
                       ? "nav-item nav-link active"
                       : "nav-item nav-link"
                   }
                   to={`/faq/${category.name.replace(/\s/g, "-").toLowerCase()}`}
-                  onClick={() => props.onIdChange(category.id)}
+                  onClick={() => {
+                    setQuestionId(category.id);
+                  }}
                 >
                   {category.name}
                 </Link>
