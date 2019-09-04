@@ -59,13 +59,13 @@ export default class Events extends Component {
         {
           sortType: "title",
           sortOrder: "ASC",
-          sortTitle: "A to Z",
+          sortTitle: "Events - A to Z",
           sortTag: "Events - A to Z"
         },
         {
           sortType: "title",
           sortOrder: "DESC",
-          sortTitle: "Z to A",
+          sortTitle: "Events - Z to A",
           sortTag: "Events - Z to A"
         },
         {
@@ -83,13 +83,13 @@ export default class Events extends Component {
         {
           sortType: "venue",
           sortOrder: "ASC",
-          sortTitle: "A to Z",
+          sortTitle: "Venue - A to Z",
           sortTag: "Venue - A to Z"
         },
         {
           sortType: "venue",
           sortOrder: "DESC",
-          sortTitle: "Z to A",
+          sortTitle: "Venue - Z to A",
           sortTag: "Venue - Z to A"
         },
         {
@@ -408,7 +408,7 @@ export default class Events extends Component {
                           key={event.id}
                           onClick={() => this.redirectToTarget(event.alias)}
                         >
-                          <Card eventsData={event} />
+                          <Card cardData={event} cardClass={{cardBlock: 'event-block', cardButton: 'btn buy-btn'}} />
                         </div>
                       );
                     })}
