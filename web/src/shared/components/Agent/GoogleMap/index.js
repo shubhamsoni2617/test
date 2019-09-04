@@ -29,9 +29,10 @@ const GoogleMap = (props) => {
   }
 
   const click = (props, marker) => {
-    setSelectedPlace(props);
+    // setSelectedPlace(props);
     setActiveMarker(marker);
     setShowingInfoWindow(true);
+    setSelectedPlace(props);
   }
 
   const infoWindowHasClosed = () => {
