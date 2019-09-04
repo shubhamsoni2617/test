@@ -94,6 +94,8 @@ export default class Attractions extends Component {
     const payload = {
       first: 0,
       limit: 9,
+      sort_type: 'title',
+      sort_order:'ASC'
     };
     return payload;
   };
