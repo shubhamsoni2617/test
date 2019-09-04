@@ -225,7 +225,18 @@ export default class Filters extends Component {
   };
 
   render() {
-    const { filterConfig, handleFilters, filteredSearch, filteredDateRange, filteredPriceRange, filteredGnere, filteredPromotions, filteredTags, filteredVenues } = this.props;
+    const {
+      filterConfig,
+      handleFilters,
+      filteredSearch,
+      filteredDateRange,
+      filteredPriceRange,
+      filteredGnere,
+      filteredPromotions,
+      filteredTags,
+      filteredVenues,
+      filteredCategory
+    } = this.props;
     const { price_config } = filterConfig ? filterConfig : 0;
 
     return (
@@ -281,13 +292,14 @@ export default class Filters extends Component {
             selectedFilter={filteredVenues} />
           <FilterGrid
             title="Categories"
-            category="category"
+            category="filteredCategory"
             handleFilters={handleFilters}
             data={
               this.props.attractionCategories
                 ? this.props.attractionCategories
                 : []
             }
+            selectedFilter={filteredCategory}
           />
         </div>
       </div>
