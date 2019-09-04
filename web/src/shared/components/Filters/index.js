@@ -247,6 +247,7 @@ function Filters(props) {
       element.current.classList.remove("fixed-filter-absolute");
     }else {
       element.current.classList.remove("fixed-filter");
+      element.current.classList.remove("fixed-filter-absolute");
     }
   };
 
