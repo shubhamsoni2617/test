@@ -7,11 +7,16 @@ const FaqCategory = props => {
   });
 
   const setQuestionId = categoryId => {
+    console.log(categoryId);
     let value = spreadData.find(obj => {
       return obj.category_id === categoryId;
     });
     console.log(value);
-    props.onQuestionIdChange(value.id);
+    if (!value) {
+      props.onQuestionIdChange(null);
+    } else {
+      props.onQuestionIdChange(value.id);
+    }
   };
 
   return (
@@ -24,7 +29,7 @@ const FaqCategory = props => {
                 <Link
                   key={category.id}
                   className={
-                    props.categoryId === category.id
+                    props.categoryId === category.id && props.urlExist
                       ? "nav-item nav-link active"
                       : "nav-item nav-link"
                   }

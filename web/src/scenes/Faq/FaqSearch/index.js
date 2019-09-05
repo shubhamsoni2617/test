@@ -9,9 +9,7 @@ const FaqSearch = props => {
 
       <div className="find-agent-form">
         <AutoSuggest
-          {...props}
           suggestions={props.suggestions}
-          onIdChange={props.onIdChange}
           categories={props.categories}
           onQuestionIdChange={props.onQuestionIdChange}
         />

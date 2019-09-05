@@ -8,8 +8,7 @@ import Agents from "../Agents";
 import Attraction from "../Attraction";
 import Venues from "../Venues";
 import WhereBuyTickets from "../WhereBuyTickets";
-import TermsConditions from "../TermsConditions";
-import PrivacyPolicy from "../PrivacyPolicy";
+import TermsPrivacy from "../TermsPrivacy";
 import GiftVouchers from "../GiftVouchers";
 import Faq from "../Faq";
 const routes = [
@@ -60,13 +59,15 @@ const routes = [
   },
   {
     path: "/terms-and-conditions",
-    component: TermsConditions,
-    exact: true
+    component: TermsPrivacy,
+    exact: true,
+    cmsPageType: 1
   },
   {
     path: "/privacy",
-    component: PrivacyPolicy,
-    exact: true
+    component: TermsPrivacy,
+    exact: true,
+    cmsPageType: 2
   },
   {
     path: "/gift-vouchers",

@@ -9,10 +9,10 @@ import FaqContent from "./FaqContent";
 const Faq = props => {
   const [faqContentData, setFaqContentData] = useState(null);
   const [faqCategoryData, setFaqCategoryData] = useState(null);
-  const [categoryId, setCategoryId] = useState("124");
-
+  const [categoryId, setCategoryId] = useState(null);
   const [categoryName, setCategoryName] = useState("");
-  const [questionId, setQuestionId] = useState("299");
+  const [questionId, setQuestionId] = useState(null);
+  const [urlExist, setUrlExist] = useState(false);
 
   useEffect(() => {
     fetchFaqCategoriesService();
@@ -21,24 +21,20 @@ const Faq = props => {
 
   useEffect(() => {
     if (faqCategoryData) {
-      faqCategoryData.findIndex(category => {
+      console.log(faqCategoryData.length);
+      faqCategoryData.findIndex((category, i) => {
         if (
           category.name.toLowerCase().replace(/[^a-z]/g, "") ===
           props.match.params.id.replace(/[^a-z]/g, "")
         ) {
           setCategoryId(category.id);
           setCategoryName(category.name);
+          setUrlExist(true);
         }
-        // return category.name.toLowerCase().replace(/[^a-z]/g, "") ===
-        //   props.match.params.id.replace(/[^a-z]/g, "")
-        //   ? setCategoryId(category.id)
-
-        //   : null;
       });
     }
   }, [props.match.params.id, faqCategoryData]);
 
-  console.log(categoryId);
   const fetchFaqCategoriesService = () => {
     const params = {
       client: Constants.CLIENT
@@ -71,42 +67,47 @@ const Faq = props => {
   };
 
   return (
-    <Fragment>
-      {faqContentData && faqCategoryData && (
+    faqContentData &&
+    faqCategoryData && (
+      <Fragment>
         <FaqSearch
-          {...props}
           suggestions={faqContentData}
-          // onIdChange={onIdChange}
           categories={faqCategoryData}
           onQuestionIdChange={onQuestionIdChange}
         />
-      )}
-      <div className="find-agent-wrapper">
-        <div className="container-fluid row agent-list">
-          <div className="col-lg-4">
-            {faqCategoryData && faqContentData && (
+        <div className="find-agent-wrapper">
+          <div className="container-fluid row agent-list">
+            <div className="col-lg-4">
               <FaqCategory
                 categoryId={categoryId}
+                urlExist={urlExist}
                 categories={faqCategoryData}
                 faqContentData={faqContentData}
                 onQuestionIdChange={onQuestionIdChange}
               />
-            )}
-          </div>
-          <div className="col-lg-8">
-            <h2>{categoryName}</h2>
-            {faqContentData && (
-              <FaqContent
-                data={faqContentData}
-                categoryId={categoryId}
-                questionId={questionId}
-              />
-            )}
+            </div>
+            <div className="col-lg-8">
+              {urlExist ? (
+                <Fragment>
+                  <h2>{categoryName}</h2>
+                  {questionId ? (
+                    <FaqContent
+                      data={faqContentData}
+                      categoryId={categoryId}
+                      questionId={questionId}
+                    />
+                  ) : (
+                    <h2>No Data Found</h2>
+                  )}
+                </Fragment>
+              ) : (
+                <h1>No Data Found</h1>
+              )}
+            </div>
           </div>
         </div>
-      </div>
-    </Fragment>
+      </Fragment>
+    )
   );
 };
-
 export default Faq;
