@@ -1,9 +1,9 @@
 import React from "react";
 
-import MacBook from "../../../assets/images/MacBook.png";
-import Iphone from "../../../assets/images/Iphone.png";
-import Map from "../../../assets/images/Group 162.png";
-import Contact from "../../../assets/images/Group 20.png";
+import MacBook from "../../../assets/images/macbook.png";
+import Iphone from "../../../assets/images/iphone.png";
+import Map from "../../../assets/images/map.png";
+import Contact from "../../../assets/images/contact-us.png";
 
 const Images = ({ title, apiPartners }) => {
   console.log(apiPartners);
@@ -16,16 +16,13 @@ const Images = ({ title, apiPartners }) => {
   if (title === "Find an Agent") {
     return <img src={Map} alt="partner" />;
   }
-
   if (title === "API Partners") {
     return apiPartners.map(partner => {
       return (
-        <a href={partner.url} key={partner.logo}>
+        <a href={partner.url} key={partner.logo} className="api-images">
           <img
             src={partner.logo}
             key={partner.logo}
-            height="300px"
-            width="200px"
             alt="partner Image"
           />
         </a>

@@ -30,8 +30,8 @@ const [termsCondtions, setTermsCondition] = useState(null);
           <div className="banner-wrapper">
             <img src={banner} className="img-fluid" alt="page-banner" />
             <div className="banner-overlay">
-            <h1>{termsCondtions[0].title}</h1>
-          </div>
+              <h1>{termsCondtions[0].title}</h1>
+            </div>
           </div>
           <div className="terms-condition-body">
             <div className="container"

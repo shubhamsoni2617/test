@@ -8,33 +8,31 @@ import FindAnAgent from "../../../assets/images/user.svg";
 
 const IconsNavigate = ({ tabsArray }) => {
   return (
-    <div>
-      <section className="promotions-wrapper">
-        <div className="container-fluid">
-          <div className="container">
-            <div className="promotions-nav">
-              <ul className="nav nav-tabs" id="nav-tab" role="tablist">
-                {tabsArray.map(category => (
-                  <Link
-                    key={category.title}
-                    activeClass="active"
-                    to={category.title}
-                    spy={true}
-                    smooth={true}
-                    offset={-70}
-                    duration={500}
-                    className="nav-item"
-                  >
-                    <img src={Website} alt={category.title} />
-                    {category.icon_text}
-                  </Link>
-                ))}
-              </ul>
-            </div>
-          </div>
+    <section className="wtbt-sections-tab">
+      <div className="container-fluid">
+        <div className="container">
+          <ul className="wtbt-nav" id="nav-tab" role="tablist">
+            {tabsArray.map(category => (
+              <li>
+                <Link
+                  key={category.title}
+                  activeClass="active"
+                  to={category.title}
+                  spy={true}
+                  smooth={true}
+                  offset={-70}
+                  duration={500}
+                  className="wtbt-tab"
+                >
+                  <img src={Website} alt={category.title} />
+                  {category.icon_text}
+                </Link>
+              </li>
+            ))}
+          </ul> 
         </div>
-      </section>
-    </div>
+      </div>
+    </section>
   );
 };
 

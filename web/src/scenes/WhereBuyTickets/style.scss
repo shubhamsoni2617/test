@@ -1,0 +1,142 @@
+.where-to-buy-tickets{
+    position: relative;
+    z-index: 1;
+    .banner-wrapper{
+        margin-bottom: 0px;
+        z-index: -1;
+        .banner-overlay h1{
+            font-size: 37px;
+            line-height: 45px;
+        }
+    }
+    .wtbt-sections-tab{
+        margin-top: -46px;
+        padding-bottom: 45px;
+    }
+}
+.wtbt-nav{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    li {
+        list-style: none;
+        height: 97px;
+        width: 146px;
+        box-shadow: 0 0 10px 0 rgba(0,0,0,0.13);
+        display: flex;
+        flex-direction: row;
+        margin: 0 10px;
+        background-color: #fff;
+        .wtbt-tab {
+            display: flex;
+            justify-content: center;
+            width: 100%;
+            align-items: center;
+            flex-direction: column;
+        }
+    }
+}
+
+.wtbt-desc {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    .wtbt-content {
+        flex: 0 0 60%;
+        width: 60%;
+        h1 {
+            color: #343434;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 40px;
+            line-height: 49px;
+            font-weight: 600;
+            margin-bottom: 22px;
+            padding: 0px;
+        }
+        p {
+            color: #626262;
+            font-family:'Rubik', sans-serif;
+            font-size: 14px;
+            line-height: 26px;
+            margin: 0px;
+            padding: 0px;
+        }
+        a , button{
+            color: #FFFFFF;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 20px;
+            line-height: 24px;
+            padding: 12px 24px;
+            background-color: #0098FF;
+            font-weight: 600;
+            margin-top: 33px;
+            display: inline-block;
+        }
+    }
+    .wtbt-image {
+        flex: 0 0 40%;
+        width: 40%;
+    }
+}
+.sistic-singapore-section{
+    .wtbt-content{
+        padding-right: 150px;
+    }
+}
+.mobile-app-section{
+    position: relative;
+    &:after{
+        position: absolute;
+        content: "";
+        background-color: #F0F9FF;
+        height: 429px;
+        top: auto;
+        left: 0px;
+        right: 0px;
+        width: 100%;
+        z-index: -1;
+        bottom: 31px;
+    }
+    .wtbt-content{
+        text-align: right;
+        padding-left: 65px;
+        .download-option{
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            flex-direction: row;
+            a{
+                background-color: transparent;
+                margin-left: 10px;
+                padding: 7px 23px 9px 18px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                text-align: left; 
+            }
+        }
+    }
+}
+.api-partners-section {
+    background-color: #F9F9F9;
+    padding: 85px 0px;
+    .wtbt-content{
+        text-align: right;
+    }
+    .wtbt-image{
+        display: flex;
+        flex-wrap: wrap;
+        .api-images {
+            height: 85px;
+            overflow: hidden;
+            display: block;
+            flex: 0 0 calc(33.33% - 40px);
+            width: calc(33.33% - 40px);
+            margin: 0 20px 40px;
+            img{
+                max-width: 100%;
+                height: auto;
+            }
+        }
+    }
+}
