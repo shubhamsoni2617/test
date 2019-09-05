@@ -8,6 +8,8 @@ import Agents from "../Agents";
 import Attraction from "../Attraction";
 import Venues from "../Venues";
 import WhereBuyTickets from "../WhereBuyTickets";
+import TermsConditions from "../TermsConditions";
+import PrivacyPolicy from "../PrivacyPolicy";
 import GiftVouchers from "../GiftVouchers";
 import Faq from "../Faq";
 const routes = [
@@ -54,6 +56,16 @@ const routes = [
   {
     path: "/attraction",
     component: Attraction,
+    exact: true
+  },
+  {
+    path: "/terms-and-conditions",
+    component: TermsConditions,
+    exact: true
+  },
+  {
+    path: "/privacy",
+    component: PrivacyPolicy,
     exact: true
   },
   {
