@@ -1,7 +1,64 @@
+
+
 .agent-list{
     @media (max-width: 992px) {
         padding: 0;
         margin: 0 !important;
+    }
+    /********** Checkbox ******/
+    .styled-checkbox {
+        position: absolute; // take it out of document flow
+        opacity: 0; // hide it
+        height: 16px;
+        width: 16px;
+        
+        & + label {
+        position: relative;
+        cursor: pointer;
+        padding: 0;
+        margin: 0;
+        color: rgba(98, 98, 98, 0.8);
+        }
+
+        // Box.
+        & + label:before {
+        content: '';
+        margin-right: 6px;
+        display: inline-block;
+        vertical-align: text-top;
+        width: 16px;
+        height: 16px;
+        background: url(../../../../assets/images/checkbox-blank.svg) no-repeat !important;
+        margin-top: 0;
+        }
+
+        // Box hover
+        &:hover + label:before {
+            background: #0098FF;
+        }
+
+        // Box focus
+        &:focus + label:before {
+        box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.0);
+        }
+
+        // Box checked
+        &:checked + label:before {
+            background: url(../../../../assets/images/tick-checkbox.svg) no-repeat !important;
+        }
+
+        // Disabled state label.
+        &:disabled + label {
+        color: #626262;
+        cursor: auto;
+        }
+
+        // Disabled box.
+        &:disabled + label:before {
+        box-shadow: none;
+        background: #ddd;
+        }
+
     }
     .search-agent{
         min-height: 600px;
@@ -104,7 +161,7 @@
                     font-size: 16px;
                     font-weight: 600;
                     line-height: 19px;
-                    margin: 0 0 6px;
+                    margin: 0 0 13px;
                     a{
                         color: #0077C8;	
                         font-size: 16px;	
