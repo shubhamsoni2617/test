@@ -8,14 +8,18 @@ class ContactUsService {
 
 	getContactDetail() {
 		return API.get(`contact-us/details`)
+  }
+
+  getFaqs(params) {
+		return API.get(`contact-us/faq`,{params})
 	}
 
 	formSubmission(data){
 		return API.post(`contact-us/store`,data)
   }
 
-  uploadAttachement(file){
-    return API.post('attachments/upload',file)
+  uploadAttachement(files){
+    return API.post('attachments/upload',files)
   }
 
 }
