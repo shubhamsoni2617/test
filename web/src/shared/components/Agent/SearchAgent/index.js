@@ -131,7 +131,7 @@ const SearchAgent = (props) => {
         </div>
       </form>
       {venue ?
-        <ul>
+        <ul className="list-option">
           <li><input type="checkbox" onClick={handleAttraction} className="styled-checkbox" id="1" /><label for="1"> Attraction</label></li>
           <li><input type="checkbox" onClick={handleOngoingEvents} className="styled-checkbox" id="2" /><label for="2"> Venues With Ongoing Events</label></li>
         </ul>
