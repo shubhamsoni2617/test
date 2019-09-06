@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import './style.scss';
 import Image from '../../components/Image';
 import Utilities from '../../utilities';
+import EventHeading from '../EventHeading';
 
 export default class Card extends Component {
 
@@ -31,8 +32,9 @@ export default class Card extends Component {
                         <span className={`category ${category.toLowerCase()}`}>
                             {category}
                         </span>
-                        <h3 className="item-title">{Utilities.showLimitedChars(this.props.cardData.title, 70)} {}
-                        </h3>
+                        <div className="item-title">
+                        <EventHeading title={this.props.cardData.title} lines={2} height={20} />
+                        </div>
                         {this.props.cardData.synopsis && <span dangerouslySetInnerHTML={{__html:Utilities.showLimitedChars(this.props.cardData.synopsis, 70)}}></span>}
                         <p className="event-date">{this.props.cardData.event_date}</p>
                         <p className="event-place">{this.props.cardData.venue_name}</p>

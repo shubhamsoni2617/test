@@ -1,8 +1,11 @@
 import React, { Fragment } from 'react';
+import {Link} from 'react-router-dom';
 import { ReactComponent as Location } from '../../../assets/images/location-blue.svg';
 
 const FindUs = (props) => {
+
   const { contactDetail } = props;
+
   return (
     <Fragment>
       <h3 className="heading-text">Find Us</h3>
@@ -21,20 +24,21 @@ const FindUs = (props) => {
       <div className="find-us-content row">
         <div className="img col-lg-2"></div>
         <div className="col-lg-6">
-          <div className="text" >{contactDetail.contact_information && contactDetail.contact_information.contact_number}</div>
+          <h5 className="text">{contactDetail.contact_information && contactDetail.contact_information.contact_number}</h5>
           <div className="text" dangerouslySetInnerHTML={{ __html: contactDetail.contact_information && contactDetail.contact_information.description }}></div>
         </div>
       </div>
       <div className="find-us-content">
         <div className="img"></div>
+        <a><h5 className="text">Sell Tickets With Us</h5></a>
       </div>
       <div className="find-us-content">
         <div className="img"></div>
-        <div className="text"></div>
+        <a><h5 className="text">Corporate Enquiries</h5></a>
       </div>
       <div className="find-us-content">
         <div className="img"></div>
-        <div className="text"></div>
+        <a><h5 className="text">Careers</h5></a>
       </div>
     </Fragment>
   );

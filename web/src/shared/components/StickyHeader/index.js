@@ -50,18 +50,19 @@ export default class StickyHeader extends Component {
               })}
             </ul>
           )}
-          <h2>{detailData.title}</h2>
-          {detailData.pop_up_message.title && <div className="info-tooltip">
-            <a className="info" onClick={() => this.props.openNotice()}>
-              <img src={Info} alt="Info" />
-            </a>
-          </div>}
-          <div className="share-tooltip">
-            <a className="share" onClick={() => this.props.openSocialShare()}>
-              <img src={shareIcon} alt="" />
-              <SocialShare shareUrl={shareUrl} showSocialShare={showSocialShare} />
-            </a>
-          </div>
+          <h2>{detailData.title}
+            {detailData.pop_up_message.title && <div className="info-tooltip">
+                <a className="info" onClick={() => this.props.openNotice()}>
+                <img src={Info} alt="Info" />
+                </a>
+            </div>}
+            <div className="share-tooltip">
+                <a className="share" onClick={() => this.props.openSocialShare()}>
+                <img src={shareIcon} alt="" />
+                <SocialShare shareUrl={shareUrl} showSocialShare={showSocialShare} />
+                </a>
+            </div>
+          </h2>
           <div className="ticket-date-price">
             <ul className="date-address">
               {detailData.event_date && (

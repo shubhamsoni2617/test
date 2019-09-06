@@ -1,4 +1,4 @@
-import React, { Component, useState, useRef, useEffect } from "react";
+import React, { Component, useState, useRef, useEffect, useLayoutEffect } from "react";
 import InputRange from "react-input-range";
 import VenueFilter from "../VenueFilter";
 import moment from "moment";
@@ -22,8 +22,8 @@ function SearchFilter(props) {
 
   // Text Search
   const textFilter = e => {
-      setSearch(e.target.value);
-      props.handleFilters({filteredSearch: e.target.value});
+    setSearch(e.target.value);
+    props.handleFilters({ filteredSearch: e.target.value });
   };
 
   return (
@@ -43,24 +43,25 @@ function SearchFilter(props) {
 }
 
 function PriceRangeFilter(props) {
-  const {priceConfig, filteredPriceRange} = props;
+  const { priceConfig, filteredPriceRange } = props;
   const [priceRange, setPriceRange] = useState({
     min: parseInt(priceConfig.min_price) || null,
     max: parseInt(priceConfig.max_price) || null
   });
 
   useEffect(() => {
-    if(!filteredPriceRange.min){
+    if (!filteredPriceRange.min) {
       clearPriceRange(false);
     }
   }, [filteredPriceRange]);
 
-  const clearPriceRange = (reset=true) => {
+  const clearPriceRange = (reset = true) => {
     setPriceRange({
       min: parseInt(priceConfig.min_price) || null,
       max: parseInt(priceConfig.max_price) || null
     });
-    if(reset) props.handleFilters({filteredPriceRange: { min: "", max: "" }});
+    if (reset)
+      props.handleFilters({ filteredPriceRange: { min: "", max: "" } });
   };
 
   return (
@@ -87,7 +88,7 @@ function PriceRangeFilter(props) {
           value={priceRange}
           onChange={value => setPriceRange(value)}
           onChangeComplete={value =>
-            props.handleFilters({filteredPriceRange: value})
+            props.handleFilters({ filteredPriceRange: value })
           }
         />
       </div>
@@ -101,21 +102,30 @@ function DateRangeFilter(props) {
   const [from, setFrom] = useState("");
 
   useEffect(() => {
-
-    const getDate = (dateStr) => {
+    const getDate = dateStr => {
       const date = new Date(dateStr);
-      return date.toString() === 'Invalid Date' ? '' : date;
-    }
+      return date.toString() === "Invalid Date" ? "" : date;
+    };
 
-    setTo(props.filteredDateRange && props.filteredDateRange.to ? getDate(props.filteredDateRange.to) : "");
-    setFrom(props.filteredDateRange && props.filteredDateRange.from ? getDate(props.filteredDateRange.from) : "");
+    setTo(
+      props.filteredDateRange && props.filteredDateRange.to
+        ? getDate(props.filteredDateRange.to)
+        : ""
+    );
+    setFrom(
+      props.filteredDateRange && props.filteredDateRange.from
+        ? getDate(props.filteredDateRange.from)
+        : ""
+    );
   }, [props.filteredDateRange]);
 
   const clearCalender = () => {
-      props.handleFilters({filteredDateRange: {
-      from: "",
-      to: ""
-    }});
+    props.handleFilters({
+      filteredDateRange: {
+        from: "",
+        to: ""
+      }
+    });
   };
 
   const showFromMonth = () => {
@@ -139,10 +149,12 @@ function DateRangeFilter(props) {
   };
 
   const filterByDateRange = () => {
-    props.handleFilters({filteredDateRange: {
-      from: moment(from).format("YYYY-MM-DD"),
-      to: moment(to).format("YYYY-MM-DD")
-    }});
+    props.handleFilters({
+      filteredDateRange: {
+        from: moment(from).format("YYYY-MM-DD"),
+        to: moment(to).format("YYYY-MM-DD")
+      }
+    });
   };
 
   const modifiers = { start: from, end: to };
@@ -169,8 +181,8 @@ function DateRangeFilter(props) {
               formatDate={formatDate}
               parseDate={parseDate}
               dayPickerProps={{
-                selectedDays: [from, {from, to}],
-                disabledDays: { before: new Date() },
+                selectedDays: [from, { from, to }],
+                disabledDays: { before: new Date(), after: to },
                 toMonth: to ? new Date(moment(to).format("YYYY-MM-DD")) : null,
                 modifiers,
                 numberOfMonths: 1,
@@ -192,11 +204,15 @@ function DateRangeFilter(props) {
               formatDate={formatDate}
               parseDate={parseDate}
               dayPickerProps={{
-                selectedDays: [from, {from, to}],
-                disabledDays: { before: new Date(), after: to },
+                selectedDays: [from, { from, to }],
+                disabledDays: { before: from },
                 modifiers,
-                month: from ? new Date(moment(from).format("YYYY-MM-DD")) : null,
-                fromMonth: from ? new Date(moment(from).format("YYYY-MM-DD")) : null,
+                month: from
+                  ? new Date(moment(from).format("YYYY-MM-DD"))
+                  : null,
+                fromMonth: from
+                  ? new Date(moment(from).format("YYYY-MM-DD"))
+                  : null,
                 numberOfMonths: 1
                 //   onDayClick: () => this.from.getInput().focus()
               }}
@@ -205,8 +221,8 @@ function DateRangeFilter(props) {
           </span>
         </div>
         {from && to && (
-          <a onClick={filterByDateRange} class="cal-apply-btn active">
-            <img src={tickWhite} class="active" alt="tick" />
+          <a onClick={filterByDateRange} className="cal-apply-btn active">
+            <img src={tickWhite} className="active" alt="tick" />
           </a>
         )}
       </div>
@@ -214,204 +230,120 @@ function DateRangeFilter(props) {
   );
 }
 
-export default class Filters extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      venuesData: this.props.venueData ? this.props.venueData : [],
-      venueFilterPanelDisplay: false,
-      venueShowLimit: this.props.venuesData ? (this.props.venuesData.length > 5 ? 5 : this.props.venuesData.length ) : 0,
+function Filters(props) {
+  const element = useRef();
+  // const [elementOffsetTop, setElementOffsetTop] = useState('');
+
+  const clearAllFilters = () => {
+    props.resetFilters();
+  };
+
+  const handleScroll = () => {
+    if(window.pageYOffset + 377 > window.document.body.clientHeight - window.innerHeight) {
+      element.current.classList.add("fixed-filter-absolute");
+      element.current.classList.remove("fixed-filter");
+    }else if(window.pageYOffset + 299 >= element.current.clientHeight - 45){
+      element.current.classList.add("fixed-filter");
+      element.current.classList.remove("fixed-filter-absolute");
+    }else {
+      element.current.classList.remove("fixed-filter");
+      element.current.classList.remove("fixed-filter-absolute");
+    }
+  };
+
+  useLayoutEffect(() => {
+    if(!element.current['top']) element.current['top'] = element.current.offsetTop;
+  }, [element.current]);
+
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
     };
-  }
+  }, []);
 
-  componentDidMount() {
-    this.applyIsChecked(true); //Value true passed for check route params
-  }
+  const {
+    genreData,
+    venueData,
+    attractionCategories,
+    filterConfig,
+    handleFilters,
+    filteredSearch,
+    filteredDateRange,
+    filteredPriceRange,
+    filteredGnere,
+    filteredPromotions,
+    filteredTags,
+    filteredVenues,
+    filteredCategory,
+    hideCalendar
+  } = props;
+  const { price_config } = filterConfig ? filterConfig : 0;
 
-  componentDidUpdate(preProps) {
-    // if (this.props.queryParams.genreId !== preProps.queryParams.genreId) {
-    //   this.applyIsChecked(true); //Value true passed for check route params
-    // }
-  }
-
-  applyIsChecked = status => {
-
-    this.state.venuesData.map(venue => {
-      if (venue.id == this.props.queryParams.venueId) {
-        venue.isChecked = true;
-      } else {
-        venue.isChecked = false;
-      }
-    });
-  };
-
-
-  clearAllFilters = () => {
-    this.applyIsChecked(false);
-    this.props.resetFilters();
-  };
-
-  // Venues
-  checkUncheckAllVenues = status => {
-    let venuesData = this.state.venuesData;
-    let venuesIds = [];
-    venuesData.map((venue, key) => {
-      if (key < 5) {
-        venue.isChecked = status;
-        venuesIds.push(venue.id);
-      }
-    });
-    this.setState({ venuesData });
-    if (!status) {
-      venuesIds = [];
-    }
-    this.props.handleFilters({filteredVenues: venuesIds});
-  };
-
-  checkUncheckVenues = (e, key, isChild) => {
-    let venuesData = this.state.venuesData;
-    if (isChild == "child") {
-      venuesData &&
-        venuesData.filter((venue, vkey) => {
-          if (venue.id === key) {
-            key = vkey;
-            venuesData[key].isChecked = e.target.checked;
-          }
-        });
-    } else {
-      venuesData[key].isChecked = e.target.checked;
-    }
-    this.setState({ venuesData });
-
-    let filteredVenues = [...this.props.filteredVenues];
-    if(e.target.checked){
-      filteredVenues.push(venuesData[key].id);
-    }else{
-      filteredVenues.splice(key, 1)
-    }
-    this.props.handleFilters({filteredVenues});
-  };
-
-  setOpenVenuePanel = (status, ref) => {
-    this.setState({ venueFilterPanelDisplay: status });
-    window.scrollTo(0, 1000);
-  };
-
-  render() {
-    const { venueData, filterConfig, handleFilters, filteredSearch, filteredDateRange, filteredPriceRange, filteredGnere, filteredPromotions, filteredTags, filteredVenues } = this.props;
-    const { price_config } = filterConfig ? filterConfig : 0;
-    const { venuesData, venueFilterPanelDisplay, venueShowLimit } = this.state;
-
-    return (
-      <div>
-        <div className="filters">
-          <div className="filter-heading">
-            <h3>
-              FILTERS <a onClick={() => this.clearAllFilters()}>Clear all</a>
-            </h3>
-          </div>
-          <SearchFilter handleFilters={handleFilters} searchText={filteredSearch} />
-          {price_config != undefined && (
-            <PriceRangeFilter priceConfig={price_config} filteredPriceRange={filteredPriceRange} handleFilters={handleFilters}  />
-          )}
-          <FilterGrid
-            title="Genre"
-            category="filteredGnere"
-            handleFilters={handleFilters}
-            data={this.props.genreData ? this.props.genreData : []}
-            selectedFilter={filteredGnere}
-          />
-          <FilterGrid
-            title="Tags"
-            category="filteredTags"
-            handleFilters={handleFilters}
-            data={filterConfig ? filterConfig.tags : []}
-            selectedFilter={filteredTags}
-          />
-          <DateRangeFilter filteredDateRange={filteredDateRange} handleFilters={handleFilters} />
-          {/* {this.props.showCalendar && (
-          )} */}
-          <FilterGrid
-            title="Promotion"
-            category="filteredPromotions"
-            handleFilters={handleFilters}
-            data={
-              filterConfig
-                ? filterConfig.promotion_categories
-                : []
-            }
-            selectedFilter={filteredPromotions}
-          />
-          {venuesData && venuesData.length > 0 && (
-            <div className="filter-grid">
-              <div className="filter-grid-heading">
-                <h3>Venue</h3>
-                <ul>
-                  <li className="active">
-                    <a onClick={() => this.checkUncheckAllVenues(false)}>
-                      Clear
-                    </a>
-                  </li>
-                </ul>
-              </div>
-              <div className="filters-panel">
-                <ul>
-                  {venuesData &&
-                    venuesData.map((venue, key) => {
-                      let id = "venue-" + venue.id;
-                      let isChecked = false;
-                      if (filteredVenues && filteredVenues.indexOf(venue.id) > -1) {
-                        isChecked = true;
-                      }
-                      if (key < 5) {
-                        return (
-                          <li key={key}>
-                            <input
-                              checked={isChecked}
-                              onChange={e => this.checkUncheckVenues(e, key)}
-                              className="styled-checkbox"
-                              type="checkbox"
-                              id={id}
-                              value=""
-                            />
-                            <label for={id}>{venue.name}</label>
-                          </li>
-                        );
-                      }
-                    })}
-                </ul>
-                <a
-                  onClick={() =>
-                    this.setOpenVenuePanel(true, this.venuePopUpRef)
-                  }
-                  className="view-all-filters"
-                >
-                  + {venuesData.length - venueShowLimit} More
-                </a>
-              </div>
-              {/* Venue filter component. */}
-              <VenueFilter
-                ref={node => (this.venuePopUpRef = node)}
-                checkUncheckVenues={this.checkUncheckVenues}
-                setOpenVenuePanel={this.setOpenVenuePanel}
-                venueFilterPanelDisplay={venueFilterPanelDisplay}
-                venueData={venueData}
-              />
-            </div>
-          )}
-          <FilterGrid
-            title="Categories"
-            category="category"
-            handleFilters={handleFilters}
-            data={
-              this.props.attractionCategories
-                ? this.props.attractionCategories
-                : []
-            }
-            reset={this.state.reset}
-          />
+  return (
+    <div className="filter-conatiner">
+      <div className="filters" ref={element}>
+        <div className="filter-heading">
+          <h3>
+            FILTERS <a onClick={() => clearAllFilters()}>Clear all</a>
+          </h3>
         </div>
+        <SearchFilter
+          handleFilters={handleFilters}
+          searchText={filteredSearch}
+        />
+        {price_config != undefined && (
+          <PriceRangeFilter
+            priceConfig={price_config}
+            filteredPriceRange={filteredPriceRange}
+            handleFilters={handleFilters}
+          />
+        )}
+        <FilterGrid
+          title="Genre"
+          category="filteredGnere"
+          handleFilters={handleFilters}
+          data={genreData ? genreData : []}
+          selectedFilter={filteredGnere}
+        />
+        <FilterGrid
+          title="Tags"
+          category="filteredTags"
+          handleFilters={handleFilters}
+          data={filterConfig ? filterConfig.tags : []}
+          selectedFilter={filteredTags}
+        />
+        {!hideCalendar && (
+          <DateRangeFilter
+            filteredDateRange={filteredDateRange}
+            handleFilters={handleFilters}
+          />
+        )}
+        <FilterGrid
+          title="Promotion"
+          category="filteredPromotions"
+          handleFilters={handleFilters}
+          data={filterConfig ? filterConfig.promotion_categories : []}
+          selectedFilter={filteredPromotions}
+        />
+        <FilterGrid
+          title="Venue"
+          category="filteredVenues"
+          handleFilters={handleFilters}
+          data={venueData ? venueData : []}
+          showPanel={true}
+          selectedFilter={filteredVenues}
+        />
+        <FilterGrid
+          title="Categories"
+          category="filteredCategory"
+          handleFilters={handleFilters}
+          data={attractionCategories ? attractionCategories : []}
+          selectedFilter={filteredCategory}
+        />
       </div>
-    );
-  }
+    </div>
+  );
 }
+
+export default Filters;
