@@ -23,7 +23,7 @@ function EventHeading(props) {
         display: props.lines == 1 ? "block" : "-webkit-box",
         "line-height": `${props.height}px`,
         "max-height": `${props.height * props.lines}px`,
-        "min-height": "unset",
+        "min-height": `${props.height * props.lines}px`,
         "-webkit-line-clamp": `${props.lines}`,
         "-webkit-box-orient": "vertical",
         "margin-bottom": props.noMargin ? "0px":"15px",
