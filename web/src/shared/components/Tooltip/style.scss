@@ -1,0 +1,24 @@
+.title{
+  position: relative;
+  display: block;
+  .info-popover{
+    right: auto;
+    width: auto;
+    bottom: 35px;
+    background: #616161;
+    color: white;
+    white-space: normal;
+    &:before{
+      border-top: 8px solid #616161;
+    }
+  }
+  &:hover{
+    .info-popover {
+      opacity: 1;
+      padding: 12px;
+      height: auto;
+      overflow: inherit;
+  }
+
+  }
+}

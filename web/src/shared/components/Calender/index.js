@@ -56,7 +56,7 @@ const Calender = (props) => {
       <DayPicker
         className="Range"
         numberOfMonths={1}
-        fromMonth={from}
+        fromMonth={new Date()}
         selectedDays={selectedDays}
         // selectedDays={[from, { from, to }]}
         disabledDays={{before: new Date()}}
