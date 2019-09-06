@@ -183,6 +183,7 @@ function DateRangeFilter(props) {
               dayPickerProps={{
                 selectedDays: [from, { from, to }],
                 disabledDays: { before: new Date(), after: to },
+                fromMonth: new Date(),
                 toMonth: to ? new Date(moment(to).format("YYYY-MM-DD")) : null,
                 modifiers,
                 numberOfMonths: 1,
@@ -212,7 +213,7 @@ function DateRangeFilter(props) {
                   : null,
                 fromMonth: from
                   ? new Date(moment(from).format("YYYY-MM-DD"))
-                  : null,
+                  : new Date(),
                 numberOfMonths: 1
                 //   onDayClick: () => this.from.getInput().focus()
               }}
@@ -239,10 +240,10 @@ function Filters(props) {
   };
 
   const handleScroll = () => {
-    if(window.pageYOffset + 377 > window.document.body.clientHeight - window.innerHeight) {
+    if(element.current.parentElement.offsetHeight > element.current.offsetHeight + 20 && window.pageYOffset + 377 > window.document.body.clientHeight - window.innerHeight) {
       element.current.classList.add("fixed-filter-absolute");
       element.current.classList.remove("fixed-filter");
-    }else if(window.pageYOffset + 299 >= element.current.clientHeight - 45){
+    }else if(element.current.parentElement.offsetHeight > element.current.offsetHeight + 20 && window.pageYOffset + 299 >= element.current.clientHeight - 45){
       element.current.classList.add("fixed-filter");
       element.current.classList.remove("fixed-filter-absolute");
     }else {
