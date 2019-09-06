@@ -1,10 +1,5 @@
 import React, { Fragment } from "react";
 import { Link } from "react-scroll";
-import Website from "../../../assets/images/noun_website_1353550.svg";
-import Hotline from "../../../assets/images/hotline.svg";
-import Partners from "../../../assets/images/partners.svg";
-import MobileApp from "../../../assets/images/smartphone.svg";
-import FindAnAgent from "../../../assets/images/user.svg";
 
 const IconsNavigate = ({ tabsArray }) => {
   return (
@@ -12,8 +7,20 @@ const IconsNavigate = ({ tabsArray }) => {
       <div className="container-fluid">
         <div className="container">
           <ul className="wtbt-nav" id="nav-tab" role="tablist">
-            {tabsArray.map(category => (
-              <li>
+            {tabsArray.map(category => {
+               let className;
+               if(category.title==='SISTIC Singapore'){
+                   className="wtbt-tab-website"
+               }else if(category.title==='Mobile App'){
+                 className="wtbt-tab-mobile-app"
+               }else if(category.title==='Find an Agent'){
+                 className="wtbt-tab-agent"
+               }else if(category.title==='API Partners'){
+                 className="wtbt-tab-partners"
+               }else if(category.title==='Hotline @ +65 6348 5555'){
+                 className="wtbt-tab-hotline"
+               }
+            return <li className={className}>
                 <Link
                   key={category.title}
                   activeClass="active"
@@ -23,12 +30,11 @@ const IconsNavigate = ({ tabsArray }) => {
                   offset={-70}
                   duration={500}
                   className="wtbt-tab"
-                >
-                  <img src={Website} alt={category.title} />
-                  {category.icon_text}
+                >                  
+                  <span>{category.icon_text}</span>
                 </Link>
               </li>
-            ))}
+            })}
           </ul> 
         </div>
       </div>
