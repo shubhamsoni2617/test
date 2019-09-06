@@ -8,11 +8,14 @@ import Image from '../../Image';
 
 const GoogleMap = (props) => {
 
-  const { google, multipleMarker, selectedItem, venue, zoom, mapClick } = props;
+  const { google, multipleMarker, showOnMapData, venue, zoom, mapClick, countryName } = props;
 
   const [showingInfoWindow, setShowingInfoWindow] = useState(false);
   const [activeMarker, setActiveMarker] = useState({});
   const [selectedPlace, setSelectedPlace] = useState({});
+  const [initialCenter, setInitialCenter] = useState({ lat: 1.290270, lng: 103.851959 });
+  const [zoomValue, setZoomValue] = useState(12);
+
 
   const onMapClicked = (props) => {
     if (showingInfoWindow) {
@@ -22,7 +25,6 @@ const GoogleMap = (props) => {
   };
 
   const onMarkerClick = (props, marker, e) => {
-    console.log(props)
     setSelectedPlace(props);
     setActiveMarker(marker);
     setShowingInfoWindow(true);
@@ -43,27 +45,53 @@ const GoogleMap = (props) => {
     setSelectedPlace({});
     // setActiveMarker({});
     setShowingInfoWindow(true);
-  }, [selectedItem.id])
+  }, [showOnMapData.id])
 
   useEffect(() => {
     setShowingInfoWindow(false);
+    setMapInitialCenter(countryName);
   }, [mapClick])
+
+  const setMapInitialCenter = (country) => {
+    switch (country) {
+      case "Singapore":
+        setInitialCenter({ lat: 1.290270, lng: 103.851959 });
+        setZoomValue(12);
+        break;
+      case "Malaysia":
+        setInitialCenter({ lat: 3.140853, lng: 101.693207 });
+        setZoomValue(3);
+        break;
+      case "Indonesia":
+        setInitialCenter({ lat: -6.21462, lng: 106.84513 });
+        setZoomValue(3);
+        break;
+      case "Thailand":
+        setInitialCenter({ lat: 13.736717, lng: 100.523186 });
+        setZoomValue(5);
+        break;
+      case "Vietnam":
+        setInitialCenter({ lat: 14.315424, lng: 108.339537 });
+        setZoomValue(5);
+        break;
+      default:
+        setInitialCenter({ lat: 1.290270, lng: 103.851959 });
+        setZoomValue(12);
+    }
+  }
 
   if (!google) {
     return <div>Loading...</div>;
   }
-
   return (
     <div className="gmap">
-      {selectedPlace && selectedPlace.id ?
+      {selectedPlace.id || showOnMapData.id === undefined ?
         <Map google={google}
           style={{ width: '100%', height: '600px', position: 'relative' }}
-          zoom={venue ? zoom : 11}
+          zoom={zoomValue}
+          // zoom={venue ? zoom : 11}
           onClick={onMapClicked}
-          initialCenter={{
-            lat: 1.290270,
-            lng: 103.851959
-          }}
+          initialCenter={initialCenter}
         >
           {multipleMarker && multipleMarker.map((elem, index) => {
             return (
@@ -88,7 +116,7 @@ const GoogleMap = (props) => {
           >
             <div className="map-info-popup">
               <div className="map-img">
-                <Image className="small" src={selectedPlace.imgPath} type="Small"/>
+                <Image className="small" src={selectedPlace.imgPath} type="Small" />
                 {/* <img
                   height="50"
                   width="100"
@@ -111,12 +139,11 @@ const GoogleMap = (props) => {
         <Map google={google}
           onClick={onMapClicked}
           style={{ width: '100%', height: '600px', position: 'relative' }}
-          zoom={venue && selectedItem.id ? zoom : (selectedItem.id ? 11 : 11)}
-          initialCenter={{
-            lat: 1.290270,
-            lng: 103.851959
-          }}
+          zoom={zoomValue}
+          // zoom={venue && showOnMapData.id ? zoom : (showOnMapData.id ? 11 : 11)}
+          initialCenter={initialCenter}
         >
+
           {multipleMarker && multipleMarker.map((elem, index) => {
             return (
               <Marker
@@ -127,35 +154,35 @@ const GoogleMap = (props) => {
                 address={elem.address}
                 imgPath={elem.image}
                 icon={{
-                  url: elem.id === selectedItem.id ? require("../../../../../src/assets/images/pin.svg") : null
+                  url: elem.id === showOnMapData.id ? require("../../../../../src/assets/images/pin.svg") : null
                 }}
               />
             )
           })
           }
-          {selectedItem.id ?
+          {showOnMapData.id ?
             <InfoWindow
               visible={showingInfoWindow}
               position={{
-                lat: selectedItem.latitude,
-                lng: selectedItem.longitude
+                lat: showOnMapData.latitude,
+                lng: showOnMapData.longitude
               }}
             >
               <div className="map-info-popup">
                 <div className="map-img">
-                  <Image className="small" src={selectedItem.image} type="Small"/>
+                  <Image className="small" src={showOnMapData.image} type="Small" />
                   {/* <img
                     height="50"
                     width="100"
-                    src={selectedItem.image === "" || selectedItem.image === undefined || selectedItem.image === null ? DefaultImg : selectedItem.image}
+                    src={showOnMapData.image === "" || showOnMapData.image === undefined || showOnMapData.image === null ? DefaultImg : showOnMapData.image}
                     title="Title of image"
                     alt="alt text here"
                   /> */}
                 </div>
                 <div className="map-name-address">
-                  <h5>{selectedItem.id}</h5>
-                  <p>{selectedItem.address}</p>
-                  <a href={`https://www.google.com/maps/dir//${selectedItem.address}`} className="direcrtion-icn" target="_blank">
+                  <h5>{showOnMapData.id}</h5>
+                  <p>{showOnMapData.address}</p>
+                  <a href={`https://www.google.com/maps/dir//${showOnMapData.address}`} className="direcrtion-icn" target="_blank">
                     <img height='20' width='20' src={redirect} alt="direction" />
                   </a>
                 </div>
