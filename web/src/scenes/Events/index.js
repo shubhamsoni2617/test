@@ -378,7 +378,7 @@ export default class Events extends Component {
                   />
                   <ul className="sortby-view">
                     <li className={viewType == "grid" ? "active" : ""}>
-                      <a>
+                      <a title="Grid View">
                         <img
                           onClick={() => this.handleListGridView("grid")}
                           src={GridView}
@@ -387,7 +387,7 @@ export default class Events extends Component {
                       </a>
                     </li>
                     <li className={viewType == "list" ? "active" : ""}>
-                      <a>
+                      <a title="List View">
                         <img
                           onClick={() => this.handleListGridView("list")}
                           src={ListView}
