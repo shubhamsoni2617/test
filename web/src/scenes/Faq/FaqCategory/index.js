@@ -7,11 +7,9 @@ const FaqCategory = props => {
   });
 
   const setQuestionId = categoryId => {
-    console.log(categoryId);
     let value = spreadData.find(obj => {
       return obj.category_id === categoryId;
     });
-    console.log(value);
     if (!value) {
       props.onQuestionIdChange(null);
     } else {

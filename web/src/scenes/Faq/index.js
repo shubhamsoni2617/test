@@ -21,7 +21,6 @@ const Faq = props => {
 
   useEffect(() => {
     if (faqCategoryData) {
-      console.log(faqCategoryData.length);
       faqCategoryData.findIndex((category, i) => {
         if (
           category.name.toLowerCase().replace(/[^a-z]/g, "") ===
@@ -62,7 +61,6 @@ const Faq = props => {
   };
 
   const onQuestionIdChange = questionId => {
-    console.log(questionId);
     setQuestionId(questionId);
   };
 
