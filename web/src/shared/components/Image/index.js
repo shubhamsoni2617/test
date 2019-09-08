@@ -6,7 +6,7 @@ import Tile from "../../../assets/images/Vertical Tile.png";
 import "./style.scss";
 
 function Image(props) {
-  const [source, SetSource] = useState('');
+  const [source, SetSource] = useState(!props.largeImage ? props.src : props.largeImage);
 
   const [className, setClassName] = useState("");
   const [errored, setErrored] = useState(false);
