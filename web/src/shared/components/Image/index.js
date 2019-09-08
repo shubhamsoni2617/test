@@ -13,9 +13,9 @@ function Image(props) {
   const [errored, setErrored] = useState(false);
 
   const onLoad = src => {
-    // setTimeout(() => {
+    setTimeout(() => {
     setClassName("loaded");
-    // }, 1000);
+    }, 1000);
   };
 
   const onError = () => {
@@ -45,16 +45,16 @@ function Image(props) {
 
   return (
       <div class="image-conatiner">
+          <img
+          className={`image ${props.className} ${className}`}
+          src={source}
+          onLoad={() => onLoad()}
+        />
         <img
           className={`image ${props.className} preview ${className}`}
           src={props.src}
           onError={() => onError()}
         />
-        <img
-        className={`image ${props.className} ${className}`}
-        src={source}
-        onLoad={() => onLoad()}
-      />
       </div>
   );
 }
