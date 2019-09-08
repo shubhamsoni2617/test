@@ -111,6 +111,7 @@ export default class Events extends Component {
     const payload = this.getInitialFilters();
     this.setInitialFilters(payload);
     this.loadEvents(payload);
+    window.scrollTo(0,0);
   }
 
   componentDidUpdate(prevProps) {
@@ -122,6 +123,7 @@ export default class Events extends Component {
       const payload = this.getInitialFilters();
       this.setInitialFilters(payload);
       this.loadEvents(payload);
+      window.scrollTo(0,0);
     }
   }
 
