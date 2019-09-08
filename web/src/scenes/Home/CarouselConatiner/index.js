@@ -31,10 +31,10 @@ const CarouselConatiner = props => {
         .then(res => {
           if(res.data.data.length){
             // Utilities.preloadImages(res.data.data, "thumb_image", () => {
-              // setTimeout(() => {
-                setData(res.data.data);
+              setData(res.data.data);
+                setTimeout(() => {
                 setLoading(false);
-              // }, 1000);
+              }, 1000);
             // });
           }else{
             setLoading(false);

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, memo } from "react";
 import BigBanner from "../../../assets/images/big_banner.png";
 import Horizontal from "../../../assets/images/horizontal.png";
 import Vertical from "../../../assets/images/vertical.png";
@@ -6,11 +6,14 @@ import Tile from "../../../assets/images/Vertical Tile.png";
 import "./style.scss";
 
 function Image(props) {
-  const [source, SetSource] = useState(
-    props && props.largeImage ? props.largeImage : props.src
-  );
+  const [source, SetSource] = useState('');
+
   const [className, setClassName] = useState("");
   const [errored, setErrored] = useState(false);
+
+  useEffect(() => {
+    SetSource(!props.largeImage ? props.src : props.largeImage);
+  }, [props.src])
 
   const onLoad = src => {
     setTimeout(() => {
@@ -59,4 +62,4 @@ function Image(props) {
   );
 }
 
-export default Image;
+export default memo(Image);

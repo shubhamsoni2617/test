@@ -1,4 +1,4 @@
-import React, { useState, useEffect ,createRef } from 'react';
+import React, { useState, useEffect ,createRef, memo } from 'react';
 // import Slider from "react-slick";
 import './style.scss';
 import ReactPlayer from 'react-player';
@@ -8,7 +8,6 @@ import "react-image-gallery/styles/css/image-gallery.css";
 import ImageGallery from 'react-image-gallery';
 import Image from "../Image";
 const EventCarousel = (props) => {
-
   const [imageArray, setImageArray] = useState([]);
 
   const renderItem = (item) => {
@@ -77,4 +76,4 @@ const EventCarousel = (props) => {
 
 }
 
-export default EventCarousel;
+export default memo(EventCarousel);
