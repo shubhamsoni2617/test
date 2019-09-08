@@ -11,6 +11,7 @@ import ListView from "../../assets/images/list-view.svg";
 import GridView from "../../assets/images/grid-view.svg";
 import loaderImage from "../../assets/images/loader.svg";
 import EventBreadcrumbImage from "../../assets/images/events.png";
+import EventBreadcrumbImageBlur from "../../assets/images/events-blur.png";
 import ShimmerEffect from "../../shared/components/ShimmerEffect";
 import "./style.scss";
 
@@ -45,6 +46,7 @@ export default class Events extends Component {
 
     this.breadCrumbData = {
       page_banner: EventBreadcrumbImage,
+      page_banner_blur: EventBreadcrumbImageBlur,
       page: "Events",
       count: 0,
       breadcrumb_slug: [

@@ -6,7 +6,7 @@ import playIcon from '../../../assets/images/play.svg';
 import videoImage from '../../../assets/images/slide1.jpg';
 import "react-image-gallery/styles/css/image-gallery.css";
 import ImageGallery from 'react-image-gallery';
-
+import Image from "../Image";
 const EventCarousel = (props) => {
 
   const [imageArray, setImageArray] = useState([]);
@@ -20,7 +20,7 @@ const EventCarousel = (props) => {
           <ReactPlayer url={item.video_url} controls={true} />
           </div>
         )}
-        {item.video_url === '' && <img src={item.full_image} />}
+        {item.video_url === '' && <Image largeImage={item.full_image} src={item.thumb_image} />}
       </div>
     )
   }
@@ -31,12 +31,12 @@ const EventCarousel = (props) => {
         {item.video_url !== '' && (
             <div className="videoimg" style={{ width: 130 }} >
         <img src={playIcon} className="play-icon" alt="Play Icon" />
-        <img src={item.thumb_image} />
+        <Image largeImage={item.full_image} src={item.thumb_image} />
         </div>
         )}
         {item.video_url === '' && (
           <div style={{ width: 130 }}>
-          <img src={item.thumb_image} />
+          <Image largeImage={item.full_image} src={item.thumb_image} />
           </div>
         )}
         <span className="border-bottom-active"></span>

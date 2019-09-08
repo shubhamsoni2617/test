@@ -30,12 +30,12 @@ const CarouselConatiner = props => {
         .api(params)
         .then(res => {
           if(res.data.data.length){
-            Utilities.preloadImages(res.data.data, "thumb_image", () => {
-              setTimeout(() => {
+            // Utilities.preloadImages(res.data.data, "thumb_image", () => {
+              // setTimeout(() => {
                 setData(res.data.data);
                 setLoading(false);
-              }, 1000);
-            });
+              // }, 1000);
+            // });
           }else{
             setLoading(false);
             element.current.classList.add('hide-container');
