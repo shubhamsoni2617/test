@@ -31,12 +31,12 @@ const EventCarousel = (props) => {
         {item.video_url !== '' && (
             <div className="videoimg" style={{ width: 130 }} >
         <img src={playIcon} className="play-icon" alt="Play Icon" />
-        <Image largeImage={item.full_image} src={item.thumb_image} />
+        <Image largeImage={item.thumb_image} src={item.thumb_image} />
         </div>
         )}
         {item.video_url === '' && (
           <div style={{ width: 130 }}>
-          <Image largeImage={item.full_image} src={item.thumb_image} />
+          <Image largeImage={item.thumb_image} src={item.thumb_image} />
           </div>
         )}
         <span className="border-bottom-active"></span>
