@@ -76,7 +76,9 @@ export default class EventsDetail extends Component {
         this.setState({ detailData: res.data });
         // Utilities.preloadImages(res.data.images, "full_image", () => {
           // Utilities.preloadImages(res.data.images, "thumb_image", () => {
-            this.setState({ shimmer: false });
+            setTimeout(()=> {
+              this.setState({ shimmer: false });
+            }, 1000);
           // });
         // });
       })
