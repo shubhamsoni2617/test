@@ -143,8 +143,10 @@ export default class Events extends Component {
         let genre = Object.keys(res.data.data).map(key => {
           return res.data.data[key];
         });
+        setTimeout(()=>{
 
-        this.setState({ shimmerFilter: false, genre: genre });
+          this.setState({ shimmerFilter: false, genre: genre });
+        }, 1000);
       })
       .catch(error => {
         console.error(error);
@@ -347,7 +349,7 @@ export default class Events extends Component {
                     propCls="shm_col-xs-6 col-md-12"
                     height={150}
                     count={1}
-                    type="LIST"
+                    type="FILTER"
                   />
                 )}
                 {!shimmerFilter &&
