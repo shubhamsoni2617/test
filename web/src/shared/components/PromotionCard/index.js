@@ -6,7 +6,7 @@ import SocialShare from '../../../shared/components/SocialShare';
 import CloseIcon from '../../../assets/images/close-blue.svg';
 import ShareIcon from '../../../assets/images/share-icon.svg';
 import StopWatch from '../../../assets/images/stopwatch-grey.svg';
-import Horizontal from '../../../assets/images/horizontal.png';
+import Image from '../Image';
 
 const PromotionCard = (props) => {
 
@@ -49,11 +49,7 @@ const PromotionCard = (props) => {
     <div className={promotionTab === 1 && tabDetailId === data.id ? "promotion-block active" : "promotion-block"}>
       <div className="promotions-listing-wrapper">
         <div className="promotion-image">
-          <img
-            src={(data.featured_image === null || data.featured_image === "" || data.featured_image === undefined) ? Horizontal : data.featured_image}
-            className="img-fluid"
-            alt="feature-image"
-          />
+          <Image src={data.featured_image} />
         </div>
         <div className="promotion-desc">
           {data && data.custom_label_text ?
@@ -102,7 +98,6 @@ const PromotionCard = (props) => {
           {/* Related Events */}
 
           {buttons && buttons.length > 0 && buttons.map((e, i) => {
-            console.log(e.color, "color")
             return (
               <div key={i}>
                 <a href={e && e.url ? e.url : undefined}>
