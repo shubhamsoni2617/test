@@ -9,7 +9,7 @@ import AgentVenuePopUp from '../../AgentVenuePopUp';
 
 const SearchAgent = (props) => {
 
-  const { initialItems, countryFile, onClick, venue, countryName, handleAttractionValue, handleEventValue } = props;
+  const { initialItems, countryFile, showOnMapClick, venue, countryName, handleAttractionValue, handleEventValue } = props;
   const activePopUpRef = useRef();
 
   const [filter, setFilter] = useState('');
@@ -132,8 +132,8 @@ const SearchAgent = (props) => {
       </form>
       {venue ?
         <ul className="list-option">
-          <li><input type="checkbox" onClick={handleAttraction} className="styled-checkbox" id="1" /><label for="1"> Attraction</label></li>
-          <li><input type="checkbox" onClick={handleOngoingEvents} className="styled-checkbox" id="2" /><label for="2"> Venues With Ongoing Events</label></li>
+          <li><input type="checkbox" onClick={handleAttraction} className="styled-checkbox" id="1" /><label htmlFor="1"> Attraction</label></li>
+          <li><input type="checkbox" onClick={handleOngoingEvents} className="styled-checkbox" id="2" /><label htmlFor="2"> Venues With Ongoing Events</label></li>
         </ul>
         : null
       }
@@ -151,7 +151,7 @@ const SearchAgent = (props) => {
             return (
               <li className="pop-up-container" key={index} onMouseEnter={() => showPopUp(item)} onMouseLeave={hidePopUp}>
                 <img src={downArrow} className="active-arrow" alt="Down Arrow" />
-                <h3><strong>{item.name}</strong> <span><a onClick={(e) => { onClick(e, item, activePopUpRef) }}>shown On Map</a></span></h3>
+                <h3><strong>{item.name}</strong> <span><a onClick={(e) => { showOnMapClick(e, item, activePopUpRef) }}>shown On Map</a></span></h3>
                 <p>{item.address},{item.country}</p>
                 <AgentVenuePopUp item={item} popUpDetail={popUpDetail} currentlyShowingData={currentlyShowingData} activePopUpRef={activePopUpRef} {...props} />
               </li>
