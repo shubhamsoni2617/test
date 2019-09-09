@@ -66,7 +66,7 @@ const TopNav = (props) => {
   const processPath = (location) => {
     if (location.pathname) {
       let pathArr = location.pathname.split('/');
-      if (pathArr.length && (pathArr[1] == 'events' || pathArr[1] == 'promotions')) {
+      if (pathArr.length && (pathArr[1] === 'events' || pathArr[1] === 'promotions')) {
         setPathName(pathArr[1]);
         setMenuActive(true);
 
