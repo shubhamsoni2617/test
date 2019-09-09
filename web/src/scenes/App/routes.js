@@ -82,7 +82,6 @@ const routes = [
     exact: true
   },
   {
-    path: '/venues',
     path: "/venues",
     component: Venues,
     exact: true
