@@ -1,60 +1,65 @@
-import React, { Component } from 'react';
-import LazyLoad from 'react-lazyload';
-import BigBanner from '../../../assets/images/big_banner.png';
-import Horizontal from  '../../../assets/images/horizontal.png';
-import Vertical from  '../../../assets/images/vertical.png';
-import Tile from  '../../../assets/images/Vertical Tile.png';
+import React, { useState, useEffect, memo } from "react";
+import BigBanner from "../../../assets/images/big_banner.png";
+import Horizontal from "../../../assets/images/horizontal.png";
+import Vertical from "../../../assets/images/vertical.png";
+import Tile from "../../../assets/images/Vertical Tile.png";
+import "./style.scss";
 
-export default class Image extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      src: props.src,
-      errored: false
-    };
-  }
+function Image(props) {
+  const [source, SetSource] = useState(!props.largeImage ? props.src : props.largeImage);
 
-  onError = () => {
-    let newImg ;
-    switch (this.props.type)
-    {
+  const [className, setClassName] = useState("");
+  const [errored, setErrored] = useState(false);
 
-        case 'Vertical':
-        newImg = Vertical
+  useEffect(() => {
+    SetSource(!props.largeImage ? props.src : props.largeImage);
+  }, [props.src])
+
+  const onLoad = src => {
+    setTimeout(() => {
+    setClassName("loaded");
+    }, 1000);
+  };
+
+  const onError = () => {
+    let newImg;
+    switch (props.type) {
+      case "Vertical":
+        newImg = Vertical;
         break;
 
-        case 'Tile':
-        newImg = Tile
+      case "Tile":
+        newImg = Tile;
         break;
 
-        case 'BigBanner':
-        newImg = BigBanner
+      case "BigBanner":
+        newImg = BigBanner;
         break;
 
-        default:
-        newImg = Horizontal
+      default:
+        newImg = Horizontal;
     }
 
-    if (! this.state.errored) {
-      this.setState({
-        src: newImg,
-        errored: true,
-      });
+    if (!errored) {
+      SetSource(newImg);
+      setErrored(true);
     }
-  }
+  };
 
-  render() {
-    let { src} = this.state;
-    if(! src){
-      src="assets.png"
-    }
-    const {className} = this.props;
-    return (
-     <img
-       className = {className}
-        src={src}
-        onError ={() => this.onError()}
-      />
-    );
-  }
+  return (
+      <div class="image-conatiner">
+          <img
+          className={`image ${props.className} ${className}`}
+          src={source}
+          onLoad={() => onLoad()}
+        />
+        <img
+          className={`image ${props.className} preview ${className}`}
+          src={props.src}
+          onError={() => onError()}
+        />
+      </div>
+  );
 }
+
+export default memo(Image);

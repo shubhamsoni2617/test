@@ -1555,7 +1555,7 @@ section.whats-new {
 				img {
 					width: 100%;
 					height: auto;
-					transition: 0.5s transform;
+					transition: 0.5s all;
 					// @media(max-width: 1366px) {
 					// 	height: 100%;
 					// 	width: 100%;
@@ -1620,6 +1620,9 @@ section.whats-new {
         color: rgba(255, 255, 255, 0.7);
         margin-bottom: 5px;
         font-size: 13px;
+        &.dt-srt-end{
+            font-size: 12px;
+        }
 	}
 }
 
@@ -2095,7 +2098,7 @@ section.whats-new {
         }
 	}
 	p {
-		color: #626262;
+        color: #626262;
 	}
 	.category {
 		margin-bottom: 11px;
@@ -3877,4 +3880,19 @@ section{
 			}
 		}
 	}
+}
+.banner img{
+  width: 100%;
+  opacity: 0;
+  transition: opacity .5s ease-in-out;
+}
+
+@keyframes reveal {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
 }
