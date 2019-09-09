@@ -22,23 +22,15 @@ const Calender = (props) => {
   }
 
   const handleDayClick = (day) => {
-    if (from && to && day >= from && day <= to) {
-      handleResetClick();
-      return;
-    }
-    if (isSelectingFirstDay(from, to, day)) {
-      setFrom(day);
-      setTo(null);
-      setEnteredTo(null);
-    } else {
-      setTo(day);
-      setEnteredTo(day);
-    }
+    const range = DateUtils.addDayToRange(day, {from: from, to: to});
+    setFrom(range.from)
+    setTo(range.to);
+
   }
 
   const handleDayMouseEnter = (day) => {
     if (!isSelectingFirstDay(from, to, day)) {
-      setEnteredTo(day)
+      setEnteredTo(day);
     }
   }
 
@@ -52,9 +44,9 @@ const Calender = (props) => {
     return moment(date).format('DD MMM YYYY');
   }
 
-  const modifiers = { start: from, end: enteredTo, currentDay: new Date };
+  const modifiers = { start: from, end: to ? to : enteredTo, currentDay: new Date };
   const disabledDays = { before: from };
-  const selectedDays = [from, { from, to: enteredTo }];
+  const selectedDays = [from, { from, to: to ? to : enteredTo }];
 
   let fromDateValue = from ? formatDate(from) : null;
   let toDateValue = to ? formatDate(to) : null;
@@ -64,8 +56,9 @@ const Calender = (props) => {
       <DayPicker
         className="Range"
         numberOfMonths={1}
-        fromMonth={from}
+        fromMonth={new Date()}
         selectedDays={selectedDays}
+        // selectedDays={[from, { from, to }]}
         disabledDays={{before: new Date()}}
         modifiers={modifiers}
         onDayClick={handleDayClick}

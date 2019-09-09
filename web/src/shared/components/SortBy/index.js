@@ -7,7 +7,7 @@ export default class SortBy extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            sort: { tag: 'Date', active: '' },
+            sort: { tag: this.props.defaultSortType, active: '' },
             showSortMenu: false
         }
     }
@@ -21,8 +21,10 @@ export default class SortBy extends Component {
         this.setState({ showSortMenu: false }, () => {
             document.removeEventListener('click', this.closeSortMenu);
         });
-        let handleFilters = this.props.handleFilters;
-        handleFilters(sortBy, order);
+        this.props.handleFilters({
+          filteredSortType: sortBy,
+          filteredSortOrder: order
+        });
     }
 
     showSortMenu = () => {

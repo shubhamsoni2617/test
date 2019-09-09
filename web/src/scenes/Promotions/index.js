@@ -12,7 +12,7 @@ export default class Promotions extends Component {
     this.state = {
       defaultTabId: "30",
       tabsArray: [],
-      sortBy: "date",
+      sortBy: "ASC",
       first: 0,
       totalRecords: 0,
       listingArray: [],
@@ -27,13 +27,13 @@ export default class Promotions extends Component {
         {
           sortType: '',
           sortOrder: 'ASC',
-          sortTitle: 'Promotions - A to Z',
+          sortTitle: 'A to Z',
           sortTag: 'Promotions - A to Z'
         },
         {
           sortType: '',
           sortOrder: 'DESC',
-          sortTitle: 'Promotions - Z to A',
+          sortTitle: 'Z to A',
           sortTag: 'Promotions - Z to A'
         },
         {
@@ -221,9 +221,10 @@ export default class Promotions extends Component {
     this.setState({ first: data })
   }
 
-  handleFilters = (sortBy, sortOrder) => {
+  handleFilters = (obj) => {
+    console.log(obj,"obj")
     this.setState({
-      sortBy: sortOrder,
+      sortBy: obj.filteredSortOrder,
       promotionTab: 0
     })
   }

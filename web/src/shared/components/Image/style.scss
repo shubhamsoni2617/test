@@ -1,0 +1,26 @@
+
+.image-conatiner{
+  position: relative;
+  height: 100%;
+  overflow: hidden;
+}
+.image{
+  opacity: 0;
+  transition: opacity 1000ms ease 0ms;
+}
+.image.preview {
+  opacity: 1;
+  position: absolute;
+  top: 0;
+  left: 0;
+  filter: blur(20px);
+  visibility: visible;
+  transition: opacity 1000ms 400ms;
+}
+.image.preview.loaded {
+  opacity: 0;
+}
+.image.loaded {
+  opacity: 1;
+}
+

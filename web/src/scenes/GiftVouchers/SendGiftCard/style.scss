@@ -1,0 +1,45 @@
+.sendgiftcard {
+  display: flex;
+  flex-wrap: wrap;
+  @media(max-width: 767px){
+    justify-content: center;
+  }
+  .giftcard-content {
+    flex: 0 0 calc(33.33% - 70px);
+    width: calc(33.33% - 70px);
+    margin: 0 35px;
+    @media(max-width: 768px){
+      flex: 0 0 33.33%;
+      width: 33.33%;
+      margin: 0px;
+      padding: 0 10px;
+    }
+    @media(max-width: 767px){
+      flex: 0 0 100%;
+      width: 100%;
+      margin-bottom: 40px;
+      &:last-child{
+        margin-bottom: 0px;
+      }
+    }
+    .giftcard-img {
+      min-height: 250px;
+      display: flex;
+      align-items: center;
+      margin-bottom: 40px;
+      justify-content: center;
+      @media(max-width: 1024px){
+        min-height: 180px;
+        margin-bottom: 20px;
+      }
+      @media(max-width: 768px){
+        min-height: 165px;
+        margin-bottom: 20px;
+      }
+      @media(max-width: 767px){
+        min-height: auto;
+        margin-bottom: 20px;
+      }
+    }
+  }
+}
