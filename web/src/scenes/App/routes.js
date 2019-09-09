@@ -10,7 +10,9 @@ import Venues from "../Venues";
 import WhereBuyTickets from "../WhereBuyTickets";
 import TermsPrivacy from "../TermsPrivacy";
 import GiftVouchers from "../GiftVouchers";
+import ContactUs from "../ContactUs";
 import Faq from "../Faq";
+
 const routes = [
   {
     path: "/",
@@ -72,6 +74,11 @@ const routes = [
   {
     path: "/gift-vouchers",
     component: GiftVouchers,
+    exact: true
+  },
+  {
+    path: "/contact-us",
+    component: ContactUs,
     exact: true
   },
   {
