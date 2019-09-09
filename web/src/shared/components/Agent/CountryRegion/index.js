@@ -7,7 +7,7 @@ const CountryRegion = (props) => {
 
   const [country, setCountry] = useState("Singapore");
   const [region, setRegion] = useState("All locations");
-  const [toggleMapCondition, setToggleMapCondition] = useState(true);
+  const [toggleMapCondition, setToggleMapCondition] = useState(123);
 
 
   const handleSubmit = (event) => {
@@ -17,7 +17,7 @@ const CountryRegion = (props) => {
     // set map click event in parent component
     handleMapClick(toggleMapCondition);
 
-    setToggleMapCondition(!toggleMapCondition);
+    setToggleMapCondition(Math.random());
     let countryId;
     let regionId;
     countryNRegion.map((elem) => {
