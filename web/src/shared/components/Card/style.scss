@@ -127,7 +127,7 @@
           padding: 10px 0;
           margin: 0;
           line-height: 20px;
-          min-height: 60px;
+          min-height: 67px;
           h3{
             font-size: 17px;
             color: #343434;
@@ -153,6 +153,7 @@
             font-size: 14px;
             margin-bottom: 10px;
             padding: 0;
+            min-height: 34px;
             @media (max-width: 767px) {
                 font-size: 12px;
             }
@@ -215,6 +216,7 @@
     }
 }
 .events-section.list-view{
+    width: 100% !important;
     .event-block{
         flex-direction: row;
         width: 100%;
@@ -259,6 +261,7 @@
                 .price{
                     text-align: right;
                     padding-bottom: 15px;
+                    padding-top: 4px;
                     span{
                         line-height: 14px;
                     }

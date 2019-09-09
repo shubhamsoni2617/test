@@ -72,7 +72,7 @@ const Footer = () => {
                               <a>Cancellations/Refunds</a>
                            </li>
                            <li>
-                              <a>Contact Us</a>
+                              <Link to="/contact-us">Contact Us</Link>
                            </li>
                         </ul>
                      </div>

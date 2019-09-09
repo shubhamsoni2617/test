@@ -29,12 +29,17 @@ const CarouselConatiner = props => {
       props
         .api(params)
         .then(res => {
-          Utilities.preloadImages(res.data.data, "thumb_image", () => {
-            setTimeout(() => {
+          if(res.data.data.length){
+            // Utilities.preloadImages(res.data.data, "thumb_image", () => {
               setData(res.data.data);
-              setLoading(false);
-            }, 1000);
-          });
+                setTimeout(() => {
+                setLoading(false);
+              }, 1000);
+            // });
+          }else{
+            setLoading(false);
+            element.current.classList.add('hide-container');
+          }
         })
         .catch(err => {
           setError(true);
@@ -87,7 +92,7 @@ const CarouselConatiner = props => {
                     transitionEnterTimeout={1000}
                     transitionLeaveTimeout={1000}>
 
-          {!loading &&
+          {!loading && data && data.length &&
               <Carousel
                 imgArray={data}
                 arrows={props.arrows}
