@@ -33,7 +33,7 @@ export default class Card extends Component {
                             {category}
                         </span>
                         <div className="item-title">
-                        <EventHeading title={this.props.eventsData.title} lines={2} height={20} />
+                        <EventHeading title={this.props.cardData.title} lines={2} height={20} />
                         </div>
                         {this.props.cardData.synopsis && <span dangerouslySetInnerHTML={{__html:Utilities.showLimitedChars(this.props.cardData.synopsis, 70)}}></span>}
                         <p className="event-date">{this.props.cardData.event_date}</p>

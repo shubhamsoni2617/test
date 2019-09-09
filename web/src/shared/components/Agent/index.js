@@ -34,9 +34,11 @@ const Agent = (props) => {
     fetchAgentsNVenues(params);
   }, []);
 
+  //page scroll to top after mounting component
   const scrollToTop = () => {
     window.scrollTo(0, 0);
   }
+
   //Fetch countries & their respective regions
   const fetchCountryNRegion = () => {
     const eventSelection = venue ? AgentService.getVenuesCountryNRegion() : AgentService.getAgentsCountryNRegion();
@@ -74,13 +76,13 @@ const Agent = (props) => {
       })
   }
 
-  // fetch agents or venues after submission
+  // fetch agents or venues after submission (click on "GO" button)
   const submitCountryNRegion = (params) => {
     if (params.country) {
       fetchAgentsNVenues(params);
     }
   }
-  // filter file for selected country
+  // filter file for selected country (Festive Period Operating Hours - Agent page)
   const filterCountryFile = (file) => {
     let filteredFile;
     countryNRegion && countryNRegion.filter((item) => {
@@ -94,6 +96,7 @@ const Agent = (props) => {
   // set selected list data in parent component
   const showInfo = (e, selectedItem, activePopUpRef) => {
     if (activePopUpRef.current) {
+      // remove popUpDetail after clicking on show on map
       activePopUpRef.current.classList.remove("active");
     }
     setSelectedItem(selectedItem);
