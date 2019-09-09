@@ -1,10 +1,10 @@
 import React, { Fragment, useState, useEffect } from "react";
-import banner from "../../assets/images/Bitmap Copy.png";
+import banner from "../../assets/images/Bitmap Copy 2.png";
 import TermsAndPrivacyService from "../../shared/services/TermsAndPrivacyService";
-import './style.scss';
+import "./style.scss";
 
-const TermsConditions = () => {
-const [termsCondtions, setTermsCondition] = useState(null);
+const TermsPrivacy = props => {
+  const [termsprivacy, setTermsPrivacy] = useState(null);
 
   useEffect(() => {
     fetchTermsConditions();
@@ -12,31 +12,32 @@ const [termsCondtions, setTermsCondition] = useState(null);
 
   const fetchTermsConditions = () => {
     const params = {
-      type: 1
+      type: props.cmsPageType
     };
     TermsAndPrivacyService.getTermsAndPrivacyService(params)
       .then(res => {
         console.log(res.data.data);
-        setTermsCondition(res.data.data);
+        setTermsPrivacy(res.data.data);
       })
       .catch(err => {
         console.log(err);
       });
   };
   return (
-    termsCondtions && (
+    termsprivacy && (
       <Fragment>
-        <section className="terms-condition-wrapper">
+        <section className="terms-privacy-wrapper">
           <div className="banner-wrapper">
             <img src={banner} className="img-fluid" alt="page-banner" />
             <div className="banner-overlay">
-              <h1>{termsCondtions[0].title}</h1>
+              <h1>{termsprivacy[0].title}</h1>
             </div>
           </div>
-          <div className="terms-condition-body">
-            <div className="container"
+          <div className="terms-privacy-body">
+            <div
+              className="container"
               dangerouslySetInnerHTML={{
-                __html: termsCondtions[0].description
+                __html: termsprivacy[0].description
               }}
             />
           </div>
@@ -46,4 +47,4 @@ const [termsCondtions, setTermsCondition] = useState(null);
   );
 };
 
-export default TermsConditions;
+export default TermsPrivacy;
