@@ -10,18 +10,19 @@ function EventHeading(props) {
   useEffect(() => {
     if (
       !allowTooltip &&
-      ((props.lines == 1 && element.current.scrollWidth > element.current.offsetWidth + 150)
-      ||
-      (props.lines > 1 && element.current.scrollHeight > element.current.offsetHeight))
+      ((props.lines === 1 &&
+        element.current.scrollWidth > element.current.offsetWidth + 150) ||
+        (props.lines > 1 &&
+          element.current.scrollHeight > element.current.offsetHeight))
     ) {
       setAllowTooltip(true);
     }
     let styleObjectDefault = {
-      "overflow": "hidden",
+      overflow: "hidden",
       "line-height": `${props.height}px`,
       "max-height": `${props.height * props.lines}px`,
       "min-height": `${props.height * props.lines}px`,
-      "width": "91%",
+      width: "91%",
       "font-size": props.size,
       "font-weight": props.weight
     };
@@ -33,13 +34,13 @@ function EventHeading(props) {
         "-webkit-box-orient": "vertical",
         ...styleObjectDefault
       });
-    }else{
+    } else {
       setStyleObj({
-        "display": "block",
+        display: "block",
         ...styleObjectDefault
       });
     }
-  }, [element.current]);
+  }, [element.current, allowTooltip, props]);
 
   if (!props.title) {
     return null;

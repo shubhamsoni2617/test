@@ -17,8 +17,6 @@ import primeSlider from "../../assets/images/main-banner.png";
 import primeSlider2 from "../../assets/images/main-banner-2.png";
 import HomeService from "../../shared/services/HomeService";
 
-// const Image = lazy(() => import('../../shared/components/Image'));
-
 class Home extends Component {
   constructor(props) {
     super(props);
@@ -34,7 +32,6 @@ class Home extends Component {
     this.homePageRef = createRef();
   }
 
-
   showNewsTicker = data => {
     this.setState(data);
   };
@@ -49,10 +46,7 @@ class Home extends Component {
         />
         <HotShowPopup />
         <div className={`banner`}>
-            <Image
-              src={primeSlider2}
-              largeImage={primeSlider}
-            />
+          <Image src={primeSlider2} largeImage={primeSlider} />
           {/* <img className={`main-image ${this.state.imageUrl ? 'show-image' : ''}`} src={primeSlider} alt="prime Slider" /> */}
         </div>
         <TopPics />
@@ -85,7 +79,7 @@ class Home extends Component {
         />
         <Explore />
         <InstagramFeed />
-        {/* <Cookies /> */}
+        <Cookies />
         <ModalPopup
           showModal={this.state.modal}
           content={this.state.modalContent}

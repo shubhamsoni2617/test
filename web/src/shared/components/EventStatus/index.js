@@ -1,23 +1,23 @@
-import React, { useState, useEffect } from 'react';
-import './style.scss';
+import React, { useState, useEffect } from "react";
+import "./style.scss";
 
 function EventStatus(props) {
-  const {status, color, background, paddingLeft, paddingRight} = props;
+  console.log(props);
+  debugger;
+  const { status, color, background, paddingLeft, paddingRight } = props;
   const [styleObj, setStyleObj] = useState(null);
   useEffect(() => {
-      setStyleObj({
-        color,
-        background,
-        paddingLeft,
-        paddingRight
-      });
-  }, []);
-  if(!status){
+    setStyleObj({
+      color,
+      background,
+      paddingLeft,
+      paddingRight
+    });
+  }, [status, color, background, paddingLeft, paddingRight]);
+  if (!status) {
     return null;
   }
-  return (
-    <span style={styleObj}>{status}</span>
-  );
-};
+  return <span style={styleObj}>{status}</span>;
+}
 
 export default EventStatus;
