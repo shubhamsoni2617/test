@@ -7,11 +7,14 @@ import FaqService from "../../shared/services/FaqService";
 import FaqContent from "./FaqContent";
 
 const Faq = props => {
+  console.log(props.match.params);
+
   const [faqContentData, setFaqContentData] = useState(null);
   const [faqCategoryData, setFaqCategoryData] = useState(null);
   const [categoryId, setCategoryId] = useState(null);
   const [categoryName, setCategoryName] = useState("");
-  const [questionId, setQuestionId] = useState(null);
+  // const [questionId, setQuestionId] = useState(null);
+  const [questionsExist, setQuestionsExist] = useState(true);
   const [urlExist, setUrlExist] = useState(false);
 
   useEffect(() => {
@@ -60,8 +63,9 @@ const Faq = props => {
       });
   };
 
-  const onQuestionIdChange = questionId => {
-    setQuestionId(questionId);
+  const onQuestionIdChange = questionsExist => {
+    setQuestionsExist(questionsExist);
+    //   setQuestionId(questionId);
   };
 
   return (
@@ -71,7 +75,7 @@ const Faq = props => {
         <FaqSearch
           suggestions={faqContentData}
           categories={faqCategoryData}
-          onQuestionIdChange={onQuestionIdChange}
+          // onQuestionIdChange={onQuestionIdChange}
         />
         <div className="find-agent-wrapper">
           <div className="container-fluid row agent-list">
@@ -81,18 +85,19 @@ const Faq = props => {
                 urlExist={urlExist}
                 categories={faqCategoryData}
                 faqContentData={faqContentData}
-                onQuestionIdChange={onQuestionIdChange}
+                // onQuestionIdChange={onQuestionIdChange}
               />
             </div>
             <div className="col-lg-8">
               {urlExist ? (
                 <Fragment>
                   <h2>{categoryName}</h2>
-                  {questionId ? (
+                  {urlExist ? (
                     <FaqContent
+                      {...props}
                       data={faqContentData}
                       categoryId={categoryId}
-                      questionId={questionId}
+                      // questionId={questionId}
                     />
                   ) : (
                     <h2>No Data Found</h2>

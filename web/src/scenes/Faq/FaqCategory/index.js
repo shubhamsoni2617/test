@@ -11,9 +11,9 @@ const FaqCategory = props => {
       return obj.category_id === categoryId;
     });
     if (!value) {
-      props.onQuestionIdChange(null);
+      props.onQuestionIdChange(false);
     } else {
-      props.onQuestionIdChange(value.id);
+      props.onQuestionIdChange(true);
     }
   };
 
@@ -31,10 +31,12 @@ const FaqCategory = props => {
                       ? "nav-item nav-link active"
                       : "nav-item nav-link"
                   }
-                  to={`/faq/${category.name.replace(/\s/g, "-").toLowerCase()}`}
-                  onClick={() => {
-                    setQuestionId(category.id);
-                  }}
+                  to={`/faq/${category.name
+                    .replace(/\s/g, "-")
+                    .toLowerCase()}/0`}
+                  // onClick={() => {
+                  //   setQuestionId(category.id);
+                  // }}
                 >
                   {category.name}
                 </Link>

@@ -42,7 +42,7 @@ const Autocomplete = props => {
   };
 
   const onClick = (e, questionId) => {
-    props.onQuestionIdChange(questionId);
+    // props.onQuestionIdChange(questionId);
     setFilteredSuggestions([]);
     setShowSuggestions(false);
     setUserInput(e.currentTarget.innerText);
@@ -65,7 +65,7 @@ const Autocomplete = props => {
               <Link
                 to={`/faq/${suggestion.category_name
                   .replace(/\s/g, "-")
-                  .toLowerCase()}`}
+                  .toLowerCase()}/${suggestion.id}`}
                 className="nav-item"
                 onClick={e => {
                   onClick(e, suggestion.id);

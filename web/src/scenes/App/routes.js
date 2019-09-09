@@ -74,14 +74,13 @@ const routes = [
     component: GiftVouchers,
     exact: true
   },
-  { path: "/faq", exact: true, component: Faq },
   {
     path: "/venues",
     component: Venues,
     exact: true
   },
   {
-    path: "/faq/:id",
+    path: "/faq/:id/:questionId",
     component: Faq,
     exact: true
   },

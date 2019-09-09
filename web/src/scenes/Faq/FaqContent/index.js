@@ -2,14 +2,23 @@ import React, { Fragment, useEffect, createRef } from "react";
 import AccordionSection from "../../../shared/components/AccordionSection";
 
 class Content extends React.Component {
-  componentDidUpdate(prevProps) {
-    if (prevProps.questionId !== this.props.questionId) {
-      this.refs[this.props.questionId].scrollIntoView({
+  componentDidUpdate() {
+    if (this.props.match.params.questionId !== "0" && this.node !== null) {
+      this.node.scrollIntoView({
         block: "center",
         behavior: "smooth"
       });
     }
   }
+
+  setNode(id, node) {
+    let { questionId } = this.props.match.params;
+    if (id === questionId) {
+      this.node = node;
+    }
+    return;
+  }
+
   render() {
     return (
       <Fragment>
@@ -19,7 +28,10 @@ class Content extends React.Component {
           )
           .map((content, i) => {
             return (
-              <div ref={this.props.questionId} key={content.question + i}>
+              <div
+                ref={node => this.setNode(content.id, node)}
+                key={content.question + i}
+              >
                 <AccordionSection
                   title={content.question}
                   desc={content.answer}
