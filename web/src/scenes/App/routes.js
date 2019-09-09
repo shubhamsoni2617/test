@@ -1,6 +1,7 @@
 import Home from "../Home";
 import Events from "../Events";
-import EventsDetail from "../Events/EventsDetail";
+// import EventsDetail from "../Events/EventsDetail";
+import EventsDetail from "../EventsDetail";
 import HomeService from "../../shared/services/HomeService";
 import Promotions from "../Promotions";
 import PageNotFound from "../PageNotFound/index";
