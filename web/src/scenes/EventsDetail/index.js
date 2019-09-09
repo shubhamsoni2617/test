@@ -39,20 +39,18 @@ function ShowOver({ isShowOver }) {
   );
 }
 
-// function SeatMapDetail({ showSeatMap, seatingPlan }) {
-//   if (showSeatMap) {
-//     showSeatMap &&
-//       detailData.seating_plan &&
-//       detailData.seating_plan.length > 0 && (
-//         <SeatMap
-//           imgArr={detailData.seating_plan}
-//           showModal={showSeatMap}
-//           heading="Seat Map"
-//           handleClose={this.handleClose}
-//         />
-//       );
-//   }
-// }
+function SeatMapDetail({ showSeatMap, seatingPlan, handleClose }) {
+  if (!showSeatMap) return null;
+  if (!seatingPlan || !seatingPlan.length) return null;
+  return (
+    <SeatMap
+      imgArr={seatingPlan}
+      showModal={showSeatMap}
+      heading="Seat Map"
+      handleClose={handleClose}
+    />
+  );
+}
 
 function GiftCard({ flag }) {
   if (!flag) return null;
@@ -275,19 +273,21 @@ export default class EventsDetail extends Component {
 
   componentDidUpdate() {}
 
-  onSynopsisData = (synopsis, getSynopsisData) => {
-    synopsis.forEach(obj => {
-      if (obj.language) {
-        getSynopsisData.languageArr.push(obj.language);
-      }
-      if (this.state.synopsisLang === obj.language) {
-        getSynopsisData.desc = obj.description;
-        getSynopsisData.activeLang = obj.language;
-      } else {
-        getSynopsisData.desc = synopsis[0].description;
-        getSynopsisData.activeLang = synopsis[0].language;
-      }
-    });
+  onSynopsisData = (detailData, getSynopsisData) => {
+    detailData &&
+      detailData.synopsis &&
+      detailData.synopsis.forEach((obj, idx) => {
+        if (obj.language) {
+          getSynopsisData.languageArr.push(obj.language);
+        }
+        if (this.state.synopsisLang === obj.language) {
+          getSynopsisData.desc = obj.description;
+          getSynopsisData.activeLang = obj.language;
+        } else {
+          getSynopsisData.desc = detailData.synopsis[0].description;
+          getSynopsisData.activeLang = detailData.synopsis[0].language;
+        }
+      });
   };
 
   onShimmerEffect() {
@@ -329,9 +329,7 @@ export default class EventsDetail extends Component {
     let shareUrl = window.location.href;
     getSynopsisData.languageArr = [];
     let accrodian = ["synopsis", "pricedetail"];
-    detailData &&
-      detailData.synopsis &&
-      this.onSynopsisData(detailData.synopsis, getSynopsisData);
+    this.onSynopsisData(detailData, getSynopsisData);
     return (
       <div className="event-detail-wrapper">
         {shimmer && this.onShimmerEffect}
@@ -421,16 +419,11 @@ export default class EventsDetail extends Component {
                           <span className="seat-map-text">Seat Map</span>
                         </a>
                       )}
-                    {/* {showSeatMap &&
-                      detailData.seating_plan &&
-                      detailData.seating_plan.length > 0 && (
-                        <SeatMap
-                          imgArr={detailData.seating_plan}
-                          showModal={showSeatMap}
-                          heading="Seat Map"
-                          handleClose={this.handleClose}
-                        />
-                      )} */}
+                    <SeatMapDetail
+                      showSeatMap={showSeatMap}
+                      seatingPlan={detailData.seating_plan}
+                      handleClose={this.handleClose}
+                    />
                     <BuyPackages
                       isAvailableForBooking={
                         detailData.is_available_for_booking
@@ -469,14 +462,12 @@ export default class EventsDetail extends Component {
                   </div>
                 </section>
                 <EventTags tags={detailData.tags} />
-                <ArticleSection />
+                <ArticleSection flag={true} />
               </div>
             )}
             <SimilarPicksSection data={similarEventsData} />
             <GiftCard flag={detailData.is_show_over === 1 ? true : false} />
-            <ArticleSection
-              flag={detailData.is_show_over === 1 ? true : false}
-            />
+            <ArticleSection />
           </div>
         )}
       </div>

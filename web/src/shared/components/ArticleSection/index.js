@@ -5,7 +5,7 @@ import Image from "../Image";
 import "./style.scss";
 
 const ArticleSection = ({ flag }) => {
-  if (flag !== undefined || flag !== 1) return null;
+  if (!flag) return null;
   return (
     <section className="event-articles">
       <div className="container-fluid">
