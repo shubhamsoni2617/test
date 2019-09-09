@@ -12,7 +12,7 @@ export default class Promotions extends Component {
     this.state = {
       defaultTabId: "30",
       tabsArray: [],
-      sortBy: "Date",
+      sortBy: "date",
       first: 0,
       totalRecords: 0,
       listingArray: [],
