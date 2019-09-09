@@ -4,17 +4,68 @@
     .banner-wrapper{
         margin-bottom: 0px;
         z-index: -1;
+        margin-top: -112px;
+        position: relative;
+        @media (max-width: 768px) {
+            margin-top: 0;
+            margin-bottom: 25px;
+          }
+        img{
+            width: 100%;
+            max-height: 290px;
+            min-height: 200px;
+            object-fit: cover;
+            object-position: center;
+            @media (max-width: 768px) {
+                max-height: 130px;
+                min-height: 130px;
+              }
+              @media (max-width: 767px) {
+                max-height: 100%;
+                min-height: 100px;
+              }
+        }
         .banner-overlay{
             margin-top: 34px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);            
+            width: 100%;
+            text-align: center;
+            @media (max-width: 768px) {
+                margin-top: 0px;
+              }
             h1{
+                color: #ffffff;
+                font-family: "Montserrat", sans-serif;
                 font-size: 37px;
                 line-height: 45px;
+                text-align: center;
+                margin: 0px;
+                font-weight: 600;
+                @media (max-width: 1024px) {
+                    font-size: 25px;
+                  }
+                  @media (max-width: 768px) {
+                    font-size: 20px;
+                    line-height: 25px;
+                  }
             }
         }
     }
     .wtbt-sections-tab{
         margin-top: -46px;
         padding-bottom: 45px;
+        @media(max-width: 1024px){
+            margin-top: -36px;
+        }
+        @media(max-width: 768px){
+            margin-top: -46px;
+        }
+        @media(max-width: 767px){
+            padding-bottom: 20px;
+        }
     }
 }
 .wtbt-nav{
@@ -31,8 +82,23 @@
         margin: 0 10px;
         background-color: #fff;
         position: relative;
+        @media(max-width: 1024px){
+            margin: 0 10px 10px;
+        }
         @media(max-width: 768px){
             box-shadow: 0 0 21px 0 rgba(0,0,0,0.13);
+            flex: 0 0 calc(33.33% - 10px);
+            width: calc(33.33% - 10px);
+            margin: 0 5px 10px;
+            max-width: 160px;
+        }
+        @media(max-width: 767px){
+            max-height: 70px;
+        }
+        @media(max-width: 640px){
+            flex-basis: calc(33.33% - 6px);
+            width: calc(33.33% - 6px);
+            margin: 0 3px 10px;
         }
         .wtbt-tab {
             display: flex;
@@ -53,11 +119,26 @@
                 display: block;
                 top: 50%;
                 left: 50%;
-                right: 0px;
-                bottom: 0px;
+                right: auto;
+                bottom: auto;
                 transform: translate(-50%, -50%);
                 background-position: center;
                 margin-top: -15px;
+                height: 35px;
+                width: 35px;
+                background-size: contain;
+                @media(max-width: 1024px){
+                    width: 33px;
+                    height: 33px;
+                    background-size: contain;
+                }
+                @media(max-width: 767px){
+                    background-size: contain;
+                    width: 28px;
+                    height: 28px;
+                    text-align: center;
+                    margin-top: -10px;
+                }
             }
             &:before{
                 position: absolute;
@@ -78,6 +159,13 @@
                 font-size: 16px;
                 padding-top: 40px;
                 transition: 0.5s color;
+                @media(max-width: 767px){
+                    font-size: 13px;
+                    padding-top: 35px;
+                }
+                @media(max-width: 640px){
+                    font-size: 12px;
+                }
             }
             &:hover{
                 &:before{
@@ -88,43 +176,68 @@
                 }
             }
         }
-        @media(max-width: 768px){
-            flex: 0 0 calc(33.33% - 10px);
-            width: calc(33.33% - 10px);
-            margin: 0 5px 10px;
-        }
         &.wtbt-tab-website{
-            .wtbt-tab{                
+            .wtbt-tab{
                 &:after{
                     background-image: url(../../assets/images/website.svg);
+                    transition: 0.5s background-image;
+                }
+                &:hover{
+                    &:after{
+                        background-image: url(../../assets/images/website-active.svg);
+                    }
                 }
             }
         }
         &.wtbt-tab-mobile-app{
-            .wtbt-tab{                
+            .wtbt-tab{   
                 &:after{
                     background-image: url(../../assets/images/smartphone.svg);
+                    transition: 0.5s background-image;
+                }
+                &:hover{
+                    &:after{
+                        background-image: url(../../assets/images/smartphone-active.svg);
+                    }
                 }
             }
         }
         &.wtbt-tab-agent{
-            .wtbt-tab{                
+            .wtbt-tab{   
                 &:after{
                     background-image: url(../../assets/images/user.svg);
+                    transition: 0.5s background-image;
+                }
+                &:hover{
+                    &:after{
+                        background-image: url(../../assets/images/user-active.svg);
+                    }
                 }
             }
         }
         &.wtbt-tab-partners{
-            .wtbt-tab{                
+            .wtbt-tab{       
                 &:after{
                     background-image: url(../../assets/images/partners.svg);
+                    transition: 0.5s background-image;
+                }
+                &:hover{
+                    &:after{
+                        background-image: url(../../assets/images/partners-active.svg);
+                    }
                 }
             }
         }
         &.wtbt-tab-hotline{
-            .wtbt-tab{                
+            .wtbt-tab{        
                 &:after{
                     background-image: url(../../assets/images/hotline.svg);
+                    transition: 0.5s background-image;
+                }
+                &:hover{
+                    &:after{
+                        background-image: url(../../assets/images/hotline-active.svg);
+                    }
                 }
             }
         }
@@ -141,6 +254,7 @@
     .wtbt-content {
         flex: 0 0 50%;
         width: 50%;
+        z-index: 1;
         @media(max-width: 768px){
             flex: 0 0 100%;
             width: 100%;
@@ -154,10 +268,18 @@
             font-weight: 600;
             margin-bottom: 22px;
             padding: 0px;
+            @media(max-width: 840px){
+                font-size: 32px;
+                line-height: 38px
+            }
             @media(max-width: 768px){
                 font-size: 25px;
                 line-height: 30px;
                 margin-bottom: 15px;
+            }
+            @media(max-width: 640px){
+                font-size: 22px;
+                line-height: 25px;
             }
         }
         p {
@@ -225,6 +347,9 @@
                 padding-right: 0px;
                 margin-bottom: 40px;
             }
+            @media(max-width: 767px){
+                margin-bottom: 20px;
+            }
         }
     }
 }
@@ -239,6 +364,10 @@
         margin-bottom: 130px;
         height: 100%;
     }
+    @media(max-width: 767px){
+        margin-top: 40px;
+        padding-top: 20px;
+    }
     .wtbt-desc{
         position: relative;
         height: 429px;
@@ -251,9 +380,12 @@
             bottom: -31px;
             @media(max-width: 768px){
                 position: relative;
-                left: 0px;
+                left: 0px;                
+                order: 2;                
+            }
+            @media(max-width: 767px){
                 bottom: -90px;
-                order: 2;
+                margin-top: -90px;
             }
         }
         .wtbt-content{
@@ -267,8 +399,11 @@
                 justify-content: flex-end;
                 align-items: center;
                 flex-direction: row;
+                width: 100%;
                 @media(max-width: 768px){
                     justify-content: center;
+                    margin: 20px 0px 0px;
+                    width: 100%;
                 }
                 a{
                     background-color: transparent;
@@ -279,10 +414,21 @@
                     justify-content: center;
                     text-align: left;
                     transition: 0.5s background-color;
+                    @media(max-width: 840px){
+                        margin-left: 5px;
+                        padding: 5px 10px 5px 10px;
+                        margin-top: 23px;
+                        width: auto;
+                    }
                     @media(max-width: 768px){
                         padding: 5px 10px 5px 10px;
                         width: calc(50% - 20px);
                         margin: 0px 10px 0px 0px;
+                    }
+                    @media(max-width: 640px){
+                        padding: 5px 5px 5px 5px;
+                        width: calc(50% - 5px);
+                        margin: 0px 5px 0px 0px;
                     }
                     &:hover{
                         background-color: #FFFFFF;                        
@@ -324,7 +470,7 @@
     }
     .wtbt-desc{
         @media(max-width: 768px){
-            position: relative;
+            position: relative; 
         }
         .wtbt-content{
             text-align: right;
@@ -339,6 +485,9 @@
                     bottom: 0px;
                     left: 50%;
                     transform: translateX(-50%);
+                }
+                @media(max-width: 640px){
+                    padding: 8px 10px;
                 }
             }
         }
@@ -376,10 +525,14 @@
     @media(max-width: 1280px){
         margin: 87px 0px 55px;
     }
-    @media(max-width: 768px){
+    @media(max-width: 1024px){
         margin: 0px;
+        padding-top: 10px;
+    }
+    @media(max-width: 768px){        
         padding-top: 35px;
     }
+
     .wtbt-desc{
         height: 453px;
         @media(max-width: 768px){
