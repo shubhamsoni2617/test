@@ -8,6 +8,7 @@ import ShareIcon from '../../../assets/images/share-icon.svg';
 import StopWatch from '../../../assets/images/stopwatch-grey.svg';
 import Image from '../Image';
 import Utilities from '../../utilities';
+import EventHeading from '../EventHeading';
 
 const PromotionCard = (props) => {
 
@@ -62,7 +63,11 @@ const PromotionCard = (props) => {
             <img src={ShareIcon} alt="share-icon" />
             <SocialShare shareUrl={shareUrl && shareUrl} showSocialShare={socialShare} />
           </span>
-          <h3>{Utilities.showLimitedChars(data.title,30)}</h3>
+          <EventHeading
+            title={data.title}
+            lines={2}
+            height={20}
+          />
           <div className="promotion-btn-wrapper">
             {/* <a href={data.buttons.length > 0 && data.buttons[0].url ? data.buttons[0].url : undefined}>
               <button style={{ color: data.buttons.length > 0 ? `#${data.buttons[0].color}` : "" }}>

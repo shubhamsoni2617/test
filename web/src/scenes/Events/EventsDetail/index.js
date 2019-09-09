@@ -14,22 +14,9 @@ import SeatMap from '../../../shared/components/SeatMap';
 import ModalPopup from '../../../shared/components/Modal';
 import ShimmerEffect from '../../../shared/components/ShimmerEffect';
 import StickyHeader from "../../../shared/components/StickyHeader";
+import Utilities from "../../../shared/utilities";
 const SimilarPicksSection =  lazy(()=>import('../../../shared/components/SimilarPicksSection'));
 
-function preloadImages(srcs, callback) {
-  var img;
-  var remaining = srcs.length;
-  for (var i = 0; i < srcs.length; i++) {
-      img = new Image();
-      img.onload = function() {
-          --remaining;
-          if (remaining <= 0) {
-              callback();
-          }
-      };
-      img.src = srcs[i].thumb_image;
-  }
-}
 
 export default class EventsDetail extends Component {
   constructor(props) {
@@ -87,13 +74,16 @@ export default class EventsDetail extends Component {
     EventsService.getEventDetails(payload)
       .then(res => {
         this.setState({ detailData: res.data });
-        preloadImages(res.data.images, () => {
-            setTimeout(() => {this.setState({ shimmer: false });}, 1000);
-          });
+        // Utilities.preloadImages(res.data.images, "full_image", () => {
+          // Utilities.preloadImages(res.data.images, "thumb_image", () => {
+            setTimeout(()=> {
+              this.setState({ shimmer: false });
+            }, 1000);
+          // });
+        // });
       })
       .catch(err => {
         this.setState({
-          error: true,
           shimmer: false
         });
         console.log(err);
@@ -262,7 +252,7 @@ export default class EventsDetail extends Component {
                     propCls="shm_col-xs-6 col-md-12"
                     height={400}
                     count={2}
-                    type="grid"
+                    type="DETAIL"
                     detail={true}
                   />}
         </CSSTransitionGroup>
@@ -352,13 +342,14 @@ export default class EventsDetail extends Component {
                       })}
                   </div>
                   <div className="event-detail-sidebar">
-                    <a onClick={() => this.openSeatMap()} className="seat-map">
+                    {detailData.seating_plan &&
+                      detailData.seating_plan.length > 0 && <a onClick={() => this.openSeatMap()} className="seat-map">
                       <span className="seat-map-img">
                         <img src={SeatMapImg} />
                         <img className="active" src={SeatMapWhite} />
                       </span>
                       <span className="seat-map-text">Seat Map</span>
-                    </a>
+                    </a>}
                     {showSeatMap &&
                       detailData.seating_plan &&
                       detailData.seating_plan.length > 0 && (
@@ -369,7 +360,7 @@ export default class EventsDetail extends Component {
                           handleClose={this.handleClose}
                         />
                       )}
-                    {detailData.buy_package_url && (
+                    {(detailData.is_available_for_booking === 1 && detailData.buy_package_url) && (
                       <a
                         href={detailData.buy_package_url}
                         target="_blank"
@@ -381,7 +372,7 @@ export default class EventsDetail extends Component {
                     {detailData.ticket_pricing && (
                       <AccordionSection
                         title="Price Details"
-                        infoTag={true}
+                        infoTag={detailData.hide_booking_fee && detailData.hide_booking_fee !== '1' ? detailData.hide_booking_fee : null}
                         preExpanded= {accrodian}
                         uuid= {`${detailData.is_available_for_booking == 1 ? 'pricedetail' : ''}`}
                         desc={detailData.ticket_pricing}
@@ -417,6 +408,11 @@ export default class EventsDetail extends Component {
                 <ArticleSection />
               </div>
             )}
+            {similarEventsData && similarEventsData.length > 0 &&
+              <Suspense fallback={<ShimmerEffect  height={150} count={5}  type="grid" propCls='shm_col-xs-5'/>}>
+                <SimilarPicksSection data={similarEventsData} />
+                </Suspense>
+            }
             {detailData.is_show_over === 1 &&
              <section className="gift-cart">
              <div className="gift-cart-image">
@@ -427,11 +423,6 @@ export default class EventsDetail extends Component {
                />
              </div>
            </section>}
-            {similarEventsData && similarEventsData.length > 0 &&
-              <Suspense fallback={<ShimmerEffect  height={150} count={5}  type="grid" propCls='shm_col-xs-5'/>}>
-                <SimilarPicksSection data={similarEventsData} />
-                </Suspense>
-            }
             {detailData.is_show_over === 1 && <ArticleSection />}
           </div>
         )}

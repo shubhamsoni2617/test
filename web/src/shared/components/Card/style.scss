@@ -1,12 +1,13 @@
 .event-block{
     display: flex;
-    flex-direction: column;  
-    box-shadow: 0 0px 1px rgba(154, 154, 154, 0.3);  
+    flex-direction: column;
+    box-shadow: 0 0px 1px rgba(154, 154, 154, 0.3);
     border: 2px solid transparent;
     margin-bottom: 35px;
     width: 100%;
     transition: .5s ease-out;
     cursor: pointer;
+    position: relative;
     @media (max-width: 767px) {
         width: calc(50% - 10px);
         margin: 0 5px 10px;
@@ -18,10 +19,91 @@
     &:last-child{
         margin-right: 0;
     }
-    &:hover{        
+    &:hover{
         border: 2px solid #0098FF;
-        transition: .5s ease-out; 
+        transition: .5s ease-out;
         box-shadow: 0 2px 27px 0 rgba(0,0,0,0.09);
+    }
+    &.attraction-block{
+        padding-bottom: 30px;
+        position: relative;
+        &:hover{
+            .event-details {
+                .price-event{
+                    .buy-btn{
+                        background: #0098FF url(../../../assets/images/buy-arrow.png) 94% 15px no-repeat;
+                        font-size: 18px;
+                        color: #FFF;
+                        line-height: 22px;
+                        border: none;
+                    }
+                }
+            }
+        }
+        .event-details {
+            .price-event{
+                .buy-btn{
+                    position: absolute;
+                    left: 0;
+                    bottom: 0;
+                    height: auto;
+                    text-align: left;
+                    width: 100%;
+                    background: #FFF;
+                    font-size: 18px;
+                    color: #0098FF;
+                    line-height: 22px;
+                    padding: 15px;
+                    text-transform: uppercase;
+                    border: none;
+                    background: url(../../../assets/images/buy-arrow-b.png) 94% 15px no-repeat;
+                    &:hover{
+                        background: #0098FF url(../../../assets/images/buy-arrow.png) 94% 15px no-repeat;
+                        font-size: 18px;
+                        color: #FFF;
+                        line-height: 22px;
+                        border: none;
+                    }
+                }
+            }
+        }
+    }
+    .featured-tag{
+        position: absolute;
+        left: -6px;
+        top: 7px;
+        height: 24px;
+        width: 85px;
+        background: linear-gradient(90deg, #670E00 0%, #E21A1F 100%);
+        color: #FFFFFF;
+        font-size: 14px;
+        line-height: 18px;
+        text-align: center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding-left: 9px;
+        z-index: 2;
+        &::before{
+            content: "";
+            position: absolute;
+            top: 23px;
+            left: 0px;
+            border-right: 3px solid #670E00;
+            border-left: 3px solid transparent;
+            border-bottom: 3px solid transparent;
+            border-top: 2px solid #670E00;
+        }
+        &::after{
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 100%;
+            border-left: 6px solid #E21A1F;
+            border-right: 10px solid transparent;
+            border-bottom: 10px solid transparent;
+            border-top: 14px solid #E21A1F;
+        }
     }
     .event-img{
         display: flex;
@@ -43,17 +125,20 @@
                 padding: 15px 5px 10px;
             }
         .item-title{
+          padding: 10px 0;
+          margin: 0;
+          line-height: 20px;
+          min-height: 67px;
+          h3{
             font-size: 17px;
             color: #343434;
-            padding: 10px 0;
-            margin: 0;
             font-weight: 500;
-            line-height: 20px;
-            min-height: 60px;
             font-family: 'Rubik', sans-serif;
             @media (max-width: 767px) {
                 font-size: 14px;
             }
+          }
+
         }
         .event-date{
             color: #626262;
@@ -69,6 +154,7 @@
             font-size: 14px;
             margin-bottom: 10px;
             padding: 0;
+            min-height: 34px;
             @media (max-width: 767px) {
                 font-size: 12px;
             }
@@ -125,18 +211,20 @@
                     color: #0098FF;
                     transition: 0.8s all;
                 }
+
             }
         }
     }
 }
 .events-section.list-view{
+    width: 100% !important;
     .event-block{
         flex-direction: row;
         width: 100%;
         margin: 0;
         padding: 4px 0 4px;
-        box-shadow: none; 
-        border: 1px solid transparent; 
+        box-shadow: none;
+        border: 1px solid transparent;
         border-bottom: 1px solid rgba(151,151,151,0.2);
         align-items: center;
         &:hover{
@@ -174,6 +262,7 @@
                 .price{
                     text-align: right;
                     padding-bottom: 15px;
+                    padding-top: 4px;
                     span{
                         line-height: 14px;
                     }

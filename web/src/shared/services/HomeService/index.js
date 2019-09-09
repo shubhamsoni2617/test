@@ -16,6 +16,10 @@ class HomeService {
 
 	getVenues(first, limit, search) {
 		return API.get(`venues?first=${first}&limit=${limit}&search=${search}`)
+  }
+
+  getHomepageVenues(first, limit, search) {
+		return API.get(`menu-venues?first=${first}&limit=${limit}&search=${search}`)
 	}
 
 	getHotShowPopupData(){

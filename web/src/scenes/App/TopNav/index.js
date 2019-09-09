@@ -31,9 +31,9 @@ const TopNav = (props) => {
 
   useEffect(() => {
     const first = 0;
-    const limit = 2;
+    const limit = 5;
     const search = "";
-    HomeService.getVenues(first, limit, search)
+    HomeService.getHomepageVenues(first, limit, search)
       .then((res) => {
         setByVenueEvent(res.data.data)
       })
