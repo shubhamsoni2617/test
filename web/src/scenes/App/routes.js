@@ -1,17 +1,17 @@
-import Home from '../Home'
-import Events from '../Events'
-import EventsDetail from '../Events/EventsDetail'
-import HomeService from '../../shared/services/HomeService'
-import Promotions from '../Promotions';
-import PageNotFound from '../PageNotFound/index';
-import Agents from '../Agents';
-import Attraction from '../Attraction'
-import Venues from '../Venues';
+import Home from "../Home";
+import Events from "../Events";
+import EventsDetail from "../Events/EventsDetail";
+import HomeService from "../../shared/services/HomeService";
+import Promotions from "../Promotions";
+import PageNotFound from "../PageNotFound/index";
+import Agents from "../Agents";
+import Attraction from "../Attraction";
+import Venues from "../Venues";
 import WhereBuyTickets from "../WhereBuyTickets";
-import TermsConditions from "../TermsConditions";
-import PrivacyPolicy from "../PrivacyPolicy";
+import TermsPrivacy from "../TermsPrivacy";
 import GiftVouchers from "../GiftVouchers";
 import ContactUs from "../ContactUs";
+import Faq from "../Faq";
 
 const routes = [
   {
@@ -36,9 +36,9 @@ const routes = [
     fetchInitialData: (path = "") => HomeService.getData()
   },
   {
-    path: '/agents',
+    path: "/agents",
     component: Agents,
-    exact : true,
+    exact: true
   },
   {
     path: "/promotions/:promoId",
@@ -61,13 +61,15 @@ const routes = [
   },
   {
     path: "/terms-and-conditions",
-    component: TermsConditions,
-    exact: true
+    component: TermsPrivacy,
+    exact: true,
+    cmsPageType: 1
   },
   {
     path: "/privacy",
-    component: PrivacyPolicy,
-    exact: true
+    component: TermsPrivacy,
+    exact: true,
+    cmsPageType: 2
   },
   {
     path: "/gift-vouchers",
@@ -81,11 +83,18 @@ const routes = [
   },
   {
     path: '/venues',
+    path: "/venues",
     component: Venues,
-    exact : true
+    exact: true
   },
   {
-    path : "*",
+    path: "/faq/:id",
+    component: Faq,
+    exact: true
+  },
+
+  {
+    path: "*",
     component: PageNotFound
   }
 ];
