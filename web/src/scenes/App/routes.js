@@ -1,35 +1,36 @@
-import Home from '../Home'
-import Events from '../Events'
-import EventsDetail from '../Events/EventsDetail'
-import HomeService from '../../shared/services/HomeService'
-import PageNotFound from '../PageNotFound/index';
+import Home from "../Home";
+import Events from "../Events";
+// import EventsDetail from "../Events/EventsDetail";
+import EventsDetail from "../EventsDetail";
+import HomeService from "../../shared/services/HomeService";
+import PageNotFound from "../PageNotFound/index";
 
-const routes =  [
+const routes = [
   {
-    path: '/',
+    path: "/",
     exact: true,
-    component: Home,
+    component: Home
   },
   {
-    path: '/events/search',
-    exact : true,
+    path: "/events/search",
+    exact: true,
+    component: Events
+  },
+  {
+    path: "/events/:icc",
+    exact: true,
+    component: EventsDetail
+  },
+  {
+    path: "/events",
     component: Events,
+    exact: true,
+    fetchInitialData: (path = "") => HomeService.getData()
   },
   {
-    path: '/events/:icc',
-    exact : true,
-    component: EventsDetail,
-  },
-  {
-    path: '/events',
-    component: Events,
-    exact : true,
-    fetchInitialData: (path = '') => HomeService.getData()
-  },
-  {
-    path : "*",
+    path: "*",
     component: PageNotFound
   }
-]
+];
 
-export default routes
+export default routes;
