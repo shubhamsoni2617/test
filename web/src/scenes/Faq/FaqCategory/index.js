@@ -17,35 +17,31 @@ const FaqCategory = props => {
     }
   };
 
-  return (
-    <section className="promotions-nav">
-      <div className="container-fluid">
-        <div className="nav-tabs">
-          <ul>
-            {props.categories.map(category => {
-              return (
-                <li>
-                <Link
-                  key={category.id}
-                  className={
-                    props.categoryId === category.id && props.urlExist
-                      ? "nav-item nav-link active"
-                      : "nav-item nav-link"
-                  }
-                  to={`/faq/${category.name.replace(/\s/g, "-").toLowerCase()}`}
-                  onClick={() => {
-                    setQuestionId(category.id);
-                  }}
-                >
-                  {category.name}
-                </Link>
-                </li>
-              );
-            })}
-          </ul>
-        </div>
-      </div>
-    </section>
+  return (          
+    <div className="nav-tabs faq-tabs">
+      <ul>
+        {props.categories.map(category => {
+          return (
+            <li>
+            <Link
+              key={category.id}
+              className={
+                props.categoryId === category.id && props.urlExist
+                  ? "nav-item nav-link active"
+                  : "nav-item nav-link"
+              }
+              to={`/faq/${category.name.replace(/\s/g, "-").toLowerCase()}`}
+              onClick={() => {
+                setQuestionId(category.id);
+              }}
+            >
+              {category.name}
+            </Link>
+            </li>
+          );
+        })}
+      </ul>
+    </div>      
   );
 };
 

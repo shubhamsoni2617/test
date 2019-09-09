@@ -1,5 +1,6 @@
 import React, { useState, Fragment } from "react";
 import { Link } from "react-router-dom";
+import './style.scss';
 
 const Autocomplete = props => {
   const [filteredSuggestions, setFilteredSuggestions] = useState([]);
@@ -50,18 +51,21 @@ const Autocomplete = props => {
 
   return (
     <Fragment>
-      <input
-        className="inputAuto"
-        type="text"
-        onChange={onChange}
-        value={userInput}
-      />
+      <div className="faq-input-group">
+        <input
+          className="faq-input"
+          placeholder="Ask a question…"
+          type="text"
+          onChange={onChange}
+          value={userInput}
+        />
+      </div>
       {helperText ? (
         <em>{helperText}</em>
       ) : (
         <ul className="suggestions">
           {filteredSuggestions.map(suggestion => (
-            <div key={suggestion.id + suggestion.category_id}>
+            <li key={suggestion.id + suggestion.category_id}>
               <Link
                 to={`/faq/${suggestion.category_name
                   .replace(/\s/g, "-")
@@ -71,13 +75,14 @@ const Autocomplete = props => {
                   onClick(e, suggestion.id);
                 }}
               >
-                {suggestion.question} in {suggestion.category_name}
+              <span className="faq-qus">{suggestion.question}</span>
+              <span className="faq-qus-category">in {suggestion.category_name}</span> 
               </Link>
-              <br />
-            </div>
+            </li> 
           ))}
         </ul>
       )}
+      {filteredSuggestions.length===0 && userInput.length >3 ?<span className="no-suggestions">you are on your own</span>: null}
     </Fragment>
   );
 };

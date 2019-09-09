@@ -1,37 +1,69 @@
-.inputAuto {
-  border: 1px solid #999;
-  padding: 0.5rem;
-  width: 300px;
+.faq-wrapper{
+  .banner-wrapper{
+    margin-bottom: 0px;
+    img{
+      max-height: 460px;
+    }
+  }
+  .banner-overlay{
+    h1{  
+      font-size: 40px;
+      line-height: 49px;
+      margin-bottom: 10px;
+    }
+  }
+}
+.faq-searchbox {
+  position: relative;
+  max-width: 610px;
+  margin: 0 auto;
+  height: 42px;
+  .faq-input-group{
+    height: 42px;
+    .faq-input {
+      width: 100%;
+      height: 42px;
+      border: none;
+      padding: 10px 30px 10px 21px;
+      white-space: normal;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      &::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+        color: rgba(76,76,76,0.5);
+        font-family: 'Rubik', sans-serif;	
+        font-size: 16px;
+        line-height: 19px;
+      }
+      &::-moz-placeholder { /* Firefox 19+ */
+        color: rgba(76,76,76,0.5);
+        font-family: 'Rubik', sans-serif;	
+        font-size: 16px;
+        line-height: 19px;
+      }
+      &:-ms-input-placeholder { /* IE 10+ */
+        color: rgba(76,76,76,0.5);
+        font-family: 'Rubik', sans-serif;	
+        font-size: 16px;
+        line-height: 19px;
+      }
+      &:-moz-placeholder { /* Firefox 18- */
+        color: rgba(76,76,76,0.5);
+        font-family: 'Rubik', sans-serif;	
+        font-size: 16px;
+        line-height: 19px;
+      }
+    }
+    &:after{
+      position: absolute;
+      right: 13px;      
+      background-image: url(../../../assets/images/faq-search.png);
+      background-repeat: no-repeat;
+      background-size: cover;
+      content: "";
+      width: 20px;
+      height: 20px;
+      top: 11px;
+    }
+  }
 }
 
-.no-suggestions {
-  color: #999;
-  padding: 0.5rem;
-}
-
-.suggestions {
-  border: 1px solid #999;
-  border-top-width: 0;
-  list-style: none;
-  margin-top: 0;
-  max-height: 143px;
-  overflow-y: auto;
-  padding-left: 0;
-  width: calc(300px + 1rem);
-}
-
-.suggestions li {
-  padding: 0.5rem;
-}
-
-.suggestion-active,
-.suggestions li:hover {
-  background-color: #008f68;
-  color: #fae042;
-  cursor: pointer;
-  font-weight: 700;
-}
-
-.suggestions li:not(:last-of-type) {
-  border-bottom: 1px solid #999;
-}

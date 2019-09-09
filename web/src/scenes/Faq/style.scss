@@ -1,36 +1,87 @@
-.find-agent-wrapper {
+.faq-body-wrapper{
+  background-color: #f7fafc;
+  padding-top: 40px;
+  padding-bottom: 64px;
+}
+.faq-qus-ans-wrapper {  
   display: flex;
-  padding-top: 45px;
-  @media (max-width: 992px) {
-    padding-top: 20px;
-  }
-  .agent-list {
-    .find-map-mob {
-      background-color: #fafafa;
-      padding: 20px;
-      color: #343434;
-      font-size: 15px;
-      display: block;
-      font-weight: 500;
-      width: calc(100% + 90px);
-      margin-left: -45px;
-      @media (max-width: 767px) {
-        width: calc(100% + 50px);
-        margin-left: -25px;
-      }
-      img {
-        float: right;
-        margin: 4px 0 0 0;
-        transform: rotate(270deg);
-      }
-      &.active {
-        img {
-          transform: rotate(0deg);
+  flex-wrap: wrap;
+  .faq-sidebar{
+    width: 243px;
+    flex: 0 0 243px;
+    margin-right: 21px;
+    background-color: #fff;
+    .faq-tabs{
+      padding: 0px;
+      border: none;
+      ul{
+        li{
+          list-style: none;
+          a{
+            padding: 17px 20px;
+            border: none;
+            color: #343434;	
+            font-family: 'Rubik', sans-serif;
+            font-size: 16px;	
+            line-height: 23px;
+            transition: 0.5s background-color, 0.5s color;
+            &.active, &:hover{
+              background-color: #F0F9FF;
+              color: #0098FF;	
+            }
+            &.active{
+              font-weight: 600;
+            }
+          }
         }
       }
     }
   }
-  .agent-map {
-    width: 100px;
+  .faq-qus-ans-section{
+    width: calc(100% - 264px);
+    flex: 0 0 calc(100% - 264px);
+    padding: 35px 40px 0px 20px;
+    background-color: #fff;
+    h2{
+      color: #343434;	
+      font-family: 'Montserrat', sans-serif;	
+      font-size: 22px;	
+      line-height: 27px;
+      font-weight: 600;
+      padding-bottom: 30px;
+    }
+    .sidebar-accordion{
+      border-bottom: 1px solid rgba(126, 126, 126, 0.2);
+      padding: 0px 0px 21px;
+      margin-bottom: 30px;
+      .accordion__item {
+        margin-bottom: 0px;
+      }
+      .accordion__button{
+        color: #343434;
+        font-family: 'Rubik', sans-serif;
+        font-size: 18px;
+        line-height: 22px;
+        font-weight: normal;
+        background-color: transparent;
+        padding: 0px 0px 20px;
+        transition: 0.5s color;        
+        &[aria-expanded="true"]{
+          color: #0098FF;
+        }
+      }
+      .accordion__panel{
+        color: #343434;
+        font-family: 'Rubik', sans-serif;
+        font-size: 16px;
+        line-height: 26px;
+        padding: 0px;
+      }
+    }
+    .no-faq-found{
+      padding: 10px 0px;
+      color: #999;
+      display: block;
+    }
   }
 }
