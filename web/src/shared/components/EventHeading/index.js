@@ -16,20 +16,27 @@ function EventHeading(props) {
     ) {
       setAllowTooltip(true);
     }
+    let styleObjectDefault = {
+      "overflow": "hidden",
+      "line-height": `${props.height}px`,
+      "max-height": `${props.height * props.lines}px`,
+      "min-height": `${props.height * props.lines}px`,
+      "width": "91%",
+      "font-size": props.size,
+      "font-weight": props.weight
+    };
     if (element.current.offsetHeight >= props.height * props.lines) {
       setStyleObj({
-        overflow: "hidden",
         "text-overflow": "ellipsis",
         display: props.lines == 1 ? "block" : "-webkit-box",
-        "line-height": `${props.height}px`,
-        "max-height": `${props.height * props.lines}px`,
-        "min-height": `${props.height * props.lines}px`,
         "-webkit-line-clamp": `${props.lines}`,
         "-webkit-box-orient": "vertical",
-        "margin-bottom": props.noMargin ? "0px":"15px",
-        width: "91%",
-        "font-size": props.size,
-        "font-weight": props.weight
+        ...styleObjectDefault
+      });
+    }else{
+      setStyleObj({
+        "display": "block",
+        ...styleObjectDefault
       });
     }
   }, [element.current]);
