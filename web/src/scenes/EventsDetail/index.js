@@ -17,9 +17,82 @@ import ModalPopup from "../../shared/components/Modal";
 import ShimmerEffect from "../../shared/components/ShimmerEffect";
 import StickyHeader from "../../shared/components/StickyHeader";
 import Utilities from "../../shared/utilities";
-const SimilarPicksSection = lazy(() =>
-  import("../../shared/components/SimilarPicksSection")
-);
+import SimilarPicksSection from "../../shared/components/SimilarPicksSection";
+
+function ShowOver({ isShowOver }) {
+  if (isShowOver !== 1) return null;
+  return (
+    <div className="shows-over-banner">
+      <div className="shows-over">
+        <div className="shows-over-icon">
+          <img src={faceImg} alt="" />
+        </div>
+        <div className="shows-over-desc">
+          <h4>Show's over!</h4>
+          <p>
+            This event is no longer available for booking. But we have something
+            which you might like
+          </p>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// function SeatMapDetail({ showSeatMap, seatingPlan }) {
+//   if (showSeatMap) {
+//     showSeatMap &&
+//       detailData.seating_plan &&
+//       detailData.seating_plan.length > 0 && (
+//         <SeatMap
+//           imgArr={detailData.seating_plan}
+//           showModal={showSeatMap}
+//           heading="Seat Map"
+//           handleClose={this.handleClose}
+//         />
+//       );
+//   }
+// }
+
+function GiftCard({ flag }) {
+  if (!flag) return null;
+  return (
+    <section className="gift-cart">
+      <div className="gift-cart-image">
+        <img src={giftCardImage} className="img-fluid" alt="Gift-cart" />
+      </div>
+    </section>
+  );
+}
+
+function EventTags({ tags }) {
+  if (!tags || !tags.length) return null;
+
+  return (
+    <section className="event-zoner-group">
+      <div className="container-fluid">
+        <ul>
+          {tags.map((obj, idx) => {
+            if (obj.name) {
+              return <li key={idx}>{obj.name}</li>;
+            }
+          })}
+        </ul>
+      </div>
+    </section>
+  );
+}
+
+function BuyPackages({ isAvailableForBooking, buyPackageUrl }) {
+  return (
+    isAvailableForBooking === 1 &&
+    buyPackageUrl && (
+      <a href={buyPackageUrl} target="_blank" className="buy-package">
+        Buy Packages
+      </a>
+    )
+  );
+}
 
 export default class EventsDetail extends Component {
   constructor(props) {
@@ -202,24 +275,7 @@ export default class EventsDetail extends Component {
 
   componentDidUpdate() {}
 
-  showOver = () => (
-    <div className="shows-over-banner">
-      <div className="shows-over">
-        <div className="shows-over-icon">
-          <img src={faceImg} alt="" />
-        </div>
-        <div className="shows-over-desc">
-          <h4>Show's over!</h4>
-          <p>
-            This event is no longer available for booking. But we have something
-            which you might like
-          </p>
-        </div>
-      </div>
-    </div>
-  );
-
-  setSynopsisData = (synopsis, getSynopsisData) => {
+  onSynopsisData = (synopsis, getSynopsisData) => {
     synopsis.forEach(obj => {
       if (obj.language) {
         getSynopsisData.languageArr.push(obj.language);
@@ -233,6 +289,25 @@ export default class EventsDetail extends Component {
       }
     });
   };
+
+  onShimmerEffect() {
+    return (
+      <CSSTransitionGroup
+        transitionName="shimmer"
+        transitionEnter={true}
+        transitionEnterTimeout={500}
+        transitionLeaveTimeout={500}
+      >
+        <ShimmerEffect
+          propCls="shm_col-xs-6 col-md-12"
+          height={400}
+          count={2}
+          type="DETAIL"
+          detail={true}
+        />
+      </CSSTransitionGroup>
+    );
+  }
 
   render() {
     const {
@@ -256,28 +331,13 @@ export default class EventsDetail extends Component {
     let accrodian = ["synopsis", "pricedetail"];
     detailData &&
       detailData.synopsis &&
-      this.setSynopsisData(detailData.synopsis, getSynopsisData);
+      this.onSynopsisData(detailData.synopsis, getSynopsisData);
     return (
       <div className="event-detail-wrapper">
-        <CSSTransitionGroup
-          transitionName="shimmer"
-          transitionEnter={true}
-          transitionEnterTimeout={500}
-          transitionLeaveTimeout={500}
-        >
-          {shimmer && (
-            <ShimmerEffect
-              propCls="shm_col-xs-6 col-md-12"
-              height={400}
-              count={2}
-              type="DETAIL"
-              detail={true}
-            />
-          )}
-        </CSSTransitionGroup>
+        {shimmer && this.onShimmerEffect}
         {detailData && (
           <div className={`main-container ${shimmer ? "shimmer" : ""}`}>
-            {detailData.is_show_over === 1 && this.showOver}
+            <ShowOver isShowOver={detailData.is_show_over} />
             {detailData.is_show_over === 0 && (
               <div>
                 {detailData.pop_up_message &&
@@ -361,7 +421,7 @@ export default class EventsDetail extends Component {
                           <span className="seat-map-text">Seat Map</span>
                         </a>
                       )}
-                    {showSeatMap &&
+                    {/* {showSeatMap &&
                       detailData.seating_plan &&
                       detailData.seating_plan.length > 0 && (
                         <SeatMap
@@ -370,17 +430,13 @@ export default class EventsDetail extends Component {
                           heading="Seat Map"
                           handleClose={this.handleClose}
                         />
-                      )}
-                    {detailData.is_available_for_booking === 1 &&
-                      detailData.buy_package_url && (
-                        <a
-                          href={detailData.buy_package_url}
-                          target="_blank"
-                          className="buy-package"
-                        >
-                          Buy Packages
-                        </a>
-                      )}
+                      )} */}
+                    <BuyPackages
+                      isAvailableForBooking={
+                        detailData.is_available_for_booking
+                      }
+                      buyPackageUrl={detailData.buy_package_url}
+                    />
                     {detailData.ticket_pricing && (
                       <AccordionSection
                         title="Price Details"
@@ -412,48 +468,15 @@ export default class EventsDetail extends Component {
                       )}
                   </div>
                 </section>
-                {detailData.tags && detailData.tags.length > 0 && (
-                  <section className="event-zoner-group">
-                    <div className="container-fluid">
-                      <ul>
-                        {detailData.tags.map((obj, idx) => {
-                          if (obj.name) {
-                            return <li>{obj.name}</li>;
-                          }
-                        })}
-                      </ul>
-                    </div>
-                  </section>
-                )}
+                <EventTags tags={detailData.tags} />
                 <ArticleSection />
               </div>
             )}
-            {similarEventsData && similarEventsData.length > 0 && (
-              <Suspense
-                fallback={
-                  <ShimmerEffect
-                    height={150}
-                    count={5}
-                    type="grid"
-                    propCls="shm_col-xs-5"
-                  />
-                }
-              >
-                <SimilarPicksSection data={similarEventsData} />
-              </Suspense>
-            )}
-            {detailData.is_show_over === 1 && (
-              <section className="gift-cart">
-                <div className="gift-cart-image">
-                  <img
-                    src={giftCardImage}
-                    className="img-fluid"
-                    alt="Gift-cart"
-                  />
-                </div>
-              </section>
-            )}
-            {detailData.is_show_over === 1 && <ArticleSection />}
+            <SimilarPicksSection data={similarEventsData} />
+            <GiftCard flag={detailData.is_show_over === 1 ? true : false} />
+            <ArticleSection
+              flag={detailData.is_show_over === 1 ? true : false}
+            />
           </div>
         )}
       </div>
