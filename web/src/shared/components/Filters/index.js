@@ -1,4 +1,10 @@
-import React, { Component, useState, useRef, useEffect, useLayoutEffect } from "react";
+import React, {
+  Component,
+  useState,
+  useRef,
+  useEffect,
+  useLayoutEffect
+} from "react";
 import InputRange from "react-input-range";
 import VenueFilter from "../VenueFilter";
 import moment from "moment";
@@ -240,20 +246,30 @@ function Filters(props) {
   };
 
   const handleScroll = () => {
-    if(element.current.parentElement.offsetHeight > element.current.offsetHeight + 20 && window.pageYOffset + 377 > window.document.body.clientHeight - window.innerHeight) {
+    if (
+      element.current.parentElement.offsetHeight >
+        element.current.offsetHeight + 20 &&
+      window.pageYOffset + 377 >
+        window.document.body.clientHeight - window.innerHeight
+    ) {
       element.current.classList.add("fixed-filter-absolute");
       element.current.classList.remove("fixed-filter");
-    }else if(element.current.parentElement.offsetHeight > element.current.offsetHeight + 20 && window.pageYOffset + 299 >= element.current.clientHeight - 45){
+    } else if (
+      element.current.parentElement.offsetHeight >
+        element.current.offsetHeight + 20 &&
+      window.pageYOffset + 299 >= element.current.clientHeight - 45
+    ) {
       element.current.classList.add("fixed-filter");
       element.current.classList.remove("fixed-filter-absolute");
-    }else {
+    } else {
       element.current.classList.remove("fixed-filter");
       element.current.classList.remove("fixed-filter-absolute");
     }
   };
 
   useLayoutEffect(() => {
-    if(!element.current['top']) element.current['top'] = element.current.offsetTop;
+    if (!element.current["top"])
+      element.current["top"] = element.current.offsetTop;
   }, [element.current]);
 
   useEffect(() => {
@@ -281,68 +297,66 @@ function Filters(props) {
   } = props;
   const { price_config } = filterConfig ? filterConfig : 0;
 
+  if (props.shimmerFilter) {
+    return;
+  }
   return (
-    <div className="filter-conatiner">
-      <div className="filters" ref={element}>
-        <div className="filter-heading">
-          <h3>
-            FILTERS <a onClick={() => clearAllFilters()}>Clear all</a>
-          </h3>
-        </div>
-        <SearchFilter
-          handleFilters={handleFilters}
-          searchText={filteredSearch}
-        />
-        {price_config != undefined && (
-          <PriceRangeFilter
-            priceConfig={price_config}
-            filteredPriceRange={filteredPriceRange}
-            handleFilters={handleFilters}
-          />
-        )}
-        <FilterGrid
-          title="Genre"
-          category="filteredGnere"
-          handleFilters={handleFilters}
-          data={genreData ? genreData : []}
-          selectedFilter={filteredGnere}
-        />
-        <FilterGrid
-          title="Tags"
-          category="filteredTags"
-          handleFilters={handleFilters}
-          data={filterConfig ? filterConfig.tags : []}
-          selectedFilter={filteredTags}
-        />
-        {!hideCalendar && (
-          <DateRangeFilter
-            filteredDateRange={filteredDateRange}
-            handleFilters={handleFilters}
-          />
-        )}
-        <FilterGrid
-          title="Promotion"
-          category="filteredPromotions"
-          handleFilters={handleFilters}
-          data={filterConfig ? filterConfig.promotion_categories : []}
-          selectedFilter={filteredPromotions}
-        />
-        <FilterGrid
-          title="Venue"
-          category="filteredVenues"
-          handleFilters={handleFilters}
-          data={venueData ? venueData : []}
-          showPanel={true}
-          selectedFilter={filteredVenues}
-        />
-        <FilterGrid
-          title="Categories"
-          category="filteredCategory"
-          handleFilters={handleFilters}
-          data={attractionCategories ? attractionCategories : []}
-          selectedFilter={filteredCategory}
-        />
+    <div className="filter-conatiner" ref={element}>
+      <div className="filter-heading">
+        <h3>
+          FILTERS <a onClick={() => clearAllFilters()}>Clear all</a>
+        </h3>
       </div>
+      <SearchFilter handleFilters={handleFilters} searchText={filteredSearch} />
+      {price_config != undefined && (
+        <PriceRangeFilter
+          priceConfig={price_config}
+          filteredPriceRange={filteredPriceRange}
+          handleFilters={handleFilters}
+        />
+      )}
+      <FilterGrid
+        title="Genre"
+        category="filteredGnere"
+        handleFilters={handleFilters}
+        data={genreData ? genreData : []}
+        selectedFilter={filteredGnere}
+      />
+      <FilterGrid
+        title="Tags"
+        category="filteredTags"
+        handleFilters={handleFilters}
+        data={filterConfig ? filterConfig.tags : []}
+        selectedFilter={filteredTags}
+      />
+      {!hideCalendar && (
+        <DateRangeFilter
+          filteredDateRange={filteredDateRange}
+          handleFilters={handleFilters}
+        />
+      )}
+      <FilterGrid
+        title="Promotion"
+        category="filteredPromotions"
+        handleFilters={handleFilters}
+        data={filterConfig ? filterConfig.promotion_categories : []}
+        selectedFilter={filteredPromotions}
+      />
+      <FilterGrid
+        title="Venue"
+        category="filteredVenues"
+        handleFilters={handleFilters}
+        data={venueData ? venueData : []}
+        showPanel={true}
+        selectedFilter={filteredVenues}
+      />
+      <FilterGrid
+        title="Categories"
+        category="filteredCategory"
+        handleFilters={handleFilters}
+        data={attractionCategories ? attractionCategories : []}
+        selectedFilter={filteredCategory}
+      />
     </div>
   );
 }

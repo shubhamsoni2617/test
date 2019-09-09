@@ -48,6 +48,7 @@ const NewsTicker = props => {
           <div className="ticker">
             <marquee
               behavior="scroll"
+              width="100%"
               onMouseEnter={() => refMarquee.current.stop()}
               onMouseLeave={() => handleMarquee()}
               ref={refMarquee}
