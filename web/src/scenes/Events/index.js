@@ -414,7 +414,7 @@ export default class Events extends Component {
                           key={event.id}
                           onClick={() => this.redirectToTarget(event.alias)}
                         >
-                          <Card eventsData={event} />
+                          <Card cardData={event} cardClass={{cardBlock: 'event-block', cardButton: 'btn buy-btn'}} />
                         </div>
                       );
                     })}

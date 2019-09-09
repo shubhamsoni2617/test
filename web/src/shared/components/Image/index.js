@@ -3,6 +3,7 @@ import BigBanner from "../../../assets/images/big_banner.png";
 import Horizontal from "../../../assets/images/horizontal.png";
 import Vertical from "../../../assets/images/vertical.png";
 import Tile from "../../../assets/images/Vertical Tile.png";
+import Small from '../../../assets/images/small.png';
 import "./style.scss";
 
 function Image(props) {
@@ -35,7 +36,9 @@ function Image(props) {
       case "BigBanner":
         newImg = BigBanner;
         break;
-
+        case 'Small':
+        newImg = Small
+        break;
       default:
         newImg = Horizontal;
     }
