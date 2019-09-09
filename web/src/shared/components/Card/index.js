@@ -54,9 +54,9 @@ export default class Card extends Component {
           <div className="price-event">
             <div className="price">
               <EventStatus
-                status={this.props.eventsData.event_status}
-                color={this.props.eventsData.event_status_text_color}
-                background={this.props.eventsData.event_status_background_color}
+                status={this.props.cardData.event_status}
+                color={this.props.cardData.event_status_text_color}
+                background={this.props.cardData.event_status_background_color}
                 paddingLeft={"2px"}
                 paddingRight={"2px"}
               />
