@@ -1,10 +1,8 @@
 import React, { Component, createRef } from "react";
-import Helmet from "react-helmet";
-import { Link, withRouter } from "react-router-dom";
+import { withRouter } from "react-router-dom";
 import "./style.scss";
 import InstagramFeed from "../../shared/components/InstagramFeed/InstagramFeed";
 import CarouselConatiner from "./CarouselConatiner";
-import WhatsNew from "./WhatsNew/WhatsNew";
 import PromotionCarousel from "./PromotionCarousel";
 import TopPics from "./TopPics";
 import HotShowPopup from "../../shared/components/HotShowPopup";
@@ -12,17 +10,15 @@ import FeaturedEvents from "./FeaturedEvents";
 import TrendingNow from "./TrendingNow";
 import Explore from "./Explore";
 import Cookies from "../../shared/components/Cookies";
+import Image from "../../shared/components/Image";
 import NewsTicker from "./NewsTicker";
 import ModalPopup from "../../shared/components/Modal";
 import primeSlider from "../../assets/images/main-banner.png";
-import ShimmerEffect from '../../shared/components/ShimmerEffect';
+import primeSlider2 from "../../assets/images/main-banner-2.png";
 import HomeService from "../../shared/services/HomeService";
 
-const preLoadImgage = (src) => {
-  let img = new Image();
-  img.src = src;
-}
-preLoadImgage(primeSlider);
+// const Image = lazy(() => import('../../shared/components/Image'));
+
 class Home extends Component {
   constructor(props) {
     super(props);
@@ -33,28 +29,17 @@ class Home extends Component {
       modal: false,
       modalContent: "",
       newsTickerStatus: true,
-      imageUrl: ''
+      imageUrl: ""
     };
     this.homePageRef = createRef();
-    this.preLoadImgage(primeSlider);
   }
 
-  preLoadImgage = (src) => {
-    let img = new Image();
-    img.onload = () => {
-      // setTimeout(() => {
-        this.setState({imageUrl: src});
-      // }, 5000);
-    };
-    img.src = src;
-  }
 
   showNewsTicker = data => {
     this.setState(data);
   };
 
   render() {
-
     return (
       <div className="home-page-wrapper" ref={this.homePageRef}>
         <NewsTicker
@@ -64,7 +49,11 @@ class Home extends Component {
         />
         <HotShowPopup />
         <div className={`banner`}>
-          <img className={`main-image ${this.state.imageUrl ? 'show-image' : ''}`} src={primeSlider} alt="prime Slider" />
+            <Image
+              src={primeSlider2}
+              largeImage={primeSlider}
+            />
+          {/* <img className={`main-image ${this.state.imageUrl ? 'show-image' : ''}`} src={primeSlider} alt="prime Slider" /> */}
         </div>
         <TopPics />
         <section className="gift-cart">
@@ -83,19 +72,20 @@ class Home extends Component {
           autoplay={true}
           infinite={false}
           api={HomeService.getCurrentlyShowing}
-          />
+        />
         <PromotionCarousel />
         <TrendingNow />
         <CarouselConatiner
           title="What's New"
           classStr="whats-new"
           arrows={true}
-            autoplay={false}
-            infinite={false}
-            api={HomeService.getNewRelease} />
+          autoplay={false}
+          infinite={false}
+          api={HomeService.getNewRelease}
+        />
         <Explore />
         <InstagramFeed />
-        <Cookies />
+        {/* <Cookies /> */}
         <ModalPopup
           showModal={this.state.modal}
           content={this.state.modalContent}

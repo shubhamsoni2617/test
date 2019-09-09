@@ -15,6 +15,19 @@
     width: 100%;
     background: #FFFFFF;
     z-index: 2;
+    padding: 0;
+    margin: 0px;
+    .shm_col-xs-6{
+      margin: 0 -10px;
+      padding: 0;
+    }
+  }
+  .contentLoader{
+    padding: 0;
+    margin: 0;
+    .shm_row{
+      margin: 0 -10px;
+    }
   }
 }
 .shimmer-enter.shimmer-enter-active {
