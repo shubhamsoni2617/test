@@ -7,7 +7,6 @@ export default class Venues extends Component {
       <Fragment>
         <Agent
           venue={true}
-          zoom={12}
         />
       </Fragment>
     );

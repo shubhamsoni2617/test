@@ -8,7 +8,7 @@ import Image from '../../Image';
 
 const GoogleMap = (props) => {
 
-  const { google, multipleMarker, showOnMapData, venue, zoom, mapClick, countryName } = props;
+  const { google, multipleMarker, showOnMapData, venue, mapClick, countryName } = props;
 
   const [showingInfoWindow, setShowingInfoWindow] = useState(false);
   const [activeMarker, setActiveMarker] = useState({});
@@ -25,16 +25,15 @@ const GoogleMap = (props) => {
   };
 
   const onMarkerClick = (props, marker, e) => {
-    setSelectedPlace(props);
-    setActiveMarker(marker);
-    setShowingInfoWindow(true);
-  }
-
-  const click = (props, marker) => {
-    // setSelectedPlace(props);
-    setActiveMarker(marker);
-    setShowingInfoWindow(true);
-    setSelectedPlace(props);
+    if (selectedPlace.id || showOnMapData.id === undefined) {
+      setSelectedPlace(props);
+      setActiveMarker(marker);
+      setShowingInfoWindow(true);
+    } else {
+      setActiveMarker(marker);
+      setShowingInfoWindow(true);
+      setSelectedPlace(props);
+    }
   }
 
   const infoWindowHasClosed = () => {
@@ -56,11 +55,11 @@ const GoogleMap = (props) => {
     switch (country) {
       case "Singapore":
         setInitialCenter({ lat: 1.290270, lng: 103.851959 });
-        setZoomValue(12);
+        setZoomValue(14);
         break;
       case "Malaysia":
-        setInitialCenter({ lat: 3.140853, lng: 101.693207 });
-        setZoomValue(3);
+        setInitialCenter({ lat:  3.1412001, lng: 101.6865311 });
+        setZoomValue(4);
         break;
       case "Indonesia":
         setInitialCenter({ lat: -6.21462, lng: 106.84513 });
@@ -74,9 +73,21 @@ const GoogleMap = (props) => {
         setInitialCenter({ lat: 14.315424, lng: 108.339537 });
         setZoomValue(5);
         break;
+      case "Macau":
+        setInitialCenter({ lat: 22.210928, lng: 113.552971 });
+        setZoomValue(3);
+        break;
+      case "Taiwan":
+        setInitialCenter({ lat: 23.6978092 , lng: 120.9605179 });
+        setZoomValue(5);
+        break;
+      case "South Korea":
+        setInitialCenter({ lat: 37.532600, lng: 127.024612 });
+        setZoomValue(5);
+        break;
       default:
         setInitialCenter({ lat: 1.290270, lng: 103.851959 });
-        setZoomValue(12);
+        setZoomValue(14);
     }
   }
 
@@ -89,7 +100,6 @@ const GoogleMap = (props) => {
         <Map google={google}
           style={{ width: '100%', height: '600px', position: 'relative' }}
           zoom={zoomValue}
-          // zoom={venue ? zoom : 11}
           onClick={onMapClicked}
           initialCenter={initialCenter}
         >
@@ -102,9 +112,6 @@ const GoogleMap = (props) => {
                 id={elem.id}
                 address={elem.address}
                 imgPath={elem.image}
-              // icon={{
-              //   url: venue ? require("../../../../../src/assets/images/pin.svg") : null
-              // }}
               />
             )
           })
@@ -140,14 +147,13 @@ const GoogleMap = (props) => {
           onClick={onMapClicked}
           style={{ width: '100%', height: '600px', position: 'relative' }}
           zoom={zoomValue}
-          // zoom={venue && showOnMapData.id ? zoom : (showOnMapData.id ? 11 : 11)}
           initialCenter={initialCenter}
         >
 
           {multipleMarker && multipleMarker.map((elem, index) => {
             return (
               <Marker
-                onClick={click}
+                onClick={onMarkerClick}
                 key={elem.id}
                 position={{ lat: elem.latitude, lng: elem.longitude }}
                 id={elem.id}
@@ -167,6 +173,7 @@ const GoogleMap = (props) => {
                 lat: showOnMapData.latitude,
                 lng: showOnMapData.longitude
               }}
+              onClose={infoWindowHasClosed}
             >
               <div className="map-info-popup">
                 <div className="map-img">
