@@ -53,16 +53,21 @@ export default class Promotions extends Component {
   }
 
   componentWillMount() {
-    const url = window.location.href;
-    const allParams = url.split('/')[4];
-    if (allParams) {
-      const getParams = allParams.split('-');
-      const id = getParams[0];
-      const defaultTabId = getParams[1];
-      const alias = getParams[2] + "/" + id;
-      if (id && defaultTabId && alias) {
-        this.setState({ defaultTabId: defaultTabId });
-      }
+    const defaultTabId = this.props.match.params.promoId;
+    const id = this.props.location.pathname.split("/")[3];
+    // const url = window.location.href;
+    // const allParams = url.split('/')[4];
+    // if (allParams) {
+    //   const getParams = allParams.split('-');
+    //   const id = getParams[0];
+    //   const defaultTabId = getParams[1];
+    //   const alias = getParams[2] + "/" + id;
+    //   if (id && defaultTabId && alias) {
+    //     this.setState({ defaultTabId: defaultTabId });
+    //   }
+    // }
+    if(defaultTabId && id){
+      this.setState({ defaultTabId: defaultTabId });
     }
   }
 
@@ -200,7 +205,7 @@ export default class Promotions extends Component {
       .catch((err) => {
         console.log(err)
       })
-    let shareUrl = window.location.origin + `/promotions/${id}-${defaultTabId}-${alias}`;
+    let shareUrl = window.location.origin + `/promotions/${defaultTabId}/${id}`;
     // let randomString = Math.random().toString(36).substring(7);
     window.history.pushState("string", "Title", shareUrl);
   }
