@@ -30,7 +30,7 @@ const Tab = (props) => {
     <>
       <div className="promotion-grid">
         <div className="sortby-filter">
-          {tabsSort && tabsSort.isSortBy && <SortBy defaultSortType="A to Z" handleFilters={handleFilters} sortList={tabsSort.sortList} />}
+          {tabsSort && tabsSort.isSortBy && <SortBy defaultSortType="Promotions - A to Z" handleFilters={handleFilters} sortList={tabsSort.sortList} />}
         </div>
         <div className="tab-content-wrapper">
           <div className="promotions-listing">

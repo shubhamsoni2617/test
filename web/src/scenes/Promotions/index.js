@@ -27,13 +27,13 @@ export default class Promotions extends Component {
         {
           sortType: '',
           sortOrder: 'ASC',
-          sortTitle: 'A to Z',
+          sortTitle: 'Promotions - A to Z',
           sortTag: 'Promotions - A to Z'
         },
         {
           sortType: '',
           sortOrder: 'DESC',
-          sortTitle: 'Z to A',
+          sortTitle: 'Promotions - Z to A',
           sortTag: 'Promotions - Z to A'
         },
         {
@@ -61,6 +61,10 @@ export default class Promotions extends Component {
       const defaultTabId = getParams[1];
       const alias = getParams[2] + "/" + id;
       if (id && defaultTabId && alias) {
+        console.log(id,"id")
+        console.log(defaultTabId,"defaultTabId")
+        console.log(alias,"alias")
+        this.fetchPromotionDetailData(alias, id, defaultTabId);
         this.setState({ defaultTabId: defaultTabId });
       }
     }
@@ -184,6 +188,7 @@ export default class Promotions extends Component {
     PromotionService.getPromotionDetail(params)
       .then((res) => {
         if (res.data.data.length > 0 && res.data.data[0]) {
+          console.log(res.data,"data")
           this.setState({
             promotionDetail: res.data.data[0],
             promotionTab: 1,
