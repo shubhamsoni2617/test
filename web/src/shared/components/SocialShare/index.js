@@ -16,7 +16,7 @@ import {
                 <div className="social-share-wrapper">
                     <FacebookShareButton
                         url={shareUrl}
-                        quote='Facebook' title="Facebook" >
+                        quote='Facebook'>
                         <FacebookIcon title="Facebook" size={32}
                         round />
                     </FacebookShareButton>

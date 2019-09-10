@@ -6,6 +6,9 @@ import SocialShare from '../../../shared/components/SocialShare';
 import CloseIcon from '../../../assets/images/close-blue.svg';
 import ShareIcon from '../../../assets/images/share-icon.svg';
 import StopWatch from '../../../assets/images/stopwatch-grey.svg';
+import Image from '../Image';
+import Utilities from '../../utilities';
+import EventHeading from '../EventHeading';
 
 const PromotionCard = (props) => {
 
@@ -48,7 +51,7 @@ const PromotionCard = (props) => {
     <div className={promotionTab === 1 && tabDetailId === data.id ? "promotion-block active" : "promotion-block"}>
       <div className="promotions-listing-wrapper">
         <div className="promotion-image">
-          <img src={data.featured_image} className="img-fluid" alt="feature-image" />
+          <Image src={data.featured_image} />
         </div>
         <div className="promotion-desc">
           {data && data.custom_label_text ?
@@ -56,26 +59,30 @@ const PromotionCard = (props) => {
             :
             null
           }
-          <span className="share" onClick={handleSocialShare} >
+          <span title="share" className="share" onClick={handleSocialShare} >
             <img src={ShareIcon} alt="share-icon" />
             <SocialShare shareUrl={shareUrl && shareUrl} showSocialShare={socialShare} />
           </span>
-          <h3>{data.title}</h3>
+          <EventHeading
+            title={data.title}
+            lines={2}
+            height={20}
+          />
           <div className="promotion-btn-wrapper">
             {/* <a href={data.buttons.length > 0 && data.buttons[0].url ? data.buttons[0].url : undefined}>
               <button style={{ color: data.buttons.length > 0 ? `#${data.buttons[0].color}` : "" }}>
                 <span>{data.buttons.length > 0 && data.buttons[0].text}</span>
               </button>
-            </a> */}<button onClick={() => fetchPromotionDetailData(data.alias, data.id,defaultTabId,promotionTab)}><span>See More</span></button>
+            </a> */}<button onClick={() => fetchPromotionDetailData(data.alias, data.id, defaultTabId, promotionTab)}><span>See More</span></button>
             {data.show_timer === "1" ?
               <div className="promotion-timer">
                 {!expiredText ? <span className="timer-tagline"> Hurry! Promotion ends in:</span> : null}
-                <ul>
+                {!expiredText ? <ul>
                   <li className="timer-watch">
                     <img src={StopWatch} className="img-fluid" alt="watch" />
                   </li>
                   <Timer endDate={data.publish_end_date} promotionExpired={handlePromotionExpired} />
-                </ul>
+                </ul> : null}
               </div>
               :
               null
@@ -97,7 +104,6 @@ const PromotionCard = (props) => {
           {/* Related Events */}
 
           {buttons && buttons.length > 0 && buttons.map((e, i) => {
-            console.log(e.color,"color")
             return (
               <div key={i}>
                 <a href={e && e.url ? e.url : undefined}>
