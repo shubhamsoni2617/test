@@ -2,6 +2,7 @@ import React from 'react';
 import Image from '../Image';
 import { Link } from 'react-router-dom';
 import Utilities from '../../utilities';
+import EventHeading from '../EventHeading';
 
 const CarouselSlide = (props) => {
     const { elem } = props;
@@ -19,8 +20,9 @@ const CarouselSlide = (props) => {
                         </div>
                     </div>
                     <span className={`category ${genre}`}>{elem.primary_genre}</span>
-                    <p className="date-event">{elem.event_date}</p>
-                    <Link to={`/events/${elem.alias}`}><h3>{Utilities.showLimitedChars(elem.title, 40)}</h3></Link>
+                    <p className="dt-srt-end">{elem.event_date}</p>
+                    {/* <Link to={`/events/${elem.alias}`}><h3>{Utilities.showLimitedChars(elem.title, 40)}</h3></Link> */}
+                    <Link to={`/events/${elem.alias}`}><EventHeading title={elem.title} lines={2} height={20} /></Link>
                     <p>{elem.venue_name}</p>
                 </div>
             </div>

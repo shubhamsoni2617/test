@@ -18,6 +18,7 @@ const TopNav = (props) => {
   let refValue = useRef();
   const [showMegaMenu, setShowMegaMenu] = useState(false);
   const [menuActive, setMenuActive] = useState(false);
+  const [pathName, setPathName] = useState('events');
   const [headerClass, setHeaderClass] = useState(false);
   const [byVenueEvent, setByVenueEvent] = useState([]);
   const [byGenreEvent, setByGenreEvent] = useState([]);
@@ -33,7 +34,7 @@ const TopNav = (props) => {
     const first = 0;
     const limit = 5;
     const search = "";
-    HomeService.getVenues(first, limit, search)
+    HomeService.getHomepageVenues(first, limit, search)
       .then((res) => {
         setByVenueEvent(res.data.data)
       })
@@ -52,30 +53,31 @@ const TopNav = (props) => {
         console.log(err)
       });
 
-      if(props.history.location.pathname) processPath(props.history.location);
+    if (props.history.location.pathname) processPath(props.history.location);
 
-      const unlisten = props.history.listen((location) => {
-        processPath(location);
-      });
-      return () => {
-        unlisten();
-      };
+    const unlisten = props.history.listen((location) => {
+      processPath(location);
+    });
+    return () => {
+      unlisten();
+    };
 
   }, []);
 
   const processPath = (location) => {
-    if(location.pathname){
+    if (location.pathname) {
       let pathArr = location.pathname.split('/');
-      if(pathArr.length && pathArr[1] == 'events'){
+      if (pathArr.length && (pathArr[1] === 'events' || pathArr[1] === 'promotions')) {
+        setPathName(pathArr[1]);
         setMenuActive(true);
 
         //For event header class
-        if(location.search === ''){
+        if (location.search === '') {
           setHeaderClass(true);
-        }else{
+        } else {
           setHeaderClass(false);
         }
-      }else{
+      } else {
         setMenuActive(false);
         setHeaderClass(false);
       }
@@ -123,7 +125,7 @@ const TopNav = (props) => {
           <nav className="bottom-header">
             <div className="bottom-header-left">
               <ul>
-                <li className={`has-submenu ${menuActive ? 'active' : ''}`} onMouseEnter={() => handleMouseStatus(true)} onMouseLeave={() => handleMouseStatus(false)}>
+                <li className={`has-submenu ${menuActive && pathName === "events" ? 'active' : ''}`} onMouseEnter={() => handleMouseStatus(true)} onMouseLeave={() => handleMouseStatus(false)}>
                   <a>Events</a>
                   <CSSTransitionGroup
                     transitionName="mega"
@@ -133,8 +135,8 @@ const TopNav = (props) => {
                     {showMegaMenu && <MegaMenu handleMouseStatus={handleMouseStatus} byGenreEvent={byGenreEvent} byVenueEvent={byVenueEvent} />}
                   </CSSTransitionGroup>
                 </li>
-                <li><Link to="/attraction">Attractions</Link></li>
-                <li><Link to="/promotions">Promotions</Link></li>
+                <li className={menuActive && pathName === "attractions" ? 'active' : ''}><Link to="/attractions">Attractions</Link></li>
+                <li className={menuActive && pathName === "promotions" ? 'active' : ''}><Link to="/promotions">Promotions</Link></li>
                 <li><a>Explore</a></li>
               </ul>
             </div>

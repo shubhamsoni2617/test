@@ -74,11 +74,13 @@ export default class EventsDetail extends Component {
     EventsService.getEventDetails(payload)
       .then(res => {
         this.setState({ detailData: res.data });
-        Utilities.preloadImages(res.data.images, "full_image", () => {
-          Utilities.preloadImages(res.data.images, "thumb_image", () => {
-            setTimeout(() => {this.setState({ shimmer: false });}, 1000);
-          });
-        });
+        // Utilities.preloadImages(res.data.images, "full_image", () => {
+          // Utilities.preloadImages(res.data.images, "thumb_image", () => {
+            setTimeout(()=> {
+              this.setState({ shimmer: false });
+            }, 1000);
+          // });
+        // });
       })
       .catch(err => {
         this.setState({
@@ -406,6 +408,11 @@ export default class EventsDetail extends Component {
                 <ArticleSection />
               </div>
             )}
+            {similarEventsData && similarEventsData.length > 0 &&
+              <Suspense fallback={<ShimmerEffect  height={150} count={5}  type="grid" propCls='shm_col-xs-5'/>}>
+                <SimilarPicksSection data={similarEventsData} />
+                </Suspense>
+            }
             {detailData.is_show_over === 1 &&
              <section className="gift-cart">
              <div className="gift-cart-image">
@@ -416,11 +423,6 @@ export default class EventsDetail extends Component {
                />
              </div>
            </section>}
-            {similarEventsData && similarEventsData.length > 0 &&
-              <Suspense fallback={<ShimmerEffect  height={150} count={5}  type="grid" propCls='shm_col-xs-5'/>}>
-                <SimilarPicksSection data={similarEventsData} />
-                </Suspense>
-            }
             {detailData.is_show_over === 1 && <ArticleSection />}
           </div>
         )}

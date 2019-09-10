@@ -1,7 +1,7 @@
 .event-block{
     display: flex;
-    flex-direction: column;  
-    box-shadow: 0 0px 1px rgba(154, 154, 154, 0.3);  
+    flex-direction: column;
+    box-shadow: 0 0px 1px rgba(154, 154, 154, 0.3);
     border: 2px solid transparent;
     margin-bottom: 35px;
     width: 100%;
@@ -19,9 +19,9 @@
     &:last-child{
         margin-right: 0;
     }
-    &:hover{        
+    &:hover{
         border: 2px solid #0098FF;
-        transition: .5s ease-out; 
+        transition: .5s ease-out;
         box-shadow: 0 2px 27px 0 rgba(0,0,0,0.09);
     }
     &.attraction-block{
@@ -83,6 +83,7 @@
         justify-content: center;
         align-items: center;
         padding-left: 9px;
+        z-index: 2;
         &::before{
             content: "";
             position: absolute;
@@ -124,17 +125,20 @@
                 padding: 15px 5px 10px;
             }
         .item-title{
+          padding: 10px 0;
+          margin: 0;
+          line-height: 20px;
+          min-height: 67px;
+          h3{
             font-size: 17px;
             color: #343434;
-            padding: 10px 0;
-            margin: 0;
             font-weight: 500;
-            line-height: 20px;
-            min-height: 60px;
             font-family: 'Rubik', sans-serif;
             @media (max-width: 767px) {
                 font-size: 14px;
             }
+          }
+
         }
         .event-date{
             color: #626262;
@@ -150,6 +154,7 @@
             font-size: 14px;
             margin-bottom: 10px;
             padding: 0;
+            min-height: 34px;
             @media (max-width: 767px) {
                 font-size: 12px;
             }
@@ -206,19 +211,20 @@
                     color: #0098FF;
                     transition: 0.8s all;
                 }
-                
+
             }
         }
     }
 }
 .events-section.list-view{
+    width: 100% !important;
     .event-block{
         flex-direction: row;
         width: 100%;
         margin: 0;
         padding: 4px 0 4px;
-        box-shadow: none; 
-        border: 1px solid transparent; 
+        box-shadow: none;
+        border: 1px solid transparent;
         border-bottom: 1px solid rgba(151,151,151,0.2);
         align-items: center;
         &:hover{
@@ -256,6 +262,7 @@
                 .price{
                     text-align: right;
                     padding-bottom: 15px;
+                    padding-top: 4px;
                     span{
                         line-height: 14px;
                     }

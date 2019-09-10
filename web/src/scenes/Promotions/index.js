@@ -12,7 +12,7 @@ export default class Promotions extends Component {
     this.state = {
       defaultTabId: "30",
       tabsArray: [],
-      sortBy: "Date",
+      sortBy: "ASC",
       first: 0,
       totalRecords: 0,
       listingArray: [],
@@ -221,9 +221,10 @@ export default class Promotions extends Component {
     this.setState({ first: data })
   }
 
-  handleFilters = (sortBy, sortOrder) => {
+  handleFilters = (obj) => {
+    console.log(obj,"obj")
     this.setState({
-      sortBy: sortOrder,
+      sortBy: obj.filteredSortOrder,
       promotionTab: 0
     })
   }

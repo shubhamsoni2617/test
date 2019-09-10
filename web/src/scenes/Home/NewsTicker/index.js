@@ -48,6 +48,7 @@ const NewsTicker = props => {
           <div className="ticker">
             <marquee
               behavior="scroll"
+              width="100%"
               onMouseEnter={() => refMarquee.current.stop()}
               onMouseLeave={() => handleMarquee()}
               ref={refMarquee}
@@ -64,7 +65,7 @@ const NewsTicker = props => {
                       key={index}
                       dangerouslySetInnerHTML={{ __html: string }}
                       onClick={() => {
-                        handleOnclick(content.rich_description);
+                        handleOnclick(content.rich_description ? content.rich_description : content.description);
                       }}
                     />
                   );
