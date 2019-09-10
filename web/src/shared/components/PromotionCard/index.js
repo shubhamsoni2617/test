@@ -119,7 +119,7 @@ const PromotionCard = (props) => {
               <div className="section-top-wrapper">
                 <h2>Related Events</h2>
               </div>
-              <Carousel imgArray={events} arrows={true} slidesToShow={6} slidesToScroll={6} dots={false} />
+              <Carousel imgArray={events} arrows={true} slidesToShow={4} slidesToScroll={4} dots={false} />
             </div>
           </section>
         </div>
