@@ -1,9 +1,10 @@
-.find-agent-wrapper{
-    display: flex;
-    padding-top: 45px;
-    @media (max-width: 992px) {
-        padding-top: 20px;
+.agents-wrapper{
+    .banner-wrapper{
+        margin-bottom: 33px;
     }
+}
+.find-agent-wrapper{
+    display: flex;    
     .agent-list{
         .find-map-mob{
             background-color: #fafafa;
