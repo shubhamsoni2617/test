@@ -73,37 +73,41 @@ const Faq = props => {
           categories={faqCategoryData}
           onQuestionIdChange={onQuestionIdChange}
         />
-        <div className="find-agent-wrapper">
-          <div className="container-fluid row agent-list">
-            <div className="col-lg-4">
-              <FaqCategory
-                categoryId={categoryId}
-                urlExist={urlExist}
-                categories={faqCategoryData}
-                faqContentData={faqContentData}
-                onQuestionIdChange={onQuestionIdChange}
-              />
-            </div>
-            <div className="col-lg-8">
-              {urlExist ? (
-                <Fragment>
-                  <h2>{categoryName}</h2>
-                  {questionId ? (
-                    <FaqContent
-                      data={faqContentData}
-                      categoryId={categoryId}
-                      questionId={questionId}
-                    />
-                  ) : (
-                    <h2>No Data Found</h2>
-                  )}
-                </Fragment>
-              ) : (
-                <h1>No Data Found</h1>
-              )}
+        <section className="faq-body-wrapper">
+          <div className="container-fluid">
+            <div className="faq-qus-ans-wrapper">
+              <div className="faq-sidebar">
+                <FaqCategory
+                  categoryId={categoryId}
+                  urlExist={urlExist}
+                  categories={faqCategoryData}
+                  faqContentData={faqContentData}
+                  onQuestionIdChange={onQuestionIdChange}
+                />
+              </div>
+              <div className="faq-qus-ans-section">
+                {urlExist ? (
+                  <Fragment>
+                    <h2>{categoryName}</h2>
+                    <div className="faq-qa-height">
+                      {questionId ? (
+                        <FaqContent
+                          data={faqContentData}
+                          categoryId={categoryId}
+                          questionId={questionId}
+                        />
+                      ) : (
+                        <span className="no-faq-found">No Data Found</span>
+                      )}
+                    </div>
+                  </Fragment>
+                ) : (
+                  <span className="no-faq-found">No Data Found</span>
+                )}
+              </div>
             </div>
           </div>
-        </div>
+        </section>
       </Fragment>
     )
   );

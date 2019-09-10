@@ -247,6 +247,15 @@
                 font-family: 'Rubik', sans-serif;
                 font-size: 14px;
                 line-height: 26px;
+                p{
+                    &:last-child{
+                        margin-bottom: 0px;
+                        padding-bottom: 0px;
+                    }
+                }
+            }
+            button{
+                margin: 0 10px 10px 0;
             }
             .img-fluid {
                 padding-bottom: 16px;
@@ -459,7 +468,7 @@
                         color: #626262;
                         margin: 0;
                         padding: 3px 0;
-                        &.date-event{
+                        &.date-event, &.dt-srt-end{
                             font-size: 10px;
                         }
                     }

@@ -7,7 +7,6 @@ import CloseIcon from '../../../assets/images/close-blue.svg';
 import ShareIcon from '../../../assets/images/share-icon.svg';
 import StopWatch from '../../../assets/images/stopwatch-grey.svg';
 import Image from '../Image';
-import Utilities from '../../utilities';
 import EventHeading from '../EventHeading';
 
 const PromotionCard = (props) => {
@@ -59,7 +58,7 @@ const PromotionCard = (props) => {
             :
             null
           }
-          <span title="share" className="share" onClick={handleSocialShare} >
+          <span className="share" onClick={handleSocialShare} >
             <img src={ShareIcon} alt="share-icon" />
             <SocialShare shareUrl={shareUrl && shareUrl} showSocialShare={socialShare} />
           </span>

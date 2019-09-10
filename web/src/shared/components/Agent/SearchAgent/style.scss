@@ -176,17 +176,18 @@
                     font-size: 16px;
                     font-weight: 600;
                     line-height: 19px;
-                    margin: 0 0 13px;
+                    margin: 0 0 10px;
                     a{
                         color: #0077C8;	
-                        font-size: 16px;	
+                        font-size: 16px;
+                        font-weight: 400;	
                         line-height: 19px;
                     }
                 }
                 p{
                     color: #343434;	
-                    font-size: 16px;	
-                    line-height: 19px;
+                    font-size: 15px;	
+                    line-height: 20px;
                     margin: 0;
                     padding: 0;
                 }
@@ -295,6 +296,7 @@
                             border: none;
                             img{
                                 max-width: 100%;
+                                height: auto;
                             }
                             p{
                                 color: #343434;	
