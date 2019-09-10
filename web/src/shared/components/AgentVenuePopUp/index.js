@@ -4,7 +4,7 @@ import address from '../../../assets/images/address.svg';
 import parking from '../../../assets/images/parking.svg';
 import food from '../../../assets/images/food.svg';
 import clock from '../../../assets/images/clock.svg';
-import contact from '../../../assets/images/contact.svg';
+import contact from '../../../assets/images/contact-icon.svg';
 import price from '../../../assets/images/price.svg';
 import seat from '../../../assets/images/seat.svg';
 import notification from '../../../assets/images/notification.svg';
@@ -53,7 +53,7 @@ const AgentVenuePopUp = (props) => {
       </div>
       <div className="agent-info">
         <div className="icon">
-          <img src={venue ? contact : price} alt="icon" />
+          <img src={venue ? contact : contact} alt="icon" />
         </div>
         <div className="details">
           <h3>{venue ? "Contact Detail" : "Payment Mode"}</h3>
