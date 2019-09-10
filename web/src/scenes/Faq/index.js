@@ -89,15 +89,17 @@ const Faq = props => {
                 {urlExist ? (
                   <Fragment>
                     <h2>{categoryName}</h2>
-                    {questionId ? (
-                      <FaqContent
-                        data={faqContentData}
-                        categoryId={categoryId}
-                        questionId={questionId}
-                      />
-                    ) : (
-                      <span className="no-faq-found">No Data Found</span>
-                    )}
+                    <div className="faq-qa-height">
+                      {questionId ? (
+                        <FaqContent
+                          data={faqContentData}
+                          categoryId={categoryId}
+                          questionId={questionId}
+                        />
+                      ) : (
+                        <span className="no-faq-found">No Data Found</span>
+                      )}
+                    </div>
                   </Fragment>
                 ) : (
                   <span className="no-faq-found">No Data Found</span>
