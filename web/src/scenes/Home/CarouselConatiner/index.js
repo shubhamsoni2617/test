@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
-import { CSSTransitionGroup } from 'react-transition-group';
-import Utilities from "../../../shared/utilities";
+import { CSSTransitionGroup } from "react-transition-group";
 import Carousel from "../../../shared/components/Carousel";
 import rightArrow from "../../../assets/images/right-arrow.svg";
 import ShimmerEffect from "../../../shared/components/ShimmerEffect";
@@ -29,16 +28,16 @@ const CarouselConatiner = props => {
       props
         .api(params)
         .then(res => {
-          if(res.data.data.length){
+          if (res.data.data.length) {
             // Utilities.preloadImages(res.data.data, "thumb_image", () => {
-              setData(res.data.data);
-                setTimeout(() => {
-                setLoading(false);
-              }, 1000);
+            setData(res.data.data);
+            setTimeout(() => {
+              setLoading(false);
+            }, 1000);
             // });
-          }else{
+          } else {
             setLoading(false);
-            element.current.classList.add('hide-container');
+            element.current.classList.add("hide-container");
           }
         })
         .catch(err => {
@@ -73,26 +72,27 @@ const CarouselConatiner = props => {
             </div>
           </div>
           <CSSTransitionGroup
-                    transitionName="shimmer-carousel"
-                    transitionEnter={true}
-                    transitionEnterTimeout={1000}
-                    transitionLeaveTimeout={1000}>
-          {loading && (
-            <ShimmerEffect
-              propCls="shm_col-xs-6 col-md-2"
-              height={298}
-              count={6}
-              type="TILE"
-            />
-          )}
+            transitionName="shimmer-carousel"
+            transitionEnter={true}
+            transitionEnterTimeout={1000}
+            transitionLeaveTimeout={1000}
+          >
+            {loading && (
+              <ShimmerEffect
+                propCls="shm_col-xs-6 col-md-2"
+                height={298}
+                count={6}
+                type="TILE"
+              />
+            )}
           </CSSTransitionGroup>
           <CSSTransitionGroup
-                    transitionName="shimmer-carousel"
-                    transitionEnter={true}
-                    transitionEnterTimeout={1000}
-                    transitionLeaveTimeout={1000}>
-
-          {!loading && data && data.length &&
+            transitionName="shimmer-carousel"
+            transitionEnter={true}
+            transitionEnterTimeout={1000}
+            transitionLeaveTimeout={1000}
+          >
+            {!loading && data && data.length && (
               <Carousel
                 imgArray={data}
                 arrows={props.arrows}
@@ -101,7 +101,7 @@ const CarouselConatiner = props => {
                 autoplay={props.autoplay}
                 infinite={props.infinite}
               />
-          }
+            )}
           </CSSTransitionGroup>
         </div>
       </section>

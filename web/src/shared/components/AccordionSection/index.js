@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 import {
   Accordion,
   AccordionItem,
@@ -38,15 +39,9 @@ export default class AccordionSection extends Component {
       changeLang,
       uuid,
       preExpanded,
-      infoTag,
-      openInfoPopup,
-      showInfo
+      infoTag
     } = this.props;
-    // console.log(children, "sdfklnfklgnhklfgnh")
-    // const  { showSection } = this.state;
-    let content =
-      "Please add to above price S$4 Booking Fee per ticket for tickets above S$40; S$3 Booking Fee per ticket for tickets between S$20.01 - S$40 and S$1 Booking Fee per ticket for tickets S$20 and below. Charges include GST where applicable.";
-    let arr = ["title"];
+
     return (
       <div className="sidebar-accordion">
         <Accordion allowZeroExpanded={true} preExpanded={preExpanded}>
@@ -66,29 +61,36 @@ export default class AccordionSection extends Component {
               </AccordionItemButton>
             </AccordionItemHeading>
             <AccordionItemPanel>
-                <div>
-                  {langArr && (
-                    <ul className="languages-group">
-                      {langArr.map((obj, idx) => {
-                        return (
-                          <li
-                            className={`${activeLang == obj ? "active" : ""}`}
+              <div>
+                {langArr && (
+                  <ul className="languages-group">
+                    {langArr.map((obj, idx) => {
+                      return (
+                        <li
+                          key={obj + idx}
+                          className={`${activeLang === obj ? "active" : ""}`}
+                        >
+                          <a
+                            href="javascript:void(0)"
+                            to="/"
+                            onClick={() => changeLang(obj)}
                           >
-                            <a onClick={() => changeLang(obj)}>{obj}</a>
-                          </li>
-                        );
-                      })}
-                    </ul>
-                  )}
-                  {desc && <div dangerouslySetInnerHTML={{ __html: desc }} />}
-                  {children &&
-                    children.map(obj => (
-                      <AccordionSection
-                        title={obj.title}
-                        desc={obj.description}
-                      />
-                    ))}
-                </div>
+                            {obj}
+                          </a>
+                        </li>
+                      );
+                    })}
+                  </ul>
+                )}
+                {desc && <div dangerouslySetInnerHTML={{ __html: desc }} />}
+                {children &&
+                  children.map(obj => (
+                    <AccordionSection
+                      title={obj.title}
+                      desc={obj.description}
+                    />
+                  ))}
+              </div>
             </AccordionItemPanel>
           </AccordionItem>
         </Accordion>

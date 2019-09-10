@@ -83,7 +83,12 @@ function BuyPackages({ isAvailableForBooking, buyPackageUrl }) {
   return (
     isAvailableForBooking === 1 &&
     buyPackageUrl && (
-      <a href={buyPackageUrl} target="_blank" className="buy-package">
+      <a
+        href={buyPackageUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="buy-package"
+      >
         Buy Packages
       </a>
     )
@@ -123,7 +128,7 @@ export default class EventsDetail extends Component {
     const payload = { code: this.state.code, client: Constants.CLIENT };
     this.unlisten = this.props.history.listen(location => {
       let pathArr = location.pathname.split("/");
-      if (pathArr.length && pathArr[1] == "events") {
+      if (pathArr.length && pathArr[1] === "events") {
         if (location.search === "" && pathArr[2]) {
           payload.code = pathArr[2];
           this.callAPI(payload);
@@ -288,25 +293,6 @@ export default class EventsDetail extends Component {
       });
   };
 
-  onShimmerEffect() {
-    return (
-      <CSSTransitionGroup
-        transitionName="shimmer"
-        transitionEnter={true}
-        transitionEnterTimeout={500}
-        transitionLeaveTimeout={500}
-      >
-        <ShimmerEffect
-          propCls="shm_col-xs-6 col-md-12"
-          height={400}
-          count={2}
-          type="DETAIL"
-          detail={true}
-        />
-      </CSSTransitionGroup>
-    );
-  }
-
   render() {
     const {
       detailData,
@@ -413,6 +399,7 @@ export default class EventsDetail extends Component {
                       detailData.tabs.map((obj, idx) => {
                         return (
                           <AccordionSection
+                            key={obj.title}
                             title={obj.title}
                             desc={obj.description}
                           />
@@ -423,12 +410,17 @@ export default class EventsDetail extends Component {
                     {detailData.seating_plan &&
                       detailData.seating_plan.length > 0 && (
                         <a
+                          href="javascript:void(0)"
                           onClick={() => this.openSeatMap()}
                           className="seat-map"
                         >
                           <span className="seat-map-img">
-                            <img src={SeatMapImg} />
-                            <img className="active" src={SeatMapWhite} />
+                            <img alt="seat-map" src={SeatMapImg} />
+                            <img
+                              alt="seat-map-blank"
+                              className="active"
+                              src={SeatMapWhite}
+                            />
                           </span>
                           <span className="seat-map-text">Seat Map</span>
                         </a>
@@ -455,7 +447,7 @@ export default class EventsDetail extends Component {
                         }
                         preExpanded={accrodian}
                         uuid={`${
-                          detailData.is_available_for_booking == 1
+                          detailData.is_available_for_booking === 1
                             ? "pricedetail"
                             : ""
                         }`}

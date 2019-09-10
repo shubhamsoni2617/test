@@ -72,7 +72,7 @@ export default class VenueFilter extends Component {
     let addHoverClass;
     let id;
     Object.keys(groupedCollection).map(key => {
-      addHoverClass = this.state.alphabet == key ? "" : this.state.hoverEffect;
+      addHoverClass = this.state.alphabet === key ? "" : this.state.hoverEffect;
       groupedData.push(
         <li
           id={"li-" + key}
@@ -91,7 +91,7 @@ export default class VenueFilter extends Component {
           isChecked = index > -1;
         }
         addHoverClass =
-          this.state.alphabet == key ? "" : this.state.hoverEffect;
+          this.state.alphabet === key ? "" : this.state.hoverEffect;
         groupedData.push(
           <li className={addHoverClass}>
             <input
@@ -103,7 +103,7 @@ export default class VenueFilter extends Component {
             />
             {/* <label htmlFor={id}>{venue.name}</label> */}
             <label htmlFor={id}>
-            <EventHeading
+              <EventHeading
                 title={venue.name}
                 lines={1}
                 height={17}
@@ -112,7 +112,6 @@ export default class VenueFilter extends Component {
                 noMargin={true}
               />
             </label>
-
           </li>
         );
       });
@@ -137,7 +136,7 @@ export default class VenueFilter extends Component {
     alphabets.push(
       <li
         id="#"
-        onMouseOver={(event) => this.handleHoverOn("#", event)}
+        onMouseOver={event => this.handleHoverOn("#", event)}
         onMouseLeave={() => this.handleHoverOff()}
         onClick={this.scrollToRef}
       >
@@ -153,7 +152,9 @@ export default class VenueFilter extends Component {
         <li
           className={applyDisabledClass}
           id={String.fromCharCode(i)}
-          onMouseOver={(event) => this.handleHoverOn(String.fromCharCode(i), event)}
+          onMouseOver={event =>
+            this.handleHoverOn(String.fromCharCode(i), event)
+          }
           onMouseLeave={() => this.handleHoverOff()}
           key={i}
           onClick={this.scrollToRef}
@@ -213,7 +214,6 @@ export default class VenueFilter extends Component {
                 </div>
               </div>
               <div>
-
                 <ul
                   id="venueContainer"
                   ref={node => (this.myRef = node)}

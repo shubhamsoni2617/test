@@ -1,17 +1,10 @@
 import React, { Component } from "react";
 import "./style.scss";
 import Image from "../../components/Image";
-import Utilities from "../../utilities";
 import EventHeading from "../EventHeading";
 import EventStatus from "../EventStatus";
 
 export default class Card extends Component {
-  constructor(props) {
-    super(props);
-  }
-
-  componentDidMount() {}
-
   render() {
     return (
       <div className="event-block">
@@ -27,8 +20,6 @@ export default class Card extends Component {
             >
               {this.props.eventsData.primary_genre}
             </span>
-            {/* <h3 className="item-title">{Utilities.showLimitedChars(this.props.eventsData.title, 70)} {}
-                    </h3> */}
             <div className="item-title">
               <EventHeading
                 title={this.props.eventsData.title}
@@ -45,8 +36,8 @@ export default class Card extends Component {
                 status={this.props.eventsData.event_status}
                 color={this.props.eventsData.event_status_text_color}
                 background={this.props.eventsData.event_status_background_color}
-                paddingLeft={'2px'}
-                paddingRight={'2px'}
+                paddingLeft={"2px"}
+                paddingRight={"2px"}
               />
               <p>
                 {this.props.eventsData.price

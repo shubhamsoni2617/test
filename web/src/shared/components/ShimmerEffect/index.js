@@ -61,44 +61,44 @@ function TileShimmer(props) {
   return h;
 }
 
-function Shimmer(props) {
-  var h = [];
-  for (let i = 0; i < props.count; i++) {
-    h.push(
-      <div key={i} className={props.columnCls}>
-        <div className="contentLoader ">
-          <div className="animated-backgroundlarge firstRow"> </div>
-          <div
-            className="animated-backgroundlarge secondRow"
-            style={{ height: "8px", width: "85%" }}
-          >
-            {" "}
-          </div>
-          <div
-            className="animated-backgroundlarge secondRow"
-            style={{ height: "8px", width: "75%" }}
-          >
-            {" "}
-          </div>
-          <div
-            className="animated-backgroundlarge secondRow"
-            style={{ height: "8px", width: "65%" }}
-          >
-            {" "}
-          </div>
-          <div
-            className="animated-background"
-            style={{ height: props.height, marginBottom: "0px" }}
-          >
-            {" "}
-          </div>
-        </div>
-      </div>
-    );
-  }
+// function Shimmer(props) {
+//   var h = [];
+//   for (let i = 0; i < props.count; i++) {
+//     h.push(
+//       <div key={i} className={props.columnCls}>
+//         <div className="contentLoader ">
+//           <div className="animated-backgroundlarge firstRow"> </div>
+//           <div
+//             className="animated-backgroundlarge secondRow"
+//             style={{ height: "8px", width: "85%" }}
+//           >
+//             {" "}
+//           </div>
+//           <div
+//             className="animated-backgroundlarge secondRow"
+//             style={{ height: "8px", width: "75%" }}
+//           >
+//             {" "}
+//           </div>
+//           <div
+//             className="animated-backgroundlarge secondRow"
+//             style={{ height: "8px", width: "65%" }}
+//           >
+//             {" "}
+//           </div>
+//           <div
+//             className="animated-background"
+//             style={{ height: props.height, marginBottom: "0px" }}
+//           >
+//             {" "}
+//           </div>
+//         </div>
+//       </div>
+//     );
+//   }
 
-  return h;
-}
+//   return h;
+// }
 
 function ListShimmer(props) {
   var h = [];
@@ -172,7 +172,7 @@ function FilterShimmer(props) {
               </div>
               <div
                 className="animated-backgroundlarge secondRow"
-                style={{ height: "15px",width: "90%", marginBottom: "35px" }}
+                style={{ height: "15px", width: "90%", marginBottom: "35px" }}
               >
                 {" "}
               </div>
@@ -184,7 +184,7 @@ function FilterShimmer(props) {
               </div>
               <div
                 className="animated-backgroundlarge secondRow"
-                style={{ height: "5px",width: "90%", marginBottom: "35px" }}
+                style={{ height: "5px", width: "90%", marginBottom: "35px" }}
               >
                 {" "}
               </div>
@@ -351,7 +351,12 @@ function DetailShimmer(props) {
               <div className="shm_col-sm-12">
                 <div
                   className="animated-backgroundlarge secondRow"
-                  style={{ height: "25px", width: "30%", marginTop: "25px" ,marginBottom: "50px" }}
+                  style={{
+                    height: "25px",
+                    width: "30%",
+                    marginTop: "25px",
+                    marginBottom: "50px"
+                  }}
                 >
                   {" "}
                 </div>
@@ -389,13 +394,9 @@ function DetailShimmer(props) {
 }
 
 export default class ShimmerEffect extends Component {
-  constructor(props) {
-    super(props);
-  }
-
   render() {
     let props = this.props;
-    let count = props.count ? props.count : 1;
+    // let count = props.count ? props.count : 1;
     let shimmer = null;
     switch (props.type) {
       case "LIST":

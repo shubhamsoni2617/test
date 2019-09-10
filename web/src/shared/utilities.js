@@ -54,10 +54,10 @@ class Utilities {
       let ca = decodedCookie.split(";");
       for (var i = 0; i < ca.length; i++) {
         var c = ca[i];
-        while (c.charAt(0) == " ") {
+        while (c.charAt(0) === " ") {
           c = c.substring(1);
         }
-        if (c.indexOf(name) == 0) {
+        if (c.indexOf(name) === 0) {
           return c.substring(name.length, c.length);
         }
       }
@@ -72,20 +72,20 @@ class Utilities {
     let img;
     let remaining = srcs.length;
     for (let i = 0; i < srcs.length; i++) {
-        img = new Image();
-        img.onload = function() {
-            --remaining;
-            if (remaining <= 0) {
-                callback();
-            }
-        };
-        img.onerror = function() {
-          --remaining;
-          if (remaining <= 0) {
-              callback();
-          }
+      img = new Image();
+      img.onload = function() {
+        --remaining;
+        if (remaining <= 0) {
+          callback();
+        }
       };
-        img.src = srcs[i][imgVar];
+      img.onerror = function() {
+        --remaining;
+        if (remaining <= 0) {
+          callback();
+        }
+      };
+      img.src = srcs[i][imgVar];
     }
   }
 }

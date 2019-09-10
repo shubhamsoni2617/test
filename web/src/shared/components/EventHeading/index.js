@@ -19,19 +19,19 @@ function EventHeading(props) {
     }
     let styleObjectDefault = {
       overflow: "hidden",
-      "line-height": `${props.height}px`,
-      "max-height": `${props.height * props.lines}px`,
-      "min-height": `${props.height * props.lines}px`,
+      LineHeight: `${props.height}px`,
+      maxHeight: `${props.height * props.lines}px`,
+      minHeight: `${props.height * props.lines}px`,
       width: "91%",
-      "font-size": props.size,
-      "font-weight": props.weight
+      fontSize: props.size,
+      fontWeight: props.weight
     };
     if (element.current.offsetHeight >= props.height * props.lines) {
       setStyleObj({
-        "text-overflow": "ellipsis",
+        textOverflow: "ellipsis",
         display: props.lines === 1 ? "block" : "-webkit-box",
-        "-webkit-line-clamp": `${props.lines}`,
-        "-webkit-box-orient": "vertical",
+        webkitlineclamp: `${props.lines}`,
+        webkitboxorient: "vertical",
         ...styleObjectDefault
       });
     } else {

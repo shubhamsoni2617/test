@@ -64,7 +64,7 @@ const TopNav = props => {
   const processPath = location => {
     if (location.pathname) {
       let pathArr = location.pathname.split("/");
-      if (pathArr.length && pathArr[1] == "events") {
+      if (pathArr.length && pathArr[1] === "events") {
         setMenuActive(true);
 
         //For event header class
@@ -127,7 +127,7 @@ const TopNav = props => {
                 </li>
                 <MiniCart data={miniCartData} />
                 <li className="ticket-withus">
-                  <a>Ticket With Us</a>
+                  <a href="javascript:void(0)">Ticket With Us</a>
                 </li>
               </ul>
             </div>
@@ -140,7 +140,7 @@ const TopNav = props => {
                   onMouseEnter={() => handleMouseStatus(true)}
                   onMouseLeave={() => handleMouseStatus(false)}
                 >
-                  <a>Events</a>
+                  <a href="javascript:void(0)">Events</a>
                   <CSSTransitionGroup
                     transitionName="mega"
                     transitionEnter={true}
@@ -157,13 +157,13 @@ const TopNav = props => {
                   </CSSTransitionGroup>
                 </li>
                 <li>
-                  <a>Attractions</a>
+                  <a href="javascript:void(0)">Attractions</a>
                 </li>
                 <li>
-                  <a>Promotions</a>
+                  <a href="javascript:void(0)">Promotions</a>
                 </li>
                 <li>
-                  <a>Explore</a>
+                  <a href="javascript:void(0)">Explore</a>
                 </li>
               </ul>
             </div>
@@ -193,6 +193,7 @@ const TopNav = props => {
             }}
           >
             <a
+              href="javascript:void(0)"
               className="responsive-nav-close"
               onClick={() => {
                 handleNavigationClose();
@@ -209,7 +210,7 @@ const TopNav = props => {
                 <span>Hello William</span>
               </li>
               <li>
-                <a>Ticket With Us</a>
+                <a href="javascript:void(0)">Ticket With Us</a>
               </li>
             </ul>
             <ul>

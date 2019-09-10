@@ -6,14 +6,14 @@ const SeatMap = props => {
   const { imgArr, handleClose } = props; // these two are required props
   const [photoIndex, setPhotoIdx] = useState(0);
 
-  const settings1 = {
-    infinite: true,
-    speed: 500,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-    className: "center",
-    centerMode: true
-  };
+  // const settings1 = {
+  //   infinite: true,
+  //   speed: 500,
+  //   slidesToShow: 1,
+  //   slidesToScroll: 1,
+  //   className: "center",
+  //   centerMode: true
+  // };
 
   return (
     <Lightbox

@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 import Filters from "../../shared/components/Filters";
 import SortBy from "../../shared/components/SortBy";
 import Card from "../../shared/components/Card";
@@ -390,20 +391,24 @@ export default class Events extends Component {
                         />
                       </span>
                     </li>
-                    <li className={viewType == "list" ? "active" : ""}>
-                      <a title="List View">
+                    <li className={viewType === "list" ? "active" : ""}>
+                      <span title="List View">
                         <img
                           onClick={() => this.handleListGridView("list")}
                           src={ListView}
                           alt="List"
                         />
-                      </a>
+                      </span>
                     </li>
                   </ul>
                 </div>
                 <div className={this.state.viewTypeClass}>
                   {loader && (
-                    <img className="filter-loader" src={loaderImage} />
+                    <img
+                      className="filter-loader"
+                      alt="filter loader"
+                      src={loaderImage}
+                    />
                   )}
                   {eventsData &&
                     eventsData.map(event => {
@@ -428,12 +433,13 @@ export default class Events extends Component {
                 {eventsData.length < totalRecords && (
                   <div className="promotion-load-more">
                     <a
+                      href="javascript:void(0)"
                       onClick={() => this.loadMoreEvents()}
                       className="btn-link load-more-btn"
                       target=""
                     >
                       <span>Load More</span>
-                      <img src={DownArrowBlue} />
+                      <img src={DownArrowBlue} alt="down arrow blue" />
                     </a>
                   </div>
                 )}

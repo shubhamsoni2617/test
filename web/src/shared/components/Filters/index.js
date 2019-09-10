@@ -68,7 +68,9 @@ function PriceRangeFilter(props) {
         <h3>Price Range</h3>
         <ul>
           <li className="active">
-            <span onClick={() => clearPriceRange()}>Clear</span>
+            <a href="javascript:void(0)" onClick={() => clearPriceRange()}>
+              Clear
+            </a>
           </li>
         </ul>
       </div>
@@ -163,7 +165,9 @@ function DateRangeFilter(props) {
         <h3>Date Range</h3>
         <ul>
           <li className="active">
-            <a onClick={() => clearCalender()}>Clear</a>
+            <a href="javascript:void(0)" onClick={() => clearCalender()}>
+              Clear
+            </a>
           </li>
         </ul>
       </div>
@@ -220,7 +224,11 @@ function DateRangeFilter(props) {
           </span>
         </div>
         {from && to && (
-          <a onClick={filterByDateRange} className="cal-apply-btn active">
+          <a
+            href="javascript:void(0)"
+            onClick={filterByDateRange}
+            className="cal-apply-btn active"
+          >
             <img src={tickWhite} className="active" alt="tick" />
           </a>
         )}

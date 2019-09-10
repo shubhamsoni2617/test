@@ -53,11 +53,13 @@ function Image(props) {
       <img
         className={`image ${props.className} ${className}`}
         src={source}
+        alt="pic"
         onLoad={() => onLoad()}
       />
       <img
         className={`image ${props.className} preview ${className}`}
         src={props.src}
+        alt="pic"
         onError={() => onError()}
       />
     </div>
