@@ -120,7 +120,7 @@ const Agent = (props) => {
 
   return (
 
-    <section className="">
+    <section className="agents-wrapper">
       <CountryRegion
         countryNRegion={countryNRegion}
         onSubmit={submitCountryNRegion}

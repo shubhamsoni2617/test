@@ -81,10 +81,6 @@
             }
         }
         h2{
-            color: #343434;	
-            font-size: 24px;	
-            line-height: 29px;
-            font-family: 'Montserrat', sans-serif;
             margin: 0 0 5px;
             padding: 0;
         }
@@ -148,7 +144,7 @@
             margin: 0;
             padding: 0;
             li{
-                padding: 15px 0;
+                padding: 17px 13px;
                 border-bottom: 1px #E6E6E6 solid;
                 position: relative;
                 &:last-child{
@@ -193,12 +189,13 @@
                 }
             }
           }
-          .pop-up-container:hover .active{
-            display:block;
-          }
-          
-          .pop-up-container:hover{
-            cursor: pointer;
+          .pop-up-container{
+            &:hover{
+                cursor: pointer;
+                &.active{
+                    display:block;
+                  }
+            }
           }
           
           .pop-up-list{
