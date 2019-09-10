@@ -128,12 +128,13 @@
           padding: 10px 0;
           margin: 0;
           line-height: 20px;
-          min-height: 67px;
+          min-height: 61px;
           h3{
             font-size: 17px;
             color: #343434;
             font-weight: 500;
             font-family: 'Rubik', sans-serif;
+            margin-bottom: 0;
             @media (max-width: 767px) {
                 font-size: 14px;
             }
