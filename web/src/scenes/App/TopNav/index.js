@@ -134,7 +134,7 @@ const TopNav = (props) => {
                     {showMegaMenu && <MegaMenu handleMouseStatus={handleMouseStatus} byGenreEvent={byGenreEvent} byVenueEvent={byVenueEvent} />}
                   </CSSTransitionGroup>
                 </li>
-                <li><a>Attractions</a></li>
+                <li className={menuActive && pathName === "attractions" ? 'active' : ''}><Link to="/attractions">Attractions</Link></li>
                 <li className={menuActive && pathName === "promotions" ? 'active' : ''}><Link to="/promotions">Promotions</Link></li>
                 <li><a>Explore</a></li>
               </ul>
