@@ -44,7 +44,7 @@ const PromotionCard = (props) => {
     setExpiredText(text)
   }
 
-  let shareUrl = window.location.origin + `/promotions/${data.id}`;
+  let shareUrl = window.location.origin + `/promotions/${defaultTabId}/${data.id}`;
 
   return (
     <div className={promotionTab === 1 && tabDetailId === data.id ? "promotion-block active" : "promotion-block"}>
