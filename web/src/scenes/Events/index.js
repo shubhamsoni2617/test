@@ -11,6 +11,7 @@ import ListView from "../../assets/images/list-view.svg";
 import GridView from "../../assets/images/grid-view.svg";
 import loaderImage from "../../assets/images/loader.svg";
 import EventBreadcrumbImage from "../../assets/images/events.png";
+import EventBreadcrumbImageBlur from "../../assets/images/events-blur.png";
 import ShimmerEffect from "../../shared/components/ShimmerEffect";
 import "./style.scss";
 
@@ -45,6 +46,7 @@ export default class Events extends Component {
 
     this.breadCrumbData = {
       page_banner: EventBreadcrumbImage,
+      page_banner_blur: EventBreadcrumbImageBlur,
       page: "Events",
       count: 0,
       breadcrumb_slug: [
@@ -109,6 +111,7 @@ export default class Events extends Component {
     const payload = this.getInitialFilters();
     this.setInitialFilters(payload);
     this.loadEvents(payload);
+    window.scrollTo(0,0);
   }
 
   componentDidUpdate(prevProps) {
@@ -120,6 +123,7 @@ export default class Events extends Component {
       const payload = this.getInitialFilters();
       this.setInitialFilters(payload);
       this.loadEvents(payload);
+      window.scrollTo(0,0);
     }
   }
 
@@ -139,8 +143,10 @@ export default class Events extends Component {
         let genre = Object.keys(res.data.data).map(key => {
           return res.data.data[key];
         });
+        setTimeout(()=>{
 
-        this.setState({ shimmerFilter: false, genre: genre });
+          this.setState({ shimmerFilter: false, genre: genre });
+        }, 1000);
       })
       .catch(error => {
         console.error(error);
@@ -343,7 +349,7 @@ export default class Events extends Component {
                     propCls="shm_col-xs-6 col-md-12"
                     height={150}
                     count={1}
-                    type="LIST"
+                    type="FILTER"
                   />
                 )}
                 {!shimmerFilter &&
@@ -378,7 +384,7 @@ export default class Events extends Component {
                   />
                   <ul className="sortby-view">
                     <li className={viewType == "grid" ? "active" : ""}>
-                      <a>
+                      <a title="Grid View">
                         <img
                           onClick={() => this.handleListGridView("grid")}
                           src={GridView}
@@ -387,7 +393,7 @@ export default class Events extends Component {
                       </a>
                     </li>
                     <li className={viewType == "list" ? "active" : ""}>
-                      <a>
+                      <a title="List View">
                         <img
                           onClick={() => this.handleListGridView("list")}
                           src={ListView}

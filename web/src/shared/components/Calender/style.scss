@@ -28,3 +28,7 @@
 .Range .DayPicker-Day.DayPicker-Day--today.DayPicker-Day--selected{
   background-color: #EFF7FF !important;
 }
+.DayPicker .DayPicker-wrapper .DayPicker-Body .DayPicker-Week .DayPicker-Day.DayPicker-Day--outside {
+  pointer-events: none;
+  opacity: 0;
+}
