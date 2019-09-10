@@ -126,14 +126,14 @@ const GoogleMap = (props) => {
           >
             <div className="map-info-popup">
               <div className="map-img">
-                <Image className="small" src={selectedPlace.imgPath} type="Small" />
-                {/* <img
+                {/* <Image className="small" src={selectedPlace.imgPath} type="Small" /> */}
+                <img
                   height="50"
                   width="100"
                   src={selectedPlace.imgPath == "" || selectedPlace.imgPath === undefined || selectedPlace.imgPath === null ? DefaultImg : selectedPlace.imgPath}
                   title="Title of image"
                   alt="alt text here"
-                /> */}
+                />
               </div>
               <div className="map-name-address">
                 <h5>{selectedPlace.id}</h5>
@@ -180,14 +180,14 @@ const GoogleMap = (props) => {
             >
               <div className="map-info-popup">
                 <div className="map-img">
-                  <Image className="small" src={showOnMapData.image} type="Small" />
-                  {/* <img
+                  {/* <Image className="small" src={showOnMapData.image} type="Small" /> */}
+                  <img
                     height="50"
                     width="100"
                     src={showOnMapData.image === "" || showOnMapData.image === undefined || showOnMapData.image === null ? DefaultImg : showOnMapData.image}
                     title="Title of image"
                     alt="alt text here"
-                  /> */}
+                  />
                 </div>
                 <div className="map-name-address">
                   <h5>{showOnMapData.id}</h5>
