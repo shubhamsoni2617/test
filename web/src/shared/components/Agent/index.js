@@ -13,9 +13,9 @@ const Agent = (props) => {
   const { venue } = props;
 
   const [countryNRegion, setCountryNRegion] = useState([]);
-  const [agentList, setAgentList] = useState([]);
-  const [file, setCountryFile] = useState('');
-  const [selectedItem, setSelectedItem] = useState('');
+  const [listedData, setListedData] = useState([]);
+  const [countryFile, setCountryFile] = useState('');
+  const [showOnMapData, setShowOnMapData] = useState('');
   const [countryName, setCountryName] = useState('');
   const [attractionValue, setAttractionValue] = useState(undefined);
   const [eventValue, setEventValue] = useState(undefined);
@@ -34,9 +34,11 @@ const Agent = (props) => {
     fetchAgentsNVenues(params);
   }, []);
 
+  //page scroll to top after mounting component
   const scrollToTop = () => {
     window.scrollTo(0, 0);
   }
+
   //Fetch countries & their respective regions
   const fetchCountryNRegion = () => {
     const eventSelection = venue ? AgentService.getVenuesCountryNRegion() : AgentService.getAgentsCountryNRegion();
@@ -67,20 +69,20 @@ const Agent = (props) => {
     const eventSelection = venue ? AgentService.getVenues(params) : AgentService.getAgents(params);
     eventSelection
       .then((res) => {
-        setAgentList(res.data.data)
+        setListedData(res.data.data)
       })
       .catch((err) => {
         console.log(err)
       })
   }
 
-  // fetch agents or venues after submission
+  // fetch agents or venues after submission (click on "GO" button)
   const submitCountryNRegion = (params) => {
     if (params.country) {
       fetchAgentsNVenues(params);
     }
   }
-  // filter file for selected country
+  // filter file for selected country (Festive Period Operating Hours - Agent page)
   const filterCountryFile = (file) => {
     let filteredFile;
     countryNRegion && countryNRegion.filter((item) => {
@@ -92,11 +94,12 @@ const Agent = (props) => {
   }
 
   // set selected list data in parent component
-  const showInfo = (e, selectedItem, activePopUpRef) => {
+  const showOnMapClick = (e, selectedItem, activePopUpRef) => {
     if (activePopUpRef.current) {
+      // remove popUpDetail after clicking on show on map
       activePopUpRef.current.classList.remove("active");
     }
-    setSelectedItem(selectedItem);
+    setShowOnMapData(selectedItem);
   }
   // set selected country in parent component
   const handleCountryName = (country) => {
@@ -130,9 +133,9 @@ const Agent = (props) => {
         <div className="container-fluid row agent-list">
           <div className="col-lg-4">
             <SearchAgent
-              initialItems={agentList}
-              countryFile={file}
-              onClick={showInfo}
+              initialItems={listedData}
+              countryFile={countryFile}
+              showOnMapClick={showOnMapClick}
               countryName={countryName}
               handleAttractionValue={handleAttractionValue}
               handleEventValue={handleEventValue}
@@ -142,8 +145,9 @@ const Agent = (props) => {
           <div className="col-lg-8">
             {/* <a href="/" className="find-map-mob">Find in map <img src={grayArrow} alt="Arrow"/></a> */}
             <GoogleMap
-              multipleMarker={agentList}
-              selectedItem={selectedItem}
+              multipleMarker={listedData}
+              showOnMapData={showOnMapData}
+              countryName={countryName}
               mapClick={mapClick}
               {...props}
             />

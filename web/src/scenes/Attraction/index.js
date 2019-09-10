@@ -101,9 +101,7 @@ export default class Attractions extends Component {
   };
 
   setInitialFilters({ first, limit }) {
-    this.setState({
-
-    });
+  
   }
 
   getAttractionsCategory = () => {

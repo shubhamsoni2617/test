@@ -1,6 +1,23 @@
 .apply-filter-mob, .filters-mob{
     display: none;
 }
+.fixed-filter{
+  position: fixed;
+  top: auto;
+  bottom: 0;
+}
+.fixed-filter-absolute{
+  position: absolute;
+  top: auto;
+  bottom: 0;
+}
+.filter-conatiner{
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+}
 @media (max-width: 767px) {
     .apply-filter-mob{
         position: fixed;
@@ -614,7 +631,7 @@
                         display: none;
                         &.active{
                             display: block;
-                            max-width: 14px;
+                            width: 14px;
                         }
                     }
                 }
