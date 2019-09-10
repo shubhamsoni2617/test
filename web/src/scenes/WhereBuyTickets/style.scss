@@ -4,45 +4,27 @@
     .banner-wrapper{
         margin-bottom: 0px;
         z-index: -1;
-        margin-top: -112px;
-        position: relative;
-        @media (max-width: 768px) {            
+        @media (max-width: 768px) {     
             margin-bottom: 25px;
           }
-        img{
-            width: 100%;
-            max-height: 290px;
-            min-height: 200px;
-            object-fit: cover;
-            object-position: center;
-              @media (max-width: 767px) {
-                max-height: 250px;
-                min-height: 250px;
-              }
+        img{                     
+            @media (max-width: 767px) {
+            max-height: 250px;
+            min-height: 250px;
+            }
         }
         .banner-overlay{
             margin-top: 34px;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);            
-            width: 100%;
-            text-align: center;           
             h1{
-                color: #ffffff;
-                font-family: "Montserrat", sans-serif;
                 font-size: 37px;
                 line-height: 45px;
-                text-align: center;
-                margin: 0px;
-                font-weight: 600;
                 @media (max-width: 1024px) {
                     font-size: 25px;
-                  }
-                  @media (max-width: 768px) {
+                }
+                @media (max-width: 768px) {
                     font-size: 20px;
                     line-height: 25px;
-                  }
+                }
             }
         }
     }
