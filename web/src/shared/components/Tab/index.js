@@ -56,7 +56,7 @@ const Tab = (props) => {
                 }
               })
             }
-            </div>
+          </div>
         </div>
         {totalRecords - listingArray.length > 0 &&
           <div className="promotion-load-more" onClick={() => handleLoadMore((first + limit))}>
