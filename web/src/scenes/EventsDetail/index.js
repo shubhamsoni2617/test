@@ -388,7 +388,7 @@ export default class EventsDetail extends Component {
                         changeLang={this.changeLang}
                         preExpanded={accrodian}
                         uuid={`${
-                          detailData.is_available_for_booking == 1
+                          detailData.is_available_for_booking === 1
                             ? "synopsis"
                             : ""
                         }`}
@@ -410,8 +410,11 @@ export default class EventsDetail extends Component {
                     {detailData.seating_plan &&
                       detailData.seating_plan.length > 0 && (
                         <a
-                          href="javascript:void(0)"
-                          onClick={() => this.openSeatMap()}
+                          href="/"
+                          onClick={e => {
+                            e.preventDefault();
+                            this.openSeatMap();
+                          }}
                           className="seat-map"
                         >
                           <span className="seat-map-img">

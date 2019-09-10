@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
 import {
   Accordion,
   AccordionItem,
@@ -71,9 +70,11 @@ export default class AccordionSection extends Component {
                           className={`${activeLang === obj ? "active" : ""}`}
                         >
                           <a
-                            href="javascript:void(0)"
-                            to="/"
-                            onClick={() => changeLang(obj)}
+                            href="/"
+                            onClick={e => {
+                              e.preventDefault();
+                              changeLang(obj);
+                            }}
                           >
                             {obj}
                           </a>
@@ -86,6 +87,7 @@ export default class AccordionSection extends Component {
                 {children &&
                   children.map(obj => (
                     <AccordionSection
+                      key={obj.title}
                       title={obj.title}
                       desc={obj.description}
                     />

@@ -127,7 +127,9 @@ const TopNav = props => {
                 </li>
                 <MiniCart data={miniCartData} />
                 <li className="ticket-withus">
-                  <a href="javascript:void(0)">Ticket With Us</a>
+                  <a href="/" onClick={e => e.preventDefault()}>
+                    Ticket With Us
+                  </a>
                 </li>
               </ul>
             </div>
@@ -140,7 +142,9 @@ const TopNav = props => {
                   onMouseEnter={() => handleMouseStatus(true)}
                   onMouseLeave={() => handleMouseStatus(false)}
                 >
-                  <a href="javascript:void(0)">Events</a>
+                  <a href="/" onClick={e => e.preventDefault()}>
+                    Events
+                  </a>
                   <CSSTransitionGroup
                     transitionName="mega"
                     transitionEnter={true}
@@ -157,13 +161,19 @@ const TopNav = props => {
                   </CSSTransitionGroup>
                 </li>
                 <li>
-                  <a href="javascript:void(0)">Attractions</a>
+                  <a href="/" onClick={e => e.preventDefault()}>
+                    Attractions
+                  </a>
                 </li>
                 <li>
-                  <a href="javascript:void(0)">Promotions</a>
+                  <a href="/" onClick={e => e.preventDefault()}>
+                    Promotions
+                  </a>
                 </li>
                 <li>
-                  <a href="javascript:void(0)">Explore</a>
+                  <a href="/" onClick={e => e.preventDefault()}>
+                    Explore
+                  </a>
                 </li>
               </ul>
             </div>
@@ -193,9 +203,10 @@ const TopNav = props => {
             }}
           >
             <a
-              href="javascript:void(0)"
+              href="/"
               className="responsive-nav-close"
-              onClick={() => {
+              onClick={e => {
+                e.preventDefault();
                 handleNavigationClose();
               }}
             >
@@ -210,7 +221,9 @@ const TopNav = props => {
                 <span>Hello William</span>
               </li>
               <li>
-                <a href="javascript:void(0)">Ticket With Us</a>
+                <a onClick={e => e.preventDefault()} href="/">
+                  Ticket With Us
+                </a>
               </li>
             </ul>
             <ul>

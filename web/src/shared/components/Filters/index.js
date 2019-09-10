@@ -42,6 +42,7 @@ function SearchFilter(props) {
 
 function PriceRangeFilter(props) {
   const { priceConfig, filteredPriceRange } = props;
+
   const [priceRange, setPriceRange] = useState({
     min: parseInt(priceConfig.min_price) || null,
     max: parseInt(priceConfig.max_price) || null
@@ -68,7 +69,13 @@ function PriceRangeFilter(props) {
         <h3>Price Range</h3>
         <ul>
           <li className="active">
-            <a href="javascript:void(0)" onClick={() => clearPriceRange()}>
+            <a
+              href="/"
+              onClick={e => {
+                e.preventDefault();
+                clearPriceRange();
+              }}
+            >
               Clear
             </a>
           </li>
@@ -165,7 +172,13 @@ function DateRangeFilter(props) {
         <h3>Date Range</h3>
         <ul>
           <li className="active">
-            <a href="javascript:void(0)" onClick={() => clearCalender()}>
+            <a
+              href="/"
+              onClick={e => {
+                e.preventDefault();
+                clearCalender();
+              }}
+            >
               Clear
             </a>
           </li>
@@ -225,7 +238,8 @@ function DateRangeFilter(props) {
         </div>
         {from && to && (
           <a
-            href="javascript:void(0)"
+            href="/"
+            onClick={e => e.preventDefault()}
             onClick={filterByDateRange}
             className="cal-apply-btn active"
           >
@@ -304,11 +318,19 @@ function Filters(props) {
     <div className="filter-conatiner" ref={element}>
       <div className="filter-heading">
         <h3>
-          FILTERS <a onClick={() => clearAllFilters()}>Clear all</a>
+          FILTERS{" "}
+          <a
+            onClick={e => {
+              e.preventDefault();
+              clearAllFilters();
+            }}
+          >
+            Clear all
+          </a>
         </h3>
       </div>
       <SearchFilter handleFilters={handleFilters} searchText={filteredSearch} />
-      {price_config != undefined && (
+      {price_config && (
         <PriceRangeFilter
           priceConfig={price_config}
           filteredPriceRange={filteredPriceRange}

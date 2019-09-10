@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import "./style.scss";
-import { Link } from "react-scroll";
 
 class Explore extends Component {
   render() {
@@ -32,7 +31,7 @@ class Explore extends Component {
           <div className="section-top-wrapper">
             <h2>Explore</h2>
             <div className="carousel-dots">
-              <a href="javascript:void(0)">
+              <a href="/" onClick={e => e.preventDefault()}>
                 See all{" "}
                 <img
                   src="assets/images/right-arrow.svg"

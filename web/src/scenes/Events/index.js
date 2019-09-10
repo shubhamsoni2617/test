@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
 import Filters from "../../shared/components/Filters";
 import SortBy from "../../shared/components/SortBy";
 import Card from "../../shared/components/Card";
@@ -35,7 +34,7 @@ export default class Events extends Component {
       eventsData: [],
       genre: [],
       venues: [],
-      filterConfig: [],
+      filterConfig: null,
       first: 0,
       limit: 9,
       viewType: "grid",
@@ -432,15 +431,14 @@ export default class Events extends Component {
                 )}
                 {eventsData.length < totalRecords && (
                   <div className="promotion-load-more">
-                    <a
-                      href="javascript:void(0)"
+                    <button
                       onClick={() => this.loadMoreEvents()}
                       className="btn-link load-more-btn"
                       target=""
                     >
                       <span>Load More</span>
                       <img src={DownArrowBlue} alt="down arrow blue" />
-                    </a>
+                    </button>
                   </div>
                 )}
                 {isdataAvailable && (
