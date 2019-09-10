@@ -61,10 +61,6 @@ export default class Promotions extends Component {
       const defaultTabId = getParams[1];
       const alias = getParams[2] + "/" + id;
       if (id && defaultTabId && alias) {
-        console.log(id,"id")
-        console.log(defaultTabId,"defaultTabId")
-        console.log(alias,"alias")
-        this.fetchPromotionDetailData(alias, id, defaultTabId);
         this.setState({ defaultTabId: defaultTabId });
       }
     }
