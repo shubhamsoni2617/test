@@ -27,13 +27,13 @@ export default class Promotions extends Component {
         {
           sortType: '',
           sortOrder: 'ASC',
-          sortTitle: 'A to Z',
+          sortTitle: 'Promotions - A to Z',
           sortTag: 'Promotions - A to Z'
         },
         {
           sortType: '',
           sortOrder: 'DESC',
-          sortTitle: 'Z to A',
+          sortTitle: 'Promotions - Z to A',
           sortTag: 'Promotions - Z to A'
         },
         {
@@ -94,9 +94,6 @@ export default class Promotions extends Component {
         .then((res) => {
           if (res.data && res.data.data) {
             const listing = res.data.data;
-            listing.sort((a, b) => {
-              return a.title.localeCompare(b.title);
-            });
             this.setState({
               totalRecords: res.data.total_records,
               listingArray: prevState.first !== first ? [...listingArray, ...listing] : listing
@@ -147,9 +144,6 @@ export default class Promotions extends Component {
         if (res.data && res.data.data) {
           console.log("response", res);
           const listing = res.data.data;
-          listing.sort((a, b) => {
-            return a.title.localeCompare(b.title);
-          });
           this.setState({
             totalRecords: res.data.total_records,
             listingArray: listing
@@ -190,6 +184,7 @@ export default class Promotions extends Component {
     PromotionService.getPromotionDetail(params)
       .then((res) => {
         if (res.data.data.length > 0 && res.data.data[0]) {
+          console.log(res.data,"data")
           this.setState({
             promotionDetail: res.data.data[0],
             promotionTab: 1,
@@ -222,7 +217,6 @@ export default class Promotions extends Component {
   }
 
   handleFilters = (obj) => {
-    console.log(obj,"obj")
     this.setState({
       sortBy: obj.filteredSortOrder,
       promotionTab: 0
