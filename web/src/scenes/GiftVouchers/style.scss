@@ -24,7 +24,7 @@
         font-size: 16px;
         line-height: 26px;
         text-align: center;
-        padding-bottom: 20px;
+        padding-bottom: 19px;
         max-width: 790px;
         margin: 0 auto;
         @media(max-width: 767px){
@@ -38,6 +38,9 @@
     }
     .easy-give-receive {      
         padding: 49px 0px 59px;
+        @media(max-width: 767px){
+            padding: 35px 0px 35px;
+        }
     }
     .pick-voucher {
         position: relative;
@@ -76,7 +79,7 @@
     .gift-card{
         padding: 94px 0px;
         @media(max-width: 767px){
-            padding-top: 25px;
+            padding: 25px 0px;
         }
         h3{
             color: #343434;
@@ -85,7 +88,7 @@
             line-height: 44px;
             text-align: center;
             font-weight: 600;
-            margin-bottom: 10px;
+            margin-bottom: 20px;
             @media(max-width: 1024px){
                 font-size: 30px;
                 line-height: 50px;
