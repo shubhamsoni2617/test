@@ -44,7 +44,7 @@ const PromotionCard = (props) => {
     setExpiredText(text)
   }
 
-  let shareUrl = window.location.origin + `/promotions/${data.id}`;
+  let shareUrl = window.location.origin + `/promotions/${defaultTabId}/${data.id}`;
 
   return (
     <div className={promotionTab === 1 && tabDetailId === data.id ? "promotion-block active" : "promotion-block"}>
@@ -119,7 +119,7 @@ const PromotionCard = (props) => {
               <div className="section-top-wrapper">
                 <h2>Related Events</h2>
               </div>
-              <Carousel imgArray={events} arrows={true} slidesToShow={6} slidesToScroll={6} dots={false} />
+              <Carousel imgArray={events} arrows={true} slidesToShow={4} slidesToScroll={4} dots={false} />
             </div>
           </section>
         </div>
