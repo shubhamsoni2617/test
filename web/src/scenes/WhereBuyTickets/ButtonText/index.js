@@ -10,10 +10,7 @@ const Buttontext = ({ title }) => {
   }
   if (title === "Mobile App") {
     return (
-      <div
-        className="download-option"
-        style={{ display: "flex", flexDirection: "row" }}
-      >
+      <div className="download-option">
         <a>
           <img src={appleImage} className="ios" alt="" />
           <span>
@@ -36,12 +33,11 @@ const Buttontext = ({ title }) => {
   if (title === "Find an Agent") {
     return <button>Find an Agent</button>;
   }
-
   if (title === "API Partners") {
     return <button>See All Partners</button>;
   }
   if (title === "Hotline @ +65 6348 5555") {
-    return <button>Contct Us</button>;
+    return <button>Contact Us</button>;
   }
   return <button>View</button>;
 };

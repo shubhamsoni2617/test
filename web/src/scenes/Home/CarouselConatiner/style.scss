@@ -16,6 +16,11 @@
 }
 .carousel-container{
   overflow: hidden;
+  transition: all 1s;
+  max-height: 598px;
+  &.hide-container{
+    max-height: 0;
+  }
   section{
     min-height: 598px;
     .shim-container{

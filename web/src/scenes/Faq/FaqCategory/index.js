@@ -24,6 +24,7 @@ const FaqCategory = props => {
           <ul>
             {props.categories.map(category => {
               return (
+                <li>
                 <Link
                   key={category.id}
                   className={
@@ -38,6 +39,7 @@ const FaqCategory = props => {
                 >
                   {category.name}
                 </Link>
+                </li>
               );
             })}
           </ul>

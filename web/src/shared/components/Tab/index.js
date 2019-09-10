@@ -30,12 +30,12 @@ const Tab = (props) => {
     <>
       <div className="promotion-grid">
         <div className="sortby-filter">
-          {tabsSort && tabsSort.isSortBy && <SortBy handleFilters={handleFilters} sortList={tabsSort.sortList} />}
+          {tabsSort && tabsSort.isSortBy && <SortBy defaultSortType="A to Z" handleFilters={handleFilters} sortList={tabsSort.sortList} />}
         </div>
         <div className="tab-content-wrapper">
           <div className="promotions-listing">
             {listingArray.length === 0 ?
-              <ShimmerEffect height={150} count={4} type="list" propCls='shm_col-xs-2 col-md-5' />
+              <ShimmerEffect height={150} count={4} type="LIST" propCls='shm_col-xs-2 col-md-5' />
               :
               listingArray.map((elem, index, array) => {
                 if (index % 2 === 0) {
@@ -56,7 +56,7 @@ const Tab = (props) => {
                 }
               })
             }
-            </div>
+          </div>
         </div>
         {totalRecords - listingArray.length > 0 &&
           <div className="promotion-load-more" onClick={() => handleLoadMore((first + limit))}>
