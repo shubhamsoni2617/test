@@ -112,6 +112,9 @@ const GoogleMap = (props) => {
                 id={elem.id}
                 address={elem.address}
                 imgPath={elem.image}
+                icon={{
+                  url: elem.id === selectedPlace.id ? require("../../../../../src/assets/images/pin.svg") : null
+                }}
               />
             )
           })
@@ -205,5 +208,5 @@ const GoogleMap = (props) => {
 };
 
 export default GoogleApiWrapper({
-  apiKey: "AIzaSyAyesbQMyKVVbBgKVi2g6VX7mop2z96jBo"
+  apiKey: "AIzaSyAZNSN2KTQ0HDJORWzvnwyVQyQDWXJE-_Q"
 })(GoogleMap);

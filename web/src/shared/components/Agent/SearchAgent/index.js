@@ -116,6 +116,12 @@ const SearchAgent = (props) => {
     });
   });
 
+  // var filteredData = initialItems;
+  // filteredData = filteredData.filter(function (item) {
+  //   return item.name.toLowerCase().search(
+  //     lowerCasedFilter) !== item.name;
+  // });
+
   return (
     <div className="search-agent">
       <h2>{venue ? "Venue in " : "Agents in "} {countryName ? countryName : "Singapore"}</h2>
@@ -126,7 +132,7 @@ const SearchAgent = (props) => {
             className="form-control"
             type="text" value={filter}
             onChange={handleChange}
-            placeholder="Search for an agent"
+            placeholder={venue ? "Search for Location" : "Search for an agent"}
           />
         </div>
       </form>
@@ -137,9 +143,9 @@ const SearchAgent = (props) => {
         </ul>
         : null
       }
-      {!venue ?
+      {!venue && countryFile ?
         <h6 className="festive-hour">
-          {countryFile && <a href={countryFile} download target="_blank">Festive Period Operating Hours <img src={downloadOrange} alt="Download" /> </a>}
+          <a href={countryFile} download target="_blank">Festive Period Operating Hours <img src={downloadOrange} alt="Download" /> </a>
         </h6>
         :
         null
