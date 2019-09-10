@@ -2,10 +2,15 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
 const FaqCategory = props => {
-  const spreadData = props.faqContentData.flatMap(element => {
-    return element.category_id.map(x => ({ ...element, category_id: x }));
-  });
-
+  let spreadData = [];
+  for (let data of props.faqContentData) {
+    for (let id of data["category_id"]) {
+      spreadData.push({
+        ...data,
+        category_id: id
+      });
+    }
+  }
   const setQuestionId = categoryId => {
     let value = spreadData.find(obj => {
       return obj.category_id === categoryId;
