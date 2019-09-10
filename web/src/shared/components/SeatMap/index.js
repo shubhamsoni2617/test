@@ -1,11 +1,9 @@
-import React, { useState } from 'react';
-import Modal from "react-animated-modal";
-import Lightbox from 'react-image-lightbox';
-import 'react-image-lightbox/style.css';
+import React, { useState } from "react";
+import Lightbox from "react-image-lightbox";
+import "react-image-lightbox/style.css";
 
-const SeatMap = (props) => {
-
-  const { imgArr, heading, handleClose, showModal } = props; // these two are required props
+const SeatMap = props => {
+  const { imgArr, handleClose } = props; // these two are required props
   const [photoIndex, setPhotoIdx] = useState(0);
 
   const settings1 = {
@@ -14,9 +12,8 @@ const SeatMap = (props) => {
     slidesToShow: 1,
     slidesToScroll: 1,
     className: "center",
-    centerMode: true,
-  }
-
+    centerMode: true
+  };
 
   return (
     <Lightbox
@@ -24,10 +21,12 @@ const SeatMap = (props) => {
       nextSrc={imgArr[(photoIndex + 1) % imgArr.length]}
       prevSrc={imgArr[(photoIndex + imgArr.length - 1) % imgArr.length]}
       onCloseRequest={() => handleClose()}
-      onMovePrevRequest={() => setPhotoIdx((photoIndex + imgArr.length - 1) % imgArr.length)}
+      onMovePrevRequest={() =>
+        setPhotoIdx((photoIndex + imgArr.length - 1) % imgArr.length)
+      }
       onMoveNextRequest={() => setPhotoIdx((photoIndex + 1) % imgArr.length)}
     />
-  )
-}
+  );
+};
 
 export default SeatMap;

@@ -1,14 +1,6 @@
-import React, {
-  Component,
-  useState,
-  useRef,
-  useEffect,
-  useLayoutEffect
-} from "react";
+import React, { useState, useRef, useEffect, useLayoutEffect } from "react";
 import InputRange from "react-input-range";
-import VenueFilter from "../VenueFilter";
 import moment from "moment";
-import Helmet from "react-helmet";
 import DayPickerInput from "react-day-picker/DayPickerInput";
 import { formatDate, parseDate } from "react-day-picker/moment";
 import "react-day-picker/lib/style.css";
@@ -76,7 +68,7 @@ function PriceRangeFilter(props) {
         <h3>Price Range</h3>
         <ul>
           <li className="active">
-            <a onClick={() => clearPriceRange()}>Clear</a>
+            <span onClick={() => clearPriceRange()}>Clear</span>
           </li>
         </ul>
       </div>

@@ -1,4 +1,4 @@
-import React, { Component, lazy, Suspense } from "react";
+import React, { Component } from "react";
 import { CSSTransitionGroup } from "react-transition-group";
 import EventsService from "../../shared/services/EventsService";
 import Constants from "../../shared/constants";
@@ -71,9 +71,7 @@ function EventTags({ tags }) {
       <div className="container-fluid">
         <ul>
           {tags.map((obj, idx) => {
-            if (obj.name) {
-              return <li key={idx}>{obj.name}</li>;
-            }
+            return <li key={idx}>{obj.name}</li>;
           })}
         </ul>
       </div>
@@ -332,7 +330,23 @@ export default class EventsDetail extends Component {
     this.onSynopsisData(detailData, getSynopsisData);
     return (
       <div className="event-detail-wrapper">
-        {shimmer && this.onShimmerEffect}
+        <CSSTransitionGroup
+          transitionName="shimmer"
+          transitionEnter={true}
+          transitionEnterTimeout={500}
+          transitionLeaveTimeout={500}
+        >
+          {shimmer && (
+            <ShimmerEffect
+              propCls="shm_col-xs-6 col-md-12"
+              height={400}
+              count={2}
+              type="DETAIL"
+              detail={true}
+            />
+          )}
+        </CSSTransitionGroup>
+
         {detailData && (
           <div className={`main-container ${shimmer ? "shimmer" : ""}`}>
             <ShowOver isShowOver={detailData.is_show_over} />

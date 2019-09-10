@@ -29,7 +29,7 @@ function EventHeading(props) {
     if (element.current.offsetHeight >= props.height * props.lines) {
       setStyleObj({
         "text-overflow": "ellipsis",
-        display: props.lines == 1 ? "block" : "-webkit-box",
+        display: props.lines === 1 ? "block" : "-webkit-box",
         "-webkit-line-clamp": `${props.lines}`,
         "-webkit-box-orient": "vertical",
         ...styleObjectDefault
