@@ -59,7 +59,7 @@ const PromotionCard = (props) => {
             :
             null
           }
-          <span title="share" className="share" onClick={handleSocialShare} >
+          <span className="share" onClick={handleSocialShare} >
             <img src={ShareIcon} alt="share-icon" />
             <SocialShare shareUrl={shareUrl && shareUrl} showSocialShare={socialShare} />
           </span>
