@@ -1,36 +1,6 @@
 .where-to-buy-tickets{
     position: relative;
     z-index: 1;
-<<<<<<< HEAD
-    .banner-wrapper{
-        margin-bottom: 0px;
-        z-index: -1;
-        @media (max-width: 768px) {     
-            margin-bottom: 25px;
-          }
-        img{                     
-            @media (max-width: 767px) {
-            max-height: 250px;
-            min-height: 250px;
-            }
-        }
-        .banner-overlay{
-            margin-top: 34px;
-            h1{
-                font-size: 37px;
-                line-height: 45px;
-                @media (max-width: 1024px) {
-                    font-size: 25px;
-                }
-                @media (max-width: 768px) {
-                    font-size: 20px;
-                    line-height: 25px;
-                }
-            }
-        }
-    }
-=======
->>>>>>> 394c380a9be6ad096235b902154a1be935ff24a9
     .wtbt-sections-tab{
         margin-top: -46px;
         padding-bottom: 45px;
