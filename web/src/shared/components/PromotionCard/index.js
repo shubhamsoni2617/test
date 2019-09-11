@@ -88,8 +88,7 @@ const PromotionCard = (props) => {
             }
           </div>
         </div>
-      </div>
-      <div className="promotion-dropdown-height"></div>
+      </div>      
       <div className="promotion-tab-dropdown" id="">
         <a className="promotion-tab-close-btn" onClick={() => handlePromotionDetailTab("close")}>
           <img src={CloseIcon} alt="close-icon" />
