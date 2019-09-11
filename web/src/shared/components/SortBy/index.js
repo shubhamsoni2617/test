@@ -1,13 +1,13 @@
-import React, { Component } from "react";
-import { CSSTransitionGroup } from "react-transition-group";
-import "./style.scss";
+import React, { Component } from 'react';
+import { CSSTransitionGroup } from 'react-transition-group';
+import './style.scss';
 
 export default class SortBy extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      sort: { tag: "Date", active: "" },
-      showSortMenu: false
+      sort: { tag: 'Date', active: '' },
+      showSortMenu: false,
     };
   }
 
@@ -16,23 +16,23 @@ export default class SortBy extends Component {
   setSortFilter = (tag, sortBy, order) => {
     this.setState({ sort: { tag: tag } });
     this.setState({ showSortMenu: false }, () => {
-      document.removeEventListener("click", this.closeSortMenu);
+      document.removeEventListener('click', this.closeSortMenu);
     });
     this.props.handleFilters({
       filteredSortType: sortBy,
-      filteredSortOrder: order
+      filteredSortOrder: order,
     });
   };
 
   showSortMenu = () => {
     this.setState({ showSortMenu: true }, () => {
-      document.addEventListener("click", this.closeSortMenu);
+      document.addEventListener('click', this.closeSortMenu);
     });
   };
 
   closeSortMenu = () => {
     this.setState({ showSortMenu: false }, () => {
-      document.removeEventListener("click", this.closeSortMenu);
+      document.removeEventListener('click', this.closeSortMenu);
     });
   };
 
