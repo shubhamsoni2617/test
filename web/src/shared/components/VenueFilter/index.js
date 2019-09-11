@@ -58,7 +58,7 @@ export default class VenueFilter extends Component {
       if (!isNaN(firstLetter)) {
         firstLetter = "#";
       }
-      if (this.groupedCollection[firstLetter] == undefined) {
+      if (this.groupedCollection[firstLetter] === undefined) {
         this.groupedCollection[firstLetter] = [];
       }
       this.groupedCollection[firstLetter].push(venues[i]);

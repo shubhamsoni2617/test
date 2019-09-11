@@ -67,27 +67,6 @@ class Utilities {
 
     return "";
   }
-
-  static preloadImages(srcs, imgVar, callback) {
-    let img;
-    let remaining = srcs.length;
-    for (let i = 0; i < srcs.length; i++) {
-      img = new Image();
-      img.onload = function() {
-        --remaining;
-        if (remaining <= 0) {
-          callback();
-        }
-      };
-      img.onerror = function() {
-        --remaining;
-        if (remaining <= 0) {
-          callback();
-        }
-      };
-      img.src = srcs[i][imgVar];
-    }
-  }
 }
 
 export default Utilities;
