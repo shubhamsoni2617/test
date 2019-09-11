@@ -20,6 +20,7 @@ const Agent = (props) => {
   const [attractionValue, setAttractionValue] = useState(undefined);
   const [eventValue, setEventValue] = useState(undefined);
   const [mapClick, setMapClick] = useState(true);
+  const [activeClassId, setActiveClassId] = useState(0);
 
 
   useEffect(() => {
@@ -118,6 +119,11 @@ const Agent = (props) => {
     setMapClick(event);
   }
 
+  const handleActiveClass = (activeId) => {
+    console.log(activeId,"activeId");
+    setActiveClassId(activeId);
+  }
+
   return (
 
     <section className="">
@@ -137,6 +143,7 @@ const Agent = (props) => {
               countryFile={countryFile}
               showOnMapClick={showOnMapClick}
               countryName={countryName}
+              activeClassId={activeClassId}
               handleAttractionValue={handleAttractionValue}
               handleEventValue={handleEventValue}
               {...props}
@@ -149,6 +156,7 @@ const Agent = (props) => {
               showOnMapData={showOnMapData}
               countryName={countryName}
               mapClick={mapClick}
+              handleActiveClass={handleActiveClass}
               {...props}
             />
           </div>

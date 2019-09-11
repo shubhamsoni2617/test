@@ -8,13 +8,14 @@ import Image from '../../Image';
 
 const GoogleMap = (props) => {
 
-  const { google, multipleMarker, showOnMapData, venue, mapClick, countryName } = props;
+  const { google, multipleMarker, showOnMapData, venue, mapClick, countryName, handleActiveClass } = props;
 
   const [showingInfoWindow, setShowingInfoWindow] = useState(false);
   const [activeMarker, setActiveMarker] = useState({});
   const [selectedPlace, setSelectedPlace] = useState({});
   const [initialCenter, setInitialCenter] = useState({ lat: 1.290270, lng: 103.851959 });
   const [zoomValue, setZoomValue] = useState(12);
+
 
 
   const onMapClicked = (props) => {
@@ -37,6 +38,8 @@ const GoogleMap = (props) => {
   }
 
   const infoWindowHasClosed = () => {
+    setSelectedPlace({})
+    handleActiveClass(0);
     setShowingInfoWindow(false);
   }
 
@@ -58,7 +61,7 @@ const GoogleMap = (props) => {
         setZoomValue(14);
         break;
       case "Malaysia":
-        setInitialCenter({ lat:  3.1412001, lng: 101.6865311 });
+        setInitialCenter({ lat: 3.1412001, lng: 101.6865311 });
         setZoomValue(4);
         break;
       case "Indonesia":
@@ -78,7 +81,7 @@ const GoogleMap = (props) => {
         setZoomValue(3);
         break;
       case "Taiwan":
-        setInitialCenter({ lat: 23.6978092 , lng: 120.9605179 });
+        setInitialCenter({ lat: 23.6978092, lng: 120.9605179 });
         setZoomValue(5);
         break;
       case "South Korea":
@@ -89,6 +92,10 @@ const GoogleMap = (props) => {
         setInitialCenter({ lat: 1.290270, lng: 103.851959 });
         setZoomValue(14);
     }
+  }
+
+  if (selectedPlace.id) {
+    handleActiveClass(selectedPlace.id);
   }
 
   if (!google) {
