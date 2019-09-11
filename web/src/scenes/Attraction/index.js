@@ -3,13 +3,12 @@ import Filters from "../../shared/components/Filters";
 import SortBy from "../../shared/components/SortBy";
 import Card from "../../shared/components/Card";
 import AttractionsService from "../../shared/services/AttractionsService";
-import DownArrowBlue from "../../assets/images/down-arrow-blue.svg";
 import noEvent from "../../assets/images/no-event.svg";
 import Breadcrub from "../../scenes/App/Breadcrumb";
 import loaderImage from "../../assets/images/loader.svg";
 import AttractionBreadcrumbImage from "../../assets/images/attractionbanner.png";
 import ShimmerEffect from "../../shared/components/ShimmerEffect";
-import LoadMoreOnScroll from "../../shared/components/LoadMoreOnScroll";
+import LoadMoreButton from "../../shared/components/LoadMoreButton";
 import "./style.scss";
 
 export default class Attractions extends Component {
@@ -32,7 +31,7 @@ export default class Attractions extends Component {
       totalRecords: 0,
       loader: false,
       queryParams: {},
-      count:0
+      count: 0
     };
 
     this.breadCrumbData = {
@@ -41,7 +40,7 @@ export default class Attractions extends Component {
       count: 0,
       breadcrumb_slug: [
         { path: "/", title: "Home" },
-        { path: "/attraction", title: "Attractions" }
+        { title: "Attractions" }
       ]
     };
 
@@ -90,18 +89,18 @@ export default class Attractions extends Component {
     );
   };
 
-  getInitialFilters = (reset=false) => {
+  getInitialFilters = (reset = false) => {
     const payload = {
       first: 0,
       limit: 9,
       sort_type: 'title',
-      sort_order:'ASC'
+      sort_order: 'ASC'
     };
     return payload;
   };
 
   setInitialFilters({ first, limit }) {
-  
+
   }
 
   getAttractionsCategory = () => {
@@ -135,8 +134,9 @@ export default class Attractions extends Component {
   };
 
   loadMoreAttractions = () => {
-    let params = this.setFilterParams();
+    let params = this.getFilters();
     params.first = this.state.first + 9;
+
     this.loadAttractions(params, true);
     this.setState({ first: params.first, limit: params.limit, shimmer: true });
   };
@@ -211,86 +211,77 @@ export default class Attractions extends Component {
     return (
       <div>
         <Breadcrub breadCrumbData={this.breadCrumbData} />
-          <div className="container-fluid">
-            <div className="wrapper-events-listing">
-              <div className="filters">
-                {shimmer && <ShimmerEffect
-                  propCls="shm_col-xs-6 col-md-12"
-                  height={150}
-                  count={1}
-                  type="grid"
-                />}
-                {!shimmer && attractionCategories.length > 0 &&
-                  (
-                    <Filters
-                      queryParams={queryParams}
-                      resetFilters={this.resetFilters}
-                      handleFilters={this.handleFilters}
-                      hideCalendar={true}
-                      attractionCategories={attractionCategories}
-                      filteredSearch={filteredSearch}
-                      filteredCategory={filteredCategory}
-                    />
-                  )}
-              </div>
-
-              <div className="events-listing">
-                <div className="event-listing-sorting">
-                  <SortBy
-                    sortList={this.tabsSort.sortList}
+        <div className="container-fluid">
+          <div className="wrapper-events-listing">
+            <div className="filters">
+              {shimmer && <ShimmerEffect
+                propCls="shm_col-xs-6 col-md-12"
+                height={150}
+                count={1}
+                type="grid"
+              />}
+              {!shimmer && attractionCategories.length > 0 &&
+                (
+                  <Filters
+                    queryParams={queryParams}
+                    resetFilters={this.resetFilters}
                     handleFilters={this.handleFilters}
-                    defaultSortType={this.tabsSort.defaultSortType}
-                  />
-                </div>
-                <div className={this.state.viewTypeClass}>
-                  {loader && (
-                    <img className="filter-loader" src={loaderImage} />
-                  )}
-                  {attractionsData &&
-                    attractionsData.map(attraction => {
-                      return (
-                        <div onClick={() => this.redirectToTarget(attraction.event_alias)}>
-                          <Card cardData={attraction} cardClass={{cardBlock: 'event-block attraction-block', cardButton: 'btn buy-btn attaction-buy'}} />
-                        </div>
-                      );
-                    })}
-                </div>
-                {attractionsData && <LoadMoreOnScroll
-                  loadMore={this.loadMoreAttractions}
-                  dataLength={attractionsData.length}
-                  totalRecords={totalRecords}
-                />}
-                {shimmer && (
-                  <ShimmerEffect
-                    propCls="shm_col-xs-6 col-md-4"
-                    height={150}
-                    count={3}
-                    type="grid"
+                    hideCalendar={true}
+                    attractionCategories={attractionCategories}
+                    filteredSearch={filteredSearch}
+                    filteredCategory={filteredCategory}
                   />
                 )}
-                {attractionsData.length < totalRecords && (
-                  <div className="promotion-load-more">
-                    <a
-                      className="btn-link load-more-btn"
-                      target=""
-                    >
-                      <span>Load More</span>
-                      <img src={DownArrowBlue} />
-                    </a>
-                  </div>
-                )}
-                {isdataAvailable && (
-                  <div className="no-data">
-                    <img src={noEvent} alt="No Event Data" />
-                    <p>
-                      <strong>No events found</strong>
-                    </p>
-                    <p>Try again with more general search events</p>
-                  </div>
-                )}
+            </div>
+
+            <div className="events-listing">
+              <div className="event-listing-sorting">
+                <SortBy
+                  sortList={this.tabsSort.sortList}
+                  handleFilters={this.handleFilters}
+                  defaultSortType={this.tabsSort.defaultSortType}
+                />
               </div>
+              <div className={this.state.viewTypeClass}>
+                {loader && (
+                  <img className="filter-loader" src={loaderImage} />
+                )}
+                {attractionsData &&
+                  attractionsData.map(attraction => {
+                    return (
+                      <div onClick={() => this.redirectToTarget(attraction.event_alias)}>
+                        <Card cardData={attraction} cardClass={{ cardBlock: 'event-block attraction-block', cardButton: 'btn buy-btn attaction-buy' }} />
+                      </div>
+                    );
+                  })}
+              </div>
+              {shimmer && (
+                <ShimmerEffect
+                  propCls="shm_col-xs-6 col-md-4"
+                  height={150}
+                  count={3}
+                  type="grid"
+                />
+              )}
+
+              {attractionsData.length < totalRecords && (<LoadMoreButton
+                dataLength={attractionsData.length}
+                totalRecords={totalRecords}
+                loadMore={() => this.loadMoreAttractions()}
+              />)}
+
+              {isdataAvailable && (
+                <div className="no-data">
+                  <img src={noEvent} alt="No Event Data" />
+                  <p>
+                    <strong>No events found</strong>
+                  </p>
+                  <p>Try again with more general search events</p>
+                </div>
+              )}
             </div>
           </div>
+        </div>
       </div>
     );
   }

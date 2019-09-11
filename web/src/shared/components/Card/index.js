@@ -45,8 +45,8 @@ export default class Card extends Component {
                     this.props.cardData.synopsis,
                     70
                   )
-                }}
-              ></span>
+                }} 
+              >Show more</span>
             )}
             <p className="event-date">{this.props.cardData.event_date}</p>
             <p className="event-place">{this.props.cardData.venue_name}</p>
