@@ -51,14 +51,23 @@
     "fs-extra": "7.0.1",
     "ignore-styles": "^5.0.1",
     "md5-file": "^4.0.0",
-    "node-sass": "^4.12.0"
+    "node-sass": "^4.12.0",
+    "eslint": "^5.12.1",
+    "eslint-config-prettier": "^4.1.0",
+    "eslint-loader": "^2.1.1",
+    "eslint-plugin-import": "^2.14.0",
+    "eslint-plugin-jsx-a11y": "^6.1.2",
+    "eslint-plugin-prettier": "^3.0.1",
+    "eslint-plugin-react": "^7.12.4",
+    "prettier": "^1.16.0"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "serve": "node ./server/index.js",
     "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "format": "prettier --config ./.prettierrc --write src/**/*.js"
   },
   "proxy": "http://192.168.10.195:8081",
   "browserslist": {
