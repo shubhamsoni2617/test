@@ -1,6 +1,6 @@
-import React, { useState, useEffect, useRef } from "react";
-import Tooltip from "../Tooltip";
-import "./style.scss";
+import React, { useState, useEffect, useRef } from 'react';
+import Tooltip from '../Tooltip';
+import './style.scss';
 
 function EventHeading(props) {
   const [allowTooltip, setAllowTooltip] = useState(props.allowTooltip);
@@ -10,36 +10,37 @@ function EventHeading(props) {
   useEffect(() => {
     if (
       !allowTooltip &&
-      ((props.lines == 1 && element.current.scrollWidth > element.current.offsetWidth + 150)
-      ||
-      (props.lines > 1 && element.current.scrollHeight > element.current.offsetHeight))
+      ((props.lines === 1 &&
+        element.current.scrollWidth > element.current.offsetWidth + 150) ||
+        (props.lines > 1 &&
+          element.current.scrollHeight > element.current.offsetHeight))
     ) {
       setAllowTooltip(true);
     }
     let styleObjectDefault = {
-      "overflow": "hidden",
-      "line-height": `${props.height}px`,
-      "max-height": `${props.height * props.lines}px`,
-      "min-height": `${props.height * props.lines}px`,
-      "width": "91%",
-      "font-size": props.size,
-      "font-weight": props.weight
+      overflow: 'hidden',
+      LineHeight: `${props.height}px`,
+      maxHeight: `${props.height * props.lines}px`,
+      minHeight: `${props.height * props.lines}px`,
+      width: '91%',
+      fontSize: props.size,
+      fontWeight: props.weight
     };
     if (element.current.offsetHeight >= props.height * props.lines) {
       setStyleObj({
-        "text-overflow": "ellipsis",
-        display: props.lines == 1 ? "block" : "-webkit-box",
-        "-webkit-line-clamp": `${props.lines}`,
-        "-webkit-box-orient": "vertical",
+        textOverflow: 'ellipsis',
+        display: props.lines === 1 ? 'block' : '-webkit-box',
+        WebkitLineClamp: `${props.lines}`,
+        WebkitBoxOrient: 'vertical',
         ...styleObjectDefault
       });
-    }else{
+    } else {
       setStyleObj({
-        "display": "block",
+        display: 'block',
         ...styleObjectDefault
       });
     }
-  }, [element.current]);
+  }, [element.current, allowTooltip, props]);
 
   if (!props.title) {
     return null;

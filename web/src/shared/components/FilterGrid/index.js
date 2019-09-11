@@ -3,7 +3,14 @@ import { CSSTransitionGroup } from "react-transition-group";
 import VenueFilter from "../VenueFilter";
 function ShowMoreButton(props) {
   return (
-    <a onClick={() => props.onClick()} className="view-all-filters">
+    <a
+      href="/"
+      onClick={e => {
+        e.preventDefault();
+        props.onClick();
+      }}
+      className="view-all-filters"
+    >
       {props.title}
     </a>
   );
@@ -40,7 +47,7 @@ const FilterGrid = props => {
 
   const onChange = (e, id) => {
     let newFilterValue = [...props.selectedFilter];
-   if (e.target.checked) {
+    if (e.target.checked) {
       newFilterValue.push(id);
     } else {
       const index = props.selectedFilter.indexOf(id);
@@ -59,10 +66,26 @@ const FilterGrid = props => {
         <h3>{props.title}</h3>
         <ul>
           <li className={activeClass ? "active" : ""}>
-            <a onClick={() => selectAll(true)}>Select all</a>
+            <a
+              href="/"
+              onClick={e => {
+                e.preventDefault();
+                selectAll(true);
+              }}
+            >
+              Select all
+            </a>
           </li>
           <li className={activeClass ? "" : "active"}>
-            <a onClick={() => selectAll(false)}>Clear</a>
+            <a
+              href="/"
+              onClick={e => {
+                e.preventDefault();
+                selectAll(false);
+              }}
+            >
+              Clear
+            </a>
           </li>
         </ul>
       </div>
@@ -110,7 +133,7 @@ const FilterGrid = props => {
             onClick={() => {
               props.showPanel
                 ? setPanelDisplay(true)
-                : toggle(data.length != limit);
+                : toggle(data.length !== limit);
             }}
           />
         )}

@@ -1,14 +1,6 @@
-import React, {
-  Component,
-  useState,
-  useRef,
-  useEffect,
-  useLayoutEffect
-} from "react";
+import React, { useState, useRef, useEffect, useLayoutEffect } from "react";
 import InputRange from "react-input-range";
-import VenueFilter from "../VenueFilter";
 import moment from "moment";
-import Helmet from "react-helmet";
 import DayPickerInput from "react-day-picker/DayPickerInput";
 import { formatDate, parseDate } from "react-day-picker/moment";
 import "react-day-picker/lib/style.css";
@@ -50,6 +42,7 @@ function SearchFilter(props) {
 
 function PriceRangeFilter(props) {
   const { priceConfig, filteredPriceRange } = props;
+
   const [priceRange, setPriceRange] = useState({
     min: parseInt(priceConfig.min_price) || null,
     max: parseInt(priceConfig.max_price) || null
@@ -76,7 +69,15 @@ function PriceRangeFilter(props) {
         <h3>Price Range</h3>
         <ul>
           <li className="active">
-            <a onClick={() => clearPriceRange()}>Clear</a>
+            <a
+              href="/"
+              onClick={e => {
+                e.preventDefault();
+                clearPriceRange();
+              }}
+            >
+              Clear
+            </a>
           </li>
         </ul>
       </div>
@@ -171,7 +172,15 @@ function DateRangeFilter(props) {
         <h3>Date Range</h3>
         <ul>
           <li className="active">
-            <a onClick={() => clearCalender()}>Clear</a>
+            <a
+              href="/"
+              onClick={e => {
+                e.preventDefault();
+                clearCalender();
+              }}
+            >
+              Clear
+            </a>
           </li>
         </ul>
       </div>
@@ -228,7 +237,14 @@ function DateRangeFilter(props) {
           </span>
         </div>
         {from && to && (
-          <a onClick={filterByDateRange} className="cal-apply-btn active">
+          <a
+            href="/"
+            onClick={e => {
+              e.preventDefault();
+              filterByDateRange();
+            }}
+            className="cal-apply-btn active"
+          >
             <img src={tickWhite} className="active" alt="tick" />
           </a>
         )}
@@ -304,11 +320,20 @@ function Filters(props) {
     <div className="filter-conatiner" ref={element}>
       <div className="filter-heading">
         <h3>
-          FILTERS <a onClick={() => clearAllFilters()}>Clear all</a>
+          FILTERS{" "}
+          <a
+            href="/"
+            onClick={e => {
+              e.preventDefault();
+              clearAllFilters();
+            }}
+          >
+            Clear all
+          </a>
         </h3>
       </div>
       <SearchFilter handleFilters={handleFilters} searchText={filteredSearch} />
-      {price_config != undefined && (
+      {price_config && (
         <PriceRangeFilter
           priceConfig={price_config}
           filteredPriceRange={filteredPriceRange}

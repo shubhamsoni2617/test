@@ -1,6 +1,6 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import Calender from '../Calender';
+import React from "react";
+import { Link } from "react-router-dom";
+import Calender from "../Calender";
 import thumbnailImg1 from "../../../assets/images/pretty-girls.jpg";
 import thumbnailImg2 from "../../../assets/images/hetty-keos.jpg";
 import locationImage from "../../../assets/images/location.svg";
@@ -9,8 +9,7 @@ import eventCalender from "../../../assets/images/cal.svg";
 import rightArrowImage from "../../../assets/images/right-arrow.svg";
 import seeAllEvent from "../../../assets/images/right-arrow.svg";
 
-const MegaMenu = (props) => {
-
+const MegaMenu = props => {
   const featuredEvents = [
     {
       id: "1",
@@ -32,12 +31,8 @@ const MegaMenu = (props) => {
       day: "Sun, 26 May 2019",
       genre: "Dance",
       text: "Hetty Koes Endang (Indonesia)"
-    },
+    }
   ];
-
-  const first = 0;
-  const limit = 5;
-  const search = "";
 
   const { byGenreEvent } = props;
 
@@ -51,18 +46,28 @@ const MegaMenu = (props) => {
             By Genre
           </p>
           <ul>
-            {
-              byGenreEvent && byGenreEvent.map((event, index) => {
+            {byGenreEvent &&
+              byGenreEvent.map((event, index) => {
                 return (
-                  <li key={event.id}><Link to={`/events/search?c=${event.id}`} onClick={() => { { props.handleMouseStatus(false) } }}>{event.name}</Link></li>
-                )
-              })
-            }
+                  <li key={event.id}>
+                    <Link
+                      to={`/events/search?c=${event.id}`}
+                      onClick={() => {
+                        props.handleMouseStatus(false);
+                      }}
+                    >
+                      {event.name}
+                    </Link>
+                  </li>
+                );
+              })}
           </ul>
         </div>
         <div className="calender">
           <ul>
-            <li className="month submenu-subtitle"><img src={eventCalender} alt="" /> By Date</li>
+            <li className="month submenu-subtitle">
+              <img src={eventCalender} alt="" /> By Date
+            </li>
           </ul>
           <div className="month-cal">
             <Calender handleEnter={props.handleMouseStatus} />
@@ -71,20 +76,36 @@ const MegaMenu = (props) => {
         <div className="events-listing">
           <ul>
             <li>
-              <h5 className="submenu-subtitle"><img src={locationImage} alt="" /> By Venue</h5>
+              <h5 className="submenu-subtitle">
+                <img src={locationImage} alt="" /> By Venue
+              </h5>
             </li>
             <li className="seeall-veneus">
-              <a className="seeall-btn" >See All Venues <img src={rightArrowImage} alt="" /></a>
+              <a
+                href="/"
+                onClick={e => e.preventDefault()}
+                className="seeall-btn"
+              >
+                See All Venues <img src={rightArrowImage} alt="" />
+              </a>
             </li>
           </ul>
           <ul className="events-list">
-            {
-              props.byVenueEvent && props.byVenueEvent.map((event, index) => {
+            {props.byVenueEvent &&
+              props.byVenueEvent.map((event, index) => {
                 return (
-                  <li key={event.id}><Link to={`/events/search?v=${event.id}`} onClick={() => { { props.handleMouseStatus(false) } }}>{event.name}</Link></li>
+                  <li key={event.id}>
+                    <Link
+                      to={`/events/search?v=${event.id}`}
+                      onClick={() => {
+                        props.handleMouseStatus(false);
+                      }}
+                    >
+                      {event.name}
+                    </Link>
+                  </li>
                 );
-              })
-            }
+              })}
           </ul>
         </div>
         <div className="featured-event">
@@ -94,38 +115,39 @@ const MegaMenu = (props) => {
             </li>
           </ul>
           <ul>
-            {
-              featuredEvents.map((event, index) => {
-                return (
-                  <li key={event.id}>
-                    <div className="featured-event-img">
-                      <img src={event.img} className="img-fluid"
-                        alt="" />
-                    </div>
-                    <div className="featured-date-category">
-                      <span className="date">{event.day}</span>
-                      <span
-                        className={event.genre === "Theatre" ? "category theatre" : "category Dance"}
-                      >
-                        {event.genre}
-                      </span>
-                    </div>
-                    <span className="featured-event-title">{event.text}</span>
-                  </li>
-                );
-              })
-            }
+            {featuredEvents.map((event, index) => {
+              return (
+                <li key={event.id}>
+                  <div className="featured-event-img">
+                    <img src={event.img} className="img-fluid" alt="" />
+                  </div>
+                  <div className="featured-date-category">
+                    <span className="date">{event.day}</span>
+                    <span
+                      className={
+                        event.genre === "Theatre"
+                          ? "category theatre"
+                          : "category Dance"
+                      }
+                    >
+                      {event.genre}
+                    </span>
+                  </div>
+                  <span className="featured-event-title">{event.text}</span>
+                </li>
+              );
+            })}
           </ul>
         </div>
       </div>
       <div className="see-all-evevts">
-        <Link to="/events" className="seeall-btn">See All Events
-                        <img src={seeAllEvent} alt="" /></Link>
+        <Link to="/events" className="seeall-btn">
+          See All Events
+          <img src={seeAllEvent} alt="" />
+        </Link>
       </div>
     </div>
-
   );
-
-}
+};
 
 export default MegaMenu;

@@ -137,7 +137,7 @@ export default class PromotionCarousel extends Component {
               </span>
             </h2>
             <div className="carousel-dots">
-              <a href="/promotions" onClick={(e) => e.preventDefault()}>
+              <a href="/promotions" onClick={e => e.preventDefault()}>
                 See all{" "}
                 <img
                   src="assets/images/right-arrow.svg"
@@ -150,9 +150,9 @@ export default class PromotionCarousel extends Component {
           <div className="grid-container">
             {width <= Constants.MOBILE_BREAK_POINT ? (
               <div>
-                {this.slides.promotions.map(promo => {
+                {this.slides.promotions.map((promo, idx) => {
                   return (
-                    <div className="item">
+                    <div className="item" key={idx}>
                       {promo.slides.length === 2 &&
                         promo.slides.map(slide => {
                           return (
@@ -198,9 +198,9 @@ export default class PromotionCarousel extends Component {
                           );
                         })}
                       {promo.slides.length === 1 &&
-                        promo.slides.map(slide => {
+                        promo.slides.map((slide, idx) => {
                           return (
-                            <div key={slide.url} className="item-wrapper full-promo">
+                            <div key={idx} className="item-wrapper full-promo">
                               <div className="promotions-img">
                                 <div className="item-img">
                                   <img
@@ -272,7 +272,10 @@ export default class PromotionCarousel extends Component {
                       {promo.slides.length === 1 &&
                         promo.slides.map(slide => {
                           return (
-                            <div key={slide.url} className="item-wrapper full-promo">
+                            <div
+                              key={slide.url}
+                              className="item-wrapper full-promo"
+                            >
                               <div className="promotions-img">
                                 <div className="item-img">
                                   <img

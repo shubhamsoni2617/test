@@ -6,19 +6,21 @@ import Tile from "../../../assets/images/Vertical Tile.png";
 import "./style.scss";
 
 function Image(props) {
-  const [source, SetSource] = useState(!props.largeImage ? props.src : props.largeImage);
+  const [source, SetSource] = useState(
+    !props.largeImage ? props.src : props.largeImage
+  );
 
   const [className, setClassName] = useState("");
   const [errored, setErrored] = useState(false);
 
   useEffect(() => {
     SetSource(!props.largeImage ? props.src : props.largeImage);
-  }, [props.src])
+  }, [props.src, props.largeImage]);
 
   const onLoad = src => {
     setTimeout(() => {
-    setClassName("loaded");
-    }, 0);
+      setClassName("loaded");
+    }, 1000);
   };
 
   const onError = () => {
@@ -47,18 +49,20 @@ function Image(props) {
   };
 
   return (
-      <div class="image-conatiner">
-          <img
-          className={`image ${props.className} ${className}`}
-          src={source}
-          onLoad={() => onLoad()}
-        />
-        <img
-          className={`image ${props.className} preview ${className}`}
-          src={props.src}
-          onError={() => onError()}
-        />
-      </div>
+    <div className="image-conatiner">
+      <img
+        className={`image ${props.className} ${className}`}
+        src={source}
+        alt="pic"
+        onLoad={() => onLoad()}
+      />
+      <img
+        className={`image ${props.className} preview ${className}`}
+        src={props.src}
+        alt="pic"
+        onError={() => onError()}
+      />
+    </div>
   );
 }
 

@@ -1,18 +1,16 @@
 import React, { useState, useEffect } from "react";
-import { useSpring, animated } from "react-spring";
 import "./style.scss";
 import HomeService from "../../services/HomeService";
 import nextarrow from "../../../assets/images/next-arrow-white.svg";
 import ReactPlayer from "react-player";
 import { CSSTransitionGroup } from "react-transition-group";
 
-const HotShowPopup = props => {
+const HotShowPopup = () => {
   const [popupData, setPopupData] = useState([]);
   const [flag, setFlag] = useState(false);
 
   useEffect(() => {
-    if(!sessionStorage.getItem('hotshow')){
-
+    if (!sessionStorage.getItem("hotshow")) {
       setTimeout(() => setFlag(true), 1000);
       HomeService.getHotShowPopupData()
         .then(res => {
@@ -27,7 +25,7 @@ const HotShowPopup = props => {
 
   const body = document.body;
   const removeOverlayClass = () => {
-    sessionStorage.setItem('hotshow', false);
+    sessionStorage.setItem("hotshow", false);
     setFlag(false);
     body.classList.remove("hotshowpopup-overlay");
   };
@@ -71,8 +69,8 @@ const HotShowPopup = props => {
                             className="react-player"
                             url={objData.video_url}
                             controls={true}
-                            width='100%'
-                            height='100%'
+                            width="100%"
+                            height="100%"
                           />
                         ) : (
                           <img
@@ -102,6 +100,7 @@ const HotShowPopup = props => {
                               <div key={idx}>
                                 <a
                                   href={obj.b_url}
+                                  rel="noopener noreferrer"
                                   target="_blank"
                                   style={styleObj}
                                 >
@@ -151,11 +150,7 @@ const HotShowPopup = props => {
                             };
                             return (
                               <div key={idx}>
-                                <a
-                                  href={obj.b_url}
-                                  target="_blank"
-                                  style={styleObj}
-                                >
+                                <a href={obj.b_url} style={styleObj}>
                                   {obj.b_name}
                                 </a>
                               </div>

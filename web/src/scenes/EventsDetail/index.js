@@ -1,23 +1,23 @@
-import React, { Component, lazy, Suspense } from "react";
-import { CSSTransitionGroup } from "react-transition-group";
-import EventsService from "../../shared/services/EventsService";
-import Constants from "../../shared/constants";
+import React, { Component } from 'react';
+import { CSSTransitionGroup } from 'react-transition-group';
+import EventsService from '../../shared/services/EventsService';
+import Constants from '../../shared/constants';
 
-import "./style.scss";
-import SeatMapImg from "../../assets/images/seatmap.svg";
-import SeatMapWhite from "../../assets/images/seatmap-white.svg";
-import faceImg from "../../assets/images/face.svg";
-import giftCardImage from "../../assets/images/gift-card.png";
+import './style.scss';
+import SeatMapImg from '../../assets/images/seatmap.svg';
+import SeatMapWhite from '../../assets/images/seatmap-white.svg';
+import faceImg from '../../assets/images/face.svg';
+import giftCardImage from '../../assets/images/gift-card.png';
 
-import AccordionSection from "../../shared/components/AccordionSection";
-import EventCarousel from "../../shared/components/EventCarousel";
-import ArticleSection from "../../shared/components/ArticleSection";
-import SeatMap from "../../shared/components/SeatMap";
-import ModalPopup from "../../shared/components/Modal";
-import ShimmerEffect from "../../shared/components/ShimmerEffect";
-import StickyHeader from "../../shared/components/StickyHeader";
-import Utilities from "../../shared/utilities";
-import SimilarPicksSection from "../../shared/components/SimilarPicksSection";
+import AccordionSection from '../../shared/components/AccordionSection';
+import EventCarousel from '../../shared/components/EventCarousel';
+import ArticleSection from '../../shared/components/ArticleSection';
+import SeatMap from '../../shared/components/SeatMap';
+import ModalPopup from '../../shared/components/Modal';
+import ShimmerEffect from '../../shared/components/ShimmerEffect';
+import StickyHeader from '../../shared/components/StickyHeader';
+import Utilities from '../../shared/utilities';
+import SimilarPicksSection from '../../shared/components/SimilarPicksSection';
 
 function ShowOver({ isShowOver }) {
   if (isShowOver !== 1) return null;
@@ -71,9 +71,7 @@ function EventTags({ tags }) {
       <div className="container-fluid">
         <ul>
           {tags.map((obj, idx) => {
-            if (obj.name) {
-              return <li key={idx}>{obj.name}</li>;
-            }
+            return <li key={idx}>{obj.name}</li>;
           })}
         </ul>
       </div>
@@ -85,7 +83,12 @@ function BuyPackages({ isAvailableForBooking, buyPackageUrl }) {
   return (
     isAvailableForBooking === 1 &&
     buyPackageUrl && (
-      <a href={buyPackageUrl} target="_blank" className="buy-package">
+      <a
+        href={buyPackageUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="buy-package"
+      >
         Buy Packages
       </a>
     )
@@ -105,12 +108,12 @@ export default class EventsDetail extends Component {
       showSocialShare: false,
       showInfo: false,
       showNotice: true,
-      synopsisLang: "",
+      synopsisLang: '',
       similarEventsData: [],
       setHeader: false,
       animation: true,
       shimmer: true,
-      getSynopsisData: { languageArr: [], activeLang: "", desc: "" }
+      getSynopsisData: { languageArr: [], activeLang: '', desc: '' },
     };
   }
 
@@ -121,12 +124,12 @@ export default class EventsDetail extends Component {
   };
 
   componentDidMount() {
-    window.addEventListener("scroll", this.handleScroll);
+    window.addEventListener('scroll', this.handleScroll);
     const payload = { code: this.state.code, client: Constants.CLIENT };
     this.unlisten = this.props.history.listen(location => {
-      let pathArr = location.pathname.split("/");
-      if (pathArr.length && pathArr[1] == "events") {
-        if (location.search === "" && pathArr[2]) {
+      let pathArr = location.pathname.split('/');
+      if (pathArr.length && pathArr[1] === 'events') {
+        if (location.search === '' && pathArr[2]) {
           payload.code = pathArr[2];
           this.callAPI(payload);
         }
@@ -141,17 +144,17 @@ export default class EventsDetail extends Component {
     EventsService.getEventDetails(payload)
       .then(res => {
         this.setState({ detailData: res.data });
-        Utilities.preloadImages(res.data.images, "full_image", () => {
-          Utilities.preloadImages(res.data.images, "thumb_image", () => {
-            setTimeout(() => {
-              this.setState({ shimmer: false });
-            }, 1000);
-          });
-        });
+        // Utilities.preloadImages(res.data.images, "full_image", () => {
+        //   Utilities.preloadImages(res.data.images, "thumb_image", () => {
+        setTimeout(() => {
+          this.setState({ shimmer: false });
+        }, 1000);
+        //   });
+        // });
       })
       .catch(err => {
         this.setState({
-          shimmer: false
+          shimmer: false,
         });
         console.log(err);
       });
@@ -166,7 +169,7 @@ export default class EventsDetail extends Component {
   }
 
   componentWillUnmount() {
-    window.removeEventListener("scroll", this.handleScroll);
+    window.removeEventListener('scroll', this.handleScroll);
     this.unlisten();
   }
 
@@ -176,11 +179,11 @@ export default class EventsDetail extends Component {
       window.pageYOffset >= this.elemOffsetTop + 100
     ) {
       this.setState({
-        setHeader: true
+        setHeader: true,
       });
     } else if (window.pageYOffset < this.elemOffsetTop) {
       this.setState({
-        setHeader: false
+        setHeader: false,
       });
     }
   };
@@ -193,14 +196,14 @@ export default class EventsDetail extends Component {
       flag = true;
     }
     this.setState({
-      showBuyTicket: flag
+      showBuyTicket: flag,
     });
   };
 
   openSeatMap = () => {
     if (!this.state.showSeatMap) {
       this.setState({
-        showSeatMap: true
+        showSeatMap: true,
       });
     }
   };
@@ -209,10 +212,10 @@ export default class EventsDetail extends Component {
     this.setState(
       {
         showSocialShare: false,
-        showInfo: false
+        showInfo: false,
       },
       () => {
-        document.removeEventListener("click", this.closePopup);
+        document.removeEventListener('click', this.closePopup);
       }
     );
   };
@@ -221,10 +224,10 @@ export default class EventsDetail extends Component {
     if (!this.state.showSocialShare) {
       this.setState(
         {
-          showSocialShare: true
+          showSocialShare: true,
         },
         () => {
-          document.addEventListener("click", this.closePopup);
+          document.addEventListener('click', this.closePopup);
         }
       );
     }
@@ -235,10 +238,10 @@ export default class EventsDetail extends Component {
     if (!this.state.showInfo) {
       this.setState(
         {
-          showInfo: true
+          showInfo: true,
         },
         () => {
-          document.addEventListener("click", this.closePopup);
+          document.addEventListener('click', this.closePopup);
         }
       );
     }
@@ -247,26 +250,26 @@ export default class EventsDetail extends Component {
   openNotice = () => {
     if (!this.state.showNotice) {
       this.setState({
-        showNotice: true
+        showNotice: true,
       });
     }
   };
 
   changeLang = lang => {
     this.setState({
-      synopsisLang: lang
+      synopsisLang: lang,
     });
   };
 
   handleClose = () => {
     if (this.state.showNotice) {
       this.setState({
-        showNotice: false
+        showNotice: false,
       });
     }
     if (this.state.showSeatMap) {
       this.setState({
-        showSeatMap: false
+        showSeatMap: false,
       });
     }
   };
@@ -290,25 +293,6 @@ export default class EventsDetail extends Component {
       });
   };
 
-  onShimmerEffect() {
-    return (
-      <CSSTransitionGroup
-        transitionName="shimmer"
-        transitionEnter={true}
-        transitionEnterTimeout={500}
-        transitionLeaveTimeout={500}
-      >
-        <ShimmerEffect
-          propCls="shm_col-xs-6 col-md-12"
-          height={400}
-          count={2}
-          type="DETAIL"
-          detail={true}
-        />
-      </CSSTransitionGroup>
-    );
-  }
-
   render() {
     const {
       detailData,
@@ -320,7 +304,7 @@ export default class EventsDetail extends Component {
       showInfo,
       showNotice,
       setHeader,
-      shimmer
+      shimmer,
     } = this.state;
 
     if (error) {
@@ -328,7 +312,7 @@ export default class EventsDetail extends Component {
     }
     let shareUrl = window.location.href;
     getSynopsisData.languageArr = [];
-    let accrodian = ["synopsis", "pricedetail"];
+    let accrodian = ['synopsis', 'pricedetail'];
     this.onSynopsisData(detailData, getSynopsisData);
     return (
       <div className="event-detail-wrapper">
@@ -350,7 +334,7 @@ export default class EventsDetail extends Component {
         </CSSTransitionGroup>
 
         {detailData && (
-          <div className={`main-container ${shimmer ? "shimmer" : ""}`}>
+          <div className={`main-container ${shimmer ? 'shimmer' : ''}`}>
             <ShowOver isShowOver={detailData.is_show_over} />
             {detailData.is_show_over === 0 && (
               <div>
@@ -404,9 +388,9 @@ export default class EventsDetail extends Component {
                         changeLang={this.changeLang}
                         preExpanded={accrodian}
                         uuid={`${
-                          detailData.is_available_for_booking == 1
-                            ? "synopsis"
-                            : ""
+                          detailData.is_available_for_booking === 1
+                            ? 'synopsis'
+                            : ''
                         }`}
                       />
                     )}
@@ -415,6 +399,7 @@ export default class EventsDetail extends Component {
                       detailData.tabs.map((obj, idx) => {
                         return (
                           <AccordionSection
+                            key={obj.title}
                             title={obj.title}
                             desc={obj.description}
                           />
@@ -425,12 +410,20 @@ export default class EventsDetail extends Component {
                     {detailData.seating_plan &&
                       detailData.seating_plan.length > 0 && (
                         <a
-                          onClick={() => this.openSeatMap()}
+                          href="/"
+                          onClick={e => {
+                            e.preventDefault();
+                            this.openSeatMap();
+                          }}
                           className="seat-map"
                         >
                           <span className="seat-map-img">
-                            <img src={SeatMapImg} />
-                            <img className="active" src={SeatMapWhite} />
+                            <img alt="seat-map" src={SeatMapImg} />
+                            <img
+                              alt="seat-map-blank"
+                              className="active"
+                              src={SeatMapWhite}
+                            />
                           </span>
                           <span className="seat-map-text">Seat Map</span>
                         </a>
@@ -451,15 +444,15 @@ export default class EventsDetail extends Component {
                         title="Price Details"
                         infoTag={
                           detailData.hide_booking_fee &&
-                          detailData.hide_booking_fee !== "1"
+                          detailData.hide_booking_fee !== '1'
                             ? detailData.hide_booking_fee
                             : null
                         }
                         preExpanded={accrodian}
                         uuid={`${
-                          detailData.is_available_for_booking == 1
-                            ? "pricedetail"
-                            : ""
+                          detailData.is_available_for_booking === 1
+                            ? 'pricedetail'
+                            : ''
                         }`}
                         desc={detailData.ticket_pricing}
                         openInfoPopup={this.openInfoPopup}
