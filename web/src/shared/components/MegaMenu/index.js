@@ -2,7 +2,6 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import Calender from '../Calender';
 import thumbnailImg1 from "../../../assets/images/pretty-girls.jpg";
-import thumbnailImg2 from "../../../assets/images/hetty-keos.jpg";
 import locationImage from "../../../assets/images/location.svg";
 import eventGenere from "../../../assets/images/event.svg";
 import eventCalender from "../../../assets/images/cal.svg";
@@ -25,13 +24,6 @@ const MegaMenu = (props) => {
       day: "Sun, 26 May 2019",
       genre: "Theatre",
       text: "This Is What Happens To Pretty Girls"
-    },
-    {
-      id: "3",
-      img: thumbnailImg2,
-      day: "Sun, 26 May 2019",
-      genre: "Dance",
-      text: "Hetty Koes Endang (Indonesia)"
     },
   ];
 
