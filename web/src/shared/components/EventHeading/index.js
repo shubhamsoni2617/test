@@ -1,6 +1,6 @@
-import React, { useState, useEffect, useRef } from "react";
-import Tooltip from "../Tooltip";
-import "./style.scss";
+import React, { useState, useEffect, useRef } from 'react';
+import Tooltip from '../Tooltip';
+import './style.scss';
 
 function EventHeading(props) {
   const [allowTooltip, setAllowTooltip] = useState(props.allowTooltip);
@@ -18,25 +18,25 @@ function EventHeading(props) {
       setAllowTooltip(true);
     }
     let styleObjectDefault = {
-      overflow: "hidden",
+      overflow: 'hidden',
       LineHeight: `${props.height}px`,
       maxHeight: `${props.height * props.lines}px`,
       minHeight: `${props.height * props.lines}px`,
-      width: "91%",
+      width: '91%',
       fontSize: props.size,
       fontWeight: props.weight
     };
     if (element.current.offsetHeight >= props.height * props.lines) {
       setStyleObj({
-        textOverflow: "ellipsis",
-        display: props.lines === 1 ? "block" : "-webkit-box",
-        webkitlineclamp: `${props.lines}`,
-        webkitboxorient: "vertical",
+        textOverflow: 'ellipsis',
+        display: props.lines === 1 ? 'block' : '-webkit-box',
+        WebkitLineClamp: `${props.lines}`,
+        WebkitBoxOrient: 'vertical',
         ...styleObjectDefault
       });
     } else {
       setStyleObj({
-        display: "block",
+        display: 'block',
         ...styleObjectDefault
       });
     }
