@@ -1,0 +1,506 @@
+.where-to-buy-tickets{
+    position: relative;
+    z-index: 1;
+    .wtbt-sections-tab{
+        margin-top: -46px;
+        padding-bottom: 45px;
+        @media(max-width: 1024px){
+            margin-top: -36px;
+        }
+        @media(max-width: 768px){
+            margin-top: -46px;
+        }
+        @media(max-width: 767px){
+            padding-bottom: 20px;
+            margin-top: -66px;
+        }
+        .container{
+            @media(max-width: 767px){
+                padding-right: 0;
+                padding-left: 0;
+            }
+        }
+    }
+}
+.wtbt-nav{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    li {
+        list-style: none;
+        height: 97px;
+        width: 146px;
+        box-shadow: 0 0 10px 0 rgba(0,0,0,0.13);
+        display: flex;
+        flex-direction: row;
+        margin: 0 10px;
+        background-color: #fff;
+        position: relative;
+        @media(max-width: 1024px){
+            margin: 0 10px 10px;
+        }
+        @media(max-width: 768px){
+            box-shadow: 0 0 21px 0 rgba(0,0,0,0.13);
+            flex: 0 0 calc(33.33% - 10px);
+            width: calc(33.33% - 10px);
+            margin: 0 5px 10px;
+            max-width: 160px;
+        }
+        @media(max-width: 767px){
+            max-height: 70px;
+        }
+        @media(max-width: 640px){
+            flex-basis: calc(33.33% - 10px);
+            width: calc(33.33% - 10px);
+            margin: 0 5px 10px;
+        }
+        .wtbt-tab {
+            display: flex;
+            justify-content: center;
+            width: 100%;
+            align-items: center;
+            flex-direction: column;
+            position: relative;
+            &:after{
+                position: absolute;
+                content: "";
+                width: 100%;
+                height: auto;
+                background-repeat: no-repeat;
+                background-color: transparent;
+                text-align: center;
+                margin: 0 auto;
+                display: block;
+                top: 50%;
+                left: 50%;
+                right: auto;
+                bottom: auto;
+                transform: translate(-50%, -50%);
+                background-position: center;
+                margin-top: -15px;
+                height: 35px;
+                width: 35px;
+                background-size: contain;
+                @media(max-width: 1024px){
+                    width: 33px;
+                    height: 33px;
+                    background-size: contain;
+                }
+                @media(max-width: 767px){
+                    background-size: contain;
+                    width: 28px;
+                    height: 28px;
+                    text-align: center;
+                    margin-top: -10px;
+                }
+            }
+            &:before{
+                position: absolute;
+                content: "";
+                left: 0px;
+                right: 0px;
+                bottom: 0px;
+                top: auto;
+                width: 0px;
+                background-color: #0098FF;
+                height: 2px;
+                transition: 0.5s width;
+            }
+            span {
+                color: #092438;
+                font-family: 'Rubik', sans-serif;
+                line-height: 19px;
+                font-size: 16px;
+                padding-top: 40px;
+                transition: 0.5s color;
+                @media(max-width: 767px){
+                    font-size: 13px;
+                    padding-top: 35px;
+                }
+                @media(max-width: 640px){
+                    font-size: 12px;
+                }
+            }
+            &:hover{
+                &:before{
+                    width: 100%;
+                }
+                span{
+                    color: #0098FF;
+                }
+            }
+        }
+        &.wtbt-tab-website{
+            .wtbt-tab{
+                &:after{
+                    background-image: url(../../assets/images/website.svg);
+                    transition: 0.5s background-image;
+                }
+                &:hover{
+                    &:after{
+                        background-image: url(../../assets/images/website-active.svg);
+                    }
+                }
+            }
+        }
+        &.wtbt-tab-mobile-app{
+            .wtbt-tab{   
+                &:after{
+                    background-image: url(../../assets/images/smartphone.svg);
+                    transition: 0.5s background-image;
+                }
+                &:hover{
+                    &:after{
+                        background-image: url(../../assets/images/smartphone-active.svg);
+                    }
+                }
+            }
+        }
+        &.wtbt-tab-agent{
+            .wtbt-tab{   
+                &:after{
+                    background-image: url(../../assets/images/user.svg);
+                    transition: 0.5s background-image;
+                }
+                &:hover{
+                    &:after{
+                        background-image: url(../../assets/images/user-active.svg);
+                    }
+                }
+            }
+        }
+        &.wtbt-tab-partners{
+            .wtbt-tab{       
+                &:after{
+                    background-image: url(../../assets/images/partners.svg);
+                    transition: 0.5s background-image;
+                }
+                &:hover{
+                    &:after{
+                        background-image: url(../../assets/images/partners-active.svg);
+                    }
+                }
+            }
+        }
+        &.wtbt-tab-hotline{
+            .wtbt-tab{        
+                &:after{
+                    background-image: url(../../assets/images/hotline.svg);
+                    transition: 0.5s background-image;
+                }
+                &:hover{
+                    &:after{
+                        background-image: url(../../assets/images/hotline-active.svg);
+                    }
+                }
+            }
+        }
+    }
+}
+
+.wtbt-desc {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    @media(max-width: 768px){
+        text-align: center;
+    }
+    .wtbt-content {
+        flex: 0 0 50%;
+        width: 50%;
+        z-index: 1;
+        @media(max-width: 768px){
+            flex: 0 0 100%;
+            width: 100%;
+            margin-bottom: 40px;
+        }
+        h1 {
+            color: #343434;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 40px;
+            line-height: 49px;
+            font-weight: 600;
+            margin-bottom: 22px;
+            padding: 0px;
+            @media(max-width: 840px){
+                font-size: 32px;
+                line-height: 38px
+            }
+            @media(max-width: 768px){
+                font-size: 25px;
+                line-height: 30px;
+                margin-bottom: 15px;
+            }
+            @media(max-width: 640px){
+                font-size: 22px;
+                line-height: 25px;
+            }
+        }
+        p {
+            color: #626262;
+            font-family:'Rubik', sans-serif;
+            font-size: 14px;
+            line-height: 26px;
+            margin: 0px;
+            padding: 0px;
+            @media(max-width: 768px){
+                font-size: 13px;
+                line-height: 22px;
+            }
+        }
+        a , button{
+            color: #FFFFFF;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 20px;
+            line-height: 24px;
+            padding: 12px 24px;
+            background-color: #0098FF;
+            font-weight: 600;
+            margin-top: 33px;
+            display: inline-block;
+            @media(max-width: 768px){
+                font-size: 15px;
+                line-height: 20px;
+                padding: 8px 20px;
+                margin-top: 15px
+            }
+        }
+    }
+    .wtbt-image {
+        flex: 0 0 50%;
+        width: 50%;
+        @media(max-width: 768px){
+            flex: 0 0 100%;
+            width: 100%;
+        }
+    }
+}
+.sistic-singapore-section{
+    min-height: 356px;
+    display: flex;
+    align-items: center;
+    .wtbt-desc{
+        position: relative;
+        .wtbt-image{
+            margin-right: -60px;
+            position: absolute;
+            right: 0px;
+            top: 50%;
+            transform: translateY(-50%);
+            @media(max-width: 768px){
+                margin-right: 0;
+                position: relative;
+                right: 0px;
+                top: 0;
+                transform: none;
+            }
+        }
+        .wtbt-content{
+            padding-right: 40px;
+            @media(max-width: 768px){
+                padding-right: 0px;
+                margin-bottom: 40px;
+            }
+            @media(max-width: 767px){
+                margin-bottom: 20px;
+            }
+        }
+    }
+}
+.mobile-app-section{
+    position: relative;
+    height: 429px;
+    background-color: #F0F9FF;
+    margin-top: 175px;
+    @media(max-width: 768px){
+        margin-top: 40px;
+        padding-top: 40px;
+        margin-bottom: 130px;
+        height: 100%;
+    }
+    @media(max-width: 767px){
+        margin-top: 40px;
+        padding-top: 20px;
+    }
+    .wtbt-desc{
+        position: relative;
+        height: 429px;
+        @media(max-width: 768px){
+            height: 100%;
+        }
+        .wtbt-image{
+            position: absolute;
+            left: 0px;
+            bottom: -31px;
+            @media(max-width: 768px){
+                position: relative;
+                left: 0px;                
+                order: 2;                
+            }
+            @media(max-width: 767px){
+                bottom: -90px;
+                margin-top: -90px;
+            }
+        }
+        .wtbt-content{
+            text-align: right;
+            margin-left: auto;
+            @media(max-width: 768px){
+                text-align: center;
+            }
+            .download-option{
+                display: flex;
+                justify-content: flex-end;
+                align-items: center;
+                flex-direction: row;
+                width: 100%;
+                @media(max-width: 768px){
+                    justify-content: center;
+                    margin: 20px 0px 0px;
+                    width: 100%;
+                }
+                a{
+                    background-color: transparent;
+                    margin-left: 10px;
+                    padding: 7px 23px 9px 18px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    text-align: left;
+                    transition: 0.5s background-color;
+                    @media(max-width: 840px){
+                        margin-left: 5px;
+                        padding: 5px 10px 5px 10px;
+                        margin-top: 23px;
+                        width: auto;
+                    }
+                    @media(max-width: 768px){
+                        padding: 5px 10px 5px 10px;
+                        width: calc(50% - 20px);
+                        margin: 0px 10px 0px 0px;
+                    }
+                    @media(max-width: 640px){
+                        padding: 5px 5px 5px 5px;
+                        width: calc(50% - 5px);
+                        margin: 0px 5px 0px 0px;
+                    }
+                    &:hover{
+                        background-color: #FFFFFF;                        
+                    }
+                }
+            }
+        }
+    }
+}
+.agent-section {
+    position: relative;
+    min-height: 623px;
+    display: flex;
+    align-items: center;
+    @media(max-width: 768px){
+        margin-top: 40px;
+        min-height: 100%;
+    }
+    .wtbt-image{
+        position: absolute;
+        right: 30px;
+        top: 50%;
+        transform: translateY(-50%);
+        text-align: right;
+        @media(max-width: 768px){
+            position: relative;
+            right: 0;
+            top: 0;
+            transform: none;
+            text-align: center;
+        }
+    }
+}
+.api-partners-section {
+    background-color: #F9F9F9;
+    padding: 87px 0px;
+    @media(max-width: 768px){
+        padding: 35px 0px;
+    }
+    .wtbt-desc{
+        @media(max-width: 768px){
+            position: relative; 
+        }
+        .wtbt-content{
+            text-align: right;
+            padding-left: 60px;
+            @media(max-width: 768px){
+                text-align: center;
+                padding-left: 0;
+            }
+            button{
+                @media(max-width: 768px){
+                    position: absolute;
+                    bottom: 0px;
+                    left: 50%;
+                    transform: translateX(-50%);
+                }
+                @media(max-width: 640px){
+                    padding: 8px 10px;
+                }
+            }
+        }
+        .wtbt-image{
+            display: flex;
+            flex-wrap: wrap;
+            @media(max-width: 768px){
+                order: 2;
+                padding-bottom: 30px;
+            }
+            .api-images {
+                height: 85px;
+                overflow: hidden;
+                display: block;
+                flex: 0 0 calc(33.33% - 40px);
+                width: calc(33.33% - 40px);
+                margin: 0 40px 40px 0px;
+                @media(max-width: 768px){
+                    flex-basis: calc(33.33% - 20px);
+                    width: calc(33.33% - 20px);
+                    margin: 0 20px 20px 0px;
+                }
+                img{
+                    max-width: 100%;
+                    height: auto;
+                }
+            }
+        }
+    }
+}
+.hotline-section {
+    position: relative;
+    background-color: #f0f9ff;
+    margin: 148px 0px 55px;
+    @media(max-width: 1280px){
+        margin: 87px 0px 55px;
+    }
+    @media(max-width: 1024px){
+        margin: 0px;
+        padding-top: 10px;
+    }
+    @media(max-width: 768px){        
+        padding-top: 35px;
+    }
+
+    .wtbt-desc{
+        height: 453px;
+        @media(max-width: 768px){
+            height: auto;
+        }
+        .wtbt-image{
+            position: absolute;
+            right: 0px;
+            bottom: 0px;
+            text-align: right;
+            @media(max-width: 768px){
+                position: relative;                
+                text-align: center;
+            }
+        }
+    }
+}

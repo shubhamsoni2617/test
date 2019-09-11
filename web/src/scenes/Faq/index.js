@@ -4,23 +4,23 @@ import Constants from "../../shared/constants";
 import FaqSearch from "./FaqSearch";
 import FaqCategory from "./FaqCategory";
 import FaqService from "../../shared/services/FaqService";
-import FaqContent from "./FaqContent";
 
 const Faq = props => {
-  console.log(props.match.params);
-
+  // console.log(props);
   const [faqContentData, setFaqContentData] = useState(null);
   const [faqCategoryData, setFaqCategoryData] = useState(null);
   const [categoryId, setCategoryId] = useState(null);
   const [categoryName, setCategoryName] = useState("");
-  // const [questionId, setQuestionId] = useState(null);
-  const [questionsExist, setQuestionsExist] = useState(true);
   const [urlExist, setUrlExist] = useState(false);
 
   useEffect(() => {
     fetchFaqCategoriesService();
     fetchFaqContentService();
   }, []);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [faqCategoryData]);
 
   useEffect(() => {
     if (faqCategoryData) {
@@ -63,52 +63,20 @@ const Faq = props => {
       });
   };
 
-  const onQuestionIdChange = questionsExist => {
-    setQuestionsExist(questionsExist);
-    //   setQuestionId(questionId);
-  };
-
   return (
     faqContentData &&
     faqCategoryData && (
       <Fragment>
-        <FaqSearch
-          suggestions={faqContentData}
+        <FaqSearch suggestions={faqContentData} categories={faqCategoryData} />
+        <FaqCategory
+          {...props}
+          urlExist={urlExist}
+          categoryId={categoryId}
+          categoryName={categoryName}
+          urlExist={urlExist}
           categories={faqCategoryData}
-          // onQuestionIdChange={onQuestionIdChange}
+          faqContentData={faqContentData}
         />
-        <div className="find-agent-wrapper">
-          <div className="container-fluid row agent-list">
-            <div className="col-lg-4">
-              <FaqCategory
-                categoryId={categoryId}
-                urlExist={urlExist}
-                categories={faqCategoryData}
-                faqContentData={faqContentData}
-                // onQuestionIdChange={onQuestionIdChange}
-              />
-            </div>
-            <div className="col-lg-8">
-              {urlExist ? (
-                <Fragment>
-                  <h2>{categoryName}</h2>
-                  {urlExist ? (
-                    <FaqContent
-                      {...props}
-                      data={faqContentData}
-                      categoryId={categoryId}
-                      // questionId={questionId}
-                    />
-                  ) : (
-                    <h2>No Data Found</h2>
-                  )}
-                </Fragment>
-              ) : (
-                <h1>No Data Found</h1>
-              )}
-            </div>
-          </div>
-        </div>
       </Fragment>
     )
   );

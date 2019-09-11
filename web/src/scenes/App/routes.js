@@ -1,6 +1,7 @@
 import Home from "../Home";
 import Events from "../Events";
-import EventsDetail from "../Events/EventsDetail";
+// import EventsDetail from "../Events/EventsDetail";
+import EventsDetail from "../EventsDetail";
 import HomeService from "../../shared/services/HomeService";
 import Promotions from "../Promotions";
 import PageNotFound from "../PageNotFound/index";
@@ -10,7 +11,9 @@ import Venues from "../Venues";
 import WhereBuyTickets from "../WhereBuyTickets";
 import TermsPrivacy from "../TermsPrivacy";
 import GiftVouchers from "../GiftVouchers";
+import ContactUs from "../ContactUs";
 import Faq from "../Faq";
+
 const routes = [
   {
     path: "/",
@@ -53,7 +56,7 @@ const routes = [
     component: WhereBuyTickets
   },
   {
-    path: "/attraction",
+    path: "/attractions",
     component: Attraction,
     exact: true
   },
@@ -75,6 +78,11 @@ const routes = [
     exact: true
   },
   {
+    path: "/contact-us",
+    component: ContactUs,
+    exact: true
+  },
+  {
     path: "/venues",
     component: Venues,
     exact: true
@@ -84,6 +92,11 @@ const routes = [
     component: Faq,
     exact: true
   },
+  // {
+  //   path: "/faq/:id",
+  //   component: Faq,
+  //   exact: true
+  // },
 
   {
     path: "*",

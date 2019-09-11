@@ -1,19 +1,9 @@
 .find-an-agent{
-  background: url('../../../././../assets/images/agent-banner.png') no-repeat;
-  height: 200px;
-  @media (max-width: 992px) {
-      height: auto;
-  }
   .authorised-agent{
-    padding: 45px 0 40px;
-    font-size: 30px;
-    font-family: 'Montserrat', sans-serif;
-    color:#FFF;
-    display: block;
-    font-weight: 600;
+    padding-bottom: 27px;
     @media (max-width: 767px) {
-        line-height: 30px;
-        padding: 25px 0;
+      line-height: 30px;
+      padding: 25px 0;
     }
   }
   form{
@@ -41,6 +31,11 @@
           font-size: 15px;
           font-weight: 500;
           color: #343434;
+          -webkit-appearance: none;
+          background-image: url('../../../../assets/images/bottom-arrow.svg');
+          background-repeat: no-repeat;
+          background-position: 97%;
+          background-size: 12px auto;
           &:first-child{
               border-right: 2px solid rgba(52,52,52,0.21);
           }

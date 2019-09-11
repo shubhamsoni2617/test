@@ -81,10 +81,6 @@
             }
         }
         h2{
-            color: #343434;	
-            font-size: 24px;	
-            line-height: 29px;
-            font-family: 'Montserrat', sans-serif;
             margin: 0 0 5px;
             padding: 0;
         }
@@ -148,7 +144,7 @@
             margin: 0;
             padding: 0;
             li{
-                padding: 15px 0;
+                padding: 17px 13px;
                 border-bottom: 1px #E6E6E6 solid;
                 position: relative;
                 &:last-child{
@@ -176,28 +172,30 @@
                     font-size: 16px;
                     font-weight: 600;
                     line-height: 19px;
-                    margin: 0 0 13px;
+                    margin: 0 0 10px;
                     a{
                         color: #0077C8;	
-                        font-size: 16px;	
+                        font-size: 16px;
+                        font-weight: 400;	
                         line-height: 19px;
                     }
                 }
                 p{
                     color: #343434;	
-                    font-size: 16px;	
-                    line-height: 19px;
+                    font-size: 15px;	
+                    line-height: 20px;
                     margin: 0;
                     padding: 0;
                 }
             }
           }
-          .pop-up-container:hover .active{
-            display:block;
-          }
-          
-          .pop-up-container:hover{
-            cursor: pointer;
+          .pop-up-container{
+            &:hover{
+                cursor: pointer;
+                &.active{
+                    display:block;
+                  }
+            }
           }
           
           .pop-up-list{
@@ -295,6 +293,7 @@
                             border: none;
                             img{
                                 max-width: 100%;
+                                height: auto;
                             }
                             p{
                                 color: #343434;	

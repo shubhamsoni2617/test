@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react'
 import { Link } from 'react-router-dom';
 import { CSSTransitionGroup } from 'react-transition-group';
-import logo from '../../../assets/images/logo.png';
+
 import './style.scss';
 import MegaMenu from '../../../shared/components/MegaMenu';
 import DropDown from '../../../shared/components/DropDown';
@@ -10,6 +10,7 @@ import MiniCart from '../../Home/MiniCart';
 import HomeService from '../../../shared/services/HomeService';
 import { ReactComponent as ManLogo } from '../../../assets/images/man.svg';
 import AndroidLogo from '../../../assets/images/android.png';
+import logo from '../../../assets/images/logo.png';
 import { ReactComponent as AppleLogo } from '../../../assets/images/apple.svg';
 import fb from '../../../assets/images/fb.svg';
 import insta from '../../../assets/images/insta-unfill.svg';
@@ -17,6 +18,7 @@ const TopNav = (props) => {
   let refValue = useRef();
   const [showMegaMenu, setShowMegaMenu] = useState(false);
   const [menuActive, setMenuActive] = useState(false);
+  const [pathName, setPathName] = useState('events');
   const [headerClass, setHeaderClass] = useState(false);
   const [byVenueEvent, setByVenueEvent] = useState([]);
   const [byGenreEvent, setByGenreEvent] = useState([]);
@@ -51,30 +53,31 @@ const TopNav = (props) => {
         console.log(err)
       });
 
-      if(props.history.location.pathname) processPath(props.history.location);
+    if (props.history.location.pathname) processPath(props.history.location);
 
-      const unlisten = props.history.listen((location) => {
-        processPath(location);
-      });
-      return () => {
-        unlisten();
-      };
+    const unlisten = props.history.listen((location) => {
+      processPath(location);
+    });
+    return () => {
+      unlisten();
+    };
 
   }, []);
 
   const processPath = (location) => {
-    if(location.pathname){
+    if (location.pathname) {
       let pathArr = location.pathname.split('/');
-      if(pathArr.length && pathArr[1] == 'events'){
+      if (pathArr.length && (pathArr[1] === 'events' || pathArr[1] === 'promotions')) {
+        setPathName(pathArr[1]);
         setMenuActive(true);
 
         //For event header class
-        if(location.search === ''){
+        if (location.search === '') {
           setHeaderClass(true);
-        }else{
+        } else {
           setHeaderClass(false);
         }
-      }else{
+      } else {
         setMenuActive(false);
         setHeaderClass(false);
       }
@@ -122,7 +125,7 @@ const TopNav = (props) => {
           <nav className="bottom-header">
             <div className="bottom-header-left">
               <ul>
-                <li className={`has-submenu ${menuActive ? 'active' : ''}`} onMouseEnter={() => handleMouseStatus(true)} onMouseLeave={() => handleMouseStatus(false)}>
+                <li className={`has-submenu ${menuActive && pathName === "events" ? 'active' : ''}`} onMouseEnter={() => handleMouseStatus(true)} onMouseLeave={() => handleMouseStatus(false)}>
                   <a>Events</a>
                   <CSSTransitionGroup
                     transitionName="mega"
@@ -132,8 +135,8 @@ const TopNav = (props) => {
                     {showMegaMenu && <MegaMenu handleMouseStatus={handleMouseStatus} byGenreEvent={byGenreEvent} byVenueEvent={byVenueEvent} />}
                   </CSSTransitionGroup>
                 </li>
-                <li><Link to="/attraction">Attractions</Link></li>
-                <li><Link to="/promotions">Promotions</Link></li>
+                <li className={menuActive && pathName === "attractions" ? 'active' : ''}><Link to="/attractions">Attractions</Link></li>
+                <li className={menuActive && pathName === "promotions" ? 'active' : ''}><Link to="/promotions">Promotions</Link></li>
                 <li><a>Explore</a></li>
               </ul>
             </div>

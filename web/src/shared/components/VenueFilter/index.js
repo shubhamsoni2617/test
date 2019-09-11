@@ -1,4 +1,5 @@
 import React, { Component, createRef } from "react";
+import EventHeading from "../EventHeading";
 import { CSSTransitionGroup } from "react-transition-group";
 import CloseIcon from "../../../assets/images/close-blue.svg";
 import "./style.scss";
@@ -29,8 +30,9 @@ export default class VenueFilter extends Component {
     this.setState({ display: false });
   };
 
-  handleHoverOn = alphabet => {
+  handleHoverOn = (alphabet, event) => {
     this.setState({ hoverEffect: "disable-venue", alphabet: alphabet });
+    this.scrollToRef(event);
   };
 
   handleHoverOff = () => {
@@ -99,7 +101,18 @@ export default class VenueFilter extends Component {
               type="checkbox"
               id={id}
             />
-            <label htmlFor={id}>{venue.name}</label>
+            {/* <label htmlFor={id}>{venue.name}</label> */}
+            <label htmlFor={id}>
+            <EventHeading
+                title={venue.name}
+                lines={1}
+                height={17}
+                size={14}
+                weight="normal"
+                noMargin={true}
+              />
+            </label>
+
           </li>
         );
       });
@@ -124,7 +137,7 @@ export default class VenueFilter extends Component {
     alphabets.push(
       <li
         id="#"
-        onMouseOver={() => this.handleHoverOn("#")}
+        onMouseOver={(event) => this.handleHoverOn("#", event)}
         onMouseLeave={() => this.handleHoverOff()}
         onClick={this.scrollToRef}
       >
@@ -140,7 +153,7 @@ export default class VenueFilter extends Component {
         <li
           className={applyDisabledClass}
           id={String.fromCharCode(i)}
-          onMouseOver={() => this.handleHoverOn(String.fromCharCode(i))}
+          onMouseOver={(event) => this.handleHoverOn(String.fromCharCode(i), event)}
           onMouseLeave={() => this.handleHoverOff()}
           key={i}
           onClick={this.scrollToRef}
@@ -200,6 +213,7 @@ export default class VenueFilter extends Component {
                 </div>
               </div>
               <div>
+
                 <ul
                   id="venueContainer"
                   ref={node => (this.myRef = node)}
