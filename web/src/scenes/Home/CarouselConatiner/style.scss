@@ -16,8 +16,7 @@
 }
 .carousel-container{
   overflow: hidden;
-  transition: all 1s;
-  max-height: 598px;
+  transition: all 1s;  
   &.hide-container{
     max-height: 0;
   }
