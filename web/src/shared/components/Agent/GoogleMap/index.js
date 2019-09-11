@@ -38,8 +38,7 @@ const GoogleMap = (props) => {
   }
 
   const infoWindowHasClosed = () => {
-    setSelectedPlace({})
-    handleActiveClass(0);
+    // setSelectedPlace({});
     setShowingInfoWindow(false);
   }
 
@@ -52,13 +51,19 @@ const GoogleMap = (props) => {
   useEffect(() => {
     setShowingInfoWindow(false);
     setMapInitialCenter(countryName);
+    setSelectedPlace({})
+    handleActiveClass(0);
   }, [mapClick])
 
   const setMapInitialCenter = (country) => {
+    handleZoomNInitialCenter(country);
+  }
+
+  const handleZoomNInitialCenter=(country)=>{
     switch (country) {
       case "Singapore":
         setInitialCenter({ lat: 1.290270, lng: 103.851959 });
-        setZoomValue(14);
+        setZoomValue(12);
         break;
       case "Malaysia":
         setInitialCenter({ lat: 3.1412001, lng: 101.6865311 });
@@ -90,13 +95,19 @@ const GoogleMap = (props) => {
         break;
       default:
         setInitialCenter({ lat: 1.290270, lng: 103.851959 });
-        setZoomValue(14);
+        setZoomValue(12);
     }
   }
 
   if (selectedPlace.id) {
     handleActiveClass(selectedPlace.id);
+  }else{
+    if (showOnMapData.id) {
+      handleActiveClass(showOnMapData.id);
+    }
   }
+
+
 
   if (!google) {
     return <div>Loading...</div>;

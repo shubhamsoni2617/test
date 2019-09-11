@@ -81,8 +81,8 @@
             }
         }
         h2{
-            color: #343434;	
-            font-size: 24px;	
+            color: #343434;
+            font-size: 24px;
             line-height: 29px;
             font-family: 'Montserrat', sans-serif;
             margin: 0 0 5px;
@@ -104,7 +104,7 @@
                     width: 18px;
                 }
             }
-    
+
             input {
                 border: 1px solid rgba(151,151,151,0.2);
                 height: 36px;
@@ -134,7 +134,7 @@
                 color: #FF8300;
                 padding: 1% 0%;
                 font-family: 'Montserrat', sans-serif;
-                font-size: 16px;	
+                font-size: 16px;
                 line-height: 19px;
                 font-weight: 600;
                 img{
@@ -142,7 +142,7 @@
                 }
             }
           }
-          
+
           ul {
             list-style-type: none;
             margin: 0;
@@ -178,14 +178,14 @@
                     line-height: 19px;
                     margin: 0 0 13px;
                     a{
-                        color: #0077C8;	
-                        font-size: 16px;	
+                        color: #0077C8;
+                        font-size: 16px;
                         line-height: 19px;
                     }
                 }
                 p{
-                    color: #343434;	
-                    font-size: 16px;	
+                    color: #343434;
+                    font-size: 16px;
                     line-height: 19px;
                     margin: 0;
                     padding: 0;
@@ -195,11 +195,11 @@
           .pop-up-container:hover .active{
             display:block;
           }
-          
+
           .pop-up-container:hover{
             cursor: pointer;
           }
-          
+
           .pop-up-list{
             display:none;
             border: 2px solid #0098FF;
@@ -216,7 +216,7 @@
                 width:calc(100% + 30px);
                 left: -15px;
                 padding: 10px 20px;
-                top: 20px;  
+                top: 20px;
                 box-shadow: none;
             }
             &:after, &:before {
@@ -233,7 +233,7 @@
                     top: 0;
                 }
             }
-            
+
             &:after {
                 border-color: rgba(136, 183, 213, 0);
                 border-right-color: #FFF;
@@ -297,8 +297,8 @@
                                 max-width: 100%;
                             }
                             p{
-                                color: #343434;	
-                                font-size: 13px;	
+                                color: #343434;
+                                font-size: 13px;
                                 line-height: 15px;
                                 margin: 5px 0 0 0;
                             }
@@ -306,8 +306,10 @@
                     }
                 }
             }
-          } 
+          }
     }
 }
 
-
+.active-class{
+  background-color:rgba(0,152,255,0.07)
+}
