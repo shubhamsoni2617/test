@@ -53,9 +53,7 @@ const MegaMenu = props => {
                     <Link
                       to={`/events/search?c=${event.id}`}
                       onClick={() => {
-                        {
-                          props.handleMouseStatus(false);
-                        }
+                        props.handleMouseStatus(false);
                       }}
                     >
                       {event.name}
@@ -83,7 +81,11 @@ const MegaMenu = props => {
               </h5>
             </li>
             <li className="seeall-veneus">
-              <a href="javascript:void(0)" className="seeall-btn">
+              <a
+                href="/"
+                onClick={e => e.preventDefault()}
+                className="seeall-btn"
+              >
                 See All Venues <img src={rightArrowImage} alt="" />
               </a>
             </li>
@@ -96,9 +98,7 @@ const MegaMenu = props => {
                     <Link
                       to={`/events/search?v=${event.id}`}
                       onClick={() => {
-                        {
-                          props.handleMouseStatus(false);
-                        }
+                        props.handleMouseStatus(false);
                       }}
                     >
                       {event.name}

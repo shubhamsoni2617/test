@@ -93,9 +93,12 @@ const Calender = props => {
           </div>
           <div className="calender-action-btn">
             <a
-              href="javascript:void(0)"
+              href="/"
               className="cal-cancel-btn"
-              onClick={handleResetClick}
+              onClick={e => {
+                e.preventDefault();
+                handleResetClick();
+              }}
             >
               <img src={crossArrow} alt="" />
               <img src={crossArrowWhite} alt="cross-arrow" className="active" />

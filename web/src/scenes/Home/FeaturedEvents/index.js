@@ -209,7 +209,9 @@ const FeaturedEvents = props => {
       return (
         <div className="dots-group">
           <span>
-            <a href="/">{i}</a>
+            <a href="/" onClick={e => e.preventDefault()}>
+              {i}
+            </a>
           </span>
         </div>
       );

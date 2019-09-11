@@ -61,7 +61,7 @@ class HomePageSearch extends Component {
                     <img src={recentSearchIconImage} alt="" /> Music
                   </span>
                   <a
-                    href="javascript:void(0)"
+                    href="/"
                     onClick={e => e.preventDefault()}
                     className="search-listing-close-btn"
                   >
@@ -73,7 +73,7 @@ class HomePageSearch extends Component {
                     <img src={recentSearchIconImage} alt="" /> pretty
                   </span>
                   <a
-                    href="javascript:void(0)"
+                    href="/"
                     onClick={e => e.preventDefault()}
                     className="search-listing-close-btn"
                   >
@@ -85,7 +85,7 @@ class HomePageSearch extends Component {
                     <img src={recentSearchIconImage} alt="" /> dance india
                   </span>
                   <a
-                    href="javascript:void(0)"
+                    href="/"
                     onClick={e => e.preventDefault()}
                     className="search-listing-close-btn"
                   >
@@ -97,7 +97,7 @@ class HomePageSearch extends Component {
                     <img src={recentSearchIconImage} alt="" /> vivaratna
                   </span>
                   <a
-                    href="javascript:void(0)"
+                    href="/"
                     onClick={e => e.preventDefault()}
                     className="search-listing-close-btn"
                   >
@@ -109,7 +109,7 @@ class HomePageSearch extends Component {
                     <img src={recentSearchIconImage} alt="" /> kurio
                   </span>
                   <a
-                    href="javascript:void(0)"
+                    href="/"
                     onClick={e => e.preventDefault()}
                     className="search-listing-close-btn"
                   >
@@ -121,7 +121,7 @@ class HomePageSearch extends Component {
                     <img src={recentSearchIconImage} alt="" /> balle
                   </span>
                   <a
-                    href="javascript:void(0)"
+                    href="/"
                     onClick={e => e.preventDefault()}
                     className="search-listing-close-btn"
                   >
@@ -133,7 +133,7 @@ class HomePageSearch extends Component {
                     <img src={recentSearchIconImage} alt="" /> katy
                   </span>
                   <a
-                    href="javascript:void(0)"
+                    href="/"
                     onClick={e => e.preventDefault()}
                     className="search-listing-close-btn"
                   >
@@ -145,7 +145,7 @@ class HomePageSearch extends Component {
                     <img src={recentSearchIconImage} alt="" /> phant
                   </span>
                   <a
-                    href="javascript:void(0)"
+                    href="/"
                     onClick={e => e.preventDefault()}
                     className="search-listing-close-btn"
                   >

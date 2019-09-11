@@ -239,8 +239,10 @@ function DateRangeFilter(props) {
         {from && to && (
           <a
             href="/"
-            onClick={e => e.preventDefault()}
-            onClick={filterByDateRange}
+            onClick={e => {
+              e.preventDefault();
+              filterByDateRange();
+            }}
             className="cal-apply-btn active"
           >
             <img src={tickWhite} className="active" alt="tick" />
@@ -320,6 +322,7 @@ function Filters(props) {
         <h3>
           FILTERS{" "}
           <a
+            href="/"
             onClick={e => {
               e.preventDefault();
               clearAllFilters();

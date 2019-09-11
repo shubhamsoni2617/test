@@ -4,8 +4,11 @@ import VenueFilter from "../VenueFilter";
 function ShowMoreButton(props) {
   return (
     <a
-      href="javascript:void(0)"
-      onClick={() => props.onClick()}
+      href="/"
+      onClick={e => {
+        e.preventDefault();
+        props.onClick();
+      }}
       className="view-all-filters"
     >
       {props.title}
@@ -63,12 +66,24 @@ const FilterGrid = props => {
         <h3>{props.title}</h3>
         <ul>
           <li className={activeClass ? "active" : ""}>
-            <a href="javascript:void(0)" onClick={() => selectAll(true)}>
+            <a
+              href="/"
+              onClick={e => {
+                e.preventDefault();
+                selectAll(true);
+              }}
+            >
               Select all
             </a>
           </li>
           <li className={activeClass ? "" : "active"}>
-            <a href="javascript:void(0)" onClick={() => selectAll(false)}>
+            <a
+              href="/"
+              onClick={e => {
+                e.preventDefault();
+                selectAll(false);
+              }}
+            >
               Clear
             </a>
           </li>
