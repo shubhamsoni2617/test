@@ -13,7 +13,9 @@
     min-height: 270px;
   }
   & > .container-fluid {
-    padding-left: 100px;
+    @media(min-width: 1280px){
+      padding-left: 100px;
+    }
   }
   &:after{
     position: absolute;

@@ -50,6 +50,17 @@
             }
         }
         .event-details {
+            .attraction-show-more {
+                background-color: #2698ff;
+                border: 1px solid #2698ff;
+                padding: 7px 10px;
+                color: #fff;
+                transition: 0.5s background-color, 0.5s color;
+                &:hover{
+                    background-color: transparent;
+                    color: #2698ff;
+                }
+            }
             .price-event{
                 .buy-btn{
                     position: absolute;
@@ -66,6 +77,7 @@
                     text-transform: uppercase;
                     border: none;
                     background: url(../../../assets/images/buy-arrow-b.png) 94% 15px no-repeat;
+                    font-weight: 600;
                     &:hover{
                         background: #0098FF url(../../../assets/images/buy-arrow.png) 94% 15px no-repeat;
                         font-size: 18px;
