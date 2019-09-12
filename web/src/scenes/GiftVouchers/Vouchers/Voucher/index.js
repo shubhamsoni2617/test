@@ -1,6 +1,6 @@
 import React from "react";
 import "./style.scss";
-import Logo from "../../../../assets/images/Logo.png";
+import Logo from "../../../../assets/images/logo.png";
 import { Link } from "react-router-dom";
 import buynowarrow from "../../../../assets/images/buy-arrow-b.png";
 

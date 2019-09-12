@@ -1,25 +1,23 @@
 .find-an-agent{
-  background: url('../../../././../assets/images/agent-banner.png') no-repeat;
-  height: 200px;
-  @media (max-width: 992px) {
-      height: auto;
-  }
   .authorised-agent{
-    padding: 45px 0 40px;
-    font-size: 30px;
-    font-family: 'Montserrat', sans-serif;
-    color:#FFF;
-    display: block;
-    font-weight: 600;
+    padding-bottom: 27px;
+    @media(max-width: 1024px){
+      padding-bottom: 10px;
+    }
     @media (max-width: 767px) {
-        line-height: 30px;
-        padding: 25px 0;
+      line-height: 30px;
+      padding: 15px 0 10px;
     }
   }
   form{
     @media (max-width: 992px) {
         background: #104065;
         padding: 25px;
+    }
+    @media(max-width: 768px){
+      max-width: 500px;
+      margin: 0 auto;
+      padding: 10px 25px;
     }
   }
   .find-agent-form{
@@ -32,6 +30,8 @@
           background: none;
           margin: 0;
           width: 100%;
+          max-width: 500px;
+          margin: 0 auto;
       }
       .form-control{
           border: none;
@@ -41,8 +41,13 @@
           font-size: 15px;
           font-weight: 500;
           color: #343434;
+          -webkit-appearance: none;
+          background-image: url('../../../../assets/images/bottom-arrow.svg');
+          background-repeat: no-repeat;
+          background-position: 97%;
+          background-size: 12px auto;
           &:first-child{
-              border-right: 2px solid rgba(52,52,52,0.21);
+              border-right: 2px solid rgba(52, 52, 52, 0.21);
           }
           @media (max-width: 992px) {
             margin-bottom: 10px;

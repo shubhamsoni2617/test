@@ -4,7 +4,7 @@ import address from '../../../assets/images/address.svg';
 import parking from '../../../assets/images/parking.svg';
 import food from '../../../assets/images/food.svg';
 import clock from '../../../assets/images/clock.svg';
-import contact from '../../../assets/images/contact.svg';
+import contact from '../../../assets/images/contact-icon.svg';
 import price from '../../../assets/images/price.svg';
 import seat from '../../../assets/images/seat.svg';
 import notification from '../../../assets/images/notification.svg';

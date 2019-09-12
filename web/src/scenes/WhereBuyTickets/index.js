@@ -1,5 +1,5 @@
 import React, { Component, useState, useEffect, Fragment } from "react";
-import banner from "../../assets/images/Bitmap Copy 2.png";
+import banner from "../../assets/images/location-banner.png";
 import Constants from "../../shared/constants";
 import Buttontext from "./ButtonText";
 import IconsNavigate from "./IconsNavigate";

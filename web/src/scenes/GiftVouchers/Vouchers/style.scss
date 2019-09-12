@@ -19,7 +19,8 @@
       flex: 0 0 100%;
       width: 100%;
       max-width: 300px;
-      margin-bottom: 20px; 
+      margin-bottom: 25px; 
+      box-shadow: 0 4px 48px 0 rgba(0,0,0,0.07);
     }
     &:hover{
       transform: translateY(-5px);
@@ -42,7 +43,7 @@
     }
     .voucher-price {
       font-size: 60px;
-      line-height: 72px;
+      line-height: 71px;
       text-align: center;
       color: #fff;
       display: block;
