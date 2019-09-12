@@ -142,6 +142,9 @@
         flex-wrap: wrap;
         justify-content: center;
         transition: 0.5s background-color;
+        -webkit-transition: 0.5s background-color;
+        -moz-transition: 0.5s background-color;
+        -o-transition: 0.5s background-color;
         position: relative;
         @media(max-width: 1024px){
           height: 42px;
@@ -163,6 +166,9 @@
           padding-right: 25px;
           position: relative;
           transition: 0.5s color;
+          -webkit-transition: 0.5s color;
+          -moz-transition: 0.5s color;
+          -o-transition: 0.5s color;
           z-index: 1;
           @media(max-width: 1024px){
             font-size: 16px;

@@ -6,6 +6,9 @@
     margin-bottom: 35px;
     width: 100%;
     transition: .5s ease-out;
+    -webkit-transition: .5s ease-out;
+    -moz-transition: .5s ease-out;
+    -o-transition: .5s ease-out;
     cursor: pointer;
     position: relative;
     @media (max-width: 767px) {
@@ -22,6 +25,9 @@
     &:hover{
         border: 2px solid #0098FF;
         transition: .5s ease-out;
+        -webkit-transition: .5s ease-out;
+        -moz-transition: .5s ease-out;
+        -o-transition: .5s ease-out;
         box-shadow: 0 2px 27px 0 rgba(0,0,0,0.09);
     }
     &.attraction-block{
@@ -211,6 +217,9 @@
                 font-weight: 500;
                 border: 1px transparent solid;
                 transition: 0.8s all;
+                -webkit-transition: 0.8s all;
+                -moz-transition: 0.8s all;
+                -o-transition: 0.8s all;
                 &::after{
                     display: none;
                 }
@@ -219,6 +228,9 @@
                     background: #FFF;
                     color: #0098FF;
                     transition: 0.8s all;
+                    -webkit-transition: 0.8s all;
+                    -moz-transition: 0.8s all;
+                    -o-transition: 0.8s all;
                 }
 
             }

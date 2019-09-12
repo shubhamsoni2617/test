@@ -622,6 +622,9 @@
                 top: 8px;
                 position: absolute;
                 transition: 0.3s background-color, 0.3s border-color;
+                -webkit-transition: 0.3s background-color, 0.3s border-color;
+                -moz-transition: 0.3s background-color, 0.3s border-color;
+                -o-transition: 0.3s background-color, 0.3s border-color;
                 margin-top: 18px;
                 &.active, &:hover{
                     line-height: 26px;
@@ -743,6 +746,9 @@
 .dropdown-enter.dropdown-enter-active {
   opacity: 1;
   transition: all 300ms ease-in-out;
+  -webkit-transition: all 300ms ease-in-out;
+  -moz-transition: all 300ms ease-in-out;
+  -o-transition: all 300ms ease-in-out;
 }
 
 .dropdown-leave {
@@ -752,4 +758,7 @@
 .dropdown-leave.dropdown-leave-active {
   opacity: 0;
   transition: all 300ms ease-in-out;
+  -webkit-transition: all 300ms ease-in-out;
+  -moz-transition: all 300ms ease-in-out;
+  -o-transition: all 300ms ease-in-out;
 }

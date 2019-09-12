@@ -238,6 +238,9 @@
           .pop-up-container{
               position: relative;
               transition: 0.5s border-color;
+              -webkit-transition: 0.5s border-color;
+              -moz-transition: 0.5s border-color;
+              -o-transition: 0.5s border-color;
               &:after{
                 position: absolute;
                 content: "";
@@ -247,6 +250,9 @@
                 top: 0px;
                 bottom: 0px;
                 transition: 0.5s background-color;
+                -webkit-transition: 0.5s background-color;
+                -moz-transition: 0.5s background-color;
+                -o-transition: 0.5s background-color;
                 @media(max-width: 992px){
                     left: -10px;
                     width: calc(100% + 10px);
