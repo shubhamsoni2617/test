@@ -102,7 +102,7 @@ const FilterGrid = props => {
               })}
           </CSSTransitionGroup>
         </ul>
-        {!(data.length < limit) && (
+        {!(data.length > limit) && (
           <ShowMoreButton
             title={`+ ${
               data.length > limit ? `${data.length - limit} More` : "Show Less"
