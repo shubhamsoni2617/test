@@ -19,11 +19,16 @@
             @media(max-width: 767px){
                 margin-top: -10px;
             }
+            h1{
+                font-weight: 600;
+                font-size: 37px;
+                line-height: 45px;
+            }
         }
     }
     .wtbt-sections-tab{
         margin-top: -46px;
-        padding-bottom: 45px;
+        padding-bottom: 0px;
         @media(max-width: 1024px){
             margin-top: -36px;
         }
@@ -78,14 +83,11 @@
             display: flex;
             justify-content: center;
             width: 100%;
-            align-items: center;
-            flex-direction: column;
+            align-items: flex-end;
             position: relative;
             &:after{
                 position: absolute;
                 content: "";
-                width: 100%;
-                height: auto;
                 background-repeat: no-repeat;
                 background-color: transparent;
                 text-align: center;
@@ -97,10 +99,10 @@
                 bottom: auto;
                 transform: translate(-50%, -50%);
                 background-position: center;
-                margin-top: -15px;
                 height: 35px;
-                width: 35px;
+                width: 100%;
                 background-size: contain;
+                margin-top: -7px;
                 @media(max-width: 1024px){
                     width: 33px;
                     height: 33px;
@@ -131,8 +133,8 @@
                 font-family: 'Rubik', sans-serif;
                 line-height: 19px;
                 font-size: 16px;
-                padding-top: 40px;
                 transition: 0.5s color;
+                padding-bottom: 9px;
                 @media(max-width: 767px){
                     font-size: 13px;
                     padding-top: 35px;
@@ -168,6 +170,7 @@
                 &:after{
                     background-image: url(../../assets/images/smartphone.svg);
                     transition: 0.5s background-image;
+                    height: 39px;
                 }
                 &:hover{
                     &:after{
@@ -181,6 +184,7 @@
                 &:after{
                     background-image: url(../../assets/images/user.svg);
                     transition: 0.5s background-image;
+                    height: 39.3px;
                 }
                 &:hover{
                     &:after{
@@ -194,6 +198,7 @@
                 &:after{
                     background-image: url(../../assets/images/partners.svg);
                     transition: 0.5s background-image;
+                    height: 37.3px;
                 }
                 &:hover{
                     &:after{
@@ -203,10 +208,11 @@
             }
         }
         &.wtbt-tab-hotline{
-            .wtbt-tab{        
+            .wtbt-tab{
                 &:after{
                     background-image: url(../../assets/images/hotline.svg);
                     transition: 0.5s background-image;
+                    height: 31.23px;
                 }
                 &:hover{
                     &:after{
@@ -299,6 +305,7 @@
     min-height: 356px;
     display: flex;
     align-items: center;
+    padding-top: 50px;
     .wtbt-desc{
         position: relative;
         .wtbt-image{

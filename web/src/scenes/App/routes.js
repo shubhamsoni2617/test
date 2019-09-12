@@ -88,11 +88,15 @@ const routes = [
     exact: true
   },
   {
+    path: "/faq/:id/:questionId",
+    component: Faq,
+    exact: true
+  },
+  {
     path: "/faq/:id",
     component: Faq,
     exact: true
   },
-
   {
     path: "*",
     component: PageNotFound
