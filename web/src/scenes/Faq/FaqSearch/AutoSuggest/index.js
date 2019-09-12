@@ -1,10 +1,10 @@
-import React, { useState, Fragment } from "react";
+import React, { useState, useEffect, Fragment } from "react";
 import { Link } from "react-router-dom";
-import './style.scss';
+import "./style.scss";
 
-const Autocomplete = props => {
+const AutoSuggest = props => {
   const [filteredSuggestions, setFilteredSuggestions] = useState([]);
-  const [showSuggestions, setShowSuggestions] = useState(false);
+  const [showSuggestions, setShowSuggestions] = useState(true);
   const [userInput, setUserInput] = useState("");
   const [helperText, setHelperText] = useState(null);
 
@@ -36,17 +36,23 @@ const Autocomplete = props => {
       filteredSuggestions = [];
       helperText = "Please enter atleast 3 characters";
     }
+    if (filteredSuggestions.length === 0) {
+      setShowSuggestions(true);
+    }
     setFilteredSuggestions(filteredSuggestions);
-    setShowSuggestions(showSuggestions);
+
     setUserInput(userInput);
     setHelperText(helperText);
   };
 
-  const onClick = (e, questionId) => {
-    props.onQuestionIdChange(questionId);
+  useEffect(() => {
+    setFilteredSuggestions([]);
+  }, [props.setFilteredSuggestions]);
+
+  const onClick = question => {
     setFilteredSuggestions([]);
     setShowSuggestions(false);
-    setUserInput(e.currentTarget.innerText);
+    setUserInput(question);
   };
 
   return (
@@ -69,22 +75,28 @@ const Autocomplete = props => {
               <Link
                 to={`/faq/${suggestion.category_name
                   .replace(/\s/g, "-")
-                  .toLowerCase()}`}
+                  .toLowerCase()}/${suggestion.id}`}
                 className="nav-item"
-                onClick={e => {
-                  onClick(e, suggestion.id);
+                onClick={() => {
+                  onClick(suggestion.question);
                 }}
               >
-              <span className="faq-qus">{suggestion.question}</span>
-              <span className="faq-qus-category">in {suggestion.category_name}</span> 
+                <span className="faq-qus">{suggestion.question}</span>
+                <span className="faq-qus-category">
+                  in {suggestion.category_name}
+                </span>
               </Link>
-            </li> 
+            </li>
           ))}
         </ul>
       )}
-      {filteredSuggestions.length===0 && userInput.length >3 ?<span className="no-suggestions">you are on your own</span>: null}
+      {filteredSuggestions.length === 0 &&
+      userInput.length > 3 &&
+      showSuggestions ? (
+        <span className="no-suggestions">you are on your own</span>
+      ) : null}
     </Fragment>
   );
 };
 
-export default Autocomplete;
+export default AutoSuggest;

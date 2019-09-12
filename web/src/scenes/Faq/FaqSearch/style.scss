@@ -1,21 +1,21 @@
-.faq-wrapper{
-  .banner-wrapper{
-    margin-bottom: 0px;    
-    img{
+.faq-wrapper {
+  .banner-wrapper {
+    margin-bottom: 0px;
+    img {
       max-height: 460px;
       min-height: 250px;
     }
   }
-  .banner-overlay{
-    @media(max-width: 768px){
+  .banner-overlay {
+    @media (max-width: 768px) {
       padding: 0 10px;
       margin-top: 40px;
     }
-    h1{  
+    h1 {
       font-size: 40px;
       line-height: 49px;
       margin-bottom: 10px;
-      @media(max-width: 767px){
+      @media (max-width: 767px) {
         font-size: 20px;
         line-height: 25px;
         margin-bottom: 5px;
@@ -28,9 +28,9 @@
   max-width: 610px;
   margin: 0 auto;
   height: 42px;
-  .faq-input-group{
+  .faq-input-group {
     height: 42px;
-    @media(max-width: 767px){
+    @media (max-width: 767px) {
       height: 38px;
     }
     .faq-input {
@@ -41,38 +41,42 @@
       white-space: normal;
       overflow: hidden;
       text-overflow: ellipsis;
-      @media(max-width: 767px){
+      @media (max-width: 767px) {
         padding: 5px 20px 5px 15px;
         height: 38px;
       }
-      &::-webkit-input-placeholder { /* Chrome/Opera/Safari */
-        color: rgba(76,76,76,0.5);
-        font-family: 'Rubik', sans-serif;	
+      &::-webkit-input-placeholder {
+        /* Chrome/Opera/Safari */
+        color: rgba(76, 76, 76, 0.5);
+        font-family: "Rubik", sans-serif;
         font-size: 16px;
         line-height: 19px;
       }
-      &::-moz-placeholder { /* Firefox 19+ */
-        color: rgba(76,76,76,0.5);
-        font-family: 'Rubik', sans-serif;	
+      &::-moz-placeholder {
+        /* Firefox 19+ */
+        color: rgba(76, 76, 76, 0.5);
+        font-family: "Rubik", sans-serif;
         font-size: 16px;
         line-height: 19px;
       }
-      &:-ms-input-placeholder { /* IE 10+ */
-        color: rgba(76,76,76,0.5);
-        font-family: 'Rubik', sans-serif;	
+      &:-ms-input-placeholder {
+        /* IE 10+ */
+        color: rgba(76, 76, 76, 0.5);
+        font-family: "Rubik", sans-serif;
         font-size: 16px;
         line-height: 19px;
       }
-      &:-moz-placeholder { /* Firefox 18- */
-        color: rgba(76,76,76,0.5);
-        font-family: 'Rubik', sans-serif;	
+      &:-moz-placeholder {
+        /* Firefox 18- */
+        color: rgba(76, 76, 76, 0.5);
+        font-family: "Rubik", sans-serif;
         font-size: 16px;
         line-height: 19px;
       }
     }
-    &:after{
+    &:after {
       position: absolute;
-      right: 13px;      
+      right: 13px;
       background-image: url(../../../assets/images/faq-search.png);
       background-repeat: no-repeat;
       background-size: cover;
@@ -80,7 +84,7 @@
       width: 20px;
       height: 20px;
       top: 11px;
-      @media(max-width: 767px){
+      @media (max-width: 767px) {
         width: 22px;
         height: 22px;
         top: 9px;
@@ -89,4 +93,3 @@
     }
   }
 }
-
