@@ -23,6 +23,14 @@
                 font-weight: 600;
                 font-size: 37px;
                 line-height: 45px;
+                @media (max-width: 1024px) {
+                    font-size: 25px;
+                }
+                @media (max-width: 768px) {
+                    font-size: 20px;
+                    line-height: 25px;
+                    padding: 0 5px;
+                }
             }
         }
     }
@@ -266,17 +274,14 @@
                 font-size: 22px;
                 line-height: 25px;
             }
-        }
-        p {
-            color: #626262;
-            font-family:'Rubik', sans-serif;
-            font-size: 14px;
-            line-height: 26px;
-            margin: 0px;
-            padding: 0px;
-            @media(max-width: 768px){
-                font-size: 13px;
-                line-height: 22px;
+            a{
+                font-size: inherit;
+                line-height: inherit;
+                color: #0098FF;
+                background-color: transparent;
+                padding: 0px;
+                margin: 0px;
+                border: none;
             }
         }
         a , button{
@@ -289,11 +294,38 @@
             font-weight: 600;
             margin-top: 33px;
             display: inline-block;
+            border: 1px solid #0098FF;
+            transition: 0.5s border-color, 0.5s color, 0.5s background-color;
+                &:hover{
+                    color: #0098FF;
+                    background-color: transparent;
+                }
             @media(max-width: 768px){
                 font-size: 15px;
                 line-height: 20px;
                 padding: 8px 20px;
                 margin-top: 15px
+            }
+        }
+        p {
+            color: #626262;
+            font-family:'Rubik', sans-serif;
+            font-size: 14px;
+            line-height: 26px;
+            margin: 0px;
+            padding: 0px;
+            @media(max-width: 768px){
+                font-size: 13px;
+                line-height: 22px;
+            }
+            a{
+                font-size: inherit;
+                line-height: inherit;
+                color: #0098FF;
+                background-color: transparent;
+                padding: 0px;
+                margin: 0px;
+                border: none;
             }
         }
     }
@@ -307,7 +339,7 @@
     }
 }
 .sistic-singapore-section{
-    min-height: 356px;
+    min-height: 375px;
     display: flex;
     align-items: center;
     padding-top: 50px;
@@ -460,6 +492,7 @@
     .wtbt-desc{
         @media(max-width: 768px){
             position: relative; 
+            flex-direction: column-reverse;
         }
         .wtbt-content{
             text-align: right;
@@ -483,17 +516,17 @@
         .wtbt-image{
             display: flex;
             flex-wrap: wrap;
+            align-items: center;
             @media(max-width: 768px){
-                order: 2;
                 padding-bottom: 30px;
             }
-            .api-images {
-                height: 85px;
+            .api-images {                
                 overflow: hidden;
                 display: block;
                 flex: 0 0 calc(33.33% - 40px);
                 width: calc(33.33% - 40px);
                 margin: 0 40px 40px 0px;
+                text-align: center;
                 @media(max-width: 768px){
                     flex-basis: calc(33.33% - 20px);
                     width: calc(33.33% - 20px);
@@ -535,6 +568,13 @@
             @media(max-width: 768px){
                 position: relative;                
                 text-align: center;
+            }
+        }
+        .wtbt-content{
+            p{
+                strong{
+                    color: #343434;
+                }
             }
         }
     }

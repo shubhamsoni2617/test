@@ -1025,8 +1025,15 @@ button,
     font-weight: 500;
 	z-index: 2;
 	cursor: pointer;
+	@media(max-width: 767px){
+		width: 35px;
+		height: 35px;
+	}
     img{
-        margin-bottom: 2px;
+		margin-bottom: 2px;
+		@media(max-width: 767px){
+			max-width: 15px;
+		}
     }
     &:hover{
         color: #FFF;

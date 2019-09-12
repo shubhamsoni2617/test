@@ -409,6 +409,13 @@
             .img-fluid {
                 padding-bottom: 16px;
             }
+            a{
+                button{
+                    &:hover{
+                        color: #ffffff;
+                    }
+                }
+            }
         }
         &::before {
             position: absolute;
