@@ -136,7 +136,7 @@ const GoogleMap = (props) => {
                 onClick={onMarkerClick}
                 key={elem.id}
                 position={{ lat: elem.latitude, lng: elem.longitude }}
-                id={elem.id}
+                name={elem.name}
                 address={elem.address}
                 imgPath={elem.image}
                 icon={{
@@ -163,7 +163,7 @@ const GoogleMap = (props) => {
                 />
               </div>
               <div className="map-name-address">
-                <h5>{selectedPlace.id}</h5>
+                <h5>{selectedPlace.name}</h5>
                 <p>{selectedPlace.address}</p>
                 <a href={`https://www.google.com/maps/dir//${selectedPlace.address}`} className="direcrtion-icn" target="_blank">
                   <img height='20' width='20' src={DirectionIcon} alt="direction" />
@@ -186,7 +186,7 @@ const GoogleMap = (props) => {
                 onClick={onMarkerClick}
                 key={elem.id}
                 position={{ lat: elem.latitude, lng: elem.longitude }}
-                id={elem.id}
+                name={elem.name}
                 address={elem.address}
                 imgPath={elem.image}
                 icon={{
@@ -217,7 +217,7 @@ const GoogleMap = (props) => {
                   />
                 </div>
                 <div className="map-name-address">
-                  <h5>{showOnMapData.id}</h5>
+                  <h5>{showOnMapData.name}</h5>
                   <p>{showOnMapData.address}</p>
                   <a href={`https://www.google.com/maps/dir//${showOnMapData.address}`} className="direcrtion-icn" target="_blank">
                     <img height='20' width='20' src={redirect} alt="direction" />

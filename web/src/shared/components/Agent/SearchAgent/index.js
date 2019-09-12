@@ -127,7 +127,7 @@ const SearchAgent = (props) => {
 
   return (
     <div className="search-agent">
-      <h2>{venue ? "Venue in " : "Agents in "} {countryName ? countryName : "Singapore"}</h2>
+      <h2>{venue ? "Venues in " : "Agents in "} {countryName ? countryName : "Singapore"}</h2>
       <form onSubmit={handleSubmit}>
         <div className="agent-search">
           <button type="submit" className="search-btn"><img src={SearchIcon} alt="search-icon" /></button>

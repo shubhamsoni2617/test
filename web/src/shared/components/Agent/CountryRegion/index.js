@@ -4,11 +4,13 @@ import banner from "../../../../assets/images/location-banner.png";
 
 const CountryRegion = (props) => {
 
-  const { countryNRegion, onSubmit, filterCountryFile, handleCountryName, venue, handleMapClick } = props;
+  const { countryNRegion, onSubmit, filterCountryFile, handleCountryName, venue, handleMapClick, countryId } = props;
 
   const [country, setCountry] = useState("Singapore");
   const [region, setRegion] = useState("All locations");
   const [toggleMapCondition, setToggleMapCondition] = useState(123);
+  const [countryNRegionId, setCountryNRegionId] = useState({});
+
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -17,7 +19,7 @@ const CountryRegion = (props) => {
     // set map click event in parent component
     handleMapClick(toggleMapCondition);
     setToggleMapCondition(Math.random());
-    const bothId = handleId(countryNRegion);
+    const bothId = handleId();
     const params = {
       country: bothId.countryId,
       region: bothId.regionId
@@ -25,15 +27,15 @@ const CountryRegion = (props) => {
     onSubmit(params);
   }
 
-  const handleId = (countryNRegion) => {
+  const handleId = (value = country, locationId = region) => {
     let countryId;
     let regionId;
     countryNRegion.map((elem) => {
-      if (elem.name === country) {
+      if (elem.name === value) {
         countryId = elem.id;
-        if (country === "Singapore") {
+        if (value === "Singapore") {
           elem.regions.map((e) => {
-            if (e.name === region) {
+            if (e.name === locationId) {
               regionId = e.id;
             }
           })
@@ -43,20 +45,28 @@ const CountryRegion = (props) => {
     const bothId = {
       countryId, regionId
     };
-    return (bothId)
+    setCountryNRegionId(bothId);
+    return (bothId);
   }
 
   const handleCountryChange = (event) => {
     const { value } = event.target;
     setCountry(value);
+    handleId(value);
   }
 
   const handleRegionChange = (event) => {
     const { value } = event.target;
     setRegion(value);
+    handleId(country, value);
   }
 
   filterCountryFile(country);
+
+  // useEffect(() => {
+  //   const abc = handleId(countryNRegion);
+  //   setIds(abc);
+  // }, [countryId])
 
   return (
     <div className="banner-wrapper">

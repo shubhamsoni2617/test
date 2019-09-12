@@ -33,14 +33,18 @@ const Agent = (props) => {
 
   useEffect(() => {
     const params = {
-      client: Constants.CLIENT,
-      country: countryId,
-      sort_type: "name",
-      sort_order: "ASC"
+      country: countryId
     };
     fetchAgentsNVenues(params);
-  }, [countryId]);
+  }, [countryId, attractionValue, eventValue]);
 
+
+  // useEffect(()=>{
+  //   const params = {
+  //     country: countryId,
+  //   };
+  //   fetchAgentsNVenues(params);
+  // },[attractionValue,eventValue])
 
   //page scroll to top after mounting component
   const scrollToTop = () => {
@@ -65,6 +69,7 @@ const Agent = (props) => {
 
   //Fetch agents or venues based on selection event
   const fetchAgentsNVenues = (params) => {
+    // debugger
     if (params.region === undefined) {
       params.region = null;
     }
@@ -81,7 +86,6 @@ const Agent = (props) => {
     const eventSelection = venue ? AgentService.getVenues(params) : AgentService.getAgents(params);
     eventSelection
       .then((res) => {
-        console.log(res.data.data, "response")
         setListedData(res.data.data)
       })
       .catch((err) => {
@@ -151,6 +155,7 @@ const Agent = (props) => {
         filterCountryFile={filterCountryFile}
         handleCountryName={handleCountryName}
         handleMapClick={handleMapClick}
+        countryId={countryId}
         {...props}
       />
       <div className="find-agent-wrapper">

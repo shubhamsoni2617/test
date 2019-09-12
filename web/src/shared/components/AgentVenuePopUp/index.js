@@ -51,10 +51,14 @@ const AgentVenuePopUp = (props) => {
       </div>
       <div className="agent-info">
         <div className="icon">
-          <img src={venue ? food : clock} alt="icon" />
+          {venue && popUpDetail.food_beverages && popUpDetail.food_beverages[0].name ?
+            <img src={food} alt="icon" /> : null}
+          {!venue ? <img src={clock} alt="icon" /> : null}
         </div>
         <div className="details">
-          <h3>{venue ? "Food & Beverage" : "Operating Hours"}</h3>
+          {venue && popUpDetail.food_beverages && popUpDetail.food_beverages[0].name ?
+            <h3>"Food & Beverage"</h3> : null}
+          {!venue ? <h3>"Operating Hours"</h3> : null}
           <p>{venue ? popUpDetail.food_beverages && popUpDetail.food_beverages[0].name : popUpDetail.operating_hours}</p>
         </div>
       </div>
