@@ -1,8 +1,8 @@
-import React, { useState, Fragment } from "react";
+import React, { useState, useEffect, Fragment } from "react";
 import { Link } from "react-router-dom";
 import "./style.scss";
 
-const Autocomplete = props => {
+const AutoSuggest = props => {
   const [filteredSuggestions, setFilteredSuggestions] = useState([]);
   const [showSuggestions, setShowSuggestions] = useState(true);
   const [userInput, setUserInput] = useState("");
@@ -27,7 +27,6 @@ const Autocomplete = props => {
         })
       )
     );
-    console.log(allSuggestions);
 
     let filteredSuggestions = allSuggestions.filter(
       suggestion =>
@@ -45,6 +44,10 @@ const Autocomplete = props => {
     setUserInput(userInput);
     setHelperText(helperText);
   };
+
+  useEffect(() => {
+    setFilteredSuggestions([]);
+  }, [props.setFilteredSuggestions]);
 
   const onClick = question => {
     setFilteredSuggestions([]);
@@ -96,4 +99,4 @@ const Autocomplete = props => {
   );
 };
 
-export default Autocomplete;
+export default AutoSuggest;

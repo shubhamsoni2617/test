@@ -7,10 +7,10 @@ const FaqCategory = props => {
   return (
     <Fragment>
       {!props.urlExist ? <h2>Please, select appropriate category</h2> : null}
-      {props.categories.map(category => {
-        return (
-          <div key={category.id}>
-            <li>
+      <ul>
+        {props.categories.map(category => {
+          return (
+            <li key={category.id}>
               <Link
                 className={
                   props.categoryId === category.id && props.urlExist
@@ -32,9 +32,9 @@ const FaqCategory = props => {
                 </Fragment>
               ) : null}
             </li>
-          </div>
-        );
-      })}
+          );
+        })}
+      </ul>
     </Fragment>
   );
 };

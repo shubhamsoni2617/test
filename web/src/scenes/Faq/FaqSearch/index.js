@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React from "react";
 import banner from "../../../assets/images/faq-banner.png";
 import AutoSuggest from "./AutoSuggest";
 import "./style.scss";
@@ -15,6 +15,7 @@ const FaqSearch = props => {
               suggestions={props.suggestions}
               categories={props.categories}
               onQuestionIdChange={props.onQuestionIdChange}
+              setFilteredSuggestions={props.setFilteredSuggestions}
             />
           </div>
         </div>

@@ -1,4 +1,4 @@
-import React, { Fragment, useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import "./style.scss";
 import Constants from "../../shared/constants";
 import FaqSearch from "./FaqSearch";
@@ -12,6 +12,7 @@ const Faq = props => {
   const [categoryId, setCategoryId] = useState(null);
   const [categoryName, setCategoryName] = useState("");
   const [urlExist, setUrlExist] = useState(false);
+  const [suggestions, setSuggestions] = useState(true);
 
   useEffect(() => {
     fetchFaqCategoriesService();
@@ -66,8 +67,12 @@ const Faq = props => {
   return (
     faqContentData &&
     faqCategoryData && (
-      <Fragment>
-        <FaqSearch suggestions={faqContentData} categories={faqCategoryData} />
+      <div onClick={() => setSuggestions(!suggestions)}>
+        <FaqSearch
+          suggestions={faqContentData}
+          categories={faqCategoryData}
+          setFilteredSuggestions={suggestions}
+        />
         <FaqCategory
           {...props}
           urlExist={urlExist}
@@ -77,7 +82,7 @@ const Faq = props => {
           categories={faqCategoryData}
           faqContentData={faqContentData}
         />
-      </Fragment>
+      </div>
     )
   );
 };
