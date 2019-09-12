@@ -53,7 +53,7 @@ const AgentVenuePopUp = (props) => {
       </div>
       <div className="agent-info">
         <div className="icon">
-          <img src={venue ? contact : contact} alt="icon" />
+          <img src={venue ? contact : price} alt="icon" />
         </div>
         <div className="details">
           <h3>{venue ? "Contact Detail" : "Payment Mode"}</h3>

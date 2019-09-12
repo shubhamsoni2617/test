@@ -131,7 +131,7 @@ const Agent = (props) => {
       />
       <div className="find-agent-wrapper">
         <div className="container-fluid row agent-list">
-          <div className="col-lg-4">
+          <div className="agent-sidebar">
             <SearchAgent
               initialItems={listedData}
               countryFile={countryFile}
@@ -142,8 +142,8 @@ const Agent = (props) => {
               {...props}
             />
           </div>
-          <div className="col-lg-8">
-            {/* <a href="/" className="find-map-mob">Find in map <img src={grayArrow} alt="Arrow"/></a> */}
+          <div className="agent-map-area">
+            <span className="map-label-mobileonly">Find in Map</span>
             <GoogleMap
               multipleMarker={listedData}
               showOnMapData={showOnMapData}
