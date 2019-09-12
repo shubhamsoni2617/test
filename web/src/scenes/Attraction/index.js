@@ -248,9 +248,14 @@ export default class Attractions extends Component {
                 )}
                 {attractionsData &&
                   attractionsData.map(attraction => {
+                    // onClick={() => this.redirectToTarget(attraction.event_alias)}
                     return (
-                      <div onClick={() => this.redirectToTarget(attraction.event_alias)}>
-                        <Card cardData={attraction} cardClass={{ cardBlock: 'event-block attraction-block', cardButton: 'btn buy-btn attaction-buy' }} />
+                      <div>
+                        <Card 
+                        cardData={attraction} 
+                        redirectTo={this.redirectToTarget}
+                        cardClass={{ cardBlock: 'event-block attraction-block', cardButton: 'btn buy-btn attaction-buy' }} 
+                        />
                       </div>
                     );
                   })}
