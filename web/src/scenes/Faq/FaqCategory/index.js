@@ -21,11 +21,9 @@ const FaqCategory = props => {
               >
                 {category.name}
               </Link>
-
               {props.categoryId === category.id ? (
                 <Fragment>
                   <h2>{props.categoryName}</h2>
-                  <h1>dd</h1>
                   <FaqContent
                     {...props}
                     data={props.faqContentData}
