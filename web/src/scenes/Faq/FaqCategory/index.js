@@ -1,52 +1,41 @@
-import React, { useState } from "react";
+import React, { Fragment } from "react";
 import { Link } from "react-router-dom";
+import "./style.scss";
+import FaqContent from "../FaqContent";
 
 const FaqCategory = props => {
-  let spreadData = [];
-  for (let data of props.faqContentData) {
-    for (let id of data["category_id"]) {
-      spreadData.push({
-        ...data,
-        category_id: id
-      });
-    }
-  }
-  const setQuestionId = categoryId => {
-    let value = spreadData.find(obj => {
-      return obj.category_id === categoryId;
-    });
-    if (!value) {
-      props.onQuestionIdChange(null);
-    } else {
-      props.onQuestionIdChange(value.id);
-    }
-  };
-
-  return (          
-    <div className="nav-tabs faq-tabs">
+  return (
+    <Fragment>
+      {!props.urlExist ? <h2>Please, select appropriate category</h2> : null}
       <ul>
         {props.categories.map(category => {
           return (
-            <li>
-            <Link
-              key={category.id}
-              className={
-                props.categoryId === category.id && props.urlExist
-                  ? "nav-item nav-link active"
-                  : "nav-item nav-link"
-              }
-              to={`/faq/${category.name.replace(/\s/g, "-").toLowerCase()}`}
-              onClick={() => {
-                setQuestionId(category.id);
-              }}
-            >
-              {category.name}
-            </Link>
+            <li key={category.id}>
+              <Link
+                className={
+                  props.categoryId === category.id && props.urlExist
+                    ? "nav-item nav-link active"
+                    : "nav-item nav-link"
+                }
+                to={`/faq/${category.name.replace(/\s/g, "-").toLowerCase()}/0`}
+              >
+                {category.name}
+              </Link>
+              {props.categoryId === category.id ? (
+                <Fragment>
+                  <h2>{props.categoryName}</h2>
+                  <FaqContent
+                    {...props}
+                    data={props.faqContentData}
+                    categoryId={category.id}
+                  />
+                </Fragment>
+              ) : null}
             </li>
           );
         })}
       </ul>
-    </div>      
+    </Fragment>
   );
 };
 
