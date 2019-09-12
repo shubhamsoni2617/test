@@ -6,7 +6,6 @@ import Map from "../../../assets/images/map.png";
 import Contact from "../../../assets/images/contact-us.png";
 
 const Images = ({ title, apiPartners }) => {
-  console.log(apiPartners);
   if (title === "SISTIC Singapore") {
     return <img src={MacBook} alt="partner" className="img-fluid" />;
   }
@@ -33,7 +32,6 @@ const Images = ({ title, apiPartners }) => {
   if (title === "Hotline @ +65 6348 5555") {
     return <img src={Contact} alt="partner" className="img-fluid" />;
   }
-  // return <img src="assets/images/ballet.jpg" alt="partner" />;
 };
 
 export default Images;
