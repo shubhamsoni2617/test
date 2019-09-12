@@ -14,25 +14,33 @@ const Agent = (props) => {
 
   const [countryNRegion, setCountryNRegion] = useState([]);
   const [listedData, setListedData] = useState([]);
-  const [countryFile, setCountryFile] = useState('');
+  const [countryFileUrl, setCountryFileUrl] = useState('');
   const [showOnMapData, setShowOnMapData] = useState('');
   const [countryName, setCountryName] = useState('');
   const [attractionValue, setAttractionValue] = useState(undefined);
   const [eventValue, setEventValue] = useState(undefined);
   const [mapClick, setMapClick] = useState(true);
+  const [activeClassId, setActiveClassId] = useState(0);
+  const [countryId, setCountryId] = useState(null);
+  const [invokeApiFlag, setInvokeApiFlag] = useState(0);
+  const [ids, setIds] = useState({ countryId: 15, regionId: null });
 
+
+  useEffect(() => {
+    scrollToTop();
+    fetchCountryNRegion();
+  }, []);
 
   useEffect(() => {
     const params = {
       client: Constants.CLIENT,
-      country: "15",
+      country: countryId,
       sort_type: "name",
       sort_order: "ASC"
     };
-    scrollToTop();
-    fetchCountryNRegion();
     fetchAgentsNVenues(params);
-  }, []);
+  }, [countryId]);
+
 
   //page scroll to top after mounting component
   const scrollToTop = () => {
@@ -44,7 +52,11 @@ const Agent = (props) => {
     const eventSelection = venue ? AgentService.getVenuesCountryNRegion() : AgentService.getAgentsCountryNRegion();
     eventSelection
       .then((res) => {
-        setCountryNRegion(res.data.data)
+        if (res.data && res.data.data) {
+          let countryId = res.data.data.find(el => el.name === 'Singapore').id;
+          setCountryId(countryId)
+          setCountryNRegion(res.data.data)
+        }
       })
       .catch((err) => {
         console.log(err)
@@ -69,6 +81,7 @@ const Agent = (props) => {
     const eventSelection = venue ? AgentService.getVenues(params) : AgentService.getAgents(params);
     eventSelection
       .then((res) => {
+        console.log(res.data.data, "response")
         setListedData(res.data.data)
       })
       .catch((err) => {
@@ -90,7 +103,7 @@ const Agent = (props) => {
         filteredFile = item.festive_hours_file;
       }
     })
-    setCountryFile(filteredFile);
+    setCountryFileUrl(filteredFile);
   }
 
   // set selected list data in parent component
@@ -118,6 +131,17 @@ const Agent = (props) => {
     setMapClick(event);
   }
 
+  const handleActiveClass = (activeId) => {
+    setActiveClassId(activeId);
+  }
+
+  // useEffect(()=>{
+  //   const params = {
+  //     client: Constants.CLIENT
+  //   };
+  //   fetchAgentsNVenues(params)
+  // },[invokeApiFlag])
+
   return (
 
     <section className="agents-wrapper">
@@ -134,9 +158,10 @@ const Agent = (props) => {
           <div className="agent-sidebar">
             <SearchAgent
               initialItems={listedData}
-              countryFile={countryFile}
+              countryFileUrl={countryFileUrl}
               showOnMapClick={showOnMapClick}
               countryName={countryName}
+              activeClassId={activeClassId}
               handleAttractionValue={handleAttractionValue}
               handleEventValue={handleEventValue}
               {...props}
@@ -149,6 +174,7 @@ const Agent = (props) => {
               showOnMapData={showOnMapData}
               countryName={countryName}
               mapClick={mapClick}
+              handleActiveClass={handleActiveClass}
               {...props}
             />
           </div>

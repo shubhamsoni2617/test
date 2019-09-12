@@ -112,7 +112,7 @@
                     width: 18px;
                 }
             }
-    
+
             input {
                 border: 1px solid #D8D8D8;
                 height: 36px;
@@ -120,23 +120,23 @@
                 border-radius: 0;
                 &::-webkit-input-placeholder {
                     // color: rgba(52,52,52,0.25);
-                    color: #CCCCCC;	
-                    font-size: 16px;	
+                    color: #CCCCCC;
+                    font-size: 16px;
                     line-height: 19px;
                 }
                 &::-moz-placeholder {
-                    color: #CCCCCC;	
-                    font-size: 16px;	
+                    color: #CCCCCC;
+                    font-size: 16px;
                     line-height: 19px;
                 }
                 &:-ms-input-placeholder {
-                    color: #CCCCCC;	
-                    font-size: 16px;	
+                    color: #CCCCCC;
+                    font-size: 16px;
                     line-height: 19px;
                 }
                 &:-moz-placeholder {
-                    color: #CCCCCC;	
-                    font-size: 16px;	
+                    color: #CCCCCC;
+                    font-size: 16px;
                     line-height: 19px;
                 }
                 &:focus{
@@ -151,7 +151,7 @@
                 color: #FF8300;
                 padding: 1% 0%;
                 font-family: 'Montserrat', sans-serif;
-                font-size: 16px;	
+                font-size: 16px;
                 line-height: 19px;
                 font-weight: 600;
                 img{
@@ -159,7 +159,7 @@
                 }
             }
           }
-          
+
           ul {
             list-style-type: none;
             margin: 0;
@@ -206,9 +206,9 @@
                         margin: 0 0 7px;
                     }
                     a{
-                        color: #0077C8;	
+                        color: #0077C8;
                         font-size: 16px;
-                        font-weight: 400;	
+                        font-weight: 400;
                         line-height: 19px;
                         @media(max-width: 992px){
                             font-size: 14px;
@@ -223,11 +223,11 @@
                     }
                 }
                 p{
-                    color: #343434;	
-                    font-size: 16px;	
+                    color: #343434;
+                    font-size: 16px;
                     line-height: 20px;
                     margin: 0;
-                    padding: 0;                    
+                    padding: 0;
                     @media(max-width: 992px){
                         font-size: 14px;
                         line-height: 18px;
@@ -260,7 +260,7 @@
                 cursor: pointer;
                 border-color: transparent;
                 &:after{
-                    background-color: rgba(0, 152, 255, 0.07);                  
+                    background-color: rgba(0, 152, 255, 0.07);
                 }
                 &.active{
                     display:block;
@@ -290,7 +290,7 @@
                 width:calc(100% + 30px);
                 left: -15px;
                 padding: 10px 20px;
-                top: 20px;  
+                top: 20px;
                 box-shadow: none;
             }
             &:after, &:before {
@@ -307,7 +307,7 @@
                     top: 0;
                 }
             }
-            
+
             &:after {
                 border-color: rgba(136, 183, 213, 0);
                 border-right-color: #FFF;
@@ -379,8 +379,8 @@
                                 height: auto;
                             }
                             p{
-                                color: #343434;	
-                                font-size: 13px;	
+                                color: #343434;
+                                font-size: 13px;
                                 line-height: 15px;
                                 margin: 5px 0 0 0;
                             }
@@ -399,8 +399,10 @@
                     box-shadow: none;
                 }
             }
-          } 
+          }
     }
 }
 
-
+.active-class{
+  background-color:rgba(0,152,255,0.07)
+}

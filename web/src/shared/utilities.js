@@ -88,6 +88,10 @@ class Utilities {
         img.src = srcs[i][imgVar];
     }
   }
+
+  static isFileExt = (url) => {
+    return (url = url.substr(1 + url.lastIndexOf("/")).split('?')[0]).split('#')[0].substr(url.lastIndexOf("."))
+  }
 }
 
 export default Utilities;
