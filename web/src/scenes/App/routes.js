@@ -92,12 +92,11 @@ const routes = [
     component: Faq,
     exact: true
   },
-  // {
-  //   path: "/faq/:id",
-  //   component: Faq,
-  //   exact: true
-  // },
-
+  {
+    path: "/faq/:id",
+    component: Faq,
+    exact: true
+  },
   {
     path: "*",
     component: PageNotFound
