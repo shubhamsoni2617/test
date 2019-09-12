@@ -1,23 +1,27 @@
-import React, { Fragment, useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import "./style.scss";
 import Constants from "../../shared/constants";
 import FaqSearch from "./FaqSearch";
 import FaqCategory from "./FaqCategory";
 import FaqService from "../../shared/services/FaqService";
-import FaqContent from "./FaqContent";
 
 const Faq = props => {
+  // console.log(props);
   const [faqContentData, setFaqContentData] = useState(null);
   const [faqCategoryData, setFaqCategoryData] = useState(null);
   const [categoryId, setCategoryId] = useState(null);
   const [categoryName, setCategoryName] = useState("");
-  const [questionId, setQuestionId] = useState(null);
   const [urlExist, setUrlExist] = useState(false);
+  const [suggestions, setSuggestions] = useState(true);
 
   useEffect(() => {
     fetchFaqCategoriesService();
     fetchFaqContentService();
   }, []);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [faqCategoryData]);
 
   useEffect(() => {
     if (faqCategoryData) {
@@ -60,55 +64,25 @@ const Faq = props => {
       });
   };
 
-  const onQuestionIdChange = questionId => {
-    setQuestionId(questionId);
-  };
-
   return (
     faqContentData &&
     faqCategoryData && (
-      <Fragment>
+      <div onClick={() => setSuggestions(!suggestions)}>
         <FaqSearch
           suggestions={faqContentData}
           categories={faqCategoryData}
-          onQuestionIdChange={onQuestionIdChange}
+          setFilteredSuggestions={suggestions}
         />
-        <section className="faq-body-wrapper">
-          <div className="container-fluid">
-            <div className="faq-qus-ans-wrapper">
-              <div className="faq-sidebar">
-                <FaqCategory
-                  categoryId={categoryId}
-                  urlExist={urlExist}
-                  categories={faqCategoryData}
-                  faqContentData={faqContentData}
-                  onQuestionIdChange={onQuestionIdChange}
-                />
-              </div>
-              <div className="faq-qus-ans-section">
-                {urlExist ? (
-                  <Fragment>
-                    <h2>{categoryName}</h2>
-                    <div className="faq-qa-height">
-                      {questionId ? (
-                        <FaqContent
-                          data={faqContentData}
-                          categoryId={categoryId}
-                          questionId={questionId}
-                        />
-                      ) : (
-                        <span className="no-faq-found">No Data Found</span>
-                      )}
-                    </div>
-                  </Fragment>
-                ) : (
-                  <span className="no-faq-found">No Data Found</span>
-                )}
-              </div>
-            </div>
-          </div>
-        </section>
-      </Fragment>
+        <FaqCategory
+          {...props}
+          urlExist={urlExist}
+          categoryId={categoryId}
+          categoryName={categoryName}
+          urlExist={urlExist}
+          categories={faqCategoryData}
+          faqContentData={faqContentData}
+        />
+      </div>
     )
   );
 };
