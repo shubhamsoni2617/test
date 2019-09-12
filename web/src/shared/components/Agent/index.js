@@ -21,19 +21,26 @@ const Agent = (props) => {
   const [eventValue, setEventValue] = useState(undefined);
   const [mapClick, setMapClick] = useState(true);
   const [activeClassId, setActiveClassId] = useState(0);
+  const [countryId, setCountryId] = useState(null);
+  const [invokeApiFlag, setInvokeApiFlag] = useState(0);
+  const [ids, setIds] = useState({ countryId: 15, regionId: null });
 
+
+  useEffect(() => {
+    scrollToTop();
+    fetchCountryNRegion();
+  }, []);
 
   useEffect(() => {
     const params = {
       client: Constants.CLIENT,
-      country: "15",
+      country: countryId,
       sort_type: "name",
       sort_order: "ASC"
     };
-    scrollToTop();
-    fetchCountryNRegion();
     fetchAgentsNVenues(params);
-  }, []);
+  }, [countryId]);
+
 
   //page scroll to top after mounting component
   const scrollToTop = () => {
@@ -45,7 +52,11 @@ const Agent = (props) => {
     const eventSelection = venue ? AgentService.getVenuesCountryNRegion() : AgentService.getAgentsCountryNRegion();
     eventSelection
       .then((res) => {
-        setCountryNRegion(res.data.data)
+        if (res.data && res.data.data) {
+          let countryId = res.data.data.find(el => el.name === 'Singapore').id;
+          setCountryId(countryId)
+          setCountryNRegion(res.data.data)
+        }
       })
       .catch((err) => {
         console.log(err)
@@ -70,6 +81,7 @@ const Agent = (props) => {
     const eventSelection = venue ? AgentService.getVenues(params) : AgentService.getAgents(params);
     eventSelection
       .then((res) => {
+        console.log(res.data.data, "response")
         setListedData(res.data.data)
       })
       .catch((err) => {
@@ -120,9 +132,15 @@ const Agent = (props) => {
   }
 
   const handleActiveClass = (activeId) => {
-    console.log(activeId,"activeId");
     setActiveClassId(activeId);
   }
+
+  // useEffect(()=>{
+  //   const params = {
+  //     client: Constants.CLIENT
+  //   };
+  //   fetchAgentsNVenues(params)
+  // },[invokeApiFlag])
 
   return (
 

@@ -158,7 +158,7 @@ const SearchAgent = (props) => {
         {
           filteredData && filteredData.map((item, index) => {
             return (
-              <li className={item.id === activeClassId ? "pop-up-container active-class" : "pop-up-container"} key={index} onMouseEnter={() => showPopUp(item)} onMouseLeave={hidePopUp}>
+              <li className={item.id === activeClassId ? "pop-up-container active-class" : "pop-up-container"} onClick={(e) => { showOnMapClick(e, item, activePopUpRef) }} key={index} onMouseEnter={() => showPopUp(item)} onMouseLeave={hidePopUp}>
                 <img src={downArrow} className="active-arrow" alt="Down Arrow" />
                 <h3><strong>{item.name}</strong> <span><a onClick={(e) => { showOnMapClick(e, item, activePopUpRef) }}>show on Map</a></span></h3>
                 <p>{item.address},{item.country}</p>
