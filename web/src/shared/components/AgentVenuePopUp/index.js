@@ -10,10 +10,17 @@ import seat from '../../../assets/images/seat.svg';
 import notification from '../../../assets/images/notification.svg';
 import event from '../../../assets/images/current-event.svg';
 import download from '../../../assets/images/download-blue.svg';
+import Utilities from '../../utilities';
 
 const AgentVenuePopUp = (props) => {
 
   const { item, popUpDetail, currentlyShowingData, activePopUpRef, venue } = props;
+
+  let isFile;
+  if (popUpDetail.festive_hours && popUpDetail.festive_hours_file) {
+    isFile = Utilities.isFileExt(popUpDetail.festive_hours_file);
+  }
+
 
   return (
     <div
@@ -95,7 +102,7 @@ const AgentVenuePopUp = (props) => {
         :
         null
       }
-      {popUpDetail.festive_hours &&
+      {isFile &&
         <div className="agent-info">
           <div className="icon">
             <img src={event} alt="icon" />

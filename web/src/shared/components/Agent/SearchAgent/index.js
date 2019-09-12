@@ -6,10 +6,11 @@ import eventImg from '../../../../assets/images/explore.png';
 import downArrow from '../../../../assets/images/downarrow-blue.svg';
 import AgentService from '../../../services/AgentService';
 import AgentVenuePopUp from '../../AgentVenuePopUp';
+import Utilities from '../../../utilities';
 
 const SearchAgent = (props) => {
 
-  const { initialItems, countryFile, showOnMapClick, venue, countryName,
+  const { initialItems, countryFileUrl, showOnMapClick, venue, countryName,
     handleAttractionValue, handleEventValue, activeClassId } = props;
   const activePopUpRef = useRef();
 
@@ -118,6 +119,12 @@ const SearchAgent = (props) => {
     });
   });
 
+  let isFile;
+  if (countryFileUrl) {
+    isFile = Utilities.isFileExt(countryFileUrl);
+  }
+
+
   return (
     <div className="search-agent">
       <h2>{venue ? "Venue in " : "Agents in "} {countryName ? countryName : "Singapore"}</h2>
@@ -139,9 +146,9 @@ const SearchAgent = (props) => {
         </ul>
         : null
       }
-      {!venue && countryFile ?
+      {!venue && isFile ?
         <h6 className="festive-hour">
-          <a href={countryFile} download target="_blank">Festive Period Operating Hours <img src={downloadOrange} alt="Download" /> </a>
+          <a href={countryFileUrl} download target="_blank">Festive Period Operating Hours <img src={downloadOrange} alt="Download" /> </a>
         </h6>
         :
         null

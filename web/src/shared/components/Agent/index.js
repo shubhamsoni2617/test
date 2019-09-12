@@ -14,7 +14,7 @@ const Agent = (props) => {
 
   const [countryNRegion, setCountryNRegion] = useState([]);
   const [listedData, setListedData] = useState([]);
-  const [countryFile, setCountryFile] = useState('');
+  const [countryFileUrl, setCountryFileUrl] = useState('');
   const [showOnMapData, setShowOnMapData] = useState('');
   const [countryName, setCountryName] = useState('');
   const [attractionValue, setAttractionValue] = useState(undefined);
@@ -91,7 +91,7 @@ const Agent = (props) => {
         filteredFile = item.festive_hours_file;
       }
     })
-    setCountryFile(filteredFile);
+    setCountryFileUrl(filteredFile);
   }
 
   // set selected list data in parent component
@@ -140,7 +140,7 @@ const Agent = (props) => {
           <div className="col-lg-4">
             <SearchAgent
               initialItems={listedData}
-              countryFile={countryFile}
+              countryFileUrl={countryFileUrl}
               showOnMapClick={showOnMapClick}
               countryName={countryName}
               activeClassId={activeClassId}
