@@ -1,17 +1,17 @@
-import React, { useState, useEffect } from "react";
-import Slider from "react-slick";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
-import CarouselSlide from "../CarouselSlide";
-import Constants from "../../constants";
-import "./style.scss";
+import React, { useState, useEffect } from 'react';
+import Slider from 'react-slick';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
+import CarouselSlide from '../CarouselSlide';
+import Constants from '../../constants';
+import './style.scss';
 
 const SampleNextArrow = props => {
   const { className, style, onClick } = props;
   return (
     <div
       className={className}
-      style={{ ...style, display: "block" }}
+      style={{ ...style, display: 'block' }}
       onClick={onClick}
     />
   );
@@ -22,7 +22,7 @@ const SamplePrevArrow = props => {
   return (
     <div
       className={className}
-      style={{ ...style, display: "block" }}
+      style={{ ...style, display: 'block' }}
       onClick={onClick}
     />
   );
@@ -51,7 +51,7 @@ const Carousel = props => {
     nextArrow: <SampleNextArrow />,
     prevArrow: <SamplePrevArrow />,
     appendDots: dots => {
-      return <ul style={{ margin: "0px" }}> {dots} </ul>;
+      return <ul style={{ margin: '0px' }}> {dots} </ul>;
     },
     customPaging: i => {
       return (
@@ -78,9 +78,9 @@ const Carousel = props => {
   };
 
   useEffect(() => {
-    window.addEventListener("resize", handleWindowResize);
+    window.addEventListener('resize', handleWindowResize);
     return () => {
-      window.removeEventListener("resize", handleWindowResize);
+      window.removeEventListener('resize', handleWindowResize);
     };
   }, []);
 
@@ -96,14 +96,14 @@ const Carousel = props => {
         {width <= Constants.MOBILE_BREAK_POINT ? (
           <div className="row">
             <div className="grid-container">
-              {imgArray.map((elem, i) => {
+              {imgArray.map(elem => {
                 return <CarouselSlide elem={elem} key={elem.id} />;
               })}
             </div>
           </div>
         ) : (
           <Slider {...settings}>
-            {imgArray.map((elem, i) => {
+            {imgArray.map(elem => {
               return <CarouselSlide elem={elem} key={elem.id} />;
             })}
           </Slider>

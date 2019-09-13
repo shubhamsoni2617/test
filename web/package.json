@@ -9,6 +9,7 @@
     "history": "^4.9.0",
     "http": "0.0.0",
     "moment": "^2.24.0",
+    "prop-types": "^15.7.2",
     "react": "^16.8.6",
     "react-accessible-accordion": "^3.0.0",
     "react-animated-modal": "^1.1.1",

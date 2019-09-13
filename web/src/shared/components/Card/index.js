@@ -1,8 +1,9 @@
-import React, { Component } from "react";
-import "./style.scss";
-import Image from "../../components/Image";
-import EventHeading from "../EventHeading";
-import EventStatus from "../EventStatus";
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import './style.scss';
+import Image from '../../components/Image';
+import EventHeading from '../EventHeading';
+import EventStatus from '../EventStatus';
 
 export default class Card extends Component {
   render() {
@@ -15,7 +16,7 @@ export default class Card extends Component {
           <div className="event-detail-prime">
             <span
               className={
-                "category " + this.props.eventsData.primary_genre.toLowerCase()
+                'category ' + this.props.eventsData.primary_genre.toLowerCase()
               }
             >
               {this.props.eventsData.primary_genre}
@@ -36,13 +37,13 @@ export default class Card extends Component {
                 status={this.props.eventsData.event_status}
                 color={this.props.eventsData.event_status_text_color}
                 background={this.props.eventsData.event_status_background_color}
-                paddingLeft={"2px"}
-                paddingRight={"2px"}
+                paddingLeft={'2px'}
+                paddingRight={'2px'}
               />
               <p>
                 {this.props.eventsData.price
                   ? this.props.eventsData.price
-                  : " "}
+                  : ' '}
               </p>
             </div>
             <button type="button" className="btn buy-btn">
@@ -54,3 +55,7 @@ export default class Card extends Component {
     );
   }
 }
+
+Card.propTypes = {
+  eventsData: PropTypes.object.isRequired
+};

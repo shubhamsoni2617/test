@@ -1,13 +1,14 @@
-import React, { useState } from "react";
-import DayPicker, { DateUtils } from "react-day-picker";
-import { Link } from "react-router-dom";
-import "react-day-picker/lib/style.css";
-import tickArrow from "../../../assets/images/tick-grey.svg";
-import moment from "moment";
-import tickArrowWhite from "../../../assets/images/tick-white.svg";
-import crossArrow from "../../../assets/images/cross-grey.svg";
-import crossArrowWhite from "../../../assets/images/cross-white.svg";
-import "./style.scss";
+import React, { useState } from 'react';
+import PropTypes from 'prop-types';
+import DayPicker, { DateUtils } from 'react-day-picker';
+import { Link } from 'react-router-dom';
+import 'react-day-picker/lib/style.css';
+import tickArrow from '../../../assets/images/tick-grey.svg';
+import moment from 'moment';
+import tickArrowWhite from '../../../assets/images/tick-white.svg';
+import crossArrow from '../../../assets/images/cross-grey.svg';
+import crossArrowWhite from '../../../assets/images/cross-white.svg';
+import './style.scss';
 
 const Calender = props => {
   const [from, setFrom] = useState(null);
@@ -39,7 +40,7 @@ const Calender = props => {
   };
 
   const formatDate = date => {
-    return moment(date).format("DD MMM YYYY");
+    return moment(date).format('DD MMM YYYY');
   };
 
   const modifiers = {
@@ -64,9 +65,9 @@ const Calender = props => {
         modifiers={modifiers}
         onDayClick={handleDayClick}
         onDayMouseEnter={handleDayMouseEnter}
-        captionElement={({ date, localeUtils }) => (
+        captionElement={({ date }) => (
           <div className="DayPicker-Caption" role="heading">
-            <div>{moment(date).format("MMMM")}</div>
+            <div>{moment(date).format('MMMM')}</div>
           </div>
         )}
       />
@@ -105,10 +106,10 @@ const Calender = props => {
             </a>
             <Link
               to={
-                "/events/search?s=" +
-                moment(fromDateValue).format("YYYY-MM-DD") +
-                "--" +
-                moment(toDateValue).format("YYYY-MM-DD")
+                '/events/search?s=' +
+                moment(fromDateValue).format('YYYY-MM-DD') +
+                '--' +
+                moment(toDateValue).format('YYYY-MM-DD')
               }
               className="cal-apply-btn active"
               onClick={() => {
@@ -125,3 +126,7 @@ const Calender = props => {
   );
 };
 export default Calender;
+
+Calender.propTypes = {
+  handleEnter: PropTypes.func
+};

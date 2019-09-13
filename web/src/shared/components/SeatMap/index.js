@@ -1,6 +1,7 @@
-import React, { useState } from "react";
-import Lightbox from "react-image-lightbox";
-import "react-image-lightbox/style.css";
+import React, { useState } from 'react';
+import Lightbox from 'react-image-lightbox';
+import 'react-image-lightbox/style.css';
+import PropTypes from 'prop-types';
 
 const SeatMap = props => {
   const { imgArr, handleClose } = props; // these two are required props
@@ -30,3 +31,8 @@ const SeatMap = props => {
 };
 
 export default SeatMap;
+
+SeatMap.propTypes = {
+  imgArr: PropTypes.array.isRequired,
+  handleClose: PropTypes.func.isRequired
+};

@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import PropTypes from 'prop-types';
 import Tooltip from '../Tooltip';
 import './style.scss';
 
@@ -64,3 +65,12 @@ function EventHeading(props) {
 }
 
 export default EventHeading;
+
+EventHeading.propTypes = {
+  title: PropTypes.string.isRequired,
+  height: PropTypes.number.isRequired,
+  lines: PropTypes.number.isRequired,
+  size: PropTypes.number,
+  weight: PropTypes.string,
+  allowTooltip: PropTypes.any
+};

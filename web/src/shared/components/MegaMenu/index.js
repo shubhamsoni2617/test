@@ -1,36 +1,37 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import Calender from "../Calender";
-import thumbnailImg1 from "../../../assets/images/pretty-girls.jpg";
-import thumbnailImg2 from "../../../assets/images/hetty-keos.jpg";
-import locationImage from "../../../assets/images/location.svg";
-import eventGenere from "../../../assets/images/event.svg";
-import eventCalender from "../../../assets/images/cal.svg";
-import rightArrowImage from "../../../assets/images/right-arrow.svg";
-import seeAllEvent from "../../../assets/images/right-arrow.svg";
+import React from 'react';
+import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
+import Calender from '../Calender';
+import thumbnailImg1 from '../../../assets/images/pretty-girls.jpg';
+import thumbnailImg2 from '../../../assets/images/hetty-keos.jpg';
+import locationImage from '../../../assets/images/location.svg';
+import eventGenere from '../../../assets/images/event.svg';
+import eventCalender from '../../../assets/images/cal.svg';
+import rightArrowImage from '../../../assets/images/right-arrow.svg';
+import seeAllEvent from '../../../assets/images/right-arrow.svg';
 
 const MegaMenu = props => {
   const featuredEvents = [
     {
-      id: "1",
+      id: '1',
       img: thumbnailImg1,
-      day: "Sun, 26 May 2019",
-      genre: "Theatre",
-      text: "This Is What Happens To Pretty Girls"
+      day: 'Sun, 26 May 2019',
+      genre: 'Theatre',
+      text: 'This Is What Happens To Pretty Girls'
     },
     {
-      id: "2",
+      id: '2',
       img: thumbnailImg1,
-      day: "Sun, 26 May 2019",
-      genre: "Theatre",
-      text: "This Is What Happens To Pretty Girls"
+      day: 'Sun, 26 May 2019',
+      genre: 'Theatre',
+      text: 'This Is What Happens To Pretty Girls'
     },
     {
-      id: "3",
+      id: '3',
       img: thumbnailImg2,
-      day: "Sun, 26 May 2019",
-      genre: "Dance",
-      text: "Hetty Koes Endang (Indonesia)"
+      day: 'Sun, 26 May 2019',
+      genre: 'Dance',
+      text: 'Hetty Koes Endang (Indonesia)'
     }
   ];
 
@@ -47,7 +48,7 @@ const MegaMenu = props => {
           </p>
           <ul>
             {byGenreEvent &&
-              byGenreEvent.map((event, index) => {
+              byGenreEvent.map(event => {
                 return (
                   <li key={event.id}>
                     <Link
@@ -92,7 +93,7 @@ const MegaMenu = props => {
           </ul>
           <ul className="events-list">
             {props.byVenueEvent &&
-              props.byVenueEvent.map((event, index) => {
+              props.byVenueEvent.map(event => {
                 return (
                   <li key={event.id}>
                     <Link
@@ -115,7 +116,7 @@ const MegaMenu = props => {
             </li>
           </ul>
           <ul>
-            {featuredEvents.map((event, index) => {
+            {featuredEvents.map(event => {
               return (
                 <li key={event.id}>
                   <div className="featured-event-img">
@@ -125,9 +126,9 @@ const MegaMenu = props => {
                     <span className="date">{event.day}</span>
                     <span
                       className={
-                        event.genre === "Theatre"
-                          ? "category theatre"
-                          : "category Dance"
+                        event.genre === 'Theatre'
+                          ? 'category theatre'
+                          : 'category Dance'
                       }
                     >
                       {event.genre}
@@ -151,3 +152,9 @@ const MegaMenu = props => {
 };
 
 export default MegaMenu;
+
+MegaMenu.propTypes = {
+  byGenreEvent: PropTypes.array.isRequired,
+  byVenueEvent: PropTypes.array.isRequired,
+  handleMouseStatus: PropTypes.func.isRequired
+};

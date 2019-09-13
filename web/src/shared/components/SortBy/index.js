@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { CSSTransitionGroup } from 'react-transition-group';
+import PropTypes from 'prop-types';
+
 import './style.scss';
 
 export default class SortBy extends Component {
@@ -7,7 +9,7 @@ export default class SortBy extends Component {
     super(props);
     this.state = {
       sort: { tag: 'Date', active: '' },
-      showSortMenu: false,
+      showSortMenu: false
     };
   }
 
@@ -20,7 +22,7 @@ export default class SortBy extends Component {
     });
     this.props.handleFilters({
       filteredSortType: sortBy,
-      filteredSortOrder: order,
+      filteredSortOrder: order
     });
   };
 
@@ -80,3 +82,7 @@ export default class SortBy extends Component {
     );
   }
 }
+
+SortBy.propTypes = {
+  handleFilters: PropTypes.func
+};

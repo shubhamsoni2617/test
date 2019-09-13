@@ -1,6 +1,8 @@
-import React, { useState, useEffect, useRef, memo } from "react";
-import { CSSTransitionGroup } from "react-transition-group";
-import VenueFilter from "../VenueFilter";
+import React, { useState, useEffect, useRef, memo } from 'react';
+import { CSSTransitionGroup } from 'react-transition-group';
+import VenueFilter from '../VenueFilter';
+import PropTypes from 'prop-types';
+
 function ShowMoreButton(props) {
   return (
     <a
@@ -18,7 +20,7 @@ function ShowMoreButton(props) {
 
 const FilterGrid = props => {
   const [limit, setLimit] = useState(5);
-  const [activeClass, setActiveClass] = useState("");
+  const [activeClass, setActiveClass] = useState('');
   const [data, setData] = useState([]);
   const [panelDisplay, setPanelDisplay] = useState(false);
   const element = useRef(null);
@@ -65,7 +67,7 @@ const FilterGrid = props => {
       <div className="filter-grid-heading">
         <h3>{props.title}</h3>
         <ul>
-          <li className={activeClass ? "active" : ""}>
+          <li className={activeClass ? 'active' : ''}>
             <a
               href="/"
               onClick={e => {
@@ -76,7 +78,7 @@ const FilterGrid = props => {
               Select all
             </a>
           </li>
-          <li className={activeClass ? "" : "active"}>
+          <li className={activeClass ? '' : 'active'}>
             <a
               href="/"
               onClick={e => {
@@ -99,7 +101,7 @@ const FilterGrid = props => {
           >
             {data.length &&
               data.slice(0, limit).map((item, key) => {
-                let id = "item-" + item.id;
+                let id = 'item-' + item.id;
                 let isChecked = false;
                 let index;
                 if (props.selectedFilter) {
@@ -117,8 +119,8 @@ const FilterGrid = props => {
                       value=""
                     />
                     <label htmlFor={id}>
-                      {item.name}{" "}
-                      {item.events_count ? `(${item.events_count})` : ""}
+                      {item.name}{' '}
+                      {item.events_count ? `(${item.events_count})` : ''}
                     </label>
                   </li>
                 );
@@ -128,7 +130,7 @@ const FilterGrid = props => {
         {!(data.length < limit) && (
           <ShowMoreButton
             title={`+ ${
-              data.length > limit ? `${data.length - limit} More` : "Show Less"
+              data.length > limit ? `${data.length - limit} More` : 'Show Less'
             }`}
             onClick={() => {
               props.showPanel
@@ -150,3 +152,17 @@ const FilterGrid = props => {
   );
 };
 export default memo(FilterGrid);
+
+ShowMoreButton.propTypes = {
+  title: PropTypes.string.isRequired,
+  onClick: PropTypes.func.isRequired
+};
+
+FilterGrid.propTypes = {
+  category: PropTypes.string.isRequired,
+  data: PropTypes.array.isRequired,
+  handleFilters: PropTypes.func.isRequired,
+  title: PropTypes.string.isRequired,
+  selectedFilter: PropTypes.array,
+  showPanel: PropTypes.bool
+};
