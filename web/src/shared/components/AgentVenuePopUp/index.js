@@ -11,6 +11,8 @@ import notification from '../../../assets/images/notification.svg';
 import event from '../../../assets/images/current-event.svg';
 import download from '../../../assets/images/download-blue.svg';
 import Utilities from '../../utilities';
+import Image from '../Image';
+import { Link } from 'react-router-dom';
 
 const AgentVenuePopUp = (props) => {
 
@@ -21,6 +23,16 @@ const AgentVenuePopUp = (props) => {
     isFile = Utilities.isFileExt(popUpDetail.festive_hours_file);
   }
 
+  const showFoodNBeverage = (foodNBeverage) => {
+    return foodNBeverage.map((elem, index) => {
+      return (
+        <li key={index}>
+          {/* {elem.image ? <Image src={elem.image} alt="beverage" type="Small" /> : null} */}
+          {elem.name ? <p>{elem.name}</p> : null}
+        </li>
+      )
+    });
+  }
 
   return (
     <div
@@ -31,37 +43,58 @@ const AgentVenuePopUp = (props) => {
       <a href={`https://www.google.com/maps/dir//${popUpDetail.address}`} className="direction" target="_blank">
         <img height='20' width='20' src={redirect} alt="direction" />
       </a>
-      <div className="agent-info">
-        <div className="icon">
-          <img src={address} alt="icon" />
+      {popUpDetail.how_to_get_there ?
+        <div className="agent-info">
+          <div className="icon">
+            <img src={address} alt="icon" />
+          </div>
+          <div className="details">
+            <h3>How To Get There</h3>
+            <p>{popUpDetail.how_to_get_there}</p>
+          </div>
+        </div> : null
+      }
+
+      {popUpDetail.parking ?
+        <div className="agent-info">
+          <div className="icon">
+            <img src={parking} alt="icon" />
+          </div>
+          <div className="details">
+            <h3>Parking</h3>
+            <p>{popUpDetail.parking}</p>
+          </div>
+        </div> : null
+      }
+
+      {venue && popUpDetail.food_beverages && popUpDetail.food_beverages[0].name ?
+        <div className="agent-info">
+          <div className="icon">
+            <img src={food} alt="icon" />
+          </div>
+          <div className="details">
+            <h3>Food & Beverage</h3>
+            {showFoodNBeverage(popUpDetail.food_beverages)}
+          </div>
         </div>
-        <div className="details">
-          <h3>How To Get There</h3>
-          <p>{popUpDetail.how_to_get_there}</p>
+        :
+        null
+      }
+
+      {!venue && popUpDetail.operating_hours ?
+        <div className="agent-info">
+          <div className="icon">
+            <img src={clock} alt="icon" />
+          </div>
+          <div className="details">
+            <h3>Operating Hours</h3>
+            <p>{popUpDetail.operating_hours}</p>
+          </div>
         </div>
-      </div>
-      <div className="agent-info">
-        <div className="icon">
-          <img src={parking} alt="icon" />
-        </div>
-        <div className="details">
-          <h3>Parking</h3>
-          <p>{popUpDetail.parking}</p>
-        </div>
-      </div>
-      <div className="agent-info">
-        <div className="icon">
-          {venue && popUpDetail.food_beverages && popUpDetail.food_beverages[0].name ?
-            <img src={food} alt="icon" /> : null}
-          {!venue ? <img src={clock} alt="icon" /> : null}
-        </div>
-        <div className="details">
-          {venue && popUpDetail.food_beverages && popUpDetail.food_beverages[0].name ?
-            <h3>"Food & Beverage"</h3> : null}
-          {!venue ? <h3>"Operating Hours"</h3> : null}
-          <p>{venue ? popUpDetail.food_beverages && popUpDetail.food_beverages[0].name : popUpDetail.operating_hours}</p>
-        </div>
-      </div>
+        :
+        null
+      }
+
       <div className="agent-info">
         <div className="icon">
           <img src={venue ? contact : price} alt="icon" />
@@ -93,7 +126,7 @@ const AgentVenuePopUp = (props) => {
                   return (
                     <li key={index}>
                       <img src={elem.thumb_image} alt="specific-event" />
-                      <p>{elem.title}</p>
+                      <Link to="/events">{elem.title}</Link>
                     </li>
                   )
                 })

@@ -4,16 +4,20 @@ import banner from "../../../../assets/images/location-banner.png";
 
 const CountryRegion = (props) => {
 
-  const { countryNRegion, onSubmit, filterCountryFile, handleCountryName, venue, handleMapClick, countryId } = props;
+  const { countryNRegion, onSubmit, filterCountryFile, handleCountryName, venue, handleMapClick } = props;
 
   const [country, setCountry] = useState("Singapore");
   const [region, setRegion] = useState("All locations");
   const [toggleMapCondition, setToggleMapCondition] = useState(123);
-  const [countryNRegionId, setCountryNRegionId] = useState({});
 
+  // useEffect(()=>{
+  //   filterCountryFile(country);
+  // },[]);
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    filterCountryFile(country);
+
     //set country name in parent component
     handleCountryName(country);
     // set map click event in parent component
@@ -45,28 +49,22 @@ const CountryRegion = (props) => {
     const bothId = {
       countryId, regionId
     };
-    setCountryNRegionId(bothId);
     return (bothId);
   }
 
   const handleCountryChange = (event) => {
     const { value } = event.target;
     setCountry(value);
-    handleId(value);
+    // handleId(value);
   }
 
   const handleRegionChange = (event) => {
     const { value } = event.target;
     setRegion(value);
-    handleId(country, value);
+    // handleId(country, value);
   }
 
-  filterCountryFile(country);
-
-  // useEffect(() => {
-  //   const abc = handleId(countryNRegion);
-  //   setIds(abc);
-  // }, [countryId])
+  // filterCountryFile(country);
 
   return (
     <div className="banner-wrapper">

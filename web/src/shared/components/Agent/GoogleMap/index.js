@@ -16,8 +16,19 @@ const GoogleMap = (props) => {
   const [selectedPlace, setSelectedPlace] = useState({});
   const [initialCenter, setInitialCenter] = useState({ lat: 1.290270, lng: 103.851959 });
   const [zoomValue, setZoomValue] = useState(12);
+  const [width, setWidth] = useState(window.innerWidth);
 
 
+  useEffect(() => {
+    window.addEventListener('resize', handleWindowResize);
+    return () => {
+      window.removeEventListener('resize', handleWindowResize);
+    };
+  }, []);
+
+  const handleWindowResize = () => {
+    setWidth(window.innerWidth);
+  }
 
   const onMapClicked = (props) => {
     if (showingInfoWindow) {
@@ -121,8 +132,9 @@ const GoogleMap = (props) => {
   if (!google) {
     return <div>Loading...</div>;
   }
+
   return (
-    <div className="gmap">
+    <div className="gmap" >
       {selectedPlace.id || showOnMapData.id === undefined ?
         <Map google={google}
           style={{ width: '100%', height: '600px', position: 'relative' }}
