@@ -50,6 +50,9 @@
   z-index: 0;
   visibility: hidden;
   transition: all 3s;
+  -webkit-transition: all 3s;
+  -moz-transition: all 3s;
+  -o-transition: all 3s;
 }
 .loading-image{
   width: 100%;

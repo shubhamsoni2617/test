@@ -37,6 +37,9 @@
             text-decoration: none;
             background-color: #ffffff;
             transition: 0.9s background-color, 0.1s border;
+            -webkit-transition: 0.9s background-color, 0.1s border;
+            -moz-transition: 0.9s background-color, 0.1s border;
+            -o-transition: 0.9s background-color, 0.1s border;
 
             &:hover {
                 background-color: #FFF;
@@ -54,6 +57,9 @@
                 line-height: 18px;
                 font-weight: 500;
                 transition: 0.9s color;
+                -webkit-transition: 0.9s color;
+                -moz-transition: 0.9s color;
+                -o-transition: 0.9s color;
             }
 
             img {

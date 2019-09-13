@@ -28,6 +28,9 @@
         transform: translateY(0px);
         height: auto;
         transition: 0.3s box-shadow, 0.5s transform;
+        -webkit-transition: 0.3s box-shadow, 0.5s transform;
+        -moz-transition: 0.3s box-shadow, 0.5s transform;
+        -o-transition: 0.3s box-shadow, 0.5s transform;
         .promotion-image {
             overflow: hidden;
             img {
@@ -69,6 +72,9 @@
                     max-width: 0;
                     overflow: hidden;
                     transition: 0.5s max-width, 0.5s right;
+                    -webkit-transition: 0.5s max-width, 0.5s right;
+                    -moz-transition: 0.5s max-width, 0.5s right;
+                    -o-transition: 0.5s max-width, 0.5s right;
                     padding-right: 0;
                     .social-share-wrapper{
                         background: #FFF;
@@ -79,17 +85,26 @@
                         position: relative;
                         overflow: hidden;
                         transition: max-width 0.5s, overflow 0.5s 0.5s;
+                        -webkit-transition: max-width 0.5s, overflow 0.5s 0.5s;
+                        -moz-transition: max-width 0.5s, overflow 0.5s 0.5s;
+                        -o-transition: max-width 0.5s, overflow 0.5s 0.5s;
                     }
                     &.share-visible{
                         height: auto;
                         overflow: inherit;
                         max-width: 10em;
                         transition: max-width 0.5s, overflow 0.5s 0.5s;
+                        -webkit-transition: max-width 0.5s, overflow 0.5s 0.5s;
+                        -moz-transition: max-width 0.5s, overflow 0.5s 0.5s;
+                        -o-transition: max-width 0.5s, overflow 0.5s 0.5s;
                         padding-right: 10px;
                     }
                     .SocialMediaShareButton{
                         margin: 0 3px;
                         transition: 0.5s opacity;
+                        -webkit-transition: 0.5s opacity;
+                        -moz-transition: 0.5s opacity;
+                        -o-transition: 0.5s opacity;
                         &:hover{
                             opacity: 0.8;
                         }
@@ -161,6 +176,9 @@
                     border: 1px solid #0098ff;
                     background-color: #0098ff;
                     transition: 0.5s background-color;
+                    -webkit-transition: 0.5s background-color;
+                    -moz-transition: 0.5s background-color;
+                    -o-transition: 0.5s background-color;
                     &:after{
                         content: none;
                     }
@@ -169,12 +187,18 @@
                         font-family: 'Montserrat', sans-serif;
                         font-weight: 500;
                         transition: 0.5s color;
+                        -webkit-transition: 0.5s color;
+                        -moz-transition: 0.5s color;
+                        -o-transition: 0.5s color;
                     }
                     img {
                         padding-left: 0;
                         position: absolute;
                         right: 10px;
                         transition: 0.5s opacity;
+                        -webkit-transition: 0.5s opacity;
+                        -moz-transition: 0.5s opacity;
+                        -o-transition: 0.5s opacity;
                         &.active{
                             opacity: 0;
                         }
@@ -201,6 +225,9 @@
         padding-top: 20px;
         overflow: hidden;
         transition: 0.7s height;
+        -webkit-transition: 0.7s height;
+        -moz-transition: 0.7s height;
+        -o-transition: 0.7s height;
         @media(max-width: 991px) {
             padding-top: 15px;
         }
@@ -273,6 +300,9 @@
                             position: relative;
                             z-index: 1;
                             transition: 0.5s box-shadow;
+                            -webkit-transition: 0.5s box-shadow;
+                            -moz-transition: 0.5s box-shadow;
+                            -o-transition: 0.5s box-shadow;
                             .category {
                                 margin-bottom: 3px;
                                 height: auto;
@@ -293,6 +323,9 @@
                                         width: 100%;
                                         height: auto;
                                         transition: 0.5s transform;
+                                        -webkit-transition: 0.5s transform;
+                                        -moz-transition: 0.5s transform;
+                                        -o-transition: 0.5s transform;
                                         padding: 0;
                                         @media(max-width: 1366px) {
                                             height: 100%;
@@ -329,19 +362,24 @@
                                         opacity: 1;
                                         z-index: -1;
                                         transition: 0.5s all;
+                                        -webkit-transition: 0.5s all;
+                                        -moz-transition: 0.5s all;
+                                        -o-transition: 0.5s all;
                                     }
                                     img {
                                         transform: translateY(-10px);
                                     }
                                 }
                             }
-                            h3 {
-                                transition: 0.3s color;
+                            h3 {                                
                                 margin-bottom: 0px;
                                 color: #343434;
                                 min-height: 40px;
                                 font-size: 15px;
                                 transition: 0.3s color;
+                                -webkit-transition: 0.3s color;
+                                -moz-transition: 0.3s color;
+                                -o-transition: 0.3s color;
                                 padding: 0;
                                 @media(max-width: 1366px) {
                                     min-height: 40px;
@@ -371,6 +409,13 @@
             .img-fluid {
                 padding-bottom: 16px;
             }
+            a{
+                button{
+                    &:hover{
+                        color: #ffffff;
+                    }
+                }
+            }
         }
         &::before {
             position: absolute;
@@ -386,6 +431,9 @@
             opacity: 0;
             border-bottom: 25px solid #0098ff;
             transition: 0.5s opacity;
+            -webkit-transition: 0.5s opacity;
+            -moz-transition: 0.5s opacity;
+            -o-transition: 0.5s opacity;
             z-index: -1;
             @media(max-width: 991px) {
                 border-left: 15px solid transparent;
@@ -400,6 +448,9 @@
             right: 17px;
             top: 37px;
             transition: 0.2s all;
+            -webkit-transition: 0.2s all;
+            -moz-transition: 0.2s all;
+            -o-transition: 0.2s all;
         }
     }
     &.active {
@@ -487,6 +538,9 @@
   top: 100%;
   opacity: 1;
   transition: all 300ms ease-in-out;
+  -webkit-transition: all 300ms ease-in-out;
+  -moz-transition: all 300ms ease-in-out;
+  -o-transition: all 300ms ease-in-out;
 }
 
 .mega-leave {
@@ -498,6 +552,9 @@
   top: 120%;
   opacity: 0;
   transition: all 300ms ease-in-out;
+  -webkit-transition: all 300ms ease-in-out;
+  -moz-transition: all 300ms ease-in-out;
+  -o-transition: all 300ms ease-in-out;
 }
 a{
   cursor: pointer;

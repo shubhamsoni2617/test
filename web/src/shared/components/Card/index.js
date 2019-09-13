@@ -58,7 +58,7 @@ export default class Card extends Component {
                   )
                 }}
               ></span>
-              {cardData.synopsis.length > 70 && <span onClick={()=>this.showPopUp(true, cardData.synopsis)}>Show More</span>}
+              {cardData.synopsis.length > 70 && <span className="attraction-show-more" onClick={()=>this.showPopUp(true, cardData.synopsis)}>Show More</span>}
 
               {this.state.showPopUp && <ModalPopup
                       showModal={true}

@@ -55,10 +55,12 @@
             font-size: 16px;
             line-height: 23px;
             transition: 0.5s background-color, 0.5s color;
-            &.active,
-            &:hover {
-              background-color: #f0f9ff;
-              color: #0098ff;
+            -webkit-transition: 0.5s background-color, 0.5s color;
+            -moz-transition: 0.5s background-color, 0.5s color;
+            -o-transition: 0.5s background-color, 0.5s color;
+            &.active, &:hover{
+              background-color: #F0F9FF;
+              color: #0098FF;	
             }
             @media (max-width: 768px) {
               padding: 15px 15px;
@@ -73,6 +75,9 @@
                 width: 8px;
                 height: 8px;
                 transition: 0.5s transform;
+                -webkit-transition: 0.5s transform;
+                -moz-transition: 0.5s transform;
+                -o-transition: 0.5s transform;
                 right: 20px;
                 position: absolute;
                 top: 22px;

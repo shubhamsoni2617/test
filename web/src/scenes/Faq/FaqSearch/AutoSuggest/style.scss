@@ -32,6 +32,9 @@
   li {
     border-bottom: 1px solid #f1f1f1;
     transition: 0.5s background-color;
+    -webkit-transition: 0.5s background-color;
+    -moz-transition: 0.5s background-color;
+    -o-transition: 0.5s background-color;
     &:hover {
       background-color: #f1f1f1;
       cursor: pointer;

@@ -1,7 +1,10 @@
 
 .react-modal{
-  z-index: 10;
-  top: 0;
+    z-index: 10;
+    top: 0;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
   .react-modal-body-close:after, .react-modal-body-close:before{
       background: #0098FF;
       width: 20px;
@@ -12,7 +15,7 @@
       top: 18px;
   }
   .react-modal-overlay{
-    z-index: 101;
+    z-index: 101;    
   }
   .react-modal-body{
     z-index: 102;
