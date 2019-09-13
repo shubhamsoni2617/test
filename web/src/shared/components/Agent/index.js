@@ -14,6 +14,7 @@ const Agent = (props) => {
 
   const [countryNRegion, setCountryNRegion] = useState([]);
   const [listedData, setListedData] = useState([]);
+  const [filteredListedData, setFilteredListedData] = useState([]);
   const [countryFileUrl, setCountryFileUrl] = useState('');
   const [showOnMapData, setShowOnMapData] = useState('');
   const [countryName, setCountryName] = useState('');
@@ -85,7 +86,8 @@ const Agent = (props) => {
     const eventSelection = venue ? AgentService.getVenues(params) : AgentService.getAgents(params);
     eventSelection
       .then((res) => {
-        setListedData(res.data.data)
+        setListedData(res.data.data);
+        setFilteredListedData(res.data.data);
       })
       .catch((err) => {
         console.log(err)
@@ -151,6 +153,22 @@ const Agent = (props) => {
     }
   }
 
+  const handleMapFilter = (value) => {
+    let data = listedData;
+    const lowerCasedFilter = value.toLowerCase();
+    const filteredData = data && data.filter(item => {
+      return Object.keys(item).some(key => {
+        if (item[key] === null || typeof item[key] === "object") {
+          return
+        }
+        return item.name.toLowerCase().includes(lowerCasedFilter);
+        // return item[key].toLowerCase().includes(lowerCasedFilter);
+      });
+    });
+
+    setFilteredListedData(filteredData);
+  }
+
 
   return (
 
@@ -167,7 +185,7 @@ const Agent = (props) => {
         <div className="container-fluid row agent-list">
           <div className="agent-sidebar">
             <SearchAgent
-              initialItems={listedData}
+              initialItems={filteredListedData}
               countryFileUrl={countryFileUrl}
               showOnMapClick={showOnMapClick}
               countryName={countryName}
@@ -175,14 +193,15 @@ const Agent = (props) => {
               handleAttractionValue={handleAttractionValue}
               handleEventValue={handleEventValue}
               checkBox={checkBox}
+              handleMapFilter={handleMapFilter}
               {...props}
             />
           </div>
           <div className="agent-map-area">
             <span className="map-label-mobileonly" onClick={handleMapForMobile}>Find in Map</span>
             <GoogleMap
-              multipleMarker={listedData}
-              showOnMapData={showOnMapData}
+              multipleMarker={filteredListedData}
+              showOnMapData={showOnMapData} 
               countryName={countryName}
               mapClick={mapClick}
               handleActiveClass={handleActiveClass}
