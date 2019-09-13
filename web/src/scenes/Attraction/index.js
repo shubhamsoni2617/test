@@ -223,6 +223,7 @@ export default class Attractions extends Component {
               {!shimmer && attractionCategories.length > 0 &&
                 (
                   <Filters
+                    searchPlaceholder="Search in Attraction"
                     queryParams={queryParams}
                     resetFilters={this.resetFilters}
                     handleFilters={this.handleFilters}
