@@ -6,6 +6,7 @@ import DirectionIcon from '../../../../assets/images/direction.png';
 import DefaultImg from '../../../../assets/images/horizontal.png';
 import Image from '../../Image';
 import Constants from '../../../constants';
+import MapPin from '../../../../../src/assets/images/pin.svg';
 
 const GoogleMap = (props) => {
 
@@ -76,7 +77,7 @@ const GoogleMap = (props) => {
     switch (country) {
       case "Singapore":
         // setInitialCenter({ lat: 1.290270, lng: 103.851959 });
-        setZoomValue(venue ? 1 : 12);
+        setZoomValue(venue ? 2 : 12);
         break;
       case "Malaysia":
         // setInitialCenter({ lat: 3.1412001, lng: 101.6865311 });
@@ -133,6 +134,8 @@ const GoogleMap = (props) => {
     return <div>Loading...</div>;
   }
 
+  console.log(selectedPlace.id,"ggggggggg")
+
   return (
     <div className="gmap" >
       {selectedPlace.id || showOnMapData.id === undefined ?
@@ -148,17 +151,15 @@ const GoogleMap = (props) => {
                 onClick={onMarkerClick}
                 key={elem.id}
                 position={{ lat: elem.latitude, lng: elem.longitude }}
+                id={elem.id}
                 name={elem.name}
                 address={elem.address}
                 imgPath={elem.image}
-                mapPinIcon={elem.map_pin_icon}
+                mapPinColor={elem.map_pin_color}
                 icon={{
-                  url: elem.id === selectedPlace.id ? require("../../../../../src/assets/images/pin.svg") : null,
-                  // scaledSize: new google.maps.Size(30, 30)
+                  url: elem.id === selectedPlace.id ? MapPin : null,
+                  // fillColor: selectedPlace.mapPinColor
                 }}
-              // icon={{
-              //   url: elem.id === selectedPlace.id ? require("../../../../../src/assets/images/pin.svg") : null
-              // }}
               />
             )
           })
@@ -203,13 +204,14 @@ const GoogleMap = (props) => {
                 onClick={onMarkerClick}
                 key={elem.id}
                 position={{ lat: elem.latitude, lng: elem.longitude }}
+                id={elem.id}
                 name={elem.name}
                 address={elem.address}
                 imgPath={elem.image}
-                mapPinIcon={elem.map_pin_icon}
+                mapPinColor={elem.map_pin_color}
                 icon={{
-                  url: elem.id === showOnMapData.id ? require("../../../../../src/assets/images/pin.svg") : null,
-                  // scaledSize: new google.maps.Size(30, 30)
+                  url: elem.id === showOnMapData.id ? MapPin : null,
+                  // fillColor: showOnMapData.mapPinColor
                 }}
               />
             )

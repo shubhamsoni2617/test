@@ -154,7 +154,7 @@ const SearchAgent = (props) => {
             return (
               <li className={item.id === activeClassId ? "pop-up-container active-class" : "pop-up-container"} onClick={(e) => { showOnMapClick(e, item, activePopUpRef) }} key={index} onMouseEnter={() => showPopUp(item)} onMouseLeave={hidePopUp}>
                 <img src={downArrow} className="active-arrow" alt="Down Arrow" />
-                <h3><strong>{item.name}</strong>{item.name.length > 25 ? <br /> : null} <span><a onClick={(e) => { showOnMapClick(e, item, activePopUpRef) }}>show on Map</a></span></h3>
+                <h3><strong>{item.name}</strong>{item.name.length > 25 ? <br /> : null} <span><a onClick={(e) => { showOnMapClick(e, item, activePopUpRef) }}>Show on Map</a></span></h3>
                 <p>{item.address},{item.country}</p>
                 <AgentVenuePopUp item={item} popUpDetail={popUpDetail} currentlyShowingData={currentlyShowingData} activePopUpRef={activePopUpRef} {...props} />
               </li>
