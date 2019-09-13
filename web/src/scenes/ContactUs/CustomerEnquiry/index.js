@@ -111,52 +111,50 @@ const CustomerEnquiry = (props) => {
   }
 
   return (
-    <div className="col-lg-6 row-data">
-      <h3 className="heading-text">Customer Enquiries</h3>
-      <h5 className="text-success">{submitResponse}</h5>
-      <form onSubmit={handleSubmit}>
-        <div className="form-group">
-          <select name="enquiry" className="form-control" onChange={handleChange} value={enquiry}>
-            <option>Select an Enquiry</option>
-            {enquiryCategory && enquiryCategory.map((enq) => {
-              return (
-                <option key={enq.id} value={enq.id}>{enq.name}</option>
-              )
-            })}
-          </select>
+      <div className="col-lg-7">
+        <div className="customer-enquiry">
+          <h3 className="heading-text">Customer Enquiries</h3>
+          <h5 className="text-success">{submitResponse}</h5>
+          <form onSubmit={handleSubmit}>
+          <div className="form-group">
+            <select name="enquiry" className="form-control" onChange={handleChange} value={enquiry}>
+              <option>Select an Enquiry</option>
+              {enquiryCategory && enquiryCategory.map((enq) => {
+                return (
+                  <option key={enq.id} value={enq.id}>{enq.name}</option>
+                )
+              })}
+            </select>
+          </div>
+          <div className="form-group">
+            <input name="name" className="form-control" type="text" placeholder="Name*" value={name} onChange={handleChange} required />
+          </div>
+          <div className="form-group">
+            <input name="email" className="form-control" type="email" placeholder="Email Address*" value={email} onChange={handleChange} required />
+          </div>
+          <div className="form-group">
+            <input name="phone" className="form-control" type="text" placeholder="Phone Number*" value={phone} onChange={handleChange} required />
+          </div>
+          <div className="form-group">
+            <textarea name="message" className="form-control" rows="5" placeholder="Message*" cols="30" value={message} onChange={handleChange} required />
+          </div>
+          <div className="form-group">
+            {/* <div className="row">
+              <div className="col-lg-4">Attach Documents</div>
+              <div className="col-lg-8">
+                <label htmlFor="file-upload" className="custom-file-upload  form-control text-right">
+                  <img src={attach} height="20" width="20" />
+                </label>
+                <input encType='multipart/form-data' id="file-upload" className="form-control" type="file" multiple onChange={handleFile} accept=".jpeg,.png,.pdf" />
+                <p>*File Size should be maximum 5mb and it can be pdf,jpeg,png</p>
+                <p className="text-danger">{maxFileLimitMsg}</p>
+              </div>
+            </div> */}
+          </div>
+          <input className="form-control btn-info" type="submit" value="Submit" />
+        </form>
         </div>
-        <div className="form-group">
-          <label>Name<span className="text-danger">*</span></label>
-          <input name="name" className="form-control" type="text" value={name} onChange={handleChange} required />
-        </div>
-        <div className="form-group">
-          <label>Email Address<span className="text-danger">*</span></label>
-          <input name="email" className="form-control" type="email" value={email} onChange={handleChange} required />
-        </div>
-        <div className="form-group">
-          <label>Phone Number<span className="text-danger">*</span></label>
-          <input name="phone" className="form-control" type="text" value={phone} onChange={handleChange} required />
-        </div>
-        <div className="form-group">
-          <label>Message<span className="text-danger">*</span></label>
-          <textarea name="message" className="form-control" rows="5" cols="30" value={message} onChange={handleChange} required />
-        </div>
-        <div className="form-group">
-          {/* <div className="row">
-            <div className="col-lg-4">Attach Documents</div>
-            <div className="col-lg-8">
-              <label htmlFor="file-upload" className="custom-file-upload  form-control text-right">
-                <img src={attach} height="20" width="20" />
-              </label>
-              <input encType='multipart/form-data' id="file-upload" className="form-control" type="file" multiple onChange={handleFile} accept=".jpeg,.png,.pdf" />
-              <p>*File Size should be maximum 5mb and it can be pdf,jpeg,png</p>
-              <p className="text-danger">{maxFileLimitMsg}</p>
-            </div>
-          </div> */}
-        </div>
-        <input className="form-control btn-info" type="submit" value="Submit" />
-      </form>
-    </div>
+      </div>
   );
 };
 

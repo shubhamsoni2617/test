@@ -1,0 +1,20 @@
+.customer-enquiry{
+    padding: 2px 37px 26px 30px;
+    .heading-text{
+        padding: 5% 0% 6% 0%;
+    }
+    .form-control{
+        border-radius: 0;
+        min-height: 36px;
+    }
+    textarea{
+        resize: none;
+    }
+    input{
+        &.btn-info{
+            background-color: #0098FF;
+            color: #FFFFFF;
+            font-size: 18px;
+        }
+    }
+}

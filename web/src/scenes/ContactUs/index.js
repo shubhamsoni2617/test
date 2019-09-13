@@ -55,14 +55,16 @@ class ContactUs extends Component {
     return (
       <div className="contact-us">
         <h1 className="text-center contact-us-header">Contact Us</h1>
-        <div className="container main-context">
-          <div className="row">
-            <CustomerEnquiry enquiryCategory={enquiryCategory} sendCategoryToFaqs={this.sendCategoryToFaqs} />
-            <div className="col-lg-4 row-data">
-              <FindUs contactDetail={contactDetail} />
+        <div className="container">
+          <div className="contact-us-block">
+            <div className="row">
+              <CustomerEnquiry enquiryCategory={enquiryCategory} sendCategoryToFaqs={this.sendCategoryToFaqs} />
+              <div className="col-lg-5 pr-0">
+                <FindUs contactDetail={contactDetail} />
+              </div>
             </div>
-            <Faqs category={category} />
           </div>
+          <Faqs category={category} />
         </div>
       </div>
     );

@@ -30,3 +30,46 @@
 .row-data:nth-child(2){
   background-color: rgb(89, 243, 230)
 }
+
+.pr-0{
+  padding-right: 0;
+}
+.pl-0{
+  padding-left: 0;
+}
+// find us
+.contact-us-block{
+  box-shadow: 0 1px 33px 0 rgba(0,0,0,0.07);
+  margin-bottom: 35px;
+  width: 100%;
+  background-color: #fff;
+  .find-us{
+    background-color: #F0F9FF;
+    padding: 12px 15px 0 27px;
+    height: 100%;
+    .find-us-content{
+      margin: 5% 0% 7% 0%;
+      .img{
+        padding-left: 0;
+      }
+        a{
+          display: block;
+          width: 100%;
+          h5{
+            color: #0098FF;
+            font-size: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+          }
+        }
+        .text{
+          p{
+            color: #626262;
+            font-size: 14px;
+            margin-bottom: 7px;
+          }
+        }
+    }
+  }
+}
