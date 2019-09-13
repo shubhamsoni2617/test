@@ -6,7 +6,6 @@ import DirectionIcon from '../../../../assets/images/direction.png';
 import DefaultImg from '../../../../assets/images/horizontal.png';
 import Image from '../../Image';
 import Constants from '../../../constants';
-import MapPin from '../../../../../src/assets/images/pin.svg';
 
 const GoogleMap = (props) => {
 
@@ -77,7 +76,7 @@ const GoogleMap = (props) => {
     switch (country) {
       case "Singapore":
         // setInitialCenter({ lat: 1.290270, lng: 103.851959 });
-        setZoomValue(venue ? 2 : 12);
+        setZoomValue(venue ? 12 : 12);
         break;
       case "Malaysia":
         // setInitialCenter({ lat: 3.1412001, lng: 101.6865311 });
@@ -134,7 +133,6 @@ const GoogleMap = (props) => {
     return <div>Loading...</div>;
   }
 
-  console.log(selectedPlace.id,"ggggggggg")
 
   return (
     <div className="gmap" >
@@ -157,7 +155,13 @@ const GoogleMap = (props) => {
                 imgPath={elem.image}
                 mapPinColor={elem.map_pin_color}
                 icon={{
-                  url: elem.id === selectedPlace.id ? MapPin : null,
+                  // url: elem.map_pin_icon,
+                  scaledSize: new google.maps.Size(50, 50), // scaled size
+                  path: Constants.MAP_PATH,
+                  scale: 0.8,
+                  fillColor: venue ? (elem.id === selectedPlace.id ? "blue" : elem.map_pin_color) : (elem.id === showOnMapData.id ? "blue" : "#9F3A3A"),
+                  fillOpacity: 1,
+                  strokeWeight: 2
                   // fillColor: selectedPlace.mapPinColor
                 }}
               />
@@ -210,8 +214,13 @@ const GoogleMap = (props) => {
                 imgPath={elem.image}
                 mapPinColor={elem.map_pin_color}
                 icon={{
-                  url: elem.id === showOnMapData.id ? MapPin : null,
-                  // fillColor: showOnMapData.mapPinColor
+                  // url: elem.id === showOnMapData.id ? MapPin : null,
+                  scaledSize: new google.maps.Size(50, 50), // scaled size
+                  path: Constants.MAP_PATH,
+                  scale: 0.8,
+                  fillColor: venue ? (elem.id === showOnMapData.id ? "blue" : elem.map_pin_color) : (elem.id === showOnMapData.id ? "blue" : "red"),
+                  fillOpacity: 1,
+                  strokeWeight: 2
                 }}
               />
             )
