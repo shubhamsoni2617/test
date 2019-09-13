@@ -49,6 +49,9 @@
           background-repeat: no-repeat;
           background-position: 97%;
           background-size: 12px auto;
+          &[readonly]{
+            pointer-events: none;
+          }
           &:first-child{
               border-right: 2px solid rgba(52, 52, 52, 0.21);
           }

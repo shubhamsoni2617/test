@@ -151,9 +151,14 @@ const GoogleMap = (props) => {
                 name={elem.name}
                 address={elem.address}
                 imgPath={elem.image}
+                mapPinIcon={elem.map_pin_icon}
                 icon={{
-                  url: elem.id === selectedPlace.id ? require("../../../../../src/assets/images/pin.svg") : null
+                  url: elem.id === selectedPlace.id ? require("../../../../../src/assets/images/pin.svg") : null,
+                  // scaledSize: new google.maps.Size(30, 30)
                 }}
+              // icon={{
+              //   url: elem.id === selectedPlace.id ? require("../../../../../src/assets/images/pin.svg") : null
+              // }}
               />
             )
           })
@@ -201,8 +206,10 @@ const GoogleMap = (props) => {
                 name={elem.name}
                 address={elem.address}
                 imgPath={elem.image}
+                mapPinIcon={elem.map_pin_icon}
                 icon={{
-                  url: elem.id === showOnMapData.id ? require("../../../../../src/assets/images/pin.svg") : null
+                  url: elem.id === showOnMapData.id ? require("../../../../../src/assets/images/pin.svg") : null,
+                  // scaledSize: new google.maps.Size(30, 30)
                 }}
               />
             )
