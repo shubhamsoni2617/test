@@ -22,8 +22,9 @@ const Agent = (props) => {
   const [mapClick, setMapClick] = useState(true);
   const [activeClassId, setActiveClassId] = useState(0);
   const [countryId, setCountryId] = useState(null);
-  const [invokeApiFlag, setInvokeApiFlag] = useState(0);
-  const [ids, setIds] = useState({ countryId: 15, regionId: null });
+  const [regionId, setRegionId] = useState(undefined);
+  const [checkBox, setCheckBox] = useState(0);
+  const [mapInMobile, setMapInMobile] = useState(false);
 
 
   useEffect(() => {
@@ -33,14 +34,16 @@ const Agent = (props) => {
 
   useEffect(() => {
     const params = {
-      client: Constants.CLIENT,
-      country: countryId,
-      sort_type: "name",
-      sort_order: "ASC"
+      country: countryId
     };
     fetchAgentsNVenues(params);
-  }, [countryId]);
+  }, [countryId, attractionValue, eventValue]);
 
+  useEffect(() => {
+    if (countryNRegion && countryNRegion.length > 0 && !countryFileUrl) {
+      filterCountryFile("Singapore")
+    }
+  }, [countryNRegion]);
 
   //page scroll to top after mounting component
   const scrollToTop = () => {
@@ -78,10 +81,10 @@ const Agent = (props) => {
     params.sort_type = "name";
     params.sort_order = "ASC";
 
+    console.log(params, "params");
     const eventSelection = venue ? AgentService.getVenues(params) : AgentService.getAgents(params);
     eventSelection
       .then((res) => {
-        console.log(res.data.data, "response")
         setListedData(res.data.data)
       })
       .catch((err) => {
@@ -91,9 +94,14 @@ const Agent = (props) => {
 
   // fetch agents or venues after submission (click on "GO" button)
   const submitCountryNRegion = (params) => {
+    setCheckBox(Math.random());
+    setCountryId(params.country);
+    setRegionId(params.region);
     if (params.country) {
       fetchAgentsNVenues(params);
     }
+    setAttractionValue(undefined);
+    setEventValue(undefined);
   }
   // filter file for selected country (Festive Period Operating Hours - Agent page)
   const filterCountryFile = (file) => {
@@ -135,12 +143,14 @@ const Agent = (props) => {
     setActiveClassId(activeId);
   }
 
-  // useEffect(()=>{
-  //   const params = {
-  //     client: Constants.CLIENT
-  //   };
-  //   fetchAgentsNVenues(params)
-  // },[invokeApiFlag])
+  const handleMapForMobile = () => {
+    if (!mapInMobile) {
+      setMapInMobile(true);
+    } else {
+      setMapInMobile(true);
+    }
+  }
+
 
   return (
 
@@ -164,17 +174,19 @@ const Agent = (props) => {
               activeClassId={activeClassId}
               handleAttractionValue={handleAttractionValue}
               handleEventValue={handleEventValue}
+              checkBox={checkBox}
               {...props}
             />
           </div>
           <div className="agent-map-area">
-            <span className="map-label-mobileonly">Find in Map</span>
+            <span className="map-label-mobileonly" onClick={handleMapForMobile}>Find in Map</span>
             <GoogleMap
               multipleMarker={listedData}
               showOnMapData={showOnMapData}
               countryName={countryName}
               mapClick={mapClick}
               handleActiveClass={handleActiveClass}
+              mapInMobile={mapInMobile}
               {...props}
             />
           </div>

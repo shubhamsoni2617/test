@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import SearchIcon from '../../../../assets/images/search-icon-gray.svg';
 import './style.scss';
 import downloadOrange from '../../../../assets/images/download-orange.svg';
@@ -11,7 +11,7 @@ import Utilities from '../../../utilities';
 const SearchAgent = (props) => {
 
   const { initialItems, countryFileUrl, showOnMapClick, venue, countryName,
-    handleAttractionValue, handleEventValue, activeClassId } = props;
+    handleAttractionValue, handleEventValue, activeClassId, checkBox } = props;
   const activePopUpRef = useRef();
 
   const [filter, setFilter] = useState('');
@@ -21,6 +21,11 @@ const SearchAgent = (props) => {
   const [onGoingEvents, setOngoingEvents] = useState(false);
   const [currentlyShowingData, setCurrentlyShowingData] = useState([]);
   let timer;
+
+  useEffect(() => {
+    setAttraction(false);
+    setOngoingEvents(false);
+  }, [checkBox]);
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -119,6 +124,8 @@ const SearchAgent = (props) => {
     });
   });
 
+  console.log(filteredData, "filteredDatafilteredDatafilteredData")
+
   let isFile;
   if (countryFileUrl) {
     isFile = Utilities.isFileExt(countryFileUrl);
@@ -127,7 +134,7 @@ const SearchAgent = (props) => {
 
   return (
     <div className="search-agent">
-      <h2>{venue ? "Venue in " : "Agents in "} {countryName ? countryName : "Singapore"}</h2>
+      <h2>{venue ? "Venues in " : "Agents in "} {countryName ? countryName : "Singapore"}</h2>
       <form onSubmit={handleSubmit}>
         <div className="agent-search">
           <button type="submit" className="search-btn"><img src={SearchIcon} alt="search-icon" /></button>
@@ -141,8 +148,8 @@ const SearchAgent = (props) => {
       </form>
       {venue ?
         <ul className="list-option">
-          <li><input type="checkbox" onClick={handleAttraction} className="styled-checkbox" id="1" /><label htmlFor="1"> Attractions</label></li>
-          <li><input type="checkbox" onClick={handleOngoingEvents} className="styled-checkbox" id="2" /><label htmlFor="2"> Venues with Ongoing Events</label></li>
+          <li><input type="checkbox" onChange={handleAttraction} className="styled-checkbox" id="1" checked={attraction ? true : false} /><label htmlFor="1"> Attractions</label></li>
+          <li><input type="checkbox" onChange={handleOngoingEvents} className="styled-checkbox" id="2" checked={onGoingEvents ? true : false} /><label htmlFor="2"> Venues with Ongoing Events</label></li>
         </ul>
         : null
       }
@@ -160,13 +167,14 @@ const SearchAgent = (props) => {
             return (
               <li className={item.id === activeClassId ? "pop-up-container active-class" : "pop-up-container"} onClick={(e) => { showOnMapClick(e, item, activePopUpRef) }} key={index} onMouseEnter={() => showPopUp(item)} onMouseLeave={hidePopUp}>
                 <img src={downArrow} className="active-arrow" alt="Down Arrow" />
-                <h3><strong>{item.name}</strong> <span><a onClick={(e) => { showOnMapClick(e, item, activePopUpRef) }}>show on Map</a></span></h3>
+                <h3><strong>{item.name}</strong>{item.name.length > 25 ? <br /> : null} <span><a onClick={(e) => { showOnMapClick(e, item, activePopUpRef) }}>show on Map</a></span></h3>
                 <p>{item.address},{item.country}</p>
                 <AgentVenuePopUp item={item} popUpDetail={popUpDetail} currentlyShowingData={currentlyShowingData} activePopUpRef={activePopUpRef} {...props} />
               </li>
             )
           })
         }
+        {filteredData.length <= 0 ? "No result found" : null}
       </ul>
     </div>
   );

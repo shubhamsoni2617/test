@@ -11,6 +11,8 @@ import notification from '../../../assets/images/notification.svg';
 import event from '../../../assets/images/current-event.svg';
 import download from '../../../assets/images/download-blue.svg';
 import Utilities from '../../utilities';
+import Image from '../Image';
+import { Link } from 'react-router-dom';
 
 const AgentVenuePopUp = (props) => {
 
@@ -21,6 +23,16 @@ const AgentVenuePopUp = (props) => {
     isFile = Utilities.isFileExt(popUpDetail.festive_hours_file);
   }
 
+  const showFoodNBeverage = (foodNBeverage) => {
+    return foodNBeverage.map((elem, index) => {
+      return (
+        <li key={index}>
+          {/* {elem.image ? <Image src={elem.image} alt="beverage" type="Small" /> : null} */}
+          {elem.name ? <p>{elem.name}</p> : null}
+        </li>
+      )
+    });
+  }
 
   return (
     <div
@@ -31,51 +43,103 @@ const AgentVenuePopUp = (props) => {
       <a href={`https://www.google.com/maps/dir//${popUpDetail.address}`} className="direction" target="_blank">
         <img height='20' width='20' src={redirect} alt="direction" />
       </a>
-      <div className="agent-info">
-        <div className="icon">
-          <img src={address} alt="icon" />
+      {popUpDetail.how_to_get_there ?
+        <div className="agent-info">
+          <div className="icon">
+            <img src={address} alt="icon" />
+          </div>
+          <div className="details">
+            <h3>How To Get There</h3>
+            <p>{popUpDetail.how_to_get_there}</p>
+          </div>
+        </div> : null
+      }
+
+      {popUpDetail.parking ?
+        <div className="agent-info">
+          <div className="icon">
+            <img src={parking} alt="icon" />
+          </div>
+          <div className="details">
+            <h3>Parking</h3>
+            <p>{popUpDetail.parking}</p>
+          </div>
+        </div> : null
+      }
+
+      {venue && popUpDetail.food_beverages && popUpDetail.food_beverages[0].name ?
+        <div className="agent-info">
+          <div className="icon">
+            <img src={food} alt="icon" />
+          </div>
+          <div className="details">
+            <h3>Food & Beverage</h3>
+            {showFoodNBeverage(popUpDetail.food_beverages)}
+          </div>
         </div>
-        <div className="details">
-          <h3>How To Get There</h3>
-          <p>{popUpDetail.how_to_get_there}</p>
+        :
+        null
+      }
+
+      {!venue && popUpDetail.operating_hours ?
+        <div className="agent-info">
+          <div className="icon">
+            <img src={clock} alt="icon" />
+          </div>
+          <div className="details">
+            <h3>Operating Hours</h3>
+            <p>{popUpDetail.operating_hours}</p>
+          </div>
         </div>
-      </div>
-      <div className="agent-info">
-        <div className="icon">
-          <img src={parking} alt="icon" />
-        </div>
-        <div className="details">
-          <h3>Parking</h3>
-          <p>{popUpDetail.parking}</p>
-        </div>
-      </div>
-      <div className="agent-info">
-        <div className="icon">
-          <img src={venue ? food : clock} alt="icon" />
-        </div>
-        <div className="details">
-          <h3>{venue ? "Food & Beverage" : "Operating Hours"}</h3>
-          <p>{venue ? popUpDetail.food_beverages && popUpDetail.food_beverages[0].name : popUpDetail.operating_hours}</p>
-        </div>
-      </div>
-      <div className="agent-info">
-        <div className="icon">
-          <img src={venue ? contact : price} alt="icon" />
-        </div>
-        <div className="details">
-          <h3>{venue ? "Contact Detail" : "Payment Mode"}</h3>
-          <p>{venue ? popUpDetail.contact_details : popUpDetail.payment_mode}</p>
-        </div>
-      </div>
-      <div className="agent-info">
-        <div className="icon">
-          <img src={venue ? seat : notification} alt="icon" />
-        </div>
-        <div className="details">
-          <h3>{venue ? "Seating Capacity" : "Ticket pick up Reminder"}</h3>
-          <p>{venue ? popUpDetail.seating_capacity : popUpDetail.reminder}</p>
-        </div>
-      </div>
+        :
+        null
+      }
+
+      {venue && popUpDetail.contact_details ?
+        <div className="agent-info">
+          <div className="icon">
+            <img src={contact} alt="icon" />
+          </div>
+          <div className="details">
+            <h3>Contact Detail</h3>
+            <p>{popUpDetail.contact_details}</p>
+          </div>
+        </div> : null
+      }
+      {!venue && popUpDetail.payment_mode ?
+        <div className="agent-info">
+          <div className="icon">
+            <img src={price} alt="icon" />
+          </div>
+          <div className="details">
+            <h3>Payment Mode</h3>
+            <p>{popUpDetail.payment_mode}</p>
+          </div>
+        </div> : null
+      }
+      {venue && popUpDetail.seating_capacity ?
+        <div className="agent-info">
+          <div className="icon">
+            <img src={seat} alt="icon" />
+          </div>
+          <div className="details">
+            <h3>Seating Capacity</h3>
+            <p>{popUpDetail.seating_capacity}</p>
+          </div>
+        </div> : null
+      }
+      {!venue && popUpDetail.reminder ?
+        <div className="agent-info">
+          <div className="icon">
+            <img src={notification} alt="icon" />
+          </div>
+          <div className="details">
+            <h3>Ticket pick up Reminder</h3>
+            <p>{popUpDetail.reminder}</p>
+          </div>
+        </div> : null
+      }
+
       {venue && popUpDetail.currentlyShowingData && popUpDetail.currentlyShowingData.length > 0 ?
         <div className="agent-info">
           <div className="icon">
@@ -89,7 +153,7 @@ const AgentVenuePopUp = (props) => {
                   return (
                     <li key={index}>
                       <img src={elem.thumb_image} alt="specific-event" />
-                      <p>{elem.title}</p>
+                      <Link to="/events">{elem.title}</Link>
                     </li>
                   )
                 })
