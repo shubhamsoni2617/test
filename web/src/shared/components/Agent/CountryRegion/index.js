@@ -64,8 +64,6 @@ const CountryRegion = (props) => {
     // handleId(country, value);
   }
 
-  // filterCountryFile(country);
-
   return (
     <div className="banner-wrapper">
       <img src={banner} className="img-fluid" alt="page-banner" />
@@ -90,30 +88,26 @@ const CountryRegion = (props) => {
                 }
               </select>
 
-              {country === "Singapore" ?
-                <select className="form-control" onChange={handleRegionChange} value={region}>
-                  <option>Region</option>
-                  {countryNRegion && countryNRegion.map((elem, index) => {
-                    if (elem.regions.length > 0) {
-                      return elem.regions.map((e, i) => {
-                        if (elem.name === country) {
-                          return (
-                            <option
-                              key={i}
-                              value={e.name}
-                            >
-                              {e.name}
-                            </option>
-                          )
-                        }
-                      })
-                    }
-                  })
+              <select className="form-control" onChange={handleRegionChange} value={region} readOnly={country !== "Singapore" ? true : false} >
+                <option>Region</option>
+                {countryNRegion && countryNRegion.map((elem, index) => {
+                  if (elem.regions.length > 0) {
+                    return elem.regions.map((e, i) => {
+                      if (elem.name === country) {
+                        return (
+                          <option
+                            key={i}
+                            value={e.name}
+                          >
+                            {e.name}
+                          </option>
+                        )
+                      }
+                    })
                   }
-                </select>
-                :
-                <div className="form-control agent-val">Region</div>
-              }
+                })
+                }
+              </select>
               <button className="go-btn" type="submit">GO</button>
             </div>
           </form>
