@@ -10,14 +10,20 @@ const CountryRegion = (props) => {
   const [region, setRegion] = useState("All locations");
   const [toggleMapCondition, setToggleMapCondition] = useState(123);
 
+  // useEffect(()=>{
+  //   filterCountryFile(country);
+  // },[]);
+
   const handleSubmit = (event) => {
     event.preventDefault();
+    filterCountryFile(country);
+
     //set country name in parent component
     handleCountryName(country);
     // set map click event in parent component
     handleMapClick(toggleMapCondition);
     setToggleMapCondition(Math.random());
-    const bothId = handleId(countryNRegion);
+    const bothId = handleId();
     const params = {
       country: bothId.countryId,
       region: bothId.regionId
@@ -25,15 +31,15 @@ const CountryRegion = (props) => {
     onSubmit(params);
   }
 
-  const handleId = (countryNRegion) => {
+  const handleId = (value = country, locationId = region) => {
     let countryId;
     let regionId;
     countryNRegion.map((elem) => {
-      if (elem.name === country) {
+      if (elem.name === value) {
         countryId = elem.id;
-        if (country === "Singapore") {
+        if (value === "Singapore") {
           elem.regions.map((e) => {
-            if (e.name === region) {
+            if (e.name === locationId) {
               regionId = e.id;
             }
           })
@@ -43,20 +49,22 @@ const CountryRegion = (props) => {
     const bothId = {
       countryId, regionId
     };
-    return (bothId)
+    return (bothId);
   }
 
   const handleCountryChange = (event) => {
     const { value } = event.target;
     setCountry(value);
+    // handleId(value);
   }
 
   const handleRegionChange = (event) => {
     const { value } = event.target;
     setRegion(value);
+    // handleId(country, value);
   }
 
-  filterCountryFile(country);
+  // filterCountryFile(country);
 
   return (
     <div className="banner-wrapper">
