@@ -7,20 +7,32 @@
         }
         @media(max-width: 767px){
             margin-bottom: 30px;
-            margin-top: 0;
+            margin-top: -116px;
         }
         img{
             min-height: 250px;
             @media(max-width: 768px){
-                min-height: 300px;
+                min-height: 150px;
+            }
+            @media(max-width: 767px){
+                min-height: 200px;
             }
         }
         .banner-overlay{
             @media(max-width: 768px){
-                margin-top: 40px;
-            }
-            @media(max-width: 767px){
                 margin-top: 0px;
+                position: relative;
+                top: auto;
+                left: 0px;
+                transform: none;
+                width: 100%;
+                bottom: 0px;
+            }          
+            h1{
+                @media(max-width: 768px){
+                    margin-top: -60px;
+                    padding-bottom: 15px;
+                }
             }
         }
     }

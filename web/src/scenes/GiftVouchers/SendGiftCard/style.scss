@@ -23,6 +23,9 @@
       flex: 0 0 100%;
       width: 100%;
       margin-bottom: 40px;
+      display: flex;
+      flex-direction: column;
+      text-align: center;
       &:last-child{
         margin-bottom: 0px;
       }
