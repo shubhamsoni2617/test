@@ -201,10 +201,19 @@
         }
         &:hover{
           background-color: #fff;
+          @media(max-width: 768px){
+            background-color: transparent;
+          }
           span{
             color: #0098FF;
+            @media(max-width: 768px){
+              color: #fff;
+            }
             &:after{
               background-image: url(../../../assets/images/buy-arrow-b.png);
+              @media(max-width: 768px){
+                background-image: url(../../../assets/images/buy-arrow.png);
+              }
             }
           }
         }

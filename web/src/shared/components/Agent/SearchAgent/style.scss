@@ -228,6 +228,8 @@
                     line-height: 20px;
                     margin: 0;
                     padding: 0;
+                    white-space: normal;
+                    word-break: break-all;
                     @media(max-width: 992px){
                         font-size: 14px;
                         line-height: 18px;
@@ -364,6 +366,10 @@
                 position: absolute;
                 right: 17px;
                 top: 15px;
+                @media(max-width: 767px){
+                    right: 10px;
+                    top: 10px;
+                }
                 img{
                     width: 25px;
                     height: 25px;
