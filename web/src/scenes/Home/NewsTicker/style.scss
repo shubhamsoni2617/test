@@ -35,6 +35,9 @@ $duration: 10s;
   z-index: 2;
   max-height: 0;
   transition: max-height 0.5s ease-out;
+  -webkit-transition: max-height 0.5s ease-out;
+  -moz-transition: max-height 0.5s ease-out;
+  -o-transition: max-height 0.5s ease-out;
   overflow: hidden;
   &.hide-news {
     max-height: 40px;

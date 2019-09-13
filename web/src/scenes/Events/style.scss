@@ -127,12 +127,18 @@
 		line-height: normal;
 		text-decoration: none;
 		background-color: #ffffff;
-		transition: 0.9s all;
+        transition: 0.9s all;
+        -webkit-transition: 0.9s all;
+        -moz-transition: 0.9s all;
+        -o-transition: 0.9s all;
 		&:hover {
             background-color: #FFF;
             border: 1px solid #0098ff;
             color: #0098ff;
             transition: 0.9s all;
+            -webkit-transition: 0.9s all;
+            -moz-transition: 0.9s all;
+            -o-transition: 0.9s all;
 			span {
 				color: #0098ff;
 			}
@@ -142,12 +148,18 @@
 			font-family: 'Montserrat', sans-serif;
 			font-size: 14px;
 			line-height: 18px;
-			transition: 0.9s all;
+            transition: 0.9s all;
+            -webkit-transition: 0.9s all;
+            -moz-transition: 0.9s all;
+            -o-transition: 0.9s all;
 		}
 		img {
 			padding-left: 10px;
 			padding-bottom: 4px;
-			transition: 0.9s filter;
+            transition: 0.9s filter;
+            -webkit-transition: 0.9s filter;
+            -moz-transition: 0.9s filter;
+            -o-transition: 0.9s filter;
 		}
 	}
 }

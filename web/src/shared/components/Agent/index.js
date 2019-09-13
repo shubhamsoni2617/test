@@ -14,25 +14,36 @@ const Agent = (props) => {
 
   const [countryNRegion, setCountryNRegion] = useState([]);
   const [listedData, setListedData] = useState([]);
-  const [countryFile, setCountryFile] = useState('');
+  const [countryFileUrl, setCountryFileUrl] = useState('');
   const [showOnMapData, setShowOnMapData] = useState('');
   const [countryName, setCountryName] = useState('');
   const [attractionValue, setAttractionValue] = useState(undefined);
   const [eventValue, setEventValue] = useState(undefined);
   const [mapClick, setMapClick] = useState(true);
+  const [activeClassId, setActiveClassId] = useState(0);
+  const [countryId, setCountryId] = useState(null);
+  const [regionId, setRegionId] = useState(undefined);
+  const [checkBox, setCheckBox] = useState(0);
+  const [mapInMobile, setMapInMobile] = useState(false);
 
 
   useEffect(() => {
-    const params = {
-      client: Constants.CLIENT,
-      country: "15",
-      sort_type: "name",
-      sort_order: "ASC"
-    };
     scrollToTop();
     fetchCountryNRegion();
-    fetchAgentsNVenues(params);
   }, []);
+
+  useEffect(() => {
+    const params = {
+      country: countryId
+    };
+    fetchAgentsNVenues(params);
+  }, [countryId, attractionValue, eventValue]);
+
+  useEffect(() => {
+    if (countryNRegion && countryNRegion.length > 0 && !countryFileUrl) {
+      filterCountryFile("Singapore")
+    }
+  }, [countryNRegion]);
 
   //page scroll to top after mounting component
   const scrollToTop = () => {
@@ -44,7 +55,11 @@ const Agent = (props) => {
     const eventSelection = venue ? AgentService.getVenuesCountryNRegion() : AgentService.getAgentsCountryNRegion();
     eventSelection
       .then((res) => {
-        setCountryNRegion(res.data.data)
+        if (res.data && res.data.data) {
+          let countryId = res.data.data.find(el => el.name === 'Singapore').id;
+          setCountryId(countryId)
+          setCountryNRegion(res.data.data)
+        }
       })
       .catch((err) => {
         console.log(err)
@@ -66,6 +81,7 @@ const Agent = (props) => {
     params.sort_type = "name";
     params.sort_order = "ASC";
 
+    console.log(params, "params");
     const eventSelection = venue ? AgentService.getVenues(params) : AgentService.getAgents(params);
     eventSelection
       .then((res) => {
@@ -78,9 +94,14 @@ const Agent = (props) => {
 
   // fetch agents or venues after submission (click on "GO" button)
   const submitCountryNRegion = (params) => {
+    setCheckBox(Math.random());
+    setCountryId(params.country);
+    setRegionId(params.region);
     if (params.country) {
       fetchAgentsNVenues(params);
     }
+    setAttractionValue(undefined);
+    setEventValue(undefined);
   }
   // filter file for selected country (Festive Period Operating Hours - Agent page)
   const filterCountryFile = (file) => {
@@ -90,7 +111,7 @@ const Agent = (props) => {
         filteredFile = item.festive_hours_file;
       }
     })
-    setCountryFile(filteredFile);
+    setCountryFileUrl(filteredFile);
   }
 
   // set selected list data in parent component
@@ -118,6 +139,19 @@ const Agent = (props) => {
     setMapClick(event);
   }
 
+  const handleActiveClass = (activeId) => {
+    setActiveClassId(activeId);
+  }
+
+  const handleMapForMobile = () => {
+    if (!mapInMobile) {
+      setMapInMobile(true);
+    } else {
+      setMapInMobile(true);
+    }
+  }
+
+
   return (
 
     <section className="agents-wrapper">
@@ -134,21 +168,25 @@ const Agent = (props) => {
           <div className="agent-sidebar">
             <SearchAgent
               initialItems={listedData}
-              countryFile={countryFile}
+              countryFileUrl={countryFileUrl}
               showOnMapClick={showOnMapClick}
               countryName={countryName}
+              activeClassId={activeClassId}
               handleAttractionValue={handleAttractionValue}
               handleEventValue={handleEventValue}
+              checkBox={checkBox}
               {...props}
             />
           </div>
           <div className="agent-map-area">
-            <span className="map-label-mobileonly">Find in Map</span>
+            <span className="map-label-mobileonly" onClick={handleMapForMobile}>Find in Map</span>
             <GoogleMap
               multipleMarker={listedData}
               showOnMapData={showOnMapData}
               countryName={countryName}
               mapClick={mapClick}
+              handleActiveClass={handleActiveClass}
+              mapInMobile={mapInMobile}
               {...props}
             />
           </div>

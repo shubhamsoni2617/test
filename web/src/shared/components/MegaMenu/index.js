@@ -66,7 +66,7 @@ const MegaMenu = (props) => {
               <h5 className="submenu-subtitle"><img src={locationImage} alt="" /> By Venue</h5>
             </li>
             <li className="seeall-veneus">
-              <a className="seeall-btn" >See All Venues <img src={rightArrowImage} alt="" /></a>
+              <Link onClick={()=>{props.handleMouseStatus(false)}} to="/venues" className="seeall-btn" >See All Venues <img src={rightArrowImage} alt="" /></Link>
             </li>
           </ul>
           <ul className="events-list">
