@@ -30,19 +30,6 @@
 	-webkit-transition: 0.3s ease-in;
 	-moz-transition: 0.3s ease-in;
 	-o-transition: 0.3s ease-in;
-    &.header-light{
-        background-color: #373E45;
-        .top-header{
-          .top-header-left{
-            .header-search{
-              input {
-                background-color: #50565d;
-              }
-            }
-          }
-        }
-
-    }
 	.top-header {
 		display: flex;
 		flex-wrap: wrap;
