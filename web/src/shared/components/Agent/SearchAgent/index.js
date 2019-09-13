@@ -124,6 +124,8 @@ const SearchAgent = (props) => {
     });
   });
 
+  console.log(filteredData, "filteredDatafilteredDatafilteredData")
+
   let isFile;
   if (countryFileUrl) {
     isFile = Utilities.isFileExt(countryFileUrl);
@@ -147,7 +149,7 @@ const SearchAgent = (props) => {
       {venue ?
         <ul className="list-option">
           <li><input type="checkbox" onChange={handleAttraction} className="styled-checkbox" id="1" checked={attraction ? true : false} /><label htmlFor="1"> Attractions</label></li>
-          <li><input type="checkbox" onChange={handleOngoingEvents} className="styled-checkbox" id="2" checked={onGoingEvents ? true : false}/><label htmlFor="2"> Venues with Ongoing Events</label></li>
+          <li><input type="checkbox" onChange={handleOngoingEvents} className="styled-checkbox" id="2" checked={onGoingEvents ? true : false} /><label htmlFor="2"> Venues with Ongoing Events</label></li>
         </ul>
         : null
       }
@@ -165,13 +167,14 @@ const SearchAgent = (props) => {
             return (
               <li className={item.id === activeClassId ? "pop-up-container active-class" : "pop-up-container"} onClick={(e) => { showOnMapClick(e, item, activePopUpRef) }} key={index} onMouseEnter={() => showPopUp(item)} onMouseLeave={hidePopUp}>
                 <img src={downArrow} className="active-arrow" alt="Down Arrow" />
-                <h3><strong>{item.name}</strong> <span><a onClick={(e) => { showOnMapClick(e, item, activePopUpRef) }}>show on Map</a></span></h3>
+                <h3><strong>{item.name}</strong>{item.name.length > 25 ? <br /> : null} <span><a onClick={(e) => { showOnMapClick(e, item, activePopUpRef) }}>show on Map</a></span></h3>
                 <p>{item.address},{item.country}</p>
                 <AgentVenuePopUp item={item} popUpDetail={popUpDetail} currentlyShowingData={currentlyShowingData} activePopUpRef={activePopUpRef} {...props} />
               </li>
             )
           })
         }
+        {filteredData.length <= 0 ? "No result found" : null}
       </ul>
     </div>
   );

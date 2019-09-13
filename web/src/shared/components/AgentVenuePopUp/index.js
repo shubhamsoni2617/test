@@ -95,24 +95,51 @@ const AgentVenuePopUp = (props) => {
         null
       }
 
-      <div className="agent-info">
-        <div className="icon">
-          <img src={venue ? contact : price} alt="icon" />
-        </div>
-        <div className="details">
-          <h3>{venue ? "Contact Detail" : "Payment Mode"}</h3>
-          <p>{venue ? popUpDetail.contact_details : popUpDetail.payment_mode}</p>
-        </div>
-      </div>
-      <div className="agent-info">
-        <div className="icon">
-          <img src={venue ? seat : notification} alt="icon" />
-        </div>
-        <div className="details">
-          <h3>{venue ? "Seating Capacity" : "Ticket pick up Reminder"}</h3>
-          <p>{venue ? popUpDetail.seating_capacity : popUpDetail.reminder}</p>
-        </div>
-      </div>
+      {venue && popUpDetail.contact_details ?
+        <div className="agent-info">
+          <div className="icon">
+            <img src={contact} alt="icon" />
+          </div>
+          <div className="details">
+            <h3>Contact Detail</h3>
+            <p>{popUpDetail.contact_details}</p>
+          </div>
+        </div> : null
+      }
+      {!venue && popUpDetail.payment_mode ?
+        <div className="agent-info">
+          <div className="icon">
+            <img src={price} alt="icon" />
+          </div>
+          <div className="details">
+            <h3>Payment Mode</h3>
+            <p>{popUpDetail.payment_mode}</p>
+          </div>
+        </div> : null
+      }
+      {venue && popUpDetail.seating_capacity ?
+        <div className="agent-info">
+          <div className="icon">
+            <img src={seat} alt="icon" />
+          </div>
+          <div className="details">
+            <h3>Seating Capacity</h3>
+            <p>{popUpDetail.seating_capacity}</p>
+          </div>
+        </div> : null
+      }
+      {!venue && popUpDetail.reminder ?
+        <div className="agent-info">
+          <div className="icon">
+            <img src={notification} alt="icon" />
+          </div>
+          <div className="details">
+            <h3>Ticket pick up Reminder</h3>
+            <p>{popUpDetail.reminder}</p>
+          </div>
+        </div> : null
+      }
+
       {venue && popUpDetail.currentlyShowingData && popUpDetail.currentlyShowingData.length > 0 ?
         <div className="agent-info">
           <div className="icon">
