@@ -1,8 +1,9 @@
-import React, { Component, createRef } from "react";
-import EventHeading from "../EventHeading";
-import { CSSTransitionGroup } from "react-transition-group";
-import CloseIcon from "../../../assets/images/close-blue.svg";
-import "./style.scss";
+import React, { Component, createRef } from 'react';
+import PropTypes from 'prop-types';
+import EventHeading from '../EventHeading';
+import { CSSTransitionGroup } from 'react-transition-group';
+import CloseIcon from '../../../assets/images/close-blue.svg';
+import './style.scss';
 
 export default class VenueFilter extends Component {
   groupedCollection;
@@ -10,11 +11,11 @@ export default class VenueFilter extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      search: "",
+      search: '',
       display: false,
       venuesData: this.props.venueData,
-      hoverEffect: "",
-      alphabet: ""
+      hoverEffect: '',
+      alphabet: ''
     };
 
     this.myRef = createRef();
@@ -31,21 +32,21 @@ export default class VenueFilter extends Component {
   };
 
   handleHoverOn = (alphabet, event) => {
-    this.setState({ hoverEffect: "disable-venue", alphabet: alphabet });
+    this.setState({ hoverEffect: 'disable-venue', alphabet: alphabet });
     this.scrollToRef(event);
   };
 
   handleHoverOff = () => {
-    this.setState({ hoverEffect: "", alphabet: "" });
+    this.setState({ hoverEffect: '', alphabet: '' });
   };
 
   scrollToRef = ref => {
-    let el = document.getElementById("li-" + ref.target.id);
+    let el = document.getElementById('li-' + ref.target.id);
     if (el !== null) {
       this.myRef.scrollTo({
         top: 0,
         left: el.offsetLeft - 25,
-        behavior: "smooth"
+        behavior: 'smooth'
       });
     }
   };
@@ -56,7 +57,7 @@ export default class VenueFilter extends Component {
       //loop throug collection
       let firstLetter = venues[i].name.charAt(0).toUpperCase();
       if (!isNaN(firstLetter)) {
-        firstLetter = "#";
+        firstLetter = '#';
       }
       if (this.groupedCollection[firstLetter] === undefined) {
         this.groupedCollection[firstLetter] = [];
@@ -72,18 +73,18 @@ export default class VenueFilter extends Component {
     let addHoverClass;
     let id;
     Object.keys(groupedCollection).map(key => {
-      addHoverClass = this.state.alphabet === key ? "" : this.state.hoverEffect;
+      addHoverClass = this.state.alphabet === key ? '' : this.state.hoverEffect;
       groupedData.push(
         <li
-          id={"li-" + key}
-          className={"filter-directory-list-title " + addHoverClass}
+          id={'li-' + key}
+          className={'filter-directory-list-title ' + addHoverClass}
         >
           {key}
         </li>
       );
 
       groupedCollection[key].map(venue => {
-        id = "venue-panel-" + venue.id;
+        id = 'venue-panel-' + venue.id;
         let isChecked = false;
         let index;
         if (this.props.selectedFilter) {
@@ -91,7 +92,7 @@ export default class VenueFilter extends Component {
           isChecked = index > -1;
         }
         addHoverClass =
-          this.state.alphabet === key ? "" : this.state.hoverEffect;
+          this.state.alphabet === key ? '' : this.state.hoverEffect;
         groupedData.push(
           <li className={addHoverClass}>
             <input
@@ -128,7 +129,7 @@ export default class VenueFilter extends Component {
     let keys = [];
     let isKeyAvailable;
     let alphabets = [];
-    let applyDisabledClass = "";
+    let applyDisabledClass = '';
 
     //find the keys form object
     keys = Object.keys(this.groupedCollection);
@@ -136,7 +137,7 @@ export default class VenueFilter extends Component {
     alphabets.push(
       <li
         id="#"
-        onMouseOver={event => this.handleHoverOn("#", event)}
+        onMouseOver={event => this.handleHoverOn('#', event)}
         onMouseLeave={() => this.handleHoverOff()}
         onClick={this.scrollToRef}
       >
@@ -147,7 +148,7 @@ export default class VenueFilter extends Component {
       isKeyAvailable = keys.find(val => {
         return val === String.fromCharCode(i) ? true : false;
       });
-      applyDisabledClass = isKeyAvailable ? "" : "disabled";
+      applyDisabledClass = isKeyAvailable ? '' : 'disabled';
       alphabets.push(
         <li
           className={applyDisabledClass}
@@ -231,3 +232,11 @@ export default class VenueFilter extends Component {
     );
   }
 }
+
+VenueFilter.propTypes = {
+  setPanelDisplay: PropTypes.func.isRequired,
+  onChange: PropTypes.func.isRequired,
+  selectedFilter: PropTypes.array.isRequired,
+  panelDisplay: PropTypes.bool.isRequired,
+  venueData: PropTypes.array.isRequired
+};

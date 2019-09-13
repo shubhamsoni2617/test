@@ -5,13 +5,10 @@ import PropTypes from 'prop-types';
 import './style.scss';
 
 export default class SortBy extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      sort: { tag: 'Date', active: '' },
-      showSortMenu: false
-    };
-  }
+  state = {
+    sort: { tag: 'Date', active: '' },
+    showSortMenu: false
+  };
 
   componentDidMount() {}
 
@@ -84,5 +81,6 @@ export default class SortBy extends Component {
 }
 
 SortBy.propTypes = {
-  handleFilters: PropTypes.func
+  handleFilters: PropTypes.func.isRequired,
+  sortList: PropTypes.array.isRequired
 };
