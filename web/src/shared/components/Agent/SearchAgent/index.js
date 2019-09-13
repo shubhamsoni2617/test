@@ -11,7 +11,7 @@ import Utilities from '../../../utilities';
 const SearchAgent = (props) => {
 
   const { initialItems, countryFileUrl, showOnMapClick, venue, countryName,
-    handleAttractionValue, handleEventValue, activeClassId, checkBox } = props;
+    handleAttractionValue, handleEventValue, activeClassId, checkBox, handleMapFilter,filteredListedData } = props;
   const activePopUpRef = useRef();
 
   const [filter, setFilter] = useState('');
@@ -35,6 +35,7 @@ const SearchAgent = (props) => {
   const handleChange = (event) => {
     const { value } = event.target;
     setFilter(value);
+    handleMapFilter(value);
   }
 
   // timer set when mouse-enter event occurs
@@ -112,20 +113,6 @@ const SearchAgent = (props) => {
     }
   }
 
-  // ------------------------------Array filtering-----------------------------
-  const lowerCasedFilter = filter.toLowerCase();
-  const filteredData = initialItems && initialItems.filter(item => {
-    return Object.keys(item).some(key => {
-      if (item[key] === null || typeof item[key] === "object") {
-        return
-      }
-      return item.name.toLowerCase().includes(lowerCasedFilter);
-      // return item[key].toLowerCase().includes(lowerCasedFilter);
-    });
-  });
-
-  console.log(filteredData, "filteredDatafilteredDatafilteredData")
-
   let isFile;
   if (countryFileUrl) {
     isFile = Utilities.isFileExt(countryFileUrl);
@@ -163,7 +150,7 @@ const SearchAgent = (props) => {
 
       <ul className="list-group">
         {
-          filteredData && filteredData.map((item, index) => {
+          initialItems && initialItems.map((item, index) => {
             return (
               <li className={item.id === activeClassId ? "pop-up-container active-class" : "pop-up-container"} onClick={(e) => { showOnMapClick(e, item, activePopUpRef) }} key={index} onMouseEnter={() => showPopUp(item)} onMouseLeave={hidePopUp}>
                 <img src={downArrow} className="active-arrow" alt="Down Arrow" />
@@ -174,7 +161,7 @@ const SearchAgent = (props) => {
             )
           })
         }
-        {filteredData.length <= 0 ? "No result found" : null}
+        {initialItems.length <= 0 ? "No result found" : null}
       </ul>
     </div>
   );

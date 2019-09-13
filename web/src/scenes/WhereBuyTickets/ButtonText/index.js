@@ -33,7 +33,7 @@ const Buttontext = ({ title }) => {
     return <Link to="/agents">Find an Agent</Link>;
   }
   if (title === "API Partners") {
-    return <Link to="/">See All Partners</Link>;
+    return <Link className="api-see-all-btn" to="/">See All Partners</Link>;
   }
   if (title === "Hotline @ +65 6348 5555") {
     return <Link to="/contact-us">Contact Us</Link>;

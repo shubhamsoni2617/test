@@ -10,7 +10,7 @@ export default class Promotions extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      defaultTabId: "30",
+      defaultTabId:null,
       tabsArray: [],
       sortBy: "ASC",
       first: 0,
@@ -116,8 +116,10 @@ export default class Promotions extends Component {
     PromotionService.getPromotionCategories(params)
       .then((res) => {
         const category = res.data.data;
+        const defaultTabId=category[0].id;
         this.setState({
           tabsArray: category,
+          defaultTabId:defaultTabId,
           count: this.calculateSum(category)
         });
       })

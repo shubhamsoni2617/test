@@ -22,17 +22,29 @@
         box-shadow: 0 1px 4px 0 rgba(0,0,0,0.3);
         display: flex;
         padding: 2px;
+        @media(max-width: 767px){
+            width: auto;
+            padding: 2px 5px;
+        }
         .map-img{
             display: flex;
             align-items: center;
             justify-content: center;
             height: 58px;
             width: 86px;
+            @media(max-width: 768px){
+                height: auto;
+                width: auto;
+            }
         }
         .map-name-address{
             padding: 0 32px 0 20px;
             width: calc(100% - 102px);
             position: relative;
+            @media(max-width: 768px){
+                width: 100%;
+                padding: 0 25px 0 10px;
+            }
             h5{
                 color: #000000;
                 font-size: 11px;
@@ -49,6 +61,14 @@
                 position: absolute;
                 right: 0;
                 top: 20px;
+                img{
+                    width: 27px;
+                    height: 27px;
+                    @media(max-width: 767px){
+                        width: 23px;
+                        height: 23px;
+                    }
+                }
             }
         }
     }

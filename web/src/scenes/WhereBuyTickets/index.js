@@ -58,7 +58,7 @@ const WhereBuyTickets = () => {
             }}
           />
         }
-        <Buttontext title={title} />
+        <Buttontext className="wtbt-btn" title={title} />
       </div>
     );
   };
