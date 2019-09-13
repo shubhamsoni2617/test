@@ -77,7 +77,7 @@ const GoogleMap = (props) => {
     switch (country) {
       case "Singapore":
         // setInitialCenter({ lat: 1.290270, lng: 103.851959 });
-        setZoomValue(venue ? 1 : 12);
+        setZoomValue(venue ? 2 : 12);
         break;
       case "Malaysia":
         // setInitialCenter({ lat: 3.1412001, lng: 101.6865311 });
