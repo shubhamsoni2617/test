@@ -125,6 +125,9 @@ section{
         cursor: pointer;
         background-color: #000000;
         transition: 0.3s opacity;
+        -webkit-transition: 0.3s opacity;
+        -moz-transition: 0.3s opacity;
+        -o-transition: 0.3s opacity;
         &.active {
             opacity: 1;
             background-color: #0077C8;
@@ -191,6 +194,9 @@ section{
                 opacity: 1;
                 color: #ffffff;
                 transition: 0.3s all ease-in-out;
+                -webkit-transition: 0.3s all ease-in-out;
+                -moz-transition: 0.3s all ease-in-out;
+                -o-transition: 0.3s all ease-in-out;
             }
             &:hover{
                 opacity: 0.8;
@@ -245,6 +251,9 @@ button , .st-btn-link{
         opacity: 0;
         transform: rotate(35deg);
         transition: 0.5s left, 0.5s opacity;
+        -webkit-transition: 0.5s left, 0.5s opacity;
+        -moz-transition: 0.5s left, 0.5s opacity;
+        -o-transition: 0.5s left, 0.5s opacity;
         filter: blur(10px);
         top: -30px;
     }
@@ -320,6 +329,9 @@ button , .st-btn-link{
         height: 0px;
         opacity: 0;
         transition: 0.3s height, 0.3s opacity;
+        -webkit-transition: 0.3s height, 0.3s opacity;
+        -moz-transition: 0.3s height, 0.3s opacity;
+        -o-transition: 0.3s height, 0.3s opacity;
         position: absolute;
         top: 100%;
         width: 100%;
@@ -338,6 +350,9 @@ button , .st-btn-link{
             line-height: 17px;
             background-color: $white;
             transition: 0.3s background-color, 0.3s color;
+            -webkit-transition: 0.3s background-color, 0.3s color;
+            -moz-transition: 0.3s background-color, 0.3s color;
+            -o-transition: 0.3s background-color, 0.3s color;
             &:hover{
                 background-color: rgba(0, 128, 215,0.2);
                 color: $accent-color;

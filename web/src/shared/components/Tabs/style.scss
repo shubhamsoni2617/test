@@ -47,6 +47,9 @@
             position: relative;
             padding: 9px 30px;
             transition: 0.2s color;
+            -webkit-transition: 0.2s color;
+            -moz-transition: 0.2s color;
+            -o-transition: 0.2s color;
             cursor: pointer;
             @media(max-width: 991px) {
                 border-bottom: 5px solid rgba(52, 52, 52, 0.1);
@@ -65,6 +68,9 @@
                 position: absolute;
                 content: "";
                 transition: 0.5s width;
+                -webkit-transition: 0.5s width;
+                -moz-transition: 0.5s width;
+                -o-transition: 0.5s width;
             }
             &:hover,
             &.active {

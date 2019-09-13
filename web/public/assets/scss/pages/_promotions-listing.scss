@@ -120,6 +120,9 @@
 				position: relative;
 				padding: 9px 7px;
 				transition: 0.2s color;
+				-webkit-transition: 0.2s color;
+				-moz-transition: 0.2s color;
+				-o-transition: 0.2s color;
 				cursor: pointer;
 				@include tablet-portrait{
 					border-bottom: 5px solid rgba(52, 52, 52, 0.1);
@@ -138,6 +141,9 @@
 					position: absolute;
 					content: "";
 					transition: 0.5s width;
+					-webkit-transition: 0.5s width;
+					-moz-transition: 0.5s width;
+					-o-transition: 0.5s width;
 				}
 				&:hover,
 				&.active {
@@ -180,6 +186,9 @@
 				position: relative;
 				transform: translateY(0px);
 				transition: 0.3s box-shadow, 0.5s transform;
+				-webkit-transition: 0.3s box-shadow, 0.5s transform;
+				-moz-transition: 0.3s box-shadow, 0.5s transform;
+				-o-transition: 0.3s box-shadow, 0.5s transform;
 				@include tablet-landscape{
 					height: 411px;
 				}
@@ -195,6 +204,9 @@
 				opacity: 0;
 				overflow: hidden;
 				transition: 0.5s height;
+				-webkit-transition: 0.5s height;
+				-moz-transition: 0.5s height;
+				-o-transition: 0.5s height;
 			}
 			.st-promotion-image {
 				height: 257px;
@@ -305,6 +317,9 @@
 				// display: none;
 				height: 0px;
 				transition: 0.5s height;
+				-webkit-transition: 0.5s height;
+				-moz-transition: 0.5s height;
+				-o-transition: 0.5s height;
 				@include tablet-landscape{
 					top: 413px;
 				}
@@ -356,6 +371,9 @@
 					opacity: 0;
 					border-bottom: 20px solid $accent-color;
 					transition: 0.3s top, 0.5s z-index;
+					-webkit-transition: 0.3s top, 0.5s z-index;
+					-moz-transition: 0.3s top, 0.5s z-index;
+					-o-transition: 0.3s top, 0.5s z-index;
 					z-index: -1;
 					@include tablet-portrait {
 						border-left: 15px solid transparent;
@@ -446,6 +464,9 @@
 		text-decoration: none;
 		background-color: $white;
 		transition: 0.3s background-color, 0.1s border;
+		-webkit-transition: 0.3s background-color, 0.1s border;
+		-moz-transition: 0.3s background-color, 0.1s border;
+		-o-transition: 0.3s background-color, 0.1s border;
 		&:hover {
 			background-color: $accent-color;
 			border: 1px solid $accent-color;
@@ -463,11 +484,17 @@
 			line-height: 18px;
 			font-weight: 100;
 			transition: 0.3s color;
+			-webkit-transition: 0.3s color;
+			-moz-transition: 0.3s color;
+			-o-transition: 0.3s color;
 		}
 		img {
 			padding-left: 10px;
 			padding-bottom: 4px;
 			transition: 0.3s filter;
+			-webkit-transition: 0.3s filter;
+			-moz-transition: 0.3s filter;
+			-o-transition: 0.3s filter;
 		}
 	}
 }
