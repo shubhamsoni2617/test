@@ -201,19 +201,13 @@
                     line-height: 19px;
                     margin: 0 0 10px;
                     @media(max-width: 992px){
-                        font-size: 14px;
-                        line-height: 17px;
                         margin: 0 0 7px;
                     }
                     a{
                         color: #0077C8;
                         font-size: 16px;
                         font-weight: 400;
-                        line-height: 19px;
-                        @media(max-width: 992px){
-                            font-size: 14px;
-                            line-height: 17px;
-                        }
+                        line-height: 19px;                       
                     }
                     span{
                         padding-left: 10px;
@@ -229,7 +223,7 @@
                     margin: 0;
                     padding: 0;
                     white-space: normal;
-                    word-break: break-all;
+                    word-break: break-word;
                     @media(max-width: 992px){
                         font-size: 14px;
                         line-height: 18px;
@@ -264,13 +258,6 @@
                     width: 100%;
                 }
             }
-            // &.active-class{
-            //     &:hover{
-            //         &:after{
-            //             background-color: transparent;
-            //         }
-            //     }       
-            // }
             &:hover, &.active-class{
                 cursor: pointer;
                 border-color: transparent;
@@ -279,6 +266,12 @@
                 }
                 &.active{
                     display:block;
+                }
+            }
+            li{
+                @media(max-width: 768px){
+                    border: none;
+                    padding: 0px;
                 }
             }
         }
@@ -408,11 +401,21 @@
                             flex: 0 0 25%;
                             padding: 0 6px;
                             border: none;
-                            img{
-                                max-width: 100%;
-                                height: auto;
+                            @media(max-width: 768px){
+                                flex: 0 0 25%;
+                                width: 25%;
+                                padding: 0 6px;
                             }
-                            p{
+                            img{
+                                height: 72px;	
+                                width: 96px;
+                                @media(max-width: 768px){
+                                    height: auto;
+                                    width: auto;
+                                    max-width: 100%;
+                                }
+                            }
+                            p, a{
                                 color: #343434;
                                 font-size: 13px;
                                 line-height: 15px;
