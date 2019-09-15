@@ -1,5 +1,6 @@
-import React, { Component } from "react";
-import "./style.scss";
+import React, { Component } from 'react';
+import './style.scss';
+import PropTypes from 'prop-types';
 
 function TileShimmer(props) {
   var h = [];
@@ -8,14 +9,14 @@ function TileShimmer(props) {
       <div
         key={i}
         className={props.propCls}
-        style={{ padding: 0, paddingRight: "10px" }}
+        style={{ padding: 0, paddingRight: '10px' }}
       >
         <div
           className="contentLoader ListView"
           style={{
             padding: 0,
-            backgroundColor: "transparent",
-            border: "none",
+            backgroundColor: 'transparent',
+            border: 'none',
             margin: 0
           }}
         >
@@ -24,32 +25,32 @@ function TileShimmer(props) {
               className="animated-background "
               style={{ height: props.height, margin: 0 }}
             >
-              {" "}
+              {' '}
             </div>
             <div className="shm_col-sm-12" style={{ padding: 0 }}>
               <div
                 className="animated-backgroundlarge firstRow"
-                style={{ width: "30%", height: "20px", marginBottom: "11px" }}
+                style={{ width: '30%', height: '20px', marginBottom: '11px' }}
               >
-                {" "}
+                {' '}
               </div>
               <div
                 className="animated-backgroundlarge secondRow"
-                style={{ width: "80%", height: "16px", marginBottom: "10px" }}
+                style={{ width: '80%', height: '16px', marginBottom: '10px' }}
               >
-                {" "}
+                {' '}
               </div>
               <div
                 className="animated-backgroundlarge secondRow"
-                style={{ width: "95%", height: "36px", marginBottom: "15px" }}
+                style={{ width: '95%', height: '36px', marginBottom: '15px' }}
               >
-                {" "}
+                {' '}
               </div>
               <div
                 className="animated-backgroundlarge secondRow"
-                style={{ width: "80%", height: "16px", marginBottom: "10px" }}
+                style={{ width: '80%', height: '16px', marginBottom: '10px' }}
               >
-                {" "}
+                {' '}
               </div>
             </div>
           </div>
@@ -112,39 +113,39 @@ function ListShimmer(props) {
                 className="animated-background "
                 style={{ height: props.height }}
               >
-                {" "}
+                {' '}
               </div>
             </div>
             <div className="shm_col-sm-12">
               <div
                 className="animated-backgroundlarge firstRow"
-                style={{ height: "25px", marginBottom: "15px" }}
+                style={{ height: '25px', marginBottom: '15px' }}
               >
-                {" "}
+                {' '}
               </div>
               <div
                 className="animated-backgroundlarge secondRow"
-                style={{ height: "10px", marginBottom: "15px" }}
+                style={{ height: '10px', marginBottom: '15px' }}
               >
-                {" "}
+                {' '}
               </div>
               <div
                 className="animated-backgroundlarge secondRow"
-                style={{ height: "10px", marginBottom: "15px" }}
+                style={{ height: '10px', marginBottom: '15px' }}
               >
-                {" "}
+                {' '}
               </div>
               <div
                 className="animated-backgroundlarge secondRow"
-                style={{ height: "10px", marginBottom: "15px" }}
+                style={{ height: '10px', marginBottom: '15px' }}
               >
-                {" "}
+                {' '}
               </div>
               <div
                 className="animated-backgroundlarge secondRow"
-                style={{ height: "10px", marginBottom: "15px" }}
+                style={{ height: '10px', marginBottom: '15px' }}
               >
-                {" "}
+                {' '}
               </div>
             </div>
           </div>
@@ -166,87 +167,87 @@ function FilterShimmer(props) {
             <div className="shm_col-sm-12">
               <div
                 className="animated-backgroundlarge firstRow"
-                style={{ height: "25px", width: "30%", marginBottom: "25px" }}
+                style={{ height: '25px', width: '30%', marginBottom: '25px' }}
               >
-                {" "}
+                {' '}
               </div>
               <div
                 className="animated-backgroundlarge secondRow"
-                style={{ height: "15px", width: "90%", marginBottom: "35px" }}
+                style={{ height: '15px', width: '90%', marginBottom: '35px' }}
               >
-                {" "}
+                {' '}
               </div>
               <div
                 className="animated-backgroundlarge firstRow"
-                style={{ height: "25px", width: "40%", marginBottom: "25px" }}
+                style={{ height: '25px', width: '40%', marginBottom: '25px' }}
               >
-                {" "}
+                {' '}
               </div>
               <div
                 className="animated-backgroundlarge secondRow"
-                style={{ height: "5px", width: "90%", marginBottom: "35px" }}
+                style={{ height: '5px', width: '90%', marginBottom: '35px' }}
               >
-                {" "}
+                {' '}
               </div>
               <div
                 className="animated-backgroundlarge secondRow"
-                style={{ height: "25px", width: "30%", marginBottom: "15px" }}
+                style={{ height: '25px', width: '30%', marginBottom: '15px' }}
               >
-                {" "}
+                {' '}
               </div>
               <div
                 className="animated-backgroundlarge secondRow"
-                style={{ height: "15px", width: "60%", marginBottom: "15px" }}
+                style={{ height: '15px', width: '60%', marginBottom: '15px' }}
               >
-                {" "}
+                {' '}
               </div>
               <div
                 className="animated-backgroundlarge secondRow"
-                style={{ height: "15px", width: "60%", marginBottom: "15px" }}
+                style={{ height: '15px', width: '60%', marginBottom: '15px' }}
               >
-                {" "}
+                {' '}
               </div>
               <div
                 className="animated-backgroundlarge secondRow"
-                style={{ height: "15px", width: "60%", marginBottom: "15px" }}
+                style={{ height: '15px', width: '60%', marginBottom: '15px' }}
               >
-                {" "}
+                {' '}
               </div>
               <div
                 className="animated-backgroundlarge secondRow"
-                style={{ height: "15px", width: "60%", marginBottom: "35px" }}
+                style={{ height: '15px', width: '60%', marginBottom: '35px' }}
               >
-                {" "}
+                {' '}
               </div>
               <div
                 className="animated-backgroundlarge secondRow"
-                style={{ height: "25px", width: "30%", marginBottom: "15px" }}
+                style={{ height: '25px', width: '30%', marginBottom: '15px' }}
               >
-                {" "}
+                {' '}
               </div>
               <div
                 className="animated-backgroundlarge secondRow"
-                style={{ height: "15px", width: "60%", marginBottom: "15px" }}
+                style={{ height: '15px', width: '60%', marginBottom: '15px' }}
               >
-                {" "}
+                {' '}
               </div>
               <div
                 className="animated-backgroundlarge secondRow"
-                style={{ height: "15px", width: "60%", marginBottom: "15px" }}
+                style={{ height: '15px', width: '60%', marginBottom: '15px' }}
               >
-                {" "}
+                {' '}
               </div>
               <div
                 className="animated-backgroundlarge secondRow"
-                style={{ height: "15px", width: "60%", marginBottom: "15px" }}
+                style={{ height: '15px', width: '60%', marginBottom: '15px' }}
               >
-                {" "}
+                {' '}
               </div>
               <div
                 className="animated-backgroundlarge secondRow"
-                style={{ height: "15px", width: "60%", marginBottom: "15px" }}
+                style={{ height: '15px', width: '60%', marginBottom: '15px' }}
               >
-                {" "}
+                {' '}
               </div>
             </div>
           </div>
@@ -268,25 +269,25 @@ function GridShimmer(props) {
             className="animated-background "
             style={{ height: props.height }}
           >
-            {" "}
+            {' '}
           </div>
           <div
             className="animated-backgroundlarge firstRow"
-            style={{ height: "10px", marginBottom: "10px" }}
+            style={{ height: '10px', marginBottom: '10px' }}
           >
-            {" "}
+            {' '}
           </div>
           <div
             className="animated-backgroundlarge secondRow"
-            style={{ height: "10px", width: "80%", marginBottom: "10px" }}
+            style={{ height: '10px', width: '80%', marginBottom: '10px' }}
           >
-            {" "}
+            {' '}
           </div>
           <div
             className="animated-backgroundlarge secondRow"
-            style={{ height: "10px", width: "70%" }}
+            style={{ height: '10px', width: '70%' }}
           >
-            {" "}
+            {' '}
           </div>
         </div>
       </div>
@@ -307,7 +308,7 @@ function BannerShimmer(props) {
                 className="animated-background main"
                 style={{ height: props.height }}
               >
-                {" "}
+                {' '}
               </div>
             </div>
             <div className="shm_col-sm-12">
@@ -336,7 +337,7 @@ function DetailShimmer(props) {
                   className="animated-background main"
                   style={{ height: props.height }}
                 >
-                  {" "}
+                  {' '}
                 </div>
               </div>
               <div className="shm_col-sm-12">
@@ -352,37 +353,37 @@ function DetailShimmer(props) {
                 <div
                   className="animated-backgroundlarge secondRow"
                   style={{
-                    height: "25px",
-                    width: "30%",
-                    marginTop: "25px",
-                    marginBottom: "50px"
+                    height: '25px',
+                    width: '30%',
+                    marginTop: '25px',
+                    marginBottom: '50px'
                   }}
                 >
-                  {" "}
+                  {' '}
                 </div>
                 <div
                   className="animated-backgroundlarge secondRow"
-                  style={{ height: "25px", marginBottom: "50px" }}
+                  style={{ height: '25px', marginBottom: '50px' }}
                 >
-                  {" "}
+                  {' '}
                 </div>
                 <div
                   className="animated-backgroundlarge firstRow"
-                  style={{ height: "50px", marginBottom: "50px" }}
+                  style={{ height: '50px', marginBottom: '50px' }}
                 >
-                  {" "}
+                  {' '}
                 </div>
                 <div
                   className="animated-backgroundlarge firstRow"
-                  style={{ height: "25px", marginBottom: "50px" }}
+                  style={{ height: '25px', marginBottom: '50px' }}
                 >
-                  {" "}
+                  {' '}
                 </div>
                 <div
                   className="animated-backgroundlarge secondRow"
-                  style={{ height: "40px", marginBottom: "50px" }}
+                  style={{ height: '40px', marginBottom: '50px' }}
                 >
-                  {" "}
+                  {' '}
                 </div>
               </div>
             </div>
@@ -399,23 +400,23 @@ export default class ShimmerEffect extends Component {
     // let count = props.count ? props.count : 1;
     let shimmer = null;
     switch (props.type) {
-      case "LIST":
+      case 'LIST':
         shimmer = <ListShimmer {...props} />;
         break;
-      case "GRID":
+      case 'GRID':
         shimmer = <GridShimmer {...props} />;
         break;
-      case "FILTER":
+      case 'FILTER':
         shimmer = <FilterShimmer {...props} />;
         break;
-      case "DETAIL":
+      case 'DETAIL':
         shimmer = <DetailShimmer {...props} />;
         break;
 
-      case "BANNER":
+      case 'BANNER':
         shimmer = <BannerShimmer {...props} />;
         break;
-      case "TILE":
+      case 'TILE':
         shimmer = <TileShimmer {...props} />;
         break;
 
@@ -432,3 +433,13 @@ export default class ShimmerEffect extends Component {
     );
   }
 }
+
+BannerShimmer.propTypes = {
+  propCls: PropTypes.string.isRequired,
+  height: PropTypes.number.isRequired
+};
+
+DetailShimmer.propTypes = {
+  propCls: PropTypes.string.isRequired,
+  height: PropTypes.number.isRequired
+};

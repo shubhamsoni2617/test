@@ -1,4 +1,5 @@
-import React from "react";
+import React from 'react';
+import PropTypes from 'prop-types';
 
 import {
   FacebookShareButton,
@@ -7,12 +8,11 @@ import {
   TelegramIcon,
   EmailShareButton,
   EmailIcon
-} from "react-share";
+} from 'react-share';
 
-const SocialShare = props => {
-  const { shareUrl, showSocialShare } = props;
+const SocialShare = ({ shareUrl, showSocialShare }) => {
   return (
-    <div className={`social-share ${showSocialShare ? "share-visible" : ""}`}>
+    <div className={`social-share ${showSocialShare ? 'share-visible' : ''}`}>
       <div className="social-share-wrapper">
         <FacebookShareButton url={shareUrl} quote="Facebook">
           <FacebookIcon quote="Facebook" size={32} round />
@@ -29,3 +29,8 @@ const SocialShare = props => {
 };
 
 export default SocialShare;
+
+SocialShare.propTypes = {
+  shareUrl: PropTypes.string.isRequired,
+  showSocialShare: PropTypes.bool.isRequired
+};

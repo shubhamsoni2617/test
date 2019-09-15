@@ -1,14 +1,12 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import './style.scss';
+import PropTypes from 'prop-types';
 
 class DropDown extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      isOpen: false
-    };
-  }
+  state = {
+    isOpen: false
+  };
 
   toggle = e => {
     e.preventDefault();
@@ -60,3 +58,8 @@ class DropDown extends Component {
 }
 
 export default DropDown;
+
+DropDown.propTypes = {
+  showElementsInHeader: PropTypes.number.isRequired,
+  byGenreEvent: PropTypes.array.isRequired
+};

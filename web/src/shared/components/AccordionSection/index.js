@@ -1,15 +1,16 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import {
   Accordion,
   AccordionItem,
   AccordionItemButton,
   AccordionItemHeading,
   AccordionItemPanel
-} from "react-accessible-accordion";
-import "react-accessible-accordion/dist/fancy-example.css";
-import "./style.scss";
-import InfoPopup from "../InfoPoup";
-import infoIcon from "../../../assets/images/info-icon.svg";
+} from 'react-accessible-accordion';
+import 'react-accessible-accordion/dist/fancy-example.css';
+import './style.scss';
+import InfoPopup from '../InfoPoup';
+import infoIcon from '../../../assets/images/info-icon.svg';
 
 export default class AccordionSection extends Component {
   constructor(props) {
@@ -67,7 +68,7 @@ export default class AccordionSection extends Component {
                       return (
                         <li
                           key={obj + idx}
-                          className={`${activeLang === obj ? "active" : ""}`}
+                          className={`${activeLang === obj ? 'active' : ''}`}
                         >
                           <a
                             href="/"
@@ -100,3 +101,15 @@ export default class AccordionSection extends Component {
     );
   }
 }
+
+AccordionSection.propTypes = {
+  children: PropTypes.array,
+  title: PropTypes.string.isRequired,
+  desc: PropTypes.node,
+  activeLang: PropTypes.string,
+  langArr: PropTypes.array,
+  changeLang: PropTypes.func,
+  uuid: PropTypes.string,
+  preExpanded: PropTypes.array,
+  infoTag: PropTypes.string
+};

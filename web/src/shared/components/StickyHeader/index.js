@@ -1,13 +1,14 @@
-import React, { Component } from "react";
-import { Link } from "react-router-dom";
-import calendarImg from "../../../assets/images/event-calender.svg";
-import locationImg from "../../../assets/images/location-blue.svg";
-import locationGray from "../../../assets/images/location-gray.svg";
-import faceImg from "../../../assets/images/face.svg";
-import shareIcon from "../../../assets/images/share-icon.svg";
-import Info from "../../../assets/images/info-sign.svg";
-import SocialShare from "../../../shared/components/SocialShare";
-import Image from "../../../shared/components/Image";
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
+import calendarImg from '../../../assets/images/event-calender.svg';
+import locationImg from '../../../assets/images/location-blue.svg';
+import locationGray from '../../../assets/images/location-gray.svg';
+import faceImg from '../../../assets/images/face.svg';
+import shareIcon from '../../../assets/images/share-icon.svg';
+import Info from '../../../assets/images/info-sign.svg';
+import SocialShare from '../../../shared/components/SocialShare';
+import Image from '../../../shared/components/Image';
 
 export default class StickyHeader extends Component {
   render() {
@@ -21,8 +22,8 @@ export default class StickyHeader extends Component {
 
     return (
       <div
-        className={`event-detail ${sticky ? "sticky-topbar" : ""} ${
-          sticky && setHeader ? "animate" : ""
+        className={`event-detail ${sticky ? 'sticky-topbar' : ''} ${
+          sticky && setHeader ? 'animate' : ''
         }`}
       >
         {detailData.images && detailData.images.length > 0 && (
@@ -51,7 +52,7 @@ export default class StickyHeader extends Component {
               {detailData.genres.map((obj, index) => {
                 return (
                   <li
-                    className={`${obj.is_primary === 1 ? "active" : ""}`}
+                    className={`${obj.is_primary === 1 ? 'active' : ''}`}
                     key={index}
                   >
                     {obj.name}
@@ -144,3 +145,10 @@ export default class StickyHeader extends Component {
     );
   }
 }
+
+StickyHeader.propTypes = {
+  detailData: PropTypes.object.isRequired,
+  shareUrl: PropTypes.string.isRequired,
+  showSocialShare: PropTypes.bool.isRequired,
+  sticky: PropTypes.bool.isRequired
+};

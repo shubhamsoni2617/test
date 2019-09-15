@@ -1,5 +1,6 @@
-import React from "react";
-import scrollTop from "../../../assets/images/arrow-to-top.svg";
+import React from 'react';
+import scrollTop from '../../../assets/images/arrow-to-top.svg';
+import PropTypes from 'prop-types';
 
 class BackToTop extends React.Component {
   state = {
@@ -8,7 +9,7 @@ class BackToTop extends React.Component {
   };
 
   componentDidMount() {
-    document.addEventListener("scroll", () => {
+    document.addEventListener('scroll', () => {
       if (window.scrollY > 170) {
         this.setState({ thePosition: true });
       } else {
@@ -46,3 +47,8 @@ class BackToTop extends React.Component {
 }
 
 export default BackToTop;
+
+BackToTop.propTypes = {
+  delayInMs: PropTypes.string.isRequired,
+  scrollStepInPx: PropTypes.string.isRequired
+};

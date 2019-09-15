@@ -16,7 +16,7 @@ import SeatMap from '../../shared/components/SeatMap';
 import ModalPopup from '../../shared/components/Modal';
 import ShimmerEffect from '../../shared/components/ShimmerEffect';
 import StickyHeader from '../../shared/components/StickyHeader';
-import Utilities from '../../shared/utilities';
+
 import SimilarPicksSection from '../../shared/components/SimilarPicksSection';
 
 function ShowOver({ isShowOver }) {
@@ -113,7 +113,7 @@ export default class EventsDetail extends Component {
       setHeader: false,
       animation: true,
       shimmer: true,
-      getSynopsisData: { languageArr: [], activeLang: '', desc: '' },
+      getSynopsisData: { languageArr: [], activeLang: '', desc: '' }
     };
   }
 
@@ -154,7 +154,7 @@ export default class EventsDetail extends Component {
       })
       .catch(err => {
         this.setState({
-          shimmer: false,
+          shimmer: false
         });
         console.log(err);
       });
@@ -179,11 +179,11 @@ export default class EventsDetail extends Component {
       window.pageYOffset >= this.elemOffsetTop + 100
     ) {
       this.setState({
-        setHeader: true,
+        setHeader: true
       });
     } else if (window.pageYOffset < this.elemOffsetTop) {
       this.setState({
-        setHeader: false,
+        setHeader: false
       });
     }
   };
@@ -196,14 +196,14 @@ export default class EventsDetail extends Component {
       flag = true;
     }
     this.setState({
-      showBuyTicket: flag,
+      showBuyTicket: flag
     });
   };
 
   openSeatMap = () => {
     if (!this.state.showSeatMap) {
       this.setState({
-        showSeatMap: true,
+        showSeatMap: true
       });
     }
   };
@@ -212,7 +212,7 @@ export default class EventsDetail extends Component {
     this.setState(
       {
         showSocialShare: false,
-        showInfo: false,
+        showInfo: false
       },
       () => {
         document.removeEventListener('click', this.closePopup);
@@ -224,7 +224,7 @@ export default class EventsDetail extends Component {
     if (!this.state.showSocialShare) {
       this.setState(
         {
-          showSocialShare: true,
+          showSocialShare: true
         },
         () => {
           document.addEventListener('click', this.closePopup);
@@ -238,7 +238,7 @@ export default class EventsDetail extends Component {
     if (!this.state.showInfo) {
       this.setState(
         {
-          showInfo: true,
+          showInfo: true
         },
         () => {
           document.addEventListener('click', this.closePopup);
@@ -250,26 +250,26 @@ export default class EventsDetail extends Component {
   openNotice = () => {
     if (!this.state.showNotice) {
       this.setState({
-        showNotice: true,
+        showNotice: true
       });
     }
   };
 
   changeLang = lang => {
     this.setState({
-      synopsisLang: lang,
+      synopsisLang: lang
     });
   };
 
   handleClose = () => {
     if (this.state.showNotice) {
       this.setState({
-        showNotice: false,
+        showNotice: false
       });
     }
     if (this.state.showSeatMap) {
       this.setState({
-        showSeatMap: false,
+        showSeatMap: false
       });
     }
   };
@@ -304,7 +304,7 @@ export default class EventsDetail extends Component {
       showInfo,
       showNotice,
       setHeader,
-      shimmer,
+      shimmer
     } = this.state;
 
     if (error) {
@@ -475,8 +475,12 @@ export default class EventsDetail extends Component {
               </div>
             )}
             <SimilarPicksSection data={similarEventsData} />
-            <GiftCard flag={detailData.is_show_over === 1 ? true : false} />
-            <ArticleSection />
+            {detailData.is_show_over === 1 && (
+              <>
+                <GiftCard flag={true} />
+                <ArticleSection flag={true} />
+              </>
+            )}
           </div>
         )}
       </div>

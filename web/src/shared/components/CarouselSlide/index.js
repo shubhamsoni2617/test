@@ -1,10 +1,9 @@
-import React from "react";
-import Image from "../Image";
-import { Link } from "react-router-dom";
-import EventHeading from "../EventHeading";
+import React from 'react';
+import Image from '../Image';
+import { Link } from 'react-router-dom';
+import EventHeading from '../EventHeading';
 
-const CarouselSlide = props => {
-  const { elem } = props;
+const CarouselSlide = ({ elem }) => {
   let genre;
   if (elem && elem.primary_genre) {
     genre = elem.primary_genre.toLowerCase();

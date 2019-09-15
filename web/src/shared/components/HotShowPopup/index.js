@@ -1,23 +1,23 @@
-import React, { useState, useEffect } from "react";
-import "./style.scss";
-import HomeService from "../../services/HomeService";
-import nextarrow from "../../../assets/images/next-arrow-white.svg";
-import ReactPlayer from "react-player";
-import { CSSTransitionGroup } from "react-transition-group";
+import React, { useState, useEffect } from 'react';
+import './style.scss';
+import HomeService from '../../services/HomeService';
+import nextarrow from '../../../assets/images/next-arrow-white.svg';
+import ReactPlayer from 'react-player';
+import { CSSTransitionGroup } from 'react-transition-group';
 
 const HotShowPopup = () => {
   const [popupData, setPopupData] = useState([]);
   const [flag, setFlag] = useState(false);
 
   useEffect(() => {
-    if (!sessionStorage.getItem("hotshow")) {
+    if (!sessionStorage.getItem('hotshow')) {
       setTimeout(() => setFlag(true), 1000);
       HomeService.getHotShowPopupData()
         .then(res => {
           setPopupData(res.data.data);
           if (res.data.data.length) addOverlayClass();
         })
-        .catch(err => {
+        .catch(() => {
           removeOverlayClass();
         });
     }
@@ -25,12 +25,12 @@ const HotShowPopup = () => {
 
   const body = document.body;
   const removeOverlayClass = () => {
-    sessionStorage.setItem("hotshow", false);
+    sessionStorage.setItem('hotshow', false);
     setFlag(false);
-    body.classList.remove("hotshowpopup-overlay");
+    body.classList.remove('hotshowpopup-overlay');
   };
 
-  const addOverlayClass = () => body.classList.add("hotshowpopup-overlay");
+  const addOverlayClass = () => body.classList.add('hotshowpopup-overlay');
 
   return (
     <CSSTransitionGroup
