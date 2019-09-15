@@ -1,15 +1,15 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import "./style.scss";
-import appleImage from "../../../assets/images/apple.svg";
-import sendImage from "../../../assets/images/send.svg";
-import androidImage from "../../../assets/images/android.png";
-import fb from "../../../assets/images/fb.svg";
-import fbFill from "../../../assets/images/fb-fill.svg";
-import insta from "../../../assets/images/insta-unfill.svg";
-import instaFill from "../../../assets/images/insta-fill.svg";
-import stixImage from "../../../assets/images/stix.png";
-import BackToTop from "../../../shared/components/BackToTop";
+import React from 'react';
+import { Link } from 'react-router-dom';
+import './style.scss';
+import appleImage from '../../../assets/images/apple.svg';
+import sendImage from '../../../assets/images/send.svg';
+import androidImage from '../../../assets/images/android.png';
+import fb from '../../../assets/images/fb.svg';
+import fbFill from '../../../assets/images/fb-fill.svg';
+import insta from '../../../assets/images/insta-unfill.svg';
+import instaFill from '../../../assets/images/insta-fill.svg';
+import stixImage from '../../../assets/images/stix.png';
+import BackToTop from '../../../shared/components/BackToTop';
 
 const Footer = () => {
   return (
@@ -21,19 +21,19 @@ const Footer = () => {
               <h3>Our Company</h3>
               <ul>
                 <li>
-                  <a>About Us</a>
+                  <Link to="/">About Us</Link>
                 </li>
                 <li>
-                  <a>Sell with Us</a>
+                  <Link to="/">Sell with Us</Link>
                 </li>
                 <li>
-                  <a>Ticketing Technology</a>
+                  <Link to="/">Ticketing Technology</Link>
                 </li>
                 <li>
-                  <a>Partner with Us</a>
+                  <Link to="/">Partner with Us</Link>
                 </li>
                 <li>
-                  <a>Careers</a>
+                  <Link to="/">Careers</Link>
                 </li>
               </ul>
             </div>
@@ -42,33 +42,33 @@ const Footer = () => {
               <div className="footer-groups">
                 <ul>
                   <li>
-                  <Link to="/where-to-buy-tickets">Where to Buy Tickets</Link>
+                    <Link to="/where-to-buy-tickets">Where to Buy Tickets</Link>
                   </li>
                   <li>
                     <Link to="/agents">Locate an Agent</Link>
                   </li>
                   <li>
-                    <Link to="/venues">Locate a Venue</Link>
+                    <Link to="/venues">Locate Link Venue</Link>
                   </li>
                   <li>
-                    <a>Blog</a>
+                    <Link to="/">Blog</Link>
                   </li>
                   <li>
-                    <a>Media</a>
+                    <Link to="/">Media</Link>
                   </li>
                 </ul>
                 <ul>
                   <li>
-                    <a>My Account</a>
+                    <Link to="/">My Account</Link>
                   </li>
                   <li>
-                  <Link to="/gift-vouchers">Gift Vouchers</Link>
+                    <Link to="/gift-vouchers">Gift Vouchers</Link>
                   </li>
                   <li>
-                  <Link to="/faq/about">FAQ</Link>
+                    <Link to="/faq/about">FAQ</Link>
                   </li>
                   <li>
-                    <a>Cancellations/Refunds</a>
+                    <Link to="/">Cancellations/Refunds</Link>
                   </li>
                   <li>
                     <Link to="/contact-us">Contact Us</Link>
@@ -79,22 +79,22 @@ const Footer = () => {
             <div className="footer-links">
               <h3>SISTIC on Mobile</h3>
               <div className="download-option">
-                <a>
+                <Link to="/">
                   <img src={appleImage} className="ios" alt="" />
                   <span>
                     Available on the
                     <br />
                     <strong>App Store</strong>
                   </span>
-                </a>
-                <a>
+                </Link>
+                <Link to="/">
                   <img src={androidImage} className="android" alt="" />
                   <span>
                     Get it on
                     <br />
                     <strong>Play Store</strong>
                   </span>
-                </a>
+                </Link>
               </div>
             </div>
             <div className="footer-links stay-connected-wrapper">
@@ -109,9 +109,9 @@ const Footer = () => {
                     aria-describedby="basic-addon1"
                   />
                   <div className="input-group-prepend">
-                    <a className="input-group-text" id="basic-addon1">
+                    <Link to="/" className="input-group-text" id="basic-addon1">
                       <img src={sendImage} className="img-fluid" alt="send" />
-                    </a>
+                    </Link>
                   </div>
                 </div>
               </div>
@@ -119,16 +119,13 @@ const Footer = () => {
                 <h3>Follow us on</h3>
                 <ul className="social">
                   <li>
-                    <a
-                      href="https://www.facebook.com/SISTICsingapore"
-                      target="_blank"
-                    >
+                    <a href="https://www.facebook.com/SISTICsingapore">
                       <img src={fb} alt="" />
                       <img className="active" src={fbFill} alt="" />
                     </a>
                   </li>
                   <li>
-                    <a>
+                    <a href="https://www.facebook.com/SISTICsingapore">
                       <img src={insta} alt="" />
                       <img className="active" src={instaFill} alt="" />
                     </a>
@@ -139,10 +136,7 @@ const Footer = () => {
           </div>
           <div className="footer-bottom">
             <div className="copyrights">
-              <a
-                href="https://sealsplash.geotrust.com/splash?&dn=*.sistic.com.sg"
-                target="_blank"
-              >
+              <a href="https://sealsplash.geotrust.com/splash?&dn=*.sistic.com.sg">
                 <img src={stixImage} alt="" />
               </a>
               <span>Copyright 1998 - 2019. © SISTIC.com Pte Ltd</span>

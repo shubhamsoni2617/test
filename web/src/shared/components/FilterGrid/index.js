@@ -1,9 +1,18 @@
-import React, { useState, useEffect, useRef, memo } from "react";
-import { CSSTransitionGroup } from "react-transition-group";
-import VenueFilter from "../VenueFilter";
+import React, { useState, useEffect, useRef, memo } from 'react';
+import { CSSTransitionGroup } from 'react-transition-group';
+import VenueFilter from '../VenueFilter';
+import PropTypes from 'prop-types';
+
 function ShowMoreButton(props) {
   return (
-    <a onClick={() => props.onClick()} className="view-all-filters">
+    <a
+      href="/"
+      onClick={e => {
+        e.preventDefault();
+        props.onClick();
+      }}
+      className="view-all-filters"
+    >
       {props.title}
     </a>
   );
@@ -11,7 +20,7 @@ function ShowMoreButton(props) {
 
 const FilterGrid = props => {
   const [limit, setLimit] = useState(5);
-  const [activeClass, setActiveClass] = useState("");
+  const [activeClass, setActiveClass] = useState('');
   const [data, setData] = useState([]);
   const [panelDisplay, setPanelDisplay] = useState(false);
   const element = useRef(null);
@@ -40,7 +49,7 @@ const FilterGrid = props => {
 
   const onChange = (e, id) => {
     let newFilterValue = [...props.selectedFilter];
-   if (e.target.checked) {
+    if (e.target.checked) {
       newFilterValue.push(id);
     } else {
       const index = props.selectedFilter.indexOf(id);
@@ -58,11 +67,27 @@ const FilterGrid = props => {
       <div className="filter-grid-heading">
         <h3>{props.title}</h3>
         <ul>
-          <li className={activeClass ? "active" : ""}>
-            <a onClick={() => selectAll(true)}>Select all</a>
+          <li className={activeClass ? 'active' : ''}>
+            <a
+              href="/"
+              onClick={e => {
+                e.preventDefault();
+                selectAll(true);
+              }}
+            >
+              Select all
+            </a>
           </li>
-          <li className={activeClass ? "" : "active"}>
-            <a onClick={() => selectAll(false)}>Clear</a>
+          <li className={activeClass ? '' : 'active'}>
+            <a
+              href="/"
+              onClick={e => {
+                e.preventDefault();
+                selectAll(false);
+              }}
+            >
+              Clear
+            </a>
           </li>
         </ul>
       </div>
@@ -76,7 +101,7 @@ const FilterGrid = props => {
           >
             {data.length &&
               data.slice(0, limit).map((item, key) => {
-                let id = "item-" + item.id;
+                let id = 'item-' + item.id;
                 let isChecked = false;
                 let index;
                 if (props.selectedFilter) {
@@ -94,8 +119,8 @@ const FilterGrid = props => {
                       value=""
                     />
                     <label htmlFor={id}>
-                      {item.name}{" "}
-                      {item.events_count ? `(${item.events_count})` : ""}
+                      {item.name}{' '}
+                      {item.events_count ? `(${item.events_count})` : ''}
                     </label>
                   </li>
                 );
@@ -105,12 +130,12 @@ const FilterGrid = props => {
         {!(data.length < limit) && (
           <ShowMoreButton
             title={`+ ${
-              data.length > limit ? `${data.length - limit} More` : "Show Less"
+              data.length > limit ? `${data.length - limit} More` : 'Show Less'
             }`}
             onClick={() => {
               props.showPanel
                 ? setPanelDisplay(true)
-                : toggle(data.length != limit);
+                : toggle(data.length !== limit);
             }}
           />
         )}
@@ -127,3 +152,17 @@ const FilterGrid = props => {
   );
 };
 export default memo(FilterGrid);
+
+ShowMoreButton.propTypes = {
+  title: PropTypes.string.isRequired,
+  onClick: PropTypes.func.isRequired
+};
+
+FilterGrid.propTypes = {
+  category: PropTypes.string.isRequired,
+  data: PropTypes.array.isRequired,
+  handleFilters: PropTypes.func.isRequired,
+  title: PropTypes.string.isRequired,
+  selectedFilter: PropTypes.array,
+  showPanel: PropTypes.bool
+};
