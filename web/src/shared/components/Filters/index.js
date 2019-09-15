@@ -14,7 +14,6 @@ import './style.scss';
 
 function SearchFilter(props) {
   const [search, setSearch] = useState(props.searchText);
-
   useEffect(() => {
     setSearch(props.searchText);
   }, [props.searchText]);
@@ -33,7 +32,7 @@ function SearchFilter(props) {
       <input
         type="text"
         value={search}
-        placeholder="Search in events"
+        placeholder={props.searchPlaceholder}
         onChange={e => textFilter(e)}
         className="form-control"
       />
@@ -333,8 +332,12 @@ function Filters(props) {
           </a>
         </h3>
       </div>
-      <SearchFilter handleFilters={handleFilters} searchText={filteredSearch} />
-      {price_config && (
+      <SearchFilter
+        handleFilters={handleFilters}
+        searchPlaceholder={props.searchPlaceholder}
+        searchText={filteredSearch}
+      />
+      {price_config != undefined && (
         <PriceRangeFilter
           priceConfig={price_config}
           filteredPriceRange={filteredPriceRange}
@@ -391,7 +394,8 @@ export default Filters;
 
 SearchFilter.propTypes = {
   handleFilters: PropTypes.func.isRequired,
-  searchText: PropTypes.array
+  searchText: PropTypes.array,
+  searchPlaceholder: PropTypes.string.isRequired
 };
 
 PriceRangeFilter.propTypes = {

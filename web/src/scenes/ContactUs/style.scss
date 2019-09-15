@@ -1,0 +1,32 @@
+.contact-us{
+  background: url('../../assets//images/contact-us-banner.png') no-repeat;
+  // height: 1000px;
+}
+
+.contact-us-header{
+  color:white;
+  padding:5% 0%;
+}
+.heading-text{
+  padding: 5% 0%;
+}
+.main-context{
+  background-color:#FFF;
+  margin:0% auto;
+}
+.row-data{
+  margin: 3%;
+  padding: 3%;
+}
+.find-us-content{
+  margin:5% 2%;
+}
+// input[type="file"] {
+//   display: none;
+// }
+.custom-file-upload {
+  cursor: pointer;
+}
+.row-data:nth-child(2){
+  background-color: rgb(89, 243, 230)
+}

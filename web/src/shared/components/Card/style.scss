@@ -6,7 +6,11 @@
     margin-bottom: 35px;
     width: 100%;
     transition: .5s ease-out;
+    -webkit-transition: .5s ease-out;
+    -moz-transition: .5s ease-out;
+    -o-transition: .5s ease-out;
     cursor: pointer;
+    position: relative;
     @media (max-width: 767px) {
         width: calc(50% - 10px);
         margin: 0 5px 10px;
@@ -21,7 +25,117 @@
     &:hover{
         border: 2px solid #0098FF;
         transition: .5s ease-out;
+        -webkit-transition: .5s ease-out;
+        -moz-transition: .5s ease-out;
+        -o-transition: .5s ease-out;
         box-shadow: 0 2px 27px 0 rgba(0,0,0,0.09);
+    }
+    &.attraction-block{
+        padding-bottom: 0px;
+        position: relative;
+        &:hover{
+            .event-details {
+                .price-event{
+                    .buy-btn{
+                        background: #0098FF url(../../../assets/images/buy-arrow.png) 94% 15px no-repeat;
+                        font-size: 18px;
+                        color: #FFF;
+                        line-height: 22px;
+                        border: none;
+                    }
+                }
+                p{
+                    color: #626262;
+                }
+            }
+        }
+        .event-details {
+            padding: 15px 15px 0px;
+            .event-detail-prime{
+                margin-bottom: 25px;
+                min-height: 115px;
+            }
+            .attraction-show-more {
+                color: #2698ff;
+                text-transform: lowercase;
+                &:hover{
+                    text-decoration: underline;
+                }
+            }
+            .price-event{
+                .buy-btn{
+                    position: relative;
+                    left: -15px;
+                    bottom: 0;
+                    height: auto;
+                    text-align: left;
+                    width: calc(100% + 30px);
+                    min-width: calc(100% + 30px);
+                    background: #FFF;
+                    font-size: 18px;
+                    color: #0098FF;
+                    line-height: 22px;
+                    padding: 15px;
+                    text-transform: uppercase;
+                    border: none;
+                    background: url(../../../assets/images/buy-arrow-b.png) 94% 15px no-repeat;
+                    font-weight: 600;
+                    &:hover{
+                        background: #0098FF url(../../../assets/images/buy-arrow.png) 94% 15px no-repeat;
+                        font-size: 18px;
+                        color: #FFF;
+                        line-height: 22px;
+                        border: none;
+                    }
+                }
+            }
+            p{
+                color: #626262;
+                display: inline;
+                &:empty{
+                    display: none;
+                }
+            }
+        }
+    }
+    .featured-tag{
+        position: absolute;
+        left: -6px;
+        top: 7px;
+        height: 24px;
+        width: 85px;
+        background: linear-gradient(90deg, #670E00 -50%, #E21A1F 100%);
+        color: #FFFFFF;
+        font-size: 13px;
+        font-family: 'Montserrat', sans-serif;
+        line-height: 18px;
+        font-weight: 500;
+        text-align: center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding-left: 9px;
+        z-index: 2;
+        &::before{
+            content: "";
+            position: absolute;
+            top: 23px;
+            left: 0px;
+            border-right: 3px solid #670E00;
+            border-left: 3px solid transparent;
+            border-bottom: 3px solid transparent;
+            border-top: 2px solid #670E00;
+        }
+        &::after{
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 100%;
+            border-left: 6px solid #E21A1F;
+            border-right: 10px solid transparent;
+            border-bottom: 10px solid transparent;
+            border-top: 14px solid #E21A1F;
+        }
     }
     .event-img{
         display: flex;
@@ -46,12 +160,13 @@
           padding: 10px 0;
           margin: 0;
           line-height: 20px;
-          min-height: 67px;
+          min-height: 61px;
           h3{
             font-size: 17px;
             color: #343434;
             font-weight: 500;
             font-family: 'Rubik', sans-serif;
+            margin-bottom: 0;
             @media (max-width: 767px) {
                 font-size: 14px;
             }
@@ -120,6 +235,9 @@
                 font-weight: 500;
                 border: 1px transparent solid;
                 transition: 0.8s all;
+                -webkit-transition: 0.8s all;
+                -moz-transition: 0.8s all;
+                -o-transition: 0.8s all;
                 &::after{
                     display: none;
                 }
@@ -128,7 +246,11 @@
                     background: #FFF;
                     color: #0098FF;
                     transition: 0.8s all;
+                    -webkit-transition: 0.8s all;
+                    -moz-transition: 0.8s all;
+                    -o-transition: 0.8s all;
                 }
+
             }
         }
     }
@@ -160,6 +282,9 @@
                 width: 100%;
                 .item-title{
                     min-height: auto;
+                }
+                p{
+                    color: #626262;
                 }
                 .event-place{
                     min-height: auto;

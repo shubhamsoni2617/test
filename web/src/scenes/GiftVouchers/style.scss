@@ -1,0 +1,128 @@
+.giftvoucher-body{
+    text-align: center;
+    h1 {
+        color: #343434;
+        font-family: "Montserrat", sans-serif;
+        font-size: 36px;
+        line-height: 44px;
+        text-align: center;
+        font-weight: 600;
+        margin-bottom: 31px;
+        @media(max-width: 1024px){
+            font-size: 30px;
+            line-height: 40px;
+            margin-bottom: 25px;
+        }
+        @media(max-width: 767px){
+            font-size: 23px;
+            line-height: 28px;
+        }
+    }
+    p {
+        color: #626262;
+        font-family: "Rubik", sans-serif;
+        font-size: 16px;
+        line-height: 26px;
+        text-align: center;
+        padding-bottom: 19px;
+        max-width: 790px;
+        margin: 0 auto;
+        @media(max-width: 767px){
+            font-size: 14px;
+            line-height: 24px;
+            padding-bottom: 10px;
+        }
+        &:last-child{
+            padding-bottom: 0px;
+        }
+        a{
+            color: #0098FF;
+            font-size: inherit;
+        }
+    }
+    .easy-give-receive {      
+        padding: 49px 0px 59px;
+        @media(max-width: 767px){
+            padding: 35px 0px 35px;
+        }
+    }
+    .pick-voucher {
+        position: relative;
+        padding: 35px 0 0px;
+        @media(max-width: 767px){
+            background-color: #F6F6F6;
+            padding-bottom: 20px;
+        }
+        h3 {
+            color: #343434;
+            font-family: "Montserrat", sans-serif;
+            font-size: 30px;
+            line-height: 37px;
+            font-weight: 600;
+            margin: 0px;
+            @media(max-width: 767px){
+                font-size: 20px;
+                line-height: 25px;
+            }
+        }
+        &:after{
+            position: absolute;
+            height: 257px;
+            background-color: #F6F6F6;
+            top: 0px;
+            content: "";
+            width: 100%;
+            left: 0px;
+            right: 0px;
+            z-index: -1;
+            @media(max-width: 767px){
+                content: none;
+            }
+        }
+    }
+    .gift-card{
+        padding: 94px 0px;
+        @media(max-width: 767px){
+            padding: 25px 0px;
+        }
+        h3{
+            color: #343434;
+            font-family: "Montserrat", sans-serif;	
+            font-size: 36px;	
+            line-height: 44px;
+            text-align: center;
+            font-weight: 600;
+            margin-bottom: 20px;
+            @media(max-width: 1024px){
+                font-size: 30px;
+                line-height: 50px;
+            }
+            @media(max-width: 767px){
+                font-size: 20px;
+                line-height: 25px;
+            }
+        }
+        span {
+            color: #626262;
+            font-family: 'Rubik', sans-serif;
+            font-size: 16px;
+            line-height: 19px;
+            text-align: center;
+            font-weight: 500;
+            @media(max-width: 1024px){
+                font-size: 14px;
+                line-height: 18px;
+            }
+            @media(max-width: 767px){
+                font-size: 14px;
+                line-height: 18px;
+            }
+            &:last-child{
+                @media(max-width: 767px){
+                    max-width: 80%;
+                    margin: 0 auto;
+                }
+            }
+        }
+    }
+}

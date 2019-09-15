@@ -1,28 +1,28 @@
-import React, { Component } from "react";
-import "./style.scss";
+import React, { Component } from 'react';
+import './style.scss';
 
 class Explore extends Component {
   render() {
     const explore = [
       {
-        id: "1",
-        img: "assets/images/explore-01.jpg"
+        id: '1',
+        img: 'assets/images/explore-01.jpg'
       },
       {
-        id: "2",
-        img: "assets/images/explore-02.jpg"
+        id: '2',
+        img: 'assets/images/explore-02.jpg'
       },
       {
-        id: "3",
-        img: "assets/images/explore-02.jpg"
+        id: '3',
+        img: 'assets/images/explore-02.jpg'
       },
       {
-        id: "4",
-        img: "assets/images/explore-02.jpg"
+        id: '4',
+        img: 'assets/images/explore-02.jpg'
       },
       {
-        id: "5",
-        img: "assets/images/explore-02.jpg"
+        id: '5',
+        img: 'assets/images/explore-02.jpg'
       }
     ];
     return (
@@ -31,8 +31,8 @@ class Explore extends Component {
           <div className="section-top-wrapper">
             <h2>Explore</h2>
             <div className="carousel-dots">
-              <a href="/" onClick={e => e.preventDefault()}>
-                See all{" "}
+              <a>
+                See all{' '}
                 <img
                   src="assets/images/right-arrow.svg"
                   className="img-fluid"
@@ -44,7 +44,7 @@ class Explore extends Component {
           <span className="explore-text">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas
             varius tortor nibh, sit amet tempor nibh finibus et. Aenean eu enim
-            justo.{" "}
+            justo.{' '}
           </span>
           <div className="grid-container">
             <div className="item">

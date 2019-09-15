@@ -27,13 +27,19 @@ body {
 	a {
         text-decoration: none;
         outline: none;
-        transition: 1s all;
+		transition: 1s all;
+		-webkit-transition: 1s all;
+		-moz-transition: 1s all;
+		-o-transition: 1s all;
 		&:hover,
 		&:focus,
 		&:active {
             text-decoration: none;
             outline: none;
-            transition: 1s all;
+			transition: 1s all;
+			-webkit-transition: 1s all;
+			-moz-transition: 1s all;
+			-o-transition: 1s all;
 		}
     }
     b, strong{
@@ -92,7 +98,7 @@ nav {
 		a {
 			color: inherit;
 			font-family: 'Montserrat', sans-serif;
-			font-size: 14px;
+			font-size: 13px;
             line-height: 18px;
             font-weight: 300;
 			@media (max-width: 767px) {
@@ -120,7 +126,10 @@ h2 {
     font-family: 'Montserrat', sans-serif;
     margin: 0px;
     padding-bottom: 18px;
-    transition: 1s all;
+	transition: 1s all;
+	-webkit-transition: 1s all;
+	-moz-transition: 1s all;
+	-o-transition: 1s all;
 }
 
 // Modal Design
@@ -209,8 +218,8 @@ h2 {
 
 .container-fluid {
 	@media(min-width: 767px) {
-		padding-right: 50px;
-		padding-left: 50px;
+		padding-right: 40px;
+		padding-left: 40px;
 	}
 	@media(max-width: 1023px) {
 		padding-right: 30px;
@@ -222,6 +231,7 @@ h2 {
 		padding-left: 10px;
 	}
 }
+
 // Slider
 .slick-track{
   margin: 0;
@@ -243,25 +253,18 @@ button,
 	line-height: 30px;
     overflow: hidden;
     border: 1px solid transparent;
-    transition: 0.8s all;
-	/*&::after {
-		height: calc(100% + 50px);
-		position: absolute;
-		content: "";
-		width: 20%;
-		background-color: rgb(255, 255, 255);
-		left: -20px;
-		opacity: 0;
-		transform: rotate(35deg);
-		transition: 0.5s left, 0.5s opacity;
-		filter: blur(10px);
-		top: -30px;
-	}*/
+	transition: 0.8s all;
+	-webkit-transition: 0.8s all;
+	-moz-transition: 0.8s all;
+	-o-transition: 0.8s all;
 	&:hover {
         background-color: #FFF;
         color: #0098ff;
         border: 1px solid #0098ff;
-        transition: 0.8s all;
+		transition: 0.8s all;
+		-webkit-transition: 0.8s all;
+		-moz-transition: 0.8s all;
+		-o-transition: 0.8s all;
 		cursor: pointer;
 		&::after {
 			left: calc(100% + 35px);
@@ -270,6 +273,12 @@ button,
 	}
 }
 
+// Wrapper 
+.wrapper{
+    overflow: hidden;
+} 
+
+// Overlay Background 
 .dance-overlay {
 	background: linear-gradient(180deg, rgba(242, 177, 25, 0) -5%, #5F4F8B 70%);
 }
@@ -310,7 +319,10 @@ button,
 		img {
 			padding-bottom: 2px;
 			margin-left: 2px;
-            transition: 0.3s transform;
+			transition: 0.3s transform;
+			-webkit-transition: 0.3s transform;
+			-moz-transition: 0.3s transform;
+			-o-transition: 0.3s transform;
             width: 8px;
 			@media (max-width: 767px) {
 				margin-left: 1px;
@@ -358,6 +370,9 @@ button,
 		cursor: pointer;
 		background-color: rgba(0, 0, 0, 0.1);
 		transition: 0.3s opacity;
+		-webkit-transition: 0.3s opacity;
+		-moz-transition: 0.3s opacity;
+		-o-transition: 0.3s opacity;
 		position: relative;
 		&:after{
 			position: absolute;
@@ -367,6 +382,9 @@ button,
 			left: 0px;
 			width: 0px;
 			transition: 0.3s width;
+			-webkit-transition: 0.3s width;
+			-moz-transition: 0.3s width;
+			-o-transition: 0.3s width;
 		}
 		&.active {
 			opacity: 1;
@@ -447,6 +465,9 @@ button,
 				opacity: 1;
 				color: #ffffff;
 				transition: 0.3s all ease-in-out;
+				-webkit-transition: 0.3s all ease-in-out;
+				-moz-transition: 0.3s all ease-in-out;
+				-o-transition: 0.3s all ease-in-out;
 			}
 			&:hover {
 				opacity: 0.8;
@@ -527,6 +548,9 @@ button,
 		border: 1px solid rgba(151, 151, 151, 0.2);
 		border-top: none;
 		transition: 0.3s height, 0.3s opacity;
+		-webkit-transition:  0.3s height, 0.3s opacity;
+		-moz-transition:  0.3s height, 0.3s opacity;
+		-o-transition:  0.3s height, 0.3s opacity;
 		position: absolute;
 		top: 100%;
 		width: 100%;
@@ -544,12 +568,18 @@ button,
 			font-size: 14px;
 			line-height: 17px;
 			transition: 0.3s all;
+			-webkit-transition: 0.3s all;
+			-moz-transition: 0.3s all;
+			-o-transition: 0.3s all;
 			&:hover {
 				background-color: rgba(0, 128, 215, 0.2);
 				color: #0098ff;
                 cursor: pointer;
                 font-weight: 500;
-                transition: 0.8s all;
+				transition: 0.8s all;
+				-webkit-transition: 0.8s all;
+				-moz-transition: 0.8s all;
+				-o-transition: 0.8s all;
                 padding-left: 23px;
 			}
 			&.active {
@@ -670,6 +700,9 @@ button,
 	line-height: 22px;
 	opacity: 0;
 	transition: 0.3s height, 0.3s opacity;
+	-webkit-transition: 0.3s height, 0.3s opacity;
+	-moz-transition: 0.3s height, 0.3s opacity;
+	-o-transition: 0.3s height, 0.3s opacity;
 	height: 0;
 	padding: 0px;
     overflow: hidden;
@@ -992,8 +1025,15 @@ button,
     font-weight: 500;
 	z-index: 2;
 	cursor: pointer;
+	@media(max-width: 767px){
+		width: 35px;
+		height: 35px;
+	}
     img{
-        margin-bottom: 2px;
+		margin-bottom: 2px;
+		@media(max-width: 767px){
+			max-width: 15px;
+		}
     }
     &:hover{
         color: #FFF;

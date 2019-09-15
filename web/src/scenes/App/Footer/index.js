@@ -42,13 +42,13 @@ const Footer = () => {
               <div className="footer-groups">
                 <ul>
                   <li>
-                    <Link to="/">Where to Buy Tickets</Link>
+                    <Link to="/where-to-buy-tickets">Where to Buy Tickets</Link>
                   </li>
                   <li>
-                    <Link to="/">Locate an Agent</Link>
+                    <Link to="/agents">Locate an Agent</Link>
                   </li>
                   <li>
-                    <Link to="/">Locate Link Venue</Link>
+                    <Link to="/venues">Locate Link Venue</Link>
                   </li>
                   <li>
                     <Link to="/">Blog</Link>
@@ -62,16 +62,16 @@ const Footer = () => {
                     <Link to="/">My Account</Link>
                   </li>
                   <li>
-                    <Link to="/">Gift Vouchers</Link>
+                    <Link to="/gift-vouchers">Gift Vouchers</Link>
                   </li>
                   <li>
-                    <Link to="/">FAQ</Link>
+                    <Link to="/faq/about">FAQ</Link>
                   </li>
                   <li>
                     <Link to="/">Cancellations/Refunds</Link>
                   </li>
                   <li>
-                    <Link to="/">Contact Us</Link>
+                    <Link to="/contact-us">Contact Us</Link>
                   </li>
                 </ul>
               </div>
@@ -143,10 +143,10 @@ const Footer = () => {
             </div>
             <ul className="footer-btm-links">
               <li>
-                <Link to="/">Privacy Policy</Link>
+                <Link to="/privacy">Privacy Policy</Link>
               </li>
               <li>
-                <Link to="/">Terms & Conditions</Link>
+                <Link to="/terms-and-conditions">Terms & Conditions</Link>
               </li>
             </ul>
             <div className="hotline-number">SISTIC Hotline: +65 63485555</div>
