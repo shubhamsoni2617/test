@@ -6,29 +6,20 @@ import DirectionIcon from '../../../../assets/images/direction.png';
 import DefaultImg from '../../../../assets/images/horizontal.png';
 import Image from '../../Image';
 import Constants from '../../../constants';
+import { useCustomWidth } from '../../CustomHooks';
 
 const GoogleMap = (props) => {
 
-  const { google, multipleMarker, showOnMapData, venue, mapClick, countryName, handleActiveClass } = props;
+  const { google, multipleMarker, showOnMapData, venue, mapClick, countryName,
+    handleActiveClass, mapInMobile } = props;
+
+  const [width] = useCustomWidth();
 
   const [showingInfoWindow, setShowingInfoWindow] = useState(false);
   const [activeMarker, setActiveMarker] = useState({});
   const [selectedPlace, setSelectedPlace] = useState({});
   const [initialCenter, setInitialCenter] = useState({ lat: 1.290270, lng: 103.851959 });
   const [zoomValue, setZoomValue] = useState(12);
-  const [width, setWidth] = useState(window.innerWidth);
-
-
-  useEffect(() => {
-    window.addEventListener('resize', handleWindowResize);
-    return () => {
-      window.removeEventListener('resize', handleWindowResize);
-    };
-  }, []);
-
-  const handleWindowResize = () => {
-    setWidth(window.innerWidth);
-  }
 
   const onMapClicked = (props) => {
     if (showingInfoWindow) {
@@ -42,10 +33,12 @@ const GoogleMap = (props) => {
       setSelectedPlace(props);
       setActiveMarker(marker);
       setShowingInfoWindow(true);
+      setZoomValue(16);
     } else {
       setActiveMarker(marker);
       setShowingInfoWindow(true);
       setSelectedPlace(props);
+      setZoomValue(16);
     }
   }
 
@@ -58,6 +51,9 @@ const GoogleMap = (props) => {
     setSelectedPlace({});
     // setActiveMarker({});
     setShowingInfoWindow(true);
+    setInitialCenter({ lat: Number(showOnMapData.latitude), lng: Number(showOnMapData.latitude) });
+    setZoomValue(16);
+
   }, [showOnMapData.id])
 
   useEffect(() => {
@@ -72,42 +68,32 @@ const GoogleMap = (props) => {
   }
 
   const handleZoom = (country) => {
-    console.log(country)
     switch (country) {
       case "Singapore":
-        // setInitialCenter({ lat: 1.290270, lng: 103.851959 });
         setZoomValue(venue ? 12 : 12);
         break;
       case "Malaysia":
-        // setInitialCenter({ lat: 3.1412001, lng: 101.6865311 });
         setZoomValue(4);
         break;
       case "Indonesia":
-        // setInitialCenter({ lat: -6.21462, lng: 106.84513 });
         setZoomValue(3);
         break;
       case "Thailand":
-        // setInitialCenter({ lat: 13.736717, lng: 100.523186 });
         setZoomValue(5);
         break;
       case "Vietnam":
-        // setInitialCenter({ lat: 14.315424, lng: 108.339537 });
         setZoomValue(5);
         break;
       case "Macau":
-        // setInitialCenter({ lat: 22.210928, lng: 113.552971 });
         setZoomValue(3);
         break;
       case "Taiwan":
-        // setInitialCenter({ lat: 23.6978092, lng: 120.9605179 });
         setZoomValue(5);
         break;
       case "South Korea":
-        // setInitialCenter({ lat: 37.532600, lng: 127.024612 });
         setZoomValue(5);
         break;
       default:
-        // setInitialCenter({ lat: 1.290270, lng: 103.851959 });
         setZoomValue(12);
     }
   }
@@ -133,37 +119,49 @@ const GoogleMap = (props) => {
     return <div>Loading...</div>;
   }
 
-
   return (
-    <div className="gmap" >
+    <div className="gmap" style={{ display: width <= Constants.MOBILE_BREAK_POINT ? (mapInMobile ? "block" : "none") : "block" }}>
       {selectedPlace.id || showOnMapData.id === undefined ?
         <Map google={google}
           style={{ width: '100%', height: '600px', position: 'relative' }}
           zoom={zoomValue}
           onClick={onMapClicked}
           initialCenter={initialCenter}
+          gestureHandling={"greedy"}
         >
           {multipleMarker && multipleMarker.map((elem, index) => {
             return (
               <Marker
                 onClick={onMarkerClick}
                 key={elem.id}
-                position={{ lat: elem.latitude, lng: elem.longitude }}
+                // map={new Map()}
+                position={{ lat: Number(elem.latitude), lng: Number(elem.longitude) }}
                 id={elem.id}
                 name={elem.name}
                 address={elem.address}
                 imgPath={elem.image}
                 mapPinColor={elem.map_pin_color}
-                icon={{
-                  // url: elem.map_pin_icon,
-                  scaledSize: new google.maps.Size(50, 50), // scaled size
+                mapPinIcon={elem.map_pin_icon}
+                icon={!elem.map_pin_icon ? {
+                  scaledSize: new google.maps.Size(30, 30),
                   path: Constants.MAP_PATH,
                   scale: 0.8,
-                  fillColor: venue ? (elem.id === selectedPlace.id ? "blue" : elem.map_pin_color) : (elem.id === showOnMapData.id ? "blue" : "#9F3A3A"),
+                  fillColor: venue ? (elem.id === selectedPlace.id ? "blue" : (elem.map_pin_color ? elem.map_pin_color : "#FF0000")) : (elem.id === selectedPlace.id ? "blue" : "#FF0000"),
                   fillOpacity: 1,
                   strokeWeight: 2
-                  // fillColor: selectedPlace.mapPinColor
-                }}
+                } : (elem.id === selectedPlace.id ?
+                  {
+                    path: Constants.MAP_PATH,
+                    scale: 0.8,
+                    fillColor: venue ? (elem.id === selectedPlace.id ? "blue" : (elem.map_pin_color ? elem.map_pin_color : "#FF0000")) : (elem.id === selectedPlace.id ? "blue" : "#FF0000"),
+                    fillOpacity: 1,
+                    strokeWeight: 2
+                  } :
+                  {
+                    url: (elem.map_pin_icon),
+                    scaledSize: new google.maps.Size(30, 30),
+                  })
+                }
               />
             )
           })
@@ -200,6 +198,7 @@ const GoogleMap = (props) => {
           style={{ width: '100%', height: '600px', position: 'relative' }}
           zoom={zoomValue}
           initialCenter={initialCenter}
+          gestureHandling={"greedy"}
         >
 
           {multipleMarker && multipleMarker.map((elem, index) => {
@@ -218,7 +217,7 @@ const GoogleMap = (props) => {
                   scaledSize: new google.maps.Size(50, 50), // scaled size
                   path: Constants.MAP_PATH,
                   scale: 0.8,
-                  fillColor: venue ? (elem.id === showOnMapData.id ? "blue" : elem.map_pin_color) : (elem.id === showOnMapData.id ? "blue" : "red"),
+                  fillColor: venue ? (elem.id === showOnMapData.id ? "blue" : (elem.map_pin_color ? elem.map_pin_color : "#FF0000")) : (elem.id === showOnMapData.id ? "blue" : "red"),
                   fillOpacity: 1,
                   strokeWeight: 2
                 }}
