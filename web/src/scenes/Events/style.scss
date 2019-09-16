@@ -87,9 +87,10 @@
                 flex: 0 0 calc(33.33% - 17px);
                 width: calc(33.33% - 17px);
                 margin-right: 17px;
-                // &:nth-child(3n){
-                //     margin-right: 0px;
-                // }
+                @media(min-width: 1360px) and (max-width: 1900px){
+                    flex: 0 0 calc(25% - 17px);
+                    width: calc(25% - 17px);
+                }
             }
             &.list-view{
                 > div{
