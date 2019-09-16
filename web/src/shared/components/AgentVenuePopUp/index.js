@@ -156,7 +156,7 @@ const AgentVenuePopUp = (props) => {
                       {/* <img src={elem.thumb_image} alt="specific-event" /> */}
                       <Image src={elem.thumb_image} alt="specific-event" type="Small" />
                       <Link to={`/events/${elem.alias}`}>
-                      <EventHeading title={elem.title} lines={2} height={20} size={14} allowTooltip={false} /></Link>
+                      <EventHeading title={elem.title} lines={2} height={18} size={14} allowTooltip={false} /></Link>
                     </li>
                   )
                 })
