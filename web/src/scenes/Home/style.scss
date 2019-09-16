@@ -25,7 +25,7 @@
 	background-color: rgba(3, 13, 21, 0.8);
 	padding: 0px;
 	position: relative;
-	z-index: 3;
+	z-index: 7;
 	transition: 0.3s ease-in;
 	-webkit-transition: 0.3s ease-in;
 	-moz-transition: 0.3s ease-in;
@@ -1860,7 +1860,7 @@ p {
 				font-size: 18px;
 				line-height: 22px;
 				text-decoration: none;
-				height: 21px;		
+				height: 21px;
                 display: block;
                 margin: 0;
 				transition: 1s all;
@@ -2998,7 +2998,7 @@ section{
 			padding: 0px;
 			line-height: 0px;
 			font-size: 0px;
-			display: block;      
+			display: block;
 		}
 		&:after {
       content: '';
