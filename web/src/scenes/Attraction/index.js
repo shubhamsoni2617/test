@@ -212,7 +212,7 @@ export default class Attractions extends Component {
       filteredCategory,
       filteredSearch
     } = this.state;
-    this.breadCrumbData.count = count;
+    this.breadCrumbData.count = totalRecords;
 
     return (
       <div>
