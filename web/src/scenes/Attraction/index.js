@@ -212,7 +212,7 @@ export default class Attractions extends Component {
       <div>
         <Breadcrub breadCrumbData={this.breadCrumbData} />
         <div className="container-fluid">
-          <div className="wrapper-events-listing">
+          <div className="wrapper-events-listing attraction-wrapper-listing">
             <div className="filters">
               {shimmer && <ShimmerEffect
                 propCls="shm_col-xs-6 col-md-12"
