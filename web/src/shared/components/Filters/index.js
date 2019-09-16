@@ -347,6 +347,7 @@ function Filters(props) {
         handleFilters={handleFilters}
         data={genreData ? genreData : []}
         selectedFilter={filteredGnere}
+        limit={5}
       />
       <FilterGrid
         title="Tags"
@@ -354,6 +355,7 @@ function Filters(props) {
         handleFilters={handleFilters}
         data={filterConfig ? filterConfig.tags : []}
         selectedFilter={filteredTags}
+        limit={5}
       />
       {!hideCalendar && (
         <DateRangeFilter
@@ -367,6 +369,7 @@ function Filters(props) {
         handleFilters={handleFilters}
         data={filterConfig ? filterConfig.promotion_categories : []}
         selectedFilter={filteredPromotions}
+        limit={5}
       />
       <FilterGrid
         title="Venue"
@@ -375,6 +378,7 @@ function Filters(props) {
         data={venueData ? venueData : []}
         showPanel={true}
         selectedFilter={filteredVenues}
+        limit={5}
       />
       <FilterGrid
         title="Categories"
@@ -382,6 +386,7 @@ function Filters(props) {
         handleFilters={handleFilters}
         data={attractionCategories ? attractionCategories : []}
         selectedFilter={filteredCategory}
+        limit={10}
       />
     </div>
   );

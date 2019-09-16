@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef, memo } from 'react';
+import PropTypes from 'prop-types';
 import { CSSTransitionGroup } from 'react-transition-group';
 import VenueFilter from '../VenueFilter';
-import PropTypes from 'prop-types';
 
 function ShowMoreButton(props) {
   return (
@@ -19,7 +19,7 @@ function ShowMoreButton(props) {
 }
 
 const FilterGrid = props => {
-  const [limit, setLimit] = useState(5);
+  const [limit, setLimit] = useState(props.limit);
   const [activeClass, setActiveClass] = useState('');
   const [data, setData] = useState([]);
   const [panelDisplay, setPanelDisplay] = useState(false);
@@ -37,14 +37,6 @@ const FilterGrid = props => {
     let newFilterObject = {};
     newFilterObject[props.category] = items;
     props.handleFilters(newFilterObject);
-  };
-
-  const toggle = status => {
-    if (status) {
-      setLimit(props.data.length);
-    } else {
-      setLimit(5);
-    }
   };
 
   const onChange = (e, id) => {
@@ -127,18 +119,31 @@ const FilterGrid = props => {
               })}
           </CSSTransitionGroup>
         </ul>
-        {!(data.length < limit) && (
-          <ShowMoreButton
-            title={`+ ${
-              data.length > limit ? `${data.length - limit} More` : 'Show Less'
-            }`}
-            onClick={() => {
-              props.showPanel
-                ? setPanelDisplay(true)
-                : toggle(data.length !== limit);
-            }}
-          />
-        )}
+        {props.limit !== data.length ? (
+          <>
+            {data.length > limit && (
+              <ShowMoreButton
+                title={`+ ${`${data.length - limit} More`}`}
+                onClick={() => {
+                  props.showPanel
+                    ? setPanelDisplay(true)
+                    : setLimit(data.length);
+                }}
+              />
+            )}
+            {data.length === limit && (
+              <ShowMoreButton
+                title={'- Show Less'}
+                onClick={() => {
+                  props.showPanel
+                    ? setPanelDisplay(true)
+                    : setLimit(props.limit);
+                }}
+              />
+            )}
+          </>
+        ) : null}
+
         <VenueFilter
           ref={element}
           onChange={onChange}
