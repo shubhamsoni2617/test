@@ -64,7 +64,7 @@ export default class Card extends Component {
                   <ModalPopup
                     showModal={true}
                     content={this.state.popUpContent}
-                    title="PopUp"
+                    title="Synopsis"
                     handleClose={() => this.showPopUp(false, null)}
                     htmlContent={true}
                   />
