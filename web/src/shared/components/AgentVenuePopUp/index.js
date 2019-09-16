@@ -27,10 +27,10 @@ const AgentVenuePopUp = (props) => {
   const showFoodNBeverage = (foodNBeverage) => {
     return foodNBeverage.map((elem, index) => {
       return (
-        <li key={index}>
+        <div key={index}>
           {/* {elem.image ? <Image src={elem.image} alt="beverage" type="Small" /> : null} */}
           {elem.name ? <p>{elem.name}</p> : null}
-        </li>
+        </div>
       )
     });
   }
@@ -103,7 +103,7 @@ const AgentVenuePopUp = (props) => {
           </div>
           <div className="details">
             <h3>Contact Detail</h3>
-            <p>{popUpDetail.contact_details}</p>
+            <div dangerouslySetInnerHTML={{__html:popUpDetail.contact_details}}></div>
           </div>
         </div> : null
       }

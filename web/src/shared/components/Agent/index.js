@@ -149,7 +149,7 @@ const Agent = (props) => {
     if (!mapInMobile) {
       setMapInMobile(true);
     } else {
-      setMapInMobile(true);
+      setMapInMobile(false);
     }
   }
 
@@ -201,7 +201,7 @@ const Agent = (props) => {
             <span className="map-label-mobileonly" onClick={handleMapForMobile}>Find in Map</span>
             <GoogleMap
               multipleMarker={filteredListedData}
-              showOnMapData={showOnMapData} 
+              showOnMapData={showOnMapData}
               countryName={countryName}
               mapClick={mapClick}
               handleActiveClass={handleActiveClass}

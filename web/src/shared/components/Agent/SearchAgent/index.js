@@ -7,11 +7,16 @@ import downArrow from '../../../../assets/images/downarrow-blue.svg';
 import AgentService from '../../../services/AgentService';
 import AgentVenuePopUp from '../../AgentVenuePopUp';
 import Utilities from '../../../utilities';
+import { useCustomWidth } from '../../CustomHooks';
+import Constants from '../../../constants';
 
 const SearchAgent = (props) => {
 
   const { initialItems, countryFileUrl, showOnMapClick, venue, countryName,
-    handleAttractionValue, handleEventValue, activeClassId, checkBox, handleMapFilter,filteredListedData } = props;
+    handleAttractionValue, handleEventValue, activeClassId, checkBox, handleMapFilter } = props;
+
+  const [width] = useCustomWidth();
+
   const activePopUpRef = useRef();
 
   const [filter, setFilter] = useState('');
@@ -177,5 +182,6 @@ const SearchAgent = (props) => {
     </div>
   );
 };
+
 
 export default SearchAgent;
