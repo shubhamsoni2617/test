@@ -13,7 +13,8 @@ import download from '../../../assets/images/download-blue.svg';
 import Utilities from '../../utilities';
 import Image from '../Image';
 import { Link } from 'react-router-dom';
-
+import './style.scss';
+import EventHeading from '../EventHeading';
 const AgentVenuePopUp = (props) => {
 
   const { item, popUpDetail, currentlyShowingData, activePopUpRef, venue } = props;
@@ -26,10 +27,10 @@ const AgentVenuePopUp = (props) => {
   const showFoodNBeverage = (foodNBeverage) => {
     return foodNBeverage.map((elem, index) => {
       return (
-        <li key={index}>
+        <div key={index}>
           {/* {elem.image ? <Image src={elem.image} alt="beverage" type="Small" /> : null} */}
           {elem.name ? <p>{elem.name}</p> : null}
-        </li>
+        </div>
       )
     });
   }
@@ -102,7 +103,7 @@ const AgentVenuePopUp = (props) => {
           </div>
           <div className="details">
             <h3>Contact Detail</h3>
-            <p>{popUpDetail.contact_details}</p>
+            <div dangerouslySetInnerHTML={{__html:popUpDetail.contact_details}}></div>
           </div>
         </div> : null
       }
@@ -152,8 +153,10 @@ const AgentVenuePopUp = (props) => {
                 currentlyShowingData.map((elem, index) => {
                   return (
                     <li key={index}>
-                      <img src={elem.thumb_image} alt="specific-event" />
-                      <Link to="/events">{elem.title}</Link>
+                      {/* <img src={elem.thumb_image} alt="specific-event" /> */}
+                      <Image src={elem.thumb_image} alt="specific-event" type="Small" />
+                      <Link to={`/events/${elem.alias}`}>
+                      <EventHeading title={elem.title} lines={2} height={18} size={14} allowTooltip={false} /></Link>
                     </li>
                   )
                 })

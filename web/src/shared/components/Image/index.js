@@ -17,6 +17,7 @@ function Image(props) {
 
   useEffect(() => {
     SetSource(!props.largeImage ? props.src : props.largeImage);
+    if(!props.src) onError();
   }, [props.src, props.largeImage]);
 
   const onLoad = () => {
