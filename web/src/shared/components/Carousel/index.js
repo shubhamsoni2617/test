@@ -41,7 +41,7 @@ const Carousel = props => {
 
   const settings = {
     arrows: arrows,
-    dots: true,
+    dots: props.dot === false ? false : true,
     infinite: infinite || false,
     autoplay: autoplay || false,
     speed: 500,

@@ -16,6 +16,7 @@ const SearchAgent = (props) => {
 
   const [filter, setFilter] = useState('');
   const [popUpDetail, setPopUpDetail] = useState('');
+  const [data, setData] = useState([]);
   const [openPopUp, setOpenUp] = useState(false);
   const [attraction, setAttraction] = useState(false);
   const [onGoingEvents, setOngoingEvents] = useState(false);
@@ -44,14 +45,18 @@ const SearchAgent = (props) => {
     const params = {
       venue_id: detail.id
     };
-    if (venue) {
-      timer = setTimeout(() => {
+    const cachedVenue = data.find((item) => item.id === detail.id);
+    if(cachedVenue) detail = cachedVenue;
+    if (venue && !cachedVenue) {
+      // timer = setTimeout(() => {
         fetchCurrentlyShowingData(params, detail);
-      }, 1000);
+      // }, 1000);
     } else {
-      timer = setTimeout(() => {
-        setPopUpDetail(detail)
-      }, 1000);
+      // timer = setTimeout(() => {
+        setPopUpDetail(detail);
+        setCurrentlyShowingData(detail.currentlyShowingData);
+
+      // }, 1000);
     }
   }
 
@@ -59,7 +64,7 @@ const SearchAgent = (props) => {
   const hidePopUp = (detail) => {
     clearTimeout(timer);
     handleActivePopUp();
-    setPopUpDetail(detail);
+    setPopUpDetail({});
   }
 
   //fetch CurrentlyShowingData from api
@@ -71,6 +76,12 @@ const SearchAgent = (props) => {
           let currentlyShowingData = res.data.data;
           setCurrentlyShowingData(currentlyShowingData);
           setPopUpDetail(detail);
+          const item = data.find((item) => item.id === detail.id);
+          if(!item){
+            const newData = [...data];
+            newData.push(detail);
+            setData(newData);
+          }
         }
       })
       .catch((err) => {
