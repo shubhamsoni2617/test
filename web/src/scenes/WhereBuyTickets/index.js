@@ -47,9 +47,17 @@ const WhereBuyTickets = () => {
   };
 
   const titleWithDescription = (title, description) => {
+    let contact = null;
+    if (title === 'Hotline @ +65 6348 5555') {
+      contact = (
+        <>
+          Hotline @ <a href="tel:+65 6348 5555">+65 6348 5555</a>
+        </>
+      );
+    }
     return (
       <div>
-        <h1 id={title}>{title}</h1>
+        <h1 id={title}>{!contact ? title : contact}</h1>
         {
           <div
             dangerouslySetInnerHTML={{
