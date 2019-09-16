@@ -21,11 +21,13 @@ const NewsTicker = props => {
   }, []);
 
   useEffect(() => {
-    if (!props.modal && refMarquee.current) refMarquee.current.start();
+    if (!props.modal && refMarquee.current) {
+      refMarquee.current.start();
+    }
   }, [refMarquee.current, props.modal]);
 
   const handleClose = () => {
-    sessionStorage.setItem('ticker', false);
+    sessionStorage.setItem("ticker", false);
     refValue.current.classList.remove("hide-news");
     homePageRef.current.classList.add("news-ticker-hide");
   };
@@ -37,13 +39,18 @@ const NewsTicker = props => {
     if (!props.modal) refMarquee.current.start();
   };
 
-  if (newsTicker.length == 0) {
+  if (newsTicker.length === 0) {
     return null;
   }
 
   return (
     <>
-      <div className={`ticker-wrap ${!sessionStorage.getItem('ticker') ? 'hide-news' : ''}`} ref={refValue}>
+      <div
+        className={`ticker-wrap ${
+          !sessionStorage.getItem("ticker") ? "hide-news" : ""
+        }`}
+        ref={refValue}
+      >
         <div className="ticker-container">
           <div className="ticker">
             <marquee
@@ -65,7 +72,11 @@ const NewsTicker = props => {
                       key={index}
                       dangerouslySetInnerHTML={{ __html: string }}
                       onClick={() => {
-                        handleOnclick(content.rich_description ? content.rich_description : content.description);
+                        handleOnclick(
+                          content.rich_description
+                            ? content.rich_description
+                            : content.description
+                        );
                       }}
                     />
                   );

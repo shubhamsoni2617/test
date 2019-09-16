@@ -34,7 +34,7 @@ export default class Events extends Component {
       eventsData: [],
       genre: [],
       venues: [],
-      filterConfig: [],
+      filterConfig: null,
       first: 0,
       limit: 9,
       viewType: "grid",
@@ -111,19 +111,19 @@ export default class Events extends Component {
     const payload = this.getInitialFilters();
     this.setInitialFilters(payload);
     this.loadEvents(payload);
-    window.scrollTo(0,0);
+    window.scrollTo(0, 0);
   }
 
   componentDidUpdate(prevProps) {
     if (
       this.props.location.search &&
-      this.props.location.search != prevProps.location.search
+      this.props.location.search !== prevProps.location.search
     ) {
       this.setState({ shimmer: true });
       const payload = this.getInitialFilters();
       this.setInitialFilters(payload);
       this.loadEvents(payload);
-      window.scrollTo(0,0);
+      window.scrollTo(0, 0);
     }
   }
 
@@ -143,8 +143,7 @@ export default class Events extends Component {
         let genre = Object.keys(res.data.data).map(key => {
           return res.data.data[key];
         });
-        setTimeout(()=>{
-
+        setTimeout(() => {
           this.setState({ shimmerFilter: false, genre: genre });
         }, 1000);
       })
@@ -197,7 +196,7 @@ export default class Events extends Component {
 
   handleListGridView = getViewType => {
     let viewTypeClass = [...this.state.viewTypeClass];
-    if (getViewType == "grid") {
+    if (getViewType === "grid") {
       viewTypeClass = "events-section";
     } else {
       viewTypeClass = "events-section list-view";
@@ -205,28 +204,28 @@ export default class Events extends Component {
     this.setState({ viewTypeClass: viewTypeClass, viewType: getViewType });
   };
 
-  getInitialFilters = (reset=false) => {
+  getInitialFilters = (reset = false) => {
     const query = new URLSearchParams(this.props.location.search);
     let genreId = query.get("c") ? query.get("c") : "";
     let venueId = query.get("v") ? query.get("v") : "";
     let dateRange = query.get("s") ? query.get("s") : "";
-    if (dateRange != "") {
+    if (dateRange !== "" || !dateRange) {
       dateRange = dateRange.split("--");
       dateRange = { from: dateRange[0], to: dateRange[1] };
     }
     const payload = {
       first: 0,
       limit: 9,
-      genre: reset ? '' : genreId,
-      venue: reset ? '' : venueId,
-      start_date: reset ? '' : dateRange.from,
-      end_date: reset ? '' : dateRange.to
+      genre: reset ? "" : genreId,
+      venue: reset ? "" : venueId,
+      start_date: reset ? "" : dateRange.from,
+      end_date: reset ? "" : dateRange.to
     };
     return payload;
   };
 
   setInitialFilters({ genre, venue, start_date, end_date }) {
-    const dateRange =  {from: start_date || "", to: end_date || "" };
+    const dateRange = { from: start_date || "", to: end_date || "" };
     this.setState({
       queryParams: { genreId: genre, venueId: venue, dateRange: dateRange },
       filteredGnere: genre ? [genre] : [],
@@ -270,7 +269,7 @@ export default class Events extends Component {
     return params;
   };
 
-  handleFilters = (searchType) => {
+  handleFilters = searchType => {
     this.setState(
       {
         first: 0,
@@ -336,7 +335,6 @@ export default class Events extends Component {
       filteredTags,
       filteredDateRange
     } = this.state;
-    const viewTypeActive = viewType == "list" ? "active" : "";
     return (
       <div>
         <Breadcrub breadCrumbData={this.breadCrumbData} />
@@ -383,29 +381,33 @@ export default class Events extends Component {
                     handleFilters={this.handleFilters}
                   />
                   <ul className="sortby-view">
-                    <li className={viewType == "grid" ? "active" : ""}>
-                      <a title="Grid View">
+                    <li className={viewType === "grid" ? "active" : ""}>
+                      <span title="Grid View">
                         <img
                           onClick={() => this.handleListGridView("grid")}
                           src={GridView}
                           alt="Grid"
                         />
-                      </a>
+                      </span>
                     </li>
-                    <li className={viewType == "list" ? "active" : ""}>
-                      <a title="List View">
+                    <li className={viewType === "list" ? "active" : ""}>
+                      <span title="List View">
                         <img
                           onClick={() => this.handleListGridView("list")}
                           src={ListView}
                           alt="List"
                         />
-                      </a>
+                      </span>
                     </li>
                   </ul>
                 </div>
                 <div className={this.state.viewTypeClass}>
                   {loader && (
-                    <img className="filter-loader" src={loaderImage} />
+                    <img
+                      className="filter-loader"
+                      alt="filter loader"
+                      src={loaderImage}
+                    />
                   )}
                   {eventsData &&
                     eventsData.map(event => {
@@ -429,14 +431,14 @@ export default class Events extends Component {
                 )}
                 {eventsData.length < totalRecords && (
                   <div className="promotion-load-more">
-                    <a
+                    <button
                       onClick={() => this.loadMoreEvents()}
                       className="btn-link load-more-btn"
                       target=""
                     >
                       <span>Load More</span>
-                      <img src={DownArrowBlue} />
-                    </a>
+                      <img src={DownArrowBlue} alt="down arrow blue" />
+                    </button>
                   </div>
                 )}
                 {isdataAvailable && (
