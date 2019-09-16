@@ -11,6 +11,9 @@
     -o-transition: .5s box-shadow;
     cursor: pointer;
     position: relative;
+    @supports (-ms-ime-align:auto) {
+        box-shadow: 0 0px 1px rgba(154, 154, 154, 0.7);
+    }
     @media (max-width: 767px) {
         width: calc(50% - 10px);
         margin: 0 5px 10px;
@@ -33,9 +36,12 @@
     &.attraction-block{
         padding-bottom: 0px;
         position: relative;
-        margin-bottom: 30px;
-        transition: 0.3s border;
-        &:hover{            
+        @supports (-ms-ime-align:auto) {
+            box-shadow: 0 0px 1px rgba(154, 154, 154, 0.7);
+        }
+        &:hover{  
+            margin-bottom: 30px;
+            transition: 0.3s border;          
             .event-details {
                 .price-event{
                     .buy-btn{

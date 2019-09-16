@@ -5,6 +5,11 @@
     }
   }
   .title{
+      h3{
+        @media(max-width: 767px){
+            font-size: 12px !important;
+        }
+      }
     .info-popover{
       width: 200px;
     }

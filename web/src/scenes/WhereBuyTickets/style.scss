@@ -140,10 +140,10 @@
                 width: 100%;
                 background-size: contain;
                 margin-top: -7px;
-                transition: 0.5s background-image;
-                -webkit-transition:0.5s background-image;
-                -moz-transition:0.5s background-image;
-                -o-transition:0.5s background-image;
+                // transition: 0.5s background-image;
+                // -webkit-transition:0.5s background-image;
+                // -moz-transition:0.5s background-image;
+                // -o-transition:0.5s background-image;
                 @media(max-width: 1024px){
                     width: 33px;
                     height: 33px;
