@@ -38,7 +38,7 @@ export default class Card extends Component {
         </div>
         <div className="event-details">
           <div className="event-detail-prime">
-            <span className={`category ${category.toLowerCase()}`}>
+            <span className={`category ${category && category.toLowerCase()}`}>
               {category}
             </span>
             <div className="item-title">
