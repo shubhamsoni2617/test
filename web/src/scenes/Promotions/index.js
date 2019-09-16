@@ -238,7 +238,7 @@ export default class Promotions extends Component {
   render() {
     this.breadCrumbData.count = this.state.count;
     return (
-      <div>
+      <div className="promotions-full-wrapper">
         <Breadcrumb breadCrumbData={this.breadCrumbData} />
         <section className="promotions-wrapper">
           <div className="container-fluid">

@@ -338,7 +338,7 @@ export default class Events extends Component {
     return (
       <div>
         <Breadcrub breadCrumbData={this.breadCrumbData} />
-        <section className="promotions-wrapper">
+        <section className="">
           <div className="container-fluid">
             <div className="wrapper-events-listing">
               <div className="filters">
