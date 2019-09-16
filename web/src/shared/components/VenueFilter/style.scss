@@ -500,6 +500,9 @@
 .dropdown-enter.dropdown-enter-active {
   opacity: 1;
   transition: all 300ms ease-in-out;
+  -webkit-transition: all 300ms ease-in-out;
+  -moz-transition: all 300ms ease-in-out;
+  -o-transition: all 300ms ease-in-out;
 }
 
 .dropdown-leave {
@@ -509,4 +512,7 @@
 .dropdown-leave.dropdown-leave-active {
   opacity: 0;
   transition: all 300ms ease-in-out;
+  -webkit-transition: all 300ms ease-in-out;
+  -moz-transition: all 300ms ease-in-out;
+  -o-transition: all 300ms ease-in-out;
 }

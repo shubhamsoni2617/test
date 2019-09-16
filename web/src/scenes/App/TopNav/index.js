@@ -1,37 +1,39 @@
-import React, { useState, useEffect, useRef } from "react";
-import { Link } from "react-router-dom";
-import { CSSTransitionGroup } from "react-transition-group";
-import logo from "../../../assets/images/logo.png";
-import "./style.scss";
-import MegaMenu from "../../../shared/components/MegaMenu";
-import DropDown from "../../../shared/components/DropDown";
-import HomePageSearch from "../../Home/HomePageSearch";
-import MiniCart from "../../Home/MiniCart";
-import HomeService from "../../../shared/services/HomeService";
-import { ReactComponent as ManLogo } from "../../../assets/images/man.svg";
-import AndroidLogo from "../../../assets/images/android.png";
-import { ReactComponent as AppleLogo } from "../../../assets/images/apple.svg";
-import fb from "../../../assets/images/fb.svg";
-import insta from "../../../assets/images/insta-unfill.svg";
+import React, { useState, useEffect, useRef } from 'react';
+import { Link } from 'react-router-dom';
+import { CSSTransitionGroup } from 'react-transition-group';
+
+import './style.scss';
+import MegaMenu from '../../../shared/components/MegaMenu';
+import DropDown from '../../../shared/components/DropDown';
+import HomePageSearch from '../../Home/HomePageSearch';
+import MiniCart from '../../Home/MiniCart';
+import HomeService from '../../../shared/services/HomeService';
+import { ReactComponent as ManLogo } from '../../../assets/images/man.svg';
+import AndroidLogo from '../../../assets/images/android.png';
+import logo from '../../../assets/images/logo.png';
+import { ReactComponent as AppleLogo } from '../../../assets/images/apple.svg';
+import fb from '../../../assets/images/fb.svg';
+import insta from '../../../assets/images/insta-unfill.svg';
 const TopNav = props => {
   let refValue = useRef();
   const [showMegaMenu, setShowMegaMenu] = useState(false);
   const [menuActive, setMenuActive] = useState(false);
+  const [pathName, setPathName] = useState('events');
   const [headerClass, setHeaderClass] = useState(false);
   const [byVenueEvent, setByVenueEvent] = useState([]);
   const [byGenreEvent, setByGenreEvent] = useState([]);
-  const showElementsInHeader = 4;
+  const [showElementsInHeader, setShowElementsInHeader] = useState(4);
 
   const miniCartData = [
-    { id: "1", img: "assets/images/explore.png" },
-    { id: "2", img: "assets/images/explore.png" },
-    { id: "3", img: "assets/images/explore.png" }
+    { id: '1', img: 'assets/images/explore.png' },
+    { id: '2', img: 'assets/images/explore.png' },
+    { id: '3', img: 'assets/images/explore.png' }
   ];
 
   useEffect(() => {
     const first = 0;
     const limit = 5;
-    const search = "";
+    const search = '';
     HomeService.getHomepageVenues(first, limit, search)
       .then(res => {
         setByVenueEvent(res.data.data);
@@ -63,12 +65,18 @@ const TopNav = props => {
 
   const processPath = location => {
     if (location.pathname) {
-      let pathArr = location.pathname.split("/");
-      if (pathArr.length && pathArr[1] === "events") {
+      let pathArr = location.pathname.split('/');
+      if (
+        pathArr.length &&
+        (pathArr[1] === 'events' ||
+          pathArr[1] === 'promotions' ||
+          pathArr[1] === 'attractions')
+      ) {
+        setPathName(pathArr[1]);
         setMenuActive(true);
 
         //For event header class
-        if (location.search === "") {
+        if (location.search === '') {
           setHeaderClass(true);
         } else {
           setHeaderClass(false);
@@ -80,26 +88,26 @@ const TopNav = props => {
     }
   };
   const handleNavigationOpen = () => {
-    refValue.classList.add("active");
+    refValue.classList.add('active');
   };
 
   const handleNavigationClose = () => {
-    refValue.classList.remove("active");
+    refValue.classList.remove('active');
   };
 
   const handleMouseStatus = status => {
     if (status === true) {
       setTimeout(() => setShowMegaMenu(status), 0);
-      document.body.classList.add("body-overlay");
+      document.body.classList.add('body-overlay');
     }
     if (status === false) {
       setTimeout(() => setShowMegaMenu(status), 0);
-      document.body.classList.remove("body-overlay");
+      document.body.classList.remove('body-overlay');
     }
   };
 
   return (
-    <header className={`header ${headerClass ? "header-light" : ""}`}>
+    <header className={`header ${headerClass ? 'header-light' : ''}`}>
       <div className="container-fluid">
         <div className="row">
           <div className="top-header">
@@ -127,9 +135,7 @@ const TopNav = props => {
                 </li>
                 <MiniCart data={miniCartData} />
                 <li className="ticket-withus">
-                  <a href="/" onClick={e => e.preventDefault()}>
-                    Ticket With Us
-                  </a>
+                  <a>Ticket With Us</a>
                 </li>
               </ul>
             </div>
@@ -138,13 +144,13 @@ const TopNav = props => {
             <div className="bottom-header-left">
               <ul>
                 <li
-                  className={`has-submenu ${menuActive ? "active" : ""}`}
+                  className={`has-submenu ${
+                    menuActive && pathName === 'events' ? 'active' : ''
+                  }`}
                   onMouseEnter={() => handleMouseStatus(true)}
                   onMouseLeave={() => handleMouseStatus(false)}
                 >
-                  <a href="/" onClick={e => e.preventDefault()}>
-                    Events
-                  </a>
+                  <a>Events</a>
                   <CSSTransitionGroup
                     transitionName="mega"
                     transitionEnter={true}
@@ -160,20 +166,22 @@ const TopNav = props => {
                     )}
                   </CSSTransitionGroup>
                 </li>
-                <li>
-                  <a href="/" onClick={e => e.preventDefault()}>
-                    Attractions
-                  </a>
+                <li
+                  className={
+                    menuActive && pathName === 'attractions' ? 'active' : ''
+                  }
+                >
+                  <Link to="/attractions">Attractions</Link>
+                </li>
+                <li
+                  className={
+                    menuActive && pathName === 'promotions' ? 'active' : ''
+                  }
+                >
+                  <Link to="/promotions">Promotions</Link>
                 </li>
                 <li>
-                  <a href="/" onClick={e => e.preventDefault()}>
-                    Promotions
-                  </a>
-                </li>
-                <li>
-                  <a href="/" onClick={e => e.preventDefault()}>
-                    Explore
-                  </a>
+                  <a>Explore</a>
                 </li>
               </ul>
             </div>
@@ -203,10 +211,8 @@ const TopNav = props => {
             }}
           >
             <a
-              href="/"
               className="responsive-nav-close"
-              onClick={e => {
-                e.preventDefault();
+              onClick={() => {
                 handleNavigationClose();
               }}
             >
@@ -221,9 +227,7 @@ const TopNav = props => {
                 <span>Hello William</span>
               </li>
               <li>
-                <a onClick={e => e.preventDefault()} href="/">
-                  Ticket With Us
-                </a>
+                <a>Ticket With Us</a>
               </li>
             </ul>
             <ul>

@@ -1,42 +1,37 @@
-import React, { Component } from 'react';
-import Tab from '../Tab';
+import React from 'react';
 import './style.scss';
+import Tab from '../Tab';
 
-export default class Tabs extends Component {
-  render() {
-    return (
-      <div>
-        <div className="promotions-nav">
-          <ul className="nav nav-tabs" id="nav-tab" role="tablist">
-            <li>
-              <a href="/" className="nav-item nav-link active">
-                SISTIC Specials (7)
-              </a>
-            </li>
-            <li>
-              <a href="/" className="nav-item nav-link">
-                Events (4)
-              </a>
-            </li>
-            <li>
-              <a href="/" className="nav-item nav-link">
-                Attractions (3)
-              </a>
-            </li>
-            <li>
-              <a href="/" className="nav-item nav-link">
-                Partners (2)
-              </a>
-            </li>
-            <li>
-              <a href="/" className="nav-item nav-link">
-                View All (16)
-              </a>
-            </li>
-          </ul>
-        </div>
-        <Tab />
+const Tabs = props => {
+  const { handleActiveTab } = props;
+  const { tabsArray, defaultTabId } = props.state;
+
+  return (
+    <div>
+      <div className="promotions-nav">
+        <ul className="nav nav-tabs" id="nav-tab" role="tablist">
+          {tabsArray &&
+            tabsArray.map((category, i) => {
+              return (
+                <li key={category.id}>
+                  <a
+                    className={
+                      defaultTabId === category.id
+                        ? 'nav-item nav-link active'
+                        : 'nav-item nav-link'
+                    }
+                    onClick={() => handleActiveTab(category.id)}
+                  >
+                    {category.name} ({category.promotions})
+                  </a>
+                </li>
+              );
+            })}
+        </ul>
       </div>
-    );
-  }
-}
+      <Tab {...props} />
+    </div>
+  );
+};
+
+export default Tabs;

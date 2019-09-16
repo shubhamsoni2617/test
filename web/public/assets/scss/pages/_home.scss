@@ -96,7 +96,10 @@
 					font-size: 16px;
 					line-height: 19px;
 					font-family: "rubikregular";
-					transition: 0.3s background;
+					transition: 0.3s background;					
+					-webkit-transition: 0.3s background;
+					-moz-transition: 0.3s background;
+					-o-transition: 0.3s background;
 					&:focus {
 						background: linear-gradient(to bottom, #fcfcfc, #f3f3f3, #eaeaea, #E1E1E0, #d8d8d8);
 						opacity: 1;
@@ -162,6 +165,9 @@
                         top: 8px;
 						opacity: 0;
 						transition: 0.5s opacity;
+						-webkit-transition: 0.5s opacity;
+						-moz-transition: 0.5s opacity;
+						-o-transition: 0.5s opacity;
 					}
 					&:focus {
 						outline: none;
@@ -192,6 +198,9 @@
 					list-style: none;
 					padding: 21px 16px 20px;
 					transition: 0.3s background-color;
+					-webkit-transition: 0.3s background-color;
+					-moz-transition: 0.3s background-color;
+					-o-transition: 0.3s background-color;
 					@include tablet-portrait {
 						padding: 0px;
 					}
@@ -205,6 +214,9 @@
 						color: #ffffff;
 						padding: initial;
 						transition: 0.3s color;
+						-webkit-transition: 0.3s color;
+						-moz-transition: 0.3s color;
+						-o-transition: 0.3s color;
 						text-decoration: none;
 						font-family: "rubiklight";
 						display: inline-block;
@@ -259,6 +271,9 @@
 								opacity: 0;
 								z-index: 2;
 								transition: 0.5s bottom;
+								-webkit-transition: 0.5s bottom;
+								-moz-transition: 0.5s bottom;
+								-o-transition: 0.5s bottom;
 							}
 							span {
 								height: 15px;
@@ -398,6 +413,9 @@
 							position: absolute;
 							content: "";
 							transition: 0.4s width, 0.2s color;
+							-webkit-transition: 0.4s width, 0.2s color;
+							-moz-transition: 0.4s width, 0.2s color;
+							-o-transition: 0.4s width, 0.2s color;
 						}
 						&:hover {
 							text-decoration: none;
@@ -492,6 +510,9 @@
 			height: auto;
 			top: 120%;
 			transition: 0.5s top;
+			-webkit-transition: 0.5s top;
+			-moz-transition: 0.5s top;
+			-o-transition: 0.5s top;
 			opacity: 0;
 			overflow: hidden;
 			.st-submenu-wrapper {
@@ -542,6 +563,9 @@
 								margin-right: 10px;
 								background-color: #F7F8FC;
 								transition: 0.3s background-color, 0.3s color;
+								-webkit-transition: 0.3s background-color, 0.3s color;
+								-moz-transition: 0.3s background-color, 0.3s color;
+								-o-transition: 0.3s background-color, 0.3s color;
 								&:hover {
 									cursor: pointer;
 									background-color: $accent-color;
@@ -655,6 +679,9 @@
 							padding: 4px 5px;
 							display: block;
 							transition: 0.3s color, 0.3s background-color;
+							-webkit-transition: 0.3s color, 0.3s background-color;
+							-moz-transition: 0.3s color, 0.3s background-color;
+							-o-transition: 0.3s color, 0.3s background-color;
 							&:before {
 								display: none;
 							}
@@ -692,6 +719,9 @@
 		z-index: 2;
 		box-shadow: 0 0 11px 16px rgba(0, 0, 0, 0.5);
 		transition: 0.5s left;
+		-webkit-transition: 0.5s left;
+		-moz-transition: 0.5s left;
+		-o-transition: 0.5s left;
 		&.active {
 			left: 0px;
 		}
@@ -720,6 +750,9 @@
 					background-repeat: no-repeat;
 					text-align: center;
 					transition: 0.5s transform;
+					-webkit-transition: 0.5s transform;
+					-moz-transition: 0.5s transform;
+					-o-transition: 0.5s transform;
 				}
 			}
 			&.active {
@@ -946,6 +979,9 @@
 			.st-right-navigation a {
 				background-color: rgba(0, 0, 0, 0.6);
 				transition: 0.3s opacity;
+				-webkit-transition: 0.3s opacity;
+				-moz-transition: 0.3s opacity;
+				-o-transition: 0.3s opacity;
 			}
 		}
 	}
@@ -1068,6 +1104,9 @@
 			.st-item-title {
 				padding: 10px 7px;
 				transition: 0.3s transform, 0.3s opacity, 0.3s color;
+				-webkit-transition: 0.3s transform, 0.3s opacity, 0.3s color;
+				-moz-transition: 0.3s transform, 0.3s opacity, 0.3s color;
+				-o-transition: 0.3s transform, 0.3s opacity, 0.3s color;
 				margin-bottom: 0px;
 				@include mobile-view {
 					padding: 5px 3px;
@@ -1082,6 +1121,9 @@
 				height: 18px;
 				opacity: 0;
 				transition: 0.4s opacity;
+				-webkit-transition: 0.4s opacity;
+				-moz-transition: 0.4s opacity;
+				-o-transition: 0.4s opacity;
 				font-family: 'montserratsemibold';
 				z-index: 1;
 				font-weight: bold;
@@ -1117,6 +1159,9 @@
 				transform: translateY(20%);
 				top: 50%;
 				transition: 0.3s opacity, 0.5s transform;
+				-webkit-transition: 0.3s opacity, 0.5s transform;
+				-moz-transition: 0.3s opacity, 0.5s transform;
+				-o-transition: 0.3s opacity, 0.5s transform;
 				opacity: 0;
 				@include mobile-view {
 					padding: 5px;
@@ -1292,6 +1337,9 @@
 			.st-item-wrapper {
 				padding: 8px;
 				transition: 0.3s box-shadow, 0.5s background-color, 0.5s transform;
+				-webkit-transition: 0.3s box-shadow, 0.5s background-color, 0.5s transform;
+				-moz-transition: 0.3s box-shadow, 0.5s background-color, 0.5s transform;
+				-o-transition: 0.3s box-shadow, 0.5s background-color, 0.5s transform;
 				cursor: pointer;
 				position: relative;
 				margin-bottom: 23px;
@@ -1328,6 +1376,9 @@
 						top: 8px;
 						opacity: 0;
 						transition: 0.7s opacity;
+						-webkit-transition: 0.7s opacity;
+						-moz-transition: 0.7s opacity;
+						-o-transition: 0.7s opacity;
 						min-width: 64px;
 						font-weight: normal;
 						@include tablet-portrait {
@@ -1391,6 +1442,9 @@
 					background: #ffffff;
 					z-index: -1;
 					transition: transform 0.3s;
+					-webkit-transition: transform 0.3s;
+					-moz-transition: transform 0.3s;
+					-o-transition: transform 0.3s;
 				}
 				&:hover {
 					@include desktop-only{
@@ -1458,6 +1512,9 @@
 			position: relative;
 			z-index: 1;
 			transition: 0.5s box-shadow;
+			-webkit-transition: 0.5s box-shadow;
+			-moz-transition: 0.5s box-shadow;
+			-o-transition: 0.5s box-shadow;
 			&:hover {
 				@include desktop-only{
 					cursor: pointer;
@@ -1485,18 +1542,23 @@
                         bottom: 0;
                         opacity: 1;
                         z-index: -1; 
-                        transition: 0.5s all;
+						transition: 0.5s all;
+						-webkit-transition: 0.5s all;
+						-moz-transition: 0.5s all;
+						-o-transition: 0.5s all;
                     }
                 }
 			}
 		}
 	}
-	.st-item-title {
-		transition: 0.3s color;
+	.st-item-title {		
 		margin-bottom: 0px;
 		color: $white;
 		min-height: auto;
 		transition: 0.3s color;
+		-webkit-transition: 0.3s color;
+		-moz-transition: 0.3s color;
+		-o-transition: 0.3s color;
 		@include desktop-view {
 			min-height: 40px;
 		}
@@ -1514,6 +1576,9 @@
 		width: 100%;
 		height: auto;
 		transition: 0.5s transform;
+		-webkit-transition: 0.5s transform;
+		-moz-transition: 0.5s transform;
+		-o-transition: 0.5s transform;
 		@include desktop-view {
 			height: 100%;
 			width: 100%;
@@ -1660,6 +1725,9 @@
 				}
 				img {
 					transition: 0.9s transform;
+					-webkit-transition: 0.9s transform;
+					-moz-transition: 0.9s transform;
+					-o-transition: 0.9s transform;
 				}
 			}
 			.st-item-title {
@@ -1815,6 +1883,9 @@
 			position: relative;
 			padding: 8px;
 			transition: 0.3s box-shadow, 0.5s background-color, 0.5s transform;
+			-webkit-transition: 0.3s box-shadow, 0.5s background-color, 0.5s transform;
+			-moz-transition: 0.3s box-shadow, 0.5s background-color, 0.5s transform;
+			-o-transition: 0.3s box-shadow, 0.5s background-color, 0.5s transform;
 			@include tablet-portrait {
 				height: calc(100% - 22px);
 			}
@@ -1828,6 +1899,9 @@
                 z-index: 1;
                 opacity: 0;
 				transition: 0.4s opacity;
+				-webkit-transition: 0.4s opacity;
+				-moz-transition: 0.4s opacity;
+				-o-transition: 0.4s opacity;
             }
 			.st-trending-now-image {
 				margin-bottom: 10px;
@@ -1842,6 +1916,9 @@
 				}
 				img {
 					transition: 0.7s transform;
+					-webkit-transition: 0.7s transform;
+					-moz-transition: 0.7s transform;
+					-o-transition: 0.7s transform;
 					width: 100%;
 					height: 100%;
 					object-fit: cover;
@@ -1917,6 +1994,9 @@
 				background: #ffffff;
 				z-index: -1;
 				transition: transform 0.3s;
+				-webkit-transition: transform 0.3s;
+				-moz-transition: transform 0.3s;
+				-o-transition: transform 0.3s;
 			}
 		}
 	}
@@ -2072,6 +2152,9 @@
 				}
 				img {
 					transition: 0.9s transform;
+					-webkit-transition: 0.9s transform;
+					-moz-transition: 0.9s transform;
+					-o-transition: 0.9s transform;
 				}
 			}
 			.st-explore-category {
@@ -2095,6 +2178,9 @@
 			}
 			.st-item-title {
 				transition: 0.3s color;
+				-webkit-transition: 0.3s color;
+				-moz-transition: 0.3s color;
+				-o-transition: 0.3s color;
 				@include mobile-view {
 					margin-bottom: 0px;
 				}
@@ -2269,11 +2355,17 @@
 						height: auto;
 						a {
 							transition: 0.3s opacity;
+							-webkit-transition: 0.3s opacity;
+							-moz-transition: 0.3s opacity;
+							-o-transition: 0.3s opacity;
 							position: relative;
 							overflow: hidden;
 							img.active {
 								position: absolute;
 								transition: 0.5s opacity;
+								-webkit-transition: 0.5s opacity;
+								-moz-transition: 0.5s opacity;
+								-o-transition: 0.5s opacity;
 								opacity: 0;
 								bottom: -5px;
 							}
@@ -2300,6 +2392,9 @@
 						line-height: 19px;
 						text-decoration: none;
 						transition: 0.3s color;
+						-webkit-transition: 0.3s color;
+						-moz-transition: 0.3s color;
+						-o-transition: 0.3s color;
 						@include mobile-view {
 							font-size: 12px;
 							line-height: 15px;
@@ -2326,6 +2421,9 @@
 					font-size: 16px;
 					border-radius: 0;
 					transition: 0.3s border;
+					-webkit-transition: 0.3s color;
+					-moz-transition: 0.3s color;
+					-o-transition: 0.3s color;
 					@include mobile-view {
 						font-size: 12px;
 					}
@@ -2447,6 +2545,9 @@
 					line-height: 18px;
 					text-decoration: none;
 					transition: 0.3s color;
+					-webkit-transition: 0.3s color;
+					-moz-transition: 0.3s color;
+					-o-transition: 0.3s color;
 					@include mobile-view {
 						font-size: 12px;
 						line-height: 15px;
@@ -2500,6 +2601,9 @@
 		justify-content: left;
 		align-items: center;
 		transition: 0.3s background;
+		-webkit-transition: 0.3s background;
+		-moz-transition: 0.3s background;
+		-o-transition: 0.3s background;
 		&:first-child {
 			@include tablet-portrait {
 				margin-right: 10px;
@@ -2671,6 +2775,9 @@ body.page-load {
 	font-size: 10px;
 	line-height: 12px;
 	transition: 0.3s ease-in-out;
+	-webkit-transition: 0.3s ease-in-out;
+	-moz-transition: 0.3s ease-in-out;
+	-o-transition: 0.3s ease-in-out;
 	border-radius: 50%;
 	&.calendar-number-current,
 	&:hover {
@@ -2702,6 +2809,9 @@ body.page-load {
 	top: 150%;
 	z-index: 1;
 	transition: 0.5s top;
+	-webkit-transition: 0.5s top;
+	-moz-transition: 0.5s top;
+	-o-transition: 0.5s top;
 	.st-my-cart-wrapper {
 		display: flex;
 		flex-wrap: wrap;
@@ -2928,6 +3038,9 @@ body.page-load {
 	transform: translateX(-50%);
 	margin-top: 0px;
 	transition: 0.5s top;
+	-webkit-transition: 0.5s top;
+	-moz-transition: 0.5s top;
+	-o-transition: 0.5s top;
 	.st-header-search-fixed {
 		display: none;
 		@include mobile-view {
@@ -3094,6 +3207,9 @@ body.page-load {
 			border-bottom: 2px solid #fff;
 			height: auto;
 			transition: 0.3s border;
+			-webkit-transition: 0.3s border;
+			-moz-transition: 0.3s border;
+			-o-transition: 0.3s border;
 			position: relative;
 			&:before {
 				position: absolute;
@@ -3104,6 +3220,9 @@ body.page-load {
 				height: 1px;
 				bottom: auto;
 				transition: 0.3s transform, 0.3s top;
+				-webkit-transition: 0.3s transform, 0.3s top;
+				-moz-transition: 0.3s transform, 0.3s top;
+				-o-transition: 0.3s transform, 0.3s top;
 			}
 			&:after {
 				position: absolute;
@@ -3114,6 +3233,9 @@ body.page-load {
 				height: 1px;
 				top: auto;
 				transition: 0.3s transform, 0.3s bottom;
+				-webkit-transition: 0.3s transform, 0.3s bottom;
+				-moz-transition: 0.3s transform, 0.3s bottom;
+				-o-transition: 0.3s transform, 0.3s bottom;
 			}
 		}
 	}

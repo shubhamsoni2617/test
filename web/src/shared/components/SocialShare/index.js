@@ -14,13 +14,13 @@ const SocialShare = ({ shareUrl, showSocialShare }) => {
   return (
     <div className={`social-share ${showSocialShare ? 'share-visible' : ''}`}>
       <div className="social-share-wrapper">
-        <FacebookShareButton url={shareUrl} quote="Facebook">
-          <FacebookIcon quote="Facebook" size={32} round />
+        <FacebookShareButton url={shareUrl}>
+          <FacebookIcon title="Facebook" size={32} round />
         </FacebookShareButton>
-        <TelegramShareButton url={shareUrl} quote="Telegram">
+        <TelegramShareButton url={shareUrl}>
           <TelegramIcon size={32} round />
         </TelegramShareButton>
-        <EmailShareButton url={shareUrl} quote="Telegram">
+        <EmailShareButton url={shareUrl}>
           <EmailIcon size={32} round />
         </EmailShareButton>
       </div>

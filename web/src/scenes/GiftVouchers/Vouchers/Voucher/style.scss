@@ -1,0 +1,95 @@
+.voucher-content{
+    border-radius: 5px;
+    overflow: hidden;
+    .voucher-top {
+        text-align: left;
+        padding: 18px;
+        height: 180px;
+        position: relative;
+        @media(max-width: 1024px){
+            height: 150px;
+        }
+        @media(max-width: 767px){
+            height: 140px;
+        }
+        img{
+            height: 35.1px;
+            width: 76.5px;
+            @media(max-width: 768px){
+                height: auto;
+                max-width: 56px;
+            }
+        }
+    }
+    .voucher-footer{
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        padding: 20px 18px;
+        background-color: #fff;
+        @media(max-width: 1024px){
+            padding: 15px 10px;
+        }
+        @media(max-width: 767px){
+            padding: 13px 10px;
+        }
+        p{
+            margin: 0px;
+            padding: 0px;
+            color: #646464;
+            font-family: "Rubik", sans-serif;
+            font-size: 14px;
+            line-height: 17px;
+            font-weight: 500;
+            @media(max-width: 840px){
+                font-size: 13px;
+            }
+            @media(max-width: 768px){
+                font-size: 13px;
+            }
+        }
+        a{
+            color: #0098FF;
+            font-family: "Montserrat", sans-serif;
+            font-size: 14px;
+            line-height: 18px;
+            text-transform: uppercase;
+            font-weight: 600;
+            margin-left: auto;
+            display: flex;
+            align-items: center;
+            @media(max-width: 840px){
+                font-size: 13px;
+            }
+            @media(max-width: 768px){
+                font-size: 13px;
+            }
+            img{
+                max-width: 18px;
+                margin-left: 7px;
+                @media(max-width: 840px){
+                    max-width: 15px;
+                    margin-left: 5px;
+                }
+                @media(max-width: 768px){
+                    max-width: 15px;
+                    margin-left: 5px
+                }
+            }
+            &:hover{
+                img{
+                    animation: seeallbtn 0.5s linear;
+                    animation-iteration-count: infinite;
+                }
+            }
+        }
+    }
+    &:hover{
+        a{
+            img{
+                animation: seeallbtn 0.5s linear;
+                animation-iteration-count: infinite;
+            }
+        }
+    }
+}

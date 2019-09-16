@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="16px" height="16px" viewBox="0 0 16 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 55.2 (78181) - https://sketchapp.com -->
+    <title>Group 15</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <path d="M3.13807119,7.87254967 C2.87772166,7.63222703 2.45561167,7.63222703 2.19526215,7.87254967 C1.93491262,8.11287231 1.93491262,8.5025123 2.19526215,8.74283494 L5.52859548,11.819758 C5.78894501,12.0600807 6.21105499,12.0600807 6.47140452,11.819758 L13.8047379,5.05052725 C14.0650874,4.81020461 14.0650874,4.42056462 13.8047379,4.18024198 C13.5443883,3.93991934 13.1222783,3.93991934 12.8619288,4.18024198 L6,10.5143301 L3.13807119,7.87254967 Z" id="path-1"></path>
+    </defs>
+    <g id="New-Find-Agent" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Find-Venue-Search-Results-Hover" transform="translate(-48.000000, -419.000000)">
+            <g id="Group-15" transform="translate(48.000000, 419.000000)">
+                <rect id="Rectangle" fill="#0098FF" x="0" y="0" width="16" height="16"></rect>
+                <mask id="mask-2" fill="white">
+                    <use xlink:href="#path-1"></use>
+                </mask>
+                <use id="Shape" fill="#FFFFFF" fill-rule="nonzero" xlink:href="#path-1"></use>
+            </g>
+        </g>
+    </g>
+</svg>
