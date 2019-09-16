@@ -52,6 +52,10 @@ export default class SortBy extends Component {
             transitionEnterTimeout={300}
             transitionLeaveTimeout={300}
           >
+            <div className="sortby-topbar-mobileonly" style={{display: "none"}}>
+              <div className="left-arrow-sortby"><img src="../../assets/images/next.svg" /><span> Sort By</span></div>
+              <a href="" className="clear-filter-sortby">clear filters</a>
+            </div>
             {this.state.showSortMenu ? (
               <ul>
                 {sortList &&
@@ -73,6 +77,7 @@ export default class SortBy extends Component {
                   })}
               </ul>
             ) : null}
+            <a href="" className="sortby-apply-mobileonly" style={{display: "none"}}>Apply</a>
           </CSSTransitionGroup>
         </div>
       </div>

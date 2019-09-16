@@ -1,4 +1,10 @@
-import React, { useState, useRef, useEffect, useLayoutEffect } from 'react';
+import React, {
+  useState,
+  useRef,
+  useEffect,
+  useLayoutEffect,
+  memo
+} from 'react';
 import PropTypes from 'prop-types';
 import InputRange from 'react-input-range';
 import moment from 'moment';
@@ -28,18 +34,31 @@ function useDebounce(value, delay) {
   return debouncedValue;
 }
 
-function SearchFilter(props) {
-  const [search, setSearch] = useState(props.searchText);
-  const debouncedSearchTerm = useDebounce(search, 500);
+const SearchFilter = props => {
+  // const [search, setSearch] = useState('');
+  // const debouncedSearchTerm = useDebounce(search, 500);
+  const [loading, setLoading] = useState(false);
+  const searchRef = useRef();
 
-  useEffect(() => {
-    if (search === '') {
-      props.handleFilters({ filteredSearch: search });
-    }
-    if (debouncedSearchTerm) {
-      props.handleFilters({ filteredSearch: search });
-    }
-  }, [debouncedSearchTerm]);
+  // useEffect(() => {
+  //   // if (search === '') {
+  //   //   props.handleFilters({ filteredSearch: search });
+  //   // }
+  //   // if (debouncedSearchTerm) {
+  //   //   props.handleFilters({ filteredSearch: search });
+  //   // }
+  // }, [search]);
+
+  const onChangeHandler = () => {
+    if(loading) return;
+
+    setLoading(true);
+    setTimeout(() => {
+      setLoading(false);
+
+      props.handleFilters({ filteredSearch: searchRef.current.value });
+    }, 500);
+  }
 
   return (
     <div className="filters-search">
@@ -47,17 +66,19 @@ function SearchFilter(props) {
         <img src={SearchIcon} className="img-fluid active" alt="search-icon" />
       </button>
       <input
+      ref={searchRef}
         type="text"
-        value={search}
-        placeholder="Search in events"
+        placeholder={
+          props.searchPlaceholder ? props.searchPlaceholder : 'Search in events'
+        }
         onChange={e => {
-          setSearch(e.target.value);
+          onChangeHandler();
         }}
         className="form-control"
       />
     </div>
   );
-}
+};
 
 function PriceRangeFilter(props) {
   const { priceConfig, filteredPriceRange } = props;
