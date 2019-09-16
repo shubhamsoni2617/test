@@ -10,7 +10,7 @@ const Breadcrumb = props => {
       <div className="banner-wrapper">
         <Image
           largeImage={breadCrumbData.page_banner}
-          src={breadCrumbData.page_banner_blur}
+          src={!breadCrumbData.page_banner_blur ? breadCrumbData.page_banner:breadCrumbData.page_banner_blur}
           className="img-fluid"
           alt="page-banner"
         />
