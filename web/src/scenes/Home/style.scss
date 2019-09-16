@@ -1860,7 +1860,7 @@ p {
 				font-size: 18px;
 				line-height: 22px;
 				text-decoration: none;
-				height: 21px;		
+				height: 21px;
                 display: block;
                 margin: 0;
 				transition: 1s all;
@@ -2998,7 +2998,7 @@ section{
 			padding: 0px;
 			line-height: 0px;
 			font-size: 0px;
-			display: block;      
+			display: block;
 		}
 		&:after {
       content: '';
@@ -3078,7 +3078,7 @@ section{
 	padding: 0;
 	height: auto;
 	opacity: 1;
-    z-index: 3;
+    z-index: 7;
     &::before{
         position: absolute;
         content: "";
