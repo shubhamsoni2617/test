@@ -12,18 +12,34 @@ import tickWhite from '../../../assets/images/tick-white.svg';
 import FilterGrid from '../FilterGrid';
 import './style.scss';
 
-function SearchFilter(props) {
-  const [search, setSearch] = useState(props.searchText);
+function useDebounce(value, delay) {
+  const [debouncedValue, setDebouncedValue] = useState(value);
 
   useEffect(() => {
-    setSearch(props.searchText);
-  }, [props.searchText]);
+    const handler = setTimeout(() => {
+      setDebouncedValue(value);
+    }, delay);
 
-  // Text Search
-  const textFilter = e => {
-    setSearch(e.target.value);
-    props.handleFilters({ filteredSearch: e.target.value });
-  };
+    return () => {
+      clearTimeout(handler);
+    };
+  }, [value, delay]);
+
+  return debouncedValue;
+}
+
+function SearchFilter(props) {
+  const [search, setSearch] = useState(props.searchText);
+  const debouncedSearchTerm = useDebounce(search, 500);
+
+  useEffect(() => {
+    if (search === '') {
+      props.handleFilters({ filteredSearch: search });
+    }
+    if (debouncedSearchTerm) {
+      props.handleFilters({ filteredSearch: search });
+    }
+  }, [debouncedSearchTerm]);
 
   return (
     <div className="filters-search">
@@ -34,7 +50,9 @@ function SearchFilter(props) {
         type="text"
         value={search}
         placeholder="Search in events"
-        onChange={e => textFilter(e)}
+        onChange={e => {
+          setSearch(e.target.value);
+        }}
         className="form-control"
       />
     </div>
