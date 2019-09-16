@@ -13,7 +13,8 @@ import download from '../../../assets/images/download-blue.svg';
 import Utilities from '../../utilities';
 import Image from '../Image';
 import { Link } from 'react-router-dom';
-
+import './style.scss';
+import EventHeading from '../EventHeading';
 const AgentVenuePopUp = (props) => {
 
   const { item, popUpDetail, currentlyShowingData, activePopUpRef, venue } = props;
@@ -152,8 +153,10 @@ const AgentVenuePopUp = (props) => {
                 currentlyShowingData.map((elem, index) => {
                   return (
                     <li key={index}>
-                      <img src={elem.thumb_image} alt="specific-event" />
-                      <Link to="/events">{elem.title}</Link>
+                      {/* <img src={elem.thumb_image} alt="specific-event" /> */}
+                      <Image src={elem.thumb_image} alt="specific-event" type="Small" />
+                      <Link to={`/events/${elem.alias}`}>
+                      <EventHeading title={elem.title} lines={2} height={20} size={14} allowTooltip={false} /></Link>
                     </li>
                   )
                 })
