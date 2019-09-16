@@ -33,7 +33,11 @@
     &.attraction-block{
         padding-bottom: 0px;
         position: relative;
+        margin-bottom: 30px;
+        border: 1px solid #EAEAEA;
+        transition: 0.3s border;
         &:hover{
+            border: 1px solid #0098FF;
             .event-details {
                 .price-event{
                     .buy-btn{
@@ -50,13 +54,16 @@
             }
         }
         .event-details {
-            padding: 15px 15px 0px;
+            padding: 22px 15px 0px;
             .event-detail-prime{
-                margin-bottom: 25px;
+                margin-bottom: 26px;
                 min-height: 120px;
-                .category:empty{
-                    padding: 0px;
-                    min-height: 20px;
+                .category{
+                    background-color: #092438;
+                    &:empty{
+                        padding: 0px;
+                        min-height: 20px;
+                    }
                 }
             }
             .attraction-show-more {
@@ -79,7 +86,7 @@
                     font-size: 18px;
                     color: #0098FF;
                     line-height: 22px;
-                    padding: 15px;
+                    padding: 14px 17px;
                     text-transform: uppercase;
                     border: none;
                     background: url(../../../assets/images/buy-arrow-b.png) 94% 15px no-repeat;
@@ -98,6 +105,13 @@
                 display: inline;
                 &:empty{
                     display: none;
+                }
+            }
+            .item-title{
+                padding: 18px 0 13px;
+                h3{
+                    line-height: 20px;
+
                 }
             }
         }
@@ -152,14 +166,14 @@
         }
     }
     .event-details{
-            padding: 15px 15px 10px;
-            display: block;
-            @media (max-width: 767px) {
-                padding: 15px 5px 10px;
-            }
-            @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
-                padding: 15px 5px 10px;
-            }
+        padding: 15px 15px 10px;
+        display: block;
+        @media (max-width: 767px) {
+            padding: 15px 5px 10px;
+        }
+        @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
+            padding: 15px 5px 10px;
+        }
         .item-title{
           padding: 10px 0;
           margin: 0;
