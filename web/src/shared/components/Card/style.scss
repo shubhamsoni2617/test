@@ -31,7 +31,7 @@
         box-shadow: 0 2px 27px 0 rgba(0,0,0,0.09);
     }
     &.attraction-block{
-        padding-bottom: 30px;
+        padding-bottom: 0px;
         position: relative;
         &:hover{
             .event-details {
@@ -50,25 +50,27 @@
             }
         }
         .event-details {
+            padding: 15px 15px 0px;
+            .event-detail-prime{
+                margin-bottom: 25px;
+                min-height: 115px;
+            }
             .attraction-show-more {
-                background-color: #2698ff;
-                border: 1px solid #2698ff;
-                padding: 7px 10px;
-                color: #fff;
-                transition: 0.5s background-color, 0.5s color;
+                color: #2698ff;
+                text-transform: lowercase;
                 &:hover{
-                    background-color: transparent;
-                    color: #2698ff;
+                    text-decoration: underline;
                 }
             }
             .price-event{
                 .buy-btn{
-                    position: absolute;
-                    left: 0;
+                    position: relative;
+                    left: -15px;
                     bottom: 0;
                     height: auto;
                     text-align: left;
-                    width: 100%;
+                    width: calc(100% + 30px);
+                    min-width: calc(100% + 30px);
                     background: #FFF;
                     font-size: 18px;
                     color: #0098FF;
@@ -89,6 +91,10 @@
             }
             p{
                 color: #626262;
+                display: inline;
+                &:empty{
+                    display: none;
+                }
             }
         }
     }

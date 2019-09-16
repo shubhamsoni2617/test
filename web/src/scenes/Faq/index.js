@@ -1,16 +1,16 @@
-import React, { useState, useEffect } from "react";
-import "./style.scss";
-import Constants from "../../shared/constants";
-import FaqSearch from "./FaqSearch";
-import FaqCategory from "./FaqCategory";
-import FaqService from "../../shared/services/FaqService";
+import React, { useState, useEffect } from 'react';
+import './style.scss';
+import Constants from '../../shared/constants';
+import FaqSearch from './FaqSearch';
+import FaqCategory from './FaqCategory';
+import FaqService from '../../shared/services/FaqService';
 
 const Faq = props => {
   // console.log(props);
   const [faqContentData, setFaqContentData] = useState(null);
   const [faqCategoryData, setFaqCategoryData] = useState(null);
   const [categoryId, setCategoryId] = useState(null);
-  const [categoryName, setCategoryName] = useState("");
+  const [categoryName, setCategoryName] = useState('');
   const [urlExist, setUrlExist] = useState(false);
   const [suggestions, setSuggestions] = useState(true);
 
@@ -25,10 +25,10 @@ const Faq = props => {
 
   useEffect(() => {
     if (faqCategoryData) {
-      faqCategoryData.findIndex((category, i) => {
+      faqCategoryData.findIndex(category => {
         if (
-          category.name.toLowerCase().replace(/[^a-z]/g, "") ===
-          props.match.params.id.replace(/[^a-z]/g, "")
+          category.name.toLowerCase().replace(/[^a-z]/g, '') ===
+          props.match.params.id.replace(/[^a-z]/g, '')
         ) {
           setCategoryId(category.id);
           setCategoryName(category.name);
@@ -78,7 +78,6 @@ const Faq = props => {
           urlExist={urlExist}
           categoryId={categoryId}
           categoryName={categoryName}
-          urlExist={urlExist}
           categories={faqCategoryData}
           faqContentData={faqContentData}
         />

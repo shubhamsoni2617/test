@@ -1,20 +1,32 @@
-import React, { Component } from "react";
-import calendarImg from "../../../assets/images/event-calender.svg";
-import locationImg from "../../../assets/images/location-blue.svg";
-import locationGray from "../../../assets/images/location-gray.svg";
-import faceImg from "../../../assets/images/face.svg";
-import shareIcon from "../../../assets/images/share-icon.svg";
-import Info from "../../../assets/images/info-sign.svg";
-import SocialShare from "../../../shared/components/SocialShare";
-import Image from "../../../shared/components/Image";
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
+import calendarImg from '../../../assets/images/event-calender.svg';
+import locationImg from '../../../assets/images/location-blue.svg';
+import locationGray from '../../../assets/images/location-gray.svg';
+import faceImg from '../../../assets/images/face.svg';
+import shareIcon from '../../../assets/images/share-icon.svg';
+import Info from '../../../assets/images/info-sign.svg';
+import SocialShare from '../../../shared/components/SocialShare';
+import Image from '../../../shared/components/Image';
 
 export default class StickyHeader extends Component {
   render() {
-    const { detailData, sticky, showSocialShare, shareUrl, setHeader } = this.props;
+    const {
+      detailData,
+      sticky,
+      showSocialShare,
+      shareUrl,
+      setHeader
+    } = this.props;
 
     return (
-      <div className={`event-detail ${sticky ? 'sticky-topbar' : ''} ${sticky && setHeader ? "animate" : ""}`}>
-        {detailData.images && detailData.images.length > 0 &&
+      <div
+        className={`event-detail ${sticky ? 'sticky-topbar' : ''} ${
+          sticky && setHeader ? 'animate' : ''
+        }`}
+      >
+        {detailData.images && detailData.images.length > 0 && (
           <div className="tickets-demo-img">
             <Image
               src={detailData.images[0].thumb_image}
@@ -23,17 +35,16 @@ export default class StickyHeader extends Component {
               type="Horizontal"
             />
           </div>
-        }
+        )}
         <div className="tickets-desc">
           <div className="breadcrumb-share">
             <ul className="breadcrumb">
               <li>Home</li>
-              {detailData.genres && detailData.genres.length > 0 &&
-                detailData.genres.map((obj, index) => {
-                  if (obj.is_primary == 1) {
-                    return <li key={index}>{obj.name}</li>
-                  }
-                })}
+              {detailData.genres &&
+                detailData.genres.length > 0 &&
+                detailData.genres
+                  .filter(obj => obj.is_primary === 1)
+                  .map((obj, index) => <li key={index}>{obj.name}</li>)}
             </ul>
           </div>
           {detailData.genres && detailData.genres.length > 0 && (
@@ -41,7 +52,7 @@ export default class StickyHeader extends Component {
               {detailData.genres.map((obj, index) => {
                 return (
                   <li
-                    className={`${obj.is_primary == 1 ? "active" : ""}`}
+                    className={`${obj.is_primary === 1 ? 'active' : ''}`}
                     key={index}
                   >
                     {obj.name}
@@ -50,17 +61,26 @@ export default class StickyHeader extends Component {
               })}
             </ul>
           )}
-          <h2>{detailData.title}
-            {detailData.pop_up_message.title && <div className="info-tooltip">
-                <a className="info" onClick={() => this.props.openNotice()}>
-                <img src={Info} alt="Info" />
-                </a>
-            </div>}
+          <h2>
+            {detailData.title}
+            {detailData.pop_up_message.title && (
+              <div className="info-tooltip">
+                <span className="info" onClick={() => this.props.openNotice()}>
+                  <img src={Info} alt="Info" />
+                </span>
+              </div>
+            )}
             <div className="share-tooltip">
-                <a className="share" onClick={() => this.props.openSocialShare()}>
+              <span
+                className="share"
+                onClick={() => this.props.openSocialShare()}
+              >
                 <img src={shareIcon} alt="" />
-                <SocialShare shareUrl={shareUrl} showSocialShare={showSocialShare} />
-                </a>
+                <SocialShare
+                  shareUrl={shareUrl}
+                  showSocialShare={showSocialShare}
+                />
+              </span>
             </div>
           </h2>
           <div className="ticket-date-price">
@@ -73,19 +93,19 @@ export default class StickyHeader extends Component {
               )}
               {detailData.venue_name && (
                 <li className="event-address">
-                    <a>
-                        <img
-                            className="location-gray"
-                            src={locationGray}
-                            alt="location"
-                        />
-                        <img
-                            className="location-icon"
-                            src={locationImg}
-                            alt="location"
-                        />
-                        <span>{detailData.venue_name.name}</span>
-                  </a>
+                  <Link to="/">
+                    <img
+                      className="location-gray"
+                      src={locationGray}
+                      alt="location"
+                    />
+                    <img
+                      className="location-icon"
+                      src={locationImg}
+                      alt="location"
+                    />
+                    <span>{detailData.venue_name.name}</span>
+                  </Link>
                 </li>
               )}
             </ul>
@@ -98,9 +118,13 @@ export default class StickyHeader extends Component {
           </div>
         </div>
         <div className="tickets-button">
-          {(detailData.buy_now_url && detailData.is_available_for_booking === 1) && (
+          {detailData.buy_now_url && detailData.is_available_for_booking === 1 && (
             <div className="buy-tickets-btn">
-              <a href={detailData.buy_now_url} target="_blank">
+              <a
+                href={detailData.buy_now_url}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 Buy Tickets
               </a>
             </div>
@@ -121,3 +145,10 @@ export default class StickyHeader extends Component {
     );
   }
 }
+
+StickyHeader.propTypes = {
+  detailData: PropTypes.object.isRequired,
+  shareUrl: PropTypes.string.isRequired,
+  showSocialShare: PropTypes.bool.isRequired,
+  sticky: PropTypes.bool.isRequired
+};

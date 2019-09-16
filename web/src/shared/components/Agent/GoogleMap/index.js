@@ -33,12 +33,15 @@ const GoogleMap = (props) => {
       setSelectedPlace(props);
       setActiveMarker(marker);
       setShowingInfoWindow(true);
-      setZoomValue(16);
+      setZoomValue(15);
+      setInitialCenter({ lat: Number(selectedPlace.latitude), lng: Number(selectedPlace.latitude) });
     } else {
       setActiveMarker(marker);
       setShowingInfoWindow(true);
       setSelectedPlace(props);
-      setZoomValue(16);
+      setZoomValue(15);
+      setInitialCenter({ lat: Number(showOnMapData.latitude), lng: Number(showOnMapData.latitude) });
+
     }
   }
 
@@ -52,7 +55,7 @@ const GoogleMap = (props) => {
     // setActiveMarker({});
     setShowingInfoWindow(true);
     setInitialCenter({ lat: Number(showOnMapData.latitude), lng: Number(showOnMapData.latitude) });
-    setZoomValue(16);
+    setZoomValue(15);
 
   }, [showOnMapData.id])
 
@@ -128,13 +131,13 @@ const GoogleMap = (props) => {
           onClick={onMapClicked}
           initialCenter={initialCenter}
           gestureHandling={"greedy"}
+          // center={initialCenter}
         >
           {multipleMarker && multipleMarker.map((elem, index) => {
             return (
               <Marker
                 onClick={onMarkerClick}
                 key={elem.id}
-                // map={new Map()}
                 position={{ lat: Number(elem.latitude), lng: Number(elem.longitude) }}
                 id={elem.id}
                 name={elem.name}
