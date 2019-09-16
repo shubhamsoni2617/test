@@ -17,6 +17,7 @@
     @media(max-width: 767px){
         flex: 0 0 100%;
         width: 100%;
+        max-width: 100%;
     }
     &:first-child, &:only-child{
         margin-right: 30px;
