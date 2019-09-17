@@ -1,6 +1,6 @@
-import React from "react";
-import "./style.scss";
-import Voucher from "./Voucher";
+import React from 'react';
+import './style.scss';
+import Voucher from './Voucher';
 
 const Vouchers = ({ vouchers }) => {
   return (
