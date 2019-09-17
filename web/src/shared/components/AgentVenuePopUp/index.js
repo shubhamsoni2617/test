@@ -38,13 +38,14 @@ const AgentVenuePopUp = props => {
           <li>
             {elem.image ? (
               <img
+                style={{ height: '65px', width: '96px' }}
                 src={elem.thumb_image ? elem.thumb_image : DefaultImg}
                 alt="specific-event"
                 type="Small"
               />
             ) : null}
             {elem.name ? (
-             <div className="food-beverages-link">
+              <div className="food-beverages-link">
                 <a href={elem.url ? elem.url : null} target="_blank">
                   {elem.name}
                 </a>{' '}
