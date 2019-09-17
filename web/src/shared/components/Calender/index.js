@@ -67,7 +67,7 @@ const Calender = props => {
         onDayMouseEnter={handleDayMouseEnter}
         captionElement={({ date }) => (
           <div className="DayPicker-Caption" role="heading">
-            <div>{moment(date).format('MMM YY')}</div>
+            <div>{moment(date).format('MMM YYYY')}</div>
           </div>
         )}
       />
