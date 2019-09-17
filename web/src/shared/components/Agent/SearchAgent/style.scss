@@ -168,7 +168,7 @@
                 padding: 5px 0px 0px;
             }
             li{
-                padding: 17px 0px;
+                padding: 17px 5px;
                 border-bottom: 1px #E6E6E6 solid;
                 position: relative;
                 @media (max-width: 992px) {
@@ -210,7 +210,7 @@
                         color: #0077C8;
                         font-size: 16px;
                         font-weight: 400;
-                        line-height: 19px;                       
+                        line-height: 19px;
                     }
                     span{
                         min-width: 101px;
@@ -245,6 +245,7 @@
                 left: -13px;
                 width: calc(100% + 13px);
                 top: 0px;
+                display: none;
                 bottom: 0px;
                 transition: 0.5s background-color;
                 -webkit-transition: 0.5s background-color;
@@ -260,7 +261,8 @@
                 }
             }
             &:hover, &.active-class{
-                cursor: pointer;
+                // cursor: pointer;
+                background-color: rgba(0, 152, 255, 0.07);
                 border-color: transparent;
                 &:after{
                     background-color: rgba(0, 152, 255, 0.07);
@@ -379,6 +381,7 @@
                     margin-top: 2px;
                 }
                 .details{
+                    width: calc(100% - 40px);
                     h3{
                         margin-bottom: 4px;
                         font-weight: 500;
@@ -409,13 +412,20 @@
                                 padding: 0 6px;
                             }
                             img{
-                                height: 72px;	
+                                height: 65px;
                                 width: 96px;
                                 @media(max-width: 768px){
-                                    height: auto;
+                                    height: 65px;
                                     width: 100%;
-                                    max-width: 100%;
+                                    max-width: 96px;
                                 }
+                            }
+                            .image-conatiner{
+                                height: 65px !important;
+                                width: 100%;
+                                display: flex;
+                                justify-content: center;
+                                align-items: center;
                             }
                             p, a{
                                 color: #343434;

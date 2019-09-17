@@ -194,8 +194,8 @@ const AgentVenuePopUp = props => {
                         <EventHeading
                           title={elem.title}
                           lines={2}
-                          height={18}
-                          size={14}
+                          height={16}
+                          size={13}
                           allowTooltip={false}
                         />
                       </Link>
