@@ -155,20 +155,22 @@ const PromotionCard = props => {
                 </div>
               );
             })}
-          <section className="related-event">
-            <div className="container-fluid">
-              <div className="section-top-wrapper">
-                <h2>Related Events</h2>
+          {events && events.length > 0 &&
+            <section className="related-event">
+              <div className="container-fluid">
+                <div className="section-top-wrapper">
+                  <h2>Related Events</h2>
+                </div>
+                <Carousel
+                  imgArray={events}
+                  arrows={true}
+                  slidesToShow={4}
+                  slidesToScroll={4}
+                  dots={false}
+                />
               </div>
-              <Carousel
-                imgArray={events}
-                arrows={true}
-                slidesToShow={4}
-                slidesToScroll={4}
-                dots={false}
-              />
-            </div>
-          </section>
+            </section>
+          }
         </div>
       </div>
     </div>

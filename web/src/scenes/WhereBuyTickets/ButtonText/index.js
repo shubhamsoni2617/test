@@ -1,13 +1,13 @@
-import React from "react";
-import appleImage from "../../../assets/images/apple.svg";
-import androidImage from "../../../assets/images/android.png";
-import { Link } from "react-router-dom";
+import React from 'react';
+import appleImage from '../../../assets/images/apple.svg';
+import androidImage from '../../../assets/images/android.png';
+import { Link } from 'react-router-dom';
 
 const Buttontext = ({ title }) => {
-  if (title === "SISTIC Singapore") {
+  if (title === 'SISTIC Singapore') {
     return <Link to="/events">Find an Event</Link>;
   }
-  if (title === "Mobile App") {
+  if (title === 'Mobile App') {
     return (
       <div className="download-option">
         <a>
@@ -29,13 +29,17 @@ const Buttontext = ({ title }) => {
       </div>
     );
   }
-  if (title === "Find an Agent") {
-    return <Link to="/agents">Find an Agent</Link>;
+  if (title === 'Find an Agent') {
+    return <Link to="/agents">Find Agents</Link>;
   }
-  if (title === "API Partners") {
-    return <Link className="api-see-all-btn" to="/">See All Partners</Link>;
+  if (title === 'API Partners') {
+    return (
+      <Link className="api-see-all-btn" to="/">
+        See All Partners
+      </Link>
+    );
   }
-  if (title === "Hotline @ +65 6348 5555") {
+  if (title === 'Hotline @ +65 6348 5555') {
     return <Link to="/contact-us">Contact Us</Link>;
   }
   return <Link to="/">View</Link>;
