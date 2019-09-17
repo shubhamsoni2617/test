@@ -33,6 +33,9 @@
 .promotions-full-wrapper{
     .breadcrumbs{
         margin-top: -112px;
+        @media(max-width: 768px){
+            margin-top: -60px;
+        }
         @media(max-width: 767px){
             margin-top: -116px;
         }
