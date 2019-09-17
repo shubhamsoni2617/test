@@ -458,6 +458,7 @@
             }
             &.active{
                 display: block;
+                z-index: 4;
                 @media(max-width: 768px){
                     position: absolute;
                     width: 100%;
