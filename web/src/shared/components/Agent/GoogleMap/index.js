@@ -73,7 +73,7 @@ const GoogleMap = props => {
     setShowingInfoWindow(true);
     setInitialCenter({
       lat: Number(showOnMapData.latitude),
-      lng: Number(showOnMapData.latitude)
+      lng: Number(showOnMapData.longitude)
     });
     setZoomValue(15);
   }, [showOnMapData.id, toggler]);
