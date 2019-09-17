@@ -26,11 +26,29 @@ const Agent = props => {
   const [checkBox, setCheckBox] = useState(0);
   const [mapInMobile, setMapInMobile] = useState(false);
   const [toggle, setToggle] = useState(false);
+  const [mapWrapperClass, setMapWrapperClass] = useState('');
 
   useEffect(() => {
     scrollToTop();
     fetchCountryNRegion();
+    window.addEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
   }, []);
+
+  const handleScroll = () => {
+    if (
+      window.pageYOffset +  document.getElementById('footer').getBoundingClientRect().height + 34 >=
+        window.document.body.clientHeight - window.innerHeight
+    ) {
+      setTimeout(()=>{setMapWrapperClass('agent-absolute');}, 0);
+    } else if (window.pageYOffset >= 280) {
+      setTimeout(()=>{setMapWrapperClass('agent-fixed');}, 0);
+    } else {
+      setTimeout(()=>{setMapWrapperClass('');}, 0);
+    }
+  };
 
   useEffect(() => {
     const params = {
@@ -177,7 +195,7 @@ const Agent = props => {
   };
 
   return (
-    <section className="agents-wrapper">
+    <section className={`agents-wrapper ${mapWrapperClass}`}>
       <CountryRegion
         countryNRegion={countryNRegion}
         onSubmit={submitCountryNRegion}
