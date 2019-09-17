@@ -48,10 +48,10 @@ export default class Card extends Component {
               <React.Fragment>
                 <span
                   dangerouslySetInnerHTML={{
-                    __html: Utilities.showLimitedChars(cardData.synopsis, 70)
+                    __html: Utilities.showLimitedChars(cardData.synopsis, 55)
                   }}
                 ></span>
-                {cardData.synopsis.length > 70 && (
+                {cardData.synopsis.length > 55 && (
                   <span
                     className="attraction-show-more"
                     onClick={() => this.showPopUp(true, cardData.synopsis)}
