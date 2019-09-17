@@ -63,14 +63,16 @@ const PromotionCard = props => {
           <Image src={data.featured_image} />
         </div>
         <div className="promotion-desc">
-          {data && data.custom_label_text ? (
-            <span
-              className="promotion-category"
-              style={{ color: `#${data.custom_label_color}` }}
-            >
-              {data.custom_label_text}
-            </span>
-          ) : null}
+          <div className="promotion-category-div">
+            {data && data.custom_label_text ? (
+              <span
+                className="promotion-category"
+                style={{ color: `#${data.custom_label_color}` }}
+              >
+                {data.custom_label_text}
+              </span>
+            ) : null}
+          </div>
           <span className="share" onClick={handleSocialShare}>
             <img src={ShareIcon} alt="share-icon" />
             <SocialShare
