@@ -187,6 +187,14 @@ const GoogleMap = props => {
                           url: elem.map_pin_icon,
                           scaledSize: new google.maps.Size(50, 50)
                         }
+                      : elem.map_pin_color!=="#FFFFFF"
+                      ? {
+                          path: Constants.MAP_PATH,
+                          scale: 1,
+                          fillColor: elem.map_pin_color,
+                          fillOpacity: 1,
+                          strokeWeight: 2
+                        }
                       : elem.id === selectedPlace.id
                       ? {
                           url: BluePin,
@@ -265,6 +273,14 @@ const GoogleMap = props => {
                       ? {
                           url: elem.map_pin_icon,
                           scaledSize: new google.maps.Size(50, 50)
+                        }
+                      : elem.map_pin_color!=="#FFFFFF"
+                      ? {
+                          path: Constants.MAP_PATH,
+                          scale: 1,
+                          fillColor: elem.map_pin_color,
+                          fillOpacity: 1,
+                          strokeWeight: 2
                         }
                       : elem.id === showOnMapData.id
                       ? {
