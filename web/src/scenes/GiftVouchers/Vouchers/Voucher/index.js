@@ -4,11 +4,17 @@ import Logo from '../../../../assets/images/logo.png';
 import buynowarrow from '../../../../assets/images/buy-arrow-b.png';
 
 const Voucher = ({ voucherdetail }) => {
+  let priceArray = voucherdetail.price.split('.');
+  let price = priceArray[0];
+  if (Number(priceArray[1]) !== 0) {
+    price = price + '.' + priceArray[1].slice(0, 2);
+  }
+
   return (
     <div className="voucher-content">
       <div className="voucher-top">
         <img src={Logo} alt="Logo" />
-        <span className="voucher-price">S${voucherdetail.price}</span>
+        <span className="voucher-price">S${price}</span>
       </div>
       <div className="voucher-footer">
         <p>Gift Voucher</p>
