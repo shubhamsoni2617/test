@@ -200,6 +200,7 @@ const Agent = props => {
               handleEventValue={handleEventValue}
               checkBox={checkBox}
               handleMapFilter={handleMapFilter}
+              mapClick={mapClick}
               {...props}
             />
           </div>

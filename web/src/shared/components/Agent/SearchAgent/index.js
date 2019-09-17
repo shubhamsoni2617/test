@@ -21,7 +21,8 @@ const SearchAgent = props => {
     handleEventValue,
     activeClassId,
     checkBox,
-    handleMapFilter
+    handleMapFilter,
+    mapClick
   } = props;
 
   const [width] = useCustomWidth();
@@ -40,6 +41,10 @@ const SearchAgent = props => {
     setAttraction(false);
     setOngoingEvents(false);
   }, [checkBox]);
+
+  useEffect(() => {
+    setFilter("");
+  }, [mapClick]);
 
   const handleSubmit = event => {
     event.preventDefault();
