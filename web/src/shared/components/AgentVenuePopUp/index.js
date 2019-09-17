@@ -34,25 +34,24 @@ const AgentVenuePopUp = props => {
   const showFoodNBeverage = foodNBeverage => {
     return foodNBeverage.map((elem, index) => {
       return (
-        <div key={index} style={{ display: 'flex', width: '100%' }}>
-          <div>
+        <ul className="currently-list" key={index}>
+          <li>
             {elem.image ? (
               <img
-                style={{ height: '72px', width: '96px' }}
                 src={elem.thumb_image ? elem.thumb_image : DefaultImg}
                 alt="specific-event"
                 type="Small"
               />
             ) : null}
             {elem.name ? (
-              <p>
+             <div className="food-beverages-link">
                 <a href={elem.url ? elem.url : null} target="_blank">
                   {elem.name}
                 </a>{' '}
-              </p>
+              </div>
             ) : null}
-          </div>
-        </div>
+          </li>
+        </ul>
       );
     });
   };
