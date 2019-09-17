@@ -8,7 +8,8 @@ import Breadcrub from "../../scenes/App/Breadcrumb";
 import loaderImage from "../../assets/images/loader.svg";
 import AttractionBreadcrumbImage from "../../assets/images/attractionbanner.png";
 import ShimmerEffect from "../../shared/components/ShimmerEffect";
-import LoadMoreButton from "../../shared/components/LoadMoreButton";
+// import LoadMoreButton from "../../shared/components/LoadMoreButton";
+import DownArrowBlue from "../../assets/images/down-arrow-blue.svg";
 import "./style.scss";
 
 export default class Attractions extends Component {
@@ -17,6 +18,7 @@ export default class Attractions extends Component {
 
     this.state = {
       shimmer: true,
+      shimmerFilter: true,
       attractionCategories: [],
       filteredSearch: [],
       filteredCategory: [],
@@ -120,13 +122,16 @@ export default class Attractions extends Component {
         if (!isLoadMore) this.setState({ attractionsData: [] });
         const attractionsData = [...this.state.attractionsData, ...res.data.data];
         const isdataAvailable = attractionsData.length ? false : true;
-        this.setState({
-          loader: false,
-          attractionsData: attractionsData,
-          shimmer: false,
-          totalRecords: res.data.total_records,
-          isdataAvailable: isdataAvailable
-        });
+        setTimeout(() => {
+          this.setState({
+            loader: false,
+            attractionsData: attractionsData,
+            shimmer: false,
+            totalRecords: res.data.total_records,
+            isdataAvailable: isdataAvailable
+          });
+        }, 1000);
+
       })
       .catch(err => {
         console.log(err);
@@ -165,6 +170,7 @@ export default class Attractions extends Component {
   };
 
   handleFilters = (searchType) => {
+    console.log('searchType', searchType)
     this.setState(
       {
         first: 0,
@@ -206,24 +212,24 @@ export default class Attractions extends Component {
       filteredCategory,
       filteredSearch
     } = this.state;
-    this.breadCrumbData.count = count;
+    this.breadCrumbData.count = totalRecords;
 
     return (
       <div>
         <Breadcrub breadCrumbData={this.breadCrumbData} />
         <div className="container-fluid">
-          <div className="wrapper-events-listing">
+          <div className="wrapper-events-listing attraction-wrapper-listing">
             <div className="filters">
               {shimmer && <ShimmerEffect
                 propCls="shm_col-xs-6 col-md-12"
                 height={150}
                 count={1}
-                type="grid"
+                type="FILTER"
               />}
               {!shimmer && attractionCategories.length > 0 &&
                 (
                   <Filters
-                    searchPlaceholder="Search in Attraction"
+                    searchPlaceholder="Search in attractions"
                     queryParams={queryParams}
                     resetFilters={this.resetFilters}
                     handleFilters={this.handleFilters}
@@ -252,10 +258,10 @@ export default class Attractions extends Component {
                     // onClick={() => this.redirectToTarget(attraction.event_alias)}
                     return (
                       <div>
-                        <Card 
-                        cardData={attraction} 
+                        <Card
+                        cardData={attraction}
                         redirectTo={this.redirectToTarget}
-                        cardClass={{ cardBlock: 'event-block attraction-block', cardButton: 'btn buy-btn attaction-buy' }} 
+                        cardClass={{ cardBlock: 'event-block attraction-block', cardButton: 'btn buy-btn attaction-buy' }}
                         />
                       </div>
                     );
@@ -266,15 +272,27 @@ export default class Attractions extends Component {
                   propCls="shm_col-xs-6 col-md-4"
                   height={150}
                   count={3}
-                  type="grid"
+                  type="LIST"
                 />
               )}
 
-              {attractionsData.length < totalRecords && (<LoadMoreButton
+              {/* {attractionsData.length < totalRecords && (<LoadMoreButton
                 dataLength={attractionsData.length}
                 totalRecords={totalRecords}
-                loadMore={() => this.loadMoreAttractions()}
-              />)}
+                loadMore={this.loadMoreAttractions}
+              />)} */}
+              {attractionsData.length < totalRecords && (
+                  <div className="promotion-load-more">
+                    <button
+                      onClick={() => this.loadMoreAttractions()}
+                      className="btn-link load-more-btn"
+                      target=""
+                    >
+                      <span>Load More ({totalRecords - attractionsData.length})</span>
+                      <img src={DownArrowBlue} alt="down arrow blue" />
+                    </button>
+                  </div>
+                )}
 
               {isdataAvailable && (
                 <div className="no-data">

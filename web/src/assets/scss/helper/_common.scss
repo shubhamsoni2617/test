@@ -55,7 +55,7 @@ ul {
 	color: #0098ff;
 }
 
-// Buttons 
+// Buttons
 button{
     &:focus{
         outline: none;
@@ -83,7 +83,11 @@ nav {
 		display: inline-block;
 		padding-right: 10px;
 		padding-left: 5px;
-		color: #ffffff;
+    color: #ffffff;
+    font-family: 'Montserrat', sans-serif;
+			font-size: 13px;
+            line-height: 18px;
+            font-weight: 300;
 		&::after {
 			position: absolute;
 			content: "/";
@@ -273,12 +277,12 @@ button,
 	}
 }
 
-// Wrapper 
+// Wrapper
 .wrapper{
     overflow: hidden;
-} 
+}
 
-// Overlay Background 
+// Overlay Background
 .dance-overlay {
 	background: linear-gradient(180deg, rgba(242, 177, 25, 0) -5%, #5F4F8B 70%);
 }
@@ -816,7 +820,7 @@ button,
 					   &:after{
 						   content: none;
 					   }
-				   }				 
+				   }
 				   &.DayPicker-Day--start.DayPicker-Day--selected{
 					z-index: 4 !important;
 				   }
@@ -843,7 +847,7 @@ button,
 						top: 50%;
 						transform: translate(-50%, -50%);
 						z-index: -1;
-					}				
+					}
 				   }
 				   &.DayPicker-Day--start.DayPicker-Day--end.DayPicker-Day--selected{
 					   &:before{
@@ -875,7 +879,7 @@ button,
 					   }
 					}
 					&.DayPicker-Day--start + .DayPicker-Day--selected{
-					   position: relative;					   
+					   position: relative;
 				   }
 				   &.DayPicker-Day--end{
 					   &:before{
@@ -889,7 +893,7 @@ button,
 						   top: 50%;
 						   transform: translate(-50%, -50%);
 						   z-index: -1;
-					   }					
+					   }
 					}
 					&.DayPicker-Day--disabled {
 					   color: #CBD4DE;

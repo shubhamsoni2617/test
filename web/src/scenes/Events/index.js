@@ -338,7 +338,7 @@ export default class Events extends Component {
     return (
       <div>
         <Breadcrub breadCrumbData={this.breadCrumbData} />
-        <section className="promotions-wrapper">
+        <section className="">
           <div className="container-fluid">
             <div className="wrapper-events-listing">
               <div className="filters">
@@ -436,7 +436,7 @@ export default class Events extends Component {
                       className="btn-link load-more-btn"
                       target=""
                     >
-                      <span>Load More</span>
+                      <span>Load More ({totalRecords - eventsData.length})</span>
                       <img src={DownArrowBlue} alt="down arrow blue" />
                     </button>
                   </div>

@@ -3,7 +3,10 @@
     width: 100%;
     flex-wrap: wrap;
     position: relative;
-    margin-bottom: 25px;    
+    margin-bottom: 25px;
+    @media(max-width: 767px) {
+        margin-bottom: 0px;
+    }
 }
 .promotion-block {
     flex: 0 0 calc(50% - 15px);
@@ -11,16 +14,33 @@
     max-width: calc(50% - 15px);
     list-style: none;
     margin-bottom: 0px;
-    &:first-child{
+    @media(max-width: 767px){
+        flex: 0 0 100%;
+        width: 100%;
+        max-width: 100%;
+    }
+    &:first-child, &:only-child{
         margin-right: 30px;
+        @media(max-width: 767px){
+            margin-right: 0px;
+        }
         .promotion-tab-dropdown{
             margin-right: -106.2%;
             margin-left: 0px !important;
+            @media(max-width: 767px){
+                margin: 0px;
+            }
         }
     }
     &:last-child{
-        .promotion-tab-dropdown{            
+        .promotion-tab-dropdown{
             margin-left: -106.2%;
+            @media(max-width: 991px){
+                margin-left: -109.2%;
+            }
+            @media(max-width: 767px){
+                margin: 0px;
+            }
         }
     }
     .promotions-listing-wrapper {
@@ -43,6 +63,9 @@
         .promotion-desc {
             padding: 20px 15px 16px;
             position: relative;
+            @media(max-width: 767px){
+                padding: 10px 8px 10px;
+            }
             .promotion-category {
                 color: #0077C8;
                 font-family: 'Montserrat', sans-serif;
@@ -235,6 +258,7 @@
         @media (max-width: 767px) {
             padding-top: 15px;
             position: relative;
+            width: 100%;
         }
         .top-dropdown-bar {
             border-top: 6px solid #0098ff;
@@ -273,7 +297,8 @@
                 border-top: 1px solid rgba(151,151,151,0.2);
                 margin-top: 25px;
                 @media (max-width: 767px) {
-                    padding-bottom: 20px;
+                    padding: 10px 0px 0;
+                    margin-top: 10px;
                 }
                 .container-fluid{
                     padding: 0 25px;
@@ -291,12 +316,19 @@
                         margin-bottom: 15px;
                         padding: 0;
                         @media (max-width: 767px) {
-                            padding-bottom: 15px;
+                            padding-bottom: 5px;
+                            font-size: 18px;
+                            margin-bottom: 0px;
                         }
                     }
                     .grid-container {
                         color: #ffffff;
                         padding: 0 5px;
+                        @media(max-width: 767px){
+                            display: flex;
+                            flex-wrap: nowrap;
+                            overflow-x: auto;
+                        }
                         .item {
                             position: relative;
                             z-index: 1;
@@ -384,12 +416,16 @@
                                 padding: 0;
                                 @media(max-width: 1366px) {
                                     min-height: 40px;
+                                    max-height: 35px !important;
+                                    min-height: 35px !important; 
                                 }
                                 @media(max-width: 991px) {
                                     min-height: auto;
+                                    max-height: 100% !important;
+                                    min-height: 100% !important; 
                                 }
                                 @media (max-width: 767px) {
-                                    margin-bottom: 8px;
+                                    margin-bottom: 8px;                               
                                 }
                             }
                             p {
@@ -400,6 +436,10 @@
                                     font-size: 14px;
                                 }
                             }
+                        }
+                        .grid-container{
+                            flex: 0 0 50%;
+                            width: 50%;                        
                         }
                     }
                 }
@@ -466,14 +506,22 @@
             opacity: 1;
             z-index: 1;
             position: relative;
+            @media(max-width: 1200px){
+                width: 929px;
+            }
             @media(max-width: 1024px){
                 width: 915px;
             }
+            @media(max-width: 991px){
+                width: 690px;
+            }
             @media(max-width: 768px){
                 width: 678px;
+                margin-bottom: 15px;
             }
             @media (max-width: 767px) {
                 height: auto;
+                width: 100%;
             }
             .promotion-tab-close-btn {
                 position: absolute;

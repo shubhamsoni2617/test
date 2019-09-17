@@ -1,4 +1,10 @@
-import React, { useState, useRef, useEffect, useLayoutEffect } from 'react';
+import React, {
+  useState,
+  useRef,
+  useEffect,
+  useLayoutEffect,
+  memo
+} from 'react';
 import PropTypes from 'prop-types';
 import InputRange from 'react-input-range';
 import moment from 'moment';
@@ -12,17 +18,47 @@ import tickWhite from '../../../assets/images/tick-white.svg';
 import FilterGrid from '../FilterGrid';
 import './style.scss';
 
-function SearchFilter(props) {
-  const [search, setSearch] = useState(props.searchText);
-  useEffect(() => {
-    setSearch(props.searchText);
-  }, [props.searchText]);
+function useDebounce(value, delay) {
+  const [debouncedValue, setDebouncedValue] = useState(value);
 
-  // Text Search
-  const textFilter = e => {
-    setSearch(e.target.value);
-    props.handleFilters({ filteredSearch: e.target.value });
-  };
+  useEffect(() => {
+    const handler = setTimeout(() => {
+      setDebouncedValue(value);
+    }, delay);
+
+    return () => {
+      clearTimeout(handler);
+    };
+  }, [value, delay]);
+
+  return debouncedValue;
+}
+
+const SearchFilter = props => {
+  // const [search, setSearch] = useState('');
+  // const debouncedSearchTerm = useDebounce(search, 500);
+  const [loading, setLoading] = useState(false);
+  const searchRef = useRef();
+
+  // useEffect(() => {
+  //   // if (search === '') {
+  //   //   props.handleFilters({ filteredSearch: search });
+  //   // }
+  //   // if (debouncedSearchTerm) {
+  //   //   props.handleFilters({ filteredSearch: search });
+  //   // }
+  // }, [search]);
+
+  const onChangeHandler = () => {
+    if(loading) return;
+
+    setLoading(true);
+    setTimeout(() => {
+      setLoading(false);
+
+      props.handleFilters({ filteredSearch: searchRef.current.value });
+    }, 500);
+  }
 
   return (
     <div className="filters-search">
@@ -30,15 +66,19 @@ function SearchFilter(props) {
         <img src={SearchIcon} className="img-fluid active" alt="search-icon" />
       </button>
       <input
+      ref={searchRef}
         type="text"
-        value={search}
-        placeholder={props.searchPlaceholder}
-        onChange={e => textFilter(e)}
+        placeholder={
+          props.searchPlaceholder ? props.searchPlaceholder : 'Search in events'
+        }
+        onChange={e => {
+          onChangeHandler();
+        }}
         className="form-control"
       />
     </div>
   );
-}
+};
 
 function PriceRangeFilter(props) {
   const { priceConfig, filteredPriceRange } = props;
