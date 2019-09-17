@@ -1,8 +1,7 @@
-import React from "react";
-import "./style.scss";
-import Logo from "../../../../assets/images/logo.png";
-import { Link } from "react-router-dom";
-import buynowarrow from "../../../../assets/images/buy-arrow-b.png";
+import React from 'react';
+import './style.scss';
+import Logo from '../../../../assets/images/logo.png';
+import buynowarrow from '../../../../assets/images/buy-arrow-b.png';
 
 const Voucher = ({ voucherdetail }) => {
   return (
@@ -13,7 +12,9 @@ const Voucher = ({ voucherdetail }) => {
       </div>
       <div className="voucher-footer">
         <p>Gift Voucher</p>
-        <Link to={voucherdetail.url}>Buy Now <img src={buynowarrow} alt="arrow" /></Link>
+        <a href={voucherdetail.url}>
+          Buy Now <img src={buynowarrow} alt="arrow" />
+        </a>
       </div>
     </div>
   );
