@@ -10,7 +10,6 @@ const CountryRegion = props => {
     handleCountryName,
     venue,
     handleMapClick,
-    handleMapFilter
   } = props;
 
   const [country, setCountry] = useState('Singapore');
@@ -30,8 +29,6 @@ const CountryRegion = props => {
     // set map click event in parent component
     handleMapClick(toggleMapCondition);
     setToggleMapCondition(Math.random());
-
-    handleMapFilter("");
 
     const bothId = handleId();
     const params = {
