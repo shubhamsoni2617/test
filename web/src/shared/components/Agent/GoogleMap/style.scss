@@ -13,6 +13,11 @@
     & > div{
         position: relative !important;
     }
+    .gm-style-iw-t{
+        &::after{
+            display: none;
+        }
+    }
     .map-info-popup{
         width: 342.75px;
         border: 1px solid #0098FF;
@@ -31,9 +36,13 @@
             justify-content: center;
             height: 58px;
             width: 86px;
+            margin-left: 1px;
             @media(max-width: 768px){
                 height: auto;
                 width: auto;
+            }
+            img{
+                max-width: 100%;
             }
         }
         .map-name-address{
