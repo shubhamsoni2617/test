@@ -23,6 +23,9 @@
     min-height: inherit;
     max-height: 90%;
     overflow: auto;
+    @media(max-width: 991px){
+        width: calc(100% - 30px);
+    }
     .modal-content{
         background: none;
         border: none;
