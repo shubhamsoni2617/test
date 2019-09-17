@@ -80,7 +80,7 @@ const PromotionCard = props => {
               showSocialShare={socialShare}
             />
           </span>
-          <EventHeading title={data.title} lines={2} height={20} />
+          <EventHeading title={data.title} lines={2} height={22} />
           <div className="promotion-btn-wrapper">
             {/* <a href={data.buttons.length > 0 && data.buttons[0].url ? data.buttons[0].url : undefined}>
               <button style={{ color: data.buttons.length > 0 ? `#${data.buttons[0].color}` : "" }}>
