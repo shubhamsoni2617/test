@@ -139,58 +139,62 @@
     }
 }
 
-.agent-fixed{
-  .banner-wrapper{
-    // position: fixed;
-    // top: 0;
-    // left: 0;
-    // width: 100%;
-    // z-index: 4;
-    // max-height: 200px;
-    // overflow: hidden;
-    .authorised-agent{
-      display: none;
+.venue{
+
+  &.agent-fixed{
+    .banner-wrapper{
+      // position: fixed;
+      // top: 0;
+      // left: 0;
+      // width: 100%;
+      // z-index: 4;
+      // max-height: 200px;
+      // overflow: hidden;
+      .authorised-agent{
+        display: none;
+      }
     }
-  }
-  .search-agent{
-    margin-top: 175px;
-  }
-  .search-agent-header{
-    position: fixed;
-    width: 30%;
-    background: #fff;
-    z-index: 4;
-    left: 0;
-    padding: 30px 50px 0 25px;
-    top: 0;
-  }
-  .agent-map-area{
-    position: fixed;
-    right: 0;
-    top: 25px;
-    padding-right: 55px;
-    padding-left: 1px;
-  }
-  .agent-sidebar{
-    margin-top: 0px;
+      .search-agent{
+        margin-top: 175px;
+      }
+
     .search-agent-header{
       position: fixed;
+      width: 30%;
+      background: #fff;
+      z-index: 4;
+      left: 0;
+      padding: 30px 50px 0 25px;
+      top: 0;
+    }
+    .agent-map-area{
+      position: fixed;
+      right: 0;
+      top: 25px;
+      padding-right: 55px;
+      padding-left: 1px;
+    }
+    .agent-sidebar{
+      margin-top: 0px;
+      .search-agent-header{
+        position: fixed;
+      }
     }
   }
-}
-.agent-absolute{
-  .banner-wrapper{
-    // position: absolute;
-  }
-  .agent-map-area{
-    position: relative;
-    .gmap{
-      position: absolute;
-      bottom: 40px;
-      width: 100%;
+  &.agent-absolute{
+    .banner-wrapper{
+      // position: absolute;
     }
-  }
-  .agent-sidebar{
-    // position: absolute;
+    .agent-map-area{
+      position: relative;
+      .gmap{
+        position: absolute;
+        bottom: 40px;
+        width: 100%;
+      }
+    }
+    .agent-sidebar{
+      // position: absolute;
+    }
   }
 }

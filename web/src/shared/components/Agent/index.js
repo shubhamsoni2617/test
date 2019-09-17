@@ -39,14 +39,22 @@ const Agent = props => {
 
   const handleScroll = () => {
     if (
-      window.pageYOffset +  document.getElementById('footer').getBoundingClientRect().height + 34 >=
-        window.document.body.clientHeight - window.innerHeight
+      window.pageYOffset +
+        document.getElementById('footer').getBoundingClientRect().height +
+        34 >=
+      window.document.body.clientHeight - window.innerHeight
     ) {
-      setTimeout(()=>{setMapWrapperClass('agent-absolute');}, 0);
+      setTimeout(() => {
+        setMapWrapperClass('agent-absolute');
+      }, 0);
     } else if (window.pageYOffset >= 280) {
-      setTimeout(()=>{setMapWrapperClass('agent-fixed');}, 0);
+      setTimeout(() => {
+        setMapWrapperClass('agent-fixed');
+      }, 0);
     } else {
-      setTimeout(()=>{setMapWrapperClass('');}, 0);
+      setTimeout(() => {
+        setMapWrapperClass('');
+      }, 0);
     }
   };
 
@@ -195,7 +203,9 @@ const Agent = props => {
   };
 
   return (
-    <section className={`agents-wrapper ${mapWrapperClass}`}>
+    <section
+      className={`agents-wrapper ${mapWrapperClass} ${venue ? 'venue' : ''}`}
+    >
       <CountryRegion
         countryNRegion={countryNRegion}
         onSubmit={submitCountryNRegion}
