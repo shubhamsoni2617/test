@@ -187,7 +187,7 @@ const GoogleMap = props => {
                           url: elem.map_pin_icon,
                           scaledSize: new google.maps.Size(50, 50)
                         }
-                      : elem.map_pin_color!=="#FFFFFF"
+                      : (elem.map_pin_color!=="#FFFFFF" && venue)
                       ? {
                           path: Constants.MAP_PATH,
                           scale: 1,
@@ -274,7 +274,7 @@ const GoogleMap = props => {
                           url: elem.map_pin_icon,
                           scaledSize: new google.maps.Size(50, 50)
                         }
-                      : elem.map_pin_color!=="#FFFFFF"
+                      : (elem.map_pin_color!=="#FFFFFF" && venue)
                       ? {
                           path: Constants.MAP_PATH,
                           scale: 1,
