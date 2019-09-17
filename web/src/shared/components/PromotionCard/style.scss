@@ -66,6 +66,10 @@
             @media(max-width: 767px){
                 padding: 10px 8px 10px;
             }
+            .promotion-category-div{
+                min-height: 20px;
+                margin-bottom: 12px;
+            }
             .promotion-category {
                 color: #0077C8;
                 font-family: 'Montserrat', sans-serif;
@@ -77,7 +81,6 @@
                 background-color: #EFF5FA;
                 display: inline-block;
                 text-align: center;
-                margin-bottom: 12px;
                 font-weight: 600;
             }
             .share{
@@ -414,6 +417,8 @@
                                 -moz-transition: 0.3s color;
                                 -o-transition: 0.3s color;
                                 padding: 0;
+                                max-height: 35px !important;
+                                min-height: 35px !important; 
                                 @media(max-width: 1366px) {
                                     min-height: 40px;
                                     max-height: 35px !important;

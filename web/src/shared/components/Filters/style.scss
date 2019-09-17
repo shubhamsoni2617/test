@@ -680,6 +680,7 @@
                         box-shadow: 0 2px 4px 1px rgba(190,190,190,0.5);
                         .DayPicker-Body .DayPicker-Week{
                             justify-content: space-between;
+                            overflow: hidden;
                         }
                     }
                     .DayPicker-Caption {

@@ -287,6 +287,7 @@
             z-index: 2;
             background: white;
             box-shadow: 0 2px 33px 0 rgba(0,0,0,0.23);
+            cursor: default;
             @media(max-width: 992px){
                 width: 450px;
             }
@@ -429,6 +430,25 @@
                                 font-size: 13px;
                                 line-height: 15px;
                                 margin: 5px 0 0 0;
+                            }
+                            a{
+                                &:hover{
+                                    h3{
+                                        color:#0056b3;
+                                    }
+                                }
+                            }
+                            .food-beverages-link{
+                                a{
+                                  color: #343434;
+                                  font-size: 14px;
+                                  font-weight: 500;
+                                  line-height: 19px;
+                                  margin: 0 0 10px;
+                                  &:hover{
+                                    color: #0056b3;
+                                  }
+                                }
                             }
                         }
                     }

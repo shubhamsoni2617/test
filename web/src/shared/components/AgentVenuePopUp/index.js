@@ -15,6 +15,8 @@ import Image from '../Image';
 import { Link } from 'react-router-dom';
 import './style.scss';
 import EventHeading from '../EventHeading';
+import DefaultImg from '../../../assets/images/horizontal.png';
+
 const AgentVenuePopUp = props => {
   const {
     item,
@@ -32,12 +34,24 @@ const AgentVenuePopUp = props => {
   const showFoodNBeverage = foodNBeverage => {
     return foodNBeverage.map((elem, index) => {
       return (
-        <div key={index}>
-          {elem.image ? (
-            <Image src={elem.thumb_image} alt="specific-event" type="Small" />
-          ) : null}
-          {elem.name ? <Link to="">{elem.name}</Link> : null}
-        </div>
+        <ul className="currently-list" key={index}>
+          <li>
+            {elem.image ? (
+              <img
+                src={elem.thumb_image ? elem.thumb_image : DefaultImg}
+                alt="specific-event"
+                type="Small"
+              />
+            ) : null}
+            {elem.name ? (
+             <div className="food-beverages-link">
+                <a href={elem.url ? elem.url : null} target="_blank">
+                  {elem.name}
+                </a>{' '}
+              </div>
+            ) : null}
+          </li>
+        </ul>
       );
     });
   };
@@ -102,6 +116,9 @@ const AgentVenuePopUp = props => {
           <div className="details">
             <h3>Operating Hours</h3>
             <p>{popUpDetail.operating_hours}</p>
+            {popUpDetail.festive_hours && (
+              <p style={{ color: '#FF8300' }}>{popUpDetail.festive_hours}</p>
+            )}
           </div>
         </div>
       ) : null}
