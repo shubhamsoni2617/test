@@ -20,9 +20,9 @@
   .react-modal-body{
     z-index: 102;
     width: 600px;
-    min-height: inherit;
-    max-height: 90%;
-    overflow: auto;
+    min-height: inherit;    
+    overflow: hidden;
+    max-height: 500px;
     @media(max-width: 991px){
         width: calc(100% - 30px);
     }
@@ -62,6 +62,10 @@
                     }
                 }
             }
+        }
+        .modal-body{
+            max-height: 440px;
+            overflow-y: auto;
         }
     }
   }
