@@ -1,14 +1,13 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react';
 import './style.scss';
 import CountryRegion from './CountryRegion';
 import SearchAgent from './SearchAgent';
 import GoogleMap from './GoogleMap';
 import AgentService from '../../../shared/services/AgentService';
-import Constants from '../../../shared/constants'
+import Constants from '../../../shared/constants';
 import grayArrow from '../../../assets/images/down-arrow-grey.svg';
 
-const Agent = (props) => {
-
+const Agent = props => {
   //Decide which page should be mount (default-agent page)
   const { venue } = props;
 
@@ -26,7 +25,7 @@ const Agent = (props) => {
   const [regionId, setRegionId] = useState(undefined);
   const [checkBox, setCheckBox] = useState(0);
   const [mapInMobile, setMapInMobile] = useState(false);
-
+  const [toggle, setToggle] = useState(false);
 
   useEffect(() => {
     scrollToTop();
@@ -42,60 +41,64 @@ const Agent = (props) => {
 
   useEffect(() => {
     if (countryNRegion && countryNRegion.length > 0 && !countryFileUrl) {
-      filterCountryFile("Singapore")
+      filterCountryFile('Singapore');
     }
   }, [countryNRegion]);
 
   //page scroll to top after mounting component
   const scrollToTop = () => {
     window.scrollTo(0, 0);
-  }
+  };
 
   //Fetch countries & their respective regions
   const fetchCountryNRegion = () => {
-    const eventSelection = venue ? AgentService.getVenuesCountryNRegion() : AgentService.getAgentsCountryNRegion();
+    const eventSelection = venue
+      ? AgentService.getVenuesCountryNRegion()
+      : AgentService.getAgentsCountryNRegion();
     eventSelection
-      .then((res) => {
+      .then(res => {
         if (res.data && res.data.data) {
           let countryId = res.data.data.find(el => el.name === 'Singapore').id;
-          setCountryId(countryId)
-          setCountryNRegion(res.data.data)
+          setCountryId(countryId);
+          setCountryNRegion(res.data.data);
         }
       })
-      .catch((err) => {
-        console.log(err)
-      })
-  }
+      .catch(err => {
+        console.log(err);
+      });
+  };
 
   //Fetch agents or venues based on selection event
-  const fetchAgentsNVenues = (params) => {
+  const fetchAgentsNVenues = params => {
     if (params.region === undefined) {
       params.region = null;
     }
     if (attractionValue) {
-      params.attractions = attractionValue
+      params.attractions = attractionValue;
     }
     if (eventValue) {
-      params.events = eventValue
+      params.events = eventValue;
     }
     params.client = Constants.CLIENT;
-    params.sort_type = "name";
-    params.sort_order = "ASC";
+    params.sort_type = 'name';
+    params.sort_order = 'ASC';
 
-    console.log(params, "params");
-    const eventSelection = venue ? AgentService.getVenues(params) : AgentService.getAgents(params);
+    console.log(params, 'params');
+    const eventSelection = venue
+      ? AgentService.getVenues(params)
+      : AgentService.getAgents(params);
     eventSelection
-      .then((res) => {
+      .then(res => {
         setListedData(res.data.data);
         setFilteredListedData(res.data.data);
       })
-      .catch((err) => {
-        console.log(err)
-      })
-  }
+      .catch(err => {
+        console.log(err);
+      });
+  };
 
   // fetch agents or venues after submission (click on "GO" button)
-  const submitCountryNRegion = (params) => {
+  const submitCountryNRegion = params => {
     setCheckBox(Math.random());
     setCountryId(params.country);
     setRegionId(params.region);
@@ -104,46 +107,48 @@ const Agent = (props) => {
     }
     setAttractionValue(undefined);
     setEventValue(undefined);
-  }
+  };
   // filter file for selected country (Festive Period Operating Hours - Agent page)
-  const filterCountryFile = (file) => {
+  const filterCountryFile = file => {
     let filteredFile;
-    countryNRegion && countryNRegion.filter((item) => {
-      if (item.name === file) {
-        filteredFile = item.festive_hours_file;
-      }
-    })
+    countryNRegion &&
+      countryNRegion.filter(item => {
+        if (item.name === file) {
+          filteredFile = item.festive_hours_file;
+        }
+      });
     setCountryFileUrl(filteredFile);
-  }
+  };
 
   // set selected list data in parent component
   const showOnMapClick = (e, selectedItem, activePopUpRef) => {
+    setToggle(!toggle);
     if (activePopUpRef.current) {
       // remove popUpDetail after clicking on show on map
-      activePopUpRef.current.classList.remove("active");
+      activePopUpRef.current.classList.remove('active');
     }
     setShowOnMapData(selectedItem);
-  }
+  };
   // set selected country in parent component
-  const handleCountryName = (country) => {
+  const handleCountryName = country => {
     setCountryName(country);
-  }
+  };
   // set selected attracion in parent component
-  const handleAttractionValue = (value) => {
-    setAttractionValue(value)
-  }
+  const handleAttractionValue = value => {
+    setAttractionValue(value);
+  };
   // set selected event in parent component
-  const handleEventValue = (value) => {
-    setEventValue(value)
-  }
+  const handleEventValue = value => {
+    setEventValue(value);
+  };
 
-  const handleMapClick = (event) => {
+  const handleMapClick = event => {
     setMapClick(event);
-  }
+  };
 
-  const handleActiveClass = (activeId) => {
+  const handleActiveClass = activeId => {
     setActiveClassId(activeId);
-  }
+  };
 
   const handleMapForMobile = () => {
     if (!mapInMobile) {
@@ -151,27 +156,27 @@ const Agent = (props) => {
     } else {
       setMapInMobile(false);
     }
-  }
+  };
 
-  const handleMapFilter = (value) => {
+  const handleMapFilter = value => {
     let data = listedData;
     const lowerCasedFilter = value.toLowerCase();
-    const filteredData = data && data.filter(item => {
-      return Object.keys(item).some(key => {
-        if (item[key] === null || typeof item[key] === "object") {
-          return
-        }
-        return item.name.toLowerCase().includes(lowerCasedFilter);
-        // return item[key].toLowerCase().includes(lowerCasedFilter);
+    const filteredData =
+      data &&
+      data.filter(item => {
+        return Object.keys(item).some(key => {
+          if (item[key] === null || typeof item[key] === 'object') {
+            return;
+          }
+          return item.name.toLowerCase().includes(lowerCasedFilter);
+          // return item[key].toLowerCase().includes(lowerCasedFilter);
+        });
       });
-    });
 
     setFilteredListedData(filteredData);
-  }
-
+  };
 
   return (
-
     <section className="agents-wrapper">
       <CountryRegion
         countryNRegion={countryNRegion}
@@ -179,6 +184,7 @@ const Agent = (props) => {
         filterCountryFile={filterCountryFile}
         handleCountryName={handleCountryName}
         handleMapClick={handleMapClick}
+        handleMapFilter={handleMapFilter}
         {...props}
       />
       <div className="find-agent-wrapper">
@@ -194,12 +200,16 @@ const Agent = (props) => {
               handleEventValue={handleEventValue}
               checkBox={checkBox}
               handleMapFilter={handleMapFilter}
+              mapClick={mapClick}
               {...props}
             />
           </div>
           <div className="agent-map-area">
-            <span className="map-label-mobileonly" onClick={handleMapForMobile}>Find in Map</span>
+            <span className="map-label-mobileonly" onClick={handleMapForMobile}>
+              Find in Map
+            </span>
             <GoogleMap
+              toggler={toggle}
               multipleMarker={filteredListedData}
               showOnMapData={showOnMapData}
               countryName={countryName}
@@ -213,5 +223,5 @@ const Agent = (props) => {
       </div>
     </section>
   );
-}
+};
 export default Agent;

@@ -92,10 +92,11 @@
             line-height: 44px;
             text-align: center;
             font-weight: 600;
-            margin-bottom: 20px;
+            margin-bottom: 30px;
             @media(max-width: 1024px){
                 font-size: 30px;
                 line-height: 50px;
+                margin-bottom: 20px;
             }
             @media(max-width: 767px){
                 font-size: 20px;
