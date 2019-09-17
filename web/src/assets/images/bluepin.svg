@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="20px" height="36px" viewBox="0 0 20 36" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 55.2 (78181) - https://sketchapp.com -->
+    <title>google_maps_pin</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <linearGradient x1="50%" y1="0%" x2="50%" y2="100%" id="linearGradient-1">
+            <stop stop-color="#0098FF" offset="0%"></stop>
+            <stop stop-color="#0077C8" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="New-Find-Agent" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Find-agent-Search-Results-Hover" transform="translate(-839.000000, -630.000000)">
+            <g id="google_maps_pin" transform="translate(839.000000, 630.000000)">
+                <path d="M9.76760711,35.5537153 L10.1884659,35.5537153 L10.1920333,34.1795088 C10.6447462,31.0935265 11.2359752,28.2275373 11.9724698,26.0965229 C12.8579431,23.5344452 15.1446419,19.516889 17.7852213,15.3808639 C18.9293996,13.7924686 19.5537153,11.8932041 19.5537153,9.9 C19.5537153,4.67986682 15.2773697,0.446284691 10,0.446284691 C4.72263028,0.446284691 0.446284691,4.67986682 0.446284691,9.9 C0.446284691,11.8912396 1.06936548,13.7887405 2.22632494,15.398272 C4.81859883,19.4959277 7.0924837,23.5214607 7.98244461,26.0965229 C8.71893923,28.2275373 9.31016819,31.0935265 9.76760711,34.2442854 L9.76760711,35.5537153 Z" id="pin" stroke="#1A6299" stroke-width="0.892569382" fill="url(#linearGradient-1)"></path>
+                <path d="M10,14.4 C12.0083082,14.4 13.6363636,12.7882251 13.6363636,10.8 C13.6363636,8.8117749 12.0083082,7.2 10,7.2 C7.99169182,7.2 6.36363636,8.8117749 6.36363636,10.8 C6.36363636,12.7882251 7.99169182,14.4 10,14.4 Z" id="circle" fill="#05588F"></path>
+            </g>
+        </g>
+    </g>
+</svg>

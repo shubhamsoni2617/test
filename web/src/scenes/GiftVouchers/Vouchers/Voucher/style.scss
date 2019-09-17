@@ -15,6 +15,10 @@
         img{
             height: 35.1px;
             width: 76.5px;
+            @media(max-width: 1500px){
+                height: 30.1px;
+                width: 70.5px;
+            }
             @media(max-width: 768px){
                 height: auto;
                 max-width: 56px;

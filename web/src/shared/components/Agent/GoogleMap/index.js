@@ -4,7 +4,7 @@ import redirect from '../../../../assets/images/redirect.svg';
 import './style.scss';
 import DirectionIcon from '../../../../assets/images/direction.png';
 import DefaultImg from '../../../../assets/images/horizontal.png';
-import svg from '../../../../assets/images/website.svg';
+import BluePin from '../../../../assets/images/bluepin.svg';
 import Image from '../../Image';
 import Constants from '../../../constants';
 import { useCustomWidth } from '../../CustomHooks';
@@ -45,7 +45,7 @@ const GoogleMap = props => {
       setSelectedPlace(props);
       setActiveMarker(marker);
       setShowingInfoWindow(true);
-      setZoomValue(15);
+      // setZoomValue(15);
       setInitialCenter({
         lat: Number(selectedPlace.latitude),
         lng: Number(selectedPlace.latitude)
@@ -54,7 +54,7 @@ const GoogleMap = props => {
       setActiveMarker(marker);
       setShowingInfoWindow(true);
       setSelectedPlace(props);
-      setZoomValue(15);
+      // setZoomValue(15);
       setInitialCenter({
         lat: Number(showOnMapData.latitude),
         lng: Number(showOnMapData.latitude)
@@ -73,9 +73,9 @@ const GoogleMap = props => {
     setShowingInfoWindow(true);
     setInitialCenter({
       lat: Number(showOnMapData.latitude),
-      lng: Number(showOnMapData.latitude)
+      lng: Number(showOnMapData.longitude)
     });
-    setZoomValue(15);
+    // setZoomValue(15);
   }, [showOnMapData.id, toggler]);
 
   useEffect(() => {
@@ -90,16 +90,16 @@ const GoogleMap = props => {
   };
 
   const handleZoom = country => {
-    console.log(country,"handlego")
+    console.log(country, 'handlego');
     switch (country) {
       case 'Singapore':
-        setZoomValue(12);
+        setZoomValue(11);
         break;
       case 'Malaysia':
         setZoomValue(4);
         break;
       case 'Indonesia':
-        setZoomValue(1);
+        setZoomValue(4);
         break;
       case 'Thailand':
         setZoomValue(5);
@@ -116,8 +116,6 @@ const GoogleMap = props => {
       case 'South Korea':
         setZoomValue(5);
         break;
-      default:
-        setZoomValue(12);
     }
   };
 
@@ -134,7 +132,7 @@ const GoogleMap = props => {
       let lat = Number(multipleMarker[0].latitude);
       let lng = Number(multipleMarker[0].longitude);
       setInitialCenter({ lat: lat, lng: lng });
-      handleZoom('Singapore');
+      // handleZoom('Singapore');
     }
   }, [multipleMarker]);
 
@@ -142,6 +140,7 @@ const GoogleMap = props => {
     return <div>Loading...</div>;
   }
 
+  console.log(zoomValue, 'IndonesiaIndonesia');
   return (
     <div
       className="gmap"
@@ -188,13 +187,18 @@ const GoogleMap = props => {
                           url: elem.map_pin_icon,
                           scaledSize: new google.maps.Size(50, 50)
                         }
-                      : elem.id === selectedPlace.id
+                      : elem.map_pin_color!=="#FFFFFF"
                       ? {
                           path: Constants.MAP_PATH,
-                          scale: 1.5,
-                          fillColor: 'blue',
+                          scale: 1,
+                          fillColor: elem.map_pin_color,
                           fillOpacity: 1,
                           strokeWeight: 2
+                        }
+                      : elem.id === selectedPlace.id
+                      ? {
+                          url: BluePin,
+                          scaledSize: new google.maps.Size(50, 50)
                         }
                       : null
                   }
@@ -270,13 +274,18 @@ const GoogleMap = props => {
                           url: elem.map_pin_icon,
                           scaledSize: new google.maps.Size(50, 50)
                         }
-                      : elem.id === showOnMapData.id
+                      : elem.map_pin_color!=="#FFFFFF"
                       ? {
                           path: Constants.MAP_PATH,
-                          scale: 0.8,
-                          fillColor: 'blue',
+                          scale: 1,
+                          fillColor: elem.map_pin_color,
                           fillOpacity: 1,
                           strokeWeight: 2
+                        }
+                      : elem.id === showOnMapData.id
+                      ? {
+                          url: BluePin,
+                          scaledSize: new google.maps.Size(50, 50)
                         }
                       : null
                   }

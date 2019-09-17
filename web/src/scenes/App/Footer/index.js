@@ -13,7 +13,7 @@ import BackToTop from '../../../shared/components/BackToTop';
 
 const Footer = () => {
   return (
-    <footer>
+    <footer id="footer">
       <section className="footer">
         <div className="container-fluid">
           <div className="footer-top">

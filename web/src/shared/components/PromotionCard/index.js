@@ -63,14 +63,16 @@ const PromotionCard = props => {
           <Image src={data.featured_image} />
         </div>
         <div className="promotion-desc">
-          {data && data.custom_label_text ? (
-            <span
-              className="promotion-category"
-              style={{ color: `#${data.custom_label_color}` }}
-            >
-              {data.custom_label_text}
-            </span>
-          ) : null}
+          <div className="promotion-category-div">
+            {data && data.custom_label_text ? (
+              <span
+                className="promotion-category"
+                style={{ color: `#${data.custom_label_color}` }}
+              >
+                {data.custom_label_text}
+              </span>
+            ) : null}
+          </div>
           <span className="share" onClick={handleSocialShare}>
             <img src={ShareIcon} alt="share-icon" />
             <SocialShare
@@ -78,7 +80,7 @@ const PromotionCard = props => {
               showSocialShare={socialShare}
             />
           </span>
-          <EventHeading title={data.title} lines={2} height={20} />
+          <EventHeading title={data.title} lines={2} height={22} />
           <div className="promotion-btn-wrapper">
             {/* <a href={data.buttons.length > 0 && data.buttons[0].url ? data.buttons[0].url : undefined}>
               <button style={{ color: data.buttons.length > 0 ? `#${data.buttons[0].color}` : "" }}>

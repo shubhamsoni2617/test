@@ -21,7 +21,8 @@ const SearchAgent = props => {
     handleEventValue,
     activeClassId,
     checkBox,
-    handleMapFilter
+    handleMapFilter,
+    mapClick
   } = props;
 
   const [width] = useCustomWidth();
@@ -40,6 +41,10 @@ const SearchAgent = props => {
     setAttraction(false);
     setOngoingEvents(false);
   }, [checkBox]);
+
+  useEffect(() => {
+    setFilter('');
+  }, [mapClick]);
 
   const handleSubmit = event => {
     event.preventDefault();
@@ -138,57 +143,60 @@ const SearchAgent = props => {
 
   return (
     <div className="search-agent">
-      <h2>
-        {venue ? 'Venues in ' : 'Agents in '}{' '}
-        {countryName ? countryName : 'Singapore'}
-      </h2>
-      <form onSubmit={handleSubmit}>
-        <div className="agent-search">
-          <button type="submit" className="search-btn">
-            <img src={SearchIcon} alt="search-icon" />
-          </button>
-          <input
-            className="form-control"
-            type="text"
-            value={filter}
-            onChange={handleChange}
-            placeholder={venue ? 'Search for Location' : 'Search for an agent'}
-          />
-        </div>
-      </form>
-      {venue ? (
-        <ul className="list-option">
-          <li>
+      <div className="search-agent-header">
+        <h2>
+          {venue ? 'Venues in ' : 'Agents in '}{' '}
+          {countryName ? countryName : 'Singapore'}
+        </h2>
+        <form onSubmit={handleSubmit}>
+          <div className="agent-search">
+            <button type="submit" className="search-btn">
+              <img src={SearchIcon} alt="search-icon" />
+            </button>
             <input
-              type="checkbox"
-              onChange={handleAttraction}
-              className="styled-checkbox"
-              id="1"
-              checked={attraction ? true : false}
+              className="form-control"
+              type="text"
+              value={filter}
+              onChange={handleChange}
+              placeholder={
+                venue ? 'Search for Location' : 'Search for an agent'
+              }
             />
-            <label htmlFor="1"> Attractions</label>
-          </li>
-          <li>
-            <input
-              type="checkbox"
-              onChange={handleOngoingEvents}
-              className="styled-checkbox"
-              id="2"
-              checked={onGoingEvents ? true : false}
-            />
-            <label htmlFor="2"> Venues with Ongoing Events</label>
-          </li>
-        </ul>
-      ) : null}
-      {!venue && isFile ? (
-        <h6 className="festive-hour">
-          <a href={countryFileUrl} download target="_blank">
-            Festive Period Operating Hours{' '}
-            <img src={downloadOrange} alt="Download" />{' '}
-          </a>
-        </h6>
-      ) : null}
-
+          </div>
+        </form>
+        {venue ? (
+          <ul className="list-option">
+            <li>
+              <input
+                type="checkbox"
+                onChange={handleAttraction}
+                className="styled-checkbox"
+                id="1"
+                checked={attraction ? true : false}
+              />
+              <label htmlFor="1"> Attractions</label>
+            </li>
+            <li>
+              <input
+                type="checkbox"
+                onChange={handleOngoingEvents}
+                className="styled-checkbox"
+                id="2"
+                checked={onGoingEvents ? true : false}
+              />
+              <label htmlFor="2"> Venues with Ongoing Events</label>
+            </li>
+          </ul>
+        ) : null}
+        {!venue && isFile ? (
+          <h6 className="festive-hour">
+            <a href={countryFileUrl} download target="_blank">
+              Festive Period Operating Hours{' '}
+              <img src={downloadOrange} alt="Download" />{' '}
+            </a>
+          </h6>
+        ) : null}
+      </div>
       <ul className="list-group">
         {initialItems &&
           initialItems.map((item, index) => {
@@ -199,12 +207,8 @@ const SearchAgent = props => {
                     ? 'pop-up-container active-class'
                     : 'pop-up-container'
                 }
-                onClick={e => {
-                  showOnMapClick(e, item, activePopUpRef);
-                }}
                 key={index}
-                onMouseEnter={() => showPopUp(item)}
-                onMouseLeave={hidePopUp}
+
               >
                 <img
                   src={downArrow}
@@ -212,7 +216,8 @@ const SearchAgent = props => {
                   alt="Down Arrow"
                 />
                 <h3>
-                  <strong>{item.name}</strong>
+                  <a onMouseEnter={() => showPopUp(item)}
+                onMouseLeave={hidePopUp}><strong>{item.name}</strong></a>
                   {item.name.length > 25 ? <br /> : null}{' '}
                   <span>
                     <a

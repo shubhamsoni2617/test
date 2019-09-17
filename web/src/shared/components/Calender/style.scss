@@ -1,10 +1,19 @@
-.Range .DayPicker-Day--selected:not(.DayPicker-Day--start):not(.DayPicker-Day--end):not(.DayPicker-Day--outside) {
-  background-color: #EFF7FF;
-  color: #4a90e2;
+.Range .DayPicker-Day--selected:not(.DayPicker-Day--start):not(.DayPicker-Day--end):not(.DayPicker-Day--outside),
+.DayPicker-Day--selected:not(.DayPicker-Day--start):not(.DayPicker-Day--end):not(.DayPicker-Day--outside) {
+  background-color: #EFF7FF !important;
+  color: #7C86A2 !important;
+  border-radius: 0px !important;
+}
+.DayPicker-Day--selected:not(.DayPicker-Day--start):not(.DayPicker-Day--end):not(.DayPicker-Day--outside):hover{
+  color: #fff !important; 
+  background-color: #F0F8FF !important;
+}
+.DayPicker-Day--selected:not(.DayPicker-Day--start):not(.DayPicker-Day--end):not(.DayPicker-Day--outside):not(.DayPicker-Day--selected):hover{ 
+  background-color: #ffffff !important; 
 }
 .Range .DayPicker-Day--selected:not(.DayPicker-Day--start):not(.DayPicker-Day--end):not(.DayPicker-Day--outside):hover{
   position: relative;
-  background-color: transparent;
+  background-color: transparent;  
   &:after{
     position: absolute;
     content: "";
@@ -31,4 +40,20 @@
 .DayPicker .DayPicker-wrapper .DayPicker-Body .DayPicker-Week .DayPicker-Day.DayPicker-Day--outside {
   pointer-events: none;
   opacity: 0;
+}
+.DayPicker .DayPicker-wrapper .DayPicker-Body .DayPicker-Week .DayPicker-Day--selected.DayPicker-Day--start:hover,
+.DayPicker .DayPicker-wrapper .DayPicker-Body .DayPicker-Week .DayPicker-Day--selected.DayPicker-Day--end:hover{
+  background-color: transparent !important;
+}
+.DayPicker .DayPicker-wrapper .DayPicker-Body .DayPicker-Week .DayPicker-Day:hover{
+  background-color: transparent !important;
+}
+.DayPicker .DayPicker-wrapper .DayPicker-Body .DayPicker-Week .DayPicker-Day--selected:hover{
+  background-color: #eff7ff !important;
+}
+.DayPicker .DayPicker-wrapper .DayPicker-Body .DayPicker-Week .DayPicker-Day.DayPicker-Day--start + .DayPicker-Day--selected{
+  z-index: 2 !important;
+}
+.DayPicker-Day.DayPicker-Day--selected:not(.DayPicker-Day--end):not(.DayPicker-Day--start){
+  z-index: 3 !important;
 }

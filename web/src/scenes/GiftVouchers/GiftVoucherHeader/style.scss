@@ -53,11 +53,11 @@
       height: auto;
     }
     .banner-desc {
-      flex: 0 0 40%;
-      width: 40%;
+      flex: 0 0 50%;
+      width: 50%;
       @media(max-width: 1500px){
-        flex: 0 0 51%;
-        width: 51%;
+        flex: 0 0 55%;
+        width: 55%;
       }
       @media(max-width: 1024px){
         flex: 0 0 60%;
