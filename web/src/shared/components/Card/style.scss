@@ -13,10 +13,12 @@
     position: relative;
     @supports (-ms-ime-align:auto) {
         box-shadow: 0 0px 1px rgba(154, 154, 154, 0.7);
-    }
+    }    
     @media (max-width: 767px) {
         width: 100%;
         margin: 0 5px 10px;
+        box-shadow: none;
+        border: 1px solid rgba(234, 234, 234, 0.8);
     }
     @media only screen and (min-width: 768px) and (max-width: 1024px) {
         width: 100%;
@@ -32,6 +34,10 @@
         -moz-transition: .5s ease-out;
         -o-transition: .5s ease-out;
         box-shadow: 0 2px 27px 0 rgba(0,0,0,0.09);
+        @media (max-width: 767px) {           
+            box-shadow: none;
+            border: 1px solid #0098FF;
+        }
     }
     &.attraction-block{
         padding-bottom: 0px;
@@ -53,7 +59,7 @@
                         background: #0098FF url(../../../assets/images/buy-arrow.png) 94% 15px no-repeat;                        
                         color: #FFF;                        
                         border: none;
-                        @media(max-width: 768px){
+                        @media(max-width: 991px){
                             background: #0098ff url(../../../assets/images/buy-arrow.png) 94% 13px no-repeat;
                             background-size: 20px;
                         }
@@ -76,8 +82,12 @@
             .event-detail-prime{
                 margin-bottom: 26px;
                 min-height: 142px;
+                @media(max-width: 1024px){
+                    margin-bottom: 5px;
+                }
                 @media(max-width: 768px){
                     min-height: auto;
+                    margin-bottom: 10px;
                 }
                 .category{
                     background-color: #092438;
@@ -128,7 +138,7 @@
                         padding: 10px;
                         background-size: 20px;
                     }
-                    @media(max-width: 768px){
+                    @media(max-width: 991px){
                         color: #fff;
                         background: #0098ff url(../../../assets/images/buy-arrow.png) 94% 13px no-repeat;
                         background-size: 20px;
@@ -274,9 +284,11 @@
             align-items: center;
             @media (max-width: 767px) {
                 flex-direction: column;
+                min-height: 40px;
             }
             @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
                 flex-direction: column;
+                min-height: 44px;
             }
             @media only screen and (min-device-width: 1025px) and (max-device-width: 1260px) {
                 flex-direction: column;
