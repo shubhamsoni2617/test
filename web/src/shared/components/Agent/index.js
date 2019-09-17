@@ -59,10 +59,12 @@ const Agent = props => {
   };
 
   useEffect(() => {
-    const params = {
-      country: countryId
-    };
-    fetchAgentsNVenues(params);
+    if (countryId) {
+      const params = {
+        country: countryId
+      };
+      fetchAgentsNVenues(params);
+    }
   }, [countryId, attractionValue, eventValue]);
 
   useEffect(() => {
@@ -201,6 +203,8 @@ const Agent = props => {
 
     setFilteredListedData(filteredData);
   };
+
+  console.log(filteredListedData, 'filteredListedData');
 
   return (
     <section

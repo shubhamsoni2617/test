@@ -140,7 +140,7 @@ const GoogleMap = props => {
     return <div>Loading...</div>;
   }
 
-  console.log(zoomValue, 'IndonesiaIndonesia');
+  console.table(showOnMapData, 'test');
   return (
     <div
       className="gmap"
@@ -185,7 +185,7 @@ const GoogleMap = props => {
                     elem.map_pin_icon !== '' && venue
                       ? {
                           url: elem.map_pin_icon,
-                          scaledSize: new google.maps.Size(50, 50)
+                          scaledSize: new google.maps.Size(45, 45)
                         }
                       : (elem.map_pin_color!=="#FFFFFF" && venue)
                       ? {
@@ -212,8 +212,8 @@ const GoogleMap = props => {
           >
             <div className="map-info-popup">
               <div className="map-img">
-                {/* <Image className="small" src={selectedPlace.imgPath} type="Small" /> */}
-                <img
+                <Image src={selectedPlace.imgPath} type="Small" />
+                {/* <img
                   height="50"
                   width="100"
                   src={
@@ -225,7 +225,7 @@ const GoogleMap = props => {
                   }
                   title="Title of image"
                   alt="alt text here"
-                />
+                /> */}
               </div>
               <div className="map-name-address">
                 <h5>{selectedPlace.name}</h5>
@@ -253,7 +253,9 @@ const GoogleMap = props => {
           style={{ width: '100%', height: '600px', position: 'relative' }}
           zoom={zoomValue}
           initialCenter={initialCenter}
-          gestureHandling={'greedy'}
+          gestureHandling={
+            width <= Constants.MOBILE_BREAK_POINT ? 'greedy' : 'cooperative'
+          }
           // center={initialCenter}
         >
           {multipleMarker &&
@@ -303,8 +305,8 @@ const GoogleMap = props => {
             >
               <div className="map-info-popup">
                 <div className="map-img">
-                  {/* <Image className="small" src={showOnMapData.image} type="Small" /> */}
-                  <img
+                  <Image src={showOnMapData.image} type="Small" />
+                  {/* <img
                     height="50"
                     width="100"
                     src={
@@ -316,7 +318,7 @@ const GoogleMap = props => {
                     }
                     title="Title of image"
                     alt="alt text here"
-                  />
+                  /> */}
                 </div>
                 <div className="map-name-address">
                   <h5>{showOnMapData.name}</h5>
