@@ -27,7 +27,7 @@
                 transform: none;
                 width: 100%;
                 bottom: 0px;
-            }          
+            }
             h1{
                 @media(max-width: 768px){
                     margin-top: -60px;
@@ -39,7 +39,7 @@
     }
 }
 .find-agent-wrapper{
-    display: flex;    
+    display: flex;
     .agent-list{
         .find-map-mob{
             background-color: #fafafa;
@@ -65,7 +65,7 @@
                 }
             }
         }
-        .agent-map-area {            
+        .agent-map-area {
             flex: 0 0 70%;
             width: 70%;
             margin-top: 34px;
@@ -75,11 +75,11 @@
             }
             @media(max-width: 992px){
                 flex: 0 0 50%;
-                width: 50%;                
+                width: 50%;
             }
             @media(max-width: 768px){
                 flex: 0 0 100%;
-                width: 100%;  
+                width: 100%;
             }
             .map-label-mobileonly{
                 display: none;
@@ -116,7 +116,7 @@
     }
     .agent-sidebar {
         flex: 0 0 30%;
-        width: 30%;        
+        width: 30%;
         padding-right: 50px;
         @media(max-width: 1024px){
             flex: 0 0 40%;
@@ -139,3 +139,58 @@
     }
 }
 
+.agent-fixed{
+  .banner-wrapper{
+    // position: fixed;
+    // top: 0;
+    // left: 0;
+    // width: 100%;
+    // z-index: 4;
+    // max-height: 200px;
+    // overflow: hidden;
+    .authorised-agent{
+      display: none;
+    }
+  }
+  .search-agent{
+    margin-top: 175px;
+  }
+  .search-agent-header{
+    position: fixed;
+    width: 30%;
+    background: #fff;
+    z-index: 4;
+    left: 0;
+    padding: 30px 50px 0 25px;
+    top: 0;
+  }
+  .agent-map-area{
+    position: fixed;
+    right: 0;
+    top: 25px;
+    padding-right: 55px;
+    padding-left: 1px;
+  }
+  .agent-sidebar{
+    margin-top: 0px;
+    .search-agent-header{
+      position: fixed;
+    }
+  }
+}
+.agent-absolute{
+  .banner-wrapper{
+    // position: absolute;
+  }
+  .agent-map-area{
+    position: relative;
+    .gmap{
+      position: absolute;
+      bottom: 40px;
+      width: 100%;
+    }
+  }
+  .agent-sidebar{
+    // position: absolute;
+  }
+}
