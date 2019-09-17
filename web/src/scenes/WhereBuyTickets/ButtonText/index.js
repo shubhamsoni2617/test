@@ -1,5 +1,4 @@
 import React from "react";
-
 import appleImage from "../../../assets/images/apple.svg";
 import androidImage from "../../../assets/images/android.png";
 import { Link } from "react-router-dom";
@@ -31,15 +30,15 @@ const Buttontext = ({ title }) => {
     );
   }
   if (title === "Find an Agent") {
-    return <button>Find an Agent</button>;
+    return <Link to="/agents">Find an Agent</Link>;
   }
   if (title === "API Partners") {
-    return <button>See All Partners</button>;
+    return <Link className="api-see-all-btn" to="/">See All Partners</Link>;
   }
   if (title === "Hotline @ +65 6348 5555") {
-    return <button>Contact Us</button>;
+    return <Link to="/contact-us">Contact Us</Link>;
   }
-  return <button>View</button>;
+  return <Link to="/">View</Link>;
 };
 
 export default Buttontext;

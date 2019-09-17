@@ -1,3 +1,6 @@
+// .events-section{
+//     height: 100%;
+// }
 /********** Checkbox ******/
 .styled-checkbox {
     position: absolute; // take it out of document flow
@@ -77,7 +80,7 @@
             flex-direction: row;
             margin-top: 22px;
             margin-bottom: 15px;
-            width: calc(100% + 17px);
+            width: calc(100% + 15px);
             @media (max-width: 767px) {
                 margin-bottom: 20px;
             }
@@ -85,9 +88,10 @@
                 flex: 0 0 calc(33.33% - 17px);
                 width: calc(33.33% - 17px);
                 margin-right: 17px;
-                // &:nth-child(3n){
-                //     margin-right: 0px;
-                // }
+                @media(min-width: 1441px) and (max-width: 1900px){
+                    flex: 0 0 calc(25% - 17px);
+                    width: calc(25% - 17px);
+                }
             }
             &.list-view{
                 > div{
@@ -125,12 +129,18 @@
 		line-height: normal;
 		text-decoration: none;
 		background-color: #ffffff;
-		transition: 0.9s all;
+        transition: 0.9s all;
+        -webkit-transition: 0.9s all;
+        -moz-transition: 0.9s all;
+        -o-transition: 0.9s all;
 		&:hover {
             background-color: #FFF;
             border: 1px solid #0098ff;
             color: #0098ff;
             transition: 0.9s all;
+            -webkit-transition: 0.9s all;
+            -moz-transition: 0.9s all;
+            -o-transition: 0.9s all;
 			span {
 				color: #0098ff;
 			}
@@ -140,12 +150,19 @@
 			font-family: 'Montserrat', sans-serif;
 			font-size: 14px;
 			line-height: 18px;
-			transition: 0.9s all;
+            transition: 0.9s all;
+            -webkit-transition: 0.9s all;
+            -moz-transition: 0.9s all;
+            -o-transition: 0.9s all;
+            font-weight: 600;
 		}
 		img {
 			padding-left: 10px;
 			padding-bottom: 4px;
-			transition: 0.9s filter;
+            transition: 0.9s filter;
+            -webkit-transition: 0.9s filter;
+            -moz-transition: 0.9s filter;
+            -o-transition: 0.9s filter;
 		}
 	}
 }
@@ -159,4 +176,5 @@
     box-shadow: 0 0 10px #DDD;
     border-radius: 50%;
     overflow: hidden;
+    z-index: 5;
 }

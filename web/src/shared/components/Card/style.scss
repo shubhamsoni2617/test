@@ -1,13 +1,19 @@
 .event-block{
     display: flex;
     flex-direction: column;
-    box-shadow: 0 0px 1px rgba(154, 154, 154, 0.3);
+    box-shadow: 0 0px 1px rgba(154, 154, 154, 1);
     border: 2px solid transparent;
     margin-bottom: 35px;
     width: 100%;
-    transition: .5s ease-out;
+    transition: .5s box-shadow;
+    -webkit-transition: .5s box-shadow;
+    -moz-transition: .5s box-shadow;
+    -o-transition: .5s box-shadow;
     cursor: pointer;
     position: relative;
+    @supports (-ms-ime-align:auto) {
+        box-shadow: 0 0px 1px rgba(154, 154, 154, 0.7);
+    }
     @media (max-width: 767px) {
         width: calc(50% - 10px);
         margin: 0 5px 10px;
@@ -22,12 +28,20 @@
     &:hover{
         border: 2px solid #0098FF;
         transition: .5s ease-out;
+        -webkit-transition: .5s ease-out;
+        -moz-transition: .5s ease-out;
+        -o-transition: .5s ease-out;
         box-shadow: 0 2px 27px 0 rgba(0,0,0,0.09);
     }
     &.attraction-block{
-        padding-bottom: 30px;
+        padding-bottom: 0px;
         position: relative;
-        &:hover{
+        @supports (-ms-ime-align:auto) {
+            box-shadow: 0 0px 1px rgba(154, 154, 154, 0.7);
+        }
+        &:hover{  
+            margin-bottom: 30px;
+            transition: 0.3s border;          
             .event-details {
                 .price-event{
                     .buy-btn{
@@ -38,25 +52,53 @@
                         border: none;
                     }
                 }
+                p{
+                    color: #626262;
+                }
             }
         }
         .event-details {
+            padding: 22px 15px 0px;
+            .event-detail-prime{
+                margin-bottom: 26px;
+                min-height: 120px;
+                .category{
+                    background-color: #092438;
+                    &:empty{
+                        padding: 0px;
+                        min-height: 20px;
+                    }
+                }
+            }
+            .attraction-show-more {
+                color: #2698ff;
+                text-transform: lowercase;
+                &:hover{
+                    text-decoration: underline;
+                }
+            }
             .price-event{
+                .price{
+                    height: 50px;
+                    position: relative;
+                }
                 .buy-btn{
                     position: absolute;
-                    left: 0;
+                    left: 0px;
                     bottom: 0;
                     height: auto;
                     text-align: left;
                     width: 100%;
+                    min-width: 100%;
                     background: #FFF;
                     font-size: 18px;
                     color: #0098FF;
                     line-height: 22px;
-                    padding: 15px;
+                    padding: 14px 17px;
                     text-transform: uppercase;
                     border: none;
                     background: url(../../../assets/images/buy-arrow-b.png) 94% 15px no-repeat;
+                    font-weight: 600;
                     &:hover{
                         background: #0098FF url(../../../assets/images/buy-arrow.png) 94% 15px no-repeat;
                         font-size: 18px;
@@ -64,6 +106,20 @@
                         line-height: 22px;
                         border: none;
                     }
+                }
+            }
+            p{
+                color: #626262;
+                display: inline;
+                &:empty{
+                    display: none;
+                }
+            }
+            .item-title{
+                padding: 18px 0 13px;
+                h3{
+                    line-height: 20px;
+
                 }
             }
         }
@@ -74,10 +130,12 @@
         top: 7px;
         height: 24px;
         width: 85px;
-        background: linear-gradient(90deg, #670E00 0%, #E21A1F 100%);
+        background: linear-gradient(90deg, #670E00 -50%, #E21A1F 100%);
         color: #FFFFFF;
-        font-size: 14px;
+        font-size: 13px;
+        font-family: 'Montserrat', sans-serif;
         line-height: 18px;
+        font-weight: 500;
         text-align: center;
         display: flex;
         justify-content: center;
@@ -116,24 +174,25 @@
         }
     }
     .event-details{
-            padding: 15px 15px 10px;
-            display: block;
-            @media (max-width: 767px) {
-                padding: 15px 5px 10px;
-            }
-            @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
-                padding: 15px 5px 10px;
-            }
+        padding: 15px 15px 10px;
+        display: block;
+        @media (max-width: 767px) {
+            padding: 15px 5px 10px;
+        }
+        @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
+            padding: 15px 5px 10px;
+        }
         .item-title{
           padding: 10px 0;
           margin: 0;
           line-height: 20px;
-          min-height: 67px;
+          min-height: 61px;
           h3{
             font-size: 17px;
             color: #343434;
             font-weight: 500;
             font-family: 'Rubik', sans-serif;
+            margin-bottom: 0;
             @media (max-width: 767px) {
                 font-size: 14px;
             }
@@ -202,6 +261,9 @@
                 font-weight: 500;
                 border: 1px transparent solid;
                 transition: 0.8s all;
+                -webkit-transition: 0.8s all;
+                -moz-transition: 0.8s all;
+                -o-transition: 0.8s all;
                 &::after{
                     display: none;
                 }
@@ -210,6 +272,9 @@
                     background: #FFF;
                     color: #0098FF;
                     transition: 0.8s all;
+                    -webkit-transition: 0.8s all;
+                    -moz-transition: 0.8s all;
+                    -o-transition: 0.8s all;
                 }
 
             }
@@ -243,6 +308,9 @@
                 width: 100%;
                 .item-title{
                     min-height: auto;
+                }
+                p{
+                    color: #626262;
                 }
                 .event-place{
                     min-height: auto;

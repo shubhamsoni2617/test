@@ -1,12 +1,15 @@
-import React, { Fragment, useState, useEffect } from "react";
-import banner from "../../assets/images/Bitmap Copy 2.png";
-import TermsAndPrivacyService from "../../shared/services/TermsAndPrivacyService";
-import "./style.scss";
+import React, { Fragment, useState, useEffect } from 'react';
+import termsBanner from '../../assets/images/tc-banner.png';
+import privacyBanner from '../../assets/images/Privacy.png';
+
+import TermsAndPrivacyService from '../../shared/services/TermsAndPrivacyService';
+import './style.scss';
 
 const TermsPrivacy = props => {
   const [termsprivacy, setTermsPrivacy] = useState(null);
 
   useEffect(() => {
+    window.scrollTo(0, 0);
     fetchTermsConditions();
   }, []);
 
@@ -16,7 +19,6 @@ const TermsPrivacy = props => {
     };
     TermsAndPrivacyService.getTermsAndPrivacyService(params)
       .then(res => {
-        console.log(res.data.data);
         setTermsPrivacy(res.data.data);
       })
       .catch(err => {
@@ -28,7 +30,16 @@ const TermsPrivacy = props => {
       <Fragment>
         <section className="terms-privacy-wrapper">
           <div className="banner-wrapper">
-            <img src={banner} className="img-fluid" alt="page-banner" />
+            {props.cmsPageType === 1 ? (
+              <img src={termsBanner} className="img-fluid" alt="page-banner" />
+            ) : (
+              <img
+                src={privacyBanner}
+                className="img-fluid"
+                alt="page-banner"
+              />
+            )}
+
             <div className="banner-overlay">
               <h1>{termsprivacy[0].title}</h1>
             </div>

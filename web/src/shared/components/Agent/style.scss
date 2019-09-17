@@ -1,9 +1,45 @@
-.find-agent-wrapper{
-    display: flex;
-    padding-top: 45px;
-    @media (max-width: 992px) {
-        padding-top: 20px;
+.agents-wrapper{
+    .banner-wrapper{
+        margin-bottom: 33px;
+        @media(max-width: 991px){
+            margin-bottom: 70px;
+            margin-top: -60px;
+        }
+        @media(max-width: 767px){
+            margin-bottom: 30px;
+            margin-top: -116px;
+        }
+        img{
+            min-height: 250px;
+            @media(max-width: 768px){
+                min-height: 150px;
+            }
+            @media(max-width: 767px){
+                min-height: 200px;
+            }
+        }
+        .banner-overlay{
+            @media(max-width: 768px){
+                margin-top: 0px;
+                position: relative;
+                top: auto;
+                left: 0px;
+                transform: none;
+                width: 100%;
+                bottom: 0px;
+            }          
+            h1{
+                @media(max-width: 768px){
+                    margin-top: -60px;
+                    padding-bottom: 15px;
+                    font-weight: 600;
+                }
+            }
+        }
     }
+}
+.find-agent-wrapper{
+    display: flex;    
     .agent-list{
         .find-map-mob{
             background-color: #fafafa;
@@ -28,6 +64,74 @@
                     transform: rotate(0deg);
                 }
             }
+        }
+        .agent-map-area {            
+            flex: 0 0 70%;
+            width: 70%;
+            margin-top: 34px;
+            @media(max-width: 1024px){
+                flex: 0 0 60%;
+                width: 60%;
+            }
+            @media(max-width: 992px){
+                flex: 0 0 50%;
+                width: 50%;                
+            }
+            @media(max-width: 768px){
+                flex: 0 0 100%;
+                width: 100%;  
+            }
+            .map-label-mobileonly{
+                display: none;
+                @media(max-width: 768px){
+                    display: block;
+                    padding: 20px;
+                    background-color: #FAFAFA;
+                    color: #343434;
+                    font-size: 15px;
+                    font-weight: 500;
+                    line-height: 20px;
+                    position: relative;
+                    width: calc(100% + 60px);
+                    left: -30px;
+                }
+                @media(max-width: 767px){
+                    width: calc(100% + 20px);
+                    left: -10px;
+                }
+                &:after{
+                    @media(max-width: 768px){
+                        background-image: url('../../../assets/images/down-arrow-grey.svg');
+                        position: absolute;
+                        content: "";
+                        right: 20px;
+                        width: 20px;
+                        height: 20px;
+                        background-repeat: no-repeat;
+                        background-position: 98%
+                    }
+                }
+            }
+        }
+    }
+    .agent-sidebar {
+        flex: 0 0 30%;
+        width: 30%;        
+        padding-right: 50px;
+        @media(max-width: 1024px){
+            flex: 0 0 40%;
+            width: 40%;
+            padding-right: 50px;
+        }
+        @media(max-width: 992px){
+            flex: 0 0 50%;
+            width: 50%;
+            padding-right: 70px;
+        }
+        @media(max-width: 768px){
+            flex: 0 0 100%;
+            width: 100%;
+            padding-right: 0px;
         }
     }
     .agent-map{

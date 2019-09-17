@@ -46,6 +46,7 @@ export default class Promotions extends Component {
     };
     this.breadCrumbData = {
       'page_banner': PageBanner,
+      'page_banner_blur': PageBanner,
       'page': 'Promotions',
       'count': '0',
       'breadcrumb_slug': [{ 'path': '/', 'title': 'Home' }, { 'path': '/promotions', 'title': 'Promotions' }]
@@ -237,7 +238,7 @@ export default class Promotions extends Component {
   render() {
     this.breadCrumbData.count = this.state.count;
     return (
-      <div>
+      <div className="promotions-full-wrapper">
         <Breadcrumb breadCrumbData={this.breadCrumbData} />
         <section className="promotions-wrapper">
           <div className="container-fluid">

@@ -13,6 +13,9 @@
       height: auto;
       overflow: inherit;
     transition: opacity .5s;
+    -webkit-transition: opacity .5s;
+    -moz-transition: opacity .5s;
+    -o-transition: opacity .5s;
     &:before{
       border-top: 8px solid #616161;
     }

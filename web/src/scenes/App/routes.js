@@ -1,100 +1,104 @@
-import Home from "../Home";
-import Events from "../Events";
+import Home from '../Home';
+import Events from '../Events';
 // import EventsDetail from "../Events/EventsDetail";
-import EventsDetail from "../EventsDetail";
-import HomeService from "../../shared/services/HomeService";
-import Promotions from "../Promotions";
-import PageNotFound from "../PageNotFound/index";
-import Agents from "../Agents";
-import Attraction from "../Attraction";
-import Venues from "../Venues";
-import WhereBuyTickets from "../WhereBuyTickets";
-import TermsPrivacy from "../TermsPrivacy";
-import GiftVouchers from "../GiftVouchers";
-import ContactUs from "../ContactUs";
-import Faq from "../Faq";
+import EventsDetail from '../EventsDetail';
+import HomeService from '../../shared/services/HomeService';
+import Promotions from '../Promotions';
+import PageNotFound from '../PageNotFound/index';
+import Agents from '../Agents';
+import Attraction from '../Attraction';
+import Venues from '../Venues';
+import WhereBuyTickets from '../WhereBuyTickets';
+import TermsPrivacy from '../TermsPrivacy';
+import GiftVouchers from '../GiftVouchers';
+import ContactUs from '../ContactUs';
+import Faq from '../Faq';
 
 const routes = [
   {
-    path: "/",
+    path: '/',
     exact: true,
     component: Home
   },
   {
-    path: "/events/search",
+    path: '/events/search',
     exact: true,
     component: Events
   },
   {
-    path: "/events/:icc",
+    path: '/events/:icc',
     exact: true,
     component: EventsDetail
   },
   {
-    path: "/events",
+    path: '/events',
     component: Events,
     exact: true,
-    fetchInitialData: (path = "") => HomeService.getData()
+    fetchInitialData: (path = '') => HomeService.getData()
   },
   {
-    path: "/agents",
+    path: '/agents',
     component: Agents,
     exact: true
   },
   {
-    path: "/promotions/:promoId",
+    path: '/promotions/:promoId',
     component: Promotions
   },
   {
-    path: "/promotions",
+    path: '/promotions',
     exact: true,
     component: Promotions
   },
   {
-    path: "/where-to-buy-tickets",
+    path: '/where-to-buy-tickets',
     exact: true,
     component: WhereBuyTickets
   },
   {
-    path: "/attractions",
+    path: '/attractions',
     component: Attraction,
     exact: true
   },
   {
-    path: "/terms-and-conditions",
+    path: '/terms-and-conditions',
     component: TermsPrivacy,
     exact: true,
     cmsPageType: 1
   },
   {
-    path: "/privacy",
+    path: '/privacy',
     component: TermsPrivacy,
     exact: true,
     cmsPageType: 2
   },
   {
-    path: "/gift-vouchers",
+    path: '/gift-vouchers',
     component: GiftVouchers,
     exact: true
   },
   {
-    path: "/contact-us",
+    path: '/contact-us',
     component: ContactUs,
     exact: true
   },
   {
-    path: "/venues",
+    path: '/venues',
     component: Venues,
     exact: true
   },
   {
-    path: "/faq/:id",
+    path: '/faq/:id/:questionId',
     component: Faq,
     exact: true
   },
-
   {
-    path: "*",
+    path: '/faq/:id',
+    component: Faq,
+    exact: true
+  },
+  {
+    path: '*',
     component: PageNotFound
   }
 ];

@@ -12,6 +12,11 @@
     max-height: 100%;
     min-height: 270px;
   }
+  & > .container-fluid {
+    @media(min-width: 1280px){
+      padding-left: 100px;
+    }
+  }
   &:after{
     position: absolute;
     bottom: 0px;
@@ -142,6 +147,9 @@
         flex-wrap: wrap;
         justify-content: center;
         transition: 0.5s background-color;
+        -webkit-transition: 0.5s background-color;
+        -moz-transition: 0.5s background-color;
+        -o-transition: 0.5s background-color;
         position: relative;
         @media(max-width: 1024px){
           height: 42px;
@@ -163,6 +171,9 @@
           padding-right: 25px;
           position: relative;
           transition: 0.5s color;
+          -webkit-transition: 0.5s color;
+          -moz-transition: 0.5s color;
+          -o-transition: 0.5s color;
           z-index: 1;
           @media(max-width: 1024px){
             font-size: 16px;
@@ -190,10 +201,19 @@
         }
         &:hover{
           background-color: #fff;
+          @media(max-width: 768px){
+            background-color: transparent;
+          }
           span{
             color: #0098FF;
+            @media(max-width: 768px){
+              color: #fff;
+            }
             &:after{
               background-image: url(../../../assets/images/buy-arrow-b.png);
+              @media(max-width: 768px){
+                background-image: url(../../../assets/images/buy-arrow.png);
+              }
             }
           }
         }

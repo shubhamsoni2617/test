@@ -121,7 +121,6 @@ const PromotionCard = props => {
           </div>
         </div>
       </div>
-      <div className="promotion-dropdown-height"></div>
       <div className="promotion-tab-dropdown" id="">
         <a
           className="promotion-tab-close-btn"
@@ -154,7 +153,7 @@ const PromotionCard = props => {
                 </div>
               );
             })}
-          {events && events.length > 0 && (
+          {events && events.length > 0 &&
             <section className="related-event">
               <div className="container-fluid">
                 <div className="section-top-wrapper">
@@ -169,7 +168,7 @@ const PromotionCard = props => {
                 />
               </div>
             </section>
-          )}
+          }
         </div>
       </div>
     </div>

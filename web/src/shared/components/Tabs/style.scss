@@ -3,10 +3,10 @@
     width: 100%;
     padding-bottom: 13px;
     @media(max-width: 991px) {
-        padding-bottom: 30px;
+        padding-bottom: 20px;
     }
     @media(max-width: 767px){
-        padding-bottom: 20px;
+        padding-bottom: 10px;
     }
     .nav-tabs {
         display: flex;
@@ -16,25 +16,28 @@
         @media(max-width: 991px) {
             justify-content: normal;
             border-bottom: none;
-        }
-        @media(max-width: 991px) {
             overflow-x: auto;
             flex-wrap: nowrap;
+        }
+        @media(max-width: 768px){
+            flex-wrap: wrap;
         }
         &>li {
             position: relative;
             @media(max-width: 991px) {
                 flex: 0 0 auto;
-                &:first-child {
-                    a {
-                        padding-left: 0px;
-                    }
-                }
-                &:last-child {
-                    a {
-                        padding-right: 0px;
-                    }
-                }
+            }
+            @media(max-width: 768px){
+                flex: 0 0 calc(33.33% - 10px);
+                width: calc(33.33% - 10px);
+                text-align: center;
+                margin: 0 5px 10px;
+            }
+            @media(max-width: 767px){
+                flex: 0 0 auto;
+                width: auto;
+                text-align: center;
+                margin: 0 5px 10px;
             }
         }
         .nav-item {
@@ -47,15 +50,28 @@
             position: relative;
             padding: 9px 30px;
             transition: 0.2s color;
+            -webkit-transition: 0.2s color;
+            -moz-transition: 0.2s color;
+            -o-transition: 0.2s color;
             cursor: pointer;
             @media(max-width: 991px) {
                 border-bottom: 5px solid rgba(52, 52, 52, 0.1);
-                padding: 0 24px;
+                padding: 0 24px 7px;
             }
-            @media (max-width: 767px) {
+            @media(max-width: 768px){
+                text-align: center;
+                color: #626262;
+                background-color: #F8F8F8;
+                padding: 10px;
+                border-radius: 0px;
+                border: none;
+                font-weight: 600;
                 font-size: 14px;
                 line-height: 16px;
-                padding: 0px 10px 5px;
+            }
+            @media (max-width: 767px) {
+                font-size: 12px;    
+                padding: 10px 12px;
             }
             &::before {
                 left: 0;
@@ -65,19 +81,23 @@
                 position: absolute;
                 content: "";
                 transition: 0.5s width;
-            }
-            &:hover,
-            &.active {
-                color: #0098ff;
-                &::before {
-                    width: 100%;
+                -webkit-transition: 0.5s width;
+                -moz-transition: 0.5s width;
+                -o-transition: 0.5s width;
+                @media(max-width: 768px){
+                    content: none;
+                    border-bottom: none;
                 }
             }
-            &.active {
+            &:hover, &.active {
                 font-family: 'Montserrat', sans-serif;
                 font-weight: 600;
                 @media(max-width: 768px) {
-                    border-bottom: 5px solid #0098ff;
+                    background-color: #0098FF;
+                    color: #ffffff;
+                }
+                &::before {
+                    width: 100%;
                 }
             }
         }
