@@ -207,8 +207,12 @@ const SearchAgent = props => {
                     ? 'pop-up-container active-class'
                     : 'pop-up-container'
                 }
+                onClick={e => {
+                  showOnMapClick(e, item, activePopUpRef);
+                }}
                 key={index}
-
+                onMouseEnter={() => showPopUp(item)}
+                onMouseLeave={hidePopUp}
               >
                 <img
                   src={downArrow}
@@ -216,8 +220,7 @@ const SearchAgent = props => {
                   alt="Down Arrow"
                 />
                 <h3>
-                  <a onMouseEnter={() => showPopUp(item)}
-                onMouseLeave={hidePopUp}><strong>{item.name}</strong></a>
+                  <span><strong>{item.name}</strong></span>
                   {item.name.length > 25 ? <br /> : null}{' '}
                   <span>
                     <a
