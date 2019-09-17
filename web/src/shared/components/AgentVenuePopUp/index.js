@@ -39,7 +39,7 @@ const AgentVenuePopUp = props => {
             {elem.image ? (
               <img
                 style={{ height: '65px', width: '96px' }}
-                src={elem.thumb_image ? elem.thumb_image : DefaultImg}
+                src={elem.image ? elem.image : DefaultImg}
                 alt="specific-event"
                 type="Small"
               />
