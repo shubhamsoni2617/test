@@ -33,16 +33,25 @@ const Agent = props => {
   useEffect(() => {
     scrollToTop();
     fetchCountryNRegion();
+    document.addEventListener('click', closePopup);
     window.addEventListener('scroll', handleScroll);
     return () => {
       window.removeEventListener('scroll', handleScroll);
+      document.removeEventListener('click', closePopup);
     };
   }, []);
 
+  const closePopup = (e) => {
+    if(e.target.classList.contains('event-title')) return;
+    if(e.target.classList.contains('agent-info')) return;
+    if(e.target.closest('.agent-info')) return;
+
+      if(document.getElementsByClassName('pop-up-list active').length){
+          document.getElementsByClassName('pop-up-list active')[0].classList.remove('active');
+      }
+  }
   const handleScroll = () => {
     if(document.getElementsByClassName('pop-up-list active').length){
-
-      console.log('document.getElementsByClassName()', document.getElementsByClassName('pop-up-list active')[0].getBoundingClientRect().top);
       if(document.getElementsByClassName('pop-up-list active')[0].getBoundingClientRect().top < 85){
         document.getElementsByClassName('pop-up-list active')[0].classList.remove('active');
       }

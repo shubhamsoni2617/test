@@ -232,7 +232,7 @@ const SearchAgent = props => {
                 />
                 <h3>
                   <span onClick={() => showPopUp(item)}>
-                    <strong>{item.name}</strong>
+                    <strong className="event-title" >{item.name}</strong>
                   </span>
                   {item.name.length > 25 ? <br /> : null}{' '}
                   <span>
