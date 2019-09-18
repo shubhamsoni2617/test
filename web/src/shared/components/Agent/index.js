@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import './style.scss';
 import CountryRegion from './CountryRegion';
 import SearchAgent from './SearchAgent';
@@ -10,13 +10,14 @@ import grayArrow from '../../../assets/images/down-arrow-grey.svg';
 const Agent = props => {
   //Decide which page should be mount (default-agent page)
   const { venue } = props;
-
+  const agentWrapper = useRef();
   const [countryNRegion, setCountryNRegion] = useState([]);
   const [listedData, setListedData] = useState([]);
   const [filteredListedData, setFilteredListedData] = useState([]);
   const [countryFileUrl, setCountryFileUrl] = useState('');
   const [showOnMapData, setShowOnMapData] = useState('');
-  const [countryName, setCountryName] = useState('');
+  const [countryName, setCountryName] = useState('Singapore');
+  const [regionName, setRegionName] = useState('All locations');
   const [attractionValue, setAttractionValue] = useState(undefined);
   const [eventValue, setEventValue] = useState(undefined);
   const [mapClick, setMapClick] = useState(true);
@@ -27,6 +28,7 @@ const Agent = props => {
   const [mapInMobile, setMapInMobile] = useState(false);
   const [toggle, setToggle] = useState(false);
   const [mapWrapperClass, setMapWrapperClass] = useState('');
+  const [countryIdSelected, setCountryIdSelected] = useState(null);
 
   useEffect(() => {
     scrollToTop();
@@ -38,28 +40,31 @@ const Agent = props => {
   }, []);
 
   const handleScroll = () => {
+    if(document.getElementsByClassName('pop-up-list active').length){
+
+      console.log('document.getElementsByClassName()', document.getElementsByClassName('pop-up-list active')[0].getBoundingClientRect().top);
+      if(document.getElementsByClassName('pop-up-list active')[0].getBoundingClientRect().top < 85){
+        document.getElementsByClassName('pop-up-list active')[0].classList.remove('active');
+      }
+    }
     if (
       window.pageYOffset +
-        document.getElementById('footer').getBoundingClientRect().height +
-        34 >=
+        document.getElementById('footer').getBoundingClientRect().height >=
       window.document.body.clientHeight - window.innerHeight
     ) {
-      setTimeout(() => {
-        setMapWrapperClass('agent-absolute');
-      }, 0);
+        agentWrapper.current.classList.remove('agent-fixed');
+        agentWrapper.current.classList.add('agent-absolute');
     } else if (window.pageYOffset >= 280) {
-      setTimeout(() => {
-        setMapWrapperClass('agent-fixed');
-      }, 0);
+      agentWrapper.current.classList.remove('agent-absolute');
+        agentWrapper.current.classList.add('agent-fixed');
     } else {
-      setTimeout(() => {
-        setMapWrapperClass('');
-      }, 0);
+      agentWrapper.current.classList.remove('agent-absolute');
+        agentWrapper.current.classList.remove('agent-fixed');
     }
   };
 
   useEffect(() => {
-    if (countryId) {
+    if (countryId && countryIdSelected !== countryId) {
       const params = {
         country: countryId
       };
@@ -98,6 +103,7 @@ const Agent = props => {
 
   //Fetch agents or venues based on selection event
   const fetchAgentsNVenues = params => {
+    setFilteredListedData([]);
     if (params.region === undefined) {
       params.region = null;
     }
@@ -127,6 +133,7 @@ const Agent = props => {
 
   // fetch agents or venues after submission (click on "GO" button)
   const submitCountryNRegion = params => {
+    setCountryIdSelected(params.country);
     setCheckBox(Math.random());
     setCountryId(params.country);
     setRegionId(params.region);
@@ -150,6 +157,7 @@ const Agent = props => {
 
   // set selected list data in parent component
   const showOnMapClick = (e, selectedItem, activePopUpRef) => {
+    console.log(selectedItem, 'selecteditem');
     setToggle(!toggle);
     if (activePopUpRef.current) {
       // remove popUpDetail after clicking on show on map
@@ -158,8 +166,9 @@ const Agent = props => {
     setShowOnMapData(selectedItem);
   };
   // set selected country in parent component
-  const handleCountryName = country => {
-    setCountryName(country);
+  const handleCountryNRegionName = (countryName,regionName) => {
+    setCountryName(countryName);
+    setRegionName(regionName);
   };
   // set selected attracion in parent component
   const handleAttractionValue = value => {
@@ -204,17 +213,16 @@ const Agent = props => {
     setFilteredListedData(filteredData);
   };
 
-  console.log(filteredListedData, 'filteredListedData');
-
   return (
     <section
-      className={`agents-wrapper ${mapWrapperClass} ${venue ? 'venue' : ''}`}
+    ref={agentWrapper}
+      className={`agents-wrapper ${venue ? 'venue' : ''}`}
     >
       <CountryRegion
         countryNRegion={countryNRegion}
         onSubmit={submitCountryNRegion}
         filterCountryFile={filterCountryFile}
-        handleCountryName={handleCountryName}
+        handleCountryNRegionName={handleCountryNRegionName}
         handleMapClick={handleMapClick}
         handleMapFilter={handleMapFilter}
         {...props}
@@ -245,6 +253,7 @@ const Agent = props => {
               multipleMarker={filteredListedData}
               showOnMapData={showOnMapData}
               countryName={countryName}
+              regionName={regionName}
               mapClick={mapClick}
               handleActiveClass={handleActiveClass}
               mapInMobile={mapInMobile}

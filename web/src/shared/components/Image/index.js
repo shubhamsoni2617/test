@@ -23,7 +23,7 @@ function Image(props) {
   const onLoad = () => {
     setTimeout(() => {
       setClassName('loaded');
-    }, 1000);
+    }, 300);
   };
 
   const onError = () => {
