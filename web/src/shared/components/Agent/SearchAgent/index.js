@@ -142,7 +142,7 @@ const SearchAgent = props => {
     isFile = Utilities.isFileExt(countryFileUrl);
   }
 
-  console.log(initialItems, 'initialItems');
+  // console.log(initialItems, 'initialItems');
 
   return (
     <div className="search-agent">
