@@ -205,6 +205,10 @@ export default class EventsDetail extends Component {
     }
   };
 
+  redirectToVenue = () => {
+    
+  }
+
   componentDidUpdate() {}
 
   render() {
