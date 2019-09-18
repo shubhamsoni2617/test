@@ -41,6 +41,7 @@
 .find-agent-wrapper{
     display: flex;
     .agent-list{
+        margin: 0;
         .find-map-mob{
             background-color: #fafafa;
             padding: 20px;
@@ -161,7 +162,7 @@
       background: #fff;
       z-index: 4;
       left: 0;
-      padding: 30px 25px 0 25px;
+      padding: 30px 10px 0 40px;
       top: 0;
       @media(max-width: 768px){
         position: relative;
@@ -173,7 +174,7 @@
       position: fixed;
       right: 0;
       top: 30px;
-      padding-right: 55px;
+      padding-right: 40px;
       padding-left: 25px;
       @media(max-width: 768px){
         position: relative;
