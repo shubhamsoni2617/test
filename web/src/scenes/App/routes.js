@@ -9,7 +9,6 @@ import Agents from '../Agents';
 import Attraction from '../Attraction';
 import Venues from '../Venues';
 import WhereBuyTickets from '../WhereBuyTickets';
-import WhereBuyTicket from '../WhereBuyTicket';
 import TermsPrivacy from '../TermsPrivacy';
 import GiftVouchers from '../GiftVouchers';
 import ContactUs from '../ContactUs';
@@ -55,11 +54,6 @@ const routes = [
     path: '/where-to-buy-tickets',
     exact: true,
     component: WhereBuyTickets
-  },
-  {
-    path: '/where-to-buy-ticket',
-    exact: true,
-    component: WhereBuyTicket
   },
   {
     path: '/attractions',
