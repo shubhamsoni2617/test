@@ -116,12 +116,80 @@
             width: calc(33.33% - 10px);
             margin: 0 5px 10px;
         }
+        &.wtbt-tab-website{
+            .wtbt-tab{
+                &:after{
+                    background-image: url(../../assets/images/website.svg);
+                    height: 35px;
+                }
+                &:hover{
+                    &:after{
+                        background-image: url(../../assets/images/website-active.svg);
+                    }
+                }
+            }
+        }
+        &.wtbt-tab-mobile-app{
+            .wtbt-tab{
+                &:after{
+                    background-image: url(../../assets/images/smartphone.svg);                    
+                    height: 39px;                    
+                }
+                &:hover{
+                    &:after{
+                        background-image: url(../../assets/images/smartphone-active.svg);
+                    }
+                }
+            }
+        }
+        &.wtbt-tab-agent{
+            .wtbt-tab{   
+                &:after{
+                    background-image: url(../../assets/images/user.svg);                    
+                    height: 39.3px;
+                }
+                &:hover{
+                    &:after{
+                        background-image: url(../../assets/images/user-active.svg);
+                    }
+                }
+            }
+        }
+        &.wtbt-tab-partners{
+            .wtbt-tab{       
+                &:after{
+                    background-image: url(../../assets/images/partners.svg);                    
+                    height: 37.3px;
+                }
+                &:hover{
+                    &:after{
+                        background-image: url(../../assets/images/partners-active.svg);
+                    }
+                }
+            }
+        }
+        &.wtbt-tab-hotline{
+            .wtbt-tab{
+                &:after{
+                    background-image: url(../../assets/images/hotline.svg);                    
+                    height: 31.23px;                  
+                }
+                &:hover{
+                    &:after{
+                        background-image: url(../../assets/images/hotline-active.svg);
+                    }
+                }
+            }
+        }
         .wtbt-tab {
             display: flex;
             justify-content: center;
             width: 100%;
             align-items: flex-end;
             position: relative;
+            @media(max-width: 768px){
+                cursor: pointer;
+            }
             &:after{
                 position: absolute;
                 content: "";
@@ -140,10 +208,10 @@
                 width: 100%;
                 background-size: contain;
                 margin-top: -7px;
-                transition: 0.5s background-image;
-                -webkit-transition:0.5s background-image;
-                -moz-transition:0.5s background-image;
-                -o-transition:0.5s background-image;
+                transition: 0.3s background-image;
+                -webkit-transition:0.3s background-image;
+                -moz-transition:0.3s background-image;
+                -o-transition:0.3s background-image;
                 @media(max-width: 1024px){
                     width: 33px;
                     height: 33px;
@@ -193,105 +261,12 @@
             &:hover{
                 &:before{
                     width: 100%;
+                    @media(max-width: 767px){
+                       width: 0px;
+                    }
                 }
                 span{
                     color: #0098FF;
-                }
-            }
-        }
-        &.wtbt-tab-website{
-            .wtbt-tab{
-                &:after{
-                    background-image: url(../../assets/images/website.svg);
-                }
-                &:hover{
-                    &:after{
-                        background-image: url(../../assets/images/website-active.svg);
-                    }
-                }
-            }
-        }
-        &.wtbt-tab-mobile-app{
-            .wtbt-tab{   
-                &:after{
-                    background-image: url(../../assets/images/smartphone.svg);                    
-                    height: 39px;
-                    @media(max-width: 1024px){
-                        width: 33px;
-                        height: 33px;
-                    }
-                    @media(max-width: 767px){
-                        width: 33px;
-                        height: 28px;
-                    }
-                }
-                &:hover{
-                    &:after{
-                        background-image: url(../../assets/images/smartphone-active.svg);
-                    }
-                }
-            }
-        }
-        &.wtbt-tab-agent{
-            .wtbt-tab{   
-                &:after{
-                    background-image: url(../../assets/images/user.svg);                    
-                    height: 39.3px;
-                    @media(max-width: 1024px){
-                        width: 33px;
-                        height: 33px;
-                    }
-                    @media(max-width: 767px){
-                        width: 33px;
-                        height: 28px;
-                    }
-                }
-                &:hover{
-                    &:after{
-                        background-image: url(../../assets/images/user-active.svg);
-                    }
-                }
-            }
-        }
-        &.wtbt-tab-partners{
-            .wtbt-tab{       
-                &:after{
-                    background-image: url(../../assets/images/partners.svg);                    
-                    height: 37.3px;
-                    @media(max-width: 1024px){
-                        width: 33px;
-                        height: 33px;
-                    }
-                    @media(max-width: 767px){
-                        width: 33px;
-                        height: 28px;
-                    }
-                }
-                &:hover{
-                    &:after{
-                        background-image: url(../../assets/images/partners-active.svg);
-                    }
-                }
-            }
-        }
-        &.wtbt-tab-hotline{
-            .wtbt-tab{
-                &:after{
-                    background-image: url(../../assets/images/hotline.svg);                    
-                    height: 31.23px;
-                    @media(max-width: 1024px){
-                        width: 33px;
-                        height: 33px;
-                    }
-                    @media(max-width: 767px){
-                        width: 33px;
-                        height: 28px;
-                    }
-                }
-                &:hover{
-                    &:after{
-                        background-image: url(../../assets/images/hotline-active.svg);
-                    }
                 }
             }
         }
