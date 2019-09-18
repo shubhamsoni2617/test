@@ -230,7 +230,8 @@ const GoogleMap = props => {
               <div className="map-name-address">
                 <h5>{selectedPlace.name}</h5>
                 <p>{selectedPlace.address}</p>
-                <a
+              </div>
+              <a
                   href={`https://www.google.com/maps/dir//${selectedPlace.address}`}
                   className="direcrtion-icn"
                   target="_blank"
@@ -242,7 +243,6 @@ const GoogleMap = props => {
                     alt="direction"
                   />
                 </a>
-              </div>
             </div>
           </InfoWindow>
         </Map>
@@ -323,6 +323,7 @@ const GoogleMap = props => {
                 <div className="map-name-address">
                   <h5>{showOnMapData.name}</h5>
                   <p>{showOnMapData.address}</p>
+                </div>
                   <a
                     href={`https://www.google.com/maps/dir//${showOnMapData.address}`}
                     className="direcrtion-icn"
@@ -335,7 +336,6 @@ const GoogleMap = props => {
                       alt="direction"
                     />
                   </a>
-                </div>
               </div>
             </InfoWindow>
           ) : null}

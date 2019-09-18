@@ -182,9 +182,9 @@
     }
   }
   &.agent-absolute{
-    .banner-wrapper{
-      // position: absolute;
-    }
+    /*.banner-wrapper{
+       position: absolute;
+    }*/
     .agent-map-area{
       position: relative;
       .gmap{
@@ -193,8 +193,9 @@
         width: 100%;
       }
     }
+    /*
     .agent-sidebar{
-      // position: absolute;
-    }
+      position: absolute;
+    }*/
   }
 }
