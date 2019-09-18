@@ -9,7 +9,7 @@ import Image from '../../Image';
 import Constants from '../../../constants';
 import { useCustomWidth } from '../../CustomHooks';
 import MapStyle from '../mapStyle';
-
+import Small from '../../../../assets/images/small.png';
 const GoogleMap = props => {
   const {
     google,
@@ -266,20 +266,14 @@ const GoogleMap = props => {
         >
           <div className="map-info-popup">
             <div className="map-img">
-              <Image src={selectedPlace.imgPath} type="Small" />
-              {/* <img
+              {/* <Image src={selectedPlace.imgPath || Small} type="Small" /> */}
+              <img
                   height="50"
                   width="100"
-                  src={
-                    selectedPlace.imgPath == '' ||
-                    selectedPlace.imgPath === undefined ||
-                    selectedPlace.imgPath === null
-                      ? DefaultImg
-                      : selectedPlace.imgPath
-                  }
+                  src={selectedPlace.imgPath || Small}
                   title="Title of image"
                   alt="alt text here"
-                /> */}
+                />
             </div>
             <div className="map-name-address">
               <h5>{selectedPlace.name}</h5>
