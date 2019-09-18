@@ -51,27 +51,9 @@ const Agent = props => {
       }
   }
   const handleScroll = () => {
-<<<<<<< HEAD
-    if (document.getElementsByClassName('pop-up-list active').length) {
-      console.log(
-        'document.getElementsByClassName()',
-        document
-          .getElementsByClassName('pop-up-list active')[0]
-          .getBoundingClientRect().top
-      );
-      if (
-        document
-          .getElementsByClassName('pop-up-list active')[0]
-          .getBoundingClientRect().top < 85
-      ) {
-        document
-          .getElementsByClassName('pop-up-list active')[0]
-          .classList.remove('active');
-=======
     if(document.getElementsByClassName('pop-up-list active').length){
       if(document.getElementsByClassName('pop-up-list active')[0].getBoundingClientRect().top < 85){
         document.getElementsByClassName('pop-up-list active')[0].classList.remove('active');
->>>>>>> 0444b312257a6741fc0327ef0c5f457b50a59cf1
       }
     }
     if (
