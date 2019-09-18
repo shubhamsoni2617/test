@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import './style.scss';
 import CountryRegion from './CountryRegion';
 import SearchAgent from './SearchAgent';
@@ -10,7 +10,7 @@ import grayArrow from '../../../assets/images/down-arrow-grey.svg';
 const Agent = props => {
   //Decide which page should be mount (default-agent page)
   const { venue } = props;
-
+  const agentWrapper = useRef();
   const [countryNRegion, setCountryNRegion] = useState([]);
   const [listedData, setListedData] = useState([]);
   const [filteredListedData, setFilteredListedData] = useState([]);
@@ -40,23 +40,26 @@ const Agent = props => {
   }, []);
 
   const handleScroll = () => {
+    if(document.getElementsByClassName('pop-up-list active').length){
+
+      console.log('document.getElementsByClassName()', document.getElementsByClassName('pop-up-list active')[0].getBoundingClientRect().top);
+      if(document.getElementsByClassName('pop-up-list active')[0].getBoundingClientRect().top < 85){
+        document.getElementsByClassName('pop-up-list active')[0].classList.remove('active');
+      }
+    }
     if (
       window.pageYOffset +
-        document.getElementById('footer').getBoundingClientRect().height +
-        34 >=
+        document.getElementById('footer').getBoundingClientRect().height >=
       window.document.body.clientHeight - window.innerHeight
     ) {
-      setTimeout(() => {
-        setMapWrapperClass('agent-absolute');
-      }, 0);
+        agentWrapper.current.classList.remove('agent-fixed');
+        agentWrapper.current.classList.add('agent-absolute');
     } else if (window.pageYOffset >= 280) {
-      setTimeout(() => {
-        setMapWrapperClass('agent-fixed');
-      }, 0);
+      agentWrapper.current.classList.remove('agent-absolute');
+        agentWrapper.current.classList.add('agent-fixed');
     } else {
-      setTimeout(() => {
-        setMapWrapperClass('');
-      }, 0);
+      agentWrapper.current.classList.remove('agent-absolute');
+        agentWrapper.current.classList.remove('agent-fixed');
     }
   };
 
@@ -212,7 +215,8 @@ const Agent = props => {
 
   return (
     <section
-      className={`agents-wrapper ${mapWrapperClass} ${venue ? 'venue' : ''}`}
+    ref={agentWrapper}
+      className={`agents-wrapper ${venue ? 'venue' : ''}`}
     >
       <CountryRegion
         countryNRegion={countryNRegion}
