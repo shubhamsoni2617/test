@@ -92,4 +92,8 @@
             }
         }
     }
+    .section-top-wrArticleSectioner{
+        display: grid;
+        grid-template-columns: auto auto;
+    }
 }
