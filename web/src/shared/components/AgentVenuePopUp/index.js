@@ -37,12 +37,13 @@ const AgentVenuePopUp = props => {
         <ul className="currently-list" key={index}>
           <li>
             {elem.image ? (
-              <img
-                style={{ height: '65px', width: '96px' }}
-                src={elem.image ? elem.image : DefaultImg}
-                alt="specific-event"
-                type="Small"
-              />
+              // <img
+              //   style={{ height: '65px', width: '96px' }}
+              //   src={elem.image ? elem.image : DefaultImg}
+              //   alt="specific-event"
+              //   type="Small"
+              // />
+              <Image src={elem.image} alt="specific-event" type="Small" />
             ) : null}
             {elem.name ? (
               <div className="food-beverages-link">
@@ -96,18 +97,20 @@ const AgentVenuePopUp = props => {
       ) : null}
 
       {venue &&
-      popUpDetail.food_beverages &&
-      popUpDetail.food_beverages[0].name ? (
-        <div className="agent-info">
-          <div className="icon">
-            <img src={food} alt="icon" />
+        popUpDetail.food_beverages &&
+        popUpDetail.food_beverages[0].name ? (
+          <div className="agent-info">
+            <div className="icon">
+              <img src={food} alt="icon" />
+            </div>
+            <div className="details">
+              <h3>Food & Beverage</h3>
+              <ul className="currently-list">
+                {showFoodNBeverage(popUpDetail.food_beverages)}
+              </ul>
+            </div>
           </div>
-          <div className="details">
-            <h3>Food & Beverage</h3>
-            {showFoodNBeverage(popUpDetail.food_beverages)}
-          </div>
-        </div>
-      ) : null}
+        ) : null}
 
       {!venue && popUpDetail.operating_hours ? (
         <div className="agent-info">
@@ -125,7 +128,7 @@ const AgentVenuePopUp = props => {
       ) : null}
 
       {venue && popUpDetail.contact_details ? (
-        <div className="agent-info">
+        <div className="agent-info popup-contact-details">
           <div className="icon">
             <img src={contact} alt="icon" />
           </div>
@@ -172,44 +175,44 @@ const AgentVenuePopUp = props => {
       ) : null}
 
       {venue &&
-      popUpDetail.currentlyShowingData &&
-      popUpDetail.currentlyShowingData.length > 0 ? (
-        <div className="agent-info">
-          <div className="icon">
-            <img src={event} alt="icon" />
-          </div>
-          <div className="details">
-            <h3>Currently Showing</h3>
-            <ul className="currently-list">
-              {currentlyShowingData && currentlyShowingData.length > 0 ? (
-                currentlyShowingData.map((elem, index) => {
-                  return (
-                    <li key={index}>
-                      {/* <img src={elem.thumb_image} alt="specific-event" /> */}
-                      <Image
-                        src={elem.thumb_image}
-                        alt="specific-event"
-                        type="Small"
-                      />
-                      <Link to={`/events/${elem.alias}`}>
-                        <EventHeading
-                          title={elem.title}
-                          lines={2}
-                          height={16}
-                          size={13}
-                          allowTooltip={false}
+        popUpDetail.currentlyShowingData &&
+        popUpDetail.currentlyShowingData.length > 0 ? (
+          <div className="agent-info">
+            <div className="icon">
+              <img src={event} alt="icon" />
+            </div>
+            <div className="details">
+              <h3>Currently Showing</h3>
+              <ul className="currently-list">
+                {currentlyShowingData && currentlyShowingData.length > 0 ? (
+                  currentlyShowingData.map((elem, index) => {
+                    return (
+                      <li key={index}>
+                        {/* <img src={elem.thumb_image} alt="specific-event" /> */}
+                        <Image
+                          src={elem.thumb_image}
+                          alt="specific-event"
+                          type="Small"
                         />
-                      </Link>
-                    </li>
-                  );
-                })
-              ) : (
-                <p>Loading...</p>
-              )}
-            </ul>
+                        <Link to={`/events/${elem.alias}`}>
+                          <EventHeading
+                            title={elem.title}
+                            lines={2}
+                            height={18}
+                            size={13}
+                            allowTooltip={false}
+                          />
+                        </Link>
+                      </li>
+                    );
+                  })
+                ) : (
+                    <p>Loading...</p>
+                  )}
+              </ul>
+            </div>
           </div>
-        </div>
-      ) : null}
+        ) : null}
       {isFile && (
         <div className="agent-info">
           <div className="icon">

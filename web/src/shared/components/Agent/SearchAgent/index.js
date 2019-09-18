@@ -9,6 +9,7 @@ import AgentVenuePopUp from '../../AgentVenuePopUp';
 import Utilities from '../../../utilities';
 import { useCustomWidth } from '../../CustomHooks';
 import Constants from '../../../constants';
+import ShimmerEffect from '../../ShimmerEffect';
 
 const SearchAgent = props => {
   const {
@@ -141,6 +142,8 @@ const SearchAgent = props => {
     isFile = Utilities.isFileExt(countryFileUrl);
   }
 
+  console.log(initialItems, 'initialItems');
+
   return (
     <div className="search-agent">
       <div className="search-agent-header">
@@ -188,6 +191,14 @@ const SearchAgent = props => {
             </li>
           </ul>
         ) : null}
+        {initialItems.length === 0 && filter === '' && (
+          <ShimmerEffect
+            propCls="shm_col-xs-6 col-md-12"
+            height={80}
+            count={3}
+            type="TILE"
+          />
+        )}
         {!venue && isFile ? (
           <h6 className="festive-hour">
             <a href={countryFileUrl} download target="_blank">
@@ -220,7 +231,9 @@ const SearchAgent = props => {
                   alt="Down Arrow"
                 />
                 <h3>
-                  <span><strong>{item.name}</strong></span>
+                  <span>
+                    <strong>{item.name}</strong>
+                  </span>
                   {item.name.length > 25 ? <br /> : null}{' '}
                   <span>
                     <a
@@ -245,7 +258,7 @@ const SearchAgent = props => {
               </li>
             );
           })}
-        {initialItems.length <= 0 ? <h4>No result found</h4> : null}
+        {initialItems.length === 0 && filter!==''  ? <h4>No result found</h4> : null}
       </ul>
     </div>
   );
