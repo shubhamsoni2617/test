@@ -34,8 +34,7 @@ const AgentVenuePopUp = props => {
   const showFoodNBeverage = foodNBeverage => {
     return foodNBeverage.map((elem, index) => {
       return (
-        <ul className="currently-list" key={index}>
-          <li>
+        <li key={index}>
             {elem.image ? (
               // <img
               //   style={{ height: '65px', width: '96px' }}
@@ -53,7 +52,6 @@ const AgentVenuePopUp = props => {
               </div>
             ) : null}
           </li>
-        </ul>
       );
     });
   };

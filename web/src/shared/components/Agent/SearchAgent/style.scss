@@ -172,7 +172,7 @@
                 border-bottom: 1px #E6E6E6 solid;
                 position: relative;
                 @media (max-width: 992px) {
-                    padding: 15px;
+                    padding: 15px 5px;
                     padding-right: 25px;
                 }
                 @media(max-width: 768px){
@@ -382,7 +382,7 @@
                 }
             }
             .agent-info{
-                padding: 8px 0;
+                padding: 5px 0;
                 display: flex;
                 align-items: flex-start;
                 .icon{
@@ -396,6 +396,8 @@
                         font-weight: 500;
                         max-height: 100% !important;
                         min-height: auto !important;
+                        color: #343434;
+                        font-size: 15px;
                     }
                     p{
                         font-size: 14px;
@@ -454,7 +456,7 @@
                             .food-beverages-link{
                                 a{
                                   color: #343434;
-                                  font-size: 14px;
+                                  font-size: 13px;
                                   font-weight: 500;
                                   line-height: 19px;
                                   margin: 0 0 10px;
