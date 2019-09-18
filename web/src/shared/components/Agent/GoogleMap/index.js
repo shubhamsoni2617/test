@@ -144,13 +144,13 @@ const GoogleMap = props => {
     return <div>Loading...</div>;
   }
 
-  const handleImage = url => {
-    let error = false;
-    if (<img src={url} onError={(error = 'Image not there')} />) {
-      console.log(error);
-    }
-    return error;
-  };
+  // const handleImage = url => {
+  //   let error = false;
+  //   if (<img src={url} onError={(error = 'Image not there')} />) {
+  //     console.log(error);
+  //   }
+  //   return error;
+  // };
 
   return (
     <div
