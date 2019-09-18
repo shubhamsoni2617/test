@@ -107,7 +107,6 @@
             width: calc(33.33% - 10px);
             margin: 0 5px 10px;            
             max-width: 110px;
-            height: 85px;
         }
         @media(max-width: 767px){
             max-height: 70px;
@@ -117,205 +116,12 @@
             width: calc(33.33% - 10px);
             margin: 0 5px 10px;
         }
-        &.wtbt-tab-website{
-            .wtbt-tab{
-                &:after{
-                    background-image: url(../../assets/images/website.svg);
-                    height: 35px;
-                    width: 100%;
-                    transition: 0.3s transform;
-                    -webkit-transition:0.3s transform;
-                    -moz-transition:0.3s transform;
-                    -o-transition:0.3s transform;
-                    @media(max-width: 768px){
-                        // height: 35px;
-                        // width: 100%;
-                        // height: 26px;
-                        // width: 100%;        
-                        height: 100%;
-                        width: 100%;
-                        background-size: 30px 30px;                
-                    }
-                }
-                &:hover{
-                    &:after{
-                        background-image: url(../../assets/images/website-active.svg);
-                        height: 35px;
-                        width: 100%;
-                        @media(max-width: 768px){
-                            // height: 35px;
-                            // width: 100%;
-                            // height: 26px;
-                            // width: 100%;  
-                            height: 100%;
-                            width: 100%;
-                            background-size: 30px 30px;                          
-                        }
-                    }
-                }
-            }
-        }
-        &.wtbt-tab-mobile-app{
-            .wtbt-tab{
-                &:after{
-                    background-image: url(../../assets/images/smartphone.svg);                    
-                    height: 48px;
-                    width: 100%;
-                    transition: 0.3s transform;
-                    -webkit-transition:0.3s transform;
-                    -moz-transition:0.3s transform;
-                    -o-transition:0.3s transform;
-                    @media(max-width: 768px){
-                        // height: 48px;
-                        // width: 100%;
-                        // height: 28px;
-                        // width: 100%;    
-                        height: 100%;
-                        width: 100%;
-                        background-size: 30px 30px;                    
-                    }              
-                }
-                &:hover{
-                    &:after{
-                        background-image: url(../../assets/images/smartphone-active.svg);
-                        height: 48px;
-                        width: 100%;
-                        @media(max-width: 768px){
-                            // height: 48px;
-                            // width: 100%;
-                            // height: 28px;
-                            // width: 100%;  
-                            height: 100%;
-                            width: 100%;
-                            background-size: 30px 30px;                          
-                        }
-                    }
-                }
-            }
-        }
-        &.wtbt-tab-agent{
-            .wtbt-tab{   
-                &:after{
-                    background-image: url(../../assets/images/user.svg);                    
-                    height: 39.3px;
-                    width: 100%;
-                    transition: 0.3s transform;
-                    -webkit-transition:0.3s transform;
-                    -moz-transition:0.3s transform;
-                    -o-transition:0.3s transform;
-                    @media(max-width: 768px){
-                        // height: 39.3px;
-                        // width: 100%;
-                        // height: 29.3px;
-                        // width: 100%; 
-                        height: 100%;
-                        width: 100%;
-                        background-size: 30px 30px;                       
-                    }
-                }
-                &:hover{
-                    &:after{
-                        background-image: url(../../assets/images/user-active.svg);
-                        height: 39.3px;
-                        width: 100%;                       
-                        @media(max-width: 768px){
-                            // height: 39.3px;
-                            // width: 100%;
-                            // height: 29.3px;
-                            // width: 100%;  
-                            height: 100%;
-                            width: 100%;
-                            background-size: 30px 30px;                          
-                        }
-                    }
-                }
-            }
-        }
-        &.wtbt-tab-partners{
-            .wtbt-tab{       
-                &:after{
-                    background-image: url(../../assets/images/partners.svg);                    
-                    height: 37.3px;
-                    width: 100%;
-                    transition: 0.3s transform;
-                    -webkit-transition:0.3s transform;
-                    -moz-transition:0.3s transform;
-                    -o-transition:0.3s transform;
-                    @media(max-width: 768px){
-                        // height: 37.3px;
-                        // width: 100%;
-                        // height: 27.3px;
-                        // width: 100%;   
-                        height: 100%;
-                        width: 100%;
-                        background-size: 35px 35px;                     
-                    }
-                }
-                &:hover{
-                    &:after{
-                        background-image: url(../../assets/images/partners-active.svg);
-                        height: 37.3px;
-                        width: 100%;                       
-                        @media(max-width: 768px){
-                            // height: 37.3px;
-                            // width: 100%;
-                            // height: 27.3px;
-                            // width: 100%;
-                            height: 100%;
-                            width: 100%;
-                            background-size: 35px 35px;
-                        }
-                    }
-                }
-            }
-        }
-        &.wtbt-tab-hotline{
-            .wtbt-tab{
-                &:after{
-                    background-image: url(../../assets/images/hotline.svg);                    
-                    height: 31.23px;
-                    width: 100%;
-                    transition: 0.3s transform;
-                    -webkit-transition:0.3s transform;
-                    -moz-transition:0.3s transform;
-                    -o-transition:0.3s transform;
-                    @media(max-width: 768px){
-                        // height: 31.23px;
-                        // width: 100%;
-                        // height: 22.23px;
-                        // width: 100%;
-                        height: 100%;
-                        width: 100%;
-                        background-size: 22px 22px;
-                    }         
-                }
-                &:hover{
-                    &:after{
-                        background-image: url(../../assets/images/hotline-active.svg);
-                        height: 31.23px;
-                        width: 100%;
-                        @media(max-width: 768px){
-                            // height: 31.23px;
-                            // width: 100%;
-                            // height: 22.23px;
-                            // width: 100%;
-                            height: 100%;
-                            width: 100%;
-                            background-size: 22px 22px;                         
-                        }
-                    }
-                }
-            }
-        }
         .wtbt-tab {
             display: flex;
             justify-content: center;
             width: 100%;
             align-items: flex-end;
             position: relative;
-            @media(max-width: 768px){
-                cursor: pointer;
-            }
             &:after{
                 position: absolute;
                 content: "";
@@ -328,30 +134,28 @@
                 left: 50%;
                 right: auto;
                 bottom: auto;
+                transform: translate(-50%, -50%);
                 background-position: center;
-                // height: 35px;
-                // width: 100%;
-                // background-size: contain;
+                height: 35px;
+                width: 100%;
+                background-size: contain;
                 margin-top: -7px;
-                transition: 0.3s transform;
-                -webkit-transition:0.3s transform;
-                -moz-transition:0.3s transform;
-                -o-transition:0.3s transform;
-                -ms-transform: scale(1) translate(-50%, -50%);
-                -webkit-transform: scale(1) translate(-50%, -50%);
-                transform: scale(1) translate(-50%, -50%);
-                // @media(max-width: 1024px){
-                //     width: 33px;
-                //     height: 33px;
-                //     background-size: contain;
-                // }
-                // @media(max-width: 767px){
-                //     width: 33px;
-                //     height: 28px;
-                //     text-align: center;
-                //     margin-top: -10px;
-                //     max-height: 26px;
-                // }
+                transition: 0.5s background-image;
+                -webkit-transition:0.5s background-image;
+                -moz-transition:0.5s background-image;
+                -o-transition:0.5s background-image;
+                @media(max-width: 1024px){
+                    width: 33px;
+                    height: 33px;
+                    background-size: contain;
+                }
+                @media(max-width: 767px){
+                    width: 33px;
+                    height: 28px;
+                    text-align: center;
+                    margin-top: -10px;
+                    max-height: 26px;
+                }
             }
             &:before{
                 position: absolute;
@@ -389,31 +193,73 @@
             &:hover{
                 &:before{
                     width: 100%;
-                    @media(max-width: 767px){
-                       width: 0px;
-                    }
                 }
-                &:after{
-                    -ms-transform: scale(1) translate(-50%, -50%);
-                    -webkit-transform: scale(1) translate(-50%, -50%);
-                    transform: scale(1) translate(-50%, -50%);
-                }
-                // &:after{
-                //     @media(max-width: 1024px){
-                //         width: 33px;
-                //         height: 33px;
-                //         background-size: contain;
-                //     }
-                //     @media(max-width: 767px){
-                //         width: 33px;
-                //         height: 28px;
-                //         text-align: center;
-                //         margin-top: -10px;
-                //         max-height: 26px;
-                //     }
-                // }
                 span{
                     color: #0098FF;
+                }
+            }
+        }
+        &.wtbt-tab-website{
+            .wtbt-tab{
+                &:after{
+                    background-image: url(../../assets/images/website.svg);
+                }
+                &:hover{
+                    &:after{
+                        background-image: url(../../assets/images/website-active.svg);
+                    }
+                }
+            }
+        }
+        &.wtbt-tab-mobile-app{
+            .wtbt-tab{   
+                &:after{
+                    background-image: url(../../assets/images/smartphone.svg);                    
+                    height: 39px;
+                }
+                &:hover{
+                    &:after{
+                        background-image: url(../../assets/images/smartphone-active.svg);
+                    }
+                }
+            }
+        }
+        &.wtbt-tab-agent{
+            .wtbt-tab{   
+                &:after{
+                    background-image: url(../../assets/images/user.svg);                    
+                    height: 39.3px;
+                }
+                &:hover{
+                    &:after{
+                        background-image: url(../../assets/images/user-active.svg);
+                    }
+                }
+            }
+        }
+        &.wtbt-tab-partners{
+            .wtbt-tab{       
+                &:after{
+                    background-image: url(../../assets/images/partners.svg);                    
+                    height: 37.3px;
+                }
+                &:hover{
+                    &:after{
+                        background-image: url(../../assets/images/partners-active.svg);
+                    }
+                }
+            }
+        }
+        &.wtbt-tab-hotline{
+            .wtbt-tab{
+                &:after{
+                    background-image: url(../../assets/images/hotline.svg);                    
+                    height: 31.23px;
+                }
+                &:hover{
+                    &:after{
+                        background-image: url(../../assets/images/hotline-active.svg);
+                    }
                 }
             }
         }
