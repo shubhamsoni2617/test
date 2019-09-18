@@ -34,23 +34,26 @@ const AgentVenuePopUp = props => {
   const showFoodNBeverage = foodNBeverage => {
     return foodNBeverage.map((elem, index) => {
       return (
-        <li key={index}>
-          {elem.image ? (
-            <img
-              style={{ height: '65px', width: '96px' }}
-              src={elem.image ? elem.image : DefaultImg}
-              alt="specific-event"
-              type="Small"
-            />
-          ) : null}
-          {elem.name ? (
-            <div className="food-beverages-link">
-              <a href={elem.url ? elem.url : null} target="_blank">
-                {elem.name}
-              </a>{' '}
-            </div>
-          ) : null}
-        </li>
+        <ul className="currently-list" key={index}>
+          <li>
+            {elem.image ? (
+              // <img
+              //   style={{ height: '65px', width: '96px' }}
+              //   src={elem.image ? elem.image : DefaultImg}
+              //   alt="specific-event"
+              //   type="Small"
+              // />
+              <Image src={elem.image} alt="specific-event" type="Small" />
+            ) : null}
+            {elem.name ? (
+              <div className="food-beverages-link">
+                <a href={elem.url ? elem.url : null} target="_blank">
+                  {elem.name}
+                </a>{' '}
+              </div>
+            ) : null}
+          </li>
+        </ul>
       );
     });
   };
@@ -195,7 +198,7 @@ const AgentVenuePopUp = props => {
                           <EventHeading
                             title={elem.title}
                             lines={2}
-                            height={16}
+                            height={18}
                             size={13}
                             allowTooltip={false}
                           />
