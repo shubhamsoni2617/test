@@ -37,12 +37,13 @@ const AgentVenuePopUp = props => {
         <ul className="currently-list" key={index}>
           <li>
             {elem.image ? (
-              <img
-                style={{ height: '65px', width: '96px' }}
-                src={elem.image ? elem.image : DefaultImg}
-                alt="specific-event"
-                type="Small"
-              />
+              // <img
+              //   style={{ height: '65px', width: '96px' }}
+              //   src={elem.image ? elem.image : DefaultImg}
+              //   alt="specific-event"
+              //   type="Small"
+              // />
+              <Image src={elem.image} alt="specific-event" type="Small" />
             ) : null}
             {elem.name ? (
               <div className="food-beverages-link">

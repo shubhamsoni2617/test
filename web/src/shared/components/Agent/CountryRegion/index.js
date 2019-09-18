@@ -7,7 +7,8 @@ const CountryRegion = props => {
     countryNRegion,
     onSubmit,
     filterCountryFile,
-    handleCountryName,
+    handleCountryNRegionName,
+    handleRegionName,
     venue,
     handleMapClick,
   } = props;
@@ -25,7 +26,8 @@ const CountryRegion = props => {
     filterCountryFile(country);
 
     //set country name in parent component
-    handleCountryName(country);
+    handleCountryNRegionName(country,region);
+
     // set map click event in parent component
     handleMapClick(toggleMapCondition);
     setToggleMapCondition(Math.random());
