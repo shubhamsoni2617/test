@@ -27,13 +27,13 @@
         box-shadow: 0 1px 4px 0 rgba(0,0,0,0.3);
         display: flex;
         padding: 2px;
+        align-items: center;
         @media(max-width: 767px){
             min-width: 300px;
             padding: 2px 5px;
         }
         .map-img{
-            display: flex;
-            align-items: t;
+            display: flex;            
             justify-content: end;
             height: 58px;
             width: 86px;
@@ -48,11 +48,12 @@
         }
         .map-name-address{
             padding: 0 32px 0 20px;
-            width: calc(100% - 120px);
+            width: calc(100% - 100px);
             position: relative;
+            min-width: calc(100% - 100px);
             @media(max-width: 768px){
-                width: 100%;
-                padding: 0 40px 0 10px;
+                width: calc(100% - 50px);
+                padding: 0 50px 0 10px;
             }
             h5{
                 color: #000000;
@@ -65,11 +66,13 @@
                 font-size: 11px;
                 line-height: 12px;
                 margin: 0 0 5px;
+                word-break: break-all;
             }
             .direcrtion-icn{
                 position: absolute;
                 right: 0;
-                top: 20px;
+                top: 50%;
+                transform: translateY(-50%);
                 @media(max-width: 767px){
                     right: 15px;
                 }
@@ -98,8 +101,8 @@
         }
         .gm-ui-hover-effect{
             img{
-                width: 18px !important;
-                height: 18px !important;
+                width: 16px !important;
+                height: 16px !important;
                 right: 4px;
                 position: relative;
             }
