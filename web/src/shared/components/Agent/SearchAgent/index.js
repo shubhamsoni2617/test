@@ -105,12 +105,12 @@ const SearchAgent = props => {
   //pop-up show and hide function
   const handleActivePopUp = () => {
     if (activePopUpRef.current) {
-      if (openPopUp) {
+      if (activePopUpRef.current.classList.contains('active')) {
         activePopUpRef.current.classList.remove('active');
-        setOpenUp(false);
+      //   setOpenUp(false);
       } else {
         activePopUpRef.current.classList.add('active');
-        setOpenUp(true);
+      //   setOpenUp(true);
       }
     }
   };
@@ -142,7 +142,7 @@ const SearchAgent = props => {
     isFile = Utilities.isFileExt(countryFileUrl);
   }
 
-  console.log(initialItems, 'initialItems');
+  // console.log(initialItems, 'initialItems');
 
   return (
     <div className="search-agent">
@@ -218,12 +218,12 @@ const SearchAgent = props => {
                     ? 'pop-up-container active-class'
                     : 'pop-up-container'
                 }
-                onClick={e => {
-                  showOnMapClick(e, item, activePopUpRef);
-                }}
+                // onClick={e => {
+                //   showOnMapClick(e, item, activePopUpRef);
+                // }}
                 key={index}
-                onMouseEnter={() => showPopUp(item)}
-                onMouseLeave={hidePopUp}
+                // onMouseEnter={() => showPopUp(item)}
+                // onMouseLeave={hidePopUp}
               >
                 <img
                   src={downArrow}
@@ -231,7 +231,7 @@ const SearchAgent = props => {
                   alt="Down Arrow"
                 />
                 <h3>
-                  <span>
+                  <span onClick={() => showPopUp(item)}>
                     <strong>{item.name}</strong>
                   </span>
                   {item.name.length > 25 ? <br /> : null}{' '}
