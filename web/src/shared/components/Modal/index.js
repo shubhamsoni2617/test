@@ -18,6 +18,10 @@ export default class ModalPopup extends React.Component {
               <h5 className="modal-title" id="exampleModalLabel">
                 {title}
               </h5>
+              {this.props.cardTitle &&
+              <h2 className="modal-title" id="exampleModalLabel">
+                {this.props.cardTitle}
+              </h2>}
             </div>
             <div className="modal-body">
               {htmlContent ? (

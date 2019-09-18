@@ -80,16 +80,23 @@
             width: calc(100% + 15px);
             padding-left: 2px;
             padding-right: 1px;
+            @media(max-width: 1024px){
+                height: 100%;
+            }
             @media (max-width: 767px) {
                 margin-bottom: 20px;
             }
             > div{
-                flex: 0 0 calc(33.33% - 17px);
-                width: calc(33.33% - 17px);
+                flex: 0 0 calc(33.33% - 19px);
+                width: calc(33.33% - 19px);
                 margin-right: 17px;
+                @media(max-width: 768px){
+                    flex: 0 0 calc(50% - 19px);
+                    width: calc(50% - 19px);
+                }
                 @media(min-width: 1360px) and (max-width: 1900px){
                     flex: 0 0 calc(25% - 17px);
-                    width: calc(25% - 17px);
+                    width: calc(25% - 17px);                    
                 }
             }
             &.list-view{
@@ -140,6 +147,7 @@
             -webkit-transition: 0.9s all;
             -moz-transition: 0.9s all;
             -o-transition: 0.9s all;
+            text-decoration: none;
 			span {
 				color: #0098ff;
 			}

@@ -421,9 +421,12 @@
                 height: 520px;
                 padding: 17px 25px;
                 position: fixed;
-                bottom: 8px;
-                left: 40px;
+                bottom: auto;
+                top: 50%;
+                left: 0px;
                 z-index: 5;
+                max-height: 100%;
+                transform: translateY(-50%);
                 .filter-directory-titlebar{
                     color: #adaeaf;
                     padding: 0 0 12px 0;
@@ -551,6 +554,9 @@
                             line-height: 17px;
                             text-transform: capitalize;
                             font-family: 'Rubik', sans-serif;
+                            h3{
+                                margin-bottom: 0px;
+                            }
                         }
                     }
                 }

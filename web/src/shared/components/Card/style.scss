@@ -13,13 +13,15 @@
     position: relative;
     @supports (-ms-ime-align:auto) {
         box-shadow: 0 0px 1px rgba(154, 154, 154, 0.7);
-    }
+    }    
     @media (max-width: 767px) {
-        width: calc(50% - 10px);
+        width: 100%;
         margin: 0 5px 10px;
+        box-shadow: none;
+        border: 1px solid rgba(234, 234, 234, 0.8);
     }
-    @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
-        width: calc(50% - 10px);
+    @media only screen and (min-width: 768px) and (max-width: 1024px) {
+        width: 100%;
         margin: 0 5px 10px;
     }
     &:last-child{
@@ -32,24 +34,39 @@
         -moz-transition: .5s ease-out;
         -o-transition: .5s ease-out;
         box-shadow: 0 2px 27px 0 rgba(0,0,0,0.09);
+        @media (max-width: 767px) {           
+            box-shadow: none;
+            border: 1px solid #0098FF;
+        }
     }
     &.attraction-block{
         padding-bottom: 0px;
         position: relative;
+        margin-bottom: 30px;
         @supports (-ms-ime-align:auto) {
             box-shadow: 0 0px 1px rgba(154, 154, 154, 0.7);
         }
-        &:hover{  
-            margin-bottom: 30px;
+        @media(max-width: 1024px){
+            margin-bottom: 0px;
+            height: 100%;
+            margin: 0px;
+        }        
+        &:hover{
             transition: 0.3s border;          
             .event-details {
                 .price-event{
                     .buy-btn{
-                        background: #0098FF url(../../../assets/images/buy-arrow.png) 94% 15px no-repeat;
-                        font-size: 18px;
-                        color: #FFF;
-                        line-height: 22px;
+                        background: #0098FF url(../../../assets/images/buy-arrow.png) 94% 15px no-repeat;                        
+                        color: #FFF;                        
                         border: none;
+                        @media(max-width: 991px){
+                            background: #0098ff url(../../../assets/images/buy-arrow.png) 94% 13px no-repeat;
+                            background-size: 20px;
+                        }
+                        @media(max-width: 767px){
+                            background: #0098ff url(../../../assets/images/buy-arrow.png) 94% 10px no-repeat;
+                            background-size: 18px;
+                        }
                     }
                 }
                 p{
@@ -59,9 +76,19 @@
         }
         .event-details {
             padding: 22px 15px 0px;
+            @media(max-width: 1024px){
+                padding: 15px 5px 10px;
+            }
             .event-detail-prime{
                 margin-bottom: 26px;
-                min-height: 120px;
+                min-height: 142px;
+                @media(max-width: 1024px){
+                    margin-bottom: 5px;
+                }
+                @media(max-width: 768px){
+                    min-height: auto;
+                    margin-bottom: 10px;
+                }
                 .category{
                     background-color: #092438;
                     &:empty{
@@ -77,10 +104,16 @@
                     text-decoration: underline;
                 }
             }
-            .price-event{
+            .price-event{                
                 .price{
                     height: 50px;
                     position: relative;
+                    @media(max-width: 768px){
+                       display: none;
+                    }
+                    &:empty{
+                        display: none;
+                    }
                 }
                 .buy-btn{
                     position: absolute;
@@ -99,6 +132,23 @@
                     border: none;
                     background: url(../../../assets/images/buy-arrow-b.png) 94% 15px no-repeat;
                     font-weight: 600;
+                    @media(max-width: 1024px){
+                        font-size: 14px;
+                        line-height: 24px;
+                        padding: 10px;
+                        background-size: 20px;
+                    }
+                    @media(max-width: 991px){
+                        color: #fff;
+                        background: #0098ff url(../../../assets/images/buy-arrow.png) 94% 13px no-repeat;
+                        background-size: 20px;
+                    }
+                    @media(max-width: 767px){
+                        font-size: 12px;
+                        line-height: 14px;
+                        background: #0098ff url(../../../assets/images/buy-arrow.png) 94% 10px no-repeat;
+                        background-size: 18px;
+                    }
                     &:hover{
                         background: #0098FF url(../../../assets/images/buy-arrow.png) 94% 15px no-repeat;
                         font-size: 18px;
@@ -119,7 +169,8 @@
                 padding: 18px 0 13px;
                 h3{
                     line-height: 20px;
-
+                    max-height: 40px;
+                    min-height: 40px;
                 }
             }
         }
@@ -169,6 +220,9 @@
         align-items: center;
         height: 190px;
         overflow: hidden;
+        @media(max-width: 1024px){
+            height: auto;
+        }
         img{
             max-width: 100%;
         }
@@ -176,6 +230,9 @@
     .event-details{
         padding: 15px 15px 10px;
         display: block;
+        @media(max-width: 1024px){
+            padding: 12px 10px 0px;
+        }
         @media (max-width: 767px) {
             padding: 15px 5px 10px;
         }
@@ -193,6 +250,9 @@
             font-weight: 500;
             font-family: 'Rubik', sans-serif;
             margin-bottom: 0;
+            @media(max-width: 1024px){
+                font-size: 15px;
+            }
             @media (max-width: 767px) {
                 font-size: 14px;
             }
@@ -224,9 +284,11 @@
             align-items: center;
             @media (max-width: 767px) {
                 flex-direction: column;
+                min-height: 40px;
             }
             @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
                 flex-direction: column;
+                min-height: 44px;
             }
             @media only screen and (min-device-width: 1025px) and (max-device-width: 1260px) {
                 flex-direction: column;
@@ -339,6 +401,21 @@
                         margin: 0;
                     }
                 }
+            }
+        }
+    }
+}
+.wrapper-events-listing .events-listing{
+    .events-section{
+        @media(max-width: 1500px){
+            margin-top: 15px;
+        }
+        > div{
+            @media(max-width: 1024px){
+                margin-bottom: 30px;
+            }
+            @media(max-width: 767px){
+                margin-bottom: 20px;  
             }
         }
     }

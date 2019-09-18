@@ -160,11 +160,11 @@
 
     .search-agent-header{
       position: fixed;
-      width: 30%;
+      width: 28%;
       background: #fff;
       z-index: 4;
       left: 0;
-      padding: 30px 50px 0 25px;
+      padding: 30px 0px 0 25px;
       top: 0;
     }
     .agent-map-area{
@@ -182,9 +182,9 @@
     }
   }
   &.agent-absolute{
-    .banner-wrapper{
-      // position: absolute;
-    }
+    /*.banner-wrapper{
+       position: absolute;
+    }*/
     .agent-map-area{
       position: relative;
       .gmap{
@@ -193,8 +193,9 @@
         width: 100%;
       }
     }
+    /*
     .agent-sidebar{
-      // position: absolute;
-    }
+      position: absolute;
+    }*/
   }
 }

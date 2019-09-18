@@ -199,7 +199,7 @@
                     font-size: 16px;
                     font-weight: 600;
                     line-height: 19px;
-                    margin: 0 0 10px;
+                    margin: 0 0 5px;
                     @media(max-width: 992px){
                         margin: 0 0 7px;
                     }
@@ -208,7 +208,7 @@
                     }
                     a{
                         color: #0077C8;
-                        font-size: 16px;
+                        font-size: 15px;
                         font-weight: 400;
                         line-height: 19px;
                     }
@@ -219,7 +219,7 @@
                 }
                 p{
                     color: #343434;
-                    font-size: 16px;
+                    font-size: 14px;
                     line-height: 20px;
                     margin: 0;
                     padding: 0;
@@ -385,6 +385,8 @@
                     h3{
                         margin-bottom: 4px;
                         font-weight: 500;
+                        max-height: 100% !important;
+                        min-height: auto !important;
                     }
                     p{
                         font-size: 15px;
@@ -454,10 +456,25 @@
                             }
                         }
                     }
+
+                }
+                &.popup-contact-details{
+                    a{
+                        color: #343434;
+                        font-size: 14px;
+                        font-weight: 500;
+                        line-height: 19px;
+                        margin: 0 0 10px;                        
+                        display: inline-block;
+                        &:hover{
+                          color: #0056b3;
+                        }
+                    }
                 }
             }
             &.active{
                 display: block;
+                z-index: 4;
                 @media(max-width: 768px){
                     position: absolute;
                     width: 100%;
@@ -471,6 +488,6 @@
                     padding: 10px;
                 }
             }
-          }
+        }
     }
 }
