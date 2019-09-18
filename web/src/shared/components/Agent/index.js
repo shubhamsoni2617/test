@@ -16,7 +16,8 @@ const Agent = props => {
   const [filteredListedData, setFilteredListedData] = useState([]);
   const [countryFileUrl, setCountryFileUrl] = useState('');
   const [showOnMapData, setShowOnMapData] = useState('');
-  const [countryName, setCountryName] = useState('');
+  const [countryName, setCountryName] = useState('Singapore');
+  const [regionName, setRegionName] = useState('All locations');
   const [attractionValue, setAttractionValue] = useState(undefined);
   const [eventValue, setEventValue] = useState(undefined);
   const [mapClick, setMapClick] = useState(true);
@@ -27,6 +28,7 @@ const Agent = props => {
   const [mapInMobile, setMapInMobile] = useState(false);
   const [toggle, setToggle] = useState(false);
   const [mapWrapperClass, setMapWrapperClass] = useState('');
+  const [countryIdSelected, setCountryIdSelected] = useState(null);
 
   useEffect(() => {
     scrollToTop();
@@ -59,7 +61,7 @@ const Agent = props => {
   };
 
   useEffect(() => {
-    if (countryId) {
+    if (countryId && countryIdSelected !== countryId) {
       const params = {
         country: countryId
       };
@@ -98,6 +100,7 @@ const Agent = props => {
 
   //Fetch agents or venues based on selection event
   const fetchAgentsNVenues = params => {
+    setFilteredListedData([]);
     if (params.region === undefined) {
       params.region = null;
     }
@@ -127,6 +130,7 @@ const Agent = props => {
 
   // fetch agents or venues after submission (click on "GO" button)
   const submitCountryNRegion = params => {
+    setCountryIdSelected(params.country);
     setCheckBox(Math.random());
     setCountryId(params.country);
     setRegionId(params.region);
@@ -150,6 +154,7 @@ const Agent = props => {
 
   // set selected list data in parent component
   const showOnMapClick = (e, selectedItem, activePopUpRef) => {
+    console.log(selectedItem, 'selecteditem');
     setToggle(!toggle);
     if (activePopUpRef.current) {
       // remove popUpDetail after clicking on show on map
@@ -158,8 +163,9 @@ const Agent = props => {
     setShowOnMapData(selectedItem);
   };
   // set selected country in parent component
-  const handleCountryName = country => {
-    setCountryName(country);
+  const handleCountryNRegionName = (countryName,regionName) => {
+    setCountryName(countryName);
+    setRegionName(regionName);
   };
   // set selected attracion in parent component
   const handleAttractionValue = value => {
@@ -204,8 +210,6 @@ const Agent = props => {
     setFilteredListedData(filteredData);
   };
 
-  console.log(filteredListedData, 'filteredListedData');
-
   return (
     <section
       className={`agents-wrapper ${mapWrapperClass} ${venue ? 'venue' : ''}`}
@@ -214,7 +218,7 @@ const Agent = props => {
         countryNRegion={countryNRegion}
         onSubmit={submitCountryNRegion}
         filterCountryFile={filterCountryFile}
-        handleCountryName={handleCountryName}
+        handleCountryNRegionName={handleCountryNRegionName}
         handleMapClick={handleMapClick}
         handleMapFilter={handleMapFilter}
         {...props}
@@ -245,6 +249,7 @@ const Agent = props => {
               multipleMarker={filteredListedData}
               showOnMapData={showOnMapData}
               countryName={countryName}
+              regionName={regionName}
               mapClick={mapClick}
               handleActiveClass={handleActiveClass}
               mapInMobile={mapInMobile}
