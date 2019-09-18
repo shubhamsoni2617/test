@@ -32,18 +32,23 @@ const GoogleMap = props => {
     lat: 1.29027,
     lng: 103.851959
   });
+  const [markerPosition, setMarkerPosition] = useState({});
+  const [shownOnMapPrevId, setShownOnMapPrevId] = useState(null);
   const [zoomValue, setZoomValue] = useState(12);
 
   const onMapClicked = props => {
     if (showingInfoWindow) {
       setShowingInfoWindow(false);
+      setMarkerPosition({});
+      setZoomValue(zoomValue - 2);
     }
   };
 
   const onMarkerClick = props => {
     setSelectedPlace(props);
     setShowingInfoWindow(true);
-    // setZoomValue(15);
+    setMarkerPosition(props.position);
+    setZoomValue(zoomValue + 2);
     setInitialCenter({
       lat: Number(selectedPlace.latitude),
       lng: Number(selectedPlace.latitude)
@@ -52,12 +57,23 @@ const GoogleMap = props => {
 
   const infoWindowHasClosed = () => {
     setShowingInfoWindow(false);
+    setMarkerPosition({});
+    setZoomValue(zoomValue - 2);
   };
 
   useEffect(() => {
     if (showOnMapData.id) {
+      if (shownOnMapPrevId !== showOnMapData.id) {
+        setShownOnMapPrevId(showOnMapData.id);
+        setZoomValue(zoomValue -2);
+      }
       setSelectedPlace(showOnMapData);
       setShowingInfoWindow(true);
+      setMarkerPosition({
+        lat: showOnMapData.latitude,
+        lng: showOnMapData.longitude
+      });
+      setZoomValue(zoomValue + 2);
       setInitialCenter({
         lat: Number(showOnMapData.latitude),
         lng: Number(showOnMapData.longitude)
@@ -81,10 +97,10 @@ const GoogleMap = props => {
     console.log(country, 'handlego');
     switch (country) {
       case 'Singapore':
-        setZoomValue(3);
+        setZoomValue(10);
         break;
       case 'Malaysia':
-        setZoomValue(19);
+        setZoomValue(5);
         break;
       case 'Indonesia':
         setZoomValue(4);
@@ -117,9 +133,8 @@ const GoogleMap = props => {
 
   useEffect(() => {
     if (multipleMarker && multipleMarker.length > 0) {
-      let lat = Number(multipleMarker[2].latitude);
-      let lng = Number(multipleMarker[2].longitude);
-      console.log(lat, lng);
+      let lat = Number(multipleMarker[0].latitude);
+      let lng = Number(multipleMarker[0].longitude);
       setInitialCenter({ lat, lng });
       // handleZoom('Singapore');
     }
@@ -129,17 +144,14 @@ const GoogleMap = props => {
     return <div>Loading...</div>;
   }
 
-  const handleImage = url => {
-    let error = false;
-    if (<img src={url} onError={(error = 'Image not there')} />) {
-      console.log(error);
-    }
-    return error;
-  };
+  // const handleImage = url => {
+  //   let error = false;
+  //   if (<img src={url} onError={(error = 'Image not there')} />) {
+  //     console.log(error);
+  //   }
+  //   return error;
+  // };
 
-  const centerMoved = (mapProps, map) => {
-    console.log(mapProps, map);
-  };
   return (
     <div
       className="gmap"
@@ -154,8 +166,8 @@ const GoogleMap = props => {
     >
       <Map
         google={google}
-        onDragend={centerMoved}
-        centerAroundCurrentLocation
+        // onDragend={centerMoved}
+        // centerAroundCurrentLocation
         style={{ width: '100%', height: '600px', position: 'relative' }}
         zoom={zoomValue}
         onClick={onMapClicked}
@@ -163,7 +175,7 @@ const GoogleMap = props => {
         gestureHandling={
           width <= Constants.MOBILE_BREAK_POINT ? 'greedy' : 'cooperative'
         }
-        // center={initialCenter}
+        center={markerPosition}
       >
         {multipleMarker &&
           multipleMarker.map((elem, index) => {
@@ -195,7 +207,7 @@ const GoogleMap = props => {
                       }
                     : elem.id === selectedPlace.id
                     ? {
-                        url: BluePin,
+                        url: showingInfoWindow && BluePin,
                         scaledSize: new google.maps.Size(50, 50)
                       }
                     : null

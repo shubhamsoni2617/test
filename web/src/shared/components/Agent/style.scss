@@ -66,16 +66,10 @@
             }
         }
         .agent-map-area {
-            flex: 0 0 70%;
-            width: 70%;
+            width: calc(100% - 433px);
             margin-top: 34px;
-            @media(max-width: 1024px){
-                flex: 0 0 60%;
-                width: 60%;
-            }
             @media(max-width: 992px){
-                flex: 0 0 50%;
-                width: 50%;
+                width: calc(100% - 433px);
             }
             @media(max-width: 768px){
                 flex: 0 0 100%;
@@ -115,18 +109,18 @@
         }
     }
     .agent-sidebar {
-        flex: 0 0 30%;
-        width: 30%;
+        flex: 0 0 433px;
+        width: 433px;
         padding-right: 50px;
         @media(max-width: 1024px){
-            flex: 0 0 40%;
-            width: 40%;
+            flex: 0 0 433px;
+            width: 433px;
             padding-right: 50px;
         }
         @media(max-width: 992px){
-            flex: 0 0 50%;
-            width: 50%;
-            padding-right: 70px;
+            flex: 0 0 433px;
+            width: 433px;
+            padding-right: 50px;
         }
         @media(max-width: 768px){
             flex: 0 0 100%;
@@ -160,19 +154,19 @@
 
     .search-agent-header{
       position: fixed;
-      width: 28%;
-      background: #fff;
-      z-index: 4;
-      left: 0;
-      padding: 30px 0px 0 25px;
-      top: 0;
+      width: 433px;
+    background: #fff;
+    z-index: 4;
+    left: 0;
+    padding: 30px 25px 0 25px;
+    top: 0;
     }
     .agent-map-area{
       position: fixed;
       right: 0;
-      top: 25px;
+      top: 30px;
       padding-right: 55px;
-      padding-left: 1px;
+      padding-left: 25px;
     }
     .agent-sidebar{
       margin-top: 0px;
@@ -182,9 +176,9 @@
     }
   }
   &.agent-absolute{
-    /*.banner-wrapper{
-       position: absolute;
-    }*/
+    .banner-wrapper{
+      // position: absolute;
+    }
     .agent-map-area{
       position: relative;
       .gmap{
@@ -193,9 +187,8 @@
         width: 100%;
       }
     }
-    /*
     .agent-sidebar{
-      position: absolute;
-    }*/
+      // position: absolute;
+    }
   }
 }
