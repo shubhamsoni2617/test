@@ -154,19 +154,19 @@
 
     .search-agent-header{
       position: fixed;
-      width: 28%;
-      background: #fff;
-      z-index: 4;
-      left: 0;
-      padding: 30px 0px 0 25px;
-      top: 0;
+      width: 433px;
+    background: #fff;
+    z-index: 4;
+    left: 0;
+    padding: 30px 25px 0 25px;
+    top: 0;
     }
     .agent-map-area{
       position: fixed;
       right: 0;
-      top: 25px;
+      top: 30px;
       padding-right: 55px;
-      padding-left: 1px;
+      padding-left: 25px;
     }
     .agent-sidebar{
       margin-top: 0px;
@@ -176,9 +176,9 @@
     }
   }
   &.agent-absolute{
-    /*.banner-wrapper{
-       position: absolute;
-    }*/
+    .banner-wrapper{
+      // position: absolute;
+    }
     .agent-map-area{
       position: relative;
       .gmap{
@@ -187,9 +187,8 @@
         width: 100%;
       }
     }
-    /*
     .agent-sidebar{
-      position: absolute;
-    }*/
+      // position: absolute;
+    }
   }
 }
