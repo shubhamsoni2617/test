@@ -150,7 +150,7 @@
       }
     }
       .search-agent{
-        margin-top: 175px;
+        margin-top: 105px;
         @media(max-width: 768px){
             margin-top: 0px;
         }
@@ -175,7 +175,7 @@
       right: 0;
       top: 30px;
       padding-right: 40px;
-      padding-left: 25px;
+      padding-left: 40px;
       @media(max-width: 768px){
         position: relative;
         padding-right: 0px;
@@ -205,12 +205,20 @@
         position: absolute;
         bottom: 40px;
         width: 100%;
-        top: 0px;
+        // top: 0px;
         left: 0px;
         right: 0px;
       }
     }
     .agent-sidebar{
       // position: absolute;
+    }
+  }
+
+  .venue{
+    &.agent-fixed{
+      .search-agent{
+        margin-top: 175px;
+      }
     }
   }
