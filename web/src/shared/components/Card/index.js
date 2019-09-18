@@ -12,12 +12,13 @@ export default class Card extends Component {
     super(props);
     this.state = {
       showPopUp: false,
-      popUpContent: null
+      popUpContent: null,
+      popUpTitle: null
     };
   }
 
-  showPopUp = (status, content) => {
-    this.setState({ showPopUp: status, popUpContent: content });
+  showPopUp = (status, content, cardTitle) => {
+    this.setState({ showPopUp: status, popUpContent: content, popUpTitle: cardTitle });
   };
 
   render() {
@@ -54,7 +55,7 @@ export default class Card extends Component {
                 {cardData.synopsis.length > 55 && (
                   <span
                     className="attraction-show-more"
-                    onClick={() => this.showPopUp(true, cardData.synopsis)}
+                    onClick={() => this.showPopUp(true, cardData.synopsis, cardData.name)}
                   >
                     Show More
                   </span>
@@ -65,6 +66,7 @@ export default class Card extends Component {
                     showModal={true}
                     content={this.state.popUpContent}
                     title="Synopsis"
+                    cardTitle={this.state.popUpTitle}
                     handleClose={() => this.showPopUp(false, null)}
                     htmlContent={true}
                   />
