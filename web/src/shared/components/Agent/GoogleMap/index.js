@@ -197,7 +197,7 @@ const GoogleMap = props => {
         google={google}
         // onDragend={centerMoved}
         // centerAroundCurrentLocation
-        style={{ width: '100%', height: '600px', position: 'relative' }}
+        style={{ width: '100%', height: window.innerHeight - 100, position: 'relative' }}
         zoom={zoomValue}
         onClick={onMapClicked}
         initialCenter={initialCenter}
