@@ -125,7 +125,7 @@ const AgentVenuePopUp = props => {
       ) : null}
 
       {venue && popUpDetail.contact_details ? (
-        <div className="agent-info">
+        <div className="agent-info popup-contact-details">
           <div className="icon">
             <img src={contact} alt="icon" />
           </div>
