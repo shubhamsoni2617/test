@@ -133,9 +133,9 @@
     }
 }
 
-.venue{
 
-  &.agent-fixed{
+
+  .agent-fixed{
     .banner-wrapper{
       // position: fixed;
       // top: 0;
@@ -175,7 +175,7 @@
       }
     }
   }
-  &.agent-absolute{
+  .agent-absolute{
     .banner-wrapper{
       // position: absolute;
     }
@@ -191,4 +191,3 @@
       // position: absolute;
     }
   }
-}
