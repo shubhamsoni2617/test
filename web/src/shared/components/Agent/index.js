@@ -33,13 +33,25 @@ const Agent = props => {
   useEffect(() => {
     scrollToTop();
     fetchCountryNRegion();
+    document.addEventListener('click', closePopup);
     window.addEventListener('scroll', handleScroll);
     return () => {
       window.removeEventListener('scroll', handleScroll);
+      document.removeEventListener('click', closePopup);
     };
   }, []);
 
+  const closePopup = (e) => {
+    if(e.target.classList.contains('event-title')) return;
+    if(e.target.classList.contains('agent-info')) return;
+    if(e.target.closest('.agent-info')) return;
+
+      if(document.getElementsByClassName('pop-up-list active').length){
+          document.getElementsByClassName('pop-up-list active')[0].classList.remove('active');
+      }
+  }
   const handleScroll = () => {
+<<<<<<< HEAD
     if (document.getElementsByClassName('pop-up-list active').length) {
       console.log(
         'document.getElementsByClassName()',
@@ -55,6 +67,11 @@ const Agent = props => {
         document
           .getElementsByClassName('pop-up-list active')[0]
           .classList.remove('active');
+=======
+    if(document.getElementsByClassName('pop-up-list active').length){
+      if(document.getElementsByClassName('pop-up-list active')[0].getBoundingClientRect().top < 85){
+        document.getElementsByClassName('pop-up-list active')[0].classList.remove('active');
+>>>>>>> 0444b312257a6741fc0327ef0c5f457b50a59cf1
       }
     }
     if (

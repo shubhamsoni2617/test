@@ -105,12 +105,12 @@ const SearchAgent = props => {
   //pop-up show and hide function
   const handleActivePopUp = () => {
     if (activePopUpRef.current) {
-      if (openPopUp) {
+      if (activePopUpRef.current.classList.contains('active')) {
         activePopUpRef.current.classList.remove('active');
-        setOpenUp(false);
+      //   setOpenUp(false);
       } else {
         activePopUpRef.current.classList.add('active');
-        setOpenUp(true);
+      //   setOpenUp(true);
       }
     }
   };
@@ -238,7 +238,7 @@ const SearchAgent = props => {
                 />
                 <h3>
                   <span onClick={() => showPopUp(item)}>
-                    <strong>{item.name}</strong>
+                    <strong className="event-title" >{item.name}</strong>
                   </span>
                   {item.name.length > 25 ? <br /> : null}{' '}
                   <span>
