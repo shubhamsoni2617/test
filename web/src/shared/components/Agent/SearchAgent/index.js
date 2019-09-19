@@ -1,15 +1,12 @@
 import React, { useState, useEffect, useRef } from 'react';
 import SearchIcon from '../../../../assets/images/search-icon-gray.svg';
-import './style.scss';
 import downloadOrange from '../../../../assets/images/download-orange.svg';
-import eventImg from '../../../../assets/images/explore.png';
 import downArrow from '../../../../assets/images/downarrow-blue.svg';
 import AgentService from '../../../services/AgentService';
 import AgentVenuePopUp from '../../AgentVenuePopUp';
 import Utilities from '../../../utilities';
-import { useCustomWidth } from '../../CustomHooks';
-import Constants from '../../../constants';
 import ShimmerEffect from '../../ShimmerEffect';
+import './style.scss';
 
 const SearchAgent = props => {
   const {
@@ -20,23 +17,68 @@ const SearchAgent = props => {
     countryName,
     handleAttractionValue,
     handleEventValue,
-    activeClassId,
     checkBox,
     handleMapFilter,
-    mapClick
+    mapClick,
+    agentWrapper
   } = props;
 
-  const [width] = useCustomWidth();
-  const activePopUpRef = useRef();
   const [data, setData] = useState([]);
   const [filter, setFilter] = useState('');
   const [popUpDetail, setPopUpDetail] = useState('');
-  const [openPopUp, setOpenUp] = useState(false);
   const [attraction, setAttraction] = useState(false);
   const [onGoingEvents, setOngoingEvents] = useState(false);
-  const [currentlyShowingData, setCurrentlyShowingData] = useState([]);
 
-  let timer;
+  useEffect(() => {
+    document.addEventListener('click', closePopup);
+    window.addEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      document.removeEventListener('click', closePopup);
+    };
+  }, []);
+
+  const closePopup = e => {
+    if (e.target.classList.contains('event-title')) return;
+    if (e.target.classList.contains('agent-info')) return;
+    if (e.target.closest('.agent-info')) return;
+
+    if (document.getElementsByClassName('pop-up-list active').length) {
+      document
+        .getElementsByClassName('pop-up-list active')[0]
+        .classList.remove('active');
+
+      setPopUpDetail({});
+    }
+  };
+  const handleScroll = () => {
+    if (document.getElementsByClassName('pop-up-list active').length) {
+      if (
+        document
+          .getElementsByClassName('pop-up-list active')[0]
+          .getBoundingClientRect().top < 85
+      ) {
+        document
+          .getElementsByClassName('pop-up-list active')[0]
+          .classList.remove('active');
+        setPopUpDetail({});
+      }
+    }
+    if (
+      window.pageYOffset +
+        document.getElementById('footer').getBoundingClientRect().height >=
+      window.document.body.clientHeight - window.innerHeight
+    ) {
+      agentWrapper.current.classList.remove('agent-fixed');
+      agentWrapper.current.classList.add('agent-absolute');
+    } else if (window.pageYOffset >= 280) {
+      agentWrapper.current.classList.remove('agent-absolute');
+      agentWrapper.current.classList.add('agent-fixed');
+    } else {
+      agentWrapper.current.classList.remove('agent-absolute');
+      agentWrapper.current.classList.remove('agent-fixed');
+    }
+  };
 
   useEffect(() => {
     setAttraction(false);
@@ -51,49 +93,32 @@ const SearchAgent = props => {
     event.preventDefault();
   };
 
-  // filter data through input tag
   const handleChange = event => {
     const { value } = event.target;
     setFilter(value);
     handleMapFilter(value);
   };
 
-  // timer set when mouse-enter event occurs
   const showPopUp = detail => {
-    handleActivePopUp();
     const params = {
       venue_id: detail.id
     };
     const cachedVenue = data.find(item => item.id === detail.id);
     if (cachedVenue) detail = cachedVenue;
     if (venue && !cachedVenue) {
-      // timer = setTimeout(() => {
       fetchCurrentlyShowingData(params, detail);
-      // }, 1000);
     } else {
-      // timer = setTimeout(() => {
       setPopUpDetail(detail);
-      setCurrentlyShowingData(detail.currentlyShowingData);
-
-      // }, 1000);
     }
   };
 
-  // timer cleared when mouse-leave event occurs
-  const hidePopUp = detail => {
-    clearTimeout(timer);
-    handleActivePopUp();
-    setPopUpDetail(detail);
-  };
-
-  //fetch CurrentlyShowingData from api
   const fetchCurrentlyShowingData = (params, detail) => {
     AgentService.getVenueSpecificEvents(params)
       .then(res => {
         if (res.data && res.data.data) {
           detail.currentlyShowingData = res.data.data;
-          let currentlyShowingData = res.data.data;
-          setCurrentlyShowingData(currentlyShowingData);
+          let newData = [...data, { ...detail }];
+          setData(newData);
           setPopUpDetail(detail);
         }
       })
@@ -102,20 +127,6 @@ const SearchAgent = props => {
       });
   };
 
-  //pop-up show and hide function
-  const handleActivePopUp = () => {
-    if (activePopUpRef.current) {
-      if (activePopUpRef.current.classList.contains('active')) {
-        activePopUpRef.current.classList.remove('active');
-      //   setOpenUp(false);
-      } else {
-        activePopUpRef.current.classList.add('active');
-      //   setOpenUp(true);
-      }
-    }
-  };
-
-  //toggle function for selection of attraction checkbox
   const handleAttraction = () => {
     if (!attraction) {
       handleAttractionValue(1);
@@ -126,7 +137,6 @@ const SearchAgent = props => {
     }
   };
 
-  //toggle function for selection of ongoingEvents checkbox
   const handleOngoingEvents = () => {
     if (!onGoingEvents) {
       handleEventValue(1);
@@ -141,14 +151,6 @@ const SearchAgent = props => {
   if (countryFileUrl) {
     isFile = Utilities.isFileExt(countryFileUrl);
   }
-
-  // if(initialItems.length === 0 && filter!==""){
-  //   setTimeout(()=>{
-  //     setDataNotFound(true)
-  //   })
-  // }
-
-  console.log(initialItems, 'initialItems');
 
   return (
     <div className="search-agent">
@@ -218,19 +220,7 @@ const SearchAgent = props => {
         {initialItems &&
           initialItems.map((item, index) => {
             return (
-              <li
-                className={
-                  item.id === activeClassId
-                    ? 'pop-up-container active-class'
-                    : 'pop-up-container'
-                }
-                // onClick={e => {
-                //   showOnMapClick(e, item, activePopUpRef);
-                // }}
-                key={index}
-                // onMouseEnter={() => showPopUp(item)}
-                // onMouseLeave={hidePopUp}
-              >
+              <li key={index}>
                 <img
                   src={downArrow}
                   className="active-arrow"
@@ -238,13 +228,13 @@ const SearchAgent = props => {
                 />
                 <h3>
                   <span onClick={() => showPopUp(item)}>
-                    <strong className="event-title" >{item.name}</strong>
+                    <strong className="event-title">{item.name}</strong>
                   </span>
                   {item.name.length > 25 ? <br /> : null}{' '}
                   <span>
                     <a
                       onClick={e => {
-                        showOnMapClick(e, item, activePopUpRef);
+                        showOnMapClick(e, item);
                       }}
                     >
                       Show on Map
@@ -254,17 +244,13 @@ const SearchAgent = props => {
                 <p>
                   {item.address},{item.country}
                 </p>
-                <AgentVenuePopUp
-                  item={item}
-                  popUpDetail={popUpDetail}
-                  currentlyShowingData={currentlyShowingData}
-                  activePopUpRef={activePopUpRef}
-                  {...props}
-                />
+                <AgentVenuePopUp item={item} popUpDetail={popUpDetail} />
               </li>
             );
           })}
-        {initialItems && initialItems.length === 0  ? <h4>No result found</h4> : null}
+        {initialItems && initialItems.length === 0 ? (
+          <h4>No result found</h4>
+        ) : null}
       </ul>
     </div>
   );

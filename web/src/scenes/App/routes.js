@@ -13,6 +13,7 @@ import TermsPrivacy from '../TermsPrivacy';
 import GiftVouchers from '../GiftVouchers';
 import ContactUs from '../ContactUs';
 import Faq from '../Faq';
+import Careers from '../Careers';
 
 const routes = [
   {
@@ -95,6 +96,11 @@ const routes = [
   {
     path: '/faq/:id',
     component: Faq,
+    exact: true
+  },
+  {
+    path: '/careers',
+    component: Careers,
     exact: true
   },
   {

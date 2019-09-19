@@ -33,44 +33,7 @@ const Agent = props => {
   useEffect(() => {
     scrollToTop();
     fetchCountryNRegion();
-    document.addEventListener('click', closePopup);
-    window.addEventListener('scroll', handleScroll);
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-      document.removeEventListener('click', closePopup);
-    };
   }, []);
-
-  const closePopup = (e) => {
-    if(e.target.classList.contains('event-title')) return;
-    if(e.target.classList.contains('agent-info')) return;
-    if(e.target.closest('.agent-info')) return;
-
-      if(document.getElementsByClassName('pop-up-list active').length){
-          document.getElementsByClassName('pop-up-list active')[0].classList.remove('active');
-      }
-  }
-  const handleScroll = () => {
-    if(document.getElementsByClassName('pop-up-list active').length){
-      if(document.getElementsByClassName('pop-up-list active')[0].getBoundingClientRect().top < 85){
-        document.getElementsByClassName('pop-up-list active')[0].classList.remove('active');
-      }
-    }
-    if (
-      window.pageYOffset +
-        document.getElementById('footer').getBoundingClientRect().height >=
-      window.document.body.clientHeight - window.innerHeight
-    ) {
-      agentWrapper.current.classList.remove('agent-fixed');
-      agentWrapper.current.classList.add('agent-absolute');
-    } else if (window.pageYOffset >= 280) {
-      agentWrapper.current.classList.remove('agent-absolute');
-      agentWrapper.current.classList.add('agent-fixed');
-    } else {
-      agentWrapper.current.classList.remove('agent-absolute');
-      agentWrapper.current.classList.remove('agent-fixed');
-    }
-  };
 
   useEffect(() => {
     if (countryId && countryIdSelected !== countryId) {
@@ -167,13 +130,8 @@ const Agent = props => {
   };
 
   // set selected list data in parent component
-  const showOnMapClick = (e, selectedItem, activePopUpRef) => {
-    console.log(selectedItem, 'selecteditem');
+  const showOnMapClick = (e, selectedItem) => {
     setToggle(!toggle);
-    if (activePopUpRef.current) {
-      // remove popUpDetail after clicking on show on map
-      activePopUpRef.current.classList.remove('active');
-    }
     setShowOnMapData(selectedItem);
   };
   // set selected country in parent component
@@ -252,6 +210,7 @@ const Agent = props => {
               checkBox={checkBox}
               handleMapFilter={handleMapFilter}
               mapClick={mapClick}
+              agentWrapper={agentWrapper}
               {...props}
             />
           </div>
