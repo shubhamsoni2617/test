@@ -13,7 +13,7 @@ const Agent = props => {
   const agentWrapper = useRef();
   const [countryNRegion, setCountryNRegion] = useState([]);
   const [listedData, setListedData] = useState([]);
-  const [filteredListedData, setFilteredListedData] = useState([]);
+  const [filteredListedData, setFilteredListedData] = useState(null);
   const [countryFileUrl, setCountryFileUrl] = useState('');
   const [showOnMapData, setShowOnMapData] = useState('');
   const [countryName, setCountryName] = useState('Singapore');
@@ -33,16 +33,25 @@ const Agent = props => {
   useEffect(() => {
     scrollToTop();
     fetchCountryNRegion();
+    document.addEventListener('click', closePopup);
     window.addEventListener('scroll', handleScroll);
     return () => {
       window.removeEventListener('scroll', handleScroll);
+      document.removeEventListener('click', closePopup);
     };
   }, []);
 
+  const closePopup = (e) => {
+    if(e.target.classList.contains('event-title')) return;
+    if(e.target.classList.contains('agent-info')) return;
+    if(e.target.closest('.agent-info')) return;
+
+      if(document.getElementsByClassName('pop-up-list active').length){
+          document.getElementsByClassName('pop-up-list active')[0].classList.remove('active');
+      }
+  }
   const handleScroll = () => {
     if(document.getElementsByClassName('pop-up-list active').length){
-
-      console.log('document.getElementsByClassName()', document.getElementsByClassName('pop-up-list active')[0].getBoundingClientRect().top);
       if(document.getElementsByClassName('pop-up-list active')[0].getBoundingClientRect().top < 85){
         document.getElementsByClassName('pop-up-list active')[0].classList.remove('active');
       }
@@ -52,14 +61,14 @@ const Agent = props => {
         document.getElementById('footer').getBoundingClientRect().height >=
       window.document.body.clientHeight - window.innerHeight
     ) {
-        agentWrapper.current.classList.remove('agent-fixed');
-        agentWrapper.current.classList.add('agent-absolute');
+      agentWrapper.current.classList.remove('agent-fixed');
+      agentWrapper.current.classList.add('agent-absolute');
     } else if (window.pageYOffset >= 280) {
       agentWrapper.current.classList.remove('agent-absolute');
-        agentWrapper.current.classList.add('agent-fixed');
+      agentWrapper.current.classList.add('agent-fixed');
     } else {
       agentWrapper.current.classList.remove('agent-absolute');
-        agentWrapper.current.classList.remove('agent-fixed');
+      agentWrapper.current.classList.remove('agent-fixed');
     }
   };
 
@@ -103,7 +112,7 @@ const Agent = props => {
 
   //Fetch agents or venues based on selection event
   const fetchAgentsNVenues = params => {
-    setFilteredListedData([]);
+    setFilteredListedData(null);
     if (params.region === undefined) {
       params.region = null;
     }
@@ -123,8 +132,10 @@ const Agent = props => {
       : AgentService.getAgents(params);
     eventSelection
       .then(res => {
+        setTimeout(() => {
+          setFilteredListedData(res.data.data);
+        }, 500);
         setListedData(res.data.data);
-        setFilteredListedData(res.data.data);
       })
       .catch(err => {
         console.log(err);
@@ -166,7 +177,7 @@ const Agent = props => {
     setShowOnMapData(selectedItem);
   };
   // set selected country in parent component
-  const handleCountryNRegionName = (countryName,regionName) => {
+  const handleCountryNRegionName = (countryName, regionName) => {
     setCountryName(countryName);
     setRegionName(regionName);
   };
@@ -215,7 +226,7 @@ const Agent = props => {
 
   return (
     <section
-    ref={agentWrapper}
+      ref={agentWrapper}
       className={`agents-wrapper ${venue ? 'venue' : ''}`}
     >
       <CountryRegion

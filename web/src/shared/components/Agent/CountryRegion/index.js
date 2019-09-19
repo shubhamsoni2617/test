@@ -106,7 +106,7 @@ const CountryRegion = props => {
                 value={region}
                 readOnly={country !== 'Singapore' ? true : false}
               >
-                <option>Region</option>
+                <option>All</option>
                 {countryNRegion &&
                   countryNRegion.map((elem, index) => {
                     if (elem.regions.length > 0) {

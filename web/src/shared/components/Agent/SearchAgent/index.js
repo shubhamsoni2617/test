@@ -142,7 +142,13 @@ const SearchAgent = props => {
     isFile = Utilities.isFileExt(countryFileUrl);
   }
 
-  // console.log(initialItems, 'initialItems');
+  // if(initialItems.length === 0 && filter!==""){
+  //   setTimeout(()=>{
+  //     setDataNotFound(true)
+  //   })
+  // }
+
+  console.log(initialItems, 'initialItems');
 
   return (
     <div className="search-agent">
@@ -191,7 +197,7 @@ const SearchAgent = props => {
             </li>
           </ul>
         ) : null}
-        {initialItems.length === 0 && filter === '' && (
+        {!initialItems && filter === '' && (
           <ShimmerEffect
             propCls="shm_col-xs-6 col-md-12"
             height={80}
@@ -232,7 +238,7 @@ const SearchAgent = props => {
                 />
                 <h3>
                   <span onClick={() => showPopUp(item)}>
-                    <strong>{item.name}</strong>
+                    <strong className="event-title" >{item.name}</strong>
                   </span>
                   {item.name.length > 25 ? <br /> : null}{' '}
                   <span>
@@ -258,7 +264,7 @@ const SearchAgent = props => {
               </li>
             );
           })}
-        {initialItems.length === 0 && filter!==''  ? <h4>No result found</h4> : null}
+        {initialItems && initialItems.length === 0  ? <h4>No result found</h4> : null}
       </ul>
     </div>
   );
