@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import SearchIcon from '../../../../assets/images/search-icon-gray.svg';
 import downloadOrange from '../../../../assets/images/download-orange.svg';
 import downArrow from '../../../../assets/images/downarrow-blue.svg';
@@ -53,8 +53,11 @@ const SearchAgent = props => {
       closePopup(e);
     }
   };
-  const handleScroll = () => {
-    if (popUpDetail && popUpDetail.id) {
+  const handleScroll = useCallback(() => {
+    if (
+      document.getElementsByClassName('pop-up-list active') &&
+      document.getElementsByClassName('pop-up-list active').length
+    ) {
       if (
         document
           .getElementsByClassName('pop-up-list active')[0]
@@ -77,7 +80,7 @@ const SearchAgent = props => {
       agentWrapper.current.classList.remove('agent-absolute');
       agentWrapper.current.classList.remove('agent-fixed');
     }
-  };
+  });
 
   useEffect(() => {
     setAttraction(false);
