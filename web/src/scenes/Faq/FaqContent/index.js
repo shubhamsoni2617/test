@@ -22,13 +22,17 @@ class Content extends React.Component {
   }
 
   render() {
+    let filteredData= this.props.data
+    .filter(content =>
+      content.category_id.includes(this.props.categoryId)
+    )
+      if(!filteredData.length){
+      return <span className="no-faq-found">No data found</span>
+    }
     return (
       <div>
-        {this.props.data
-          .filter(content =>
-            content.category_id.includes(this.props.categoryId)
-          )
-          .map((content, i) => {
+        {
+          filteredData.map((content, i) => {
             return (
               <div ref={content.id} key={content.question + i}>
                 <AccordionSection
