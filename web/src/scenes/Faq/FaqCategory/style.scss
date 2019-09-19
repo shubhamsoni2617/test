@@ -1,96 +1,255 @@
-.promotions-nav {
-  display: block;
-  width: 100%;
-  padding-bottom: 13px;
-  padding-bottom: 30px;
-
-  @media (max-width: 991px) {
-    padding-bottom: 30px;
-  }
-  @media (max-width: 767px) {
-    padding-bottom: 20px;
-  }
-  .nav-tabs {
+.flex-container {
+  width: 80%;
+  min-height: 300px;
+  margin: 0 auto;
+  display: -webkit-flex; /* Safari */
+  display: flex; /* Standard syntax */
+}
+.flex-container .column {
+  padding: 10px;
+  background: #dbdfe5;
+  -webkit-flex: 1; /* Safari */
+  -ms-flex: 1; /* IE 10 */
+  flex: 1; /* Standard syntax */
+}
+.flex-container .column.bg-alt {
+  background: #b4bac0;
+}
+.faq-listing{
+  position: relative;
+  background-color: #fff;
+  li{
     display: flex;
-    flex-wrap: nowrap;
-    justify-content: space-between;
-    border-bottom: 5px solid rgba(52, 52, 52, 0.1);
-    overflow-x: auto;
-    justify-content: normal;
-    border-bottom: none;
-    padding-left: 0px;
-    padding-right: 0px;
-
-    @media (max-width: 991px) {
-      justify-content: normal;
-      border-bottom: none;
-    }
-    @media (max-width: 991px) {
-      overflow-x: auto;
-      flex-wrap: nowrap;
-    }
-    & > li {
+    flex-wrap: wrap;
+    height: auto;
+    .nav-link, .trending-qus {
+      color: #343434;
+      background-color: #ffffff;
+      padding: 17px 20px;
+      border: none;
       position: relative;
-      @media (max-width: 991px) {
-        flex: 0 0 auto;
-        &:first-child {
-          a {
-            padding-left: 0px;
-          }
-        }
-        &:last-child {
-          a {
-            padding-right: 0px;
-          }
-        }
-      }
-    }
-    .nav-item {
-      color: #626262;
-      font-family: "Montserrat", sans-serif;
+      font-weight: 400;
+      width: 19%;
+      flex: 0 0 19%;
+      left: 0px;
       font-size: 16px;
       line-height: 19px;
-      font-weight: normal;
-      border: none;
-      position: absolute;
-      padding: 0 24px;
-      // padding: 9px 30px;
-      transition: 0.2s color;
-      border-bottom: 5px solid rgba(52, 52, 52, 0.1);
-
-      cursor: pointer;
-      @media (max-width: 991px) {
-        border-bottom: 5px solid rgba(52, 52, 52, 0.1);
-        padding: 0 24px;
+      border-right: 21px solid #f7fafc;
+      @media(max-width: 1600px) and (min-width: 1280px){
+        width: 22%;
+        flex: 0 0 22%;
       }
-      @media (max-width: 767px) {
+      @media(max-width: 1280px){
+        width: 26%;
+        flex: 0 0 26%;
+      }
+      @media(max-width: 1024px){
+        width: 29%;
+        flex: 0 0 29%;
+      }
+      @media(max-width: 991px){
+        width: 100%;
+        flex: 0 0 100%;
+        padding: 15px;
         font-size: 14px;
-        line-height: 16px;
-        padding: 0px 10px 5px;
+        line-height: 18px;
+        border-bottom: 5px solid #F7FAFC;
+        border-right: none;
+        transition: 0.3s color, 0.3s background-color;
+        -webkit-transition: 0.3s color, 0.3s background-color;
+        -moz-transition: 0.3s color, 0.3s background-color;
+        -o-transition: 0.3s color, 0.3s background-color;
       }
-      &::before {
-        left: 0;
-        bottom: -4px;
-        border-bottom: 5px solid #0098ff;
-        width: 0px;
-        position: absolute;
-        content: "";
-        transition: 0.5s width;
+      @media(max-width: 767px){
+        padding: 13px 15px;
       }
-      &:hover,
-      &.active {
-        color: #0098ff;
-        &::before {
-          width: 100%;
+      &::before{
+        content: none;
+        @media(max-width: 991px){
+          transition: 0.5s transform;
+          -webkit-transition: 0.5s transform;
+          -moz-transition: 0.5s transform;
+          -o-transition: 0.5s transform;
+          content: '';
+          height: 8px;
+          margin-top: 0px;
+          width: 8px;
+          margin-right: 0px;
+          border-bottom: 2px solid currentColor;
+          border-right: 2px solid currentColor;
+          transform: translateY(-50%) rotate(-45deg);
+          top: 50%;
+          position: absolute;
+          right: 20px;
         }
       }
-      &.active {
-        font-family: "Montserrat", sans-serif;
-        font-weight: 600;
-        @media (max-width: 768px) {
-          border-bottom: 5px solid #0098ff;
+      &.active , &:hover{
+        color: #0098FF;
+        background-color: #F0F9FF;
+        @media(max-width: 991px){
+          background-color: #F7FAFC;
+        }
+        &:before{
+          transform: translateY(-50%) rotate(45deg);
+        }
+      }
+      &.active{
+        font-weight: 500;
+      }
+    }
+    .faq-ans-wrapper {
+      position: absolute;
+      flex: 0 0 81%;
+      margin-left: auto;
+      width: 81%;
+      top: 0px;
+      right: 0px;
+      padding: 35px 20px;
+      height: 100%;
+      @media(max-width: 1600px) and (min-width: 1280px){
+        width: 78%;
+        flex: 0 0 78%;
+      }
+      @media(max-width: 1280px){
+        width: 74%;
+        flex: 0 0 74%;
+      }
+      @media(max-width: 1024px){
+        width: 71%;
+        flex: 0 0 71%;
+      }
+      @media(max-width: 991px){
+        position: relative;
+        padding: 15px 0px 0px;
+        width: 100%;
+        flex: 0 0 100%;
+        border-bottom: 15px solid #f7fafc;
+      }
+      h2{
+        font-size: 22px;
+        line-height: 27px;
+        padding-bottom: 30px;
+        @media(max-width: 991px){
+          display: none;
+        }
+        & + div{
+          position: absolute;
+          top: 0px;
+          bottom: 0px;
+          left: 0px;
+          right: 0px;
+          width: 100%;
+          overflow-y: auto;
+          max-height: 100%;
+          padding: 0px 20px 35px;
+          margin-top: 92px;
+          @media(max-width: 991px){
+            position: relative;
+            padding: 0px;
+            margin-top: 0px;
+          }
+        }
+      }
+      .sidebar-accordion {
+        border-bottom: 1px solid rgba(126, 126, 126, 0.2);
+        padding: 0px 0px 21px;
+        margin-bottom: 30px;
+        @media (max-width: 991px) {
+          padding: 0px 15px 10px;
+          margin-bottom: 20px;
+        }
+        .accordion__item {
+          margin-bottom: 0px;
+        }
+        .accordion__button {
+          color: #343434;
+          font-family: "Rubik", sans-serif;
+          font-size: 18px;
+          line-height: 22px;
+          font-weight: normal;
+          background-color: transparent;
+          padding: 0px 70px 0px 0px;
+          margin: 0px;
+          transition: 0.5s color, 1s margin;
+          @media (max-width: 991px) {
+            font-size: 14px;
+            line-height: 18px;
+            padding: 0px 25px 0px 0px;
+          }
+          &:before {
+            margin-top: -5px;
+            width: 6px;
+            height: 6px;
+            right: 50px;
+            transform: rotate(45deg);
+            @media(max-width: 991px){
+              right: 15px;
+            }
+            @media (max-width: 767px) {
+              right: 5px;
+              width: 6px;
+              height: 6px;
+            }
+          }
+          &[aria-expanded="true"] {
+            color: #0098ff;
+            margin: 0px 0px 20px;
+            @media (max-width: 767px) {
+              margin: 0px 0px 10px;
+            }
+            &:before {
+              transform: rotate(-135deg);
+            }
+          }
+        }
+        .accordion__panel {
+          color: #343434;
+          font-family: "Rubik", sans-serif;
+          font-size: 16px;
+          line-height: 26px;
+          padding: 0px;
+          @media(max-width: 991px){
+            padding: 0px;
+          }
+          p {
+            margin-bottom: 0px;
+            @media (max-width: 767px) {
+              color: #7e7e7e;
+              font-size: 13px;
+              line-height: 21px;
+            }
+          }
+        }
+      }
+      & > div > div:last-child{
+        .sidebar-accordion{
+          border-bottom: none;
+          margin-bottom: 10px;
+        }
+      }
+      .no-faq-found {
+        padding: 10px 0px;
+        color: #999;
+        display: block;
+        @media(max-width: 991px){
+          padding: 10px 15px 25px;
         }
       }
     }
+    .trending-qus{
+      padding: 30px 20px 26px;
+      @media(max-width: 767px){
+        padding: 24px 20px 18px;
+      }
+      &:hover{
+        color: #343434;
+        background-color: #ffffff;
+      }
+      &:before{
+        @media(max-width: 991px){
+          content: none;
+        }
+      }
+    }  
   }
 }

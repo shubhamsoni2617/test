@@ -77,19 +77,27 @@
             flex-direction: row;
             margin-top: 22px;
             margin-bottom: 15px;
-            width: calc(100% + 17px);
-            padding-left: 1px;
+            width: calc(100% + 15px);
+            padding-left: 2px;
             padding-right: 1px;
+            @media(max-width: 1024px){
+                height: 100%;
+            }
             @media (max-width: 767px) {
                 margin-bottom: 20px;
             }
             > div{
-                flex: 0 0 calc(33.33% - 17px);
-                width: calc(33.33% - 17px);
+                flex: 0 0 calc(33.33% - 19px);
+                width: calc(33.33% - 19px);
                 margin-right: 17px;
-                // &:nth-child(3n){
-                //     margin-right: 0px;
-                // }
+                @media(max-width: 768px){
+                    flex: 0 0 calc(50% - 19px);
+                    width: calc(50% - 19px);
+                }
+                @media(min-width: 1360px) and (max-width: 1900px){
+                    flex: 0 0 calc(25% - 17px);
+                    width: calc(25% - 17px);                    
+                }
             }
             &.list-view{
                 > div{
@@ -127,12 +135,19 @@
 		line-height: normal;
 		text-decoration: none;
 		background-color: #ffffff;
-		transition: 0.9s all;
+        transition: 0.9s all;
+        -webkit-transition: 0.9s all;
+        -moz-transition: 0.9s all;
+        -o-transition: 0.9s all;
 		&:hover {
             background-color: #FFF;
             border: 1px solid #0098ff;
             color: #0098ff;
             transition: 0.9s all;
+            -webkit-transition: 0.9s all;
+            -moz-transition: 0.9s all;
+            -o-transition: 0.9s all;
+            text-decoration: none;
 			span {
 				color: #0098ff;
 			}
@@ -142,12 +157,18 @@
 			font-family: 'Montserrat', sans-serif;
 			font-size: 14px;
 			line-height: 18px;
-			transition: 0.9s all;
+            transition: 0.9s all;
+            -webkit-transition: 0.9s all;
+            -moz-transition: 0.9s all;
+            -o-transition: 0.9s all;
 		}
 		img {
 			padding-left: 10px;
 			padding-bottom: 4px;
-			transition: 0.9s filter;
+            transition: 0.9s filter;
+            -webkit-transition: 0.9s filter;
+            -moz-transition: 0.9s filter;
+            -o-transition: 0.9s filter;
 		}
 	}
 }
@@ -162,4 +183,5 @@
     overflow: hidden;
     margin-left: 150px;
     margin-top: 70px;
+    z-index: 5;
 }

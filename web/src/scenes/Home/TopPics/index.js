@@ -149,9 +149,7 @@ const TopPics = props => {
                           />
                         </div>
                         <span
-                          className={`category ${
-                            pic.category
-                          } top-picks-category`}
+                          className={`category ${pic.category} top-picks-category`}
                         >
                           {pic.category}
                         </span>
@@ -174,7 +172,7 @@ const TopPics = props => {
                       <h3>Kurios Cabinet of Curiosities</h3>
                       <a
                         href="/events"
-                        onClick={(e) => e.preventDefault()}
+                        onClick={e => e.preventDefault()}
                         className="item-title-overlay"
                       >
                         <span>BUY NOW </span>
@@ -199,7 +197,10 @@ const TopPics = props => {
                     <div className="item-wrapper">
                       <div className="item-desc">
                         <span className="video-icon">
-                          <img src="assets/images/video-icon.svg" />
+                          <img
+                            src="assets/images/video-icon.svg"
+                            alt="video-icon"
+                          />
                         </span>
                         <div className="item-img">
                           <img
@@ -209,9 +210,7 @@ const TopPics = props => {
                           />
                         </div>
                         <span
-                          className={`category ${
-                            pic.category
-                          } top-picks-category`}
+                          className={`category ${pic.category} top-picks-category`}
                         >
                           {pic.category}
                         </span>
@@ -232,14 +231,14 @@ const TopPics = props => {
                         </div>
                       </div>
                       <h3>Kurios Cabinet of Curiosities</h3>
-                      <a className="item-title-overlay">
+                      <span className="item-title-overlay">
                         <span>BUY NOW </span>
                         <img
                           src="assets/images/next-arrow.svg"
                           className="img-fluid"
                           alt="buy-now"
                         />
-                      </a>
+                      </span>
                     </div>
                   </div>
                 </div>

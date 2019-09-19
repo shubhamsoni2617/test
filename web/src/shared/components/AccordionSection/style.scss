@@ -70,6 +70,9 @@
                 width: 9px;
                 height: 9px;
                 transition: 0.5s transform;
+                -webkit-transition: 0.5s transform;
+                -moz-transition: 0.5s transform;
+                -o-transition: 0.5s transform;
                 right: 30px;
             }
             span{
@@ -90,6 +93,9 @@
         .accordion__panel{
             display: block !important;
             transition: 1s all;
+            -webkit-transition: 1s all;
+            -moz-transition: 1s all;
+            -o-transition: 1s all;
             overflow: hidden;
             padding: 25px 30px;
             max-height: 2000px;

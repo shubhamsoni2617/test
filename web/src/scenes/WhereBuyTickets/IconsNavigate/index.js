@@ -1,40 +1,49 @@
-import React, { Fragment } from "react";
-import { Link } from "react-scroll";
-import Website from "../../../assets/images/noun_website_1353550.svg";
-import Hotline from "../../../assets/images/hotline.svg";
-import Partners from "../../../assets/images/partners.svg";
-import MobileApp from "../../../assets/images/smartphone.svg";
-import FindAnAgent from "../../../assets/images/user.svg";
+import React from 'react';
+import { Link } from 'react-scroll';
 
 const IconsNavigate = ({ tabsArray }) => {
+  let props = {
+    activeClass: 'active',
+    spy: true,
+    smooth: true,
+    offset: -70,
+    duration: 500,
+    className: 'wtbt-tab'
+  };
   return (
-    <div>
-      <section className="promotions-wrapper">
-        <div className="container-fluid">
-          <div className="container">
-            <div className="promotions-nav">
-              <ul className="nav nav-tabs" id="nav-tab" role="tablist">
-                {tabsArray.map(category => (
-                  <Link
-                    key={category.title}
-                    activeClass="active"
-                    to={category.title}
-                    spy={true}
-                    smooth={true}
-                    offset={-70}
-                    duration={500}
-                    className="nav-item"
-                  >
-                    <img src={Website} alt={category.title} />
-                    {category.icon_text}
-                  </Link>
-                ))}
-              </ul>
-            </div>
-          </div>
+    <section className="wtbt-sections-tab">
+      <div className="container-fluid">
+        <div className="container">
+          <ul className="wtbt-nav" id="nav-tab" role="tablist">
+            <li key={tabsArray[0].title} className="wtbt-tab-website">
+              <Link to={tabsArray[0].title} {...props}>
+                <span>Website</span>
+              </Link>
+            </li>
+            <li key={tabsArray[1].title} className="wtbt-tab-mobile-app">
+              <Link to={tabsArray[1].title} {...props}>
+                <span>Mobile App</span>
+              </Link>
+            </li>
+            <li key={tabsArray[2].title} className="wtbt-tab-agent">
+              <Link to={tabsArray[2].title} {...props}>
+                <span>Find an Agent</span>
+              </Link>
+            </li>
+            <li key={tabsArray[3].title} className="wtbt-tab-partners">
+              <Link to={tabsArray[3].title} {...props}>
+                <span>Partners</span>
+              </Link>
+            </li>
+            <li key={tabsArray[4].title} className="wtbt-tab-hotline">
+              <Link to={tabsArray[4].title} {...props}>
+                <span>Hotline</span>
+              </Link>
+            </li>
+          </ul>
         </div>
-      </section>
-    </div>
+      </div>
+    </section>
   );
 };
 

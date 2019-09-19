@@ -37,7 +37,7 @@
             color: #ffffff;
             font-size: 30px;
             line-height: 37px;
-            font-weight: 600;
+            font-weight: 500;
             font-family: 'Montserrat', sans-serif;
             margin: 0px;
             @media(max-width: 991px) {
@@ -46,7 +46,7 @@
             }
         }
     }
-    
+
     //banner wrapper
     .banner-wrapper {
         margin: 0 auto;
@@ -58,5 +58,8 @@
             object-position: center;
             width: 100%;
         }
+    }
+    .breadcrumb li a{
+      font-weight: 500;
     }
 }

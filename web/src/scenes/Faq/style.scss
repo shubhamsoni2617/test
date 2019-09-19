@@ -1,36 +1,23 @@
-.find-agent-wrapper {
-  display: flex;
-  padding-top: 45px;
-  @media (max-width: 992px) {
-    padding-top: 20px;
+.faq-body-wrapper {
+  background-color: #f7fafc;
+  padding-top: 41px;
+  padding-bottom: 64px;
+  @media(max-width: 991px){
+    padding-top: 0px;
   }
-  .agent-list {
-    .find-map-mob {
-      background-color: #fafafa;
-      padding: 20px;
-      color: #343434;
-      font-size: 15px;
-      display: block;
-      font-weight: 500;
-      width: calc(100% + 90px);
-      margin-left: -45px;
-      @media (max-width: 767px) {
-        width: calc(100% + 50px);
-        margin-left: -25px;
-      }
-      img {
-        float: right;
-        margin: 4px 0 0 0;
-        transform: rotate(270deg);
-      }
-      &.active {
-        img {
-          transform: rotate(0deg);
-        }
-      }
+  @media (max-width: 767px) {
+    background-color: #fff;
+  }
+  .container-fluid {
+    padding-right: 80px;
+    padding-left: 80px;
+    @media (max-width: 1024px) {
+      padding-right: 40px;
+      padding-left: 40px;
     }
-  }
-  .agent-map {
-    width: 100px;
+    @media (max-width: 991px) {
+      padding-right: 0px;
+      padding-left: 0px;
+    }
   }
 }

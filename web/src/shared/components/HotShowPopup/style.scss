@@ -5,6 +5,9 @@
 .hotshow-enter.hotshow-enter-active {
   opacity: 1;
   transition: all 500ms ease-in-out;
+  -webkit-transition: all 500ms ease-in-out;
+  -moz-transition: all 500ms ease-in-out;
+  -o-transition: all 500ms ease-in-out;
 }
 
 .hotshow-leave {
@@ -14,6 +17,9 @@
 .hotshow-leave.hotshow-leave-active {
   opacity: 0;
   transition: all 500ms ease-in-out;
+  -webkit-transition: all 500ms ease-in-out;
+  -moz-transition: all 500ms ease-in-out;
+  -o-transition: all 500ms ease-in-out;
 }
 .hotshow-popup {
     position: fixed;
@@ -26,6 +32,9 @@
     bottom: 0;
     overflow: auto;
     transition: opacity .5s ease-in-out;
+    -webkit-transition: opacity .5s ease-in-out;
+    -moz-transition: opacity .5s ease-in-out;
+    -o-transition: opacity .5s ease-in-out;
 
 
     .hotshow {

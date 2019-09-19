@@ -180,6 +180,9 @@
         position: relative;
         z-index: 1;
         transition: 0.5s box-shadow;
+        -webkit-transition: 0.5s box-shadow;
+        -moz-transition: 0.5s box-shadow;
+        -o-transition: 0.5s box-shadow;
 
         .category {
           margin-bottom: 11px;
@@ -194,6 +197,9 @@
             width: 100%;
             height: auto;
             transition: 0.5s transform;
+            -webkit-transition: 0.5s transform;
+            -moz-transition: 0.5s transform;
+            -o-transition: 0.5s transform;
 
             @media(max-width: 1366px) {
               height: 100%;
@@ -233,6 +239,9 @@
               opacity: 1;
               z-index: -1;
               transition: 0.5s all;
+              -webkit-transition: 0.5s all;
+              -moz-transition: 0.5s all;
+              -o-transition: 0.5s all;
             }
 
             img {
@@ -245,10 +254,12 @@
 
     h3 {
       transition: 0.3s color;
+      -webkit-transition:0.3s color;
+      -moz-transition:0.3s color;
+      -o-transition:0.3s color;
       margin-bottom: 0px;
       color: #323232;
-      min-height: 40px;
-      transition: 0.3s color;
+      min-height: 40px;      
       padding-bottom: 13px;
       font-size: 17px;
 

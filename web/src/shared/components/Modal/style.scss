@@ -1,7 +1,10 @@
 
 .react-modal{
-  z-index: 10;
-  top: 0;
+    z-index: 10;
+    top: 0;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
   .react-modal-body-close:after, .react-modal-body-close:before{
       background: #0098FF;
       width: 20px;
@@ -12,12 +15,17 @@
       top: 18px;
   }
   .react-modal-overlay{
-    z-index: 101;
+    z-index: 101;    
   }
   .react-modal-body{
     z-index: 102;
     width: 600px;
-    min-height: inherit;
+    min-height: inherit;    
+    overflow: hidden;
+    max-height: 500px;
+    @media(max-width: 991px){
+        width: calc(100% - 30px);
+    }
     .modal-content{
         background: none;
         border: none;
@@ -25,14 +33,27 @@
             font-size: 22px;
             color: #343434;
             font-weight: 500;
+            word-break: break-word;
+            padding-right: 25px;
+            @media(max-width: 767px){
+                font-size: 16px;
+                padding-right: 20px;
+            }
         }
         .notice{
-            padding: 0 25px;   
+            padding: 0 25px;
+            @media(max-width: 768px){
+                padding: 0 10px;
+            }
             p{
                 font-size: 15px;
                 line-height: 22px;
                 color: #343434;
                 font-family: 'Rubik', sans-serif;
+                @media(max-width: 767px){
+                    font-size: 14px;
+                    line-height: 20px;
+                }
                 a{
                     font-size: 15px;
                     strong{
@@ -54,6 +75,10 @@
                     }
                 }
             }
+        }
+        .modal-body{
+            max-height: 440px;
+            overflow-y: auto;
         }
     }
   }

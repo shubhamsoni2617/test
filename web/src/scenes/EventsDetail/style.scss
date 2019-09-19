@@ -1,0 +1,1079 @@
+.main-container{
+    opacity: 1;
+    transition: opacity .5s;
+    -webkit-transition: opacity .5s;
+    -moz-transition: opacity .5s;
+    -o-transition: opacity .5s;
+    &.shimmer{
+      opacity: 0;
+    }
+  }
+  .shimmer-enter {
+    top: 120%;
+    opacity: 0;
+  }
+  .event-detail-wrapper{
+    .shimmer-container{
+      position: absolute;
+      width: 100%;
+      background: #FFFFFF;
+      z-index: 2;
+    }
+  }
+  .shimmer-enter.shimmer-enter-active {
+    top: 100%;
+    opacity: 1;
+    transition: all 500ms;
+    -webkit-transition: all 500ms;
+    -moz-transition: all 500ms;
+    -o-transition: all 500ms;
+  }
+  
+  .shimmer-leave {
+    top: 100%;
+    opacity: 1;
+  }
+  
+  .shimmer-leave.shimmer-leave-active {
+    top: 120%;
+    opacity: 0;
+    transition: all 500ms;
+    -webkit-transition: all 500ms;
+    -moz-transition: all 500ms;
+    -o-transition: all 500ms;
+  }
+  //event detail section
+  .event-detail {
+      background-color: #F0F9FF;
+      padding: 22px 29px 0px;
+      position: relative;
+      // top: 30px;
+      // margin-top: -30px;
+      opacity: 1;
+  
+      @media(max-width: 1280px){
+          padding: 20px 20px 15px;
+      }
+      @media(max-width: 768px){
+          padding: 20px 15px 15px;
+      }
+      .tickets-demo-img{
+          display: none;
+      }
+      .tickets-desc{
+          position: relative;
+          .breadcrumb-share{
+              display: flex;
+              align-items: center;
+              flex-wrap: wrap;
+          }
+          .breadcrumb{
+              margin-bottom: 29px;
+              li{
+                  color: #6A6A6A;
+              }
+          }
+          .share{
+              height: 33.5px;
+              width: 33.5px;
+              &:hover{
+                  cursor: pointer;
+                  background-color: #fff;
+              }
+          }
+          .social-share{
+              position: absolute;
+              top: -5px;
+              right: 31px;
+              max-width: 0;
+              overflow: hidden;
+              transition: max-width 0.5s, overflow 0s;
+              -webkit-transition: all 500ms;
+              -moz-transition: all 500ms;
+              -o-transition: all 500ms;
+              padding-right: 0;
+              .social-share-wrapper{
+                  background: #FFF;
+                  border-radius: 5px;
+                  display: flex;
+                  box-shadow: 0 0px 7px #ddd;
+                  padding: 5px 3px;
+                  position: relative;
+                  overflow: hidden;
+                  transition: max-width 0.5s, overflow 0.5s 0.5s;
+                  -webkit-transition: max-width 0.5s, overflow 0.5s 0.5s;
+                  -moz-transition: max-width 0.5s, overflow 0.5s 0.5s;
+                  -o-transition: max-width 0.5s, overflow 0.5s 0.5s;
+              }
+              &.share-visible{
+                  height: auto;
+                  overflow: inherit;
+                  max-width: 10em;
+                  transition: max-width 0.5s, overflow 0.5s 0.5s;
+                  -webkit-transition: max-width 0.5s, overflow 0.5s 0.5s;
+                  -moz-transition: max-width 0.5s, overflow 0.5s 0.5s;
+                  -o-transition: max-width 0.5s, overflow 0.5s 0.5s;
+                  padding-right: 10px;
+              }
+              .SocialMediaShareButton{
+                  margin: 0 3px;
+                  transition: 0.5s opacity;
+                  -webkit-transition: 0.5s opacity;
+                  -moz-transition: 0.5s opacity;
+                  -o-transition: 0.5s opacity;
+                  &:hover{
+                      opacity: 0.8;
+                  }
+              }
+          }
+          .info{
+              height: 33.5px;
+              width: 33.5px;
+              right: 43px;
+              img{
+                  width: 10px;
+              }
+          }
+          .zoner-group{
+              margin-bottom: 22px;
+              li {
+                  display: inline-block;
+                  list-style: none;
+                  margin: 0px 4px 4px 0;
+                  border: 1px solid rgba(106, 106, 106, 0.25);
+                  padding: 1px 5px;
+                  background-color: transparent;
+                  transition: 0.3s background-color;
+                  -webkit-transition: 0.3s background-color;
+                  -moz-transition: 0.3s background-color;
+                  -o-transition: 0.3s background-color;
+                  color: rgba(106,106,106,0.8);
+                  font-family: 'Montserrat', sans-serif;
+                  font-size: 14px;
+                  line-height: 18px;
+                  font-weight: 500;
+                  &.active{
+                      background-color: #07B3F0;
+                      border-color: #07B3F0;
+                      color: #FFF;
+                      font-weight: 500;
+                  }
+                  &:first-child{
+                      margin-left: 0px;
+                      background-color: #07B3F0; 
+                      color: #FFFFFF;
+                  }
+                  &:last-child{
+                      margin-right: 0px;
+                  }
+              }
+          }
+          h2 {
+              color: #343434;
+              font-family: 'Montserrat', sans-serif;
+              font-weight: bold;
+              line-height: 32px;
+              font-size: 26px;
+              min-height: 84px;
+              @media(max-width: 1280px){
+                  line-height: 28px;
+                  font-size: 22px;
+              }
+              @media(max-width: 980px){
+                  line-height: 22px;
+                  font-size: 18px;
+              }
+          }
+          .date-address {
+              margin: 0px 0 70px;
+              @media(max-width: 1280px){
+                  margin: 30px 0 30px;
+              }
+              @media(max-width: 980px){
+                  margin: 20px 0 30px;
+              }
+              li{
+                  display: flex;
+                  align-items: center;
+                  margin: 0px;
+                  span{
+                      color: #6A6A6A;
+                      font-family: 'Rubik', sans-serif;
+                      font-size: 18px;
+                      line-height: 22px;
+                      @media(max-width: 1280px){
+                          font-size: 16px;
+                          line-height: 20px;
+                      }
+                  }
+                  img{
+                      margin-right: 10px;
+                      &.sticky-location-icon {
+                          display: none;
+                      }
+                      &.location-gray{
+                          display: none;
+                      }
+  
+                  }
+                  &.event-date {
+                      margin-bottom: 15px;
+                      @media(max-width: 980px){
+                          margin-bottom: 10px;
+                      }
+                  }
+                  &.event-address{
+                      a{
+                          display: flex;
+                          align-items: center;
+                      }
+                      span{
+                          color: #0098FF;
+                      }
+                  }
+              }
+          }
+          .price{
+              label{
+                  color: #6A6A6A;
+                  font-family: 'Montserrat', sans-serif;
+                  font-size: 16px;
+                  line-height: 19px;
+                  margin-bottom: 5px;
+                  font-weight: 600;
+                  @media(max-width: 980px){
+                      font-size: 14px;
+                      line-height: 18px;
+                  }
+              }
+              span{
+                  color: #343434;
+                  font-family: 'Rubik', sans-serif;
+                  font-size: 22px;
+                  line-height: 27px;
+                  margin-bottom: 50px;
+                  display: block;
+                  font-weight: 500;
+                  @media(max-width: 1280px){
+                      font-size: 20px;
+                      line-height: 22px;
+                      margin-bottom: 20px;
+                  }
+                  @media(max-width:980px){
+                      font-size: 18px;
+                      line-height: 20px;
+                  }
+              }
+          }
+      }
+  
+      .buy-tickets-btn{
+          a{
+              display: block;
+              width: 100%;
+              padding: 8px 0px;
+              background-color: #0098ff;
+              color: #FFF;
+              font-family: 'Montserrat', sans-serif;
+              font-size: 18px;
+              line-height: 22px;
+              text-align: center;
+              font-weight: 500;
+              border: 1px solid transparent;
+              margin-top: -10px;
+              @media(min-width: 768px) and (max-width: 980px){
+                  max-width: 300px;
+              }
+              &:hover{
+                  background-color: #FFF;
+                  color: #0098ff;
+                  border: 1px solid #0098ff;
+              }
+          }
+  
+      }
+      .shows-over{
+          .shows-over-desc{
+              @media(max-width: 1280px){
+                  flex: 0 0 70%;
+                  width: 70%;
+                  padding-left: 10px;
+              }
+          }
+      }
+  }
+  
+  .event-detail-section{
+      display: grid;
+      grid-template-columns: 65.3% 34.7%;
+      position: relative;
+      @media (max-width: 980px){
+          grid-template-columns: auto;
+      }
+      &:after{
+          position: absolute;
+          content: "";
+          border-bottom: 1px solid rgba(126, 126, 126, 0.15);
+          width: calc(100% - 60px);
+          height: 1px;
+          bottom: 0px;
+          left: 30px;
+          @media (max-width:980px) {
+              left: 0px;
+              width: 100%;
+          }
+      }
+  }
+  .buy-packages{
+      color: #FFFFFF;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 18px;
+      line-height: 22px;
+      text-align: center;
+      display: block;
+      width: 100%;
+      padding: 12px;
+      margin-bottom: 23px;
+      @media(max-width: 980px){
+          font-size: 16px;
+          line-height: 20px;
+          padding: 10px;
+          margin-bottom: 10px;
+      }
+      @media(min-width: 768px) and (max-width: 980px){
+          max-width: 300px;
+      }
+  }
+  //synopsis languages
+  .accordion{
+      .accordion__panel{
+          .languages-group {
+              display: flex;
+              justify-content: flex-end;
+              flex-wrap: wrap;
+              width: auto;
+              margin-top: -20px;
+              margin-bottom: 20px;
+              padding-top: 20px;
+              li{
+                  list-style: none;
+                  border: 1px solid rgba(126, 126, 126, 0.2);
+                  & + li{
+                      border-left: none;
+                  }
+                  a{
+                      padding: 3px 10px;
+                      font-family: 'Montserrat', sans-serif;
+                      font-size: 14px;
+                      line-height: 18px;
+                      color: #626262;
+                      font-weight: normal;
+                      display: inline-block;
+                      transition: 0.3s color;
+                      -webkit-transition:  0.3s color;
+                      -moz-transition:  0.3s color;
+                      -o-transition:  0.3s color;
+                      font-weight: 600;
+                  }
+                  &.active, &:hover{
+                      a{
+                          color: #0098FF;
+                      }
+                  }
+              }
+          }
+      }
+  }
+  //sidebar
+  .event-detail-section .event-detail-sidebar{
+      padding: 45px 29px;
+      @media(max-width:980px){
+          padding: 10px 0px 0px;
+      }
+      & > .sidebar-accordion{
+          & > .accordion > .accordion__item > .accordion__panel{
+              border: 1px solid rgba(201, 201, 201, 0.2);
+              border-top: none;
+          }
+      }
+      .buy-package{
+          display: block;
+          width: 100%;
+          padding: 8px 0px;
+          background-color: #0098ff;
+          color: #FFF;
+          font-family: 'Montserrat', sans-serif;
+          font-size: 18px;
+          line-height: 22px;
+          text-align: center;
+          font-weight: 500;
+          margin-bottom: 15px;
+          border: 1px solid transparent;
+         &:hover{
+              background-color: #FFF;
+              color: #0098ff;
+              border: 1px solid #0098ff;
+         }
+      }
+      .panel{
+          margin-bottom: 15px;
+          @media(max-width: 980px){
+              margin-bottom: 10px;
+          }
+          .panel-body{
+              padding: 8px 30px;
+              @media(max-width: 1280px){
+                  padding: 8px 20px;
+              }
+              @media(max-width: 768px){
+                  padding: 0px 15px 10px;
+              }
+              .panel-body {
+                  padding: 0px;
+              }
+          }
+      }
+      .seat-map {
+          border: 1px solid #0098FF;
+          display: block;
+          text-align: center;
+          padding: 8px 0px;
+          display: flex;
+          flex-wrap: wrap;
+          justify-content: center;
+          align-items: center;
+          margin-bottom: 15px;
+          transition: 0.3s ease-in;
+          -webkit-transition:  0.3s ease-in;
+          -moz-transition:  0.3s ease-in;
+          -o-transition:  0.3s ease-in;
+          @media(max-width: 980px){
+              margin: 0 15px 15px;
+          }
+          .seat-map-text{
+              color: #0098FF;
+              font-family: 'Montserrat', sans-serif;
+              font-size: 18px;
+              line-height: 22px;
+              font-weight: 600;
+          }
+          .seat-map-img{
+              position: relative;
+              width: 20px;
+              height: 20px;
+              display: flex;
+              flex: 0 0 auto;
+              margin-right: 10px;
+              img{
+                  transition: 0.8s all;
+                  -webkit-transition:  0.8s all;
+                  -moz-transition:  0.8s all;
+                  -o-transition:  0.8s all;
+                  opacity: 1;
+                  overflow: inherit;
+                  position: absolute;
+                  width: 100%;
+                  height: 100%;
+                  right: auto;
+                  left: 0;
+                  top: 50%;
+                  transform: translateY(-50%);
+                  &.active{
+                      opacity: 0;
+                  }
+              }
+          }
+          &:hover{
+              background-color: #0098ff;
+              cursor: pointer;
+              color: #fff;
+              img{
+                  opacity: 0;
+                  &.active{
+                      opacity: 1;
+                  }
+              }
+              .seat-map-text{
+                  color: #fff;
+              }
+          }
+      }
+      ul{
+          li {
+              list-style: none;
+              color: #949494;
+              font-family: 'Rubik', sans-serif;
+              font-size: 16px;
+              line-height: 26px;
+              @media(max-width: 980px){
+                  font-size: 14px;
+                  line-height: 19px;
+              }
+              label, span{
+                  font-size: 14px;
+                  line-height: 17px;
+                  margin: 0px;
+                  padding: 0px;
+                  color: #626262;
+                  font-family: 'Rubik', sans-serif;
+              }
+              span{
+                  margin-left: auto;
+              }
+              a{
+                  font-style: italic;
+                  font-size: 16px;
+                  line-height: 26px;
+                  padding-right: 3px;
+              }
+          }
+          &.tickets-list{
+              li{
+                  display: flex;
+                  flex-wrap: wrap;
+                  padding: 9px 15px;
+                  &:nth-child(2n+1){
+                      background-color: rgba(216, 216, 216, 0.15);
+                  }
+              }
+          }
+          &.promotions-list, &.packages-list{
+              padding-left: 10px;
+              li {
+                  position: relative;
+                  padding-left: 13px;
+                  padding-bottom: 20px;
+                  @media(max-width: 980px){
+                      padding-bottom: 15px;
+                  }
+                  &::before{
+                      position: absolute;
+                      content: "";
+                      left: 0px;
+                      border-radius: 50%;
+                      top: 10px;
+                      height: 4px;
+                      width: 4px;
+                      background-color: rgba(150, 150, 150, 0.7);
+                  }
+              }
+          }
+          &.packages-list {
+              padding: 23px 10px 0px;
+          }
+      }
+  }
+  //event zoner
+  .event-zoner-group{
+      padding: 20px 0px 75px;
+      ul {
+          display: flex;
+          flex-wrap: wrap;
+          padding: 0 10px;
+          li{
+              list-style: none;
+              border: 1px solid rgba(58, 58, 58, 0.15);
+              margin-right: 15px;
+              background-color: transparent;
+              transition: 0.3s border, 0.3s background-color;
+              -webkit-transition:  0.3s border, 0.3s background-color;
+              -moz-transition:  0.3s border, 0.3s background-color;
+              -o-transition:  0.3s border, 0.3s background-color;
+              padding: 2px 7px;
+              opacity: 0.8;
+              color: rgb(0, 152, 255);
+              font-family: 'Montserrat', sans-serif;
+              font-weight: 600;
+              font-size: 14px;
+              display: inline-block;
+              line-height: 18px;
+              transition: 0.3s color;
+              -webkit-transition:  0.3s color;
+              -moz-transition:  0.3s color;
+              -o-transition:  0.3s color;
+              &.active{
+                  background-color:rgb(0, 152, 255);
+                  border-color: rgb(0, 152, 255);
+                  color: #ffffff;
+              }
+          }
+      }
+  }
+  //shows-over
+  .shows-over {
+      background-color: #970823;
+      padding: 5px 10px;
+      color: #ffffff;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      width: 100%;
+      height: 66px;
+      margin-top: -30px;
+      @media(max-width: 1280px){
+          height: auto;
+      }
+      @media(max-width: 980px){
+          width: calc(100% + 30px);
+          margin-left: -15px;
+      }
+      @media(min-width: 768px) and (max-width: 980px){
+          width: calc(100% + 40px);
+          margin-left: -20px;
+      }
+      .shows-over-icon{
+          flex: 0 0 auto;
+      }
+      .shows-over-desc{
+          flex: 0 0 76%;
+          word-break: break-word;
+          padding-left: 15px;
+          @media(max-width: 1280px){
+              flex: 0 0 80%;
+              word-break: break-word;
+              padding-left: 20px;
+          }
+          @media(max-width: 980px){
+              flex: 0 0 75%;
+          }
+          h4, p{
+              font-family: 'Montserrat', sans-serif;
+              line-height: 18px;
+              font-size: 14px;
+              font-weight: 300;
+              color: #fff;
+              margin: 0px;
+              @media(max-width: 1280px){
+                  line-height: 15px;
+                  font-size: 12px;
+                  margin-bottom: 0px;
+                  padding: 0px;
+              }
+          }
+          h4{
+              margin-bottom: 2px;
+              font-weight: 600;
+          }
+      }
+  }
+  
+  .event-detail.sticky-topbar.animate{
+    opacity: 1 !important;
+    overflow: auto;
+    height: auto;
+  }
+  
+  // sticky topbar
+  .event-detail.sticky-topbar{
+      background-color: #FFFFFF;
+      box-shadow: 4px 2px 6px 0 rgba(187,187,187,0.5);
+      padding: 5px 30px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      position: fixed;
+      top: 0;
+      width: 100%;
+      left: 0;
+      right: 0;
+      bottom: auto;
+      opacity: 0;
+      z-index: 2;
+      margin-top: 0px;
+      transition: opacity .5s ease-in-out;
+      -webkit-transition: opacity .5s ease-in-out;
+      -moz-transition: opacity .5s ease-in-out;
+      -o-transition: opacity .5s ease-in-out;
+      min-height: auto;
+      height: 0;
+      overflow: hidden;
+      @media(max-width: 1280px){
+          padding: 5px 10px;
+      }
+      @media(max-width: 1023px){
+          display: none;
+      }
+      .shows-over{
+          @media(max-width: 1400px){
+              max-width: 400px;
+          }
+          @media(max-width: 1280px){
+              max-width: 100%;
+          }
+          @media(max-width: 1024px){
+              max-width: 270px;
+          }
+      }
+      .breadcrumb-share, .zoner-group, .price label{
+          display: none;
+      }
+      .tickets-demo-img{
+          display: block;
+          max-width: 124px;
+          flex: 0 0 124px;
+          @media(max-width: 1280px){
+              max-width: 105px;
+              flex: 0 0 105px;
+          }
+      }
+      .date-address{
+          margin: 0px;
+      }
+      .tickets-desc{
+          padding-left: 27px;
+          flex: 0 0 65%;
+          padding-right: 15px;
+          @media(max-width: 1280px){
+              padding-left: 10px;
+              flex: 0 0 63%;
+          }
+          .info-tooltip, .share-tooltip {
+              position: relative;
+              right: auto;
+              display: inline-block;
+              top: auto;
+              .share, .info {
+                  position: relative;
+                  right: 0px;
+                  top: 8px;
+                  display: inline-block;
+                  margin-left: 15px;
+                  margin-top: -15px;
+                  transition: 0.3s background-color, 0.3s border-color;
+                  -webkit-transition: 0.3s background-color, 0.3s border-color;
+                  -moz-transition: 0.3s background-color, 0.3s border-color;
+                  -o-transition: 0.3s background-color, 0.3s border-color;
+                  @media(max-width: 1280px){
+                      margin-left: 10px;
+                      margin-top: -14px;
+                 }
+                 .share:hover, .info:hover{
+                  cursor: pointer;
+                  background-color: #fff;
+                  border-color: #0098ff;
+                  }
+              }
+          }
+          h2{
+              font-size: 22px;
+              line-height: 31px;
+              padding-bottom: 10px;
+              display: inline-block;
+              color: #3A3A3A;
+              min-height: inherit;
+              margin-top: 10px;
+              @media(max-width: 1280px){
+                  font-size: 20px;
+                  line-height: 24px;
+                  padding-bottom: 10px;
+              }
+          }
+          .ticket-date-price{
+              display: flex;
+              flex-wrap: wrap;
+              align-items: center;
+              margin-bottom: 10px;
+              .date-address{
+                  display: flex;
+                  flex-wrap: wrap;
+                  align-items: center;
+                  li {
+                      margin: 0px;
+                      margin-right: 15px;
+                      border-right: 1px solid rgba(151,151,151,0.4);
+                      padding-right: 20px;
+                      @media(max-width: 1280px){
+                          margin: 0px;
+                          margin-right: 10px;
+                          padding-right: 10px;
+                      }
+                      span{
+                          font-size: 16px;
+                          line-height: 19px;
+                          @media(max-width: 1280px){
+                              font-size: 14px;
+                              line-height: 18px;
+                          }
+                      }
+                      &.event-address{
+                          a{
+                              display: flex;
+                              align-items: center;
+                          }
+                          span{
+                              color:#0098FF;
+                          }
+                      }
+                  }
+                  img{
+                      &.location-icon{
+                          display: block;
+                      }
+                      &.sticky-location-icon {
+                          display: block;
+                      }
+                      &.location-gray{
+                          display: none;
+                      }
+                      @media(max-width: 1280px){
+                          margin-right: 10px;
+                      }
+                  }
+              }
+              .price span{
+                  font-size: 16px;
+                  line-height: 19px;
+                  margin: 0px;
+              }
+          }
+      }
+      .tickets-button {
+          margin-left: auto;
+          flex: 0 0 calc(35% - 124px);
+          @media(max-width: 1280px){
+              flex: 0 0 calc(37% - 105px);
+          }
+          .buy-tickets-btn{
+              width: 220px;
+              margin-left: auto;
+              a{
+                  font-weight: 600;
+              }
+          }
+      }
+      .shows-over{
+          height: auto;
+          .shows-over-icon{
+              @media(max-width: 1280px){
+                  flex: 0 0 20%;
+                  width: 20%;
+              }
+              img{
+                  max-width: 65px;
+                  @media(max-width: 1280px){
+                      max-width: 55px;
+                  }
+              }
+          }
+          .shows-over-desc{
+              h4, p{
+                  line-height: 15px;
+                  font-size: 12px;
+                  margin-bottom: 0px;
+                  padding: 0px;
+                  @media(max-width: 1280px){
+                      line-height: 15px;
+                      font-size: 12px;
+                      margin-bottom: 0px;
+                      padding: 0px;
+                  }
+              }
+          }
+      }
+  }
+  //shows over banner
+  .shows-over-banner {
+      background: #970823;
+      height: 200px;
+      display: flex;
+      position: relative;
+      flex-wrap: wrap;
+      justify-content: center;
+      &:before{
+          position: absolute;
+          content: "";
+          background-image: url("../../assets/images/curtain.png");
+          width: 200px;
+          height: 210px;
+          background-repeat: no-repeat;
+          transform: scaleX(-1);
+          top: 0px;
+          left: 0px;
+          right: auto;
+          bottom: 0;
+          @media(max-width: 1280px){
+              width: 130px
+          }
+          @media(max-width: 768px){
+              width: 100px;
+              height: 210px;
+          }
+      }
+      &:after{
+          position: absolute;
+          content: "";
+          background-image: url("../../assets/images/curtain.png");
+          width: 200px;
+          height: 210px;
+          background-repeat: no-repeat;
+          transform: scaleX(1);
+          top: 0px;
+          left: auto;
+          right: 0;
+          bottom: 0;
+          @media(max-width: 1280px){
+              width: 130px
+          }
+          @media(max-width: 768px){
+              width: 100px;
+              height: 210px;
+          }
+      }
+      .shows-over{
+          height: auto;
+          justify-content: center;
+          @media(max-width: 980px){
+              width: 100%;
+              margin-left: 0;
+              padding: 20px 10px;
+          }
+          .shows-over-icon img{
+              width: 175px;
+              @media(max-width: 1280px){
+                  width: 140px;
+              }
+              @media(max-width: 768px){
+                  width: 100px;
+              }
+          }
+          .shows-over-desc{
+              flex: 0 0 auto;
+              @media(max-width: 980px){
+                  padding: 0px;
+                  width: 100%;
+                  flex: 0 0 100%;
+                  text-align: center;
+              }
+              h4{
+                  font-size: 30px;
+                  line-height: 37px;
+                  margin-bottom: 10px;
+                  font-family: 'Montserrat', sans-serif;
+                  font-weight: 800;
+                  @media(max-width: 980px){
+                      font-size: 24px;
+                      line-height: 27px;
+                      margin-bottom: 5px;
+                  }
+              }
+              p{
+                  font-size: 18px;
+                  line-height: 22px;
+                  max-width: 430px;
+                  font-family: 'Montserrat', sans-serif;
+                  font-weight: 400;
+                  @media(max-width: 980px){
+                      margin: 0px;
+                      padding: 0px;
+                      font-size: 14px;
+                      line-height: 18px;
+                      max-width: 100%;
+                      margin: 0 auto;
+                  }
+                  @media(max-width: 767px){
+                      max-width: 85%;
+                      max-width: 415px;
+                  }
+              }
+          }
+      }
+  }
+  // Seat Map gallery
+  .seatmap-gallery{
+      margin: 10px;
+      img{
+          max-width: 100%;
+      }
+  }
+  .price-info-icon{
+      &:hover{
+          .info-popover{
+              opacity: 1;
+              padding: 12px;
+              height: auto;
+              overflow: inherit;
+          }
+      }
+  }
+  //accordian style
+  .accordion__button:before {
+      display: inline-block;
+      content: '';
+      height: 10px;
+      margin-top: 0px;
+      width: 10px;
+      margin-right: 12px;
+      border-bottom: 2px solid currentColor;
+      border-right: 2px solid currentColor;
+      transform: translateY(-50%) rotate(45deg);
+      top: 50%;
+      position: absolute;
+      right: 30px;
+  }
+  .accordion__button[aria-expanded='true']::before, .accordion__button[aria-selected='true']::before {
+      transform: translateY(-50%) rotate(-135deg);
+  }
+  // Light buttons
+  .ril__navButtonPrev, .ril__navButtonNext, .ril__zoomInButton, .ril__zoomOutButton, .ril__closeButton{
+      &::after{
+          display: none;
+      }
+  }
+  .event-detail-wrapper{
+    .contentLoader{
+      border: 0;
+    }
+      .react-modal-body{
+          min-height: inherit;
+          .modal-body{
+              max-height: 350px;
+              overflow-y: auto;
+          }
+          .modal-title{
+              padding-right: 25px;
+          }
+      }
+  }
+  //tooltip design
+  .info-tooltip, .share-tooltip{
+      position: absolute;
+      right: 0px;
+      top: 2px;
+      .info, .share{
+          .tooltip-text {
+              position: absolute;
+              background-color: #000;
+              padding: 5px 10px;
+              color: #fff;
+              border-radius: 5px;
+              left: 50%;
+              top: 100%;
+              margin-top: 0px;
+              opacity: 0;
+              transform: translateX(-50%);
+              transition: 0.5s margin-top, 0.5s opacity;
+              -webkit-transition: 0.5s margin-top, 0.5s opacity;
+              -moz-transition: 0.5s margin-top, 0.5s opacity;
+              -o-transition: 0.5s margin-top, 0.5s opacity;
+              &:after{
+                  position: absolute;
+                  content: "";
+                  top: 0px;
+                  margin-top: -7px;
+                  left: 50%;
+                  transform: translateX(-50%);
+                  width: auto;
+                  border-left: 7px solid transparent;
+                  border-right: 7px solid transparent;
+                  border-bottom: 7px solid #000;
+              }
+          }
+          &:hover{
+              .tooltip-text{
+                  margin-top: 15px;
+                  opacity: 1
+              }
+          }
+      }
+  }
+  

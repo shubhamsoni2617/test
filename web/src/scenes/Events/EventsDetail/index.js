@@ -74,11 +74,13 @@ export default class EventsDetail extends Component {
     EventsService.getEventDetails(payload)
       .then(res => {
         this.setState({ detailData: res.data });
-        Utilities.preloadImages(res.data.images, "full_image", () => {
-          Utilities.preloadImages(res.data.images, "thumb_image", () => {
-            setTimeout(() => {this.setState({ shimmer: false });}, 1000);
-          });
-        });
+        // Utilities.preloadImages(res.data.images, "full_image", () => {
+          // Utilities.preloadImages(res.data.images, "thumb_image", () => {
+            setTimeout(()=> {
+              this.setState({ shimmer: false });
+            }, 1000);
+          // });
+        // });
       })
       .catch(err => {
         this.setState({

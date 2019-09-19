@@ -1,0 +1,20 @@
+.agent-info{
+  .currently-list{
+    .image-conatiner{
+      height: auto !important;
+    }
+  }
+  .title{
+      h3{
+        @media(max-width: 767px){
+            font-size: 12px !important;
+        }
+      }
+    .info-popover{
+      width: 200px;
+    }
+    .info-popover:before{
+      display: none !important;
+    }
+  }
+}

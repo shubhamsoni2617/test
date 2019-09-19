@@ -1,4 +1,12 @@
-.slick-disabled{
-  opacity: .3;
+.slick-disabled {
+  opacity: 0.3;
   cursor: auto;
+}
+
+.dots-group {
+  span {
+    a {
+      opacity: 0;
+    }
+  }
 }

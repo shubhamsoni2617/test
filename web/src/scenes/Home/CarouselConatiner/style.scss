@@ -4,6 +4,9 @@
 .shimmer-carousel-enter.shimmer-carousel-enter-active {
   opacity: 1 !important;
   transition: all 1000ms;
+  -webkit-transition: all 1000ms;
+  -moz-transition: all 1000ms;
+  -o-transition: all 1000ms;
 }
 
 .shimmer-carousel-leave {
@@ -13,9 +16,19 @@
 .shimmer-carousel-leave.shimmer-carousel-leave-active {
   opacity: 0 !important;
   transition: all 1000ms;
+  -webkit-transition: all 1000ms;
+  -moz-transition: all 1000ms;
+  -o-transition: all 1000ms;
 }
 .carousel-container{
   overflow: hidden;
+  transition: all 1s;  
+  -webkit-transition: all 1s;
+  -moz-transition: all 1s;
+  -o-transition: all 1s;
+  &.hide-container{
+    max-height: 0;
+  }
   section{
     min-height: 598px;
     .shim-container{

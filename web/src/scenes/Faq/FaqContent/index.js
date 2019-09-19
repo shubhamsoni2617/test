@@ -1,25 +1,40 @@
-import React, { Fragment, useEffect, createRef } from "react";
+import React, { Fragment } from "react";
 import AccordionSection from "../../../shared/components/AccordionSection";
 
 class Content extends React.Component {
-  componentDidUpdate(prevProps) {
-    if (prevProps.questionId !== this.props.questionId) {
-      this.refs[this.props.questionId].scrollIntoView({
-        block: "center",
-        behavior: "smooth"
-      });
+  Scrolldown() {
+    let hash = this.props.match.params.questionId;
+    if (hash && hash !== "0") {
+      let node = this.refs[hash];
+      let nodePosition = node.offsetTop - 100;
+      if (nodePosition) {
+        window.scroll({
+          top: nodePosition,
+          left: 0,
+          behavior: "smooth"
+        });
+      }
     }
   }
+
+  componentDidMount() {
+    window.onload = this.Scrolldown();
+  }
+
   render() {
+    let filteredData= this.props.data
+    .filter(content =>
+      content.category_id.includes(this.props.categoryId)
+    )
+      if(!filteredData.length){
+      return <span className="no-faq-found">No data found</span>
+    }
     return (
-      <Fragment>
-        {this.props.data
-          .filter(content =>
-            content.category_id.includes(this.props.categoryId)
-          )
-          .map((content, i) => {
+      <div>
+        {
+          filteredData.map((content, i) => {
             return (
-              <div ref={this.props.questionId} key={content.question + i}>
+              <div ref={content.id} key={content.question + i}>
                 <AccordionSection
                   title={content.question}
                   desc={content.answer}
@@ -27,7 +42,7 @@ class Content extends React.Component {
               </div>
             );
           })}
-      </Fragment>
+      </div>
     );
   }
 }

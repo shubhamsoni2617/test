@@ -1,6 +1,15 @@
 .apply-filter-mob, .filters-mob{
     display: none;
 }
+.filter-directory-list{
+  .styled-checkbox + label:before{
+    float: left;
+  }
+}
+.filters .filter-grid .filters-panel .filter-directory-panel .filter-directory-list li .styled-checkbox + label{
+  overflow: visible !important;
+  position: relative;
+}
 @media (max-width: 767px) {
     .apply-filter-mob{
         position: fixed;
@@ -125,13 +134,15 @@
                                 color: #323232;
                                 font-weight: 500;
                                 padding-left: 10px;
-                            }
-                            .styled-checkbox + label:before{
+                                float: left;
+                              }
+                              .styled-checkbox + label:before{
                                 margin-left: -10px;
-                            }
-                            .styled-checkbox{
+                                float: left;
+                              }
+                              .styled-checkbox{
                                 &:checked + label{
-                                    color: #0098FF;
+                                  color: #0098FF;
                                 }
                             }
                         }
@@ -489,6 +500,9 @@
 .dropdown-enter.dropdown-enter-active {
   opacity: 1;
   transition: all 300ms ease-in-out;
+  -webkit-transition: all 300ms ease-in-out;
+  -moz-transition: all 300ms ease-in-out;
+  -o-transition: all 300ms ease-in-out;
 }
 
 .dropdown-leave {
@@ -498,4 +512,7 @@
 .dropdown-leave.dropdown-leave-active {
   opacity: 0;
   transition: all 300ms ease-in-out;
+  -webkit-transition: all 300ms ease-in-out;
+  -moz-transition: all 300ms ease-in-out;
+  -o-transition: all 300ms ease-in-out;
 }

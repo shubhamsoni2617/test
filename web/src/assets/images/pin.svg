@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg width="20px" height="36px" viewBox="0 0 20 36" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <!-- Generator: sketchtool 55.2 (78181) - https://sketchapp.com -->
-    <title>59EB0A76-CC66-4476-A72B-02FE9D448914</title>
-    <desc>Created with sketchtool.</desc>
+    <!-- Generator: Sketch 55.2 (78181) - https://sketchapp.com -->
+    <title>Combined Shape</title>
+    <desc>Created with Sketch.</desc>
     <defs>
         <linearGradient x1="50%" y1="0%" x2="50%" y2="100%" id="linearGradient-1">
-            <stop stop-color="#0098FF" offset="0%"></stop>
-            <stop stop-color="#0077C8" offset="100%"></stop>
+            <stop stop-color="#FB7467" offset="0%"></stop>
+            <stop stop-color="#F3443B" offset="100%"></stop>
         </linearGradient>
     </defs>
-    <g id="New-Find-Agent" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <g id="Find-Venue-Search-Results" transform="translate(-839.000000, -630.000000)" fill="url(#linearGradient-1)" stroke="#1A6299" stroke-width="0.892569382">
+    <g id="New-Find-Agent" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-opacity="0.50314139">
+        <g id="Find-Agent-Search-Results-" transform="translate(-1180.000000, -653.000000)" fill="url(#linearGradient-1)" stroke="#B73830" stroke-width="0.892569382">
             <g id="Group-12" transform="translate(448.000000, 367.000000)">
-                <g id="google_maps_pin" transform="translate(391.000000, 263.000000)">
-                    <path d="M9.76760711,35.5537153 L10.1884659,35.5537153 L10.1920333,34.1795088 C10.6447462,31.0935265 11.2359752,28.2275373 11.9724698,26.0965229 C12.8579431,23.5344452 15.1446419,19.516889 17.7852213,15.3808639 C18.9293996,13.7924686 19.5537153,11.8932041 19.5537153,9.9 C19.5537153,4.67986682 15.2773697,0.446284691 10,0.446284691 C4.72263028,0.446284691 0.446284691,4.67986682 0.446284691,9.9 C0.446284691,11.8912396 1.06936548,13.7887405 2.22632494,15.398272 C4.81859883,19.4959277 7.0924837,23.5214607 7.98244461,26.0965229 C8.71893923,28.2275373 9.31016819,31.0935265 9.76760711,34.2442854 L9.76760711,35.5537153 Z" id="pin"></path>
+                <g id="google_maps_pin-copy-7" transform="translate(732.000000, 286.000000)">
+                    <path d="M9.76760711,35.5537153 L10.1884659,35.5537153 L10.1920333,34.1795088 C10.6447462,31.0935265 11.2359752,28.2275373 11.9724698,26.0965229 C12.8579431,23.5344452 15.1446419,19.516889 17.7852213,15.3808639 C18.9293996,13.7924686 19.5537153,11.8932041 19.5537153,9.9 C19.5537153,4.67986682 15.2773697,0.446284691 10,0.446284691 C4.72263028,0.446284691 0.446284691,4.67986682 0.446284691,9.9 C0.446284691,11.8912396 1.06936548,13.7887405 2.22632494,15.398272 C4.81859883,19.4959277 7.0924837,23.5214607 7.98244461,26.0965229 C8.71893923,28.2275373 9.31016819,31.0935265 9.76760711,34.2442854 L9.76760711,35.5537153 Z M10,14.8462847 C7.74621404,14.8462847 5.91735167,13.0357109 5.91735167,10.8 C5.91735167,8.56428906 7.74621404,6.75371531 10,6.75371531 C12.253786,6.75371531 14.0826483,8.56428906 14.0826483,10.8 C14.0826483,13.0357109 12.253786,14.8462847 10,14.8462847 Z" id="Combined-Shape"></path>
                 </g>
             </g>
         </g>
