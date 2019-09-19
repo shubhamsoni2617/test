@@ -26,6 +26,9 @@
   right: 0px;
   background-color: #fff;
   box-shadow: 0px 2px 10px 0px rgba(0, 0, 0, 0.13);
+  @media(max-width: 991px){
+    top: 40px;
+  }
   &:empty {
     display: none;
   }
