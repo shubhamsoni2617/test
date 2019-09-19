@@ -10,7 +10,7 @@ const Voucher = ({ voucherdetail }) => {
   if (Number(priceArray[1]) !== 0) {
     price = price + '.' + priceArray[1].slice(0, 2);
   }
-
+ 
   return (
     <div className="voucher-content">
       <div className="voucher-top">
