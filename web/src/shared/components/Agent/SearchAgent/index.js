@@ -20,7 +20,8 @@ const SearchAgent = props => {
     checkBox,
     handleMapFilter,
     mapClick,
-    agentWrapper
+    agentWrapper,
+    handleDeselectInfo
   } = props;
 
   const [data, setData] = useState([]);
@@ -81,6 +82,10 @@ const SearchAgent = props => {
       agentWrapper.current.classList.remove('agent-fixed');
     }
   });
+
+  useEffect(() => {
+    handleDeselectInfo();
+  }, [attraction, onGoingEvents, filter]);
 
   useEffect(() => {
     setAttraction(false);

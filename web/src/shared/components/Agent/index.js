@@ -18,17 +18,23 @@ const Agent = props => {
   const [showOnMapData, setShowOnMapData] = useState('');
   const [countryName, setCountryName] = useState('Singapore');
   const [regionName, setRegionName] = useState('All locations');
-  const [attractionValue, setAttractionValue] = useState(undefined);
-  const [eventValue, setEventValue] = useState(undefined);
-  const [mapClick, setMapClick] = useState(true);
+  const [attractionValue, setAttractionValue] = useState(null);
+  const [eventValue, setEventValue] = useState(null);
+  const [mapClick, setMapClick] = useState(1);
   const [activeClassId, setActiveClassId] = useState(0);
   const [countryId, setCountryId] = useState(null);
-  const [regionId, setRegionId] = useState(undefined);
+  const [regionId, setRegionId] = useState(null);
   const [checkBox, setCheckBox] = useState(0);
   const [mapInMobile, setMapInMobile] = useState(false);
   const [toggle, setToggle] = useState(false);
   const [mapWrapperClass, setMapWrapperClass] = useState('');
   const [countryIdSelected, setCountryIdSelected] = useState(null);
+  const [deselectInfo, setDeselectInfo] = useState(false);
+
+  const handleDeselectInfo = () => {
+    console.log('Clicked');
+    setDeselectInfo(!deselectInfo);
+  };
 
   useEffect(() => {
     scrollToTop();
@@ -36,13 +42,13 @@ const Agent = props => {
   }, []);
 
   useEffect(() => {
-    if (countryId && countryIdSelected !== countryId) {
+    if (countryId) {
       const params = {
         country: countryId
       };
       fetchAgentsNVenues(params);
     }
-  }, [countryId, attractionValue, eventValue]);
+  }, [countryId, regionId, attractionValue, eventValue, regionId]);
 
   useEffect(() => {
     if (countryNRegion && countryNRegion.length > 0 && !countryFileUrl) {
@@ -76,9 +82,6 @@ const Agent = props => {
   //Fetch agents or venues based on selection event
   const fetchAgentsNVenues = params => {
     setFilteredListedData(null);
-    if (params.region === undefined) {
-      params.region = null;
-    }
     if (attractionValue) {
       params.attractions = attractionValue;
     }
@@ -88,6 +91,7 @@ const Agent = props => {
     params.client = Constants.CLIENT;
     params.sort_type = 'name';
     params.sort_order = 'ASC';
+    params.region = regionId;
 
     console.log(params, 'params');
     const eventSelection = venue
@@ -111,11 +115,8 @@ const Agent = props => {
     setCheckBox(Math.random());
     setCountryId(params.country);
     setRegionId(params.region);
-    if (params.country) {
-      fetchAgentsNVenues(params);
-    }
-    setAttractionValue(undefined);
-    setEventValue(undefined);
+    setAttractionValue(null);
+    setEventValue(null);
   };
   // filter file for selected country (Festive Period Operating Hours - Agent page)
   const filterCountryFile = file => {
@@ -200,6 +201,7 @@ const Agent = props => {
         <div className="container-fluid row agent-list">
           <div className="agent-sidebar">
             <SearchAgent
+              handleDeselectInfo={handleDeselectInfo}
               initialItems={filteredListedData}
               countryFileUrl={countryFileUrl}
               showOnMapClick={showOnMapClick}
@@ -219,6 +221,7 @@ const Agent = props => {
               Find in Map
             </span>
             <GoogleMap
+              deselectInfo={deselectInfo}
               toggler={toggle}
               multipleMarker={filteredListedData}
               showOnMapData={showOnMapData}

@@ -8,6 +8,7 @@ import Constants from '../../../constants';
 import { useCustomWidth } from '../../CustomHooks';
 import Small from '../../../../assets/images/small.png';
 const GoogleMap = ({
+  deselectInfo,
   google,
   multipleMarker,
   showOnMapData,
@@ -61,7 +62,7 @@ const GoogleMap = ({
     setSelectedPlace({});
     handleActiveClass(0);
     resetCountryLocation(countryName);
-  }, [mapClick]);
+  }, [mapClick, deselectInfo]);
 
   const resetCountryLocation = country => {
     switch (country) {
