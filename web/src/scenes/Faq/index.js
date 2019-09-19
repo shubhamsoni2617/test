@@ -73,14 +73,18 @@ const Faq = props => {
           categories={faqCategoryData}
           setFilteredSuggestions={suggestions}
         />
-        <FaqCategory
-          {...props}
-          urlExist={urlExist}
-          categoryId={categoryId}
-          categoryName={categoryName}
-          categories={faqCategoryData}
-          faqContentData={faqContentData}
-        />
+        <div className="faq-body-wrapper">
+          <div className="container-fluid">
+            <FaqCategory
+              {...props}
+              urlExist={urlExist}
+              categoryId={categoryId}
+              categoryName={categoryName}
+              categories={faqCategoryData}
+              faqContentData={faqContentData}
+            />
+          </div>
+        </div>
       </div>
     )
   );

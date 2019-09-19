@@ -14,19 +14,20 @@ const AutoSuggest = props => {
     let helperText = null;
     let allSuggestions = [];
 
-    suggestions.flatMap(element =>
+    allSuggestions = suggestions.reduce((acc, element) => {
       element.category_id.map(category =>
         categories.findIndex(categoryObj => {
           if (categoryObj.id === category) {
-            allSuggestions.push({
+            acc.push({
               ...element,
               category_id: category,
               category_name: categoryObj.name
             });
           }
         })
-      )
-    );
+      );
+      return acc;
+    }, []);
 
     let filteredSuggestions = allSuggestions.filter(
       suggestion =>
@@ -67,7 +68,7 @@ const AutoSuggest = props => {
         />
       </div>
       {helperText ? (
-        <em>{helperText}</em>
+        <span className="faq-search-error">{helperText}</span>
       ) : (
         <ul className="suggestions">
           {filteredSuggestions.map(suggestion => (
