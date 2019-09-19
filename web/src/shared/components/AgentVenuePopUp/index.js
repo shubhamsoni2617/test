@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import redirect from '../../../assets/images/redirect.svg';
 import address from '../../../assets/images/address.svg';
 import parking from '../../../assets/images/parking.svg';
@@ -42,7 +42,6 @@ const AgentVenuePopUp = props => {
       );
     });
   };
-
   return (
     <div
       className={`pop-up-list ${item.id === popUpDetail.id ? 'active' : ''}`}
@@ -157,41 +156,40 @@ const AgentVenuePopUp = props => {
       ) : null}
 
       {venue &&
-      popUpDetail.currentlyShowingData &&
-      popUpDetail.currentlyShowingData.length > 0 ? (
-        <div className="agent-info">
-          <div className="icon">
-            <img src={event} alt="icon" />
-          </div>
-          <div className="details">
-            <h3>Currently Showing</h3>
-            <ul className="currently-list">
-              {popUpDetail.currentlyShowingData.map((elem, index) => {
-                return (
-                  <li key={index}>
-                    <Image
-                      src={elem.thumb_image}
-                      alt="specific-event"
-                      type="Small"
-                    />
-                    <Link to={`/events/${elem.alias}`}>
-                      <EventHeading
-                        title={elem.title}
-                        lines={2}
-                        height={18}
-                        size={13}
-                        allowTooltip={false}
+        popUpDetail.currentlyShowingData &&
+        popUpDetail.currentlyShowingData.length > 0 && (
+          <div className="agent-info">
+            <div className="icon">
+              <img src={event} alt="icon" />
+            </div>
+            <div className="details">
+              <h3>Currently Showing</h3>
+              <ul className="currently-list">
+                {popUpDetail.currentlyShowingData.map((elem, index) => {
+                  return (
+                    <li key={index}>
+                      <Image
+                        src={elem.thumb_image}
+                        alt="specific-event"
+                        type="Small"
                       />
-                    </Link>
-                  </li>
-                );
-              })}
-              ) : (<p>Loading...</p>
-              )}
-            </ul>
+                      <Link to={`/events/${elem.alias}`}>
+                        <EventHeading
+                          title={elem.title}
+                          lines={2}
+                          height={18}
+                          size={13}
+                          allowTooltip={false}
+                        />
+                      </Link>
+                    </li>
+                  );
+                })}
+              </ul>
+            </div>
           </div>
-        </div>
-      ) : null}
+        )}
+
       {isFile && (
         <div className="agent-info">
           <div className="icon">
@@ -211,4 +209,4 @@ const AgentVenuePopUp = props => {
   );
 };
 
-export default AgentVenuePopUp;
+export default memo(AgentVenuePopUp);

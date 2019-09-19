@@ -6,11 +6,11 @@ class Constants {
   static MOBILE_BREAK_POINT = 767;
   static CLIENT = 1;
   static LIMIT = 4;
-  static GOOGLE_MAP_API_KEY = '';
+  static GOOGLE_MAP_API_KEY = 'AIzaSyDbo_mTxvdbXU1ZjUwzbTfzLwB7d1BX_PI';
   static MAP_PATH =
     'M 0,0 C -2,-20 -10,-22 -10,-30 A 10,10 0 1,1 10,-30 C 10,-22 2,-20 0,0 z';
 }
 
 export default Constants;
 
-//AIzaSyAYMtOiqk5Vxj-HCi_hr89QQeVTF90JNdA
+// AIzaSyAYMtOiqk5Vxj-HCi_hr89QQeVTF90JNdA
