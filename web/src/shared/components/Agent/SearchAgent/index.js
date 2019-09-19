@@ -55,6 +55,7 @@ const SearchAgent = props => {
   };
   const handleScroll = useCallback(() => {
     if (
+      agentWrapper.current.classList.contains('agent-fixed') &&
       document.getElementsByClassName('pop-up-list active') &&
       document.getElementsByClassName('pop-up-list active').length
     ) {
@@ -107,10 +108,9 @@ const SearchAgent = props => {
     };
     const cachedVenue = data.find(item => item.id === detail.id);
     if (cachedVenue) detail = cachedVenue;
+    setPopUpDetail(detail);
     if (venue && !cachedVenue) {
       fetchCurrentlyShowingData(params, detail);
-    } else {
-      setPopUpDetail(detail);
     }
   };
 
@@ -222,12 +222,14 @@ const SearchAgent = props => {
         {initialItems &&
           initialItems.map((item, index) => {
             return (
-              <li key={index}>
-                <img
-                  src={downArrow}
-                  className="active-arrow"
-                  alt="Down Arrow"
-                />
+              <li
+                className={
+                  item.id === popUpDetail.id
+                    ? 'pop-up-container active'
+                    : 'pop-up-container'
+                }
+                key={index}
+              >
                 <h3>
                   <span onClick={() => showPopUp(item)}>
                     <strong className="event-title">{item.name}</strong>
@@ -246,7 +248,14 @@ const SearchAgent = props => {
                 <p>
                   {item.address},{item.country}
                 </p>
-                <AgentVenuePopUp item={item} popUpDetail={popUpDetail} />
+                {item.id === popUpDetail.id && (
+                  <AgentVenuePopUp
+                    item={item}
+                    popUpDetail={popUpDetail}
+                    venue={venue}
+                    currentlyShowingData={popUpDetail.currentlyShowingData}
+                  />
+                )}
               </li>
             );
           })}
