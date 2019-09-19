@@ -1,37 +1,27 @@
 import React, { useState, useEffect } from 'react';
 import { Map, InfoWindow, Marker, GoogleApiWrapper } from 'google-maps-react';
-import redirect from '../../../../assets/images/redirect.svg';
 import './style.scss';
 import DirectionIcon from '../../../../assets/images/direction.png';
-import DefaultImg from '../../../../assets/images/horizontal.png';
 import BluePin from '../../../../assets/images/bluepin.svg';
 import Image from '../../Image';
 import Constants from '../../../constants';
 import { useCustomWidth } from '../../CustomHooks';
-import MapStyle from '../mapStyle';
 import Small from '../../../../assets/images/small.png';
-const GoogleMap = props => {
-  const {
-    google,
-    multipleMarker,
-    showOnMapData,
-    venue,
-    mapClick,
-    countryName,
-    handleActiveClass,
-    mapInMobile,
-    toggler,
-    regionName
-  } = props;
-
+const GoogleMap = ({
+  google,
+  multipleMarker,
+  showOnMapData,
+  venue,
+  mapClick,
+  countryName,
+  handleActiveClass,
+  mapInMobile,
+  toggler
+}) => {
   const [width] = useCustomWidth();
 
   const [showingInfoWindow, setShowingInfoWindow] = useState(false);
   const [selectedPlace, setSelectedPlace] = useState({});
-  const [initialCenter, setInitialCenter] = useState({
-    lat: 1.3143394,
-    lng: 103.703818
-  });
   const [markerPosition, setMarkerPosition] = useState({});
   const [zoomValue, setZoomValue] = useState(10);
 
@@ -39,17 +29,12 @@ const GoogleMap = props => {
     if (showingInfoWindow) {
       setShowingInfoWindow(false);
       setMarkerPosition({});
-      // handleZoom(countryName);
     }
   };
 
   const onMarkerClick = props => {
     setSelectedPlace(props);
     setShowingInfoWindow(true);
-    // setInitialCenter({
-    //   lat: Number(selectedPlace.latitude),
-    //   lng: Number(selectedPlace.latitude)
-    // });
     setMarkerPosition(props.position);
     handleZoomInc(countryName);
   };
@@ -57,7 +42,6 @@ const GoogleMap = props => {
   const infoWindowHasClosed = () => {
     setShowingInfoWindow(false);
     setMarkerPosition({});
-    // handleZoom(countryName);
   };
 
   useEffect(() => {
@@ -69,55 +53,74 @@ const GoogleMap = props => {
         lng: showOnMapData.longitude
       });
       handleZoomInc(countryName);
-      // setInitialCenter({
-      //   lat: Number(showOnMapData.latitude),
-      //   lng: Number(showOnMapData.longitude)
-      // });
     }
   }, [showOnMapData, toggler]);
 
   useEffect(() => {
     setShowingInfoWindow(false);
-    setMapInitialCenter(countryName);
     setSelectedPlace({});
     handleActiveClass(0);
+    resetCountryLocation(countryName);
   }, [mapClick]);
 
-  const setMapInitialCenter = country => {
-    handleZoom(country);
-  };
-
-  const handleZoom = country => {
-    console.log(country, 'handlego');
+  const resetCountryLocation = country => {
     switch (country) {
       case 'Singapore':
-
-        setInitialCenter({
-          lat: 1.3143394,
+        setMarkerPosition({
+          lat: 1.3143344,
           lng: 103.703818
         });
         setZoomValue(10);
+
         break;
       case 'Malaysia':
-        setZoomValue(5);
+        setMarkerPosition({
+          lat: 4.3842778,
+          lng: 101.8236839
+        });
+        setZoomValue(6);
         break;
       case 'Indonesia':
-        setZoomValue(4);
+        setMarkerPosition({
+          lat: -4.1387633,
+          lng: 122.2170101
+        });
+        setZoomValue(5);
         break;
       case 'Thailand':
-        setZoomValue(5);
+        setMarkerPosition({
+          lat: 15.9788149,
+          lng: 101.5057835
+        });
+        setZoomValue(6);
         break;
       case 'Vietnam':
-        setZoomValue(5);
+        setMarkerPosition({
+          lat: 13.3104817,
+          lng: 108.2777181
+        });
+        setZoomValue(6);
         break;
       case 'Macau':
-        setZoomValue(2);
+        setMarkerPosition({
+          lat: 22.1974038,
+          lng: 113.5446799
+        });
+        setZoomValue(10);
         break;
       case 'Taiwan':
-        setZoomValue(5);
+        setMarkerPosition({
+          lat: 23.6103744,
+          lng: 121.4909552
+        });
+        setZoomValue(7);
         break;
       case 'South Korea':
-        setZoomValue(5);
+        setMarkerPosition({
+          lat: 36.3761305,
+          lng: 128.143116
+        });
+        setZoomValue(7);
         break;
     }
   };
@@ -126,7 +129,6 @@ const GoogleMap = props => {
     switch (country) {
       case 'Singapore':
         setZoomValue(14);
-        setInitialCenter()
         break;
       case 'Malaysia':
         setZoomValue(7);
@@ -160,26 +162,9 @@ const GoogleMap = props => {
     }
   }
 
-  useEffect(() => {
-    if (multipleMarker && multipleMarker.length > 0) {
-      let lat = Number(multipleMarker[0].latitude);
-      let lng = Number(multipleMarker[0].longitude);
-      setInitialCenter({ lat, lng });
-      // handleZoom('Singapore');
-    }
-  }, [multipleMarker]);
-
   if (!google) {
     return <div>Loading...</div>;
   }
-
-  // const handleImage = url => {
-  //   let error = false;
-  //   if (<img src={url} onError={(error = 'Image not there')} />) {
-  //     console.log(error);
-  //   }
-  //   return error;
-  // };
 
   return (
     <div
@@ -195,12 +180,13 @@ const GoogleMap = props => {
     >
       <Map
         google={google}
-        // onDragend={centerMoved}
-        // centerAroundCurrentLocation
-        style={{ width: '100%', height: window.innerHeight - 100, position: 'relative' }}
+        style={{
+          width: '100%',
+          height: window.innerHeight - 100,
+          position: 'relative'
+        }}
         zoom={zoomValue}
         onClick={onMapClicked}
-        initialCenter={initialCenter}
         gestureHandling={
           width <= Constants.MOBILE_BREAK_POINT ? 'greedy' : 'cooperative'
         }
@@ -210,7 +196,6 @@ const GoogleMap = props => {
           multipleMarker.map((elem, index) => {
             return (
               <Marker
-                onMouseover={()=>{console.log(props)}}
                 onClick={props => onMarkerClick(props)}
                 key={elem.id}
                 position={{
@@ -268,12 +253,12 @@ const GoogleMap = props => {
             <div className="map-img">
               {/* <Image src={selectedPlace.imgPath || Small} type="Small" /> */}
               <img
-                  height="50"
-                  width="100"
-                  src={selectedPlace.imgPath || Small}
-                  title="Title of image"
-                  alt="alt text here"
-                />
+                height="50"
+                width="100"
+                src={selectedPlace.imgPath || Small}
+                title="Title of image"
+                alt="alt text here"
+              />
             </div>
             <div className="map-name-address">
               <h5>{selectedPlace.name}</h5>

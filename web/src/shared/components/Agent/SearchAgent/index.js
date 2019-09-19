@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import SearchIcon from '../../../../assets/images/search-icon-gray.svg';
 import downloadOrange from '../../../../assets/images/download-orange.svg';
 import downArrow from '../../../../assets/images/downarrow-blue.svg';
@@ -30,11 +30,14 @@ const SearchAgent = props => {
   const [onGoingEvents, setOngoingEvents] = useState(false);
 
   useEffect(() => {
+    document.addEventListener('keydown', escFunction, false);
     document.addEventListener('click', closePopup);
     window.addEventListener('scroll', handleScroll);
+    handleScroll();
     return () => {
       window.removeEventListener('scroll', handleScroll);
       document.removeEventListener('click', closePopup);
+      document.removeEventListener('keydown', escFunction, false);
     };
   }, []);
 
@@ -43,24 +46,23 @@ const SearchAgent = props => {
     if (e.target.classList.contains('agent-info')) return;
     if (e.target.closest('.agent-info')) return;
 
-    if (document.getElementsByClassName('pop-up-list active').length) {
-      document
-        .getElementsByClassName('pop-up-list active')[0]
-        .classList.remove('active');
-
-      setPopUpDetail({});
+    setPopUpDetail({});
+  };
+  const escFunction = e => {
+    if (e.keyCode === 27) {
+      closePopup(e);
     }
   };
-  const handleScroll = () => {
-    if (document.getElementsByClassName('pop-up-list active').length) {
+  const handleScroll = useCallback(() => {
+    if (
+      document.getElementsByClassName('pop-up-list active') &&
+      document.getElementsByClassName('pop-up-list active').length
+    ) {
       if (
         document
           .getElementsByClassName('pop-up-list active')[0]
           .getBoundingClientRect().top < 85
       ) {
-        document
-          .getElementsByClassName('pop-up-list active')[0]
-          .classList.remove('active');
         setPopUpDetail({});
       }
     }
@@ -78,7 +80,7 @@ const SearchAgent = props => {
       agentWrapper.current.classList.remove('agent-absolute');
       agentWrapper.current.classList.remove('agent-fixed');
     }
-  };
+  });
 
   useEffect(() => {
     setAttraction(false);

@@ -52,7 +52,6 @@ const TopNav = props => {
       .catch(err => {
         console.log(err);
       });
-
     if (props.history.location.pathname) processPath(props.history.location);
 
     const unlisten = props.history.listen(location => {
@@ -74,15 +73,13 @@ const TopNav = props => {
       ) {
         setPathName(pathArr[1]);
         setMenuActive(true);
-
-        //For event header class
-        if (location.search === '') {
-          setHeaderClass(true);
-        } else {
-          setHeaderClass(false);
-        }
       } else {
         setMenuActive(false);
+      }
+      //For event header class
+      if (location.pathname === '/') {
+        setHeaderClass(true);
+      } else {
         setHeaderClass(false);
       }
     }
@@ -107,7 +104,7 @@ const TopNav = props => {
   };
 
   return (
-    <header className={`header ${headerClass ? 'header-light' : ''}`}>
+    <header className={`header ${headerClass ? 'homepage' : ''}`}>
       <div className="container-fluid">
         <div className="row">
           <div className="top-header">
