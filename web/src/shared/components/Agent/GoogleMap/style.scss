@@ -38,16 +38,17 @@
             justify-content: end;
             height: 58px;
             width: 86px;
+            flex: 0 0 86px;
             margin-left: 1px;
             img{
                 max-width: 100%;
             }
         }
         .map-name-address{
-            padding: 0 36px 0 15px;
-            width: calc(100% - 100px);
+            padding: 0 45px 0 15px;
+            width: calc(100% - 86px);
             position: relative;
-            min-width: calc(100% - 100px);
+            flex: 0 0 calc(100% - 86px);
             @media(max-width: 768px){
                 width: calc(100% - 50px);
                 padding: 0 50px 0 10px;
@@ -68,7 +69,7 @@
         }
         .direcrtion-icn{
             position: absolute;
-            right: 20px;
+            right: 10px;
             top: 50%;
             transform: translateY(-50%);
             @media(max-width: 767px){

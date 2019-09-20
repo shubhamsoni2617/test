@@ -93,7 +93,7 @@ export default class StickyHeader extends Component {
               )}
               {detailData.venue_name && (
                 <li className="event-address">
-                  <Link to={`/venues?id=${detailData.id}`}>
+                  <Link to={`/venues?id=${detailData.venue_name.id}`}>
                     <img
                       className="location-gray"
                       src={locationGray}

@@ -18,17 +18,29 @@ const Agent = props => {
   const [showOnMapData, setShowOnMapData] = useState('');
   const [countryName, setCountryName] = useState('Singapore');
   const [regionName, setRegionName] = useState('All locations');
-  const [attractionValue, setAttractionValue] = useState(undefined);
-  const [eventValue, setEventValue] = useState(undefined);
-  const [mapClick, setMapClick] = useState(true);
+  const [attractionValue, setAttractionValue] = useState(null);
+  const [eventValue, setEventValue] = useState(null);
+  const [mapClick, setMapClick] = useState(1);
   const [activeClassId, setActiveClassId] = useState(0);
   const [countryId, setCountryId] = useState(null);
-  const [regionId, setRegionId] = useState(undefined);
+  const [regionId, setRegionId] = useState(null);
   const [checkBox, setCheckBox] = useState(0);
   const [mapInMobile, setMapInMobile] = useState(false);
   const [toggle, setToggle] = useState(false);
   const [mapWrapperClass, setMapWrapperClass] = useState('');
   const [countryIdSelected, setCountryIdSelected] = useState(null);
+  const [deselectInfo, setDeselectInfo] = useState(false);
+  const [specificEventCountry, setSpecificEventCountry] = useState('');
+  const [specificEventRegion, setSpecificEventRegion] = useState('');
+  let eventId = null;
+
+  if (props.location.search !== {}) {
+    eventId = props.location.search.split('=')[1];
+  }
+
+  const handleDeselectInfo = () => {
+    setDeselectInfo(!deselectInfo);
+  };
 
   useEffect(() => {
     scrollToTop();
@@ -36,19 +48,33 @@ const Agent = props => {
   }, []);
 
   useEffect(() => {
-    if (countryId && countryIdSelected !== countryId) {
+    if (countryId) {
       const params = {
         country: countryId
       };
       fetchAgentsNVenues(params);
     }
-  }, [countryId, attractionValue, eventValue]);
+  }, [countryId, regionId, attractionValue, eventValue]);
 
   useEffect(() => {
     if (countryNRegion && countryNRegion.length > 0 && !countryFileUrl) {
       filterCountryFile('Singapore');
     }
   }, [countryNRegion]);
+
+  useEffect(() => {
+    if (
+      eventId &&
+      filteredListedData !== null &&
+      filteredListedData[0] &&
+      filteredListedData[0].country
+    ) {
+      setSpecificEventCountry(filteredListedData[0].country);
+      setSpecificEventRegion(filteredListedData[0].region);
+      setShowOnMapData(filteredListedData[0]);
+      setCountryName(filteredListedData[0].country);
+    }
+  }, [eventId, filteredListedData]);
 
   //page scroll to top after mounting component
   const scrollToTop = () => {
@@ -76,20 +102,21 @@ const Agent = props => {
   //Fetch agents or venues based on selection event
   const fetchAgentsNVenues = params => {
     setFilteredListedData(null);
-    if (params.region === undefined) {
-      params.region = null;
-    }
     if (attractionValue) {
       params.attractions = attractionValue;
     }
     if (eventValue) {
       params.events = eventValue;
     }
+
     params.client = Constants.CLIENT;
     params.sort_type = 'name';
     params.sort_order = 'ASC';
-
-    console.log(params, 'params');
+    params.region = regionId;
+    if (eventId) {
+      params.id = eventId;
+      delete params.country;
+    }
     const eventSelection = venue
       ? AgentService.getVenues(params)
       : AgentService.getAgents(params);
@@ -111,11 +138,8 @@ const Agent = props => {
     setCheckBox(Math.random());
     setCountryId(params.country);
     setRegionId(params.region);
-    if (params.country) {
-      fetchAgentsNVenues(params);
-    }
-    setAttractionValue(undefined);
-    setEventValue(undefined);
+    setAttractionValue(null);
+    setEventValue(null);
   };
   // filter file for selected country (Festive Period Operating Hours - Agent page)
   const filterCountryFile = file => {
@@ -175,7 +199,6 @@ const Agent = props => {
             return;
           }
           return item.name.toLowerCase().includes(lowerCasedFilter);
-          // return item[key].toLowerCase().includes(lowerCasedFilter);
         });
       });
 
@@ -188,6 +211,8 @@ const Agent = props => {
       className={`agents-wrapper ${venue ? 'venue' : ''}`}
     >
       <CountryRegion
+        specificEventCountry={specificEventCountry}
+        specificEventRegion={specificEventRegion}
         countryNRegion={countryNRegion}
         onSubmit={submitCountryNRegion}
         filterCountryFile={filterCountryFile}
@@ -200,6 +225,7 @@ const Agent = props => {
         <div className="container-fluid row agent-list">
           <div className="agent-sidebar">
             <SearchAgent
+              handleDeselectInfo={handleDeselectInfo}
               initialItems={filteredListedData}
               countryFileUrl={countryFileUrl}
               showOnMapClick={showOnMapClick}
@@ -219,6 +245,7 @@ const Agent = props => {
               Find in Map
             </span>
             <GoogleMap
+              deselectInfo={deselectInfo}
               toggler={toggle}
               multipleMarker={filteredListedData}
               showOnMapData={showOnMapData}
