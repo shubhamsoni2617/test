@@ -164,10 +164,13 @@ const GoogleMap = ({
     }
   }
 
-  const onInfoWindowOpen = () => {
+  const onInfoWindowOpen = url => {
     ReactDOM.render(
       React.Children.only(
-        <Image src={selectedPlace.imgPath || Small} type="Small" />
+        <Image
+          src={selectedPlace.image || selectedPlace.imgPath || Small}
+          type="Small"
+        />
       ),
       document.getElementById('iwc')
     );
