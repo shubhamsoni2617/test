@@ -18,7 +18,7 @@ const CountryRegion = props => {
   const [toggleMapCondition, setToggleMapCondition] = useState(123);
 
   useEffect(() => {
-    if ((specificEventCountry, specificEventRegion)) {
+    if (specificEventCountry || specificEventRegion) {
       setCountry(specificEventCountry);
       setRegion(specificEventRegion);
     }
