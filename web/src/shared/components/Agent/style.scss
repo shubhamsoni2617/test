@@ -135,26 +135,16 @@
 }
 
 
-
+.agents-wrapper .banner-wrapper {
+    // margin-bottom: 0;
+}
   .agent-fixed{
-    .banner-wrapper{
-      // position: fixed;
-      // top: 0;
-      // left: 0;
-      // width: 100%;
-      // z-index: 4;
-      // max-height: 200px;
-      // overflow: hidden;
-      .authorised-agent{
-        display: none;
+    .search-agent{
+      margin-top: 105px;
+      @media(max-width: 768px){
+          margin-top: 0px;
       }
     }
-      .search-agent{
-        margin-top: 105px;
-        @media(max-width: 768px){
-            margin-top: 0px;
-        }
-      }
 
     .search-agent-header{
       position: fixed;
@@ -196,22 +186,15 @@
     }
   }
   .agent-absolute{
-    .banner-wrapper{
-      // position: absolute;
-    }
     .agent-map-area{
       position: relative;
       .gmap{
         position: absolute;
         bottom: 40px;
         width: 100%;
-        // top: 0px;
         left: 0px;
         right: 0px;
       }
-    }
-    .agent-sidebar{
-      // position: absolute;
     }
   }
 
