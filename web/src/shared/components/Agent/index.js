@@ -73,6 +73,25 @@ const Agent = props => {
       setSpecificEventRegion(filteredListedData[0].region);
       setShowOnMapData(filteredListedData[0]);
       setCountryName(filteredListedData[0].country);
+      setCountryId(
+        countryNRegion.filter(
+          countryDetail => countryDetail.name === filteredListedData[0].country
+        )[0].id
+      );
+      let indexOfCountry;
+      if (filteredListedData[0].country === 'Singapore') {
+        countryNRegion.filter((countryDetail, idx) => {
+          return countryDetail.name === filteredListedData[0].country
+            ? (indexOfCountry = idx)
+            : null;
+        });
+
+        setRegionId(
+          countryNRegion[2].regions.filter(
+            region => region.name === filteredListedData[0].region
+          )[0].id
+        );
+      }
     }
   }, [eventId, filteredListedData]);
 
@@ -113,7 +132,7 @@ const Agent = props => {
     params.sort_type = 'name';
     params.sort_order = 'ASC';
     params.region = regionId;
-    if (eventId) {
+    if (eventId && !attractionValue && !eventValue) {
       params.id = eventId;
       delete params.country;
     }
