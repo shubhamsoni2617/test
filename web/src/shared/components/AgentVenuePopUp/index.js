@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import redirect from '../../../assets/images/redirect.svg';
 import address from '../../../assets/images/address.svg';
 import parking from '../../../assets/images/parking.svg';
@@ -13,18 +13,11 @@ import download from '../../../assets/images/download-blue.svg';
 import Utilities from '../../utilities';
 import Image from '../Image';
 import { Link } from 'react-router-dom';
-import './style.scss';
 import EventHeading from '../EventHeading';
-import DefaultImg from '../../../assets/images/horizontal.png';
+import './style.scss';
 
 const AgentVenuePopUp = props => {
-  const {
-    item,
-    popUpDetail,
-    currentlyShowingData,
-    activePopUpRef,
-    venue
-  } = props;
+  const { popUpDetail, item, venue } = props;
 
   let isFile;
   if (popUpDetail.festive_hours && popUpDetail.festive_hours_file) {
@@ -35,33 +28,23 @@ const AgentVenuePopUp = props => {
     return foodNBeverage.map((elem, index) => {
       return (
         <li key={index}>
-            {elem.image ? (
-              // <img
-              //   style={{ height: '65px', width: '96px' }}
-              //   src={elem.image ? elem.image : DefaultImg}
-              //   alt="specific-event"
-              //   type="Small"
-              // />
-              <Image src={elem.image} alt="specific-event" type="Small" />
-            ) : null}
-            {elem.name ? (
-              <div className="food-beverages-link">
-                <a href={elem.url ? elem.url : null} target="_blank">
-                  {elem.name}
-                </a>{' '}
-              </div>
-            ) : null}
-          </li>
+          {elem.image ? (
+            <Image src={elem.image} alt="specific-event" type="Small" />
+          ) : null}
+          {elem.name ? (
+            <div className="food-beverages-link">
+              <a href={elem.url ? elem.url : null} target="_blank">
+                {elem.name}
+              </a>{' '}
+            </div>
+          ) : null}
+        </li>
       );
     });
   };
-
   return (
     <div
-      className={
-        item.id === popUpDetail.id ? 'pop-up-list active' : 'pop-up-list'
-      }
-      ref={item.id === popUpDetail.id ? activePopUpRef : null}
+      className={`pop-up-list ${item.id === popUpDetail.id ? 'active' : ''}`}
     >
       <a
         href={`https://www.google.com/maps/dir//${popUpDetail.address}`}
@@ -95,20 +78,20 @@ const AgentVenuePopUp = props => {
       ) : null}
 
       {venue &&
-        popUpDetail.food_beverages &&
-        popUpDetail.food_beverages[0].name ? (
-          <div className="agent-info">
-            <div className="icon">
-              <img src={food} alt="icon" />
-            </div>
-            <div className="details">
-              <h3>Food & Beverage</h3>
-              <ul className="currently-list">
-                {showFoodNBeverage(popUpDetail.food_beverages)}
-              </ul>
-            </div>
+      popUpDetail.food_beverages &&
+      popUpDetail.food_beverages[0].name ? (
+        <div className="agent-info">
+          <div className="icon">
+            <img src={food} alt="icon" />
           </div>
-        ) : null}
+          <div className="details">
+            <h3>Food & Beverage</h3>
+            <ul className="currently-list">
+              {showFoodNBeverage(popUpDetail.food_beverages)}
+            </ul>
+          </div>
+        </div>
+      ) : null}
 
       {!venue && popUpDetail.operating_hours ? (
         <div className="agent-info">
@@ -174,7 +157,7 @@ const AgentVenuePopUp = props => {
 
       {venue &&
         popUpDetail.currentlyShowingData &&
-        popUpDetail.currentlyShowingData.length > 0 ? (
+        popUpDetail.currentlyShowingData.length > 0 && (
           <div className="agent-info">
             <div className="icon">
               <img src={event} alt="icon" />
@@ -182,35 +165,31 @@ const AgentVenuePopUp = props => {
             <div className="details">
               <h3>Currently Showing</h3>
               <ul className="currently-list">
-                {currentlyShowingData && currentlyShowingData.length > 0 ? (
-                  currentlyShowingData.map((elem, index) => {
-                    return (
-                      <li key={index}>
-                        {/* <img src={elem.thumb_image} alt="specific-event" /> */}
-                        <Image
-                          src={elem.thumb_image}
-                          alt="specific-event"
-                          type="Small"
+                {popUpDetail.currentlyShowingData.map((elem, index) => {
+                  return (
+                    <li key={index}>
+                      <Image
+                        src={elem.thumb_image}
+                        alt="specific-event"
+                        type="Small"
+                      />
+                      <Link to={`/events/${elem.alias}`}>
+                        <EventHeading
+                          title={elem.title}
+                          lines={2}
+                          height={18}
+                          size={13}
+                          allowTooltip={false}
                         />
-                        <Link to={`/events/${elem.alias}`}>
-                          <EventHeading
-                            title={elem.title}
-                            lines={2}
-                            height={18}
-                            size={13}
-                            allowTooltip={false}
-                          />
-                        </Link>
-                      </li>
-                    );
-                  })
-                ) : (
-                    <p>Loading...</p>
-                  )}
+                      </Link>
+                    </li>
+                  );
+                })}
               </ul>
             </div>
           </div>
-        ) : null}
+        )}
+
       {isFile && (
         <div className="agent-info">
           <div className="icon">
@@ -230,4 +209,4 @@ const AgentVenuePopUp = props => {
   );
 };
 
-export default AgentVenuePopUp;
+export default memo(AgentVenuePopUp);
