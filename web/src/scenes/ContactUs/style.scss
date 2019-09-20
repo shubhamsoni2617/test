@@ -4,6 +4,16 @@
   object-fit: cover;
   object-position: center;
   margin-top: -112px;
+  background-color: #fff;
+  @media(max-width: 991px){
+    margin-top: -116px;
+    background-size: 100% 310px;
+  }
+  .container{
+    @media(min-width: 768px) and (max-width: 1024px){
+      max-width: 900px;
+    }
+  }
 }
 .contact-us-header{
   color:white;
@@ -16,8 +26,8 @@
     font-size: 25px;
     line-height: 30px;
   }
-  @media(max-width: 768px){
-    padding: 130px 0px 20px;
+  @media(max-width: 991px){
+    padding: 140px 0px 12px;
   }
   @media (max-width: 767px) {
     font-size: 20px;
@@ -48,34 +58,58 @@
 }
 // find us
 .contact-us-block{
-  box-shadow: 0 1px 33px 0 rgba(0,0,0,0.07);
-  margin-bottom: 35px;
+  box-shadow: 0 1px 33px 0 rgba(0,0,0,0.07);  
   width: 100%;
   background-color: #fff;
   max-width: 939px;
   margin: 0 auto 50px;
   display: flex;
   flex-wrap: wrap;
-  @media(max-width: 768px){
+  @media(max-width: 991px){
     max-width: 100%;
+    background-color: #fff;
+    margin: 0 auto 25px;
+    box-shadow: none;
   }
   .find-us{
     height: 100%;
     margin-top: 12px;
+    @media(max-width: 991px){
+      height: auto;
+    }
     .find-us-content{
       margin: 0 0 35px;
       display: flex;
       flex-wrap: wrap;
+      @media(max-width: 991px){
+        margin: 0 0 18px;
+      }
       a{
         display: block;
         width: 100%;
+        color: #0098FF;
+        font-size: 15px;
+        line-height: 18px;
+        font-weight: 400;
         h5{
           color: #0098FF;
           font-size: 18px;
           display: flex;
           align-items: center;
           justify-content: space-between;
-          min-width: 218px;
+          max-width: 220px;
+          margin-bottom: 5px;
+          @media(max-width: 991px){
+            min-width: auto;
+            max-width: 90%;
+          }
+          @media(max-width: 768px){
+            min-width: auto;
+            max-width: 40%;
+          }
+          @media(max-width: 767px){
+            max-width: 200px;
+          }
           span{
             padding-left: 35px;
           }
@@ -98,15 +132,41 @@
         padding-right: 23px;
         flex: 0 0 50px;
         width: 50px;
+        @media(max-width: 1024px){
+          padding-right: 10px;
+          flex: 0 0 40px;
+          width: 40px;
+        }
+        svg{
+          max-width: 25px
+        }
+      }
+      .find-us-desc{
+        flex: 0 0 calc(100% - 50px);
+        width: calc(100% - 50px);
+        @media(max-width: 1024px){
+          flex: 0 0 calc(100% - 40px);
+          width: calc(100% - 40px);
+          h5{
+            font-size: 14px;
+          }
+        }
       }
     }
   }
   .customer-enquiry-wrapper{
     width: 517px;
     flex: 0 0 517px;
+    @media(max-width: 991px){
+      width: 60%;
+      flex: 0 0 60%;
+    }
     @media(max-width: 768px){
       width: 100%;
       flex: 0 0 100%;
+      background-color: #fff;
+      margin-bottom: 20px;
+      box-shadow: 0 1px 33px 0 rgba(0, 0, 0, 0.07);
     }
   }
   .contact-find-us{
@@ -114,9 +174,15 @@
     flex: 0 0 calc(100% - 517px);
     padding: 32px 90px 0px 27px;
     background-color: #F0F9FF;
+    @media(max-width: 991px){
+      width: 40%;
+      flex: 0 0 40%;
+      padding: 15px 15px 0px 15px;
+    }
     @media(max-width: 768px){
       width: 100%;
       flex: 0 0 100%;
+      padding: 15px 15px 0px 15px;
     }
   }
 }

@@ -22,7 +22,8 @@
 	display: flex;
 	flex-wrap: wrap;
 	width: 100%;
-	background-color: rgba(3, 13, 21, 0.8);
+	// background-color: rgba(3, 13, 21, 0.8);
+	background-color: #373E45;
 	padding: 0px;
 	position: relative;
 	z-index: 4;
@@ -30,6 +31,9 @@
 	-webkit-transition: 0.3s ease-in;
 	-moz-transition: 0.3s ease-in;
 	-o-transition: 0.3s ease-in;
+	&.homepage{
+		background-color: rgba(3, 13, 21, 0.8);
+	}
 	.top-header {
 		display: flex;
 		flex-wrap: wrap;

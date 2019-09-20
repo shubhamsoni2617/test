@@ -1,7 +1,8 @@
 import React, { Fragment } from 'react';
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { ReactComponent as Location } from '../../../assets/images/find-us-location.svg';
-import { ReactComponent as Call } from '../../../assets/images/find-us-call.svg';
+// import { ReactComponent as Call } from '../../../assets/images/call.svg';
+import Call from '../../../assets/images/call.svg';
 import { ReactComponent as Ticket } from '../../../assets/images/find-us-ticket.svg';
 import { ReactComponent as Corporate } from '../../../assets/images/find-us-question.svg';
 import { ReactComponent as Career } from '../../../assets/images/find-us-career.svg';
@@ -27,7 +28,7 @@ const FindUs = (props) => {
           </div>
         </div>
         <div className="find-us-content">
-          <div className="find-us-img"><Call /></div>
+          <div className="find-us-img"><img src={Call} alt="call-image" /></div>
           <div className="find-us-desc">
             <h5 className="text">{contactDetail.contact_information && contactDetail.contact_information.contact_number}</h5>
             <div className="text" dangerouslySetInnerHTML={{ __html: contactDetail.contact_information && contactDetail.contact_information.description }}></div>
