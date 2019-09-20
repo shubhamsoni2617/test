@@ -30,7 +30,8 @@ const Faqs = (props) => {
   }
 
   return (
-    <div>
+    <div className="contact-page-faq">
+      <h3>FAQs</h3>
       {faqsData && faqsData.map((faq) => {
         return (
           <AccordionSection
@@ -40,6 +41,7 @@ const Faqs = (props) => {
           />
         );
       })}
+      <a href="" className="contact-us-all-faq">See all FAQs</a>
     </div>
   );
 };
