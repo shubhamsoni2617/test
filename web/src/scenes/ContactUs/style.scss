@@ -1,14 +1,39 @@
 .contact-us{
   background: url('../../assets//images/contact-us-banner.png') no-repeat;
-  // height: 1000px;
+  background-size: 100% 417px;
+  object-fit: cover;
+  object-position: center;
+  margin-top: -112px;
+  background-color: #fff;
+  @media(max-width: 991px){
+    margin-top: -116px;
+    background-size: 100% 310px;
+  }
+  .container{
+    @media(min-width: 768px) and (max-width: 1024px){
+      max-width: 900px;
+    }
+  }
 }
-
 .contact-us-header{
   color:white;
-  padding:5% 0%;
-}
-.heading-text{
-  padding: 5% 0%;
+  padding: 202px 0px 50px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 40px;	
+  line-height: 49px;
+  font-weight: 600;
+  @media(max-width: 991px){
+    font-size: 25px;
+    line-height: 30px;
+  }
+  @media(max-width: 991px){
+    padding: 140px 0px 12px;
+  }
+  @media (max-width: 767px) {
+    font-size: 20px;
+    line-height: 25px;
+    margin-bottom: 5px;
+  }
 }
 .main-context{
   background-color:#FFF;
@@ -18,15 +43,146 @@
   margin: 3%;
   padding: 3%;
 }
-.find-us-content{
-  margin:5% 2%;
-}
-// input[type="file"] {
-//   display: none;
-// }
 .custom-file-upload {
   cursor: pointer;
 }
 .row-data:nth-child(2){
   background-color: rgb(89, 243, 230)
+}
+
+.pr-0{
+  padding-right: 0;
+}
+.pl-0{
+  padding-left: 0;
+}
+// find us
+.contact-us-block{
+  box-shadow: 0 1px 33px 0 rgba(0,0,0,0.07);  
+  width: 100%;
+  background-color: #fff;
+  max-width: 939px;
+  margin: 0 auto 50px;
+  display: flex;
+  flex-wrap: wrap;
+  @media(max-width: 991px){
+    max-width: 100%;
+    background-color: #fff;
+    margin: 0 auto 25px;
+    box-shadow: none;
+  }
+  .find-us{
+    height: 100%;
+    margin-top: 12px;
+    @media(max-width: 991px){
+      height: auto;
+    }
+    .find-us-content{
+      margin: 0 0 35px;
+      display: flex;
+      flex-wrap: wrap;
+      @media(max-width: 991px){
+        margin: 0 0 18px;
+      }
+      a{
+        display: block;
+        width: 100%;
+        color: #0098FF;
+        font-size: 15px;
+        line-height: 18px;
+        font-weight: 400;
+        h5{
+          color: #0098FF;
+          font-size: 18px;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          max-width: 220px;
+          margin-bottom: 5px;
+          @media(max-width: 991px){
+            min-width: auto;
+            max-width: 90%;
+          }
+          @media(max-width: 768px){
+            min-width: auto;
+            max-width: 40%;
+          }
+          @media(max-width: 767px){
+            max-width: 200px;
+          }
+          span{
+            padding-left: 35px;
+          }
+        }
+        &:hover{
+          span{
+            animation: seeallbtn 0.5s linear;
+            animation-iteration-count: infinite;
+          }
+        }
+      }
+      .text{
+        p{
+          color: #626262;
+          font-size: 14px;
+          margin-bottom: 7px;
+        }
+      }
+      .find-us-img{
+        padding-right: 23px;
+        flex: 0 0 50px;
+        width: 50px;
+        @media(max-width: 1024px){
+          padding-right: 10px;
+          flex: 0 0 40px;
+          width: 40px;
+        }
+        svg{
+          max-width: 25px
+        }
+      }
+      .find-us-desc{
+        flex: 0 0 calc(100% - 50px);
+        width: calc(100% - 50px);
+        @media(max-width: 1024px){
+          flex: 0 0 calc(100% - 40px);
+          width: calc(100% - 40px);
+          h5{
+            font-size: 14px;
+          }
+        }
+      }
+    }
+  }
+  .customer-enquiry-wrapper{
+    width: 517px;
+    flex: 0 0 517px;
+    @media(max-width: 991px){
+      width: 60%;
+      flex: 0 0 60%;
+    }
+    @media(max-width: 768px){
+      width: 100%;
+      flex: 0 0 100%;
+      background-color: #fff;
+      margin-bottom: 20px;
+      box-shadow: 0 1px 33px 0 rgba(0, 0, 0, 0.07);
+    }
+  }
+  .contact-find-us{
+    width: calc(100% - 517px);
+    flex: 0 0 calc(100% - 517px);
+    padding: 32px 90px 0px 27px;
+    background-color: #F0F9FF;
+    @media(max-width: 991px){
+      width: 40%;
+      flex: 0 0 40%;
+      padding: 15px 15px 0px 15px;
+    }
+    @media(max-width: 768px){
+      width: 100%;
+      flex: 0 0 100%;
+      padding: 15px 15px 0px 15px;
+    }
+  }
 }
