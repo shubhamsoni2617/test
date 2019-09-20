@@ -609,6 +609,9 @@
                 border-color: rgb(0, 152, 255);
                 color: #ffffff;
             }
+            &:empty{
+                display: none;
+            }
         }
     }
 }
