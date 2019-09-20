@@ -12,11 +12,11 @@ const FindUs = (props) => {
 
   return (
     <Fragment>
+      <h3 className="heading-text">Find Us</h3>
       <div className="find-us">
-        <h3 className="heading-text">Find Us</h3>
-        <div className="find-us-content row">
-          <div className="img col-lg-2"><Location /></div>
-          <div className="col-lg-8 pl-0">
+        <div className="find-us-content">
+          <div className="find-us-img"><Location /></div>
+          <div className="find-us-desc">
             <div className="text" dangerouslySetInnerHTML={{ __html: contactDetail.address && contactDetail.address.name }}></div>
             <a
               href={`https://maps.google.com/?q=${contactDetail.address && contactDetail.address.latitude},${contactDetail.address && contactDetail.address.longitude}`}
@@ -26,16 +26,16 @@ const FindUs = (props) => {
             </a>
           </div>
         </div>
-        <div className="find-us-content row">
-          <div className="img col-lg-2"><Call /></div>
-          <div className="col-lg-8 pl-0">
+        <div className="find-us-content">
+          <div className="find-us-img"><Call /></div>
+          <div className="find-us-desc">
             <h5 className="text">{contactDetail.contact_information && contactDetail.contact_information.contact_number}</h5>
             <div className="text" dangerouslySetInnerHTML={{ __html: contactDetail.contact_information && contactDetail.contact_information.description }}></div>
           </div>
         </div>
-        <div className="find-us-content row">
-          <div className="img col-lg-2"><Ticket /></div>
-          <div className="col-lg-7 pl-0 d-flex align-items-center">
+        <div className="find-us-content">
+          <div className="find-us-img"><Ticket /></div>
+          <div className="find-us-desc d-flex align-items-center">
             <a>
               <h5 className="text">Sell Tickets With Us
                 <span><Arrow /></span>
@@ -43,9 +43,9 @@ const FindUs = (props) => {
             </a>
           </div>
         </div>
-        <div className="find-us-content row">
-          <div className="img col-lg-2"><Corporate /></div>
-          <div className="col-lg-7 pl-0 d-flex align-items-center">
+        <div className="find-us-content">
+          <div className="find-us-img"><Corporate /></div>
+          <div className="find-us-desc d-flex align-items-center">
             <a>
               <h5 className="text">Corporate Enquiries
                 <span><Arrow /></span>
@@ -53,9 +53,9 @@ const FindUs = (props) => {
             </a>
           </div>
         </div>
-        <div className="find-us-content row">
-          <div className="img col-lg-2"><Career /></div>
-          <div className="col-lg-7 pl-0 d-flex align-items-center">
+        <div className="find-us-content">
+          <div className="find-us-img"><Career /></div>
+          <div className="find-us-desc d-flex align-items-center">
             <a>
               <h5 className="text">Careers
                 <span><Arrow /></span>

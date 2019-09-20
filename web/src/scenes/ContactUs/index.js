@@ -53,15 +53,13 @@ class ContactUs extends Component {
     const { enquiryCategory, contactDetail,category } = this.state;
 
     return (
-      <div className="contact-us">
+      <div className="contact-us banner-overlay">
         <h1 className="text-center contact-us-header">Contact Us</h1>
         <div className="container">
           <div className="contact-us-block">
-            <div className="row">
-              <CustomerEnquiry enquiryCategory={enquiryCategory} sendCategoryToFaqs={this.sendCategoryToFaqs} />
-              <div className="col-lg-5 pr-0">
-                <FindUs contactDetail={contactDetail} />
-              </div>
+            <CustomerEnquiry enquiryCategory={enquiryCategory} sendCategoryToFaqs={this.sendCategoryToFaqs} />
+            <div className="contact-find-us">
+              <FindUs contactDetail={contactDetail} />
             </div>
           </div>
           <Faqs category={category} />

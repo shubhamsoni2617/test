@@ -111,7 +111,7 @@ const CustomerEnquiry = (props) => {
   }
 
   return (
-      <div className="col-lg-7">
+      <div className="customer-enquiry-wrapper">
         <div className="customer-enquiry">
           <h3 className="heading-text">Customer Enquiries</h3>
           <h5 className="text-success">{submitResponse}</h5>
@@ -138,18 +138,18 @@ const CustomerEnquiry = (props) => {
           <div className="form-group">
             <textarea name="message" className="form-control" rows="5" placeholder="Message*" cols="30" value={message} onChange={handleChange} required />
           </div>
-          <div className="form-group">
-            {/* <div className="row">
-              <div className="col-lg-4">Attach Documents</div>
+          <div className="form-group attach-doc">
+            <div className="row">
+              <div className="col-lg-4 label pr-0">Attach Documents</div>
               <div className="col-lg-8">
                 <label htmlFor="file-upload" className="custom-file-upload  form-control text-right">
                   <img src={attach} height="20" width="20" />
                 </label>
                 <input encType='multipart/form-data' id="file-upload" className="form-control" type="file" multiple onChange={handleFile} accept=".jpeg,.png,.pdf" />
-                <p>*File Size should be maximum 5mb and it can be pdf,jpeg,png</p>
-                <p className="text-danger">{maxFileLimitMsg}</p>
+                <span>*File Size should be maximum 5mb and it can be pdf,jpeg,png</span>
+                <span className="text-danger">{maxFileLimitMsg}</span>
               </div>
-            </div> */}
+            </div>
           </div>
           <input className="form-control btn-info" type="submit" value="Submit" />
         </form>

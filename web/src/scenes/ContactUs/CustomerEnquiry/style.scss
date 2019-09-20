@@ -1,20 +1,68 @@
-.customer-enquiry{
-    padding: 2px 37px 26px 30px;
+.contact-us-block{
     .heading-text{
-        padding: 5% 0% 6% 0%;
+        margin: 0px;
+        padding: 0 0 38px;
+        font-family: 'Montserrat', sans-serif;
+        font-weight: 600;
     }
-    .form-control{
-        border-radius: 0;
-        min-height: 36px;
-    }
-    textarea{
-        resize: none;
-    }
-    input{
-        &.btn-info{
-            background-color: #0098FF;
-            color: #FFFFFF;
-            font-size: 18px;
+    .customer-enquiry{
+        padding: 32px 49px 26px 30px;
+        @media(max-width: 768px){
+            padding: 15px;
+        }
+        .form-group{
+            margin-bottom: 25px;
+            .form-control{
+                border-radius: 0;
+                min-height: 36px;
+                border: 1px solid rgba(151, 151, 151, 0.2);
+                font-size: 16px;
+                line-height: 19px;  
+            }
+            span{
+                color: #949494;
+                font-size: 13px;
+                line-height: 15px;
+            }
+            &.attach-doc{
+                input.form-control{
+                    visibility: hidden;
+                    position: absolute;
+                    margin-top: -43px;
+                    left: 0px;
+                    right: 0px;
+                }
+                .label{
+                    font-size: 16px;
+                    line-height: 19px;
+                    color: #343434;
+                    padding-top: 12px;
+                }
+            }
+        }
+        textarea{
+            resize: none;
+        }
+        input{
+            &.btn-info{
+                background-color: #0098FF;
+                color: #FFFFFF;
+                font-size: 18px;
+                border-radius: 0px;
+                height: 42px;
+                line-height: 42px;
+                padding: 0px;
+            }
+        }
+        select{
+            -webkit-appearance: none;
+            background-image: url('../../../assets/images/bottom-arrow.svg');
+            background-repeat: no-repeat;
+            background-position: 98%;
+            background-size: 12px auto;
+        }
+        .text-success{
+            margin: 0px;
         }
     }
 }
