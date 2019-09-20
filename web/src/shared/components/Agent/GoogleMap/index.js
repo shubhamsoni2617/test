@@ -3,7 +3,6 @@ import { Map, InfoWindow, Marker, GoogleApiWrapper } from 'google-maps-react';
 import './style.scss';
 import DirectionIcon from '../../../../assets/images/direction.png';
 import BluePin from '../../../../assets/images/bluepin.svg';
-import Image from '../../Image';
 import Constants from '../../../constants';
 import { useCustomWidth } from '../../CustomHooks';
 import Small from '../../../../assets/images/small.png';
