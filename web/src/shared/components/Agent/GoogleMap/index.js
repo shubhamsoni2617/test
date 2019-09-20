@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import ReactDOM from 'react-dom';
 import { Map, InfoWindow, Marker, GoogleApiWrapper } from 'google-maps-react';
 import './style.scss';
 import DirectionIcon from '../../../../assets/images/direction.png';
@@ -162,6 +163,15 @@ const GoogleMap = ({
     }
   }
 
+  const onInfoWindowOpen = () => {
+    ReactDOM.render(
+      React.Children.only(
+        <Image src={selectedPlace.imgPath || Small} type="Small" />
+      ),
+      document.getElementById('iwc')
+    );
+  };
+
   if (!google) {
     return <div>Loading...</div>;
   }
@@ -248,17 +258,21 @@ const GoogleMap = ({
           }}
           visible={showingInfoWindow}
           onClose={infoWindowHasClosed}
+          onOpen={e => {
+            onInfoWindowOpen();
+          }}
         >
           <div className="map-info-popup">
             <div className="map-img">
               {/* <Image src={selectedPlace.imgPath || Small} type="Small" /> */}
-              <img
+              <div id="iwc" />
+              {/* <img
                 height="50"
                 width="100"
                 src={selectedPlace.imgPath || Small}
                 title="Title of image"
                 alt="alt text here"
-              />
+              /> */}
             </div>
             <div className="map-name-address">
               <h5>{selectedPlace.name}</h5>

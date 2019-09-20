@@ -6,6 +6,7 @@ import AgentService from '../../../services/AgentService';
 import AgentVenuePopUp from '../../AgentVenuePopUp';
 import Utilities from '../../../utilities';
 import ShimmerEffect from '../../ShimmerEffect';
+import { CSSTransitionGroup } from 'react-transition-group';
 import './style.scss';
 
 const SearchAgent = props => {
@@ -33,7 +34,7 @@ const SearchAgent = props => {
     document.addEventListener('keydown', escFunction, false);
     document.addEventListener('click', closePopup);
     window.addEventListener('scroll', handleScroll);
-    handleScroll();
+
     return () => {
       window.removeEventListener('scroll', handleScroll);
       document.removeEventListener('click', closePopup);
@@ -74,14 +75,32 @@ const SearchAgent = props => {
     ) {
       agentWrapper.current.classList.remove('agent-fixed');
       agentWrapper.current.classList.add('agent-absolute');
-    } else if (window.pageYOffset >= 280) {
+      document.getElementsByClassName('search-agent')[0].style.marginTop =
+        '0px';
+    } else if (
+      window.pageYOffset >=
+      document
+        .getElementsByClassName('banner-wrapper')[0]
+        .getBoundingClientRect().height
+    ) {
       agentWrapper.current.classList.remove('agent-absolute');
       agentWrapper.current.classList.add('agent-fixed');
+      document.getElementsByClassName(
+        'search-agent'
+      )[0].style.marginTop = `${document
+        .getElementsByClassName('search-agent-header')[0]
+        .getBoundingClientRect().height - 33}px`;
     } else {
       agentWrapper.current.classList.remove('agent-absolute');
       agentWrapper.current.classList.remove('agent-fixed');
+      document.getElementsByClassName('search-agent')[0].style.marginTop =
+        '0px';
     }
   });
+
+  useEffect(() => {
+    handleScroll();
+  }, [initialItems]);
 
   useEffect(() => {
     setAttraction(false);
@@ -248,14 +267,21 @@ const SearchAgent = props => {
                 <p>
                   {item.address},{item.country}
                 </p>
-                {item.id === popUpDetail.id && (
-                  <AgentVenuePopUp
-                    item={item}
-                    popUpDetail={popUpDetail}
-                    venue={venue}
-                    currentlyShowingData={popUpDetail.currentlyShowingData}
-                  />
-                )}
+                <CSSTransitionGroup
+                  transitionName="mega"
+                  transitionEnter={true}
+                  transitionEnterTimeout={300}
+                  transitionLeaveTimeout={300}
+                >
+                  {item.id === popUpDetail.id && (
+                    <AgentVenuePopUp
+                      item={item}
+                      popUpDetail={popUpDetail}
+                      venue={venue}
+                      currentlyShowingData={popUpDetail.currentlyShowingData}
+                    />
+                  )}
+                </CSSTransitionGroup>
               </li>
             );
           })}
