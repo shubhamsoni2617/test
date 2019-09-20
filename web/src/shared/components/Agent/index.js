@@ -30,9 +30,15 @@ const Agent = props => {
   const [mapWrapperClass, setMapWrapperClass] = useState('');
   const [countryIdSelected, setCountryIdSelected] = useState(null);
   const [deselectInfo, setDeselectInfo] = useState(false);
+  const [specificEventCountry, setSpecificEventCountry] = useState('');
+  const [specificEventRegion, setSpecificEventRegion] = useState('');
+  let eventId = null;
+
+  if (props.location.search !== {}) {
+    eventId = props.location.search.split('=')[1];
+  }
 
   const handleDeselectInfo = () => {
-    console.log('Clicked');
     setDeselectInfo(!deselectInfo);
   };
 
@@ -48,13 +54,27 @@ const Agent = props => {
       };
       fetchAgentsNVenues(params);
     }
-  }, [countryId, regionId, attractionValue, eventValue, regionId]);
+  }, [countryId, regionId, attractionValue, eventValue]);
 
   useEffect(() => {
     if (countryNRegion && countryNRegion.length > 0 && !countryFileUrl) {
       filterCountryFile('Singapore');
     }
   }, [countryNRegion]);
+
+  useEffect(() => {
+    if (
+      eventId &&
+      filteredListedData !== null &&
+      filteredListedData[0] &&
+      filteredListedData[0].country
+    ) {
+      setSpecificEventCountry(filteredListedData[0].country);
+      setSpecificEventRegion(filteredListedData[0].region);
+      setShowOnMapData(filteredListedData[0]);
+      setCountryName(filteredListedData[0].country);
+    }
+  }, [eventId, filteredListedData]);
 
   //page scroll to top after mounting component
   const scrollToTop = () => {
@@ -88,12 +108,15 @@ const Agent = props => {
     if (eventValue) {
       params.events = eventValue;
     }
+
     params.client = Constants.CLIENT;
     params.sort_type = 'name';
     params.sort_order = 'ASC';
     params.region = regionId;
-
-    console.log(params, 'params');
+    if (eventId) {
+      params.id = eventId;
+      delete params.country;
+    }
     const eventSelection = venue
       ? AgentService.getVenues(params)
       : AgentService.getAgents(params);
@@ -176,7 +199,6 @@ const Agent = props => {
             return;
           }
           return item.name.toLowerCase().includes(lowerCasedFilter);
-          // return item[key].toLowerCase().includes(lowerCasedFilter);
         });
       });
 
@@ -189,6 +211,8 @@ const Agent = props => {
       className={`agents-wrapper ${venue ? 'venue' : ''}`}
     >
       <CountryRegion
+        specificEventCountry={specificEventCountry}
+        specificEventRegion={specificEventRegion}
         countryNRegion={countryNRegion}
         onSubmit={submitCountryNRegion}
         filterCountryFile={filterCountryFile}
