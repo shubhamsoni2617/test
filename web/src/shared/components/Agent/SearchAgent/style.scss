@@ -293,12 +293,16 @@
             position: absolute;
             width:500px;
             left: 100%;
-            padding: 10px 20px;
             top: -50px;
             z-index: 2;
             background: white;
             box-shadow: 0 2px 33px 0 rgba(0,0,0,0.23);
             cursor: default;
+            .popup-inner{
+              max-height: 350px;
+              overflow-y: auto;
+                  padding: 10px 20px;
+            }
             @media(max-width: 992px){
                 width: 450px;
             }
@@ -475,7 +479,7 @@
                         font-size: 14px;
                         font-weight: 500;
                         line-height: 19px;
-                        margin: 0 0 10px;                        
+                        margin: 0 0 10px;
                         display: inline-block;
                         &:hover{
                           color: #0077C8;
