@@ -8,25 +8,31 @@ const CountryRegion = props => {
     onSubmit,
     filterCountryFile,
     handleCountryNRegionName,
-    handleRegionName,
     venue,
     handleMapClick,
+    specificEventCountry,
+    specificEventRegion
   } = props;
-
   const [country, setCountry] = useState('Singapore');
   const [region, setRegion] = useState('All locations');
   const [toggleMapCondition, setToggleMapCondition] = useState(123);
 
-  // useEffect(()=>{
-  //   filterCountryFile(country);
-  // },[]);
+  useEffect(() => {
+    if (specificEventCountry || specificEventRegion) {
+      setCountry(specificEventCountry);
+      setRegion(specificEventRegion);
+    }
+  }, [specificEventCountry, specificEventRegion]);
 
   const handleSubmit = event => {
+    if (venue) {
+      props.history.push('/venues');
+    }
     event.preventDefault();
     filterCountryFile(country);
 
     //set country name in parent component
-    handleCountryNRegionName(country,region);
+    handleCountryNRegionName(country, region);
 
     // set map click event in parent component
     handleMapClick(toggleMapCondition);
@@ -66,13 +72,11 @@ const CountryRegion = props => {
     const { value } = event.target;
     setCountry(value);
     setRegion('All locations');
-    // handleId(value);
   };
 
   const handleRegionChange = event => {
     const { value } = event.target;
     setRegion(value);
-    // handleId(country, value);
   };
 
   return (
