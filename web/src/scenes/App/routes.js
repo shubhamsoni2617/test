@@ -14,6 +14,7 @@ import GiftVouchers from '../GiftVouchers';
 import ContactUs from '../ContactUs';
 import Faq from '../Faq';
 import Careers from '../Careers';
+import JobDescription from '../Careers/JobDescription';
 
 const routes = [
   {
@@ -101,6 +102,11 @@ const routes = [
   {
     path: '/careers',
     component: Careers,
+    exact: true
+  },
+  {
+    path: '/careers/jobdescription',
+    component: JobDescription,
     exact: true
   },
   {

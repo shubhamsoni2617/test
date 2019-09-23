@@ -73,6 +73,33 @@ class Utilities {
       .split('#')[0]
       .substr(url.lastIndexOf('.'));
   };
+
+  static ValidateEmail = emailText => {
+    var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+    if (emailText.match(mailformat)) {
+      return true;
+    } else {
+      return false;
+    }
+  };
+
+  static maxFileSize = files => {
+    const filesLength = files.length;
+    let fileSize = 0;
+    for (let key in files) {
+      if (files.hasOwnProperty(key)) {
+        fileSize = fileSize + files[key].size;
+      }
+    }
+    const sizeInMB = fileSize / (1024 * 1024);
+    if (filesLength > 3 || sizeInMB > 5) {
+      return 'Max 3 files can be uploaded, with up to 5MB size.';
+    } else {
+      return files;
+    }
+  };
+
+
 }
 
 export default Utilities;
