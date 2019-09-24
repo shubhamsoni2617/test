@@ -4,6 +4,7 @@ import AgentService from '../../../shared/services/AgentService';
 import VenueService from '../../../shared/services/VenueService';
 import Constants from '../../../shared/constants';
 import SearchAgent from './SearchAgent';
+import GoogleMap from './GoogleMap';
 
 const AgentVenue = props => {
   const { venue } = props;
@@ -11,29 +12,57 @@ const AgentVenue = props => {
   const [countryNRegion, setCountryNRegion] = useState(null);
   const [countryId, setCountryId] = useState(15);
   const [regionId, setRegionId] = useState(null);
-  const [deselectInfo, setDeselectInfo] = useState(false);
   const [eventSelected, setEventSelected] = useState(null);
-  const [toggle, setToggle] = useState(false);
   const [attractionValue, setAttractionValue] = useState(0);
   const [eventValue, setEventValue] = useState(0);
   const [listedData, setListedData] = useState(null);
   const [filteredListedData, setFilteredListedData] = useState(null);
   const [festiveHourFile, setFestiveHourFile] = useState(null);
-  const [countryName, setCountryName] = useState(null);
-  let currentRegionId = 0;
+  const [countryName, setCountryName] = useState('Singapore');
+  const [mapInMobile, setMapInMobile] = useState(false);
+  const [onSubmitFetch, setOnSubmitFetch] = useState(false);
+  const [searchText, setSearchText] = useState('');
+  const [venueId, setVenueId] = useState(null);
+  const [currentRegionId, setCurrentRegionId] = useState(0);
+
+  if (props.location.search === null || props.location.search) {
+    if (!venueId) {
+      setCountryId(0);
+      setVenueId(props.location.search.split('=')[1]);
+    }
+  }
   useEffect(() => {
     fetchCountryRegion();
   }, []);
 
   useEffect(() => {
     fetchAgentsNVenues();
-  }, [attractionValue, eventValue, countryName, regionId]);
+  }, [attractionValue, eventValue, countryName, regionId, onSubmitFetch]);
 
-  const handleDeselectInfo = () => {
-    setDeselectInfo(!deselectInfo);
-  };
+  useEffect(() => {
+    if (
+      venueId &&
+      countryNRegion &&
+      filteredListedData !== null &&
+      filteredListedData[0] &&
+      filteredListedData[0].id
+    ) {
+      let fromIndex = countryNRegion.findIndex(
+        el => el.name === filteredListedData[0].country
+      );
+      console.log(countryNRegion);
+      console.log(fromIndex);
 
-  const showOnMapClick = eventSelected => {
+      let element = countryNRegion[fromIndex];
+      countryNRegion.splice(fromIndex, 1);
+      countryNRegion.unshift(element);
+      console.log(countryNRegion);
+      setCountryNRegion(countryNRegion);
+      setCountryId(countryNRegion[0].id);
+    }
+  }, [filteredListedData]);
+
+  const handleEventSelected = eventSelected => {
     setEventSelected(eventSelected);
   };
 
@@ -56,6 +85,9 @@ const AgentVenue = props => {
       attractions: attractionValue,
       events: eventValue
     };
+    if (venueId) {
+      params.id = venueId;
+    }
 
     const eventSelection = venue
       ? VenueService.getVenues(params)
@@ -79,13 +111,14 @@ const AgentVenue = props => {
     setFestiveHourFile(festiveHourFile);
   };
 
-  const handleMapFilter = value => {
+  const handleMapFilter = e => {
+    setSearchText(e.target.value);
     const filteredListedData = listedData.filter(item => {
       return Object.keys(item).some(key => {
         if (item[key] === null || typeof item[key] === 'object') {
           return;
         }
-        return item.name.toLowerCase().includes(value.toLowerCase());
+        return item.name.toLowerCase().includes(e.target.value.toLowerCase());
       });
     });
 
@@ -112,29 +145,38 @@ const AgentVenue = props => {
     countryRegion.unshift(element);
     setCountryNRegion(countryRegion);
     setCountryId(countryRegion[0].id);
-    // setCountryName(countryRegion[0].name);
-
     setFestiveHourFile(countryRegion[0].festive_hours_file);
   };
 
   const countryIdHandler = id => {
     setCountryId(id);
-    // setCountryName(countryName);
   };
 
   const regionIdHandler = id => {
-    currentRegionId = id;
+    setCurrentRegionId(id);
+  };
+
+  const handleMapForMobile = () => {
+    if (!mapInMobile) {
+      setMapInMobile(true);
+    } else {
+      setMapInMobile(false);
+    }
   };
 
   const onSubmit = () => {
     let countryName = countryNRegion.find(el => el.id === countryId).name;
+    handleEventValue(0);
+    handleAttractionValue(0);
+    setSearchText('');
     setCountryName(countryName);
-    setRegionId(regionId);
+    setRegionId(currentRegionId);
+    setOnSubmitFetch(!onSubmitFetch);
     festiveHourFileHandler();
   };
   return (
     <section className={`agents-wrapper ${venue ? 'venue' : ''}`}>
-      {countryNRegion && (
+      {countryNRegion && filteredListedData && (
         <CountryRegion
           countryNRegion={countryNRegion}
           countryIdHandler={countryIdHandler}
@@ -147,17 +189,29 @@ const AgentVenue = props => {
         <div className="container-fluid row agent-list">
           <div className="agent-sidebar">
             <SearchAgent
-              handleDeselectInfo={handleDeselectInfo}
               initialItems={filteredListedData}
               countryFileUrl={festiveHourFile}
-              showOnMapClick={showOnMapClick}
+              showOnMapClick={handleEventSelected}
               countryName={countryName}
               handleAttractionValue={handleAttractionValue}
               handleEventValue={handleEventValue}
-              checkBox={countryId}
               handleMapFilter={handleMapFilter}
-              mapClick={countryId}
-              //   agentWrapper={agentWrapper}
+              attractionValue={attractionValue}
+              eventValue={eventValue}
+              searchText={searchText}
+              {...props}
+            />
+          </div>
+          <div className="agent-map-area">
+            <span className="map-label-mobileonly" onClick={handleMapForMobile}>
+              Find in Map
+            </span>
+            <GoogleMap
+              multipleMarker={filteredListedData}
+              showOnMapData={eventSelected}
+              countryName={countryName}
+              mapClick={filteredListedData}
+              mapInMobile={mapInMobile}
               {...props}
             />
           </div>

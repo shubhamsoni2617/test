@@ -18,18 +18,14 @@ const SearchAgent = props => {
     countryName,
     handleAttractionValue,
     handleEventValue,
-    checkBox,
     handleMapFilter,
-    mapClick,
-    agentWrapper,
-    handleDeselectInfo
+    searchText,
+    eventValue,
+    attractionValue
   } = props;
 
   const [data, setData] = useState([]);
-  const [filter, setFilter] = useState('');
   const [popUpDetail, setPopUpDetail] = useState('');
-  const [attraction, setAttraction] = useState(false);
-  const [onGoingEvents, setOngoingEvents] = useState(false);
 
   useEffect(() => {
     document.addEventListener('keydown', escFunction, false);
@@ -103,27 +99,8 @@ const SearchAgent = props => {
     handleScroll();
   }, [initialItems]);
 
-  useEffect(() => {
-    handleDeselectInfo();
-  }, [attraction, onGoingEvents, filter]);
-
-  useEffect(() => {
-    setAttraction(false);
-    setOngoingEvents(false);
-  }, [checkBox]);
-
-  useEffect(() => {
-    setFilter('');
-  }, [mapClick]);
-
   const handleSubmit = event => {
     event.preventDefault();
-  };
-
-  const handleChange = event => {
-    const { value } = event.target;
-    setFilter(value);
-    handleMapFilter(value);
   };
 
   const showPopUp = detail => {
@@ -153,26 +130,6 @@ const SearchAgent = props => {
       });
   };
 
-  const handleAttraction = () => {
-    if (!attraction) {
-      handleAttractionValue(1);
-      setAttraction(true);
-    } else {
-      handleAttractionValue(0);
-      setAttraction(false);
-    }
-  };
-
-  const handleOngoingEvents = () => {
-    if (!onGoingEvents) {
-      handleEventValue(1);
-      setOngoingEvents(true);
-    } else {
-      handleEventValue(0);
-      setOngoingEvents(false);
-    }
-  };
-
   let isFile;
   if (countryFileUrl) {
     isFile = Utilities.isFileExt(countryFileUrl);
@@ -193,8 +150,8 @@ const SearchAgent = props => {
             <input
               className="form-control"
               type="text"
-              value={filter}
-              onChange={handleChange}
+              value={searchText}
+              onChange={e => handleMapFilter(e)}
               placeholder={
                 venue ? 'Search for Location' : 'Search for an agent'
               }
@@ -206,26 +163,26 @@ const SearchAgent = props => {
             <li>
               <input
                 type="checkbox"
-                onChange={handleAttraction}
+                onChange={() => handleAttractionValue(!attractionValue ? 1 : 0)}
                 className="styled-checkbox"
                 id="1"
-                checked={attraction ? true : false}
+                checked={attractionValue ? true : false}
               />
               <label htmlFor="1"> Attractions</label>
             </li>
             <li>
               <input
                 type="checkbox"
-                onChange={handleOngoingEvents}
+                onChange={() => handleEventValue(!eventValue ? 1 : 0)}
                 className="styled-checkbox"
                 id="2"
-                checked={onGoingEvents ? true : false}
+                checked={eventValue ? true : false}
               />
               <label htmlFor="2"> Venues with Ongoing Events</label>
             </li>
           </ul>
         ) : null}
-        {!initialItems && filter === '' && (
+        {!initialItems && searchText === '' && (
           <ShimmerEffect
             propCls="shm_col-xs-6 col-md-12"
             height={80}
