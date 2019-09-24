@@ -7,7 +7,8 @@ const CountryRegion = ({
   venue,
   countryIdHandler,
   regionIdHandler,
-  countryId
+  countryId,
+  onSubmit
 }) => (
   <div className="banner-wrapper">
     <img src={banner} className="img-fluid" alt="page-banner" />
@@ -43,7 +44,7 @@ const CountryRegion = ({
                 ))
               )}
           </select>
-          <button className="go-btn" type="submit">
+          <button className="go-btn" type="submit" onClick={onSubmit}>
             GO
           </button>
         </div>

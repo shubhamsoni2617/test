@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import SearchIcon from '../../../../assets/images/search-icon-gray.svg';
 import downloadOrange from '../../../../assets/images/download-orange.svg';
 import downArrow from '../../../../assets/images/downarrow-blue.svg';
@@ -56,47 +56,47 @@ const SearchAgent = props => {
     }
   };
   const handleScroll = useCallback(() => {
-    if (
-      agentWrapper.current.classList.contains('agent-fixed') &&
-      document.getElementsByClassName('pop-up-list active') &&
-      document.getElementsByClassName('pop-up-list active').length
-    ) {
-      if (
-        document
-          .getElementsByClassName('pop-up-list active')[0]
-          .getBoundingClientRect().top < 85
-      ) {
-        setPopUpDetail({});
-      }
-    }
-    if (
-      window.pageYOffset +
-        document.getElementById('footer').getBoundingClientRect().height >=
-      window.document.body.clientHeight - window.innerHeight
-    ) {
-      agentWrapper.current.classList.remove('agent-fixed');
-      agentWrapper.current.classList.add('agent-absolute');
-      document.getElementsByClassName('search-agent')[0].style.marginTop =
-        '0px';
-    } else if (
-      window.pageYOffset >=
-      document
-        .getElementsByClassName('banner-wrapper')[0]
-        .getBoundingClientRect().height
-    ) {
-      agentWrapper.current.classList.remove('agent-absolute');
-      agentWrapper.current.classList.add('agent-fixed');
-      document.getElementsByClassName(
-        'search-agent'
-      )[0].style.marginTop = `${document
-        .getElementsByClassName('search-agent-header')[0]
-        .getBoundingClientRect().height - 33}px`;
-    } else {
-      agentWrapper.current.classList.remove('agent-absolute');
-      agentWrapper.current.classList.remove('agent-fixed');
-      document.getElementsByClassName('search-agent')[0].style.marginTop =
-        '0px';
-    }
+    // if (
+    //   agentWrapper.current.classList.contains('agent-fixed') &&
+    //   document.getElementsByClassName('pop-up-list active') &&
+    //   document.getElementsByClassName('pop-up-list active').length
+    // ) {
+    //   if (
+    //     document
+    //       .getElementsByClassName('pop-up-list active')[0]
+    //       .getBoundingClientRect().top < 85
+    //   ) {
+    //     setPopUpDetail({});
+    //   }
+    // }
+    // if (
+    //   window.pageYOffset +
+    //     document.getElementById('footer').getBoundingClientRect().height >=
+    //   window.document.body.clientHeight - window.innerHeight
+    // ) {
+    //   agentWrapper.current.classList.remove('agent-fixed');
+    //   agentWrapper.current.classList.add('agent-absolute');
+    //   document.getElementsByClassName('search-agent')[0].style.marginTop =
+    //     '0px';
+    // } else if (
+    //   window.pageYOffset >=
+    //   document
+    //     .getElementsByClassName('banner-wrapper')[0]
+    //     .getBoundingClientRect().height
+    // ) {
+    //   agentWrapper.current.classList.remove('agent-absolute');
+    //   agentWrapper.current.classList.add('agent-fixed');
+    //   document.getElementsByClassName(
+    //     'search-agent'
+    //   )[0].style.marginTop = `${document
+    //     .getElementsByClassName('search-agent-header')[0]
+    //     .getBoundingClientRect().height - 33}px`;
+    // } else {
+    //   agentWrapper.current.classList.remove('agent-absolute');
+    //   agentWrapper.current.classList.remove('agent-fixed');
+    //   document.getElementsByClassName('search-agent')[0].style.marginTop =
+    //     '0px';
+    // }
   });
 
   useEffect(() => {
