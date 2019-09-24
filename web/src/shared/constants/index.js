@@ -9,6 +9,8 @@ class Constants {
   static GOOGLE_MAP_API_KEY = 'AIzaSyDbo_mTxvdbXU1ZjUwzbTfzLwB7d1BX_PI';
   static MAP_PATH =
     'M 0,0 C -2,-20 -10,-22 -10,-30 A 10,10 0 1,1 10,-30 C 10,-22 2,-20 0,0 z';
+  static SOURCE_FROM_WEBSITE = 1;
+  static SOURCE_FROM_MOBILE_RESPONSIVE = 3;
 }
 
 export default Constants;
