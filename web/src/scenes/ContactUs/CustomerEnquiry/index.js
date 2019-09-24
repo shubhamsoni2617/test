@@ -134,7 +134,7 @@ const CustomerEnquiry = props => {
               value={enquiry}
               required
             >
-              <option value="">Select an Enquiry</option>
+              <option value="Select an Enquiry">Select an Enquiry</option>
               {enquiryCategory &&
                 enquiryCategory.map(enq => {
                   return (
