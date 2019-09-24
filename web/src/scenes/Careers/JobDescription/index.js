@@ -3,6 +3,7 @@ import Breadcrub from '../../App/Breadcrumb';
 import JobDesBanner from '../../../../src/assets/images/job-des.png';
 import Utilities from '../../../shared/utilities';
 import PersonalInfo from './PersonalInfo';
+import Description from './Description';
 
 class JobDescription extends Component {
   constructor(props) {
@@ -18,7 +19,7 @@ class JobDescription extends Component {
     };
     this.breadCrumbData = {
       page_banner: JobDesBanner,
-      page: 'JobDescription',
+      page: 'UI/UX Design',
       count: 0,
       breadcrumb_slug: [
         { path: '/', title: 'Home' },
@@ -44,15 +45,14 @@ class JobDescription extends Component {
 
   handleChange = e => {
     const { name, value } = e.target;
-    this.setState({ [name]: value });
-  };
-
-  allowNumbersOnly = e => {
-    var code = e.which ? e.which : e.keyCode;
-    if (code > 31 && (code < 48 || code > 57)) {
-      e.preventDefault();
+    if (name === 'contact_number') {
+      const allowNumbersOnly = /^[0-9\b]+$/;
+      if (value === '' || allowNumbersOnly.test(value)) {
+        this.setState({ [name]: value });
+      }
+    } else {
+      this.setState({ [name]: value });
     }
-    console.log(e.target.value);
   };
 
   handleFiles = files => {
@@ -69,12 +69,13 @@ class JobDescription extends Component {
       <div className="container-fluid">
         <Breadcrub breadCrumbData={this.breadCrumbData} />
         <div className="row">
-          <div className="col-lg-8"></div>
+          <div className="col-lg-8">
+            <Description />
+          </div>
           <div className="col-lg-4">
             <PersonalInfo
               state={this.state}
               handleChange={this.handleChange}
-              allowNumbersOnly={this.allowNumbersOnly}
               handleFiles={this.handleFiles}
               handleSubmit={this.handleSubmit}
             />
