@@ -1,4 +1,4 @@
-import React, { useRef, useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import CountryRegion from './CountryRegion';
 import AgentService from '../../../shared/services/AgentService';
 import VenueService from '../../../shared/services/VenueService';
@@ -11,7 +11,7 @@ const AgentVenue = props => {
 
   const [countryNRegion, setCountryNRegion] = useState(null);
   const [countryId, setCountryId] = useState(15);
-  const [regionId, setRegionId] = useState(null);
+  const [regionId, setRegionId] = useState(0);
   const [eventSelected, setEventSelected] = useState(null);
   const [attractionValue, setAttractionValue] = useState(0);
   const [eventValue, setEventValue] = useState(0);
@@ -20,13 +20,15 @@ const AgentVenue = props => {
   const [festiveHourFile, setFestiveHourFile] = useState(null);
   const [countryName, setCountryName] = useState('Singapore');
   const [mapInMobile, setMapInMobile] = useState(false);
-  const [onSubmitFetch, setOnSubmitFetch] = useState(false);
+  const [onSubmitFetch, setOnSubmitFetch] = useState(0);
   const [searchText, setSearchText] = useState('');
   const [venueId, setVenueId] = useState(null);
-  const [currentRegionId, setCurrentRegionId] = useState(0);
+  const [countryNRegionSorted, setCountryNRegionSorted] = useState(null);
+  const [showOnMapClicked, setShowOnMapClicked] = useState(0);
 
   if (props.location.search === null || props.location.search) {
     if (!venueId) {
+      console.log('test');
       setCountryId(0);
       setVenueId(props.location.search.split('=')[1]);
     }
@@ -37,7 +39,7 @@ const AgentVenue = props => {
 
   useEffect(() => {
     fetchAgentsNVenues();
-  }, [attractionValue, eventValue, countryName, regionId, onSubmitFetch]);
+  }, [attractionValue, eventValue, onSubmitFetch]);
 
   useEffect(() => {
     if (
@@ -47,30 +49,42 @@ const AgentVenue = props => {
       filteredListedData[0] &&
       filteredListedData[0].id
     ) {
-      let fromIndex = countryNRegion.findIndex(
+      let countryIndex = countryNRegion.findIndex(
         el => el.name === filteredListedData[0].country
       );
-      console.log(countryNRegion);
-      console.log(fromIndex);
-
-      let element = countryNRegion[fromIndex];
-      countryNRegion.splice(fromIndex, 1);
-      countryNRegion.unshift(element);
-      console.log(countryNRegion);
-      setCountryNRegion(countryNRegion);
+      let specificCountry = countryNRegion[countryIndex];
+      if (specificCountry.regions.length) {
+        let regionIndex = specificCountry.regions.findIndex(
+          el => el.name === filteredListedData[0].region
+        );
+        let specificRegion = specificCountry.regions[regionIndex];
+        setRegionId(specificRegion.id);
+        specificCountry.regions.splice(regionIndex, 1);
+        specificCountry.regions.unshift(specificRegion);
+      }
+      countryNRegion.splice(countryIndex, 1);
+      countryNRegion.unshift(specificCountry);
+      setCountryNRegionSorted(countryNRegion);
       setCountryId(countryNRegion[0].id);
+      setCountryName(countryNRegion[0].name);
+      handleEventSelected(filteredListedData[0]);
     }
   }, [filteredListedData]);
 
   const handleEventSelected = eventSelected => {
+    setShowOnMapClicked(showOnMapClicked + 1);
     setEventSelected(eventSelected);
   };
 
   const handleAttractionValue = attractionValue => {
+    setVenueId(null);
+    props.history.push('/venues');
     setAttractionValue(attractionValue);
   };
 
   const handleEventValue = eventValue => {
+    setVenueId(null);
+    props.history.push('/venues');
     setEventValue(eventValue);
   };
 
@@ -153,7 +167,7 @@ const AgentVenue = props => {
   };
 
   const regionIdHandler = id => {
-    setCurrentRegionId(id);
+    setRegionId(id);
   };
 
   const handleMapForMobile = () => {
@@ -165,26 +179,28 @@ const AgentVenue = props => {
   };
 
   const onSubmit = () => {
+    setVenueId(null);
     let countryName = countryNRegion.find(el => el.id === countryId).name;
     handleEventValue(0);
     handleAttractionValue(0);
     setSearchText('');
     setCountryName(countryName);
-    setRegionId(currentRegionId);
-    setOnSubmitFetch(!onSubmitFetch);
+    setOnSubmitFetch(onSubmitFetch + 1);
+    props.history.push('/venues');
     festiveHourFileHandler();
   };
   return (
     <section className={`agents-wrapper ${venue ? 'venue' : ''}`}>
-      {countryNRegion && filteredListedData && (
-        <CountryRegion
-          countryNRegion={countryNRegion}
-          countryIdHandler={countryIdHandler}
-          regionIdHandler={regionIdHandler}
-          countryId={countryId}
-          onSubmit={onSubmit}
-        />
-      )}
+      <CountryRegion
+        countryNRegion={venueId ? countryNRegionSorted : countryNRegion}
+        countryIdHandler={countryIdHandler}
+        regionIdHandler={regionIdHandler}
+        countryId={countryId}
+        onSubmit={onSubmit}
+        venueId={venueId}
+        regionId={regionId}
+      />
+
       <div className="find-agent-wrapper">
         <div className="container-fluid row agent-list">
           <div className="agent-sidebar">
@@ -212,6 +228,7 @@ const AgentVenue = props => {
               countryName={countryName}
               mapClick={filteredListedData}
               mapInMobile={mapInMobile}
+              showOnMapClicked={showOnMapClicked}
               {...props}
             />
           </div>

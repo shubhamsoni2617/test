@@ -6,10 +6,8 @@ import HomeService from '../../shared/services/HomeService';
 import Promotions from '../Promotions';
 import PageNotFound from '../PageNotFound/index';
 import Agents from '../Agents';
-import Agents1 from '../Agents1';
 import Attraction from '../Attraction';
 import Venues from '../Venues';
-import Venues1 from '../Venues1';
 import WhereBuyTickets from '../WhereBuyTickets';
 import TermsPrivacy from '../TermsPrivacy';
 import GiftVouchers from '../GiftVouchers';
@@ -42,11 +40,6 @@ const routes = [
   {
     path: '/agents',
     component: Agents,
-    exact: true
-  },
-  {
-    path: '/agents1',
-    component: Agents1,
     exact: true
   },
   {
@@ -93,11 +86,6 @@ const routes = [
   {
     path: '/venues',
     component: Venues,
-    exact: true
-  },
-  {
-    path: '/venues1',
-    component: Venues1,
     exact: true
   },
   {

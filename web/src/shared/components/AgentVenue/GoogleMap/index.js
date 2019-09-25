@@ -37,7 +37,8 @@ const GoogleMap = ({
   venue,
   mapClick,
   countryName,
-  mapInMobile
+  mapInMobile,
+  showOnMapClicked
 }) => {
   const [width] = useCustomWidth();
 
@@ -75,7 +76,7 @@ const GoogleMap = ({
       });
       EventConstantZoom(countryName, setZoomValue);
     }
-  }, [showOnMapData]);
+  }, [showOnMapData, showOnMapClicked]);
 
   useEffect(() => {
     setShowingInfoWindow(false);
