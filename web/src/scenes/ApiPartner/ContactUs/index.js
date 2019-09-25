@@ -81,7 +81,7 @@ const ContactUs = ({
                     // required
                   />
                 </div>
-                <div className="form-group has-error">
+                <div className="form-group">
                   <textarea
                     name="message"
                     className="form-control"

@@ -57,7 +57,7 @@
       .banner-desc {
         flex: 0 0 47%;
         width: 47%;
-        margin-top: -70px;
+        margin-top: -50px;
         @media(max-width: 1024px){
           flex: 0 0 60%;
           width: 60%;
@@ -68,14 +68,6 @@
           flex: 0 0 61%;
           width: 61%;
           max-width: 100%;
-        }
-        h3 {
-          font-family: "Montserrat", sans-serif;
-          font-size: 20px;
-          line-height: 26px;
-          color: #fff;
-          margin: 28px 0 10px;
-          font-weight: 600;
         }
         p {
           color: #FFFFFF;
@@ -97,32 +89,40 @@
             font-size: 12px;
             line-height: 16px;
           }
-          &:first-child{
-            color: #FFFFFF;
-            font-family: "Montserrat", sans-serif;
-            font-size: 40px;
-            line-height: 49px;
-            font-weight: 600;
-            padding-bottom: 7px;
-            margin-bottom: 11px;
-            position: relative;
-            @media(max-width: 1024px){
-              font-size: 34px;
-              line-height: 40px;
-            }
-            @media(max-width: 767px){
-              font-size: 23px;
-              line-height: 30px;
-              padding-bottom: 7px;
-              margin-bottom: 10px;
-            }
-            @media(max-width: 600px){
-              font-size: 20px;
-              line-height: 22px;
-              padding-bottom: 5px;
-              margin-bottom: 5px;
-            }
+        }
+        & > p{
+          color: #FFFFFF;
+          font-family: "Montserrat", sans-serif;
+          font-size: 40px;
+          line-height: 49px;
+          font-weight: 600;
+          padding-bottom: 7px;
+          margin-bottom: 11px;
+          position: relative;
+          @media(max-width: 1024px){
+            font-size: 34px;
+            line-height: 40px;
           }
+          @media(max-width: 767px){
+            font-size: 23px;
+            line-height: 30px;
+            padding-bottom: 7px;
+            margin-bottom: 10px;
+          }
+          @media(max-width: 600px){
+            font-size: 20px;
+            line-height: 22px;
+            padding-bottom: 5px;
+            margin-bottom: 5px;
+          }
+        }
+        h3 {
+          font-family: "Montserrat", sans-serif;
+          font-size: 20px;
+          line-height: 26px;
+          color: #fff;
+          margin: 28px 0 10px;
+          font-weight: 600;
         }
       }
       .banner-image {
