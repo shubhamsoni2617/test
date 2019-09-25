@@ -69,6 +69,7 @@
         min-height: 600px;
         @media (max-width: 992px) {
             min-height: inherit;
+            margin-top: 0 !important;
         }
         .list-option{
             margin: 0;

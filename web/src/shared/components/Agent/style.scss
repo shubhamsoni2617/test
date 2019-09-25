@@ -75,6 +75,7 @@
             @media(max-width: 768px){
                 flex: 0 0 100%;
                 width: 100%;
+                padding: 0;
             }
             .map-label-mobileonly{
                 display: none;
@@ -135,9 +136,7 @@
 }
 
 
-.agents-wrapper .banner-wrapper {
-    // margin-bottom: 0;
-}
+
   .agent-fixed{
     .search-agent{
       margin-top: 105px;
@@ -194,6 +193,12 @@
         width: 100%;
         left: 0px;
         right: 0px;
+        @media (max-width: 992px) {
+            width: calc(100% + 50px);
+            margin-left: -25px;
+            position: relative;
+            bottom: 0;
+        }
       }
     }
   }
@@ -202,6 +207,9 @@
     &.agent-fixed{
       .search-agent{
         margin-top: 145px;
+        @media(max-width: 768px){
+            margin-top: 0px !important;
+        }
       }
     }
   }
