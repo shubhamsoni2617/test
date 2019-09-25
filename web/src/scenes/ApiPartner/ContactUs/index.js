@@ -13,7 +13,7 @@ const ContactUs = ({
                         <div className="we-are-at">
                             <h3>We are at</h3>
                             <h5>SISTIC.com Pte Ltd</h5>
-                            <p>10 Eunos Road 8, #03-04,</p>
+                            <p>10 Eunos Road 8, #03-04,</p> 
                             <p>Singapore Post Centre </p>
                             <p>Singapore 408600</p>
                             <p>(accessible via Singapore Post </p>
@@ -33,6 +33,11 @@ const ContactUs = ({
                                 <div className="form-group">
                                     <select name="enquiry" className="form-control">
                                         <option>Request Type*</option>
+                                        <option>option1</option>
+                                        <option>option2</option>
+                                        <option>option3</option>
+                                        <option>option4</option>
+                                        <option>option5</option>
                                     </select>
                                 </div>
                                 <div className="form-group">
