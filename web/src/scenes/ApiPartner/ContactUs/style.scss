@@ -1,0 +1,78 @@
+.apipartners-wrapper{
+    .contact-us{
+        background-color: rgba(240, 249, 255, 0.58);
+        background-image: none;
+        background-size: 100%;
+        margin: 0px;
+        padding-top: 62px;
+    }
+    .contact-us-header{
+        padding: 0px 0px 33px;
+        color: #343434;
+        font-size: 36px;
+        line-height: 44px;
+        margin: 0px;
+    }
+    .contact-us-block{
+        box-shadow: none;
+        width: 100%;
+        background-color: transparent;
+        max-width: 100%;
+        padding-bottom: 58px;
+        .contact-we-are-at, .customer-enquiry-wrapper{
+            flex: 0 0 50%;
+            width: 50%;
+            h3{
+                font-size: 30px;
+                line-height: 37px;
+                color: #343434;
+                font-family: 'Montserrat', sans-serif;
+                font-weight: 600;
+            }
+            h4{
+                font-size: 18px;
+                line-height: 22px;
+            }
+            h5, p, a{
+                color: #626262;
+                font-family: 'Rubik', sans-serif;
+                font-size: 16px;
+                line-height: 22px;
+                margin: 0px;
+                padding-bottom: 2px;
+            }
+            h5{
+                font-weight: 500;
+            }
+            a{
+                color: #0098FF
+            }
+            span{
+                color: #626262;
+                font-size: 16px;
+                line-height: 19px;
+                display: inline-block;
+                &.error-msg{
+                    color: #E4002B;
+                    padding-top: 5px;                    
+                }
+            }
+            .form-group{
+                margin-bottom: 17px;
+                .form-control{
+                    background-color: transparent;
+                    border: 1px solid #D3D3D3;
+                }
+            }
+            .customer-enquiry {
+                padding: 0px;
+                input.btn-info{
+                    margin-bottom: 21px;
+                }
+            }
+        }
+        .contactus-hotline-number{
+            padding-top: 55px;
+        }
+    }
+}

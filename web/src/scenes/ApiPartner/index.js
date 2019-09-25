@@ -7,7 +7,7 @@ import ContactUs from './ContactUs';
 class ApiPartner extends Component {
     render() {
         return (
-            <div>
+            <div className="apipartners-wrapper">
                 <ApiBanner />
                 <Partners />
                 <ContactUs />

@@ -12,18 +12,18 @@ const Partners = ({
            <div className="container">
            <h2>View some of the partners that we work with:</h2>
             <ul className="partners-list">
-                    <li><a href=""><img src={codpartner} alt="api-parrtner-cod" /></a></li>
-                    <li><a href=""><img src={showpartner} alt="api-parrtner-cod" /></a></li>
-                    <li><a href=""><img src={galaxypartner} alt="api-parrtner-cod" /></a></li>
-                    <li><a href=""><img src={codpartner} alt="api-parrtner-cod" /></a></li>
-                    <li><a href=""><img src={showpartner} alt="api-parrtner-cod" /></a></li>
-                    <li><a href=""><img src={galaxypartner} alt="api-parrtner-cod" /></a></li>
-                    <li><a href=""><img src={codpartner} alt="api-parrtner-cod" /></a></li>
-                    <li><a href=""><img src={showpartner} alt="api-parrtner-cod" /></a></li>
-                    <li><a href=""><img src={galaxypartner} alt="api-parrtner-cod" /></a></li>
-                    <li><a href=""><img src={codpartner} alt="api-parrtner-cod" /></a></li>
-                    <li><a href=""><img src={showpartner} alt="api-parrtner-cod" /></a></li>
-                    <li><a href=""><img src={galaxypartner} alt="api-parrtner-cod" /></a></li>
+                    <li><img src={codpartner} alt="api-parrtner-cod" /></li>
+                    <li><img src={showpartner} alt="api-parrtner-cod" /></li>
+                    <li><img src={galaxypartner} alt="api-parrtner-cod" /></li>
+                    <li><img src={codpartner} alt="api-parrtner-cod" /></li>
+                    <li><img src={showpartner} alt="api-parrtner-cod" /></li>
+                    <li><img src={galaxypartner} alt="api-parrtner-cod" /></li>
+                    <li><img src={codpartner} alt="api-parrtner-cod" /></li>
+                    <li><img src={showpartner} alt="api-parrtner-cod" /></li>
+                    <li><img src={galaxypartner} alt="api-parrtner-cod" /></li>
+                    <li><img src={codpartner} alt="api-parrtner-cod" /></li>
+                    <li><img src={showpartner} alt="api-parrtner-cod" /></li>
+                    <li><img src={galaxypartner} alt="api-parrtner-cod" /></li>
                 </ul>
             </div>
         </div>
