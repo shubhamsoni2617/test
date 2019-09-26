@@ -224,6 +224,8 @@
                     span{
                         min-width: 101px;
                         display: inline-block;
+                        font-size: inherit;
+                        line-height: inherit;
                     }
                 }
                 p{
@@ -505,4 +507,8 @@
             }
         }
     }
+}
+.search-agent-header{
+  background: #fff;
+    z-index: 1;
 }
