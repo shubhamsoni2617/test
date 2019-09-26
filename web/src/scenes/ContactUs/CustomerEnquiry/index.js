@@ -4,6 +4,7 @@ import attach from '../../../assets/images/attach.png';
 import ContactUsService from '../../../shared/services/ContactUsService';
 import Constants from '../../../shared/constants';
 import { useCustomWidth } from '../../../shared/components/CustomHooks';
+import Utilities from '../../../shared/utilities';
 
 const CustomerEnquiry = props => {
   const { enquiryCategory, sendCategoryToFaqs } = props;
@@ -17,6 +18,7 @@ const CustomerEnquiry = props => {
   const [submitResponse, setSubmitResponse] = useState('');
   const [files, setFiles] = useState({});
   const [maxFileLimitMsg, setMaxFileLimitMsg] = useState('');
+  const [errMsg, setErrMsg] = useState('');
 
   useEffect(() => {
     sendCategoryToFaqs(enquiry);
@@ -24,7 +26,8 @@ const CustomerEnquiry = props => {
 
   const handleSubmit = e => {
     e.preventDefault();
-    if (enquiry && name && email && phone && message) {
+    if (enquiry !== 'Select an Enquiry' && name && email && phone && message) {
+      const check = Utilities.mobilecheck();
       const data = {
         category: Number(enquiry),
         name: name,
@@ -32,11 +35,13 @@ const CustomerEnquiry = props => {
         contact_number: phone,
         message: message,
         source_from:
-          width > Constants.MOBILE_BREAK_POINT
+          check > Constants.MOBILE_BREAK_POINT
             ? Constants.SOURCE_FROM_WEBSITE
             : Constants.SOURCE_FROM_MOBILE_RESPONSIVE
       };
       submitForm(data);
+    } else {
+      setErrMsg('Please complete all fields');
     }
   };
 
@@ -71,14 +76,15 @@ const CustomerEnquiry = props => {
         return;
     }
     setSubmitResponse('');
+    setErrMsg('');
   };
 
-  const handlePhone=(e)=>{
+  const handlePhone = e => {
     const allowNumbersOnly = /^[0-9\b]+$/;
     if (e.target.value === '' || allowNumbersOnly.test(e.target.value)) {
-      setPhone(e.target.value)
+      setPhone(e.target.value);
     }
-  }
+  };
 
   const handleFile = e => {
     const { files } = e.target;
@@ -134,7 +140,7 @@ const CustomerEnquiry = props => {
               value={enquiry}
               required
             >
-              <option value="Select an Enquiry">Select an Enquiry</option>
+              <option value="Select an Enquiry">Select an Enquiry *</option>
               {enquiryCategory &&
                 enquiryCategory.map(enq => {
                   return (
@@ -217,6 +223,7 @@ const CustomerEnquiry = props => {
               </div>
             </div>
           </div> */}
+          {errMsg ? <p className="text-danger">{errMsg}</p> : null}
           <input
             className="form-control btn-info"
             type="submit"
