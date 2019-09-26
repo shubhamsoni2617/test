@@ -38,7 +38,7 @@ const AgentVenue = props => {
   }
   useEffect(() => {
     fetchCountryRegion();
-    if (Utilities.mobilecheck()) {
+    if (Utilities.mobileAndTabletcheck()) {
       setIdForScroll('mapClicked');
     }
   }, []);

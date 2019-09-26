@@ -11,6 +11,7 @@ import Image from '../../Image';
 import CountryConstantZoom from './CountryConstantZoom';
 import EventConstantZoom from './EventConstantZoom';
 import useStickyPanel from '../../../hooks/useStickyPanel';
+import Utilities from '../../../utilities';
 
 const InfowindowData = ({ selectedPlace, DirectionIcon }) => (
   <div className="map-info-popup">
@@ -114,12 +115,11 @@ const GoogleMap = ({
         <div
           className="gmap"
           style={{
-            display:
-              width <= Constants.MOBILE_BREAK_POINT
-                ? mapInMobile
-                  ? 'block'
-                  : 'none'
-                : 'block'
+            display: !Utilities.mobileAndTabletcheck()
+              ? 'block'
+              : Utilities.mobileAndTabletcheck() && mapInMobile
+              ? 'block'
+              : 'none'
           }}
         >
           <Map
@@ -132,7 +132,7 @@ const GoogleMap = ({
             zoom={zoomValue}
             onClick={onMapClicked}
             gestureHandling={
-              width <= Constants.MOBILE_BREAK_POINT ? 'greedy' : 'cooperative'
+              Utilities.mobileAndTabletcheck() ? 'greedy' : 'cooperative'
             }
             center={markerPosition}
           >
