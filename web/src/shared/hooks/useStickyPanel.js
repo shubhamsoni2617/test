@@ -6,7 +6,7 @@ function useStickyPanel({ sticky, bottom, paddingTop = 0, pixelBuffer = 0 }) {
   const [styleObj, setStyleObj] = useState({});
   useEffect(() => {
     const handleScroll = () => {
-      if (Utilities.mobilecheck()) return;
+      if (Utilities.mobileAndTabletcheck()) return;
       const containerTop = scrollContainerRef.current.getBoundingClientRect()
         .top;
       const containerHeight = scrollContainerRef.current.getBoundingClientRect()
@@ -57,7 +57,7 @@ function useStickyPanel({ sticky, bottom, paddingTop = 0, pixelBuffer = 0 }) {
       }
       setStyleObj(obj);
     };
-    if (!Utilities.mobilecheck()) {
+    if (!Utilities.mobileAndTabletcheck()) {
       window.addEventListener('scroll', handleScroll);
       return () => window.removeEventListener('scroll', handleScroll);
     }
