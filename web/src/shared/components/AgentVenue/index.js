@@ -38,7 +38,7 @@ const AgentVenue = props => {
   }
   useEffect(() => {
     fetchCountryRegion();
-    if (Utilities.mobilecheck()) {
+    if (Utilities.mobileAndTabletcheck()) {
       setIdForScroll('mapClicked');
     }
   }, []);
@@ -78,6 +78,7 @@ const AgentVenue = props => {
   }, [filteredListedData]);
 
   const handleEventSelected = eventSelected => {
+    handleMapForMobile();
     setShowOnMapClicked(showOnMapClicked + 1);
     setEventSelected(eventSelected);
   };
@@ -177,11 +178,7 @@ const AgentVenue = props => {
   };
 
   const handleMapForMobile = () => {
-    if (!mapInMobile) {
-      setMapInMobile(true);
-    } else {
-      setMapInMobile(false);
-    }
+    setMapInMobile(!mapInMobile);
   };
 
   const onSubmit = () => {
@@ -190,6 +187,7 @@ const AgentVenue = props => {
     handleEventValue(0);
     handleAttractionValue(0);
     setSearchText('');
+    setCountryNRegionSorted(null);
     setCountryName(countryName);
     setOnSubmitFetch(onSubmitFetch + 1);
     props.history.push('/venues');
