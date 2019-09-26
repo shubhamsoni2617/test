@@ -137,7 +137,12 @@ const TopNav = props => {
               </ul>
             </div>
           </div>
-          <nav className="bottom-header">
+          <nav
+            ref={node => {
+              refValue = node;
+            }}
+            className="bottom-header responsive-nav-links"
+          >
             <div className="bottom-header-left">
               <ul>
                 <li
@@ -156,6 +161,7 @@ const TopNav = props => {
                   >
                     {showMegaMenu && (
                       <MegaMenu
+                        showMegaMenu={showMegaMenu}
                         handleMouseStatus={handleMouseStatus}
                         byGenreEvent={byGenreEvent}
                         byVenueEvent={byVenueEvent}
@@ -201,7 +207,7 @@ const TopNav = props => {
               </ul>
             </div>
           </nav>
-          <div
+          {/* <div
             className="responsive-nav-links"
             ref={node => {
               refValue = node;
@@ -233,6 +239,14 @@ const TopNav = props => {
                 <ul className="submenu">
                   <li className="has-submenu">
                     <Link to="/">Geners</Link>
+                    <ul className="submenu">
+                      <li className="has-submenu">
+                        <Link to="/">1Geners</Link>
+                      </li>
+                      <li className="has-submenu">
+                        <Link to="/">2calender</Link>
+                      </li>
+                    </ul>
                   </li>
                   <li className="has-submenu">
                     <Link to="/">calender</Link>
@@ -307,7 +321,7 @@ const TopNav = props => {
                 </div>
               </li>
             </ul>
-          </div>
+          </div> */}
         </div>
       </div>
     </header>

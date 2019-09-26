@@ -28,3 +28,13 @@
 a{
   cursor: pointer;
 }
+
+
+@media (max-width: 991px){
+  .header .bottom-header {
+      display: block;
+  }
+  .submenu{
+    position: relative;
+  }
+}

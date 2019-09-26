@@ -30,7 +30,7 @@ const MegaMenu = props => {
   const { byGenreEvent } = props;
 
   return (
-    <div className="submenu">
+    <div className={`submenu ${props.showMegaMenu ? 'active' : ''}`}>
       <h5 className="submenu-title">Find an Event</h5>
       <div className="submenu-wrapper">
         <div className="event-category">
