@@ -115,11 +115,12 @@ const GoogleMap = ({
         <div
           className="gmap"
           style={{
-            display: !Utilities.mobileAndTabletcheck()
-              ? 'block'
-              : Utilities.mobileAndTabletcheck() && mapInMobile
-              ? 'block'
-              : 'none'
+            display:
+              Utilities.mobileAndTabletcheck() &&
+              !mapInMobile &&
+              window.innerHeight > window.innerWidth
+                ? 'none'
+                : 'block'
           }}
         >
           <Map

@@ -78,7 +78,7 @@ const AgentVenue = props => {
   }, [filteredListedData]);
 
   const handleEventSelected = eventSelected => {
-    handleMapForMobile();
+    handleMapForMobile(true);
     setShowOnMapClicked(showOnMapClicked + 1);
     setEventSelected(eventSelected);
   };
@@ -177,8 +177,8 @@ const AgentVenue = props => {
     setRegionId(id);
   };
 
-  const handleMapForMobile = () => {
-    setMapInMobile(!mapInMobile);
+  const handleMapForMobile = toggler => {
+    setMapInMobile(toggler);
   };
 
   const onSubmit = () => {
@@ -229,7 +229,7 @@ const AgentVenue = props => {
                 toggleFindInMap ? `active` : ``
               }`}
               onClick={() => {
-                handleMapForMobile();
+                handleMapForMobile(!mapInMobile);
                 setToggleFindInMap(!toggleFindInMap);
               }}
             >
