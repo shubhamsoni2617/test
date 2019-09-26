@@ -5,6 +5,9 @@
             margin-bottom: 70px;
             margin-top: -60px;
         }
+        @media(max-width: 768px){
+            margin-bottom: 30px;
+        }
         @media(max-width: 767px){
             margin-bottom: 30px;
             margin-top: -116px;
