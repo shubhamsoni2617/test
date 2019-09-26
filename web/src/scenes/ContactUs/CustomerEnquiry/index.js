@@ -109,8 +109,6 @@ const CustomerEnquiry = props => {
     let formData = new FormData();
     for (let i = 0; i < files.length; i++) {
       let file = files[i];
-      console.log(file, 'file');
-      console.log('files[' + i + ']');
       formData.append('files[' + i + ']', file);
     }
     // ContactUsService.uploadAttachement(formData)
