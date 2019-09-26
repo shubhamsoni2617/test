@@ -1,6 +1,6 @@
 .find-an-agent{
   @media(max-width: 991px){
-    background-color: #104065;
+       background-color: #104065;
   }
   .authorised-agent{
     padding-bottom: 27px;
@@ -38,6 +38,12 @@
           width: 100%;
           max-width: 500px;
           margin: 0 auto;
+          margin-top: 60px;
+          padding: 20px;
+      }
+      @media(max-width: 768px){
+        padding: 20px;
+        margin: 0px auto;
       }
       .form-control{
           border: none;
@@ -64,6 +70,7 @@
           @media(max-width: 767px){
             height: 32px !important;
             font-size: 14px;
+            background-size: 10px auto;
           }
       }
       .agent-val{
