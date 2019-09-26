@@ -5,6 +5,7 @@ import VenueService from '../../../shared/services/VenueService';
 import Constants from '../../../shared/constants';
 import SearchAgent from './SearchAgent';
 import GoogleMap from './GoogleMap';
+import Utilities from '../../utilities';
 import './style.scss';
 
 const AgentVenue = props => {
@@ -25,7 +26,8 @@ const AgentVenue = props => {
   const [searchText, setSearchText] = useState('');
   const [venueId, setVenueId] = useState(null);
   const [countryNRegionSorted, setCountryNRegionSorted] = useState(null);
-  const [showOnMapClicked, setShowOnMapClicked] = useState(0);
+  const [showOnMapClicked, setShowOnMapClicked] = useState(false);
+  const [idForScroll, setIdForScroll] = useState('');
 
   if (props.location.search === null || props.location.search) {
     if (!venueId) {
@@ -35,6 +37,9 @@ const AgentVenue = props => {
   }
   useEffect(() => {
     fetchCountryRegion();
+    if (Utilities.mobilecheck()) {
+      setIdForScroll('mapClicked');
+    }
   }, []);
 
   useEffect(() => {
@@ -72,7 +77,7 @@ const AgentVenue = props => {
   }, [filteredListedData]);
 
   const handleEventSelected = eventSelected => {
-    setShowOnMapClicked(showOnMapClicked + 1);
+    setShowOnMapClicked(!showOnMapClicked);
     setEventSelected(eventSelected);
   };
 
@@ -220,8 +225,10 @@ const AgentVenue = props => {
           </div>
           <div className="agent-map-area">
             <span
-              id="mapClicked"
-              className="map-label-mobileonly"
+              id={idForScroll}
+              className={`map-label-mobileonly ${
+                showOnMapClicked ? 'active' : ''
+              }`}
               onClick={handleMapForMobile}
             >
               Find in Map

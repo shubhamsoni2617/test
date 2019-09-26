@@ -234,7 +234,7 @@ const SearchAgent = props => {
                       to="mapClicked"
                       spy={true}
                       smooth={true}
-                      offset={-20}
+                      offset={-40}
                       duration={500}
                       onClick={() => {
                         showOnMapClick(item);
