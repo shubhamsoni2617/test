@@ -222,8 +222,12 @@
                         line-height: 19px;
                     }
                     span{
-                        min-width: 101px;
                         display: inline-block;
+                        font-size: inherit;
+                        line-height: inherit;
+                        &:last-child{
+                            min-width: 101px;
+                        }
                     }
                 }
                 p{
