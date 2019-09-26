@@ -2,45 +2,67 @@ import React, { useState, useEffect } from 'react';
 import './style.scss';
 import { Link } from 'react-router-dom';
 import ContactUsService from '../../services/ContactUsService';
-import { useCustomWidth } from '../CustomHooks';
 import Constants from '../../constants';
+import Utilities from '../../utilities';
 
 const ContactUs = props => {
-  const [width] = useCustomWidth();
-
+  const [enquiryCategory, setEnquiryCategory] = useState([]);
   const [enquiry, setEnquiry] = useState('Select an Enquiry');
+  const [contactDetail, setContactDetail] = useState({});
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
   const [message, setMessage] = useState('');
   const [errMsg, setErrMsg] = useState('');
+  const [submitResponse, setSubmitResponse] = useState('');
 
   useEffect(() => {
-    fetchEnquiry = () => {
-      ContactUsService.getEnquiry()
-        .then(res => {
-          if (res && res.data) {
-            setEnquiry(res.data.data);
-          }
-        })
-        .catch(err => {
-          console.log(err);
-        });
-    };
+    fetchEnquiry();
+    fetchContactDetail();
   }, []);
+
+  const fetchEnquiry = () => {
+    ContactUsService.getEnquiry()
+      .then(res => {
+        if (res && res.data) {
+          setEnquiryCategory(res.data.data);
+        }
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  };
+
+  const fetchContactDetail = () => {
+    ContactUsService.getContactDetail()
+      .then(res => {
+        if (res && res.data) {
+          setContactDetail(res.data.data);
+        }
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  };
 
   const handleSubmit = e => {
     e.preventDefault();
-    if (enquiry && name && email && phone && message) {
+    if (enquiry !== 'Select an Enquiry' && name && email && phone && message) {
+      const check = Utilities.mobilecheck();
       const data = {
         category: Number(enquiry),
         name: name,
         email: email,
         contact_number: phone,
         message: message,
-        source_from: width > Constants.MOBILE_BREAK_POINT ? 1 : 3
+        source_from:
+          check > Constants.MOBILE_BREAK_POINT
+            ? Constants.SOURCE_FROM_WEBSITE
+            : Constants.SOURCE_FROM_MOBILE_RESPONSIVE
       };
       submitForm(data);
+    } else {
+      setErrMsg('Please complete all fields');
     }
   };
 
@@ -58,6 +80,7 @@ const ContactUs = props => {
 
   const handleChange = e => {
     const { name, value } = e.target;
+    console.log(value);
     if (name === 'phone') {
       const allowOnlyNum = /^[0-9\b]+$/;
       if (value === '' || allowOnlyNum.test(value)) {
@@ -86,12 +109,13 @@ const ContactUs = props => {
   return (
     <div className="contact-us banner-overlay">
       <h1 className="text-center contact-us-header">Contact Us</h1>
+      <h5 className="text-success">{submitResponse}</h5>
       <div className="container">
         <div className="contact-us-block">
           <div className="contact-we-are-at">
             <div className="we-are-at">
               <h3>We are at</h3>
-              <h5>SISTIC.com Pte Ltd</h5>
+              {/* <h5>SISTIC.com Pte Ltd</h5>
               <p>10 Eunos Road 8, #03-04,</p>
               <p>Singapore Post Centre </p>
               <p>Singapore 408600</p>
@@ -102,18 +126,35 @@ const ContactUs = props => {
                 target="_blank"
               >
                 Open in Maps
+              </a> */}
+              <p
+                className="text"
+                dangerouslySetInnerHTML={{
+                  __html: contactDetail.address && contactDetail.address.name
+                }}
+              ></p>
+              <a
+                href={`https://maps.google.com/?q=${contactDetail.address &&
+                  contactDetail.address.latitude},${contactDetail.address &&
+                  contactDetail.address.longitude}`}
+                target="_blank"
+              >
+                Open in Maps
               </a>
             </div>
             <div className="contactus-hotline-number">
               <h4>Hotline Number</h4>
-              <p>+65 6348 5555</p>
+              <p>
+                {contactDetail.contact_information &&
+                  contactDetail.contact_information.contact_number}
+              </p>
             </div>
           </div>
           <div className="customer-enquiry-wrapper">
             <div className="customer-enquiry">
               <h3 className="heading-text">Corporate Enquiries</h3>
               <h5 className="text-success"></h5>
-              <form onSubmit={e => handleSubmit(e)}>
+              <form onSubmit={handleSubmit}>
                 {/* <div className="form-group">
                   <select name="enquiry" className="form-control">
                     <option>Request Type*</option>
@@ -126,7 +167,7 @@ const ContactUs = props => {
                     onChange={handleChange}
                     value={enquiry}
                   >
-                    <option>Select an Enquiry</option>
+                    <option>Select an Enquiry *</option>
                     {enquiryCategory &&
                       enquiryCategory.map(enq => {
                         return (
@@ -144,7 +185,7 @@ const ContactUs = props => {
                     type="text"
                     placeholder="Full Name*"
                     value={name}
-                    onChange={e => handleChange(e)}
+                    onChange={handleChange}
                     // required
                   />
                 </div>
@@ -155,7 +196,7 @@ const ContactUs = props => {
                     type="email"
                     placeholder="Email*"
                     value={email}
-                    onChange={e => handleChange(e)}
+                    onChange={handleChange}
                     // required
                   />
                 </div>
@@ -167,7 +208,7 @@ const ContactUs = props => {
                     placeholder="Mobile No.*"
                     value={phone}
                     maxLength={10}
-                    onChange={e => handleChange(e)}
+                    onChange={handleChange}
                     // required
                   />
                 </div>
@@ -179,7 +220,7 @@ const ContactUs = props => {
                     placeholder=""
                     cols="30"
                     value={message}
-                    onChange={e => handleChange(e)}
+                    onChange={handleChange}
                     // required
                   />
                   {errMsg ? <span className="error-msg">{errMsg}</span> : null}
