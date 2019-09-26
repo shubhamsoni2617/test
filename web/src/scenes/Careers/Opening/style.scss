@@ -1,9 +1,76 @@
-.opening{
-  margin:10% 0%;
-}
 .open-position{
-  margin-bottom: 5%;
-}
-.col-lg-4{
-  margin-bottom: 2%;
+  margin:10% 0%;
+  background-color: #F0F9FF;
+  padding: 45px 15px 35px 15px;
+  .career-title{
+    padding-bottom: 60px;
+  }
+  .position-inner{
+    font-family: 'Rubik', sans-serif;
+    margin-bottom: 60px;
+    h4{
+      font-size: 24px;
+    }
+    p{
+      font-family: 'Rubik', sans-serif;
+      font-size: 14px;
+      color: #626262;
+      .place{
+        position: relative;
+        margin-right: 15px;
+        &:after{
+          content: '';
+          position: absolute;
+          top: 50%;
+          transform: translateY(-50%);
+          right: -6px;
+          width: 1px;
+          height: 100%;
+          background-color:rgba(126, 126, 126, 0.2);
+          display: inline-block;
+        }
+      }
+    }
+    a{
+      color: #343434;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      transition: all 0.1s ease-out;
+      img{
+        margin-left: 10px;
+      }
+      .arrow-blue{
+        display: none;
+      }
+      &:hover{
+        color: #0098FF;
+        .arrow-black{
+          display: none;
+        }
+        .arrow-blue{
+          display: block;
+        }
+      }
+    }
+    @media(max-width: 768px){
+      text-align: center;
+      a{
+        display: flex;
+        justify-content: center;
+      }
+    }
+  }
+  .view-jobs{
+    font-size: 18px;
+    color: #0098FF;
+    font-family: 'Montserrat', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    img{
+      margin-left: 10px;
+    }
+  }
 }
