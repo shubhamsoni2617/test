@@ -26,8 +26,9 @@ const AgentVenue = props => {
   const [searchText, setSearchText] = useState('');
   const [venueId, setVenueId] = useState(null);
   const [countryNRegionSorted, setCountryNRegionSorted] = useState(null);
-  const [showOnMapClicked, setShowOnMapClicked] = useState(false);
+  const [showOnMapClicked, setShowOnMapClicked] = useState(0);
   const [idForScroll, setIdForScroll] = useState('');
+  const [toggleFindInMap, setToggleFindInMap] = useState(false);
 
   if (props.location.search === null || props.location.search) {
     if (!venueId) {
@@ -77,7 +78,7 @@ const AgentVenue = props => {
   }, [filteredListedData]);
 
   const handleEventSelected = eventSelected => {
-    setShowOnMapClicked(!showOnMapClicked);
+    setShowOnMapClicked(showOnMapClicked + 1);
     setEventSelected(eventSelected);
   };
 
@@ -227,9 +228,12 @@ const AgentVenue = props => {
             <span
               id={idForScroll}
               className={`map-label-mobileonly ${
-                showOnMapClicked ? 'active' : ''
+                toggleFindInMap ? `active` : ``
               }`}
-              onClick={handleMapForMobile}
+              onClick={() => {
+                handleMapForMobile();
+                setToggleFindInMap(!toggleFindInMap);
+              }}
             >
               Find in Map
             </span>
