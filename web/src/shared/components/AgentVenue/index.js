@@ -219,7 +219,11 @@ const AgentVenue = props => {
             />
           </div>
           <div className="agent-map-area">
-            <span className="map-label-mobileonly" onClick={handleMapForMobile}>
+            <span
+              id="mapClicked"
+              className="map-label-mobileonly"
+              onClick={handleMapForMobile}
+            >
               Find in Map
             </span>
             <GoogleMap
