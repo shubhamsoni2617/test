@@ -1,6 +1,5 @@
 import Home from '../Home';
 import Events from '../Events';
-// import EventsDetail from "../Events/EventsDetail";
 import EventsDetail from '../EventsDetail';
 import HomeService from '../../shared/services/HomeService';
 import Promotions from '../Promotions';
@@ -14,6 +13,7 @@ import GiftVouchers from '../GiftVouchers';
 import ContactUs from '../ContactUs';
 import Faq from '../Faq';
 import Careers from '../Careers';
+import ApiPartner from '../ApiPartner';
 
 const routes = [
   {
@@ -101,6 +101,11 @@ const routes = [
   {
     path: '/careers',
     component: Careers,
+    exact: true
+  },
+  {
+    path: '/apipartners',
+    component: ApiPartner,
     exact: true
   },
   {
