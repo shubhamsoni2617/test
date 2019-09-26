@@ -80,7 +80,6 @@ const ContactUs = props => {
 
   const handleChange = e => {
     const { name, value } = e.target;
-    console.log(value);
     if (name === 'phone') {
       const allowOnlyNum = /^[0-9\b]+$/;
       if (value === '' || allowOnlyNum.test(value)) {
@@ -104,12 +103,13 @@ const ContactUs = props => {
           return;
       }
     }
+    setErrMsg('');
   };
 
   return (
     <div className="contact-us banner-overlay">
       <h1 className="text-center contact-us-header">Contact Us</h1>
-      <h5 className="text-success">{submitResponse}</h5>
+      <h5 className="text-success text-center">{submitResponse}</h5>
       <div className="container">
         <div className="contact-us-block">
           <div className="contact-we-are-at">
