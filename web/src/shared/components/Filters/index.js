@@ -16,6 +16,7 @@ import 'react-input-range/lib/css/index.css';
 import SearchIcon from '../../../assets/images/search-icon-gray.svg';
 import tickWhite from '../../../assets/images/tick-white.svg';
 import FilterGrid from '../FilterGrid';
+import useStickyPanel from '../../hooks/useStickyPanel';
 import './style.scss';
 
 function useDebounce(value, delay) {
@@ -50,7 +51,7 @@ const SearchFilter = props => {
   // }, [search]);
 
   const onChangeHandler = () => {
-    if(loading) return;
+    if (loading) return;
 
     setLoading(true);
     setTimeout(() => {
@@ -58,7 +59,7 @@ const SearchFilter = props => {
 
       props.handleFilters({ filteredSearch: searchRef.current.value });
     }, 500);
-  }
+  };
 
   return (
     <div className="filters-search">
@@ -66,7 +67,7 @@ const SearchFilter = props => {
         <img src={SearchIcon} className="img-fluid active" alt="search-icon" />
       </button>
       <input
-      ref={searchRef}
+        ref={searchRef}
         type="text"
         placeholder={
           props.searchPlaceholder ? props.searchPlaceholder : 'Search in events'
@@ -296,44 +297,14 @@ function DateRangeFilter(props) {
 function Filters(props) {
   const element = useRef();
   // const [elementOffsetTop, setElementOffsetTop] = useState('');
+  const [scrollContainerRef, styleObj] = useStickyPanel({
+    sticky: { bottom: 0 },
+    bottom: 0
+  });
 
   const clearAllFilters = () => {
     props.resetFilters();
   };
-
-  const handleScroll = () => {
-    if (
-      element.current.parentElement.offsetHeight >
-        element.current.offsetHeight + 20 &&
-      window.pageYOffset + 377 >
-        window.document.body.clientHeight - window.innerHeight
-    ) {
-      element.current.classList.add('fixed-filter-absolute');
-      element.current.classList.remove('fixed-filter');
-    } else if (
-      element.current.parentElement.offsetHeight >
-        element.current.offsetHeight + 20 &&
-      window.pageYOffset + 299 >= element.current.clientHeight - 45
-    ) {
-      element.current.classList.add('fixed-filter');
-      element.current.classList.remove('fixed-filter-absolute');
-    } else {
-      element.current.classList.remove('fixed-filter');
-      element.current.classList.remove('fixed-filter-absolute');
-    }
-  };
-
-  useLayoutEffect(() => {
-    if (!element.current['top'])
-      element.current['top'] = element.current.offsetTop;
-  }, [element.current]);
-
-  useEffect(() => {
-    window.addEventListener('scroll', handleScroll);
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
-  }, []);
 
   const {
     genreData,
@@ -357,80 +328,82 @@ function Filters(props) {
     return;
   }
   return (
-    <div className="filter-conatiner" ref={element}>
-      <div className="filter-heading">
-        <h3>
-          FILTERS{' '}
-          <a
-            href="/"
-            onClick={e => {
-              e.preventDefault();
-              clearAllFilters();
-            }}
-          >
-            Clear all
-          </a>
-        </h3>
+    <div className="filter-conatiner" ref={scrollContainerRef}>
+      <div className="inner" style={styleObj}>
+        <div className="filter-heading">
+          <h3>
+            FILTERS{' '}
+            <a
+              href="/"
+              onClick={e => {
+                e.preventDefault();
+                clearAllFilters();
+              }}
+            >
+              Clear all
+            </a>
+          </h3>
+        </div>
+        <SearchFilter
+          handleFilters={handleFilters}
+          searchPlaceholder={props.searchPlaceholder}
+          searchText={filteredSearch}
+        />
+        {price_config != undefined && (
+          <PriceRangeFilter
+            priceConfig={price_config}
+            filteredPriceRange={filteredPriceRange}
+            handleFilters={handleFilters}
+          />
+        )}
+        <FilterGrid
+          title="Genre"
+          category="filteredGnere"
+          handleFilters={handleFilters}
+          data={genreData ? genreData : []}
+          selectedFilter={filteredGnere}
+          limit={5}
+        />
+        <FilterGrid
+          title="Tags"
+          category="filteredTags"
+          handleFilters={handleFilters}
+          data={filterConfig ? filterConfig.tags : []}
+          selectedFilter={filteredTags}
+          limit={5}
+        />
+        {!hideCalendar && (
+          <DateRangeFilter
+            filteredDateRange={filteredDateRange}
+            handleFilters={handleFilters}
+          />
+        )}
+        <FilterGrid
+          title="Promotion"
+          category="filteredPromotions"
+          handleFilters={handleFilters}
+          data={filterConfig ? filterConfig.promotion_categories : []}
+          selectedFilter={filteredPromotions}
+          limit={5}
+        />
+        <FilterGrid
+          title="Venue"
+          category="filteredVenues"
+          handleFilters={handleFilters}
+          data={venueData ? venueData : []}
+          showPanel={true}
+          selectedFilter={filteredVenues}
+          limit={5}
+        />
+        <FilterGrid
+          title="Categories"
+          category="filteredCategory"
+          handleFilters={handleFilters}
+          data={attractionCategories ? attractionCategories : []}
+          selectedFilter={filteredCategory}
+          limit={10}
+        />
       </div>
-      <SearchFilter
-        handleFilters={handleFilters}
-        searchPlaceholder={props.searchPlaceholder}
-        searchText={filteredSearch}
-      />
-      {price_config != undefined && (
-        <PriceRangeFilter
-          priceConfig={price_config}
-          filteredPriceRange={filteredPriceRange}
-          handleFilters={handleFilters}
-        />
-      )}
-      <FilterGrid
-        title="Genre"
-        category="filteredGnere"
-        handleFilters={handleFilters}
-        data={genreData ? genreData : []}
-        selectedFilter={filteredGnere}
-        limit={5}
-      />
-      <FilterGrid
-        title="Tags"
-        category="filteredTags"
-        handleFilters={handleFilters}
-        data={filterConfig ? filterConfig.tags : []}
-        selectedFilter={filteredTags}
-        limit={5}
-      />
-      {!hideCalendar && (
-        <DateRangeFilter
-          filteredDateRange={filteredDateRange}
-          handleFilters={handleFilters}
-        />
-      )}
-      <FilterGrid
-        title="Promotion"
-        category="filteredPromotions"
-        handleFilters={handleFilters}
-        data={filterConfig ? filterConfig.promotion_categories : []}
-        selectedFilter={filteredPromotions}
-        limit={5}
-      />
-      <FilterGrid
-        title="Venue"
-        category="filteredVenues"
-        handleFilters={handleFilters}
-        data={venueData ? venueData : []}
-        showPanel={true}
-        selectedFilter={filteredVenues}
-        limit={5}
-      />
-      <FilterGrid
-        title="Categories"
-        category="filteredCategory"
-        handleFilters={handleFilters}
-        data={attractionCategories ? attractionCategories : []}
-        selectedFilter={filteredCategory}
-        limit={10}
-      />
     </div>
   );
 }

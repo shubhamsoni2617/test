@@ -5,6 +5,7 @@ import VenueService from '../../../shared/services/VenueService';
 import Constants from '../../../shared/constants';
 import SearchAgent from './SearchAgent';
 import GoogleMap from './GoogleMap';
+import './style.scss';
 
 const AgentVenue = props => {
   const { venue } = props;
@@ -28,7 +29,6 @@ const AgentVenue = props => {
 
   if (props.location.search === null || props.location.search) {
     if (!venueId) {
-      console.log('test');
       setCountryId(0);
       setVenueId(props.location.search.split('=')[1]);
     }
@@ -223,6 +223,7 @@ const AgentVenue = props => {
               Find in Map
             </span>
             <GoogleMap
+              style={{ position: 'relative', width: '100%', height: '100%' }}
               multipleMarker={filteredListedData}
               showOnMapData={eventSelected}
               countryName={countryName}

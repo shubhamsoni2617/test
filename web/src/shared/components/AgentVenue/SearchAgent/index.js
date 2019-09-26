@@ -7,6 +7,7 @@ import AgentVenuePopUp from '../../AgentVenuePopUp';
 import Utilities from '../../../utilities';
 import ShimmerEffect from '../../ShimmerEffect';
 import { CSSTransitionGroup } from 'react-transition-group';
+import useStickyPanel from '../../../hooks/useStickyPanel';
 import './style.scss';
 
 const SearchAgent = props => {
@@ -23,6 +24,12 @@ const SearchAgent = props => {
     eventValue,
     attractionValue
   } = props;
+
+  const [scrollContainerRef, styleObj] = useStickyPanel({
+    sticky: { top: 0, paddingTop: '30px' },
+    paddingTop: 30,
+    pixelBuffer: 30
+  });
 
   const [data, setData] = useState([]);
   const [popUpDetail, setPopUpDetail] = useState('');
@@ -52,19 +59,19 @@ const SearchAgent = props => {
     }
   };
   const handleScroll = useCallback(() => {
-    // if (
-    //   agentWrapper.current.classList.contains('agent-fixed') &&
-    //   document.getElementsByClassName('pop-up-list active') &&
-    //   document.getElementsByClassName('pop-up-list active').length
-    // ) {
-    //   if (
-    //     document
-    //       .getElementsByClassName('pop-up-list active')[0]
-    //       .getBoundingClientRect().top < 85
-    //   ) {
-    //     setPopUpDetail({});
-    //   }
-    // }
+    if (
+      // agentWrapper.current.classList.contains('agent-fixed') &&
+      document.getElementsByClassName('pop-up-list active') &&
+      document.getElementsByClassName('pop-up-list active').length
+    ) {
+      if (
+        document
+          .getElementsByClassName('pop-up-list active')[0]
+          .getBoundingClientRect().top < 85
+      ) {
+        setPopUpDetail({});
+      }
+    }
     // if (
     //   window.pageYOffset +
     //     document.getElementById('footer').getBoundingClientRect().height >=
@@ -136,8 +143,12 @@ const SearchAgent = props => {
   }
 
   return (
-    <div className="search-agent">
-      <div className="search-agent-header">
+    <div
+      className="search-agent"
+      style={{ position: 'relative' }}
+      ref={scrollContainerRef}
+    >
+      <div className="search-agent-header" style={styleObj}>
         <h2>
           {venue ? 'Venues in ' : 'Agents in '}{' '}
           {countryName ? countryName : 'Singapore'}

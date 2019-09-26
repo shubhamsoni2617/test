@@ -10,6 +10,7 @@ import Small from '../../../../assets/images/small.png';
 import Image from '../../Image';
 import CountryConstantZoom from './CountryConstantZoom';
 import EventConstantZoom from './EventConstantZoom';
+import useStickyPanel from '../../../hooks/useStickyPanel';
 
 const InfowindowData = ({ selectedPlace, DirectionIcon }) => (
   <div className="map-info-popup">
@@ -41,7 +42,11 @@ const GoogleMap = ({
   showOnMapClicked
 }) => {
   const [width] = useCustomWidth();
-
+  const [scrollContainerRef, styleObj] = useStickyPanel({
+    sticky: { top: 63 },
+    pixelBuffer: 63,
+    bottom: 33
+  });
   const [showingInfoWindow, setShowingInfoWindow] = useState(false);
   const [selectedPlace, setSelectedPlace] = useState({});
   const [markerPosition, setMarkerPosition] = useState({});
@@ -102,96 +107,103 @@ const GoogleMap = ({
 
   return (
     <div
-      className="gmap"
-      style={{
-        display:
-          width <= Constants.MOBILE_BREAK_POINT
-            ? mapInMobile
-              ? 'block'
-              : 'none'
-            : 'block'
-      }}
+      style={{ position: 'relative', width: '100%', height: '100%' }}
+      ref={scrollContainerRef}
     >
-      <Map
-        google={google}
-        style={{
-          width: '100%',
-          height: window.innerHeight - 100,
-          position: 'relative'
-        }}
-        zoom={zoomValue}
-        onClick={onMapClicked}
-        gestureHandling={
-          width <= Constants.MOBILE_BREAK_POINT ? 'greedy' : 'cooperative'
-        }
-        center={markerPosition}
-      >
-        {multipleMarker &&
-          multipleMarker.map((elem, index) => {
-            return (
-              <Marker
-                onClick={props => onMarkerClick(props)}
-                key={elem.id}
-                position={{
-                  lat: Number(elem.latitude),
-                  lng: Number(elem.longitude)
-                }}
-                id={elem.id}
-                name={elem.name}
-                address={elem.address}
-                imgPath={elem.image}
-                icon={
-                  elem.map_pin_icon !== '' && venue
-                    ? {
-                        url: elem.map_pin_icon,
-                        scaledSize: new google.maps.Size(45, 45)
-                      }
-                    : elem.map_pin_color !== '#FFFFFF' && venue
-                    ? {
-                        path: Constants.MAP_PATH,
-                        scale: 1,
-                        fillColor: elem.map_pin_color,
-                        fillOpacity: 1,
-                        strokeWeight: 2
-                      }
-                    : elem.id === selectedPlace.id
-                    ? {
-                        url: showingInfoWindow && BluePin,
-                        scaledSize: new google.maps.Size(50, 50)
-                      }
-                    : null
-                }
-              />
-            );
-          })}
-        <InfoWindow
-          options={{
-            pixelOffset: new google.maps.Size(0, -40)
-          }}
-          position={{
-            lat: selectedPlace.id
-              ? selectedPlace.latitude
-                ? Number(selectedPlace.latitude)
-                : Number(selectedPlace.position.lat)
-              : 0,
-            lng: selectedPlace.id
-              ? selectedPlace.latitude
-                ? Number(selectedPlace.longitude)
-                : Number(selectedPlace.position.lng)
-              : 0
-          }}
-          visible={showingInfoWindow}
-          onClose={infoWindowHasClosed}
-          onOpen={() => {
-            onInfoWindowOpen();
+      <div style={styleObj}>
+        <div
+          className="gmap"
+          style={{
+            display:
+              width <= Constants.MOBILE_BREAK_POINT
+                ? mapInMobile
+                  ? 'block'
+                  : 'none'
+                : 'block'
           }}
         >
-          <InfowindowData
-            selectedPlace={selectedPlace}
-            DirectionIcon={DirectionIcon}
-          />
-        </InfoWindow>
-      </Map>
+          <Map
+            google={google}
+            style={{
+              width: '100%',
+              height: window.innerHeight - 100,
+              position: 'relative'
+            }}
+            zoom={zoomValue}
+            onClick={onMapClicked}
+            gestureHandling={
+              width <= Constants.MOBILE_BREAK_POINT ? 'greedy' : 'cooperative'
+            }
+            center={markerPosition}
+          >
+            {multipleMarker &&
+              multipleMarker.map((elem, index) => {
+                return (
+                  <Marker
+                    onClick={props => onMarkerClick(props)}
+                    key={elem.id}
+                    position={{
+                      lat: Number(elem.latitude),
+                      lng: Number(elem.longitude)
+                    }}
+                    id={elem.id}
+                    name={elem.name}
+                    address={elem.address}
+                    imgPath={elem.image}
+                    icon={
+                      elem.map_pin_icon !== '' && venue
+                        ? {
+                            url: elem.map_pin_icon,
+                            scaledSize: new google.maps.Size(45, 45)
+                          }
+                        : elem.map_pin_color !== '#FFFFFF' && venue
+                        ? {
+                            path: Constants.MAP_PATH,
+                            scale: 1,
+                            fillColor: elem.map_pin_color,
+                            fillOpacity: 1,
+                            strokeWeight: 2
+                          }
+                        : elem.id === selectedPlace.id
+                        ? {
+                            url: showingInfoWindow && BluePin,
+                            scaledSize: new google.maps.Size(50, 50)
+                          }
+                        : null
+                    }
+                  />
+                );
+              })}
+            <InfoWindow
+              options={{
+                pixelOffset: new google.maps.Size(0, -40)
+              }}
+              position={{
+                lat: selectedPlace.id
+                  ? selectedPlace.latitude
+                    ? Number(selectedPlace.latitude)
+                    : Number(selectedPlace.position.lat)
+                  : 0,
+                lng: selectedPlace.id
+                  ? selectedPlace.latitude
+                    ? Number(selectedPlace.longitude)
+                    : Number(selectedPlace.position.lng)
+                  : 0
+              }}
+              visible={showingInfoWindow}
+              onClose={infoWindowHasClosed}
+              onOpen={() => {
+                onInfoWindowOpen();
+              }}
+            >
+              <InfowindowData
+                selectedPlace={selectedPlace}
+                DirectionIcon={DirectionIcon}
+              />
+            </InfoWindow>
+          </Map>
+        </div>
+      </div>
     </div>
   );
 };
