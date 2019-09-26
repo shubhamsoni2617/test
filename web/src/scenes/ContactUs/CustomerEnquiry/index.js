@@ -107,23 +107,21 @@ const CustomerEnquiry = props => {
 
   const submitUploadAttachment = files => {
     let formData = new FormData();
-    // const headers = {
-    //   // "Content-Type": "multipart/form-data",
-    //   "Content-Type": "application/json"
-    // };
     for (let i = 0; i < files.length; i++) {
       let file = files[i];
+      console.log(file, 'file');
+      console.log('files[' + i + ']');
       formData.append('files[' + i + ']', file);
     }
-    ContactUsService.uploadAttachement(formData)
-      .then(res => {
-        if (res && res.data) {
-          console.log(res.data.data);
-        }
-      })
-      .catch(err => {
-        console.log(err);
-      });
+    // ContactUsService.uploadAttachement(formData)
+    //   .then(res => {
+    //     if (res && res.data) {
+    //       console.log(res.data.data);
+    //     }
+    //   })
+    //   .catch(err => {
+    //     console.log(err);
+    //   });
   };
 
   return (
@@ -197,7 +195,7 @@ const CustomerEnquiry = props => {
               required
             />
           </div>
-          {/* <div className="form-group attach-doc">
+          <div className="form-group attach-doc">
             <div className="row">
               <div className="col-lg-4 label pr-0">Attach Documents</div>
               <div className="col-lg-8">
@@ -219,10 +217,10 @@ const CustomerEnquiry = props => {
                 <span>
                   *File Size should be maximum 5mb and it can be pdf,jpeg,png
                 </span>
-                <span className="text-danger">{maxFileLimitMsg}</span>
+                <p className="text-danger">{maxFileLimitMsg}</p>
               </div>
             </div>
-          </div> */}
+          </div>
           {errMsg ? <p className="text-danger">{errMsg}</p> : null}
           <input
             className="form-control btn-info"
