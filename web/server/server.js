@@ -20,7 +20,8 @@ app.get('/sistic/docroot/**', function(req, res) {
 });
 app.post('/sistic/docroot/**', function(req, res) {
   var newurl = `http://${req.host}:8081/${req.originalUrl}`;
-  request(newurl).pipe(res);
+  console.log('req', req);
+  request({ url: newurl, headers: req.headers }).pipe(res);
 });
 app.put('/sistic/docroot/**', function(req, res) {
   var newurl = `http://${req.host}:8081/${req.originalUrl}`;
