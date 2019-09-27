@@ -4,20 +4,33 @@ import './style.scss';
 import people2 from '../../../assets/images/people2.png';
 import people3 from '../../../assets/images/people3.png';
 import people4 from '../../../assets/images/people4.png';
+import Image from '../../../shared/components/Image';
 
-const OurPeople = ({
-
-}) => {
+const OurPeople = ({ content }) => {
   return (
     <div className="our-people-wrapper">
       <div className="container">
         <div className="our-people-desc">
-          <h3>Our People</h3>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas varius tortor nibh, sit amet tempor nibh finibus et. Aenean eu enim justo. Vestibulum aliquam hendrerit molestie. Mauris malesuada nisi sit amet augue accumsan tincidunt. Maecenas tincidunt, velit ac porttitor pulvinar, tortor eros facilisis libero, vitae commodo nunc quam et ligula. Ut nec ipsum sapien.</p>
+          <h3>{content && content[3].title}</h3>
+          <p
+            dangerouslySetInnerHTML={{
+              __html: content && content[3].description
+            }}
+          ></p>
         </div>
         <div className="our-people-image">
           <ul>
-            <li>
+            {content &&
+              content.people.map(({ name, position, image }, index) => {
+                return (
+                  <li key={index}>
+                    <Image src={image && image} alt="people" />
+                    <h5>{name}</h5>
+                    <span>{position}</span>
+                  </li>
+                );
+              })}
+            {/* <li>
               <img src={people2} alt="people" />
               <h5>Johnathan</h5>
               <span>Founder</span>
@@ -36,7 +49,7 @@ const OurPeople = ({
               <img src={people4} alt="people" />
               <h5>Jangua</h5>
               <span>Founder</span>
-            </li>
+            </li> */}
           </ul>
         </div>
       </div>

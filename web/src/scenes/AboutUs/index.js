@@ -4,23 +4,51 @@ import Banner from './Banner';
 import OurPeople from './OurPeople';
 import Careers from './Careers';
 import Description from './Description';
-import './style.scss';
-// import ContactUs from '../../../src/shared/components/ContactUs';
+import ContactUs from '../ApiPartner/ContactUs';
+import AboutUsService from '../../shared/services/AboutUsService';
 
 class AboutUs extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      aboutUsContent: ''
+    };
   }
+  componentDidMount() {
+    this.fetchAboutUsContent();
+  }
+  fetchAboutUsContent = () => {
+    AboutUsService.getAboutUsContent()
+      .then(res => {
+        if (res.data) {
+          this.setState({ aboutUsContent: res.data });
+        }
+      })
+      .catch(err => { });
+  };
   render() {
+    const {
+      banner_title,
+      banner_description,
+      button_text,
+      button_link,
+      content
+    } = this.state.aboutUsContent;
     return (
       <div className="about-us-wrapper">
-        <Header />
-        <Banner />
-        <Description />
-        <OurPeople />
-        <Careers />
-        {/* <ContactUs /> */}
+        {/* <Header /> */}
+        <Banner
+          title={banner_title}
+          description={banner_description}
+          buttonText={button_text}
+          buttonLink={button_link}
+        />
+        <Description content={content && content} />
+        <OurPeople content={content && content} />
+        {/* <Careers /> */}
+        <div className="apipartners-wrapper">
+          <ContactUs />
+        </div>
       </div>
     );
   }
