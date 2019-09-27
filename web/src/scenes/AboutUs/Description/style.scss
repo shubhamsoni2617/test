@@ -3,6 +3,9 @@
     background-color: #F0F9FF;
     position: relative;
     z-index: 1;
+    @media(max-width: 768px){
+        padding: 40px 0px 10px;
+    }
     section{
         margin-bottom: 81px;
         width: 100%;
@@ -10,12 +13,17 @@
         flex-wrap: wrap;
         align-items: center;
         padding-top: 24px;
+        @media(max-width: 768px){
+            margin-bottom: 15px;
+            padding-top: 0px;
+        }
         &:last-child{
             margin-bottom: 0px;
         }
         &:nth-child(2n){
             @media(max-width: 768px){
                 flex-direction: row-reverse;
+                flex-wrap: wrap-reverse;
             }
         }
         .about-desc-img{
@@ -28,6 +36,7 @@
             @media(max-width: 768px){
                 flex: 0 0 100%;
                 width: 100%;
+                padding: 0px;
             }
             &:after{
                 position: absolute;
@@ -79,6 +88,9 @@
                 text-align: left;
                 padding-right: 28px;
                 padding-left: 0px;
+                @media(max-width: 768px){
+                    padding: 0px;
+                }
                 &:after{
                     left: -24px;
                     right: auto;
