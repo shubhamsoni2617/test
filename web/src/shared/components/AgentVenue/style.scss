@@ -5,6 +5,9 @@
             margin-bottom: 70px;
             margin-top: -60px;
         }
+        @media(max-width: 768px){
+            margin-bottom: 30px;
+        }
         @media(max-width: 767px){
             margin-bottom: 30px;
             margin-top: -116px;
@@ -31,9 +34,22 @@
             }
             h1{
                 font-weight: 600;
+                @media(max-width: 991px){
+                    position: absolute;
+                    left: 50%;
+                    transform: translateX(-50%);
+                    margin-top: -50px;
+                }
                 @media(max-width: 768px){
-                    margin-top: -60px;
+                    margin-top: -50px;
                     padding-bottom: 15px;
+                    position: absolute;
+                    left: 50%;
+                    transform: translateX(-50%);
+                    width: 100%;
+                }
+                @media(max-width: 600px){
+                    margin-top: -40px;
                 }
             }
         }
@@ -41,6 +57,7 @@
 }
 .find-agent-wrapper{
     display: flex;
+    padding-bottom: 40px;
     .agent-list{
         margin: 0;
         .find-map-mob{
@@ -70,33 +87,39 @@
         .agent-map-area {
             width: calc(100% - 433px);
             margin-top: 34px;
-            @media(max-width: 992px){
-                width: calc(100% - 433px);
-            }
-            @media(max-width: 768px){
+            @media(max-width: 960px){
                 flex: 0 0 100%;
                 width: 100%;
             }
+            @media(max-width: 768px){
+                margin-left: -30px;
+            }
+            @media(max-width: 767px){
+                margin-left: -10px;
+            }
             .map-label-mobileonly{
                 display: none;
-                @media(max-width: 768px){
+                @media(max-width: 960px){
                     display: block;
                     padding: 20px;
                     background-color: #FAFAFA;
                     color: #343434;
                     font-size: 15px;
                     font-weight: 500;
-                    line-height: 20px;
+                    line-height: 20px; 
                     position: relative;
                     width: calc(100% + 60px);
                     left: -30px;
                 }
+                @media(max-width: 768px){                    
+                    left: 0px;
+                }
                 @media(max-width: 767px){
-                    width: calc(100% + 20px);
+                    width: calc(100% + 40px);
                     left: -10px;
                 }
                 &:after{
-                    @media(max-width: 768px){
+                    @media(max-width: 960px){
                         background-image: url('../../../assets/images/down-arrow-grey.svg');
                         position: absolute;
                         content: "";
@@ -104,7 +127,15 @@
                         width: 20px;
                         height: 20px;
                         background-repeat: no-repeat;
-                        background-position: 98%
+                        background-position: 98%;
+                        transform: rotate(-90deg);
+                        transition: 0.5s transform, 0.5s right;
+                    }
+                }
+                &.active{
+                    &:after{
+                        transform: rotate(00deg);
+                        right: 25px;
                     }
                 }
             }
@@ -119,12 +150,7 @@
             width: 433px;
             padding-right: 50px;
         }
-        @media(max-width: 992px){
-            flex: 0 0 433px;
-            width: 433px;
-            padding-right: 50px;
-        }
-        @media(max-width: 768px){
+        @media(max-width: 960px){
             flex: 0 0 100%;
             width: 100%;
             padding-right: 0px;
@@ -136,9 +162,7 @@
 }
 
 
-.agents-wrapper .banner-wrapper {
-    // margin-bottom: 0;
-}
+
   .agent-fixed{
     .search-agent{
       margin-top: 105px;

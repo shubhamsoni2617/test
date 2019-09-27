@@ -5,6 +5,7 @@ import VenueService from '../../../shared/services/VenueService';
 import Constants from '../../../shared/constants';
 import SearchAgent from './SearchAgent';
 import GoogleMap from './GoogleMap';
+import Utilities from '../../utilities';
 import './style.scss';
 
 const AgentVenue = props => {
@@ -26,6 +27,8 @@ const AgentVenue = props => {
   const [venueId, setVenueId] = useState(null);
   const [countryNRegionSorted, setCountryNRegionSorted] = useState(null);
   const [showOnMapClicked, setShowOnMapClicked] = useState(0);
+  const [idForScroll, setIdForScroll] = useState('');
+  const [toggleFindInMap, setToggleFindInMap] = useState(false);
 
   if (props.location.search === null || props.location.search) {
     if (!venueId) {
@@ -35,6 +38,9 @@ const AgentVenue = props => {
   }
   useEffect(() => {
     fetchCountryRegion();
+    if (Utilities.mobileAndTabletcheck()) {
+      setIdForScroll('mapClicked');
+    }
   }, []);
 
   useEffect(() => {
@@ -72,6 +78,7 @@ const AgentVenue = props => {
   }, [filteredListedData]);
 
   const handleEventSelected = eventSelected => {
+    handleMapForMobile(true);
     setShowOnMapClicked(showOnMapClicked + 1);
     setEventSelected(eventSelected);
   };
@@ -170,12 +177,8 @@ const AgentVenue = props => {
     setRegionId(id);
   };
 
-  const handleMapForMobile = () => {
-    if (!mapInMobile) {
-      setMapInMobile(true);
-    } else {
-      setMapInMobile(false);
-    }
+  const handleMapForMobile = toggler => {
+    setMapInMobile(toggler);
   };
 
   const onSubmit = () => {
@@ -184,6 +187,7 @@ const AgentVenue = props => {
     handleEventValue(0);
     handleAttractionValue(0);
     setSearchText('');
+    setCountryNRegionSorted(null);
     setCountryName(countryName);
     setOnSubmitFetch(onSubmitFetch + 1);
     props.history.push('/venues');
@@ -219,7 +223,16 @@ const AgentVenue = props => {
             />
           </div>
           <div className="agent-map-area">
-            <span className="map-label-mobileonly" onClick={handleMapForMobile}>
+            <span
+              id={idForScroll}
+              className={`map-label-mobileonly ${
+                toggleFindInMap ? `active` : ``
+              }`}
+              onClick={() => {
+                handleMapForMobile(!mapInMobile);
+                setToggleFindInMap(!toggleFindInMap);
+              }}
+            >
               Find in Map
             </span>
             <GoogleMap

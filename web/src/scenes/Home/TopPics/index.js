@@ -1,16 +1,16 @@
-import React, { useState, useEffect } from "react";
-import Slider from "react-slick";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
-import "./style.scss";
-import Constants from "../../../shared/constants";
+import React, { useState, useEffect } from 'react';
+import Slider from 'react-slick';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
+import './style.scss';
+import Constants from '../../../shared/constants';
 
 const SampleNextArrow = props => {
   const { className, style, onClick } = props;
   return (
     <div
       className={className}
-      style={{ ...style, display: "block" }}
+      style={{ ...style, display: 'block' }}
       onClick={onClick}
     />
   );
@@ -21,7 +21,7 @@ const SamplePrevArrow = props => {
   return (
     <div
       className={className}
-      style={{ ...style, display: "block" }}
+      style={{ ...style, display: 'block' }}
       onClick={onClick}
     />
   );
@@ -31,9 +31,9 @@ const TopPics = props => {
   const [width, setWidth] = useState(window.innerWidth);
 
   useEffect(() => {
-    window.addEventListener("resize", handleWindowResize);
+    window.addEventListener('resize', handleWindowResize);
     return () => {
-      window.removeEventListener("resize", handleWindowResize);
+      window.removeEventListener('resize', handleWindowResize);
     };
   }, []);
 
@@ -43,64 +43,64 @@ const TopPics = props => {
 
   const topPics = [
     {
-      id: "1",
-      img: "assets/images/kurios.png",
-      description: "",
-      category: "musical"
+      id: '1',
+      img: 'assets/images/kurios.png',
+      description: '',
+      category: 'musical'
     },
     {
-      id: "2",
-      img: "assets/images/katya.jpg",
-      description: "",
-      category: "comedy"
+      id: '2',
+      img: 'assets/images/katya.jpg',
+      description: '',
+      category: 'comedy'
     },
     {
-      id: "3",
-      img: "assets/images/ballet.jpg",
-      description: "",
-      category: "dance"
+      id: '3',
+      img: 'assets/images/ballet.jpg',
+      description: '',
+      category: 'dance'
     },
     {
-      id: "4",
-      img: "assets/images/panthom-of-opera.jpg",
-      description: "",
-      category: "musical"
+      id: '4',
+      img: 'assets/images/panthom-of-opera.jpg',
+      description: '',
+      category: 'musical'
     },
     {
-      id: "5",
-      img: "assets/images/kurios.png",
-      description: "",
-      category: "comedy"
+      id: '5',
+      img: 'assets/images/kurios.png',
+      description: '',
+      category: 'comedy'
     },
     {
-      id: "6",
-      img: "assets/images/ballet.jpg",
-      description: "",
-      category: "dance"
+      id: '6',
+      img: 'assets/images/ballet.jpg',
+      description: '',
+      category: 'dance'
     },
     {
-      id: "7",
-      img: "assets/images/kurios.png",
-      description: "",
-      category: "musical"
+      id: '7',
+      img: 'assets/images/kurios.png',
+      description: '',
+      category: 'musical'
     },
     {
-      id: "8",
-      img: "assets/images/katya.jpg",
-      description: "",
-      category: "comedy"
+      id: '8',
+      img: 'assets/images/katya.jpg',
+      description: '',
+      category: 'comedy'
     },
     {
-      id: "9",
-      img: "assets/images/ballet.jpg",
-      description: "",
-      category: "dance"
+      id: '9',
+      img: 'assets/images/ballet.jpg',
+      description: '',
+      category: 'dance'
     },
     {
-      id: "10",
-      img: "assets/images/panthom-of-opera.jpg",
-      description: "",
-      category: "musical"
+      id: '10',
+      img: 'assets/images/panthom-of-opera.jpg',
+      description: '',
+      category: 'musical'
     }
   ];
 
@@ -132,10 +132,10 @@ const TopPics = props => {
         <h2>Top Picks For You</h2>
         {width <= Constants.MOBILE_BREAK_POINT ? (
           <div className="col-xs-12">
-            {topPics.map((pic, i) => {
-              return (
-                <div className="grid-container" key={pic.id}>
-                  <div className="item">
+            <div className="grid-container">
+              {topPics.map((pic, i) => {
+                return (
+                  <div key={pic.id} className="item">
                     <div className="item-wrapper">
                       <div className="item-desc">
                         <span className="video-icon">
@@ -184,9 +184,9 @@ const TopPics = props => {
                       </a>
                     </div>
                   </div>
-                </div>
-              );
-            })}
+                );
+              })}
+            </div>
           </div>
         ) : (
           <Slider {...settings}>

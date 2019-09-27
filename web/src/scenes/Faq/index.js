@@ -6,7 +6,6 @@ import FaqCategory from './FaqCategory';
 import FaqService from '../../shared/services/FaqService';
 
 const Faq = props => {
-  // console.log(props);
   const [faqContentData, setFaqContentData] = useState(null);
   const [faqCategoryData, setFaqCategoryData] = useState(null);
   const [categoryId, setCategoryId] = useState(null);
@@ -24,7 +23,7 @@ const Faq = props => {
   }, [faqCategoryData]);
 
   useEffect(() => {
-    if (faqCategoryData) {
+    if (faqCategoryData && props.match.params.id) {
       faqCategoryData.findIndex(category => {
         if (
           category.name.toLowerCase().replace(/[^a-z]/g, '') ===
@@ -35,6 +34,11 @@ const Faq = props => {
           setUrlExist(true);
         }
       });
+    }
+    if (faqCategoryData && !props.match.params.id) {
+      props.history.push(
+        `faq/${faqCategoryData[0].name.replace(/\s/g, '-').toLowerCase()}`
+      );
     }
   }, [props.match.params.id, faqCategoryData]);
 
