@@ -27,7 +27,7 @@ class Home extends Component {
       modal: false,
       modalContent: '',
       newsTickerStatus: true,
-      imageUrl: '',
+      imageUrl: ''
     };
     this.homePageRef = createRef();
   }
@@ -59,7 +59,7 @@ class Home extends Component {
             />
           </div>
         </section>
-        <FeaturedEvents />
+        {/* <FeaturedEvents /> */}
         <CarouselConatiner
           title="Currently Showing"
           classStr="currently-showing"
