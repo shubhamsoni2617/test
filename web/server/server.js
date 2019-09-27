@@ -16,16 +16,16 @@ app.use(express.static(path.join(__dirname, '../build')));
 
 app.get('/sistic/docroot/**', function(req, res) {
   var newurl = `http://${req.host}:8081/${req.originalUrl}`;
-  request({ url: newurl, headers: req.headers }).pipe(res);
+  request(newurl).pipe(res);
 });
 app.post('/sistic/docroot/**', function(req, res) {
-  console.log('req', req);
   var newurl = `http://${req.host}:8081/${req.originalUrl}`;
+  console.log('req', req);
   request({ url: newurl, headers: req.headers }).pipe(res);
 });
 app.put('/sistic/docroot/**', function(req, res) {
   var newurl = `http://${req.host}:8081/${req.originalUrl}`;
-  request({ url: newurl, headers: req.headers }).pipe(res);
+  request(newurl).pipe(res);
 });
 app.get('*', (req, res, next) => {
   res.status(200).sendFile(path.resolve(__dirname, '../build', 'index.html'));
