@@ -89,12 +89,12 @@ const routes = [
     exact: true
   },
   {
-    path: '/faq/:id/:questionId',
+    path: '/faq/:id',
     component: Faq,
     exact: true
   },
   {
-    path: '/faq/:id',
+    path: '/faq',
     component: Faq,
     exact: true
   },
