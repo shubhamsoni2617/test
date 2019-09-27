@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 import Constants from '../../constants';
 import Utilities from '../../utilities';
 
-const Contact = ({ attachement }) => {
+const Contact = ({ attachement, handleEnquiry }) => {
   const [enquiryCategory, setEnquiryCategory] = useState([]);
   const [enquiry, setEnquiry] = useState('Select an Enquiry *');
   const [name, setName] = useState('');
@@ -84,6 +84,7 @@ const Contact = ({ attachement }) => {
       switch (name) {
         case 'enquiry':
           setEnquiry(value);
+          handleEnquiry && handleEnquiry(value);
           break;
         case 'name':
           setName(value);
@@ -249,10 +250,12 @@ const Contact = ({ attachement }) => {
         )}
         {errMsg ? <span className="error-msg">{errMsg}</span> : null}
         <input className="form-control btn-info" type="submit" value="Submit" />
-        <span className="help-text">
-          Looking to sell tickets with us? Contact us{' '}
-          <Link to="/contact-us">here</Link>.
-        </span>
+        {!handleEnquiry && (
+          <span className="help-text">
+            Looking to sell tickets with us? Contact us{' '}
+            <Link to="/contact-us">here</Link>.
+          </span>
+        )}
       </form>
     </Fragment>
   );
