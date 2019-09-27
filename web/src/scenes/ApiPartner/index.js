@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './style.scss';
 import ApiBanner from './ApiBanner';
 import Partners from './Partners';
-import ContactUs from '../../../src/shared/components/ContactUs';
+import ContactUs from './ContactUs';
 import ApiPartnersService from '../../shared/services/ApiPartnersService';
 
 class ApiPartner extends Component {
