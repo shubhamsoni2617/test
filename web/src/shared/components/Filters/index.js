@@ -110,6 +110,11 @@ function PriceRangeFilter(props) {
           </li>
         </ul>
       </div>
+      <div className="slect-range">
+        <button>
+          Select range
+        </button>
+      </div>
       <div className="filters-panel">
         <span className="input-range-label-container min">
           S$ {priceRange.min}
@@ -241,6 +246,10 @@ function Filters(props) {
           selectedFilter={filteredCategory}
           limit={10}
         />
+      </div>
+      <div className="fixed-buttons">
+          <a href="" className="close">Close</a>
+          <a href="" className="apply">Apply</a>
       </div>
     </div>
   );

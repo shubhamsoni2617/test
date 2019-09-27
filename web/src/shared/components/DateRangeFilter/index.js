@@ -89,6 +89,7 @@ function DateRangeFilter(props) {
           </li>
         </ul>
       </div>
+      <div class="slect-range"><button>Select range</button></div>
       <div className="filters-panel">
         <div className="date-input-to">
           <label>From</label>
