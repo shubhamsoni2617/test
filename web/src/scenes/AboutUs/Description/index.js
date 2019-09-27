@@ -21,12 +21,12 @@ const Description = ({
           </div>
         </section>
         <section className="our-history">
+          <div class="about-desc-img">
+            <img src={history} alt="our-history" />
+          </div>
           <div className="about-desc-content">
             <h3>Our History</h3>
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas varius tortor nibh, sit amet tempor nibh finibus et. Aenean eu enim justo. Vestibulum aliquam hendrerit molestie.</p>
-          </div>
-          <div class="about-desc-img">
-            <img src={history} alt="our-history" />
           </div>
         </section>
         <section className="our-promise">

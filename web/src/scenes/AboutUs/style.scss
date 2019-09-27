@@ -1,0 +1,21 @@
+.about-us-wrapper{
+    h3{
+        font-size: 36px;
+        line-height: 44px;
+        font-weight: 600;
+        font-family: "Montserrat", sans-serif;
+        @media(max-width: 768px){
+            font-size: 24px;
+            line-height: 30px
+        }
+    }
+    p{
+        color: #626262;
+        font-size: 16px;
+        line-height: 26px;
+        @media(max-width: 767px){
+            font-size: 14px;
+            line-height: 22px;
+        }
+    }
+}

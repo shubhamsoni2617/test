@@ -4,6 +4,7 @@ import Banner from './Banner';
 import OurPeople from './OurPeople';
 import Careers from './Careers';
 import Description from './Description';
+import './style.scss';
 // import ContactUs from '../../../src/shared/components/ContactUs';
 
 class AboutUs extends Component {
