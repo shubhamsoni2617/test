@@ -1,0 +1,49 @@
+.aboutus-description-wrapper{
+    padding-top: 61px;
+    background-color: #F0F9FF;
+    position: relative;
+    z-index: 1;
+    section{
+        margin-bottom: 81px;
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        .about-desc-img{
+            flex: 0 0 60%;
+            width: 60%;
+            position: relative;
+            text-align: right;
+            &:after{
+                position: absolute;
+                content: "";
+                left: auto;
+                right: -24px;
+                height: 324px; 
+                width: 429px;
+                z-index: -1;
+                top: -24px;
+                background-color: #0077C8;
+            }
+        }
+        .about-desc-content{
+            flex: 0 0 40%;
+            width: 40%;
+            h3{
+                font-size: 36px;
+                line-height: 44px;
+                font-weight: 600;
+                font-family: "Montserrat", sans-serif;
+            }
+        }
+        & > .about-desc-img{
+            &:first-child{
+                text-align: left;
+                &:after{
+                    left: -24px;
+                    right: auto;
+                }
+            }     
+        }
+    }
+}

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Header from '../../shared/components/Header';
 import Banner from './Banner';
 import OurPeople from './OurPeople';
 import Careers from './Careers';
@@ -12,7 +13,8 @@ class AboutUs extends Component {
   }
   render() {
     return (
-      <div>
+      <div className="about-us-wrapper">
+        <Header />
         <Banner />
         <Description />
         <OurPeople />

@@ -1,0 +1,36 @@
+.about-us-wrapper{
+    .banner-leftalign-wrapper{
+    background: none;
+    background-image: url('../../../assets/images/about-us-banner.png');
+    &:after{
+        content: none;
+    }
+    .banner-desc{
+        p{
+            font-size: 16px;
+            line-height: 26px;
+            &:first-child{
+                &:after{
+                    content: none;
+                }
+            }
+        }
+        a{
+            background-color: #0098FF;
+            border: none;
+            padding: 0px 18px;
+            line-height: 40px;
+            height: 40px;
+            max-width: 100%;
+            width: auto;
+            display: inline-block;
+            span{
+                padding: 0px;
+                &:after{
+                    content: none;
+                }
+            }
+        }
+    }
+    }
+}

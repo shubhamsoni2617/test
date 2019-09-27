@@ -14,6 +14,8 @@ import ContactUs from '../ContactUs';
 import Faq from '../Faq';
 import Careers from '../Careers';
 import AboutUs from '../AboutUs';
+import ApiPartnersService from '../../shared/services/ApiPartnersService';
+import ApiPartner from '../ApiPartner';
 
 const routes = [
   {
@@ -106,6 +108,11 @@ const routes = [
   {
     path: '/about-us',
     component: AboutUs,
+    exact: true
+  },
+  {
+    path: '/apipartner',
+    component: ApiPartner,
     exact: true
   },
   {
