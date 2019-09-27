@@ -7,7 +7,9 @@ import AgentVenuePopUp from '../../AgentVenuePopUp';
 import Utilities from '../../../utilities';
 import ShimmerEffect from '../../ShimmerEffect';
 import { CSSTransitionGroup } from 'react-transition-group';
+import useStickyPanel from '../../../hooks/useStickyPanel';
 import './style.scss';
+import { Link } from 'react-scroll';
 
 const SearchAgent = props => {
   const {
@@ -18,18 +20,20 @@ const SearchAgent = props => {
     countryName,
     handleAttractionValue,
     handleEventValue,
-    checkBox,
     handleMapFilter,
-    mapClick,
-    agentWrapper,
-    handleDeselectInfo
+    searchText,
+    eventValue,
+    attractionValue
   } = props;
 
+  const [scrollContainerRef, styleObj] = useStickyPanel({
+    sticky: { top: 0, paddingTop: '30px' },
+    paddingTop: 30,
+    pixelBuffer: 30
+  });
+
   const [data, setData] = useState([]);
-  const [filter, setFilter] = useState('');
   const [popUpDetail, setPopUpDetail] = useState('');
-  const [attraction, setAttraction] = useState(false);
-  const [onGoingEvents, setOngoingEvents] = useState(false);
 
   useEffect(() => {
     document.addEventListener('keydown', escFunction, false);
@@ -57,7 +61,7 @@ const SearchAgent = props => {
   };
   const handleScroll = useCallback(() => {
     if (
-      agentWrapper.current.classList.contains('agent-fixed') &&
+      // agentWrapper.current.classList.contains('agent-fixed') &&
       document.getElementsByClassName('pop-up-list active') &&
       document.getElementsByClassName('pop-up-list active').length
     ) {
@@ -69,61 +73,42 @@ const SearchAgent = props => {
         setPopUpDetail({});
       }
     }
-    if (
-      window.pageYOffset +
-        document.getElementById('footer').getBoundingClientRect().height >=
-      window.document.body.clientHeight - window.innerHeight
-    ) {
-      agentWrapper.current.classList.remove('agent-fixed');
-      agentWrapper.current.classList.add('agent-absolute');
-      document.getElementsByClassName('search-agent')[0].style.marginTop =
-        '0px';
-    } else if (
-      window.pageYOffset >=
-      document
-        .getElementsByClassName('banner-wrapper')[0]
-        .getBoundingClientRect().height
-    ) {
-      agentWrapper.current.classList.remove('agent-absolute');
-      agentWrapper.current.classList.add('agent-fixed');
-      document.getElementsByClassName(
-        'search-agent'
-      )[0].style.marginTop = `${document
-        .getElementsByClassName('search-agent-header')[0]
-        .getBoundingClientRect().height - 33}px`;
-    } else {
-      agentWrapper.current.classList.remove('agent-absolute');
-      agentWrapper.current.classList.remove('agent-fixed');
-      document.getElementsByClassName('search-agent')[0].style.marginTop =
-        '0px';
-    }
+    // if (
+    //   window.pageYOffset +
+    //     document.getElementById('footer').getBoundingClientRect().height >=
+    //   window.document.body.clientHeight - window.innerHeight
+    // ) {
+    //   agentWrapper.current.classList.remove('agent-fixed');
+    //   agentWrapper.current.classList.add('agent-absolute');
+    //   document.getElementsByClassName('search-agent')[0].style.marginTop =
+    //     '0px';
+    // } else if (
+    //   window.pageYOffset >=
+    //   document
+    //     .getElementsByClassName('banner-wrapper')[0]
+    //     .getBoundingClientRect().height
+    // ) {
+    //   agentWrapper.current.classList.remove('agent-absolute');
+    //   agentWrapper.current.classList.add('agent-fixed');
+    //   document.getElementsByClassName(
+    //     'search-agent'
+    //   )[0].style.marginTop = `${document
+    //     .getElementsByClassName('search-agent-header')[0]
+    //     .getBoundingClientRect().height - 33}px`;
+    // } else {
+    //   agentWrapper.current.classList.remove('agent-absolute');
+    //   agentWrapper.current.classList.remove('agent-fixed');
+    //   document.getElementsByClassName('search-agent')[0].style.marginTop =
+    //     '0px';
+    // }
   });
 
   useEffect(() => {
     handleScroll();
   }, [initialItems]);
 
-  useEffect(() => {
-    handleDeselectInfo();
-  }, [attraction, onGoingEvents, filter]);
-
-  useEffect(() => {
-    setAttraction(false);
-    setOngoingEvents(false);
-  }, [checkBox]);
-
-  useEffect(() => {
-    setFilter('');
-  }, [mapClick]);
-
   const handleSubmit = event => {
     event.preventDefault();
-  };
-
-  const handleChange = event => {
-    const { value } = event.target;
-    setFilter(value);
-    handleMapFilter(value);
   };
 
   const showPopUp = detail => {
@@ -153,34 +138,18 @@ const SearchAgent = props => {
       });
   };
 
-  const handleAttraction = () => {
-    if (!attraction) {
-      handleAttractionValue(1);
-      setAttraction(true);
-    } else {
-      handleAttractionValue(undefined);
-      setAttraction(false);
-    }
-  };
-
-  const handleOngoingEvents = () => {
-    if (!onGoingEvents) {
-      handleEventValue(1);
-      setOngoingEvents(true);
-    } else {
-      handleEventValue(undefined);
-      setOngoingEvents(false);
-    }
-  };
-
   let isFile;
   if (countryFileUrl) {
     isFile = Utilities.isFileExt(countryFileUrl);
   }
 
   return (
-    <div className="search-agent">
-      <div className="search-agent-header">
+    <div
+      className="search-agent"
+      style={{ position: 'relative' }}
+      ref={scrollContainerRef}
+    >
+      <div className="search-agent-header" style={styleObj}>
         <h2>
           {venue ? 'Venues in ' : 'Agents in '}{' '}
           {countryName ? countryName : 'Singapore'}
@@ -193,8 +162,8 @@ const SearchAgent = props => {
             <input
               className="form-control"
               type="text"
-              value={filter}
-              onChange={handleChange}
+              value={searchText}
+              onChange={e => handleMapFilter(e)}
               placeholder={
                 venue ? 'Search for Location' : 'Search for an agent'
               }
@@ -206,26 +175,26 @@ const SearchAgent = props => {
             <li>
               <input
                 type="checkbox"
-                onChange={handleAttraction}
+                onChange={() => handleAttractionValue(!attractionValue ? 1 : 0)}
                 className="styled-checkbox"
                 id="1"
-                checked={attraction ? true : false}
+                checked={attractionValue ? true : false}
               />
               <label htmlFor="1"> Attractions</label>
             </li>
             <li>
               <input
                 type="checkbox"
-                onChange={handleOngoingEvents}
+                onChange={() => handleEventValue(!eventValue ? 1 : 0)}
                 className="styled-checkbox"
                 id="2"
-                checked={onGoingEvents ? true : false}
+                checked={eventValue ? true : false}
               />
               <label htmlFor="2"> Venues with Ongoing Events</label>
             </li>
           </ul>
         ) : null}
-        {!initialItems && filter === '' && (
+        {!initialItems && searchText === '' && (
           <ShimmerEffect
             propCls="shm_col-xs-6 col-md-12"
             height={80}
@@ -260,13 +229,19 @@ const SearchAgent = props => {
                   </span>
                   {item.name.length > 25 ? <br /> : null}{' '}
                   <span>
-                    <a
-                      onClick={e => {
-                        showOnMapClick(e, item);
+                    <Link
+                      activeClass="active"
+                      to="mapClicked"
+                      spy={true}
+                      smooth={true}
+                      offset={-40}
+                      duration={500}
+                      onClick={() => {
+                        showOnMapClick(item);
                       }}
                     >
                       Show on Map
-                    </a>
+                    </Link>
                   </span>
                 </h3>
                 <p>
