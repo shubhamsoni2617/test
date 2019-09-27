@@ -196,6 +196,9 @@
 
 .filters {
     width: 300px;
+    .fixed-buttons{
+        display: none;
+    }
     @media (max-width: 767px) {
         &.open{
             display: block;
@@ -405,7 +408,9 @@
                 }
             }
         }
-
+        .select-range{
+            display: none;
+        }
         .filters-panel {
             padding: 8px;
             display: flex;
@@ -839,7 +844,7 @@
             .filter-grid-heading {
                 padding: 0;
             }
-            .slect-range{
+            .select-range{
                 button{
                     color: #626262;
                     text-transform: capitalize;

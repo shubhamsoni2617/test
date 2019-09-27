@@ -110,7 +110,7 @@ function PriceRangeFilter(props) {
           </li>
         </ul>
       </div>
-      <div className="slect-range">
+      <div className="select-range">
         <button>
           Select range
         </button>
