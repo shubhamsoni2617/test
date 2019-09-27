@@ -1,11 +1,11 @@
-import React, { useState, useEffect, Fragment } from "react";
-import { Link } from "react-router-dom";
-import "./style.scss";
+import React, { useState, useEffect, Fragment } from 'react';
+import { Link } from 'react-router-dom';
+import './style.scss';
 
 const AutoSuggest = props => {
   const [filteredSuggestions, setFilteredSuggestions] = useState([]);
   const [showSuggestions, setShowSuggestions] = useState(true);
-  const [userInput, setUserInput] = useState("");
+  const [userInput, setUserInput] = useState('');
   const [helperText, setHelperText] = useState(null);
 
   const onChange = e => {
@@ -35,7 +35,7 @@ const AutoSuggest = props => {
     );
     if (userInput.length < 3) {
       filteredSuggestions = [];
-      helperText = "Please enter atleast 3 characters";
+      helperText = 'Please enter atleast 3 characters';
     }
     if (filteredSuggestions.length === 0) {
       setShowSuggestions(true);
@@ -75,8 +75,8 @@ const AutoSuggest = props => {
             <li key={suggestion.id + suggestion.category_id}>
               <Link
                 to={`/faq/${suggestion.category_name
-                  .replace(/\s/g, "-")
-                  .toLowerCase()}/${suggestion.id}`}
+                  .replace(/\s/g, '-')
+                  .toLowerCase()}?id=${suggestion.id}`}
                 className="nav-item"
                 onClick={() => {
                   onClick(suggestion.question);
