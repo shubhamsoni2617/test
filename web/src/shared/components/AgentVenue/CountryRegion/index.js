@@ -11,8 +11,6 @@ const CountryRegion = ({
   countryId,
   onSubmit
 }) => {
-  console.log(countryId);
-
   const handleCountryId = countryName => {
     if (countryName.length) {
       let countryId = countryNRegion.find(el => el.name === countryName[0]).id;
