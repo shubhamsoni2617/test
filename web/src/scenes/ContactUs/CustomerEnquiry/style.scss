@@ -76,10 +76,11 @@
                 padding: 0px;
                 border: 1px solid #0098FF;
                 transition: 0.3s color, 0.3s background-color;
+                margin-top: 10px;
                 @media(max-width: 991px){
                     font-size: 16px;
                     height: 32px;
-                    line-height: 32px;           
+                    line-height: 32px;
                 }
                 &:hover{
                     background-color:transparent;
@@ -99,4 +100,8 @@
             margin: 0px;
         }
     }
+}
+.error-msg {
+    color: #E4002B;
+    padding-top: 5px;
 }
