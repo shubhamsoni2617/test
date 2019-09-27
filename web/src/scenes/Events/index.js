@@ -12,6 +12,8 @@ import GridView from "../../assets/images/grid-view.svg";
 import loaderImage from "../../assets/images/loader.svg";
 import EventBreadcrumbImage from "../../assets/images/events.png";
 import EventBreadcrumbImageBlur from "../../assets/images/events-blur.png";
+import filterIcon from "../../assets/images/events/filter.svg";
+import sortbyIcon from "../../assets/images/events/sortby.svg";
 import ShimmerEffect from "../../shared/components/ShimmerEffect";
 import "./style.scss";
 
@@ -450,6 +452,20 @@ export default class Events extends Component {
                     <p>Try again with more general search events</p>
                   </div>
                 )}
+              </div>
+              <div className="fixed-buttons-events">
+                  <a href="" className="sortby">sort by
+                  <img
+                        src={sortbyIcon}
+                        alt="icon"
+                      />
+                  </a>
+                  <a href="" className="filter">filter
+                  <img
+                        src={filterIcon}
+                        alt="icon"
+                      />
+                  </a>
               </div>
             </div>
           </div>
