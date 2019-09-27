@@ -162,6 +162,7 @@ const AgentVenue = props => {
   const countryRegionHandler = countryRegion => {
     let fromIndex = countryRegion.findIndex(el => el.name === 'Singapore');
     let element = countryRegion[fromIndex];
+    element.regions.unshift({ id: '0', name: 'All' });
     countryRegion.splice(fromIndex, 1);
     countryRegion.unshift(element);
     setCountryNRegion(countryRegion);
@@ -201,8 +202,6 @@ const AgentVenue = props => {
         regionIdHandler={regionIdHandler}
         countryId={countryId}
         onSubmit={onSubmit}
-        venueId={venueId}
-        regionId={regionId}
       />
 
       <div className="find-agent-wrapper">

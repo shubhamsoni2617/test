@@ -313,7 +313,7 @@ export class Select extends Component {
   render() {
     const { label } = this.props;
     const { isOpen } = this.state;
-    // console.log(this.props.options[0].value);
+
     return (
       <div
         className="select"
@@ -322,6 +322,9 @@ export class Select extends Component {
         onBlur={this.onBlur}
         onKeyDown={this.onKeyDown}
         onClick={this.props.selectedValues(this.state.values)}
+        style={
+          this.props.disabled ? { pointerEvents: 'none', opacity: 0.5 } : null
+        }
       >
         <div className="selection" onClick={this.onClick}>
           {this.renderValues()}
