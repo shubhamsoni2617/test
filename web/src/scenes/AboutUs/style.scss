@@ -10,12 +10,24 @@
         }
     }
     p{
-        color: #626262;
+        color: #626262; 
         font-size: 16px;
         line-height: 26px;
         @media(max-width: 767px){
             font-size: 14px;
             line-height: 22px;
         }
+        p{
+            color: #626262;
+            font-size: 16px;
+            line-height: 26px;
+            @media(max-width: 767px){
+                font-size: 14px;
+                line-height: 22px;
+            }
+        }
+    }
+    .apipartners-wrapper .contact-us{
+        background-color: #ffffff;
     }
 }

@@ -13,6 +13,12 @@
             width: 100%;
             max-width: 100%;
         }
+        .banner-title{
+            & > p:first-child{
+                font-size: 40px;
+                line-height: 49px;
+            }
+        }
         p{
             font-size: 16px;
             line-height: 26px;
@@ -22,6 +28,10 @@
             }
             &:first-child{
                 margin-bottom: 16px;
+                font-size: 16px;
+                line-height: 26px;
+                font-weight: 400;
+                font-family: "Rubik", sans-serif;
                 @media(max-width: 768px){
                     margin-bottom: 10px;
                 }

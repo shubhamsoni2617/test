@@ -6,6 +6,7 @@ import Careers from './Careers';
 import Description from './Description';
 import ContactUs from '../ApiPartner/ContactUs';
 import AboutUsService from '../../shared/services/AboutUsService';
+import './style.scss';
 
 class AboutUs extends Component {
   constructor(props) {
