@@ -9,6 +9,7 @@ import ShimmerEffect from '../../ShimmerEffect';
 import { CSSTransitionGroup } from 'react-transition-group';
 import useStickyPanel from '../../../hooks/useStickyPanel';
 import './style.scss';
+import { Link } from 'react-scroll';
 
 const SearchAgent = props => {
   const {
@@ -228,13 +229,19 @@ const SearchAgent = props => {
                   </span>
                   {item.name.length > 25 ? <br /> : null}{' '}
                   <span>
-                    <a
+                    <Link
+                      activeClass="active"
+                      to="mapClicked"
+                      spy={true}
+                      smooth={true}
+                      offset={-40}
+                      duration={500}
                       onClick={() => {
                         showOnMapClick(item);
                       }}
                     >
                       Show on Map
-                    </a>
+                    </Link>
                   </span>
                 </h3>
                 <p>
