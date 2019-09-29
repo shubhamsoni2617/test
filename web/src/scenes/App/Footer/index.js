@@ -21,7 +21,7 @@ const Footer = () => {
               <h3>Our Company</h3>
               <ul>
                 <li>
-                  <Link to="/">About Us</Link>
+                  <Link to="/about-us">About Us</Link>
                 </li>
                 <li>
                   <Link to="/">Sell with Us</Link>

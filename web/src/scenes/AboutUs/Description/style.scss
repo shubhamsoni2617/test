@@ -1,0 +1,104 @@
+.aboutus-description-wrapper{
+    padding: 61px 0px 84px;
+    background-color: #F0F9FF;
+    position: relative;
+    z-index: 1;
+    @media(max-width: 768px){
+        padding: 40px 0px 10px;
+    }
+    section{
+        margin-bottom: 81px;
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        padding-top: 24px;
+        @media(max-width: 768px){
+            margin-bottom: 15px;
+            padding-top: 0px;
+        }
+        &:last-child{
+            margin-bottom: 0px;
+        }
+        &:nth-child(2n){
+            @media(max-width: 768px){
+                flex-direction: row-reverse;
+                flex-wrap: wrap-reverse;
+            }
+        }
+        .about-desc-img{
+            flex: 0 0 55%;
+            width: 55%;
+            position: relative;
+            text-align: right;
+            padding-left: 28px;
+            padding-right: 0px;
+            @media(max-width: 768px){
+                flex: 0 0 100%;
+                width: 100%;
+                padding: 0px;
+            }
+            &:after{
+                position: absolute;
+                content: "";
+                left: auto;
+                right: -24px;
+                height: 324px; 
+                width: 429px;
+                z-index: -1;
+                top: -24px;
+                background-color: #0077C8;
+                @media(max-width: 767px){
+                    right: -10px;
+                    height: 90%;
+                    width: 72%;
+                    z-index: -1;
+                    top: -10px;
+                }
+            }
+            img{
+                max-width: 100%;
+                height: auto;
+            }
+        }
+        .about-desc-content{
+            flex: 0 0 45%;
+            width: 45%;
+            @media(max-width: 768px){
+                flex: 0 0 100%;
+                width: 100%;
+                padding-top: 15px;
+            }
+            h3{
+                position: relative;
+                padding-bottom: 15px;
+                &:after{
+                    border-bottom: 1px solid #0077C8;
+                    position: absolute;
+                    content: "";
+                    left: 0px;
+                    height: 1px;
+                    width: 104px;
+                    bottom: 0px;
+                }
+            }
+        }
+        & > .about-desc-img{
+            &:first-child{
+                text-align: left;
+                padding-right: 28px;
+                padding-left: 0px;
+                @media(max-width: 768px){
+                    padding: 0px;
+                }
+                &:after{
+                    left: -24px;
+                    right: auto;
+                    @media(max-width: 768px){
+                        left: -10px;
+                    }
+                }
+            }     
+        }
+    }
+}
