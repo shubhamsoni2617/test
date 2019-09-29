@@ -83,7 +83,7 @@ const FilterGrid = props => {
           </li>
         </ul>
       </div>
-      <div class="slect-range"><button>Select range</button></div>
+      <div class="select-range"><button>Select range</button></div>
       <div className="filters-panel">
         <ul>
           <CSSTransitionGroup
