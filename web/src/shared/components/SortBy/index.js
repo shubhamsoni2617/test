@@ -53,8 +53,10 @@ export default class SortBy extends Component {
             transitionLeaveTimeout={300}
           >
             <div className="sortby-topbar-mobileonly">
-              <div className="left-arrow-sortby"><img src="../../assets/images/next.svg" /><span> Sort By</span></div>
-              <a href="" className="clear-filter-sortby">clear filters</a>
+              <div className="left-arrow-sortby"><img src="../../assets/images/next.svg" />
+              <span> Sort By</span>
+              </div>
+              {/* <a href="" className="clear-filter-sortby">clear filters</a> */}
             </div>
             {this.state.showSortMenu ? (
                 <ul className="sortby-wrapper">
@@ -77,7 +79,7 @@ export default class SortBy extends Component {
                     })}
                 </ul>
               ) : null}
-              <a href="" className="sortby-apply-mobileonly">Apply</a>
+              {/* <a href="" className="sortby-apply-mobileonly">Apply</a> */}
           </CSSTransitionGroup>
         </div>
       </div>

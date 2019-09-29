@@ -115,6 +115,9 @@
             }
         }
     }
+    .fixed-buttons-events{
+        display: none;
+    }
     @media (max-width: 767px) {
         .fixed-buttons-events{
             position: fixed;
@@ -124,6 +127,7 @@
             width: 100%;
             display: flex;
             justify-content: space-between;
+            z-index: 1;
             a{
                 flex: 1 0 50%;
                 max-width: 50%;
