@@ -18,7 +18,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 app.post('/sistic/docroot/**', function(req, res) {
-  var newurl = `${req.hostname}${req.originalUrl}`;
+  var newurl = `${req.hostname}:8081${req.originalUrl}`;
   request
     .post({
       url: newurl,
@@ -29,7 +29,7 @@ app.post('/sistic/docroot/**', function(req, res) {
 });
 
 app.get('/sistic/docroot/**', function(req, res) {
-  var newurl = `${req.hostname}${req.originalUrl}`;
+  var newurl = `${req.hostname}:8081${req.originalUrl}`;
   request(newurl).pipe(res);
 });
 
