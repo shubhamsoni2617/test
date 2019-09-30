@@ -29,7 +29,7 @@ function Submenu(props) {
   const [menueStatus, setMenuStatus] = useState(false);
   return (
     <>
-      <button type="button" onClick={() => setMenuStatus(!menueStatus)}>
+      <button className="backbutton" type="button" onClick={() => setMenuStatus(!menueStatus)}>
         {buttonText}
       </button>
       <div
@@ -37,12 +37,15 @@ function Submenu(props) {
           menueStatus ? 'active' : ''
         }`}
       >
-        {backButtonRequired && (
-          <button type="button" onClick={() => setMenuStatus(false)}>
-            Back
-          </button>
-        )}
-        <h1>{heading}</h1>
+        <div className="subholder-wrapper">
+          {backButtonRequired && (
+            <button type="button" onClick={() => setMenuStatus(false)}>
+              <img src="../../assets/images/next.svg"></img>
+              
+            </button>
+          )}
+          <h1>{heading}</h1>
+        </div>
         {props.children}
         {data && data.length && (
           <ul className={`submenu  ${menueStatus ? 'active' : ''}`}>
@@ -274,7 +277,7 @@ const TopNav = props => {
                 handleNavigationClose();
               }}
             >
-              X
+              
             </a>
             <ul className="user-details">
               <li className="user-icon">
@@ -284,7 +287,7 @@ const TopNav = props => {
                 </Link>
                 <span>Hello William</span>
               </li>
-              <li>
+              <li className="ticket-withus">
                 <a>Ticket With Us</a>
               </li>
             </ul>
