@@ -8,25 +8,31 @@ import Helmet from 'react-helmet';
 // import App from '../src/scenes/App'
 // import routes from '../src/scenes/App/routes'
 import manifest from '../build/asset-manifest.json';
+var bodyParser = require('body-parser');
 var path = require('path');
 
 const app = express();
 
 app.use(express.static(path.join(__dirname, '../build')));
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+
+app.post('/sistic/docroot/**', function(req, res) {
+  var newurl = `http://${req.hostname}:8081${req.originalUrl}`;
+  request
+    .post({
+      url: newurl,
+      body: JSON.stringify(req.body),
+      headers: req.headers
+    })
+    .pipe(res);
+});
 
 app.get('/sistic/docroot/**', function(req, res) {
-  var newurl = `http://${req.host}:8081/${req.originalUrl}`;
+  var newurl = `http://${req.hostname}:8081${req.originalUrl}`;
   request(newurl).pipe(res);
 });
-app.post('/sistic/docroot/**', function(req, res) {
-  var newurl = `http://${req.host}:8081/${req.originalUrl}`;
-  console.log('req', req);
-  request({ url: newurl, headers: req.headers }).pipe(res);
-});
-app.put('/sistic/docroot/**', function(req, res) {
-  var newurl = `http://${req.host}:8081/${req.originalUrl}`;
-  request(newurl).pipe(res);
-});
+
 app.get('*', (req, res, next) => {
   res.status(200).sendFile(path.resolve(__dirname, '../build', 'index.html'));
   // const activeRoute = routes.find((route) => matchPath(req.url, route)) || {}
