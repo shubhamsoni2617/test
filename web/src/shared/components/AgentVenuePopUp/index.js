@@ -6,6 +6,7 @@ import food from '../../../assets/images/food.svg';
 import clock from '../../../assets/images/clock.svg';
 import contact from '../../../assets/images/contact-icon.svg';
 import price from '../../../assets/images/price.svg';
+import closePopup from '../../../assets/images/cross-grey.svg';
 import seat from '../../../assets/images/seat.svg';
 import notification from '../../../assets/images/notification.svg';
 import event from '../../../assets/images/current-event.svg';
@@ -17,7 +18,7 @@ import EventHeading from '../EventHeading';
 import './style.scss';
 
 const AgentVenuePopUp = props => {
-  const { popUpDetail, item, venue } = props;
+  const { popUpDetail, item, venue, closePopup } = props;
 
   let isFile;
   if (popUpDetail.festive_hours && popUpDetail.festive_hours_file) {
@@ -54,6 +55,24 @@ const AgentVenuePopUp = props => {
         >
           <img height="20" width="20" src={redirect} alt="direction" />
         </a>
+        <div
+          style={{
+            display:
+              !Utilities.mobileAndTabletcheck() &&
+              window.innerHeight < window.innerWidth
+                ? 'none'
+                : 'block'
+          }}
+        >
+          <img
+            height="20"
+            width="20"
+            onClick={closePopup}
+            src={closePopup}
+            alt="closePopup"
+          />
+        </div>
+
         {popUpDetail.how_to_get_there ? (
           <div className="agent-info">
             <div className="icon">
