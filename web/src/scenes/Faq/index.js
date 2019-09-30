@@ -4,6 +4,7 @@ import Constants from '../../shared/constants';
 import FaqSearch from './FaqSearch';
 import FaqCategory from './FaqCategory';
 import FaqService from '../../shared/services/FaqService';
+import PageNotFound from '../../scenes/PageNotFound';
 
 const Faq = props => {
   const [faqContentData, setFaqContentData] = useState(null);
@@ -36,7 +37,7 @@ const Faq = props => {
       });
     }
     if (faqCategoryData && !props.match.params.id) {
-      props.history.push(
+      props.history.replace(
         `faq/${faqCategoryData[0].name.replace(/\s/g, '-').toLowerCase()}`
       );
     }
@@ -68,29 +69,27 @@ const Faq = props => {
       });
   };
 
-  return (
-    faqContentData &&
-    faqCategoryData && (
-      <div onClick={() => setSuggestions(!suggestions)}>
-        <FaqSearch
-          suggestions={faqContentData}
-          categories={faqCategoryData}
-          setFilteredSuggestions={suggestions}
-        />
-        <div className="faq-body-wrapper">
-          <div className="container-fluid">
-            <FaqCategory
-              {...props}
-              urlExist={urlExist}
-              categoryId={categoryId}
-              categoryName={categoryName}
-              categories={faqCategoryData}
-              faqContentData={faqContentData}
-            />
-          </div>
+  return urlExist ? (
+    <div onClick={() => setSuggestions(!suggestions)}>
+      <FaqSearch
+        suggestions={faqContentData}
+        categories={faqCategoryData}
+        setFilteredSuggestions={suggestions}
+      />
+      <div className="faq-body-wrapper">
+        <div className="container-fluid">
+          <FaqCategory
+            {...props}
+            categoryId={categoryId}
+            categoryName={categoryName}
+            categories={faqCategoryData}
+            faqContentData={faqContentData}
+          />
         </div>
       </div>
-    )
+    </div>
+  ) : (
+    <PageNotFound />
   );
 };
 export default Faq;

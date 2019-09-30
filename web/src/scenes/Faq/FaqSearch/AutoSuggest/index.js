@@ -13,21 +13,22 @@ const AutoSuggest = props => {
     let userInput = e.currentTarget.value;
     let helperText = null;
     let allSuggestions = [];
-
-    allSuggestions = suggestions.reduce((acc, element) => {
-      element.category_id.map(category =>
-        categories.findIndex(categoryObj => {
-          if (categoryObj.id === category) {
-            acc.push({
-              ...element,
-              category_id: category,
-              category_name: categoryObj.name
-            });
-          }
-        })
-      );
-      return acc;
-    }, []);
+    if (suggestions && categories) {
+      allSuggestions = suggestions.reduce((acc, element) => {
+        element.category_id.map(category =>
+          categories.findIndex(categoryObj => {
+            if (categoryObj.id === category) {
+              acc.push({
+                ...element,
+                category_id: category,
+                category_name: categoryObj.name
+              });
+            }
+          })
+        );
+        return acc;
+      }, []);
+    }
 
     let filteredSuggestions = allSuggestions.filter(
       suggestion =>
