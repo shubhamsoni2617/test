@@ -16,6 +16,7 @@ import fb from '../../../assets/images/fb.svg';
 import insta from '../../../assets/images/insta-unfill.svg';
 import Calender from '../../../shared/components/Calender';
 import DateRangeFilter from '../../../shared/components/DateRangeFilter';
+import Header from '../../../shared/components/Header';
 
 function Submenu(props) {
   const {
@@ -132,8 +133,22 @@ const TopNav = props => {
       ) {
         setPathName(pathArr[1]);
         setMenuActive(true);
-      } else {
+      } else if (
+        pathArr[1] === 'contact-us' ||
+        pathArr[1] === 'about-us' ||
+        pathArr[1] === 'apipartner'
+      ) {
+        setChangeHeader(true);
+        setPathName(pathArr[1]);
+        setMenuActive(true);
+      }
+      // else {
+      //   setChangeHeader(false);
+      //   setMenuActive(true);
+      // }
+      else {
         setMenuActive(false);
+        setChangeHeader(false);
       }
       //For event header class
       if (location.pathname === '/') {
@@ -170,7 +185,9 @@ const TopNav = props => {
     );
   };
 
-  return (
+  return changeHeader ? (
+    <Header menuActive={menuActive} pathName={pathName} />
+  ) : (
     <header className={`header ${headerClass ? 'homepage' : ''}`}>
       <div className="container-fluid">
         <div className="row">
