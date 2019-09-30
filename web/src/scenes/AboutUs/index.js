@@ -36,7 +36,7 @@ class AboutUs extends Component {
     } = this.state.aboutUsContent;
     return (
       <div className="about-us-wrapper">
-        {/* <Header /> */}
+        <Header />
         <Banner
           title={banner_title}
           description={banner_description}
@@ -45,7 +45,7 @@ class AboutUs extends Component {
         />
         <Description content={content && content} />
         <OurPeople content={content && content} />
-        {/* <Careers /> */}
+        <Careers />
         <div className="apipartners-wrapper">
           <ContactUs />
         </div>
