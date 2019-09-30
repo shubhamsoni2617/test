@@ -6,7 +6,7 @@ import food from '../../../assets/images/food.svg';
 import clock from '../../../assets/images/clock.svg';
 import contact from '../../../assets/images/contact-icon.svg';
 import price from '../../../assets/images/price.svg';
-import closePopup from '../../../assets/images/cross-grey.svg';
+import closePopupImage from '../../../assets/images/cross-grey.svg';
 import seat from '../../../assets/images/seat.svg';
 import notification from '../../../assets/images/notification.svg';
 import event from '../../../assets/images/current-event.svg';
@@ -55,11 +55,11 @@ const AgentVenuePopUp = props => {
         >
           <img height="20" width="20" src={redirect} alt="direction" />
         </a>
-        <div
+        <div className="popup-close-icon"
           style={{
             display:
               !Utilities.mobileAndTabletcheck() &&
-              window.innerHeight < window.innerWidth
+                window.innerHeight < window.innerWidth
                 ? 'none'
                 : 'block'
           }}
@@ -68,7 +68,7 @@ const AgentVenuePopUp = props => {
             height="20"
             width="20"
             onClick={closePopup}
-            src={closePopup}
+            src={closePopupImage}
             alt="closePopup"
           />
         </div>
@@ -98,20 +98,20 @@ const AgentVenuePopUp = props => {
         ) : null}
 
         {venue &&
-        popUpDetail.food_beverages &&
-        popUpDetail.food_beverages[0].name ? (
-          <div className="agent-info">
-            <div className="icon">
-              <img src={food} alt="icon" />
+          popUpDetail.food_beverages &&
+          popUpDetail.food_beverages[0].name ? (
+            <div className="agent-info">
+              <div className="icon">
+                <img src={food} alt="icon" />
+              </div>
+              <div className="details">
+                <h3>Food & Beverage</h3>
+                <ul className="currently-list">
+                  {showFoodNBeverage(popUpDetail.food_beverages)}
+                </ul>
+              </div>
             </div>
-            <div className="details">
-              <h3>Food & Beverage</h3>
-              <ul className="currently-list">
-                {showFoodNBeverage(popUpDetail.food_beverages)}
-              </ul>
-            </div>
-          </div>
-        ) : null}
+          ) : null}
 
         {!venue && popUpDetail.operating_hours ? (
           <div className="agent-info">
