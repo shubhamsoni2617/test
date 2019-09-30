@@ -1,8 +1,57 @@
 import React, { useState, useEffect, useRef, memo } from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import { CSSTransitionGroup } from 'react-transition-group';
 import VenueFilter from '../VenueFilter';
-
+function Submenu(props) {
+  const {
+    heading,
+    buttonText,
+    data,
+    handleMouseStatus,
+    submenuClass = '',
+    backButtonRequired = true
+  } = props;
+  const [menueStatus, setMenuStatus] = useState(false);
+  return (
+    <>
+      <button type="button" onClick={() => setMenuStatus(!menueStatus)}>
+        {buttonText}
+      </button>
+      <div
+        className={`submenu-holder ${submenuClass} ${
+          menueStatus ? 'active' : ''
+        }`}
+      >
+        {backButtonRequired && (
+          <button type="button" onClick={() => setMenuStatus(false)}>
+            Back
+          </button>
+        )}
+        <h1>{heading}</h1>
+        {props.children}
+        {data && data.length && (
+          <ul className={`submenu  ${menueStatus ? 'active' : ''}`}>
+            {data.map(event => {
+              return (
+                <li key={event.id}>
+                  <Link
+                    to={`/events/search?c=${event.id}`}
+                    onClick={() => {
+                      handleMouseStatus(false);
+                    }}
+                  >
+                    {event.name}
+                  </Link>
+                </li>
+              );
+            })}
+          </ul>
+        )}
+      </div>
+    </>
+  );
+}
 function ShowMoreButton(props) {
   return (
     <a
@@ -83,77 +132,82 @@ const FilterGrid = props => {
           </li>
         </ul>
       </div>
-      <div class="select-range"><button>Select range</button></div>
-      <div className="filters-panel">
-        <ul>
-          <CSSTransitionGroup
-            transitionName="dropdown"
-            transitionEnter={true}
-            transitionEnterTimeout={300}
-            transitionLeaveTimeout={300}
-          >
-            {data.length &&
-              data.slice(0, limit).map((item, key) => {
-                let id = 'item-' + item.id;
-                let isChecked = false;
-                let index;
-                if (props.selectedFilter) {
-                  index = props.selectedFilter.indexOf(item.id);
-                  isChecked = index > -1;
-                }
-                return (
-                  <li key={key}>
-                    <input
-                      checked={isChecked}
-                      onChange={e => onChange(e, data[key].id)}
-                      className="styled-checkbox"
-                      type="checkbox"
-                      id={id}
-                      value=""
-                    />
-                    <label htmlFor={id}>
-                      {item.name}{' '}
-                      {item.events_count ? `(${item.events_count})` : ''}
-                    </label>
-                  </li>
-                );
-              })}
-          </CSSTransitionGroup>
-        </ul>
-        {props.limit !== data.length ? (
-          <>
-            {data.length > limit && (
-              <ShowMoreButton
-                title={`+ ${`${data.length - limit} More`}`}
-                onClick={() => {
-                  props.showPanel
-                    ? setPanelDisplay(true)
-                    : setLimit(data.length);
-                }}
-              />
-            )}
-            {data.length === limit && (
-              <ShowMoreButton
-                title={'- Show Less'}
-                onClick={() => {
-                  props.showPanel
-                    ? setPanelDisplay(true)
-                    : setLimit(props.limit);
-                }}
-              />
-            )}
-          </>
-        ) : null}
+      <Submenu
+        heading={props.title}
+        buttonText={`Select ${props.title}`}
+        submenuClass="submenu-wrap"
+      >
+        <div className="filters-panel open">
+          <ul>
+            <CSSTransitionGroup
+              transitionName="dropdown"
+              transitionEnter={true}
+              transitionEnterTimeout={300}
+              transitionLeaveTimeout={300}
+            >
+              {data.length &&
+                data.slice(0, limit).map((item, key) => {
+                  let id = 'item-' + item.id;
+                  let isChecked = false;
+                  let index;
+                  if (props.selectedFilter) {
+                    index = props.selectedFilter.indexOf(item.id);
+                    isChecked = index > -1;
+                  }
+                  return (
+                    <li key={key}>
+                      <input
+                        checked={isChecked}
+                        onChange={e => onChange(e, data[key].id)}
+                        className="styled-checkbox"
+                        type="checkbox"
+                        id={id}
+                        value=""
+                      />
+                      <label htmlFor={id}>
+                        {item.name}{' '}
+                        {item.events_count ? `(${item.events_count})` : ''}
+                      </label>
+                    </li>
+                  );
+                })}
+            </CSSTransitionGroup>
+          </ul>
+          {props.limit !== data.length ? (
+            <>
+              {data.length > limit && (
+                <ShowMoreButton
+                  title={`+ ${`${data.length - limit} More`}`}
+                  onClick={() => {
+                    props.showPanel
+                      ? setPanelDisplay(true)
+                      : setLimit(data.length);
+                  }}
+                />
+              )}
+              {data.length === limit && (
+                <ShowMoreButton
+                  title={'- Show Less'}
+                  onClick={() => {
+                    props.showPanel
+                      ? setPanelDisplay(true)
+                      : setLimit(props.limit);
+                  }}
+                />
+              )}
+            </>
+          ) : null}
 
-        <VenueFilter
-          ref={element}
-          onChange={onChange}
-          setPanelDisplay={setPanelDisplay}
-          panelDisplay={panelDisplay}
-          venueData={data}
-          {...props}
-        />
-      </div>
+          <VenueFilter
+            ref={element}
+            onChange={onChange}
+            setPanelDisplay={setPanelDisplay}
+            panelDisplay={panelDisplay}
+            venueData={data}
+            {...props}
+          />
+        </div>
+      </Submenu>
     </div>
   );
 };

@@ -12,6 +12,7 @@ function DateRangeFilter(props) {
   const element = useRef(null);
   const [to, setTo] = useState('');
   const [from, setFrom] = useState('');
+  const [flag, setFlag] = useState(false);
 
   useEffect(() => {
     const getDate = dateStr => {
@@ -89,8 +90,10 @@ function DateRangeFilter(props) {
           </li>
         </ul>
       </div>
-      <div class="select-range"><button>Select range</button></div>
-      <div className="filters-panel">
+      <div class="select-range">
+        <button onClick={() => setFlag(!flag)}>Select range</button>
+      </div>
+      <div className={`filters-panel ${flag ? 'open' : ''}`}>
         <div className="date-input-to">
           <label>From</label>
           <span className="InputFromTo">

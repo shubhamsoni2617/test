@@ -409,7 +409,7 @@
             }
         }
         .select-range{
-            display: none;
+            // display: none;
         }
         .filters-panel {
             padding: 8px;
@@ -825,11 +825,27 @@
                 padding-bottom: 55px;
             }
         }
+        button{
+          display: none;
+        }
+        h1{
+          display: none;
+        }
         @media(max-width: 767px){
+          button{
+          display: block;
+        }
+        h1{
+          display: block;
+        }
             padding: 20px 17px 15px 17px;
             margin-bottom: 0;
             .filters-panel{
                 display: none;
+                &.open{
+                  display: block;
+                  margin-top: 50px;
+                }
             }
             .filter-grid-heading {
                 ul {
