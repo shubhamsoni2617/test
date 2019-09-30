@@ -34,12 +34,46 @@ a{
 .submenu-wrap{
   position: fixed;
     top: 0;
-    width: 300px;
+    width: 80%;
     left: 100%;
     z-index: 1;
     height: 100%;
     background: #fff;
     transition: .3s left;
+    .subholder-wrapper{
+      z-index: 2;
+      color: #fff;
+      background-color: #373E45;
+      padding: 15px 17px;
+      display: flex;
+      justify-content: flex-start;
+      align-items: flex-end;
+      min-height: 118px;
+      button{
+        flex: 1 0 11%;
+        max-width: 11%;
+        padding: 0 !important;
+        img{
+          transform: unset;
+          position: unset;
+          max-width: 20px;
+          margin-right: 10px;
+          vertical-align: bottom;
+        }
+        &:after{
+          content: unset;
+        }
+      }
+      h1{
+        display: flex;
+        flex-wrap: wrap;
+        color: #fff;
+        font-weight: 500;
+        font-size: 16px;
+        flex: auto;
+        margin-bottom: 0;
+      }
+    }
     .submenu{
       display: block;
     }
@@ -49,6 +83,14 @@ a{
  &.active{
   .submenu{
     display: block;
+    padding: 15px 0;
+    li{
+      a{
+        &:after{
+          content: unset;
+        }
+      }
+    }
   }
 }
 }
