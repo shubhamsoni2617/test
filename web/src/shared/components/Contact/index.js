@@ -58,7 +58,8 @@ const Contact = ({ attachement, handleEnquiry }) => {
             ? Constants.SOURCE_FROM_WEBSITE
             : Constants.SOURCE_FROM_MOBILE_RESPONSIVE
       };
-      submitForm(data);
+      // submitForm(data);
+      console.log(data);
     } else {
       setErrMsg('Please complete all fields');
     }
@@ -207,7 +208,7 @@ const Contact = ({ attachement, handleEnquiry }) => {
             name="name"
             className="form-control"
             type="text"
-            placeholder="Full Name*"
+            placeholder={handleEnquiry ? 'Name*' : 'Full Name*'}
             value={name}
             onChange={handleChange}
             // required
@@ -218,7 +219,7 @@ const Contact = ({ attachement, handleEnquiry }) => {
             name="email"
             className="form-control"
             type="email"
-            placeholder="Email*"
+            placeholder={handleEnquiry ? 'Email Address *' : 'Email*'}
             value={email}
             onChange={handleChange}
             // required
@@ -229,7 +230,7 @@ const Contact = ({ attachement, handleEnquiry }) => {
             name="phone"
             className="form-control"
             type="text"
-            placeholder="Mobile No.*"
+            placeholder={handleEnquiry ? 'Phone Number *' : 'Mobile No.*'}
             value={phone}
             maxLength={10}
             onChange={handleChange}
