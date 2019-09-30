@@ -25,7 +25,7 @@ class AboutUs extends Component {
           this.setState({ aboutUsContent: res.data });
         }
       })
-      .catch(err => { });
+      .catch(err => {});
   };
   render() {
     const {
@@ -37,7 +37,6 @@ class AboutUs extends Component {
     } = this.state.aboutUsContent;
     return (
       <div className="about-us-wrapper">
-        <Header />
         <Banner
           title={banner_title}
           description={banner_description}
