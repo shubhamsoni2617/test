@@ -13,10 +13,12 @@ const Contact = ({ attachement, handleEnquiry }) => {
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
   const [message, setMessage] = useState('');
-  const [submitResponse, setSubmitResponse] = useState('');
+  const [submitResponse, setSubmitResponse] = useState([]);
   const [files, setFiles] = useState({});
   const [maxFileLimitMsg, setMaxFileLimitMsg] = useState('');
   const [errMsg, setErrMsg] = useState('');
+  const [loading, setLoaging] = useState(false);
+  const [error, setError] = useState(false);
 
   useEffect(() => {
     fetchEnquiry();
@@ -43,6 +45,7 @@ const Contact = ({ attachement, handleEnquiry }) => {
       phone &&
       message
     ) {
+      setLoaging(true);
       const check = Utilities.mobilecheck();
       const data = {
         category: Number(enquiry),
@@ -65,11 +68,27 @@ const Contact = ({ attachement, handleEnquiry }) => {
     ContactUsService.formSubmission(data)
       .then(res => {
         if (res && res.data) {
-          setSubmitResponse(res.data[0]);
+          setTimeout(() => {
+            setLoaging(false);
+            setSubmitResponse(res.data);
+            setEnquiry('Select an Enquiry *');
+            setName('');
+            setEmail('');
+            setPhone('');
+            setFiles({});
+            setMessage('');
+            setError(false);
+          }, 1000);
         }
       })
       .catch(err => {
-        console.log(err);
+        if (err) {
+          setError(true);
+          setTimeout(() => {
+            setSubmitResponse(err.response.data);
+            setLoaging(false);
+          }, 1000);
+        }
       });
   };
 
@@ -100,6 +119,9 @@ const Contact = ({ attachement, handleEnquiry }) => {
       }
     }
     setErrMsg('');
+    setSubmitResponse([]);
+    setLoaging(false);
+    setError(false);
   };
 
   const handleFile = e => {
@@ -143,7 +165,13 @@ const Contact = ({ attachement, handleEnquiry }) => {
   };
   return (
     <Fragment>
-      <h5 className="text-success">{submitResponse}</h5>
+      {submitResponse.map((elem, index) => {
+        return (
+          <h5 key={index} className={error ? 'text-danger' : 'text-success'}>
+            {elem}
+          </h5>
+        );
+      })}
       <form onSubmit={handleSubmit}>
         {/* <div className="form-group">
                   <select name="enquiry" className="form-control">
@@ -213,7 +241,7 @@ const Contact = ({ attachement, handleEnquiry }) => {
             name="message"
             className="form-control"
             rows="5"
-            placeholder=""
+            placeholder="Message *"
             cols="30"
             value={message}
             onChange={handleChange}
@@ -249,7 +277,12 @@ const Contact = ({ attachement, handleEnquiry }) => {
           </div>
         )}
         {errMsg ? <span className="error-msg">{errMsg}</span> : null}
-        <input className="form-control btn-info" type="submit" value="Submit" />
+        <input
+          className="form-control btn-info"
+          type="submit"
+          value={loading ? 'Submitting...' : 'Submit'}
+          disabled={loading ? true : false}
+        />
         {!handleEnquiry && (
           <span className="help-text">
             Looking to sell tickets with us? Contact us{' '}
