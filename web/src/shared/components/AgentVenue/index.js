@@ -38,6 +38,11 @@ const AgentVenue = props => {
   }
   useEffect(() => {
     fetchCountryRegion();
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: 'smooth'
+    });
     if (Utilities.mobileAndTabletcheck()) {
       setIdForScroll('mapClicked');
     }
