@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import './style.scss';
-import ContactUsService from '../../shared/services/ContactUsService';
 import FindUs from './FindUs';
 import Faqs from './FAQs';
 import CustomerEnquiry from './CustomerEnquiry';

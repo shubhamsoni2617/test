@@ -1,4 +1,4 @@
-.giftvoucherheader {
+.banner-leftalign-wrapper {
   display: block;
   width: 100%;
   background: linear-gradient(180deg, #00C9FF 0%, #007ED4 100%);
@@ -40,7 +40,7 @@
   > div{
     height: 100%;
   }
-  .giftvoucherheader-banner {
+  .banner-leftalign {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
@@ -219,37 +219,5 @@
         }
       }
     }
-    // .banner-image {
-    //   flex: 0 0 60%;
-    //   width: 60%;
-    //   margin-left: auto;
-    //   text-align: right;
-    //   margin-right: -40px;
-    //   @media(max-width: 1024px){
-    //     flex: 0 0 50%;
-    //     width: 50%;
-    //   }
-    //   @media(max-width: 767px){
-    //     flex: 0 0 auto;
-    //     position: absolute;
-    //     right: -75px;
-    //     bottom: 0;
-    //     z-index: 1;
-    //     width: 100%;
-    //     height: 100%;
-    //     display: flex;
-    //     align-items: flex-end;
-    //     justify-content: flex-end;
-    //   }
-    //   // img{
-    //   //   margin-left: auto;
-    //   //   .mobile-banner-img{
-    //   //     display: none;
-    //   //     @media(max-width: 767px){
-
-    //   //     }
-    //   //   }
-    //   // }
-    // }
   }
 }
