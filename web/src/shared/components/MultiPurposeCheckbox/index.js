@@ -316,15 +316,12 @@ export class Select extends Component {
 
     return (
       <div
-        className="select"
+        className={`select ${this.props.disabled ? `select-disabled` : ``}`}
         tabIndex="0"
         onFocus={this.onFocus}
         onBlur={this.onBlur}
         onKeyDown={this.onKeyDown}
         onClick={this.props.selectedValues(this.state.values)}
-        style={
-          this.props.disabled ? { pointerEvents: 'none', opacity: 0.5 } : null
-        }
       >
         <div className="selection" onClick={this.onClick}>
           {this.renderValues()}
