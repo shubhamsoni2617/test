@@ -28,3 +28,38 @@
 a{
   cursor: pointer;
 }
+
+
+@media (max-width: 991px){
+.submenu-wrap{
+  position: fixed;
+    top: 0;
+    width: 300px;
+    left: 100%;
+    z-index: 1;
+    height: 100%;
+    background: #fff;
+    transition: .3s left;
+    .submenu{
+      display: block;
+    }
+}
+
+.submenu-holder{
+ &.active{
+  .submenu{
+    display: block;
+  }
+}
+}
+
+.submenu{
+      position: relative;
+    }
+.submenu-wrap.active{
+    left: 0;
+}
+.submenu-wrap h1{
+  color: #000;
+}
+}

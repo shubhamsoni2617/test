@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { CSSTransitionGroup } from 'react-transition-group';
-
+import moment from 'moment';
 import './style.scss';
 import MegaMenu from '../../../shared/components/MegaMenu';
 import DropDown from '../../../shared/components/DropDown';
@@ -14,6 +14,60 @@ import logo from '../../../assets/images/logo.png';
 import { ReactComponent as AppleLogo } from '../../../assets/images/apple.svg';
 import fb from '../../../assets/images/fb.svg';
 import insta from '../../../assets/images/insta-unfill.svg';
+import Calender from '../../../shared/components/Calender';
+import DateRangeFilter from '../../../shared/components/DateRangeFilter';
+import Header from '../../../shared/components/Header';
+
+function Submenu(props) {
+  const {
+    heading,
+    buttonText,
+    data,
+    handleMouseStatus,
+    submenuClass = '',
+    backButtonRequired = true
+  } = props;
+  const [menueStatus, setMenuStatus] = useState(false);
+  return (
+    <>
+      <button type="button" onClick={() => setMenuStatus(!menueStatus)}>
+        {buttonText}
+      </button>
+      <div
+        className={`submenu-holder ${submenuClass} ${
+          menueStatus ? 'active' : ''
+        }`}
+      >
+        {backButtonRequired && (
+          <button type="button" onClick={() => setMenuStatus(false)}>
+            Back
+          </button>
+        )}
+        <h1>{heading}</h1>
+        {props.children}
+        {data && data.length && (
+          <ul className={`submenu  ${menueStatus ? 'active' : ''}`}>
+            {data.map(event => {
+              return (
+                <li key={event.id}>
+                  <Link
+                    to={`/events/search?c=${event.id}`}
+                    onClick={() => {
+                      handleMouseStatus(false);
+                    }}
+                  >
+                    {event.name}
+                  </Link>
+                </li>
+              );
+            })}
+          </ul>
+        )}
+      </div>
+    </>
+  );
+}
+
 const TopNav = props => {
   let refValue = useRef();
   const [showMegaMenu, setShowMegaMenu] = useState(false);
@@ -23,6 +77,7 @@ const TopNav = props => {
   const [byVenueEvent, setByVenueEvent] = useState([]);
   const [byGenreEvent, setByGenreEvent] = useState([]);
   const [showElementsInHeader, setShowElementsInHeader] = useState(4);
+  const [changeHeader, setChangeHeader] = useState(false);
 
   const miniCartData = [
     { id: '1', img: 'assets/images/explore.png' },
@@ -65,6 +120,11 @@ const TopNav = props => {
   const processPath = location => {
     if (location.pathname) {
       let pathArr = location.pathname.split('/');
+      if (pathArr[1] === 'contact-us' || pathArr[1] === 'apipartners') {
+        setChangeHeader(true);
+      } else {
+        setChangeHeader(false);
+      }
       if (
         pathArr.length &&
         (pathArr[1] === 'events' ||
@@ -73,8 +133,22 @@ const TopNav = props => {
       ) {
         setPathName(pathArr[1]);
         setMenuActive(true);
-      } else {
+      } else if (
+        pathArr[1] === 'contact-us' ||
+        pathArr[1] === 'about-us' ||
+        pathArr[1] === 'apipartner'
+      ) {
+        setChangeHeader(true);
+        setPathName(pathArr[1]);
+        setMenuActive(true);
+      }
+      // else {
+      //   setChangeHeader(false);
+      //   setMenuActive(true);
+      // }
+      else {
         setMenuActive(false);
+        setChangeHeader(false);
       }
       //For event header class
       if (location.pathname === '/') {
@@ -103,7 +177,17 @@ const TopNav = props => {
     }
   };
 
-  return (
+  const handleFilters = data => {
+    props.history.push(
+      `/events/search?s=${moment(data.from).format('YYYY-MM-DD')}--${moment(
+        data.to
+      ).format('YYYY-MM-DD')}`
+    );
+  };
+
+  return changeHeader ? (
+    <Header menuActive={menuActive} pathName={pathName} />
+  ) : (
     <header className={`header ${headerClass ? 'homepage' : ''}`}>
       <div className="container-fluid">
         <div className="row">
@@ -229,21 +313,43 @@ const TopNav = props => {
             </ul>
             <ul>
               <li className="has-submenu">
-                <Link to="/">Events</Link>
-                <ul className="submenu">
+                <a onClick={() => handleMouseStatus(!showMegaMenu)}>Events</a>
+                <ul className={`submenu ${showMegaMenu ? 'active' : ''}`}>
                   <li className="has-submenu">
-                    <Link to="/">Geners</Link>
+                    <Submenu
+                      heading="Genre"
+                      buttonText="By Genre"
+                      data={byGenreEvent}
+                      submenuClass="submenu-wrap"
+                    />
                   </li>
                   <li className="has-submenu">
-                    <Link to="/">calender</Link>
+                    <Submenu
+                      heading="Calendar"
+                      buttonText="By Date"
+                      submenuClass="submenu-wrap"
+                    >
+                      <DateRangeFilter
+                        filteredDateRange={{ from: null, to: null }}
+                        handleFilters={handleFilters}
+                      />
+                    </Submenu>
+                  </li>
+                  <li className="has-submenu">
+                    <Submenu
+                      heading="Venue"
+                      buttonText="By Venue"
+                      data={byVenueEvent}
+                      submenuClass="submenu-wrap"
+                    />
                   </li>
                 </ul>
               </li>
               <li>
-                <Link to="/">Attractions</Link>
+                <Link to="/attractions">Attractions</Link>
               </li>
               <li>
-                <Link to="/">Promotions</Link>
+                <Link to="/promotions">Promotions</Link>
               </li>
               <li>
                 <Link to="/">Explore</Link>
@@ -251,18 +357,74 @@ const TopNav = props => {
             </ul>
             <ul>
               <li>
-                <Link to="/">My Account</Link>
+                <Submenu buttonText="My Account" backButtonRequired={false}>
+                  <ul className="submenu">
+                    <li>
+                      <Link to="/">Subscription</Link>
+                    </li>
+                    <li>
+                      <Link to="/">Booking History</Link>
+                    </li>
+                    <li>
+                      <Link to="/">Logout</Link>
+                    </li>
+                  </ul>
+                </Submenu>
               </li>
               <li>
-                <Link to="/">My cart</Link>
+                <Submenu
+                  heading="My cart"
+                  buttonText="My cart"
+                  data={byGenreEvent}
+                  submenuClass="submenu-wrap"
+                />
               </li>
             </ul>
             <ul>
               <li className="has-submenu">
-                <Link to="/">Our Company</Link>
+                {/* <Link to="/">Our Company</Link> */}
+                <Submenu buttonText="Our Company" backButtonRequired={false}>
+                  <ul className="submenu">
+                    <li>
+                      <Link to="/">About Us</Link>
+                    </li>
+                    <li>
+                      <Link to="/">Sell with Us</Link>
+                    </li>
+                    <li>
+                      <Link to="/">Ticketing Technology</Link>
+                    </li>
+                    <li>
+                      <Link to="/apipartners">Partner with Us</Link>
+                    </li>
+                    <li>
+                      <Link to="/">Careers</Link>
+                    </li>
+                  </ul>
+                </Submenu>
               </li>
               <li className="has-submenu">
-                <Link to="/">Helpful Links</Link>
+                <Submenu buttonText="Helpful Links" backButtonRequired={false}>
+                  <ul className="submenu">
+                    <li>
+                      <Link to="/where-to-buy-tickets">
+                        Where to Buy Tickets
+                      </Link>
+                    </li>
+                    <li>
+                      <Link to="/agents">Locate an Agent</Link>
+                    </li>
+                    <li>
+                      <Link to="/venues">Locate a Venue</Link>
+                    </li>
+                    <li>
+                      <Link to="/">Blog</Link>
+                    </li>
+                    <li>
+                      <Link to="/">Media</Link>
+                    </li>
+                  </ul>
+                </Submenu>
               </li>
               <li className="has-submenu">
                 <Link to="/">For Business</Link>

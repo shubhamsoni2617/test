@@ -30,7 +30,7 @@ const Description = ({ content }) => {
               }}
             ></p>
           </div>
-          <div className="about-desc-img">
+          <div class="about-desc-img">
             <img src={history} alt="our-history" />
           </div>
         </section>

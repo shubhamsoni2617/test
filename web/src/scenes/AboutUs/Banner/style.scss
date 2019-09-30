@@ -2,14 +2,39 @@
     .banner-leftalign-wrapper{
     background: none;
     background-image: url('../../../assets/images/about-us-banner.png');
+    background-repeat: no-repeat;
+    background-size: cover;
     &:after{
         content: none;
     }
     .banner-desc{
+        @media(max-width: 768px){
+            flex: 0 0 100%;
+            width: 100%;
+            max-width: 100%;
+        }
+        .banner-title{
+            & > p:first-child{
+                font-size: 40px;
+                line-height: 49px;
+            }
+        }
         p{
             font-size: 16px;
             line-height: 26px;
+            @media(max-width: 768px){
+                font-size: 14px;
+                line-height: 22px;
+            }
             &:first-child{
+                margin-bottom: 16px;
+                font-size: 16px;
+                line-height: 26px;
+                font-weight: 400;
+                font-family: "Rubik", sans-serif;
+                @media(max-width: 768px){
+                    margin-bottom: 10px;
+                }
                 &:after{
                     content: none;
                 }
@@ -24,6 +49,12 @@
             max-width: 100%;
             width: auto;
             display: inline-block;
+            margin-top: 13px;
+            transition: 0.5s background-color;
+            @media(max-width: 768px){
+                line-height: 30px;
+                height: 30px;
+            }
             span{
                 padding: 0px;
                 &:after{

@@ -1,11 +1,10 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
-import './style.scss';
 import logo from '../../../assets/images/logo.png';
+import './style.scss';
 
-const Header = props => {
-  const [menuActive, setMenuActive] = useState(false);
-  const [pathName, setPathName] = useState('events');
+const Header = ({ menuActive, pathName }) => {
+  console.log(menuActive, pathName);
   return (
     <header className="small-header">
       <div className="container-fluid">
@@ -22,19 +21,15 @@ const Header = props => {
           <nav className="bottom-header">
             <div className="bottom-header-left">
               <ul>
-                <li
-                  className={
-                    menuActive && pathName === 'attractions' ? 'active' : ''
-                  }
-                >
-                  <Link to="/attractions">Get Started</Link>
+                <li>
+                  <a>Get Started</a>
                 </li>
                 <li
                   className={
-                    menuActive && pathName === 'promotions' ? 'active' : ''
+                    menuActive && pathName === 'about-us' ? 'active' : ''
                   }
                 >
-                  <Link to="/promotions">About Us</Link>
+                  <Link to="/about-us">About Us</Link>
                 </li>
                 <li>
                   <a>Media</a>
@@ -45,8 +40,12 @@ const Header = props => {
                 <li>
                   <a>Careers</a>
                 </li>
-                <li>
-                  <a>Contact Us</a>
+                <li
+                  className={
+                    menuActive && pathName === 'contact-us' ? 'active' : ''
+                  }
+                >
+                  <Link to="/contact-us">Contact Us</Link>
                 </li>
               </ul>
             </div>
