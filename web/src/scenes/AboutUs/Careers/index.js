@@ -3,48 +3,45 @@ import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import Carrier from '../../../../src/assets/images/carrier.png';
+import suiteCase from '../../../assets/images/suitcase.svg';
+import './style.scss';
 
-const Careers = ({}) => {
+const Careers = ({ }) => {
   const sliderArr = [
     {
       id: 1,
-      name: 'random name',
+      name: 'John Deo',
       image: Carrier,
       des:
-        'Auto-merging web/src/shared/components/Header/index.js\
-        CONFLICT (content): Merge conflict in web/src/shared/components/Header/index.js\
-        Auto-merging web/src/scenes/AboutUs/index.js\
-        Automatic merge failed; fix conflicts and then commit the result.'
+        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas varius tortor nibh, \
+      sit amet tempor nibh finibus et. Aenean eu enim justo. Vestibulum aliquam hendrerit molestie. \
+      Mauris malesuada nisi sit amet accumsan tincidunt. Maecenas tincidunt.'
     },
     {
       id: 2,
-      name: 'random name',
+      name: 'John Deo',
       image: Carrier,
       des:
-        'Auto-merging web/src/shared/components/Header/index.js\
-        CONFLICT (content): Merge conflict in web/src/shared/components/Header/index.js\
-        Auto-merging web/src/scenes/AboutUs/index.js\
-        Automatic merge failed; fix conflicts and then commit the result.'
+        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas varius tortor nibh, \
+      sit amet tempor nibh finibus et. Aenean eu enim justo. Vestibulum aliquam hendrerit molestie. \
+      Mauris malesuada nisi sit amet accumsan tincidunt. Maecenas tincidunt.'
     },
     {
       id: 3,
-      name: 'random name',
+      name: 'John Deo',
       image: Carrier,
       des:
-        'Auto-merging web/src/shared/components/Header/index.js\
-        CONFLICT (content): Merge conflict in web/src/shared/components/Header/index.js\
-        Auto-merging web/src/scenes/AboutUs/index.js\
-        Automatic merge failed; fix conflicts and then commit the result.'
+        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas varius tortor nibh, \
+      sit amet tempor nibh finibus et. Aenean eu enim justo. Vestibulum aliquam hendrerit molestie. \
+      Mauris malesuada nisi sit amet accumsan tincidunt. Maecenas tincidunt.'
     },
     {
       id: 4,
-      name: 'random name',
+      name: 'John Deo',
       image: Carrier,
-      des:
-        'Auto-merging web/src/shared/components/Header/index.js\
-        CONFLICT (content): Merge conflict in web/src/shared/components/Header/index.js\
-        Auto-merging web/src/scenes/AboutUs/index.js\
-        Automatic merge failed; fix conflicts and then commit the result.'
+      des: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas varius tortor nibh, \
+      sit amet tempor nibh finibus et. Aenean eu enim justo. Vestibulum aliquam hendrerit molestie. \
+      Mauris malesuada nisi sit amet accumsan tincidunt. Maecenas tincidunt.'
     }
   ];
   const settings = {
@@ -78,6 +75,7 @@ const Careers = ({}) => {
                 return (
                   <li key={elem.id}>
                     <img src={elem.image} alt="Carrier" />
+                    <h5>{elem.name}</h5>
                     {elem.des}
                   </li>
                 );
@@ -85,7 +83,7 @@ const Careers = ({}) => {
             </Slider>
           </ul>
           <div className="job-openings">
-            <a href="">
+            <a><img src={suiteCase} alt="job-opnings" />
               <span>See Job Openings</span>
             </a>
           </div>
