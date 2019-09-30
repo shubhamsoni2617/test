@@ -76,6 +76,7 @@ const TopNav = props => {
   const [byVenueEvent, setByVenueEvent] = useState([]);
   const [byGenreEvent, setByGenreEvent] = useState([]);
   const [showElementsInHeader, setShowElementsInHeader] = useState(4);
+  const [changeHeader, setChangeHeader] = useState(false);
 
   const miniCartData = [
     { id: '1', img: 'assets/images/explore.png' },
@@ -118,6 +119,11 @@ const TopNav = props => {
   const processPath = location => {
     if (location.pathname) {
       let pathArr = location.pathname.split('/');
+      if (pathArr[1] === 'contact-us' || pathArr[1] === 'apipartners') {
+        setChangeHeader(true);
+      } else {
+        setChangeHeader(false);
+      }
       if (
         pathArr.length &&
         (pathArr[1] === 'events' ||
