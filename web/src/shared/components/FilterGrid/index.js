@@ -3,55 +3,8 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { CSSTransitionGroup } from 'react-transition-group';
 import VenueFilter from '../VenueFilter';
-function Submenu(props) {
-  const {
-    heading,
-    buttonText,
-    data,
-    handleMouseStatus,
-    submenuClass = '',
-    backButtonRequired = true
-  } = props;
-  const [menueStatus, setMenuStatus] = useState(false);
-  return (
-    <>
-      <button type="button" onClick={() => setMenuStatus(!menueStatus)}>
-        {buttonText}
-      </button>
-      <div
-        className={`submenu-holder ${submenuClass} ${
-          menueStatus ? 'active' : ''
-        }`}
-      >
-        {backButtonRequired && (
-          <button type="button" onClick={() => setMenuStatus(false)}>
-            Back
-          </button>
-        )}
-        <h1>{heading}</h1>
-        {props.children}
-        {data && data.length && (
-          <ul className={`submenu  ${menueStatus ? 'active' : ''}`}>
-            {data.map(event => {
-              return (
-                <li key={event.id}>
-                  <Link
-                    to={`/events/search?c=${event.id}`}
-                    onClick={() => {
-                      handleMouseStatus(false);
-                    }}
-                  >
-                    {event.name}
-                  </Link>
-                </li>
-              );
-            })}
-          </ul>
-        )}
-      </div>
-    </>
-  );
-}
+import Submenu from '../Submenu';
+
 function ShowMoreButton(props) {
   return (
     <a
