@@ -1,24 +1,32 @@
-import React, { Fragment } from "react";
-import { Link } from "react-router-dom";
-import "./style.scss";
-import FaqContent from "../FaqContent";
+import React, { Fragment } from 'react';
+import { Link } from 'react-router-dom';
+import './style.scss';
+import FaqContent from '../FaqContent';
+import Utilities from '../../../shared/utilities';
 
 const FaqCategory = props => {
   return (
     <Fragment>
-      {/* {!props.urlExist ? <h2>Please, select appropriate category</h2> : null} */}
       <ul className="faq-listing">
-        <li><span className="trending-qus">Trending Question</span></li>
         {props.categories.map(category => {
           return (
             <li key={category.id}>
               <Link
                 className={
                   props.categoryId === category.id && props.urlExist
-                    ? "nav-item nav-link active"
-                    : "nav-item nav-link"
+                    ? 'nav-item nav-link active'
+                    : 'nav-item nav-link'
                 }
-                to={`/faq/${category.name.replace(/\s/g, "-").toLowerCase()}/0`}
+                to={`/faq/${category.name.replace(/\s/g, '-').toLowerCase()}`}
+                onClick={() =>
+                  !Utilities.mobileAndTabletcheck()
+                    ? window.scrollTo({
+                        top: 400,
+                        left: 0,
+                        behavior: 'smooth'
+                      })
+                    : null
+                }
               >
                 {category.name}
               </Link>
