@@ -185,8 +185,6 @@ const TopNav = props => {
     );
   };
 
-  console.log(menuActive, 'menuActive');
-
   return changeHeader ? (
     <Header menuActive={menuActive} pathName={pathName} />
   ) : (

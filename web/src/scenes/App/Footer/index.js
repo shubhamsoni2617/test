@@ -30,7 +30,7 @@ const Footer = () => {
                   <a>Ticketing Technology</a>
                 </li>
                 <li>
-                  <Link to="/apipartners">Partner with Us</Link>
+                  <Link to="/apipartner">Partner with Us</Link>
                 </li>
                 <li>
                   <a>Careers</a>
