@@ -5,15 +5,16 @@ function Submenu(props) {
     heading,
     buttonText,
     data,
-    handleMouseStatus,
     submenuClass = '',
-    backButtonRequired = true
+    backButtonRequired = true,
+    link = '',
+    closeSubmenu
   } = props;
   const [menueStatus, setMenuStatus] = useState(false);
   return (
     <>
       <button
-        className="backbutton"
+        className={`backbutton ${menueStatus ? 'active' : ''}`}
         type="button"
         onClick={() => setMenuStatus(!menueStatus)}
       >
@@ -39,9 +40,10 @@ function Submenu(props) {
               return (
                 <li key={event.id}>
                   <Link
-                    to={`/events/search?c=${event.id}`}
+                    to={`${link}${event.id}`}
                     onClick={() => {
-                      handleMouseStatus(false);
+                      setMenuStatus(false);
+                      closeSubmenu(false);
                     }}
                   >
                     {event.name}

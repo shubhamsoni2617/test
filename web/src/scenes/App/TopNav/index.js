@@ -239,21 +239,29 @@ const TopNav = props => {
             </ul>
             <ul>
               <li className="has-submenu">
-                <a onClick={() => handleMouseStatus(!showMegaMenu)}>Events</a>
+                <a
+                  className={`${showMegaMenu ? 'active' : ''}`}
+                  onClick={() => handleMouseStatus(!showMegaMenu)}
+                >
+                  Events
+                </a>
                 <ul className={`submenu ${showMegaMenu ? 'active' : ''}`}>
                   <li className="has-submenu">
                     <Submenu
                       heading="Genre"
                       buttonText="By Genre"
                       data={byGenreEvent}
-                      submenuClass="submenu-wrap"
+                      submenuClass="genre submenu-wrap"
+                      link="/events/search?c="
+                      closeSubmenu={handleNavigationClose}
                     />
                   </li>
                   <li className="has-submenu">
                     <Submenu
                       heading="Calendar"
                       buttonText="By Date"
-                      submenuClass="submenu-wrap"
+                      submenuClass="calendar submenu-wrap"
+                      closeSubmenu={handleNavigationClose}
                     >
                       <DateRangeFilter
                         filteredDateRange={{ from: null, to: null }}
@@ -266,7 +274,9 @@ const TopNav = props => {
                       heading="Venue"
                       buttonText="By Venue"
                       data={byVenueEvent}
-                      submenuClass="submenu-wrap"
+                      submenuClass="venue submenu-wrap"
+                      link="/events/search?v="
+                      closeSubmenu={handleNavigationClose}
                     />
                   </li>
                 </ul>

@@ -155,6 +155,7 @@ function DateRangeFilter(props) {
             className="cal-apply-btn active"
           >
             <img src={tickWhite} className="active" alt="tick" />
+            <span>Search</span>
           </a>
         )}
       </div>
