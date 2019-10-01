@@ -8,6 +8,9 @@
   left: 0px;
   right: 0px;
   bottom: auto;
+  @media(max-width: 768px){
+    padding: 0px 20px 5px 10px;
+  }
 }
 .suggestions {
   border: 1px solid #999;

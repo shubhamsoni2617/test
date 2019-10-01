@@ -94,14 +94,12 @@ const Faq = props => {
             categories={faqCategoryData}
             faqContentData={faqContentData}
           />
+          <span className="faq-help-text">Still need help? <Link to="/contact-us">Contact Us</Link> Here</span>
         </div>
       </div>
-      <h3>
-        Still need help? <Link to="/contact-us">Contact Us</Link> Here
-      </h3>
     </div>
   ) : (
-    <PageNotFound />
-  );
+        <PageNotFound />
+      );
 };
 export default Faq;
