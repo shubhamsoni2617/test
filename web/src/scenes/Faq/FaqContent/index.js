@@ -32,13 +32,17 @@ class Content extends React.Component {
     }
     return (
       <div className="sidebar-accordion">
-        <Accordion allowZeroExpanded>
+        <Accordion
+          allowZeroExpanded
+          preExpanded={[this.props.location.search.split('=')[1]]}
+        >
           {filteredData.map((content, i) => {
             return (
               <div ref={content.id} key={content.question + i}>
                 <AccordianSectionQA
                   title={content.question}
                   desc={content.answer}
+                  uuid={content.id}
                 />
               </div>
             );

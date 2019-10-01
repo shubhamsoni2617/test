@@ -9,9 +9,9 @@ import {
 
 import 'react-accessible-accordion/dist/fancy-example.css';
 
-const AccordianSectionQA = ({ title, desc }) => {
+const AccordianSectionQA = ({ title, desc, uuid }) => {
   return (
-    <AccordionItem>
+    <AccordionItem uuid={uuid}>
       <AccordionItemHeading>
         <AccordionItemButton>{title}</AccordionItemButton>
       </AccordionItemHeading>
