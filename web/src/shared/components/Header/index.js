@@ -26,7 +26,7 @@ const Header = ({ menuActive, pathName }) => {
                 </li>
                 <li
                   className={
-                    menuActive && pathName === 'about-us' ? 'active' : ''
+                    menuActive && pathName === 'about-us' ? 'active-link' : ''
                   }
                 >
                   <Link to="/about-us">About Us</Link>
@@ -42,7 +42,7 @@ const Header = ({ menuActive, pathName }) => {
                 </li>
                 <li
                   className={
-                    menuActive && pathName === 'contact-us' ? 'active' : ''
+                    menuActive && pathName === 'contact-us' ? 'active-link' : ''
                   }
                 >
                   <Link to="/contact-us">Contact Us</Link>
