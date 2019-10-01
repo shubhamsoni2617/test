@@ -17,7 +17,7 @@ const Contact = ({ attachement, handleEnquiry }) => {
   const [files, setFiles] = useState({});
   const [maxFileLimitMsg, setMaxFileLimitMsg] = useState('');
   const [errMsg, setErrMsg] = useState('');
-  const [loading, setLoaging] = useState(false);
+  const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
 
   useEffect(() => {
@@ -45,7 +45,7 @@ const Contact = ({ attachement, handleEnquiry }) => {
       phone &&
       message
     ) {
-      setLoaging(true);
+      setLoading(true);
       const check = Utilities.mobilecheck();
       const data = {
         category: Number(enquiry),
@@ -69,7 +69,7 @@ const Contact = ({ attachement, handleEnquiry }) => {
       .then(res => {
         if (res && res.data) {
           setTimeout(() => {
-            setLoaging(false);
+            setLoading(false);
             setSubmitResponse(res.data);
             setEnquiry('Select an Enquiry *');
             handleEnquiry && handleEnquiry('Select an Enquiry *');
@@ -87,7 +87,7 @@ const Contact = ({ attachement, handleEnquiry }) => {
           setError(true);
           setTimeout(() => {
             setSubmitResponse(err.response.data);
-            setLoaging(false);
+            setLoading(false);
           }, 1000);
         }
       });
@@ -131,7 +131,7 @@ const Contact = ({ attachement, handleEnquiry }) => {
     }
     setErrMsg('');
     setSubmitResponse([]);
-    setLoaging(false);
+    setLoading(false);
     setError(false);
   };
 
@@ -184,11 +184,6 @@ const Contact = ({ attachement, handleEnquiry }) => {
         );
       })}
       <form onSubmit={handleSubmit}>
-        {/* <div className="form-group">
-                  <select name="enquiry" className="form-control">
-                    <option>Request Type*</option>
-                  </select>
-                </div> */}
         <div
           className={
             errMsg && enquiry === 'Select an Enquiry *'
@@ -215,6 +210,9 @@ const Contact = ({ attachement, handleEnquiry }) => {
               })}
           </select>
         </div>
+        {errMsg && enquiry === 'Select an Enquiry *' ? (
+          <span className="error-msg">Please select enquiry</span>
+        ) : null}
         <div className={errMsg && !name ? 'form-group err' : 'form-group'}>
           <input
             name="name"
@@ -226,6 +224,11 @@ const Contact = ({ attachement, handleEnquiry }) => {
             // required
           />
         </div>
+        {errMsg && !name ? (
+          <span className="error-msg">
+            Please enter {handleEnquiry ? 'name' : 'full name'}      
+          </span>
+        ) : null}
         <div className={errMsg && !email ? 'form-group err' : 'form-group'}>
           <input
             name="email"
@@ -237,6 +240,11 @@ const Contact = ({ attachement, handleEnquiry }) => {
             // required
           />
         </div>
+        {errMsg && !email ? (
+          <span className="error-msg">
+            Please enter {handleEnquiry ? 'email address' : 'email'}      
+          </span>
+        ) : null}
         <div className={errMsg && !phone ? 'form-group err' : 'form-group'}>
           <input
             name="phone"
@@ -249,6 +257,11 @@ const Contact = ({ attachement, handleEnquiry }) => {
             // required
           />
         </div>
+        {errMsg && !phone ? (
+          <span className="error-msg">
+            Please enter {handleEnquiry ? 'phone' : 'mobile'} no.   
+          </span>
+        ) : null}
         <div className={errMsg && !message ? 'form-group err' : 'form-group'}>
           <textarea
             name="message"
@@ -261,6 +274,9 @@ const Contact = ({ attachement, handleEnquiry }) => {
             // required
           />
         </div>
+        {errMsg && !message ? (
+          <span className="error-msg">Please enter some messages</span>
+        ) : null}
         {attachement && (
           <div className="form-group attach-doc">
             <div className="row">
@@ -289,7 +305,7 @@ const Contact = ({ attachement, handleEnquiry }) => {
             </div>
           </div>
         )}
-        {errMsg ? <span className="error-msg">{errMsg}</span> : null}
+        {/* {errMsg ? <span className="error-msg">{errMsg}</span> : null} */}
         <input
           className="form-control btn-info"
           type="submit"
