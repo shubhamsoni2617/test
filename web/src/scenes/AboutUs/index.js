@@ -17,7 +17,11 @@ class AboutUs extends Component {
   }
   componentDidMount() {
     this.fetchAboutUsContent();
+    this.scrollToTop();
   }
+  scrollToTop = () => {
+    window.scrollTo(0, 0);
+  };
   fetchAboutUsContent = () => {
     AboutUsService.getAboutUsContent()
       .then(res => {
