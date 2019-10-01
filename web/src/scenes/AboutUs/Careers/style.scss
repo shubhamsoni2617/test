@@ -1,6 +1,9 @@
 .carrier-wrapper{
     background-color: rgba(240,249,255,1);
     padding: 56px 0px 76px;
+    @media(max-width: 767px){
+        padding: 30px 0px 30px;
+    }
     h3{
         text-align: center;
     }
@@ -8,6 +11,9 @@
         margin-top: 89px;
         display: flex;
         flex-wrap: wrap;
+        @media(max-width: 767px){
+            margin-top: 45px;
+        }
         ul{
             background-color: #fff;
             text-align: center;
@@ -17,17 +23,33 @@
             padding: 0px 62px 60px 76px;
             position: relative;
             margin-top: -33px;
+            @media(max-width: 768px){
+                padding: 0px 30px 20px 30px;
+            }
+            @media(max-width: 767px){
+                padding: 0px 30px 20px 30px;
+                margin-bottom: 10px;
+                flex: 0 0 100%;
+                width: 100%;
+            }
             li{
                 color: #343434;	
                 font-family: 'Rubik', sans-serif;
                 font-size: 16px;
                 line-height: 26px;
-                img{                        
+                @media(max-width: 768px){
+                    font-size: 14px;
+                    line-height: 24px;
+                }
+                img{
                     margin: 0 auto 15px;
                 }
                 h5{
                     padding-bottom: 26px;
                     margin: 0px;
+                    @media(max-width: 768px){
+                        padding-bottom: 20px;
+                    }
                 }
             }
             .slick-slider{
@@ -72,6 +94,12 @@
                 background-repeat: no-repeat;
                 height: 60px;
                 width: 75px;
+                background-size: 100%;
+                @media(max-width: 768px){
+                    top: 17px;
+                    height: auto;
+                    width: 50px;
+                }
             }
         }
         .job-openings {
@@ -79,9 +107,27 @@
             padding: 55px 15px 37px;
             flex: 0 0 222px;
             width: 222px;
+            @media(max-width: 767px){
+                flex: 0 0 100%;
+                width: 100%;
+                align-items: center;
+                display: flex;
+                justify-content: center;
+                padding: 8px 10px 8px;
+            }
             a{
                 display: block;
                 text-align: center;
+                @media(max-width: 767px){
+                    display: flex;
+                    height: auto;
+                    align-items: center;
+                }
+                img{
+                    @media(max-width: 767px){
+                        max-width: 20px;
+                    }
+                }
                 span{
                     width: 100%;
                     display: block;
@@ -92,6 +138,11 @@
                     line-height: 22px;
                     font-family: 'Montserrat', sans-serif;
                     font-weight: 600;
+                    @media(max-width: 767px){
+                        padding-top: 0px;
+                        padding-left: 10px;
+                        font-size: 14px;
+                    }
                 }
             }
         }
