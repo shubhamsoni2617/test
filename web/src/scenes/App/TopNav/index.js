@@ -120,11 +120,6 @@ const TopNav = props => {
   const processPath = location => {
     if (location.pathname) {
       let pathArr = location.pathname.split('/');
-      if (pathArr[1] === 'contact-us' || pathArr[1] === 'apipartners') {
-        setChangeHeader(true);
-      } else {
-        setChangeHeader(false);
-      }
       if (
         pathArr.length &&
         (pathArr[1] === 'events' ||
@@ -136,7 +131,7 @@ const TopNav = props => {
       } else if (
         pathArr[1] === 'contact-us' ||
         pathArr[1] === 'about-us' ||
-        pathArr[1] === 'apipartner'
+        pathArr[1] === 'careers'
       ) {
         setChangeHeader(true);
         setPathName(pathArr[1]);
