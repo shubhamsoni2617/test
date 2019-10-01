@@ -93,9 +93,9 @@ const AutoSuggest = props => {
         </ul>
       )}
       {filteredSuggestions.length === 0 &&
-      userInput.length > 3 &&
+      userInput.length >= 3 &&
       showSuggestions ? (
-        <span className="no-suggestions">you are on your own</span>
+        <span className="no-suggestions">No results Found</span>
       ) : null}
     </Fragment>
   );
