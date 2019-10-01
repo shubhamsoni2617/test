@@ -1,21 +1,22 @@
-import React, { Component } from "react";
-import Filters from "../../shared/components/Filters";
-import SortBy from "../../shared/components/SortBy";
-import Card from "../../shared/components/Card";
-import EventsService from "../../shared/services/EventsService";
-import HomeService from "../../shared/services/HomeService";
-import DownArrowBlue from "../../assets/images/down-arrow-blue.svg";
-import noEvent from "../../assets/images/no-event.svg";
-import Breadcrub from "../../scenes/App/Breadcrumb";
-import ListView from "../../assets/images/list-view.svg";
-import GridView from "../../assets/images/grid-view.svg";
-import loaderImage from "../../assets/images/loader.svg";
-import EventBreadcrumbImage from "../../assets/images/events.png";
-import EventBreadcrumbImageBlur from "../../assets/images/events-blur.png";
-import filterIcon from "../../assets/images/events/filter.svg";
-import sortbyIcon from "../../assets/images/events/sortby.svg";
-import ShimmerEffect from "../../shared/components/ShimmerEffect";
-import "./style.scss";
+import React, { Component } from 'react';
+import Filters from '../../shared/components/Filters';
+import SortBy from '../../shared/components/SortBy';
+import Card from '../../shared/components/Card';
+import EventsService from '../../shared/services/EventsService';
+import HomeService from '../../shared/services/HomeService';
+import DownArrowBlue from '../../assets/images/down-arrow-blue.svg';
+import noEvent from '../../assets/images/no-event.svg';
+import Breadcrub from '../../scenes/App/Breadcrumb';
+import ListView from '../../assets/images/list-view.svg';
+import GridView from '../../assets/images/grid-view.svg';
+import loaderImage from '../../assets/images/loader.svg';
+import EventBreadcrumbImage from '../../assets/images/events.png';
+import EventBreadcrumbImageBlur from '../../assets/images/events-blur.png';
+import filterIcon from '../../assets/images/events/filter.svg';
+import sortbyIcon from '../../assets/images/events/sortby.svg';
+import ShimmerEffect from '../../shared/components/ShimmerEffect';
+import utilities from '../../shared/utilities';
+import './style.scss';
 
 export default class Events extends Component {
   constructor(props) {
@@ -31,29 +32,30 @@ export default class Events extends Component {
       filteredTags: [],
       filteredPriceRange: {},
       filteredDateRange: {},
-      filteredSortType: "date",
-      filteredSortOrder: "",
+      filteredSortType: 'date',
+      filteredSortOrder: '',
       eventsData: [],
       genre: [],
       venues: [],
       filterConfig: null,
       first: 0,
       limit: 9,
-      viewType: "grid",
-      viewTypeClass: "events-section",
+      viewType: 'grid',
+      viewTypeClass: 'events-section',
       totalRecords: 0,
       loader: false,
-      queryParams: {}
+      queryParams: {},
+      filterFlag: false
     };
 
     this.breadCrumbData = {
       page_banner: EventBreadcrumbImage,
       page_banner_blur: EventBreadcrumbImageBlur,
-      page: "Events",
+      page: 'Events',
       count: 0,
       breadcrumb_slug: [
-        { path: "/", title: "Home" },
-        { path: "/events", title: "Events" }
+        { path: '/', title: 'Home' },
+        { path: '/events', title: 'Events' }
       ]
     };
 
@@ -61,46 +63,46 @@ export default class Events extends Component {
       isSortBy: true,
       sortList: [
         {
-          sortType: "title",
-          sortOrder: "ASC",
-          sortTitle: "Events - A to Z",
-          sortTag: "Events - A to Z"
+          sortType: 'title',
+          sortOrder: 'ASC',
+          sortTitle: 'Events - A to Z',
+          sortTag: 'Events - A to Z'
         },
         {
-          sortType: "title",
-          sortOrder: "DESC",
-          sortTitle: "Events - Z to A",
-          sortTag: "Events - Z to A"
+          sortType: 'title',
+          sortOrder: 'DESC',
+          sortTitle: 'Events - Z to A',
+          sortTag: 'Events - Z to A'
         },
         {
-          sortType: "price",
-          sortOrder: "ASC",
-          sortTitle: "Price Low to High",
-          sortTag: "Price Low to High"
+          sortType: 'price',
+          sortOrder: 'ASC',
+          sortTitle: 'Price Low to High',
+          sortTag: 'Price Low to High'
         },
         {
-          sortType: "price",
-          sortOrder: "DESC",
-          sortTitle: "Price High to Low",
-          sortTag: "Price High to Low"
+          sortType: 'price',
+          sortOrder: 'DESC',
+          sortTitle: 'Price High to Low',
+          sortTag: 'Price High to Low'
         },
         {
-          sortType: "venue",
-          sortOrder: "ASC",
-          sortTitle: "Venue - A to Z",
-          sortTag: "Venue - A to Z"
+          sortType: 'venue',
+          sortOrder: 'ASC',
+          sortTitle: 'Venue - A to Z',
+          sortTag: 'Venue - A to Z'
         },
         {
-          sortType: "venue",
-          sortOrder: "DESC",
-          sortTitle: "Venue - Z to A",
-          sortTag: "Venue - Z to A"
+          sortType: 'venue',
+          sortOrder: 'DESC',
+          sortTitle: 'Venue - Z to A',
+          sortTag: 'Venue - Z to A'
         },
         {
-          sortType: "date",
-          sortOrder: "",
-          sortTitle: "Date",
-          sortTag: "Date"
+          sortType: 'date',
+          sortOrder: '',
+          sortTitle: 'Date',
+          sortTag: 'Date'
         }
       ]
     };
@@ -157,7 +159,7 @@ export default class Events extends Component {
   getVenue = () => {
     const first = 0;
     const limit = 100;
-    const search = "";
+    const search = '';
     HomeService.getVenues(first, limit, search)
       .then(res => {
         this.setState({ venues: res.data.data });
@@ -193,43 +195,57 @@ export default class Events extends Component {
     let params = this.getFilters();
     params.first = this.state.first + 9;
     this.loadEvents(params, true);
-    this.setState({ first: params.first, limit: params.limit, shimmer: true });
+    this.setState({
+      first: params.first,
+      limit: params.limit,
+      shimmer: true
+    });
   };
 
   handleListGridView = getViewType => {
     let viewTypeClass = [...this.state.viewTypeClass];
-    if (getViewType === "grid") {
-      viewTypeClass = "events-section";
+    if (getViewType === 'grid') {
+      viewTypeClass = 'events-section';
     } else {
-      viewTypeClass = "events-section list-view";
+      viewTypeClass = 'events-section list-view';
     }
-    this.setState({ viewTypeClass: viewTypeClass, viewType: getViewType });
+    this.setState({
+      viewTypeClass: viewTypeClass,
+      viewType: getViewType
+    });
   };
 
   getInitialFilters = (reset = false) => {
     const query = new URLSearchParams(this.props.location.search);
-    let genreId = query.get("c") ? query.get("c") : "";
-    let venueId = query.get("v") ? query.get("v") : "";
-    let dateRange = query.get("s") ? query.get("s") : "";
-    if (dateRange !== "" || !dateRange) {
-      dateRange = dateRange.split("--");
+    let genreId = query.get('c') ? query.get('c') : '';
+    let venueId = query.get('v') ? query.get('v') : '';
+    let dateRange = query.get('s') ? query.get('s') : '';
+    if (dateRange !== '' || !dateRange) {
+      dateRange = dateRange.split('--');
       dateRange = { from: dateRange[0], to: dateRange[1] };
     }
     const payload = {
       first: 0,
       limit: 9,
-      genre: reset ? "" : genreId,
-      venue: reset ? "" : venueId,
-      start_date: reset ? "" : dateRange.from,
-      end_date: reset ? "" : dateRange.to
+      genre: reset ? '' : genreId,
+      venue: reset ? '' : venueId,
+      start_date: reset ? '' : dateRange.from,
+      end_date: reset ? '' : dateRange.to
     };
     return payload;
   };
 
   setInitialFilters({ genre, venue, start_date, end_date }) {
-    const dateRange = { from: start_date || "", to: end_date || "" };
+    const dateRange = {
+      from: start_date || '',
+      to: end_date || ''
+    };
     this.setState({
-      queryParams: { genreId: genre, venueId: venue, dateRange: dateRange },
+      queryParams: {
+        genreId: genre,
+        venueId: venue,
+        dateRange: dateRange
+      },
       filteredGnere: genre ? [genre] : [],
       filteredVenues: venue ? [venue] : [],
       filteredDateRange: dateRange
@@ -272,20 +288,24 @@ export default class Events extends Component {
   };
 
   handleFilters = searchType => {
-    this.setState(
-      {
+    let obj = {
+      ...searchType
+    };
+    if (!utilities.mobileAndTabletcheck()) {
+      obj = {
         first: 0,
         limit: 9,
-        totalRecords: 0,
         loader: true,
-        ...searchType
-      },
-      () => {
-        setTimeout(() => {
+        totalRecords: 0
+      };
+    }
+    this.setState(obj, () => {
+      setTimeout(() => {
+        if (!utilities.mobileAndTabletcheck()) {
           this.loadEvents(this.getFilters(), false);
-        }, 200);
-      }
-    );
+        }
+      }, 200);
+    });
   };
 
   resetFilters = () => {
@@ -298,8 +318,8 @@ export default class Events extends Component {
         filteredTags: [],
         filteredPriceRange: {},
         filteredDateRange: {},
-        filteredSortType: "date",
-        filteredSortOrder: "",
+        filteredSortType: 'date',
+        filteredSortOrder: '',
         isdataAvailable: false,
         eventsData: [],
         totalRecords: 0
@@ -314,6 +334,27 @@ export default class Events extends Component {
 
   redirectToTarget = alias => {
     this.props.history.push(`/events/` + alias);
+  };
+
+  toggleFilters = () => {
+    this.setState({ filterFlag: !this.state.filterFlag });
+  };
+
+  callAPI = () => {
+    this.setState(
+      {
+        first: 0,
+        limit: 9,
+        totalRecords: 0,
+        loader: true,
+        filterFlag: false
+      },
+      () => {
+        setTimeout(() => {
+          this.loadEvents(this.getFilters(), false);
+        }, 200);
+      }
+    );
   };
 
   render() {
@@ -343,7 +384,7 @@ export default class Events extends Component {
         <section className="">
           <div className="container-fluid">
             <div className="wrapper-events-listing">
-              <div className="filters">
+              <div className={`filters ${this.state.filterFlag ? 'open' : ''}`}>
                 {shimmerFilter && (
                   <ShimmerEffect
                     propCls="shm_col-xs-6 col-md-12"
@@ -371,7 +412,21 @@ export default class Events extends Component {
                       filteredVenues={filteredVenues}
                       filteredTags={filteredTags}
                       filteredDateRange={filteredDateRange}
-                    />
+                    >
+                      <div className="fixed-buttons">
+                        <a
+                          onClick={() => {
+                            this.toggleFilters();
+                          }}
+                          className="close"
+                        >
+                          Close
+                        </a>
+                        <a onClick={() => this.callAPI()} className="apply">
+                          Apply
+                        </a>
+                      </div>
+                    </Filters>
                   )}
               </div>
 
@@ -383,19 +438,19 @@ export default class Events extends Component {
                     handleFilters={this.handleFilters}
                   />
                   <ul className="sortby-view">
-                    <li className={viewType === "grid" ? "active" : ""}>
+                    <li className={viewType === 'grid' ? 'active' : ''}>
                       <span title="Grid View">
                         <img
-                          onClick={() => this.handleListGridView("grid")}
+                          onClick={() => this.handleListGridView('grid')}
                           src={GridView}
                           alt="Grid"
                         />
                       </span>
                     </li>
-                    <li className={viewType === "list" ? "active" : ""}>
+                    <li className={viewType === 'list' ? 'active' : ''}>
                       <span title="List View">
                         <img
-                          onClick={() => this.handleListGridView("list")}
+                          onClick={() => this.handleListGridView('list')}
                           src={ListView}
                           alt="List"
                         />
@@ -418,7 +473,13 @@ export default class Events extends Component {
                           key={event.id}
                           onClick={() => this.redirectToTarget(event.alias)}
                         >
-                          <Card cardData={event} cardClass={{cardBlock: 'event-block', cardButton: 'btn buy-btn'}} />
+                          <Card
+                            cardData={event}
+                            cardClass={{
+                              cardBlock: 'event-block',
+                              cardButton: 'btn buy-btn'
+                            }}
+                          />
                         </div>
                       );
                     })}
@@ -438,7 +499,9 @@ export default class Events extends Component {
                       className="btn-link load-more-btn"
                       target=""
                     >
-                      <span>Load More ({totalRecords - eventsData.length})</span>
+                      <span>
+                        Load More ({totalRecords - eventsData.length})
+                      </span>
                       <img src={DownArrowBlue} alt="down arrow blue" />
                     </button>
                   </div>
@@ -454,18 +517,14 @@ export default class Events extends Component {
                 )}
               </div>
               <div className="fixed-buttons-events">
-                  <a href="" className="sortby">sort by
-                  <img
-                        src={sortbyIcon}
-                        alt="icon"
-                      />
-                  </a>
-                  <a href="" className="filter">filter
-                  <img
-                        src={filterIcon}
-                        alt="icon"
-                      />
-                  </a>
+                <a className="sortby">
+                  sort by
+                  <img src={sortbyIcon} alt="icon" />
+                </a>
+                <a className="filter" onClick={this.toggleFilters}>
+                  filter
+                  <img src={filterIcon} alt="icon" />
+                </a>
               </div>
             </div>
           </div>

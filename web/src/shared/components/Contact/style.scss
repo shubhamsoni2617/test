@@ -130,6 +130,9 @@
                     background-position: 97%;
                     background-size: 12px auto;
                 }
+                &:last-of-type{
+                    margin-bottom: 0px;
+                }
             }
             .customer-enquiry {
                 padding: 0px;
