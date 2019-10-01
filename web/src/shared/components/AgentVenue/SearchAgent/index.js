@@ -202,7 +202,7 @@ const SearchAgent = props => {
             type="TILE"
           />
         )}
-        {!venue && isFile ? (
+        {!venue && isFile && initialItems ? (
           <h6 className="festive-hour">
             <a href={countryFileUrl} download target="_blank">
               Festive Period Operating Hours{' '}
@@ -259,6 +259,7 @@ const SearchAgent = props => {
                       popUpDetail={popUpDetail}
                       venue={venue}
                       currentlyShowingData={popUpDetail.currentlyShowingData}
+                      closePopup={closePopup}
                     />
                   )}
                 </CSSTransitionGroup>
