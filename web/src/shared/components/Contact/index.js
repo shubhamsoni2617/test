@@ -58,8 +58,7 @@ const Contact = ({ attachement, handleEnquiry }) => {
             ? Constants.SOURCE_FROM_WEBSITE
             : Constants.SOURCE_FROM_MOBILE_RESPONSIVE
       };
-      // submitForm(data);
-      console.log(data);
+      submitForm(data);
     } else {
       setErrMsg('Please complete all fields');
     }
@@ -107,13 +106,23 @@ const Contact = ({ attachement, handleEnquiry }) => {
           handleEnquiry && handleEnquiry(value);
           break;
         case 'name':
-          setName(value);
+          let val = value.trim();
+          if (val.length > 0) {
+            setName(value);
+          } else {
+            setName('');
+          }
           break;
         case 'email':
           setEmail(value);
           break;
         case 'message':
-          setMessage(value);
+          let msg = value.trim();
+          if (msg.length > 0) {
+            setMessage(value);
+          } else {
+            setMessage('');
+          }
           break;
         default:
           return;
