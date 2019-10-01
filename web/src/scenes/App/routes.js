@@ -111,7 +111,7 @@ const routes = [
     exact: true
   },
   {
-    path: '/apipartner',
+    path: '/apipartners',
     component: ApiPartner,
     exact: true
   },
