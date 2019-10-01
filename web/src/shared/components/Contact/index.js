@@ -72,6 +72,7 @@ const Contact = ({ attachement, handleEnquiry }) => {
             setLoaging(false);
             setSubmitResponse(res.data);
             setEnquiry('Select an Enquiry *');
+            handleEnquiry && handleEnquiry('Select an Enquiry *');
             setName('');
             setEmail('');
             setPhone('');
