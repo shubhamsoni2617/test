@@ -96,11 +96,6 @@ const routes = [
     exact: true
   },
   {
-    path: '/faq',
-    component: Faq,
-    exact: true
-  },
-  {
     path: '/careers',
     component: Careers,
     exact: true

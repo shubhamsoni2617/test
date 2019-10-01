@@ -89,8 +89,13 @@
         @media(max-width: 991px){
           background-color: #F7FAFC;
         }
-        &:before{
+      }
+      &:hover{
+         &:before{
           transform: translateY(-50%) rotate(45deg);
+          @media(max-width: 767px){
+            transform: translateY(-50%) rotate(-45deg);
+          }
         }
       }
       &.active{
@@ -106,6 +111,7 @@
       right: 0px;
       padding: 35px 20px;
       height: 100%;
+      display: none;
       @media(max-width: 1600px) and (min-width: 1280px){
         width: 78%;
         flex: 0 0 78%;
@@ -120,10 +126,8 @@
       }
       @media(max-width: 991px){
         position: relative;
-        padding: 15px 0px 0px;
         width: 100%;
         flex: 0 0 100%;
-        border-bottom: 15px solid #f7fafc;
       }
       h2{
         font-size: 22px;
@@ -250,6 +254,23 @@
           content: none;
         }
       }
-    }  
+    }
+    &.toggleContentActive{
+      .faq-ans-wrapper{
+        display: block;
+        padding: 15px 0px 0px;
+        border-bottom: 15px solid #f7fafc;
+      }
+      .nav-link{
+        &.active{
+          &:before{
+            transform: translateY(-50%) rotate(45deg);
+            @media(max-width: 767px){
+              transform: translateY(-50%) rotate(45deg);
+            }
+          }
+        }
+      }
+    }
   }
 }
