@@ -1,5 +1,14 @@
 .small-header {
     background-color: #0077C8;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    bottom: auto;
+    z-index: 2;
+    & + div{
+        padding-top: 76px;
+    }
     .top-header {
         margin-right: 40px;
         display: flex;
@@ -30,7 +39,7 @@
                     font-weight: 400;
                     &:before{
                         left: 0;
-                        bottom: 0px;
+                        bottom: -2px;
                         border-bottom: 2px solid #ffffff;
                         width: 0%;
                         position: absolute;

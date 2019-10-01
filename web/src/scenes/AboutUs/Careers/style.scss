@@ -1,6 +1,9 @@
 .carrier-wrapper{
     background-color: rgba(240,249,255,1);
     padding: 56px 0px 76px;
+    @media(max-width: 768px){
+        padding: 36px 0px 56px;
+    }
     @media(max-width: 767px){
         padding: 30px 0px 30px;
     }
@@ -23,14 +26,19 @@
             padding: 0px 62px 60px 76px;
             position: relative;
             margin-top: -33px;
-            @media(max-width: 768px){
-                padding: 0px 30px 20px 30px;
+            @media(max-width: 991px){
+                padding: 0px 40px 20px 40px;
+                flex: 0 0 calc(100% - 206px);
+                width: calc(100% - 206px);
             }
             @media(max-width: 767px){
-                padding: 0px 30px 20px 30px;
+                padding: 0px 50px 20px 50px;
                 margin-bottom: 10px;
                 flex: 0 0 100%;
                 width: 100%;
+            }
+            @media(max-width: 600px){
+                padding: 0px 35px 20px 35px;
             }
             li{
                 color: #343434;	
@@ -65,11 +73,29 @@
                 .slick-prev{
                     background-image: url('../../../assets/images/prev-arrow.svg');
                     background-color: transparent;
+                    @media(max-width: 991px){
+                        left: -45px;
+                    }
+                    @media(max-width: 767px){
+                        left: -40px;
+                    }
+                    @media(max-width: 600px){
+                        left: -30px;
+                    }
                 }
                 .slick-next{
                     background-image: url('../../../assets/images/next-arrow.svg');
                     background-color: transparent;
                     background-position: 0px 30px;
+                    @media(max-width: 991px){
+                        right: -45px;
+                    }
+                    @media(max-width: 767px){
+                        right: -40px;
+                    }
+                    @media(max-width: 600px){
+                        right: -30px;
+                    }
                 }
             }
             &:before{
@@ -95,10 +121,16 @@
                 height: 60px;
                 width: 75px;
                 background-size: 100%;
-                @media(max-width: 768px){
+                @media(max-width: 991px){
                     top: 17px;
-                    height: auto;
+                    height: 50px;
                     width: 50px;
+                }
+                @media(max-width: 767px){
+                    left: 20px;
+                    top: 20px;
+                    height: 50px;
+                    width: 35px;
                 }
             }
         }
@@ -107,6 +139,10 @@
             padding: 55px 15px 37px;
             flex: 0 0 222px;
             width: 222px;
+            @media(max-width: 991px){
+                flex: 0 0 190px;
+                width: 190px;
+            }
             @media(max-width: 767px){
                 flex: 0 0 100%;
                 width: 100%;
@@ -118,10 +154,14 @@
             a{
                 display: block;
                 text-align: center;
-                @media(max-width: 767px){
+                @media(max-width: 991px){
                     display: flex;
                     height: auto;
                     align-items: center;
+                    flex-direction: column;
+                }
+                @media(max-width: 767px){
+                    flex-direction: unset;
                 }
                 img{
                     @media(max-width: 767px){
@@ -138,6 +178,10 @@
                     line-height: 22px;
                     font-family: 'Montserrat', sans-serif;
                     font-weight: 600;
+                    @media(max-width: 991px){                        
+                        font-size: 16px;
+                        line-height: 19px;
+                    }
                     @media(max-width: 767px){
                         padding-top: 0px;
                         padding-left: 10px;
