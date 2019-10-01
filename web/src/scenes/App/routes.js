@@ -13,6 +13,8 @@ import GiftVouchers from '../GiftVouchers';
 import ContactUs from '../ContactUs';
 import Faq from '../Faq';
 import Careers from '../Careers';
+import AboutUs from '../AboutUs';
+import ApiPartnersService from '../../shared/services/ApiPartnersService';
 import ApiPartner from '../ApiPartner';
 
 const routes = [
@@ -101,6 +103,11 @@ const routes = [
   {
     path: '/careers',
     component: Careers,
+    exact: true
+  },
+  {
+    path: '/about-us',
+    component: AboutUs,
     exact: true
   },
   {

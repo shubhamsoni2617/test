@@ -4,9 +4,9 @@ import apibanner from '../../../assets/images/api-partners-banner.png';
 
 const ApiBanner = ({ title, description }) => {
   return (
-    <div className="apipartnerheader">
+    <div className="banner-leftalign-wrapper">
       <div className="container">
-        <div className="apipartnerheader-banner">
+        <div className="banner-leftalign">
           <div className="banner-desc">
             <p>{title}</p>
             <p dangerouslySetInnerHTML={{ __html: description }}></p>

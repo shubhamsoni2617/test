@@ -21,19 +21,19 @@ const Footer = () => {
               <h3>Our Company</h3>
               <ul>
                 <li>
-                  <Link to="/">About Us</Link>
+                  <Link to="/about-us">About Us</Link>
                 </li>
                 <li>
-                  <Link to="/">Sell with Us</Link>
+                  <a>Sell with Us</a>
                 </li>
                 <li>
-                  <Link to="/">Ticketing Technology</Link>
+                  <a>Ticketing Technology</a>
                 </li>
                 <li>
                   <Link to="/apipartners">Partner with Us</Link>
                 </li>
                 <li>
-                  <Link to="/">Careers</Link>
+                  <a>Careers</a>
                 </li>
               </ul>
             </div>
@@ -51,15 +51,15 @@ const Footer = () => {
                     <Link to="/venues">Locate a Venue</Link>
                   </li>
                   <li>
-                    <Link to="/">Blog</Link>
+                    <a>Blog</a>
                   </li>
                   <li>
-                    <Link to="/">Media</Link>
+                    <a>Media</a>
                   </li>
                 </ul>
                 <ul>
                   <li>
-                    <Link to="/">My Account</Link>
+                    <a>My Account</a>
                   </li>
                   <li>
                     <Link to="/gift-vouchers">Gift Vouchers</Link>
@@ -68,7 +68,7 @@ const Footer = () => {
                     <Link to="/faq/about">FAQ</Link>
                   </li>
                   <li>
-                    <Link to="/">Cancellations/Refunds</Link>
+                    <a>Cancellations/Refunds</a>
                   </li>
                   <li>
                     <Link to="/contact-us">Contact Us</Link>
@@ -79,22 +79,22 @@ const Footer = () => {
             <div className="footer-links">
               <h3>SISTIC on Mobile</h3>
               <div className="download-option">
-                <Link to="/">
+                <a>
                   <img src={appleImage} className="ios" alt="" />
                   <span>
                     Available on the
                     <br />
                     <strong>App Store</strong>
                   </span>
-                </Link>
-                <Link to="/">
+                </a>
+                <a>
                   <img src={androidImage} className="android" alt="" />
                   <span>
                     Get it on
                     <br />
                     <strong>Play Store</strong>
                   </span>
-                </Link>
+                </a>
               </div>
             </div>
             <div className="footer-links stay-connected-wrapper">
@@ -109,9 +109,9 @@ const Footer = () => {
                     aria-describedby="basic-addon1"
                   />
                   <div className="input-group-prepend">
-                    <Link to="/" className="input-group-text" id="basic-addon1">
+                    <a className="input-group-text" id="basic-addon1">
                       <img src={sendImage} className="img-fluid" alt="send" />
-                    </Link>
+                    </a>
                   </div>
                 </div>
               </div>

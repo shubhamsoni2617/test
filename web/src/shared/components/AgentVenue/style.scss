@@ -1,6 +1,7 @@
 .agents-wrapper{
     .banner-wrapper{
         margin-bottom: 33px;
+        z-index: 3;
         @media(max-width: 991px){
             margin-bottom: 70px;
             margin-top: -60px;

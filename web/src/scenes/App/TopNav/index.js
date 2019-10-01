@@ -17,6 +17,7 @@ import insta from '../../../assets/images/insta-unfill.svg';
 import Calender from '../../../shared/components/Calender';
 import DateRangeFilter from '../../../shared/components/DateRangeFilter';
 import Submenu from '../../../shared/components/Submenu';
+import Header from '../../../shared/components/Header';
 
 const TopNav = props => {
   let refValue = useRef();
@@ -27,6 +28,7 @@ const TopNav = props => {
   const [byVenueEvent, setByVenueEvent] = useState([]);
   const [byGenreEvent, setByGenreEvent] = useState([]);
   const [showElementsInHeader, setShowElementsInHeader] = useState(4);
+  const [changeHeader, setChangeHeader] = useState(false);
 
   const miniCartData = [
     { id: '1', img: 'assets/images/explore.png' },
@@ -77,8 +79,22 @@ const TopNav = props => {
       ) {
         setPathName(pathArr[1]);
         setMenuActive(true);
-      } else {
+      } else if (
+        pathArr[1] === 'contact-us' ||
+        pathArr[1] === 'about-us' ||
+        pathArr[1] === 'careers'
+      ) {
+        setChangeHeader(true);
+        setPathName(pathArr[1]);
+        setMenuActive(true);
+      }
+      // else {
+      //   setChangeHeader(false);
+      //   setMenuActive(true);
+      // }
+      else {
         setMenuActive(false);
+        setChangeHeader(false);
       }
       //For event header class
       if (location.pathname === '/') {
@@ -117,7 +133,9 @@ const TopNav = props => {
     );
   };
 
-  return (
+  return changeHeader ? (
+    <Header menuActive={menuActive} pathName={pathName} />
+  ) : (
     <header className={`header ${headerClass ? 'homepage' : ''}`}>
       <div className="container-fluid">
         <div className="row">

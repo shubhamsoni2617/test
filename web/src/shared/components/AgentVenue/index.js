@@ -38,6 +38,11 @@ const AgentVenue = props => {
   }
   useEffect(() => {
     fetchCountryRegion();
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: 'smooth'
+    });
     if (Utilities.mobileAndTabletcheck()) {
       setIdForScroll('mapClicked');
     }
@@ -85,13 +90,14 @@ const AgentVenue = props => {
 
   const handleAttractionValue = attractionValue => {
     setVenueId(null);
-    props.history.push('/venues');
+    if (venue) props.history.push('/venues');
     setAttractionValue(attractionValue);
   };
 
   const handleEventValue = eventValue => {
     setVenueId(null);
-    props.history.push('/venues');
+    if (venue) props.history.push('/venues');
+
     setEventValue(eventValue);
   };
 
@@ -162,6 +168,7 @@ const AgentVenue = props => {
   const countryRegionHandler = countryRegion => {
     let fromIndex = countryRegion.findIndex(el => el.name === 'Singapore');
     let element = countryRegion[fromIndex];
+    element.regions.unshift({ id: '0', name: 'All' });
     countryRegion.splice(fromIndex, 1);
     countryRegion.unshift(element);
     setCountryNRegion(countryRegion);
@@ -190,7 +197,7 @@ const AgentVenue = props => {
     setCountryNRegionSorted(null);
     setCountryName(countryName);
     setOnSubmitFetch(onSubmitFetch + 1);
-    props.history.push('/venues');
+    if (venue) props.history.push('/venues');
     festiveHourFileHandler();
   };
   return (
@@ -201,8 +208,6 @@ const AgentVenue = props => {
         regionIdHandler={regionIdHandler}
         countryId={countryId}
         onSubmit={onSubmit}
-        venueId={venueId}
-        regionId={regionId}
       />
 
       <div className="find-agent-wrapper">
