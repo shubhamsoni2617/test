@@ -45,7 +45,8 @@ export default class Events extends Component {
       totalRecords: 0,
       loader: false,
       queryParams: {},
-      filterFlag: false
+      filterFlag: false,
+      sortByFlag: false
     };
 
     this.breadCrumbData = {
@@ -340,6 +341,10 @@ export default class Events extends Component {
     this.setState({ filterFlag: !this.state.filterFlag });
   };
 
+  toggleSortBy = () => {
+    this.setState({ sortByFlag: !this.state.sortByFlag });
+  };
+
   callAPI = () => {
     this.setState(
       {
@@ -347,7 +352,8 @@ export default class Events extends Component {
         limit: 9,
         totalRecords: 0,
         loader: true,
-        filterFlag: false
+        filterFlag: false,
+        sortByFlag: false
       },
       () => {
         setTimeout(() => {
@@ -436,7 +442,24 @@ export default class Events extends Component {
                     sortList={this.tabsSort.sortList}
                     handleListGridView={this.handleListGridView}
                     handleFilters={this.handleFilters}
-                  />
+                    sortByFlag={this.state.sortByFlag}
+                    filteredSortType={this.state.filteredSortType}
+                    filteredSortOrder={this.state.filteredSortOrder}
+                  >
+                    <div className="fixed-buttons">
+                      <a
+                        onClick={() => {
+                          this.toggleSortBy();
+                        }}
+                        className="close"
+                      >
+                        Close
+                      </a>
+                      <a onClick={() => this.callAPI()} className="apply">
+                        Apply
+                      </a>
+                    </div>
+                  </SortBy>
                   <ul className="sortby-view">
                     <li className={viewType === 'grid' ? 'active' : ''}>
                       <span title="Grid View">
@@ -517,7 +540,7 @@ export default class Events extends Component {
                 )}
               </div>
               <div className="fixed-buttons-events">
-                <a className="sortby">
+                <a className="sortby" onClick={this.toggleSortBy}>
                   sort by
                   <img src={sortbyIcon} alt="icon" />
                 </a>
