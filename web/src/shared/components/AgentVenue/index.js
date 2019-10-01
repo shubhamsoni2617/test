@@ -191,6 +191,10 @@ const AgentVenue = props => {
     setMapInMobile(toggler);
   };
 
+  const toggleFindInMapHandler = () => {
+    setToggleFindInMap(true);
+  };
+
   const onSubmit = () => {
     setVenueId(null);
     let countryName = countryNRegion.find(el => el.id === countryId).name;
@@ -226,6 +230,7 @@ const AgentVenue = props => {
               handleEventValue={handleEventValue}
               handleMapFilter={handleMapFilter}
               attractionValue={attractionValue}
+              toggleFindInMapHandler={toggleFindInMapHandler}
               eventValue={eventValue}
               searchText={searchText}
               {...props}

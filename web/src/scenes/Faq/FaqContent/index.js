@@ -1,6 +1,8 @@
 import React, { Fragment } from 'react';
-import AccordionSection from '../../../shared/components/AccordionSection';
+import AccordianSectionQA from './AccordianSectionQA';
 import { Accordion } from 'react-accessible-accordion';
+import './style.scss';
+
 class Content extends React.Component {
   Scrolldown() {
     let hash = this.props.location.search.split('=')[1];
@@ -29,18 +31,20 @@ class Content extends React.Component {
       return <span className="no-faq-found">No related FAQ's found</span>;
     }
     return (
-      <Accordion allowZeroExpanded>
-        {filteredData.map((content, i) => {
-          return (
-            <div ref={content.id} key={content.question + i}>
-              <AccordionSection
-                title={content.question}
-                desc={content.answer}
-              />
-            </div>
-          );
-        })}
-      </Accordion>
+      <div className="sidebar-accordion">
+        <Accordion allowZeroExpanded>
+          {filteredData.map((content, i) => {
+            return (
+              <div ref={content.id} key={content.question + i}>
+                <AccordianSectionQA
+                  title={content.question}
+                  desc={content.answer}
+                />
+              </div>
+            );
+          })}
+        </Accordion>
+      </div>
     );
   }
 }
