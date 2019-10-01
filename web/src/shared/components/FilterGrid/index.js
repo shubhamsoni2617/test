@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { CSSTransitionGroup } from 'react-transition-group';
 import VenueFilter from '../VenueFilter';
 import Submenu from '../Submenu';
+import Utilities from '../../utilities';
 
 function ShowMoreButton(props) {
   return (
@@ -30,6 +31,9 @@ const FilterGrid = props => {
   useEffect(() => {
     let data = [...props.data];
     setData(data);
+    if (Utilities.mobileAndTabletcheck()) {
+      setLimit(data.length);
+    }
   }, [props.data]);
 
   const selectAll = status => {
@@ -126,7 +130,7 @@ const FilterGrid = props => {
                 })}
             </CSSTransitionGroup>
           </ul>
-          {props.limit !== data.length ? (
+          {props.limit !== data.length && !Utilities.mobileAndTabletcheck() ? (
             <>
               {data.length > limit && (
                 <ShowMoreButton

@@ -66,6 +66,7 @@
         @media (max-width: 767px) {
             margin-left: 0;
             width: 100%;
+            z-index: 3;
         }
         @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
             margin-left: 20px;
@@ -109,7 +110,26 @@
                             &:hover{
                                 border-bottom: 1px solid #0098FF;
                             }
+
                         }
+                    }
+                    .event-block{
+                      .event-img{
+                        padding: 15px 0 0 0;
+                      }
+                      .event-details{
+                        flex-direction: column;
+                        align-items: flex-start;
+                        padding: 15px 20px 8px 15px;
+                        .price-event{
+                          align-items: flex-start;
+                          .price{
+                            span{
+                              text-align: left;
+                            }
+                          }
+                        }
+                      }
                     }
                 }
             }
@@ -127,7 +147,7 @@
             width: 100%;
             display: flex;
             justify-content: space-between;
-            z-index: 1;
+            z-index: 3;
             a{
                 flex: 1 0 50%;
                 max-width: 50%;
@@ -142,6 +162,7 @@
                 position: relative;
                 text-transform: capitalize;
                 justify-content: center;
+                margin-left: auto;
                 img{
                     width: 15px;
                     margin-left: 8px;
@@ -231,3 +252,4 @@
     margin-top: 70px;
     z-index: 5;
 }
+

@@ -73,7 +73,7 @@ function DateRangeFilter(props) {
   const modifiers = { start: from, end: to };
 
   return (
-    <div className="filter-grid">
+    <div className="filter-grid date-range">
       <div className="filter-grid-heading">
         <h3>Date Range</h3>
         <ul>
@@ -90,7 +90,7 @@ function DateRangeFilter(props) {
           </li>
         </ul>
       </div>
-      <div class="select-range">
+      <div className={`select-range ${flag ? 'active' : ''}`}>
         <button onClick={() => setFlag(!flag)}>Select range</button>
       </div>
       <div className={`filters-panel ${flag ? 'open' : ''}`}>

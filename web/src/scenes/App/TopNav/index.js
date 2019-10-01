@@ -90,10 +90,12 @@ const TopNav = props => {
   };
   const handleNavigationOpen = () => {
     refValue.classList.add('active');
+    document.body.classList.add('body-overlay');
   };
 
   const handleNavigationClose = () => {
     refValue.classList.remove('active');
+    document.body.classList.remove('body-overlay');
   };
 
   const handleMouseStatus = status => {
@@ -282,10 +284,14 @@ const TopNav = props => {
                 </ul>
               </li>
               <li>
-                <Link to="/attractions">Attractions</Link>
+                <Link to="/attractions" onClick={() => handleNavigationClose()}>
+                  Attractions
+                </Link>
               </li>
               <li>
-                <Link to="/promotions">Promotions</Link>
+                <Link to="/promotions" onClick={() => handleNavigationClose()}>
+                  Promotions
+                </Link>
               </li>
               <li>
                 <Link to="/">Explore</Link>
