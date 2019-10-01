@@ -39,7 +39,7 @@ const Contact = ({ attachement, handleEnquiry }) => {
   const handleSubmit = e => {
     e.preventDefault();
     if (
-      enquiry !== 'Select an Enquiry *' &&
+      (enquiry !== 'Select an Enquiry *' || enquiry !== 'Request type *') &&
       name &&
       email &&
       phone &&
@@ -72,6 +72,7 @@ const Contact = ({ attachement, handleEnquiry }) => {
             setLoaging(false);
             setSubmitResponse(res.data);
             setEnquiry('Select an Enquiry *');
+            handleEnquiry && handleEnquiry('Select an Enquiry *');
             setName('');
             setEmail('');
             setPhone('');
@@ -106,13 +107,23 @@ const Contact = ({ attachement, handleEnquiry }) => {
           handleEnquiry && handleEnquiry(value);
           break;
         case 'name':
-          setName(value);
+          let val = value.trim();
+          if (val.length > 0) {
+            setName(value);
+          } else {
+            setName('');
+          }
           break;
         case 'email':
           setEmail(value);
           break;
         case 'message':
-          setMessage(value);
+          let msg = value.trim();
+          if (msg.length > 0) {
+            setMessage(value);
+          } else {
+            setMessage('');
+          }
           break;
         default:
           return;
@@ -191,7 +202,9 @@ const Contact = ({ attachement, handleEnquiry }) => {
             onChange={handleChange}
             value={enquiry}
           >
-            <option>Select an Enquiry *</option>
+            <option>
+              {handleEnquiry ? 'Select an Enquiry *' : 'Request type *'}
+            </option>
             {enquiryCategory &&
               enquiryCategory.map(enq => {
                 return (
@@ -207,7 +220,7 @@ const Contact = ({ attachement, handleEnquiry }) => {
             name="name"
             className="form-control"
             type="text"
-            placeholder="Full Name*"
+            placeholder={handleEnquiry ? 'Name*' : 'Full Name*'}
             value={name}
             onChange={handleChange}
             // required
@@ -218,7 +231,7 @@ const Contact = ({ attachement, handleEnquiry }) => {
             name="email"
             className="form-control"
             type="email"
-            placeholder="Email*"
+            placeholder={handleEnquiry ? 'Email Address *' : 'Email*'}
             value={email}
             onChange={handleChange}
             // required
@@ -229,7 +242,7 @@ const Contact = ({ attachement, handleEnquiry }) => {
             name="phone"
             className="form-control"
             type="text"
-            placeholder="Mobile No.*"
+            placeholder={handleEnquiry ? 'Phone Number *' : 'Mobile No.*'}
             value={phone}
             maxLength={10}
             onChange={handleChange}

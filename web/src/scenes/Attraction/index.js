@@ -1,17 +1,19 @@
-import React, { Component } from "react";
-import Filters from "../../shared/components/Filters";
-import SortBy from "../../shared/components/SortBy";
-import Card from "../../shared/components/Card";
-import AttractionsService from "../../shared/services/AttractionsService";
-import noEvent from "../../assets/images/no-event.svg";
-import Breadcrub from "../../scenes/App/Breadcrumb";
-import loaderImage from "../../assets/images/loader.svg";
-import AttractionBreadcrumbImage from "../../assets/images/attractionbanner.png";
-import ShimmerEffect from "../../shared/components/ShimmerEffect";
+import React, { Component } from 'react';
+import Filters from '../../shared/components/Filters';
+import SortBy from '../../shared/components/SortBy';
+import Card from '../../shared/components/Card';
+import AttractionsService from '../../shared/services/AttractionsService';
+import noEvent from '../../assets/images/no-event.svg';
+import Breadcrub from '../../scenes/App/Breadcrumb';
+import loaderImage from '../../assets/images/loader.svg';
+import AttractionBreadcrumbImage from '../../assets/images/attractionbanner.png';
+import ShimmerEffect from '../../shared/components/ShimmerEffect';
 // import LoadMoreButton from "../../shared/components/LoadMoreButton";
-import DownArrowBlue from "../../assets/images/down-arrow-blue.svg";
-import "./style.scss";
-
+import DownArrowBlue from '../../assets/images/down-arrow-blue.svg';
+import './style.scss';
+import filterIcon from '../../assets/images/events/filter.svg';
+import sortbyIcon from '../../assets/images/events/sortby.svg';
+import Utilities from '../../shared/utilities';
 export default class Attractions extends Component {
   constructor(props) {
     super(props);
@@ -22,28 +24,26 @@ export default class Attractions extends Component {
       attractionCategories: [],
       filteredSearch: [],
       filteredCategory: [],
-      filteredSortType: "title",
-      filteredSortOrder: "ASC",
+      filteredSortType: 'title',
+      filteredSortOrder: 'ASC',
       eventsData: [],
       attractionsData: [],
       first: 0,
       limit: 9,
-      viewType: "grid",
-      viewTypeClass: "events-section",
+      viewType: 'grid',
+      viewTypeClass: 'events-section',
       totalRecords: 0,
       loader: false,
       queryParams: {},
-      count: 0
+      count: 0,
+      filterFlag: false
     };
 
     this.breadCrumbData = {
       page_banner: AttractionBreadcrumbImage,
-      page: "Attractions",
+      page: 'Attractions',
       count: 0,
-      breadcrumb_slug: [
-        { path: "/", title: "Home" },
-        { title: "Attractions" }
-      ]
+      breadcrumb_slug: [{ path: '/', title: 'Home' }, { title: 'Attractions' }]
     };
 
     this.tabsSort = {
@@ -51,16 +51,16 @@ export default class Attractions extends Component {
       defaultSortType: 'A to Z',
       sortList: [
         {
-          sortType: "title",
-          sortOrder: "ASC",
-          sortTitle: "A to Z",
-          sortTag: "Attractions - A to Z"
+          sortType: 'title',
+          sortOrder: 'ASC',
+          sortTitle: 'A to Z',
+          sortTag: 'Attractions - A to Z'
         },
         {
-          sortType: "title",
-          sortOrder: "DESC",
-          sortTitle: "Z to A",
-          sortTag: "Attractions - Z to A"
+          sortType: 'title',
+          sortOrder: 'DESC',
+          sortTitle: 'Z to A',
+          sortTag: 'Attractions - Z to A'
         }
       ]
     };
@@ -76,8 +76,8 @@ export default class Attractions extends Component {
       {
         filteredCategory: [],
         filteredSearch: '',
-        filteredSortType: "title",
-        filteredSortOrder: "ASC",
+        filteredSortType: 'title',
+        filteredSortOrder: 'ASC',
         isdataAvailable: false,
         eventsData: [],
         attractionsData: [],
@@ -101,26 +101,30 @@ export default class Attractions extends Component {
     return payload;
   };
 
-  setInitialFilters({ first, limit }) {
-
-  }
+  setInitialFilters({ first, limit }) {}
 
   getAttractionsCategory = () => {
     AttractionsService.getAttractionsCategory()
       .then(res => {
-        this.setState({ attractionCategories: res.data.data, count: this.calculateTotalAttractions(res.data.data) });
+        this.setState({
+          attractionCategories: res.data.data,
+          count: this.calculateTotalAttractions(res.data.data)
+        });
       })
       .catch(err => {
         console.log(err);
       });
-  }
+  };
 
   loadAttractions = (params, isLoadMore) => {
     // this.setState({shimmer: true});
     AttractionsService.getData(params)
       .then(res => {
         if (!isLoadMore) this.setState({ attractionsData: [] });
-        const attractionsData = [...this.state.attractionsData, ...res.data.data];
+        const attractionsData = [
+          ...this.state.attractionsData,
+          ...res.data.data
+        ];
         const isdataAvailable = attractionsData.length ? false : true;
         setTimeout(() => {
           this.setState({
@@ -131,7 +135,6 @@ export default class Attractions extends Component {
             isdataAvailable: isdataAvailable
           });
         }, 1000);
-
       })
       .catch(err => {
         console.log(err);
@@ -143,7 +146,11 @@ export default class Attractions extends Component {
     params.first = this.state.first + 9;
 
     this.loadAttractions(params, true);
-    this.setState({ first: params.first, limit: params.limit, shimmer: true });
+    this.setState({
+      first: params.first,
+      limit: params.limit,
+      shimmer: true
+    });
   };
 
   getFilters = () => {
@@ -169,15 +176,53 @@ export default class Attractions extends Component {
     return params;
   };
 
-  handleFilters = (searchType) => {
-    console.log('searchType', searchType)
+  handleFilters = searchType => {
+    let obj = {
+      ...searchType
+    };
+    if (!Utilities.mobileAndTabletcheck()) {
+      obj = {
+        first: 0,
+        limit: 9,
+        loader: true,
+        totalRecords: 0
+      };
+    }
+    this.setState(obj, () => {
+      setTimeout(() => {
+        if (!Utilities.mobileAndTabletcheck()) {
+          this.loadAttractions(this.getFilters(), false);
+        }
+      }, 200);
+    });
+  };
+
+  redirectToTarget = alias => {
+    this.props.history.push(`/events/` + alias);
+  };
+
+  calculateTotalAttractions = data => {
+    let count =
+      data &&
+      data
+        .filter(item => Number(item.attractions))
+        .map(item => +Number(item.attractions))
+        .reduce((sum, current) => sum + current);
+    return count;
+  };
+
+  toggleFilters = () => {
+    this.setState({ filterFlag: !this.state.filterFlag });
+  };
+
+  callAPI = () => {
     this.setState(
       {
         first: 0,
         limit: 9,
         totalRecords: 0,
         loader: true,
-        ...searchType
+        filterFlag: false
       },
       () => {
         setTimeout(() => {
@@ -186,17 +231,6 @@ export default class Attractions extends Component {
       }
     );
   };
-
-  redirectToTarget = alias => {
-    this.props.history.push(`/events/` + alias);
-  };
-
-  calculateTotalAttractions = (data) => {
-    let count = data && data.filter((item) => Number(item.attractions))
-      .map((item) => +Number(item.attractions))
-      .reduce((sum, current) => sum + current);
-    return count;
-  }
 
   render() {
     const {
@@ -219,26 +253,27 @@ export default class Attractions extends Component {
         <Breadcrub breadCrumbData={this.breadCrumbData} />
         <div className="container-fluid">
           <div className="wrapper-events-listing attraction-wrapper-listing">
-            <div className="filters">
-              {shimmer && <ShimmerEffect
-                propCls="shm_col-xs-6 col-md-12"
-                height={150}
-                count={1}
-                type="FILTER"
-              />}
-              {!shimmer && attractionCategories.length > 0 &&
-                (
-                  <Filters
-                    searchPlaceholder="Search in attractions"
-                    queryParams={queryParams}
-                    resetFilters={this.resetFilters}
-                    handleFilters={this.handleFilters}
-                    hideCalendar={true}
-                    attractionCategories={attractionCategories}
-                    filteredSearch={filteredSearch}
-                    filteredCategory={filteredCategory}
-                  />
-                )}
+            <div className={`filters ${this.state.filterFlag ? 'open' : ''}`}>
+              {shimmer && (
+                <ShimmerEffect
+                  propCls="shm_col-xs-6 col-md-12"
+                  height={150}
+                  count={1}
+                  type="FILTER"
+                />
+              )}
+              {!shimmer && attractionCategories.length > 0 && (
+                <Filters
+                  searchPlaceholder="Search in attractions"
+                  queryParams={queryParams}
+                  resetFilters={this.resetFilters}
+                  handleFilters={this.handleFilters}
+                  hideCalendar={true}
+                  attractionCategories={attractionCategories}
+                  filteredSearch={filteredSearch}
+                  filteredCategory={filteredCategory}
+                />
+              )}
             </div>
 
             <div className="events-listing">
@@ -250,18 +285,19 @@ export default class Attractions extends Component {
                 />
               </div>
               <div className={this.state.viewTypeClass}>
-                {loader && (
-                  <img className="filter-loader" src={loaderImage} />
-                )}
+                {loader && <img className="filter-loader" src={loaderImage} />}
                 {attractionsData &&
                   attractionsData.map(attraction => {
                     // onClick={() => this.redirectToTarget(attraction.event_alias)}
                     return (
                       <div>
                         <Card
-                        cardData={attraction}
-                        redirectTo={this.redirectToTarget}
-                        cardClass={{ cardBlock: 'event-block attraction-block', cardButton: 'btn buy-btn attaction-buy' }}
+                          cardData={attraction}
+                          redirectTo={this.redirectToTarget}
+                          cardClass={{
+                            cardBlock: 'event-block attraction-block',
+                            cardButton: 'btn buy-btn attaction-buy'
+                          }}
                         />
                       </div>
                     );
@@ -282,17 +318,19 @@ export default class Attractions extends Component {
                 loadMore={this.loadMoreAttractions}
               />)} */}
               {attractionsData.length < totalRecords && (
-                  <div className="promotion-load-more">
-                    <button
-                      onClick={() => this.loadMoreAttractions()}
-                      className="btn-link load-more-btn"
-                      target=""
-                    >
-                      <span>Load More ({totalRecords - attractionsData.length})</span>
-                      <img src={DownArrowBlue} alt="down arrow blue" />
-                    </button>
-                  </div>
-                )}
+                <div className="promotion-load-more">
+                  <button
+                    onClick={() => this.loadMoreAttractions()}
+                    className="btn-link load-more-btn"
+                    target=""
+                  >
+                    <span>
+                      Load More ({totalRecords - attractionsData.length})
+                    </span>
+                    <img src={DownArrowBlue} alt="down arrow blue" />
+                  </button>
+                </div>
+              )}
 
               {isdataAvailable && (
                 <div className="no-data">
@@ -303,6 +341,16 @@ export default class Attractions extends Component {
                   <p>Try again with more general search events</p>
                 </div>
               )}
+            </div>
+            <div className="fixed-buttons-events">
+              <a className="sortby">
+                sort by
+                <img src={sortbyIcon} alt="icon" />
+              </a>
+              <a className="filter" onClick={this.toggleFilters}>
+                filter
+                <img src={filterIcon} alt="icon" />
+              </a>
             </div>
           </div>
         </div>

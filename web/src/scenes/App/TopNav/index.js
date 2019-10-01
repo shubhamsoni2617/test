@@ -16,57 +16,8 @@ import fb from '../../../assets/images/fb.svg';
 import insta from '../../../assets/images/insta-unfill.svg';
 import Calender from '../../../shared/components/Calender';
 import DateRangeFilter from '../../../shared/components/DateRangeFilter';
+import Submenu from '../../../shared/components/Submenu';
 import Header from '../../../shared/components/Header';
-
-function Submenu(props) {
-  const {
-    heading,
-    buttonText,
-    data,
-    handleMouseStatus,
-    submenuClass = '',
-    backButtonRequired = true
-  } = props;
-  const [menueStatus, setMenuStatus] = useState(false);
-  return (
-    <>
-      <button type="button" onClick={() => setMenuStatus(!menueStatus)}>
-        {buttonText}
-      </button>
-      <div
-        className={`submenu-holder ${submenuClass} ${
-          menueStatus ? 'active' : ''
-        }`}
-      >
-        {backButtonRequired && (
-          <button type="button" onClick={() => setMenuStatus(false)}>
-            Back
-          </button>
-        )}
-        <h1>{heading}</h1>
-        {props.children}
-        {data && data.length && (
-          <ul className={`submenu  ${menueStatus ? 'active' : ''}`}>
-            {data.map(event => {
-              return (
-                <li key={event.id}>
-                  <Link
-                    to={`/events/search?c=${event.id}`}
-                    onClick={() => {
-                      handleMouseStatus(false);
-                    }}
-                  >
-                    {event.name}
-                  </Link>
-                </li>
-              );
-            })}
-          </ul>
-        )}
-      </div>
-    </>
-  );
-}
 
 const TopNav = props => {
   let refValue = useRef();
@@ -120,11 +71,6 @@ const TopNav = props => {
   const processPath = location => {
     if (location.pathname) {
       let pathArr = location.pathname.split('/');
-      if (pathArr[1] === 'contact-us' || pathArr[1] === 'apipartners') {
-        setChangeHeader(true);
-      } else {
-        setChangeHeader(false);
-      }
       if (
         pathArr.length &&
         (pathArr[1] === 'events' ||
@@ -136,7 +82,7 @@ const TopNav = props => {
       } else if (
         pathArr[1] === 'contact-us' ||
         pathArr[1] === 'about-us' ||
-        pathArr[1] === 'apipartner'
+        pathArr[1] === 'careers'
       ) {
         setChangeHeader(true);
         setPathName(pathArr[1]);
@@ -160,10 +106,12 @@ const TopNav = props => {
   };
   const handleNavigationOpen = () => {
     refValue.classList.add('active');
+    document.body.classList.add('body-overlay');
   };
 
   const handleNavigationClose = () => {
     refValue.classList.remove('active');
+    document.body.classList.remove('body-overlay');
   };
 
   const handleMouseStatus = status => {
@@ -296,9 +244,7 @@ const TopNav = props => {
               onClick={() => {
                 handleNavigationClose();
               }}
-            >
-              X
-            </a>
+            ></a>
             <ul className="user-details">
               <li className="user-icon">
                 <Link to="/">
@@ -307,27 +253,35 @@ const TopNav = props => {
                 </Link>
                 <span>Hello William</span>
               </li>
-              <li>
+              <li className="ticket-withus">
                 <a>Ticket With Us</a>
               </li>
             </ul>
             <ul>
               <li className="has-submenu">
-                <a onClick={() => handleMouseStatus(!showMegaMenu)}>Events</a>
+                <a
+                  className={`${showMegaMenu ? 'active' : ''}`}
+                  onClick={() => handleMouseStatus(!showMegaMenu)}
+                >
+                  Events
+                </a>
                 <ul className={`submenu ${showMegaMenu ? 'active' : ''}`}>
                   <li className="has-submenu">
                     <Submenu
                       heading="Genre"
                       buttonText="By Genre"
                       data={byGenreEvent}
-                      submenuClass="submenu-wrap"
+                      submenuClass="genre submenu-wrap"
+                      link="/events/search?c="
+                      closeSubmenu={handleNavigationClose}
                     />
                   </li>
                   <li className="has-submenu">
                     <Submenu
                       heading="Calendar"
                       buttonText="By Date"
-                      submenuClass="submenu-wrap"
+                      submenuClass="calendar submenu-wrap"
+                      closeSubmenu={handleNavigationClose}
                     >
                       <DateRangeFilter
                         filteredDateRange={{ from: null, to: null }}
@@ -340,38 +294,44 @@ const TopNav = props => {
                       heading="Venue"
                       buttonText="By Venue"
                       data={byVenueEvent}
-                      submenuClass="submenu-wrap"
+                      submenuClass="venue submenu-wrap"
+                      link="/events/search?v="
+                      closeSubmenu={handleNavigationClose}
                     />
                   </li>
                 </ul>
               </li>
               <li>
-                <Link to="/attractions">Attractions</Link>
+                <Link to="/attractions" onClick={() => handleNavigationClose()}>
+                  Attractions
+                </Link>
               </li>
               <li>
-                <Link to="/promotions">Promotions</Link>
+                <Link to="/promotions" onClick={() => handleNavigationClose()}>
+                  Promotions
+                </Link>
               </li>
               <li>
                 <Link to="/">Explore</Link>
               </li>
             </ul>
             <ul>
-              <li>
+              <li className="has-submenu">
                 <Submenu buttonText="My Account" backButtonRequired={false}>
                   <ul className="submenu">
-                    <li>
+                    <li className="has-submenu">
                       <Link to="/">Subscription</Link>
                     </li>
-                    <li>
+                    <li className="has-submenu">
                       <Link to="/">Booking History</Link>
                     </li>
-                    <li>
+                    <li className="has-submenu">
                       <Link to="/">Logout</Link>
                     </li>
                   </ul>
                 </Submenu>
               </li>
-              <li>
+              <li className="has-submenu">
                 <Submenu
                   heading="My cart"
                   buttonText="My cart"
@@ -385,19 +345,19 @@ const TopNav = props => {
                 {/* <Link to="/">Our Company</Link> */}
                 <Submenu buttonText="Our Company" backButtonRequired={false}>
                   <ul className="submenu">
-                    <li>
+                    <li className="has-submenu">
                       <Link to="/">About Us</Link>
                     </li>
-                    <li>
+                    <li className="has-submenu">
                       <Link to="/">Sell with Us</Link>
                     </li>
-                    <li>
+                    <li className="has-submenu">
                       <Link to="/">Ticketing Technology</Link>
                     </li>
-                    <li>
+                    <li className="has-submenu">
                       <Link to="/apipartners">Partner with Us</Link>
                     </li>
-                    <li>
+                    <li className="has-submenu">
                       <Link to="/">Careers</Link>
                     </li>
                   </ul>
@@ -406,21 +366,21 @@ const TopNav = props => {
               <li className="has-submenu">
                 <Submenu buttonText="Helpful Links" backButtonRequired={false}>
                   <ul className="submenu">
-                    <li>
+                    <li className="has-submenu">
                       <Link to="/where-to-buy-tickets">
                         Where to Buy Tickets
                       </Link>
                     </li>
-                    <li>
+                    <li className="has-submenu">
                       <Link to="/agents">Locate an Agent</Link>
                     </li>
-                    <li>
+                    <li className="has-submenu">
                       <Link to="/venues">Locate a Venue</Link>
                     </li>
-                    <li>
+                    <li className="has-submenu">
                       <Link to="/">Blog</Link>
                     </li>
-                    <li>
+                    <li className="has-submenu">
                       <Link to="/">Media</Link>
                     </li>
                   </ul>

@@ -71,7 +71,7 @@ const SearchFilter = props => {
 
 function PriceRangeFilter(props) {
   const { priceConfig, filteredPriceRange } = props;
-
+  const [flag, setFlag] = useState(false);
   const [priceRange, setPriceRange] = useState({
     min: parseInt(priceConfig.min_price) || null,
     max: parseInt(priceConfig.max_price) || null
@@ -110,12 +110,10 @@ function PriceRangeFilter(props) {
           </li>
         </ul>
       </div>
-      <div className="select-range">
-        <button>
-          Select range
-        </button>
+      <div className={`select-range ${flag ? 'active' : ''}`}>
+        <button onClick={() => setFlag(!flag)}>Select range</button>
       </div>
-      <div className="filters-panel">
+      <div className={`filters-panel ${flag ? 'open' : ''}`}>
         <span className="input-range-label-container min">
           S$ {priceRange.min}
         </span>
@@ -247,10 +245,7 @@ function Filters(props) {
           limit={10}
         />
       </div>
-      <div className="fixed-buttons">
-          <a href="" className="close">Close</a>
-          <a href="" className="apply">Apply</a>
-      </div>
+      {props.children}
     </div>
   );
 }

@@ -1,12 +1,28 @@
 .small-header {
     background-color: #0077C8;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    bottom: auto;
+    z-index: 2;
+    @media(max-width: 768px){
+        position: relative;
+    }
+    & + div{
+        padding-top: 76px;
+        @media(max-width: 768px){
+            padding-top: 0px;
+        }
+    }
     .top-header {
-        margin-right: 50px;
+        margin-right: 40px;
         display: flex;
         align-items: center;
         .site-logo{
             img{
-                max-width: 90px;
+                max-width: 95px;
+                height: auto;
             }
         }
     }
@@ -25,11 +41,11 @@
                     font-weight: normal;
                     line-height: 19px;
                     font-family: 'Rubik', sans-serif;
-                    padding: 25px 16px;
+                    padding: 33px 16px 22px;
                     font-weight: 400;
                     &:before{
                         left: 0;
-                        bottom: 0px;
+                        bottom: -2px;
                         border-bottom: 2px solid #ffffff;
                         width: 0%;
                         position: absolute;
@@ -101,6 +117,6 @@
         }
     }
 }
-// .active{
-//   border-bottom: 3px solid white;
-// }
+.active-link{
+  border-bottom: 2px solid white;
+}

@@ -1,20 +1,6 @@
 .promotion-grid {
     .sortby-filter{
         margin-right: 30px;
-        @media(max-width: 767px){
-            display: block;
-            position: fixed;
-            bottom: 0px;
-            left: 0;
-            right: 0;
-            top: auto;
-            z-index: 4;
-            width: 100%;
-            margin: 0px;
-            background-color: #0098FF;
-            padding: 8px 0px;
-            height: auto;
-        }
         .sortby-filter{
             margin-right: 0
         }
@@ -118,7 +104,7 @@
                     font-weight: 500;
                     font-size: 16px;
                 }
-            }            
+            }
             .clear-filter-sortby{
                 flex: 0 0 auto;
                 margin-left: auto;
@@ -206,3 +192,4 @@
         }
     }
 }
+
