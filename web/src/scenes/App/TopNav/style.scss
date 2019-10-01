@@ -36,7 +36,7 @@ a{
     top: 0;
     width: 80%;
     left: 100%;
-    z-index: 1;
+    z-index: 2;
     height: 100%;
     background: #fff;
     transition: .3s left;
@@ -81,18 +81,46 @@ a{
 
 .submenu-holder{
  &.active{
-  .submenu{
-    display: block;
-    padding: 15px 0;
-    li{
-      a{
-        &:after{
-          content: unset;
+    .submenu{
+      display: block;
+      padding: 0 15px;
+      li{
+        a{
+          &:after{
+            content: unset;
+          }
         }
       }
     }
   }
-}
+  &.calendar{
+    .filters-panel{
+      padding: 10px 15px;
+      .date-input-to,
+      .date-input-from{
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 15px;
+        input{
+          border: 1px solid rgba(225, 225, 225, 0.5);
+        }
+        label{
+          color: #3A3A3A;
+          font-size: 16px;
+          font-family: 'Rubik', sans-serif;
+        }
+        .DayPickerInput{
+          width: 100%;
+          input{
+            border: 1px solid rgba(225, 225, 225, 0.5);
+            height: 36px;
+            padding: 10px;
+            width: 100%;
+          }
+        }
+      }
+    }
+  }
 }
 
 .submenu{
@@ -100,6 +128,7 @@ a{
     }
 .submenu-wrap.active{
     left: 0;
+    padding-right: 10px;
 }
 .submenu-wrap h1{
   color: #000;

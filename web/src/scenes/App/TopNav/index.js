@@ -282,22 +282,22 @@ const TopNav = props => {
               </li>
             </ul>
             <ul>
-              <li>
+              <li className="has-submenu">
                 <Submenu buttonText="My Account" backButtonRequired={false}>
                   <ul className="submenu">
-                    <li>
+                    <li className="has-submenu">
                       <Link to="/">Subscription</Link>
                     </li>
-                    <li>
+                    <li className="has-submenu">
                       <Link to="/">Booking History</Link>
                     </li>
-                    <li>
+                    <li className="has-submenu">
                       <Link to="/">Logout</Link>
                     </li>
                   </ul>
                 </Submenu>
               </li>
-              <li>
+              <li className="has-submenu">
                 <Submenu
                   heading="My cart"
                   buttonText="My cart"
@@ -311,19 +311,19 @@ const TopNav = props => {
                 {/* <Link to="/">Our Company</Link> */}
                 <Submenu buttonText="Our Company" backButtonRequired={false}>
                   <ul className="submenu">
-                    <li>
+                    <li className="has-submenu">
                       <Link to="/">About Us</Link>
                     </li>
-                    <li>
+                    <li className="has-submenu">
                       <Link to="/">Sell with Us</Link>
                     </li>
-                    <li>
+                    <li className="has-submenu">
                       <Link to="/">Ticketing Technology</Link>
                     </li>
-                    <li>
+                    <li className="has-submenu">
                       <Link to="/apipartners">Partner with Us</Link>
                     </li>
-                    <li>
+                    <li className="has-submenu">
                       <Link to="/">Careers</Link>
                     </li>
                   </ul>
@@ -332,21 +332,21 @@ const TopNav = props => {
               <li className="has-submenu">
                 <Submenu buttonText="Helpful Links" backButtonRequired={false}>
                   <ul className="submenu">
-                    <li>
+                    <li className="has-submenu">
                       <Link to="/where-to-buy-tickets">
                         Where to Buy Tickets
                       </Link>
                     </li>
-                    <li>
+                    <li className="has-submenu">
                       <Link to="/agents">Locate an Agent</Link>
                     </li>
-                    <li>
+                    <li className="has-submenu">
                       <Link to="/venues">Locate a Venue</Link>
                     </li>
-                    <li>
+                    <li className="has-submenu">
                       <Link to="/">Blog</Link>
                     </li>
-                    <li>
+                    <li className="has-submenu">
                       <Link to="/">Media</Link>
                     </li>
                   </ul>
