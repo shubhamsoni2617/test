@@ -103,7 +103,11 @@
                 }
             }
             .form-group{
-                margin-bottom: 17px;
+                margin-bottom: 0px;
+                margin-top: 20px;
+                &:first-child{
+                  margin-top: 0px;
+                }
                 .form-control{
                     background-color: transparent;
                     border: 1px solid #D3D3D3;
@@ -136,7 +140,7 @@
                     max-width: 100%;
                 }
                 input.btn-info{
-                    margin: 10px 0px 21px;
+                    margin: 20px 0px 21px;
                     max-width: 107px;
                     height: 31px;
                     padding: 0px;
