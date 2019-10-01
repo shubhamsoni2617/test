@@ -39,7 +39,7 @@ const Contact = ({ attachement, handleEnquiry }) => {
   const handleSubmit = e => {
     e.preventDefault();
     if (
-      enquiry !== 'Select an Enquiry *' &&
+      (enquiry !== 'Select an Enquiry *' || enquiry !== 'Request type *') &&
       name &&
       email &&
       phone &&
@@ -202,7 +202,9 @@ const Contact = ({ attachement, handleEnquiry }) => {
             onChange={handleChange}
             value={enquiry}
           >
-            <option>Select an Enquiry *</option>
+            <option>
+              {handleEnquiry ? 'Select an Enquiry *' : 'Request type *'}
+            </option>
             {enquiryCategory &&
               enquiryCategory.map(enq => {
                 return (
