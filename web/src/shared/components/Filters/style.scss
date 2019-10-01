@@ -847,6 +847,7 @@
             font-weight: 400;
             width: 100%;
             text-align: left;
+            border: 0;
             }
             h1{
             display: block;
@@ -925,13 +926,26 @@
                         margin-top: 0;
                         ul{
                             li{
-                                padding: 18px 15px;
+                                padding: 18px 21px;
                                 border-bottom: 1px solid #d8d8d8;
                                 background-color: #fff;
                                 .styled-checkbox {
                                     & + label{
                                         &:before{
-                                            background: none;
+                                            background: url(../../../assets/images/Tick-unselected.svg);
+                                            width: 20px;
+                                            height: 20px;
+                                            background-repeat: no-repeat;
+                                        }
+                                    }
+                                    &:checked{
+                                        & + label{
+                                            &:before{
+                                                background: url(../../../assets/images/Tick-selected.svg);
+                                                width: 20px;
+                                                height: 20px;
+                                                background-repeat: no-repeat;
+                                            }
                                         }
                                     }
                                 }
@@ -939,6 +953,9 @@
                                     text-transform: capitalize;
                                     font-size: 15px;
                                     color: #626262;
+                                    display: flex;
+                                    justify-content: space-between;
+                                    flex-direction: row-reverse;
                                 }
                             }
                         }
