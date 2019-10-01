@@ -116,9 +116,9 @@ const GoogleMap = ({
           className="gmap"
           style={{
             display:
-              Utilities.mobileAndTabletcheck() &&
-              !mapInMobile &&
-              window.innerHeight > window.innerWidth
+              Utilities.mobileAndTabletcheck &&
+              window.innerWidth <= 960 &&
+              !mapInMobile
                 ? 'none'
                 : 'block'
           }}
