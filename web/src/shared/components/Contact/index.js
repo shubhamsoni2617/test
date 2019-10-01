@@ -19,6 +19,7 @@ const Contact = ({ attachement, handleEnquiry }) => {
   const [errMsg, setErrMsg] = useState('');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
+  const [headerErr, setHeaderErr] = useState('');
 
   useEffect(() => {
     fetchEnquiry();
@@ -83,13 +84,34 @@ const Contact = ({ attachement, handleEnquiry }) => {
         }
       })
       .catch(err => {
-        if (err) {
+        console.log(err.response);
+        if (err && err.response.data === null) {
+          setHeaderErr('Something went wrong ');
+          setLoading(false);
+        } else if (err && !err.response.data.message) {
           setError(true);
           setTimeout(() => {
             setSubmitResponse(err.response.data);
             setLoading(false);
           }, 1000);
+        } else {
+          setTimeout(() => {
+            setHeaderErr(err.response.data.message);
+            setLoading(false);
+          }, 1000);
         }
+        // if (err && !err.response.data.message) {
+        //   setError(true);
+        //   setTimeout(() => {
+        //     setSubmitResponse(err.response.data);
+        //     setLoading(false);
+        //   }, 1000);
+        // } else {
+        // setTimeout(() => {
+        //   setHeaderErr(err.response.data.message);
+        //   setLoading(false);
+        // }, 1000);
+        // }
       });
   };
 
@@ -133,6 +155,7 @@ const Contact = ({ attachement, handleEnquiry }) => {
     setSubmitResponse([]);
     setLoading(false);
     setError(false);
+    setHeaderErr('');
   };
 
   const handleFile = e => {
@@ -176,13 +199,15 @@ const Contact = ({ attachement, handleEnquiry }) => {
   };
   return (
     <Fragment>
-      {submitResponse.map((elem, index) => {
-        return (
-          <h5 key={index} className={error ? 'text-danger' : 'text-success'}>
-            {elem}
-          </h5>
-        );
-      })}
+      {submitResponse &&
+        submitResponse.map((elem, index) => {
+          return (
+            <h5 key={index} className={error ? 'text-danger' : 'text-success'}>
+              {elem}
+            </h5>
+          );
+        })}
+      {headerErr && <h5 className="text-danger">{headerErr}</h5>}
       <form onSubmit={handleSubmit}>
         <div
           className={
