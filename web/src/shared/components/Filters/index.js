@@ -110,7 +110,7 @@ function PriceRangeFilter(props) {
           </li>
         </ul>
       </div>
-      <div className="select-range">
+      <div className={`select-range ${flag ? 'active' : ''}`}>
         <button onClick={() => setFlag(!flag)}>Select range</button>
       </div>
       <div className={`filters-panel ${flag ? 'open' : ''}`}>

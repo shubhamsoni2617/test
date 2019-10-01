@@ -126,6 +126,9 @@
                     background-position: 97%;
                     background-size: 12px auto;
                 }
+                &:last-of-type{
+                    margin-bottom: 0px;
+                }
             }
             .customer-enquiry {
                 padding: 0px;
@@ -136,7 +139,7 @@
                     max-width: 100%;
                 }
                 input.btn-info{
-                    margin: 10px 0px 21px;
+                    margin: 27px 0px 21px;
                     max-width: 107px;
                     height: 31px;
                     padding: 0px;

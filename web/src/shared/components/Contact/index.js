@@ -13,10 +13,12 @@ const Contact = ({ attachement, handleEnquiry }) => {
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
   const [message, setMessage] = useState('');
-  const [submitResponse, setSubmitResponse] = useState('');
+  const [submitResponse, setSubmitResponse] = useState([]);
   const [files, setFiles] = useState({});
   const [maxFileLimitMsg, setMaxFileLimitMsg] = useState('');
   const [errMsg, setErrMsg] = useState('');
+  const [loading, setLoaging] = useState(false);
+  const [error, setError] = useState(false);
 
   useEffect(() => {
     fetchEnquiry();
@@ -37,12 +39,13 @@ const Contact = ({ attachement, handleEnquiry }) => {
   const handleSubmit = e => {
     e.preventDefault();
     if (
-      enquiry !== 'Select an Enquiry *' &&
+      (enquiry !== 'Select an Enquiry *' || enquiry !== 'Request type *') &&
       name &&
       email &&
       phone &&
       message
     ) {
+      setLoaging(true);
       const check = Utilities.mobilecheck();
       const data = {
         category: Number(enquiry),
@@ -65,11 +68,28 @@ const Contact = ({ attachement, handleEnquiry }) => {
     ContactUsService.formSubmission(data)
       .then(res => {
         if (res && res.data) {
-          setSubmitResponse(res.data[0]);
+          setTimeout(() => {
+            setLoaging(false);
+            setSubmitResponse(res.data);
+            setEnquiry('Select an Enquiry *');
+            handleEnquiry && handleEnquiry('Select an Enquiry *');
+            setName('');
+            setEmail('');
+            setPhone('');
+            setFiles({});
+            setMessage('');
+            setError(false);
+          }, 1000);
         }
       })
       .catch(err => {
-        console.log(err);
+        if (err) {
+          setError(true);
+          setTimeout(() => {
+            setSubmitResponse(err.response.data);
+            setLoaging(false);
+          }, 1000);
+        }
       });
   };
 
@@ -87,19 +107,32 @@ const Contact = ({ attachement, handleEnquiry }) => {
           handleEnquiry && handleEnquiry(value);
           break;
         case 'name':
-          setName(value);
+          let val = value.trim();
+          if (val.length > 0) {
+            setName(value);
+          } else {
+            setName('');
+          }
           break;
         case 'email':
           setEmail(value);
           break;
         case 'message':
-          setMessage(value);
+          let msg = value.trim();
+          if (msg.length > 0) {
+            setMessage(value);
+          } else {
+            setMessage('');
+          }
           break;
         default:
           return;
       }
     }
     setErrMsg('');
+    setSubmitResponse([]);
+    setLoaging(false);
+    setError(false);
   };
 
   const handleFile = e => {
@@ -143,7 +176,13 @@ const Contact = ({ attachement, handleEnquiry }) => {
   };
   return (
     <Fragment>
-      <h5 className="text-success">{submitResponse}</h5>
+      {submitResponse.map((elem, index) => {
+        return (
+          <h5 key={index} className={error ? 'text-danger' : 'text-success'}>
+            {elem}
+          </h5>
+        );
+      })}
       <form onSubmit={handleSubmit}>
         {/* <div className="form-group">
                   <select name="enquiry" className="form-control">
@@ -163,7 +202,9 @@ const Contact = ({ attachement, handleEnquiry }) => {
             onChange={handleChange}
             value={enquiry}
           >
-            <option>Select an Enquiry *</option>
+            <option>
+              {handleEnquiry ? 'Select an Enquiry *' : 'Request type *'}
+            </option>
             {enquiryCategory &&
               enquiryCategory.map(enq => {
                 return (
@@ -179,7 +220,7 @@ const Contact = ({ attachement, handleEnquiry }) => {
             name="name"
             className="form-control"
             type="text"
-            placeholder="Full Name*"
+            placeholder={handleEnquiry ? 'Name*' : 'Full Name*'}
             value={name}
             onChange={handleChange}
             // required
@@ -190,7 +231,7 @@ const Contact = ({ attachement, handleEnquiry }) => {
             name="email"
             className="form-control"
             type="email"
-            placeholder="Email*"
+            placeholder={handleEnquiry ? 'Email Address *' : 'Email*'}
             value={email}
             onChange={handleChange}
             // required
@@ -201,7 +242,7 @@ const Contact = ({ attachement, handleEnquiry }) => {
             name="phone"
             className="form-control"
             type="text"
-            placeholder="Mobile No.*"
+            placeholder={handleEnquiry ? 'Phone Number *' : 'Mobile No.*'}
             value={phone}
             maxLength={10}
             onChange={handleChange}
@@ -213,7 +254,7 @@ const Contact = ({ attachement, handleEnquiry }) => {
             name="message"
             className="form-control"
             rows="5"
-            placeholder=""
+            placeholder="Message *"
             cols="30"
             value={message}
             onChange={handleChange}
@@ -249,7 +290,12 @@ const Contact = ({ attachement, handleEnquiry }) => {
           </div>
         )}
         {errMsg ? <span className="error-msg">{errMsg}</span> : null}
-        <input className="form-control btn-info" type="submit" value="Submit" />
+        <input
+          className="form-control btn-info"
+          type="submit"
+          value={loading ? 'Submitting...' : 'Submit'}
+          disabled={loading ? true : false}
+        />
         {!handleEnquiry && (
           <span className="help-text">
             Looking to sell tickets with us? Contact us{' '}

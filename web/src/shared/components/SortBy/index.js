@@ -6,7 +6,10 @@ import './style.scss';
 
 export default class SortBy extends Component {
   state = {
-    sort: { tag: this.props.defaultSortType ? this.props.defaultSortType :'Date', active: '' },
+    sort: {
+      tag: this.props.defaultSortType ? this.props.defaultSortType : 'Date',
+      active: ''
+    },
     showSortMenu: false
   };
 
@@ -53,33 +56,34 @@ export default class SortBy extends Component {
             transitionLeaveTimeout={300}
           >
             <div className="sortby-topbar-mobileonly">
-              <div className="left-arrow-sortby"><img src="../../assets/images/next.svg" />
-              <span> Sort By</span>
+              <div className="left-arrow-sortby">
+                {/* <img src="../../assets/images/next.svg" /> */}
+                <span> Sort By</span>
               </div>
               {/* <a href="" className="clear-filter-sortby">clear filters</a> */}
             </div>
             {this.state.showSortMenu ? (
-                <ul className="sortby-wrapper">
-                  {sortList &&
-                    sortList.map((list, index) => {
-                      return (
-                        <li
-                          key={index}
-                          onClick={() =>
-                            this.setSortFilter(
-                              list.sortTitle,
-                              list.sortType,
-                              list.sortOrder
-                            )
-                          }
-                        >
-                          {list.sortTag}
-                        </li>
-                      );
-                    })}
-                </ul>
-              ) : null}
-              {/* <a href="" className="sortby-apply-mobileonly">Apply</a> */}
+              <ul className="sortby-wrapper">
+                {sortList &&
+                  sortList.map((list, index) => {
+                    return (
+                      <li
+                        key={index}
+                        onClick={() =>
+                          this.setSortFilter(
+                            list.sortTitle,
+                            list.sortType,
+                            list.sortOrder
+                          )
+                        }
+                      >
+                        {list.sortTag}
+                      </li>
+                    );
+                  })}
+              </ul>
+            ) : null}
+            {/* <a href="" className="sortby-apply-mobileonly">Apply</a> */}
           </CSSTransitionGroup>
         </div>
       </div>

@@ -17,6 +17,7 @@ import insta from '../../../assets/images/insta-unfill.svg';
 import Calender from '../../../shared/components/Calender';
 import DateRangeFilter from '../../../shared/components/DateRangeFilter';
 import Submenu from '../../../shared/components/Submenu';
+import Header from '../../../shared/components/Header';
 
 const TopNav = props => {
   let refValue = useRef();
@@ -27,6 +28,7 @@ const TopNav = props => {
   const [byVenueEvent, setByVenueEvent] = useState([]);
   const [byGenreEvent, setByGenreEvent] = useState([]);
   const [showElementsInHeader, setShowElementsInHeader] = useState(4);
+  const [changeHeader, setChangeHeader] = useState(false);
 
   const miniCartData = [
     { id: '1', img: 'assets/images/explore.png' },
@@ -77,8 +79,22 @@ const TopNav = props => {
       ) {
         setPathName(pathArr[1]);
         setMenuActive(true);
-      } else {
+      } else if (
+        pathArr[1] === 'contact-us' ||
+        pathArr[1] === 'about-us' ||
+        pathArr[1] === 'careers'
+      ) {
+        setChangeHeader(true);
+        setPathName(pathArr[1]);
+        setMenuActive(true);
+      }
+      // else {
+      //   setChangeHeader(false);
+      //   setMenuActive(true);
+      // }
+      else {
         setMenuActive(false);
+        setChangeHeader(false);
       }
       //For event header class
       if (location.pathname === '/') {
@@ -90,10 +106,12 @@ const TopNav = props => {
   };
   const handleNavigationOpen = () => {
     refValue.classList.add('active');
+    document.body.classList.add('body-overlay');
   };
 
   const handleNavigationClose = () => {
     refValue.classList.remove('active');
+    document.body.classList.remove('body-overlay');
   };
 
   const handleMouseStatus = status => {
@@ -115,7 +133,9 @@ const TopNav = props => {
     );
   };
 
-  return (
+  return changeHeader ? (
+    <Header menuActive={menuActive} pathName={pathName} />
+  ) : (
     <header className={`header ${headerClass ? 'homepage' : ''}`}>
       <div className="container-fluid">
         <div className="row">
@@ -282,10 +302,14 @@ const TopNav = props => {
                 </ul>
               </li>
               <li>
-                <Link to="/attractions">Attractions</Link>
+                <Link to="/attractions" onClick={() => handleNavigationClose()}>
+                  Attractions
+                </Link>
               </li>
               <li>
-                <Link to="/promotions">Promotions</Link>
+                <Link to="/promotions" onClick={() => handleNavigationClose()}>
+                  Promotions
+                </Link>
               </li>
               <li>
                 <Link to="/">Explore</Link>

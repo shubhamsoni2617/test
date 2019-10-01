@@ -8,8 +8,10 @@ import { ReactComponent as Corporate } from '../../../assets/images/find-us-ques
 import { ReactComponent as Career } from '../../../assets/images/find-us-career.svg';
 import { ReactComponent as Arrow } from '../../../assets/images/arrow-right.svg';
 import { useCustomContactDetail } from '../../../shared/components/CustomHooks';
+
 const FindUs = ({}) => {
   const [contactDetail] = useCustomContactDetail();
+
   return (
     <Fragment>
       <h3 className="heading-text">Find Us</h3>
