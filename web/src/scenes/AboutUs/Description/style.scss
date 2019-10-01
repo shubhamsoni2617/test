@@ -4,6 +4,9 @@
     position: relative;
     z-index: 1;
     @media(max-width: 768px){
+        padding: 31px 0px 44px;
+    }
+    @media(max-width: 767px){
         padding: 40px 0px 10px;
     }
     section{
@@ -14,16 +17,23 @@
         align-items: center;
         padding-top: 24px;
         @media(max-width: 768px){
+            margin-bottom: 35px;
+        }
+        @media(max-width: 767px){
             margin-bottom: 15px;
             padding-top: 0px;
+            padding-right: 0px;
+            padding-left: 10px;
         }
         &:last-child{
             margin-bottom: 0px;
         }
         &:nth-child(2n){
-            @media(max-width: 768px){
+            @media(max-width: 767px){
                 flex-direction: row-reverse;
                 flex-wrap: wrap-reverse;
+                padding-right: 10px;
+                padding-left: 0px;
             }
         }
         .about-desc-img{
@@ -33,7 +43,7 @@
             text-align: right;
             padding-left: 28px;
             padding-right: 0px;
-            @media(max-width: 768px){
+            @media(max-width: 767px){
                 flex: 0 0 100%;
                 width: 100%;
                 padding: 0px;
@@ -48,6 +58,16 @@
                 z-index: -1;
                 top: -24px;
                 background-color: #0077C8;
+                @media(max-width: 1024px){
+                    height: 264px;
+                    width: 429px;
+                }
+                @media(max-width: 991px){
+                    right: -14px;
+                    height: 185px;
+                    width: 280px;
+                    top: -14px;
+                }
                 @media(max-width: 767px){
                     right: -10px;
                     height: 90%;
@@ -64,7 +84,7 @@
         .about-desc-content{
             flex: 0 0 45%;
             width: 45%;
-            @media(max-width: 768px){
+            @media(max-width: 767px){
                 flex: 0 0 100%;
                 width: 100%;
                 padding-top: 15px;
@@ -88,13 +108,16 @@
                 text-align: left;
                 padding-right: 28px;
                 padding-left: 0px;
-                @media(max-width: 768px){
+                @media(max-width: 767px){
                     padding: 0px;
                 }
                 &:after{
                     left: -24px;
                     right: auto;
                     @media(max-width: 768px){
+                        left: -14px;
+                    }
+                    @media(max-width: 767px){
                         left: -10px;
                     }
                 }
