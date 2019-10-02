@@ -328,7 +328,9 @@ export default class Events extends Component {
       () => {
         const payload = this.getInitialFilters(true);
         this.setInitialFilters(payload);
-        this.loadEvents(payload);
+        if (!utilities.mobileAndTabletcheck()) {
+          this.loadEvents(payload);
+        }
       }
     );
   };

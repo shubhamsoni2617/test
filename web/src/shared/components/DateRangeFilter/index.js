@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import moment from 'moment';
 import DayPickerInput from 'react-day-picker/DayPickerInput';
 import { formatDate, parseDate } from 'react-day-picker/moment';
+import Utilities from '../../utilities';
 import 'react-day-picker/lib/style.css';
 import 'react-tabs/style/react-tabs.css';
 import 'react-input-range/lib/css/index.css';
@@ -19,7 +20,6 @@ function DateRangeFilter(props) {
       const date = new Date(dateStr);
       return date.toString() === 'Invalid Date' ? '' : date;
     };
-
     setTo(
       props.filteredDateRange && props.filteredDateRange.to
         ? getDate(props.filteredDateRange.to)
@@ -51,21 +51,26 @@ function DateRangeFilter(props) {
   };
 
   // Date Range methods
-  const handleFromChange = from => {
-    setFrom(from);
-    // this.props.handleFilters('date-range', { from: moment(this.state.from).format('DD-MM-YYYY'), to: moment(this.state.to).format('DD-MM-YYYY') });
+  const handleFromChange = fromDate => {
+    setFrom(fromDate);
+    if (Utilities.mobileAndTabletcheck() && fromDate && to) {
+      filterByDateRange(fromDate, to);
+    }
   };
 
-  const handleToChange = to => {
-    setTo(to);
+  const handleToChange = toDate => {
+    setTo(toDate);
     showFromMonth();
+    if (Utilities.mobileAndTabletcheck() && from && toDate) {
+      filterByDateRange(from, toDate);
+    }
   };
 
-  const filterByDateRange = () => {
+  const filterByDateRange = (fromDate, toDate) => {
     props.handleFilters({
       filteredDateRange: {
-        from: moment(from).format('YYYY-MM-DD'),
-        to: moment(to).format('YYYY-MM-DD')
+        from: moment(fromDate).format('YYYY-MM-DD'),
+        to: moment(toDate).format('YYYY-MM-DD')
       }
     });
   };
@@ -150,7 +155,7 @@ function DateRangeFilter(props) {
             href="/"
             onClick={e => {
               e.preventDefault();
-              filterByDateRange();
+              filterByDateRange(from, to);
             }}
             className="cal-apply-btn active"
           >

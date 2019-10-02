@@ -87,7 +87,9 @@ export default class Attractions extends Component {
       () => {
         const payload = this.getInitialFilters(true);
         this.setInitialFilters(payload);
-        this.loadAttractions(payload);
+        if (!Utilities.mobileAndTabletcheck()) {
+          this.loadAttractions(payload);
+        }
       }
     );
   };
