@@ -16,8 +16,7 @@ class ContactUsService {
   formSubmission(data) {
     const options = {
       headers: {
-        'Content-Type': 'application/json',
-        Authorization: 'uNUVPTPL3u6bGwq21'
+        'Content-Type': 'application/json'
       }
     };
     return API.post(`contact-us/store`, data, options);

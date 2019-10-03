@@ -181,7 +181,6 @@ const Contact = ({ attachement, handleEnquiry }) => {
     let formData = new FormData();
     // const headers = {
     //   // "Content-Type": "multipart/form-data",
-    //   "Content-Type": "application/json"
     // };
     for (let i = 0; i < files.length; i++) {
       let file = files[i];
