@@ -52,6 +52,7 @@ const AutoSuggest = props => {
   }, [props.setFilteredSuggestions]);
 
   const onClick = question => {
+    props.toggleContentHandler(true);
     setFilteredSuggestions([]);
     setShowSuggestions(false);
     setUserInput(question);
