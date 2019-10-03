@@ -94,6 +94,12 @@ a{
       }
     }
   }
+  &.genre,
+  &.venue{
+    .submenu{
+      padding: 15px 0;
+    }
+  }
   &.calendar{
     .filters-panel{
       padding: 10px 15px;

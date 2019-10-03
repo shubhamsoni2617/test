@@ -254,6 +254,10 @@
 								max-width: 19px;
 							}
 						}
+						svg{
+							width: 27px;
+							height: 23px;
+						}
 					}
 					&.cart-icon {
 						>a {
@@ -835,7 +839,6 @@
 	padding: 0px;
 	position: relative;
     width: 100%;
-    min-height: 600px;
     background: #eaeced;
     .main-image{
       opacity: 0;
@@ -1100,7 +1103,7 @@
         &.top-picks{
             padding-bottom: 20px;
             @media (max-width: 767px) {
-                padding-bottom: 40px;
+				padding-bottom: 40px;
             }
         }
 	}
@@ -1181,7 +1184,8 @@
 			grid-template-columns: repeat(6, minmax(27%, 1fr));
 		}
 		@media (max-width: 767px) {
-			grid-template-columns: repeat(6, minmax(35%, 1fr));
+			overflow-x: auto;
+    		display: flex;
 		}
 		.item {
 			position: relative;
@@ -1409,6 +1413,11 @@
 						}
 					}
 				}
+			}
+			@media (max-width: 767px) {
+				flex: 1 0 29%;
+				max-width: 29%;
+				margin-right: 10px;
 			}
 		}
 	}
