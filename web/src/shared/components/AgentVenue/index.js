@@ -63,22 +63,25 @@ const AgentVenue = props => {
       let countryIndex = countryNRegion.findIndex(
         el => el.name === filteredListedData[0].country
       );
-      let specificCountry = countryNRegion[countryIndex];
-      if (specificCountry.regions.length) {
-        let regionIndex = specificCountry.regions.findIndex(
-          el => el.name === filteredListedData[0].region
-        );
-        let specificRegion = specificCountry.regions[regionIndex];
-        setRegionId(specificRegion.id);
-        specificCountry.regions.splice(regionIndex, 1);
-        specificCountry.regions.unshift(specificRegion);
+      if (countryIndex !== -1) {
+        let specificCountry = countryNRegion[countryIndex];
+
+        if (specificCountry.regions.length) {
+          let regionIndex = specificCountry.regions.findIndex(
+            el => el.name === filteredListedData[0].region
+          );
+          let specificRegion = specificCountry.regions[regionIndex];
+          setRegionId(specificRegion.id);
+          specificCountry.regions.splice(regionIndex, 1);
+          specificCountry.regions.unshift(specificRegion);
+        }
+        countryNRegion.splice(countryIndex, 1);
+        countryNRegion.unshift(specificCountry);
+        setCountryNRegionSorted(countryNRegion);
+        setCountryId(countryNRegion[0].id);
+        setCountryName(countryNRegion[0].name);
+        handleEventSelected(filteredListedData[0]);
       }
-      countryNRegion.splice(countryIndex, 1);
-      countryNRegion.unshift(specificCountry);
-      setCountryNRegionSorted(countryNRegion);
-      setCountryId(countryNRegion[0].id);
-      setCountryName(countryNRegion[0].name);
-      handleEventSelected(filteredListedData[0]);
     }
   }, [filteredListedData]);
 
@@ -188,6 +191,10 @@ const AgentVenue = props => {
     setMapInMobile(toggler);
   };
 
+  const toggleFindInMapHandler = () => {
+    setToggleFindInMap(true);
+  };
+
   const onSubmit = () => {
     setVenueId(null);
     let countryName = countryNRegion.find(el => el.id === countryId).name;
@@ -208,6 +215,7 @@ const AgentVenue = props => {
         regionIdHandler={regionIdHandler}
         countryId={countryId}
         onSubmit={onSubmit}
+        venue={venue}
       />
 
       <div className="find-agent-wrapper">
@@ -222,6 +230,7 @@ const AgentVenue = props => {
               handleEventValue={handleEventValue}
               handleMapFilter={handleMapFilter}
               attractionValue={attractionValue}
+              toggleFindInMapHandler={toggleFindInMapHandler}
               eventValue={eventValue}
               searchText={searchText}
               {...props}
