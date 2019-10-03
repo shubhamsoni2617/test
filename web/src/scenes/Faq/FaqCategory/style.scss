@@ -191,6 +191,16 @@
           *{
             color: #343434;
           }
+          span{
+            font-family: "Rubik", sans-serif;
+            font-size: 18px;
+            line-height: 22px;
+            @media (max-width: 991px) {
+              font-size: 14px;
+              line-height: 18px;
+              padding: 0px 25px 0px 0px;
+            }
+          }
         }
         .accordion__button {
           color: #343434;
@@ -244,10 +254,12 @@
           }
           p {
             margin-bottom: 0px;
+            padding: 0px 70px 0px 0px;
             @media (max-width: 767px) {
               color: #7e7e7e;
               font-size: 13px;
               line-height: 21px;
+              padding: 0px;
             }
           }
         }
@@ -285,9 +297,9 @@
     &.toggleContentActive{
       .faq-ans-wrapper{
         padding: 35px 20px;
-        border-bottom: 15px solid #f7fafc;
         @media(max-width: 991px){
           padding: 15px 0 0;
+          border-bottom: 15px solid #f7fafc;
         }
       }
       .nav-link{
