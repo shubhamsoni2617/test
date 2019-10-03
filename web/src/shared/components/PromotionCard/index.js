@@ -157,7 +157,7 @@ const PromotionCard = props => {
             })}
           {events && events.length > 0 &&
             <section className="related-event">
-              <div className="container-fluid">
+              <div className={events.length > 4 ? "container-fluid arrow-appear" : "container-fluid"}>
                 <div className="section-top-wrapper">
                   <h2>Related Events</h2>
                 </div>

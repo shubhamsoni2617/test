@@ -115,6 +115,10 @@
                         -webkit-transition: max-width 0.5s, overflow 0.5s 0.5s;
                         -moz-transition: max-width 0.5s, overflow 0.5s 0.5s;
                         -o-transition: max-width 0.5s, overflow 0.5s 0.5s;
+                        svg{
+                            width: auto;
+                            height: auto;
+                        }
                     }
                     &.share-visible{
                         height: auto;
@@ -147,9 +151,13 @@
                 max-width: 70%;
                 @media(max-width: 1024px) {
                     min-height: 44px;
+                    font-size: 16px;
                 }
-                @media (max-width: 767px) {
-                    min-height: auto;
+                @media (max-width: 767px) {                    
+                    font-size: 14px;
+                    line-height: 18px;
+                    min-height: auto !important;
+                    max-height: 100% !important;
                 }
             }
             .promotion-timer {
@@ -176,6 +184,9 @@
                             font-weight: 500;
                             min-width: 20px;
                             text-align: center;
+                            @media(max-width: 767px){
+                                font-size: 13px;
+                            }
                         }
                         .timer-label {
                             font-size: 9px;
@@ -206,6 +217,9 @@
                     -webkit-transition: 0.5s background-color;
                     -moz-transition: 0.5s background-color;
                     -o-transition: 0.5s background-color;
+                    @media(max-width: 767px){
+                        height: 28px;
+                    }
                     &:after{
                         content: none;
                     }
@@ -217,6 +231,9 @@
                         -webkit-transition: 0.5s color;
                         -moz-transition: 0.5s color;
                         -o-transition: 0.5s color;
+                        @media(max-width: 767px){
+                            font-size: 12px;
+                        }
                     }
                     img {
                         padding-left: 0;
@@ -294,6 +311,13 @@
                     }
                 }
             }
+            img{
+                max-width: 100%;
+                height: auto;
+            }
+            ul{
+                padding-left: 15px;
+            }
             .related-event {
                 padding: 20px 0px 0;
                 position: relative;
@@ -304,7 +328,16 @@
                     margin-top: 10px;
                 }
                 .container-fluid{
-                    padding: 0 25px;
+                    padding: 0px;
+                    @media(max-width: 767px){
+                        padding: 0px 10px;
+                    }
+                    &.arrow-appear{
+                        padding: 0 25px;
+                        @media(max-width: 767px){
+                            padding: 0px 10px;
+                        }
+                    }
                     .carousel-navigation{
                         .left-navigation{
                             left: -25px;
@@ -430,7 +463,8 @@
                                     min-height: 100% !important; 
                                 }
                                 @media (max-width: 767px) {
-                                    margin-bottom: 8px;                               
+                                    margin-bottom: 8px;    
+                                    font-size: 14px;                           
                                 }
                             }
                             p {
@@ -438,7 +472,7 @@
                                 margin: 0;
                                 padding: 3px 0;
                                 &.date-event, &.dt-srt-end{
-                                    font-size: 14px;
+                                    font-size: 13px;
                                 }
                             }
                         }
@@ -533,7 +567,7 @@
                 right: 23px;
                 top: 40px;
                 opacity: 1;
-                @media(max-width: 768px) {
+                @media(max-width: 991px) {
                     right: 15px;
                     top: 28px;
                 }
@@ -543,6 +577,9 @@
                 }
                 img{
                     width: 15px;
+                    @media(max-width: 767px){
+                        width: 11px;
+                    }
                 }
             }
             &::before {
