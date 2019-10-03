@@ -23,6 +23,7 @@ const Content = props => {
                 title={content.question}
                 desc={content.answer}
                 uuid={content.id}
+                optionalSearchId={props.location.search.split('=')[1]}
               />
             </div>
           );
