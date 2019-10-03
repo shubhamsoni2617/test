@@ -185,6 +185,7 @@ export default class Attractions extends Component {
     };
     if (!Utilities.mobileAndTabletcheck()) {
       obj = {
+        ...searchType,
         first: 0,
         limit: 9,
         loader: true,
