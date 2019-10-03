@@ -5,6 +5,7 @@ import ContactUsService from '../../../shared/services/ContactUsService';
 import { Link } from 'react-router-dom';
 import Constants from '../../constants';
 import Utilities from '../../utilities';
+import { Select } from '../MultiPurposeCheckbox';
 
 const Contact = ({ attachement, handleEnquiry }) => {
   const [enquiryCategory, setEnquiryCategory] = useState([]);
@@ -196,8 +197,21 @@ const Contact = ({ attachement, handleEnquiry }) => {
         console.log(err);
       });
   };
+
+  const handleEnquiryId = enquiryName => {
+    if (enquiryName.length) {
+      let enquiryId = enquiryCategory.find(el => el.name === enquiryName[0]).id;
+      console.log(enquiryId);
+    }
+  };
   return (
     <Fragment>
+      {/* <Select
+        options={enquiryCategory}
+        selectedValues={enquiryName => {
+          handleEnquiryId(enquiryName);
+        }}
+      /> */}
       {submitResponse &&
         submitResponse.map((elem, index) => {
           return (
