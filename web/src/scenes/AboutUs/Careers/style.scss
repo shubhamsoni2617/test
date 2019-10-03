@@ -20,7 +20,7 @@
         ul{
             background-color: #fff;
             text-align: center;
-            flex: 0 0 calc(100% - 238px);
+            // flex: 0 0 calc(100% - 238px);
             width: calc(100% - 238px);
             margin-right: 16px;
             padding: 0px 62px 60px 76px;
@@ -28,13 +28,13 @@
             margin-top: -33px;
             @media(max-width: 991px){
                 padding: 0px 40px 20px 40px;
-                flex: 0 0 calc(100% - 206px);
+                //flex: 0 0 calc(100% - 206px);
                 width: calc(100% - 206px);
             }
             @media(max-width: 767px){
                 padding: 0px 50px 20px 50px;
                 margin-bottom: 10px;
-                flex: 0 0 100%;
+                //flex: 0 0 100%;
                 width: 100%;
             }
             @media(max-width: 600px){
