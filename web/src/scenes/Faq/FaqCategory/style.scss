@@ -101,6 +101,12 @@
       &.active{
         font-weight: 500;
       }
+      span{
+        font-size: inherit;
+        line-height: inherit;
+        color: inherit;
+        font-weight: inherit;
+      }
     }
     .faq-ans-wrapper {
       position: absolute;
