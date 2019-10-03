@@ -16,9 +16,13 @@
             padding: 15px;
         }
         .form-group{
-            margin-bottom: 25px;
+              margin-top: 20px;
+              margin-bottom: 2px;
             @media(max-width: 991px){
-                margin-bottom: 15px;
+                margin-top: 15px;
+            }
+            &:first-child{
+              margin-top: 0px;
             }
             .form-control{
                 border-radius: 0;
@@ -76,7 +80,7 @@
                 padding: 0px;
                 border: 1px solid #0098FF;
                 transition: 0.3s color, 0.3s background-color;
-                margin-top: 10px;
+                margin-top: 20px;
                 @media(max-width: 991px){
                     font-size: 16px;
                     height: 32px;

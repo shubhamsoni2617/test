@@ -42,7 +42,7 @@ const Faqs = props => {
             />
           );
         })}
-      <Link to="/faq" className="contact-us-all-faq">
+      <Link to="/faq/top-questions" className="contact-us-all-faq">
         See all FAQs
       </Link>
     </div>

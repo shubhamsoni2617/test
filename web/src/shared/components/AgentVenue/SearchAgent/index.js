@@ -23,7 +23,8 @@ const SearchAgent = props => {
     handleMapFilter,
     searchText,
     eventValue,
-    attractionValue
+    attractionValue,
+    toggleFindInMapHandler
   } = props;
 
   const [scrollContainerRef, styleObj] = useStickyPanel({
@@ -237,6 +238,7 @@ const SearchAgent = props => {
                       offset={-40}
                       duration={500}
                       onClick={() => {
+                        toggleFindInMapHandler();
                         showOnMapClick(item);
                       }}
                     >
