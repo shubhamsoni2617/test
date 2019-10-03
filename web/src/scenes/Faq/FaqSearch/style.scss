@@ -8,12 +8,18 @@
     img {
       max-height: 460px;
       min-height: 250px;
+      @media(max-width: 768px){
+        min-height: 270px;
+      }
     }
   }
   .banner-overlay {
     @media (max-width: 991px) {
       padding: 0 10px;
       margin-top: 40px;
+    }
+    @media(max-width: 768px){
+      margin-top: 50px;
     }
     @media(max-width: 767px){
       margin-top: 50px;
@@ -23,9 +29,18 @@
       line-height: 49px;
       margin-bottom: 10px;
       font-weight: 600;
+      @media(max-width: 1024px){
+        font-size: 30px;
+        line-height: 40px;
+        margin-bottom: 5px;
+      }
       @media(max-width: 991px){
         font-size: 25px;
         line-height: 30px;
+      }
+      @media(max-width: 768px){
+        font-size: 28px;
+        line-height: 35px;
       }
       @media (max-width: 767px) {
         font-size: 20px;
