@@ -49,7 +49,7 @@ a{
       display: flex;
       justify-content: flex-start;
       align-items: flex-end;
-      min-height: 118px;
+      min-height: 80px;
       button{
         flex: 1 0 11%;
         max-width: 11%;
@@ -94,6 +94,12 @@ a{
       }
     }
   }
+  &.genre,
+  &.venue{
+    .submenu{
+      padding: 15px 0;
+    }
+  }
   &.calendar{
     .filters-panel{
       padding: 10px 15px;
@@ -135,6 +141,9 @@ a{
 }
 
 .responsive-nav-links {
+  .responsive-nav-close{
+    z-index: 2;
+  }
   .social-links{
     span{
       color: #343434;
