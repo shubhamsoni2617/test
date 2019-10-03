@@ -12,10 +12,7 @@ const Content = props => {
   }
   return (
     <div className="sidebar-accordion">
-      <Accordion
-        allowZeroExpanded
-        preExpanded={[props.location.search.split('=')[1]]}
-      >
+      <Accordion allowZeroExpanded preExpanded={[props.optionalSearchId]}>
         {filteredData.map((content, i) => {
           return (
             <div key={content.question + i}>
@@ -23,7 +20,8 @@ const Content = props => {
                 title={content.question}
                 desc={content.answer}
                 uuid={content.id}
-                optionalSearchId={props.location.search.split('=')[1]}
+                optionalSearchId={props.optionalSearchId}
+                categoryLinkHeight={props.categoryLinkHeight}
               />
             </div>
           );
