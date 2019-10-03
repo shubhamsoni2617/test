@@ -294,6 +294,7 @@ export default class Events extends Component {
     };
     if (!utilities.mobileAndTabletcheck()) {
       obj = {
+        ...searchType,
         first: 0,
         limit: 9,
         loader: true,
