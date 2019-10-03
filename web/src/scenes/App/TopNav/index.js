@@ -251,7 +251,7 @@ const TopNav = props => {
                   <ManLogo className="img-fluid" />
                   <span></span>
                 </Link>
-                <span>Hello William</span>
+                <span>Login/ Register</span>
               </li>
               <li className="ticket-withus">
                 <a>Ticket With Us</a>
