@@ -65,7 +65,7 @@ const Footer = () => {
                     <Link to="/gift-vouchers">Gift Vouchers</Link>
                   </li>
                   <li>
-                    <Link to="/faq/about">FAQ</Link>
+                    <Link to="/faq/top-questions">FAQ</Link>
                   </li>
                   <li>
                     <a>Cancellations/Refunds</a>

@@ -13,21 +13,22 @@ const AutoSuggest = props => {
     let userInput = e.currentTarget.value;
     let helperText = null;
     let allSuggestions = [];
-
-    allSuggestions = suggestions.reduce((acc, element) => {
-      element.category_id.map(category =>
-        categories.findIndex(categoryObj => {
-          if (categoryObj.id === category) {
-            acc.push({
-              ...element,
-              category_id: category,
-              category_name: categoryObj.name
-            });
-          }
-        })
-      );
-      return acc;
-    }, []);
+    if (suggestions && categories) {
+      allSuggestions = suggestions.reduce((acc, element) => {
+        element.category_id.map(category =>
+          categories.findIndex(categoryObj => {
+            if (categoryObj.id === category) {
+              acc.push({
+                ...element,
+                category_id: category,
+                category_name: categoryObj.name
+              });
+            }
+          })
+        );
+        return acc;
+      }, []);
+    }
 
     let filteredSuggestions = allSuggestions.filter(
       suggestion =>
@@ -92,9 +93,9 @@ const AutoSuggest = props => {
         </ul>
       )}
       {filteredSuggestions.length === 0 &&
-      userInput.length > 3 &&
+      userInput.length >= 3 &&
       showSuggestions ? (
-        <span className="no-suggestions">you are on your own</span>
+        <span className="no-suggestions">No results Found</span>
       ) : null}
     </Fragment>
   );
