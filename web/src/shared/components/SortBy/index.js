@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { CSSTransitionGroup } from 'react-transition-group';
 import PropTypes from 'prop-types';
+import Utilities from '../../utilities';
 
 import './style.scss';
 
@@ -10,16 +11,18 @@ export default class SortBy extends Component {
       tag: this.props.defaultSortType ? this.props.defaultSortType : 'Date',
       active: ''
     },
-    showSortMenu: false
+    showSortMenu: Utilities.mobileAndTabletcheck() ? true : false
   };
 
   componentDidMount() {}
 
   setSortFilter = (tag, sortBy, order) => {
     this.setState({ sort: { tag: tag } });
-    this.setState({ showSortMenu: false }, () => {
-      document.removeEventListener('click', this.closeSortMenu);
-    });
+    if (!Utilities.mobileAndTabletcheck()) {
+      this.setState({ showSortMenu: false }, () => {
+        document.removeEventListener('click', this.closeSortMenu);
+      });
+    }
     this.props.handleFilters({
       filteredSortType: sortBy,
       filteredSortOrder: order
@@ -39,11 +42,10 @@ export default class SortBy extends Component {
   };
 
   render() {
-    const { sortList } = this.props;
+    const { sortList, filteredSortType, filteredSortOrder } = this.props;
     const { sort } = this.state;
-
     return (
-      <div className="sortby">
+      <div className={`sortby ${this.props.sortByFlag ? 'open' : ''}`}>
         <div className="sortby-filter">
           <div onClick={this.showSortMenu} className="filter-topbar">
             <span className="sortby-text">Sort by</span>
@@ -69,6 +71,12 @@ export default class SortBy extends Component {
                     return (
                       <li
                         key={index}
+                        className={`${
+                          list.sortType === filteredSortType &&
+                          list.sortOrder === filteredSortOrder
+                            ? 'checked'
+                            : ''
+                        }`}
                         onClick={() =>
                           this.setSortFilter(
                             list.sortTitle,
@@ -83,7 +91,7 @@ export default class SortBy extends Component {
                   })}
               </ul>
             ) : null}
-            {/* <a href="" className="sortby-apply-mobileonly">Apply</a> */}
+            {this.props.children}
           </CSSTransitionGroup>
         </div>
       </div>

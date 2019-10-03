@@ -605,7 +605,7 @@ button,
     height: auto;
     display: none;
     .sortby-topbar-mobileonly{
-      position: fixed;
+      // position: fixed;
       z-index: 2;
       color: #fff;
       background-color: #373E45;
@@ -632,7 +632,7 @@ button,
       }
     }
     ul{
-      position: fixed;
+    position: relative;
       top: 0px;
       left: 0px;
       bottom: 0px;

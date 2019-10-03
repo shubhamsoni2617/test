@@ -36,7 +36,8 @@ export default class Attractions extends Component {
       loader: false,
       queryParams: {},
       count: 0,
-      filterFlag: false
+      filterFlag: false,
+      sortByFlag: false
     };
 
     this.breadCrumbData = {
@@ -86,7 +87,9 @@ export default class Attractions extends Component {
       () => {
         const payload = this.getInitialFilters(true);
         this.setInitialFilters(payload);
-        this.loadAttractions(payload);
+        if (!Utilities.mobileAndTabletcheck()) {
+          this.loadAttractions(payload);
+        }
       }
     );
   };
@@ -215,6 +218,10 @@ export default class Attractions extends Component {
     this.setState({ filterFlag: !this.state.filterFlag });
   };
 
+  toggleSortBy = () => {
+    this.setState({ sortByFlag: !this.state.sortByFlag });
+  };
+
   callAPI = () => {
     this.setState(
       {
@@ -222,7 +229,8 @@ export default class Attractions extends Component {
         limit: 9,
         totalRecords: 0,
         loader: true,
-        filterFlag: false
+        filterFlag: false,
+        sortByFlag: false
       },
       () => {
         setTimeout(() => {
@@ -272,7 +280,21 @@ export default class Attractions extends Component {
                   attractionCategories={attractionCategories}
                   filteredSearch={filteredSearch}
                   filteredCategory={filteredCategory}
-                />
+                >
+                  <div className="fixed-buttons">
+                    <a
+                      onClick={() => {
+                        this.toggleFilters();
+                      }}
+                      className="close"
+                    >
+                      Close
+                    </a>
+                    <a onClick={() => this.callAPI()} className="apply">
+                      Apply
+                    </a>
+                  </div>
+                </Filters>
               )}
             </div>
 
@@ -282,7 +304,24 @@ export default class Attractions extends Component {
                   sortList={this.tabsSort.sortList}
                   handleFilters={this.handleFilters}
                   defaultSortType={this.tabsSort.defaultSortType}
-                />
+                  sortByFlag={this.state.sortByFlag}
+                  filteredSortType={this.state.filteredSortType}
+                  filteredSortOrder={this.state.filteredSortOrder}
+                >
+                  <div className="fixed-buttons">
+                    <a
+                      onClick={() => {
+                        this.toggleSortBy();
+                      }}
+                      className="close"
+                    >
+                      Close
+                    </a>
+                    <a onClick={() => this.callAPI()} className="apply">
+                      Apply
+                    </a>
+                  </div>
+                </SortBy>
               </div>
               <div className={this.state.viewTypeClass}>
                 {loader && <img className="filter-loader" src={loaderImage} />}
@@ -343,7 +382,7 @@ export default class Attractions extends Component {
               )}
             </div>
             <div className="fixed-buttons-events">
-              <a className="sortby">
+              <a className="sortby" onClick={this.toggleSortBy}>
                 sort by
                 <img src={sortbyIcon} alt="icon" />
               </a>
