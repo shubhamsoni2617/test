@@ -217,6 +217,7 @@ function Filters(props) {
           <DateRangeFilter
             filteredDateRange={filteredDateRange}
             handleFilters={handleFilters}
+            autoSubmit={true}
           />
         )}
         <FilterGrid
