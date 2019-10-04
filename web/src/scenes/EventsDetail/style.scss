@@ -57,6 +57,11 @@
       @media(max-width: 768px){
           padding: 20px 15px 15px;
       }
+      .tickets-button{
+        .react-modal .react-modal-body{
+          width: 417px;
+        }
+      }
       .event-dates-time-block{
         position: absolute;
         width: 100%;

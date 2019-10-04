@@ -2,19 +2,98 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import calendarImg from '../../../assets/images/event-calender.svg';
-import locationImg from '../../../assets/images/location-blue.svg';
 import locationGray from '../../../assets/images/location-gray.svg';
 import faceImg from '../../../assets/images/face.svg';
 import shareIcon from '../../../assets/images/share-icon.svg';
 import Info from '../../../assets/images/info-sign.svg';
 import SocialShare from '../../../shared/components/SocialShare';
+import ModalPopup from '../../../shared/components/Modal';
 import Image from '../../../shared/components/Image';
 
+function Button({ styleObj, url, text }) {
+  return (
+    <div className="buy-tickets-btn">
+      <a style={styleObj} href={url}>
+        {text}
+      </a>
+    </div>
+  );
+}
+
+function BuyTicketsButton({ url, buttons, buttonGroups, setFlag }) {
+  if ((buttons && buttons.length) || (buttonGroups && buttonGroups.length)) {
+    return <a onClick={() => setFlag(true)}>Buy Tickets</a>;
+  }
+
+  return (
+    <a href={url} target="_blank" rel="noopener noreferrer">
+      Buy Tickets
+    </a>
+  );
+}
+
+function BuyTicketsButtonPopup(props) {
+  const [flag, setFlag] = useState(false);
+  const { detailData } = props;
+  return (
+    <>
+      <div className="buy-tickets-btn">
+        <BuyTicketsButton
+          buttons={detailData.buttons}
+          buttonGroups={detailData.button_groups}
+          url={detailData.buy_now_url}
+          setFlag={setFlag}
+        />
+      </div>
+      <ModalPopup
+        showModal={flag}
+        title="Buy Tickets"
+        handleClose={() => setFlag(false)}
+      >
+        {detailData.buttons &&
+          detailData.buttons.length &&
+          detailData.buttons.map(button => {
+            const styleObj = {
+              background: button.color,
+              fontSize: `${button.font_size}px`,
+              color: button.font_color
+            };
+            return (
+              <Button styleObj={styleObj} text={button.text} url={button.url} />
+            );
+          })}
+        {detailData.button_groups &&
+          detailData.button_groups.length &&
+          detailData.button_groups.map(buttonGroup => {
+            return (
+              <>
+                <label>{buttonGroup.title}</label>
+                {buttonGroup.buttons.length &&
+                  buttonGroup.buttons.map(button => {
+                    const styleObj = {
+                      background: button.color,
+                      fontSize: `${button.font_size}px`,
+                      color: button.font_color
+                    };
+                    return (
+                      <Button
+                        styleObj={styleObj}
+                        text={button.text}
+                        url={button.url}
+                      />
+                    );
+                  })}
+              </>
+            );
+          })}
+      </ModalPopup>
+    </>
+  );
+}
 function EventDateTime({ show, showBlock, data }) {
   if (!show) return null;
   if (!data || !data.length) return null;
 
-  data = [...data, ...data, ...data, ...data];
   return (
     <div className="event-dates-time-block">
       <button className="close-button" onClick={() => showBlock(false)}>
@@ -153,17 +232,10 @@ function StickyHeader(props) {
         </div>
       </div>
       <div className="tickets-button">
-        {detailData.buy_now_url && detailData.is_available_for_booking === 1 && (
-          <div className="buy-tickets-btn">
-            <a
-              href={detailData.buy_now_url}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Buy Tickets
-            </a>
-          </div>
-        )}
+        {detailData.buy_now_url &&
+          detailData.is_available_for_booking === 1 && (
+            <BuyTicketsButtonPopup detailData={detailData} />
+          )}
         {buyPackages}
         {detailData.is_available_for_booking === 0 && (
           <div className="shows-over">
