@@ -5,12 +5,13 @@
     background-repeat: no-repeat;
     background-size: cover;
     .banner-leftalign{
-        height: 387px;
+        min-height: 387px;
+        height: 100%;
         @media(max-width: 768px){
-            height: 287px;
+            min-height: 287px;
         }
         @media(max-width: 767px){
-            height: 270px;
+            min-height: 270px;
         }
     }
     &:after{
@@ -20,6 +21,7 @@
         flex: 0 0 65%;
         width: 65%;
         margin-top: -50px;
+        padding: 80px 0px;
         @media(min-width: 1366px){
             flex: 0 0 50%;
             width: 50%;
@@ -29,6 +31,7 @@
             width: 100%;
             max-width: 100%;
             margin-top: -20px;
+            padding: 50px 0px;
         }
         @media(max-width: 767px){
             margin-top: 0px;

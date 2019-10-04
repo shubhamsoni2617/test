@@ -35,6 +35,17 @@ function BuyTicketsButton({ url, buttons, buttonGroups, setFlag }) {
 function BuyTicketsButtonPopup(props) {
   const [flag, setFlag] = useState(false);
   const { detailData } = props;
+
+  if (
+    !detailData.buttons &&
+    !detailData.buttons.length &&
+    !detailData.buttonGroups &&
+    !detailData.buttonGroups.length &&
+    !detailData.buy_now_url
+  ) {
+    return null;
+  }
+
   return (
     <>
       <div className="buy-tickets-btn">
@@ -120,6 +131,7 @@ function EventDateTime({ show, showBlock, data }) {
 
 function StickyHeader(props) {
   const [showEventDateBlock, setEventDateBlock] = useState(false);
+  const [venueDetailsPopup, setVenueDetailsPopup] = useState(false);
   const {
     detailData,
     sticky,
@@ -170,16 +182,13 @@ function StickyHeader(props) {
           {detailData.title}
           {detailData.pop_up_message.title && (
             <div className="info-tooltip">
-              <span className="info" onClick={() => this.props.openNotice()}>
+              <span className="info" onClick={() => props.openNotice()}>
                 <img src={Info} alt="Info" />
               </span>
             </div>
           )}
           <div className="share-tooltip">
-            <span
-              className="share"
-              onClick={() => this.props.openSocialShare()}
-            >
+            <span className="share" onClick={() => props.openSocialShare()}>
               <img src={shareIcon} alt="" />
               <SocialShare
                 shareUrl={shareUrl}
@@ -217,7 +226,19 @@ function StickyHeader(props) {
                       {detailData.venue_name.name}
                     </Link>
                   </span>
-                  <Link to="/venues">View all Venues</Link>
+                  <button
+                    className="link"
+                    onClick={() => setVenueDetailsPopup(true)}
+                  >
+                    View all Venues
+                  </button>
+                  <ModalPopup
+                    showModal={venueDetailsPopup}
+                    content={detailData.venue_name.description}
+                    title="Venue Details"
+                    handleClose={() => setVenueDetailsPopup(false)}
+                    htmlContent={true}
+                  />
                 </div>
               </li>
             )}

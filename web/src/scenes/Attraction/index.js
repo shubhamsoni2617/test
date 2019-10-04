@@ -87,7 +87,7 @@ export default class Attractions extends Component {
       () => {
         const payload = this.getInitialFilters(true);
         this.setInitialFilters(payload);
-        if (!Utilities.mobileAndTabletcheck()) {
+        if (!Utilities.mobilecheck()) {
           this.loadAttractions(payload);
         }
       }
@@ -183,7 +183,7 @@ export default class Attractions extends Component {
     let obj = {
       ...searchType
     };
-    if (!Utilities.mobileAndTabletcheck()) {
+    if (!Utilities.mobilecheck()) {
       obj = {
         ...searchType,
         first: 0,
@@ -194,7 +194,7 @@ export default class Attractions extends Component {
     }
     this.setState(obj, () => {
       setTimeout(() => {
-        if (!Utilities.mobileAndTabletcheck()) {
+        if (!Utilities.mobilecheck()) {
           this.loadAttractions(this.getFilters(), false);
         }
       }, 200);

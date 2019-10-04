@@ -13,6 +13,7 @@ const Faq = props => {
   const [faqCategoryData, setFaqCategoryData] = useState(null);
   const [categoryId, setCategoryId] = useState(null);
   const [categoryName, setCategoryName] = useState('');
+  const [toggleContent, setToggleContent] = useState(true);
 
   const [suggestions, setSuggestions] = useState(true);
   const [loading, setLoading] = useState(false);
@@ -71,6 +72,11 @@ const Faq = props => {
         console.log(err);
       });
   };
+
+  const toggleContentHandler = toggleValue => {
+    setToggleContent(toggleValue);
+  };
+
   return loading ? (
     <ShimmerEffect
       propCls="shm_col-xs-6 col-md-12"
@@ -84,6 +90,7 @@ const Faq = props => {
         suggestions={faqContentData}
         categories={faqCategoryData}
         setFilteredSuggestions={suggestions}
+        toggleContentHandler={toggleContentHandler}
       />
       <div className="faq-body-wrapper">
         <div className="container-fluid">
@@ -93,13 +100,17 @@ const Faq = props => {
             categoryName={categoryName}
             categories={faqCategoryData}
             faqContentData={faqContentData}
+            toggleContent={toggleContent}
+            toggleContentHandler={toggleContentHandler}
           />
-          <span className="faq-help-text">Still need help? <Link to="/contact-us">Contact Us</Link> Here</span>
+          <span className="faq-help-text">
+            Still need help? <Link to="/contact-us">Contact Us</Link> Here
+          </span>
         </div>
       </div>
     </div>
   ) : (
-        <PageNotFound />
-      );
+    <PageNotFound />
+  );
 };
 export default Faq;

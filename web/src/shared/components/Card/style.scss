@@ -103,6 +103,9 @@
                     }
                     .react-modal-body{
                         max-height: 100%;
+                        @media(max-width: 767px){
+                            max-height: calc(100% - 100px);
+                        }
                         .modal-content .modal-body{
                             padding: 15px 15px 20px;
                             .notice{
@@ -299,6 +302,10 @@
             justify-content: space-between;
             align-items: center;
             flex-wrap: wrap;
+            @media(max-width: 1024px){
+                text-align: left;
+                display: block;
+            }
             @media (max-width: 767px) {
                 flex-direction: column;
                 min-height: 40px;

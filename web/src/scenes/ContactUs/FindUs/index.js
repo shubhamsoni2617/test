@@ -8,8 +8,9 @@ import { ReactComponent as Corporate } from '../../../assets/images/find-us-ques
 import { ReactComponent as Career } from '../../../assets/images/find-us-career.svg';
 import { ReactComponent as Arrow } from '../../../assets/images/arrow-right.svg';
 import { useCustomContactDetail } from '../../../shared/components/CustomHooks';
+import './style.scss';
 
-const FindUs = ({}) => {
+const FindUs = ({ }) => {
   const [contactDetail] = useCustomContactDetail();
 
   return (
@@ -42,7 +43,7 @@ const FindUs = ({}) => {
             <img src={Call} alt="call-image" />
           </div>
           <div className="find-us-desc">
-            <h5 className="text">
+            <h5 className="text contact-number">
               {contactDetail.contact_information &&
                 contactDetail.contact_information.contact_number}
             </h5>

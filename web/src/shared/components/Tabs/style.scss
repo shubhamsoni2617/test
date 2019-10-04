@@ -54,6 +54,9 @@
             -moz-transition: 0.2s color;
             -o-transition: 0.2s color;
             cursor: pointer;
+            @media(max-width: 1024px){
+                padding: 9px 20px;
+            }
             @media(max-width: 991px) {
                 border-bottom: 5px solid rgba(52, 52, 52, 0.1);
                 padding: 0 24px 7px;
@@ -91,7 +94,6 @@
             }
             &:hover, &.active {
                 font-family: 'Montserrat', sans-serif;
-                font-weight: 600;
                 @media(max-width: 768px) {
                     background-color: #0098FF;
                     color: #ffffff;
@@ -99,6 +101,9 @@
                 &::before {
                     width: 100%;
                 }
+            }
+            &.active{
+                font-weight: 600;
             }
         }
     }
