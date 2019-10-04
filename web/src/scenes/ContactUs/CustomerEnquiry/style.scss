@@ -33,10 +33,20 @@
                 border: 1px solid rgba(151, 151, 151, 0.2);
                 font-size: 16px;
                 line-height: 19px;
+                color: #343434;
                 @media(max-width: 991px){
                     font-size: 14px;
                     line-height: 17px;
                     min-height: 30px;
+                }
+                &::-webkit-input-placeholder { /* Edge */
+                    color: #343434;
+                }
+                &:-ms-input-placeholder { /* Internet Explorer */
+                    color: #343434;
+                }
+                &::placeholder {
+                    color: #343434;
                 }
             }
             span{
