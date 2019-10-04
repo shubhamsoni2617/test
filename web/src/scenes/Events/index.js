@@ -18,6 +18,7 @@ import ShimmerEffect from '../../shared/components/ShimmerEffect';
 import utilities from '../../shared/utilities';
 import './style.scss';
 import SearchFilter from '../../shared/components/SearchFilter';
+import Constants from '../../shared/constants';
 
 export default class Events extends Component {
   constructor(props) {
@@ -40,7 +41,7 @@ export default class Events extends Component {
       venues: [],
       filterConfig: null,
       first: 0,
-      limit: 9,
+      limit: Constants.LIMIT,
       viewType: 'grid',
       viewTypeClass: 'events-section',
       totalRecords: 0,
@@ -119,7 +120,7 @@ export default class Events extends Component {
     this.loadEvents(payload);
     window.scrollTo(0, 0);
   }
-
+  eventsData;
   componentDidUpdate(prevProps) {
     if (
       this.props.location.search &&
@@ -195,7 +196,7 @@ export default class Events extends Component {
 
   loadMoreEvents = () => {
     let params = this.getFilters();
-    params.first = this.state.first + 9;
+    params.first = this.state.first + Constants.LIMIT;
     this.loadEvents(params, true);
     this.setState({
       first: params.first,
@@ -228,7 +229,7 @@ export default class Events extends Component {
     }
     const payload = {
       first: 0,
-      limit: 9,
+      limit: Constants.LIMIT,
       genre: reset ? '' : genreId,
       venue: reset ? '' : venueId,
       start_date: reset ? '' : dateRange.from,
@@ -297,7 +298,7 @@ export default class Events extends Component {
       obj = {
         ...searchType,
         first: 0,
-        limit: 9,
+        limit: Constants.LIMIT,
         loader: true,
         totalRecords: 0
       };
@@ -353,7 +354,7 @@ export default class Events extends Component {
     this.setState(
       {
         first: 0,
-        limit: 9,
+        limit: Constants.LIMIT,
         totalRecords: 0,
         loader: true,
         filterFlag: false,
