@@ -17,6 +17,7 @@ import sortbyIcon from '../../assets/images/events/sortby.svg';
 import ShimmerEffect from '../../shared/components/ShimmerEffect';
 import utilities from '../../shared/utilities';
 import './style.scss';
+import SearchFilter from '../../shared/components/SearchFilter';
 
 export default class Events extends Component {
   constructor(props) {
@@ -402,6 +403,7 @@ export default class Events extends Component {
                     type="FILTER"
                   />
                 )}
+
                 {!shimmerFilter &&
                   genre.length > 0 &&
                   venues.length > 0 &&
@@ -441,6 +443,10 @@ export default class Events extends Component {
 
               <div className="events-listing">
                 <div className="event-listing-sorting">
+                  <SearchFilter
+                    handleFilters={this.handleFilters}
+                    searchText={filteredSearch}
+                  />
                   <SortBy
                     sortList={this.tabsSort.sortList}
                     handleListGridView={this.handleListGridView}
