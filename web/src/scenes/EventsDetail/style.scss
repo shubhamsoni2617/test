@@ -232,6 +232,8 @@
               @media(max-width: 980px){
                   line-height: 22px;
                   font-size: 18px;
+                  min-height: unset;
+                  padding-bottom: 5px;
               }
           }
           .link{
@@ -275,6 +277,20 @@
                   }
                   &.event-date {
                       margin-bottom: 15px;
+                      &:first-child{
+                        span{
+                            display: block;
+                        }
+                      }
+                      .seat-map{
+                          .seat-map-text{
+                              color: #0098FF;
+                          }
+                      }
+                      .detail{
+                          font-weight: bold;
+                          color: #343434;
+                      }
                       @media(max-width: 980px){
                           margin-bottom: 10px;
                       }
@@ -292,7 +308,7 @@
                           font-family: 'Rubik', sans-serif;
                           font-size: 18px;
                           line-height: 22px;
-
+                          color: #6A6A6A;
                         }
                       }
                   }
@@ -664,7 +680,13 @@
             &:empty{
                 display: none;
             }
+            @media(max-width: 767px){
+                margin-bottom: 10px;
+            }
         }
+    }
+    @media(max-width: 767px){
+        padding: 20px 0px 25px;
     }
   }
   //shows-over
