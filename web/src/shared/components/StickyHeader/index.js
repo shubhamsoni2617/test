@@ -246,7 +246,7 @@ function StickyHeader(props) {
             {detailData.price && (
               <li className="event-date">
                 <img src={calendarImg} alt="cal-icon" />
-                <span>{detailData.price}</span>
+                <span className="detail">{detailData.price}</span>
               </li>
             )}
           </ul>
