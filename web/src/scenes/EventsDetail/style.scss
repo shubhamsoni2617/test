@@ -389,7 +389,7 @@
       grid-template-columns: 65.3% 34.7%;
       position: relative;
       @media (max-width: 980px){
-          grid-template-columns: auto;
+          display: block;
       }
       &:after{
           position: absolute;
