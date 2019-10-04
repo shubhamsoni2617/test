@@ -302,6 +302,10 @@
             justify-content: space-between;
             align-items: center;
             flex-wrap: wrap;
+            @media(max-width: 1024px){
+                text-align: left;
+                display: block;
+            }
             @media (max-width: 767px) {
                 flex-direction: column;
                 min-height: 40px;
