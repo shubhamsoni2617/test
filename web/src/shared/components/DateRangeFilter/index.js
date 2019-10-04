@@ -53,7 +53,12 @@ function DateRangeFilter(props) {
   // Date Range methods
   const handleFromChange = fromDate => {
     setFrom(fromDate);
-    if (Utilities.mobileAndTabletcheck() && fromDate && to) {
+    if (
+      Utilities.mobileAndTabletcheck() &&
+      props.autoSubmit &&
+      fromDate &&
+      to
+    ) {
       filterByDateRange(fromDate, to);
     }
   };
@@ -61,7 +66,12 @@ function DateRangeFilter(props) {
   const handleToChange = toDate => {
     setTo(toDate);
     showFromMonth();
-    if (Utilities.mobileAndTabletcheck() && from && toDate) {
+    if (
+      Utilities.mobileAndTabletcheck() &&
+      props.autoSubmit &&
+      from &&
+      toDate
+    ) {
       filterByDateRange(from, toDate);
     }
   };
@@ -82,7 +92,7 @@ function DateRangeFilter(props) {
       <div className="filter-grid-heading">
         <h3>Date Range</h3>
         <ul>
-          <li className="active">
+          <li className="active clear">
             <a
               href="/"
               onClick={e => {
@@ -95,7 +105,7 @@ function DateRangeFilter(props) {
           </li>
         </ul>
       </div>
-      <div className={`select-range ${flag ? 'active' : ''}`}>
+      <div className={`select-date select-range ${flag ? 'active' : ''}`}>
         <button onClick={() => setFlag(!flag)}>Select range</button>
       </div>
       <div className={`filters-panel ${flag ? 'open' : ''}`}>
@@ -150,7 +160,7 @@ function DateRangeFilter(props) {
             />
           </span>
         </div>
-        {from && to && (
+        {from && to && props.autoSubmit && (
           <a
             href="/"
             onClick={e => {
@@ -160,8 +170,18 @@ function DateRangeFilter(props) {
             className="cal-apply-btn active"
           >
             <img src={tickWhite} className="active" alt="tick" />
-            <span>Search</span>
           </a>
+        )}
+        {from && to && !props.autoSubmit && (
+          <button
+            className="btn buy-btn"
+            onClick={e => {
+              e.preventDefault();
+              filterByDateRange(from, to);
+            }}
+          >
+            Search
+          </button>
         )}
       </div>
     </div>

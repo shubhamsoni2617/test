@@ -37,5 +37,12 @@
         img{
             width: 14px;
         }
+        @media(max-width: 767px){
+            top: 50%;
+            transform: translateY(-50%);
+            img{
+                width: 8px;
+            }
+        }
 	}
 }

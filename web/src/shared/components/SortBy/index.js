@@ -11,14 +11,14 @@ export default class SortBy extends Component {
       tag: this.props.defaultSortType ? this.props.defaultSortType : 'Date',
       active: ''
     },
-    showSortMenu: Utilities.mobileAndTabletcheck() ? true : false
+    showSortMenu: Utilities.mobilecheck() ? true : false
   };
 
   componentDidMount() {}
 
   setSortFilter = (tag, sortBy, order) => {
     this.setState({ sort: { tag: tag } });
-    if (!Utilities.mobileAndTabletcheck()) {
+    if (!Utilities.mobilecheck()) {
       this.setState({ showSortMenu: false }, () => {
         document.removeEventListener('click', this.closeSortMenu);
       });

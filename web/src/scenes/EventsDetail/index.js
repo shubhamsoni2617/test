@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, useState } from 'react';
 import { CSSTransitionGroup } from 'react-transition-group';
 import EventsService from '../../shared/services/EventsService';
 import Constants from '../../shared/constants';
@@ -18,6 +18,7 @@ import ShimmerEffect from '../../shared/components/ShimmerEffect';
 import StickyHeader from '../../shared/components/StickyHeader';
 
 import SimilarPicksSection from '../../shared/components/SimilarPicksSection';
+import AdvertisementSection from '../../shared/components/AdvertisementSection';
 
 function ShowOver({ isShowOver }) {
   if (isShowOver !== 1) return null;
@@ -39,16 +40,24 @@ function ShowOver({ isShowOver }) {
   );
 }
 
-function SeatMapDetail({ showSeatMap, seatingPlan, handleClose }) {
-  if (!showSeatMap) return null;
+function SeatMapButton({ seatingPlan }) {
+  const [flag, setFlag] = useState(false);
   if (!seatingPlan || !seatingPlan.length) return null;
   return (
-    <SeatMap
-      imgArr={seatingPlan}
-      showModal={showSeatMap}
-      heading="Seat Map"
-      handleClose={handleClose}
-    />
+    <>
+      <a onClick={() => setFlag(true)} className="seat-map">
+        <img alt="seat-map" src={SeatMapImg} />
+        <span className="seat-map-text">Seat Map</span>
+      </a>
+      {flag && (
+        <SeatMap
+          imgArr={seatingPlan}
+          showModal={flag}
+          heading="Seat Map"
+          handleClose={() => setFlag(false)}
+        />
+      )}
+    </>
   );
 }
 
@@ -83,14 +92,16 @@ function BuyPackages({ isAvailableForBooking, buyPackageUrl }) {
   return (
     isAvailableForBooking === 1 &&
     buyPackageUrl && (
-      <a
-        href={buyPackageUrl}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="buy-package"
-      >
-        Buy Packages
-      </a>
+      <div className="buy-tickets-btn">
+        <a
+          href={buyPackageUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="buy-package"
+        >
+          Buy Package
+        </a>
+      </div>
     )
   );
 }
@@ -361,6 +372,17 @@ export default class EventsDetail extends Component {
                     openNotice={this.openNotice}
                     openSocialShare={this.openSocialShare}
                     shareUrl={shareUrl}
+                    seatMapButton={
+                      <SeatMapButton seatingPlan={detailData.seating_plan} />
+                    }
+                    buyPackages={
+                      <BuyPackages
+                        isAvailableForBooking={
+                          detailData.is_available_for_booking
+                        }
+                        buyPackageUrl={detailData.buy_package_url}
+                      />
+                    }
                   />
 
                   <StickyHeader
@@ -372,6 +394,10 @@ export default class EventsDetail extends Component {
                     openSocialShare={this.openSocialShare}
                     shareUrl={shareUrl}
                   />
+                </section>
+
+                <section>
+                  <AdvertisementSection data={detailData.wallpaper} />
                 </section>
 
                 <section
@@ -407,38 +433,6 @@ export default class EventsDetail extends Component {
                       })}
                   </div>
                   <div className="event-detail-sidebar">
-                    {detailData.seating_plan &&
-                      detailData.seating_plan.length > 0 && (
-                        <a
-                          href="/"
-                          onClick={e => {
-                            e.preventDefault();
-                            this.openSeatMap();
-                          }}
-                          className="seat-map"
-                        >
-                          <span className="seat-map-img">
-                            <img alt="seat-map" src={SeatMapImg} />
-                            <img
-                              alt="seat-map-blank"
-                              className="active"
-                              src={SeatMapWhite}
-                            />
-                          </span>
-                          <span className="seat-map-text">Seat Map</span>
-                        </a>
-                      )}
-                    <SeatMapDetail
-                      showSeatMap={showSeatMap}
-                      seatingPlan={detailData.seating_plan}
-                      handleClose={this.handleClose}
-                    />
-                    <BuyPackages
-                      isAvailableForBooking={
-                        detailData.is_available_for_booking
-                      }
-                      buyPackageUrl={detailData.buy_package_url}
-                    />
                     {detailData.ticket_pricing && (
                       <AccordionSection
                         title="Price Details"
@@ -468,6 +462,7 @@ export default class EventsDetail extends Component {
                           children={detailData.promotions}
                         />
                       )}
+                    <AdvertisementSection data={detailData.rectangle_image} />
                   </div>
                 </section>
                 <EventTags tags={detailData.tags} />
