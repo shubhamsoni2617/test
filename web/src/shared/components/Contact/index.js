@@ -21,10 +21,25 @@ const Contact = ({ attachement, handleEnquiry }) => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
   const [headerErr, setHeaderErr] = useState('');
+  const [CSRFToken, setCSRFToken] = useState('');
+  const [filePath, setFilePath] = useState([]);
 
   useEffect(() => {
     fetchEnquiry();
+    fetchCSRFToken();
   }, []);
+
+  const fetchCSRFToken = () => {
+    ContactUsService.getCSRFToken()
+      .then(res => {
+        if (res && res.data) {
+          setCSRFToken(res.data);
+        }
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  };
 
   const fetchEnquiry = () => {
     ContactUsService.getEnquiry()
@@ -51,23 +66,24 @@ const Contact = ({ attachement, handleEnquiry }) => {
       const check = Utilities.mobilecheck();
       const data = {
         category: Number(enquiry),
-        name: name,
-        email: email,
+        name,
+        email,
         contact_number: phone,
-        message: message,
+        message,
+        attachment: filePath,
         source_from:
           check > Constants.MOBILE_BREAK_POINT
             ? Constants.SOURCE_FROM_WEBSITE
             : Constants.SOURCE_FROM_MOBILE_RESPONSIVE
       };
-      submitForm(data);
+      submitForm(data, CSRFToken);
     } else {
       setErrMsg('Please complete all fields');
     }
   };
 
-  const submitForm = data => {
-    ContactUsService.formSubmission(data)
+  const submitForm = (data, CSRFToken) => {
+    ContactUsService.formSubmission(data, CSRFToken)
       .then(res => {
         if (res && res.data) {
           setTimeout(() => {
@@ -85,7 +101,6 @@ const Contact = ({ attachement, handleEnquiry }) => {
         }
       })
       .catch(err => {
-        console.log(err.response);
         if (err && err.response.data === null) {
           setHeaderErr('Something went wrong ');
           setLoading(false);
@@ -101,18 +116,6 @@ const Contact = ({ attachement, handleEnquiry }) => {
             setLoading(false);
           }, 1000);
         }
-        // if (err && !err.response.data.message) {
-        //   setError(true);
-        //   setTimeout(() => {
-        //     setSubmitResponse(err.response.data);
-        //     setLoading(false);
-        //   }, 1000);
-        // } else {
-        // setTimeout(() => {
-        //   setHeaderErr(err.response.data.message);
-        //   setLoading(false);
-        // }, 1000);
-        // }
       });
   };
 
@@ -157,9 +160,11 @@ const Contact = ({ attachement, handleEnquiry }) => {
     setLoading(false);
     setError(false);
     setHeaderErr('');
+    setFiles({});
   };
 
   const handleFile = e => {
+    setFiles({});
     const { files } = e.target;
     const filesLength = files.length;
     let fileSize = 0;
@@ -180,28 +185,28 @@ const Contact = ({ attachement, handleEnquiry }) => {
 
   const submitUploadAttachment = files => {
     let formData = new FormData();
-    // const headers = {
-    //   // "Content-Type": "multipart/form-data",
-    // };
+    let fileArr = [];
     for (let i = 0; i < files.length; i++) {
       let file = files[i];
-      formData.append('files[' + i + ']', file);
+      // fileArr.push(file);
+      formData.append('file', file);
     }
     ContactUsService.uploadAttachement(formData)
       .then(res => {
         if (res && res.data) {
-          console.log(res.data.data);
+          let filePath = [];
+          filePath = [...filePath, res.data.path];
+          setFilePath(filePath);
         }
       })
       .catch(err => {
-        console.log(err);
+        console.log(err.response);
       });
   };
 
   const handleEnquiryId = enquiryName => {
     if (enquiryName.length) {
       let enquiryId = enquiryCategory.find(el => el.name === enquiryName[0]).id;
-      console.log(enquiryId);
     }
   };
   return (
@@ -331,14 +336,17 @@ const Contact = ({ attachement, handleEnquiry }) => {
                   id="file-upload"
                   className="form-control"
                   type="file"
-                  multiple
+                  multiple={false}
                   onChange={handleFile}
-                  accept=".jpeg,.png,.pdf"
+                  accept=".jpeg,.png,.pdf,.doc,.docx,.jpg"
                 />
                 <span>
                   *File Size should be maximum 5mb and it can be pdf,jpeg,png
                 </span>
-                <span className="text-danger">{maxFileLimitMsg}</span>
+                <p className="text-danger">{maxFileLimitMsg}</p>
+                {files && files[0] && <p>{files[0].name}</p>}
+                {files && files[1] && <p>{files[1].name}</p>}
+                {files && files[2] && <p>{files[2].name}</p>}
               </div>
             </div>
           </div>
