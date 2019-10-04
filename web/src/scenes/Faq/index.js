@@ -24,7 +24,7 @@ const Faq = props => {
   }, []);
 
   useEffect(() => {
-    window.scrollTo(0, 0);
+    window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
   }, [faqCategoryData]);
 
   useEffect(() => {
@@ -66,7 +66,9 @@ const Faq = props => {
     };
     FaqService.getFaqContentService(params)
       .then(res => {
-        setFaqContentData(res.data.data);
+        setTimeout(() => {
+          setFaqContentData(res.data.data);
+        }, 700);
       })
       .catch(err => {
         console.log(err);
