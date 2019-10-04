@@ -10,6 +10,7 @@ import insta from '../../../assets/images/insta-unfill.svg';
 import instaFill from '../../../assets/images/insta-fill.svg';
 import stixImage from '../../../assets/images/stix.png';
 import BackToTop from '../../../shared/components/BackToTop';
+import Utilities from '../../../shared/utilities';
 
 const Footer = () => {
   return (
@@ -153,7 +154,9 @@ const Footer = () => {
           </div>
         </div>
       </section>
-      <BackToTop scrollStepInPx="50" delayInMs="20" />
+      {!Utilities.mobilecheck() && (
+        <BackToTop scrollStepInPx="50" delayInMs="20" />
+      )}
     </footer>
   );
 };
