@@ -18,6 +18,7 @@ import ShimmerEffect from '../../shared/components/ShimmerEffect';
 import StickyHeader from '../../shared/components/StickyHeader';
 
 import SimilarPicksSection from '../../shared/components/SimilarPicksSection';
+import AdvertisementSection from '../../shared/components/AdvertisementSection';
 
 function ShowOver({ isShowOver }) {
   if (isShowOver !== 1) return null;
@@ -395,6 +396,10 @@ export default class EventsDetail extends Component {
                   />
                 </section>
 
+                <section>
+                  <AdvertisementSection data={detailData.wallpaper} />
+                </section>
+
                 <section
                   className="event-detail-section"
                   ref={this.setOffsetTop}
@@ -457,6 +462,7 @@ export default class EventsDetail extends Component {
                           children={detailData.promotions}
                         />
                       )}
+                    <AdvertisementSection data={detailData.rectangle_image} />
                   </div>
                 </section>
                 <EventTags tags={detailData.tags} />
