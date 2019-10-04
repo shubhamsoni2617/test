@@ -95,10 +95,19 @@
                 line-height: 30px;
                 height: 30px;
             }
+            @media(max-width: 767px){
+                padding: 0px 30px;
+            }
             span{
                 padding: 0px;
                 &:after{
                     content: none;
+                }
+            }
+            &:hover{
+                background-color: #fff;
+                span{
+                    color: #0098FF;
                 }
             }
         }

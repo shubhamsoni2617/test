@@ -148,6 +148,9 @@ a{
 }
 
 .responsive-nav-links {
+  @media(max-width: 768px){
+    max-width: 350px;
+  }
   .responsive-nav-close{
     z-index: 2;
   }

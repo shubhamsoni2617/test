@@ -8,6 +8,7 @@
     z-index: 2;
     @media(max-width: 768px){
         position: relative;
+        padding: 10px 0px;
     }
     & + div{
         padding-top: 76px;
@@ -19,16 +20,47 @@
         margin-right: 40px;
         display: flex;
         align-items: center;
+        @media(max-width: 767px){
+            margin-right: 0px;
+            display: flex;
+            align-items: center;
+            padding: 0px 10px;
+            width: 100%;
+        }
         .site-logo{
             img{
                 max-width: 95px;
                 height: auto;
+                @media(max-width: 767px){
+                    max-width: 80px;
+                }
+            }
+        }
+        .top-header-left{
+            @media(max-width: 768px){
+                width: 100%;
+                display: flex;
+                flex-wrap: wrap;
+                align-items: center;
+                .hamburger-icon{
+                    flex: 0 0 40px;
+                    height: 100%;
+                    width: 40px;
+                }
+                .site-logo{
+                    width: calc(100% - 50px);
+                    flex: 1 0 calc(100% - 50px);
+                    margin-left: 10px;
+                }
             }
         }
     }
     .bottom-header{
         display: flex;
         align-items: center;
+        @media(max-width: 768px){
+            display: none;
+        }
         ul{
             display: flex;
             flex-wrap: wrap;
@@ -115,6 +147,12 @@
                 }
             }
         }
+    }
+    .nav-close-topbar {
+        background-color: #353D44;
+        padding: 10px 10px 13px 10px;
+        border-bottom: 1px solid #d8d8d8;
+        min-height: 65px;
     }
 }
 .active-link{
