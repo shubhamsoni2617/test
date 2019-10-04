@@ -292,7 +292,7 @@ export default class Events extends Component {
     let obj = {
       ...searchType
     };
-    if (!utilities.mobileAndTabletcheck()) {
+    if (!utilities.mobilecheck()) {
       obj = {
         ...searchType,
         first: 0,
@@ -303,7 +303,7 @@ export default class Events extends Component {
     }
     this.setState(obj, () => {
       setTimeout(() => {
-        if (!utilities.mobileAndTabletcheck()) {
+        if (!utilities.mobilecheck()) {
           this.loadEvents(this.getFilters(), false);
         }
       }, 200);
@@ -329,7 +329,7 @@ export default class Events extends Component {
       () => {
         const payload = this.getInitialFilters(true);
         this.setInitialFilters(payload);
-        if (!utilities.mobileAndTabletcheck()) {
+        if (!utilities.mobilecheck()) {
           this.loadEvents(payload);
         }
       }
