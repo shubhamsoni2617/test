@@ -35,6 +35,17 @@ function BuyTicketsButton({ url, buttons, buttonGroups, setFlag }) {
 function BuyTicketsButtonPopup(props) {
   const [flag, setFlag] = useState(false);
   const { detailData } = props;
+
+  if (
+    !detailData.buttons &&
+    !detailData.buttons.length &&
+    !detailData.buttonGroups &&
+    !detailData.buttonGroups.length &&
+    !detailData.buy_now_url
+  ) {
+    return null;
+  }
+
   return (
     <>
       <div className="buy-tickets-btn">
