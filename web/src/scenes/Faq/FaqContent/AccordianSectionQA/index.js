@@ -16,7 +16,7 @@ class AccordianSectionQA extends Component {
 
   scrollToTitleHandler = () => {
     const { optionalSearchId, uuid, categoryLinkHeight } = this.props;
-    if (this.titleRef && optionalSearchId) {
+    if (this.titleRef && this.titleRef.current && optionalSearchId) {
       if (optionalSearchId === uuid && window.innerWidth > 991) {
         window.scrollTo({
           top: this.titleRef.current.offsetParent.offsetTop + 299,
