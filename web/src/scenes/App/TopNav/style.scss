@@ -50,6 +50,7 @@ a{
       justify-content: flex-start;
       align-items: flex-end;
       min-height: 80px;
+
       button{
         flex: 1 0 11%;
         max-width: 11%;
@@ -81,6 +82,12 @@ a{
 }
 
 .submenu-holder{
+  .clear{
+        display: none;
+      }
+      .select-date{
+        display: none;
+      }
  &.active{
     .submenu{
       display: block;

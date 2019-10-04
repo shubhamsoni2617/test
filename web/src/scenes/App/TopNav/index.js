@@ -126,11 +126,15 @@ const TopNav = props => {
   };
 
   const handleFilters = data => {
-    props.history.push(
-      `/events/search?s=${moment(data.from).format('YYYY-MM-DD')}--${moment(
-        data.to
-      ).format('YYYY-MM-DD')}`
-    );
+    setShowMegaMenu(false);
+    handleNavigationClose();
+    setTimeout(() => {
+      props.history.push(
+        `/events/search?s=${moment(data.from).format('YYYY-MM-DD')}--${moment(
+          data.to
+        ).format('YYYY-MM-DD')}`
+      );
+    }, 100);
   };
 
   return changeHeader ? (
@@ -286,6 +290,7 @@ const TopNav = props => {
                       <DateRangeFilter
                         filteredDateRange={{ from: null, to: null }}
                         handleFilters={handleFilters}
+                        autoSubmit={false}
                       />
                     </Submenu>
                   </li>
