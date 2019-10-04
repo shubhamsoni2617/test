@@ -72,32 +72,32 @@ const AutoSuggest = props => {
       {helperText ? (
         <span className="faq-search-error">{helperText}</span>
       ) : (
-        <ul className="suggestions">
-          {filteredSuggestions.map(suggestion => (
-            <li key={suggestion.id + suggestion.category_id}>
-              <Link
-                to={`/faq/${suggestion.category_name
-                  .replace(/\s/g, '-')
-                  .toLowerCase()}?id=${suggestion.id}`}
-                className="nav-item"
-                onClick={() => {
-                  onClick(suggestion.question);
-                }}
-              >
-                <span className="faq-qus">{suggestion.question}</span>
-                <span className="faq-qus-category">
-                  in {suggestion.category_name}
-                </span>
-              </Link>
-            </li>
-          ))}
-        </ul>
-      )}
+          <ul className="suggestions">
+            {filteredSuggestions.map(suggestion => (
+              <li key={suggestion.id + suggestion.category_id}>
+                <Link
+                  to={`/faq/${suggestion.category_name
+                    .replace(/\s/g, '-')
+                    .toLowerCase()}?id=${suggestion.id}`}
+                  className="nav-item"
+                  onClick={() => {
+                    onClick(suggestion.question);
+                  }}
+                >
+                  <span className="faq-qus">{suggestion.question}</span>
+                  <span className="faq-qus-category">
+                    in {suggestion.category_name}
+                  </span>
+                </Link>
+              </li>
+            ))}
+          </ul>
+        )}
       {filteredSuggestions.length === 0 &&
-      userInput.length >= 3 &&
-      showSuggestions ? (
-        <span className="no-suggestions">No results Found</span>
-      ) : null}
+        userInput.length >= 3 &&
+        showSuggestions ? (
+          <span className="no-suggestions">No result found</span>
+        ) : null}
     </Fragment>
   );
 };

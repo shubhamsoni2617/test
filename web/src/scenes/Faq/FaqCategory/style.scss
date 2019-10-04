@@ -110,29 +110,30 @@
     }
     .faq-ans-wrapper {
       position: absolute;
-      flex: 0 0 81%;
+      flex: 0 0 calc(81% - 40px);
       margin-left: auto;
-      width: 81%;
+      width: calc(81% - 40px);
       top: 0px;
       right: 0px;
       padding: 0px;
       height: 100%;
+      margin-right: 40px !important;
       @media(max-width: 1600px) and (min-width: 1280px){
-        width: 78%;
-        flex: 0 0 78%;
+        width: calc(78% - 40px);
+        flex: 0 0 calc(78% - 40px);
       }
       @media(max-width: 1280px){
-        width: 74%;
-        flex: 0 0 74%;
+        width: calc(74% - 40px);
+        flex: 0 0 calc(74% - 40px);
       }
       @media(max-width: 1024px){
-        width: 71%;
-        flex: 0 0 71%;
+        width: calc(71% - 40px);
+        flex: 0 0 calc(71% - 40px);
       }
       @media(max-width: 991px){
         position: relative;
-        width: 100%;
-        flex: 0 0 100%;
+        width: calc(100% - 40px);
+        flex: 0 0 calc(100% - 40px);
       }
       h2{
         font-size: 22px;
@@ -164,7 +165,7 @@
       }
       .sidebar-accordion {
         border-bottom: none;
-        padding: 0 20px 35px;
+        padding: 0 0px 35px 20px;
         margin-bottom: 30px;
         @media (max-width: 991px) {
           padding: 0 15px 13px;

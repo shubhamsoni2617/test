@@ -31,7 +31,7 @@ const FilterGrid = props => {
   useEffect(() => {
     let data = [...props.data];
     setData(data);
-    if (Utilities.mobileAndTabletcheck()) {
+    if (Utilities.mobilecheck()) {
       setLimit(data.length);
     }
   }, [props.data]);
@@ -130,7 +130,7 @@ const FilterGrid = props => {
                 })}
             </CSSTransitionGroup>
           </ul>
-          {props.limit !== data.length && !Utilities.mobileAndTabletcheck() ? (
+          {props.limit !== data.length && !Utilities.mobilecheck() ? (
             <>
               {data.length > limit && (
                 <ShowMoreButton
