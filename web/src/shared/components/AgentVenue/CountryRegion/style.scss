@@ -131,9 +131,13 @@
             font-size: 13px;
             border: none;
             font-family: "Rubik", sans-serif;
-            &:hover, &.selected{
+            &:hover{
               background-color: #2390ff;
               color: #fff;
+              margin: 0px;
+            }
+            &.selected{
+              font-weight: 500;
               margin: 0px;
             }
           }

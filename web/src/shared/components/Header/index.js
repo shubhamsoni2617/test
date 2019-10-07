@@ -1,9 +1,21 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { Link } from 'react-router-dom';
 import logo from '../../../assets/images/logo.png';
 import './style.scss';
 
 const Header = ({ menuActive, pathName }) => {
+
+  let refValue = useRef();
+  const handleNavigationOpen = () => {
+    refValue.classList.add('active');
+    document.body.classList.add('body-overlay');
+  };
+
+  const handleNavigationClose = () => {
+    refValue.classList.remove('active');
+    document.body.classList.remove('body-overlay');
+  };
+
   console.log(menuActive, pathName);
   return (
     <header className="small-header">
@@ -11,6 +23,14 @@ const Header = ({ menuActive, pathName }) => {
         <div className="row">
           <div className="top-header">
             <div className="top-header-left">
+              <div
+                className="hamburger-icon"
+                onClick={() => {
+                  handleNavigationOpen();
+                }}
+              >
+                <span></span>
+              </div>
               <div className="site-logo">
                 <Link to="/">
                   <img src={logo} className="img-fluid" alt="Logo" />
@@ -50,6 +70,49 @@ const Header = ({ menuActive, pathName }) => {
               </ul>
             </div>
           </nav>
+          <div
+            className="responsive-nav-links"
+            ref={node => {
+              refValue = node;
+            }}
+          >
+            <div className="nav-close-topbar">
+              <a
+                className="responsive-nav-close"
+                onClick={() => {
+                  handleNavigationClose();
+                }}
+              ></a>
+            </div>
+            <ul>
+              <li>
+                <a>Get Started</a>
+              </li>
+              <li
+                className={
+                  menuActive && pathName === 'about-us' ? 'active-link' : ''
+                }
+              >
+                <Link to="/about-us">About Us</Link>
+              </li>
+              <li>
+                <a>Media</a>
+              </li>
+              <li>
+                <a>Advertise</a>
+              </li>
+              <li>
+                <a>Careers</a>
+              </li>
+              <li
+                className={
+                  menuActive && pathName === 'contact-us' ? 'active-link' : ''
+                }
+              >
+                <Link to="/contact-us">Contact Us</Link>
+              </li>
+            </ul>
+          </div>
         </div>
       </div>
     </header>
