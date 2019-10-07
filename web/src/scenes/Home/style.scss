@@ -40,7 +40,7 @@
         width: 100%;
         position: relative;
         padding-top: 6px;
-        margin-top: -3px;
+        margin-top: -4px;
 
 		@media(max-width: 991px) {
 			padding: 0 10px;
@@ -55,7 +55,7 @@
 				flex-wrap: wrap;
 			}
 			@media (max-width: 767px) {
-				margin-bottom: 20px;
+				margin-bottom: 10px;
 			}
 			.site-logo {
 				padding-right: 40px;

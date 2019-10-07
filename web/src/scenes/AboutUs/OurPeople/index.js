@@ -24,7 +24,7 @@ const OurPeople = ({ content }) => {
               content.people.map(({ name, position, image }, index) => {
                 return (
                   <li key={index}>
-                    <Image src={image && image} alt="people" type='Vertical' />
+                    <Image src={image && image} alt="people" type='Medium' className="img-fluid" />
                     <h5>{name}</h5>
                     <span>{position}</span>
                   </li>
