@@ -123,6 +123,7 @@ function DateRangeFilter(props) {
               showOverlay={false}
               formatDate={formatDate}
               parseDate={parseDate}
+              inputProps={{ readOnly: true }}
               dayPickerProps={{
                 selectedDays: [from, { from, to }],
                 disabledDays: { before: new Date(), after: to },
@@ -141,6 +142,7 @@ function DateRangeFilter(props) {
           <span className="InputFromTo-to">
             <DayPickerInput
               ref={element}
+              inputProps={{ readOnly: true }}
               value={to}
               placeholder="mm/dd/yyyy"
               format="MM/DD/YYYY"
