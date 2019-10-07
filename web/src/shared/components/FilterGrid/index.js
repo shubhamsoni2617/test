@@ -23,6 +23,7 @@ function ShowMoreButton(props) {
 
 const FilterGrid = props => {
   const [limit, setLimit] = useState(props.limit);
+  const [selectedFilters, setSelectedFilters] = useState([]);
   const [activeClass, setActiveClass] = useState('');
   const [data, setData] = useState([]);
   const [panelDisplay, setPanelDisplay] = useState(false);
@@ -34,28 +35,50 @@ const FilterGrid = props => {
     if (Utilities.mobilecheck()) {
       setLimit(data.length);
     }
+    if (props.selectedFilter) {
+      setSelectedFilters(props.selectedFilter);
+    }
   }, [props.data]);
+
+  useEffect(() => {
+    if (props.selectedFilter) {
+      setSelectedFilters(props.selectedFilter);
+    }
+  }, [props.selectedFilter]);
 
   const selectAll = status => {
     let items = [];
     if (status) items = [...props.data].map(item => item.id);
     setActiveClass(status);
-    let newFilterObject = {};
-    newFilterObject[props.category] = items;
-    props.handleFilters(newFilterObject);
+    setSelectedFilters(items);
+    if (!Utilities.mobilecheck()) {
+      applyFilters(items);
+    }
+  };
+
+  const resetFilters = () => {
+    let newFilterValue = [...props.selectedFilter];
+    setSelectedFilters(newFilterValue);
   };
 
   const onChange = (e, id) => {
-    let newFilterValue = [...props.selectedFilter];
+    let newFilterValue = [...selectedFilters];
     if (e.target.checked) {
       newFilterValue.push(id);
     } else {
-      const index = props.selectedFilter.indexOf(id);
+      const index = selectedFilters.indexOf(id);
       if (index > -1) newFilterValue.splice(index, 1);
     }
+    setSelectedFilters(newFilterValue);
+    if (!Utilities.mobilecheck()) {
+      applyFilters(newFilterValue);
+    }
+  };
+
+  const applyFilters = newFilterValue => {
     let newFilterObject = {};
-    newFilterObject[props.category] = newFilterValue;
-    props.handleFilters(newFilterObject);
+    newFilterObject[props.category] = newFilterValue || selectedFilters;
+    props.handleFilters(newFilterObject, true);
   };
 
   if (!data.length) return null;
@@ -93,6 +116,9 @@ const FilterGrid = props => {
         heading={props.title}
         buttonText={`Select ${props.title}`}
         submenuClass="submenu-wrap"
+        applyFilters={applyFilters}
+        clearFilters={selectAll}
+        resetFilters={resetFilters}
       >
         <div className="filters-panel open">
           <ul>
@@ -107,8 +133,8 @@ const FilterGrid = props => {
                   let id = 'item-' + item.id;
                   let isChecked = false;
                   let index;
-                  if (props.selectedFilter) {
-                    index = props.selectedFilter.indexOf(item.id);
+                  if (selectedFilters) {
+                    index = selectedFilters.indexOf(item.id);
                     isChecked = index > -1;
                   }
                   return (
