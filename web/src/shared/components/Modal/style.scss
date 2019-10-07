@@ -1,6 +1,6 @@
 
 .react-modal{
-    z-index: 10;
+    z-index: 101;
     top: 0;
     left: 0px;
     right: 0px;
@@ -15,12 +15,12 @@
       top: 18px;
   }
   .react-modal-overlay{
-    z-index: 101;    
+    z-index: 101;
   }
   .react-modal-body{
     z-index: 102;
     width: 600px;
-    min-height: inherit;    
+    min-height: inherit;
     overflow: hidden;
     max-height: 500px;
     @media(max-width: 991px){

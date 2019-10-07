@@ -775,8 +775,14 @@
     opacity: 1 !important;
     overflow: auto;
     height: auto;
+    z-index: 99;
   }
-
+  .button_group{
+    margin: 15px 0 0;
+    label{
+      margin-bottom: 0;
+    }
+  }
   // sticky topbar
   .event-detail.sticky-topbar{
       background-color: #FFFFFF;

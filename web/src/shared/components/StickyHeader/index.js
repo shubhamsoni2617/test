@@ -24,9 +24,14 @@ function Button({ styleObj, url, text }) {
 }
 
 function BuyTicketsButton({ url, buttons, buttonGroups, setFlag }) {
-  if ((buttons && buttons.length) || (buttonGroups && buttonGroups.length)) {
+  if (
+    (buttons && buttons.length && buttons[0].text) ||
+    (buttonGroups && buttonGroups.length && buttonGroups[0].title)
+  ) {
     return <a onClick={() => setFlag(true)}>Buy Tickets</a>;
   }
+
+  if (!url) return null;
 
   return (
     <a href={url} target="_blank" rel="noopener noreferrer">
@@ -42,8 +47,10 @@ function BuyTicketsButtonPopup(props) {
   if (
     !detailData.buttons &&
     !detailData.buttons.length &&
+    !detailData.buttons[0].text &&
     !detailData.buttonGroups &&
     !detailData.buttonGroups.length &&
+    !detailData.buttonGroups[0].title &&
     !detailData.buy_now_url
   ) {
     return null;
@@ -64,6 +71,9 @@ function BuyTicketsButtonPopup(props) {
         title="Buy Tickets"
         handleClose={() => setFlag(false)}
       >
+        <div className="buy-tickets-btn">
+          <BuyTicketsButton url={detailData.buy_now_url} />
+        </div>
         {detailData.buttons &&
           detailData.buttons.length &&
           detailData.buttons.map(button => {
@@ -80,9 +90,10 @@ function BuyTicketsButtonPopup(props) {
           detailData.button_groups.length &&
           detailData.button_groups.map(buttonGroup => {
             return (
-              <>
+              <div className="button_group">
                 <label>{buttonGroup.title}</label>
-                {buttonGroup.buttons.length &&
+                {buttonGroup.buttons &&
+                  buttonGroup.buttons.length &&
                   buttonGroup.buttons.map(button => {
                     const styleObj = {
                       background: button.color,
@@ -97,7 +108,7 @@ function BuyTicketsButtonPopup(props) {
                       />
                     );
                   })}
-              </>
+              </div>
             );
           })}
       </ModalPopup>
