@@ -1,11 +1,11 @@
 import React, { useState, useRef, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import InputRange from 'react-input-range';
-import SearchIcon from '../../../assets/images/search-icon-gray.svg';
 import FilterGrid from '../FilterGrid';
 import useStickyPanel from '../../hooks/useStickyPanel';
 import './style.scss';
 import DateRangeFilter from '../DateRangeFilter';
+import SearchFilter from '../SearchFilter';
 
 function useDebounce(value, delay) {
   const [debouncedValue, setDebouncedValue] = useState(value);
@@ -22,52 +22,6 @@ function useDebounce(value, delay) {
 
   return debouncedValue;
 }
-
-const SearchFilter = props => {
-  // const [search, setSearch] = useState('');
-  // const debouncedSearchTerm = useDebounce(search, 500);
-  const [loading, setLoading] = useState(false);
-  const searchRef = useRef();
-
-  // useEffect(() => {
-  //   // if (search === '') {
-  //   //   props.handleFilters({ filteredSearch: search });
-  //   // }
-  //   // if (debouncedSearchTerm) {
-  //   //   props.handleFilters({ filteredSearch: search });
-  //   // }
-  // }, [search]);
-
-  const onChangeHandler = () => {
-    if (loading) return;
-
-    setLoading(true);
-    setTimeout(() => {
-      setLoading(false);
-
-      props.handleFilters({ filteredSearch: searchRef.current.value });
-    }, 500);
-  };
-
-  return (
-    <div className="filters-search">
-      <button type="submit" className="search-btn">
-        <img src={SearchIcon} className="img-fluid active" alt="search-icon" />
-      </button>
-      <input
-        ref={searchRef}
-        type="text"
-        placeholder={
-          props.searchPlaceholder ? props.searchPlaceholder : 'Search in events'
-        }
-        onChange={e => {
-          onChangeHandler();
-        }}
-        className="form-control"
-      />
-    </div>
-  );
-};
 
 function PriceRangeFilter(props) {
   const { priceConfig, filteredPriceRange } = props;
@@ -252,12 +206,6 @@ function Filters(props) {
 }
 
 export default Filters;
-
-SearchFilter.propTypes = {
-  handleFilters: PropTypes.func.isRequired,
-  searchText: PropTypes.array,
-  searchPlaceholder: PropTypes.string.isRequired
-};
 
 PriceRangeFilter.propTypes = {
   filteredPriceRange: PropTypes.object.isRequired,

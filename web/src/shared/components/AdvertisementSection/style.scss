@@ -1,6 +1,15 @@
-.advertisement-block{
-    height: 300px;
-}
 .advertisement-banner{
     height: 100px;
+}
+
+.advertisement-block{
+    max-height: 300px;
+    overflow: hidden;
+    margin-bottom: 15px;
+    padding: 0 10px;
+    .image-conatiner{
+        img{
+            width: 100%;
+        }
+    }
 }
