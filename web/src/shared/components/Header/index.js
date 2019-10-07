@@ -4,7 +4,6 @@ import logo from '../../../assets/images/logo.png';
 import './style.scss';
 
 const Header = ({ menuActive, pathName }) => {
-  console.log(menuActive, pathName);
   return (
     <header className="small-header">
       <div className="container-fluid">
