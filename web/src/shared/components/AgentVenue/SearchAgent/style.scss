@@ -559,7 +559,7 @@
                 z-index: 4;
                 @media(max-width: 960px){
                     position: absolute;
-                    width: 100%;
+                    width: calc(100% - 15px);
                     left: 0px;
                     padding: 10px 10px;
                     top: calc(100% + 13px);
@@ -568,6 +568,7 @@
                 @media(max-width: 767px){
                     top: calc(100% + 10px);
                     padding: 0px;
+                    margin-bottom: 10px;
                 }
             }
         }

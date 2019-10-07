@@ -4,6 +4,8 @@ import { Link } from 'react-router-dom';
 import calendarImg from '../../../assets/images/event-calender.svg';
 import coinsImg from '../../../assets/images/coin.svg';
 import locationGray from '../../../assets/images/location-gray.svg';
+import closeIcon from '../../../assets/images/cross.svg';
+import closeIconWhite from '../../../assets/images/cross-white.svg';
 import faceImg from '../../../assets/images/face.svg';
 import shareIcon from '../../../assets/images/share-icon.svg';
 import Info from '../../../assets/images/info-sign.svg';
@@ -120,7 +122,7 @@ function EventDateTime({ show, showBlock, data }) {
   return (
     <div className="event-dates-time-block">
       <button className="close-button" onClick={() => showBlock(false)}>
-        X
+        <img src={closeIcon} alt="Close Icon" />
       </button>
       <div className="block-header">
         <img src={calendarImg} alt="cal-icon" />

@@ -296,6 +296,9 @@ export default class Promotions extends Component {
                     handleLoadMore={this.handleLoadMore}
                     handleActiveTab={this.handleActiveTab}
                     handleFilters={this.handleFilters}
+                    limit={Constants.LIMIT}
+                    fetchPromotionDetailData={this.fetchPromotionDetailData}
+                    handlePromotionDetailTab={this.handlePromotionDetailTab}
                   />
                   {Utilities.mobilecheck() && (
                     <>
