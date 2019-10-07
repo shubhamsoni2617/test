@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import calendarImg from '../../../assets/images/event-calender.svg';
+import coinsImg from '../../../assets/images/coin.svg';
 import locationGray from '../../../assets/images/location-gray.svg';
 import faceImg from '../../../assets/images/face.svg';
 import shareIcon from '../../../assets/images/share-icon.svg';
@@ -245,7 +246,7 @@ function StickyHeader(props) {
             <li className="event-date">{seatMapButton}</li>
             {detailData.price && (
               <li className="event-date">
-                <img src={calendarImg} alt="cal-icon" />
+                <img src={coinsImg} alt="cal-icon" />
                 <span className="detail">{detailData.price}</span>
               </li>
             )}
