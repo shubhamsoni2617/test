@@ -59,7 +59,12 @@
       }
       .tickets-button{
         .react-modal .react-modal-body{
-          width: 417px;
+          width: 450px;
+          .modal-content{
+            .modal-body{
+              padding: 15px 25px 20px;
+            }
+          }
         }
       }
       .event-dates-time-block{
@@ -107,7 +112,7 @@
         .tickets-desc{
           overflow-y: auto;
           position: absolute;
-          height: 80%;
+          height: calc(100% - 94px);
           width: 100%;
           left: 0;
           padding: 0 30px;
@@ -780,7 +785,15 @@
   .button_group{
     margin: 15px 0 0;
     label{
-      margin-bottom: 0;
+      margin-bottom: 5px;
+      font-size: 16px;
+      font-weight: 500;
+    }
+    .buy-tickets-btn{
+      margin-bottom: 10px;
+      a{
+        margin-top: 0;
+      }
     }
   }
   // sticky topbar
