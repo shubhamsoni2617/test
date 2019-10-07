@@ -14,6 +14,8 @@ import ModalPopup from '../../../shared/components/Modal';
 import Image from '../../../shared/components/Image';
 
 function Button({ styleObj, url, text }) {
+  // if (!text) return null;
+
   return (
     <div className="buy-tickets-btn">
       <a style={styleObj} href={url}>
@@ -115,7 +117,7 @@ function BuyTicketsButtonPopup(props) {
     </>
   );
 }
-function EventDateTime({ show, showBlock, data }) {
+function EventDateTime({ show, showBlock, data, eventDate }) {
   if (!show) return null;
   if (!data || !data.length) return null;
 
@@ -130,6 +132,11 @@ function EventDateTime({ show, showBlock, data }) {
       </div>
       <div className="tickets-desc">
         <ul className="date-address">
+          {eventDate && (
+            <li className="event-date">
+              <span>{eventDate}</span>
+            </li>
+          )}
           {data.map(date => {
             return (
               <li className="event-date">
@@ -176,6 +183,7 @@ function StickyHeader(props) {
         show={showEventDateBlock}
         showBlock={setEventDateBlock}
         data={detailData.event_date_details}
+        eventDate={detailData.event_date}
       />
       <div className="tickets-desc">
         {detailData.genres && detailData.genres.length > 0 && (
