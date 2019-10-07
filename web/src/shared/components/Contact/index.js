@@ -15,6 +15,7 @@ const Contact = ({ attachement, handleEnquiry }) => {
   const [phone, setPhone] = useState('');
   const [message, setMessage] = useState('');
   const [submitResponse, setSubmitResponse] = useState([]);
+  const [successMsg, setSuccessMsg] = useState('');
   const [files, setFiles] = useState({});
   const [maxFileLimitMsg, setMaxFileLimitMsg] = useState('');
   const [errMsg, setErrMsg] = useState('');
@@ -88,7 +89,7 @@ const Contact = ({ attachement, handleEnquiry }) => {
         if (res && res.data) {
           setTimeout(() => {
             setLoading(false);
-            setSubmitResponse(res.data);
+            setSuccessMsg(res.data.message);
             setEnquiry('Select an Enquiry *');
             handleEnquiry && handleEnquiry('Select an Enquiry *');
             setName('');
@@ -161,6 +162,7 @@ const Contact = ({ attachement, handleEnquiry }) => {
     setError(false);
     setHeaderErr('');
     setFiles({});
+    setSuccessMsg('');
   };
 
   const handleFile = e => {
@@ -217,6 +219,7 @@ const Contact = ({ attachement, handleEnquiry }) => {
           handleEnquiryId(enquiryName);
         }}
       /> */}
+      {successMsg && <h5 className="text-success">{successMsg}</h5>}
       {submitResponse &&
         submitResponse.map((elem, index) => {
           return (

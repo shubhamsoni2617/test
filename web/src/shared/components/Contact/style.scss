@@ -169,6 +169,7 @@
                     line-height: 31px;
                     font-size: 16px;
                     font-weight: 500;
+                    background-clip: unset;
                     @media(max-width: 767px){
                         height: 28px;
                         line-height: 28px;
