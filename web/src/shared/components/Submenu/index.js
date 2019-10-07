@@ -29,19 +29,23 @@ function Submenu(props) {
         }`}
       >
         <div className="subholder-wrapper">
-          {backButtonRequired && (
-            <button
-              type="button"
-              onClick={() => {
-                resetFilters();
-                setMenuStatus(false);
-              }}
-            >
-              <img src="../../assets/images/next.svg"></img>
-            </button>
-          )}
-          <h1>{heading}</h1>
-          <button onClick={() => clearFilters(false)}>Clear Filters</button>
+          <div className="filter-heading">
+            {backButtonRequired && (
+              <button
+                type="button"
+                onClick={() => {
+                  resetFilters();
+                  setMenuStatus(false);
+                }}
+              >
+                <img src="../../assets/images/next.svg"></img>
+              </button>
+            )}
+            <h3>
+              {heading}
+              <button onClick={() => clearFilters(false)}>Clear Filters</button>
+            </h3>
+          </div>
         </div>
         {props.children}
         {data && data.length && (
@@ -63,7 +67,7 @@ function Submenu(props) {
             })}
           </ul>
         )}
-        <div>
+        <div className={`filter-fixed-btn ${menueStatus ? 'show' : 'hide'}`}>
           <button
             onClick={() => {
               setMenuStatus(false);
