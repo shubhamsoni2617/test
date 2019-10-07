@@ -14,7 +14,7 @@ export default class SortBy extends Component {
     showSortMenu: Utilities.mobilecheck() ? true : false
   };
 
-  componentDidMount() {}
+  componentDidMount() { }
 
   setSortFilter = (tag, sortBy, order) => {
     this.setState({ sort: { tag: tag } });
@@ -72,11 +72,11 @@ export default class SortBy extends Component {
                         className={`${
                           (list.sortOrder === filteredSortOrder &&
                             list.sortType === filteredSortType) ||
-                          (this.props.promotion &&
-                            list.sortOrder === filteredSortOrder)
+                            (this.props.promotion &&
+                              list.sortOrder === filteredSortOrder)
                             ? 'checked'
                             : ''
-                        }`}
+                          }`}
                         onClick={() =>
                           this.setSortFilter(
                             list.sortTitle,
