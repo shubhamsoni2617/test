@@ -336,7 +336,7 @@ const TopNav = props => {
                   </ul>
                 </Submenu>
               </li>
-              <li className="has-submenu">
+              <li className="has-submenu mycart">
                 <Submenu
                   heading="My cart"
                   buttonText="My cart"
@@ -391,10 +391,10 @@ const TopNav = props => {
                   </ul>
                 </Submenu>
               </li>
-              <li className="has-submenu">
-                <Link to="/">For Business</Link>
+              <li>
+                <Link to="/contact-us">Contact Us</Link>
               </li>
-              <li className="has-submenu">
+              <li>
                 <Link to="/">Stay Connected</Link>
               </li>
             </ul>
