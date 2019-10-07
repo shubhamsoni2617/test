@@ -199,11 +199,16 @@
             margin-top: -60px;
         }
         @media(max-width: 767px){
-            margin-top: -116px;
+            margin-top: -86px;
         }
         img{
             @media(max-width: 1024px){
                 min-height: 200px;
+            }
+        }
+        .banner-overlay{
+            @media(max-width: 767px){
+                padding-top: 92px;
             }
         }
     }

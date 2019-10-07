@@ -34,6 +34,8 @@ export default class Events extends Component {
       filteredTags: [],
       filteredPriceRange: {},
       filteredDateRange: {},
+      localfilteredPriceRange: {},
+      localfilteredDateRange: {},
       filteredSortType: 'date',
       filteredSortOrder: '',
       eventsData: [],
@@ -290,22 +292,23 @@ export default class Events extends Component {
     return params;
   };
 
-  handleFilters = searchType => {
+  handleFilters = (searchType, apply) => {
     let obj = {
       ...searchType
     };
-    if (!utilities.mobilecheck()) {
+    if (!utilities.mobilecheck() || apply) {
       obj = {
         ...searchType,
         first: 0,
         limit: Constants.LIMIT,
         loader: true,
-        totalRecords: 0
+        totalRecords: 0,
+        filterFlag: false
       };
     }
     this.setState(obj, () => {
       setTimeout(() => {
-        if (!utilities.mobilecheck()) {
+        if (!utilities.mobilecheck() || apply) {
           this.loadEvents(this.getFilters(), false);
         }
       }, 200);
@@ -322,6 +325,8 @@ export default class Events extends Component {
         filteredTags: [],
         filteredPriceRange: {},
         filteredDateRange: {},
+        localfilteredPriceRange: {},
+        localfilteredDateRange: {},
         filteredSortType: 'date',
         filteredSortOrder: '',
         isdataAvailable: false,
@@ -343,7 +348,11 @@ export default class Events extends Component {
   };
 
   toggleFilters = () => {
-    this.setState({ filterFlag: !this.state.filterFlag });
+    this.setState({
+      filterFlag: !this.state.filterFlag,
+      localfilteredPriceRange: { ...this.state.filteredPriceRange },
+      localfilteredDateRange: { ...this.state.filteredDateRange }
+    });
   };
 
   toggleSortBy = () => {
@@ -358,7 +367,9 @@ export default class Events extends Component {
         totalRecords: 0,
         loader: true,
         filterFlag: false,
-        sortByFlag: false
+        sortByFlag: false,
+        filteredPriceRange: { ...this.state.localfilteredPriceRange },
+        filteredDateRange: { ...this.state.localfilteredDateRange }
       },
       () => {
         setTimeout(() => {
@@ -382,12 +393,13 @@ export default class Events extends Component {
       shimmer,
       shimmerFilter,
       filteredSearch,
-      filteredPriceRange,
+      localfilteredPriceRange,
       filteredGnere,
       filteredPromotions,
       filteredVenues,
       filteredTags,
-      filteredDateRange
+      localfilteredDateRange,
+      filterFlag
     } = this.state;
     return (
       <div>
@@ -418,12 +430,13 @@ export default class Events extends Component {
                       venueData={venues}
                       filterConfig={filterConfig}
                       filteredSearch={filteredSearch}
-                      filteredPriceRange={filteredPriceRange}
+                      filteredPriceRange={localfilteredPriceRange}
                       filteredGnere={filteredGnere}
                       filteredPromotions={filteredPromotions}
                       filteredVenues={filteredVenues}
                       filteredTags={filteredTags}
-                      filteredDateRange={filteredDateRange}
+                      filteredDateRange={localfilteredDateRange}
+                      filterFlag={filterFlag}
                     >
                       <div className="fixed-buttons">
                         <a

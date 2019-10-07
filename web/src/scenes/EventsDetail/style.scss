@@ -149,10 +149,10 @@
                   -webkit-transition: max-width 0.5s, overflow 0.5s 0.5s;
                   -moz-transition: max-width 0.5s, overflow 0.5s 0.5s;
                   -o-transition: max-width 0.5s, overflow 0.5s 0.5s;
-                  svg{
-                    width: auto;
-                    height: auto;
-                  }
+                //   svg{
+                //     width: auto;
+                //     height: auto;
+                //   }
               }
               &.share-visible{
                   height: auto;
