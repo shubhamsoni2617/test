@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 function Submenu(props) {
   const {
@@ -8,7 +8,10 @@ function Submenu(props) {
     submenuClass = '',
     backButtonRequired = true,
     link = '',
-    closeSubmenu
+    closeSubmenu,
+    applyFilters,
+    clearFilters,
+    resetFilters
   } = props;
   const [menueStatus, setMenuStatus] = useState(false);
   return (
@@ -27,11 +30,18 @@ function Submenu(props) {
       >
         <div className="subholder-wrapper">
           {backButtonRequired && (
-            <button type="button" onClick={() => setMenuStatus(false)}>
+            <button
+              type="button"
+              onClick={() => {
+                resetFilters();
+                setMenuStatus(false);
+              }}
+            >
               <img src="../../assets/images/next.svg"></img>
             </button>
           )}
           <h1>{heading}</h1>
+          <button onClick={() => clearFilters(false)}>Clear Filters</button>
         </div>
         {props.children}
         {data && data.length && (
@@ -53,6 +63,16 @@ function Submenu(props) {
             })}
           </ul>
         )}
+        <div>
+          <button
+            onClick={() => {
+              setMenuStatus(false);
+              applyFilters();
+            }}
+          >
+            Apply
+          </button>
+        </div>
       </div>
     </>
   );

@@ -16,6 +16,10 @@ function DateRangeFilter(props) {
   const [flag, setFlag] = useState(false);
 
   useEffect(() => {
+    setFlag(false);
+  }, [props.filterFlag]);
+
+  useEffect(() => {
     const getDate = dateStr => {
       const date = new Date(dateStr);
       return date.toString() === 'Invalid Date' ? '' : date;
@@ -34,7 +38,7 @@ function DateRangeFilter(props) {
 
   const clearCalender = () => {
     props.handleFilters({
-      filteredDateRange: {
+      localfilteredDateRange: {
         from: '',
         to: ''
       }
@@ -78,7 +82,7 @@ function DateRangeFilter(props) {
 
   const filterByDateRange = (fromDate, toDate) => {
     props.handleFilters({
-      filteredDateRange: {
+      localfilteredDateRange: {
         from: moment(fromDate).format('YYYY-MM-DD'),
         to: moment(toDate).format('YYYY-MM-DD')
       }
