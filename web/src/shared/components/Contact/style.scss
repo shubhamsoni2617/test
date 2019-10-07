@@ -111,6 +111,9 @@
                 &:first-child{
                   margin-top: 0px;
                 }
+                select{
+                    color: #626262;
+                }
                 .form-control{
                     background-color: transparent;
                     border: 1px solid #D3D3D3;
@@ -119,6 +122,18 @@
                         outline: none;
                         box-shadow: none;
                         border-color: #b9b9b9;
+                    }
+                    &::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+                        color: #626262;
+                    }
+                    &::-moz-placeholder { /* Firefox 19+ */
+                        color: #626262;
+                    }
+                    &:-ms-input-placeholder { /* IE 10+ */
+                        color: #626262;
+                    }
+                    &:-moz-placeholder { /* Firefox 18- */
+                        color: #626262;
                     }
                 }
                 &.has-error{

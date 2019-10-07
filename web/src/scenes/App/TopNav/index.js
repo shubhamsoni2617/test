@@ -140,305 +140,305 @@ const TopNav = props => {
   return changeHeader ? (
     <Header menuActive={menuActive} pathName={pathName} />
   ) : (
-    <header className={`header ${headerClass ? 'homepage' : ''}`}>
-      <div className="container-fluid">
-        <div className="row">
-          <div className="top-header">
-            <div className="top-header-left">
-              <div
-                className="hamburger-icon"
-                onClick={() => {
-                  handleNavigationOpen();
-                }}
-              >
-                <span></span>
-              </div>
-              <div className="site-logo">
-                <Link to="/">
-                  <img src={logo} className="img-fluid" alt="Logo" />
-                </Link>
-              </div>
-              <HomePageSearch />
-            </div>
-            <div className="top-header-right">
-              <ul>
-                <li className="user-icon">
-                  <ManLogo className="img-fluid" />
+      <header className={`header ${headerClass ? 'homepage' : ''}`}>
+        <div className="container-fluid">
+          <div className="row">
+            <div className="top-header">
+              <div className="top-header-left">
+                <div
+                  className="hamburger-icon"
+                  onClick={() => {
+                    handleNavigationOpen();
+                  }}
+                >
                   <span></span>
+                </div>
+                <div className="site-logo">
+                  <Link to="/">
+                    <img src={logo} className="img-fluid" alt="Logo" />
+                  </Link>
+                </div>
+                <HomePageSearch />
+              </div>
+              <div className="top-header-right">
+                <ul>
+                  <li className="user-icon">
+                    <ManLogo className="img-fluid" />
+                    <span></span>
+                  </li>
+                  <MiniCart data={miniCartData} />
+                  <li className="ticket-withus">
+                    <a>Ticket With Us</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <nav className="bottom-header">
+              <div className="bottom-header-left">
+                <ul>
+                  <li
+                    className={`has-submenu ${
+                      menuActive && pathName === 'events' ? 'active' : ''
+                      }`}
+                    onMouseEnter={() => handleMouseStatus(true)}
+                    onMouseLeave={() => handleMouseStatus(false)}
+                  >
+                    <a>Events</a>
+                    <CSSTransitionGroup
+                      transitionName="mega"
+                      transitionEnter={true}
+                      transitionEnterTimeout={300}
+                      transitionLeaveTimeout={300}
+                    >
+                      {showMegaMenu && (
+                        <MegaMenu
+                          handleMouseStatus={handleMouseStatus}
+                          byGenreEvent={byGenreEvent}
+                          byVenueEvent={byVenueEvent}
+                        />
+                      )}
+                    </CSSTransitionGroup>
+                  </li>
+                  <li
+                    className={
+                      menuActive && pathName === 'attractions' ? 'active' : ''
+                    }
+                  >
+                    <Link to="/attractions">Attractions</Link>
+                  </li>
+                  <li
+                    className={
+                      menuActive && pathName === 'promotions' ? 'active' : ''
+                    }
+                  >
+                    <Link to="/promotions">Promotions</Link>
+                  </li>
+                  <li>
+                    <a>Explore</a>
+                  </li>
+                </ul>
+              </div>
+              <div className="bottom-header-right">
+                <ul>
+                  {byGenreEvent &&
+                    byGenreEvent
+                      .slice(0, showElementsInHeader)
+                      .map((event, index) => {
+                        return (
+                          <li key={event.id}>
+                            <Link to={`/events?c=${event.id}`}>{event.name}</Link>
+                          </li>
+                        );
+                      })}
+                  <DropDown
+                    showElementsInHeader={showElementsInHeader}
+                    byGenreEvent={byGenreEvent}
+                  />
+                </ul>
+              </div>
+            </nav>
+            <div
+              className="responsive-nav-links"
+              ref={node => {
+                refValue = node;
+              }}
+            >
+              <a
+                className="responsive-nav-close"
+                onClick={() => {
+                  handleNavigationClose();
+                }}
+              ></a>
+              <ul className="user-details">
+                <li className="user-icon">
+                  <Link to="/">
+                    <ManLogo className="img-fluid" />
+                    <span></span>
+                  </Link>
+                  <span>Login/ Register</span>
                 </li>
-                <MiniCart data={miniCartData} />
                 <li className="ticket-withus">
                   <a>Ticket With Us</a>
                 </li>
               </ul>
-            </div>
-          </div>
-          <nav className="bottom-header">
-            <div className="bottom-header-left">
               <ul>
-                <li
-                  className={`has-submenu ${
-                    menuActive && pathName === 'events' ? 'active' : ''
-                  }`}
-                  onMouseEnter={() => handleMouseStatus(true)}
-                  onMouseLeave={() => handleMouseStatus(false)}
-                >
-                  <a>Events</a>
-                  <CSSTransitionGroup
-                    transitionName="mega"
-                    transitionEnter={true}
-                    transitionEnterTimeout={300}
-                    transitionLeaveTimeout={300}
+                <li className="has-submenu">
+                  <a
+                    className={`${showMegaMenu ? 'active' : ''}`}
+                    onClick={() => handleMouseStatus(!showMegaMenu)}
                   >
-                    {showMegaMenu && (
-                      <MegaMenu
-                        handleMouseStatus={handleMouseStatus}
-                        byGenreEvent={byGenreEvent}
-                        byVenueEvent={byVenueEvent}
+                    Events
+                </a>
+                  <ul className={`submenu ${showMegaMenu ? 'active' : ''}`}>
+                    <li className="has-submenu">
+                      <Submenu
+                        heading="Genre"
+                        buttonText="By Genre"
+                        data={byGenreEvent}
+                        submenuClass="genre submenu-wrap"
+                        link="/events/search?c="
+                        closeSubmenu={handleNavigationClose}
                       />
-                    )}
-                  </CSSTransitionGroup>
-                </li>
-                <li
-                  className={
-                    menuActive && pathName === 'attractions' ? 'active' : ''
-                  }
-                >
-                  <Link to="/attractions">Attractions</Link>
-                </li>
-                <li
-                  className={
-                    menuActive && pathName === 'promotions' ? 'active' : ''
-                  }
-                >
-                  <Link to="/promotions">Promotions</Link>
+                    </li>
+                    <li className="has-submenu">
+                      <Submenu
+                        heading="Calendar"
+                        buttonText="By Date"
+                        submenuClass="calendar submenu-wrap"
+                        closeSubmenu={handleNavigationClose}
+                      >
+                        <DateRangeFilter
+                          filteredDateRange={{ from: null, to: null }}
+                          handleFilters={handleFilters}
+                          autoSubmit={false}
+                        />
+                      </Submenu>
+                    </li>
+                    <li className="has-submenu">
+                      <Submenu
+                        heading="Venue"
+                        buttonText="By Venue"
+                        data={byVenueEvent}
+                        submenuClass="venue submenu-wrap"
+                        link="/events/search?v="
+                        closeSubmenu={handleNavigationClose}
+                      />
+                    </li>
+                  </ul>
                 </li>
                 <li>
-                  <a>Explore</a>
+                  <Link to="/attractions" onClick={() => handleNavigationClose()}>
+                    Attractions
+                </Link>
+                </li>
+                <li>
+                  <Link to="/promotions" onClick={() => handleNavigationClose()}>
+                    Promotions
+                </Link>
+                </li>
+                <li>
+                  <Link to="/">Explore</Link>
+                </li>
+              </ul>
+              <ul>
+                <li className="has-submenu">
+                  <Submenu buttonText="My Account" backButtonRequired={false}>
+                    <ul className="submenu">
+                      <li className="has-submenu">
+                        <Link to="/">Subscription</Link>
+                      </li>
+                      <li className="has-submenu">
+                        <Link to="/">Booking History</Link>
+                      </li>
+                      <li className="has-submenu">
+                        <Link to="/">Logout</Link>
+                      </li>
+                    </ul>
+                  </Submenu>
+                </li>
+                <li className="has-submenu">
+                  <Submenu
+                    heading="My cart"
+                    buttonText="My cart"
+                    data={byGenreEvent}
+                    submenuClass="submenu-wrap"
+                  />
+                </li>
+              </ul>
+              <ul>
+                <li className="has-submenu">
+                  {/* <Link to="/">Our Company</Link> */}
+                  <Submenu buttonText="Our Company" backButtonRequired={false}>
+                    <ul className="submenu">
+                      <li className="has-submenu">
+                        <Link to="/">About Us</Link>
+                      </li>
+                      <li className="has-submenu">
+                        <Link to="/">Sell with Us</Link>
+                      </li>
+                      <li className="has-submenu">
+                        <Link to="/">Ticketing Technology</Link>
+                      </li>
+                      <li className="has-submenu">
+                        <Link to="/apipartners">Partner with Us</Link>
+                      </li>
+                      <li className="has-submenu">
+                        <Link to="/">Careers</Link>
+                      </li>
+                    </ul>
+                  </Submenu>
+                </li>
+                <li className="has-submenu">
+                  <Submenu buttonText="Helpful Links" backButtonRequired={false}>
+                    <ul className="submenu">
+                      <li className="has-submenu">
+                        <Link to="/where-to-buy-tickets">
+                          Where to Buy Tickets
+                      </Link>
+                      </li>
+                      <li className="has-submenu">
+                        <Link to="/agents">Locate an Agent</Link>
+                      </li>
+                      <li className="has-submenu">
+                        <Link to="/venues">Locate a Venue</Link>
+                      </li>
+                      <li className="has-submenu">
+                        <Link to="/">Blog</Link>
+                      </li>
+                      <li className="has-submenu">
+                        <Link to="/">Media</Link>
+                      </li>
+                    </ul>
+                  </Submenu>
+                </li>
+                <li className="has-submenu">
+                  <Link to="/">For Business</Link>
+                </li>
+                <li className="has-submenu">
+                  <Link to="/">Stay Connected</Link>
+                </li>
+              </ul>
+              <ul>
+                <li className="social-links">
+                  <span>Follow us on</span>
+                  <ul className="social">
+                    <li>
+                      <Link to="/">
+                        <img src={fb} alt="" />
+                      </Link>
+                    </li>
+                    <li>
+                      <img src={insta} alt="" />
+                    </li>
+                  </ul>
+                </li>
+                <li className="sistic-on-mobile">
+                  <span>Sistic on Mobile</span>
+                  <div className="download-option">
+                    <Link to="/">
+                      <AppleLogo className="ios" />
+                      <span>
+                        Available on the
+                      <br />
+                        <strong>App Store</strong>
+                      </span>
+                    </Link>
+                    <Link to="/">
+                      <img src={AndroidLogo} className="android" alt="" />
+                      <span>
+                        Get it on
+                      <br />
+                        <strong>Play Store</strong>
+                      </span>
+                    </Link>
+                  </div>
                 </li>
               </ul>
             </div>
-            <div className="bottom-header-right">
-              <ul>
-                {byGenreEvent &&
-                  byGenreEvent
-                    .slice(0, showElementsInHeader)
-                    .map((event, index) => {
-                      return (
-                        <li key={event.id}>
-                          <Link to={`/events?c=${event.id}`}>{event.name}</Link>
-                        </li>
-                      );
-                    })}
-                <DropDown
-                  showElementsInHeader={showElementsInHeader}
-                  byGenreEvent={byGenreEvent}
-                />
-              </ul>
-            </div>
-          </nav>
-          <div
-            className="responsive-nav-links"
-            ref={node => {
-              refValue = node;
-            }}
-          >
-            <a
-              className="responsive-nav-close"
-              onClick={() => {
-                handleNavigationClose();
-              }}
-            ></a>
-            <ul className="user-details">
-              <li className="user-icon">
-                <Link to="/">
-                  <ManLogo className="img-fluid" />
-                  <span></span>
-                </Link>
-                <span>Login/ Register</span>
-              </li>
-              <li className="ticket-withus">
-                <a>Ticket With Us</a>
-              </li>
-            </ul>
-            <ul>
-              <li className="has-submenu">
-                <a
-                  className={`${showMegaMenu ? 'active' : ''}`}
-                  onClick={() => handleMouseStatus(!showMegaMenu)}
-                >
-                  Events
-                </a>
-                <ul className={`submenu ${showMegaMenu ? 'active' : ''}`}>
-                  <li className="has-submenu">
-                    <Submenu
-                      heading="Genre"
-                      buttonText="By Genre"
-                      data={byGenreEvent}
-                      submenuClass="genre submenu-wrap"
-                      link="/events/search?c="
-                      closeSubmenu={handleNavigationClose}
-                    />
-                  </li>
-                  <li className="has-submenu">
-                    <Submenu
-                      heading="Calendar"
-                      buttonText="By Date"
-                      submenuClass="calendar submenu-wrap"
-                      closeSubmenu={handleNavigationClose}
-                    >
-                      <DateRangeFilter
-                        filteredDateRange={{ from: null, to: null }}
-                        handleFilters={handleFilters}
-                        autoSubmit={false}
-                      />
-                    </Submenu>
-                  </li>
-                  <li className="has-submenu">
-                    <Submenu
-                      heading="Venue"
-                      buttonText="By Venue"
-                      data={byVenueEvent}
-                      submenuClass="venue submenu-wrap"
-                      link="/events/search?v="
-                      closeSubmenu={handleNavigationClose}
-                    />
-                  </li>
-                </ul>
-              </li>
-              <li>
-                <Link to="/attractions" onClick={() => handleNavigationClose()}>
-                  Attractions
-                </Link>
-              </li>
-              <li>
-                <Link to="/promotions" onClick={() => handleNavigationClose()}>
-                  Promotions
-                </Link>
-              </li>
-              <li>
-                <Link to="/">Explore</Link>
-              </li>
-            </ul>
-            <ul>
-              <li className="has-submenu">
-                <Submenu buttonText="My Account" backButtonRequired={false}>
-                  <ul className="submenu">
-                    <li className="has-submenu">
-                      <Link to="/">Subscription</Link>
-                    </li>
-                    <li className="has-submenu">
-                      <Link to="/">Booking History</Link>
-                    </li>
-                    <li className="has-submenu">
-                      <Link to="/">Logout</Link>
-                    </li>
-                  </ul>
-                </Submenu>
-              </li>
-              <li className="has-submenu mycart">
-                <Submenu
-                  heading="My cart"
-                  buttonText="My cart"
-                  data={byGenreEvent}
-                  submenuClass="submenu-wrap"
-                />
-              </li>
-            </ul>
-            <ul>
-              <li className="has-submenu">
-                {/* <Link to="/">Our Company</Link> */}
-                <Submenu buttonText="Our Company" backButtonRequired={false}>
-                  <ul className="submenu">
-                    <li className="has-submenu">
-                      <Link to="/">About Us</Link>
-                    </li>
-                    <li className="has-submenu">
-                      <Link to="/">Sell with Us</Link>
-                    </li>
-                    <li className="has-submenu">
-                      <Link to="/">Ticketing Technology</Link>
-                    </li>
-                    <li className="has-submenu">
-                      <Link to="/apipartners">Partner with Us</Link>
-                    </li>
-                    <li className="has-submenu">
-                      <Link to="/">Careers</Link>
-                    </li>
-                  </ul>
-                </Submenu>
-              </li>
-              <li className="has-submenu">
-                <Submenu buttonText="Helpful Links" backButtonRequired={false}>
-                  <ul className="submenu">
-                    <li className="has-submenu">
-                      <Link to="/where-to-buy-tickets">
-                        Where to Buy Tickets
-                      </Link>
-                    </li>
-                    <li className="has-submenu">
-                      <Link to="/agents">Locate an Agent</Link>
-                    </li>
-                    <li className="has-submenu">
-                      <Link to="/venues">Locate a Venue</Link>
-                    </li>
-                    <li className="has-submenu">
-                      <Link to="/">Blog</Link>
-                    </li>
-                    <li className="has-submenu">
-                      <Link to="/">Media</Link>
-                    </li>
-                  </ul>
-                </Submenu>
-              </li>
-              <li>
-                <Link to="/contact-us">Contact Us</Link>
-              </li>
-              <li>
-                <Link to="/">Stay Connected</Link>
-              </li>
-            </ul>
-            <ul>
-              <li className="social-links">
-                <span>Follow us on</span>
-                <ul className="social">
-                  <li>
-                    <Link to="/">
-                      <img src={fb} alt="" />
-                    </Link>
-                  </li>
-                  <li>
-                    <img src={insta} alt="" />
-                  </li>
-                </ul>
-              </li>
-              <li className="sistic-on-mobile">
-                <span>Sistic on Mobile</span>
-                <div className="download-option">
-                  <Link to="/">
-                    <AppleLogo className="ios" />
-                    <span>
-                      Available on the
-                      <br />
-                      <strong>App Store</strong>
-                    </span>
-                  </Link>
-                  <Link to="/">
-                    <img src={AndroidLogo} className="android" alt="" />
-                    <span>
-                      Get it on
-                      <br />
-                      <strong>Play Store</strong>
-                    </span>
-                  </Link>
-                </div>
-              </li>
-            </ul>
           </div>
         </div>
-      </div>
-    </header>
-  );
+      </header>
+    );
 };
 
 export default TopNav;
