@@ -14,6 +14,8 @@ import './style.scss';
 import filterIcon from '../../assets/images/events/filter.svg';
 import sortbyIcon from '../../assets/images/events/sortby.svg';
 import Utilities from '../../shared/utilities';
+import SearchFilter from '../../shared/components/SearchFilter';
+import Constants from '../../shared/constants';
 export default class Attractions extends Component {
   constructor(props) {
     super(props);
@@ -29,7 +31,7 @@ export default class Attractions extends Component {
       eventsData: [],
       attractionsData: [],
       first: 0,
-      limit: 9,
+      limit: Constants.LIMIT,
       viewType: 'grid',
       viewTypeClass: 'events-section',
       totalRecords: 0,
@@ -97,7 +99,7 @@ export default class Attractions extends Component {
   getInitialFilters = (reset = false) => {
     const payload = {
       first: 0,
-      limit: 9,
+      limit: Constants.LIMIT,
       sort_type: 'title',
       sort_order: 'ASC'
     };
@@ -146,7 +148,7 @@ export default class Attractions extends Component {
 
   loadMoreAttractions = () => {
     let params = this.getFilters();
-    params.first = this.state.first + 9;
+    params.first = this.state.first + Constants.LIMIT;
 
     this.loadAttractions(params, true);
     this.setState({
@@ -187,7 +189,7 @@ export default class Attractions extends Component {
       obj = {
         ...searchType,
         first: 0,
-        limit: 9,
+        limit: Constants.LIMIT,
         loader: true,
         totalRecords: 0
       };
@@ -227,7 +229,7 @@ export default class Attractions extends Component {
     this.setState(
       {
         first: 0,
-        limit: 9,
+        limit: Constants.LIMIT,
         totalRecords: 0,
         loader: true,
         filterFlag: false,
@@ -301,6 +303,10 @@ export default class Attractions extends Component {
 
             <div className="events-listing">
               <div className="event-listing-sorting">
+                <SearchFilter
+                  handleFilters={this.handleFilters}
+                  searchText={filteredSearch}
+                />
                 <SortBy
                   sortList={this.tabsSort.sortList}
                   handleFilters={this.handleFilters}
