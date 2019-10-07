@@ -28,7 +28,7 @@ $duration: 10s;
 
 .ticker-wrap {
   position: absolute;
-  top: 112px;
+  top: 202px;
   width: 100%;
   background-color: rgba(3, 13, 21, 0.8);
   padding: 0 60px 0 35px;
@@ -38,7 +38,21 @@ $duration: 10s;
   -webkit-transition: max-height 0.5s ease-out;
   -moz-transition: max-height 0.5s ease-out;
   -o-transition: max-height 0.5s ease-out;
-  overflow: hidden;
+  overflow: hidden; 
+  position: fixed;
+  @media(max-width: 1440px){
+    top: 200px !important;
+  }
+  @media(max-width: 1024px){
+    top: 112px !important;
+  }
+  @media(max-width: 768px){
+    top: 60px !important;
+  }
+  @media(max-width: 767px){
+    top: 0px !important;
+    position: absolute;
+  }
   &.hide-news {
     max-height: 40px;
   }
