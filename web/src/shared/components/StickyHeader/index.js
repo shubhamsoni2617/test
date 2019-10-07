@@ -90,7 +90,7 @@ function BuyTicketsButtonPopup(props) {
           detailData.button_groups.length &&
           detailData.button_groups.map(buttonGroup => {
             return (
-              <>
+              <div className="button_group">
                 <label>{buttonGroup.title}</label>
                 {buttonGroup.buttons &&
                   buttonGroup.buttons.length &&
@@ -108,7 +108,7 @@ function BuyTicketsButtonPopup(props) {
                       />
                     );
                   })}
-              </>
+              </div>
             );
           })}
       </ModalPopup>
