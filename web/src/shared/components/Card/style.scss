@@ -97,23 +97,7 @@
                         min-height: 20px;
                     }
                 }
-                .react-modal{
-                    .modal-header{
-                        padding: 15px;
-                    }
-                    .react-modal-body{
-                        max-height: 100%;
-                        @media(max-width: 767px){
-                            max-height: calc(100% - 100px);
-                        }
-                        .modal-content .modal-body{
-                            padding: 15px 15px 20px;
-                            .notice{
-                                padding: 0 20px;
-                            }
-                        }
-                    }
-                }
+                
             }
             .attraction-show-more {
                 color: #2698ff;
@@ -368,6 +352,26 @@
                     margin-top: 9px;
                     width: 100%;
                 }
+            }
+        }
+    }
+}
+.react-modal{
+    .modal-header{
+        padding: 10px 15px;
+        justify-content: center;
+    }
+    .react-modal-body{
+        max-height: 100%;
+        border-radius: 0;
+        @media(max-width: 767px){
+            max-height: calc(100% - 100px);
+        }
+        .modal-content .modal-body{
+            padding: 15px 15px 20px;
+            border-radius: 0;
+            .notice{
+                padding: 0 10px;
             }
         }
     }

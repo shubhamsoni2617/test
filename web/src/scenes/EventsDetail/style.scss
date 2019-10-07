@@ -75,6 +75,16 @@
           position: absolute;
           top: 10px;
           right: 10px;
+          width: 32px;
+          height: 32px;
+          padding: 0;
+          background: none;
+          img{
+              height: 20px;
+          }
+          &:hover{
+              background: none;
+          }
         }
         .block-header{
           position: absolute;
@@ -98,8 +108,20 @@
           overflow-y: auto;
           position: absolute;
           height: 80%;
-          width: 90%;
+          width: 100%;
+          left: 0;
+          padding: 0 30px;
           margin-top: 68px;
+          border-bottom: 1px solid #979797;
+          &::before{
+              content: "";
+              position: absolute;
+              bottom: 0;
+              left: -30px;
+              border-bottom: 1px solid #979797;
+              width: 30px;
+              height: 1px;
+          }
         }
       }
       .tickets-demo-img{
@@ -242,7 +264,7 @@
             background: none;
             color: #0098ff;
             padding: 0;
-            font-weight: normal;
+            font-weight: 500;
           }
           .date-address {
               margin: 0px 0 30px;
@@ -268,7 +290,7 @@
                   }
                   img{
                       margin-right: 15px;
-                      width: 18px;
+                      width: 19px;
                       &.sticky-location-icon {
                           display: none;
                       }
@@ -753,8 +775,14 @@
     opacity: 1 !important;
     overflow: auto;
     height: auto;
+    z-index: 99;
   }
-
+  .button_group{
+    margin: 15px 0 0;
+    label{
+      margin-bottom: 0;
+    }
+  }
   // sticky topbar
   .event-detail.sticky-topbar{
       background-color: #FFFFFF;
@@ -818,6 +846,9 @@
           @media(max-width: 1280px){
               padding-left: 10px;
               flex: 0 0 63%;
+          }
+          .link{
+              display: none;
           }
           .info-tooltip, .share-tooltip {
               position: relative;
@@ -1074,6 +1105,11 @@
       }
   }
   // Seat Map gallery
+  .ril__builtinButton{
+      &:hover{
+          background-color: #0098FF;
+      }
+  }
   .seatmap-gallery{
       margin: 10px;
       img{
