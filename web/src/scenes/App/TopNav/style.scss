@@ -28,7 +28,11 @@
 a{
   cursor: pointer;
 }
-
+.submenu-wrap{
+    .subholder-wrapper{
+        display: none;
+    }
+}
 
 @media (max-width: 991px){
 .submenu-wrap{
