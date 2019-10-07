@@ -4,7 +4,6 @@ import logo from '../../../assets/images/logo.png';
 import './style.scss';
 
 const Header = ({ menuActive, pathName }) => {
-
   let refValue = useRef();
   const handleNavigationOpen = () => {
     refValue.classList.add('active');
@@ -16,7 +15,6 @@ const Header = ({ menuActive, pathName }) => {
     document.body.classList.remove('body-overlay');
   };
 
-  console.log(menuActive, pathName);
   return (
     <header className="small-header">
       <div className="container-fluid">

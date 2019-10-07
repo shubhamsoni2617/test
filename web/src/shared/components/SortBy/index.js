@@ -59,10 +59,8 @@ export default class SortBy extends Component {
           >
             <div className="sortby-topbar-mobileonly">
               <div className="left-arrow-sortby">
-                {/* <img src="../../assets/images/next.svg" /> */}
                 <span> Sort By</span>
               </div>
-              {/* <a href="" className="clear-filter-sortby">clear filters</a> */}
             </div>
             {this.state.showSortMenu ? (
               <ul className="sortby-wrapper">
@@ -72,8 +70,10 @@ export default class SortBy extends Component {
                       <li
                         key={index}
                         className={`${
-                          list.sortType === filteredSortType &&
-                          list.sortOrder === filteredSortOrder
+                          (list.sortOrder === filteredSortOrder &&
+                            list.sortType === filteredSortType) ||
+                          (this.props.promotion &&
+                            list.sortOrder === filteredSortOrder)
                             ? 'checked'
                             : ''
                         }`}

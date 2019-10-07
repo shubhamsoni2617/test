@@ -311,43 +311,6 @@
     }
 
     .filters-search {
-        padding: 15px 8px 8px;
-        display: block;
-        position: relative;
-        margin-bottom: 20px;
-        .search-btn {
-            position: absolute;
-            right: 16px;
-            top: 50%;
-            z-index: 1;
-            background: transparent;
-            border: none;
-            padding: 0;
-            transform: translateY(-50%);
-            margin-top: 2px;
-            img{
-                width: 18px;
-            }
-        }
-
-        input {
-            border: 1px solid rgba(151,151,151,0.2);
-            height: 30px;
-            padding: 3px 40px 3px 10px;
-            border-radius: 0;
-            &::-webkit-input-placeholder {
-                color: rgba(52,52,52,0.25);
-            }
-            &::-moz-placeholder {
-                color: rgba(52,52,52,0.25);
-            }
-            &:-ms-input-placeholder {
-                color: rgba(52,52,52,0.25);
-            }
-            &:-moz-placeholder {
-                color: rgba(52,52,52,0.25);
-            }
-        }
         @media(max-width: 767px){
             display: none;
         }
