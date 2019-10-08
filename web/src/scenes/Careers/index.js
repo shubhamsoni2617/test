@@ -23,7 +23,9 @@ class Careers extends Component {
       areas: [],
       email: '',
       files: {},
-      errMsg: ''
+      maxFileLimitMsg: '',
+      errMsg: '',
+      submit: false
     };
   }
 
@@ -52,8 +54,7 @@ class Careers extends Component {
   handleSubmit = e => {
     e.preventDefault();
     const { areas, email } = this.state;
-    const isEmailValid = Utilities.ValidateEmail(email);
-    if (areas.length && isEmailValid) {
+    if (areas.length && email) {
       // const data = {
       //   category: Number(enquiry),
       //   name: name,
@@ -61,11 +62,9 @@ class Careers extends Component {
       //   contact_number: phone,
       //   message: message,
       // };
-      this.setState({ errMsg: '' });
+      this.setState({ errMsg: '', submit: true });
     } else if (areas.length === 0 && !email) {
       this.setState({ errMsg: 'Fill all required fields...' });
-    } else if (isEmailValid && areas.length === 0) {
-      this.setState({ errMsg: 'choose at least one area of interest' });
     } else if (!email) {
       this.setState({ errMsg: 'Email is required...' });
     }
@@ -83,12 +82,27 @@ class Careers extends Component {
     this.setState({ email, errMsg: '' });
   };
 
-  handleFiles = files => {
-    const multiFiles = Utilities.maxFileSize(files);
-    if (multiFiles.length <= 3) {
-      this.setState({ files: multiFiles, errMsg: '' });
+  handleFile = e => {
+    this.setState({ files: {} });
+    const { files } = e.target;
+    const filesLength = files.length;
+    let fileSize = 0;
+    for (let key in files) {
+      if (files.hasOwnProperty(key)) {
+        fileSize = fileSize + files[key].size;
+      }
+    }
+    const sizeInMB = fileSize / (1024 * 1024);
+    if (filesLength > 3 || sizeInMB > 5) {
+      this.setState({
+        maxFileLimitMsg: 'Max 3 files can be uploaded, with up to 5MB size.'
+      });
     } else {
-      this.setState({ errMsg: multiFiles });
+      this.submitUploadAttachment(files);
+      this.setState({
+        files: files,
+        maxFileLimitMsg: 'Max 3 files can be uploaded, with up to 5MB size.'
+      });
     }
   };
 
@@ -99,6 +113,7 @@ class Careers extends Component {
   };
 
   render() {
+    const {options,areas,email,files,maxFileLimitMsg,errMsg,submit}
     return (
       <div>
         <OurTeam />
@@ -106,7 +121,13 @@ class Careers extends Component {
         <CoreValues />
         <Opening />
         <StayUpdated
-          state={this.state}
+          options={options}
+          areas={areas}
+          email={email}
+          files={files}
+          maxFileLimitMsg={maxFileLimitMsg}
+          errMsg={errMsg}
+          submit={submit}
           handleEmail={this.handleEmail}
           handleFiles={this.handleFiles}
           handleMultipleCheckbox={this.handleMultipleCheckbox}
