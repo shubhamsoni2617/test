@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import calendarImg from '../../../assets/images/event-calender.svg';
-import coinsImg from '../../../assets/images/coin.svg';
+import coinsImg from '../../../assets/images/price.svg';
 import locationGray from '../../../assets/images/location-gray.svg';
 import closeIcon from '../../../assets/images/cross.svg';
 import closeIconWhite from '../../../assets/images/cross-white.svg';
@@ -267,7 +267,7 @@ function StickyHeader(props) {
             {seatMapButton && <li className="event-date">{seatMapButton}</li>}
             {detailData.price && (
               <li className="event-date">
-                <img src={coinsImg} alt="cal-icon" />
+                <img src={coinsImg} className="coin" alt="cal-icon" />
                 <span className="detail">{detailData.price}</span>
               </li>
             )}
