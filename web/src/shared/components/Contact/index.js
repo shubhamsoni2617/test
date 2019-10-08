@@ -59,7 +59,7 @@ const Contact = ({ attachement, handleEnquiry }) => {
     e.preventDefault();
     if (selectedId && name && email && phone && message) {
       setLoading(true);
-      const check = Utilities.mobilecheck();
+      const isMobile = Utilities.mobilecheck();
       const data = {
         category: selectedId,
         name,
@@ -67,10 +67,9 @@ const Contact = ({ attachement, handleEnquiry }) => {
         contact_number: phone,
         message,
         attachment: filePath,
-        source_from:
-          check > Constants.MOBILE_BREAK_POINT
-            ? Constants.SOURCE_FROM_WEBSITE
-            : Constants.SOURCE_FROM_MOBILE_RESPONSIVE
+        source_from: isMobile
+          ? Constants.SOURCE_FROM_MOBILE_RESPONSIVE
+          : Constants.SOURCE_FROM_WEBSITE
       };
       submitForm(data, CSRFToken);
     } else {

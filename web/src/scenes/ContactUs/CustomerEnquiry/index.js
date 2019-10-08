@@ -17,7 +17,7 @@ const CustomerEnquiry = ({ sendCategoryToFaqs }) => {
     <div className="customer-enquiry-wrapper">
       <div className="customer-enquiry">
         <h3 className="heading-text">Customer Enquiries</h3>
-        <Contact attachement={false} handleEnquiry={handleEnquiry} />
+        <Contact attachement={true} handleEnquiry={handleEnquiry} />
       </div>
     </div>
   );
