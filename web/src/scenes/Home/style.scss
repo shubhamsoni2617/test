@@ -2209,9 +2209,20 @@ section.trending-now {
 				-webkit-transition: 0.3s color;
 				-moz-transition: 0.3s color;
 				-o-transition: 0.3s color;
+				@media(max-width: 1024px){
+					max-height: 20px;
+					min-height: 20px;
+					text-overflow: ellipsis;
+					white-space: nowrap;
+					overflow: hidden;
+				}
                 @media (max-width: 767px) {
                     min-height: auto;
-                    margin: 3px 0 0px 0;
+					margin: 3px 0 0px 0;
+					max-height: 100%;
+					text-overflow: unset;
+					white-space: normal;
+					overflow: hidden;
                 }
             }
             p{
@@ -2653,6 +2664,7 @@ section{
 			padding: 0px 0 0px;
 			grid-gap: 5px;
 			grid-template-columns: 100%;
+    		border-bottom: 1px solid #EAEAEA;
 		}
 		
 		.footer-links{
@@ -2961,8 +2973,11 @@ section{
 			flex-wrap: wrap;
 		}
 		@media (max-width: 767px) {
-			display: grid;
-			grid-template-columns: auto;
+			display: flex;
+			position: relative;
+			width: 80%;
+			margin-left: auto;
+			border-top: none;
 		}
 		.copyrights {
 			@media(max-width: 991px) {
@@ -2974,6 +2989,9 @@ section{
 				padding-bottom: 10px;
 				justify-content: center;
 				align-items: center;
+			}
+			@media(max-width: 767px){
+				justify-content: flex-start;
 			}
 			span {
 				color: #626262;
@@ -2994,6 +3012,30 @@ section{
 					max-width: 110px;
 				}
 			}
+			@media(max-width: 767px){
+				a{
+					position: absolute;
+					left: -25%;
+					text-align: left;
+					img{
+						max-width: 90%;
+					}
+				}
+				span{
+					flex: 0 0 100%;
+					width: 100%;
+					text-align: left;
+					padding-left: 5px;
+				}
+			}
+			@media(max-width: 600px){
+				a{
+					left: -80px;
+					img{
+						max-width: 82px;
+					}
+				}
+			}
 		}
 		.footer-btm-links {
 			list-style: none;
@@ -3005,12 +3047,25 @@ section{
 			@media(max-width: 991px) {
 				flex: 0 0 50%;
 			}
+			@media(max-width: 767px){
+			    flex: 0 0 100%;
+    			width: 100%;
+				margin-left: auto;
+				text-align: left;
+				padding-left: 5px;
+				justify-content: flex-start;
+			}
 			li {
 				margin: 0;
 				padding: 0 7px;
 				border-right: 1px #4B5562 solid;
 				list-style: none;
 				line-height: 10px;
+				&:first-child{
+					@media(max-width: 767px){
+						padding-left: 0px;
+					}
+				}
 				&:last-child {
 					border: none;
 				}
@@ -3054,6 +3109,11 @@ section{
 				padding-top: 0px;
 				text-align: center;
 				margin-bottom: 0px;
+				flex: 0 0 100%;
+				width: 100%;
+				margin-left: auto;
+				text-align: left;
+				padding-left: 5px;
 			}
 		}
 	}
