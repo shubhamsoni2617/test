@@ -30,4 +30,12 @@
 .image.loaded {
   opacity: 1;
 }
-
+img.mobile-only-banner{
+  display: none;
+}
+.banner img.mobile-only-banner{
+  display: none;
+  @media(max-width: 767px){
+    display: block;
+  }
+}
