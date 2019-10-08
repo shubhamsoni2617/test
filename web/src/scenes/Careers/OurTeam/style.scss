@@ -1,3 +1,71 @@
 .our-team{
-  margin-bottom:10%;
+  margin-bottom: 82px;
+  .ourteam-inner{
+    padding: 85px 50px 50px 70px;
+    background-color: #F0F9FF;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100%;
+    h4{
+      font-size: 20px;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: bold;
+      margin-bottom: 15px;
+    }
+    h2{
+      font-size: 50px;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 600;
+      margin-bottom: 15px;
+      padding-bottom: 0;
+      line-height: 61px;
+    }
+    p{
+      margin-bottom: 45px;
+    }
+    button{
+      padding: 8px 25px;
+      font-size: 18px;
+      font-weight: 300;
+      text-align: left;
+      width: max-content;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      img{
+        width: 20px;
+        margin-left: 25px;
+      }
+      .arrow-blue{
+        display: none;
+      }
+      &:hover{
+        .arrow-white{
+          display: none;
+        }
+        .arrow-blue{
+          display: block;
+        }
+      }
+    }
+    @media(max-width: 768px){
+      padding: 30px 25px 30px 25px;
+      h2{
+        font-size: 30px;
+        line-height: 25px;
+      }
+      p{
+        margin-bottom: 20px;
+      }
+    }
+  }
+  .our-team-img{
+    background: url('../../../assets/images/team.png') no-repeat;
+    background-size: cover;
+    background-position: left top;
+    @media(max-width: 768px){
+      height: 300px;
+    }
+  }
 }

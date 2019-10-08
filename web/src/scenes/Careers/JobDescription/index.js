@@ -66,13 +66,14 @@ class JobDescription extends Component {
 
   render() {
     return (
-      <div className="container-fluid">
+      <div className="">
         <Breadcrub breadCrumbData={this.breadCrumbData} />
-        <div className="row">
-          <div className="col-lg-8">
+        <div className="container-fluid">
+          <div className="row">
+          <div className="col-lg-7">
             <Description />
           </div>
-          <div className="col-lg-4">
+          <div className="col-lg-5">
             <PersonalInfo
               state={this.state}
               handleChange={this.handleChange}
@@ -80,6 +81,7 @@ class JobDescription extends Component {
               handleSubmit={this.handleSubmit}
             />
           </div>
+        </div>
         </div>
       </div>
     );

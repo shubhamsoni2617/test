@@ -1,5 +1,6 @@
 import React from 'react';
 import './style.scss';
+import attach from '../../../../assets/images/attach.png';
 
 const PersonalInfo = ({
   state,
@@ -9,9 +10,9 @@ const PersonalInfo = ({
 }) => {
   const { firstName, lastName, email, contact_number, message, errMsg } = state;
   return (
+    <div className="personal-info-wrapper">
     <div className="personal-info">
       <h3>Apply for this position</h3>
-      <hr />
       <h5>Personal Information</h5>
       <form onSubmit={handleSubmit}>
         <div className="form-group">
@@ -71,13 +72,17 @@ const PersonalInfo = ({
             onChange={e => handleChange(e)}
           />
         </div>
-        <div className="form-group">
+        <div className="form-group attach-doc">
           <div className="row">
-            <div className="col-lg-4">Attach Documents<span className="text-danger"> *</span></div>
+            <div className="col-lg-4 label">Attach Documents<span className="text-danger"> *</span></div>
             <div className="col-lg-8">
               {/* <label htmlFor="file-upload" className="custom-file-upload  form-control text-right">
                 <img src={attach} height="20" width="20" />
               </label> */}
+              <label htmlFor="file-upload" className="custom-file-upload form-control text-right">
+                <img src={attach} height="20" width="20" />
+              </label>
+              
               <input
                 encType="multipart/form-data"
                 id="file-upload"
@@ -88,11 +93,10 @@ const PersonalInfo = ({
                 accept=".jpeg,.png,.pdf"
                 required
               />
-              <p>*File Size should be maximum 5mb and it can be pdf,jpeg,png</p>
             </div>
           </div>
         </div>
-        <div className="form-group">
+        <div className="form-group custom-checkbox">
             <input
               name="copy"
               type="checkbox"
@@ -100,9 +104,12 @@ const PersonalInfo = ({
             />Send Me a Copy
         </div>
         {errMsg ? <p className="text-danger">{errMsg}</p> : null}
-        <input className="form-control btn-info" type="submit" value="Submit Application" />
-        <a>View Other Jobs</a>
+        <input className="form-control btn-link" type="submit" value="Submit Application" />
       </form>
+    </div>
+    <div className="text-center other-job">
+      <a>View Other Jobs</a>
+    </div>
     </div>
   );
 };

@@ -1,0 +1,111 @@
+.stay-update-img{
+    img{
+        margin-top: -50px;
+        max-width: 100%;
+        height: auto;
+    }
+    @media(max-width: 992px){
+        text-align: center;
+        margin-bottom: 20px;
+        img{
+            margin-top: 0;
+        }
+  }
+}
+.stay-update{
+    background-color: #F0F9FF;
+    padding: 80px 60px 40px 100px;
+    .career-title{
+        line-height: normal;
+        padding-bottom: 25px;
+        b{
+            font-size: 36px;
+            font-weight: 600;
+            font-family: 'Montserrat', sans-serif;
+            text-transform: capitalize;
+            margin-top: 10px;
+            line-height: normal;
+            display: block;
+        }
+    }
+    form{
+        .select{
+            width: 100%;
+            .selection{
+                border: 0;
+                background: transparent;
+                border-bottom: 1px solid rgba(151, 151, 151, 0.2);
+                .delete{
+                    padding: 0;
+                    top: 50%;
+                    transform: translateY(-50%);
+                    right: 6px;
+                }
+            }
+            .options{
+                border: 0;
+                .option{
+                    border: 0;
+                }
+            }
+            &:focus{
+                .selection{
+                    background: #fff;
+                    box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.1);
+                }
+                .options{
+                    background: #fff;
+                    border: 0;
+                    box-shadow: 0px -3px 4px 0px rgba(0, 0, 0, 0.1);
+                }
+            }
+        }
+        .email{
+            border: 0;
+            background: transparent;
+            border-bottom: 1px solid rgba(151, 151, 151, 0.2);
+            border-radius: 0;
+            &:focus{
+                box-shadow: none;
+                border-bottom: 1px solid #03A9F4;
+            }
+        }
+        .attach-doc{
+            .row{
+                display: flex;
+                width: 100%;
+                align-items: center;
+                justify-content: space-between;
+            }
+            input.form-control{
+                visibility: hidden;
+                position: absolute;
+                margin-top: -43px;
+                left: 0px;
+                right: 0px;
+            }
+            label{
+                font-size: 16px;
+                line-height: 19px;
+                color: #343434;
+                padding-top: 12px;
+                border: 0;
+                background-color: transparent;
+                border-bottom: 1px solid rgba(151, 151, 151, 0.2);
+                @media(max-width: 991px){
+                    font-size: 14px;
+                    line-height: 17px;
+                    padding-top: 0px;
+                }
+            }
+        }
+        .btn-link{
+            padding: 10px 20px;
+            font-weight: 500;
+            font-size: 18px;
+        }
+    }
+    @media(max-width: 768px){
+        padding: 30px 30px 20px 40px;
+      }
+}
