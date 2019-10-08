@@ -55,6 +55,9 @@
             -moz-transition: 0.2s color;
             -o-transition: 0.2s color;
             cursor: pointer;
+            @media(max-width: 1200px){
+                padding: 9px 25px;
+            }
             @media(max-width: 1024px){
                 padding: 9px 20px;
             }
