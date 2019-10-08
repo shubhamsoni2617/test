@@ -18,12 +18,12 @@ body {
   color: $body;
   font: 400 13px/20px 'Source Sans Pro', sans-serif;
 }
-// svg {
-//   display: block;
-//   width: 1em;
-//   height: 1em;
-//   fill: currentColor;
-// }
+svg {
+  display: block;
+  /*width: 1em;
+  height: 1em;*/
+  fill: currentColor;
+}
 .select {
   position: relative;
   display: inline-block;
