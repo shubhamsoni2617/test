@@ -62,11 +62,8 @@
 	}
 	&.homepage{
 		background-color: rgba(3, 13, 21, 0.8);
-		@media(max-width: 767px){
-			background-color: #373E45;
-		}
 		&.hompage-header-scroll{
-			background-color: #373E45;
+			background-color: #373E45; 
 		}
 	}
 	.top-header {
@@ -1550,7 +1547,14 @@
         @media (max-width: 767px) {
             top: -15px;
         }
-    }
+	}
+	.section-top-wrapper{
+		& + div{
+			@media(max-width: 767px){
+				width: 100% !important;
+			}
+		}
+	}
 	.grid-container {
 		display: grid;
 		grid-template-columns: repeat(5, 1fr);
@@ -1583,9 +1587,9 @@
 				@media (max-width: 767px) {
 					padding: 5px;
 					height: auto;
-					flex: 1 0 29%;
-					max-width: 29%;
-					margin-right: 10px;
+					flex: 1 0 100%;
+					max-width: 100%;
+					margin-right: 0px;	
 				}
 				.featured-item-img {
 					padding-bottom: 15px;
@@ -1629,6 +1633,7 @@
 						@media (max-width: 767px) {
 							margin: 8px 0px 5px;
 							top: 0px;
+							left: 0px;
 						}
 					}
 				}
@@ -1640,6 +1645,12 @@
 					@media (max-width: 767px) {
 						padding-bottom: 8px;
 						min-height: auto;
+						white-space: normal;
+						max-height: 40px;
+						text-overflow: ellipsis;
+						white-space: nowrap;
+						overflow: hidden;
+						width: 100%;
                     }
                     @media(min-width: 1360px) and (max-width: 2200px) {
                         min-height: auto;
@@ -1650,6 +1661,9 @@
 					margin: 0px;
 					&:last-child {
 						padding-bottom: 14px;
+						@media(max-width: 767px){
+							white-space: normal;
+						}
 					}
 				}
 				&:after {
@@ -1685,8 +1699,9 @@
 					}
 				}
 			}
-			@media (max-width: 767px) {
-				display: grid;
+			@media (max-width: 767px) {				
+				flex: 1 0 35%;
+				width: 35%;
 			}
 		}
 	}
