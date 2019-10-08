@@ -31,25 +31,33 @@
 	-moz-transition: 0.3s ease-in;
 	-o-transition: 0.3s ease-in;
 	position: relative;
-	// position: fixed;
-	// top: 0px;
-	// left: 0px;
-	// right: 0px;
-	// width: 100%;
-	// @media(max-width: 767px){
-	// 	position: relative;
-	// }
-	// & + div{
-	// 	padding-top: 112px;
-	// 	@media(max-width: 991px){
-	// 		padding-top: 60px;
-	// 	}
-	// 	@media(max-width: 767px){
-	// 		padding-top: 0px;
-	// 	}
-	// }
+	&.sticky-header, &.homepage{
+		position: fixed;
+		top: 0px;
+		left: 0px;
+		right: 0px;
+		width: 100%;
+		@media(max-width: 767px){
+			position: relative;
+		}
+		& + div , & + section{
+			padding-top: 112px;
+			@media(max-width: 991px){
+				padding-top: 60px;
+			}
+			@media(max-width: 767px){
+				padding-top: 0px;
+			}
+		}
+	}
 	&.homepage{
 		background-color: rgba(3, 13, 21, 0.8);
+		@media(max-width: 767px){
+			background-color: #373E45;
+		}
+		&.hompage-header-scroll{
+			background-color: #373E45;
+		}
 	}
 	.top-header {
 		display: flex;
