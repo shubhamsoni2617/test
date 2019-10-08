@@ -121,16 +121,8 @@
           left: 0;
           padding: 0 30px;
           margin-top: 68px;
+          border-left: 1px solid #979797;
           border-bottom: 1px solid #979797;
-          &::before{
-              content: "";
-              position: absolute;
-              bottom: 0;
-              left: -30px;
-              border-bottom: 1px solid #979797;
-              width: 30px;
-              height: 1px;
-          }
         }
       }
       .tickets-demo-img{
