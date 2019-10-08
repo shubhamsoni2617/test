@@ -876,10 +876,10 @@
               display: none;
           }
           .info-tooltip, .share-tooltip {
-              position: relative;
-              right: auto;
+              position: absolute;
+              right: 18px;
               display: inline-block;
-              top: auto;
+              top: 8px;
               .share, .info {
                   position: relative;
                   right: 0px;
@@ -901,6 +901,9 @@
                   border-color: #0098ff;
                   }
               }
+          }
+          .share-tooltip {
+              right: 61px;
           }
           h2{
               font-size: 22px;
