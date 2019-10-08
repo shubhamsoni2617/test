@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import './style.scss';
-import Header from './Header';
 import OurTeam from './OurTeam';
 import Mission from './Mission';
 import CoreValues from './CoreValues';
@@ -8,6 +7,8 @@ import Opening from './Opening';
 import StayUpdated from './StayUpdated';
 import Testimonials from './Testimonial';
 import Utilities from '../../shared/utilities';
+import CareerService from '../../shared/services/CareerService';
+import Constants from '../../shared/constants';
 
 class Careers extends Component {
   constructor(props) {
@@ -24,6 +25,28 @@ class Careers extends Component {
       files: {},
       errMsg: ''
     };
+  }
+
+  componentDidMount() {
+    this.scrollToTop();
+    this.getStaticContent();
+  }
+
+  scrollToTop() {
+    window.scrollTo(0, 0);
+  }
+
+  getStaticContent() {
+    const params = {
+      client: Constants.CLIENT
+    };
+    CareerService.getStaticContent(params)
+      .then(res => {
+        console.log(res);
+      })
+      .catch(err => {
+        console.log(err.response);
+      });
   }
 
   handleSubmit = e => {
@@ -78,7 +101,6 @@ class Careers extends Component {
   render() {
     return (
       <div>
-        <Header />
         <OurTeam />
         <Mission />
         <CoreValues />
