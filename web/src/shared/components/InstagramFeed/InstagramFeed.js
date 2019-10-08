@@ -5,7 +5,6 @@ import Constant from '../../constants';
 import { useCustomWidth } from '../CustomHooks';
 
 const InstagramFeed = () => {
-
   const [width] = useCustomWidth();
 
   const [error, setError] = useState(null);
@@ -25,18 +24,19 @@ const InstagramFeed = () => {
     axios
       .get(
         'https://api.instagram.com/v1/users/self/media/recent/?access_token=' +
-        Constant.INSTAGRAM_ACCESS_TOKEN
+          Constant.INSTAGRAM_ACCESS_TOKEN
       )
-      .then((result) => {
+      .then(result => {
         setFeeds(result.data.data);
         setIsLoaded(true);
       })
-      .catch((error) => {
+      .catch(error => {
         setIsLoaded(false);
         setError(error);
       });
   }, []);
 
+  console.log(width);
 
   if (error) {
     return <div>Error: {error.message}</div>;
@@ -48,25 +48,24 @@ const InstagramFeed = () => {
         <div className="container-fluid">
           <h2>#SISTICMoments</h2>
         </div>
-        {width <= Constant.MOBILE_BREAK_POINT ?
-          feeds &&
-          feeds.map(feed => (
-            <img key={feed.id} src={feed.images.thumbnail.url} alt="" />
-          ))
-          :
-          <Slider {...settings}>
-            {feeds &&
-              feeds.map(feed => (
-                <img key={feed.id} src={feed.images.thumbnail.url} alt="" />
-              ))}
-          </Slider>
-
-        }
-
+        <div className="sistic-moments-wrapper">
+          {width <= Constant.MOBILE_BREAK_POINT ? (
+            feeds &&
+            feeds.map(feed => (
+              <img key={feed.id} src={feed.images.thumbnail.url} alt="" />
+            ))
+          ) : (
+            <Slider {...settings}>
+              {feeds &&
+                feeds.map(feed => (
+                  <img key={feed.id} src={feed.images.thumbnail.url} alt="" />
+                ))}
+            </Slider>
+          )}
+        </div>
       </section>
     );
   }
-
-}
+};
 
 export default InstagramFeed;
