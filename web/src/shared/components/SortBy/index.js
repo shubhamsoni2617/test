@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { CSSTransitionGroup } from 'react-transition-group';
 import PropTypes from 'prop-types';
 import Utilities from '../../utilities';
+import prevArrow from '../../../assets/images/prev-arrow-white.svg';
 
 import './style.scss';
 
@@ -59,7 +60,9 @@ export default class SortBy extends Component {
           >
             <div className="sortby-topbar-mobileonly">
               <div className="left-arrow-sortby">
+                <img src={prevArrow} alt="left-arrow" />
                 <span> Sort By</span>
+                <a className="clear-filters">Clear Filters</a>
               </div>
             </div>
             {this.state.showSortMenu ? (
