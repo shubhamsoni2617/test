@@ -27,8 +27,98 @@
             &:first-child{
               margin-top: 0px;
             }
-            select{
-                padding-right: 28px;
+           select, .select{
+                padding-right: 0px;
+                color: #343434;
+                font-size: 16px;
+                line-height: 19px;
+                width: 100%;
+                &:focus {
+                    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+                    .selection{
+                        box-shadow: none;
+                    }
+                }
+                @media(max-width: 991px){
+                    font-size: 14px;
+                    line-height: 17px;
+                    min-height: 30px;
+                }
+                label{
+                    margin: 0px;
+                }
+                .selection{
+                    height: 36px;
+                    line-height: 36px;
+                    padding: 0.375rem 0.75rem;
+                    background: transparent;
+                    @media(max-width: 767px){
+                        height: 30px;
+                        line-height: 30px;
+                    }
+                }
+                .options{
+                    color: #343434;
+                    font-size: 15px;
+                    line-height: 23px;
+                    @media(max-width: 991px){
+                        font-size: 13px;
+                        line-height: 16px;
+                    }
+                    .option{
+                        color: #343434;
+                        font-size: 15px;
+                        line-height: 23px;
+                        @media(max-width: 991px){
+                            font-size: 13px;
+                            line-height: 16px;
+                        }
+                    }
+                }
+                .placeholder{
+                    color: #343434;
+                    font-size: 16px;
+                    line-height: 23px;
+                    padding: 0px;
+                    @media(max-width: 991px){
+                        font-size: 14px;
+                        line-height: 20px;
+                        min-height: 30px;
+                    }
+                    @media(max-width: 767px){
+                        line-height: 18px;
+                        min-height: 23px;
+                    }
+                }
+                .value{
+                    text-overflow: ellipsis;
+                    overflow: hidden;
+                    white-space: nowrap;
+                    width: 100%;
+                    padding: 0px;
+                    padding-right: 24px;
+                    color: #343434;
+                    font-size: 16px;
+                    line-height: 20px;
+                    @media(max-width: 991px){
+                        font-size: 14px;
+                        line-height: 20px;
+                    }
+                    @media(max-width: 767px){
+                        line-height: 16px;
+                    }
+                }
+                .arrow{
+                    margin-top: -4px;
+                    @media(max-width: 767px){
+                        margin-top: -7px;
+                    }
+                    svg{
+                        @media(max-width: 991px){
+                            max-width: 10px;
+                        }
+                    }
+                }
             }
             .form-control{
                 border-radius: 0;
