@@ -250,6 +250,14 @@
                   }
               }
           }
+          .title{
+              h3{
+                @media(max-width: 767px){
+                white-space: normal;
+                max-height: 100% !important;
+                }
+              }
+          }
           h2 {
               color: #343434;
               font-family: 'Montserrat', sans-serif;
