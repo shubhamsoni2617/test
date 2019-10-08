@@ -181,22 +181,23 @@ export default class Attractions extends Component {
     return params;
   };
 
-  handleFilters = searchType => {
+  handleFilters = (searchType, apply) => {
     let obj = {
       ...searchType
     };
-    if (!Utilities.mobilecheck()) {
+    if (!Utilities.mobilecheck() || apply) {
       obj = {
         ...searchType,
         first: 0,
         limit: Constants.LIMIT,
         loader: true,
-        totalRecords: 0
+        totalRecords: 0,
+        filterFlag: false
       };
     }
     this.setState(obj, () => {
       setTimeout(() => {
-        if (!Utilities.mobilecheck()) {
+        if (!Utilities.mobilecheck() || apply) {
           this.loadAttractions(this.getFilters(), false);
         }
       }, 200);
