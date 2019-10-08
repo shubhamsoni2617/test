@@ -15,10 +15,20 @@
         @media(max-width: 991px){
             padding: 15px;
         }
+        @media(max-width: 768px){
+            padding: 20px;
+        }
         .form-group{
-            margin-bottom: 25px;
+              margin-top: 20px;
+              margin-bottom: 2px;
             @media(max-width: 991px){
-                margin-bottom: 15px;
+                margin-top: 15px;
+            }
+            &:first-child{
+              margin-top: 0px;
+            }
+            select{
+                padding-right: 28px;
             }
             .form-control{
                 border-radius: 0;
@@ -26,10 +36,20 @@
                 border: 1px solid rgba(151, 151, 151, 0.2);
                 font-size: 16px;
                 line-height: 19px;
+                color: #343434;
                 @media(max-width: 991px){
                     font-size: 14px;
                     line-height: 17px;
                     min-height: 30px;
+                }
+                &::-webkit-input-placeholder { /* Edge */
+                    color: #343434;
+                }
+                &:-ms-input-placeholder { /* Internet Explorer */
+                    color: #343434;
+                }
+                &::placeholder {
+                    color: #343434;
                 }
             }
             span{
@@ -76,10 +96,12 @@
                 padding: 0px;
                 border: 1px solid #0098FF;
                 transition: 0.3s color, 0.3s background-color;
+                margin-top: 20px;
+                background-clip: unset;
                 @media(max-width: 991px){
                     font-size: 16px;
                     height: 32px;
-                    line-height: 32px;           
+                    line-height: 32px;
                 }
                 &:hover{
                     background-color:transparent;
@@ -97,6 +119,16 @@
         }
         .text-success{
             margin: 0px;
+            font-size: 14px;
+        }
+        .text-danger{
+            color: #E4002B;
+            padding-top: 5px;
+            font-size: 14px;
         }
     }
+}
+.error-msg {
+    color: #E4002B;
+    padding-top: 5px;
 }

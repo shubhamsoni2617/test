@@ -5,6 +5,12 @@
     border-bottom: 1px solid rgba(126, 126, 126, 0.1);
     justify-content: flex-end;
     padding: 0 0 9px;
+     @media(min-width: 767px){
+            .filters-search {
+      display: none;
+    }
+        }
+
 }
 .sortby {
     display: flex;
@@ -28,6 +34,72 @@
                 font-size: 15px;
             }
         }
+    }
+    .sortby-topbar-mobileonly{
+      display: none;
+    }
+    .fixed-buttons {
+display: none;
+    }
+    @media(max-width: 767px){
+      &.open{
+        z-index: 4;
+        .sortby-filter{
+          display: block;
+          width: 100%;
+          top: 0;
+          background: #fff;
+          padding: 0;
+          .filter-topbar{
+            display: none;
+          }
+          .checked {
+            position: relative;
+            &:before{
+              display: block;
+              content: '';
+              position: absolute;
+              right:20px;
+              width: 20px;
+              height: 20px;
+              background: url(../../../assets/images/Tick-selected.svg) no-repeat;
+            }
+
+          }
+        }
+        .active-filter{
+          display: none;
+        }
+        .sortby-topbar-mobileonly{
+           display: flex;
+           align-items: flex-end;
+        }
+        .fixed-buttons {
+            position: fixed;
+            background-color: #fff;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            a {
+              flex: 1 0 50%;
+              max-width: 50%;
+              align-items: center;
+              text-align: center;
+              padding: 20px 17px 15px 17px;
+              font-weight: 500;
+              font-size: 16px;
+              font-family: 'Montserrat', sans-serif;
+              position: relative;
+              text-transform: capitalize;
+              justify-content: center;
+              &.close {
+                  color: #626262;
+              }
+          }
+        }
+      }
     }
 }
 .sortby-view{
@@ -56,6 +128,9 @@
             }
         }
     }
+     @media(max-width: 767px){
+            display: none;
+        }
 }
 .dropdown-enter {
   opacity: 0;

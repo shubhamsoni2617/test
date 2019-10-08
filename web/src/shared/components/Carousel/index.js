@@ -102,12 +102,12 @@ const Carousel = props => {
             </div>
           </div>
         ) : (
-          <Slider {...settings}>
-            {imgArray.map(elem => {
-              return <CarouselSlide elem={elem} key={elem.id} />;
-            })}
-          </Slider>
-        )}
+            <Slider {...settings}>
+              {imgArray.map(elem => {
+                return <CarouselSlide elem={elem} key={elem.id} />;
+              })}
+            </Slider>
+          )}
       </>
     );
   }

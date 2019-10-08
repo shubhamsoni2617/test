@@ -1,0 +1,116 @@
+.about-us-wrapper{
+    .banner-leftalign-wrapper{
+    background: none;
+    background-image: url('../../../assets/images/about-us-banner.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    .banner-leftalign{
+        min-height: 387px;
+        height: 100%;
+        @media(max-width: 768px){
+            min-height: 287px;
+        }
+        @media(max-width: 767px){
+            min-height: 270px;
+        }
+    }
+    &:after{
+        content: none;
+    }
+    .banner-desc{
+        flex: 0 0 65%;
+        width: 65%;
+        margin-top: -50px;
+        padding: 80px 0px;
+        @media(min-width: 1366px){
+            flex: 0 0 50%;
+            width: 50%;
+        }
+        @media(max-width: 768px){
+            flex: 0 0 100%;
+            width: 100%;
+            max-width: 100%;
+            margin-top: -20px;
+            padding: 50px 0px;
+        }
+        @media(max-width: 767px){
+            margin-top: 0px;
+        }
+        .banner-title{
+            & > p:first-child{
+                font-size: 40px;
+                line-height: 49px;
+                font-family: 'Montserrat', sans-serif;
+                font-weight: 600;
+                @media(max-width: 1024px){
+                    font-size: 34px;
+                    line-height: 40px;
+                    margin-bottom: 10px;
+                }
+                @media(max-width: 768px){
+                    font-size: 24px;
+                    line-height: 28px;
+                }
+            }
+        }
+        p{
+            font-size: 16px;
+            line-height: 26px;
+            @media(max-width: 768px){
+                font-size: 14px;
+                line-height: 22px;
+            }
+            &:first-child{
+                margin-bottom: 16px;
+                font-size: 16px;
+                line-height: 26px;
+                font-weight: 400;
+                font-family: "Rubik", sans-serif;
+                @media(max-width: 768px){
+                    margin-bottom: 10px;
+                    font-size: 14px;
+                    line-height: 22px;
+                }
+                &:after{
+                    content: none;
+                }
+            }
+            p:first-child {
+                margin-bottom: 0px;
+                padding-bottom: 0px;
+            }
+        }
+        a{
+            background-color: #0098FF;
+            border: none;
+            padding: 0px 18px;
+            line-height: 40px;
+            height: 40px;
+            max-width: 100%;
+            width: auto;
+            display: inline-block;
+            margin-top: 13px;
+            transition: 0.5s background-color;
+            @media(max-width: 768px){
+                line-height: 30px;
+                height: 30px;
+            }
+            @media(max-width: 767px){
+                padding: 0px 30px;
+            }
+            span{
+                padding: 0px;
+                &:after{
+                    content: none;
+                }
+            }
+            &:hover{
+                background-color: #fff;
+                span{
+                    color: #0098FF;
+                }
+            }
+        }
+    }
+    }
+}

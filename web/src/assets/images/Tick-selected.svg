@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="20px" height="14px" viewBox="0 0 20 14" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 56.2 (81672) - https://sketch.com -->
+    <title>Tick-selected</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <path d="M1.15222296,8.66662293 C0.738044054,8.25134541 0.0665273709,8.25134541 -0.347651533,8.66662293 C-0.761830437,9.08190046 -0.761830437,9.75519835 -0.347651533,10.1704759 L4.95520558,15.4873989 C5.36938449,15.9026764 6.04090117,15.9026764 6.45508007,15.4873989 L18.1213657,3.79016821 C18.5355446,3.37489069 18.5355446,2.7015928 18.1213657,2.28631527 C17.7071868,1.87103775 17.0356701,1.87103775 16.6214912,2.28631527 L5.70514283,13.2316195 L1.15222296,8.66662293 Z" id="path-1"></path>
+    </defs>
+    <g id="Event-Listing" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Event-listing-Filter---Multiple-Genre-Select" transform="translate(-339.000000, -119.000000)">
+            <g id="Group" transform="translate(19.000000, 117.000000)">
+                <g id="Tick--Copy" transform="translate(321.000000, 0.000000)">
+                    <mask id="mask-2" fill="white">
+                        <use xlink:href="#path-1"></use>
+                    </mask>
+                    <use id="Shape" fill="#0098FF" fill-rule="nonzero" xlink:href="#path-1"></use>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

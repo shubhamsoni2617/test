@@ -5,27 +5,30 @@ import GiftVoucherHeader from './GiftVoucherHeader';
 import Vouchers from './Vouchers';
 import SendGiftCard from './SendGiftCard';
 import './style.scss';
+import ShimmerEffect from '../../shared/components/ShimmerEffect';
 
 const GiftVouchers = () => {
   const [GiftVouchersDetails, SetGiftVouchersDetails] = useState(null);
 
   useEffect(() => {
-    window.scrollTo(0, 0);
+    window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
     const params = {
       client: Constants.CLIENT
     };
     GiftVouchersService.getGiftVouchers(params)
       .then(res => {
-        SetGiftVouchersDetails(res.data.data);
+        setTimeout(() => {
+          SetGiftVouchersDetails(res.data.data);
+        }, 700);
       })
       .catch(err => {
         console.log(err);
       });
   }, []);
 
-  return (
-    GiftVouchersDetails && (
-      <Fragment>
+  return GiftVouchersDetails ? (
+    <Fragment>
+      <div className="giftvoucher-wrapper">
         <GiftVoucherHeader
           bannerDescription={GiftVouchersDetails.banner_description}
           bannerUrl={GiftVouchersDetails.banner_url}
@@ -54,8 +57,15 @@ const GiftVouchers = () => {
             </div>
           </div>
         </div>
-      </Fragment>
-    )
+      </div>
+    </Fragment>
+  ) : (
+    <ShimmerEffect
+      propCls="shm_col-xs-6 col-md-12"
+      height={80}
+      count={3}
+      type="TILE"
+    />
   );
 };
 

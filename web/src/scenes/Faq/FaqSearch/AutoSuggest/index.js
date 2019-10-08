@@ -1,11 +1,11 @@
-import React, { useState, useEffect, Fragment } from "react";
-import { Link } from "react-router-dom";
-import "./style.scss";
+import React, { useState, useEffect, Fragment } from 'react';
+import { Link } from 'react-router-dom';
+import './style.scss';
 
 const AutoSuggest = props => {
   const [filteredSuggestions, setFilteredSuggestions] = useState([]);
   const [showSuggestions, setShowSuggestions] = useState(true);
-  const [userInput, setUserInput] = useState("");
+  const [userInput, setUserInput] = useState('');
   const [helperText, setHelperText] = useState(null);
 
   const onChange = e => {
@@ -13,21 +13,22 @@ const AutoSuggest = props => {
     let userInput = e.currentTarget.value;
     let helperText = null;
     let allSuggestions = [];
-
-    allSuggestions = suggestions.reduce((acc, element) => {
-      element.category_id.map(category =>
-        categories.findIndex(categoryObj => {
-          if (categoryObj.id === category) {
-            acc.push({
-              ...element,
-              category_id: category,
-              category_name: categoryObj.name
-            });
-          }
-        })
-      );
-      return acc;
-    }, []);
+    if (suggestions && categories) {
+      allSuggestions = suggestions.reduce((acc, element) => {
+        element.category_id.map(category =>
+          categories.findIndex(categoryObj => {
+            if (categoryObj.id === category) {
+              acc.push({
+                ...element,
+                category_id: category,
+                category_name: categoryObj.name
+              });
+            }
+          })
+        );
+        return acc;
+      }, []);
+    }
 
     let filteredSuggestions = allSuggestions.filter(
       suggestion =>
@@ -35,7 +36,7 @@ const AutoSuggest = props => {
     );
     if (userInput.length < 3) {
       filteredSuggestions = [];
-      helperText = "Please enter atleast 3 characters";
+      helperText = 'Please enter atleast 3 characters';
     }
     if (filteredSuggestions.length === 0) {
       setShowSuggestions(true);
@@ -51,6 +52,7 @@ const AutoSuggest = props => {
   }, [props.setFilteredSuggestions]);
 
   const onClick = question => {
+    props.toggleContentHandler(true);
     setFilteredSuggestions([]);
     setShowSuggestions(false);
     setUserInput(question);
@@ -70,32 +72,32 @@ const AutoSuggest = props => {
       {helperText ? (
         <span className="faq-search-error">{helperText}</span>
       ) : (
-        <ul className="suggestions">
-          {filteredSuggestions.map(suggestion => (
-            <li key={suggestion.id + suggestion.category_id}>
-              <Link
-                to={`/faq/${suggestion.category_name
-                  .replace(/\s/g, "-")
-                  .toLowerCase()}/${suggestion.id}`}
-                className="nav-item"
-                onClick={() => {
-                  onClick(suggestion.question);
-                }}
-              >
-                <span className="faq-qus">{suggestion.question}</span>
-                <span className="faq-qus-category">
-                  in {suggestion.category_name}
-                </span>
-              </Link>
-            </li>
-          ))}
-        </ul>
-      )}
+          <ul className="suggestions">
+            {filteredSuggestions.map(suggestion => (
+              <li key={suggestion.id + suggestion.category_id}>
+                <Link
+                  to={`/faq/${suggestion.category_name
+                    .replace(/\s/g, '-')
+                    .toLowerCase()}?id=${suggestion.id}`}
+                  className="nav-item"
+                  onClick={() => {
+                    onClick(suggestion.question);
+                  }}
+                >
+                  <span className="faq-qus">{suggestion.question}</span>
+                  <span className="faq-qus-category">
+                    in {suggestion.category_name}
+                  </span>
+                </Link>
+              </li>
+            ))}
+          </ul>
+        )}
       {filteredSuggestions.length === 0 &&
-      userInput.length > 3 &&
-      showSuggestions ? (
-        <span className="no-suggestions">you are on your own</span>
-      ) : null}
+        userInput.length >= 3 &&
+        showSuggestions ? (
+          <span className="no-suggestions">No result found</span>
+        ) : null}
     </Fragment>
   );
 };

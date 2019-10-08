@@ -27,7 +27,7 @@ class Home extends Component {
       modal: false,
       modalContent: '',
       newsTickerStatus: true,
-      imageUrl: '',
+      imageUrl: ''
     };
     this.homePageRef = createRef();
   }

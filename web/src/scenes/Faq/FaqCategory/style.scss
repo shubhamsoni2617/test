@@ -18,11 +18,61 @@
 .faq-listing{
   position: relative;
   background-color: #fff;
+  .trending-qus{
+    padding: 30px 20px 26px;
+    color: #343434;
+    background-color: #ffffff;
+    padding: 17px 20px;
+    border: none;
+    position: relative;
+    font-weight: 400;
+    width: 19%;
+    flex: 0 0 19%;
+    left: 0px;
+    font-size: 16px;
+    line-height: 19px;
+    border-right: 21px solid #f7fafc;
+    display: flex;
+    flex-wrap: wrap;
+    height: auto;
+    @media(max-width: 1600px) and (min-width: 1280px){
+      width: 22%;
+      flex: 0 0 22%;
+    }
+    @media(max-width: 1280px){
+      width: 26%;
+      flex: 0 0 26%;
+    }
+    @media(max-width: 1024px){
+      width: 29%;
+      flex: 0 0 29%;
+    }
+    @media(max-width: 991px){
+      width: 100%;
+      flex: 0 0 100%;
+      font-weight: 500;
+      border: none;
+    }
+    @media(max-width: 767px){
+      padding: 20px 0px 30px 15px;
+      font-size: 16px;
+      line-height: 20px;
+    }
+    &:hover{
+      color: #343434;
+      background-color: #ffffff;
+    }
+    &:before{
+      @media(max-width: 991px){
+        content: none;
+      }
+    }
+  }
   li{
     display: flex;
     flex-wrap: wrap;
     height: auto;
-    .nav-link, .trending-qus {
+    .nav-link {
       color: #343434;
       background-color: #ffffff;
       padding: 17px 20px;
@@ -89,48 +139,61 @@
         @media(max-width: 991px){
           background-color: #F7FAFC;
         }
-        &:before{
+      }
+      &:hover{
+         &:before{
           transform: translateY(-50%) rotate(45deg);
+          @media(max-width: 768px){
+            transform: translateY(-50%) rotate(-45deg);
+          }
         }
       }
       &.active{
         font-weight: 500;
       }
+      span{
+        font-size: inherit;
+        line-height: inherit;
+        color: inherit;
+        font-weight: inherit;
+      }
     }
     .faq-ans-wrapper {
       position: absolute;
-      flex: 0 0 81%;
+      flex: 0 0 calc(81% - 40px);
       margin-left: auto;
-      width: 81%;
+      width: calc(81% - 40px);
       top: 0px;
       right: 0px;
-      padding: 35px 20px;
+      padding: 0px;
       height: 100%;
+      margin-right: 40px !important;
       @media(max-width: 1600px) and (min-width: 1280px){
-        width: 78%;
-        flex: 0 0 78%;
+        width: calc(78% - 40px);
+        flex: 0 0 calc(78% - 40px);
       }
       @media(max-width: 1280px){
-        width: 74%;
-        flex: 0 0 74%;
+        width: calc(74% - 40px);
+        flex: 0 0 calc(74% - 40px);
       }
       @media(max-width: 1024px){
-        width: 71%;
-        flex: 0 0 71%;
+        width: calc(71% - 40px);
+        flex: 0 0 calc(71% - 40px);
       }
       @media(max-width: 991px){
         position: relative;
-        padding: 15px 0px 0px;
-        width: 100%;
-        flex: 0 0 100%;
-        border-bottom: 15px solid #f7fafc;
+        width: calc(100% - 0px);
+        flex: 0 0 calc(100% - 0px);
       }
       h2{
         font-size: 22px;
         line-height: 27px;
         padding-bottom: 30px;
+        transition: 0.3s height;
         @media(max-width: 991px){
           display: none;
+          height: 0px;
+          padding: 0px;
         }
         & + div{
           position: absolute;
@@ -151,15 +214,54 @@
         }
       }
       .sidebar-accordion {
-        border-bottom: 1px solid rgba(126, 126, 126, 0.2);
-        padding: 0px 0px 21px;
+        border-bottom: none;
+        padding: 0 0px 35px 20px;
         margin-bottom: 30px;
         @media (max-width: 991px) {
-          padding: 0px 15px 10px;
-          margin-bottom: 20px;
+          padding: 0 15px 13px;
+          margin-bottom: 13px;
+        }
+        @media(max-width: 768px){
+          padding: 0px 0px 0px;
+          margin-bottom: 0px;
+        }
+        .accordion{
+          div:last-child{
+            .accordion__item{
+              border-bottom: none;
+              @media(max-width: 768px){
+                border-bottom: none;
+                margin-bottom: 10px;
+              }
+            }
+          }
         }
         .accordion__item {
           margin-bottom: 0px;
+          border-bottom: 1px solid rgba(126, 126, 126, 0.2);
+          padding: 0 0 21px;
+          margin-bottom: 30px; 
+          @media(max-width: 768px){
+            padding: 0 15px 10px;
+            margin-bottom: 20px;
+          }
+          *{
+            color: #343434;
+          }
+          span{
+            font-family: "Rubik", sans-serif;
+            font-size: 18px;
+            line-height: 22px;
+            @media (max-width: 991px) {
+              font-size: 14px;
+              line-height: 18px;
+              padding: 0px 25px 0px 0px;
+            }
+          }
+          .accordion__panel{
+            transition: 0.1s all;
+            -webkit-transition: 0.1s all;
+          }
         }
         .accordion__button {
           color: #343434;
@@ -200,6 +302,9 @@
             &:before {
               transform: rotate(-135deg);
             }
+            span{
+              color: #0098ff;
+            }
           }
         }
         .accordion__panel {
@@ -213,10 +318,27 @@
           }
           p {
             margin-bottom: 0px;
+            padding: 0px 70px 0px 0px;
             @media (max-width: 767px) {
               color: #7e7e7e;
               font-size: 13px;
               line-height: 21px;
+              padding: 0px;
+            }
+          }
+          table{
+            width: calc(100% - 70px);
+            border: 1px solid #a9a9a9;
+            tr {
+              border-bottom: 1px solid #a9a9a9;
+            }
+            th, td {
+              padding: 10px;
+              border-right: 1px solid #a9a9a9;
+            }
+            th{
+              font-weight: 500;
+              color: #000;
             }
           }
         }
@@ -236,20 +358,24 @@
         }
       }
     }
-    .trending-qus{
-      padding: 30px 20px 26px;
-      @media(max-width: 767px){
-        padding: 24px 20px 18px;
-      }
-      &:hover{
-        color: #343434;
-        background-color: #ffffff;
-      }
-      &:before{
+    &.toggleContentActive{
+      .faq-ans-wrapper{
+        padding: 35px 20px;
         @media(max-width: 991px){
-          content: none;
+          padding: 15px 0 0;
+          border-bottom: 15px solid #f7fafc;
         }
       }
-    }  
+      .nav-link{
+        &.active{
+          &:before{
+            transform: translateY(-50%) rotate(45deg);
+            @media(max-width: 767px){
+              transform: translateY(-50%) rotate(45deg);
+            }
+          }
+        }
+      }
+    }
   }
 }

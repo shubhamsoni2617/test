@@ -19,6 +19,7 @@
         margin: 0 5px 10px;
         box-shadow: none;
         border: 1px solid rgba(234, 234, 234, 0.8);
+        margin-left: 0;
     }
     @media only screen and (min-width: 768px) and (max-width: 1024px) {
         width: 100%;
@@ -96,20 +97,7 @@
                         min-height: 20px;
                     }
                 }
-                .react-modal{
-                    .modal-header{
-                        padding: 15px;
-                    }
-                    .react-modal-body{
-                        max-height: 100%;
-                        .modal-content .modal-body{
-                            padding: 15px 15px 20px;
-                            .notice{
-                                padding: 0 20px;
-                            }
-                        }
-                    }
-                }
+                
             }
             .attraction-show-more {
                 color: #2698ff;
@@ -269,6 +257,7 @@
             }
             @media (max-width: 767px) {
                 font-size: 14px;
+                max-height: unset !important;
             }
           }
 
@@ -296,9 +285,15 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            flex-wrap: wrap;
+            @media(max-width: 1024px){
+                text-align: left;
+                display: block;
+            }
             @media (max-width: 767px) {
                 flex-direction: column;
                 min-height: 40px;
+                align-items: flex-start;
             }
             @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
                 flex-direction: column;
@@ -340,6 +335,7 @@
                 -webkit-transition: 0.8s all;
                 -moz-transition: 0.8s all;
                 -o-transition: 0.8s all;
+                margin-top: 5px;
                 &::after{
                     display: none;
                 }
@@ -352,7 +348,30 @@
                     -moz-transition: 0.8s all;
                     -o-transition: 0.8s all;
                 }
-
+                @media (max-width: 767px) {
+                    margin-top: 9px;
+                    width: 100%;
+                }
+            }
+        }
+    }
+}
+.react-modal{
+    .modal-header{
+        padding: 10px 15px;
+        justify-content: center;
+    }
+    .react-modal-body{
+        max-height: 100%;
+        border-radius: 0;
+        @media(max-width: 767px){
+            max-height: calc(100% - 100px);
+        }
+        .modal-content .modal-body{
+            padding: 15px 15px 20px;
+            border-radius: 0;
+            .notice{
+                padding: 0 10px;
             }
         }
     }

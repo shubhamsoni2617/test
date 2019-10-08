@@ -14,20 +14,21 @@
         justify-content: space-between;
         border-bottom: 5px solid rgba(52, 52, 52, 0.1);
         @media(max-width: 991px) {
-            justify-content: normal;
+            // justify-content: normal;
             border-bottom: none;
-            overflow-x: auto;
-            flex-wrap: nowrap;
+            justify-content: flex-start;
+            // overflow-x: auto;
+            // flex-wrap: nowrap;
         }
         @media(max-width: 768px){
             flex-wrap: wrap;
         }
         &>li {
             position: relative;
-            @media(max-width: 991px) {
-                flex: 0 0 auto;
-            }
-            @media(max-width: 768px){
+            // @media(max-width: 991px) {
+            //     flex: 0 0 auto;
+            // }
+            @media(max-width: 991px){
                 flex: 0 0 calc(33.33% - 10px);
                 width: calc(33.33% - 10px);
                 text-align: center;
@@ -54,11 +55,14 @@
             -moz-transition: 0.2s color;
             -o-transition: 0.2s color;
             cursor: pointer;
-            @media(max-width: 991px) {
-                border-bottom: 5px solid rgba(52, 52, 52, 0.1);
-                padding: 0 24px 7px;
+            @media(max-width: 1024px){
+                padding: 9px 20px;
             }
-            @media(max-width: 768px){
+            // @media(max-width: 991px) {
+            //     border-bottom: 5px solid rgba(52, 52, 52, 0.1);
+            //     padding: 0 24px 7px;
+            // }
+            @media(max-width: 991px){
                 text-align: center;
                 color: #626262;
                 background-color: #F8F8F8;
@@ -84,21 +88,23 @@
                 -webkit-transition: 0.5s width;
                 -moz-transition: 0.5s width;
                 -o-transition: 0.5s width;
-                @media(max-width: 768px){
+                @media(max-width: 991px){
                     content: none;
                     border-bottom: none;
                 }
             }
             &:hover, &.active {
                 font-family: 'Montserrat', sans-serif;
-                font-weight: 600;
-                @media(max-width: 768px) {
+                @media(max-width: 991px) {
                     background-color: #0098FF;
                     color: #ffffff;
                 }
                 &::before {
                     width: 100%;
                 }
+            }
+            &.active{
+                font-weight: 600;
             }
         }
     }

@@ -28,12 +28,12 @@
     -moz-transition: all 500ms;
     -o-transition: all 500ms;
   }
-  
+
   .shimmer-leave {
     top: 100%;
     opacity: 1;
   }
-  
+
   .shimmer-leave.shimmer-leave-active {
     top: 120%;
     opacity: 0;
@@ -50,12 +50,84 @@
       // top: 30px;
       // margin-top: -30px;
       opacity: 1;
-  
+
       @media(max-width: 1280px){
           padding: 20px 20px 15px;
       }
       @media(max-width: 768px){
           padding: 20px 15px 15px;
+      }
+      .tickets-button{
+        .react-modal .react-modal-body{
+          width: 450px;
+          .modal-content{
+            .modal-body{
+              padding: 15px 25px 20px;
+            }
+          }
+        }
+      }
+      .event-dates-time-block{
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        padding: 22px 29px 0px;
+        z-index: 1;
+        background: #FFFFFF;
+        .close-button{
+          position: absolute;
+          top: 10px;
+          right: 10px;
+          width: 32px;
+          height: 32px;
+          padding: 0;
+          background: none;
+          img{
+              height: 20px;
+          }
+          &:hover{
+              background: none;
+          }
+        }
+        .block-header{
+          position: absolute;
+          top: 0;
+          left: 0;
+          z-index: 1;
+          background: #fff;
+          display: flex;
+          padding: 30px 29px 0px;
+          align-items: center;
+          img{
+            margin-right: 15px;
+                width: 23px;
+          }
+          h3{
+            padding: 0;
+            margin: 0;
+          }
+        }
+        .tickets-desc{
+          overflow-y: auto;
+          position: absolute;
+          height: calc(100% - 94px);
+          width: 100%;
+          left: 0;
+          padding: 0 30px;
+          margin-top: 68px;
+          border-bottom: 1px solid #979797;
+          &::before{
+              content: "";
+              position: absolute;
+              bottom: 0;
+              left: -30px;
+              border-bottom: 1px solid #979797;
+              width: 30px;
+              height: 1px;
+          }
+        }
       }
       .tickets-demo-img{
           display: none;
@@ -104,6 +176,10 @@
                   -webkit-transition: max-width 0.5s, overflow 0.5s 0.5s;
                   -moz-transition: max-width 0.5s, overflow 0.5s 0.5s;
                   -o-transition: max-width 0.5s, overflow 0.5s 0.5s;
+                //   svg{
+                //     width: auto;
+                //     height: auto;
+                //   }
               }
               &.share-visible{
                   height: auto;
@@ -114,6 +190,7 @@
                   -moz-transition: max-width 0.5s, overflow 0.5s 0.5s;
                   -o-transition: max-width 0.5s, overflow 0.5s 0.5s;
                   padding-right: 10px;
+                  z-index: 1;
               }
               .SocialMediaShareButton{
                   margin: 0 3px;
@@ -136,6 +213,7 @@
           }
           .zoner-group{
               margin-bottom: 22px;
+              padding-right: 83px;
               li {
                   display: inline-block;
                   list-style: none;
@@ -160,7 +238,7 @@
                   }
                   &:first-child{
                       margin-left: 0px;
-                      background-color: #07B3F0; 
+                      background-color: #07B3F0;
                       color: #FFFFFF;
                   }
                   &:last-child{
@@ -182,10 +260,19 @@
               @media(max-width: 980px){
                   line-height: 22px;
                   font-size: 18px;
+                  min-height: unset;
+                  padding-bottom: 5px;
               }
           }
+          .link{
+            border: none;
+            background: none;
+            color: #0098ff;
+            padding: 0;
+            font-weight: 500;
+          }
           .date-address {
-              margin: 0px 0 70px;
+              margin: 0px 0 30px;
               @media(max-width: 1280px){
                   margin: 30px 0 30px;
               }
@@ -194,41 +281,64 @@
               }
               li{
                   display: flex;
-                  align-items: center;
+                  align-items: flex-start;
                   margin: 0px;
                   span{
                       color: #6A6A6A;
                       font-family: 'Rubik', sans-serif;
                       font-size: 18px;
-                      line-height: 22px;
+                      line-height: 20px;
                       @media(max-width: 1280px){
                           font-size: 16px;
                           line-height: 20px;
                       }
                   }
                   img{
-                      margin-right: 10px;
+                      margin-right: 15px;
+                      width: 19px;
                       &.sticky-location-icon {
                           display: none;
                       }
-                      &.location-gray{
-                          display: none;
-                      }
-  
+                      // &.location-gray{
+                      //     display: none;
+                      // }
+
                   }
                   &.event-date {
                       margin-bottom: 15px;
+                      &:first-child{
+                        span{
+                            display: block;
+                        }
+                      }
+                      .seat-map{
+                          .seat-map-text{
+                              color: #0098FF;
+                          }
+                      }
+                      .detail{
+                          font-weight: bold;
+                          color: #343434;
+                      }
                       @media(max-width: 980px){
                           margin-bottom: 10px;
                       }
                   }
                   &.event-address{
+                    margin-bottom: 15px;
                       a{
                           display: flex;
                           align-items: center;
+                          color: #0098FF;
+                          line-height: 30px;
                       }
                       span{
-                          color: #0098FF;
+                        a{
+                          font-family: 'Rubik', sans-serif;
+                          font-size: 18px;
+                          line-height: 22px;
+                          color: #6A6A6A;
+                        }
                       }
                   }
               }
@@ -266,7 +376,7 @@
               }
           }
       }
-  
+
       .buy-tickets-btn{
           a{
               display: block;
@@ -280,7 +390,7 @@
               text-align: center;
               font-weight: 500;
               border: 1px solid transparent;
-              margin-top: -10px;
+              margin-top: 10px;
               @media(min-width: 768px) and (max-width: 980px){
                   max-width: 300px;
               }
@@ -290,7 +400,7 @@
                   border: 1px solid #0098ff;
               }
           }
-  
+
       }
       .shows-over{
           .shows-over-desc{
@@ -302,13 +412,13 @@
           }
       }
   }
-  
+
   .event-detail-section{
       display: grid;
       grid-template-columns: 65.3% 34.7%;
       position: relative;
       @media (max-width: 980px){
-          grid-template-columns: auto;
+          display: block;
       }
       &:after{
           position: absolute;
@@ -599,7 +709,13 @@
             &:empty{
                 display: none;
             }
+            @media(max-width: 767px){
+                margin-bottom: 10px;
+            }
         }
+    }
+    @media(max-width: 767px){
+        padding: 20px 0px 25px;
     }
   }
   //shows-over
@@ -659,13 +775,27 @@
           }
       }
   }
-  
+
   .event-detail.sticky-topbar.animate{
     opacity: 1 !important;
     overflow: auto;
     height: auto;
+    z-index: 99;
   }
-  
+  .button_group{
+    margin: 15px 0 0;
+    label{
+      margin-bottom: 5px;
+      font-size: 16px;
+      font-weight: 500;
+    }
+    .buy-tickets-btn{
+      margin-bottom: 10px;
+      a{
+        margin-top: 0;
+      }
+    }
+  }
   // sticky topbar
   .event-detail.sticky-topbar{
       background-color: #FFFFFF;
@@ -730,6 +860,9 @@
               padding-left: 10px;
               flex: 0 0 63%;
           }
+          .link{
+              display: none;
+          }
           .info-tooltip, .share-tooltip {
               position: relative;
               right: auto;
@@ -785,6 +918,9 @@
                       margin-right: 15px;
                       border-right: 1px solid rgba(151,151,151,0.4);
                       padding-right: 20px;
+                      &:last-child{
+                          border-right: 0;
+                      }
                       @media(max-width: 1280px){
                           margin: 0px;
                           margin-right: 10px;
@@ -982,6 +1118,11 @@
       }
   }
   // Seat Map gallery
+  .ril__builtinButton{
+      &:hover{
+          background-color: #0098FF;
+      }
+  }
   .seatmap-gallery{
       margin: 10px;
       img{
@@ -1079,4 +1220,3 @@
           }
       }
   }
-  

@@ -28,6 +28,7 @@ export default class ModalPopup extends React.Component {
               ) : (
                 <div className="notice">{content}</div>
               )}
+              {this.props.children}
             </div>
           </div>
         </Modal>

@@ -66,6 +66,7 @@
         @media (max-width: 767px) {
             margin-left: 0;
             width: 100%;
+            // z-index: 3;
         }
         @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
             margin-left: 20px;
@@ -96,7 +97,7 @@
                 }
                 @media(min-width: 1360px) and (max-width: 1900px){
                     flex: 0 0 calc(25% - 17px);
-                    width: calc(25% - 17px);                    
+                    width: calc(25% - 17px);
                 }
             }
             &.list-view{
@@ -109,7 +110,73 @@
                             &:hover{
                                 border-bottom: 1px solid #0098FF;
                             }
+
                         }
+                    }
+                    .event-block{
+                      .event-img{
+                        padding: 15px 0 0 0;
+                      }
+                      .event-details{
+                        flex-direction: column;
+                        align-items: flex-start;
+                        padding: 15px 20px 8px 15px;
+                        .price-event{
+                          align-items: flex-start;
+                          .price{
+                            span{
+                              text-align: left;
+                            }
+                          }
+                        }
+                      }
+                    }
+                }
+            }
+        }
+    }
+    .fixed-buttons-events{
+        display: none;
+    }
+    @media (max-width: 767px) {
+        .fixed-buttons-events{
+            position: fixed;
+            background-color: #0098FF;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            z-index: 3;
+            a{
+                flex: 1 0 50%;
+                max-width: 50%;
+                align-items: center;
+                text-align: center;
+                padding: 20px 17px 15px 17px;
+                font-weight: 500;
+                color: #fff;
+                justify-content: center;
+                font-size: 16px;
+                font-family: 'Montserrat', sans-serif;
+                position: relative;
+                text-transform: capitalize;
+                justify-content: center;
+                margin-left: auto;
+                img{
+                    width: 15px;
+                    margin-left: 8px;
+                }
+                &.sortby{
+                    &:after{
+                        content: '';
+                        position: absolute;
+                        top: 50%;
+                        right: 0;
+                        width: 1px;
+                        height: 22px;
+                        background-color: rgba(255, 255, 255, 0.2);
+                        transform: translateY(-50%);
                     }
                 }
             }
@@ -185,3 +252,4 @@
     margin-top: 70px;
     z-index: 5;
 }
+
