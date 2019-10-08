@@ -104,6 +104,7 @@
                 > div{
                     flex: 0 0 100%;
                     width: 100%;
+                    margin-bottom: 0;
                     &:last-child{
                         .event-block{
                             border-bottom: 1px solid transparent;
@@ -115,17 +116,27 @@
                     }
                     .event-block{
                       .event-img{
-                        padding: 15px 0 0 0;
+                        @media(max-width: 768px){
+                            padding: 15px 0 0 0;
+                        }
                       }
                       .event-details{
-                        flex-direction: column;
-                        align-items: flex-start;
-                        padding: 15px 20px 8px 15px;
+                        
+                        @media(max-width: 768px){
+                            flex-direction: column;
+                            align-items: flex-start;
+                            padding: 15px 20px 8px 15px;
+                        }
                         .price-event{
-                          align-items: flex-start;
+                            @media(max-width: 768px){
+                                align-items: flex-start;
+                            }
                           .price{
                             span{
-                              text-align: left;
+                                @media(max-width: 768px){
+                                    text-align: left;
+                                }
+                              
                             }
                           }
                         }

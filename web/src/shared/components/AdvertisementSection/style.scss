@@ -1,12 +1,17 @@
-
-.advertisement-block{
-    max-height: 300px;
+.advertisement-banner{
     overflow: hidden;
-    margin-bottom: 15px;
-    padding: 0 10px;
-    .image-conatiner{
-        img{
-            width: 100%;
+    height: 117px;
+    width: 100%;
+    .advertisement-block{
+        max-height: 300px;
+        overflow: hidden;
+        margin-bottom: 15px;
+        padding: 0 10px;
+        .image-conatiner{
+            img{
+                width: 100%;
+            }
         }
     }
 }
+
