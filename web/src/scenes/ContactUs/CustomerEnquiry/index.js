@@ -3,7 +3,7 @@ import './style.scss';
 import Contact from '../../../shared/components/Contact';
 
 const CustomerEnquiry = ({ sendCategoryToFaqs }) => {
-  const [enquiry, setEnquiry] = useState('Select an Enquiry *');
+  const [enquiry, setEnquiry] = useState('Select an Enquiry');
 
   useEffect(() => {
     sendCategoryToFaqs(enquiry);
