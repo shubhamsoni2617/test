@@ -116,7 +116,7 @@
         .tickets-desc{
           overflow-y: auto;
           position: absolute;
-          height: calc(100% - 94px);
+          height: calc(100% - 90px);
           width: 100%;
           left: 0;
           padding: 0 30px;
@@ -1185,6 +1185,10 @@
   .ril__navButtonPrev, .ril__navButtonNext, .ril__zoomInButton, .ril__zoomOutButton, .ril__closeButton{
       &::after{
           display: none;
+      }
+      &:hover{
+          background-color: #0098FF;
+          border: none;
       }
   }
   .event-detail-wrapper{
