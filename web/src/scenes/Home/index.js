@@ -59,7 +59,7 @@ class Home extends Component {
             />
           </div>
         </section>
-        {/* <FeaturedEvents /> */}
+        <FeaturedEvents />
         <CarouselConatiner
           title="Currently Showing"
           classStr="currently-showing"

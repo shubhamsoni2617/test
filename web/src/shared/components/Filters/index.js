@@ -24,7 +24,7 @@ function useDebounce(value, delay) {
 }
 
 function PriceRangeFilter(props) {
-  const { priceConfig, filteredPriceRange } = props;
+  const { priceConfig, filteredPriceRange, filterFlag } = props;
   const [flag, setFlag] = useState(false);
   const [priceRange, setPriceRange] = useState({
     min: parseInt(priceConfig.min_price) || null,
@@ -32,8 +32,15 @@ function PriceRangeFilter(props) {
   });
 
   useEffect(() => {
+    setFlag(false);
+  }, [filterFlag]);
+
+  useEffect(() => {
     if (!filteredPriceRange.min) {
       clearPriceRange(false);
+    }
+    if (filteredPriceRange.min) {
+      setPriceRange(filteredPriceRange);
     }
   }, [filteredPriceRange]);
 
@@ -81,7 +88,7 @@ function PriceRangeFilter(props) {
           value={priceRange}
           onChange={value => setPriceRange(value)}
           onChangeComplete={value =>
-            props.handleFilters({ filteredPriceRange: value })
+            props.handleFilters({ localfilteredPriceRange: value })
           }
         />
       </div>
@@ -92,10 +99,18 @@ function PriceRangeFilter(props) {
 function Filters(props) {
   const element = useRef();
   // const [elementOffsetTop, setElementOffsetTop] = useState('');
-  const [scrollContainerRef, styleObj] = useStickyPanel({
+  let stickyObj = {
     sticky: { bottom: 0 },
     bottom: 0
-  });
+  };
+  if (props.attractions) {
+    stickyObj = {
+      sticky: { top: 0, paddingTop: '40px' },
+      pixelBuffer: 40
+      // bottom: 0
+    };
+  }
+  const [scrollContainerRef, styleObj] = useStickyPanel(stickyObj);
 
   const clearAllFilters = () => {
     props.resetFilters();
@@ -115,10 +130,11 @@ function Filters(props) {
     filteredTags,
     filteredVenues,
     filteredCategory,
-    hideCalendar
+    hideCalendar,
+    filterFlag
   } = props;
   const { price_config } = filterConfig ? filterConfig : 0;
-
+  console.log('filter');
   if (props.shimmerFilter) {
     return;
   }
@@ -149,6 +165,7 @@ function Filters(props) {
             priceConfig={price_config}
             filteredPriceRange={filteredPriceRange}
             handleFilters={handleFilters}
+            filterFlag={filterFlag}
           />
         )}
         <FilterGrid
@@ -172,6 +189,7 @@ function Filters(props) {
             filteredDateRange={filteredDateRange}
             handleFilters={handleFilters}
             autoSubmit={true}
+            filterFlag={filterFlag}
           />
         )}
         <FilterGrid

@@ -248,10 +248,10 @@ const FeaturedEvents = props => {
           <div
             style={{ width: '30em', overflowX: 'auto', whiteSpace: 'nowrap' }}
           >
-            <div className="grid-container">
-              {featuredEvents.map((event, i) => {
-                return (
-                  <div key={event.id} className="item">
+            {featuredEvents.map((event, i) => {
+              return (
+                <div className="grid-container" key={event.id}>
+                  <div className="item">
                     <div className="item-wrapper">
                       <div className="featured-item-img">
                         <div className="item-img">
@@ -270,16 +270,16 @@ const FeaturedEvents = props => {
                       <p>Esplanade Concert Hall</p>
                     </div>
                   </div>
-                );
-              })}
-            </div>
+                </div>
+              );
+            })}
           </div>
         ) : (
           <Slider {...settings}>
-            <div className="grid-container">
-              {featuredEvents.map((event, index) => {
-                return (
-                  <div key={event.id} className="item">
+            {featuredEvents.map((event, index) => {
+              return (
+                <div className="grid-container" key={event.id}>
+                  <div className="item">
                     <div className="item-wrapper">
                       <div className="featured-item-img">
                         <div className="item-img">
@@ -298,9 +298,9 @@ const FeaturedEvents = props => {
                       <p>Esplanade Concert Hall</p>
                     </div>
                   </div>
-                );
-              })}
-            </div>
+                </div>
+              );
+            })}
           </Slider>
         )}
       </div>

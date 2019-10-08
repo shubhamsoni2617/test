@@ -2,8 +2,10 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import calendarImg from '../../../assets/images/event-calender.svg';
-import coinsImg from '../../../assets/images/coin.svg';
+import coinsImg from '../../../assets/images/price.svg';
 import locationGray from '../../../assets/images/location-gray.svg';
+import closeIcon from '../../../assets/images/cross.svg';
+import closeIconWhite from '../../../assets/images/cross-white.svg';
 import faceImg from '../../../assets/images/face.svg';
 import shareIcon from '../../../assets/images/share-icon.svg';
 import Info from '../../../assets/images/info-sign.svg';
@@ -12,6 +14,8 @@ import ModalPopup from '../../../shared/components/Modal';
 import Image from '../../../shared/components/Image';
 
 function Button({ styleObj, url, text }) {
+  // if (!text) return null;
+
   return (
     <div className="buy-tickets-btn">
       <a style={styleObj} href={url}>
@@ -22,9 +26,14 @@ function Button({ styleObj, url, text }) {
 }
 
 function BuyTicketsButton({ url, buttons, buttonGroups, setFlag }) {
-  if ((buttons && buttons.length) || (buttonGroups && buttonGroups.length)) {
+  if (
+    (buttons && buttons.length && buttons[0].text) ||
+    (buttonGroups && buttonGroups.length && buttonGroups[0].title)
+  ) {
     return <a onClick={() => setFlag(true)}>Buy Tickets</a>;
   }
+
+  if (!url) return null;
 
   return (
     <a href={url} target="_blank" rel="noopener noreferrer">
@@ -40,8 +49,10 @@ function BuyTicketsButtonPopup(props) {
   if (
     !detailData.buttons &&
     !detailData.buttons.length &&
+    !detailData.buttons[0].text &&
     !detailData.buttonGroups &&
     !detailData.buttonGroups.length &&
+    !detailData.buttonGroups[0].title &&
     !detailData.buy_now_url
   ) {
     return null;
@@ -62,8 +73,11 @@ function BuyTicketsButtonPopup(props) {
         title="Buy Tickets"
         handleClose={() => setFlag(false)}
       >
+        <div className="buy-tickets-btn">
+          <BuyTicketsButton url={detailData.buy_now_url} />
+        </div>
         {detailData.buttons &&
-          detailData.buttons.length &&
+          detailData.buttons.length > 0 &&
           detailData.buttons.map(button => {
             const styleObj = {
               background: button.color,
@@ -75,12 +89,13 @@ function BuyTicketsButtonPopup(props) {
             );
           })}
         {detailData.button_groups &&
-          detailData.button_groups.length &&
+          detailData.button_groups.length > 0 &&
           detailData.button_groups.map(buttonGroup => {
             return (
-              <>
+              <div className="button_group">
                 <label>{buttonGroup.title}</label>
-                {buttonGroup.buttons.length &&
+                {buttonGroup.buttons &&
+                  buttonGroup.buttons.length &&
                   buttonGroup.buttons.map(button => {
                     const styleObj = {
                       background: button.color,
@@ -95,21 +110,21 @@ function BuyTicketsButtonPopup(props) {
                       />
                     );
                   })}
-              </>
+              </div>
             );
           })}
       </ModalPopup>
     </>
   );
 }
-function EventDateTime({ show, showBlock, data }) {
+function EventDateTime({ show, showBlock, data, eventDate }) {
   if (!show) return null;
   if (!data || !data.length) return null;
 
   return (
     <div className="event-dates-time-block">
       <button className="close-button" onClick={() => showBlock(false)}>
-        X
+        <img src={closeIcon} alt="Close Icon" />
       </button>
       <div className="block-header">
         <img src={calendarImg} alt="cal-icon" />
@@ -117,6 +132,11 @@ function EventDateTime({ show, showBlock, data }) {
       </div>
       <div className="tickets-desc">
         <ul className="date-address">
+          {eventDate && (
+            <li className="event-date">
+              <span>{eventDate}</span>
+            </li>
+          )}
           {data.map(date => {
             return (
               <li className="event-date">
@@ -163,6 +183,7 @@ function StickyHeader(props) {
         show={showEventDateBlock}
         showBlock={setEventDateBlock}
         data={detailData.event_date_details}
+        eventDate={detailData.event_date}
       />
       <div className="tickets-desc">
         {detailData.genres && detailData.genres.length > 0 && (
@@ -243,10 +264,10 @@ function StickyHeader(props) {
                 </div>
               </li>
             )}
-            <li className="event-date">{seatMapButton}</li>
+            {seatMapButton && <li className="event-date">{seatMapButton}</li>}
             {detailData.price && (
               <li className="event-date">
-                <img src={coinsImg} alt="cal-icon" />
+                <img src={coinsImg} className="coin" alt="cal-icon" />
                 <span className="detail">{detailData.price}</span>
               </li>
             )}
@@ -254,10 +275,9 @@ function StickyHeader(props) {
         </div>
       </div>
       <div className="tickets-button">
-        {detailData.buy_now_url &&
-          detailData.is_available_for_booking === 1 && (
-            <BuyTicketsButtonPopup detailData={detailData} />
-          )}
+        {detailData.is_available_for_booking === 1 && (
+          <BuyTicketsButtonPopup detailData={detailData} />
+        )}
         {buyPackages}
         {detailData.is_available_for_booking === 0 && (
           <div className="shows-over">
