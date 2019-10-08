@@ -680,6 +680,10 @@
                 margin-right: 8px;
                 flex: 0 0 calc(44% - 10px);
                 width: calc(44% - 10px);
+                @media(min-width: 768px){
+                    flex-basis: calc(45% - 10px);
+                    width: calc(45% - 10px);
+                }
                 label{
                     font-size: 12px;
                     line-height: 14px;
@@ -890,7 +894,7 @@
                 &:after{
                     position: absolute;
                     right: 15px;
-                    top: 50%;
+                    top: 28px;
                     left: auto;
                     content: "";
                     border: solid #626262;
