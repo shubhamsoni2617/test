@@ -12,6 +12,8 @@ import Info from '../../../assets/images/info-sign.svg';
 import SocialShare from '../../../shared/components/SocialShare';
 import ModalPopup from '../../../shared/components/Modal';
 import Image from '../../../shared/components/Image';
+import Utilities from '../../utilities';
+import TitleToolTip from './TitleToolTip';
 
 function Button({ styleObj, url, text }) {
   // if (!text) return null;
@@ -200,25 +202,31 @@ function StickyHeader(props) {
             })}
           </ul>
         )}
-        <h2>
-          {detailData.title}
-          {detailData.pop_up_message.title && (
-            <div className="info-tooltip">
-              <span className="info" onClick={() => props.openNotice()}>
-                <img src={Info} alt="Info" />
-              </span>
-            </div>
-          )}
-          <div className="share-tooltip">
-            <span className="share" onClick={() => props.openSocialShare()}>
-              <img src={shareIcon} alt="" />
-              <SocialShare
-                shareUrl={shareUrl}
-                showSocialShare={showSocialShare}
-              />
+
+        <TitleToolTip
+          title={detailData.title}
+          lines={props.lines}
+          height={Utilities.mobileAndTabletcheck() ? 16 : 30}
+          eventDetail
+        />
+
+        {detailData.pop_up_message.title && (
+          <div className="info-tooltip">
+            <span className="info" onClick={() => props.openNotice()}>
+              <img src={Info} alt="Info" />
             </span>
           </div>
-        </h2>
+        )}
+        <div className="share-tooltip">
+          <span className="share" onClick={() => props.openSocialShare()}>
+            <img src={shareIcon} alt="" />
+            <SocialShare
+              shareUrl={shareUrl}
+              showSocialShare={showSocialShare}
+            />
+          </span>
+        </div>
+
         <div className="ticket-date-price">
           <ul className="date-address">
             {detailData.event_date && (
