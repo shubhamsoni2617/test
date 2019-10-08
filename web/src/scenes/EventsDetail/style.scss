@@ -242,6 +242,14 @@
                   }
               }
           }
+          .title{
+              h3{
+                @media(max-width: 767px){
+                white-space: normal;
+                max-height: 100% !important;
+                }
+              }
+          }
           h2 {
               color: #343434;
               font-family: 'Montserrat', sans-serif;
@@ -868,10 +876,10 @@
               display: none;
           }
           .info-tooltip, .share-tooltip {
-              position: relative;
-              right: auto;
+              position: absolute;
+              right: 18px;
               display: inline-block;
-              top: auto;
+              top: 8px;
               .share, .info {
                   position: relative;
                   right: 0px;
@@ -893,6 +901,9 @@
                   border-color: #0098ff;
                   }
               }
+          }
+          .share-tooltip {
+              right: 61px;
           }
           h2{
               font-size: 22px;
