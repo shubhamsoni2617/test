@@ -1,3 +1,18 @@
 .core-value{
   margin :10% 0%;
+  .core-value-inner{
+    .career-title{
+      padding: 15px 0 33px 0;
+    }
+    @media(max-width: 768px){
+      margin-top: 30px;
+      text-align: center;
+    }
+  }
+  .blue-line{
+    &:before{
+      left: auto;
+      right: -65px;
+    }
+  }
 }

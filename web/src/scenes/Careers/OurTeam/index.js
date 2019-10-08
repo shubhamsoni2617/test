@@ -1,25 +1,29 @@
 import React from 'react';
 import "./style.scss";
 import TeamImg from '../../../../src/assets/images/team.png';
+import arrowWhite from '../../../../src/assets/images/career/opening-blue-arrow.svg';
+import arrowBlue from '../../../../src/assets/images/buy-arrow-b.png';
+
 
 const OurTeam = ({
 
 }) => {
   return (
-    <div className="row container our-team">
-      <div className="col-lg-5">
-        <h4>careers at SISTIC</h4>
-        <h1>Join Our Team</h1>
-        <h5>
-        Lorem Ipsum is simply dummy text of the printing and typesetting
-        industry. Lorem Ipsum has been the industry's standard dummy text ever
-        since the 1500s, when an unknown printer took a galley of type and
-        scrambled it to make a type specimen book. It has survived not only five.
-      </h5>
-      <button>See Job openings --></button>
+    <div className="row our-team no-gutters">
+      <div className="col-lg-5 col-md-6">
+        <div className="ourteam-inner">
+          <h4>Careers at SISTIC</h4>
+          <h2>Join Our Team</h2>
+          <p className="career-subtext">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas varius tortor nibh, sit amet tempor nibh finibus et. Aenean eu enim justo. Vestibulum aliquam hendrerit molestie. Mauris malesuada nisi sit amet augue accumsan.
+          </p>
+          <button>See Job Openings 
+          <img className="arrow-white" src={arrowWhite} alt="arrow" />
+          <img className="arrow-blue" src={arrowBlue} alt="white-arrow" />
+          </button>
       </div>
-      <div className="col-lg-7">
-        <img src={TeamImg} alt="team" />
+      </div>
+      <div className="col-lg-7 col-md-6 our-team-img">
       </div>
     </div>
   );
