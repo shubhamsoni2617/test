@@ -99,10 +99,18 @@ function PriceRangeFilter(props) {
 function Filters(props) {
   const element = useRef();
   // const [elementOffsetTop, setElementOffsetTop] = useState('');
-  const [scrollContainerRef, styleObj] = useStickyPanel({
+  let stickyObj = {
     sticky: { bottom: 0 },
     bottom: 0
-  });
+  };
+  if (props.attractions) {
+    stickyObj = {
+      sticky: { top: 0, paddingTop: '40px' },
+      pixelBuffer: 40
+      // bottom: 0
+    };
+  }
+  const [scrollContainerRef, styleObj] = useStickyPanel(stickyObj);
 
   const clearAllFilters = () => {
     props.resetFilters();

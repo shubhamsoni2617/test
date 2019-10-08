@@ -264,7 +264,7 @@ function StickyHeader(props) {
                 </div>
               </li>
             )}
-            <li className="event-date">{seatMapButton}</li>
+            {seatMapButton && <li className="event-date">{seatMapButton}</li>}
             {detailData.price && (
               <li className="event-date">
                 <img src={coinsImg} alt="cal-icon" />
@@ -275,10 +275,9 @@ function StickyHeader(props) {
         </div>
       </div>
       <div className="tickets-button">
-        {detailData.buy_now_url &&
-          detailData.is_available_for_booking === 1 && (
-            <BuyTicketsButtonPopup detailData={detailData} />
-          )}
+        {detailData.is_available_for_booking === 1 && (
+          <BuyTicketsButtonPopup detailData={detailData} />
+        )}
         {buyPackages}
         {detailData.is_available_for_booking === 0 && (
           <div className="shows-over">
