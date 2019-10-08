@@ -77,7 +77,7 @@ function BuyTicketsButtonPopup(props) {
           <BuyTicketsButton url={detailData.buy_now_url} />
         </div>
         {detailData.buttons &&
-          detailData.buttons.length &&
+          detailData.buttons.length > 0 &&
           detailData.buttons.map(button => {
             const styleObj = {
               background: button.color,
@@ -89,7 +89,7 @@ function BuyTicketsButtonPopup(props) {
             );
           })}
         {detailData.button_groups &&
-          detailData.button_groups.length &&
+          detailData.button_groups.length > 0 &&
           detailData.button_groups.map(buttonGroup => {
             return (
               <div className="button_group">
