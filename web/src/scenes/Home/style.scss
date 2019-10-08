@@ -1,7 +1,7 @@
 //st-wrapper
 .home-page-wrapper {
 	@media (max-width: 767px) {
-		padding-top: 112px;
+		padding-top: 0px;
     }
     .banner{
         margin-top: -112px;
@@ -2459,7 +2459,7 @@ section.explore {
 				overflow: hidden;
 				@media (max-width: 767px) {
 					margin-bottom: 10px;
-					height: 207px;
+					height: 85px;
     				overflow: hidden;
 				}
 				@media (max-width: 1280px) {
@@ -4268,13 +4268,28 @@ section{
 		}
 	}
 }
-.banner img{
-  width: 100%;
-  opacity: 0;
-  transition: opacity .5s ease-in-out;
-  -webkit-transition: opacity .5s ease-in-out;
-  -moz-transition: opacity .5s ease-in-out;
-  -o-transition: opacity .5s ease-in-out;
+.banner{
+	img{
+		width: 100%;
+		opacity: 0;
+		transition: opacity .5s ease-in-out;
+		-webkit-transition: opacity .5s ease-in-out;
+		-moz-transition: opacity .5s ease-in-out;
+		-o-transition: opacity .5s ease-in-out;
+		&.mobile-only-banner{
+			display: none;
+			@media(max-width: 767px){
+				opacity: 1;
+				display: block;
+			}
+		}
+		&.image.loaded{
+			@media(max-width: 767px){
+				opacity: 0;
+				display: none;
+			}
+		}
+	}
 }
 
 @keyframes reveal {
