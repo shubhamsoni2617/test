@@ -21,6 +21,9 @@
         top: 0px;
         & + div{
             padding-top: 112px;
+            @media(max-width: 767px){
+                padding-top: 10px;
+            }
         }
         & + .home-page-wrapper{
             .ticker-wrap.hide-news{
@@ -102,12 +105,12 @@
                     padding-top: 163px;
                 }
                 @media(max-width: 767px){
-                    padding-top: 112px;
+                    padding-top: 10px;
                 }
             }
              & + .home-page-wrapper{
                 .ticker-wrap.hide-news{
-                    top: 202px;
+                    top: 198px;
                     @media(max-width: 1440px){
                         top: 200px;
                     }
