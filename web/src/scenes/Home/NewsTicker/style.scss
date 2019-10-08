@@ -27,8 +27,10 @@ $duration: 10s;
 }
 
 .ticker-wrap {
-  position: absolute;
-  top: 202px;
+  // position: absolute;
+  // top: 202px;
+  position: relative;
+  top: 0px;
   width: 100%;
   background-color: rgba(3, 13, 21, 0.8);
   padding: 0 60px 0 35px;
@@ -39,22 +41,25 @@ $duration: 10s;
   -moz-transition: max-height 0.5s ease-out;
   -o-transition: max-height 0.5s ease-out;
   overflow: hidden; 
-  position: fixed;
-  @media(max-width: 1440px){
-    top: 200px !important;
-  }
-  @media(max-width: 1024px){
-    top: 112px !important;
-  }
-  @media(max-width: 768px){
-    top: 60px !important;
-  }
-  @media(max-width: 767px){
-    top: 0px !important;
-    position: absolute;
-  }
+  // position: fixed;
+  // @media(max-width: 1440px){
+  //   top: 200px !important;
+  // }
+  // @media(max-width: 1024px){
+  //   top: 112px !important;
+  // }
+  // @media(max-width: 768px){
+  //   top: 60px !important;
+  // }
+  // @media(max-width: 767px){
+  //   top: 0px !important;
+  //   position: absolute;
+  // }
   &.hide-news {
     max-height: 40px;
+    & ~ .banner{
+      margin-top: -139px;
+    }
   }
   .ticker-container {
     width: 100%;
