@@ -4,7 +4,7 @@ import EventsService from '../../shared/services/EventsService';
 import Constants from '../../shared/constants';
 
 import './style.scss';
-import SeatMapImg from '../../assets/images/seatmap.svg';
+import SeatMapImg from '../../assets/images/seat.svg';
 import SeatMapWhite from '../../assets/images/seatmap-white.svg';
 import faceImg from '../../assets/images/face.svg';
 import giftCardImage from '../../assets/images/gift-card.png';

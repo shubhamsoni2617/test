@@ -277,8 +277,9 @@
             margin-bottom: 10px;
             padding: 0;
             min-height: 34px;
-            @media (max-width: 767px) {
+            @media (max-width: 768px) {
                 font-size: 12px;
+                margin-bottom: 0;
             }
         }
         .price-event{
@@ -303,12 +304,20 @@
                 flex-direction: column;
             }
             .price{
+                @media (max-width: 768px) {
+                    height: 25px;
+                }
                 span{
                     font-size: 12px;
                     color: #EB9C00;
                     font-style: italic;
                     height: 16px;
                     display: block;
+                    strong{
+                        font-weight: 400;
+                        font-size: 12px;
+                        color: #EB9C00;
+                    }
                 }
                 p{
                     margin: 3px 0 0 0;
@@ -348,7 +357,7 @@
                     -moz-transition: 0.8s all;
                     -o-transition: 0.8s all;
                 }
-                @media (max-width: 767px) {
+                @media (max-width: 768px) {
                     margin-top: 9px;
                     width: 100%;
                 }
@@ -399,6 +408,9 @@
             width: 100%;
             display: flex;
             padding: 15px 20px 8px 30px;
+            @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
+                padding: 5px 5px 8px 20px;
+            }
             .event-detail-prime{
                 width: 100%;
                 .item-title{
@@ -419,6 +431,9 @@
                 justify-content: end;
                 padding-top: 12px;
                 align-items: flex-end;
+                @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
+                    padding-top: 4px; 
+                }
                 .buy-btn{
                     min-width: 121px;
                 }
@@ -426,6 +441,10 @@
                     text-align: right;
                     padding-bottom: 15px;
                     padding-top: 4px;
+                    @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
+                        padding-bottom: 0;
+                        height: auto;
+                    }
                     span{
                         line-height: 14px;
                     }
