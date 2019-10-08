@@ -284,6 +284,7 @@ export default class Attractions extends Component {
                   attractionCategories={attractionCategories}
                   filteredSearch={filteredSearch}
                   filteredCategory={filteredCategory}
+                  attractions={true}
                 >
                   <div className="fixed-buttons">
                     <a
