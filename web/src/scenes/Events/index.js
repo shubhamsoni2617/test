@@ -19,6 +19,7 @@ import utilities from '../../shared/utilities';
 import './style.scss';
 import SearchFilter from '../../shared/components/SearchFilter';
 import Constants from '../../shared/constants';
+import Utilities from '../../shared/utilities';
 
 export default class Events extends Component {
   constructor(props) {
@@ -34,6 +35,10 @@ export default class Events extends Component {
       filteredTags: [],
       filteredPriceRange: {},
       filteredDateRange: {},
+      localfilteredGnere: [],
+      localfilteredPromotions: [],
+      localfilteredVenues: [],
+      localfilteredTags: [],
       localfilteredPriceRange: {},
       localfilteredDateRange: {},
       filteredSortType: 'date',
@@ -253,7 +258,10 @@ export default class Events extends Component {
       },
       filteredGnere: genre ? [genre] : [],
       filteredVenues: venue ? [venue] : [],
-      filteredDateRange: dateRange
+      filteredDateRange: dateRange,
+      localfilteredGnere: genre ? [genre] : [],
+      localfilteredVenues: venue ? [venue] : [],
+      localfilteredDateRange: dateRange
     });
   }
 
@@ -316,8 +324,19 @@ export default class Events extends Component {
   };
 
   resetFilters = () => {
-    this.setState(
-      {
+    let obj = {};
+    if (utilities.mobilecheck()) {
+      obj = {
+        localfilteredGnere: [],
+        localfilteredSearch: [],
+        localfilteredPromotions: [],
+        localfilteredVenues: [],
+        localfilteredTags: [],
+        localfilteredPriceRange: {},
+        localfilteredDateRange: {}
+      };
+    } else {
+      obj = {
         filteredGnere: [],
         filteredSearch: [],
         filteredPromotions: [],
@@ -325,22 +344,20 @@ export default class Events extends Component {
         filteredTags: [],
         filteredPriceRange: {},
         filteredDateRange: {},
-        localfilteredPriceRange: {},
-        localfilteredDateRange: {},
         filteredSortType: 'date',
         filteredSortOrder: '',
         isdataAvailable: false,
         eventsData: [],
         totalRecords: 0
-      },
-      () => {
-        const payload = this.getInitialFilters(true);
-        this.setInitialFilters(payload);
-        if (!utilities.mobilecheck()) {
-          this.loadEvents(payload);
-        }
+      };
+    }
+    this.setState(obj, () => {
+      const payload = this.getInitialFilters(true);
+      this.setInitialFilters(payload);
+      if (!utilities.mobilecheck()) {
+        this.loadEvents(payload);
       }
-    );
+    });
   };
 
   redirectToTarget = alias => {
@@ -351,7 +368,11 @@ export default class Events extends Component {
     this.setState({
       filterFlag: !this.state.filterFlag,
       localfilteredPriceRange: { ...this.state.filteredPriceRange },
-      localfilteredDateRange: { ...this.state.filteredDateRange }
+      localfilteredDateRange: { ...this.state.filteredDateRange },
+      localfilteredGnere: [...this.state.filteredGnere],
+      localfilteredPromotions: [...this.state.filteredPromotions],
+      localfilteredVenues: [...this.state.filteredVenues],
+      localfilteredTags: [...this.state.filteredTags]
     });
   };
 
@@ -369,7 +390,11 @@ export default class Events extends Component {
         filterFlag: false,
         sortByFlag: false,
         filteredPriceRange: { ...this.state.localfilteredPriceRange },
-        filteredDateRange: { ...this.state.localfilteredDateRange }
+        filteredDateRange: { ...this.state.localfilteredDateRange },
+        filteredGnere: [...this.state.localfilteredGnere],
+        filteredPromotions: [...this.state.localfilteredPromotions],
+        filteredVenues: [...this.state.localfilteredVenues],
+        filteredTags: [...this.state.localfilteredTags]
       },
       () => {
         setTimeout(() => {
@@ -400,11 +425,17 @@ export default class Events extends Component {
       shimmer,
       shimmerFilter,
       filteredSearch,
-      localfilteredPriceRange,
+      filteredPriceRange,
       filteredGnere,
       filteredPromotions,
       filteredVenues,
       filteredTags,
+      filteredDateRange,
+      localfilteredPriceRange,
+      localfilteredGnere,
+      localfilteredPromotions,
+      localfilteredVenues,
+      localfilteredTags,
       localfilteredDateRange,
       filterFlag
     } = this.state;
@@ -437,12 +468,36 @@ export default class Events extends Component {
                       venueData={venues}
                       filterConfig={filterConfig}
                       filteredSearch={filteredSearch}
-                      filteredPriceRange={localfilteredPriceRange}
-                      filteredGnere={filteredGnere}
-                      filteredPromotions={filteredPromotions}
-                      filteredVenues={filteredVenues}
-                      filteredTags={filteredTags}
-                      filteredDateRange={localfilteredDateRange}
+                      filteredPriceRange={
+                        Utilities.mobilecheck()
+                          ? localfilteredPriceRange
+                          : filteredPriceRange
+                      }
+                      filteredGnere={
+                        Utilities.mobilecheck()
+                          ? localfilteredGnere
+                          : filteredGnere
+                      }
+                      filteredPromotions={
+                        Utilities.mobilecheck()
+                          ? localfilteredPromotions
+                          : filteredPromotions
+                      }
+                      filteredVenues={
+                        Utilities.mobilecheck()
+                          ? localfilteredVenues
+                          : filteredVenues
+                      }
+                      filteredTags={
+                        Utilities.mobilecheck()
+                          ? localfilteredTags
+                          : filteredTags
+                      }
+                      filteredDateRange={
+                        Utilities.mobilecheck()
+                          ? localfilteredDateRange
+                          : filteredDateRange
+                      }
                       filterFlag={filterFlag}
                     >
                       <div className="fixed-buttons">

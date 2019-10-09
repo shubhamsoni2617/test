@@ -21,7 +21,7 @@
 @media(max-width: 991px){
   .wrapper{
     .filter-fixed-btn{
-      position: absolute;
+      position: fixed;
       bottom: 0;
       left: 0;
       background-color: #0098ff;
@@ -251,7 +251,7 @@
                     align-items: center;
                     text-align: center;
                     padding: 20px 17px 15px 17px;
-                    font-weight: 500;
+                    font-weight: 600;
                     font-size: 16px;
                     font-family: 'Montserrat', sans-serif;
                     position: relative;
@@ -904,12 +904,12 @@
                     -webkit-transition: 0.5s transform;
                     -moz-transition: 0.5s transform;
                     -o-transition: 0.5s transform;
-                    transform: rotate(-135deg);
+                    transform: rotate(-315deg);
                 }
                 &.active{
                     &:after{
                         top: 15px;
-                        transform: rotate(45deg);
+                        transform: rotate(-135deg);
                     }
                 }
             }
