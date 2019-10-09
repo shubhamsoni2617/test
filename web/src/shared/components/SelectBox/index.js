@@ -200,7 +200,6 @@ export default class Select extends Component {
 
   onHoverOption = e => {
     const { options } = this.props;
-
     const { value } = e.currentTarget.dataset;
     const index = options.findIndex(option => option.name === value);
 
@@ -270,14 +269,18 @@ export default class Select extends Component {
   };
 
   renderOptions = () => {
-    const { options } = this.props;
+    const { options, multiple } = this.props;
     const { isOpen } = this.state;
 
     if (!isOpen) {
       return null;
     }
 
-    return <div className="options">{options.map(this.renderOption)}</div>;
+    return (
+      <div className={multiple ? 'options-top' : 'options'}>
+        {options.map(this.renderOption)}
+      </div>
+    );
   };
 
   renderOption = (option, index) => {
@@ -296,7 +299,7 @@ export default class Select extends Component {
         key={index}
         data-value={name}
         className={className}
-        onMouseOver={this.onHoverOption}
+        // onMouseOver={this.onHoverOption}
         onClick={this.onClickOption}
       >
         {multiple ? (
@@ -310,7 +313,6 @@ export default class Select extends Component {
   render() {
     const { label } = this.props;
     const { isOpen } = this.state;
-
     return (
       <div
         className="select"

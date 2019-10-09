@@ -1,6 +1,6 @@
 import React from 'react';
 import './style.scss';
-import { Select } from './MultipleCheckBox';
+import Select from '../../../../src/shared/components/SelectBox';
 import attach from '../../../assets/images/attach.png';
 import stayUpdate from '../../../assets/images/career/stay-update.png';
 const StayUpdated = ({
@@ -13,8 +13,9 @@ const StayUpdated = ({
   submit,
   handleEmail,
   handleFiles,
-  handleMultipleCheckbox,
-  handleSubmit
+  handleSubmit,
+  onClickSubmit,
+  onSelect
 }) => {
   return (
     <div className="container">
@@ -39,10 +40,11 @@ const StayUpdated = ({
               <div className="form-group">
                 <Select
                   submit={submit}
-                  placeholder="Select Area(s) of interest"
-                  options={options}
+                  options={submit ? [] : options}
                   multiple
-                  handleMultipleCheckbox={handleMultipleCheckbox}
+                  onSelect={onSelect}
+                  placeholder="Select Area(s) of interest"
+                  onClickSubmit={onClickSubmit}
                 />
               </div>
               <div className="form-group">
@@ -72,12 +74,18 @@ const StayUpdated = ({
                       type="file"
                       multiple
                       onChange={e => handleFiles(e.target.files)}
-                      accept=".jpeg,.png,.pdf"
+                      accept=".jpeg,.png,.pdf,.doc,.docx,.jpg"
                     />
                   </div>
                 </div>
+                {maxFileLimitMsg && (
+                  <p className="text-danger">{maxFileLimitMsg}</p>
+                )}
+                {files && files[0] && <p>{files[0].name}</p>}
+                {files && files[1] && <p>{files[1].name}</p>}
+                {files && files[2] && <p>{files[2].name}</p>}
               </div>
-              {errMsg ? <p className="text-danger">{errMsg}</p> : null}
+              {/* {errMsg ? <p className="text-danger">{errMsg}</p> : null} */}
               <input
                 className="form-control col-lg-5 btn-link"
                 type="submit"

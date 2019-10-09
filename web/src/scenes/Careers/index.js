@@ -15,10 +15,10 @@ class Careers extends Component {
     super(props);
     this.state = {
       options: [
-        { value: 'Rock' },
-        { value: 'Paper' },
-        { value: 'Salt' },
-        { value: 'Air' }
+        { name: 'Rock' },
+        { name: 'Paper' },
+        { name: 'Salt' },
+        { name: 'Air' }
       ],
       areas: [],
       email: '',
@@ -82,9 +82,8 @@ class Careers extends Component {
     this.setState({ email, errMsg: '' });
   };
 
-  handleFile = e => {
-    this.setState({ files: {} });
-    const { files } = e.target;
+  handleFiles = files => {
+    this.setState({ files: {}, maxFileLimitMsg: '' });
     const filesLength = files.length;
     let fileSize = 0;
     for (let key in files) {
@@ -100,8 +99,7 @@ class Careers extends Component {
     } else {
       this.submitUploadAttachment(files);
       this.setState({
-        files: files,
-        maxFileLimitMsg: 'Max 3 files can be uploaded, with up to 5MB size.'
+        files: files
       });
     }
   };
@@ -112,8 +110,33 @@ class Careers extends Component {
     this.setState({ areas: checkbox });
   };
 
+  onClickSubmit = () => {
+    this.setState({ submit: false });
+  };
+
+  onSelect = values => {
+    if (values && typeof values === 'object') {
+      // let selectedId;
+      // options.filter(elem => {
+      //   if (elem.name === values) {
+      //     selectedId = Number(elem.id);
+      //   }
+      // });
+      console.log(values);
+    }
+  };
+
   render() {
-    const {options,areas,email,files,maxFileLimitMsg,errMsg,submit}
+    const {
+      options,
+      areas,
+      email,
+      files,
+      maxFileLimitMsg,
+      errMsg,
+      submit
+    } = this.state;
+
     return (
       <div>
         <OurTeam />
@@ -132,6 +155,8 @@ class Careers extends Component {
           handleFiles={this.handleFiles}
           handleMultipleCheckbox={this.handleMultipleCheckbox}
           handleSubmit={this.handleSubmit}
+          onClickSubmit={this.onClickSubmit}
+          onSelect={this.onSelect}
         />
         <Testimonials />
       </div>
