@@ -81,6 +81,9 @@
             width: calc(100% + 15px);
             padding-left: 2px;
             padding-right: 1px;
+            &:empty{
+                display: none;
+            }
             @media(max-width: 1024px){
                 height: 100%;
             }
@@ -121,7 +124,6 @@
                         }
                       }
                       .event-details{
-                        
                         @media(max-width: 768px){
                             flex-direction: column;
                             align-items: flex-start;
@@ -263,4 +265,10 @@
     margin-top: 70px;
     z-index: 5;
 }
-
+.ReactModalPortal{
+    .ril-toolbar.ril__toolbar{
+        .ril__toolbarRightSide{
+            padding-right: 0px;
+        }
+    }
+}

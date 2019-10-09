@@ -15,6 +15,8 @@ export default class SortBy extends Component {
     showSortMenu: Utilities.mobilecheck() ? true : false
   };
 
+  componentDidMount() {}
+
   setSortFilter = (tag, sortBy, order) => {
     this.setState({ sort: { tag: tag } });
     if (!Utilities.mobilecheck()) {
@@ -22,9 +24,24 @@ export default class SortBy extends Component {
         document.removeEventListener('click', this.closeSortMenu);
       });
     }
+    console.log('order', order);
+    this.props.handleFilters(
+      Utilities.mobilecheck()
+        ? {
+            localfilteredSortOrder: order,
+            localfilteredSortType: sortBy
+          }
+        : {
+            filteredSortOrder: order,
+            filteredSortType: sortBy
+          }
+    );
+  };
+
+  clearFilter = () => {
     this.props.handleFilters({
-      filteredSortType: sortBy,
-      filteredSortOrder: order
+      localfilteredSortType: '',
+      localfilteredSortOrder: ''
     });
   };
 
@@ -41,13 +58,8 @@ export default class SortBy extends Component {
   };
 
   render() {
-    const {
-      sortList,
-      filteredSortType,
-      filteredSortOrder,
-      goBack,
-      clearSortFilters
-    } = this.props;
+    console.log('filteredSortOrder', filteredSortOrder);
+    const { sortList, filteredSortType, filteredSortOrder } = this.props;
     const { sort } = this.state;
     return (
       <div className={`sortby ${this.props.sortByFlag ? 'open' : ''}`}>
@@ -64,11 +76,9 @@ export default class SortBy extends Component {
           >
             <div className="sortby-topbar-mobileonly">
               <div className="left-arrow-sortby">
-                <a onClick={goBack}>
-                  <img src={prevArrow} alt="left-arrow" />
-                </a>
+                {/* <img src={prevArrow} alt="left-arrow" /> */}
                 <span> Sort By</span>
-                <a className="clear-filters" onClick={clearSortFilters}>
+                <a className="clear-filters" onClick={this.clearFilter}>
                   Clear Filters
                 </a>
               </div>

@@ -13,11 +13,11 @@ function DateRangeFilter(props) {
   const element = useRef(null);
   const [to, setTo] = useState('');
   const [from, setFrom] = useState('');
-  const [flag, setFlag] = useState(false);
+  const [flag, setFlag] = useState(true);
 
-  useEffect(() => {
-    setFlag(false);
-  }, [props.filterFlag]);
+  // useEffect(() => {
+  //   setFlag(false);
+  // }, [props.filterFlag]);
 
   useEffect(() => {
     const getDate = dateStr => {
@@ -93,7 +93,7 @@ function DateRangeFilter(props) {
   return (
     <div className="filter-grid date-range">
       <div className="filter-grid-heading">
-        <h3>Date Range</h3>
+        <h3>Date</h3>
         <ul>
           <li className="active clear">
             <a
@@ -109,7 +109,7 @@ function DateRangeFilter(props) {
         </ul>
       </div>
       <div className={`select-date select-range ${flag ? 'active' : ''}`}>
-        <button onClick={() => setFlag(!flag)}>Select range</button>
+        <button onClick={() => setFlag(!flag)}>Select Date</button>
       </div>
       <div className={`filters-panel ${flag ? 'open' : ''}`}>
         <div className="date-input-to">

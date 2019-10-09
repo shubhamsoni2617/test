@@ -93,6 +93,7 @@
                 flex: 0 0 auto;
                 display: flex;
                 align-items: center;
+                width: 100%;
                 img{
                     max-width: 20px;
                     margin-right: 10px;
@@ -103,6 +104,9 @@
                     color: #fff;
                     font-weight: 500;
                     font-size: 16px;
+                }
+                .clear-filters{
+                    margin-left: auto;
                 }
             }
             .clear-filter-sortby{

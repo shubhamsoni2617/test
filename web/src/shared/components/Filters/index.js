@@ -26,15 +26,15 @@ function useDebounce(value, delay) {
 
 function PriceRangeFilter(props) {
   const { priceConfig, filteredPriceRange, filterFlag } = props;
-  const [flag, setFlag] = useState(false);
+  const [flag, setFlag] = useState(true);
   const [priceRange, setPriceRange] = useState({
     min: parseInt(priceConfig.min_price) || null,
     max: parseInt(priceConfig.max_price) || null
   });
 
-  useEffect(() => {
-    setFlag(false);
-  }, [filterFlag]);
+  // useEffect(() => {
+  //   setFlag(false);
+  // }, [filterFlag]);
 
   useEffect(() => {
     if (!filteredPriceRange.min) {
@@ -73,7 +73,7 @@ function PriceRangeFilter(props) {
         </ul>
       </div>
       <div className={`select-range ${flag ? 'active' : ''}`}>
-        <button onClick={() => setFlag(!flag)}>Select range</button>
+        <button onClick={() => setFlag(!flag)}>Select Range</button>
       </div>
       <div className={`filters-panel ${flag ? 'open' : ''}`}>
         <span className="input-range-label-container min">
@@ -148,7 +148,7 @@ function Filters(props) {
       <div className="inner" style={styleObj}>
         <div className="filter-heading">
           <h3>
-            FILTERS{' '}
+            Filters{' '}
             <a
               href="/"
               onClick={e => {

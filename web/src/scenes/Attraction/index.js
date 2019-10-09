@@ -29,6 +29,8 @@ export default class Attractions extends Component {
       localfilteredCategory: [],
       filteredSortType: 'title',
       filteredSortOrder: 'ASC',
+      localfilteredSortType: 'title',
+      localfilteredSortOrder: 'ASC',
       eventsData: [],
       attractionsData: [],
       first: 0,
@@ -232,7 +234,11 @@ export default class Attractions extends Component {
   };
 
   toggleSortBy = () => {
-    this.setState({ sortByFlag: !this.state.sortByFlag });
+    this.setState({
+      sortByFlag: !this.state.sortByFlag,
+      localfilteredSortOrder: this.state.filteredSortOrder,
+      localfilteredSortType: this.state.filteredSortType
+    });
   };
 
   callAPI = () => {
@@ -244,7 +250,9 @@ export default class Attractions extends Component {
         loader: true,
         filterFlag: false,
         sortByFlag: false,
-        filteredCategory: [...this.state.localfilteredCategory]
+        filteredCategory: [...this.state.localfilteredCategory],
+        filteredSortOrder: this.state.localfilteredSortOrder,
+        filteredSortType: this.state.localfilteredSortType
       },
       () => {
         setTimeout(() => {
@@ -331,12 +339,27 @@ export default class Attractions extends Component {
                   handleFilters={this.handleFilters}
                   defaultSortType={this.tabsSort.defaultSortType}
                   sortByFlag={this.state.sortByFlag}
-                  filteredSortType={this.state.filteredSortType}
-                  filteredSortOrder={this.state.filteredSortOrder}
-                  goBack={this.toggleSortBy}
-                  clearSortFilters={this.clearSortFilters}
+                  filteredSortType={
+                    Utilities.mobilecheck()
+                      ? this.state.localfilteredSortType
+                      : this.state.filteredSortType
+                  }
+                  filteredSortOrder={
+                    Utilities.mobilecheck()
+                      ? this.state.localfilteredSortOrder
+                      : this.state.filteredSortOrder
+                  }
                 >
                   <div className="fixed-buttons">
+                    <a
+                      onClick={() => {
+                        this.toggleSortBy();
+                      }}
+                      className="close"
+                    >
+                      Close
+                    </a>
+
                     <a onClick={() => this.callAPI()} className="apply">
                       Apply
                     </a>
