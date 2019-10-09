@@ -366,6 +366,7 @@ export default class EventsDetail extends Component {
                     <EventCarousel images={detailData.images} />
                   )}
                   <StickyHeader
+                    lines={2}
                     sticky={false}
                     detailData={detailData}
                     showSocialShare={showSocialShare}
@@ -386,6 +387,7 @@ export default class EventsDetail extends Component {
                   />
 
                   <StickyHeader
+                    lines={1}
                     sticky={true}
                     setHeader={setHeader}
                     detailData={detailData}
