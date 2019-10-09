@@ -1,37 +1,45 @@
-import React, { useState, useEffect, useRef } from "react";
-import { Link } from "react-router-dom";
-import { CSSTransitionGroup } from "react-transition-group";
-import logo from "../../../assets/images/logo.png";
-import "./style.scss";
-import MegaMenu from "../../../shared/components/MegaMenu";
-import DropDown from "../../../shared/components/DropDown";
-import HomePageSearch from "../../Home/HomePageSearch";
-import MiniCart from "../../Home/MiniCart";
-import HomeService from "../../../shared/services/HomeService";
-import { ReactComponent as ManLogo } from "../../../assets/images/man.svg";
-import AndroidLogo from "../../../assets/images/android.png";
-import { ReactComponent as AppleLogo } from "../../../assets/images/apple.svg";
-import fb from "../../../assets/images/fb.svg";
-import insta from "../../../assets/images/insta-unfill.svg";
+import React, { useState, useEffect, useRef } from 'react';
+import { Link } from 'react-router-dom';
+import { CSSTransitionGroup } from 'react-transition-group';
+import moment from 'moment';
+import './style.scss';
+import MegaMenu from '../../../shared/components/MegaMenu';
+import DropDown from '../../../shared/components/DropDown';
+import HomePageSearch from '../../Home/HomePageSearch';
+import MiniCart from '../../Home/MiniCart';
+import HomeService from '../../../shared/services/HomeService';
+import { ReactComponent as ManLogo } from '../../../assets/images/man.svg';
+import AndroidLogo from '../../../assets/images/android.png';
+import logo from '../../../assets/images/logo.png';
+import { ReactComponent as AppleLogo } from '../../../assets/images/apple.svg';
+import fb from '../../../assets/images/fb.svg';
+import insta from '../../../assets/images/insta-unfill.svg';
+import Calender from '../../../shared/components/Calender';
+import DateRangeFilter from '../../../shared/components/DateRangeFilter';
+import Submenu from '../../../shared/components/Submenu';
+import Header from '../../../shared/components/Header';
+
 const TopNav = props => {
   let refValue = useRef();
   const [showMegaMenu, setShowMegaMenu] = useState(false);
   const [menuActive, setMenuActive] = useState(false);
+  const [pathName, setPathName] = useState('events');
   const [headerClass, setHeaderClass] = useState(false);
   const [byVenueEvent, setByVenueEvent] = useState([]);
   const [byGenreEvent, setByGenreEvent] = useState([]);
-  const showElementsInHeader = 4;
+  const [showElementsInHeader, setShowElementsInHeader] = useState(4);
+  const [changeHeader, setChangeHeader] = useState(false);
 
   const miniCartData = [
-    { id: "1", img: "assets/images/explore.png" },
-    { id: "2", img: "assets/images/explore.png" },
-    { id: "3", img: "assets/images/explore.png" }
+    { id: '1', img: 'assets/images/explore.png' },
+    { id: '2', img: 'assets/images/explore.png' },
+    { id: '3', img: 'assets/images/explore.png' }
   ];
 
   useEffect(() => {
     const first = 0;
     const limit = 5;
-    const search = "";
+    const search = '';
     HomeService.getHomepageVenues(first, limit, search)
       .then(res => {
         setByVenueEvent(res.data.data);
@@ -50,7 +58,6 @@ const TopNav = props => {
       .catch(err => {
         console.log(err);
       });
-
     if (props.history.location.pathname) processPath(props.history.location);
 
     const unlisten = props.history.listen(location => {
@@ -63,254 +70,378 @@ const TopNav = props => {
 
   const processPath = location => {
     if (location.pathname) {
-      let pathArr = location.pathname.split("/");
-      if (pathArr.length && pathArr[1] === "events") {
+      let pathArr = location.pathname.split('/');
+      if (
+        pathArr.length &&
+        (pathArr[1] === 'events' ||
+          pathArr[1] === 'promotions' ||
+          pathArr[1] === 'attractions')
+      ) {
+        setPathName(pathArr[1]);
         setMenuActive(true);
-
-        //For event header class
-        if (location.search === "") {
-          setHeaderClass(true);
-        } else {
-          setHeaderClass(false);
-        }
-      } else {
+      } else if (
+        pathArr[1] === 'contact-us' ||
+        pathArr[1] === 'about-us' ||
+        pathArr[1] === 'careers'
+      ) {
+        setChangeHeader(true);
+        setPathName(pathArr[1]);
+        setMenuActive(true);
+      }
+      // else {
+      //   setChangeHeader(false);
+      //   setMenuActive(true);
+      // }
+      else {
         setMenuActive(false);
+        setChangeHeader(false);
+      }
+      //For event header class
+      if (location.pathname === '/') {
+        setHeaderClass(true);
+      } else {
         setHeaderClass(false);
       }
     }
   };
   const handleNavigationOpen = () => {
-    refValue.classList.add("active");
+    refValue.classList.add('active');
+    document.body.classList.add('body-overlay');
   };
 
   const handleNavigationClose = () => {
-    refValue.classList.remove("active");
+    refValue.classList.remove('active');
+    document.body.classList.remove('body-overlay');
   };
 
   const handleMouseStatus = status => {
     if (status === true) {
       setTimeout(() => setShowMegaMenu(status), 0);
-      document.body.classList.add("body-overlay");
+      document.body.classList.add('body-overlay');
     }
     if (status === false) {
       setTimeout(() => setShowMegaMenu(status), 0);
-      document.body.classList.remove("body-overlay");
+      document.body.classList.remove('body-overlay');
     }
   };
 
-  return (
-    <header className={`header ${headerClass ? "header-light" : ""}`}>
-      <div className="container-fluid">
-        <div className="row">
-          <div className="top-header">
-            <div className="top-header-left">
-              <div
-                className="hamburger-icon"
-                onClick={() => {
-                  handleNavigationOpen();
-                }}
-              >
-                <span></span>
-              </div>
-              <div className="site-logo">
-                <Link to="/">
-                  <img src={logo} className="img-fluid" alt="Logo" />
-                </Link>
-              </div>
-              <HomePageSearch />
-            </div>
-            <div className="top-header-right">
-              <ul>
-                <li className="user-icon">
-                  <ManLogo className="img-fluid" />
-                  <span></span>
-                </li>
-                <MiniCart data={miniCartData} />
-                <li className="ticket-withus">
-                  <a href="/" onClick={e => e.preventDefault()}>
-                    Ticket With Us
-                  </a>
-                </li>
-              </ul>
-            </div>
-          </div>
-          <nav className="bottom-header">
-            <div className="bottom-header-left">
-              <ul>
-                <li
-                  className={`has-submenu ${menuActive ? "active" : ""}`}
-                  onMouseEnter={() => handleMouseStatus(true)}
-                  onMouseLeave={() => handleMouseStatus(false)}
+  const handleFilters = data => {
+    setShowMegaMenu(false);
+    handleNavigationClose();
+    setTimeout(() => {
+      props.history.push(
+        `/events/search?s=${moment(data.from).format('YYYY-MM-DD')}--${moment(
+          data.to
+        ).format('YYYY-MM-DD')}`
+      );
+    }, 100);
+  };
+
+  return changeHeader ? (
+    <Header menuActive={menuActive} pathName={pathName} />
+  ) : (
+      <header className={`header ${headerClass ? 'homepage' : ''}`}>
+        <div className="container-fluid">
+          <div className="row">
+            <div className="top-header">
+              <div className="top-header-left">
+                <div
+                  className="hamburger-icon"
+                  onClick={() => {
+                    handleNavigationOpen();
+                  }}
                 >
-                  <a href="/" onClick={e => e.preventDefault()}>
-                    Events
-                  </a>
-                  <CSSTransitionGroup
-                    transitionName="mega"
-                    transitionEnter={true}
-                    transitionEnterTimeout={300}
-                    transitionLeaveTimeout={300}
-                  >
-                    {showMegaMenu && (
-                      <MegaMenu
-                        handleMouseStatus={handleMouseStatus}
-                        byGenreEvent={byGenreEvent}
-                        byVenueEvent={byVenueEvent}
-                      />
-                    )}
-                  </CSSTransitionGroup>
-                </li>
-                <li>
-                  <a href="/" onClick={e => e.preventDefault()}>
-                    Attractions
-                  </a>
-                </li>
-                <li>
-                  <a href="/" onClick={e => e.preventDefault()}>
-                    Promotions
-                  </a>
-                </li>
-                <li>
-                  <a href="/" onClick={e => e.preventDefault()}>
-                    Explore
-                  </a>
-                </li>
-              </ul>
-            </div>
-            <div className="bottom-header-right">
-              <ul>
-                {byGenreEvent &&
-                  byGenreEvent
-                    .slice(0, showElementsInHeader)
-                    .map((event, index) => {
-                      return (
-                        <li key={event.id}>
-                          <Link to={`/events?c=${event.id}`}>{event.name}</Link>
-                        </li>
-                      );
-                    })}
-                <DropDown
-                  showElementsInHeader={showElementsInHeader}
-                  byGenreEvent={byGenreEvent}
-                />
-              </ul>
-            </div>
-          </nav>
-          <div
-            className="responsive-nav-links"
-            ref={node => {
-              refValue = node;
-            }}
-          >
-            <a
-              href="/"
-              className="responsive-nav-close"
-              onClick={e => {
-                e.preventDefault();
-                handleNavigationClose();
-              }}
-            >
-              X
-            </a>
-            <ul className="user-details">
-              <li className="user-icon">
-                <Link to="/">
-                  <ManLogo className="img-fluid" />
                   <span></span>
-                </Link>
-                <span>Hello William</span>
-              </li>
-              <li>
-                <a onClick={e => e.preventDefault()} href="/">
-                  Ticket With Us
-                </a>
-              </li>
-            </ul>
-            <ul>
-              <li className="has-submenu">
-                <Link to="/">Events</Link>
-                <ul className="submenu">
-                  <li className="has-submenu">
-                    <Link to="/">Geners</Link>
-                  </li>
-                  <li className="has-submenu">
-                    <Link to="/">calender</Link>
-                  </li>
-                </ul>
-              </li>
-              <li>
-                <Link to="/">Attractions</Link>
-              </li>
-              <li>
-                <Link to="/">Promotions</Link>
-              </li>
-              <li>
-                <Link to="/">Explore</Link>
-              </li>
-            </ul>
-            <ul>
-              <li>
-                <Link to="/">My Account</Link>
-              </li>
-              <li>
-                <Link to="/">My cart</Link>
-              </li>
-            </ul>
-            <ul>
-              <li className="has-submenu">
-                <Link to="/">Our Company</Link>
-              </li>
-              <li className="has-submenu">
-                <Link to="/">Helpful Links</Link>
-              </li>
-              <li className="has-submenu">
-                <Link to="/">For Business</Link>
-              </li>
-              <li className="has-submenu">
-                <Link to="/">Stay Connected</Link>
-              </li>
-            </ul>
-            <ul>
-              <li className="social-links">
-                <span>Follow us on</span>
-                <ul className="social">
-                  <li>
-                    <Link to="/">
-                      <img src={fb} alt="" />
-                    </Link>
-                  </li>
-                  <li>
-                    <img src={insta} alt="" />
-                  </li>
-                </ul>
-              </li>
-              <li className="sistic-on-mobile">
-                <span>Sistic on Mobile</span>
-                <div className="download-option">
+                </div>
+                <div className="site-logo">
                   <Link to="/">
-                    <AppleLogo className="ios" />
-                    <span>
-                      Available on the
-                      <br />
-                      <strong>App Store</strong>
-                    </span>
-                  </Link>
-                  <Link to="/">
-                    <img src={AndroidLogo} className="android" alt="" />
-                    <span>
-                      Get it on
-                      <br />
-                      <strong>Play Store</strong>
-                    </span>
+                    <img src={logo} className="img-fluid" alt="Logo" />
                   </Link>
                 </div>
-              </li>
-            </ul>
+                <HomePageSearch />
+              </div>
+              <div className="top-header-right">
+                <ul>
+                  <li className="user-icon">
+                    <ManLogo className="img-fluid" />
+                    <span></span>
+                  </li>
+                  <MiniCart data={miniCartData} />
+                  <li className="ticket-withus">
+                    <a>Ticket With Us</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <nav className="bottom-header">
+              <div className="bottom-header-left">
+                <ul>
+                  <li
+                    className={`has-submenu ${
+                      menuActive && pathName === 'events' ? 'active' : ''
+                      }`}
+                    onMouseEnter={() => handleMouseStatus(true)}
+                    onMouseLeave={() => handleMouseStatus(false)}
+                  >
+                    <a>Events</a>
+                    <CSSTransitionGroup
+                      transitionName="mega"
+                      transitionEnter={true}
+                      transitionEnterTimeout={300}
+                      transitionLeaveTimeout={300}
+                    >
+                      {showMegaMenu && (
+                        <MegaMenu
+                          handleMouseStatus={handleMouseStatus}
+                          byGenreEvent={byGenreEvent}
+                          byVenueEvent={byVenueEvent}
+                        />
+                      )}
+                    </CSSTransitionGroup>
+                  </li>
+                  <li
+                    className={
+                      menuActive && pathName === 'attractions' ? 'active' : ''
+                    }
+                  >
+                    <Link to="/attractions">Attractions</Link>
+                  </li>
+                  <li
+                    className={
+                      menuActive && pathName === 'promotions' ? 'active' : ''
+                    }
+                  >
+                    <Link to="/promotions">Promotions</Link>
+                  </li>
+                  <li>
+                    <a>Explore</a>
+                  </li>
+                </ul>
+              </div>
+              <div className="bottom-header-right">
+                <ul>
+                  {byGenreEvent &&
+                    byGenreEvent
+                      .slice(0, showElementsInHeader)
+                      .map((event, index) => {
+                        return (
+                          <li key={event.id}>
+                            <Link to={`/events?c=${event.id}`}>{event.name}</Link>
+                          </li>
+                        );
+                      })}
+                  <DropDown
+                    showElementsInHeader={showElementsInHeader}
+                    byGenreEvent={byGenreEvent}
+                  />
+                </ul>
+              </div>
+            </nav>
+            <div
+              className="responsive-nav-links"
+              ref={node => {
+                refValue = node;
+              }}
+            >
+              <a
+                className="responsive-nav-close"
+                onClick={() => {
+                  handleNavigationClose();
+                }}
+              ></a>
+              <ul className="user-details">
+                <li className="user-icon">
+                  <Link to="/">
+                    <ManLogo className="img-fluid" />
+                    <span></span>
+                  </Link>
+                  <span>Login/ Register</span>
+                </li>
+                <li className="ticket-withus">
+                  <a>Ticket With Us</a>
+                </li>
+              </ul>
+              <ul>
+                <li className="has-submenu">
+                  <a
+                    className={`${showMegaMenu ? 'active' : ''}`}
+                    onClick={() => handleMouseStatus(!showMegaMenu)}
+                  >
+                    Events
+                </a>
+                  <ul className={`submenu ${showMegaMenu ? 'active' : ''}`}>
+                    <li className="has-submenu">
+                      <Submenu
+                        heading="Genre"
+                        buttonText="By Genre"
+                        data={byGenreEvent}
+                        submenuClass="genre submenu-wrap"
+                        link="/events/search?c="
+                        closeSubmenu={handleNavigationClose}
+                      />
+                    </li>
+                    <li className="has-submenu">
+                      <Submenu
+                        heading="Calendar"
+                        buttonText="By Date"
+                        submenuClass="calendar submenu-wrap"
+                        closeSubmenu={handleNavigationClose}
+                      >
+                        <DateRangeFilter
+                          filteredDateRange={{ from: null, to: null }}
+                          handleFilters={handleFilters}
+                          autoSubmit={false}
+                        />
+                      </Submenu>
+                    </li>
+                    <li className="has-submenu">
+                      <Submenu
+                        heading="Venue"
+                        buttonText="By Venue"
+                        data={byVenueEvent}
+                        submenuClass="venue submenu-wrap"
+                        link="/events/search?v="
+                        closeSubmenu={handleNavigationClose}
+                      />
+                    </li>
+                  </ul>
+                </li>
+                <li>
+                  <Link to="/attractions" onClick={() => handleNavigationClose()}>
+                    Attractions
+                </Link>
+                </li>
+                <li>
+                  <Link to="/promotions" onClick={() => handleNavigationClose()}>
+                    Promotions
+                </Link>
+                </li>
+                <li>
+                  <Link to="/">Explore</Link>
+                </li>
+              </ul>
+              <ul>
+                <li className="has-submenu">
+                  <Submenu buttonText="My Account" backButtonRequired={false}>
+                    <ul className="submenu">
+                      <li className="has-submenu">
+                        <Link to="/">Subscription</Link>
+                      </li>
+                      <li className="has-submenu">
+                        <Link to="/">Booking History</Link>
+                      </li>
+                      <li className="has-submenu">
+                        <Link to="/">Logout</Link>
+                      </li>
+                    </ul>
+                  </Submenu>
+                </li>
+                <li className="has-submenu mycart">
+                  <Submenu
+                    heading="My cart"
+                    buttonText="My cart"
+                    data={byGenreEvent}
+                    submenuClass="submenu-wrap"
+                  />
+                </li>
+              </ul>
+              <ul>
+                <li className="has-submenu">
+                  {/* <Link to="/">Our Company</Link> */}
+                  <Submenu buttonText="Our Company" backButtonRequired={false}>
+                    <ul className="submenu">
+                      <li className="has-submenu">
+                        <Link to="/">About Us</Link>
+                      </li>
+                      <li className="has-submenu">
+                        <Link to="/">Sell with Us</Link>
+                      </li>
+                      <li className="has-submenu">
+                        <Link to="/">Ticketing Technology</Link>
+                      </li>
+                      <li className="has-submenu">
+                        <Link to="/apipartners">Partner with Us</Link>
+                      </li>
+                      <li className="has-submenu">
+                        <Link to="/">Careers</Link>
+                      </li>
+                    </ul>
+                  </Submenu>
+                </li>
+                <li className="has-submenu">
+                  <Submenu buttonText="Helpful Links" backButtonRequired={false}>
+                    <ul className="submenu">
+                      <li className="has-submenu">
+                        <Link to="/where-to-buy-tickets">
+                          Where to Buy Tickets
+                      </Link>
+                      </li>
+                      <li className="has-submenu">
+                        <Link to="/agents">Locate an Agent</Link>
+                      </li>
+                      <li className="has-submenu">
+                        <Link to="/venues">Locate a Venue</Link>
+                      </li>
+                      <li className="has-submenu">
+                        <Link to="/">Blog</Link>
+                      </li>
+                      <li className="has-submenu">
+                        <Link to="/">Media</Link>
+                      </li>
+                    </ul>
+                  </Submenu>
+                </li>
+                <li className="business">
+                  <Link to="/contact-us">Contact Us</Link>
+                </li>
+                <li className="has-submenu business">
+                  <Link to="/">For Business</Link>
+                </li>
+                <li className="has-submenu">
+                  <Link to="/">Stay Connected</Link>
+                </li>
+              </ul>
+              <ul>
+                <li className="social-links">
+                  <span>Follow us on</span>
+                  <ul className="social">
+                    <li>
+                      <Link to="/">
+                        <img src={fb} alt="" />
+                      </Link>
+                    </li>
+                    <li>
+                      <img src={insta} alt="" />
+                    </li>
+                  </ul>
+                </li>
+                <li className="sistic-on-mobile">
+                  <span>Sistic on Mobile</span>
+                  <div className="download-option">
+                    <Link to="/">
+                      <AppleLogo className="ios" />
+                      <span>
+                        Available on the
+                      <br />
+                        <strong>App Store</strong>
+                      </span>
+                    </Link>
+                    <Link to="/">
+                      <img src={AndroidLogo} className="android" alt="" />
+                      <span>
+                        Get it on
+                      <br />
+                        <strong>Play Store</strong>
+                      </span>
+                    </Link>
+                  </div>
+                </li>
+              </ul>
+            </div>
           </div>
         </div>
-      </div>
-    </header>
-  );
+      </header>
+    );
 };
 
 export default TopNav;

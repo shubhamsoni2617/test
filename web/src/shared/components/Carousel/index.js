@@ -41,7 +41,7 @@ const Carousel = props => {
 
   const settings = {
     arrows: arrows,
-    dots: props.dot === false ? false : true,
+    dots: props.dots === false ? false : true,
     infinite: infinite || false,
     autoplay: autoplay || false,
     speed: 500,
@@ -102,12 +102,12 @@ const Carousel = props => {
             </div>
           </div>
         ) : (
-          <Slider {...settings}>
-            {imgArray.map(elem => {
-              return <CarouselSlide elem={elem} key={elem.id} />;
-            })}
-          </Slider>
-        )}
+            <Slider {...settings}>
+              {imgArray.map(elem => {
+                return <CarouselSlide elem={elem} key={elem.id} />;
+              })}
+            </Slider>
+          )}
       </>
     );
   }

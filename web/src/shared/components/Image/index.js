@@ -4,6 +4,9 @@ import BigBanner from '../../../assets/images/big_banner.png';
 import Horizontal from '../../../assets/images/horizontal.png';
 import Vertical from '../../../assets/images/vertical.png';
 import Tile from '../../../assets/images/Vertical Tile.png';
+import Small from '../../../assets/images/small.png';
+import Medium from '../../../assets/images/noimage.png';
+
 import './style.scss';
 
 function Image(props) {
@@ -16,12 +19,13 @@ function Image(props) {
 
   useEffect(() => {
     SetSource(!props.largeImage ? props.src : props.largeImage);
+    if (!props.src) onError();
   }, [props.src, props.largeImage]);
 
   const onLoad = () => {
     setTimeout(() => {
       setClassName('loaded');
-    }, 1000);
+    }, 300);
   };
 
   const onError = () => {
@@ -39,6 +43,12 @@ function Image(props) {
         newImg = BigBanner;
         break;
 
+      case 'Medium':
+        newImg = Medium;
+        break;
+      case 'Small':
+        newImg = Small;
+        break;
       default:
         newImg = Horizontal;
     }

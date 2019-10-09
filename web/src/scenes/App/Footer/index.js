@@ -10,10 +10,11 @@ import insta from '../../../assets/images/insta-unfill.svg';
 import instaFill from '../../../assets/images/insta-fill.svg';
 import stixImage from '../../../assets/images/stix.png';
 import BackToTop from '../../../shared/components/BackToTop';
+import Utilities from '../../../shared/utilities';
 
 const Footer = () => {
   return (
-    <footer>
+    <footer id="footer">
       <section className="footer">
         <div className="container-fluid">
           <div className="footer-top">
@@ -21,19 +22,19 @@ const Footer = () => {
               <h3>Our Company</h3>
               <ul>
                 <li>
-                  <Link to="/">About Us</Link>
+                  <Link to="/about-us">About Us</Link>
                 </li>
                 <li>
-                  <Link to="/">Sell with Us</Link>
+                  <a>Sell with Us</a>
                 </li>
                 <li>
-                  <Link to="/">Ticketing Technology</Link>
+                  <a>Ticketing Technology</a>
                 </li>
                 <li>
-                  <Link to="/">Partner with Us</Link>
+                  <Link to="/apipartners">Partner with Us</Link>
                 </li>
                 <li>
-                  <Link to="/">Careers</Link>
+                  <a>Careers</a>
                 </li>
               </ul>
             </div>
@@ -42,36 +43,36 @@ const Footer = () => {
               <div className="footer-groups">
                 <ul>
                   <li>
-                    <Link to="/">Where to Buy Tickets</Link>
+                    <Link to="/where-to-buy-tickets">Where to Buy Tickets</Link>
                   </li>
                   <li>
-                    <Link to="/">Locate an Agent</Link>
+                    <Link to="/agents">Locate an Agent</Link>
                   </li>
                   <li>
-                    <Link to="/">Locate Link Venue</Link>
+                    <Link to="/venues">Locate a Venue</Link>
                   </li>
                   <li>
-                    <Link to="/">Blog</Link>
+                    <a>Blog</a>
                   </li>
                   <li>
-                    <Link to="/">Media</Link>
+                    <a>Media</a>
                   </li>
                 </ul>
                 <ul>
                   <li>
-                    <Link to="/">My Account</Link>
+                    <a>My Account</a>
                   </li>
                   <li>
-                    <Link to="/">Gift Vouchers</Link>
+                    <Link to="/gift-vouchers">Gift Vouchers</Link>
                   </li>
                   <li>
-                    <Link to="/">FAQ</Link>
+                    <Link to="/faq/top-questions">FAQ</Link>
                   </li>
                   <li>
-                    <Link to="/">Cancellations/Refunds</Link>
+                    <a>Cancellations/Refunds</a>
                   </li>
                   <li>
-                    <Link to="/">Contact Us</Link>
+                    <Link to="/contact-us">Contact Us</Link>
                   </li>
                 </ul>
               </div>
@@ -79,22 +80,22 @@ const Footer = () => {
             <div className="footer-links">
               <h3>SISTIC on Mobile</h3>
               <div className="download-option">
-                <Link to="/">
+                <a>
                   <img src={appleImage} className="ios" alt="" />
                   <span>
                     Available on the
                     <br />
                     <strong>App Store</strong>
                   </span>
-                </Link>
-                <Link to="/">
+                </a>
+                <a>
                   <img src={androidImage} className="android" alt="" />
                   <span>
                     Get it on
                     <br />
                     <strong>Play Store</strong>
                   </span>
-                </Link>
+                </a>
               </div>
             </div>
             <div className="footer-links stay-connected-wrapper">
@@ -109,9 +110,9 @@ const Footer = () => {
                     aria-describedby="basic-addon1"
                   />
                   <div className="input-group-prepend">
-                    <Link to="/" className="input-group-text" id="basic-addon1">
+                    <a className="input-group-text" id="basic-addon1">
                       <img src={sendImage} className="img-fluid" alt="send" />
-                    </Link>
+                    </a>
                   </div>
                 </div>
               </div>
@@ -143,17 +144,19 @@ const Footer = () => {
             </div>
             <ul className="footer-btm-links">
               <li>
-                <Link to="/">Privacy Policy</Link>
+                <Link to="/privacy">Privacy Policy</Link>
               </li>
               <li>
-                <Link to="/">Terms & Conditions</Link>
+                <Link to="/terms-and-conditions">Terms & Conditions</Link>
               </li>
             </ul>
             <div className="hotline-number">SISTIC Hotline: +65 63485555</div>
           </div>
         </div>
       </section>
-      <BackToTop scrollStepInPx="50" delayInMs="20" />
+      {!Utilities.mobilecheck() && (
+        <BackToTop scrollStepInPx="50" delayInMs="20" />
+      )}
     </footer>
   );
 };

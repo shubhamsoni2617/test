@@ -1,6 +1,9 @@
 .main-container{
     opacity: 1;
     transition: opacity .5s;
+    -webkit-transition: opacity .5s;
+    -moz-transition: opacity .5s;
+    -o-transition: opacity .5s;
     &.shimmer{
       opacity: 0;
     }
@@ -21,17 +24,23 @@
     top: 100%;
     opacity: 1;
     transition: all 500ms;
+    -webkit-transition: all 500ms;
+    -moz-transition: all 500ms;
+    -o-transition: all 500ms;
   }
-  
+
   .shimmer-leave {
     top: 100%;
     opacity: 1;
   }
-  
+
   .shimmer-leave.shimmer-leave-active {
     top: 120%;
     opacity: 0;
     transition: all 500ms;
+    -webkit-transition: all 500ms;
+    -moz-transition: all 500ms;
+    -o-transition: all 500ms;
   }
   //event detail section
   .event-detail {
@@ -41,12 +50,88 @@
       // top: 30px;
       // margin-top: -30px;
       opacity: 1;
-  
+
       @media(max-width: 1280px){
           padding: 20px 20px 15px;
       }
       @media(max-width: 768px){
           padding: 20px 15px 15px;
+      }
+      .tickets-button{
+        .react-modal .react-modal-body{
+          width: 450px;
+          .modal-content{
+            .modal-body{
+              padding: 15px 25px 20px;
+            }
+          }
+        }
+      }
+      .event-dates-time-block{
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        padding: 22px 29px 0px;
+        z-index: 1;
+        background: #FFFFFF;
+            .close-button{
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            width: 32px;
+            height: 32px;
+            padding: 0;
+            background: none;
+                img{
+                    height: 20px;
+                }
+                &:hover{
+                    background: none;
+                }
+            }
+        
+        .event-date{
+            margin-bottom: 25px !important;
+        }
+        .block-header{
+          position: absolute;
+          top: 0;
+          left: 0;
+          z-index: 1;
+          background: #fff;
+          display: flex;
+          padding: 30px 29px 0px;
+          align-items: center;
+          img{
+            margin-right: 15px;
+                width: 23px;
+          }
+          h3{
+            padding: 0;
+            margin: 0;
+          }
+        }
+        .tickets-desc{
+          overflow-y: auto;
+          position: absolute;
+          height: calc(100% - 90px);
+          width: 100%;
+          left: 0;
+          padding: 0 30px;
+          margin-top: 68px;
+          border-bottom: 1px solid #979797;
+          &::before{
+              content: "";
+              position: absolute;
+              bottom: 0;
+              left: -30px;
+              border-bottom: 1px solid #979797;
+              width: 30px;
+              height: 1px;
+          }
+        }
       }
       .tickets-demo-img{
           display: none;
@@ -79,6 +164,9 @@
               max-width: 0;
               overflow: hidden;
               transition: max-width 0.5s, overflow 0s;
+              -webkit-transition: all 500ms;
+              -moz-transition: all 500ms;
+              -o-transition: all 500ms;
               padding-right: 0;
               .social-share-wrapper{
                   background: #FFF;
@@ -89,17 +177,31 @@
                   position: relative;
                   overflow: hidden;
                   transition: max-width 0.5s, overflow 0.5s 0.5s;
+                  -webkit-transition: max-width 0.5s, overflow 0.5s 0.5s;
+                  -moz-transition: max-width 0.5s, overflow 0.5s 0.5s;
+                  -o-transition: max-width 0.5s, overflow 0.5s 0.5s;
+                //   svg{
+                //     width: auto;
+                //     height: auto;
+                //   }
               }
               &.share-visible{
                   height: auto;
                   overflow: inherit;
                   max-width: 10em;
                   transition: max-width 0.5s, overflow 0.5s 0.5s;
+                  -webkit-transition: max-width 0.5s, overflow 0.5s 0.5s;
+                  -moz-transition: max-width 0.5s, overflow 0.5s 0.5s;
+                  -o-transition: max-width 0.5s, overflow 0.5s 0.5s;
                   padding-right: 10px;
+                  z-index: 1;
               }
               .SocialMediaShareButton{
                   margin: 0 3px;
                   transition: 0.5s opacity;
+                  -webkit-transition: 0.5s opacity;
+                  -moz-transition: 0.5s opacity;
+                  -o-transition: 0.5s opacity;
                   &:hover{
                       opacity: 0.8;
                   }
@@ -114,7 +216,8 @@
               }
           }
           .zoner-group{
-              margin-bottom: 22px;
+              margin-bottom: 14px;
+              padding-right: 83px;
               li {
                   display: inline-block;
                   list-style: none;
@@ -123,6 +226,9 @@
                   padding: 1px 5px;
                   background-color: transparent;
                   transition: 0.3s background-color;
+                  -webkit-transition: 0.3s background-color;
+                  -moz-transition: 0.3s background-color;
+                  -o-transition: 0.3s background-color;
                   color: rgba(106,106,106,0.8);
                   font-family: 'Montserrat', sans-serif;
                   font-size: 14px;
@@ -136,6 +242,8 @@
                   }
                   &:first-child{
                       margin-left: 0px;
+                      background-color: #07B3F0;
+                      color: #FFFFFF;
                   }
                   &:last-child{
                       margin-right: 0px;
@@ -156,10 +264,19 @@
               @media(max-width: 980px){
                   line-height: 22px;
                   font-size: 18px;
+                  min-height: unset;
+                  padding-bottom: 5px;
               }
           }
+          .link{
+            border: none;
+            background: none;
+            color: #0098ff;
+            padding: 0;
+            font-weight: 500;
+          }
           .date-address {
-              margin: 0px 0 70px;
+              margin: 0px 0 24px;
               @media(max-width: 1280px){
                   margin: 30px 0 30px;
               }
@@ -168,41 +285,72 @@
               }
               li{
                   display: flex;
-                  align-items: center;
+                  align-items: flex-start;
                   margin: 0px;
                   span{
                       color: #6A6A6A;
                       font-family: 'Rubik', sans-serif;
                       font-size: 18px;
-                      line-height: 22px;
+                      line-height: 20px;
                       @media(max-width: 1280px){
                           font-size: 16px;
                           line-height: 20px;
                       }
                   }
                   img{
-                      margin-right: 10px;
+                      margin-right: 15px;
+                      width: 19px;
                       &.sticky-location-icon {
                           display: none;
                       }
-                      &.location-gray{
-                          display: none;
-                      }
-  
+                      // &.location-gray{
+                      //     display: none;
+                      // }
+
                   }
                   &.event-date {
                       margin-bottom: 15px;
+                      &:first-child{
+                        span{
+                            display: block;
+                        }
+                      }
+                      .coin{
+                          width: 22px;
+                      }
+                      .seat-map{
+                          margin-bottom: 10px;
+                          .seat-map-text{
+                              color: #0098FF;
+                          }
+                      }
+                      .detail{
+                          font-weight: 500;
+                          font-size: 20px;
+                          color: #343434;
+                      }
                       @media(max-width: 980px){
                           margin-bottom: 10px;
                       }
                   }
                   &.event-address{
+                    margin-bottom: 15px;
                       a{
                           display: flex;
                           align-items: center;
+                          color: #0098FF;
+                          line-height: 30px;
                       }
                       span{
-                          color: #0098FF;
+                        a{
+                          font-family: 'Rubik', sans-serif;
+                          font-size: 18px;
+                          line-height: 22px;
+                          color: #6A6A6A;
+                          &:hover{
+                            color: #0098FF;
+                          }
+                        }
                       }
                   }
               }
@@ -240,7 +388,7 @@
               }
           }
       }
-  
+
       .buy-tickets-btn{
           a{
               display: block;
@@ -254,7 +402,7 @@
               text-align: center;
               font-weight: 500;
               border: 1px solid transparent;
-              margin-top: -10px;
+              margin-top: 10px;
               @media(min-width: 768px) and (max-width: 980px){
                   max-width: 300px;
               }
@@ -264,7 +412,7 @@
                   border: 1px solid #0098ff;
               }
           }
-  
+
       }
       .shows-over{
           .shows-over-desc{
@@ -276,13 +424,13 @@
           }
       }
   }
-  
+
   .event-detail-section{
       display: grid;
       grid-template-columns: 65.3% 34.7%;
       position: relative;
       @media (max-width: 980px){
-          grid-template-columns: auto;
+          display: block;
       }
       &:after{
           position: absolute;
@@ -344,6 +492,9 @@
                       font-weight: normal;
                       display: inline-block;
                       transition: 0.3s color;
+                      -webkit-transition:  0.3s color;
+                      -moz-transition:  0.3s color;
+                      -o-transition:  0.3s color;
                       font-weight: 600;
                   }
                   &.active, &:hover{
@@ -415,6 +566,9 @@
           align-items: center;
           margin-bottom: 15px;
           transition: 0.3s ease-in;
+          -webkit-transition:  0.3s ease-in;
+          -moz-transition:  0.3s ease-in;
+          -o-transition:  0.3s ease-in;
           @media(max-width: 980px){
               margin: 0 15px 15px;
           }
@@ -434,6 +588,9 @@
               margin-right: 10px;
               img{
                   transition: 0.8s all;
+                  -webkit-transition:  0.8s all;
+                  -moz-transition:  0.8s all;
+                  -o-transition:  0.8s all;
                   opacity: 1;
                   overflow: inherit;
                   position: absolute;
@@ -530,33 +687,48 @@
   }
   //event zoner
   .event-zoner-group{
-      padding: 20px 0px 75px;
-      ul {
-          display: flex;
-          flex-wrap: wrap;
-          padding: 0 10px;
-          li{
-              list-style: none;
-              border: 1px solid rgba(58, 58, 58, 0.15);
-              margin-right: 15px;
-              background-color: transparent;
-              transition: 0.3s border, 0.3s background-color;
-              padding: 2px 7px;
-              opacity: 0.8;
-              color: rgb(0, 152, 255);
-              font-family: 'Montserrat', sans-serif;
-              font-weight: 600;
-              font-size: 14px;
-              display: inline-block;
-              line-height: 18px;
-              transition: 0.3s color;
-              &.active{
-                  background-color:rgb(0, 152, 255);
-                  border-color: rgb(0, 152, 255);
-                  color: #ffffff;
-              }
-          }
-      }
+    padding: 20px 0px 75px;
+    ul {
+        display: flex;
+        flex-wrap: wrap;
+        padding: 0 10px;
+        li{
+            list-style: none;
+            border: 1px solid rgba(58, 58, 58, 0.15);
+            margin-right: 15px;
+            background-color: transparent;
+            transition: 0.3s border, 0.3s background-color;
+            -webkit-transition:  0.3s border, 0.3s background-color;
+            -moz-transition:  0.3s border, 0.3s background-color;
+            -o-transition:  0.3s border, 0.3s background-color;
+            padding: 2px 7px;
+            opacity: 0.8;
+            color: rgb(0, 152, 255);
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            font-size: 14px;
+            display: inline-block;
+            line-height: 18px;
+            transition: 0.3s color;
+            -webkit-transition:  0.3s color;
+            -moz-transition:  0.3s color;
+            -o-transition:  0.3s color;
+            &.active{
+                background-color:rgb(0, 152, 255);
+                border-color: rgb(0, 152, 255);
+                color: #ffffff;
+            }
+            &:empty{
+                display: none;
+            }
+            @media(max-width: 767px){
+                margin-bottom: 10px;
+            }
+        }
+    }
+    @media(max-width: 767px){
+        padding: 20px 0px 25px;
+    }
   }
   //shows-over
   .shows-over {
@@ -615,13 +787,27 @@
           }
       }
   }
-  
+
   .event-detail.sticky-topbar.animate{
     opacity: 1 !important;
     overflow: auto;
     height: auto;
+    z-index: 99;
   }
-  
+  .button_group{
+    margin: 15px 0 0;
+    label{
+      margin-bottom: 5px;
+      font-size: 16px;
+      font-weight: 500;
+    }
+    .buy-tickets-btn{
+      margin-bottom: 10px;
+      a{
+        margin-top: 0;
+      }
+    }
+  }
   // sticky topbar
   .event-detail.sticky-topbar{
       background-color: #FFFFFF;
@@ -640,6 +826,9 @@
       z-index: 2;
       margin-top: 0px;
       transition: opacity .5s ease-in-out;
+      -webkit-transition: opacity .5s ease-in-out;
+      -moz-transition: opacity .5s ease-in-out;
+      -o-transition: opacity .5s ease-in-out;
       min-height: auto;
       height: 0;
       overflow: hidden;
@@ -683,6 +872,9 @@
               padding-left: 10px;
               flex: 0 0 63%;
           }
+          .link{
+              display: none;
+          }
           .info-tooltip, .share-tooltip {
               position: relative;
               right: auto;
@@ -696,6 +888,9 @@
                   margin-left: 15px;
                   margin-top: -15px;
                   transition: 0.3s background-color, 0.3s border-color;
+                  -webkit-transition: 0.3s background-color, 0.3s border-color;
+                  -moz-transition: 0.3s background-color, 0.3s border-color;
+                  -o-transition: 0.3s background-color, 0.3s border-color;
                   @media(max-width: 1280px){
                       margin-left: 10px;
                       margin-top: -14px;
@@ -735,13 +930,20 @@
                       margin-right: 15px;
                       border-right: 1px solid rgba(151,151,151,0.4);
                       padding-right: 20px;
+                      &:last-child{
+                          border-right: 0;
+                      }
                       @media(max-width: 1280px){
                           margin: 0px;
                           margin-right: 10px;
                           padding-right: 10px;
                       }
+                      img{
+                          margin-right: 10px;
+                          width: 19px;
+                      }
                       span{
-                          font-size: 16px;
+                          font-size: 15px;
                           line-height: 19px;
                           @media(max-width: 1280px){
                               font-size: 14px;
@@ -752,6 +954,12 @@
                           a{
                               display: flex;
                               align-items: center;
+                              font-size: 15px;
+                              // width: 253px;
+                                // white-space: nowrap;
+                                // overflow: hidden;
+                                // display: inline-block;
+                                // text-overflow: ellipsis;
                           }
                           span{
                               color:#0098FF;
@@ -766,7 +974,9 @@
                           display: block;
                       }
                       &.location-gray{
-                          display: none;
+                        display: block;
+                        width: 16px;
+                        margin: 1px 10px 0 0;
                       }
                       @media(max-width: 1280px){
                           margin-right: 10px;
@@ -932,6 +1142,11 @@
       }
   }
   // Seat Map gallery
+  .ril__builtinButton{
+      &:hover{
+          background-color: #0098FF;
+      }
+  }
   .seatmap-gallery{
       margin: 10px;
       img{
@@ -971,6 +1186,10 @@
       &::after{
           display: none;
       }
+      &:hover{
+          background-color: #0098FF;
+          border: none;
+      }
   }
   .event-detail-wrapper{
     .contentLoader{
@@ -1005,6 +1224,9 @@
               opacity: 0;
               transform: translateX(-50%);
               transition: 0.5s margin-top, 0.5s opacity;
+              -webkit-transition: 0.5s margin-top, 0.5s opacity;
+              -moz-transition: 0.5s margin-top, 0.5s opacity;
+              -o-transition: 0.5s margin-top, 0.5s opacity;
               &:after{
                   position: absolute;
                   content: "";
@@ -1026,4 +1248,3 @@
           }
       }
   }
-  

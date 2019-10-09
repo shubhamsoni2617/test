@@ -2,11 +2,15 @@
 .image-conatiner{
   position: relative;
   height: 100%;
+  width: 100%;
   overflow: hidden;
 }
 .image{
   opacity: 0;
   transition: opacity 1000ms ease 0ms;
+  -webkit-transition: opacity 1000ms ease 0ms;
+  -moz-transition: opacity 1000ms ease 0ms;
+  -o-transition: opacity 1000ms ease 0ms;
 }
 .image.preview {
   opacity: 1;
@@ -16,6 +20,9 @@
   filter: blur(20px);
   visibility: visible;
   transition: opacity 1000ms 400ms;
+  -webkit-transition:  opacity 1000ms 400ms;
+  -moz-transition:  opacity 1000ms 400ms;
+  -o-transition:  opacity 1000ms 400ms;
 }
 .image.preview.loaded {
   opacity: 0;

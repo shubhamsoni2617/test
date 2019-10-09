@@ -1,14 +1,14 @@
-import React, { useState, useEffect } from "react";
-import Slider from "react-slick";
-import "./style.scss";
-import Constants from "../../../shared/constants";
+import React, { useState, useEffect } from 'react';
+import Slider from 'react-slick';
+import './style.scss';
+import Constants from '../../../shared/constants';
 
 const SampleNextArrow = props => {
   const { className, style, onClick } = props;
   return (
     <div
       className={className}
-      style={{ ...style, display: "block" }}
+      style={{ ...style, display: 'block' }}
       onClick={onClick}
     />
   );
@@ -19,7 +19,7 @@ const SamplePrevArrow = props => {
   return (
     <div
       className={className}
-      style={{ ...style, display: "block" }}
+      style={{ ...style, display: 'block' }}
       onClick={onClick}
     />
   );
@@ -29,9 +29,9 @@ const FeaturedEvents = props => {
   const [width, setWidth] = useState(window.innerWidth);
 
   useEffect(() => {
-    window.addEventListener("resize", handleWindowResize);
+    window.addEventListener('resize', handleWindowResize);
     return () => {
-      window.removeEventListener("resize", handleWindowResize);
+      window.removeEventListener('resize', handleWindowResize);
     };
   }, []);
 
@@ -40,159 +40,159 @@ const FeaturedEvents = props => {
   };
   const featuredEvents = [
     {
-      id: "1",
-      img: "assets/images/explore.png",
-      category: "dance"
+      id: '1',
+      img: 'assets/images/explore.png',
+      category: 'dance'
     },
     {
-      id: "2",
-      img: "assets/images/pretty-girls.jpg",
-      category: "comedy"
+      id: '2',
+      img: 'assets/images/pretty-girls.jpg',
+      category: 'comedy'
     },
     {
-      id: "3",
-      img: "assets/images/dance-theature.jpg",
-      category: "theatre"
+      id: '3',
+      img: 'assets/images/dance-theature.jpg',
+      category: 'theatre'
     },
     {
-      id: "4",
-      img: "assets/images/hetty-keos.jpg",
-      category: "dance"
+      id: '4',
+      img: 'assets/images/hetty-keos.jpg',
+      category: 'dance'
     },
     {
-      id: "5",
-      img: "assets/images/aladdin.jpg",
-      category: "comedy"
+      id: '5',
+      img: 'assets/images/aladdin.jpg',
+      category: 'comedy'
     },
     {
-      id: "6",
-      img: "assets/images/voice-legends.jpg",
-      category: "theatre"
+      id: '6',
+      img: 'assets/images/voice-legends.jpg',
+      category: 'theatre'
     },
     {
-      id: "7",
-      img: "assets/images/pride-passion.jpg",
-      category: "dance"
+      id: '7',
+      img: 'assets/images/pride-passion.jpg',
+      category: 'dance'
     },
     {
-      id: "8",
-      img: "assets/images/hetty-keos.jpg",
-      category: "comedy"
+      id: '8',
+      img: 'assets/images/hetty-keos.jpg',
+      category: 'comedy'
     },
     {
-      id: "9",
-      img: "assets/images/aladdin.jpg",
-      category: "theatre"
+      id: '9',
+      img: 'assets/images/aladdin.jpg',
+      category: 'theatre'
     },
     {
-      id: "10",
-      img: "assets/images/voice-legends.jpg",
-      category: "dance"
+      id: '10',
+      img: 'assets/images/voice-legends.jpg',
+      category: 'dance'
     },
 
     {
-      id: "11",
-      img: "assets/images/explore.png",
-      category: "comedy"
+      id: '11',
+      img: 'assets/images/explore.png',
+      category: 'comedy'
     },
     {
-      id: "12",
-      img: "assets/images/pretty-girls.jpg",
-      category: "dance"
+      id: '12',
+      img: 'assets/images/pretty-girls.jpg',
+      category: 'dance'
     },
     {
-      id: "13",
-      img: "assets/images/dance-theature.jpg",
-      category: "comedy"
+      id: '13',
+      img: 'assets/images/dance-theature.jpg',
+      category: 'comedy'
     },
     {
-      id: "14",
-      img: "assets/images/hetty-keos.jpg",
-      category: "theatre"
+      id: '14',
+      img: 'assets/images/hetty-keos.jpg',
+      category: 'theatre'
     },
     {
-      id: "15",
-      img: "assets/images/aladdin.jpg",
-      category: "theatre"
+      id: '15',
+      img: 'assets/images/aladdin.jpg',
+      category: 'theatre'
     },
     {
-      id: "16",
-      img: "assets/images/voice-legends.jpg",
-      category: "comedy"
+      id: '16',
+      img: 'assets/images/voice-legends.jpg',
+      category: 'comedy'
     },
     {
-      id: "17",
-      img: "assets/images/pride-passion.jpg",
-      category: "dance"
+      id: '17',
+      img: 'assets/images/pride-passion.jpg',
+      category: 'dance'
     },
     {
-      id: "18",
-      img: "assets/images/hetty-keos.jpg",
-      category: "comedy"
+      id: '18',
+      img: 'assets/images/hetty-keos.jpg',
+      category: 'comedy'
     },
     {
-      id: "19",
-      img: "assets/images/aladdin.jpg",
-      category: "concert"
+      id: '19',
+      img: 'assets/images/aladdin.jpg',
+      category: 'concert'
     },
     {
-      id: "20",
-      img: "assets/images/voice-legends.jpg",
-      category: "dance"
+      id: '20',
+      img: 'assets/images/voice-legends.jpg',
+      category: 'dance'
     },
     {
-      id: "21",
-      img: "assets/images/explore.png",
-      category: "concert"
+      id: '21',
+      img: 'assets/images/explore.png',
+      category: 'concert'
     },
     {
-      id: "22",
-      img: "assets/images/pretty-girls.jpg",
-      category: "dance"
+      id: '22',
+      img: 'assets/images/pretty-girls.jpg',
+      category: 'dance'
     },
     {
-      id: "23",
-      img: "assets/images/dance-theature.jpg",
-      category: "comedy"
+      id: '23',
+      img: 'assets/images/dance-theature.jpg',
+      category: 'comedy'
     },
     {
-      id: "24",
-      img: "assets/images/hetty-keos.jpg",
-      category: "dance"
+      id: '24',
+      img: 'assets/images/hetty-keos.jpg',
+      category: 'dance'
     },
     {
-      id: "25",
-      img: "assets/images/aladdin.jpg",
-      category: "comedy"
+      id: '25',
+      img: 'assets/images/aladdin.jpg',
+      category: 'comedy'
     },
     {
-      id: "26",
-      img: "assets/images/voice-legends.jpg",
-      category: "comedy"
+      id: '26',
+      img: 'assets/images/voice-legends.jpg',
+      category: 'comedy'
     },
     {
-      id: "27",
-      img: "assets/images/pride-passion.jpg",
-      category: "dance"
+      id: '27',
+      img: 'assets/images/pride-passion.jpg',
+      category: 'dance'
     },
     {
-      id: "28",
-      img: "assets/images/hetty-keos.jpg",
-      category: "comedy"
+      id: '28',
+      img: 'assets/images/hetty-keos.jpg',
+      category: 'comedy'
     },
     {
-      id: "29",
-      img: "assets/images/aladdin.jpg",
-      category: "comedy"
+      id: '29',
+      img: 'assets/images/aladdin.jpg',
+      category: 'comedy'
     },
     {
-      id: "30",
-      img: "assets/images/voice-legends.jpg",
-      category: "dance"
+      id: '30',
+      img: 'assets/images/voice-legends.jpg',
+      category: 'dance'
     }
   ];
   const settings = {
-    className: "center",
+    className: 'center',
     dots: true,
     centerMode: false,
     infinite: false,
@@ -203,7 +203,7 @@ const FeaturedEvents = props => {
     nextArrow: <SampleNextArrow />,
     prevArrow: <SamplePrevArrow />,
     appendDots: dots => {
-      return <ul style={{ margin: "0px" }}> {dots} </ul>;
+      return <ul style={{ margin: '0px' }}> {dots} </ul>;
     },
     customPaging: i => {
       return (
@@ -235,7 +235,7 @@ const FeaturedEvents = props => {
           <h2>Featured Events</h2>
           <div className="carousel-dots">
             <a href="/events">
-              See all{" "}
+              See all{' '}
               <img
                 src="assets/images/right-arrow.svg"
                 className="img-fluid"
@@ -246,7 +246,7 @@ const FeaturedEvents = props => {
         </div>
         {width <= Constants.MOBILE_BREAK_POINT ? (
           <div
-            style={{ width: "30em", overflowX: "auto", whiteSpace: "nowrap" }}
+            style={{ width: '30em', overflowX: 'auto', whiteSpace: 'nowrap' }}
           >
             {featuredEvents.map((event, i) => {
               return (

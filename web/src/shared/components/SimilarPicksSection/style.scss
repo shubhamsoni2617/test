@@ -50,6 +50,14 @@
 			position: relative;
 			z-index: 1;
 			transition: 0.5s box-shadow;
+			-webkit-transition: 0.5s box-shadow;
+			-moz-transition: 0.5s box-shadow;
+			-o-transition: 0.5s box-shadow;
+			@media (max-width: 767px) {
+                flex: 1 0 50%;
+				max-width: 50%;
+				margin-right: 10px;
+            }
 			.category {
                 margin-bottom: 11px;
 				@media (max-width: 767px) {
@@ -61,6 +69,9 @@
 					width: 100%;
 					height: auto;
 					transition: 0.5s transform;
+					-webkit-transition: 0.5s transform;
+					-moz-transition: 0.5s transform;
+					-o-transition: 0.5s transform;
 					@media(max-width: 1366px) {
 						height: 100%;
 						width: 100%;
@@ -78,10 +89,16 @@
 					cursor: pointer;
 					h3 {
                         color: #0098ff;
-                        transition: 1s all;
+						transition: 1s all;
+						-webkit-transition: 1s all;
+						-moz-transition: 1s all;
+						-o-transition: 1s all;
                     }
                     p{
-                        transition: 1s all;
+						transition: 1s all;
+						-webkit-transition: 1s all;
+						-moz-transition: 1s all;
+						-o-transition: 1s all;
                     }
 				}
 				.currently-showing-img {
@@ -99,12 +116,20 @@
 						opacity: 1;
 						z-index: -1;
 						transition: 0.5s all;
+						-webkit-transition:  0.5s all;
+						-moz-transition:  0.5s all;
+						-o-transition:  0.5s all;
 					}
 					img {
 						transform: translateY(-10px);
 					}
 				}
 			}
+		}
+		@media (max-width: 767px) {
+			display: flex;
+			padding-right: 15px;
+    		padding-left: 15px;
 		}
 	}
     h3 {
@@ -114,7 +139,10 @@
 		font-family: 'Rubik', sans-serif;
         color: #343434;
         margin-bottom: 8px;
-        transition: 1s all;
+		transition: 1s all;
+		-webkit-transition:  1s all;
+		-moz-transition:  1s all;
+		-o-transition:  1s all;
 		@media (max-width: 767px) {
 			font-size: 14px;
 			line-height: 18px;
@@ -127,7 +155,10 @@
 		font-family: 'Rubik', sans-serif;
 		color: #626262;
         margin: 0px;
-        transition: 1s all;
+		transition: 1s all;
+		-webkit-transition:  1s all;
+		-moz-transition:  1s all;
+		-o-transition:  1s all;
 		@media(max-width: 767px) {
 			font-size: 13px;
 			line-height: 15px;
