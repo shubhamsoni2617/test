@@ -31,6 +31,9 @@
       justify-content: center;
       height: 48px;
       width: 100%;
+      @media(max-width: 767px){
+            bottom: 40px;
+      }
       &.hide{
         display: none !important;
       }
@@ -236,7 +239,7 @@
             position: fixed;
             z-index: 5;
             overflow-y: auto;
-            padding-bottom: 55px;
+            padding-bottom: 0px;
             .fixed-buttons{
                 position: fixed;
                 background-color: #fff;
@@ -245,6 +248,9 @@
                 width: 100%;
                 display: flex;
                 justify-content: space-between;
+                @media(max-width: 767px){
+                    border-top: 8px solid #efefef;
+                }
                 a{
                     flex: 1 0 50%;
                     max-width: 50%;
