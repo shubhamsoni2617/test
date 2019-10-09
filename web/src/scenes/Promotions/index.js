@@ -27,7 +27,8 @@ export default class Promotions extends Component {
       sortApply: false,
       sortFilters: null,
 
-      filteredSortOrder: 'date'
+      filteredSortOrder: 'date',
+      localsortBy: 'ASC'
     };
     this.tabsSort = {
       isSortBy: true,
@@ -244,10 +245,15 @@ export default class Promotions extends Component {
   };
 
   handleFilters = obj => {
-    this.handleSortFilters(obj);
+    // this.handleSortFilters(obj);
     if (!Utilities.mobilecheck()) {
       this.setState({
         sortBy: obj.filteredSortOrder,
+        promotionTab: 0
+      });
+    } else {
+      this.setState({
+        localsortBy: obj.localfilteredSortOrder,
         promotionTab: 0
       });
     }
@@ -258,24 +264,24 @@ export default class Promotions extends Component {
   };
 
   toggleSortBy = () => {
-    this.setState({ sortByFlag: !this.state.sortByFlag });
+    this.setState({
+      sortByFlag: !this.state.sortByFlag,
+      localsortBy: this.state.sortBy
+    });
   };
 
   handleSortFilters = sortFilters => {
     this.setState({
-      sortFilters,
-      filteredSortOrder: sortFilters.filteredSortOrder
+      sortFilters
     });
   };
 
   handleSortApply = () => {
-    this.toggleSortBy();
-    if (this.state.sortFilters) {
-      this.setState({
-        sortBy: this.state.sortFilters.filteredSortOrder,
-        promotionTab: 0
-      });
-    }
+    this.setState({
+      sortByFlag: !this.state.sortByFlag,
+      sortBy: this.state.localsortBy,
+      promotionTab: 0
+    });
   };
 
   render() {
@@ -311,7 +317,11 @@ export default class Promotions extends Component {
                               sortList={this.tabsSort.sortList}
                               sortByFlag={this.state.sortByFlag}
                               promotion
-                              filteredSortOrder={this.state.filteredSortOrder}
+                              filteredSortOrder={
+                                Utilities.mobilecheck()
+                                  ? this.state.localsortBy
+                                  : this.state.sortBy
+                              }
                             >
                               <div className="fixed-buttons">
                                 <a
