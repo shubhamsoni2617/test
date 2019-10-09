@@ -351,6 +351,15 @@ export default class Attractions extends Component {
                   }
                 >
                   <div className="fixed-buttons">
+                    <a
+                      onClick={() => {
+                        this.toggleSortBy();
+                      }}
+                      className="close"
+                    >
+                      Close
+                    </a>
+
                     <a onClick={() => this.callAPI()} className="apply">
                       Apply
                     </a>

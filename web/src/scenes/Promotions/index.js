@@ -326,6 +326,7 @@ export default class Promotions extends Component {
                               sortList={this.tabsSort.sortList}
                               sortByFlag={this.state.sortByFlag}
                               promotion
+                              filteredSortType="title"
                               filteredSortOrder={
                                 Utilities.mobilecheck()
                                   ? this.state.localsortBy
@@ -333,6 +334,15 @@ export default class Promotions extends Component {
                               }
                             >
                               <div className="fixed-buttons">
+                                <a
+                                  onClick={() => {
+                                    this.toggleSortBy();
+                                  }}
+                                  className="close"
+                                >
+                                  Close
+                                </a>
+
                                 <a
                                   onClick={this.handleSortApply}
                                   className="apply"

@@ -28,10 +28,12 @@ export default class SortBy extends Component {
     this.props.handleFilters(
       Utilities.mobilecheck()
         ? {
-            localfilteredSortOrder: order
+            localfilteredSortOrder: order,
+            localfilteredSortType: sortBy
           }
         : {
-            filteredSortOrder: order
+            filteredSortOrder: order,
+            filteredSortType: sortBy
           }
     );
   };

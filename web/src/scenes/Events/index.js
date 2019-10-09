@@ -354,9 +354,9 @@ export default class Events extends Component {
       };
     }
     this.setState(obj, () => {
-      const payload = this.getInitialFilters(true);
-      this.setInitialFilters(payload);
       if (!utilities.mobilecheck()) {
+        const payload = this.getInitialFilters(true);
+        this.setInitialFilters(payload);
         this.loadEvents(payload);
       }
     });
@@ -536,7 +536,11 @@ export default class Events extends Component {
                     handleListGridView={this.handleListGridView}
                     handleFilters={this.handleFilters}
                     sortByFlag={this.state.sortByFlag}
-                    filteredSortType="title"
+                    filteredSortType={
+                      Utilities.mobilecheck()
+                        ? this.state.localfilteredSortType
+                        : this.state.filteredSortType
+                    }
                     filteredSortOrder={
                       Utilities.mobilecheck()
                         ? this.state.localfilteredSortOrder
@@ -544,6 +548,15 @@ export default class Events extends Component {
                     }
                   >
                     <div className="fixed-buttons">
+                      <a
+                        onClick={() => {
+                          this.toggleSortBy();
+                        }}
+                        className="close"
+                      >
+                        Close
+                      </a>
+
                       <a onClick={() => this.callAPI()} className="apply">
                         Apply
                       </a>

@@ -65,14 +65,15 @@ const FilterGrid = props => {
     if (status) items = [...props.data].map(item => item.id);
     setActiveClass(status);
     setSelectedFilters(items);
-    if (!Utilities.mobilecheck()) {
-      applyFilters(items);
-    }
+    // if (!Utilities.mobilecheck()) {
+    applyFilters(items, false);
+    // }
   };
 
   const resetFilters = () => {
-    let newFilterValue = [...props.selectedFilter];
+    let newFilterValue = [];
     setSelectedFilters(newFilterValue);
+    applyFilters(newFilterValue, false);
   };
 
   const onChange = (e, id) => {
@@ -84,17 +85,19 @@ const FilterGrid = props => {
       if (index > -1) newFilterValue.splice(index, 1);
     }
     setSelectedFilters(newFilterValue);
-    if (!Utilities.mobilecheck()) {
-      applyFilters(newFilterValue);
-    }
+    // if (!Utilities.mobilecheck()) {
+    applyFilters(newFilterValue, false);
+    // }
   };
 
-  const applyFilters = newFilterValue => {
+  const applyFilters = (newFilterValue, status = true) => {
     let newFilterObject = {};
-    newFilterObject[props.category] = newFilterValue || selectedFilters;
+    if (status) {
+      newFilterObject[props.category] = newFilterValue || selectedFilters;
+    }
     newFilterObject['local' + props.category] =
       newFilterValue || selectedFilters;
-    props.handleFilters(newFilterObject, true);
+    props.handleFilters(newFilterObject, status);
   };
 
   if (!data.length) return null;
@@ -166,6 +169,7 @@ const FilterGrid = props => {
                       <label htmlFor={id}>
                         {item.name}{' '}
                         {item.events_count ? `(${item.events_count})` : ''}
+                        {item.attractions ? `(${item.attractions})` : ''}
                       </label>
                     </li>
                   );
