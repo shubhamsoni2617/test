@@ -51,7 +51,7 @@
 			position: relative;
 		}
 		& + div , & + section{
-			padding-top: 112px;
+			padding-top: 108px;
 			@media(max-width: 991px){
 				padding-top: 60px;
 			}
@@ -614,10 +614,20 @@
 		.has-submenu{
 			button, a{
 				background-color: transparent;
-				color: #626262;
+				color: #343434;
 				font-weight: 300;
 				width: 100%;
 				text-align: left;
+			}
+			button{
+				@media(max-width: 767px){
+					padding: 10px 20px 10px 10px;
+				}
+				&:after{
+					@media(max-width: 767px){
+						right: 25px;
+					}
+				}
 			}
 		}
 	}
@@ -2176,7 +2186,7 @@ section.trending-now {
 		padding: 40px 0px 20px;
 	}
 	@media (max-width: 767px) {
-		padding: 20px 0px 0px;
+		padding: 20px 0px 10px;
 	}
 	.grid-container {
 		display: grid;
@@ -2394,7 +2404,14 @@ section.whats-new {
         padding-bottom: 13px;
         @media (max-width: 767px) {
             margin-bottom: 8px;
-            padding-bottom: 0;
+			padding-bottom: 0;
+			// max-height: 10px !important;
+			// min-height: 15px !important;
+			// text-overflow: ellipsis !important;
+			// width: 100% !important;
+			// white-space: nowrap;
+			// overflow: hidden !important;
+			// display: block !important; 
         }
 	}
 	p {
@@ -2696,7 +2713,16 @@ section{
               max-width: 34%;
             }
           }
-        }
+		}
+		@media(max-width: 767px){
+			-ms-overflow-style: none; // IE 10+ 
+			scrollbar-width: none; // Firefox 
+		}
+		&::-webkit-scrollbar {
+			@media(max-width: 767px){
+				display: none;  // Safari and Chrome 
+			}
+		}
     }
 }
 

@@ -1,6 +1,6 @@
 import React, { Fragment, useState, useEffect } from 'react';
 import './style.scss';
-import attach from '../../../assets/images/attach.png';
+import attach from '../../../assets/images/attach.svg';
 import ContactUsService from '../../../shared/services/ContactUsService';
 import { Link } from 'react-router-dom';
 import Constants from '../../constants';
@@ -240,7 +240,7 @@ const Contact = ({ attachement, handleEnquiry }) => {
             }
             onSelect={onSelect}
             onClickSubmit={onClickSubmit}
-            // multiple
+          // multiple
           />
         </div>
         {errMsg && selectedId === null ? (
@@ -254,12 +254,12 @@ const Contact = ({ attachement, handleEnquiry }) => {
             placeholder={handleEnquiry ? 'Name*' : 'Full Name*'}
             value={name}
             onChange={handleChange}
-            // required
+          // required
           />
         </div>
         {errMsg && !name ? (
           <span className="error-msg">
-            Please enter {handleEnquiry ? 'name' : 'full name'}      
+            Please enter {handleEnquiry ? 'name' : 'full name'}
           </span>
         ) : null}
         <div className={errMsg && !email ? 'form-group err' : 'form-group'}>
@@ -270,12 +270,12 @@ const Contact = ({ attachement, handleEnquiry }) => {
             placeholder={handleEnquiry ? 'Email Address *' : 'Email*'}
             value={email}
             onChange={handleChange}
-            // required
+          // required
           />
         </div>
         {errMsg && !email ? (
           <span className="error-msg">
-            Please enter {handleEnquiry ? 'email address' : 'email'}      
+            Please enter {handleEnquiry ? 'email address' : 'email'}
           </span>
         ) : null}
         <div className={errMsg && !phone ? 'form-group err' : 'form-group'}>
@@ -287,12 +287,12 @@ const Contact = ({ attachement, handleEnquiry }) => {
             value={phone}
             maxLength={10}
             onChange={handleChange}
-            // required
+          // required
           />
         </div>
         {errMsg && !phone ? (
           <span className="error-msg">
-            Please enter {handleEnquiry ? 'phone' : 'mobile'} no.   
+            Please enter {handleEnquiry ? 'phone' : 'mobile'} no.
           </span>
         ) : null}
         <div className={errMsg && !message ? 'form-group err' : 'form-group'}>
@@ -304,7 +304,7 @@ const Contact = ({ attachement, handleEnquiry }) => {
             cols="30"
             value={message}
             onChange={handleChange}
-            // required
+          // required
           />
         </div>
         {errMsg && !message ? (

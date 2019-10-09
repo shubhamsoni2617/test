@@ -146,6 +146,8 @@
                 color: #949494;
                 font-size: 13px;
                 line-height: 15px;
+                padding-bottom: 8px;
+                display: inline-block;
                 @media(max-width: 767px){
                     font-size: 12px;
                     line-height: 14px;
@@ -164,11 +166,17 @@
                     line-height: 19px;
                     color: #343434;
                     padding-top: 12px;
+                    font-weight: 400;
                     @media(max-width: 991px){
                         font-size: 14px;
                         line-height: 17px;
                         padding-top: 0px;
                     }
+                }
+                p{
+                    margin-bottom: 5px;
+                    padding-bottom: 0px;
+                    color: #343434;
                 }
             }
         }
@@ -221,4 +229,7 @@
 .error-msg {
     color: #E4002B;
     padding-top: 5px;
+}
+.text-danger:empty {
+    display: none;
 }
