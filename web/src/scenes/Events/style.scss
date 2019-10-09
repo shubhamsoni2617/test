@@ -81,6 +81,9 @@
             width: calc(100% + 15px);
             padding-left: 2px;
             padding-right: 1px;
+            &:empty{
+                display: none;
+            }
             @media(max-width: 1024px){
                 height: 100%;
             }

@@ -370,6 +370,10 @@
                         flex: 0 0 50%;
                         width: 50%;
                     }
+                    @media(max-width: 767px){
+                        flex: 0 0 100%;
+                        width: 100%;
+                    }
                   }
                   &.event-address{
                     margin-bottom: 15px;
@@ -488,6 +492,10 @@
                 flex: 0 0 50%;
                 width: 50%;
             }
+            @media(max-width: 767px){
+                flex: 0 0 100%;
+                width: 100%;
+            }
         }
     }
   }
@@ -499,6 +507,11 @@
       @media (max-width: 980px){
           display: block;
           margin-top: 20px;
+      }
+      @media(max-width: 768px){
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: column;
       }
       &:after{
           position: absolute;

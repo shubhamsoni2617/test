@@ -84,7 +84,10 @@
             flex-direction: row;
             margin-top: 22px;
             margin-bottom: 15px;
-            width: calc(100% + 15px);            
+            width: calc(100% + 15px);   
+             &:empty{
+                display: none;
+            }         
             @media (max-width: 767px) {
                 margin-bottom: 20px;
             }
