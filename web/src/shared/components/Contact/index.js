@@ -152,7 +152,6 @@ const Contact = ({ attachement, handleEnquiry }) => {
     setLoading(false);
     setError(false);
     setHeaderErr('');
-    setFiles({});
     setSuccessMsg('');
   };
 
