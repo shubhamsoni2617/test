@@ -4,6 +4,7 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import './style.scss';
 import Constants from '../../../shared/constants';
+import Utilities from '../../../shared/utilities';
 
 const SampleNextArrow = props => {
   const { className, style, onClick } = props;
@@ -45,61 +46,61 @@ const TopPics = props => {
     {
       id: '1',
       img: 'assets/images/kurios.png',
-      description: '',
+      description: 'Kurios Cabinet of Curiosities',
       category: 'musical'
     },
     {
       id: '2',
       img: 'assets/images/katya.jpg',
-      description: '',
+      description: 'Kurios Cabinet of Curiosities',
       category: 'comedy'
     },
     {
       id: '3',
       img: 'assets/images/ballet.jpg',
-      description: '',
+      description: 'Kurios Cabinet of Curiosities',
       category: 'dance'
     },
     {
       id: '4',
       img: 'assets/images/panthom-of-opera.jpg',
-      description: '',
+      description: 'Kurios Cabinet of Curiosities',
       category: 'musical'
     },
     {
       id: '5',
       img: 'assets/images/kurios.png',
-      description: '',
+      description: 'Kurios Cabinet of Curiosities',
       category: 'comedy'
     },
     {
       id: '6',
       img: 'assets/images/ballet.jpg',
-      description: '',
+      description: 'Kurios Cabinet of Curiosities',
       category: 'dance'
     },
     {
       id: '7',
       img: 'assets/images/kurios.png',
-      description: '',
+      description: 'Kurios Cabinet of Curiosities',
       category: 'musical'
     },
     {
       id: '8',
       img: 'assets/images/katya.jpg',
-      description: '',
+      description: 'Kurios Cabinet of Curiosities',
       category: 'comedy'
     },
     {
       id: '9',
       img: 'assets/images/ballet.jpg',
-      description: '',
+      description: 'Kurios Cabinet of Curiosities',
       category: 'dance'
     },
     {
       id: '10',
       img: 'assets/images/panthom-of-opera.jpg',
-      description: '',
+      description: 'Kurios Cabinet of Curiosities',
       category: 'musical'
     }
   ];
@@ -169,7 +170,7 @@ const TopPics = props => {
                           </div>
                         </div>
                       </div>
-                      <h3>Kurios Cabinet of Curiosities</h3>
+                      <h3>{Utilities.showLimitedChars(pic.description, 15)}</h3>
                       <a
                         href="/events"
                         onClick={e => e.preventDefault()}

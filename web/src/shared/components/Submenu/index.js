@@ -65,18 +65,32 @@ function Submenu(props) {
                 </li>
               );
             })}
+            <Link
+              to="/events"
+              onClick={() => {
+                setMenuStatus(false);
+                closeSubmenu(false);
+              }}
+              className="text-center"
+            >
+              See All Events
+            </Link>
           </ul>
         )}
-        <div className={`filter-fixed-btn ${menueStatus ? 'show' : 'hide'}`}>
-          <button
-            onClick={() => {
-              setMenuStatus(false);
-              applyFilters();
-            }}
-          >
-            Apply
-          </button>
-        </div>
+        {buttonText === 'By Genre' ||
+        buttonText === 'By Date' ||
+        buttonText === 'By Venue' ? null : (
+          <div className={`filter-fixed-btn ${menueStatus ? 'show' : 'hide'}`}>
+            <button
+              onClick={() => {
+                setMenuStatus(false);
+                applyFilters();
+              }}
+            >
+              Apply
+            </button>
+          </div>
+        )}
       </div>
     </>
   );

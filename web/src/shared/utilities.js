@@ -35,7 +35,8 @@ class Utilities {
   // }
 
   static showLimitedChars = (string, limit) => {
-    if (string.length > limit) string = string.substring(0, limit) + '...';
+    if (string && string.length > limit)
+      string = string.substring(0, limit) + '...';
     return string;
   };
 

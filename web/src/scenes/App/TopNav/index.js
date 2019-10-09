@@ -18,6 +18,7 @@ import Calender from '../../../shared/components/Calender';
 import DateRangeFilter from '../../../shared/components/DateRangeFilter';
 import Submenu from '../../../shared/components/Submenu';
 import Header from '../../../shared/components/Header';
+import sendImage from '../../../assets/images/send.svg';
 
 const TopNav = props => {
   let refValue = useRef();
@@ -163,7 +164,7 @@ const TopNav = props => {
     <Header menuActive={menuActive} pathName={pathName} />
   ) : (
     <header
-      className={`header ${headerClass ? 'homepage' : ''} 
+      className={`header ${headerClass ? 'homepage' : ''}
       ${headerClassScroll ? `hompage-header-scroll` : ``}
       ${stickyHeader ? `sticky-header` : ``}`}
     >
@@ -304,6 +305,9 @@ const TopNav = props => {
                       submenuClass="genre submenu-wrap"
                       link="/events/search?c="
                       closeSubmenu={handleNavigationClose}
+                      resetFilters={() => {}}
+                      clearFilters={() => {}}
+                      applyFilters={() => {}}
                     />
                   </li>
                   <li className="has-submenu">
@@ -312,6 +316,9 @@ const TopNav = props => {
                       buttonText="By Date"
                       submenuClass="calendar submenu-wrap"
                       closeSubmenu={handleNavigationClose}
+                      resetFilters={() => {}}
+                      clearFilters={() => {}}
+                      applyFilters={() => {}}
                     >
                       <DateRangeFilter
                         filteredDateRange={{ from: null, to: null }}
@@ -328,6 +335,9 @@ const TopNav = props => {
                       submenuClass="venue submenu-wrap"
                       link="/events/search?v="
                       closeSubmenu={handleNavigationClose}
+                      resetFilters={() => {}}
+                      clearFilters={() => {}}
+                      applyFilters={() => {}}
                     />
                   </li>
                 </ul>
@@ -348,7 +358,13 @@ const TopNav = props => {
             </ul>
             <ul>
               <li className="has-submenu">
-                <Submenu buttonText="My Account" backButtonRequired={false}>
+                <Submenu
+                  buttonText="My Account"
+                  backButtonRequired={false}
+                  resetFilters={() => {}}
+                  clearFilters={() => {}}
+                  applyFilters={() => {}}
+                >
                   <ul className="submenu">
                     <li className="has-submenu">
                       <Link to="/">Subscription</Link>
@@ -368,13 +384,22 @@ const TopNav = props => {
                   buttonText="My cart"
                   data={byGenreEvent}
                   submenuClass="submenu-wrap"
+                  resetFilters={() => {}}
+                  clearFilters={() => {}}
+                  applyFilters={() => {}}
                 />
               </li>
             </ul>
             <ul>
               <li className="has-submenu">
                 {/* <Link to="/">Our Company</Link> */}
-                <Submenu buttonText="Our Company" backButtonRequired={false}>
+                <Submenu
+                  buttonText="Our Company"
+                  backButtonRequired={false}
+                  resetFilters={() => {}}
+                  clearFilters={() => {}}
+                  applyFilters={() => {}}
+                >
                   <ul className="submenu">
                     <li className="has-submenu">
                       <Link to="/">About Us</Link>
@@ -395,7 +420,13 @@ const TopNav = props => {
                 </Submenu>
               </li>
               <li className="has-submenu">
-                <Submenu buttonText="Helpful Links" backButtonRequired={false}>
+                <Submenu
+                  buttonText="Helpful Links"
+                  backButtonRequired={false}
+                  resetFilters={() => {}}
+                  clearFilters={() => {}}
+                  applyFilters={() => {}}
+                >
                   <ul className="submenu">
                     <li className="has-submenu">
                       <Link to="/where-to-buy-tickets">
@@ -420,11 +451,25 @@ const TopNav = props => {
               <li className="business">
                 <Link to="/contact-us">Contact Us</Link>
               </li>
+              <li className="stay-connect">
+                <Link to={''}>Stay Connected</Link>
+                <div className="input-group">
+                  <input
+                    type="email"
+                    className="form-control"
+                    placeholder="Enter Your email"
+                    aria-label="Username"
+                    aria-describedby="basic-addon1"
+                  />
+                  <div className="input-group-prepend">
+                    <a className="input-group-text" id="basic-addon1">
+                      <img src={sendImage} className="img-fluid" alt="send" />
+                    </a>
+                  </div>
+                </div>
+              </li>
               <li className="has-submenu business">
                 <Link to="/">For Business</Link>
-              </li>
-              <li className="has-submenu">
-                <Link to="/">Stay Connected</Link>
               </li>
             </ul>
             <ul>
