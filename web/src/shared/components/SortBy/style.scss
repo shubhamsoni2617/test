@@ -97,6 +97,14 @@ display: none;
               &.close {
                   color: #626262;
               }
+              &:only-child{
+                width: 100%;
+                background-color: #0098FF;
+                color: #fff;
+                display: block;
+                flex: 0 0 100%;
+                max-width: 100%;
+              }
           }
         }
       }
