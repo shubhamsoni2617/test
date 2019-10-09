@@ -169,7 +169,7 @@ function StickyHeader(props) {
     <div
       className={`event-detail ${sticky ? 'sticky-topbar' : ''} ${
         sticky && setHeader ? 'animate' : ''
-      }`}
+        }`}
     >
       {detailData.images && detailData.images.length > 0 && (
         <div className="tickets-demo-img">
@@ -206,7 +206,7 @@ function StickyHeader(props) {
         <TitleToolTip
           title={detailData.title}
           lines={props.lines}
-          height={Utilities.mobileAndTabletcheck() ? 16 : 30}
+          height={Utilities.mobileAndTabletcheck() ? 25 : 30}
           eventDetail
         />
 

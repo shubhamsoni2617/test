@@ -148,7 +148,7 @@ function Filters(props) {
       <div className="inner" style={styleObj}>
         <div className="filter-heading">
           <h3>
-            FILTERS{' '}
+            Filters{' '}
             <a
               href="/"
               onClick={e => {

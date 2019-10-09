@@ -13,7 +13,11 @@
     position: relative;
     @supports (-ms-ime-align:auto) {
         box-shadow: 0 0px 1px rgba(154, 154, 154, 0.7);
-    }    
+    }
+    @media(max-width: 1024px){
+        height: 100%;
+        justify-content: space-between;
+    }
     @media (max-width: 767px) {
         width: 100%;
         margin: 0 5px 10px;
@@ -379,6 +383,9 @@
         .modal-content .modal-body{
             padding: 15px 15px 20px;
             border-radius: 0;
+            @media(max-width: 767px){
+                max-height: 260px;
+            }
             .notice{
                 padding: 0 10px;
             }
