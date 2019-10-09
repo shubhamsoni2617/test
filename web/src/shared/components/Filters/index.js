@@ -139,7 +139,7 @@ function Filters(props) {
     filterFlag
   } = props;
   const { price_config } = filterConfig ? filterConfig : 0;
-  console.log('filter');
+
   if (props.shimmerFilter) {
     return;
   }
@@ -148,7 +148,7 @@ function Filters(props) {
       <div className="inner" style={styleObj}>
         <div className="filter-heading">
           <h3>
-            FILTERS{' '}
+            Filters{' '}
             <a
               href="/"
               onClick={e => {
@@ -156,7 +156,7 @@ function Filters(props) {
                 clearAllFilters();
               }}
             >
-              Clear all
+              Clear Filters
             </a>
           </h3>
         </div>

@@ -15,7 +15,7 @@ export default class Promotions extends Component {
     this.state = {
       defaultTabId: null,
       tabsArray: [],
-      sortBy: 'ASC',
+      sortBy: 'date',
       first: 0,
       totalRecords: 0,
       listingArray: [],
@@ -284,6 +284,15 @@ export default class Promotions extends Component {
     });
   };
 
+  clearSortFilters = () => {
+    let sortFilters = { ...this.state.sortFilters };
+    sortFilters.filteredSortOrder = 'date';
+    this.setState({
+      filteredSortOrder: '',
+      sortFilters
+    });
+  };
+
   render() {
     this.breadCrumbData.count = this.state.count;
     return (
@@ -324,12 +333,6 @@ export default class Promotions extends Component {
                               }
                             >
                               <div className="fixed-buttons">
-                                <a
-                                  onClick={this.toggleSortBy}
-                                  className="close"
-                                >
-                                  Close
-                                </a>
                                 <a
                                   onClick={this.handleSortApply}
                                   className="apply"
