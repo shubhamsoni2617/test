@@ -326,6 +326,7 @@ export default class Promotions extends Component {
                               sortList={this.tabsSort.sortList}
                               sortByFlag={this.state.sortByFlag}
                               promotion
+                              filteredSortType="title"
                               filteredSortOrder={
                                 Utilities.mobilecheck()
                                   ? this.state.localsortBy
