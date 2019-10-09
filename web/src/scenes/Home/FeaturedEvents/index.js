@@ -251,7 +251,7 @@ const FeaturedEvents = props => {
             <div className="grid-container">
               {featuredEvents.map((event, i) => {
                 return (
-                  <div key={event.id} className="item">
+                  <div className="item" key={event.id}>
                     <div className="item-wrapper">
                       <div className="featured-item-img">
                         <div className="item-img">
@@ -275,34 +275,34 @@ const FeaturedEvents = props => {
             </div>
           </div>
         ) : (
-          <Slider {...settings}>
-            <div className="grid-container">
+            <Slider {...settings}>
               {featuredEvents.map((event, index) => {
                 return (
-                  <div key={event.id} className="item">
-                    <div className="item-wrapper">
-                      <div className="featured-item-img">
-                        <div className="item-img">
-                          <img
-                            src={event.img}
-                            className="img-fluid"
-                            alt="explore"
-                          />
+                  <div className="grid-container" key={event.id}>
+                    <div className="item">
+                      <div className="item-wrapper">
+                        <div className="featured-item-img">
+                          <div className="item-img">
+                            <img
+                              src={event.img}
+                              className="img-fluid"
+                              alt="explore"
+                            />
+                          </div>
+                          <span className={`category ${event.category}`}>
+                            {event.category}
+                          </span>
                         </div>
-                        <span className={`category ${event.category}`}>
-                          {event.category}
-                        </span>
+                        <h3>SSO Red Balloon Series: Rhythums, Rites</h3>
+                        <p>Fri, 3 May 2019</p>
+                        <p>Esplanade Concert Hall</p>
                       </div>
-                      <h3>SSO Red Balloon Series: Rhythums, Rites</h3>
-                      <p>Fri, 3 May 2019</p>
-                      <p>Esplanade Concert Hall</p>
                     </div>
                   </div>
                 );
               })}
-            </div>
-          </Slider>
-        )}
+            </Slider>
+          )}
       </div>
     </section>
   );

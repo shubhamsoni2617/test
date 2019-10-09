@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { CSSTransitionGroup } from 'react-transition-group';
 import PropTypes from 'prop-types';
 import Utilities from '../../utilities';
+import prevArrow from '../../../assets/images/prev-arrow-white.svg';
 
 import './style.scss';
 
@@ -14,7 +15,7 @@ export default class SortBy extends Component {
     showSortMenu: Utilities.mobilecheck() ? true : false
   };
 
-  componentDidMount() {}
+  componentDidMount() { }
 
   setSortFilter = (tag, sortBy, order) => {
     this.setState({ sort: { tag: tag } });
@@ -59,7 +60,9 @@ export default class SortBy extends Component {
           >
             <div className="sortby-topbar-mobileonly">
               <div className="left-arrow-sortby">
+                <img src={prevArrow} alt="left-arrow" />
                 <span> Sort By</span>
+                <a className="clear-filters">Clear Filters</a>
               </div>
             </div>
             {this.state.showSortMenu ? (
@@ -72,11 +75,11 @@ export default class SortBy extends Component {
                         className={`${
                           (list.sortOrder === filteredSortOrder &&
                             list.sortType === filteredSortType) ||
-                          (this.props.promotion &&
-                            list.sortOrder === filteredSortOrder)
+                            (this.props.promotion &&
+                              list.sortOrder === filteredSortOrder)
                             ? 'checked'
                             : ''
-                        }`}
+                          }`}
                         onClick={() =>
                           this.setSortFilter(
                             list.sortTitle,

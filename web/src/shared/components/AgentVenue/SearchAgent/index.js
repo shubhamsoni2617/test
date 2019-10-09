@@ -198,8 +198,8 @@ const SearchAgent = props => {
         {!initialItems && searchText === '' && (
           <ShimmerEffect
             propCls="shm_col-xs-6 col-md-12"
-            height={80}
-            count={3}
+            height={65}
+            count={2}
             type="TILE"
           />
         )}

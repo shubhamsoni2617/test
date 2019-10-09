@@ -87,13 +87,15 @@ export default class Card extends Component {
           </div>
           <div className="price-event">
             <div className="price">
-              <EventStatus
-                status={cardData.event_status}
-                color={cardData.event_status_text_color}
-                background={cardData.event_status_background_color}
-                paddingLeft={'2px'}
-                paddingRight={'2px'}
-              />
+                <span>
+                    <EventStatus
+                        status={cardData.event_status}
+                        color={cardData.event_status_text_color}
+                        background={cardData.event_status_background_color}
+                        paddingLeft={'2px'}
+                        paddingRight={'2px'}
+                    />
+              </span>
               <p>{cardData.price ? cardData.price : ' '}</p>
             </div>
             <button

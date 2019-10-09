@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 function Submenu(props) {
   const {
@@ -8,7 +8,10 @@ function Submenu(props) {
     submenuClass = '',
     backButtonRequired = true,
     link = '',
-    closeSubmenu
+    closeSubmenu,
+    applyFilters,
+    clearFilters,
+    resetFilters
   } = props;
   const [menueStatus, setMenuStatus] = useState(false);
   return (
@@ -26,12 +29,23 @@ function Submenu(props) {
         }`}
       >
         <div className="subholder-wrapper">
-          {backButtonRequired && (
-            <button type="button" onClick={() => setMenuStatus(false)}>
-              <img src="../../assets/images/next.svg"></img>
-            </button>
-          )}
-          <h1>{heading}</h1>
+          <div className="filter-heading">
+            {backButtonRequired && (
+              <button
+                type="button"
+                onClick={() => {
+                  resetFilters();
+                  setMenuStatus(false);
+                }}
+              >
+                <img src="../../assets/images/next.svg"></img>
+              </button>
+            )}
+            <h3>
+              {heading}
+              <button onClick={() => clearFilters(false)}>Clear Filters</button>
+            </h3>
+          </div>
         </div>
         {props.children}
         {data && data.length && (
@@ -53,6 +67,16 @@ function Submenu(props) {
             })}
           </ul>
         )}
+        <div className={`filter-fixed-btn ${menueStatus ? 'show' : 'hide'}`}>
+          <button
+            onClick={() => {
+              setMenuStatus(false);
+              applyFilters();
+            }}
+          >
+            Apply
+          </button>
+        </div>
       </div>
     </>
   );

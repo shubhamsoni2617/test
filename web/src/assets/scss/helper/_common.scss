@@ -10,6 +10,7 @@ body {
 	position: relative;
 	&.body-overlay {
 		position: relative;
+		overflow: hidden;
 		&::after {
 				position: absolute;
 				content: "";
@@ -1086,6 +1087,7 @@ button,
 	@media(max-width: 767px){
 		width: 35px;
 		height: 35px;
+		display: none;
 	}
     img{
 		margin-bottom: 2px;
