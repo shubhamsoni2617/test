@@ -34,7 +34,7 @@ function Submenu(props) {
               <button
                 type="button"
                 onClick={() => {
-                  resetFilters();
+                  resetFilters && resetFilters();
                   setMenuStatus(false);
                 }}
               >

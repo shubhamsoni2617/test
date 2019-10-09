@@ -57,12 +57,7 @@ function DateRangeFilter(props) {
   // Date Range methods
   const handleFromChange = fromDate => {
     setFrom(fromDate);
-    if (
-      Utilities.mobileAndTabletcheck() &&
-      props.autoSubmit &&
-      fromDate &&
-      to
-    ) {
+    if (Utilities.mobilecheck() && props.autoSubmit && fromDate && to) {
       filterByDateRange(fromDate, to);
     }
   };
@@ -70,23 +65,27 @@ function DateRangeFilter(props) {
   const handleToChange = toDate => {
     setTo(toDate);
     showFromMonth();
-    if (
-      Utilities.mobileAndTabletcheck() &&
-      props.autoSubmit &&
-      from &&
-      toDate
-    ) {
+    if (Utilities.mobilecheck() && props.autoSubmit && from && toDate) {
       filterByDateRange(from, toDate);
     }
   };
 
   const filterByDateRange = (fromDate, toDate) => {
-    props.handleFilters({
-      localfilteredDateRange: {
-        from: moment(fromDate).format('YYYY-MM-DD'),
-        to: moment(toDate).format('YYYY-MM-DD')
-      }
-    });
+    props.handleFilters(
+      Utilities.mobilecheck()
+        ? {
+            localfilteredDateRange: {
+              from: moment(fromDate).format('YYYY-MM-DD'),
+              to: moment(toDate).format('YYYY-MM-DD')
+            }
+          }
+        : {
+            filteredDateRange: {
+              from: moment(fromDate).format('YYYY-MM-DD'),
+              to: moment(toDate).format('YYYY-MM-DD')
+            }
+          }
+    );
   };
 
   const modifiers = { start: from, end: to };
