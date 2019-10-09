@@ -166,6 +166,7 @@ const FilterGrid = props => {
                       <label htmlFor={id}>
                         {item.name}{' '}
                         {item.events_count ? `(${item.events_count})` : ''}
+                        {item.attractions ? `(${item.attractions})` : ''}
                       </label>
                     </li>
                   );

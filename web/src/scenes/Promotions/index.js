@@ -334,6 +334,15 @@ export default class Promotions extends Component {
                             >
                               <div className="fixed-buttons">
                                 <a
+                                  onClick={() => {
+                                    this.toggleSortBy();
+                                  }}
+                                  className="close"
+                                >
+                                  Close
+                                </a>
+
+                                <a
                                   onClick={this.handleSortApply}
                                   className="apply"
                                 >
