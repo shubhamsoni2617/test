@@ -15,7 +15,7 @@ function EventStatus({ status, color, background, paddingLeft, paddingRight }) {
   if (!status) {
     return null;
   }
-  return <span style={styleObj}>{status}</span>;
+  return <strong style={styleObj}>{status}</strong>;
 }
 
 export default EventStatus;

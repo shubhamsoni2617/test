@@ -9,88 +9,138 @@
     -moz-transition: max-height 0.5s ease-out;
     -o-transition: max-height 0.5s ease-out;
     overflow: hidden;
-    position: relative;
-    // position: fixed;
-    // width: 100%;
-    // left: 0px;
-    // right: 0px;
-    // top: 0px;
-    // @media(max-width: 767px){
-    //     position: relative;
-    // }
-    // & + .header.homepage{
-    //     top: 0px;
-    //     & + div{
-    //         padding-top: 112px;
-    //     }
-    //     & + .home-page-wrapper{
-    //         .ticker-wrap.hide-news{
-    //             top: 112px;
-    //         }
-    //     }
-    // }
+    position: fixed;
+    width: 100%;
+    left: 0px;
+    right: 0px;
+    top: 0px;
+    @media(max-width: 767px){
+        position: relative;
+    }
+    & + .header.homepage{
+        top: 0px;
+        & + div{
+            padding-top: 112px;
+            @media(max-width: 767px){
+                padding-top: 10px;
+            }
+        }
+        & + .home-page-wrapper{
+            .ticker-wrap.hide-news{
+                top: 112px;
+                @media(max-width: 1440px){
+                    top: 112px;
+                }
+                @media(max-width: 991px){
+                    top: 60px;
+                }
+                @media(max-width: 767px){
+                    top: 0px;
+                }
+            }
+        }
+    }
     &.show-add{
         max-height: 150px;
         transition: max-height 0.5s ease-in;
         -webkit-transition: max-height 0.5s ease-in;
         -moz-transition: max-height 0.5s ease-in;
         -o-transition: max-height 0.5s ease-in;
-        // & + .header.homepage{
-        //     top: 90px;
-        //     @media(max-width: 1440px){
-        //         top: 88px;
-        //     }
-        //     @media(max-width: 1280px){
-        //         top: 79px;
-        //     }
-        //     @media(max-width: 1024px){
-        //         top: 65px;
-        //     }
-        //     @media(max-width: 768px){
-        //         top: 51px;
-        //     }
-        //     @media(max-width: 767px){
-        //         top: 0px;
-        //     }
-        //     & + div{
-        //         padding-top: 202px;
-        //         @media(max-width: 1440px){
-        //             padding-top: 200px;
-        //         }
-        //         @media(max-width: 1280px){
-        //             padding-top: 191px;
-        //         }
-        //         @media(max-width: 1024px){
-        //             padding-top: 177px;
-        //         }
-        //         @media(max-width: 768px){
-        //             padding-top: 163px;
-        //         }
-        //         @media(max-width: 767px){
-        //             padding-top: 112px;
-        //         }
-        //     }
-        //      & + .home-page-wrapper{
-        //         .ticker-wrap.hide-news{
-        //             top: 202px !important;
-        //             @media(max-width: 1440px){
-        //                 top: 200px !important;
-        //             }
-        //             @media(max-width: 1280px){
-        //                 top: 191px !important;
-        //             }
-        //             @media(max-width: 1024px){
-        //                 top: 112px !important;
-        //             }
-        //             @media(max-width: 768px){
-        //                 top: 60px !important;
-        //             }
-        //             @media(max-width: 767px){
-        //                 top: 0px !important;
-        //             }
-        //         }
-        //     }
-        // }
+        & + .header.homepage{
+            top: 90px;
+            @media(max-width: 1440px){
+                top: 88px;
+            }
+            @media(max-width: 1390px){
+                top: 82px;
+            }
+            @media(max-width: 1360px){
+                top: 82px;
+            }
+            @media(max-width: 1280px){
+                top: 79px;
+            }
+            @media(max-width: 1200px){
+                top: 70px;
+            }
+            @media(max-width: 1100px){
+                top: 69px;
+            }
+            @media(max-width: 1024px){
+                top: 65px;
+            }
+            @media(max-width: 991px){
+                top: 59px;
+            }
+            @media(max-width: 830px){
+                top: 53px;
+            }
+            @media(max-width: 768px){
+                top: 51px;
+            }
+            @media(max-width: 767px){
+                top: 0px;
+            }
+            & + div{
+                padding-top: 202px;
+                @media(max-width: 1440px){
+                    padding-top: 200px;
+                }
+                @media(max-width: 1280px){
+                    padding-top: 191px;
+                }
+                @media(max-width: 1200px){
+                    padding-top: 182px;
+                }
+                @media(max-width: 1024px){
+                    padding-top: 177px;
+                }
+                @media(max-width: 991px){
+                    padding-top: 171px;
+                }
+                @media(max-width: 830px){
+                    padding-top: 165px;
+                }
+                @media(max-width: 768px){
+                    padding-top: 163px;
+                }
+                @media(max-width: 767px){
+                    padding-top: 10px;
+                }
+            }
+             & + .home-page-wrapper{
+                .ticker-wrap.hide-news{
+                    top: 198px;
+                    @media(max-width: 1440px){
+                        top: 200px;
+                    }
+                    @media(max-width: 1400px){
+                        top: 194px;
+                    }
+                    @media(max-width: 1360px){
+                        top: 194px;
+                    }
+                    @media(max-width: 1280px){
+                        top: 191px;
+                    }
+                    @media(max-width: 1200px){
+                        top: 182px;
+                    }
+                    @media(max-width: 1100px){
+                        top: 181px;
+                    }
+                    @media(max-width: 1024px){
+                        top: 112px;
+                    }
+                    @media(max-width: 768px){
+                        top: 111px;
+                    }
+                    @media(max-width: 767px){
+                        top: 0px;
+                    }
+                }
+            }
+        }
     }
 	.ads-image {
 		text-align: center;

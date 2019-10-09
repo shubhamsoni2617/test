@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import calendarImg from '../../../assets/images/event-calender.svg';
-import coinsImg from '../../../assets/images/coin.svg';
+import coinsImg from '../../../assets/images/price.svg';
 import locationGray from '../../../assets/images/location-gray.svg';
 import closeIcon from '../../../assets/images/cross.svg';
 import closeIconWhite from '../../../assets/images/cross-white.svg';
@@ -12,6 +12,8 @@ import Info from '../../../assets/images/info-sign.svg';
 import SocialShare from '../../../shared/components/SocialShare';
 import ModalPopup from '../../../shared/components/Modal';
 import Image from '../../../shared/components/Image';
+import Utilities from '../../utilities';
+import TitleToolTip from './TitleToolTip';
 
 function Button({ styleObj, url, text }) {
   // if (!text) return null;
@@ -77,7 +79,7 @@ function BuyTicketsButtonPopup(props) {
           <BuyTicketsButton url={detailData.buy_now_url} />
         </div>
         {detailData.buttons &&
-          detailData.buttons.length &&
+          detailData.buttons.length > 0 &&
           detailData.buttons.map(button => {
             const styleObj = {
               background: button.color,
@@ -89,7 +91,7 @@ function BuyTicketsButtonPopup(props) {
             );
           })}
         {detailData.button_groups &&
-          detailData.button_groups.length &&
+          detailData.button_groups.length > 0 &&
           detailData.button_groups.map(buttonGroup => {
             return (
               <div className="button_group">
@@ -200,25 +202,31 @@ function StickyHeader(props) {
             })}
           </ul>
         )}
-        <h2>
-          {detailData.title}
-          {detailData.pop_up_message.title && (
-            <div className="info-tooltip">
-              <span className="info" onClick={() => props.openNotice()}>
-                <img src={Info} alt="Info" />
-              </span>
-            </div>
-          )}
-          <div className="share-tooltip">
-            <span className="share" onClick={() => props.openSocialShare()}>
-              <img src={shareIcon} alt="" />
-              <SocialShare
-                shareUrl={shareUrl}
-                showSocialShare={showSocialShare}
-              />
+
+        <TitleToolTip
+          title={detailData.title}
+          lines={props.lines}
+          height={Utilities.mobileAndTabletcheck() ? 16 : 30}
+          eventDetail
+        />
+
+        {detailData.pop_up_message.title && (
+          <div className="info-tooltip">
+            <span className="info" onClick={() => props.openNotice()}>
+              <img src={Info} alt="Info" />
             </span>
           </div>
-        </h2>
+        )}
+        <div className="share-tooltip">
+          <span className="share" onClick={() => props.openSocialShare()}>
+            <img src={shareIcon} alt="" />
+            <SocialShare
+              shareUrl={shareUrl}
+              showSocialShare={showSocialShare}
+            />
+          </span>
+        </div>
+
         <div className="ticket-date-price">
           <ul className="date-address">
             {detailData.event_date && (
@@ -264,10 +272,10 @@ function StickyHeader(props) {
                 </div>
               </li>
             )}
-            <li className="event-date">{seatMapButton}</li>
+            {seatMapButton && <li className="event-date">{seatMapButton}</li>}
             {detailData.price && (
               <li className="event-date">
-                <img src={coinsImg} alt="cal-icon" />
+                <img src={coinsImg} className="coin" alt="cal-icon" />
                 <span className="detail">{detailData.price}</span>
               </li>
             )}
@@ -275,10 +283,9 @@ function StickyHeader(props) {
         </div>
       </div>
       <div className="tickets-button">
-        {detailData.buy_now_url &&
-          detailData.is_available_for_booking === 1 && (
-            <BuyTicketsButtonPopup detailData={detailData} />
-          )}
+        {detailData.is_available_for_booking === 1 && (
+          <BuyTicketsButtonPopup detailData={detailData} />
+        )}
         {buyPackages}
         {detailData.is_available_for_booking === 0 && (
           <div className="shows-over">
