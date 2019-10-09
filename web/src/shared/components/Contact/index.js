@@ -291,7 +291,7 @@ const Contact = ({ attachement, handleEnquiry }) => {
         </div>
         {errMsg && !phone ? (
           <span className="error-msg">
-            Please enter {handleEnquiry ? 'phone' : 'mobile'} no.   
+            Please enter {handleEnquiry ? 'phone' : 'mobile'} number.   
           </span>
         ) : null}
         <div className={errMsg && !message ? 'form-group err' : 'form-group'}>
@@ -307,7 +307,7 @@ const Contact = ({ attachement, handleEnquiry }) => {
           />
         </div>
         {errMsg && !message ? (
-          <span className="error-msg">Please enter some messages</span>
+          <span className="error-msg">Please enter message</span>
         ) : null}
         {attachement && (
           <div className="form-group attach-doc">
