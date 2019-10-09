@@ -54,11 +54,11 @@ class Careers extends Component {
   handleSubmit = e => {
     e.preventDefault();
     const { areas, email } = this.state;
-    if (areas.length && email) {
+    if (areas && email) {
       // const data = {
       //   category: Number(enquiry),
       //   name: name,
-      //   email: email,
+      //   email,
       //   contact_number: phone,
       //   message: message,
       // };
@@ -122,6 +122,7 @@ class Careers extends Component {
       //     selectedId = Number(elem.id);
       //   }
       // });
+      this.setState({ areas: values });
       console.log(values);
     }
   };

@@ -1,5 +1,6 @@
 import React from 'react';
 import './style.scss';
+// import { Select } from './MultipleCheckBox';
 import Select from '../../../../src/shared/components/SelectBox';
 import attach from '../../../assets/images/attach.png';
 import stayUpdate from '../../../assets/images/career/stay-update.png';
@@ -43,7 +44,7 @@ const StayUpdated = ({
                   options={submit ? [] : options}
                   multiple
                   onSelect={onSelect}
-                  placeholder="Select Area(s) of interest"
+                  placeholder="Select Area(s) of interest *"
                   onClickSubmit={onClickSubmit}
                 />
               </div>
@@ -52,7 +53,7 @@ const StayUpdated = ({
                   className="form-control email"
                   name="email"
                   type="email"
-                  placeholder="Enter Your Email"
+                  placeholder="Enter Your Email *"
                   value={email}
                   onChange={e => handleEmail(e.target.value)}
                 />
@@ -61,6 +62,7 @@ const StayUpdated = ({
                 <div className="row no-gutters">
                   <div className="col-lg-4 pl-2">Attach Documents</div>
                   <div className="col-lg-8">
+                    Resume/CV
                     <label
                       htmlFor="file-upload"
                       className="custom-file-upload  form-control text-right"
