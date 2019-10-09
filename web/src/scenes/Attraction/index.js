@@ -244,6 +244,13 @@ export default class Attractions extends Component {
     );
   };
 
+  clearSortFilters = () => {
+    this.setState({
+      filteredSortOrder: '',
+      filteredSortType: ''
+    });
+  };
+
   render() {
     const {
       attractionCategories,
@@ -316,16 +323,10 @@ export default class Attractions extends Component {
                   sortByFlag={this.state.sortByFlag}
                   filteredSortType={this.state.filteredSortType}
                   filteredSortOrder={this.state.filteredSortOrder}
+                  goBack={this.toggleSortBy}
+                  clearSortFilters={this.clearSortFilters}
                 >
                   <div className="fixed-buttons">
-                    <a
-                      onClick={() => {
-                        this.toggleSortBy();
-                      }}
-                      className="close"
-                    >
-                      Close
-                    </a>
                     <a onClick={() => this.callAPI()} className="apply">
                       Apply
                     </a>
