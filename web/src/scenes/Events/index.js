@@ -43,6 +43,8 @@ export default class Events extends Component {
       localfilteredDateRange: {},
       filteredSortType: 'date',
       filteredSortOrder: '',
+      localfilteredSortType: 'date',
+      localfilteredSortOrder: '',
       eventsData: [],
       genre: [],
       venues: [],
@@ -377,7 +379,11 @@ export default class Events extends Component {
   };
 
   toggleSortBy = () => {
-    this.setState({ sortByFlag: !this.state.sortByFlag });
+    this.setState({
+      sortByFlag: !this.state.sortByFlag,
+      localfilteredSortOrder: this.state.filteredSortOrder,
+      localfilteredSortType: this.state.filteredSortType
+    });
   };
 
   callAPI = () => {
@@ -394,7 +400,9 @@ export default class Events extends Component {
         filteredGnere: [...this.state.localfilteredGnere],
         filteredPromotions: [...this.state.localfilteredPromotions],
         filteredVenues: [...this.state.localfilteredVenues],
-        filteredTags: [...this.state.localfilteredTags]
+        filteredTags: [...this.state.localfilteredTags],
+        filteredSortOrder: this.state.localfilteredSortOrder,
+        filteredSortType: this.state.localfilteredSortType
       },
       () => {
         setTimeout(() => {
@@ -528,10 +536,12 @@ export default class Events extends Component {
                     handleListGridView={this.handleListGridView}
                     handleFilters={this.handleFilters}
                     sortByFlag={this.state.sortByFlag}
-                    filteredSortType={this.state.filteredSortType}
-                    filteredSortOrder={this.state.filteredSortOrder}
-                    goBack={this.toggleSortBy}
-                    clearSortFilters={this.clearSortFilters}
+                    filteredSortType="title"
+                    filteredSortOrder={
+                      Utilities.mobilecheck()
+                        ? this.state.localfilteredSortOrder
+                        : this.state.filteredSortOrder
+                    }
                   >
                     <div className="fixed-buttons">
                       <a onClick={() => this.callAPI()} className="apply">
