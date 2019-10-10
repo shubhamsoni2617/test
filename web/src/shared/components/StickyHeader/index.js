@@ -106,6 +106,7 @@ function BuyTicketsButtonPopup(props) {
                     };
                     return (
                       <Button
+                        key={button.id}
                         styleObj={styleObj}
                         text={button.text}
                         url={button.url}

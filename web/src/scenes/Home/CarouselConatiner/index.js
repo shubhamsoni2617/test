@@ -1,10 +1,11 @@
-import React, { useState, useEffect, useRef } from "react";
-import { Link } from "react-router-dom";
-import { CSSTransitionGroup } from "react-transition-group";
-import Carousel from "../../../shared/components/Carousel";
-import rightArrow from "../../../assets/images/right-arrow.svg";
-import ShimmerEffect from "../../../shared/components/ShimmerEffect";
-import "./style.scss";
+import React, { useState, useEffect, useRef } from 'react';
+import { Link } from 'react-router-dom';
+import { CSSTransitionGroup } from 'react-transition-group';
+import Carousel from '../../../shared/components/Carousel';
+import rightArrow from '../../../assets/images/right-arrow.svg';
+import ShimmerEffect from '../../../shared/components/ShimmerEffect';
+import './style.scss';
+import Utilities from '../../../shared/utilities';
 
 const CarouselConatiner = props => {
   const element = useRef(null);
@@ -14,9 +15,9 @@ const CarouselConatiner = props => {
   const [callAPI, setCallAPI] = useState(false);
 
   useEffect(() => {
-    window.addEventListener("scroll", scrollHandler, true);
+    window.addEventListener('scroll', scrollHandler, true);
     return () => {
-      window.removeEventListener("scroll", scrollHandler, true);
+      window.removeEventListener('scroll', scrollHandler, true);
     };
   }, []);
 
@@ -37,7 +38,7 @@ const CarouselConatiner = props => {
             // });
           } else {
             setLoading(false);
-            element.current.classList.add("hide-container");
+            element.current.classList.add('hide-container');
           }
         })
         .catch(err => {
@@ -65,7 +66,7 @@ const CarouselConatiner = props => {
             <h2>{props.title}</h2>
             <div className="carousel-dots">
               <Link to="/events">
-                See all{" "}
+                See all{' '}
                 <img src={rightArrow} className="img-fluid" alt="arrow" />
                 &nbsp;
               </Link>
