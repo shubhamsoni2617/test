@@ -177,13 +177,14 @@ function DateRangeFilter(props) {
             <img src={tickWhite} className="active" alt="tick" />
           </a>
         )}
-        {from && to && !props.autoSubmit && (
+        {!props.autoSubmit && (
           <button
             className="btn buy-btn"
             onClick={e => {
               e.preventDefault();
               filterByDateRange(from, to);
             }}
+            disabled={from && to ? false : true}
           >
             Search
           </button>

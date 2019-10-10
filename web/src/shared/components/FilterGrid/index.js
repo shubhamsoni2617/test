@@ -51,7 +51,7 @@ const FilterGrid = props => {
         let selectedValue = props.data.filter(
           item => item.id == selectedFilters[0]
         );
-        text = `${selectedValue[0].name}`;
+        text = `${selectedValue[0] && selectedValue[0].name}`;
         if (selectedFilters.length > 1) {
           text = `${text} and ${selectedFilters.length - 1} more `;
         }

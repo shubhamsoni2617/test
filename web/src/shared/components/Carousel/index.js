@@ -5,6 +5,7 @@ import 'slick-carousel/slick/slick-theme.css';
 import CarouselSlide from '../CarouselSlide';
 import Constants from '../../constants';
 import './style.scss';
+import Utilities from '../../utilities';
 
 const SampleNextArrow = props => {
   const { className, style, onClick } = props;
@@ -51,7 +52,11 @@ const Carousel = props => {
     nextArrow: <SampleNextArrow />,
     prevArrow: <SamplePrevArrow />,
     appendDots: dots => {
-      return <ul style={{ margin: '0px' }}> {dots} </ul>;
+      if (props.dots) {
+        return <ul style={{ margin: '0px' }}> {dots} </ul>;
+      } else {
+        return <ul style={{ margin: '0px' }}> {null} </ul>;
+      }
     },
     customPaging: i => {
       return (
@@ -97,17 +102,21 @@ const Carousel = props => {
           <div className="row">
             <div className="grid-container">
               {imgArray.map(elem => {
+                elem.venue_name = Utilities.showLimitedChars(
+                  elem.venue_name,
+                  20
+                );
                 return <CarouselSlide elem={elem} key={elem.id} />;
               })}
             </div>
           </div>
         ) : (
-            <Slider {...settings}>
-              {imgArray.map(elem => {
-                return <CarouselSlide elem={elem} key={elem.id} />;
-              })}
-            </Slider>
-          )}
+          <Slider {...settings}>
+            {imgArray.map(elem => {
+              return <CarouselSlide elem={elem} key={elem.id} />;
+            })}
+          </Slider>
+        )}
       </>
     );
   }
