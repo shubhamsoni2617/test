@@ -321,9 +321,10 @@ const TopNav = props => {
                       applyFilters={() => {}}
                     >
                       <DateRangeFilter
-                        filteredDateRange={{ from: null, to: null }}
+                        filteredDateRange={{ from: '', to: '' }}
                         handleFilters={handleFilters}
                         autoSubmit={false}
+                        filterFlag={false}
                       />
                     </Submenu>
                   </li>
