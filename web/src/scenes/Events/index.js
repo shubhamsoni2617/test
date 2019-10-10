@@ -471,6 +471,7 @@ export default class Events extends Component {
                 {!shimmerFilter &&
                   genre.length > 0 &&
                   venues.length > 0 &&
+                  filterConfig &&
                   filterConfig.price_config &&
                   filterConfig.promotion_categories && (
                     <Filters
