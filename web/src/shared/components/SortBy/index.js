@@ -3,6 +3,7 @@ import { CSSTransitionGroup } from 'react-transition-group';
 import PropTypes from 'prop-types';
 import Utilities from '../../utilities';
 import prevArrow from '../../../assets/images/prev-arrow-white.svg';
+// import useOrientation from '../../hooks/useOrientation';
 
 import './style.scss';
 
@@ -12,10 +13,25 @@ export default class SortBy extends Component {
       tag: this.props.defaultSortType ? this.props.defaultSortType : 'Date',
       active: ''
     },
-    showSortMenu: Utilities.mobilecheck() ? true : false
+    showSortMenu: Utilities.mobilecheck() ? true : false,
+    orientation: ''
   };
 
-  componentDidMount() {}
+  componentDidMount() {
+    window.addEventListener('resize', this.handleResize);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.handleResize);
+  }
+
+  handleResize = () => {
+    if (window.innerWidth > window.innerHeight) {
+      this.setState({ showSortMenu: false });
+    } else {
+      this.setState({ showSortMenu: true });
+    }
+  };
 
   setSortFilter = (tag, sortBy, order) => {
     this.setState({ sort: { tag: tag } });
