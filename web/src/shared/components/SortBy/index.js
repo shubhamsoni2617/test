@@ -15,8 +15,6 @@ export default class SortBy extends Component {
     showSortMenu: Utilities.mobilecheck() ? true : false
   };
 
-  componentDidMount() {}
-
   setSortFilter = (tag, sortBy, order) => {
     this.setState({ sort: { tag: tag } });
     if (!Utilities.mobilecheck()) {
@@ -24,22 +22,9 @@ export default class SortBy extends Component {
         document.removeEventListener('click', this.closeSortMenu);
       });
     }
-    console.log('order', order);
-    this.props.handleFilters(
-      Utilities.mobilecheck()
-        ? {
-            localfilteredSortOrder: order
-          }
-        : {
-            filteredSortOrder: order
-          }
-    );
-  };
-
-  clearFilter = () => {
     this.props.handleFilters({
-      localfilteredSortType: '',
-      localfilteredSortOrder: ''
+      filteredSortType: sortBy,
+      filteredSortOrder: order
     });
   };
 
@@ -56,8 +41,13 @@ export default class SortBy extends Component {
   };
 
   render() {
-    console.log('filteredSortOrder', filteredSortOrder);
-    const { sortList, filteredSortType, filteredSortOrder } = this.props;
+    const {
+      sortList,
+      filteredSortType,
+      filteredSortOrder,
+      goBack,
+      clearSortFilters
+    } = this.props;
     const { sort } = this.state;
     return (
       <div className={`sortby ${this.props.sortByFlag ? 'open' : ''}`}>
@@ -74,9 +64,11 @@ export default class SortBy extends Component {
           >
             <div className="sortby-topbar-mobileonly">
               <div className="left-arrow-sortby">
-                {/* <img src={prevArrow} alt="left-arrow" /> */}
+                <a onClick={goBack}>
+                  <img src={prevArrow} alt="left-arrow" />
+                </a>
                 <span> Sort By</span>
-                <a className="clear-filters" onClick={this.clearFilter}>
+                <a className="clear-filters" onClick={clearSortFilters}>
                   Clear Filters
                 </a>
               </div>
@@ -91,11 +83,11 @@ export default class SortBy extends Component {
                         className={`${
                           (list.sortOrder === filteredSortOrder &&
                             list.sortType === filteredSortType) ||
-                          (this.props.promotion &&
-                            list.sortOrder === filteredSortOrder)
+                            (this.props.promotion &&
+                              list.sortOrder === filteredSortOrder)
                             ? 'checked'
                             : ''
-                        }`}
+                          }`}
                         onClick={() =>
                           this.setSortFilter(
                             list.sortTitle,
