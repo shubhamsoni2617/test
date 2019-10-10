@@ -71,6 +71,7 @@
                 list-style: none;
                 flex: 0 0 auto;
                 width: auto;
+                position: relative;
                 a{
                     font-size: 16px;
                     font-weight: normal;
@@ -191,6 +192,20 @@
     .responsive-nav-close{
         top: 40px;
         bottom: auto;
+    }
+    .small-header-submenu {
+        position: absolute;
+        background-color: #fff;
+        width: auto;
+        min-width: 200px;
+        li{
+            flex: 0 0 100% !important;
+            width: 100% !important;
+            a{
+                color: #343434;
+                padding: 10px !important;
+            }
+        }
     }
 }
 .active-link{
