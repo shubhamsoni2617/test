@@ -63,6 +63,7 @@
       .tickets-button{
         .react-modal .react-modal-body{
           width: 450px;
+          margin: 0 10px;
           .modal-content{
             .modal-body{
               padding: 15px 25px 20px;
@@ -463,7 +464,7 @@
                 margin-top: 7px;
               }
               @media(min-width: 768px) and (max-width: 980px){
-                  max-width: 300px;
+                  
               }
               &:hover{
                   background-color: #FFF;
@@ -489,8 +490,8 @@
           }
         .buy-tickets-btn {
             @media(max-width: 991px){
-                flex: 0 0 50%;
-                width: 50%;
+                // flex: 0 0 50%;
+                // width: 50%;
             }
             @media(max-width: 767px){
                 flex: 0 0 100%;
@@ -580,13 +581,20 @@
                   }
               }
           }
+          pre{
+              overflow: hidden;
+              white-space: unset;
+          }
       }
   }
   //sidebar
+  .accordion__item{
+      position: relative;
+  }
   .event-detail-section .event-detail-sidebar{
-      padding: 45px 29px;
+      padding: 25px 29px 45px;
       @media(max-width:980px){
-          padding: 10px 0px 0px;
+          padding: 0px 0px 0px;
       }
       & > .sidebar-accordion{
           & > .accordion > .accordion__item > .accordion__panel{
@@ -1076,7 +1084,7 @@
               flex: 0 0 calc(37% - 105px);
           }
           .buy-tickets-btn{
-              width: 220px;
+              
               margin-left: auto;
               a{
                   font-weight: 600;
@@ -1232,16 +1240,7 @@
           max-width: 100%;
       }
   }
-  .price-info-icon{
-      &:hover{
-          .info-popover{
-              opacity: 1;
-              padding: 12px;
-              height: auto;
-              overflow: inherit;
-          }
-      }
-  }
+
   //accordian style
   .accordion__button:before {
       display: inline-block;
@@ -1327,3 +1326,22 @@
           }
       }
   }
+  .price-info-icon{
+      position: absolute;
+      top: 40px;
+      left: 190px;
+      @media(max-width: 1280px){
+        left: 180px;
+      }
+      @media(max-width: 768px){
+        top: 33px;
+      }
+    &:hover{
+        .info-popover{
+            opacity: 1;
+            padding: 12px;
+            height: auto;
+            overflow: inherit;
+        }
+    }
+}
