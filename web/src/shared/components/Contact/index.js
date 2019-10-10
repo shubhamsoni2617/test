@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 import Constants from '../../constants';
 import Utilities from '../../utilities';
 import Select from '../SelectBox';
+import FileUpload from '../FileUpload';
 
 const Contact = ({ attachement, handleEnquiry }) => {
   const [enquiryCategory, setEnquiryCategory] = useState([]);
@@ -309,37 +310,38 @@ const Contact = ({ attachement, handleEnquiry }) => {
         {errMsg && !message ? (
           <span className="error-msg">Please enter message</span>
         ) : null}
-        {attachement && (
-          <div className="form-group attach-doc">
-            <div className="row">
-              <div className="col-lg-4 label pr-0">Attach Documents</div>
-              <div className="col-lg-8">
-                <label
-                  htmlFor="file-upload"
-                  className="custom-file-upload  form-control text-right"
-                >
-                  <img src={attach} height="20" width="20" />
-                </label>
-                <input
-                  encType="multipart/form-data"
-                  id="file-upload"
-                  className="form-control"
-                  type="file"
-                  multiple={true}
-                  onChange={handleFile}
-                  accept=".jpeg,.png,.pdf,.doc,.docx,.jpg"
-                />
-                <span>
-                  *File Size should be maximum 5mb and it can be pdf,jpeg,png
-                </span>
-                <p className="text-danger">{maxFileLimitMsg}</p>
-                {files && files[0] && <p>{files[0].name}</p>}
-                {files && files[1] && <p>{files[1].name}</p>}
-                {files && files[2] && <p>{files[2].name}</p>}
-              </div>
-            </div>
-          </div>
-        )}
+        {/* {attachement && (
+          // <div className="form-group attach-doc">
+          //   <div className="row">
+          //     <div className="col-lg-4 label pr-0">Attach Documents</div>
+          //     <div className="col-lg-8">
+          //       <label
+          //         htmlFor="file-upload"
+          //         className="custom-file-upload  form-control text-right"
+          //       >
+          //         <img src={attach} height="20" width="20" />
+          //       </label>
+          //       <input
+          //         encType="multipart/form-data"
+          //         id="file-upload"
+          //         className="form-control"
+          //         type="file"
+          //         multiple={true}
+          //         onChange={handleFile}
+          //         accept=".jpeg,.png,.pdf,.doc,.docx,.jpg"
+          //       />
+          //       <span>
+          //         *File Size should be maximum 5mb and it can be pdf,jpeg,png,jpg
+          //       </span>
+          //       <p className="text-danger">{maxFileLimitMsg}</p>
+          //       {files && files[0] && <p>{files[0].name}</p>}
+          //       {files && files[1] && <p>{files[1].name}</p>}
+          //       {files && files[2] && <p>{files[2].name}</p>}
+          //     </div>
+          //   </div>
+          // </div>
+          <FileUpload />
+        )} */}
         <input
           className="form-control btn-info"
           type="submit"
