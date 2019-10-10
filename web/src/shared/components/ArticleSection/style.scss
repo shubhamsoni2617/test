@@ -6,6 +6,9 @@
     }
     .carousel-dots{
         margin-top: 15px;
+        @media(max-width: 768px){
+            margin-top: 5px;
+        }
     }
     .grid-container{
         display: grid;
@@ -17,7 +20,7 @@
 		@media(min-width: 992px) and (max-width: 1280px) {
 			grid-template-columns: repeat(3, minmax(27%, 1fr));
 		}
-		@media (max-width: 767px) {
+		@media (max-width: 768px) {
             grid-template-columns: repeat(3, minmax(85%, 1fr));
             grid-gap: 10px;
             overflow-x: auto;
@@ -102,5 +105,12 @@
     .section-top-wrArticleSectioner{
         display: grid;
         grid-template-columns: auto auto;
+        h2{
+            @media(max-width: 768px){
+                font-size: 20px;
+                line-height: 28px;
+                padding-bottom: 8px;
+            }
+        }
     }
 }
