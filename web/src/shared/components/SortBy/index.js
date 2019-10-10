@@ -94,7 +94,7 @@ export default class SortBy extends Component {
                 </a> */}
                 <span> Sort By</span>
                 <a className="clear-filters" onClick={clearSortFilters}>
-                  Clear Filters
+                  Clear
                 </a>
               </div>
             </div>
