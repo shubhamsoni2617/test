@@ -73,7 +73,6 @@ class Utilities {
   };
 
   static mobilecheck = () => {
-    console.log('mobilecheck');
     var check = false;
     (function(a) {
       if (
