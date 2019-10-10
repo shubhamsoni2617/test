@@ -448,7 +448,7 @@ export default class Events extends Component {
       filterFlag
     } = this.state;
     return (
-      <div>
+      <div className="events-page-wrapper">
         <Breadcrub breadCrumbData={this.breadCrumbData} />
         <section className="">
           <div className="container-fluid">
