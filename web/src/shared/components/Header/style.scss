@@ -8,7 +8,10 @@
     z-index: 2;
     @media(max-width: 768px){
         position: relative;
-        padding: 10px 0px;
+        padding: 15px 5px;
+        min-height: 80px;
+        display: flex;
+        align-items: flex-end;
     }
     & + div{
         padding-top: 76px;
@@ -68,6 +71,7 @@
                 list-style: none;
                 flex: 0 0 auto;
                 width: auto;
+                position: relative;
                 a{
                     font-size: 16px;
                     font-weight: normal;
@@ -149,10 +153,59 @@
         }
     }
     .nav-close-topbar {
-        background-color: #353D44;
+        background-color: #0077C8;
         padding: 10px 10px 13px 10px;
         border-bottom: 1px solid #d8d8d8;
-        min-height: 65px;
+        min-height: 80px;
+        display: flex;
+        align-items: flex-end;
+        @media(max-width: 991px){
+            padding: 15px 10px;
+            max-height: 80px;
+            height: 100%;
+        }
+        .site-logo{
+            @media(max-width: 991px){
+                flex: 0 0 auto;
+                width: auto;
+                align-items: flex-end;
+                height: 100%;
+            }
+            @media(max-width: 767px){
+                height: auto;
+            }
+            a{
+                @media(max-width: 991px){
+                    padding: 10px 5px;
+                }
+                @media(max-width: 767px){
+                    padding: 0px;
+                }
+                img{
+                    @media(max-width: 991px){
+                        max-width: 80px;
+                    }
+                }
+            }
+        }
+    }
+    .responsive-nav-close{
+        top: 40px;
+        bottom: auto;
+    }
+    .small-header-submenu {
+        position: absolute;
+        background-color: #fff;
+        width: auto;
+        min-width: 200px;
+        li{
+            flex: 0 0 100% !important;
+            width: 100% !important;
+            a{
+                color: #343434;
+                padding: 10px !important;
+            }
+        }
     }
 }
 .active-link{
