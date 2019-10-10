@@ -53,7 +53,7 @@ export default class SortBy extends Component {
       <div className={`sortby ${this.props.sortByFlag ? 'open' : ''}`}>
         <div className="sortby-filter">
           <div onClick={this.showSortMenu} className="filter-topbar">
-            <span className="sortby-text">Sort by</span>
+            <span className="sortby-text">Sort by:</span>
             <span className="active-filter">{sort.tag}</span>
           </div>
           <CSSTransitionGroup
@@ -64,9 +64,9 @@ export default class SortBy extends Component {
           >
             <div className="sortby-topbar-mobileonly">
               <div className="left-arrow-sortby">
-                <a onClick={goBack}>
+                {/* <a onClick={goBack}>
                   <img src={prevArrow} alt="left-arrow" />
-                </a>
+                </a> */}
                 <span> Sort By</span>
                 <a className="clear-filters" onClick={clearSortFilters}>
                   Clear Filters
