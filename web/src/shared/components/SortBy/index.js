@@ -22,6 +22,21 @@ export default class SortBy extends Component {
         document.removeEventListener('click', this.closeSortMenu);
       });
     }
+    console.log('order', order);
+    this.props.handleFilters(
+      Utilities.mobilecheck()
+        ? {
+          localfilteredSortOrder: order,
+          localfilteredSortType: sortBy
+        }
+        : {
+          filteredSortOrder: order,
+          filteredSortType: sortBy
+        }
+    );
+  };
+
+  clearFilter = () => {
     this.props.handleFilters({
       filteredSortType: sortBy,
       filteredSortOrder: order
