@@ -17,11 +17,27 @@
   width: 100%;
   height: 100%;
   z-index: 1;
+  .inner {
+      @media(max-width: 767px){
+        position: fixed;
+        top: 80px;
+        left: 0px;
+        bottom: 52px;
+        right: 0px;
+        z-index: inherit;
+        display: block;
+        background-color: #efefef;
+        max-height: calc(100% - 132px);
+        overflow-y: auto;
+        margin: 0px;
+        height: auto;
+      }
+    }
 }
 @media(max-width: 991px){
   .wrapper{
     .filter-fixed-btn{
-      position: absolute;
+      position: fixed;
       bottom: 0;
       left: 0;
       background-color: #0098ff;
@@ -29,8 +45,11 @@
       display: flex;
       padding: 10px;
       justify-content: center;
-      height: 48px;
+      height: 52px;
       width: 100%;
+    //   @media(max-width: 767px){
+    //         bottom: 40px;
+    //   }
       &.hide{
         display: none !important;
       }
@@ -229,14 +248,16 @@
         &.open{
             display: block;
             width: 100%;
-            height: calc(100% - 51px);
+            //height: calc(100% - 51px);
+            height: auto;
+            min-height: 100%;
             background-color: #EFEFEF;
             top: 0;
             left: 0;
             position: fixed;
             z-index: 5;
             overflow-y: auto;
-            padding-bottom: 55px;
+            padding-bottom: 0px;
             .fixed-buttons{
                 position: fixed;
                 background-color: #fff;
@@ -245,13 +266,16 @@
                 width: 100%;
                 display: flex;
                 justify-content: space-between;
+                @media(max-width: 767px){
+                    border-top: 8px solid #efefef;
+                }
                 a{
                     flex: 1 0 50%;
                     max-width: 50%;
                     align-items: center;
                     text-align: center;
                     padding: 20px 17px 15px 17px;
-                    font-weight: 500;
+                    font-weight: 600;
                     font-size: 16px;
                     font-family: 'Montserrat', sans-serif;
                     position: relative;
@@ -308,6 +332,7 @@
                 font-size: 12px;
                 line-height: 14px;
                 font-family: 'Rubik', sans-serif;
+                font-weight: 500;
             }
         }
         @media(max-width: 767px){
@@ -316,7 +341,7 @@
             color: #fff;
             background-color: #373E45;
             padding: 15px 17px;
-            height: 55px;
+            height: 80px;
             top: 0;
             width: 100%;
             align-items: flex-end;
@@ -331,7 +356,7 @@
                     font-size: 16px;
                     text-transform: capitalize;
                     flex: auto;
-                    max-width: 33%;
+                    max-width: 50%;
                     margin-left: auto;
                     text-align: right;
                 }
@@ -466,6 +491,20 @@
                 flex-direction: column;
                 flex: 0 0 100%;
                 margin-bottom: 40px;
+                @media(max-width: 767px){
+                    position: fixed;
+                    top: 80px;
+                    left: 0px;
+                    bottom: 52px;
+                    right: 0px;
+                    z-index: inherit;
+                    display: block;
+                    background-color: #efefef;
+                    max-height: calc(100% - 132px);
+                    overflow-y: auto;
+                    margin: 0px;
+                    height: auto;
+                }
                 li {
                     padding: 6px 0 6px 0;
                     list-style: none;
@@ -904,12 +943,12 @@
                     -webkit-transition: 0.5s transform;
                     -moz-transition: 0.5s transform;
                     -o-transition: 0.5s transform;
-                    transform: rotate(-135deg);
+                    transform: rotate(-315deg);
                 }
                 &.active{
                     &:after{
                         top: 15px;
-                        transform: rotate(45deg);
+                        transform: rotate(-135deg);
                     }
                 }
             }
@@ -948,6 +987,7 @@
                                 label{
                                     text-transform: capitalize;
                                     font-size: 15px;
+                                    line-height: 24px;
                                     color: #626262;
                                     display: flex;
                                     justify-content: space-between;

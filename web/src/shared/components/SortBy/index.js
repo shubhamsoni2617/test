@@ -3,6 +3,7 @@ import { CSSTransitionGroup } from 'react-transition-group';
 import PropTypes from 'prop-types';
 import Utilities from '../../utilities';
 import prevArrow from '../../../assets/images/prev-arrow-white.svg';
+// import useOrientation from '../../hooks/useOrientation';
 
 import './style.scss';
 
@@ -12,10 +13,25 @@ export default class SortBy extends Component {
       tag: this.props.defaultSortType ? this.props.defaultSortType : 'Date',
       active: ''
     },
-    showSortMenu: Utilities.mobilecheck() ? true : false
+    showSortMenu: Utilities.mobilecheck() ? true : false,
+    orientation: ''
   };
 
-  componentDidMount() { }
+  componentDidMount() {
+    window.addEventListener('resize', this.handleResize);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.handleResize);
+  }
+
+  handleResize = () => {
+    if (window.innerWidth > window.innerHeight) {
+      this.setState({ showSortMenu: false });
+    } else {
+      this.setState({ showSortMenu: true });
+    }
+  };
 
   setSortFilter = (tag, sortBy, order) => {
     this.setState({ sort: { tag: tag } });
@@ -43,13 +59,19 @@ export default class SortBy extends Component {
   };
 
   render() {
-    const { sortList, filteredSortType, filteredSortOrder } = this.props;
+    const {
+      sortList,
+      filteredSortType,
+      filteredSortOrder,
+      goBack,
+      clearSortFilters
+    } = this.props;
     const { sort } = this.state;
     return (
       <div className={`sortby ${this.props.sortByFlag ? 'open' : ''}`}>
         <div className="sortby-filter">
           <div onClick={this.showSortMenu} className="filter-topbar">
-            <span className="sortby-text">Sort by</span>
+            <span className="sortby-text">Sort by:</span>
             <span className="active-filter">{sort.tag}</span>
           </div>
           <CSSTransitionGroup
@@ -60,9 +82,13 @@ export default class SortBy extends Component {
           >
             <div className="sortby-topbar-mobileonly">
               <div className="left-arrow-sortby">
-                <img src={prevArrow} alt="left-arrow" />
+                {/* <a onClick={goBack}>
+                  <img src={prevArrow} alt="left-arrow" />
+                </a> */}
                 <span> Sort By</span>
-                <a className="clear-filters">Clear Filters</a>
+                <a className="clear-filters" onClick={clearSortFilters}>
+                  Clear Filters
+                </a>
               </div>
             </div>
             {this.state.showSortMenu ? (
@@ -75,11 +101,11 @@ export default class SortBy extends Component {
                         className={`${
                           (list.sortOrder === filteredSortOrder &&
                             list.sortType === filteredSortType) ||
-                            (this.props.promotion &&
-                              list.sortOrder === filteredSortOrder)
+                          (this.props.promotion &&
+                            list.sortOrder === filteredSortOrder)
                             ? 'checked'
                             : ''
-                          }`}
+                        }`}
                         onClick={() =>
                           this.setSortFilter(
                             list.sortTitle,

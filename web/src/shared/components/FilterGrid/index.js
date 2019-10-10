@@ -27,6 +27,7 @@ const FilterGrid = props => {
   const [activeClass, setActiveClass] = useState('');
   const [data, setData] = useState([]);
   const [panelDisplay, setPanelDisplay] = useState(false);
+  const [buttonText, setButtonText] = useState('');
   const element = useRef(null);
 
   useEffect(() => {
@@ -34,9 +35,6 @@ const FilterGrid = props => {
     setData(data);
     if (Utilities.mobilecheck()) {
       setLimit(data.length);
-    }
-    if (props.selectedFilter) {
-      setSelectedFilters(props.selectedFilter);
     }
   }, [props.data]);
 
@@ -46,19 +44,36 @@ const FilterGrid = props => {
     }
   }, [props.selectedFilter]);
 
+  useEffect(() => {
+    if (selectedFilters) {
+      let text = `Select ${props.title}`;
+      if (selectedFilters && selectedFilters.length) {
+        let selectedValue = props.data.filter(
+          item => item.id == selectedFilters[0]
+        );
+        text = `${selectedValue[0].name}`;
+        if (selectedFilters.length > 1) {
+          text = `${text} and ${selectedFilters.length - 1} more `;
+        }
+      }
+      setButtonText(text);
+    }
+  }, [selectedFilters]);
+
   const selectAll = status => {
     let items = [];
     if (status) items = [...props.data].map(item => item.id);
     setActiveClass(status);
     setSelectedFilters(items);
-    if (!Utilities.mobilecheck()) {
-      applyFilters(items);
-    }
+    // if (!Utilities.mobilecheck()) {
+    applyFilters(items, false);
+    // }
   };
 
   const resetFilters = () => {
-    let newFilterValue = [...props.selectedFilter];
+    let newFilterValue = [];
     setSelectedFilters(newFilterValue);
+    applyFilters(newFilterValue, false);
   };
 
   const onChange = (e, id) => {
@@ -70,15 +85,19 @@ const FilterGrid = props => {
       if (index > -1) newFilterValue.splice(index, 1);
     }
     setSelectedFilters(newFilterValue);
-    if (!Utilities.mobilecheck()) {
-      applyFilters(newFilterValue);
-    }
+    // if (!Utilities.mobilecheck()) {
+    applyFilters(newFilterValue, false);
+    // }
   };
 
-  const applyFilters = newFilterValue => {
+  const applyFilters = (newFilterValue, status = true) => {
     let newFilterObject = {};
-    newFilterObject[props.category] = newFilterValue || selectedFilters;
-    props.handleFilters(newFilterObject, true);
+    if (status) {
+      newFilterObject[props.category] = newFilterValue || selectedFilters;
+    }
+    newFilterObject['local' + props.category] =
+      newFilterValue || selectedFilters;
+    props.handleFilters(newFilterObject, status);
   };
 
   if (!data.length) return null;
@@ -114,7 +133,7 @@ const FilterGrid = props => {
       </div>
       <Submenu
         heading={props.title}
-        buttonText={`Select ${props.title}`}
+        buttonText={buttonText}
         submenuClass="submenu-wrap"
         applyFilters={applyFilters}
         clearFilters={selectAll}
@@ -150,6 +169,7 @@ const FilterGrid = props => {
                       <label htmlFor={id}>
                         {item.name}{' '}
                         {item.events_count ? `(${item.events_count})` : ''}
+                        {item.attractions ? `(${item.attractions})` : ''}
                       </label>
                     </li>
                   );

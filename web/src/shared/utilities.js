@@ -1,5 +1,3 @@
-// import { Alert } from 'react-native'
-
 class Utilities {
   static removeNulls(object) {
     for (const key of Object.keys(object)) {
@@ -76,6 +74,7 @@ class Utilities {
   };
 
   static mobilecheck = () => {
+    console.log('mobilecheck');
     var check = false;
     (function(a) {
       if (
@@ -88,7 +87,7 @@ class Utilities {
       )
         check = true;
     })(navigator.userAgent || navigator.vendor || window.opera);
-    return check;
+    return check && window.innerWidth <= 767;
   };
 
   static mobileAndTabletcheck = () => {

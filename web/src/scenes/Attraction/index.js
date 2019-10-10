@@ -26,8 +26,11 @@ export default class Attractions extends Component {
       attractionCategories: [],
       filteredSearch: [],
       filteredCategory: [],
+      localfilteredCategory: [],
       filteredSortType: 'title',
       filteredSortOrder: 'ASC',
+      localfilteredSortType: 'title',
+      localfilteredSortOrder: 'ASC',
       eventsData: [],
       attractionsData: [],
       first: 0,
@@ -75,8 +78,13 @@ export default class Attractions extends Component {
   }
 
   resetFilters = () => {
-    this.setState(
-      {
+    let obj = {};
+    if (Utilities.mobilecheck()) {
+      obj = {
+        localfilteredCategory: []
+      };
+    } else {
+      obj = {
         filteredCategory: [],
         filteredSearch: '',
         filteredSortType: 'title',
@@ -85,15 +93,15 @@ export default class Attractions extends Component {
         eventsData: [],
         attractionsData: [],
         totalRecords: 0
-      },
-      () => {
-        const payload = this.getInitialFilters(true);
-        this.setInitialFilters(payload);
-        if (!Utilities.mobilecheck()) {
-          this.loadAttractions(payload);
-        }
+      };
+    }
+    this.setState(obj, () => {
+      const payload = this.getInitialFilters(true);
+      this.setInitialFilters(payload);
+      if (!Utilities.mobilecheck()) {
+        this.loadAttractions(payload);
       }
-    );
+    });
   };
 
   getInitialFilters = (reset = false) => {
@@ -106,7 +114,7 @@ export default class Attractions extends Component {
     return payload;
   };
 
-  setInitialFilters({ first, limit }) {}
+  setInitialFilters({ first, limit }) { }
 
   getAttractionsCategory = () => {
     AttractionsService.getAttractionsCategory()
@@ -219,11 +227,18 @@ export default class Attractions extends Component {
   };
 
   toggleFilters = () => {
-    this.setState({ filterFlag: !this.state.filterFlag });
+    this.setState({
+      filterFlag: !this.state.filterFlag,
+      localfilteredCategory: [...this.state.filteredCategory]
+    });
   };
 
   toggleSortBy = () => {
-    this.setState({ sortByFlag: !this.state.sortByFlag });
+    this.setState({
+      sortByFlag: !this.state.sortByFlag,
+      localfilteredSortOrder: this.state.filteredSortOrder,
+      localfilteredSortType: this.state.filteredSortType
+    });
   };
 
   callAPI = () => {
@@ -234,7 +249,10 @@ export default class Attractions extends Component {
         totalRecords: 0,
         loader: true,
         filterFlag: false,
-        sortByFlag: false
+        sortByFlag: false,
+        filteredCategory: [...this.state.localfilteredCategory],
+        filteredSortOrder: this.state.localfilteredSortOrder,
+        filteredSortType: this.state.localfilteredSortType
       },
       () => {
         setTimeout(() => {
@@ -242,6 +260,13 @@ export default class Attractions extends Component {
         }, 200);
       }
     );
+  };
+
+  clearSortFilters = () => {
+    this.setState({
+      filteredSortOrder: '',
+      filteredSortType: ''
+    });
   };
 
   render() {
@@ -261,7 +286,7 @@ export default class Attractions extends Component {
     this.breadCrumbData.count = totalRecords;
 
     return (
-      <div>
+      <div className="attractions-page-wrapper">
         <Breadcrub breadCrumbData={this.breadCrumbData} />
         <div className="container-fluid">
           <div className="wrapper-events-listing attraction-wrapper-listing">
@@ -314,8 +339,16 @@ export default class Attractions extends Component {
                   handleFilters={this.handleFilters}
                   defaultSortType={this.tabsSort.defaultSortType}
                   sortByFlag={this.state.sortByFlag}
-                  filteredSortType={this.state.filteredSortType}
-                  filteredSortOrder={this.state.filteredSortOrder}
+                  filteredSortType={
+                    Utilities.mobilecheck()
+                      ? this.state.localfilteredSortType
+                      : this.state.filteredSortType
+                  }
+                  filteredSortOrder={
+                    Utilities.mobilecheck()
+                      ? this.state.localfilteredSortOrder
+                      : this.state.filteredSortOrder
+                  }
                 >
                   <div className="fixed-buttons">
                     <a
@@ -326,6 +359,7 @@ export default class Attractions extends Component {
                     >
                       Close
                     </a>
+
                     <a onClick={() => this.callAPI()} className="apply">
                       Apply
                     </a>
