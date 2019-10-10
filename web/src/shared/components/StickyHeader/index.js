@@ -206,7 +206,7 @@ function StickyHeader(props) {
         <TitleToolTip
           title={detailData.title}
           lines={props.lines}
-          height={Utilities.mobileAndTabletcheck() ? 25 : 50}
+          height={Utilities.mobileAndTabletcheck() ? 25 : 30}
           eventDetail
         />
 

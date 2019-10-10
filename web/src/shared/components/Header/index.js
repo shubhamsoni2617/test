@@ -75,6 +75,11 @@ const Header = ({ menuActive, pathName }) => {
             }}
           >
             <div className="nav-close-topbar">
+              <div className="site-logo">
+                <Link to="/">
+                  <img src={logo} className="img-fluid" alt="Logo" />
+                </Link>
+              </div>
               <a
                 className="responsive-nav-close"
                 onClick={() => {
