@@ -317,7 +317,6 @@ export default class EventsDetail extends Component {
       setHeader,
       shimmer
     } = this.state;
-
     if (error) {
       return null;
     }
@@ -444,7 +443,7 @@ export default class EventsDetail extends Component {
                             ? detailData.hide_booking_fee
                             : null
                         }
-                        preExpanded={accrodian}
+                        // preExpanded={accrodian}
                         uuid={`${
                           detailData.is_available_for_booking === 1
                             ? 'pricedetail'
