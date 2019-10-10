@@ -65,9 +65,7 @@ const FilterGrid = props => {
     if (status) items = [...props.data].map(item => item.id);
     setActiveClass(status);
     setSelectedFilters(items);
-    // if (!Utilities.mobilecheck()) {
     applyFilters(items, false);
-    // }
   };
 
   const resetFilters = () => {
@@ -85,9 +83,11 @@ const FilterGrid = props => {
       if (index > -1) newFilterValue.splice(index, 1);
     }
     setSelectedFilters(newFilterValue);
-    // if (!Utilities.mobilecheck()) {
-    applyFilters(newFilterValue, false);
-    // }
+    let status = true;
+    if (Utilities.mobilecheck()) {
+      status = false;
+    }
+    applyFilters(newFilterValue, status);
   };
 
   const applyFilters = (newFilterValue, status = true) => {
