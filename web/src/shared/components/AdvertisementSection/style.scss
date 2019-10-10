@@ -5,6 +5,17 @@
     padding: 0 28px;
     margin-top: 20px;
     margin-bottom: -20px;
+    @media(max-width: 767px){
+        margin-top: 10px;
+        margin-bottom: -10px;
+    }
+    .image-conatiner{
+        .image.loaded{
+            width: auto;
+            height: auto;
+            max-width: 100%;
+        }
+    }
 }
 .advertisement-block{
     max-height: 191px;
