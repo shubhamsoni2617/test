@@ -303,6 +303,12 @@ export default class Events extends Component {
   };
 
   handleFilters = (searchType, apply) => {
+    if (Utilities.mobilecheck) {
+      this.setState({
+        localfilteredSortType: searchType.filteredSortType,
+        localfilteredSortOrder: searchType.filteredSortOrder
+      });
+    }
     let obj = {
       ...searchType
     };
@@ -414,8 +420,8 @@ export default class Events extends Component {
 
   clearSortFilters = () => {
     this.setState({
-      filteredSortOrder: '',
-      filteredSortType: ''
+      localfilteredSortOrder: '',
+      localfilteredSortType: ''
     });
   };
 
@@ -448,7 +454,7 @@ export default class Events extends Component {
       filterFlag
     } = this.state;
     return (
-      <div>
+      <div className="events-page-wrapper">
         <Breadcrub breadCrumbData={this.breadCrumbData} />
         <section className="">
           <div className="container-fluid">
@@ -466,6 +472,7 @@ export default class Events extends Component {
                 {!shimmerFilter &&
                   genre.length > 0 &&
                   venues.length > 0 &&
+                  filterConfig &&
                   filterConfig.price_config &&
                   filterConfig.promotion_categories && (
                     <Filters
@@ -546,6 +553,7 @@ export default class Events extends Component {
                         ? this.state.localfilteredSortOrder
                         : this.state.filteredSortOrder
                     }
+                    clearSortFilters={this.clearSortFilters}
                   >
                     <div className="fixed-buttons">
                       <a
