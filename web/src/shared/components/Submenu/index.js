@@ -26,7 +26,7 @@ function Submenu(props) {
       <div
         className={`submenu-holder ${submenuClass} ${
           menueStatus ? 'active' : ''
-        }`}
+          }`}
       >
         <div className="subholder-wrapper">
           <div className="filter-heading">
@@ -43,7 +43,7 @@ function Submenu(props) {
             )}
             <h3>
               {heading}
-              <button onClick={() => clearFilters(false)}>Clear Filters</button>
+              <button className="homepage-clear-filter" onClick={() => clearFilters(false)}>Clear Filters</button>
             </h3>
           </div>
         </div>
