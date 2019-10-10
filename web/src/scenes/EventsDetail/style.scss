@@ -370,6 +370,10 @@
                         flex: 0 0 50%;
                         width: 50%;
                     }
+                    @media(max-width: 767px){
+                        flex: 0 0 100%;
+                        width: 100%;
+                    }
                   }
                   &.event-address{
                     margin-bottom: 15px;
@@ -487,6 +491,10 @@
             @media(max-width: 991px){
                 flex: 0 0 50%;
                 width: 50%;
+            }
+            @media(max-width: 767px){
+                flex: 0 0 100%;
+                width: 100%;
             }
         }
     }
