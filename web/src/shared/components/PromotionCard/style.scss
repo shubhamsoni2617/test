@@ -143,8 +143,9 @@
                         -moz-transition: 0.5s opacity;
                         -o-transition: 0.5s opacity;
                         @media(max-width: 768px){
-                            width: 32px;
-                            height: 32px;
+                            
+                            overflow: hidden;
+                            display: block;
                         }
                         &:hover{
                             opacity: 0.8;

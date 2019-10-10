@@ -194,6 +194,11 @@ a{
             width: 100%;
             pointer-events: none;
           }
+          .DayPickerInput-OverlayWrapper{
+            position: absolute !important;
+            width: 100% !important;
+            left: 0 !important;
+          }
         }
       }
     }
