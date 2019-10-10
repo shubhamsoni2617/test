@@ -190,6 +190,12 @@ export default class Attractions extends Component {
   };
 
   handleFilters = (searchType, apply) => {
+    if (Utilities.mobilecheck) {
+      this.setState({
+        localfilteredSortType: searchType.filteredSortType,
+        localfilteredSortOrder: searchType.filteredSortOrder
+      });
+    }
     let obj = {
       ...searchType
     };
@@ -264,8 +270,8 @@ export default class Attractions extends Component {
 
   clearSortFilters = () => {
     this.setState({
-      filteredSortOrder: '',
-      filteredSortType: ''
+      localfilteredSortOrder: '',
+      localfilteredSortType: ''
     });
   };
 
@@ -286,7 +292,7 @@ export default class Attractions extends Component {
     this.breadCrumbData.count = totalRecords;
 
     return (
-      <div>
+      <div className="attractions-page-wrapper">
         <Breadcrub breadCrumbData={this.breadCrumbData} />
         <div className="container-fluid">
           <div className="wrapper-events-listing attraction-wrapper-listing">
@@ -349,6 +355,7 @@ export default class Attractions extends Component {
                       ? this.state.localfilteredSortOrder
                       : this.state.filteredSortOrder
                   }
+                  clearSortFilters={this.clearSortFilters}
                 >
                   <div className="fixed-buttons">
                     <a

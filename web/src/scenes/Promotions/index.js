@@ -246,6 +246,7 @@ export default class Promotions extends Component {
 
   handleFilters = obj => {
     // this.handleSortFilters(obj);
+
     if (!Utilities.mobilecheck()) {
       this.setState({
         sortBy: obj.filteredSortOrder,
@@ -253,7 +254,7 @@ export default class Promotions extends Component {
       });
     } else {
       this.setState({
-        localsortBy: obj.localfilteredSortOrder,
+        localsortBy: obj.filteredSortOrder,
         promotionTab: 0
       });
     }
@@ -288,7 +289,8 @@ export default class Promotions extends Component {
     let sortFilters = { ...this.state.sortFilters };
     sortFilters.filteredSortOrder = 'date';
     this.setState({
-      filteredSortOrder: '',
+      // filteredSortOrder: '',
+      localsortBy: '',
       sortFilters
     });
   };
@@ -332,6 +334,7 @@ export default class Promotions extends Component {
                                   ? this.state.localsortBy
                                   : this.state.sortBy
                               }
+                              clearSortFilters={this.clearSortFilters}
                             >
                               <div className="fixed-buttons">
                                 <a
