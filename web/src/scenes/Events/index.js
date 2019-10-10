@@ -15,11 +15,10 @@ import EventBreadcrumbImageBlur from '../../assets/images/events-blur.png';
 import filterIcon from '../../assets/images/events/filter.svg';
 import sortbyIcon from '../../assets/images/events/sortby.svg';
 import ShimmerEffect from '../../shared/components/ShimmerEffect';
-import utilities from '../../shared/utilities';
+import Utilities from '../../shared/utilities';
 import './style.scss';
 import SearchFilter from '../../shared/components/SearchFilter';
 import Constants from '../../shared/constants';
-import Utilities from '../../shared/utilities';
 
 export default class Events extends Component {
   constructor(props) {
@@ -312,7 +311,7 @@ export default class Events extends Component {
     let obj = {
       ...searchType
     };
-    if (!utilities.mobilecheck() || apply) {
+    if (!Utilities.mobilecheck() || apply) {
       obj = {
         ...searchType,
         first: 0,
@@ -324,7 +323,7 @@ export default class Events extends Component {
     }
     this.setState(obj, () => {
       setTimeout(() => {
-        if (!utilities.mobilecheck() || apply) {
+        if (!Utilities.mobilecheck() || apply) {
           this.loadEvents(this.getFilters(), false);
         }
       }, 200);
@@ -333,7 +332,7 @@ export default class Events extends Component {
 
   resetFilters = () => {
     let obj = {};
-    if (utilities.mobilecheck()) {
+    if (Utilities.mobilecheck()) {
       obj = {
         localfilteredGnere: [],
         localfilteredSearch: [],
@@ -360,7 +359,7 @@ export default class Events extends Component {
       };
     }
     this.setState(obj, () => {
-      if (!utilities.mobilecheck()) {
+      if (!Utilities.mobilecheck()) {
         const payload = this.getInitialFilters(true);
         this.setInitialFilters(payload);
         this.loadEvents(payload);

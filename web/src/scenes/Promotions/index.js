@@ -254,7 +254,7 @@ export default class Promotions extends Component {
       });
     } else {
       this.setState({
-        localsortBy: obj.filteredSortOrder,
+        localsortBy: obj.localfilteredSortOrder,
         promotionTab: 0
       });
     }
