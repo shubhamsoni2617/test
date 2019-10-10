@@ -1,6 +1,6 @@
 import React, { Fragment, useState, useEffect } from 'react';
 import './style.scss';
-import attach from '../../../assets/images/attach.png';
+import attach from '../../../assets/images/attach.svg';
 import ContactUsService from '../../../shared/services/ContactUsService';
 import { Link } from 'react-router-dom';
 import Constants from '../../constants';
@@ -258,7 +258,7 @@ const Contact = ({ attachement, handleEnquiry }) => {
         </div>
         {errMsg && !name ? (
           <span className="error-msg">
-            Please enter {handleEnquiry ? 'name' : 'full name'}      
+            Please enter {handleEnquiry ? 'name' : 'full name'}
           </span>
         ) : null}
         <div className={errMsg && !email ? 'form-group err' : 'form-group'}>
@@ -274,7 +274,7 @@ const Contact = ({ attachement, handleEnquiry }) => {
         </div>
         {errMsg && !email ? (
           <span className="error-msg">
-            Please enter {handleEnquiry ? 'email address' : 'email'}      
+            Please enter {handleEnquiry ? 'email address' : 'email'}
           </span>
         ) : null}
         <div className={errMsg && !phone ? 'form-group err' : 'form-group'}>

@@ -6,6 +6,7 @@ import useStickyPanel from '../../hooks/useStickyPanel';
 import './style.scss';
 import DateRangeFilter from '../DateRangeFilter';
 import SearchFilter from '../SearchFilter';
+import Utilities from '../../utilities';
 
 function useDebounce(value, delay) {
   const [debouncedValue, setDebouncedValue] = useState(value);
@@ -25,15 +26,15 @@ function useDebounce(value, delay) {
 
 function PriceRangeFilter(props) {
   const { priceConfig, filteredPriceRange, filterFlag } = props;
-  const [flag, setFlag] = useState(false);
+  const [flag, setFlag] = useState(true);
   const [priceRange, setPriceRange] = useState({
     min: parseInt(priceConfig.min_price) || null,
     max: parseInt(priceConfig.max_price) || null
   });
 
-  useEffect(() => {
-    setFlag(false);
-  }, [filterFlag]);
+  // useEffect(() => {
+  //   setFlag(false);
+  // }, [filterFlag]);
 
   useEffect(() => {
     if (!filteredPriceRange.min) {
@@ -72,7 +73,7 @@ function PriceRangeFilter(props) {
         </ul>
       </div>
       <div className={`select-range ${flag ? 'active' : ''}`}>
-        <button onClick={() => setFlag(!flag)}>Select range</button>
+        <button onClick={() => setFlag(!flag)}>Select Range</button>
       </div>
       <div className={`filters-panel ${flag ? 'open' : ''}`}>
         <span className="input-range-label-container min">
@@ -88,7 +89,11 @@ function PriceRangeFilter(props) {
           value={priceRange}
           onChange={value => setPriceRange(value)}
           onChangeComplete={value =>
-            props.handleFilters({ localfilteredPriceRange: value })
+            props.handleFilters(
+              Utilities.mobilecheck()
+                ? { localfilteredPriceRange: value }
+                : { filteredPriceRange: value }
+            )
           }
         />
       </div>
@@ -134,7 +139,7 @@ function Filters(props) {
     filterFlag
   } = props;
   const { price_config } = filterConfig ? filterConfig : 0;
-  console.log('filter');
+
   if (props.shimmerFilter) {
     return;
   }
@@ -143,7 +148,7 @@ function Filters(props) {
       <div className="inner" style={styleObj}>
         <div className="filter-heading">
           <h3>
-            FILTERS{' '}
+            Filters{' '}
             <a
               href="/"
               onClick={e => {
@@ -151,7 +156,7 @@ function Filters(props) {
                 clearAllFilters();
               }}
             >
-              Clear all
+              Clear Filters
             </a>
           </h3>
         </div>
@@ -170,7 +175,7 @@ function Filters(props) {
         )}
         <FilterGrid
           title="Genre"
-          category="filteredGnere"
+          category={'filteredGnere'}
           handleFilters={handleFilters}
           data={genreData ? genreData : []}
           selectedFilter={filteredGnere}
@@ -178,7 +183,7 @@ function Filters(props) {
         />
         <FilterGrid
           title="Tags"
-          category="filteredTags"
+          category={'filteredTags'}
           handleFilters={handleFilters}
           data={filterConfig ? filterConfig.tags : []}
           selectedFilter={filteredTags}
@@ -194,7 +199,7 @@ function Filters(props) {
         )}
         <FilterGrid
           title="Promotion"
-          category="filteredPromotions"
+          category={'filteredPromotions'}
           handleFilters={handleFilters}
           data={filterConfig ? filterConfig.promotion_categories : []}
           selectedFilter={filteredPromotions}
@@ -202,7 +207,7 @@ function Filters(props) {
         />
         <FilterGrid
           title="Venue"
-          category="filteredVenues"
+          category={'filteredVenues'}
           handleFilters={handleFilters}
           data={venueData ? venueData : []}
           showPanel={true}
@@ -211,7 +216,7 @@ function Filters(props) {
         />
         <FilterGrid
           title="Categories"
-          category="filteredCategory"
+          category={'filteredCategory'}
           handleFilters={handleFilters}
           data={attractionCategories ? attractionCategories : []}
           selectedFilter={filteredCategory}
