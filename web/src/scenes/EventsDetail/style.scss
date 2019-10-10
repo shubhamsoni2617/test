@@ -583,6 +583,9 @@
       }
   }
   //sidebar
+  .accordion__item{
+      position: relative;
+  }
   .event-detail-section .event-detail-sidebar{
       padding: 45px 29px;
       @media(max-width:980px){
@@ -1232,16 +1235,7 @@
           max-width: 100%;
       }
   }
-  .price-info-icon{
-      &:hover{
-          .info-popover{
-              opacity: 1;
-              padding: 12px;
-              height: auto;
-              overflow: inherit;
-          }
-      }
-  }
+
   //accordian style
   .accordion__button:before {
       display: inline-block;
@@ -1327,3 +1321,22 @@
           }
       }
   }
+  .price-info-icon{
+      position: absolute;
+      top: 40px;
+      left: 190px;
+      @media(max-width: 1280px){
+        left: 180px;
+      }
+      @media(max-width: 768px){
+        top: 33px;
+      }
+    &:hover{
+        .info-popover{
+            opacity: 1;
+            padding: 12px;
+            height: auto;
+            overflow: inherit;
+        }
+    }
+}

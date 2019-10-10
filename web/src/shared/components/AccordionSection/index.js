@@ -11,6 +11,7 @@ import 'react-accessible-accordion/dist/fancy-example.css';
 import './style.scss';
 import InfoPopup from '../InfoPoup';
 import infoIcon from '../../../assets/images/info-icon.svg';
+import Utilities from '../../utilities';
 
 export default class AccordionSection extends Component {
   constructor(props) {
@@ -52,14 +53,29 @@ export default class AccordionSection extends Component {
                 {infoTag && (
                   <div>
                     <span>(Excludes Booking Fee)</span>
-                    <span className="price-info-icon">
-                      <img src={infoIcon} alt="Info Icon" />
-                      <InfoPopup content={infoTag} />
-                    </span>
                   </div>
                 )}
               </AccordionItemButton>
             </AccordionItemHeading>
+            {infoTag && (
+              <div>
+                <span
+                  className="price-info-icon"
+                  onClick={() =>
+                    this.setState({
+                      showInfo: !this.state.showInfo
+                    })
+                  }
+                >
+                  <img src={infoIcon} alt="Info Icon" />
+                  {Utilities.mobileAndTabletcheck() ? (
+                    this.state.showInfo && <InfoPopup content={infoTag} />
+                  ) : (
+                    <InfoPopup content={infoTag} />
+                  )}
+                </span>
+              </div>
+            )}
             <AccordionItemPanel>
               <div>
                 {langArr && (
