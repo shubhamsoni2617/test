@@ -207,3 +207,23 @@
         }
     }
 }
+.attractions-page-wrapper{
+    .filters-search{
+        @media(max-width: 767px){
+            padding: 8px 8px 8px;
+            margin-bottom: 0px;
+        }
+    }
+    .breadcrumbs{
+         &:after{
+            @media(max-width: 767px){
+                content: none;
+            }
+        }
+        .banner-overlay{
+            @media(max-width: 767px){
+                padding-top: 85px;
+            }
+        }
+    }
+}

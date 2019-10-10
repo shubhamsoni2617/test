@@ -54,7 +54,6 @@ a{
       justify-content: flex-start;
       align-items: flex-end;
       min-height: 80px;
-
       button{
         flex: 1 0 11%;
         max-width: 11%;
@@ -86,7 +85,7 @@ a{
       @media (max-width: 991px){
         .filter-heading{
           display: flex;
-          align-items: center;
+          align-items: flex-end;
           width: 100%;
           padding: 10px;
           & > button{
@@ -115,7 +114,7 @@ a{
               margin-bottom: 0px;
             button{
               font-weight: 500;
-              font-size: 14px;
+              font-size: 16px;
             }
           }
         }

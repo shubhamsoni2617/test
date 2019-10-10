@@ -114,7 +114,7 @@ export default class Attractions extends Component {
     return payload;
   };
 
-  setInitialFilters({ first, limit }) {}
+  setInitialFilters({ first, limit }) { }
 
   getAttractionsCategory = () => {
     AttractionsService.getAttractionsCategory()
@@ -286,7 +286,7 @@ export default class Attractions extends Component {
     this.breadCrumbData.count = totalRecords;
 
     return (
-      <div>
+      <div className="attractions-page-wrapper">
         <Breadcrub breadCrumbData={this.breadCrumbData} />
         <div className="container-fluid">
           <div className="wrapper-events-listing attraction-wrapper-listing">
