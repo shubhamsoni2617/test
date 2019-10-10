@@ -55,6 +55,17 @@ const Header = ({ menuActive, pathName }) => {
               <ul>
                 <li>
                   <a>Get Started</a>
+                  {/* <ul className="small-header-submenu">
+                    <li>
+                      <a>Sell tickets with us</a>
+                    </li>
+                    <li>
+                      <a>System Licensing</a>
+                    </li>
+                    <li>
+                      <a>Be our partner</a>
+                    </li>
+                  </ul> */}
                 </li>
                 <li
                   className={

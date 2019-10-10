@@ -55,6 +55,15 @@
           }
           .checked {
             position: relative;
+            background-color: rgba(0, 128, 215, 0.2);
+            color: #0098ff;
+            cursor: pointer;
+            font-weight: 500;
+            transition: 0.8s all;
+            -webkit-transition: 0.8s all;
+            -moz-transition: 0.8s all;
+            -o-transition: 0.8s all;
+            padding-left: 23px;
             &:before{
               display: block;
               content: '';

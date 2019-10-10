@@ -40,10 +40,17 @@ export default class SortBy extends Component {
         document.removeEventListener('click', this.closeSortMenu);
       });
     }
-    this.props.handleFilters({
-      filteredSortType: sortBy,
-      filteredSortOrder: order
-    });
+    this.props.handleFilters(
+      Utilities.mobilecheck()
+        ? {
+            localfilteredSortType: sortBy,
+            localfilteredSortOrder: order
+          }
+        : {
+            filteredSortType: sortBy,
+            filteredSortOrder: order
+          }
+    );
   };
 
   showSortMenu = () => {
@@ -87,7 +94,7 @@ export default class SortBy extends Component {
                 </a> */}
                 <span> Sort By</span>
                 <a className="clear-filters" onClick={clearSortFilters}>
-                  Clear Filters
+                  Clear
                 </a>
               </div>
             </div>
