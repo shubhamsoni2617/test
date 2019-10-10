@@ -25,12 +25,19 @@ app.post('/sistic/docroot/**', function(req, res) {
       body: JSON.stringify(req.body),
       headers: req.headers
     })
-    .pipe(res);
+    .pipe(res)
+    .catch(function(err) {
+      console.log(err);
+    });
 });
 
 app.get('/sistic/docroot/**', function(req, res) {
   var newurl = `http://${req.hostname}:8081${req.originalUrl}`;
-  request(newurl).pipe(res);
+  request(newurl)
+    .pipe(res)
+    .catch(function(err) {
+      console.log(err);
+    });
 });
 
 app.get('*', (req, res, next) => {
