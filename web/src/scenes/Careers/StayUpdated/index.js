@@ -1,16 +1,11 @@
 import React from 'react';
 import './style.scss';
-// import { Select } from './MultipleCheckBox';
 import Select from '../../../../src/shared/components/SelectBox';
-import attach from '../../../assets/images/attach.png';
 import stayUpdate from '../../../assets/images/career/stay-update.png';
+import Attachement from '../../../shared/components/Attachement';
 const StayUpdated = ({
   options,
-  areas,
   email,
-  files,
-  maxFileLimitMsg,
-  errMsg,
   submit,
   handleEmail,
   handleFiles,
@@ -58,35 +53,7 @@ const StayUpdated = ({
                   onChange={e => handleEmail(e.target.value)}
                 />
               </div>
-              <div className="form-group attach-doc">
-                <div className="row no-gutters">
-                  <div className="col-lg-4 pl-2">Attach Documents</div>
-                  <div className="col-lg-8">
-                    Resume/CV
-                    <label
-                      htmlFor="file-upload"
-                      className="custom-file-upload  form-control text-right"
-                    >
-                      <img src={attach} height="20" width="20" />
-                    </label>
-                    <input
-                      encType="multipart/form-data"
-                      id="file-upload"
-                      className="form-control"
-                      type="file"
-                      multiple
-                      onChange={e => handleFiles(e.target.files)}
-                      accept=".jpeg,.png,.pdf,.doc,.docx,.jpg"
-                    />
-                  </div>
-                </div>
-                {maxFileLimitMsg && (
-                  <p className="text-danger">{maxFileLimitMsg}</p>
-                )}
-                {files && files[0] && <p>{files[0].name}</p>}
-                {files && files[1] && <p>{files[1].name}</p>}
-                {files && files[2] && <p>{files[2].name}</p>}
-              </div>
+              <Attachement attachedFiles={handleFiles} />
               {/* {errMsg ? <p className="text-danger">{errMsg}</p> : null} */}
               <input
                 className="form-control col-lg-5 btn-link"

@@ -181,10 +181,10 @@ export default class Select extends Component {
   };
 
   onClick = () => {
-    const { onClickSubmit } = this.props;
+    const { onClickSubmit, multiple, submit } = this.props;
     this.setState(prevState => ({
       isOpen: !prevState.isOpen,
-      values: []
+      values: submit || !multiple ? [] : prevState.values
     }));
     onClickSubmit();
   };

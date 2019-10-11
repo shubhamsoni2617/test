@@ -6,9 +6,9 @@ import CoreValues from './CoreValues';
 import Opening from './Opening';
 import StayUpdated from './StayUpdated';
 import Testimonials from './Testimonial';
-import Utilities from '../../shared/utilities';
 import CareerService from '../../shared/services/CareerService';
 import Constants from '../../shared/constants';
+import ContactUsService from '../../shared/services/ContactUsService';
 
 class Careers extends Component {
   constructor(props) {
@@ -24,8 +24,10 @@ class Careers extends Component {
       email: '',
       files: {},
       maxFileLimitMsg: '',
+      filePath: [],
       errMsg: '',
-      submit: false
+      submit: false,
+      isMultiple: true
     };
   }
 
@@ -54,20 +56,22 @@ class Careers extends Component {
   handleSubmit = e => {
     e.preventDefault();
     const { areas, email } = this.state;
-    if (areas && email) {
-      // const data = {
-      //   category: Number(enquiry),
-      //   name: name,
-      //   email,
-      //   contact_number: phone,
-      //   message: message,
-      // };
-      this.setState({ errMsg: '', submit: true });
-    } else if (areas.length === 0 && !email) {
-      this.setState({ errMsg: 'Fill all required fields...' });
-    } else if (!email) {
-      this.setState({ errMsg: 'Email is required...' });
-    }
+    this.setState({ areas: [], submit: true });
+
+    // if (areas && email) {
+    //   const data = {
+    //   category: Number(enquiry),
+    //   name: name,
+    //   email,
+    //   contact_number: phone,
+    //   message: message,
+    //   };
+    //   this.setState({ errMsg: '', submit: true });
+    // } else if (areas.length === 0 && !email) {
+    //   this.setState({ errMsg: 'Fill all required fields...' });
+    // } else if (!email) {
+    //   this.setState({ errMsg: 'Email is required...' });
+    // }
   };
 
   submitUploadAttachment = files => {
@@ -76,6 +80,15 @@ class Careers extends Component {
       let file = files[i];
       formData.append('files[' + i + ']', file);
     }
+    // ContactUsService.uploadAttachement(formData)
+    //   .then(res => {
+    //     if (res && res.data) {
+    //       this.setState({ filePath: res.data.path });
+    //     }
+    //   })
+    //   .catch(err => {
+    //     console.log(err.response);
+    //   });
   };
 
   handleEmail = email => {
@@ -83,35 +96,14 @@ class Careers extends Component {
   };
 
   handleFiles = files => {
-    this.setState({ files: {}, maxFileLimitMsg: '' });
-    const filesLength = files.length;
-    let fileSize = 0;
-    for (let key in files) {
-      if (files.hasOwnProperty(key)) {
-        fileSize = fileSize + files[key].size;
-      }
-    }
-    const sizeInMB = fileSize / (1024 * 1024);
-    if (filesLength > 3 || sizeInMB > 5) {
-      this.setState({
-        maxFileLimitMsg: 'Max 3 files can be uploaded, with up to 5MB size.'
-      });
-    } else {
-      this.submitUploadAttachment(files);
-      this.setState({
-        files: files
-      });
-    }
-  };
-
-  handleMultipleCheckbox = checkbox => {
-    const checkboxInObj = Object.assign({}, checkbox);
-    console.log(checkbox);
-    this.setState({ areas: checkbox });
+    this.submitUploadAttachment(files);
   };
 
   onClickSubmit = () => {
     this.setState({ submit: false });
+    if (!this.state.multiple) {
+      this.setState({ values: '' });
+    }
   };
 
   onSelect = values => {
@@ -123,7 +115,6 @@ class Careers extends Component {
       //   }
       // });
       this.setState({ areas: values });
-      console.log(values);
     }
   };
 
@@ -154,7 +145,6 @@ class Careers extends Component {
           submit={submit}
           handleEmail={this.handleEmail}
           handleFiles={this.handleFiles}
-          handleMultipleCheckbox={this.handleMultipleCheckbox}
           handleSubmit={this.handleSubmit}
           onClickSubmit={this.onClickSubmit}
           onSelect={this.onSelect}
