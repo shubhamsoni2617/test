@@ -197,13 +197,39 @@
         position: absolute;
         background-color: #fff;
         width: auto;
+        padding: 15px;
         min-width: 200px;
+        &:before{
+            position: absolute;
+            content: "";
+            border-top: none;
+            border-left: 10px solid transparent;
+            border-right: 10px solid transparent;
+            top: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-bottom: 10px solid #fff;
+            margin-left: -45px;
+        }
         li{
             flex: 0 0 100% !important;
             width: 100% !important;
+            transition: 0.3s background-color;
+            margin-bottom: 10px;
             a{
                 color: #343434;
                 padding: 10px !important;
+                padding: 5px 8px !important;
+                transition: 0.3s color;
+                &:hover{
+                    color: #343434;
+                }
+            }
+            &.active, &:hover{
+                background-color: rgba(179, 209, 231, 0.17);
+                a{
+                    color: #0098FF !important;
+                }
             }
         }
     }
