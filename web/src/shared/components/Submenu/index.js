@@ -71,26 +71,26 @@ function Submenu(props) {
                 setMenuStatus(false);
                 closeSubmenu(false);
               }}
-              className="text-center"
+              className="text-center see-all-sidebar"
             >
               See All Events
             </Link>
           </ul>
         )}
         {buttonText === 'By Genre' ||
-        buttonText === 'By Date' ||
-        buttonText === 'By Venue' ? null : (
-          <div className={`filter-fixed-btn ${menueStatus ? 'show' : 'hide'}`}>
-            <button
-              onClick={() => {
-                setMenuStatus(false);
-                applyFilters();
-              }}
-            >
-              Apply
+          buttonText === 'By Date' ||
+          buttonText === 'By Venue' ? null : (
+            <div className={`filter-fixed-btn ${menueStatus ? 'show' : 'hide'}`}>
+              <button
+                onClick={() => {
+                  setMenuStatus(false);
+                  applyFilters();
+                }}
+              >
+                Apply
             </button>
-          </div>
-        )}
+            </div>
+          )}
       </div>
     </>
   );

@@ -3076,12 +3076,13 @@ section{
 		@media (max-width: 767px) {
 			display: flex;
 			position: relative;
-			width: 77%;
+			width: calc(100% - 120px);
 			margin-left: auto;
 			border-top: none;
 		}
 		@media (max-width: 560px) {
-			width: 80%;
+			width: calc(100% - 70px);
+			margin-left: 80px;
 		}
 		.copyrights {
 			@media(max-width: 991px) {
@@ -3115,22 +3116,24 @@ section{
 					font-size: 13px;
 				}
 			}
-			img {
-				@media (max-width: 767px) {
-					max-width: 90%;	
-				}
-				@media(max-width: 560px){
-					max-width: 80px;
-				}
-			}
 			a{
 				@media(max-width: 767px){
 					position: absolute;
-					left: -27%;
+					left: -120px;
 					text-align: left;
 				}
 				@media(max-width: 560px){
-					left: -34%;
+					left: -80px;
+				}
+				img {
+					@media (max-width: 767px) {
+						max-width: 120px;
+						margin-top: 15px;
+					}
+					@media(max-width: 560px){
+						max-width: 80px;
+						margin-top: 0px;
+					}
 				}
 			}
 		}
