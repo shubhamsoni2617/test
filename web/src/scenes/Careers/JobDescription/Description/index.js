@@ -7,7 +7,6 @@ const Description = ({
 
 }) => {
   return (
-    <div className="container">
       <div className="job-des-wrapper">
         <h2>Senior Experience Designer</h2>
         <div className="experince-wrapper">
@@ -75,7 +74,6 @@ const Description = ({
           </div>
         </div>
         </div>
-      </div>
   );
 };
 
