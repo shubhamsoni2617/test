@@ -68,5 +68,22 @@
       }
     }
   }
+  @media(max-width: 767px){
+    margin: 25px 0 25px 0;
+    h2{
+      font-size: 24px;
+      padding-bottom: 5px;
+    }
+    .skills-requied,
+    .job-description{
+        margin: 30px 0 20px 0;
+        ul{
+          margin: 10px 0 15px 0;
+          li{
+            margin-bottom: 10px;
+          }
+        }
+    }
+  }
 }
 
