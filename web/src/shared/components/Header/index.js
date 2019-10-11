@@ -53,9 +53,9 @@ const Header = ({ menuActive, pathName }) => {
           <nav className="bottom-header">
             <div className="bottom-header-left">
               <ul>
-                <li>
+                <li className="has-submenu">
                   <a>Get Started</a>
-                  {/* <ul className="small-header-submenu">
+                  <ul className="small-header-submenu">
                     <li>
                       <a>Sell tickets with us</a>
                     </li>
@@ -65,7 +65,7 @@ const Header = ({ menuActive, pathName }) => {
                     <li>
                       <a>Be our partner</a>
                     </li>
-                  </ul> */}
+                  </ul>
                 </li>
                 <li
                   className={

@@ -787,7 +787,8 @@ button,
 
 // Website scroll bar
 ::-webkit-scrollbar {
-    width: 10px;
+	width: 10px;
+	position: relative;
 }
 
 ::-webkit-scrollbar-track {
@@ -1035,7 +1036,13 @@ button,
 			display: flex;
 			flex-wrap: wrap;
 			margin: 0px;
-			padding: 0;
+			width: calc(100% - 40px);
+			border: 1px solid #efefef;
+			.DayPicker-Caption {
+				color: #343434;
+				font-size: 12px;
+				padding: 10px 10px 0px;
+			}
 		}
 	}
 }
@@ -1259,5 +1266,20 @@ em{
 //     z-index: -1 !important;
 // }
 .fixed-body{
-	overflow: hidden;
+   overflow: hidden !important;
+   position: fixed;
+   top: 0;
+   right: 0;
+   left: 0;
+   bottom: 0;
+   height: 100%;
+   width: 100%;
+}
+.see-all-sidebar {
+	text-align: left !important;
+	color: #0098FF !important;	
+	&:after{
+		transform: rotate(-45deg) !important;
+		border-color: #0098FF !important;
+	}
 }
