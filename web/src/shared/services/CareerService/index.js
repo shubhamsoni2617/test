@@ -25,8 +25,8 @@ class CareerService {
     return API.post(`career/submit-interest`, data);
   }
 
-  uploadAttachement(files) {
-    return API.post('service/upload', files);
+  getParticularJobDetail(params) {
+    return API.get('career/get-job', { params });
   }
 }
 

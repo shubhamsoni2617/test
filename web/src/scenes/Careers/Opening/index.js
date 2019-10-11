@@ -8,7 +8,7 @@ import { Link } from 'react-router-dom';
 const Opening = ({ jobListing, jobListingErr }) => {
   const [limit, setLimit] = useState(6);
   return (
-    <div className="open-position">
+    <div className="open-position" id="opening">
       <div className="container">
         <h2 className="text-center career-title">Open Positions</h2>
         <div className="row">
@@ -25,13 +25,13 @@ const Opening = ({ jobListing, jobListingErr }) => {
                     <span className="place">{elem.location} </span>
                     {elem.job_type.map((jobType, i) => {
                       return (
-                        <Fragment>
-                          <span key={i}> {jobType}</span>{' '}
+                        <Fragment key={i}>
+                          <span> {jobType}</span>{' '}
                         </Fragment>
                       );
                     })}
                   </p>
-                  <Link to="/careers/jobdescription">
+                  <Link to={`/careers/jobdescription/${elem.job_id}`}>
                     Apply Now
                     <img className="arrow-black" src={arrowBlack} alt="arrow" />
                     <img

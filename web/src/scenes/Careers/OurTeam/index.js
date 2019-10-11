@@ -3,21 +3,9 @@ import './style.scss';
 import TeamImg from '../../../../src/assets/images/team.png';
 import arrowWhite from '../../../../src/assets/images/career/opening-blue-arrow.svg';
 import arrowBlue from '../../../../src/assets/images/buy-arrow-b.png';
-import Utilities from '../../../shared/utilities';
+import { Link } from 'react-scroll';
 
 const OurTeam = ({ banner }) => {
-  const scrollToBottom = () => {
-    if (Utilities.mobilecheck()) {
-      scroll(1570);
-    } else if (Utilities.mobileAndTabletcheck()) {
-      scroll(1000);
-    } else {
-      scroll();
-    }
-  };
-  const scroll = (top = 1500) => {
-    window.scrollTo({ top: top, behavior: 'smooth' });
-  };
   return (
     <div className="row our-team no-gutters">
       <div className="col-lg-5 col-md-6">
@@ -28,11 +16,19 @@ const OurTeam = ({ banner }) => {
             className="career-subtext"
             dangerouslySetInnerHTML={{ __html: banner && banner.description }}
           ></p>
-          <button onClick={scrollToBottom}>
-            See Job Openings
-            <img className="arrow-white" src={arrowWhite} alt="arrow" />
-            <img className="arrow-blue" src={arrowBlue} alt="white-arrow" />
-          </button>
+          <Link
+            to="opening"
+            spy={true}
+            smooth={true}
+            offset={50}
+            duration={1000}
+          >
+            <button>
+              See Job Openings
+              <img className="arrow-white" src={arrowWhite} alt="arrow" />
+              <img className="arrow-blue" src={arrowBlue} alt="white-arrow" />
+            </button>
+          </Link>
         </div>
       </div>
       <div className="col-lg-7 col-md-6 our-team-img"></div>

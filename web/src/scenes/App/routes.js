@@ -106,6 +106,11 @@ const routes = [
     exact: true
   },
   {
+    path: '/careers/jobdescription/:jobId',
+    component: JobDescription,
+    exact: true
+  },
+  {
     path: '/about-us',
     component: AboutUs,
     exact: true
