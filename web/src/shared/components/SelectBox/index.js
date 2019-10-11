@@ -316,7 +316,6 @@ export default class Select extends Component {
   render() {
     const { label } = this.props;
     const { isOpen } = this.state;
-    console.log(isOpen);
     return (
       <div
         className="select"

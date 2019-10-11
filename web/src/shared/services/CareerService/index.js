@@ -5,26 +5,24 @@ class CareerService {
     return API.get(`career/content`, { params });
   }
 
-  getEnquiry() {
-    return API.get(`contact-us/enquiry-categories`);
+  getTestimonial() {
+    return API.get(`career/testimonials`);
   }
 
-  getContactDetail() {
-    return API.get(`contact-us/details`);
+  getJobListing() {
+    return API.get(`career/get-jobs`);
   }
 
-  getFaqs(params) {
-    return API.get(`contact-us/faq`, { params });
+  getAreaOfInterest() {
+    return API.get(`career/get-interest`);
   }
 
-  formSubmission(data, CSRFToken) {
-    const options = {
-      headers: {
-        'Content-Type': 'application/json',
-        'X-CSRF-TOKEN': CSRFToken
-      }
-    };
-    return API.post(`contact-us/store`, data, options);
+  getJobDetail(params) {
+    return API.get(`career/get-job`, { params });
+  }
+
+  formSubmission(data) {
+    return API.post(`career/submit-interest`, data);
   }
 
   uploadAttachement(files) {

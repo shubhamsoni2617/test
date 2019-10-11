@@ -4,9 +4,17 @@ import Select from '../../../../src/shared/components/SelectBox';
 import stayUpdate from '../../../assets/images/career/stay-update.png';
 import Attachement from '../../../shared/components/Attachement';
 const StayUpdated = ({
+  stayUpdated,
+  staticContentErr,
   options,
+  areaOfInterestErr,
   email,
+  selectedAreas,
+  errMsg,
   submit,
+  successMsg,
+  serverErr,
+  loading,
   handleEmail,
   handleFiles,
   handleSubmit,
@@ -21,19 +29,30 @@ const StayUpdated = ({
         </div>
         <div className="col-lg-7">
           <div className="stay-update">
-            <h2 className="career-title">
-              Stay Updated
-              <b>@Sistic Careers</b>
-            </h2>
-            <p className="career-subtext">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas
-              varius tortor nibh, sit amet tempor nibh finibus et. Aenean eu
-              enim justo. Vestibulum aliquam hendrerit molestie. Mauris
-              malesuada nisi sit amet augue accumsan tincidunt. Maecenas
-              tincidunt,.
-            </p>
+            {successMsg && <h5 className="text-success">{successMsg}</h5>}
+            {serverErr &&
+              serverErr.map((elem, index) => {
+                return (
+                  <h5 key={index} className="text-danger">
+                    {elem}
+                  </h5>
+                );
+              })}
+            <h2 className="career-title">{stayUpdated && stayUpdated.title}</h2>
+            <p
+              className="career-subtext"
+              dangerouslySetInnerHTML={{
+                __html: stayUpdated && stayUpdated.description
+              }}
+            ></p>
             <form onSubmit={handleSubmit}>
-              <div className="form-group">
+              <div
+                className={
+                  errMsg && !selectedAreas.length
+                    ? 'form-group err'
+                    : 'form-group'
+                }
+              >
                 <Select
                   submit={submit}
                   options={submit ? [] : options}
@@ -43,7 +62,14 @@ const StayUpdated = ({
                   onClickSubmit={onClickSubmit}
                 />
               </div>
-              <div className="form-group">
+              {errMsg && !selectedAreas.length ? (
+                <span className="text-danger">
+                  Please select Area(s) of interest    
+                </span>
+              ) : null}
+              <div
+                className={errMsg && !email ? 'form-group err' : 'form-group'}
+              >
                 <input
                   className="form-control email"
                   name="email"
@@ -53,12 +79,15 @@ const StayUpdated = ({
                   onChange={e => handleEmail(e.target.value)}
                 />
               </div>
-              <Attachement attachedFiles={handleFiles} />
-              {/* {errMsg ? <p className="text-danger">{errMsg}</p> : null} */}
+              {errMsg && !email ? (
+                <span className="text-danger">Please enter your email    </span>
+              ) : null}
+              <Attachement attachedFiles={handleFiles} submit={submit} />
               <input
                 className="form-control col-lg-5 btn-link"
                 type="submit"
-                value="Stay Tuned"
+                value={loading ? 'Tunning...' : 'Stay Tuned'}
+                disabled={loading ? true : false}
               />
             </form>
           </div>

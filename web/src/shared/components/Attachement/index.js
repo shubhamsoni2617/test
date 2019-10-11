@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import './style.scss';
 import attach from '../../../assets/images/attach.png';
 
-const Attachement = ({ attachedFiles }) => {
+const Attachement = ({ attachedFiles, submit }) => {
   const [files, setFiles] = useState({});
   const [maxFileLimitMsg, setMaxFileLimitMsg] = useState('');
 
@@ -49,9 +49,9 @@ const Attachement = ({ attachedFiles }) => {
         </div>
       </div>
       {maxFileLimitMsg && <p className="text-danger">{maxFileLimitMsg}</p>}
-      {files && files[0] && <p>{files[0].name}</p>}
-      {files && files[1] && <p>{files[1].name}</p>}
-      {files && files[2] && <p>{files[2].name}</p>}
+      {!submit && files && files[0] && <p>{files[0].name}</p>}
+      {!submit && files && files[1] && <p>{files[1].name}</p>}
+      {!submit && files && files[2] && <p>{files[2].name}</p>}
     </div>
   );
 };

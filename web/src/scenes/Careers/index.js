@@ -14,26 +14,34 @@ class Careers extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      options: [
-        { name: 'Rock' },
-        { name: 'Paper' },
-        { name: 'Salt' },
-        { name: 'Air' }
-      ],
-      areas: [],
+      staticContent: '',
+      staticContentErr: '',
+      testimonial: [],
+      testimonialErr: '',
+      jobListing: [],
+      jobListingErr: '',
+      areaOfInterest: [],
+      areaOfInterestErr: '',
+      selectedAreas: [],
+      selectedIds: [],
       email: '',
-      files: {},
-      maxFileLimitMsg: '',
       filePath: [],
+      maxFileLimitMsg: '',
       errMsg: '',
       submit: false,
-      isMultiple: true
+      isMultiple: true,
+      loading: false,
+      successMsg: '',
+      serverErr: []
     };
   }
 
   componentDidMount() {
     this.scrollToTop();
     this.getStaticContent();
+    this.getTestimonial();
+    this.getJobListing();
+    this.getAreaOfInterest();
   }
 
   scrollToTop() {
@@ -46,33 +54,113 @@ class Careers extends Component {
     };
     CareerService.getStaticContent(params)
       .then(res => {
-        console.log(res);
+        if (res && res.data) {
+          this.setState({ staticContent: res.data });
+        }
       })
       .catch(err => {
-        console.log(err.response);
+        if (err) {
+          this.setState({ staticContentErr: 'Something went wrong...' });
+        }
+      });
+  }
+
+  getTestimonial() {
+    CareerService.getTestimonial()
+      .then(res => {
+        if (res && res.data) {
+          this.setState({ testimonial: res.data });
+        }
+      })
+      .catch(err => {
+        if (err) {
+          this.setState({ testimonialErr: 'Something went wrong...' });
+        }
+      });
+  }
+
+  getJobListing() {
+    CareerService.getJobListing()
+      .then(res => {
+        if (res && res.data) {
+          this.setState({ jobListing: res.data });
+        }
+      })
+      .catch(err => {
+        if (err) {
+          this.setState({ jobListingErr: 'Something went wrong...' });
+        }
+      });
+  }
+
+  getAreaOfInterest() {
+    CareerService.getAreaOfInterest()
+      .then(res => {
+        if (res && res.data) {
+          this.setState({ areaOfInterest: res.data.data });
+        }
+      })
+      .catch(err => {
+        if (err) {
+          this.setState({ areaOfInterestErr: 'Something went wrong...' });
+        }
+      });
+  }
+
+  getJobDetail(id) {
+    const params = {
+      job_id: id
+    };
+    CareerService.getJobDetail(params)
+      .then(res => {
+        if (res && res.data) {
+          this.setState({ jobDetail: res.data });
+        }
+      })
+      .catch(err => {
+        if (err) {
+          this.setState({ jobDetail: 'Something went wrong...' });
+        }
       });
   }
 
   handleSubmit = e => {
     e.preventDefault();
-    const { areas, email } = this.state;
-    this.setState({ areas: [], submit: true });
-
-    // if (areas && email) {
-    //   const data = {
-    //   category: Number(enquiry),
-    //   name: name,
-    //   email,
-    //   contact_number: phone,
-    //   message: message,
-    //   };
-    //   this.setState({ errMsg: '', submit: true });
-    // } else if (areas.length === 0 && !email) {
-    //   this.setState({ errMsg: 'Fill all required fields...' });
-    // } else if (!email) {
-    //   this.setState({ errMsg: 'Email is required...' });
-    // }
+    const { email, selectedIds, filePath } = this.state;
+    if (email && selectedIds.length) {
+      const data = {
+        email,
+        area_of_interest: selectedIds,
+        attachment: filePath
+      };
+      this.setState({ loading: true });
+      this.submitInterestUpdates(data);
+    } else {
+      this.setState({ errMsg: 'Please select all mandatory fields' });
+    }
   };
+
+  submitInterestUpdates(data) {
+    CareerService.formSubmission(data)
+      .then(res => {
+        if (res && res.data) {
+          this.setState({
+            email: '',
+            submit: true,
+            selectedAreas: [],
+            selectedIds: [],
+            errMsg: '',
+            successMsg: res.data.message,
+            loading: false
+          });
+        }
+      })
+      .catch(err => {
+        if (err && err.response) {
+          this.setState({ serverErr: err.response.data, loading: false });
+        }
+      });
+  }
 
   submitUploadAttachment = files => {
     let formData = new FormData();
@@ -80,76 +168,96 @@ class Careers extends Component {
       let file = files[i];
       formData.append('files[' + i + ']', file);
     }
-    // ContactUsService.uploadAttachement(formData)
-    //   .then(res => {
-    //     if (res && res.data) {
-    //       this.setState({ filePath: res.data.path });
-    //     }
-    //   })
-    //   .catch(err => {
-    //     console.log(err.response);
-    //   });
+    ContactUsService.uploadAttachement(formData)
+      .then(res => {
+        if (res && res.data) {
+          this.setState({ filePath: res.data.path });
+        }
+      })
+      .catch(err => {
+        console.log(err.response);
+      });
   };
 
   handleEmail = email => {
-    this.setState({ email, errMsg: '' });
+    this.setState({ email, errMsg: '', successMsg: '', serverErr: [] });
   };
 
   handleFiles = files => {
-    this.submitUploadAttachment(files);
+    if (files.length) {
+      this.submitUploadAttachment(files);
+    }
   };
 
   onClickSubmit = () => {
     this.setState({ submit: false });
     if (!this.state.multiple) {
-      this.setState({ values: '' });
+      this.setState({ selectedAreas: [] });
     }
   };
 
   onSelect = values => {
     if (values && typeof values === 'object') {
-      // let selectedId;
-      // options.filter(elem => {
-      //   if (elem.name === values) {
-      //     selectedId = Number(elem.id);
-      //   }
-      // });
-      this.setState({ areas: values });
+      let selectedIds = [];
+      this.state.areaOfInterest.filter(elem => {
+        values.map(e => {
+          if (elem.name === e) {
+            selectedIds.push(Number(elem.id));
+          }
+        });
+      });
+      this.setState({ selectedAreas: values, selectedIds });
     }
   };
 
   render() {
     const {
-      options,
-      areas,
+      staticContent,
+      staticContentErr,
+      testimonial,
+      testimonialErr,
+      jobListing,
+      jobListingErr,
+      selectedAreas,
+      areaOfInterest,
+      areaOfInterestErr,
       email,
-      files,
+      successMsg,
+      serverErr,
+      loading,
       maxFileLimitMsg,
       errMsg,
       submit
     } = this.state;
-
     return (
       <div>
-        <OurTeam />
-        <Mission />
-        <CoreValues />
-        <Opening />
+        <OurTeam banner={staticContent.banner} />
+        <Mission mission={staticContent.section_one} />
+        <CoreValues coreValues={staticContent.section_two} />
+        <Opening jobListing={jobListing} jobListingErr={jobListingErr} />
         <StayUpdated
-          options={options}
-          areas={areas}
+          stayUpdated={staticContent.section_three}
+          staticContentErr={staticContentErr}
+          options={areaOfInterest}
+          areaOfInterestErr={areaOfInterestErr}
+          selectedAreas={selectedAreas}
           email={email}
-          files={files}
           maxFileLimitMsg={maxFileLimitMsg}
           errMsg={errMsg}
           submit={submit}
+          successMsg={successMsg}
+          serverErr={serverErr}
+          loading={loading}
           handleEmail={this.handleEmail}
           handleFiles={this.handleFiles}
           handleSubmit={this.handleSubmit}
           onClickSubmit={this.onClickSubmit}
           onSelect={this.onSelect}
         />
-        <Testimonials />
+        <Testimonials
+          testimonial={testimonial}
+          testimonialErr={testimonialErr}
+        />
       </div>
     );
   }
