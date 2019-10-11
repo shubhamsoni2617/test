@@ -99,20 +99,27 @@ const Header = ({ menuActive, pathName }) => {
               refValue = node;
             }}
           >
-            <a
-              className="responsive-nav-close"
-              onClick={() => {
-                handleNavigationClose();
-              }}
-            ></a>
-            <ul className="user-details">
+            <div className="nav-close-topbar">
+              <div className="site-logo">
+                <Link to="/">
+                  <img src={logo} className="img-fluid" alt="Logo" />
+                </Link>
+              </div>
+              <a
+                className="responsive-nav-close"
+                onClick={() => {
+                  handleNavigationClose();
+                }}
+              ></a>
+            </div>
+            {/* <ul className="user-details">
               <li className="user-icon">
                 <Link to="/">
                   <span></span>
                 </Link>
                 <span>Login/ Register</span>
               </li>
-            </ul>
+            </ul> */}
             <ul>
               <li className="has-submenu">
                 <a
@@ -130,9 +137,9 @@ const Header = ({ menuActive, pathName }) => {
                       submenuClass=""
                       link=""
                       closeSubmenu={handleNavigationClose}
-                      resetFilters={() => {}}
-                      clearFilters={() => {}}
-                      applyFilters={() => {}}
+                      resetFilters={() => { }}
+                      clearFilters={() => { }}
+                      applyFilters={() => { }}
                     />
                   </li>
                   <li className="has-submenu">
@@ -143,9 +150,9 @@ const Header = ({ menuActive, pathName }) => {
                       submenuClass=""
                       link=""
                       closeSubmenu={handleNavigationClose}
-                      resetFilters={() => {}}
-                      clearFilters={() => {}}
-                      applyFilters={() => {}}
+                      resetFilters={() => { }}
+                      clearFilters={() => { }}
+                      applyFilters={() => { }}
                     />
                   </li>
                   <li className="has-submenu">
@@ -156,9 +163,9 @@ const Header = ({ menuActive, pathName }) => {
                       submenuClass=""
                       link=""
                       closeSubmenu={handleNavigationClose}
-                      resetFilters={() => {}}
-                      clearFilters={() => {}}
-                      applyFilters={() => {}}
+                      resetFilters={() => { }}
+                      clearFilters={() => { }}
+                      applyFilters={() => { }}
                     />
                   </li>
                 </ul>

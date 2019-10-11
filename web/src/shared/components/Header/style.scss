@@ -182,6 +182,9 @@
                             width: 100% !important;
                             transition: 0.3s background-color;
                             margin-bottom: 10px;
+                            &:last-child{
+                                margin-bottom: 0px;
+                            }
                             a{
                                 color: #343434;
                                 padding: 10px !important;
@@ -254,3 +257,15 @@
   border-bottom: 2px solid white;
 }
 
+.submenu.active{
+    .has-submenu{
+        button{
+            &:after{
+                content: none;
+            }
+        }
+    }
+}
+.submenu-holder{
+    display: none !important;
+}
