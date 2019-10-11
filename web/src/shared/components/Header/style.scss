@@ -252,20 +252,19 @@
         top: 40px;
         bottom: auto;
     }
-}
-.active-link{
-  border-bottom: 2px solid white;
-}
-
-.submenu.active{
-    .has-submenu{
-        button{
-            &:after{
-                content: none;
+    .submenu-holder{
+        display: none;
+    }
+    .submenu.active{
+        .has-submenu{
+            button{
+                &:after{
+                    content: none;
+                }
             }
         }
     }
-}
-.submenu-holder{
-    display: none !important;
+    .active-link{
+    border-bottom: 2px solid white;
+    }
 }
