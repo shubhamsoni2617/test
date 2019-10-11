@@ -490,8 +490,9 @@
           }
         .buy-tickets-btn {
             @media(max-width: 991px){
-                // flex: 0 0 50%;
-                // width: 50%;
+                flex: 0 0 calc(50% - 10px);
+                width: calc(50% - 10px);
+                margin-right: 10px;;
             }
             @media(max-width: 767px){
                 flex: 0 0 100%;
@@ -605,6 +606,9 @@
       padding: 25px 29px 45px;
       @media(max-width:980px){
           padding: 0px 0px 0px;
+      }
+      @media(max-width: 768px){
+          padding: 0px 0px 10px;
       }
       & > .sidebar-accordion{
           & > .accordion > .accordion__item > .accordion__panel{

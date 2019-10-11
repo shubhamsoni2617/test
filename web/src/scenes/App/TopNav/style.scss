@@ -172,6 +172,25 @@ a{
     }
     .filters-panel{
       padding: 10px 15px;
+      button.btn.buy-btn.cal-search {
+        @media(max-width: 768px){
+           background-color: #0098FF;
+          color: #fff;
+          text-align: center;
+          opacity: 1;
+          border-radius: 0px;
+          border: 1px solid #0098FF;
+          &:hover{
+            background-color: #fff;
+            color: #343434;
+          }
+        }
+        &:after{
+          @media(max-width: 768px){
+            content: none;
+          }
+        }
+      }
       .date-input-to,
       .date-input-from{
         display: flex;
@@ -246,6 +265,22 @@ a{
     span{
       color: #343434;
 			font-size: 16px;
+    }
+  }
+  .stay-connect{
+    .input-group{
+      padding: 0px 15px 10px;
+      border-radius: 0px;
+      .form-control{
+        line-height: normal;
+        height: 40px;
+        border-radius: 0px;
+      }
+      .input-group-text{
+        background-color: #2698ff;
+        padding: 0px;
+        border-left: 0px;
+      }
     }
   }
 }
