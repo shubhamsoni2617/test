@@ -39,7 +39,7 @@ const Header = ({ menuActive, pathName }) => {
           <nav className="bottom-header">
             <div className="bottom-header-left">
               <ul>
-                <li>
+                <li className="has-submenu">
                   <a>Get Started</a>
                   <ul className="small-header-submenu">
                     <li>
