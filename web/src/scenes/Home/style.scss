@@ -4113,8 +4113,8 @@ section{
 //searched-wrapper
 .header-search input:focus~.searched-wrapper,
 .searched-wrapper.active {
-	height: auto;
-	top: 100%;
+	// height: auto;
+	// top: 100%;
 	@media (max-width: 767px) {
 		position: fixed;
 		top: 0;
@@ -4143,8 +4143,10 @@ section{
 	right: auto;
 	background-color: #fff;
 	padding: 0px;
-	height: 0px;
-	top: 200%;
+	//height: 0px;
+	height: 100%;
+	//top: 200%;
+	top: 35px;
 	flex-wrap: wrap;
 	z-index: 3;
 	display: flex;
@@ -4157,8 +4159,8 @@ section{
 	-webkit-transition: 0.5s top;
 	-moz-transition: 0.5s top;
 	-o-transition: 0.5s top;
-
 	box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
+	min-height: 80px;
 	.header-search-fixed {
 		display: none;
 		@media (max-width: 767px) {
