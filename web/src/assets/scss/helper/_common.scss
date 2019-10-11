@@ -1036,12 +1036,14 @@ button,
 			display: flex;
 			flex-wrap: wrap;
 			margin: 0px;
-			width: calc(100% - 40px);
-			border: 1px solid #efefef;
+			width: calc(100% - 40px);			
 			.DayPicker-Caption {
 				color: #343434;
 				font-size: 12px;
 				padding: 10px 10px 0px;
+				@media(max-width: 767px){
+					padding: 0px 10px 0px;
+				}
 			}
 		}
 	}
