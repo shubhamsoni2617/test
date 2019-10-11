@@ -74,17 +74,17 @@ function DateRangeFilter(props) {
     props.handleFilters(
       Utilities.mobilecheck()
         ? {
-            localfilteredDateRange: {
-              from: moment(fromDate).format('YYYY-MM-DD'),
-              to: moment(toDate).format('YYYY-MM-DD')
-            }
+          localfilteredDateRange: {
+            from: moment(fromDate).format('YYYY-MM-DD'),
+            to: moment(toDate).format('YYYY-MM-DD')
           }
+        }
         : {
-            filteredDateRange: {
-              from: moment(fromDate).format('YYYY-MM-DD'),
-              to: moment(toDate).format('YYYY-MM-DD')
-            }
+          filteredDateRange: {
+            from: moment(fromDate).format('YYYY-MM-DD'),
+            to: moment(toDate).format('YYYY-MM-DD')
           }
+        }
     );
   };
 
@@ -93,7 +93,7 @@ function DateRangeFilter(props) {
   return (
     <div className="filter-grid date-range">
       <div className="filter-grid-heading">
-        <h3>Date</h3>
+        <h3>Selected Date range</h3>
         <ul>
           <li className="active clear">
             <a
@@ -179,7 +179,7 @@ function DateRangeFilter(props) {
         )}
         {!props.autoSubmit && (
           <button
-            className="btn buy-btn"
+            className="btn buy-btn cal-search"
             onClick={e => {
               e.preventDefault();
               filterByDateRange(from, to);
