@@ -93,9 +93,57 @@
                       }
                     }
                 }
+                
             }
+
         }
     }
+    .load-more-btn {
+		border: 1px solid #dedede;
+		border-radius: 20px;
+		padding: 5px 18px;
+		vertical-align: middle;
+		display: inline-block;
+		line-height: normal;
+		text-decoration: none;
+		background-color: #ffffff;
+        transition: 0.9s all;
+        -webkit-transition: 0.9s all;
+        -moz-transition: 0.9s all;
+        -o-transition: 0.9s all;
+		&:hover {
+            background-color: #FFF;
+            border: 1px solid #0098ff;
+            color: #0098ff;
+            transition: 0.9s all;
+            -webkit-transition: 0.9s all;
+            -moz-transition: 0.9s all;
+            -o-transition: 0.9s all;
+            text-decoration: none;
+			span {
+				color: #0098ff;
+			}
+		}
+		span {
+			color: #949494;
+			font-family: 'Montserrat', sans-serif;
+			font-size: 14px;
+			line-height: 18px;
+            transition: 0.9s all;
+            -webkit-transition: 0.9s all;
+            -moz-transition: 0.9s all;
+            -o-transition: 0.9s all;
+		}
+		img {
+			padding-left: 10px;
+			padding-bottom: 4px;
+            transition: 0.9s filter;
+            -webkit-transition: 0.9s filter;
+            -moz-transition: 0.9s filter;
+            -o-transition: 0.9s filter;
+		}
+    }
+
     .fixed-buttons-events{
         display: none;
     }

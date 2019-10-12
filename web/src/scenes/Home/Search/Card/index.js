@@ -27,7 +27,11 @@ const Card = props => {
             {cardData.status && <span>{cardData.status}</span>}
             {cardData.price && <p>{cardData.price}</p>}
           </div>
-          <button type="button">Buy Tickets</button>
+          {cardData.type === 'event' || cardData.type === 'attraction' ? (
+            <button type="button">Buy Tickets</button>
+          ) : (
+            <button type="button">Read More</button>
+          )}
         </div>
       </div>
     </div>

@@ -5,7 +5,10 @@ import Card from './Card';
 import './style.scss';
 import SearchService from '../../../shared/services/SearchService';
 import Constants from '../../../shared/constants';
+import ShimmerEffect from '../../../shared/components/ShimmerEffect';
+import DownArrowBlue from '../../../assets/images/down-arrow-blue.svg';
 const Search = props => {
+  let totalResults = 4;
   const data = [
     {
       type: 'promotion',
@@ -69,24 +72,27 @@ const Search = props => {
   ];
 
   const [searchCategories, setSearchCategories] = useState([
-    { id: '1', name: 'All', count: '' },
-    { id: '30', name: 'Events', count: '' },
-    { id: '31', name: 'Attractions', count: '' },
-    { id: '32', name: 'Promotions', count: '' },
-    { id: '33', name: 'Explore', count: '' },
-    { id: '35', name: 'Faq', count: '' }
+    { id: '1', name: 'All', count: '1' },
+    { id: '2', name: 'Events', count: '2' },
+    { id: '3', name: 'Attractions', count: '3' },
+    { id: '4', name: 'Promotions', count: '4' },
+    { id: '5', name: 'Explore', count: '5' },
+    { id: '6', name: 'Faq', count: '6' }
   ]);
 
-  const [allSearchResults, setAllSearchResults] = useState(null);
+  const [defaultCategoryId, setDefaultCategoryId] = useState('1');
+  const [allSearchResults, setAllSearchResults] = useState([]);
+  const [loadSearchResults, setLoadSearchResults] = useState(false);
 
+  const [loadMore, setLoadMore] = useState(null);
   useEffect(() => {
-    fetchAllSearchResultsService();
-  }, []);
+    fetchSearchResultsService();
+  }, [defaultCategoryId, loadMore]);
 
-  const fetchAllSearchResultsService = () => {
+  const fetchSearchResultsService = () => {
     const params = {
       client: Constants.CLIENT,
-      limit: 5,
+      limit: 6,
       search: props.location.search.split('=')[1]
     };
     // SearchService.getAllSearchResults(params)
@@ -96,13 +102,83 @@ const Search = props => {
     //   .catch(err => {
     //     console.log(err);
     //   });
-    setAllSearchResults(data);
-  };
+    let allSearchResultsLength = 0;
+    if (allSearchResults) {
+      console.log(allSearchResults);
+      allSearchResultsLength = allSearchResults.length;
+    }
+    if (!loadMore) {
+      setAllSearchResults([]);
+    } else {
+      setLoadSearchResults(true);
+    }
 
-  const [defaultCategoryId, setDefaultCategoryId] = useState('1');
+    switch (defaultCategoryId) {
+      case '1':
+        setTimeout(() => {
+          if (loadMore) {
+            setAllSearchResults([...allSearchResults, ...data.slice(2, 4)]);
+            setLoadSearchResults(false);
+          } else {
+            setAllSearchResults([...data.slice(0, 2)]);
+          }
+        }, 500);
+        break;
+
+      case '2':
+        setTimeout(() => {
+          setAllSearchResults(data);
+        }, 500);
+        break;
+      case '3':
+        setTimeout(() => {
+          setAllSearchResults(data);
+        }, 500);
+        break;
+
+      case '4':
+        setTimeout(() => {
+          setAllSearchResults(data);
+        }, 500);
+        break;
+      case '5':
+        setTimeout(() => {
+          setAllSearchResults(data);
+        }, 500);
+        break;
+      case '6':
+        setTimeout(() => {
+          setAllSearchResults(data);
+        }, 500);
+        break;
+      default:
+        setTimeout(() => {
+          setAllSearchResults(data);
+        }, 500);
+    }
+  };
 
   const handleActiveCategory = id => {
     setDefaultCategoryId(id);
+  };
+
+  const searchResultHandler = searchResults => {
+    return searchResults.length ? (
+      searchResults.map(cardData => {
+        return (
+          <div key={cardData.id}>
+            <Card cardData={cardData} />
+          </div>
+        );
+      })
+    ) : (
+      <ShimmerEffect
+        height={10}
+        count={4}
+        type="LIST"
+        propCls="shm_col-xs-1 col-md-12"
+      />
+    );
   };
   return (
     <>
@@ -117,10 +193,29 @@ const Search = props => {
       <div className="wrapper-events-listing">
         <div className="events-listing">
           <div className="events-section list-view">
-            <Card cardData={data[0]} />
-            <Card cardData={data[1]} />
-            <Card cardData={data[2]} />
-            <Card cardData={data[3]} />
+            {searchResultHandler(allSearchResults)}
+            {loadSearchResults && (
+              <ShimmerEffect
+                height={10}
+                count={4}
+                type="LIST"
+                propCls="shm_col-xs-1 col-md-12"
+              />
+            )}
+          </div>
+
+          <div className="promotion-load-more">
+            <button
+              onClick={e => {
+                e.preventDefault();
+                setLoadMore(true);
+              }}
+              className="btn-link load-more-btn"
+              target=""
+            >
+              <span>Load More (2)</span>
+              <img src={DownArrowBlue} alt="down arrow blue" />
+            </button>
           </div>
         </div>
       </div>
@@ -129,18 +224,3 @@ const Search = props => {
 };
 
 export default Search;
-
-let x = {
-  alias: 'Friends of SCO Membe',
-  event_date: 'Mon, 01 Jul - Thu, 01 Aug 2019',
-  event_status: 'Expiring Soon',
-  event_status_background_color: null,
-  event_status_text_color: null,
-  id: '76',
-  price: 'S$260 - S$357',
-  primary_genre: 'Comedy',
-  thumb_image:
-    'http://192.168.10.195:8081/sistic/docroot/sites/default/files/2019-08/h5.png',
-  title: 'Celebration In Dance 2019 Presented by Singapore Dance Theatre',
-  venue_name: 'South Park'
-};
