@@ -1,7 +1,7 @@
-import React from "react";
-import banner from "../../../assets/images/faq-banner.png";
-import AutoSuggest from "./AutoSuggest";
-import "./style.scss";
+import React from 'react';
+import banner from '../../../assets/images/faq-banner.png';
+import AutoSuggest from './AutoSuggest';
+import './style.scss';
 
 const FaqSearch = props => {
   return (
@@ -16,6 +16,7 @@ const FaqSearch = props => {
               categories={props.categories}
               onQuestionIdChange={props.onQuestionIdChange}
               setFilteredSuggestions={props.setFilteredSuggestions}
+              toggleContentHandler={props.toggleContentHandler}
             />
           </div>
         </div>

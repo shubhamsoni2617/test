@@ -1,0 +1,239 @@
+.agents-wrapper{
+    .banner-wrapper{
+        margin-bottom: 33px;
+        z-index: 3;
+        @media(max-width: 991px){
+            margin-bottom: 70px;
+            margin-top: -60px;
+        }
+        @media(max-width: 768px){
+            margin-bottom: 30px;
+        }
+        @media(max-width: 767px){
+            margin-bottom: 30px;
+            margin-top: -116px;
+        }
+        img{
+            min-height: 250px;
+            @media(max-width: 768px){
+                min-height: 150px;
+            }
+            @media(max-width: 767px){
+                min-height: 200px;
+            }
+        }
+        .banner-overlay{
+            margin-top: 53px;
+            @media(max-width: 768px){
+                margin-top: 0px;
+                position: relative;
+                top: auto;
+                left: 0px;
+                transform: none;
+                width: 100%;
+                bottom: 0px;
+            }
+            h1{
+                font-weight: 600;
+                @media(max-width: 991px){
+                    position: absolute;
+                    left: 50%;
+                    transform: translateX(-50%);
+                    margin-top: -50px;
+                }
+                @media(max-width: 768px){
+                    margin-top: -50px;
+                    padding-bottom: 15px;
+                    position: absolute;
+                    left: 50%;
+                    transform: translateX(-50%);
+                    width: 100%;
+                }
+                @media(max-width: 600px){
+                    margin-top: -40px;
+                }
+            }
+        }
+    }
+}
+.find-agent-wrapper{
+    display: flex;
+    padding-bottom: 40px;
+    .agent-list{
+        margin: 0;
+        .find-map-mob{
+            background-color: #fafafa;
+            padding: 20px;
+            color: #343434;
+            font-size: 15px;
+            display: block;
+            font-weight: 500;
+            width: calc(100% + 90px);
+            margin-left: -45px;
+            @media (max-width: 767px) {
+                width: calc(100% + 50px);
+                margin-left: -25px;
+            }
+            img{
+                float: right;
+                margin: 4px 0 0 0;
+                transform: rotate(270deg);
+            }
+            &.active{
+                img{
+                    transform: rotate(0deg);
+                }
+            }
+        }
+        .agent-map-area {
+            width: calc(100% - 433px);
+            margin-top: 34px;
+            @media(max-width: 960px){
+                flex: 0 0 100%;
+                width: 100%;
+            }
+            @media(max-width: 768px){
+                margin-left: -30px;
+            }
+            @media(max-width: 767px){
+                margin-left: -10px;
+            }
+            .map-label-mobileonly{
+                display: none;
+                @media(max-width: 960px){
+                    display: block;
+                    padding: 20px;
+                    background-color: #FAFAFA;
+                    color: #343434;
+                    font-size: 15px;
+                    font-weight: 500;
+                    line-height: 20px; 
+                    position: relative;
+                    width: calc(100% + 60px);
+                    left: -30px;
+                }
+                @media(max-width: 768px){                    
+                    left: 0px;
+                }
+                @media(max-width: 767px){
+                    width: calc(100% + 40px);
+                    left: -10px;
+                }
+                &:after{
+                    @media(max-width: 960px){
+                        background-image: url('../../../assets/images/down-arrow-grey.svg');
+                        position: absolute;
+                        content: "";
+                        right: 20px;
+                        width: 20px;
+                        height: 20px;
+                        background-repeat: no-repeat;
+                        background-position: 98%;
+                        transform: rotate(-90deg);
+                        transition: 0.5s transform, 0.5s right;
+                    }
+                }
+                &.active{
+                    &:after{
+                        transform: rotate(00deg);
+                        right: 25px;
+                    }
+                }
+            }
+        }
+    }
+    .agent-sidebar {
+        flex: 0 0 433px;
+        width: 433px;
+        padding-right: 50px;
+        @media(max-width: 1024px){
+            flex: 0 0 433px;
+            width: 433px;
+            padding-right: 50px;
+        }
+        @media(max-width: 960px){
+            flex: 0 0 100%;
+            width: 100%;
+            padding-right: 0px;
+        }
+    }
+    .agent-map{
+        width:100px;
+    }
+}
+
+
+
+  .agent-fixed{
+    .search-agent{
+      margin-top: 105px;
+      @media(max-width: 768px){
+          margin-top: 0px;
+      }
+    }
+
+    .search-agent-header{
+      position: fixed;
+      width: 433px;
+      background: #fff;
+      z-index: 4;
+      left: 0;
+      padding: 30px 10px 0 40px;
+      top: 0;
+      @media(max-width: 768px){
+        position: relative;
+        width: 100%;
+        padding: 0px;
+        }
+    }
+    .agent-map-area{
+      position: fixed;
+      right: 0;
+      top: 30px;
+      padding-right: 40px;
+      padding-left: 40px;
+      @media(max-width: 768px){
+        position: relative;
+        padding-right: 0px;
+        top: 0px;
+        margin-top: 10px;
+      }
+    }
+    .agent-sidebar{
+      margin-top: 0px;
+      .search-agent-header{
+        position: fixed;
+        @media(max-width: 768px){
+            position: relative;
+            width: 100%;
+            padding: 0px;
+        }
+      }
+    }
+  }
+  .agent-absolute{
+    .agent-map-area{
+      position: relative;
+      .gmap{
+        position: absolute;
+        bottom: 40px;
+        width: 100%;
+        left: 0px;
+        right: 0px;
+      }
+    }
+  }
+
+  .venue{
+    &.agent-fixed{
+      .search-agent{
+        margin-top: 145px;
+      }
+    }
+  }
+
+.agent-map-area > div {
+    position: relative;
+    width: 100%;
+    height: 100%;
+  }

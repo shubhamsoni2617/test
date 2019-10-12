@@ -1,6 +1,5 @@
 import Home from '../Home';
 import Events from '../Events';
-// import EventsDetail from "../Events/EventsDetail";
 import EventsDetail from '../EventsDetail';
 import HomeService from '../../shared/services/HomeService';
 import Promotions from '../Promotions';
@@ -15,6 +14,8 @@ import ContactUs from '../ContactUs';
 import Faq from '../Faq';
 import Careers from '../Careers';
 import JobDescription from '../Careers/JobDescription';
+import AboutUs from '../AboutUs';
+import ApiPartner from '../ApiPartner';
 
 const routes = [
   {
@@ -90,11 +91,6 @@ const routes = [
     exact: true
   },
   {
-    path: '/faq/:id/:questionId',
-    component: Faq,
-    exact: true
-  },
-  {
     path: '/faq/:id',
     component: Faq,
     exact: true
@@ -105,8 +101,18 @@ const routes = [
     exact: true
   },
   {
-    path: '/careers/jobdescription',
+    path: '/careers/jobdescription/:jobId',
     component: JobDescription,
+    exact: true
+  },
+  {
+    path: '/about-us',
+    component: AboutUs,
+    exact: true
+  },
+  {
+    path: '/apipartners',
+    component: ApiPartner,
     exact: true
   },
   {

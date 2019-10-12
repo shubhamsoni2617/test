@@ -19,6 +19,7 @@
         margin: 0 5px 10px;
         box-shadow: none;
         border: 1px solid rgba(234, 234, 234, 0.8);
+        margin-left: 0;
     }
     @media only screen and (min-width: 768px) and (max-width: 1024px) {
         width: 100%;
@@ -96,20 +97,7 @@
                         min-height: 20px;
                     }
                 }
-                .react-modal{
-                    .modal-header{
-                        padding: 15px;
-                    }
-                    .react-modal-body{
-                        max-height: 100%;
-                        .modal-content .modal-body{
-                            padding: 15px 15px 20px;
-                            .notice{
-                                padding: 0 20px;
-                            }
-                        }
-                    }
-                }
+                
             }
             .attraction-show-more {
                 color: #2698ff;
@@ -269,6 +257,7 @@
             }
             @media (max-width: 767px) {
                 font-size: 14px;
+                max-height: unset !important;
             }
           }
 
@@ -288,17 +277,24 @@
             margin-bottom: 10px;
             padding: 0;
             min-height: 34px;
-            @media (max-width: 767px) {
+            @media (max-width: 768px) {
                 font-size: 12px;
+                margin-bottom: 0;
             }
         }
         .price-event{
             display: flex;
             justify-content: space-between;
             align-items: center;
+            flex-wrap: wrap;
+            @media(max-width: 1024px){
+                text-align: left;
+                display: block;
+            }
             @media (max-width: 767px) {
                 flex-direction: column;
                 min-height: 40px;
+                align-items: flex-start;
             }
             @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
                 flex-direction: column;
@@ -308,12 +304,20 @@
                 flex-direction: column;
             }
             .price{
+                @media (max-width: 768px) {
+                    height: 25px;
+                }
                 span{
                     font-size: 12px;
                     color: #EB9C00;
                     font-style: italic;
                     height: 16px;
                     display: block;
+                    strong{
+                        font-weight: 400;
+                        font-size: 12px;
+                        color: #EB9C00;
+                    }
                 }
                 p{
                     margin: 3px 0 0 0;
@@ -340,6 +344,7 @@
                 -webkit-transition: 0.8s all;
                 -moz-transition: 0.8s all;
                 -o-transition: 0.8s all;
+                margin-top: 5px;
                 &::after{
                     display: none;
                 }
@@ -352,7 +357,30 @@
                     -moz-transition: 0.8s all;
                     -o-transition: 0.8s all;
                 }
-
+                @media (max-width: 768px) {
+                    margin-top: 9px;
+                    width: 100%;
+                }
+            }
+        }
+    }
+}
+.react-modal{
+    .modal-header{
+        padding: 10px 15px;
+        justify-content: center;
+    }
+    .react-modal-body{
+        max-height: 100%;
+        border-radius: 0;
+        @media(max-width: 767px){
+            max-height: calc(100% - 100px);
+        }
+        .modal-content .modal-body{
+            padding: 15px 15px 20px;
+            border-radius: 0;
+            .notice{
+                padding: 0 10px;
             }
         }
     }
@@ -380,6 +408,9 @@
             width: 100%;
             display: flex;
             padding: 15px 20px 8px 30px;
+            @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
+                padding: 5px 5px 8px 20px;
+            }
             .event-detail-prime{
                 width: 100%;
                 .item-title{
@@ -400,6 +431,9 @@
                 justify-content: end;
                 padding-top: 12px;
                 align-items: flex-end;
+                @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
+                    padding-top: 4px; 
+                }
                 .buy-btn{
                     min-width: 121px;
                 }
@@ -407,6 +441,10 @@
                     text-align: right;
                     padding-bottom: 15px;
                     padding-top: 4px;
+                    @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
+                        padding-bottom: 0;
+                        height: auto;
+                    }
                     span{
                         line-height: 14px;
                     }

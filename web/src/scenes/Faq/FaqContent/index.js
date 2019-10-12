@@ -1,50 +1,34 @@
-import React, { Fragment } from "react";
-import AccordionSection from "../../../shared/components/AccordionSection";
+import React from 'react';
+import AccordianSectionQA from './AccordianSectionQA';
+import { Accordion } from 'react-accessible-accordion';
+import './style.scss';
 
-class Content extends React.Component {
-  Scrolldown() {
-    let hash = this.props.match.params.questionId;
-    if (hash && hash !== "0") {
-      let node = this.refs[hash];
-      let nodePosition = node.offsetTop - 100;
-      if (nodePosition) {
-        window.scroll({
-          top: nodePosition,
-          left: 0,
-          behavior: "smooth"
-        });
-      }
-    }
+const Content = props => {
+  let filteredData = props.data.filter(content =>
+    content.category_id.includes(props.categoryId)
+  );
+  if (!filteredData.length) {
+    return <span className="no-faq-found">No related FAQ's found</span>;
   }
-
-  componentDidMount() {
-    window.onload = this.Scrolldown();
-  }
-
-  render() {
-    let filteredData= this.props.data
-    .filter(content =>
-      content.category_id.includes(this.props.categoryId)
-    )
-      if(!filteredData.length){
-      return <span className="no-faq-found">No data found</span>
-    }
-    return (
-      <div>
-        {
-          filteredData.map((content, i) => {
-            return (
-              <div ref={content.id} key={content.question + i}>
-                <AccordionSection
-                  title={content.question}
-                  desc={content.answer}
-                />
-              </div>
-            );
-          })}
-      </div>
-    );
-  }
-}
+  return (
+    <div className="sidebar-accordion">
+      <Accordion allowZeroExpanded preExpanded={[props.optionalSearchId]}>
+        {filteredData.map((content, i) => {
+          return (
+            <div key={content.question + i}>
+              <AccordianSectionQA
+                title={content.question}
+                desc={content.answer}
+                uuid={content.id}
+                optionalSearchId={props.optionalSearchId}
+                categoryLinkHeight={props.categoryLinkHeight}
+              />
+            </div>
+          );
+        })}
+      </Accordion>
+    </div>
+  );
+};
 
 export default Content;

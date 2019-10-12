@@ -18,7 +18,11 @@ export default class Card extends Component {
   }
 
   showPopUp = (status, content, cardTitle) => {
-    this.setState({ showPopUp: status, popUpContent: content, popUpTitle: cardTitle });
+    this.setState({
+      showPopUp: status,
+      popUpContent: content,
+      popUpTitle: cardTitle
+    });
   };
 
   render() {
@@ -43,7 +47,11 @@ export default class Card extends Component {
               {category}
             </span>
             <div className="item-title">
-              <EventHeading title={cardData.title} lines={2} height={20} />
+              <EventHeading
+                title={cardData.title}
+                lines={2}
+                height={Utilities.mobileAndTabletcheck() ? 16 : 20}
+              />
             </div>
             {cardData.synopsis && (
               <React.Fragment>
@@ -55,7 +63,9 @@ export default class Card extends Component {
                 {cardData.synopsis.length > 55 && (
                   <span
                     className="attraction-show-more"
-                    onClick={() => this.showPopUp(true, cardData.synopsis, cardData.name)}
+                    onClick={() =>
+                      this.showPopUp(true, cardData.synopsis, cardData.name)
+                    }
                   >
                     Show More
                   </span>
@@ -77,13 +87,15 @@ export default class Card extends Component {
           </div>
           <div className="price-event">
             <div className="price">
-              <EventStatus
-                status={cardData.event_status}
-                color={cardData.event_status_text_color}
-                background={cardData.event_status_background_color}
-                paddingLeft={'2px'}
-                paddingRight={'2px'}
-              />
+                <span>
+                    <EventStatus
+                        status={cardData.event_status}
+                        color={cardData.event_status_text_color}
+                        background={cardData.event_status_background_color}
+                        paddingLeft={'2px'}
+                        paddingRight={'2px'}
+                    />
+              </span>
               <p>{cardData.price ? cardData.price : ' '}</p>
             </div>
             <button

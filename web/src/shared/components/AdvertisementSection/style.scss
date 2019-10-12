@@ -1,0 +1,20 @@
+.advertisement-banner{
+    overflow: hidden;
+    height: 117px;
+    width: 100%;
+    padding: 0 28px;
+    margin-top: 20px;
+    margin-bottom: -20px;
+}
+.advertisement-block{
+    max-height: 191px;
+    overflow: hidden;
+    margin-bottom: 15px;
+    padding: 0 10px;
+    .image-conatiner{
+        img{
+            width: 100%;
+        }
+    }
+}
+

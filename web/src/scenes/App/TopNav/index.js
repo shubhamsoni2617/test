@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { CSSTransitionGroup } from 'react-transition-group';
-
+import moment from 'moment';
 import './style.scss';
 import MegaMenu from '../../../shared/components/MegaMenu';
 import DropDown from '../../../shared/components/DropDown';
@@ -14,6 +14,11 @@ import logo from '../../../assets/images/logo.png';
 import { ReactComponent as AppleLogo } from '../../../assets/images/apple.svg';
 import fb from '../../../assets/images/fb.svg';
 import insta from '../../../assets/images/insta-unfill.svg';
+import Calender from '../../../shared/components/Calender';
+import DateRangeFilter from '../../../shared/components/DateRangeFilter';
+import Submenu from '../../../shared/components/Submenu';
+import Header from '../../../shared/components/Header';
+
 const TopNav = props => {
   let refValue = useRef();
   const [showMegaMenu, setShowMegaMenu] = useState(false);
@@ -23,6 +28,9 @@ const TopNav = props => {
   const [byVenueEvent, setByVenueEvent] = useState([]);
   const [byGenreEvent, setByGenreEvent] = useState([]);
   const [showElementsInHeader, setShowElementsInHeader] = useState(4);
+  const [changeHeader, setChangeHeader] = useState(false);
+  const [headerClassScroll, setHeaderClassScroll] = useState(false);
+  const [stickyHeader, setStickyHeader] = useState(false);
 
   const miniCartData = [
     { id: '1', img: 'assets/images/explore.png' },
@@ -57,14 +65,39 @@ const TopNav = props => {
     const unlisten = props.history.listen(location => {
       processPath(location);
     });
+
+    window.addEventListener('scroll', handleScroll);
     return () => {
       unlisten();
+      window.removeEventListener('scroll', handleScroll);
     };
   }, []);
+
+  const handleScroll = () => {
+    if (props.history.location.pathname === '/') {
+      if (window.pageYOffset !== 0) {
+        setHeaderClassScroll(true);
+      }
+      if (window.pageYOffset === 0) {
+        setHeaderClassScroll(false);
+      }
+    }
+  };
 
   const processPath = location => {
     if (location.pathname) {
       let pathArr = location.pathname.split('/');
+      if (pathArr.length) {
+        if (
+          (pathArr[1] === 'events' && location.pathname.length > 8) ||
+          pathArr[1] === 'agents' ||
+          pathArr[1] === 'venues'
+        ) {
+          setStickyHeader(false);
+        } else {
+          setStickyHeader(true);
+        }
+      }
       if (
         pathArr.length &&
         (pathArr[1] === 'events' ||
@@ -73,8 +106,17 @@ const TopNav = props => {
       ) {
         setPathName(pathArr[1]);
         setMenuActive(true);
+      } else if (
+        pathArr[1] === 'contact-us' ||
+        pathArr[1] === 'about-us' ||
+        pathArr[1] === 'careers'
+      ) {
+        setChangeHeader(true);
+        setPathName(pathArr[1]);
+        setMenuActive(true);
       } else {
         setMenuActive(false);
+        setChangeHeader(false);
       }
       //For event header class
       if (location.pathname === '/') {
@@ -86,10 +128,12 @@ const TopNav = props => {
   };
   const handleNavigationOpen = () => {
     refValue.classList.add('active');
+    document.body.classList.add('body-overlay');
   };
 
   const handleNavigationClose = () => {
     refValue.classList.remove('active');
+    document.body.classList.remove('body-overlay');
   };
 
   const handleMouseStatus = status => {
@@ -103,8 +147,26 @@ const TopNav = props => {
     }
   };
 
-  return (
-    <header className={`header ${headerClass ? 'homepage' : ''}`}>
+  const handleFilters = data => {
+    setShowMegaMenu(false);
+    handleNavigationClose();
+    setTimeout(() => {
+      props.history.push(
+        `/events/search?s=${moment(data.from).format('YYYY-MM-DD')}--${moment(
+          data.to
+        ).format('YYYY-MM-DD')}`
+      );
+    }, 100);
+  };
+
+  return changeHeader ? (
+    <Header menuActive={menuActive} pathName={pathName} />
+  ) : (
+    <header
+      className={`header ${headerClass ? 'homepage' : ''} 
+      ${headerClassScroll ? `hompage-header-scroll` : ``}
+      ${stickyHeader ? `sticky-header` : ``}`}
+    >
       <div className="container-fluid">
         <div className="row">
           <div className="top-header">
@@ -212,59 +274,153 @@ const TopNav = props => {
               onClick={() => {
                 handleNavigationClose();
               }}
-            >
-              X
-            </a>
+            ></a>
             <ul className="user-details">
               <li className="user-icon">
                 <Link to="/">
                   <ManLogo className="img-fluid" />
                   <span></span>
                 </Link>
-                <span>Hello William</span>
+                <span>Login/ Register</span>
               </li>
-              <li>
+              <li className="ticket-withus">
                 <a>Ticket With Us</a>
               </li>
             </ul>
             <ul>
               <li className="has-submenu">
-                <Link to="/">Events</Link>
-                <ul className="submenu">
+                <a
+                  className={`${showMegaMenu ? 'active' : ''}`}
+                  onClick={() => handleMouseStatus(!showMegaMenu)}
+                >
+                  Events
+                </a>
+                <ul className={`submenu ${showMegaMenu ? 'active' : ''}`}>
                   <li className="has-submenu">
-                    <Link to="/">Geners</Link>
+                    <Submenu
+                      heading="Genre"
+                      buttonText="By Genre"
+                      data={byGenreEvent}
+                      submenuClass="genre submenu-wrap"
+                      link="/events/search?c="
+                      closeSubmenu={handleNavigationClose}
+                    />
                   </li>
                   <li className="has-submenu">
-                    <Link to="/">calender</Link>
+                    <Submenu
+                      heading="Calendar"
+                      buttonText="By Date"
+                      submenuClass="calendar submenu-wrap"
+                      closeSubmenu={handleNavigationClose}
+                    >
+                      <DateRangeFilter
+                        filteredDateRange={{ from: null, to: null }}
+                        handleFilters={handleFilters}
+                        autoSubmit={false}
+                      />
+                    </Submenu>
+                  </li>
+                  <li className="has-submenu">
+                    <Submenu
+                      heading="Venue"
+                      buttonText="By Venue"
+                      data={byVenueEvent}
+                      submenuClass="venue submenu-wrap"
+                      link="/events/search?v="
+                      closeSubmenu={handleNavigationClose}
+                    />
                   </li>
                 </ul>
               </li>
               <li>
-                <Link to="/">Attractions</Link>
+                <Link to="/attractions" onClick={() => handleNavigationClose()}>
+                  Attractions
+                </Link>
               </li>
               <li>
-                <Link to="/">Promotions</Link>
+                <Link to="/promotions" onClick={() => handleNavigationClose()}>
+                  Promotions
+                </Link>
               </li>
               <li>
                 <Link to="/">Explore</Link>
               </li>
             </ul>
             <ul>
-              <li>
-                <Link to="/">My Account</Link>
+              <li className="has-submenu">
+                <Submenu buttonText="My Account" backButtonRequired={false}>
+                  <ul className="submenu">
+                    <li className="has-submenu">
+                      <Link to="/">Subscription</Link>
+                    </li>
+                    <li className="has-submenu">
+                      <Link to="/">Booking History</Link>
+                    </li>
+                    <li className="has-submenu">
+                      <Link to="/">Logout</Link>
+                    </li>
+                  </ul>
+                </Submenu>
               </li>
-              <li>
-                <Link to="/">My cart</Link>
+              <li className="has-submenu mycart">
+                <Submenu
+                  heading="My cart"
+                  buttonText="My cart"
+                  data={byGenreEvent}
+                  submenuClass="submenu-wrap"
+                />
               </li>
             </ul>
             <ul>
               <li className="has-submenu">
-                <Link to="/">Our Company</Link>
+                {/* <Link to="/">Our Company</Link> */}
+                <Submenu buttonText="Our Company" backButtonRequired={false}>
+                  <ul className="submenu">
+                    <li className="has-submenu">
+                      <Link to="/">About Us</Link>
+                    </li>
+                    <li className="has-submenu">
+                      <Link to="/">Sell with Us</Link>
+                    </li>
+                    <li className="has-submenu">
+                      <Link to="/">Ticketing Technology</Link>
+                    </li>
+                    <li className="has-submenu">
+                      <Link to="/apipartners">Partner with Us</Link>
+                    </li>
+                    <li className="has-submenu">
+                      <Link to="/">Careers</Link>
+                    </li>
+                  </ul>
+                </Submenu>
               </li>
               <li className="has-submenu">
-                <Link to="/">Helpful Links</Link>
+                <Submenu buttonText="Helpful Links" backButtonRequired={false}>
+                  <ul className="submenu">
+                    <li className="has-submenu">
+                      <Link to="/where-to-buy-tickets">
+                        Where to Buy Tickets
+                      </Link>
+                    </li>
+                    <li className="has-submenu">
+                      <Link to="/agents">Locate an Agent</Link>
+                    </li>
+                    <li className="has-submenu">
+                      <Link to="/venues">Locate a Venue</Link>
+                    </li>
+                    <li className="has-submenu">
+                      <Link to="/">Blog</Link>
+                    </li>
+                    <li className="has-submenu">
+                      <Link to="/">Media</Link>
+                    </li>
+                  </ul>
+                </Submenu>
               </li>
-              <li className="has-submenu">
+              <li className="business">
+                <Link to="/contact-us">Contact Us</Link>
+              </li>
+              <li className="has-submenu business">
                 <Link to="/">For Business</Link>
               </li>
               <li className="has-submenu">

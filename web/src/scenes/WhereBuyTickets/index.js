@@ -7,13 +7,15 @@ import WhereBuyTicketsService from '../../shared/services/WhereBuyTicketsService
 import ApiPartnerService from '../../shared/services/ApiPartnersService';
 import './style.scss';
 import Content from './Content';
+import ShimmerEffect from '../../shared/components/ShimmerEffect';
 
 const WhereBuyTicket = () => {
   const [whereBuyTicketsDetails, setwhereBuyTicketsDetails] = useState(null);
   const [apiPartners, setapiPartners] = useState(null);
 
   useEffect(() => {
-    window.scrollTo(0, 0);
+    window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+
     fetchWhereBuyTickets();
     fetchApiPartners();
   }, []);
@@ -24,7 +26,9 @@ const WhereBuyTicket = () => {
     };
     WhereBuyTicketsService.getWhereBuyTickets(params)
       .then(res => {
-        setwhereBuyTicketsDetails(res.data.data);
+        setTimeout(() => {
+          setwhereBuyTicketsDetails(res.data.data);
+        }, 700);
       })
       .catch(err => {
         console.log(err);
@@ -55,7 +59,7 @@ const WhereBuyTicket = () => {
             <h1>Where to Buy Tickets</h1>
           </div>
         </div>
-        {whereBuyTicketsDetails && (
+        {whereBuyTicketsDetails ? (
           <Fragment>
             <IconsNavigate tabsArray={whereBuyTicketsDetails} />
             <Content
@@ -63,6 +67,13 @@ const WhereBuyTicket = () => {
               apiPartners={apiPartners}
             />
           </Fragment>
+        ) : (
+          <ShimmerEffect
+            propCls="shm_col-xs-6 col-md-12"
+            height={80}
+            count={3}
+            type="TILE"
+          />
         )}
       </section>
     </Fragment>
