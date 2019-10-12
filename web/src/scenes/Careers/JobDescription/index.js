@@ -1,23 +1,31 @@
 import React, { Component } from 'react';
 import Breadcrub from '../../App/Breadcrumb';
 import JobDesBanner from '../../../../src/assets/images/job-des.png';
-import Utilities from '../../../shared/utilities';
 import PersonalInfo from './PersonalInfo';
 import Description from './Description';
 import CareerService from '../../../shared/services/CareerService';
+import moment from 'moment';
 
 class JobDescription extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      jobId: Number(this.props.match.params.jobId),
       jobDetail: [],
       jobDetailErr: '',
       firstName: '',
       lastName: '',
       email: '',
       contact_number: '',
+      startDate: '',
       message: '',
-      files: {},
+      isFileMandatory: true,
+      filePath: [],
+      sendCopy: false,
+      loading: false,
+      submit: false,
+      successMsg: '',
+      serverErr: [],
       errMsg: ''
     };
     this.breadCrumbData = {
@@ -33,11 +41,13 @@ class JobDescription extends Component {
   }
 
   componentDidMount() {
-    const jobId = this.props.match.params.jobId;
-    const params = {
-      job_id: jobId
-    };
-    this.getParticularJobDetail(params);
+    const jobId = Number(this.props.match.params.jobId);
+    if (jobId) {
+      const params = {
+        job_id: jobId
+      };
+      this.getParticularJobDetail(params);
+    }
   }
 
   getParticularJobDetail(params) {
@@ -55,45 +65,116 @@ class JobDescription extends Component {
   }
 
   handleSubmit = e => {
-    console.log(this.state);
     e.preventDefault();
-    const { firstName, lastName, email, contact_number, message } = this.state;
-    if (firstName && lastName && email && contact_number && message) {
+    const {
+      jobId,
+      firstName,
+      lastName,
+      email,
+      contact_number,
+      startDate,
+      message,
+      filePath,
+      sendCopy
+    } = this.state;
+    if (
+      jobId &&
+      firstName &&
+      lastName &&
+      email &&
+      contact_number &&
+      message &&
+      filePath.length
+    ) {
       const data = {
-        firstName,
-        lastName,
+        job_id: jobId,
+        first_name: firstName,
+        last_name: lastName,
         email,
-        contact_number,
-        message
+        phone: contact_number,
+        start_date: startDate ? moment(startDate).format('YYYY-MM-DD') : '',
+        message,
+        attachment: filePath,
+        send_copy: sendCopy
       };
+      this.setState({ loading: true });
+      this.applyJobFormSubmission(data);
     } else {
       this.setState({ errMsg: 'Please select all mandatory field...' });
     }
   };
 
+  applyJobFormSubmission(data) {
+    CareerService.applyJobFormSubmission(data)
+      .then(res => {
+        if (res && res.data) {
+          this.setState({
+            loading: false,
+            submit: true,
+            successMsg: res.data.message,
+            firstName: '',
+            lastName: '',
+            email: '',
+            contact_number: '',
+            message: '',
+            startDate: '',
+            filePath: [],
+            sendCopy: false,
+            errMsg: '',
+            serverErr: []
+          });
+        }
+      })
+      .catch(err => {
+        if (err && err.response && err.response.data) {
+          this.setState({ serverErr: err.response.data, loading: false });
+        }
+      });
+  }
+
   handleChange = e => {
     const { name, value } = e.target;
-
     if (name === 'contact_number') {
       const allowNumbersOnly = /^[0-9\b]+$/;
       if (value === '' || allowNumbersOnly.test(value)) {
-        this.setState({ [name]: value });
+        this.setState({
+          [name]: value,
+          successMsg: '',
+          serverErr: [],
+          submit: false
+        });
       }
     } else {
       let val = value.trim();
       if (val.length > 0) {
-        this.setState({ [name]: value });
+        this.setState({
+          [name]: value,
+          successMsg: '',
+          serverErr: [],
+          submit: false
+        });
+      } else {
+        this.setState({
+          [name]: '',
+          successMsg: '',
+          serverErr: [],
+          submit: false
+        });
       }
     }
   };
 
-  handleFiles = files => {
-    const multiFiles = Utilities.maxFileSize(files);
-    if (multiFiles.length <= 3) {
-      this.setState({ files: multiFiles, errMsg: '' });
-    } else {
-      this.setState({ errMsg: multiFiles });
-    }
+  handleStartDate = startDate => {
+    this.setState({ startDate });
+  };
+
+  handleCopy = sendCopy => {
+    this.setState({ sendCopy });
+  };
+
+  handleFiles = filePath => {
+    console.log(filePath);
+    this.setState({ filePath, submit: false });
   };
 
   render() {
@@ -102,12 +183,20 @@ class JobDescription extends Component {
       lastName,
       email,
       contact_number,
+      startDate,
       message,
-      files,
+      isFileMandatory,
+      filePath,
+      sendCopy,
+      loading,
+      submit,
+      successMsg,
+      serverErr,
       errMsg,
       jobDetail,
       jobDetailErr
     } = this.state;
+    this.breadCrumbData.page = jobDetail && jobDetail.title;
     return (
       <div className="">
         <Breadcrub breadCrumbData={this.breadCrumbData} />
@@ -118,15 +207,23 @@ class JobDescription extends Component {
             </div>
             <div className="col-lg-5">
               <PersonalInfo
-                state={this.state}
                 firstName={firstName}
                 lastName={lastName}
                 email={email}
                 contact_number={contact_number}
+                startDate={startDate}
                 message={message}
-                files={files}
+                isFileMandatory={isFileMandatory}
+                filePath={filePath}
+                sendCopy={sendCopy}
+                loading={loading}
+                submit={submit}
+                successMsg={successMsg}
+                serverErr={serverErr}
                 errMsg={errMsg}
                 handleChange={this.handleChange}
+                handleStartDate={this.handleStartDate}
+                handleCopy={this.handleCopy}
                 handleFiles={this.handleFiles}
                 handleSubmit={this.handleSubmit}
               />

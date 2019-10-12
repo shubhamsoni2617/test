@@ -28,6 +28,10 @@ class CareerService {
   getParticularJobDetail(params) {
     return API.get('career/get-job', { params });
   }
+
+  applyJobFormSubmission(data) {
+    return API.post(`career/apply-job`, data);
+  }
 }
 
 export default new CareerService();

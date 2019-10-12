@@ -8,7 +8,6 @@ import StayUpdated from './StayUpdated';
 import Testimonials from './Testimonial';
 import CareerService from '../../shared/services/CareerService';
 import Constants from '../../shared/constants';
-import ContactUsService from '../../shared/services/ContactUsService';
 
 class Careers extends Component {
   constructor(props) {
@@ -162,31 +161,12 @@ class Careers extends Component {
       });
   }
 
-  submitUploadAttachment = files => {
-    let formData = new FormData();
-    for (let i = 0; i < files.length; i++) {
-      let file = files[i];
-      formData.append('files[' + i + ']', file);
-    }
-    ContactUsService.uploadAttachement(formData)
-      .then(res => {
-        if (res && res.data) {
-          this.setState({ filePath: res.data.path });
-        }
-      })
-      .catch(err => {
-        console.log(err.response);
-      });
-  };
-
   handleEmail = email => {
     this.setState({ email, errMsg: '', successMsg: '', serverErr: [] });
   };
 
-  handleFiles = files => {
-    if (files.length) {
-      this.submitUploadAttachment(files);
-    }
+  handleFiles = filePath => {
+    this.setState({ filePath });
   };
 
   onClickSubmit = () => {

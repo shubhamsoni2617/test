@@ -37,7 +37,7 @@ const Description = ({ jobDetail, jobDetailErr }) => {
           }}
         ></p>
       </div>
-      <div>
+      {/* <div>
         <div className="job-description">
           <h4>Job Description</h4>
           <ul>
@@ -89,7 +89,7 @@ const Description = ({ jobDetail, jobDetailErr }) => {
             </li>
           </ul>
         </div>
-      </div>
+      </div> */}
     </div>
   );
 };

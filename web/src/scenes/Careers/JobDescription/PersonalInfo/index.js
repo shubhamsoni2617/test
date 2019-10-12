@@ -1,17 +1,29 @@
 import React from 'react';
 import './style.scss';
-import attach from '../../../../assets/images/attach.png';
 import Attachement from '../../../../shared/components/Attachement';
+import DayPickerInput from 'react-day-picker/DayPickerInput';
+import 'react-day-picker/lib/style.css';
+import { formatDate, parseDate } from 'react-day-picker/moment';
+import { Link } from 'react-router-dom';
 
 const PersonalInfo = ({
   firstName,
   lastName,
   email,
   contact_number,
+  startDate,
   message,
-  files,
+  isFileMandatory,
+  filePath,
+  sendCopy,
+  loading,
+  submit,
   errMsg,
+  successMsg,
+  serverErr,
   handleChange,
+  handleStartDate,
+  handleCopy,
   handleFiles,
   handleSubmit
 }) => {
@@ -19,6 +31,15 @@ const PersonalInfo = ({
     <div className="personal-info-wrapper">
       <div className="personal-info">
         <h3>Apply for this position</h3>
+        {successMsg && <h5 className="text-success">{successMsg}</h5>}
+        {serverErr &&
+          serverErr.map(elem => {
+            return (
+              <h5 className="text-danger" key={elem}>
+                {elem}
+              </h5>
+            );
+          })}
         <h5>Personal Information</h5>
         <form onSubmit={handleSubmit}>
           <div className="form-group">
@@ -79,6 +100,26 @@ const PersonalInfo = ({
           {errMsg && !contact_number && (
             <span className="text-danger">Please enter phone number</span>
           )}
+          {/* <div className="form-group">
+            Earliest Start Date{' '}
+            <DayPickerInput
+              className="form-control"
+              value={startDate}
+              placeholder="Start Date"
+              format="DD/MM/YYYY"
+              showOverlay={false}
+              formatDate={formatDate}
+              parseDate={parseDate}
+              inputProps={{ readOnly: true }}
+              dayPickerProps={{
+                selectedDays: [startDate],
+                disabledDays: { before: new Date() },
+                fromMonth: new Date(),
+                numberOfMonths: 1
+              }}
+              onDayChange={handleStartDate}
+            />
+          </div> */}
           <div className="form-group">
             <textarea
               name="message"
@@ -93,54 +134,33 @@ const PersonalInfo = ({
           {errMsg && !message && (
             <span className="text-danger">Please enter message</span>
           )}
-          <Attachement />
-          {/* <div className="form-group attach-doc">
-            <div className="row">
-              <div className="col-lg-4 label">
-                Attach Documents<span className="text-danger"> *</span>
-              </div>
-              <div className="col-lg-8">
-                <label htmlFor="file-upload" className="custom-file-upload  form-control text-right">
-                <img src={attach} height="20" width="20" />
-              </label>
-                <label
-                  htmlFor="file-upload"
-                  className="custom-file-upload form-control text-right"
-                >
-                  <img src={attach} height="20" width="20" />
-                </label>
-
-                <input
-                  encType="multipart/form-data"
-                  id="file-upload"
-                  className="form-control"
-                  type="file"
-                  multiple
-                  onChange={e => handleFiles(e.target.files)}
-                  accept=".jpeg,.png,.pdf"
-                  required
-                />
-              </div>
-            </div>
-          </div> */}
+          <Attachement
+            mandatory={isFileMandatory}
+            attachedFiles={handleFiles}
+            submit={submit}
+          />
+          {isFileMandatory && errMsg && !filePath.length && (
+            <span className="text-danger">Please attach files</span>
+          )}
           <div className="form-group custom-checkbox">
             <input
               name="copy"
               type="checkbox"
-              onChange={e => handleChange(e)}
+              checked={sendCopy ? true : false}
+              onClick={e => handleCopy(!sendCopy)}
             />
             Send Me a Copy
           </div>
-          {/* {errMsg ? <p className="text-danger">{errMsg}</p> : null} */}
           <input
             className="form-control btn-link"
             type="submit"
-            value="Submit Application"
+            value={loading ? 'Submitting...' : 'Submit Application'}
+            disabled={loading ? true : false}
           />
         </form>
       </div>
       <div className="text-center other-job">
-        <a>View Other Jobs</a>
+        <Link to="/careers">View Other Jobs</Link>
       </div>
     </div>
   );
