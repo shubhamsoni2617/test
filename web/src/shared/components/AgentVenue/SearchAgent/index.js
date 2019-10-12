@@ -29,7 +29,9 @@ const SearchAgent = props => {
 
   const [scrollContainerRef, styleObj] = useStickyPanel({
     sticky: { top: 30, paddingTop: '0px' },
-    pixelBuffer: 30
+    pixelBuffer: 30,
+    distanceFromTop: 30,
+    bottom: '100%'
   });
 
   const [scrollContainerRef1, styleObj1] = useStickyPanel({
