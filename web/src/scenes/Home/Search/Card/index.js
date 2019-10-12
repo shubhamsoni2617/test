@@ -7,12 +7,12 @@ const Card = props => {
   return (
     <div className="event-block">
       <div className="event-img">
-        <Image src={cardData.thumb_image} />
+        <Image src={cardData.image} />
       </div>
       <div className="event-details">
         <div className="event-detail-prime">
-          <h6>{cardData.type.toUpperCase()}</h6>
-
+          {/* <h6>{cardData.type.toUpperCase()}</h6> */}
+          {cardData.type && <h6>{cardData.type.toUpperCase()}</h6>}
           <div className="item-title">
             <h5>{cardData.title}</h5>
             {cardData.date && <p className="event-date">{cardData.date}</p>}

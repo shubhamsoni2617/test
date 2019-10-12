@@ -1,6 +1,9 @@
 import API from '../../../shared/api';
 
 class SearchService {
+  getSearchCategories(params) {
+    return API.get(`get-search-count-results`, { params });
+  }
   getSearchSuggestions(params) {
     return API.get(`get-search-suggestions`, { params });
   }

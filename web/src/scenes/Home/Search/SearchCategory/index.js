@@ -12,14 +12,14 @@ const SearchCategory = props => {
                 {searchCategories &&
                   searchCategories.map(category => {
                     return (
-                      <li key={category.id}>
+                      <li key={category.type}>
                         <a
                           className={`nav-item nav-link active ${
                             defaultCategoryId === category.id ? `active` : ``
                           }`}
-                          onClick={() => handleActiveCategory(category.id)}
+                          onClick={() => handleActiveCategory(category.type)}
                         >
-                          {category.name} ({category.count})
+                          {category.type} ({category.total})
                         </a>
                       </li>
                     );

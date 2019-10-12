@@ -1,4 +1,4 @@
-import React, { Component, useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import searchImage from '../../../assets/images/search.svg';
 import searchImageBlue from '../../../assets/images/search-blue.svg';
 import prevArrowWhiteImage from '../../../assets/images/prev-arrow-white.svg';
@@ -6,18 +6,14 @@ import recentSearchIconImage from '../../../assets/images/recent-search-icon.svg
 import closeBlueColorImage from '../../../assets/images/close-blue-color.svg';
 import eventImage from '../../../assets/images/kurios-joker.jpg';
 import './style.scss';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
+import Autocomplete from './AutoComplete';
 
 const HomePageSearch = () => {
   const [input, setInput] = useState('');
   return (
     <div className="header-search">
-      <input
-        placeholder="Search experiences..."
-        className="form-control"
-        value={input}
-        onChange={e => setInput(e.target.value)}
-      />
+      <Autocomplete suggestions={data} />
       <button type="submit" className="search-btn">
         <img src={searchImage} className="img-fluid" alt="search-icon" />
         <img
@@ -26,13 +22,28 @@ const HomePageSearch = () => {
           alt="search-icon"
         />
       </button>
-      <div className="searched-wrapper">
-        <Link to={`/search-results?q=${input}`}>
-          See all Results for {input}
-        </Link>
-      </div>
+
+      {/* </div> */}
     </div>
   );
 };
 
 export default HomePageSearch;
+
+let data = [
+  {
+    title: 'What is OCBC$ Rewards?',
+    id: 382,
+    alias: '/node/382',
+    category: 'My Account',
+    code: null
+  },
+
+  {
+    title: 'What are the various mode of collection/delivery methods?',
+    id: 338,
+    alias: '/node/338',
+    category: 'Collection Modes',
+    code: null
+  }
+];
