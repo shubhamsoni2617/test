@@ -25,23 +25,16 @@ function useStickyPanel({
         .height;
       const sidebarWidth = scrollContainerRef.current.children[0].clientWidth;
       const viewportHeight = window.innerHeight;
-      console.log(
-        viewportHeight,
-        distanceFromTop,
-        scrollContainerRef.current.sidebarHeight
-      );
+
       let obj = {};
 
       if (
-        containerHeight - 20 > scrollContainerRef.current.sidebarHeight &&
+        containerHeight - 40 > scrollContainerRef.current.sidebarHeight &&
         viewportHeight - containerTop - containerHeight > 0
       ) {
         if (scrollContainerRef.current.status === 'translate') return;
         scrollContainerRef.current.status = 'translate';
         let top = 'initial';
-        if (scrollContainerRef.current.children.length > 1) {
-          top = 'initial';
-        }
         obj = {
           position: 'absolute',
           top: top,
@@ -56,7 +49,7 @@ function useStickyPanel({
                 20
         };
       } else if (
-        containerHeight - 20 > scrollContainerRef.current.sidebarHeight &&
+        containerHeight - 40 > scrollContainerRef.current.sidebarHeight &&
         containerTop - pixelBuffer <= 0 &&
         containerTop -
           viewportHeight +
@@ -66,8 +59,15 @@ function useStickyPanel({
       ) {
         if (scrollContainerRef.current.status === 'fixed') return;
         scrollContainerRef.current.status = 'fixed';
-        if (scrollContainerRef.current.children.length > 1) {
-          scrollContainerRef.current.style.paddingTop = `${scrollContainerRef.sidebarHeight}px`;
+        if (
+          scrollContainerRef.current.children[0].classList.contains(
+            'search-agent-header'
+          )
+        ) {
+          scrollContainerRef.current.style.paddingTop = `${
+            scrollContainerRef.current.children[0].getBoundingClientRect()
+              .height
+          }px`;
         }
         obj = {
           position: 'fixed',
