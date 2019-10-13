@@ -148,7 +148,12 @@ function Filters(props) {
   return (
     <div className="filter-conatiner">
       <div
-        style={{ position: 'relative', display: 'block', height: '100%' }}
+        style={{
+          position: 'relative',
+          display: 'block',
+          height: '100%',
+          zIndex: 2
+        }}
         ref={scrollContainerRef}
       >
         <div className="inner" style={styleObj}>
