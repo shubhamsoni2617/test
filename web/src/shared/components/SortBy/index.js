@@ -18,11 +18,15 @@ export default class SortBy extends Component {
   };
 
   componentDidMount() {
-    window.addEventListener('resize', this.handleResize);
+    if (Utilities.mobilecheck()) {
+      window.addEventListener('resize', this.handleResize);
+    }
   }
 
   componentWillUnmount() {
-    window.removeEventListener('resize', this.handleResize);
+    if (Utilities.mobilecheck()) {
+      window.removeEventListener('resize', this.handleResize);
+    }
   }
 
   handleResize = () => {

@@ -105,14 +105,16 @@ function Filters(props) {
   const element = useRef();
   // const [elementOffsetTop, setElementOffsetTop] = useState('');
   let stickyObj = {
-    sticky: { bottom: 0 },
+    sticky: { bottom: -10 },
     bottom: 0
+    // pixelBuffer: 40
   };
   if (props.attractions) {
     stickyObj = {
-      sticky: { top: 0, paddingTop: '40px' },
-      pixelBuffer: 40
-      // bottom: 0
+      sticky: { top: 153 },
+      pixelBuffer: 153,
+      // bottom: 0,
+      distanceFromTop: 153
     };
   }
   const [scrollContainerRef, styleObj] = useStickyPanel(stickyObj);
@@ -144,84 +146,89 @@ function Filters(props) {
     return;
   }
   return (
-    <div className="filter-conatiner" ref={scrollContainerRef}>
-      <div className="filter-heading">
-        <h3>
-          Filters{' '}
-          <a
-            href="/"
-            onClick={e => {
-              e.preventDefault();
-              clearAllFilters();
-            }}
-          >
-            Clear Filters
-            </a>
-        </h3>
-      </div>
-      <div className="inner" style={styleObj}>
-        <SearchFilter
-          handleFilters={handleFilters}
-          searchPlaceholder={props.searchPlaceholder}
-          searchText={filteredSearch}
-        />
-        {price_config != undefined && (
-          <PriceRangeFilter
-            priceConfig={price_config}
-            filteredPriceRange={filteredPriceRange}
+    <div className="filter-conatiner">
+      <div
+        style={{ position: 'relative', display: 'block', height: '100%' }}
+        ref={scrollContainerRef}
+      >
+        <div className="inner" style={styleObj}>
+          <div className="filter-heading">
+            <h3>
+              Filters{' '}
+              <a
+                href="/"
+                onClick={e => {
+                  e.preventDefault();
+                  clearAllFilters();
+                }}
+              >
+                Clear Filters
+              </a>
+            </h3>
+          </div>
+          <SearchFilter
             handleFilters={handleFilters}
-            filterFlag={filterFlag}
+            searchPlaceholder={props.searchPlaceholder}
+            searchText={filteredSearch}
           />
-        )}
-        <FilterGrid
-          title="Genre"
-          category={'filteredGnere'}
-          handleFilters={handleFilters}
-          data={genreData ? genreData : []}
-          selectedFilter={filteredGnere}
-          limit={5}
-        />
-        <FilterGrid
-          title="Tags"
-          category={'filteredTags'}
-          handleFilters={handleFilters}
-          data={filterConfig ? filterConfig.tags : []}
-          selectedFilter={filteredTags}
-          limit={5}
-        />
-        {!hideCalendar && (
-          <DateRangeFilter
-            filteredDateRange={filteredDateRange}
+          {price_config != undefined && (
+            <PriceRangeFilter
+              priceConfig={price_config}
+              filteredPriceRange={filteredPriceRange}
+              handleFilters={handleFilters}
+              filterFlag={filterFlag}
+            />
+          )}
+          <FilterGrid
+            title="Genre"
+            category={'filteredGnere'}
             handleFilters={handleFilters}
-            autoSubmit={true}
-            filterFlag={filterFlag}
+            data={genreData ? genreData : []}
+            selectedFilter={filteredGnere}
+            limit={5}
           />
-        )}
-        <FilterGrid
-          title="Promotion"
-          category={'filteredPromotions'}
-          handleFilters={handleFilters}
-          data={filterConfig ? filterConfig.promotion_categories : []}
-          selectedFilter={filteredPromotions}
-          limit={5}
-        />
-        <FilterGrid
-          title="Venue"
-          category={'filteredVenues'}
-          handleFilters={handleFilters}
-          data={venueData ? venueData : []}
-          showPanel={true}
-          selectedFilter={filteredVenues}
-          limit={5}
-        />
-        <FilterGrid
-          title="Categories"
-          category={'filteredCategory'}
-          handleFilters={handleFilters}
-          data={attractionCategories ? attractionCategories : []}
-          selectedFilter={filteredCategory}
-          limit={10}
-        />
+          <FilterGrid
+            title="Tags"
+            category={'filteredTags'}
+            handleFilters={handleFilters}
+            data={filterConfig ? filterConfig.tags : []}
+            selectedFilter={filteredTags}
+            limit={5}
+          />
+          {!hideCalendar && (
+            <DateRangeFilter
+              filteredDateRange={filteredDateRange}
+              handleFilters={handleFilters}
+              autoSubmit={true}
+              filterFlag={filterFlag}
+            />
+          )}
+          <FilterGrid
+            title="Promotion"
+            category={'filteredPromotions'}
+            handleFilters={handleFilters}
+            data={filterConfig ? filterConfig.promotion_categories : []}
+            selectedFilter={filteredPromotions}
+            limit={5}
+          />
+          <FilterGrid
+            title="Venue"
+            category={'filteredVenues'}
+            handleFilters={handleFilters}
+            data={venueData ? venueData : []}
+            showPanel={true}
+            selectedFilter={filteredVenues}
+            limit={5}
+          />
+          <FilterGrid
+            title="Categories"
+            category={'filteredCategory'}
+            handleFilters={handleFilters}
+            data={attractionCategories ? attractionCategories : []}
+            selectedFilter={filteredCategory}
+            limit={10}
+          />
+        </div>
       </div>
       {props.children}
     </div>

@@ -6,7 +6,6 @@ import Vertical from '../../../assets/images/vertical.png';
 import Tile from '../../../assets/images/Vertical Tile.png';
 import Small from '../../../assets/images/small.png';
 import Medium from '../../../assets/images/noimage.png';
-import mobileBanner from '../../../assets/images/home-mobile-banner.png'
 
 import './style.scss';
 
@@ -62,7 +61,6 @@ function Image(props) {
 
   return (
     <div className="image-conatiner">
-      <img src={mobileBanner} className="mobile-only-banner" alt="pic" />
       <img
         className={`image ${props.className} ${className}`}
         src={source}
