@@ -46,7 +46,7 @@ const GoogleMap = ({
   const [scrollContainerRef, styleObj] = useStickyPanel({
     sticky: { top: 63 },
     pixelBuffer: 63,
-    bottom: 33
+    bottom: 40
   });
   const [showingInfoWindow, setShowingInfoWindow] = useState(false);
   const [selectedPlace, setSelectedPlace] = useState({});

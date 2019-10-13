@@ -170,7 +170,7 @@ function StickyHeader(props) {
     <div
       className={`event-detail ${sticky ? 'sticky-topbar' : ''} ${
         sticky && setHeader ? 'animate' : ''
-        }`}
+      }`}
     >
       {detailData.images && detailData.images.length > 0 && (
         <div className="tickets-demo-img">
@@ -283,12 +283,14 @@ function StickyHeader(props) {
           </ul>
         </div>
       </div>
-      <div className="tickets-button">
-        {detailData.is_available_for_booking === 1 && (
+      {detailData.is_available_for_booking === 1 && (
+        <div className="tickets-button">
           <BuyTicketsButtonPopup detailData={detailData} />
-        )}
-        {buyPackages}
-        {detailData.is_available_for_booking === 0 && (
+        </div>
+      )}
+      {buyPackages}
+      {detailData.is_available_for_booking === 0 && (
+        <div className="tickets-button shows-over-tickets">
           <div className="shows-over">
             <div className="shows-over-icon">
               <img src={faceImg} alt="" />
@@ -298,8 +300,8 @@ function StickyHeader(props) {
               <p>This event has ended and no longer available for booking.</p>
             </div>
           </div>
-        )}
-      </div>
+        </div>
+      )}
     </div>
   );
 }
