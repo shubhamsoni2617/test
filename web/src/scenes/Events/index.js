@@ -381,6 +381,7 @@ export default class Events extends Component {
       localfilteredVenues: [...this.state.filteredVenues],
       localfilteredTags: [...this.state.filteredTags]
     });
+    document.body.classList.toggle('fixed-body');
   };
 
   toggleSortBy = () => {
@@ -389,6 +390,7 @@ export default class Events extends Component {
       localfilteredSortOrder: this.state.filteredSortOrder,
       localfilteredSortType: this.state.filteredSortType
     });
+    document.body.classList.toggle('fixed-body');
   };
 
   callAPI = () => {
@@ -415,6 +417,7 @@ export default class Events extends Component {
         }, 200);
       }
     );
+    document.body.classList.toggle('fixed-body');
   };
 
   clearSortFilters = () => {

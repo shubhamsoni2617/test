@@ -18,11 +18,15 @@ export default class SortBy extends Component {
   };
 
   componentDidMount() {
-    window.addEventListener('resize', this.handleResize);
+    if (Utilities.mobilecheck()) {
+      window.addEventListener('resize', this.handleResize);
+    }
   }
 
   componentWillUnmount() {
-    window.removeEventListener('resize', this.handleResize);
+    if (Utilities.mobilecheck()) {
+      window.removeEventListener('resize', this.handleResize);
+    }
   }
 
   handleResize = () => {
@@ -75,7 +79,11 @@ export default class SortBy extends Component {
     } = this.props;
     const { sort } = this.state;
     return (
-      <div className={`sortby ${this.props.sortByFlag ? 'open' : ''}`}>
+      <div
+        className={`sortby ${this.props.sortByFlag ? 'open' : ''} ${
+          this.state.showSortMenu ? 'active' : ''
+        }`}
+      >
         <div className="sortby-filter">
           <div onClick={this.showSortMenu} className="filter-topbar">
             <span className="sortby-text">Sort by:</span>

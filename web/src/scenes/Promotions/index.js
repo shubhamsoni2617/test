@@ -265,6 +265,7 @@ export default class Promotions extends Component {
   };
 
   toggleSortBy = () => {
+    document.body.classList.toggle('fixed-body');
     this.setState({
       sortByFlag: !this.state.sortByFlag,
       localsortBy: this.state.sortBy
@@ -283,6 +284,7 @@ export default class Promotions extends Component {
       sortBy: this.state.localsortBy,
       promotionTab: 0
     });
+    document.body.classList.toggle('fixed-body');
   };
 
   clearSortFilters = () => {
