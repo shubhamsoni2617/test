@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import Slider from 'react-slick';
 import './style.scss';
 import Constants from '../../../shared/constants';
+import AdvertisementService from '../../../shared/services/AdvertisementService';
+import Utilities from '../../../shared/utilities';
 
 const SampleNextArrow = props => {
   const { className, style, onClick } = props;
@@ -27,9 +29,12 @@ const SamplePrevArrow = props => {
 
 const FeaturedEvents = props => {
   const [width, setWidth] = useState(window.innerWidth);
+  const [featuredEvents, setFeaturedEvents] = useState([]);
+  const [serverErr, setServerErr] = useState('');
 
   useEffect(() => {
     window.addEventListener('resize', handleWindowResize);
+    getFeaturedEvents();
     return () => {
       window.removeEventListener('resize', handleWindowResize);
     };
@@ -38,159 +43,178 @@ const FeaturedEvents = props => {
   const handleWindowResize = () => {
     setWidth(window.innerWidth);
   };
-  const featuredEvents = [
-    {
-      id: '1',
-      img: 'assets/images/explore.png',
-      category: 'dance'
-    },
-    {
-      id: '2',
-      img: 'assets/images/pretty-girls.jpg',
-      category: 'comedy'
-    },
-    {
-      id: '3',
-      img: 'assets/images/dance-theature.jpg',
-      category: 'theatre'
-    },
-    {
-      id: '4',
-      img: 'assets/images/hetty-keos.jpg',
-      category: 'dance'
-    },
-    {
-      id: '5',
-      img: 'assets/images/aladdin.jpg',
-      category: 'comedy'
-    },
-    {
-      id: '6',
-      img: 'assets/images/voice-legends.jpg',
-      category: 'theatre'
-    },
-    {
-      id: '7',
-      img: 'assets/images/pride-passion.jpg',
-      category: 'dance'
-    },
-    {
-      id: '8',
-      img: 'assets/images/hetty-keos.jpg',
-      category: 'comedy'
-    },
-    {
-      id: '9',
-      img: 'assets/images/aladdin.jpg',
-      category: 'theatre'
-    },
-    {
-      id: '10',
-      img: 'assets/images/voice-legends.jpg',
-      category: 'dance'
-    },
 
-    {
-      id: '11',
-      img: 'assets/images/explore.png',
-      category: 'comedy'
-    },
-    {
-      id: '12',
-      img: 'assets/images/pretty-girls.jpg',
-      category: 'dance'
-    },
-    {
-      id: '13',
-      img: 'assets/images/dance-theature.jpg',
-      category: 'comedy'
-    },
-    {
-      id: '14',
-      img: 'assets/images/hetty-keos.jpg',
-      category: 'theatre'
-    },
-    {
-      id: '15',
-      img: 'assets/images/aladdin.jpg',
-      category: 'theatre'
-    },
-    {
-      id: '16',
-      img: 'assets/images/voice-legends.jpg',
-      category: 'comedy'
-    },
-    {
-      id: '17',
-      img: 'assets/images/pride-passion.jpg',
-      category: 'dance'
-    },
-    {
-      id: '18',
-      img: 'assets/images/hetty-keos.jpg',
-      category: 'comedy'
-    },
-    {
-      id: '19',
-      img: 'assets/images/aladdin.jpg',
-      category: 'concert'
-    },
-    {
-      id: '20',
-      img: 'assets/images/voice-legends.jpg',
-      category: 'dance'
-    },
-    {
-      id: '21',
-      img: 'assets/images/explore.png',
-      category: 'concert'
-    },
-    {
-      id: '22',
-      img: 'assets/images/pretty-girls.jpg',
-      category: 'dance'
-    },
-    {
-      id: '23',
-      img: 'assets/images/dance-theature.jpg',
-      category: 'comedy'
-    },
-    {
-      id: '24',
-      img: 'assets/images/hetty-keos.jpg',
-      category: 'dance'
-    },
-    {
-      id: '25',
-      img: 'assets/images/aladdin.jpg',
-      category: 'comedy'
-    },
-    {
-      id: '26',
-      img: 'assets/images/voice-legends.jpg',
-      category: 'comedy'
-    },
-    {
-      id: '27',
-      img: 'assets/images/pride-passion.jpg',
-      category: 'dance'
-    },
-    {
-      id: '28',
-      img: 'assets/images/hetty-keos.jpg',
-      category: 'comedy'
-    },
-    {
-      id: '29',
-      img: 'assets/images/aladdin.jpg',
-      category: 'comedy'
-    },
-    {
-      id: '30',
-      img: 'assets/images/voice-legends.jpg',
-      category: 'dance'
-    }
-  ];
+  const getFeaturedEvents = () => {
+    const params = {
+      client: Constants.CLIENT
+    };
+    AdvertisementService.getFeaturedEvents(params)
+      .then(res => {
+        if (res && res.data) {
+          setFeaturedEvents(res.data.data);
+        }
+      })
+      .catch(err => {
+        if (err && err.response) {
+          setServerErr('Something went wrong...');
+        }
+      });
+  };
+  // const featuredEvents = [
+  //   {
+  //     id: '1',
+  //     img: 'assets/images/explore.png',
+  //     category: 'dance'
+  //   },
+  //   {
+  //     id: '2',
+  //     img: 'assets/images/pretty-girls.jpg',
+  //     category: 'comedy'
+  //   },
+  //   {
+  //     id: '3',
+  //     img: 'assets/images/dance-theature.jpg',
+  //     category: 'theatre'
+  //   },
+  //   {
+  //     id: '4',
+  //     img: 'assets/images/hetty-keos.jpg',
+  //     category: 'dance'
+  //   },
+  //   {
+  //     id: '5',
+  //     img: 'assets/images/aladdin.jpg',
+  //     category: 'comedy'
+  //   },
+  //   {
+  //     id: '6',
+  //     img: 'assets/images/voice-legends.jpg',
+  //     category: 'theatre'
+  //   },
+  //   {
+  //     id: '7',
+  //     img: 'assets/images/pride-passion.jpg',
+  //     category: 'dance'
+  //   },
+  //   {
+  //     id: '8',
+  //     img: 'assets/images/hetty-keos.jpg',
+  //     category: 'comedy'
+  //   },
+  //   {
+  //     id: '9',
+  //     img: 'assets/images/aladdin.jpg',
+  //     category: 'theatre'
+  //   },
+  //   {
+  //     id: '10',
+  //     img: 'assets/images/voice-legends.jpg',
+  //     category: 'dance'
+  //   },
+
+  //   {
+  //     id: '11',
+  //     img: 'assets/images/explore.png',
+  //     category: 'comedy'
+  //   },
+  //   {
+  //     id: '12',
+  //     img: 'assets/images/pretty-girls.jpg',
+  //     category: 'dance'
+  //   },
+  //   {
+  //     id: '13',
+  //     img: 'assets/images/dance-theature.jpg',
+  //     category: 'comedy'
+  //   },
+  //   {
+  //     id: '14',
+  //     img: 'assets/images/hetty-keos.jpg',
+  //     category: 'theatre'
+  //   },
+  //   {
+  //     id: '15',
+  //     img: 'assets/images/aladdin.jpg',
+  //     category: 'theatre'
+  //   },
+  //   {
+  //     id: '16',
+  //     img: 'assets/images/voice-legends.jpg',
+  //     category: 'comedy'
+  //   },
+  //   {
+  //     id: '17',
+  //     img: 'assets/images/pride-passion.jpg',
+  //     category: 'dance'
+  //   },
+  //   {
+  //     id: '18',
+  //     img: 'assets/images/hetty-keos.jpg',
+  //     category: 'comedy'
+  //   },
+  //   {
+  //     id: '19',
+  //     img: 'assets/images/aladdin.jpg',
+  //     category: 'concert'
+  //   },
+  //   {
+  //     id: '20',
+  //     img: 'assets/images/voice-legends.jpg',
+  //     category: 'dance'
+  //   },
+  //   {
+  //     id: '21',
+  //     img: 'assets/images/explore.png',
+  //     category: 'concert'
+  //   },
+  //   {
+  //     id: '22',
+  //     img: 'assets/images/pretty-girls.jpg',
+  //     category: 'dance'
+  //   },
+  //   {
+  //     id: '23',
+  //     img: 'assets/images/dance-theature.jpg',
+  //     category: 'comedy'
+  //   },
+  //   {
+  //     id: '24',
+  //     img: 'assets/images/hetty-keos.jpg',
+  //     category: 'dance'
+  //   },
+  //   {
+  //     id: '25',
+  //     img: 'assets/images/aladdin.jpg',
+  //     category: 'comedy'
+  //   },
+  //   {
+  //     id: '26',
+  //     img: 'assets/images/voice-legends.jpg',
+  //     category: 'comedy'
+  //   },
+  //   {
+  //     id: '27',
+  //     img: 'assets/images/pride-passion.jpg',
+  //     category: 'dance'
+  //   },
+  //   {
+  //     id: '28',
+  //     img: 'assets/images/hetty-keos.jpg',
+  //     category: 'comedy'
+  //   },
+  //   {
+  //     id: '29',
+  //     img: 'assets/images/aladdin.jpg',
+  //     category: 'comedy'
+  //   },
+  //   {
+  //     id: '30',
+  //     img: 'assets/images/voice-legends.jpg',
+  //     category: 'dance'
+  //   }
+  // ];
+
+  console.log(featuredEvents);
   const settings = {
     className: 'center',
     dots: true,
@@ -249,60 +273,72 @@ const FeaturedEvents = props => {
             style={{ width: '30em', overflowX: 'auto', whiteSpace: 'nowrap' }}
           >
             <div className="grid-container">
-              {featuredEvents.map((event, i) => {
-                return (
-                  <div className="item" key={event.id}>
-                    <div className="item-wrapper">
-                      <div className="featured-item-img">
-                        <div className="item-img">
-                          <img
-                            src={event.img}
-                            className="img-fluid"
-                            alt="explore"
-                          />
+              {featuredEvents &&
+                featuredEvents.map((event, i) => {
+                  event.venue_name = Utilities.showLimitedChars(
+                    event.venue_name,
+                    20
+                  );
+                  return (
+                    <div className="item" key={i}>
+                      <div className="item-wrapper">
+                        <div className="featured-item-img">
+                          <div className="item-img">
+                            <img
+                              src={event.full_image}
+                              className="img-fluid"
+                              alt={event && event.alt_text}
+                            />
+                          </div>
+                          <span
+                            className={`category ${event &&
+                              event.primary_genere.toLowerCase()}`}
+                          >
+                            {event.primary_genere}
+                          </span>
                         </div>
-                        <span className={`category ${event.category}`}>
-                          {event.category}
-                        </span>
+                        {event && event.title && <h3>{event.title}</h3>}
+                        {event && event.event_date && <p>{event.event_date}</p>}
+                        {event && event.venue_name && <p>{event.venue_name}</p>}
                       </div>
-                      <h3>SSO Red Balloon Series: Rhythums, Rites</h3>
-                      <p>Fri, 3 May 2019</p>
-                      <p>Esplanade Concert Hall</p>
                     </div>
-                  </div>
-                );
-              })}
+                  );
+                })}
             </div>
           </div>
         ) : (
-            <Slider {...settings}>
-              {featuredEvents.map((event, index) => {
+          <Slider {...settings}>
+            {featuredEvents &&
+              featuredEvents.map((event, index) => {
                 return (
-                  <div className="grid-container" key={event.id}>
+                  <div className="grid-container" key={index}>
                     <div className="item">
                       <div className="item-wrapper">
                         <div className="featured-item-img">
                           <div className="item-img">
                             <img
-                              src={event.img}
+                              src={event.full_image}
                               className="img-fluid"
-                              alt="explore"
+                              alt={event && event.alt_text}
                             />
                           </div>
-                          <span className={`category ${event.category}`}>
-                            {event.category}
+                          <span
+                            className={`category ${event &&
+                              event.primary_genere.toLowerCase()}`}
+                          >
+                            {event.primary_genere}
                           </span>
                         </div>
-                        <h3>SSO Red Balloon Series: Rhythums, Rites</h3>
-                        <p>Fri, 3 May 2019</p>
-                        <p>Esplanade Concert Hall</p>
+                        {event && event.title && <h3>{event.title}</h3>}
+                        {event && event.event_date && <p>{event.event_date}</p>}
+                        {event && event.venue_name && <p>{event.venue_name}</p>}
                       </div>
                     </div>
                   </div>
                 );
               })}
-            </Slider>
-          )}
+          </Slider>
+        )}
       </div>
     </section>
   );

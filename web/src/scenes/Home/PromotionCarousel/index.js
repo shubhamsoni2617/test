@@ -2,12 +2,17 @@ import React, { Component, Fragment } from 'react';
 import Slider from 'react-slick';
 import Constants from '../../../shared/constants';
 import Utilities from '../../../shared/utilities';
+import HomeService from '../../../shared/services/HomeService';
+import Timer from '../../../shared/components/Timer';
+import Image from '../../../shared/components/Image';
 
 export default class PromotionCarousel extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      width: window.innerWidth
+      width: window.innerWidth,
+      promotions: [],
+      expiredText: ''
     };
     this.slides = {
       promotions: [
@@ -86,6 +91,7 @@ export default class PromotionCarousel extends Component {
 
   componentDidMount() {
     window.addEventListener('resize', this.handleWindowResize);
+    this.getPromotions();
   }
 
   componentWillUnmount() {
@@ -96,12 +102,37 @@ export default class PromotionCarousel extends Component {
     this.setState({ width: window.innerWidth });
   }
 
+  handlePromotionExpired = text => {
+    this.setState({ text });
+  };
+
+  getPromotions() {
+    const params = {
+      client: Constants.CLIENT,
+      first: 1
+      // limit: 10
+    };
+    HomeService.getPromotions(params)
+      .then(res => {
+        if (res && res.data) {
+          this.setState({ promotions: res.data.data });
+        }
+      })
+      .catch(err => {
+        if (err && err.response) {
+          console.log(err.response);
+        }
+      });
+  }
+
   render() {
     const { width } = this.state;
     const settings = {
       dots: true,
-      infinite: true,
+      infinite: false,
       speed: 500,
+      // rows: 2,
+      // slidesPerRow: 4,
       slidesToShow: 4,
       slidesToScroll: 3,
       customPaging: i => {
@@ -355,6 +386,50 @@ export default class PromotionCarousel extends Component {
                 )}
               </Fragment>
             )}
+
+            {/* <Slider {...settings}>
+              {this.state.promotions &&
+                this.state.promotions.map((promotion, index) => {
+                  return (
+                    <div key={promotion.id} className="item-wrapper">
+                      <div className="promotions-img">
+                        <div className="item-img">
+                          <Image
+                            src={promotion.featured_image}
+                            className="img-fluid"
+                            alt="promotion-img"
+                            type="Horizontal"
+                          />
+                        </div>
+                        {promotion.show_timer === '1' && (
+                          <div className="promotion-timer">
+                            <ul>
+                              {!this.state.expiredText ? (
+                                <ul>
+                                  <li className="timer-watch">
+                                    <img
+                                      src="assets/images/stopwatch.svg"
+                                      className="img-fluid"
+                                      alt="watch"
+                                    />
+                                  </li>
+                                  <Timer
+                                    endDate={promotion.publish_end_date}
+                                    promotionExpired={
+                                      this.handlePromotionExpired
+                                    }
+                                  />
+                                </ul>
+                              ) : null}
+                            </ul>
+                          </div>
+                        )}
+                      </div>
+                      <h3>{promotion.title}</h3>
+                    </div>
+                  );
+                })}
+            </Slider> */}
           </div>
         </div>
       </section>

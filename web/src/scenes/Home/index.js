@@ -18,6 +18,8 @@ import primeSlider2 from '../../assets/images/main-banner-2.png';
 import mobileBanner from '../../assets/images/home-mobile-banner.png';
 import HomeService from '../../shared/services/HomeService';
 import Utilities from '../../shared/utilities';
+import Constants from '../../shared/constants';
+import AdvertisementService from '../../shared/services/AdvertisementService';
 
 class Home extends Component {
   constructor(props) {
@@ -29,16 +31,38 @@ class Home extends Component {
       modal: false,
       modalContent: '',
       newsTickerStatus: true,
-      imageUrl: ''
+      imageUrl: '',
+      giftCard: []
     };
     this.homePageRef = createRef();
+  }
+
+  componentDidMount() {
+    this.getSidePanelBetweenTopPicksFeaturedEvents();
   }
 
   showNewsTicker = data => {
     this.setState(data);
   };
+  getSidePanelBetweenTopPicksFeaturedEvents() {
+    const params = {
+      client: Constants.CLIENT
+    };
+    AdvertisementService.getSidePanelBetweenTopPicksFeaturedEvents(params)
+      .then(res => {
+        if (res && res.data) {
+          this.setState({ giftCard: res.data.data });
+        }
+      })
+      .catch(err => {
+        if (err && err.response) {
+          console.log(err.response);
+        }
+      });
+  }
 
   render() {
+    const { giftCard } = this.state;
     return (
       <div className="home-page-wrapper" ref={this.homePageRef}>
         <NewsTicker
@@ -55,15 +79,28 @@ class Home extends Component {
           {/* <img className={`main-image ${this.state.imageUrl ? 'show-image' : ''}`} src={primeSlider} alt="prime Slider" /> */}
         </div>
         <TopPics />
-        <section className="gift-cart">
-          <div className="gift-cart-image">
-            <img
-              src="assets/images/gift-card.png"
-              className="img-fluid"
-              alt="Gift-cart"
-            />
-          </div>
-        </section>
+         
+        {giftCard &&
+          giftCard.map(elem => {
+            return (
+              <a
+                href={elem && elem.navigation_link}
+                target="_blank"
+                key={elem.title}
+              >
+                <section className="gift-cart">
+                  <div className="gift-cart-image">
+                    <img
+                      src={elem && elem.full_image}
+                      className="img-fluid"
+                      alt={elem && elem.alt_text}
+                      title={elem && elem.title}
+                    />
+                  </div>
+                </section>
+              </a>
+            );
+          })}
         <FeaturedEvents />
         <CarouselConatiner
           title="Currently Showing"

@@ -14,6 +14,7 @@ function EventHeading(props) {
       ((props.lines === 1 &&
         element.current.scrollWidth > element.current.offsetWidth + 150) ||
         (props.lines > 1 &&
+          element.current &&
           element.current.scrollHeight > element.current.offsetHeight))
     ) {
       setAllowTooltip(true);
@@ -27,7 +28,10 @@ function EventHeading(props) {
       fontSize: props.size,
       fontWeight: props.weight
     };
-    if (element.current.offsetHeight >= props.height * props.lines) {
+    if (
+      element.current &&
+      element.current.offsetHeight >= props.height * props.lines
+    ) {
       setStyleObj({
         textOverflow: 'ellipsis',
         display: props.lines === 1 ? 'block' : '-webkit-box',
