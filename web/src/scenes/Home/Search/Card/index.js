@@ -11,7 +11,6 @@ const Card = props => {
       </div>
       <div className="event-details">
         <div className="event-detail-prime">
-          {/* <h6>{cardData.type.toUpperCase()}</h6> */}
           {cardData.type && <h6>{cardData.type.toUpperCase()}</h6>}
           <div className="item-title">
             <h5>{cardData.title}</h5>
