@@ -147,7 +147,7 @@ const PersonalInfo = ({
               name="copy"
               type="checkbox"
               checked={sendCopy ? true : false}
-              onClick={e => handleCopy(!sendCopy)}
+              onChange={e => handleCopy(!sendCopy)}
             />
             Send Me a Copy
           </div>

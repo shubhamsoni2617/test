@@ -15,7 +15,9 @@ import NewsTicker from './NewsTicker';
 import ModalPopup from '../../shared/components/Modal';
 import primeSlider from '../../assets/images/main-banner.png';
 import primeSlider2 from '../../assets/images/main-banner-2.png';
+import mobileBanner from '../../assets/images/home-mobile-banner.png';
 import HomeService from '../../shared/services/HomeService';
+import Utilities from '../../shared/utilities';
 
 class Home extends Component {
   constructor(props) {
@@ -46,7 +48,10 @@ class Home extends Component {
         />
         <HotShowPopup />
         <div className={`banner`}>
-          <Image src={primeSlider2} largeImage={primeSlider} />
+          <Image
+            src={Utilities.mobilecheck() ? mobileBanner : primeSlider2}
+            largeImage={Utilities.mobilecheck() ? mobileBanner : primeSlider}
+          />
           {/* <img className={`main-image ${this.state.imageUrl ? 'show-image' : ''}`} src={primeSlider} alt="prime Slider" /> */}
         </div>
         <TopPics />

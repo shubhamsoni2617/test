@@ -4,6 +4,7 @@ import TeamImg from '../../../../src/assets/images/team.png';
 import arrowWhite from '../../../../src/assets/images/career/opening-blue-arrow.svg';
 import arrowBlue from '../../../../src/assets/images/buy-arrow-b.png';
 import { Link } from 'react-scroll';
+import Utilities from '../../../shared/utilities';
 
 const OurTeam = ({ banner }) => {
   return (
@@ -20,7 +21,13 @@ const OurTeam = ({ banner }) => {
             to="opening"
             spy={true}
             smooth={true}
-            offset={50}
+            offset={
+              Utilities.mobilecheck()
+                ? 10
+                : Utilities.mobileAndTabletcheck()
+                ? -50
+                : -80
+            }
             duration={1000}
           >
             <button>

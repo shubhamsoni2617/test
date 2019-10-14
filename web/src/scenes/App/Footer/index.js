@@ -103,7 +103,7 @@ const Footer = () => {
                 <h3>Stay Connected</h3>
                 <div className="input-group">
                   <input
-                    type="text"
+                    type="email"
                     className="form-control"
                     placeholder="Enter Your email"
                     aria-label="Username"

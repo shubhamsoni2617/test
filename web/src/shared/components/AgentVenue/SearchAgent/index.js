@@ -28,7 +28,20 @@ const SearchAgent = props => {
   } = props;
 
   const [scrollContainerRef, styleObj] = useStickyPanel({
-    sticky: { top: 0, paddingTop: '30px' },
+    sticky: { top: 30, paddingTop: '0px' },
+    pixelBuffer: 30,
+    distanceFromTop: 30,
+    bottom: '100%'
+  });
+
+  const [scrollContainerRef1, styleObj1] = useStickyPanel({
+    sticky: {
+      top: 0,
+      paddingTop: '0px',
+      height: 50,
+      background: '#fff',
+      zIndex: 1
+    },
     paddingTop: 30,
     pixelBuffer: 30
   });
@@ -145,133 +158,138 @@ const SearchAgent = props => {
   }
 
   return (
-    <div
-      className="search-agent"
-      style={{ position: 'relative' }}
-      ref={scrollContainerRef}
-    >
-      <div className="search-agent-header" style={styleObj}>
-        <h2>
-          {venue ? 'Venues in ' : 'Agents in '}{' '}
-          {countryName ? countryName : 'Singapore'}
-        </h2>
-        <form onSubmit={handleSubmit}>
-          <div className="agent-search">
-            <button type="submit" className="search-btn">
-              <img src={SearchIcon} alt="search-icon" />
-            </button>
-            <input
-              className="form-control"
-              type="text"
-              value={searchText}
-              onChange={e => handleMapFilter(e)}
-              placeholder={
-                venue ? 'Search for Location' : 'Search for an agent'
-              }
-            />
-          </div>
-        </form>
-        {venue ? (
-          <ul className="list-option">
-            <li>
+    <div style={{ position: 'relative' }} ref={scrollContainerRef1}>
+      <div className="search-agent-header-strip" style={styleObj1}></div>
+      <div
+        className="search-agent"
+        style={{ position: 'relative' }}
+        ref={scrollContainerRef}
+      >
+        <div className="search-agent-header" style={styleObj}>
+          <h2>
+            {venue ? 'Venues in ' : 'Agents in '}{' '}
+            {countryName ? countryName : 'Singapore'}
+          </h2>
+          <form onSubmit={handleSubmit}>
+            <div className="agent-search">
+              <button type="submit" className="search-btn">
+                <img src={SearchIcon} alt="search-icon" />
+              </button>
               <input
-                type="checkbox"
-                onChange={() => handleAttractionValue(!attractionValue ? 1 : 0)}
-                className="styled-checkbox"
-                id="1"
-                checked={attractionValue ? true : false}
-              />
-              <label htmlFor="1"> Attractions</label>
-            </li>
-            <li>
-              <input
-                type="checkbox"
-                onChange={() => handleEventValue(!eventValue ? 1 : 0)}
-                className="styled-checkbox"
-                id="2"
-                checked={eventValue ? true : false}
-              />
-              <label htmlFor="2"> Venues with Ongoing Events</label>
-            </li>
-          </ul>
-        ) : null}
-        {!initialItems && searchText === '' && (
-          <ShimmerEffect
-            propCls="shm_col-xs-6 col-md-12"
-            height={65}
-            count={2}
-            type="TILE"
-          />
-        )}
-        {!venue && isFile && initialItems ? (
-          <h6 className="festive-hour">
-            <a href={countryFileUrl} download target="_blank">
-              Festive Period Operating Hours{' '}
-              <img src={downloadOrange} alt="Download" />{' '}
-            </a>
-          </h6>
-        ) : null}
-      </div>
-      <ul className="list-group">
-        {initialItems &&
-          initialItems.map((item, index) => {
-            return (
-              <li
-                className={
-                  item.id === popUpDetail.id
-                    ? 'pop-up-container active'
-                    : 'pop-up-container'
+                className="form-control"
+                type="text"
+                value={searchText}
+                onChange={e => handleMapFilter(e)}
+                placeholder={
+                  venue ? 'Search for Location' : 'Search for an agent'
                 }
-                key={index}
-              >
-                <h3>
-                  <span onClick={() => showPopUp(item)}>
-                    <strong className="event-title">{item.name}</strong>
-                  </span>
-                  {item.name.length > 25 ? <br /> : null}{' '}
-                  <span>
-                    <Link
-                      activeClass="active"
-                      to="mapClicked"
-                      spy={true}
-                      smooth={true}
-                      offset={-40}
-                      duration={500}
-                      onClick={() => {
-                        toggleFindInMapHandler();
-                        showOnMapClick(item);
-                      }}
-                    >
-                      Show on Map
-                    </Link>
-                  </span>
-                </h3>
-                <p>
-                  {item.address},{item.country}
-                </p>
-                <CSSTransitionGroup
-                  transitionName="mega"
-                  transitionEnter={true}
-                  transitionEnterTimeout={300}
-                  transitionLeaveTimeout={300}
-                >
-                  {item.id === popUpDetail.id && (
-                    <AgentVenuePopUp
-                      item={item}
-                      popUpDetail={popUpDetail}
-                      venue={venue}
-                      currentlyShowingData={popUpDetail.currentlyShowingData}
-                      closePopup={closePopup}
-                    />
-                  )}
-                </CSSTransitionGroup>
+              />
+            </div>
+          </form>
+          {venue ? (
+            <ul className="list-option">
+              <li>
+                <input
+                  type="checkbox"
+                  onChange={() =>
+                    handleAttractionValue(!attractionValue ? 1 : 0)
+                  }
+                  className="styled-checkbox"
+                  id="1"
+                  checked={attractionValue ? true : false}
+                />
+                <label htmlFor="1"> Attractions</label>
               </li>
-            );
-          })}
-        {initialItems && initialItems.length === 0 ? (
-          <h4>No result found</h4>
-        ) : null}
-      </ul>
+              <li>
+                <input
+                  type="checkbox"
+                  onChange={() => handleEventValue(!eventValue ? 1 : 0)}
+                  className="styled-checkbox"
+                  id="2"
+                  checked={eventValue ? true : false}
+                />
+                <label htmlFor="2"> Venues with Ongoing Events</label>
+              </li>
+            </ul>
+          ) : null}
+          {!initialItems && searchText === '' && (
+            <ShimmerEffect
+              propCls="shm_col-xs-6 col-md-12"
+              height={65}
+              count={2}
+              type="TILE"
+            />
+          )}
+          {!venue && isFile && initialItems ? (
+            <h6 className="festive-hour">
+              <a href={countryFileUrl} download target="_blank">
+                Festive Period Operating Hours{' '}
+                <img src={downloadOrange} alt="Download" />{' '}
+              </a>
+            </h6>
+          ) : null}
+        </div>
+        <ul className="list-group">
+          {initialItems &&
+            initialItems.map((item, index) => {
+              return (
+                <li
+                  className={
+                    item.id === popUpDetail.id
+                      ? 'pop-up-container active'
+                      : 'pop-up-container'
+                  }
+                  key={index}
+                >
+                  <h3>
+                    <span onClick={() => showPopUp(item)}>
+                      <strong className="event-title">{item.name}</strong>
+                    </span>
+                    {item.name.length > 25 ? <br /> : null}{' '}
+                    <span>
+                      <Link
+                        activeClass="active"
+                        to="mapClicked"
+                        spy={true}
+                        smooth={true}
+                        offset={-40}
+                        duration={500}
+                        onClick={() => {
+                          toggleFindInMapHandler();
+                          showOnMapClick(item);
+                        }}
+                      >
+                        Show on Map
+                      </Link>
+                    </span>
+                  </h3>
+                  <p>
+                    {item.address},{item.country}
+                  </p>
+                  <CSSTransitionGroup
+                    transitionName="mega"
+                    transitionEnter={true}
+                    transitionEnterTimeout={300}
+                    transitionLeaveTimeout={300}
+                  >
+                    {item.id === popUpDetail.id && (
+                      <AgentVenuePopUp
+                        item={item}
+                        popUpDetail={popUpDetail}
+                        venue={venue}
+                        currentlyShowingData={popUpDetail.currentlyShowingData}
+                        closePopup={closePopup}
+                      />
+                    )}
+                  </CSSTransitionGroup>
+                </li>
+              );
+            })}
+          {initialItems && initialItems.length === 0 ? (
+            <h4>No result found</h4>
+          ) : null}
+        </ul>
+      </div>
     </div>
   );
 };

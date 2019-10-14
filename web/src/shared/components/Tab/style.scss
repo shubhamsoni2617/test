@@ -44,35 +44,18 @@
             }
         }
         span{
-            ul{
-                @media(max-width: 767px){
-                    position: fixed;
-                    top: 0px;
-                    left: 0px;
-                    bottom: 0px;
-                    right: 0px;
-                    z-index: inherit;
-                    display: block;
-                    background-color: #efefef;
-                    li{
-                        border-bottom: 1px solid #efefef;
-                        background-color: #fff;
-                        padding: 21px 20px;
-                    }
-                }
-            }
             .sortby-topbar-mobileonly, .sortby-apply-mobileonly{
                 display: none;
-                @media(max-width: 767px){
-                    display: flex;
-                    position: fixed;
-                    z-index: 2;
-                    color: #fff;
-                    background-color: #373E45;
-                    padding: 15px 17px;
-                    height: 45px;
-                    top: 0;
-                }
+                // @media(max-width: 767px){
+                //     display: flex;
+                //     position: fixed;
+                //     z-index: 2;
+                //     color: #fff;
+                //     background-color: #373E45;
+                //     padding: 15px 17px;
+                //     height: 45px;
+                //     top: 0;
+                // }
             }
             .sortby-apply-mobileonly{
                 bottom: 45px;
@@ -93,6 +76,7 @@
                 flex: 0 0 auto;
                 display: flex;
                 align-items: center;
+                width: 100%;
                 img{
                     max-width: 20px;
                     margin-right: 10px;
@@ -103,6 +87,9 @@
                     color: #fff;
                     font-weight: 500;
                     font-size: 16px;
+                }
+                .clear-filters{
+                    margin-left: auto;
                 }
             }
             .clear-filter-sortby{

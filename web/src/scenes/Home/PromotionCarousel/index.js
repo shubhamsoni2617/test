@@ -1,6 +1,7 @@
-import React, { Component } from "react";
-import Slider from "react-slick";
-import Constants from "../../../shared/constants";
+import React, { Component, Fragment } from 'react';
+import Slider from 'react-slick';
+import Constants from '../../../shared/constants';
+import Utilities from '../../../shared/utilities';
 
 export default class PromotionCarousel extends Component {
   constructor(props) {
@@ -13,68 +14,68 @@ export default class PromotionCarousel extends Component {
         {
           slides: [
             {
-              url: "1"
+              url: '1'
             },
             {
-              url: "2"
+              url: '2'
             }
           ]
         },
         {
           slides: [
             {
-              url: "3"
+              url: '3'
             }
           ]
         },
         {
           slides: [
             {
-              url: "4"
+              url: '4'
             }
           ]
         },
         {
           slides: [
             {
-              url: "5"
+              url: '5'
             },
             {
-              url: "6"
+              url: '6'
             }
           ]
         },
         {
           slides: [
             {
-              url: "7"
+              url: '7'
             },
             {
-              url: "8"
+              url: '8'
             }
           ]
         },
         {
           slides: [
             {
-              url: "9"
+              url: '9'
             }
           ]
         },
         {
           slides: [
             {
-              url: "10"
+              url: '10'
             }
           ]
         },
         {
           slides: [
             {
-              url: "11"
+              url: '11'
             },
             {
-              url: "12"
+              url: '12'
             }
           ]
         }
@@ -84,11 +85,11 @@ export default class PromotionCarousel extends Component {
   }
 
   componentDidMount() {
-    window.addEventListener("resize", this.handleWindowResize);
+    window.addEventListener('resize', this.handleWindowResize);
   }
 
   componentWillUnmount() {
-    window.removeEventListener("resize", this.handleWindowResize);
+    window.removeEventListener('resize', this.handleWindowResize);
   }
 
   handleWindowResize() {
@@ -127,7 +128,7 @@ export default class PromotionCarousel extends Component {
         <div className="container-fluid">
           <div className="section-top-wrapper">
             <h2>
-              Promotions{" "}
+              Promotions{' '}
               <span className="promotions-animated-img">
                 <img
                   src="assets/images/illustration.svg"
@@ -138,7 +139,7 @@ export default class PromotionCarousel extends Component {
             </h2>
             <div className="carousel-dots">
               <a href="/promotions" onClick={e => e.preventDefault()}>
-                See all{" "}
+                See all{' '}
                 <img
                   src="assets/images/right-arrow.svg"
                   className="img-fluid"
@@ -197,104 +198,162 @@ export default class PromotionCarousel extends Component {
                             </div>
                           );
                         })}
-                      {promo.slides.length === 1 &&
-                        promo.slides.map((slide, idx) => {
-                          return (
-                            <div key={idx} className="item-wrapper full-promo">
-                              <div className="promotions-img">
-                                <div className="item-img">
-                                  <img
-                                    src="assets/images/master-card.jpg"
-                                    className="img-fluid"
-                                    alt="privilage"
-                                  />
-                                </div>
-                              </div>
-                              <h3>
-                                Book with Mastercard and enjoy these privileges!
-                              </h3>
-                            </div>
-                          );
-                        })}
                     </div>
                   );
                 })}
               </div>
             ) : (
-              <Slider {...settings}>
-                {this.slides.promotions.map((promo, index) => {
-                  return (
-                    <div key={index} className="item">
-                      {promo.slides.length === 2 &&
-                        promo.slides.map(slide => {
-                          return (
-                            <div key={slide.url} className="item-wrapper">
-                              <div className="promotions-img">
-                                <div className="item-img">
-                                  <img
-                                    src="assets/images/headrock.jpg"
-                                    className="img-fluid"
-                                    alt="headrock"
-                                  />
-                                </div>
-                                <div className="promotion-timer">
-                                  <ul>
-                                    <li className="timer-watch">
+              <Fragment>
+                <Slider {...settings}>
+                  {this.slides.promotions.map((promo, index) => {
+                    return (
+                      promo.slides.length === 2 &&
+                      Utilities.mobileAndTabletcheck() && (
+                        <div key={index} className="item">
+                          {promo.slides.length === 2 &&
+                            promo.slides.map(slide => {
+                              return (
+                                <div key={slide.url} className="item-wrapper">
+                                  <div className="promotions-img">
+                                    <div className="item-img">
                                       <img
-                                        src="assets/images/stopwatch.svg"
+                                        src="assets/images/headrock.jpg"
                                         className="img-fluid"
-                                        alt="watch"
+                                        alt="headrock"
                                       />
-                                    </li>
-                                    <li className="timer-days">
-                                      <span>70</span>
-                                      <span className="timer-label">Days</span>
-                                    </li>
-                                    <li className="timer-hours">
-                                      <span>11</span>
-                                      <span className="timer-label">Hrs</span>
-                                    </li>
-                                    <li className="timer-minutes">
-                                      <span>29</span>
-                                      <span className="timer-label">Mins</span>
-                                    </li>
-                                    <li className="timer-seconds">
-                                      <span>58</span>
-                                      <span className="timer-label">Sec</span>
-                                    </li>
-                                  </ul>
+                                    </div>
+                                    <div className="promotion-timer">
+                                      <ul>
+                                        <li className="timer-watch">
+                                          <img
+                                            src="assets/images/stopwatch.svg"
+                                            className="img-fluid"
+                                            alt="watch"
+                                          />
+                                        </li>
+                                        <li className="timer-days">
+                                          <span>70</span>
+                                          <span className="timer-label">
+                                            Days
+                                          </span>
+                                        </li>
+                                        <li className="timer-hours">
+                                          <span>11</span>
+                                          <span className="timer-label">
+                                            Hrs
+                                          </span>
+                                        </li>
+                                        <li className="timer-minutes">
+                                          <span>29</span>
+                                          <span className="timer-label">
+                                            Mins
+                                          </span>
+                                        </li>
+                                        <li className="timer-seconds">
+                                          <span>58</span>
+                                          <span className="timer-label">
+                                            Sec
+                                          </span>
+                                        </li>
+                                      </ul>
+                                    </div>
+                                  </div>
+                                  <h3>HeadRock VR</h3>
                                 </div>
-                              </div>
-                              <h3>HeadRock VR</h3>
-                            </div>
-                          );
-                        })}
-                      {promo.slides.length === 1 &&
-                        promo.slides.map(slide => {
-                          return (
-                            <div
-                              key={slide.url}
-                              className="item-wrapper full-promo"
-                            >
-                              <div className="promotions-img">
-                                <div className="item-img">
-                                  <img
-                                    src="assets/images/master-card.jpg"
-                                    className="img-fluid"
-                                    alt="privilage"
-                                  />
+                              );
+                            })}
+                        </div>
+                      )
+                    );
+                  })}
+                </Slider>
+
+                {!Utilities.mobileAndTabletcheck() && (
+                  <Slider {...settings}>
+                    {this.slides.promotions.map((promo, index) => {
+                      return (
+                        <div key={index} className="item">
+                          {promo.slides.length === 2 &&
+                            promo.slides.map(slide => {
+                              return (
+                                <div key={slide.url} className="item-wrapper">
+                                  <div className="promotions-img">
+                                    <div className="item-img">
+                                      <img
+                                        src="assets/images/headrock.jpg"
+                                        className="img-fluid"
+                                        alt="headrock"
+                                      />
+                                    </div>
+                                    <div className="promotion-timer">
+                                      <ul>
+                                        <li className="timer-watch">
+                                          <img
+                                            src="assets/images/stopwatch.svg"
+                                            className="img-fluid"
+                                            alt="watch"
+                                          />
+                                        </li>
+                                        <li className="timer-days">
+                                          <span>70</span>
+                                          <span className="timer-label">
+                                            Days
+                                          </span>
+                                        </li>
+                                        <li className="timer-hours">
+                                          <span>11</span>
+                                          <span className="timer-label">
+                                            Hrs
+                                          </span>
+                                        </li>
+                                        <li className="timer-minutes">
+                                          <span>29</span>
+                                          <span className="timer-label">
+                                            Mins
+                                          </span>
+                                        </li>
+                                        <li className="timer-seconds">
+                                          <span>58</span>
+                                          <span className="timer-label">
+                                            Sec
+                                          </span>
+                                        </li>
+                                      </ul>
+                                    </div>
+                                  </div>
+                                  <h3>HeadRock VR</h3>
                                 </div>
-                              </div>
-                              <h3>
-                                Book with Mastercard and enjoy these privileges!
-                              </h3>
-                            </div>
-                          );
-                        })}
-                    </div>
-                  );
-                })}
-              </Slider>
+                              );
+                            })}
+                          {promo.slides.length === 1 &&
+                            promo.slides.map(slide => {
+                              return (
+                                <div
+                                  key={slide.url}
+                                  className="item-wrapper full-promo"
+                                >
+                                  <div className="promotions-img">
+                                    <div className="item-img">
+                                      <img
+                                        src="assets/images/master-card.jpg"
+                                        className="img-fluid"
+                                        alt="privilage"
+                                      />
+                                    </div>
+                                  </div>
+                                  <h3>
+                                    Book with Mastercard and enjoy these
+                                    privileges!
+                                  </h3>
+                                </div>
+                              );
+                            })}
+                        </div>
+                      );
+                    })}
+                  </Slider>
+                )}
+              </Fragment>
             )}
           </div>
         </div>
