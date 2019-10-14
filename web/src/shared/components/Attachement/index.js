@@ -6,6 +6,7 @@ import ContactUsService from '../../services/ContactUsService';
 const Attachement = ({ attachedFiles, submit, mandatory }) => {
   const [files, setFiles] = useState({});
   const [maxFileLimitMsg, setMaxFileLimitMsg] = useState('');
+  const [serverErr, setServerErr] = useState([]);
 
   useEffect(() => {
     if (submit) {
@@ -14,6 +15,7 @@ const Attachement = ({ attachedFiles, submit, mandatory }) => {
   }, [submit]);
 
   const handleFiles = files => {
+    console.log(files);
     setFiles({});
     setMaxFileLimitMsg('');
     const filesLength = files.length;
@@ -30,6 +32,7 @@ const Attachement = ({ attachedFiles, submit, mandatory }) => {
       setFiles(files);
       submitUploadAttachment(files);
     }
+    setServerErr([]);
   };
 
   const submitUploadAttachment = files => {
@@ -46,7 +49,9 @@ const Attachement = ({ attachedFiles, submit, mandatory }) => {
           }
         })
         .catch(err => {
-          console.log(err.response);
+          if (err && err.response) {
+            setServerErr(err.response.data.message);
+          }
         });
     }
   };
@@ -73,7 +78,9 @@ const Attachement = ({ attachedFiles, submit, mandatory }) => {
             multiple
             onChange={e => handleFiles(e.target.files)}
             accept={
-              mandatory ? '.pdf,.doc,.docx:' : '.jpeg,.png,.pdf,.doc,.docx,.jpg'
+              mandatory
+                ? '.pdf,.doc,.docx,.txt:'
+                : '.jpeg,.png,.pdf,.doc,.docx,.jpg'
             }
           />
         </div>
@@ -82,6 +89,14 @@ const Attachement = ({ attachedFiles, submit, mandatory }) => {
       {files && files[0] && <p>{files[0].name}</p>}
       {files && files[1] && <p>{files[1].name}</p>}
       {files && files[2] && <p>{files[2].name}</p>}
+      {serverErr &&
+        serverErr.map(err => {
+          return (
+            <p key={err} className="text-danger">
+              {err}
+            </p>
+          );
+        })}
     </div>
   );
 };
