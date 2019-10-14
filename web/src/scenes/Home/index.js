@@ -89,7 +89,9 @@ class Home extends Component {
           showModal={this.state.modal}
           content={this.state.modalContent}
           title="News Ticker"
-          handleClose={() => this.setState({ modal: false, modalContent: '' })}
+          handleClose={() =>
+            this.showNewsTicker({ modal: false, modalContent: '' })
+          }
           htmlContent={true}
         />
       </div>
