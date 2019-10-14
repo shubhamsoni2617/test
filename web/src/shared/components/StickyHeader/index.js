@@ -235,12 +235,16 @@ function StickyHeader(props) {
                 <img src={calendarImg} alt="cal-icon" />
                 <div>
                   <span>{detailData.event_date}</span>
-                  <button
-                    className="link"
-                    onClick={() => setEventDateBlock(true)}
-                  >
-                    View all Dates & Time
-                  </button>
+                  {detailData.event_date_details &&
+                    detailData.event_date_details.length &&
+                    detailData.event_date_details[0] && (
+                      <button
+                        className="link"
+                        onClick={() => setEventDateBlock(true)}
+                      >
+                        View all Dates & Time
+                      </button>
+                    )}
                 </div>
               </li>
             )}

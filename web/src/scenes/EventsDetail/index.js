@@ -373,7 +373,10 @@ export default class EventsDetail extends Component {
                     openSocialShare={this.openSocialShare}
                     shareUrl={shareUrl}
                     seatMapButton={
-                      <SeatMapButton seatingPlan={detailData.seating_plan} />
+                      detailData.seating_plan &&
+                      detailData.seating_plan.length && (
+                        <SeatMapButton seatingPlan={detailData.seating_plan} />
+                      )
                     }
                     buyPackages={
                       <BuyPackages
