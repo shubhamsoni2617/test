@@ -128,7 +128,6 @@ a{
       display: block;
     }
 }
-
 .submenu-holder{
   .clear{
         display: none;
@@ -279,21 +278,25 @@ a{
 			font-size: 16px;
     }
   }
-  .stay-connect{
-    .input-group{
-      padding: 0px 15px 10px;
-      border-radius: 0px;
-      .form-control{
-        line-height: normal;
-        height: 40px;
+}
+}
+@media(max-width: 991px){
+  .responsive-nav-links{
+    .stay-connect{
+      .input-group{
+        padding: 0px 15px 10px;
         border-radius: 0px;
-      }
-      .input-group-text{
-        background-color: #2698ff;
-        padding: 0px;
-        border-left: 0px;
+        .form-control{
+          line-height: normal;
+          height: 40px;
+          border-radius: 0px;
+        }
+        .input-group-text{
+          background-color: #2698ff;
+          padding: 0px;
+          border-left: 0px;
+        }
       }
     }
   }
-}
 }
