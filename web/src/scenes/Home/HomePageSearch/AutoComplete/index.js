@@ -104,21 +104,22 @@ const Autocomplete = props => {
                     key={suggestion.id}
                     onClick={() => onClick(suggestion.title)}
                   >
-                    {suggestion.title}
+                    <h4 className="suggestion-title">{suggestion.title}</h4>
+                    <button>{suggestion.category}</button>
                   </li>
-                  <button>{suggestion.category}</button>
                 </>
               );
             })}
-
-            <li
-              onClick={() => {
-                onClick(userInput);
-                props.history.push(`/search-results?q=${userInput}`);
-              }}
-            >
-              See all Results for {userInput}
-            </li>
+            <div className="search-link-all-results">
+              <li
+                onClick={() => {
+                  onClick(userInput);
+                  props.history.push(`/search-results?q=${userInput}`);
+                }}
+              >
+                See all Results for {userInput}
+              </li>
+            </div>
           </ul>
         </>
       );

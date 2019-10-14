@@ -82,59 +82,59 @@ const Search = props => {
         );
       })
     ) : (
-      <ShimmerEffect
-        height={10}
-        count={4}
-        type="LIST"
-        propCls="shm_col-xs-1 col-md-12"
-      />
-    );
+        <ShimmerEffect
+          height={10}
+          count={4}
+          type="LIST"
+          propCls="shm_col-xs-1 col-md-12"
+        />
+      );
   };
   return (
-    <>
-      <div>
+    <div className="searchbar-page-wrapper container-fluid">
+      <div className="container">
+        <h2>
+          {allResultCount} results found for "
+        <strong>{props.location.search.split('=')[1]}</strong>"
+      </h2>
         <SearchCategory
           searchCategories={searchCategories}
           defaultCategoryId={defaultCategoryId}
           handleActiveCategory={handleActiveCategory}
         />
-      </div>
-      <h2>
-        {allResultCount} results found for "
-        {props.location.search.split('=')[1]}"
-      </h2>
-      <div className="wrapper-events-listing">
-        <div className="events-listing">
-          <div className="events-section list-view">
-            {searchResultHandler(allSearchResults)}
-          </div>
-          {loadMore && (
-            <ShimmerEffect
-              height={10}
-              count={4}
-              type="LIST"
-              propCls="shm_col-xs-1 col-md-12"
-            />
-          )}
-          {loadContent === 4 && (
-            <div className="promotion-load-more">
-              <button
-                onClick={() => {
-                  setConstant(10);
-                  setLoadMore(true);
-                  setLoadContent(0);
-                }}
-                className="btn-link load-more-btn"
-                target=""
-              >
-                <span>Load More ({4})</span>
-                <img src={DownArrowBlue} alt="down arrow blue" />
-              </button>
+        <div className="wrapper-events-listing">
+          <div className="events-listing">
+            <div className="events-section list-view">
+              {searchResultHandler(allSearchResults)}
             </div>
-          )}
+            {loadMore && (
+              <ShimmerEffect
+                height={10}
+                count={4}
+                type="LIST"
+                propCls="shm_col-xs-1 col-md-12"
+              />
+            )}
+            {loadContent === 4 && (
+              <div className="promotion-load-more">
+                <button
+                  onClick={() => {
+                    setConstant(10);
+                    setLoadMore(true);
+                    setLoadContent(0);
+                  }}
+                  className="btn-link load-more-btn"
+                  target=""
+                >
+                  <span>Load More ({4})</span>
+                  <img src={DownArrowBlue} alt="down arrow blue" />
+                </button>
+              </div>
+            )}
+          </div>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

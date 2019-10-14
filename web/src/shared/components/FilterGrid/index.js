@@ -65,7 +65,7 @@ const FilterGrid = props => {
     if (status) items = [...props.data].map(item => item.id);
     setActiveClass(status);
     setSelectedFilters(items);
-    applyFilters(items, false);
+    applyFilters(items, !Utilities.mobilecheck());
   };
 
   const resetFilters = () => {
