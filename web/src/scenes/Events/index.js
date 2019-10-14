@@ -195,7 +195,7 @@ export default class Events extends Component {
           this.setState({
             loader: false,
             eventsData: eventData,
-            // shimmer: false,
+            shimmer: false,
             totalRecords: res.data.total_records,
             isdataAvailable: isdataAvailable
           });
