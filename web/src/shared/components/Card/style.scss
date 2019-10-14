@@ -13,7 +13,11 @@
     position: relative;
     @supports (-ms-ime-align:auto) {
         box-shadow: 0 0px 1px rgba(154, 154, 154, 0.7);
-    }    
+    }
+    @media(max-width: 1024px){
+        height: 100%;
+        justify-content: space-between;
+    }
     @media (max-width: 767px) {
         width: 100%;
         margin: 0 5px 10px;
@@ -226,7 +230,7 @@
             height: auto;
         }
         img{
-            max-width: 100%;
+            width: 100%;
         }
     }
     .event-details{
@@ -246,6 +250,9 @@
           margin: 0;
           line-height: 20px;
           min-height: 61px;
+          @media(max-width: 767px){
+              min-height: auto;
+          }
           h3{
             font-size: 17px;
             color: #343434;
@@ -254,10 +261,13 @@
             margin-bottom: 0;
             @media(max-width: 1024px){
                 font-size: 15px;
+                max-height: 35px !important;
+                min-height: 35px !important;
             }
             @media (max-width: 767px) {
                 font-size: 14px;
-                max-height: unset !important;
+                max-height: 40px !important;
+                min-height: 20px !important;
             }
           }
 
@@ -379,6 +389,9 @@
         .modal-content .modal-body{
             padding: 15px 15px 20px;
             border-radius: 0;
+            @media(max-width: 767px){
+                max-height: 260px;
+            }
             .notice{
                 padding: 0 10px;
             }

@@ -1,6 +1,6 @@
 import React, { Fragment, useState, useEffect } from 'react';
 import './style.scss';
-import attach from '../../../assets/images/attach.png';
+import attach from '../../../assets/images/attach.svg';
 import ContactUsService from '../../../shared/services/ContactUsService';
 import { Link } from 'react-router-dom';
 import Constants from '../../constants';
@@ -152,7 +152,6 @@ const Contact = ({ attachement, handleEnquiry }) => {
     setLoading(false);
     setError(false);
     setHeaderErr('');
-    setFiles({});
     setSuccessMsg('');
   };
 
@@ -259,7 +258,7 @@ const Contact = ({ attachement, handleEnquiry }) => {
         </div>
         {errMsg && !name ? (
           <span className="error-msg">
-            Please enter {handleEnquiry ? 'name' : 'full name'}      
+            Please enter {handleEnquiry ? 'name' : 'full name'}
           </span>
         ) : null}
         <div className={errMsg && !email ? 'form-group err' : 'form-group'}>
@@ -275,7 +274,7 @@ const Contact = ({ attachement, handleEnquiry }) => {
         </div>
         {errMsg && !email ? (
           <span className="error-msg">
-            Please enter {handleEnquiry ? 'email address' : 'email'}      
+            Please enter {handleEnquiry ? 'email address' : 'email'}
           </span>
         ) : null}
         <div className={errMsg && !phone ? 'form-group err' : 'form-group'}>
@@ -292,7 +291,7 @@ const Contact = ({ attachement, handleEnquiry }) => {
         </div>
         {errMsg && !phone ? (
           <span className="error-msg">
-            Please enter {handleEnquiry ? 'phone' : 'mobile'} no.   
+            Please enter {handleEnquiry ? 'phone' : 'mobile'} number.   
           </span>
         ) : null}
         <div className={errMsg && !message ? 'form-group err' : 'form-group'}>
@@ -308,7 +307,7 @@ const Contact = ({ attachement, handleEnquiry }) => {
           />
         </div>
         {errMsg && !message ? (
-          <span className="error-msg">Please enter some messages</span>
+          <span className="error-msg">Please enter message</span>
         ) : null}
         {attachement && (
           <div className="form-group attach-doc">
@@ -331,7 +330,8 @@ const Contact = ({ attachement, handleEnquiry }) => {
                   accept=".jpeg,.png,.pdf,.doc,.docx,.jpg"
                 />
                 <span>
-                  *File Size should be maximum 5mb and it can be pdf,jpeg,png
+                  *File Size should be maximum 5mb and it can be
+                  pdf,jpeg,png,jpg
                 </span>
                 <p className="text-danger">{maxFileLimitMsg}</p>
                 {files && files[0] && <p>{files[0].name}</p>}

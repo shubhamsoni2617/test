@@ -26,7 +26,7 @@ function Submenu(props) {
       <div
         className={`submenu-holder ${submenuClass} ${
           menueStatus ? 'active' : ''
-        }`}
+          }`}
       >
         <div className="subholder-wrapper">
           <div className="filter-heading">
@@ -34,7 +34,7 @@ function Submenu(props) {
               <button
                 type="button"
                 onClick={() => {
-                  resetFilters();
+                  // resetFilters && resetFilters();
                   setMenuStatus(false);
                 }}
               >
@@ -43,7 +43,7 @@ function Submenu(props) {
             )}
             <h3>
               {heading}
-              <button onClick={() => clearFilters(false)}>Clear Filters</button>
+              <button className="homepage-clear-filter" onClick={() => clearFilters(false)}>Clear Filters</button>
             </h3>
           </div>
         </div>
@@ -65,18 +65,32 @@ function Submenu(props) {
                 </li>
               );
             })}
+            <Link
+              to="/events"
+              onClick={() => {
+                setMenuStatus(false);
+                closeSubmenu(false);
+              }}
+              className="text-center see-all-sidebar"
+            >
+              See All Events
+            </Link>
           </ul>
         )}
-        <div className={`filter-fixed-btn ${menueStatus ? 'show' : 'hide'}`}>
-          <button
-            onClick={() => {
-              setMenuStatus(false);
-              applyFilters();
-            }}
-          >
-            Apply
-          </button>
-        </div>
+        {buttonText === 'By Genre' ||
+          buttonText === 'By Date' ||
+          buttonText === 'By Venue' ? null : (
+            <div className={`filter-fixed-btn ${menueStatus ? 'show' : 'hide'}`}>
+              <button
+                onClick={() => {
+                  setMenuStatus(false);
+                  applyFilters();
+                }}
+              >
+                Apply
+            </button>
+            </div>
+          )}
       </div>
     </>
   );

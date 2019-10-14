@@ -17,6 +17,7 @@
     "react-animated-modal": "^1.1.1",
     "react-day-picker": "^7.3.0",
     "react-dom": "^16.8.6",
+    "react-dropzone-uploader": "^2.10.1",
     "react-helmet": "^5.2.0",
     "react-image-gallery": "^0.8.18",
     "react-image-lightbox": "^5.1.0",
