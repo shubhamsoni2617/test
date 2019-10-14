@@ -20,17 +20,19 @@
   .inner {
       @media(max-width: 767px){
         position: fixed;
-        top: 80px;
+        top: 0px;
         left: 0px;
         bottom: 52px;
         right: 0px;
         z-index: inherit;
         display: block;
         background-color: #efefef;
-        max-height: calc(100% - 132px);
+        max-height: calc(100% - 52px);
         overflow-y: auto;
         margin: 0px;
         height: auto;
+        padding-top: 80px;
+        -webkit-overflow-scrolling: touch;
       }
     }
 }
@@ -342,6 +344,7 @@
             background-color: #373E45;
             padding: 10px 20px 10px 15px;
             height: 80px;
+            min-height: 80px;
             top: 0;
             width: 100%;
             align-items: flex-end;
@@ -767,7 +770,6 @@
                 }
             }
             .DayPickerInput{
-
                 input{
                     height: 26px;
                     width: 100%;
@@ -795,6 +797,11 @@
                         z-index: 1;
                         background: white;
                         box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+                        @media(max-width: 767px){
+                            width: auto;    
+                            overflow: hidden;
+                            min-width: auto;
+                        }
                     }
                     .DayPicker-wrapper{
                         height: 246px;
@@ -802,6 +809,10 @@
                         padding: 15px 5px;
                         background-color: #FFFFFF;
                         box-shadow: 0 2px 4px 1px rgba(190,190,190,0.5);
+                        @media(max-width: 767px){
+                            height: auto;
+                            width: 100%;
+                        }
                         .DayPicker-Body .DayPicker-Week{
                             justify-content: space-between;
                             overflow: hidden;
@@ -1020,10 +1031,14 @@
                     .DayPickerInput{
                         width: 100%;
                         input{
-                              border: 1px solid rgba(225, 225, 225, 0.5);
-                              height: 36px;
-                              padding: 10px;
-                              width: 100%;
+                            border: 1px solid rgba(225, 225, 225, 0.5);
+                            height: 36px;
+                            padding: 10px;
+                            width: 100%;
+                            border-radius: 0px;
+                            box-shadow: none;
+                            outline: none;
+                            -webkit-appearance: none;
                         }
                       }
                   }
