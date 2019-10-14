@@ -334,7 +334,7 @@ export default class EventsDetail extends Component {
         >
           {shimmer && (
             <ShimmerEffect
-              propCls="shm_col-xs-6 col-md-12"
+              propCls="col-md-12"
               height={400}
               count={2}
               type="DETAIL"
@@ -374,7 +374,7 @@ export default class EventsDetail extends Component {
                     shareUrl={shareUrl}
                     seatMapButton={
                       detailData.seating_plan &&
-                      detailData.seating_plan.length && (
+                      detailData.seating_plan.length > 0 && (
                         <SeatMapButton seatingPlan={detailData.seating_plan} />
                       )
                     }
