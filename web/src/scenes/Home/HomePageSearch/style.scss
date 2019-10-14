@@ -1,0 +1,35 @@
+.autocomplete{
+    .suggestions{
+        padding: 0px;
+        li{
+            padding: 10px 20px;
+        }
+        h4{
+            font-size: 16px;
+            line-height: 19px;
+        }
+        button{
+            color: #0077C8;
+            font-family: Lato;
+            font-size: 14px;
+            line-height: 17px;
+            background-color: transparent;
+            font-weight: 400;
+            padding: 0px;
+            &.category{
+                background-color: #07B3F0;
+                color: #fff;
+                padding: 10px;
+            }
+        }
+        .search-link-all-results{
+            padding: 10px 20px;
+            a{
+                color: #0098FF;
+                font-size: 16px;                
+                line-height: 19px;
+                font-weight: 300;;
+            }
+        }
+    }
+}

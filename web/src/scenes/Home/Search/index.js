@@ -95,7 +95,7 @@ const Search = props => {
       <div className="container">
         <h2>
           {allResultCount} results found for "
-        {props.location.search.split('=')[1]}"
+        <strong>{props.location.search.split('=')[1]}</strong>"
       </h2>
         <SearchCategory
           searchCategories={searchCategories}

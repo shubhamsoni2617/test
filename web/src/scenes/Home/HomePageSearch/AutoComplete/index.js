@@ -104,28 +104,28 @@ const Autocomplete = props => {
                   <li
                     className={`${
                       index === activeSuggestion ? `suggestion-active` : ``
-                    }`}
+                      }`}
                     key={suggestion.title}
                     onClick={() => onClick(suggestion.title)}
                   >
-                    {suggestion.title}
+                    <h4 className="suggestion-title">{suggestion.title}</h4>
+                    <button>{suggestion.category}</button>
                   </li>
-                  <button>{suggestion.category}</button>
                 </>
               );
             })}
-            <li>
+            <div className="search-link-all-results">
               <Link to={`/search-results?q=${userInput}`}>
-                See all Results for {userInput}
+                See all Results for <strong>{userInput}</strong>
               </Link>
-            </li>
+            </div>
           </ul>
         </>
       );
     } else {
       suggestionsListComponent = (
         <div className="no-suggestions">
-          <em>No suggestions, you're on your own!</em>
+          <p>No suggestions, you're on your own!</p>
         </div>
       );
     }
