@@ -61,7 +61,7 @@ const Opening = ({ jobListing, jobListingErr }) => {
                 : 3
             }
             type="LIST"
-            propCls={`shm_col-xs-2 col-md-${
+            propCls={`shm_col-xs-${Utilities.mobilecheck() ? 1 : 2} col-md-${
               Utilities.mobilecheck()
                 ? 12
                 : Utilities.mobileAndTabletcheck()
