@@ -3,29 +3,34 @@ import { Link } from 'react-router-dom';
 import SearchService from '../../../../shared/services/SearchService';
 import Constants from '../../../../shared/constants';
 import useDebounce from '../../../../shared/hooks/useDebounce';
-
+import RecentlySearched from './RecentlySearched';
+import loaderImage from '../../../../assets/images/loader.svg';
 const Autocomplete = props => {
+  // console.log(JSON.parse(localStorage.getItem('recentlySearched')));
+
   const [activeSuggestion, setActiveSuggestion] = useState(0);
-  const [filteredSuggestions, setFilteredSuggestions] = useState([]);
   const [showSuggestions, setShowSuggestions] = useState(false);
   const [userInput, setUserInput] = useState('');
   const [suggestions, setSuggestions] = useState([]);
   const [isSearching, setIsSearching] = useState(false);
-  //   useEffect(() => {
-  //     fetchSearchSuggestionsService();
-  //   }, [userInput]);
+  const [isFocused, setIsFocused] = useState(false);
+
   const debouncedSearchTerm = useDebounce(userInput, 500);
+
   useEffect(() => {
-    // if (!suggestions) {
-    //   fetchSearchSuggestionsService(debouncedSearchTerm);
-    // }
+    let storageValues = JSON.parse(localStorage.getItem('recentlySearched'));
+    if (!storageValues || !storageValues.length) {
+      let recentlySearched = [];
+      localStorage.setItem(
+        'recentlySearched',
+        JSON.stringify(recentlySearched)
+      );
+    }
+  }, []);
+  useEffect(() => {
     if (debouncedSearchTerm) {
-      console.log('debounce');
       setIsSearching(true);
-      // searchCharacters(debouncedSearchTerm).then(results => {
-      //   setIsSearching(false);
-      //   setResults(results);
-      // });
+
       fetchSearchSuggestionsService(debouncedSearchTerm);
     } else {
       setSuggestions([]);
@@ -33,68 +38,59 @@ const Autocomplete = props => {
   }, [debouncedSearchTerm]);
 
   const fetchSearchSuggestionsService = debouncedSearchTerm => {
-    console.log('test');
     const params = {
       client: Constants.CLIENT,
-      limit: 8,
+      limit: 10,
       first: 1,
       search: debouncedSearchTerm
     };
     SearchService.getSearchSuggestions(params)
       .then(res => {
+        setSuggestions(res.data.data);
         setIsSearching(false);
-        console.log(res.data.data);
-        if (!res.data.data) {
-          setSuggestions([]);
-        } else {
-          setSuggestions(res.data.data);
-        }
       })
       .catch(err => {
         console.log(err);
       });
   };
   const onChange = e => {
-    // const { suggestions } = props;
     const userInput = e.currentTarget.value;
-    const filteredSuggestions = suggestions;
 
     setActiveSuggestion(0);
-    setFilteredSuggestions(filteredSuggestions);
+
     setShowSuggestions(true);
     setUserInput(e.currentTarget.value);
   };
 
   const onClick = question => {
-    // console.log(e.currentTarget.value);
     setActiveSuggestion(0);
-    setFilteredSuggestions([]);
+
     setShowSuggestions(false);
     setUserInput(question);
+
+    let storageValues = JSON.parse(localStorage.getItem('recentlySearched'));
+    if (storageValues) {
+      if (storageValues.length > 8) {
+        storageValues.shift();
+      }
+      storageValues.push(question);
+      localStorage.setItem('recentlySearched', JSON.stringify(storageValues));
+    }
+
+    console.log(storageValues);
   };
 
   const onKeyDown = e => {
     if (e.keyCode === 13) {
       setActiveSuggestion(0);
       setShowSuggestions(false);
-      setUserInput(filteredSuggestions[activeSuggestion].title);
-    } else if (e.keyCode === 38) {
-      if (activeSuggestion === 0) {
-        return;
-      }
-      setActiveSuggestion(activeSuggestion - 1);
-    } else if (e.keyCode === 40) {
-      if (activeSuggestion - 1 === filteredSuggestions.length) {
-        return;
-      }
-      setActiveSuggestion(activeSuggestion + 1);
     }
   };
 
   let suggestionsListComponent;
 
   if (showSuggestions && userInput) {
-    if (suggestions.length) {
+    if (suggestions && suggestions.length) {
       suggestionsListComponent = (
         <>
           <ul className="suggestions">
@@ -105,7 +101,7 @@ const Autocomplete = props => {
                     className={`${
                       index === activeSuggestion ? `suggestion-active` : ``
                     }`}
-                    key={suggestion.title}
+                    key={suggestion.id}
                     onClick={() => onClick(suggestion.title)}
                   >
                     {suggestion.title}
@@ -114,10 +110,14 @@ const Autocomplete = props => {
                 </>
               );
             })}
-            <li>
-              <Link to={`/search-results?q=${userInput}`}>
-                See all Results for {userInput}
-              </Link>
+
+            <li
+              onClick={() => {
+                onClick(userInput);
+                props.history.push(`/search-results?q=${userInput}`);
+              }}
+            >
+              See all Results for {userInput}
             </li>
           </ul>
         </>
@@ -125,7 +125,7 @@ const Autocomplete = props => {
     } else {
       suggestionsListComponent = (
         <div className="no-suggestions">
-          <em>No suggestions, you're on your own!</em>
+          {isSearching && <img className="filter-loader" src={loaderImage} />}
         </div>
       );
     }
@@ -138,11 +138,14 @@ const Autocomplete = props => {
         onChange={onChange}
         onKeyDown={onKeyDown}
         value={userInput}
+        onFocus={() => setIsFocused(true)}
+        onBlur={() => {
+          setIsFocused(false);
+          setShowSuggestions(false);
+        }}
       />
       {suggestionsListComponent}
-      <Link to={`/search-results?q=${userInput}`}>
-        See all Results for {userInput}
-      </Link>
+      {isFocused && !userInput ? <RecentlySearched {...props} /> : null}
     </div>
   );
 };

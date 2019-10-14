@@ -9,11 +9,12 @@ import './style.scss';
 // import { Link } from 'react-router-dom';
 import Autocomplete from './AutoComplete';
 
-const HomePageSearch = () => {
+const HomePageSearch = props => {
+  // console.log(props);
   const [input, setInput] = useState('');
   return (
     <div className="header-search">
-      <Autocomplete suggestions={data} />
+      <Autocomplete suggestions={data} {...props} />
       <button type="submit" className="search-btn">
         <img src={searchImage} className="img-fluid" alt="search-icon" />
         <img
