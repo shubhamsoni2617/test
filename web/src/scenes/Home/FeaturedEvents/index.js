@@ -4,6 +4,9 @@ import './style.scss';
 import Constants from '../../../shared/constants';
 import AdvertisementService from '../../../shared/services/AdvertisementService';
 import Utilities from '../../../shared/utilities';
+import { CSSTransitionGroup } from 'react-transition-group';
+import ShimmerEffect from '../../../shared/components/ShimmerEffect';
+import Image from '../../../shared/components/Image';
 
 const SampleNextArrow = props => {
   const { className, style, onClick } = props;
@@ -31,6 +34,7 @@ const FeaturedEvents = props => {
   const [width, setWidth] = useState(window.innerWidth);
   const [featuredEvents, setFeaturedEvents] = useState([]);
   const [serverErr, setServerErr] = useState('');
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     window.addEventListener('resize', handleWindowResize);
@@ -51,7 +55,10 @@ const FeaturedEvents = props => {
     AdvertisementService.getFeaturedEvents(params)
       .then(res => {
         if (res && res.data) {
-          setFeaturedEvents(res.data.data);
+          setTimeout(() => {
+            setFeaturedEvents(res.data.data);
+            setLoading(false);
+          }, 2000);
         }
       })
       .catch(err => {
@@ -214,7 +221,6 @@ const FeaturedEvents = props => {
   //   }
   // ];
 
-  console.log(featuredEvents);
   const settings = {
     className: 'center',
     dots: true,
@@ -268,77 +274,109 @@ const FeaturedEvents = props => {
             </a>
           </div>
         </div>
-        {width <= Constants.MOBILE_BREAK_POINT ? (
-          <div
-            style={{ width: '30em', overflowX: 'auto', whiteSpace: 'nowrap' }}
-          >
-            <div className="grid-container">
-              {featuredEvents &&
-                featuredEvents.map((event, i) => {
-                  event.venue_name = Utilities.showLimitedChars(
-                    event.venue_name,
-                    20
-                  );
-                  return (
-                    <div className="item" key={i}>
-                      <div className="item-wrapper">
-                        <div className="featured-item-img">
-                          <div className="item-img">
-                            <img
-                              src={event.full_image}
-                              className="img-fluid"
-                              alt={event && event.alt_text}
-                            />
+        <CSSTransitionGroup
+          transitionName="shimmer-carousel"
+          transitionEnter={true}
+          transitionEnterTimeout={1000}
+          transitionLeaveTimeout={1000}
+        >
+          {loading ? (
+            <ShimmerEffect
+              propCls="shm_col-xs-6 col-md-6"
+              height={
+                Utilities.mobilecheck() || Utilities.mobileAndTabletcheck()
+                  ? 150
+                  : 298
+              }
+              count={
+                Utilities.mobilecheck()
+                  ? 1
+                  : Utilities.mobileAndTabletcheck()
+                  ? 4
+                  : 10
+              }
+              type="TILE"
+            />
+          ) : width <= Constants.MOBILE_BREAK_POINT ? (
+            <div
+              style={{ width: '30em', overflowX: 'auto', whiteSpace: 'nowrap' }}
+            >
+              <div className="grid-container">
+                {featuredEvents &&
+                  featuredEvents.map((event, i) => {
+                    event.venue_name = Utilities.showLimitedChars(
+                      event.venue_name,
+                      20
+                    );
+                    return (
+                      <div className="item" key={i}>
+                        <div className="item-wrapper">
+                          <div className="featured-item-img">
+                            <div className="item-img">
+                              <Image
+                                src={event.full_image}
+                                className="img-fluid"
+                                type="Tile"
+                              />
+                            </div>
+                            <span
+                              className={`category ${event &&
+                                event.primary_genere.toLowerCase()}`}
+                            >
+                              {event.primary_genere}
+                            </span>
                           </div>
-                          <span
-                            className={`category ${event &&
-                              event.primary_genere.toLowerCase()}`}
-                          >
-                            {event.primary_genere}
-                          </span>
+                          {event && event.title && <h3>{event.title}</h3>}
+                          {event && event.event_date && (
+                            <p>{event.event_date}</p>
+                          )}
+                          {event && event.venue_name && (
+                            <p>{event.venue_name}</p>
+                          )}
                         </div>
-                        {event && event.title && <h3>{event.title}</h3>}
-                        {event && event.event_date && <p>{event.event_date}</p>}
-                        {event && event.venue_name && <p>{event.venue_name}</p>}
+                      </div>
+                    );
+                  })}
+              </div>
+            </div>
+          ) : (
+            <Slider {...settings}>
+              {featuredEvents &&
+                featuredEvents.map((event, index) => {
+                  return (
+                    <div className="grid-container" key={index}>
+                      <div className="item">
+                        <div className="item-wrapper">
+                          <div className="featured-item-img">
+                            <div className="item-img">
+                              <Image
+                                src={event.full_image}
+                                className="img-fluid"
+                                type="Tile"
+                              />
+                            </div>
+                            <span
+                              className={`category ${event &&
+                                event.primary_genere.toLowerCase()}`}
+                            >
+                              {event.primary_genere}
+                            </span>
+                          </div>
+                          {event && event.title && <h3>{event.title}</h3>}
+                          {event && event.event_date && (
+                            <p>{event.event_date}</p>
+                          )}
+                          {event && event.venue_name && (
+                            <p>{event.venue_name}</p>
+                          )}
+                        </div>
                       </div>
                     </div>
                   );
                 })}
-            </div>
-          </div>
-        ) : (
-          <Slider {...settings}>
-            {featuredEvents &&
-              featuredEvents.map((event, index) => {
-                return (
-                  <div className="grid-container" key={index}>
-                    <div className="item">
-                      <div className="item-wrapper">
-                        <div className="featured-item-img">
-                          <div className="item-img">
-                            <img
-                              src={event.full_image}
-                              className="img-fluid"
-                              alt={event && event.alt_text}
-                            />
-                          </div>
-                          <span
-                            className={`category ${event &&
-                              event.primary_genere.toLowerCase()}`}
-                          >
-                            {event.primary_genere}
-                          </span>
-                        </div>
-                        {event && event.title && <h3>{event.title}</h3>}
-                        {event && event.event_date && <p>{event.event_date}</p>}
-                        {event && event.venue_name && <p>{event.venue_name}</p>}
-                      </div>
-                    </div>
-                  </div>
-                );
-              })}
-          </Slider>
-        )}
+            </Slider>
+          )}
+        </CSSTransitionGroup>
       </div>
     </section>
   );
