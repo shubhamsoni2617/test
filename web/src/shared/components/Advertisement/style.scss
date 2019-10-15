@@ -47,9 +47,9 @@
         -moz-transition: max-height 0.5s ease-in;
         -o-transition: max-height 0.5s ease-in;
         & + .header.homepage{
-            top: 90px;
+            top: 89px;
             @media(max-width: 1440px){
-                top: 88px;
+                top: 87px;
             }
             @media(max-width: 1390px){
                 top: 82px;
@@ -110,21 +110,24 @@
             }
              & + .home-page-wrapper{
                 .ticker-wrap.hide-news{
-                    top: 198px;
+                    top: 197px;
                     @media(max-width: 1440px){
-                        top: 200px;
+                        top: 195px;
                     }
                     @media(max-width: 1400px){
                         top: 194px;
                     }
-                    @media(max-width: 1370px){
+                    @media(max-width: 1380px){
                         top: 190px;
                     }
                     @media(max-width: 1360px){
                         top: 194px;
                     }
+                    @media(max-width: 1355px){
+                        top: 190px;
+                    }
                     @media(max-width: 1280px){
-                        top: 191px;
+                        top: 187px;
                     }
                     @media(max-width: 1200px){
                         top: 182px;
@@ -133,7 +136,7 @@
                         top: 181px;
                     }
                     @media(max-width: 1024px){
-                        top: 112px;
+                        top: 173px;
                     }
                     @media(max-width: 768px){
                         top: 111px;
