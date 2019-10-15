@@ -20,6 +20,8 @@ import HomeService from '../../shared/services/HomeService';
 import Utilities from '../../shared/utilities';
 import Constants from '../../shared/constants';
 import AdvertisementService from '../../shared/services/AdvertisementService';
+import CustomFeatureEvents from './CustomFeatureEvents';
+import Royals from './Royals';
 
 class Home extends Component {
   constructor(props) {
@@ -120,6 +122,8 @@ class Home extends Component {
           api={HomeService.getNewRelease}
         />
         <Explore />
+        <CustomFeatureEvents />
+        <Royals />
         <InstagramFeed />
         <Cookies />
         <ModalPopup

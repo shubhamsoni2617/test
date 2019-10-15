@@ -73,7 +73,8 @@ const FeaturedEvents = props => {
 
   useEffect(() => {
     if (callAPI) {
-      getFeaturedEvents();
+      const { customFeatureEvents } = props;
+      customFeatureEvents ? getCustomFeaturedEvents() : getFeaturedEvents();
     }
   }, [callAPI]);
 
@@ -88,6 +89,26 @@ const FeaturedEvents = props => {
       client: Constants.CLIENT
     };
     AdvertisementService.getFeaturedEvents(params)
+      .then(res => {
+        if (res && res.data) {
+          setTimeout(() => {
+            setFeaturedEvents(res.data.data);
+            setLoading(false);
+          }, 2000);
+        }
+      })
+      .catch(err => {
+        if (err && err.response) {
+          setServerErr('Something went wrong...');
+        }
+      });
+  };
+
+  const getCustomFeaturedEvents = () => {
+    const params = {
+      client: Constants.CLIENT
+    };
+    AdvertisementService.getCustomFeaturedEvents(params)
       .then(res => {
         if (res && res.data) {
           setTimeout(() => {
