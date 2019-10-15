@@ -55,8 +55,8 @@ const Autocomplete = props => {
   const fetchSearchSuggestionsService = debouncedSearchTerm => {
     const params = {
       client: Constants.CLIENT,
-      limit: 10,
-      first: 1,
+      limit: 6,
+      first: 0,
       search: debouncedSearchTerm
     };
     SearchService.getSearchSuggestions(params)
@@ -118,7 +118,7 @@ const Autocomplete = props => {
                 <li
                   className={`${
                     index === activeSuggestion ? `suggestion-active` : ``
-                    }`}
+                  }`}
                   key={suggestion.id}
                   onClick={() => {
                     onClick(suggestion.title);
@@ -132,11 +132,11 @@ const Autocomplete = props => {
                 >
                   <h4 className="suggestion-title">{suggestion.title}</h4>
                   {suggestion.type === 'event' ||
-                    suggestion.type === 'attractions' ? (
-                      <button>{suggestion.category}</button>
-                    ) : (
-                      <p>{suggestion.category}</p>
-                    )}
+                  suggestion.type === 'attractions' ? (
+                    <button>{suggestion.category}</button>
+                  ) : (
+                    <p>{suggestion.category}</p>
+                  )}
                 </li>
               );
             })}

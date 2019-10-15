@@ -4357,6 +4357,7 @@ section{
 				padding: 9px 20px;
 				list-style: none;
 				flex: 0 0 100%;
+				width: 100%;
 				color: #343434;
 				position: relative;
 				&:after {
@@ -4381,7 +4382,8 @@ section{
 					white-space: nowrap;
 					overflow: hidden;
 					display: block;
-					width: 550px;
+					max-width: 550px;
+					width: 100%;
 					img {
 						margin-right: 5px;
 					}

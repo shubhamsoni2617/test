@@ -7,6 +7,8 @@ import Constants from '../../../shared/constants';
 import ShimmerEffect from '../../../shared/components/ShimmerEffect';
 import DownArrowBlue from '../../../assets/images/down-arrow-blue.svg';
 import searchApi from './SearchApi';
+import SearchAdvertisement from './SearchAdvertisement';
+
 const Search = props => {
   const [searchCategories, setSearchCategories] = useState(null);
   const [allResultCount, setAllResultCount] = useState(0);
@@ -80,7 +82,7 @@ const Search = props => {
       searchResults.map(cardData => {
         return (
           <div key={cardData.id}>
-            <Card cardData={cardData} />
+            <Card cardData={cardData} {...props} />
           </div>
         );
       })
@@ -95,6 +97,7 @@ const Search = props => {
   };
   return (
     <div className="searchbar-page-wrapper container-fluid">
+      <SearchAdvertisement />
       {!error ? (
         <div className="container">
           {allResultCount ? (

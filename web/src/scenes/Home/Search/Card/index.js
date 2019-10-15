@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './style.scss';
 import Image from '../../../../shared/components/Image';
+import navigateToLink from '../../../../shared/navigateToLink';
 
 const Card = props => {
   const { cardData } = props;
@@ -26,11 +27,22 @@ const Card = props => {
             {cardData.status && <span>{cardData.status}</span>}
             {cardData.price && <p>{cardData.price}</p>}
           </div>
-          {cardData.type === 'event' || cardData.type === 'attractions' ? (
-            <button type="button">Buy Tickets</button>
-          ) : (
-            <button type="button">Read More</button>
-          )}
+          <div
+            onClick={() =>
+              navigateToLink(
+                props.history,
+                cardData.type,
+                cardData.category,
+                cardData.id
+              )
+            }
+          >
+            {cardData.type === 'event' || cardData.type === 'attractions' ? (
+              <button type="button">Buy Tickets</button>
+            ) : (
+              <button type="button">Read More</button>
+            )}
+          </div>
         </div>
       </div>
     </div>
