@@ -7,6 +7,7 @@ import loaderImage from '../../../../assets/images/loader.svg';
 import './style.scss';
 import navigateToLink from '../../../../shared/navigateToLink';
 const Autocomplete = props => {
+  //test
   const [activeSuggestion, setActiveSuggestion] = useState(0);
   const [showSuggestions, setShowSuggestions] = useState(false);
   const [userInput, setUserInput] = useState('');
