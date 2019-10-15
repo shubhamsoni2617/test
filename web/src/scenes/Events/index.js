@@ -184,8 +184,12 @@ export default class Events extends Component {
     // this.setState({shimmer: true});
     EventsService.getData(params)
       .then(res => {
-        if (!isLoadMore) this.setState({ eventsData: [] });
-        const eventData = [...this.state.eventsData, ...res.data.data];
+        let eventData = [];
+        if (isLoadMore) {
+          eventData = [...this.state.eventsData, ...res.data.data];
+        } else {
+          eventData = [...res.data.data];
+        }
         const isdataAvailable = eventData.length ? false : true;
         setTimeout(() => {
           this.setState({
@@ -354,7 +358,7 @@ export default class Events extends Component {
         filteredSortType: 'date',
         filteredSortOrder: '',
         isdataAvailable: false,
-        eventsData: [],
+        // eventsData: [],
         totalRecords: 0
       };
     }
@@ -621,9 +625,11 @@ export default class Events extends Component {
                 </div>
                 {shimmer && (
                   <ShimmerEffect
-                    propCls="shm_col-xs-6 col-md-4"
+                    propCls={`${
+                      Utilities.mobileAndTabletcheck() ? 'shm_col-xs-6' : ''
+                    } col-md-4`}
                     height={150}
-                    count={3}
+                    count={Utilities.mobileAndTabletcheck() ? 2 : 3}
                     type="LIST"
                   />
                 )}
