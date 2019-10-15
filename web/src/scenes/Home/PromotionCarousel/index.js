@@ -1,106 +1,95 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component, createRef } from 'react';
 import Slider from 'react-slick';
 import Constants from '../../../shared/constants';
 import Utilities from '../../../shared/utilities';
 import HomeService from '../../../shared/services/HomeService';
 import Timer from '../../../shared/components/Timer';
 import Image from '../../../shared/components/Image';
+import ShimmerEffect from '../../../shared/components/ShimmerEffect';
+import './style.scss';
+import { CSSTransitionGroup } from 'react-transition-group';
+
+const ItemWrapper = ({ promotion, expiredText, handlePromotionExpired }) => {
+  return (
+    <div className="promotions-home-item">
+      {promotion && (
+        <div className="promotions-img">
+          <div className="item-img">
+            <Image
+              src={promotion.featured_image}
+              className="img-fluid"
+              alt="promotion-img"
+              type="Horizontal"
+            />
+          </div>
+          {promotion.show_timer === '1' && (
+            <div className="promotion-timer">
+              <ul>
+                {!expiredText ? (
+                  <ul>
+                    <li className="timer-watch">
+                      <img
+                        src="assets/images/stopwatch.svg"
+                        className="img-fluid"
+                        alt="watch"
+                      />
+                    </li>
+                    <Timer
+                      endDate={promotion.publish_end_date}
+                      promotionExpired={handlePromotionExpired}
+                    />
+                  </ul>
+                ) : null}
+              </ul>
+            </div>
+          )}
+        </div>
+      )}
+      <h3>
+        {promotion && Utilities.mobilecheck()
+          ? Utilities.showLimitedChars(promotion.title, 15)
+          : promotion.title}
+      </h3>
+    </div>
+  );
+};
 
 export default class PromotionCarousel extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      width: window.innerWidth,
       promotions: [],
-      expiredText: ''
+      expiredText: '',
+      loading: true,
+      callAPI: false
     };
-    this.slides = {
-      promotions: [
-        {
-          slides: [
-            {
-              url: '1'
-            },
-            {
-              url: '2'
-            }
-          ]
-        },
-        {
-          slides: [
-            {
-              url: '3'
-            }
-          ]
-        },
-        {
-          slides: [
-            {
-              url: '4'
-            }
-          ]
-        },
-        {
-          slides: [
-            {
-              url: '5'
-            },
-            {
-              url: '6'
-            }
-          ]
-        },
-        {
-          slides: [
-            {
-              url: '7'
-            },
-            {
-              url: '8'
-            }
-          ]
-        },
-        {
-          slides: [
-            {
-              url: '9'
-            }
-          ]
-        },
-        {
-          slides: [
-            {
-              url: '10'
-            }
-          ]
-        },
-        {
-          slides: [
-            {
-              url: '11'
-            },
-            {
-              url: '12'
-            }
-          ]
-        }
-      ]
-    };
-    this.handleWindowResize = this.handleWindowResize.bind(this);
+    this.element = createRef(null);
   }
 
   componentDidMount() {
-    window.addEventListener('resize', this.handleWindowResize);
-    this.getPromotions();
+    window.addEventListener('scroll', this.scrollHandler, true);
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState.callAPI !== this.state.callAPI) {
+      if (this.state.callAPI) {
+        this.getPromotions();
+      }
+    }
   }
 
   componentWillUnmount() {
-    window.removeEventListener('resize', this.handleWindowResize);
+    window.removeEventListener('scroll', this.scrollHandler, true);
   }
 
-  handleWindowResize() {
-    this.setState({ width: window.innerWidth });
-  }
+  scrollHandler = () => {
+    if (
+      !this.state.callAPI &&
+      window.pageYOffset >= this.element.offsetTop - 300
+    ) {
+      this.setState({ callAPI: true });
+    }
+  };
 
   handlePromotionExpired = text => {
     this.setState({ text });
@@ -115,7 +104,9 @@ export default class PromotionCarousel extends Component {
     HomeService.getPromotions(params)
       .then(res => {
         if (res && res.data) {
-          this.setState({ promotions: res.data.data });
+          setTimeout(() => {
+            this.setState({ promotions: res.data.data, loading: false });
+          }, 2000);
         }
       })
       .catch(err => {
@@ -126,36 +117,23 @@ export default class PromotionCarousel extends Component {
   }
 
   render() {
-    const { width } = this.state;
+    const { loading, promotions, expiredText } = this.state;
     const settings = {
       dots: true,
       infinite: false,
       speed: 500,
-      // rows: 2,
-      // slidesPerRow: 4,
-      slidesToShow: 4,
-      slidesToScroll: 3,
+      rows: 2,
+      slidesPerRow: 4,
       customPaging: i => {
         return (
           <div className="dots-group">
             <span />
           </div>
         );
-      },
-      responsive: [
-        {
-          breakpoint: 1024,
-          settings: {
-            slidesToShow: 3,
-            slidesToScroll: 3,
-            infinite: false,
-            dots: true
-          }
-        }
-      ]
+      }
     };
     return (
-      <section className="promotions">
+      <section className="promotions" ref={node => (this.element = node)}>
         <div className="container-fluid">
           <div className="section-top-wrapper">
             <h2>
@@ -180,256 +158,86 @@ export default class PromotionCarousel extends Component {
             </div>
           </div>
           <div className="grid-container">
-            {width <= Constants.MOBILE_BREAK_POINT ? (
-              <div>
-                {this.slides.promotions.map((promo, idx) => {
-                  return (
-                    <div className="item" key={idx}>
-                      {promo.slides.length === 2 &&
-                        promo.slides.map(slide => {
+            <CSSTransitionGroup
+              transitionName="shimmer-carousel"
+              transitionEnter={true}
+              transitionEnterTimeout={1000}
+              transitionLeaveTimeout={1000}
+            >
+              {loading ? (
+                <ShimmerEffect
+                  propCls={`shm_col-xs-6 col-md-${
+                    Utilities.mobileAndTabletcheck() || Utilities.mobilecheck()
+                      ? 6
+                      : 2
+                  }`}
+                  height={150}
+                  count={
+                    Utilities.mobilecheck()
+                      ? 1
+                      : Utilities.mobileAndTabletcheck()
+                      ? 2
+                      : 6
+                  }
+                  type="TILE"
+                />
+              ) : Utilities.mobilecheck() ? (
+                <div className="promotions-grid-wrapper">
+                  {promotions &&
+                    promotions.map((promotion, index, array) => {
+                      if (index % 2 === 0) {
+                        if (array[index] && array[index + 1]) {
                           return (
-                            <div key={slide.url} className="item-wrapper">
-                              <div className="promotions-img">
-                                <div className="item-img">
-                                  <img
-                                    src="assets/images/headrock.jpg"
-                                    className="img-fluid"
-                                    alt="headrock"
-                                  />
-                                </div>
-                                <div className="promotion-timer">
-                                  <ul>
-                                    <li className="timer-watch">
-                                      <img
-                                        src="assets/images/stopwatch.svg"
-                                        className="img-fluid"
-                                        alt="watch"
-                                      />
-                                    </li>
-                                    <li className="timer-days">
-                                      <span>70</span>
-                                      <span className="timer-label">Days</span>
-                                    </li>
-                                    <li className="timer-hours">
-                                      <span>11</span>
-                                      <span className="timer-label">Hrs</span>
-                                    </li>
-                                    <li className="timer-minutes">
-                                      <span>29</span>
-                                      <span className="timer-label">Mins</span>
-                                    </li>
-                                    <li className="timer-seconds">
-                                      <span>58</span>
-                                      <span className="timer-label">Sec</span>
-                                    </li>
-                                  </ul>
-                                </div>
-                              </div>
-                              <h3>HeadRock VR</h3>
+                            <div key={promotion.id} className="item-wrapper">
+                              <ItemWrapper
+                                promotion={array[index]}
+                                expiredText={expiredText}
+                                handlePromotionExpired={
+                                  this.handlePromotionExpired
+                                }
+                              />
+                              <ItemWrapper
+                                promotion={array[index + 1]}
+                                expiredText={expiredText}
+                                handlePromotionExpired={
+                                  this.handlePromotionExpired
+                                }
+                              />
                             </div>
                           );
-                        })}
-                    </div>
-                  );
-                })}
-              </div>
-            ) : (
-              <Fragment>
+                        } else if (array[index]) {
+                          return (
+                            <div key={promotion.id} className="item-wrapper">
+                              <ItemWrapper
+                                promotion={array[index]}
+                                expiredText={expiredText}
+                                handlePromotionExpired={
+                                  this.handlePromotionExpired
+                                }
+                              />
+                            </div>
+                          );
+                        }
+                      }
+                    })}
+                </div>
+              ) : (
                 <Slider {...settings}>
-                  {this.slides.promotions.map((promo, index) => {
-                    return (
-                      promo.slides.length === 2 &&
-                      Utilities.mobileAndTabletcheck() && (
-                        <div key={index} className="item">
-                          {promo.slides.length === 2 &&
-                            promo.slides.map(slide => {
-                              return (
-                                <div key={slide.url} className="item-wrapper">
-                                  <div className="promotions-img">
-                                    <div className="item-img">
-                                      <img
-                                        src="assets/images/headrock.jpg"
-                                        className="img-fluid"
-                                        alt="headrock"
-                                      />
-                                    </div>
-                                    <div className="promotion-timer">
-                                      <ul>
-                                        <li className="timer-watch">
-                                          <img
-                                            src="assets/images/stopwatch.svg"
-                                            className="img-fluid"
-                                            alt="watch"
-                                          />
-                                        </li>
-                                        <li className="timer-days">
-                                          <span>70</span>
-                                          <span className="timer-label">
-                                            Days
-                                          </span>
-                                        </li>
-                                        <li className="timer-hours">
-                                          <span>11</span>
-                                          <span className="timer-label">
-                                            Hrs
-                                          </span>
-                                        </li>
-                                        <li className="timer-minutes">
-                                          <span>29</span>
-                                          <span className="timer-label">
-                                            Mins
-                                          </span>
-                                        </li>
-                                        <li className="timer-seconds">
-                                          <span>58</span>
-                                          <span className="timer-label">
-                                            Sec
-                                          </span>
-                                        </li>
-                                      </ul>
-                                    </div>
-                                  </div>
-                                  <h3>HeadRock VR</h3>
-                                </div>
-                              );
-                            })}
-                        </div>
-                      )
-                    );
-                  })}
-                </Slider>
-
-                {!Utilities.mobileAndTabletcheck() && (
-                  <Slider {...settings}>
-                    {this.slides.promotions.map((promo, index) => {
+                  {promotions &&
+                    promotions.map((promotion, index) => {
                       return (
-                        <div key={index} className="item">
-                          {promo.slides.length === 2 &&
-                            promo.slides.map(slide => {
-                              return (
-                                <div key={slide.url} className="item-wrapper">
-                                  <div className="promotions-img">
-                                    <div className="item-img">
-                                      <img
-                                        src="assets/images/headrock.jpg"
-                                        className="img-fluid"
-                                        alt="headrock"
-                                      />
-                                    </div>
-                                    <div className="promotion-timer">
-                                      <ul>
-                                        <li className="timer-watch">
-                                          <img
-                                            src="assets/images/stopwatch.svg"
-                                            className="img-fluid"
-                                            alt="watch"
-                                          />
-                                        </li>
-                                        <li className="timer-days">
-                                          <span>70</span>
-                                          <span className="timer-label">
-                                            Days
-                                          </span>
-                                        </li>
-                                        <li className="timer-hours">
-                                          <span>11</span>
-                                          <span className="timer-label">
-                                            Hrs
-                                          </span>
-                                        </li>
-                                        <li className="timer-minutes">
-                                          <span>29</span>
-                                          <span className="timer-label">
-                                            Mins
-                                          </span>
-                                        </li>
-                                        <li className="timer-seconds">
-                                          <span>58</span>
-                                          <span className="timer-label">
-                                            Sec
-                                          </span>
-                                        </li>
-                                      </ul>
-                                    </div>
-                                  </div>
-                                  <h3>HeadRock VR</h3>
-                                </div>
-                              );
-                            })}
-                          {promo.slides.length === 1 &&
-                            promo.slides.map(slide => {
-                              return (
-                                <div
-                                  key={slide.url}
-                                  className="item-wrapper full-promo"
-                                >
-                                  <div className="promotions-img">
-                                    <div className="item-img">
-                                      <img
-                                        src="assets/images/master-card.jpg"
-                                        className="img-fluid"
-                                        alt="privilage"
-                                      />
-                                    </div>
-                                  </div>
-                                  <h3>
-                                    Book with Mastercard and enjoy these
-                                    privileges!
-                                  </h3>
-                                </div>
-                              );
-                            })}
+                        <div key={promotion.id} className="item-wrapper">
+                          <ItemWrapper
+                            promotion={promotion}
+                            expiredText={expiredText}
+                            handlePromotionExpired={this.handlePromotionExpired}
+                          />
                         </div>
                       );
                     })}
-                  </Slider>
-                )}
-              </Fragment>
-            )}
-
-            {/* <Slider {...settings}>
-              {this.state.promotions &&
-                this.state.promotions.map((promotion, index) => {
-                  return (
-                    <div key={promotion.id} className="item-wrapper">
-                      <div className="promotions-img">
-                        <div className="item-img">
-                          <Image
-                            src={promotion.featured_image}
-                            className="img-fluid"
-                            alt="promotion-img"
-                            type="Horizontal"
-                          />
-                        </div>
-                        {promotion.show_timer === '1' && (
-                          <div className="promotion-timer">
-                            <ul>
-                              {!this.state.expiredText ? (
-                                <ul>
-                                  <li className="timer-watch">
-                                    <img
-                                      src="assets/images/stopwatch.svg"
-                                      className="img-fluid"
-                                      alt="watch"
-                                    />
-                                  </li>
-                                  <Timer
-                                    endDate={promotion.publish_end_date}
-                                    promotionExpired={
-                                      this.handlePromotionExpired
-                                    }
-                                  />
-                                </ul>
-                              ) : null}
-                            </ul>
-                          </div>
-                        )}
-                      </div>
-                      <h3>{promotion.title}</h3>
-                    </div>
-                  );
-                })}
-            </Slider> */}
+                </Slider>
+              )}
+            </CSSTransitionGroup>
           </div>
         </div>
       </section>

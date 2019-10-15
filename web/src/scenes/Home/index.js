@@ -44,6 +44,7 @@ class Home extends Component {
   showNewsTicker = data => {
     this.setState(data);
   };
+
   getSidePanelBetweenTopPicksFeaturedEvents() {
     const params = {
       client: Constants.CLIENT
@@ -78,8 +79,7 @@ class Home extends Component {
           />
           {/* <img className={`main-image ${this.state.imageUrl ? 'show-image' : ''}`} src={primeSlider} alt="prime Slider" /> */}
         </div>
-        <TopPics />
-         
+        <TopPics /> 
         {giftCard &&
           giftCard.map(elem => {
             return (
