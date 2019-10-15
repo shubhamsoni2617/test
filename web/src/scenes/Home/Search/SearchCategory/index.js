@@ -12,8 +12,8 @@ const SearchCategory = props => {
                 return (
                   <li key={category.type}>
                     <a
-                      className={`nav-item nav-link active ${
-                        defaultCategoryId === category.id ? `active` : ``
+                      className={`nav-item nav-link ${
+                        defaultCategoryId === category.type ? `active` : ``
                         }`}
                       onClick={() => handleActiveCategory(category.type)}
                     >

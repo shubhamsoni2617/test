@@ -6,6 +6,7 @@ import RecentlySearched from './RecentlySearched';
 import loaderImage from '../../../../assets/images/loader.svg';
 import './style.scss';
 import navigateToLink from '../../../../shared/navigateToLink';
+
 const Autocomplete = props => {
   const [activeSuggestion, setActiveSuggestion] = useState(0);
   const [showSuggestions, setShowSuggestions] = useState(false);
@@ -113,7 +114,7 @@ const Autocomplete = props => {
                 <li
                   className={`${
                     index === activeSuggestion ? `suggestion-active` : ``
-                  }`}
+                    }`}
                   key={suggestion.id}
                   onClick={() => {
                     onClick(suggestion.title);
@@ -127,11 +128,11 @@ const Autocomplete = props => {
                 >
                   <h4 className="suggestion-title">{suggestion.title}</h4>
                   {suggestion.type === 'event' ||
-                  suggestion.type === 'attractions' ? (
-                    <button>{suggestion.category}</button>
-                  ) : (
-                    <p>{suggestion.category}</p>
-                  )}
+                    suggestion.type === 'attractions' ? (
+                      <button>{suggestion.category}</button>
+                    ) : (
+                      <p>{suggestion.category}</p>
+                    )}
                 </li>
               );
             })}
@@ -142,7 +143,7 @@ const Autocomplete = props => {
               }}
               className="search-link-all-results"
             >
-              <li>See all Results for {userInput}</li>
+              See all results form <strong>{userInput}</strong>
             </div>
           </ul>
         </>
