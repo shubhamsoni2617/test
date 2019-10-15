@@ -565,9 +565,6 @@ export default class Events extends Component {
                       <a
                         onClick={() => {
                           this.toggleSortBy();
-                          document
-                            .getElementById('app')
-                            .classList.remove('fixed-body');
                         }}
                         className="close"
                       >
@@ -578,9 +575,6 @@ export default class Events extends Component {
                         className="apply"
                         onClick={() => {
                           this.callAPI();
-                          document
-                            .getElementById('app')
-                            .classList.remove('fixed-body');
                         }}
                       >
                         Apply
@@ -673,7 +667,6 @@ export default class Events extends Component {
                   className="sortby"
                   onClick={() => {
                     this.toggleSortBy();
-                    document.getElementById('app').classList.add('fixed-body');
                   }}
                 >
                   sort by

@@ -28,7 +28,7 @@ export default class App extends React.Component {
 
   render() {
     return (
-      <div className="wrapper" id={'app'}>
+      <div className="wrapper">
         <Advertisement {...this.props} />
         <TopNav {...this.props} />
         <Navigator {...this.props} />

@@ -342,9 +342,6 @@ export default class Promotions extends Component {
                                 <a
                                   onClick={() => {
                                     this.toggleSortBy();
-                                    document
-                                      .getElementById('app')
-                                      .classList.remove('fixed-body');
                                   }}
                                   className="close"
                                 >
@@ -354,9 +351,6 @@ export default class Promotions extends Component {
                                 <a
                                   onClick={() => {
                                     this.handleSortApply();
-                                    document
-                                      .getElementById('app')
-                                      .classList.remove('fixed-body');
                                   }}
                                   className="apply"
                                 >
@@ -372,9 +366,6 @@ export default class Promotions extends Component {
                           className="sortby"
                           onClick={() => {
                             this.toggleSortBy();
-                            document
-                              .getElementById('app')
-                              .classList.add('fixed-body');
                           }}
                         >
                           sort by
