@@ -7,21 +7,32 @@ const SearchCategory = props => {
       <section className="promotions-wrapper">
         <div className="promotions-nav">
           <ul className="nav nav-tabs" id="nav-tab" role="tablist">
-            {searchCategories &&
-              searchCategories.map(category => {
-                return (
-                  <li key={category.type}>
-                    <a
-                      className={`nav-item nav-link active ${
-                        defaultCategoryId === category.id ? `active` : ``
-                        }`}
-                      onClick={() => handleActiveCategory(category.type)}
+            {searchCategories && searchCategories[0].total
+              ? searchCategories.map(category => {
+                  return (
+                    <li
+                      key={category.type}
+                      className={!category.total ? `no-category` : ``}
                     >
-                      {category.type} ({category.total})
-                        </a>
-                  </li>
-                );
-              })}
+                      <a
+                        className={`nav-item nav-link ${
+                          defaultCategoryId === category.type ? `active` : ``
+                        }`}
+                        onClick={() => handleActiveCategory(category.type)}
+                      >
+                        {category.type[0].toUpperCase() +
+                          category.type.slice(1)}
+                        {category.type === 'event' ||
+                        category.type === 'attraction' ||
+                        category.type === 'promotion'
+                          ? `s`
+                          : ``}
+                        ({category.total})
+                      </a>
+                    </li>
+                  );
+                })
+              : null}
           </ul>
         </div>
       </section>

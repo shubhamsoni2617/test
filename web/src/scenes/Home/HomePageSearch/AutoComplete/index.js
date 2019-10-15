@@ -83,7 +83,7 @@ const Autocomplete = props => {
   const storageValuesHandler = question => {
     let storageValues = JSON.parse(localStorage.getItem('recentlySearched'));
     if (storageValues) {
-      if (storageValues.length > 8) {
+      if (storageValues.length > 7) {
         storageValues.shift();
       }
       if (storageValues.indexOf(question) === -1) {
@@ -100,6 +100,10 @@ const Autocomplete = props => {
       storageValuesHandler(userInput);
       props.history.push(`/search-results?q=${userInput}`);
     }
+  };
+
+  const userInputHandler = value => {
+    setUserInput(value);
   };
 
   let suggestionsListComponent;
@@ -169,7 +173,11 @@ const Autocomplete = props => {
       />
       {suggestionsListComponent}
       {isFocused && !userInput && (
-        <RecentlySearched {...props} focusHandler={focusHandler} />
+        <RecentlySearched
+          {...props}
+          focusHandler={focusHandler}
+          userInputHandler={userInputHandler}
+        />
       )}
     </div>
   );

@@ -19,7 +19,7 @@ class SearchService {
     return API.get(`get-attractions-search-results`, { params });
   }
   getPromotionSearchResults(params) {
-    return API.get(`get-events-search-results`, { params });
+    return API.get(`get-promotion-search-results`, { params });
   }
   getFaqSearchResults(params) {
     return API.get(`get-faq-search-results`, { params });
