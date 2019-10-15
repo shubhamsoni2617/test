@@ -16,7 +16,7 @@ const Card = props => {
             <h5>{cardData.title}</h5>
             {cardData.date && <p className="event-date">{cardData.date}</p>}
             {cardData.date && <p className="event-place">{cardData.venue}</p>}
-            <span className={`${cardData.type === 'event' ? `category` : ``}`}>
+            <span className={`${cardData.type === 'event' ? `event` : ``}`}>
               {cardData.category}
             </span>
           </div>
@@ -26,11 +26,11 @@ const Card = props => {
             {cardData.status && <span>{cardData.status}</span>}
             {cardData.price && <p>{cardData.price}</p>}
           </div>
-          {cardData.type === 'event' || cardData.type === 'attraction' ? (
+          {cardData.type === 'event' || cardData.type === 'attractions' ? (
             <button type="button">Buy Tickets</button>
           ) : (
-              <button type="button">Read More</button>
-            )}
+            <button type="button">Read More</button>
+          )}
         </div>
       </div>
     </div>

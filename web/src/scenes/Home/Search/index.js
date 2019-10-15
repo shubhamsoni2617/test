@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import SearchCategory from './SearchCategory';
-// import Card from '../../../shared/components/Card';
 import Card from './Card';
 import './style.scss';
 import SearchService from '../../../shared/services/SearchService';
@@ -12,7 +11,7 @@ const Search = props => {
   const [loadContent, setLoadContent] = useState(4);
   const [searchCategories, setSearchCategories] = useState(null);
   const [allResultCount, setAllResultCount] = useState('...');
-  const [totalResults, setTotalResults] = useState('...');
+  const [totalResults, setTotalResults] = useState('0');
   const [defaultCategoryId, setDefaultCategoryId] = useState('all');
   const [allSearchResults, setAllSearchResults] = useState([]);
   const [loadSearchResults, setLoadSearchResults] = useState([]);
@@ -20,7 +19,7 @@ const Search = props => {
   const [constant, setConstant] = useState(6);
 
   const [loadMore, setLoadMore] = useState(false);
-
+  console.log(totalResults);
   useEffect(() => {
     fetchSearchCategoriesService();
   }, []);
@@ -28,17 +27,19 @@ const Search = props => {
     setAllSearchResults([]);
     const params = {
       client: Constants.CLIENT,
-      limit: 6,
-      first: 1,
+      limit: constant,
+      first: 0,
       search: props.location.search.split('=')[1]
     };
     fetchSearchResultsService(params);
-  }, [defaultCategoryId]);
+  }, [defaultCategoryId, props.location.search]);
 
   useEffect(() => {
     const params = {
       client: Constants.CLIENT,
-      search: props.location.search.split('=')[1]
+      search: props.location.search.split('=')[1],
+      limit: constant,
+      first: 0
     };
     if (constant !== 6) {
       fetchSearchResultsService(params);
@@ -82,21 +83,21 @@ const Search = props => {
         );
       })
     ) : (
-        <ShimmerEffect
-          height={10}
-          count={4}
-          type="LIST"
-          propCls="shm_col-xs-1 col-md-12"
-        />
-      );
+      <ShimmerEffect
+        height={10}
+        count={4}
+        type="LIST"
+        propCls="shm_col-xs-1 col-md-12"
+      />
+    );
   };
   return (
     <div className="searchbar-page-wrapper container-fluid">
       <div className="container">
         <h2>
           {allResultCount} results found for "
-        <strong>{props.location.search.split('=')[1]}</strong>"
-      </h2>
+          <strong>{props.location.search.split('=')[1]}</strong>"
+        </h2>
         <SearchCategory
           searchCategories={searchCategories}
           defaultCategoryId={defaultCategoryId}
@@ -115,18 +116,18 @@ const Search = props => {
                 propCls="shm_col-xs-1 col-md-12"
               />
             )}
-            {loadContent === 4 && (
+            {totalResults - constant > 0 && (
               <div className="promotion-load-more">
                 <button
                   onClick={() => {
-                    setConstant(10);
+                    setConstant(totalResults);
                     setLoadMore(true);
                     setLoadContent(0);
                   }}
                   className="btn-link load-more-btn"
                   target=""
                 >
-                  <span>Load More ({4})</span>
+                  <span>Load More ({totalResults - constant})</span>
                   <img src={DownArrowBlue} alt="down arrow blue" />
                 </button>
               </div>

@@ -15,7 +15,6 @@ const MostViewed = () => {
     AdvertisementService.getMostViewedService(params)
       .then(res => {
         setMostViewed(res.data.data);
-        console.log(res.data.data);
       })
       .catch(err => {
         console.log(err);
@@ -26,9 +25,9 @@ const MostViewed = () => {
       <h3>Most Viewed</h3>
       <ul>
         {mostViewed &&
-          mostViewed.map(elem => {
+          mostViewed.map((elem, index) => {
             return (
-              <li>
+              <li key={elem.primary_genere + index}>
                 <div className="most-viewed-img">
                   <Image src={elem.full_image} className="img-fluid" />
                 </div>

@@ -7,7 +7,6 @@ import loaderImage from '../../../../assets/images/loader.svg';
 import './style.scss';
 import navigateToLink from '../../../../shared/navigateToLink';
 const Autocomplete = props => {
-  //test
   const [activeSuggestion, setActiveSuggestion] = useState(0);
   const [showSuggestions, setShowSuggestions] = useState(false);
   const [userInput, setUserInput] = useState('');
@@ -38,10 +37,14 @@ const Autocomplete = props => {
     setShowSuggestions(false);
     setIsFocused(false);
   };
+
+  const focusHandler = () => {
+    setIsFocused(false);
+  };
+
   useEffect(() => {
     if (debouncedSearchTerm) {
       setIsSearching(true);
-
       fetchSearchSuggestionsService(debouncedSearchTerm);
     } else {
       setSuggestions([]);
@@ -65,10 +68,7 @@ const Autocomplete = props => {
       });
   };
   const onChange = e => {
-    const userInput = e.currentTarget.value;
-
     setActiveSuggestion(0);
-
     setShowSuggestions(true);
     setUserInput(e.currentTarget.value);
   };
@@ -168,7 +168,9 @@ const Autocomplete = props => {
         }}
       />
       {suggestionsListComponent}
-      {isFocused && !userInput && <RecentlySearched {...props} />}
+      {isFocused && !userInput && (
+        <RecentlySearched {...props} focusHandler={focusHandler} />
+      )}
     </div>
   );
 };

@@ -9,8 +9,15 @@ export default function searchApi(
   switch (defaultCategoryId) {
     case 'all':
       setTimeout(() => {
-        setAllSearchResults(data);
-        setLoadMore(false);
+        SearchService.getAllSearchResults(params)
+          .then(res => {
+            setAllSearchResults(res.data.data);
+            console.log(res.data.data);
+            setLoadMore(false);
+          })
+          .catch(err => {
+            console.log(err);
+          });
       }, 500);
       break;
 

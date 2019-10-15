@@ -13,7 +13,6 @@ const HomePageSearch = props => {
     JSON.parse(localStorage.getItem('recentlySearched'))
   );
 
-  console.log(storageValues);
   const clearLocalStorageHandler = index => {
     let values = [...storageValues];
     values.splice(index, 1);
@@ -23,6 +22,7 @@ const HomePageSearch = props => {
 
   const redirectHandler = text => {
     props.history.push(`/search-results?q=${text}`);
+    props.focusHandler();
   };
 
   return (
