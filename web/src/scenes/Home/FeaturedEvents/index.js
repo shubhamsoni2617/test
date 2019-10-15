@@ -282,18 +282,18 @@ const FeaturedEvents = props => {
         >
           {loading ? (
             <ShimmerEffect
-              propCls="shm_col-xs-6 col-md-6"
-              height={
-                Utilities.mobilecheck() || Utilities.mobileAndTabletcheck()
-                  ? 150
-                  : 298
-              }
+              propCls={`shm_col-xs-6 col-md-${
+                Utilities.mobileAndTabletcheck() || Utilities.mobilecheck()
+                  ? 6
+                  : 2
+              }`}
+              height={150}
               count={
                 Utilities.mobilecheck()
                   ? 1
                   : Utilities.mobileAndTabletcheck()
-                  ? 4
-                  : 10
+                  ? 2
+                  : 6
               }
               type="TILE"
             />
