@@ -100,7 +100,7 @@ const Autocomplete = props => {
                   <li
                     className={`${
                       index === activeSuggestion ? `suggestion-active` : ``
-                    }`}
+                      }`}
                     key={suggestion.id}
                     onClick={() => onClick(suggestion.title)}
                   >
@@ -141,7 +141,7 @@ const Autocomplete = props => {
         onFocus={() => setIsFocused(true)}
         onBlur={() => {
           setIsFocused(false);
-          setShowSuggestions(false);
+          // setShowSuggestions(false);
         }}
       />
       {suggestionsListComponent}
