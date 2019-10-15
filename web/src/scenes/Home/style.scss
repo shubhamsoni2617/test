@@ -4301,10 +4301,8 @@ section{
 	right: auto;
 	background-color: #fff;
 	padding: 0px;
-	//height: 0px;
 	height: 100%;
-	//top: 200%;
-	top: 35px;
+	top: 0px;
 	flex-wrap: wrap;
 	z-index: 3;
 	display: flex;
@@ -4317,8 +4315,7 @@ section{
 	-webkit-transition: 0.5s top;
 	-moz-transition: 0.5s top;
 	-o-transition: 0.5s top;
-	box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
-	// min-height: 80px;
+	box-shadow: 0 2px 34px 0 rgba(0,0,0,0.5);
 	min-height: 250px;
     overflow: auto;
 	.header-search-fixed {
@@ -4380,6 +4377,11 @@ section{
 					}
 				}
 				span {
+					text-overflow: ellipsis;
+					white-space: nowrap;
+					overflow: hidden;
+					display: block;
+					width: 550px;
 					img {
 						margin-right: 5px;
 					}
@@ -4387,12 +4389,14 @@ section{
 				.search-listing-close-btn {
 					margin-left: auto;
 					position: absolute;
-					right: 34px;
+					right: 31px;
 					opacity: 0;
 					transition: 0.3s opacity;
 					-webkit-transition: 0.3s opacity;
 					-moz-transition: 0.3s opacity;
 					-o-transition: 0.3s opacity;
+					top: 50%;
+					transform: translateY(-50%);
 					img {
 						max-width: 12px;
 					}
