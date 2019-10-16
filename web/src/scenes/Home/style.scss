@@ -254,6 +254,17 @@
 						outline: none;
 					}
 				}
+				&.active{
+					.search-btn{
+						img{
+							opacity: 0;
+							transition: 0.5s transition;
+							&.active{
+								opacity: 1;
+							}
+						}
+					}
+				}
 			}
 		}
 		.top-header-right {

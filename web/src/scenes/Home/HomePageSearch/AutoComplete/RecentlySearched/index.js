@@ -31,15 +31,15 @@ const HomePageSearch = props => {
           <span onClick={props.history.goBack}>
             <image alt={'backButton'} src={backButton} />
           </span>
-          {Utilities.mobilecheck() && (
+          {/* {Utilities.mobilecheck() && (
             <input
               type="text"
-              // onChange={props.onChange}
-              // onKeyDown={props.onKeyDown}
-              // value={props.userInput}
+              onChange={props.onChange}
+              onKeyDown={props.onKeyDown}
+              value={props.userInput}
               className="search-inputtype mobile"
             />
-          )}
+          )} */}
           <h3>Recently Searched</h3>
           <ul>
             {storageValues &&

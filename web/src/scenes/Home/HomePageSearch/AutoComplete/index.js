@@ -37,10 +37,12 @@ const Autocomplete = props => {
     }
     setShowSuggestions(false);
     setIsFocused(false);
+    props.buttonActiveHandler(false)
   };
 
   const focusHandler = () => {
     setIsFocused(false);
+    props.buttonActiveHandler(false)
   };
 
   useEffect(() => {
@@ -112,7 +114,7 @@ const Autocomplete = props => {
     if (suggestions && suggestions.length) {
       suggestionsListComponent = (
         <div className="search-popup-wrapper">
-          {Utilities.mobilecheck() && (
+          {/* {Utilities.mobilecheck() && (
             <input
               type="text"
               onChange={onChange}
@@ -123,14 +125,14 @@ const Autocomplete = props => {
                 setIsFocused(true);
               }}
             />
-          )}
+          )} */}
           <ul className="suggestions">
             {suggestions.map((suggestion, index) => {
               return (
                 <li
                   className={`${
                     index === activeSuggestion ? `suggestion-active` : ``
-                  }`}
+                    }`}
                   key={suggestion.id}
                   onClick={() => {
                     onClick(suggestion.title);
@@ -144,11 +146,11 @@ const Autocomplete = props => {
                 >
                   <h4 className="suggestion-title">{suggestion.title}</h4>
                   {suggestion.type === 'event' ||
-                  suggestion.type === 'attractions' ? (
-                    <button>{suggestion.category}</button>
-                  ) : (
-                    <p>{suggestion.category}</p>
-                  )}
+                    suggestion.type === 'attractions' ? (
+                      <button>{suggestion.category}</button>
+                    ) : (
+                      <p>{suggestion.category}</p>
+                    )}
                 </li>
               );
             })}
@@ -174,7 +176,7 @@ const Autocomplete = props => {
   }
 
   return (
-    <div ref={node} className="autocomplete">
+    <div ref={node} className={`autocomplete ${Utilities.mobilecheck() && isFocused ? `search-open` : ``}`}>
       <input
         type="text"
         onChange={onChange}
@@ -183,6 +185,7 @@ const Autocomplete = props => {
         className="search-inputtype"
         onFocus={() => {
           setIsFocused(true);
+          props.buttonActiveHandler(true)
         }}
       />
 
@@ -192,6 +195,9 @@ const Autocomplete = props => {
           {...props}
           focusHandler={focusHandler}
           userInputHandler={userInputHandler}
+        // onChange={onChange}
+        // onKeyDown={onKeyDown}
+        // value={userInput}
         />
       )}
     </div>

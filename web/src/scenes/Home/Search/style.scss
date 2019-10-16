@@ -415,7 +415,8 @@
                             display: flex;
                             flex-wrap: wrap;
                             width: 100%;
-                            padding: 0 5px;
+                            padding: 10px 5px 0px;
+                            align-items: flex-end;
                         }
                         &:hover{
                             cursor: default;
@@ -432,10 +433,13 @@
                                 width: 100%;
                                 flex: 0 0 100%;
                                 padding: 0px;
+                                align-self: flex-start;
                             }
                             .image-conatiner{
                                 @media(max-width: 767px){
                                     text-align: center;
+                                    height: auto;
+                                    width: auto;
                                 }
                                 img{
                                     @media(max-width: 767px){
@@ -483,6 +487,19 @@
                                         }
                                     }
                                 }
+                                .price{
+                                    @media(max-width: 767px){
+                                        text-align: left;
+                                    }
+                                }
+                            }
+                        }
+                        &.full-desc{
+                            h5{
+                                @media(max-width: 767px){
+                                    max-height: 112px;
+                                    min-height: 112px;
+                                }
                             }
                         }
                     }
@@ -496,6 +513,7 @@
                 }
                 div:last-child{
                     .event-block:hover{
+                        border-bottom: none;
                         @media(max-width: 767px){
                             border: 1px solid transparent;
                             border-bottom: 1px solid rgba(151, 151, 151, 0.2);
