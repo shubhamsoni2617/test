@@ -15,7 +15,6 @@ const Contact = ({ attachement, handleEnquiry }) => {
   const [message, setMessage] = useState('');
   const [submitResponse, setSubmitResponse] = useState([]);
   const [successMsg, setSuccessMsg] = useState('');
-  const [files, setFiles] = useState({});
   const [maxFileLimitMsg, setMaxFileLimitMsg] = useState('');
   const [errMsg, setErrMsg] = useState('');
   const [loading, setLoading] = useState(false);
@@ -89,9 +88,9 @@ const Contact = ({ attachement, handleEnquiry }) => {
             setSelectedId(null);
             handleEnquiry && handleEnquiry('Select an Enquiry');
             setName('');
+            setFileArr([]);
             setEmail('');
             setPhone('');
-            setFiles({});
             setMessage('');
             setError(false);
           }, 1000);
@@ -196,13 +195,11 @@ const Contact = ({ attachement, handleEnquiry }) => {
   };
 
   const submitUploadAttachment = files => {
-    console.log(files);
     let formData = new FormData();
     let fileArr = [];
     for (let i = 0; i < files.length; i++) {
       let file = files[i];
       // fileArr.push(file);
-      console.log(file);
       formData.append('file[' + i + ']', file);
     }
     ContactUsService.uploadAttachement(formData)
@@ -356,9 +353,6 @@ const Contact = ({ attachement, handleEnquiry }) => {
                   pdf,jpeg,png,jpg
                 </span>
                 <p className="text-danger">{maxFileLimitMsg}</p>
-                {/* {files && files[0] && <p>{files[0].name}</p>}
-                {files && files[1] && <p>{files[1].name}</p>}
-                {files && files[2] && <p>{files[2].name}</p>} */}
                 {fileArr &&
                   fileArr.map((file, i) => {
                     return <p key={i}>{file.name}</p>;
