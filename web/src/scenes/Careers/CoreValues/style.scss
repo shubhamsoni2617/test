@@ -3,10 +3,22 @@
   .core-value-inner{
     .career-title{
       padding: 15px 0 33px 0;
+      @media (max-width: 767px){
+          padding-bottom: 10px;
+          font-size: 25px;
+      }
     }
-    @media(max-width: 768px){
-      margin-top: 30px;
-      text-align: center;
+    @media (max-width: 767px){
+      margin-top: 5px;
+      text-align: left;
+    }
+    .career-subtext{
+      p{
+        @media (max-width: 767px){
+          font-size: 12px;
+          line-height: 20px;
+        }
+      }
     }
   }
   .blue-line{
@@ -15,4 +27,8 @@
       right: -65px;
     }
   }
+  @media(max-width: 768px){
+    margin: 0;
+  }
+
 }

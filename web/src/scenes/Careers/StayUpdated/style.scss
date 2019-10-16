@@ -4,12 +4,15 @@
         max-width: 100%;
         height: auto;
     }
-    @media(max-width: 992px){
+    @media(max-width: 991px){
         text-align: center;
         margin-bottom: 20px;
         img{
             margin-top: 0;
         }
+  }
+  @media(max-width: 768px){
+        display: none;
   }
 }
 .stay-update{
@@ -26,6 +29,20 @@
             margin-top: 10px;
             line-height: normal;
             display: block;
+        }
+        @media(max-width: 767px){
+            font-size: 25px;
+            padding-bottom: 20px;
+            margin-top: 20px;
+          }
+    }
+    .career-subtext{
+        p{
+            @media(max-width: 767px){
+                font-size: 12px;
+                line-height: 20px;
+                margin-bottom: 0;
+              }
         }
     }
     form{
@@ -98,15 +115,27 @@
                     padding-top: 0px;
                 }
             }
+            .resume{
+                .placeholder{
+                    position: absolute;
+                    bottom: 10px;
+                }
+            }
         }
         .btn-link{
             padding: 10px 20px;
             font-weight: 500;
             font-size: 18px;
+            @media(max-width: 767px){
+                padding: 2px 20px;
+                font-size: 14px;
+                width: 100%;
+              }
         }
     }
-    @media(max-width: 768px){
-        padding: 30px 30px 20px 40px;
+    @media(max-width: 767px){
+        background-color: transparent;
+        padding: 0;
       }
 }
 

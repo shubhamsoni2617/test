@@ -20,10 +20,24 @@
         display: block;
         background-color: rgba(151, 151, 151, 0.2);
       }
+      a{
+        display: none;
+        @media(max-width: 767px){
+          display: block;
+        }
+      }
+      @media(max-width: 767px){
+        display: flex;
+        font-size: 14px !important;
+        justify-content: space-between;
+      }
     }
     h5{
       font-family: 'Rubik', sans-serif;
       margin-bottom: 22px;
+      @media(max-width: 767px){
+        font-size: 14px !important;
+      }
     }
     form{
       .btn-link{
@@ -33,6 +47,11 @@
         font-size: 18px;
         width: 100%;
         text-decoration: none;
+        @media(max-width: 767px){
+          padding: 2px 20px;
+          font-size: 14px;
+          width: 100%;
+        }
       }
     }
     .form-group{
@@ -87,5 +106,26 @@
       font-weight: 500;
       color: #0077C8;
     }
+    @media(max-width: 767px){
+      display: none;
+    }
+  }
+}
+.attach-doc{
+  div{
+    font-size: 12px;
+  }
+  .col-5{
+    display: flex;
+    align-items: center;
+    span{
+      color: red;
+    }
+  }
+}
+.resume{
+  .placeholder{
+      position: absolute;
+      bottom: 10px;
   }
 }

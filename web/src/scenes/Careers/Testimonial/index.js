@@ -2,9 +2,10 @@ import React from 'react';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
+import './style.scss';
 const Testimonials = ({ testimonial, testimonialErr }) => {
   const settings = {
-    focusOnSelect: true,
+    focusOnSelect: false,
     className: 'center',
     centerMode: true,
     infinite: true,
@@ -29,24 +30,31 @@ const Testimonials = ({ testimonial, testimonialErr }) => {
     ]
   };
   return (
+  <div className="testimonials-wrapper">
     <div className="testimonials">
-      <h1 className="text-center">Testimonials</h1>
+      <h3 className="text-center">Testimonials</h3>
+      <div className="testimonials-content">
+      <ul className="testimonials-slider">
       <Slider {...settings}>
         {testimonial &&
           testimonial.testimonials &&
           testimonial.testimonials.map((elem, index) => {
             return (
-              <div key={index}>
+              <li key={index}>
                 <div className="message">{elem.message}</div>
-                <img src={elem.image} height="200" width="100%" />
                 <div className="name text-center">
-                  <h3>{elem.name}</h3>
+                  <h5>{elem.name}</h5>
                 </div>
-              </div>
+                <img src={elem.image} height="200" width="100%" />
+              </li>
             );
           })}
       </Slider>
+      </ul>
+      </div>
     </div>
+    </div>
+
   );
 };
 

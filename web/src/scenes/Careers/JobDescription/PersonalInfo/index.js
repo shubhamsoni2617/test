@@ -28,9 +28,11 @@ const PersonalInfo = ({
   handleSubmit
 }) => {
   return (
-    <div className="personal-info-wrapper">
+    <div className="personal-info-wrapper" id='applynow'>
       <div className="personal-info">
-        <h3>Apply for this position</h3>
+        <h3>Apply for this position
+           <Link to="/careers">View Other Jobs</Link>
+        </h3>
         {successMsg && <h5 className="text-success">{successMsg}</h5>}
         {serverErr &&
           serverErr.map(elem => {

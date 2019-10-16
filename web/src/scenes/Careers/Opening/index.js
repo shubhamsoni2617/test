@@ -21,7 +21,7 @@ const Opening = ({ jobListing, jobListingErr }) => {
             jobListing.map((elem, index) => {
               return (
                 <div
-                  className="col-lg-4 col-md-6 position-inner"
+                  className="col-lg-4 col-md-6 col-6 position-inner"
                   key={elem.job_id}
                   style={{ display: index > limit ? display : 'block' }}
                 >

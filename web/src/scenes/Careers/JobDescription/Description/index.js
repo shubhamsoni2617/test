@@ -2,11 +2,16 @@ import React from 'react';
 import './style.scss';
 import place from '../../../../assets/images/job-description/place.svg';
 import experince from '../../../../assets/images/job-description/experince.svg';
-
+import { Link } from 'react-scroll';
 const Description = ({ jobDetail, jobDetailErr }) => {
   return (
     <div className="job-des-wrapper">
-      <h2>{jobDetail && jobDetail.title}</h2>
+      <h2>{jobDetail && jobDetail.title}
+      <Link
+            to="applynow"
+            spy={true}
+            smooth={true}>Apply Now</Link>
+      </h2>
       <div className="experince-wrapper">
         <span className="experince">
           <img src={place} alt="place" />
@@ -31,7 +36,7 @@ const Description = ({ jobDetail, jobDetailErr }) => {
             })}
         </ul>
         <p
-          className="career-subtext"
+          className="career-subtext job-description"
           dangerouslySetInnerHTML={{
             __html: jobDetail && jobDetail.description
           }}

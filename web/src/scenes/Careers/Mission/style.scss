@@ -1,12 +1,31 @@
+.mission-container{
+    @media(max-width: 767px){
+        display: flex;
+        .mission-content{
+            order: 2;
+        }
+    }
+}
 .mission{
     text-align: end;
     padding: 20px 65px 0 0;
     .career-title{
         padding-bottom: 33px;
     }
-    @media(max-width: 768px){
+    @media(max-width: 767px){
         padding: 10px 0 0 0;
-        text-align: center;
+        text-align: left;
+        margin-top: 10px;
+        .career-title{
+            padding-bottom: 10px;
+            font-size: 25px;
+        }
+        .career-subtext{
+            p{
+                font-size: 12px;
+                line-height: 20px;
+            }
+        }
     }
 }
 .blue-line{
@@ -25,10 +44,10 @@
         img{
             width: 25px;
         }
-        @media(max-width: 992px){
-            bottom: 20px;
+        @media(max-width: 991px){
+            bottom: 58px;
         }
-        @media(max-width: 768px){
+        @media(max-width: 767px){
             width: 50px;
             height: 50px;
             bottom: -20px;

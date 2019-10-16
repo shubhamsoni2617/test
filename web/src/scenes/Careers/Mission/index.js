@@ -6,8 +6,8 @@ import play from '../../../../src/assets/images/career/our-mission.svg';
 const Mission = ({ mission }) => {
   return (
     <div className="container">
-      <div className="row">
-        <div className="col-lg-5 col-md-6">
+      <div className="row mission-container">
+        <div className="col-lg-5 col-md-6 mission-content">
           <div className="mission">
             <h2 className="career-title">{mission && mission.title}</h2>
             <p

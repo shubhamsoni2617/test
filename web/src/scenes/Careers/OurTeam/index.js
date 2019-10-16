@@ -9,14 +9,14 @@ import Utilities from '../../../shared/utilities';
 const OurTeam = ({ banner }) => {
   return (
     <div className="row our-team no-gutters">
-      <div className="col-lg-5 col-md-6">
+      <div className="col-lg-5 col-md-6 our-team-content">
         <div className="ourteam-inner">
           <h4>{banner && banner.title}</h4>
           <h2>{banner && banner.subtitle}</h2>
-          <p
+          <div
             className="career-subtext"
             dangerouslySetInnerHTML={{ __html: banner && banner.description }}
-          ></p>
+          ></div>
           <Link
             to="opening"
             spy={true}
