@@ -156,50 +156,34 @@ const Contact = ({ attachement, handleEnquiry }) => {
   };
 
   const handleFile = e => {
-    // setFiles({});
     const { files } = e.target;
     fileArr = [...fileArr, ...files];
     let fileArrLength = fileArr.length;
-    let fileSize = 0;
     for (let key in fileArr) {
       if (fileArr.hasOwnProperty(key)) {
-        fileSize = fileSize + fileArr[key].size;
+        let fileSize = fileArr[key].size;
+        let sizeInMB = fileSize / (1024 * 1024);
+        if (sizeInMB > 5) {
+          setMaxFileLimitMsg('files can be uploaded, with up to 5MB size.');
+          setFileArr([]);
+          return;
+        }
       }
     }
-    const sizeInMB = fileSize / (1024 * 1024);
-    if (fileArrLength > 3 || sizeInMB > 5) {
-      setMaxFileLimitMsg('Max 3 files can be uploaded, with up to 5MB size.');
+    if (fileArrLength > 3) {
+      setMaxFileLimitMsg('Max 3 files can be uploaded, with up to 5MB size.');
       setFileArr([]);
     } else {
       submitUploadAttachment(fileArr);
       setMaxFileLimitMsg('');
-      // setFiles(files);
       setFileArr(fileArr);
     }
-
-    // const filesLength = files.length;
-    // let fileSize = 0;
-    // for (let key in files) {
-    //   if (files.hasOwnProperty(key)) {
-    //     fileSize = fileSize + files[key].size;
-    //   }
-    // }
-    // const sizeInMB = fileSize / (1024 * 1024);
-    // if (filesLength > 3 || sizeInMB > 5) {
-    //   setMaxFileLimitMsg('Max 3 files can be uploaded, with up to 5MB size.');
-    // } else {
-    //   submitUploadAttachment(files);
-    //   setMaxFileLimitMsg('');
-    //   setFiles(files);
-    // }
   };
 
   const submitUploadAttachment = files => {
     let formData = new FormData();
-    let fileArr = [];
     for (let i = 0; i < files.length; i++) {
       let file = files[i];
-      // fileArr.push(file);
       formData.append('file[' + i + ']', file);
     }
     ContactUsService.uploadAttachement(formData)
