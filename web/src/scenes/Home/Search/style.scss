@@ -291,6 +291,12 @@
 //searchbar page
 .searchbar-page-wrapper{
     margin-top: 17px;
+    & > .container{
+        @media(max-width: 768px){
+            padding-right: 0px;
+            padding-left: 0px;
+        }
+    }
     h2{
         color: #343434;
         font-family: 'Rubik', sans-serif;
@@ -326,6 +332,12 @@
     }
     .wrapper-events-listing{
         padding-top: 47px;
+        @media(max-width: 768px){
+            padding-top: 20px;
+        }
+        @media(max-width: 767px){
+            padding-top: 10px;
+        }
         .item-title{
             h5{
                 color: #343434;
@@ -398,6 +410,82 @@
                         margin: 0;
                         padding: 0px;
                     }
+                    .event-block{
+                        @media(max-width: 767px){
+                            display: flex;
+                            flex-wrap: wrap;
+                            width: 100%;
+                            padding: 0 5px;
+                        }
+                        &:hover{
+                            cursor: default;
+                            border: 1px solid transparent;
+                            border-bottom: 1px solid rgba(151, 151, 151, 0.2);
+                        }
+                        button{
+                            padding: 6px 22px;
+                            line-height: normal;
+                            font-weight: 600;
+                        }
+                        .event-img{
+                            @media(max-width: 767px){
+                                width: 100%;
+                                flex: 0 0 100%;
+                                padding: 0px;
+                            }
+                            .image-conatiner{
+                                @media(max-width: 767px){
+                                    text-align: center;
+                                }
+                                img{
+                                    @media(max-width: 767px){
+                                        width: auto;
+                                        max-width: 100%;
+                                        height: auto;
+                                    }
+                                }
+                            }
+                        }
+                        .event-details{
+                            padding: 15px 0px 8px 30px !important;
+                            @media(max-width: 767px){
+                                width: 100%;
+                                flex: 0 0 100%;
+                                padding-left: 0px !important;
+                            }
+                            h6{
+                                position: relative;
+                                margin-bottom: 0px;
+                                &:after{
+                                    position: absolute;
+                                    content: "";
+                                    background-color: #0077C8;
+                                    height: 2px;
+                                    width: 27px;
+                                    left: 0px;
+                                    bottom: -3px;
+                                }
+                            }
+                            .price-event{
+                                @media(max-width: 767px){
+                                    width: 100%;
+                                }
+                                div{
+                                    @media(max-width: 767px){
+                                        width: 100%;
+                                        display: block;
+                                    }
+                                    button{
+                                        @media(max-width: 767px){
+                                            display: block;
+                                            width: 100%;
+                                            padding: 4px 22px;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
                     &:nth-last-child(2){
                         .event-block{
                             @media(max-width: 767px){
@@ -406,67 +494,12 @@
                         }
                     }
                 }
-                .event-block{
-                    @media(max-width: 767px){
-                        display: flex;
-                        flex-wrap: wrap;
-                        width: 100%;
-                        padding: 0 5px;
-                    }
-                    &:hover{
-                        cursor: default;
-                        border: 1px solid transparent;
-                        border-bottom: 1px solid rgba(151, 151, 151, 0.2);
-                    }
-                    button{
-                        padding: 6px 22px;
-                        line-height: normal;
-                        font-weight: 600;
-                    }
-                    .event-img{
-                        @media(max-width: 767px){
-                            width: 100%;
-                            flex: 0 0 100%;
-                        }
-                        .image-conatiner{
-                            @media(max-width: 767px){
-                                text-align: center;
-                            }
-                            img{
-                                @media(max-width: 767px){
-                                    width: auto;
-                                    max-width: 100%;
-                                    height: auto;
-                                }
-                            }
-                        }
-                    }
-                    .event-details{
-                        padding: 15px 0px 8px 30px !important;
-                        @media(max-width: 767px){
-                            width: 100%;
-                            flex: 0 0 100%;
-                            padding-left: 0px !important;
-                        }
-                        h6{
-                            position: relative;
-                            margin-bottom: 0px;
-                            &:after{
-                                position: absolute;
-                                content: "";
-                                background-color: #0077C8;
-                                height: 2px;
-                                width: 27px;
-                                left: 0px;
-                                bottom: -3px;
-                            }
-                        }
-                    }
-                }
                 div:last-child{
                     .event-block:hover{
-                        border: 1px solid transparent;
-                        border-bottom: 1px solid rgba(151, 151, 151, 0.2);
+                        @media(max-width: 767px){
+                            border: 1px solid transparent;
+                            border-bottom: 1px solid rgba(151, 151, 151, 0.2);
+                        }
                     }
                 }
             }
