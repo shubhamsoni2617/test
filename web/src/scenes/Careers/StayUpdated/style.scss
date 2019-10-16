@@ -1,8 +1,11 @@
 .stay-update-img{
     img{
-        margin-top: -50px;
+        margin-top: 0px;
         max-width: 100%;
         height: auto;
+        margin-left: 100px;
+        z-index: 1;
+        position: relative;
     }
     @media(max-width: 991px){
         text-align: center;
@@ -17,10 +20,10 @@
 }
 .stay-update{
     background-color: #F0F9FF;
-    padding: 80px 60px 40px 100px;
+    padding: 85px 67px 44px 105px;
     .career-title{
-        line-height: normal;
-        padding-bottom: 25px;
+        line-height: 52px;
+        padding-bottom: 26px;
         b{
             font-size: 36px;
             font-weight: 600;
@@ -85,6 +88,26 @@
             &:focus{
                 box-shadow: none;
                 border-bottom: 1px solid #03A9F4;
+            }
+            &::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+                color: #6c6f70;
+                font-size: 16px;
+                line-height: 23px;
+            }
+            &::-moz-placeholder { /* Firefox 19+ */
+                color: #6c6f70;
+                font-size: 16px;
+                line-height: 23px;
+            }
+            &:-ms-input-placeholder { /* IE 10+ */
+                color: #6c6f70;
+                font-size: 16px;
+                line-height: 23px;
+            }
+            &:-moz-placeholder { /* Firefox 18- */
+                color: #6c6f70;
+                font-size: 16px;
+                line-height: 23px;
             }
         }
         .attach-doc{
