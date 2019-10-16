@@ -571,7 +571,12 @@ export default class Events extends Component {
                         Close
                       </a>
 
-                      <a onClick={() => this.callAPI()} className="apply">
+                      <a
+                        className="apply"
+                        onClick={() => {
+                          this.callAPI();
+                        }}
+                      >
                         Apply
                       </a>
                     </div>
@@ -658,7 +663,12 @@ export default class Events extends Component {
                 )}
               </div>
               <div className="fixed-buttons-events">
-                <a className="sortby" onClick={this.toggleSortBy}>
+                <a
+                  className="sortby"
+                  onClick={() => {
+                    this.toggleSortBy();
+                  }}
+                >
                   sort by
                   <img src={sortbyIcon} alt="icon" />
                 </a>
