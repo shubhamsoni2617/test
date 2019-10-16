@@ -3,6 +3,8 @@ import recentSearchIconImage from '../../../../../assets/images/recent-search-ic
 import closeBlueColorImage from '../../../../../assets/images/close-blue-color.svg';
 import './style.scss';
 import MostViewed from './MostViewed';
+import Utilities from '../../../../../shared/utilities';
+import backButton from '../../../../../assets/images/events/sortby.svg';
 
 const HomePageSearch = props => {
   const [storageValues, setStorageValues] = useState(
@@ -26,6 +28,18 @@ const HomePageSearch = props => {
     <div className="header-search">
       <div className="searched-wrapper">
         <div className="recently-search">
+          <span onClick={props.history.goBack}>
+            <image alt={'backButton'} src={backButton} />
+          </span>
+          {Utilities.mobilecheck() && (
+            <input
+              type="text"
+              // onChange={props.onChange}
+              // onKeyDown={props.onKeyDown}
+              // value={props.userInput}
+              className="search-inputtype mobile"
+            />
+          )}
           <h3>Recently Searched</h3>
           <ul>
             {storageValues &&

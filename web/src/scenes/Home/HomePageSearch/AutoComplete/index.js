@@ -6,6 +6,7 @@ import RecentlySearched from './RecentlySearched';
 import loaderImage from '../../../../assets/images/loader.svg';
 import './style.scss';
 import navigateToLink from '../../../../shared/navigateToLink';
+import Utilities from '../../../../shared/utilities';
 
 const Autocomplete = props => {
   const [activeSuggestion, setActiveSuggestion] = useState(0);
@@ -16,7 +17,6 @@ const Autocomplete = props => {
   const [isFocused, setIsFocused] = useState(false);
   const debouncedSearchTerm = useDebounce(userInput, 500);
   const node = useRef(null);
-
   useEffect(() => {
     let storageValues = JSON.parse(localStorage.getItem('recentlySearched'));
     if (!storageValues || !storageValues.length) {
@@ -111,15 +111,26 @@ const Autocomplete = props => {
   if (showSuggestions && userInput) {
     if (suggestions && suggestions.length) {
       suggestionsListComponent = (
-        <>
-
+        <div className="search-popup-wrapper">
+          {Utilities.mobilecheck() && (
+            <input
+              type="text"
+              onChange={onChange}
+              onKeyDown={onKeyDown}
+              value={userInput}
+              className="search-inputtype mobile"
+              onFocus={() => {
+                setIsFocused(true);
+              }}
+            />
+          )}
           <ul className="suggestions">
             {suggestions.map((suggestion, index) => {
               return (
                 <li
                   className={`${
                     index === activeSuggestion ? `suggestion-active` : ``
-                    }`}
+                  }`}
                   key={suggestion.id}
                   onClick={() => {
                     onClick(suggestion.title);
@@ -133,11 +144,11 @@ const Autocomplete = props => {
                 >
                   <h4 className="suggestion-title">{suggestion.title}</h4>
                   {suggestion.type === 'event' ||
-                    suggestion.type === 'attractions' ? (
-                      <button>{suggestion.category}</button>
-                    ) : (
-                      <p>{suggestion.category}</p>
-                    )}
+                  suggestion.type === 'attractions' ? (
+                    <button>{suggestion.category}</button>
+                  ) : (
+                    <p>{suggestion.category}</p>
+                  )}
                 </li>
               );
             })}
@@ -151,7 +162,7 @@ const Autocomplete = props => {
               See all results form <strong>{userInput}</strong>
             </div>
           </ul>
-        </>
+        </div>
       );
     } else {
       suggestionsListComponent = (
@@ -174,6 +185,7 @@ const Autocomplete = props => {
           setIsFocused(true);
         }}
       />
+
       {suggestionsListComponent}
       {isFocused && !userInput && (
         <RecentlySearched
