@@ -5,13 +5,14 @@ import navigateToLink from '../../../../shared/navigateToLink';
 
 const Card = props => {
   const { cardData } = props;
+  console.log(cardData.type)
   return (
     <div
       className={`event-block ${
-        cardData.type === 'event' || cardData.type === 'Attractions'
-          ? `full-desc`
-          : ``
-      }`}
+        cardData.type === 'event' || cardData.type === 'attractions'
+          ? ``
+          : `full-desc`
+        }`}
     >
       <div className="event-img">
         <Image src={cardData.image} />
@@ -43,11 +44,11 @@ const Card = props => {
               )
             }
           >
-            {cardData.type === 'event' || cardData.type === 'Attractions' ? (
+            {cardData.type === 'event' || cardData.type === 'attractions' ? (
               <button type="button">Buy Tickets</button>
             ) : (
-              <button type="button">Read More</button>
-            )}
+                <button type="button">Read More</button>
+              )}
           </div>
         </div>
       </div>

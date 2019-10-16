@@ -17,17 +17,18 @@
         width: calc(100% - 30px);
         margin: 0 auto;
         @media(max-width: 767px){            
-            // position: fixed;
-            // top: 0px;
-            // left: 0;
-            // right: 0;
-            // bottom: 0px;
-            // height: 100%;
-            // background-color: #fff;
-            // max-height: 100%;
-            // overflow-y: auto;
-            // width: 100%;
-            // margin: 0 auto;
+            position: fixed;
+            top: 0px;
+            left: 0;
+            right: 0;
+            bottom: 0px;
+            height: calc(100% - 100px);
+            background-color: #fff;
+            max-height: 100%;
+            overflow-y: auto;
+            width: 100%;
+            margin: 0 auto;
+            margin-top: 100px;
         }
         li{
             padding: 10px 20px;
@@ -90,6 +91,68 @@
             &:hover{
                 cursor: pointer;
             }
+        }
+    }
+    .search-popup-back{
+        display: none;
+    }
+    &.search-open {
+        @media(max-width: 767px){            
+            background-color: #343c42;
+            top: 0px;
+            left: 0px;
+            right: 0px;
+            position: fixed;
+            height: 100px;
+            width: calc(100% + 10px);
+            margin-top: 0px;
+            margin-left: -5px;
+            z-index: 1;
+            opacity: 1;
+            display: flex;
+            flex-wrap: wrap;
+            width: 100%;
+            align-items: flex-end;
+            padding-bottom: 10px;
+            transition: 0.5s ease-in-all;
+        }
+        .search-popup-topbar{
+            @media(max-width: 767px){
+                width: calc(100% - 20px);
+                display: flex;
+                flex-wrap: wrap;
+                align-items: flex-end;
+                height: 100%;
+                margin: 0 auto;
+            }
+        }
+        .search-popup-back{
+            @media(max-width: 767px){
+                display: block;
+                flex: 0 0 50px;
+                width: 50px;
+                background-color: transparent;
+            }
+            img{
+                @media(max-width: 767px){
+                    max-width: 25px;
+                }
+            }
+        }
+        .search-inputtype{
+            @media(max-width: 767px){
+                flex: 0 0 calc(100% - 60px);
+                width: calc(100% - 60px);
+                margin-left: 5px;
+                background-color: #fff !important;
+            }
+        }
+        .search-btn{
+            @media(max-width: 767px){
+                right: 20px !important;
+                margin-top: 18px !important;
+            }
+
         }
     }
 }

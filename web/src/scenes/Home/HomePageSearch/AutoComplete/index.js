@@ -4,6 +4,9 @@ import Constants from '../../../../shared/constants';
 import useDebounce from '../../../../shared/hooks/useDebounce';
 import RecentlySearched from './RecentlySearched';
 import loaderImage from '../../../../assets/images/loader.svg';
+import previousArrow from '../../../../assets/images/next.svg';
+import searchImage from '../../../../assets/images/search.svg';
+import searchImageBlue from '../../../../assets/images/search-blue.svg';
 import './style.scss';
 import navigateToLink from '../../../../shared/navigateToLink';
 import Utilities from '../../../../shared/utilities';
@@ -177,17 +180,34 @@ const Autocomplete = props => {
 
   return (
     <div ref={node} className={`autocomplete ${Utilities.mobilecheck() && isFocused ? `search-open` : ``}`}>
-      <input
-        type="text"
-        onChange={onChange}
-        onKeyDown={onKeyDown}
-        value={userInput}
-        className="search-inputtype"
-        onFocus={() => {
-          setIsFocused(true);
-          props.buttonActiveHandler(true)
-        }}
-      />
+      <div className="search-popup-topbar">
+        {Utilities.mobilecheck() && <button className="search-popup-back" onClick={() => {
+          setShowSuggestions(false);
+          setIsFocused(false);
+          props.history.goBack();
+        }}>
+          <img src={previousArrow} alt="previous-btn" />
+        </button>}
+        <input
+          type="text"
+          onChange={onChange}
+          onKeyDown={onKeyDown}
+          value={userInput}
+          className="search-inputtype"
+          onFocus={() => {
+            setIsFocused(true);
+            props.buttonActiveHandler(true)
+          }}
+        />
+        <button type="submit" className="search-btn">
+          <img src={searchImage} className="img-fluid" alt="search-icon" />
+          <img
+            src={searchImageBlue}
+            className="img-fluid active"
+            alt="search-icon"
+          />
+        </button>
+      </div>
 
       {suggestionsListComponent}
       {isFocused && !userInput && (

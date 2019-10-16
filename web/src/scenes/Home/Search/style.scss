@@ -387,6 +387,7 @@
                     padding: 0px 6px 1px;
                     font-weight: 600;
                     font-family: 'Montserrat', sans-serif;
+                    word-break: break-word;
                 }
                 &:empty{
                     display: none;
@@ -490,6 +491,7 @@
                                 .price{
                                     @media(max-width: 767px){
                                         text-align: left;
+                                        height: auto;
                                     }
                                 }
                             }
@@ -499,6 +501,10 @@
                                 @media(max-width: 767px){
                                     max-height: 112px;
                                     min-height: 112px;
+                                    white-space: normal;
+                                    text-overflow: unset;
+                                    overflow: visible;
+                                    display: block;
                                 }
                             }
                         }
@@ -523,5 +529,22 @@
             }
         }
 
+    }
+    .advertisment-listing{
+        display: block;
+        margin: 0 auto;
+        text-align: center;
+        li{
+            list-style: none;
+            display: inline-block;
+            padding-right: 10px;
+            width: auto;
+            @media(max-width: 1180px){
+                width: 50%;
+            }
+            &:last-child{
+                padding-right: 0px;
+            }
+        }
     }
 }

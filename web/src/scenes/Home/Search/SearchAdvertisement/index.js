@@ -24,7 +24,7 @@ const MostViewed = () => {
   };
   return (
     <div className="">
-      <ul>
+      <ul className="advertisment-listing">
         {adv &&
           adv.map((elem, index) => {
             return (
