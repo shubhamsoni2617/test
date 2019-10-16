@@ -29,23 +29,27 @@ const Testimonials = ({ testimonial, testimonialErr }) => {
     ]
   };
   return (
-    <div className="testimonials">
-      <h1 className="text-center">Testimonials</h1>
-      <Slider {...settings}>
-        {testimonial &&
-          testimonial.testimonials &&
-          testimonial.testimonials.map((elem, index) => {
-            return (
-              <div key={index}>
-                <div className="message">{elem.message}</div>
-                <img src={elem.image} height="200" width="100%" />
-                <div className="name text-center">
-                  <h3>{elem.name}</h3>
-                </div>
-              </div>
-            );
-          })}
-      </Slider>
+    <div className="testimonials carrier-wrapper">
+      <h3 className="text-center">Testimonials</h3>
+      <div className="carrier-content">
+        <ul className="carrier-slider">
+          <Slider {...settings}>
+            {testimonial &&
+              testimonial.testimonials &&
+              testimonial.testimonials.map((elem, index) => {
+                return (
+                  <div key={index}>
+                    <div className="message">{elem.message}</div>
+                    <img src={elem.image} height="200" width="100%" />
+                    <div className="name text-center">
+                      <h3>{elem.name}</h3>
+                    </div>
+                  </div>
+                );
+              })}
+          </Slider>
+        </ul>
+      </div>
     </div>
   );
 };

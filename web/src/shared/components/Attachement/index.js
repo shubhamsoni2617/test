@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './style.scss';
-import attach from '../../../assets/images/attach.png';
+import attach from '../../../assets/images/attach.svg';
 import ContactUsService from '../../services/ContactUsService';
 
 const Attachement = ({ attachedFiles, submit, mandatory }) => {

@@ -1,15 +1,18 @@
 .career-title{
     font-size: 36px;
+    line-height: 44px;
     font-weight: 600;
     font-family: 'Montserrat', sans-serif;
     text-transform: capitalize;
 }
-.career-subtext{
+.career-subtext, p {
     font-size: 16px;
+    line-height: 26px;
     color: #626262;
     font-family: 'Rubik', sans-serif;
     font-weight: normal;
-    line-height: 26px;
+    margin-bottom: 0px;
+    padding-bottom: 0px;    
 }
 .blue-line{
     &:before{
