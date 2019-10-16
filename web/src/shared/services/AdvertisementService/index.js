@@ -12,6 +12,14 @@ class AdvertisementService {
   getFeaturedEvents(params) {
     return API.get(`adv/featured-event`, { params });
   }
+
+  getMostViewedService(params) {
+    return API.get(`adv/featured-event`, { params });
+  }
+
+  getGiftCardService(params) {
+    return API.get(`adv/side-panel`, { params });
+  }
 }
 
 export default new AdvertisementService();

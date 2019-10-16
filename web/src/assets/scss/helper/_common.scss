@@ -535,6 +535,7 @@ button,
 			background-repeat: no-repeat;
 			top: 50%;
 			transform: translateY(-50%);
+			transition: 0.5s transform;
 		}
 		.sortby-text {
 			color: #343434;
@@ -1268,7 +1269,14 @@ em{
 //     z-index: -1 !important;
 // }
 .fixed-body{
-   overflow: hidden !important;
+   	overflow: hidden !important;
+	position: fixed;
+	top: 0px;
+	left: 0px;
+	right: 0px;
+	bottom: 0px;
+	height: 100%;
+	width: 100%;
 }
 .see-all-sidebar {
 	text-align: left !important;

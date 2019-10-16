@@ -12,11 +12,13 @@ function EventHeading(props) {
     if (
       !allowTooltip &&
       ((props.lines === 1 &&
+        element.current &&
         element.current.scrollWidth > element.current.offsetWidth + 150) ||
         (props.lines > 1 &&
           element.current &&
-          element.current.scrollHeight > element.current.offsetHeight))
+          element.current.scrollHeight > element.current.offsetHeight + 2))
     ) {
+      // debugger;
       setAllowTooltip(true);
     }
     let styleObjectDefault = {

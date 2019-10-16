@@ -185,7 +185,7 @@ const TopNav = props => {
                   <img src={logo} className="img-fluid" alt="Logo" />
                 </Link>
               </div>
-              <HomePageSearch />
+              <HomePageSearch {...props} />
             </div>
             <div className="top-header-right">
               <ul>

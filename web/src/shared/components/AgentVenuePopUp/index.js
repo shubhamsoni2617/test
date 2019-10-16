@@ -43,6 +43,13 @@ const AgentVenuePopUp = props => {
       );
     });
   };
+
+  if (Utilities.mobilecheck() && item.id === popUpDetail.id) {
+    document.body.classList.add('fixed-body');
+  } else {
+    document.body.classList.remove('fixed-body');
+  }
+
   return (
     <div
       className={`pop-up-list ${item.id === popUpDetail.id ? 'active' : ''}`}
@@ -55,11 +62,12 @@ const AgentVenuePopUp = props => {
         >
           <img height="20" width="20" src={redirect} alt="direction" />
         </a>
-        <div className="popup-close-icon"
+        <div
+          className="popup-close-icon"
           style={{
             display:
               !Utilities.mobileAndTabletcheck() &&
-                window.innerHeight < window.innerWidth
+              window.innerHeight < window.innerWidth
                 ? 'none'
                 : 'block'
           }}
@@ -98,20 +106,20 @@ const AgentVenuePopUp = props => {
         ) : null}
 
         {venue &&
-          popUpDetail.food_beverages &&
-          popUpDetail.food_beverages[0].name ? (
-            <div className="agent-info">
-              <div className="icon">
-                <img src={food} alt="icon" />
-              </div>
-              <div className="details">
-                <h3>Food & Beverage</h3>
-                <ul className="currently-list">
-                  {showFoodNBeverage(popUpDetail.food_beverages)}
-                </ul>
-              </div>
+        popUpDetail.food_beverages &&
+        popUpDetail.food_beverages[0].name ? (
+          <div className="agent-info">
+            <div className="icon">
+              <img src={food} alt="icon" />
             </div>
-          ) : null}
+            <div className="details">
+              <h3>Food & Beverage</h3>
+              <ul className="currently-list">
+                {showFoodNBeverage(popUpDetail.food_beverages)}
+              </ul>
+            </div>
+          </div>
+        ) : null}
 
         {!venue && popUpDetail.operating_hours ? (
           <div className="agent-info">
