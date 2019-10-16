@@ -3,7 +3,7 @@ import './style.scss';
 import attach from '../../../assets/images/attach.svg';
 import ContactUsService from '../../services/ContactUsService';
 
-const Attachement = ({ attachedFiles, submit, mandatory }) => {
+const Attachement = ({ attachedFiles, submit, mandatory, cv }) => {
   const [files, setFiles] = useState({});
   const [maxFileLimitMsg, setMaxFileLimitMsg] = useState('');
   const [serverErr, setServerErr] = useState([]);
@@ -78,7 +78,7 @@ const Attachement = ({ attachedFiles, submit, mandatory }) => {
             multiple
             onChange={e => handleFiles(e.target.files)}
             accept={
-              mandatory
+              mandatory || cv
                 ? '.pdf,.doc,.docx,.txt:'
                 : '.jpeg,.png,.pdf,.doc,.docx,.jpg'
             }

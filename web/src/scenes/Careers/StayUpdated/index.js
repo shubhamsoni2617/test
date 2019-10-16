@@ -82,7 +82,11 @@ const StayUpdated = ({
               {errMsg && !email ? (
                 <span className="text-danger">Please enter your email    </span>
               ) : null}
-              <Attachement attachedFiles={handleFiles} submit={submit} />
+              <Attachement
+                attachedFiles={handleFiles}
+                submit={submit}
+                cv={true}
+              />
               <input
                 className="form-control col-lg-5 btn-link"
                 type="submit"
