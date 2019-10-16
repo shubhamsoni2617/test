@@ -256,11 +256,18 @@ function StickyHeader(props) {
                   alt="location"
                 />
                 <div>
-                  <span>
-                    <Link to={`/venues?id=${detailData.venue_name.id}`}>
-                      {detailData.venue_name.name}
-                    </Link>
-                  </span>
+                  <Link to={`/venues?id=${detailData.venue_name.id}`}>
+                    <TitleToolTip
+                      title={
+                        detailData.venue_name.name +
+                        'Brevitas Volutpat Wisi Brevitas Volutpat Wisi'
+                      }
+                      lines={1}
+                      tag={false}
+                      height={20}
+                      eventDetail
+                    />
+                  </Link>
                   <button
                     className="link"
                     onClick={() => setVenueDetailsPopup(true)}

@@ -51,6 +51,7 @@
       // margin-top: -30px;
       opacity: 1;
 
+
       @media(max-width: 1280px){
           padding: 20px 20px 15px;
       }
@@ -95,7 +96,7 @@
                     background: none;
                 }
             }
-        
+
         .event-date{
             margin-bottom: 25px !important;
         }
@@ -464,7 +465,7 @@
                 margin-top: 7px;
               }
               @media(min-width: 768px) and (max-width: 980px){
-                  
+
               }
               &:hover{
                   background-color: #FFF;
@@ -892,12 +893,57 @@
           }
       }
   }
+  .event-detail{
+    .event-address span{
+        width: 325px;
+        @media(max-width: 1024px){
+          width: 285px;
+        }
+      }
+    }
 
   .event-detail.sticky-topbar.animate{
     opacity: 1 !important;
-    overflow: auto;
+    overflow: visible;
     height: auto;
     z-index: 99;
+    h3{
+      width: 575px;
+    }
+    .event-address span{
+        width: 225px;
+      }
+    @media(max-width: 768px){
+     h3{
+      width: 500px;
+    }
+      .event-address span{
+        width: 260px;
+      }
+    }
+    @media(max-width: 991px){
+      h3{
+      width: 500px;
+    }
+      .event-address span{
+        width: 190px;
+      }
+    }
+    @media(max-width: 1024px){
+      .event-address span{
+        width: 155px !important;
+      }
+      .tickets-desc .ticket-date-price{
+            margin-top: 5px;
+      }
+      .tickets-desc{
+        h3{
+        margin-top: 10px;
+         width: 500px !important;
+      }
+      }
+
+    }
   }
   .button_group{
     margin: 15px 0 0;
@@ -1110,7 +1156,7 @@
               flex: 0 0 calc(37% - 105px);
           }
           .buy-tickets-btn{
-              
+
               margin-left: auto;
               a{
                   font-weight: 600;
