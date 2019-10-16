@@ -112,13 +112,14 @@ const Autocomplete = props => {
     if (suggestions && suggestions.length) {
       suggestionsListComponent = (
         <>
+
           <ul className="suggestions">
             {suggestions.map((suggestion, index) => {
               return (
                 <li
                   className={`${
                     index === activeSuggestion ? `suggestion-active` : ``
-                  }`}
+                    }`}
                   key={suggestion.id}
                   onClick={() => {
                     onClick(suggestion.title);
@@ -132,11 +133,11 @@ const Autocomplete = props => {
                 >
                   <h4 className="suggestion-title">{suggestion.title}</h4>
                   {suggestion.type === 'event' ||
-                  suggestion.type === 'attractions' ? (
-                    <button>{suggestion.category}</button>
-                  ) : (
-                    <p>{suggestion.category}</p>
-                  )}
+                    suggestion.type === 'attractions' ? (
+                      <button>{suggestion.category}</button>
+                    ) : (
+                      <p>{suggestion.category}</p>
+                    )}
                 </li>
               );
             })}
@@ -168,6 +169,7 @@ const Autocomplete = props => {
         onChange={onChange}
         onKeyDown={onKeyDown}
         value={userInput}
+        className="search-inputtype"
         onFocus={() => {
           setIsFocused(true);
         }}
