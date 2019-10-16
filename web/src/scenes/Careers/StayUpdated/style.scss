@@ -1,0 +1,167 @@
+.stay-update-img{
+    img{
+        margin-top: 0px;
+        max-width: 100%;
+        height: auto;
+        margin-left: 100px;
+        z-index: 1;
+        position: relative;
+    }
+    @media(max-width: 991px){
+        text-align: center;
+        margin-bottom: 20px;
+        img{
+            margin-top: 0;
+        }
+  }
+  @media(max-width: 768px){
+        display: none;
+  }
+}
+.stay-update{
+    background-color: #F0F9FF;
+    padding: 85px 67px 44px 105px;
+    .career-title{
+        line-height: 52px;
+        padding-bottom: 26px;
+        b{
+            font-size: 36px;
+            font-weight: 600;
+            font-family: 'Montserrat', sans-serif;
+            text-transform: capitalize;
+            margin-top: 10px;
+            line-height: normal;
+            display: block;
+        }
+        @media(max-width: 767px){
+            font-size: 25px;
+            padding-bottom: 20px;
+            margin-top: 20px;
+          }
+    }
+    .career-subtext{
+        p{
+            @media(max-width: 767px){
+                font-size: 12px;
+                line-height: 20px;
+                margin-bottom: 0;
+              }
+        }
+    }
+    form{
+        .select{
+            width: 100%;
+            .selection{
+                border: 0;
+                background: transparent;
+                border-bottom: 1px solid rgba(151, 151, 151, 0.2);
+                .delete{
+                    padding: 0;
+                    top: 50%;
+                    transform: translateY(-50%);
+                    right: 6px;
+                }
+            }
+            .options{
+                border: 0;
+                .option{
+                    border: 0;
+                }
+            }
+            &:focus{
+                .selection{
+                    background: #fff;
+                    box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.1);
+                }
+                .options{
+                    background: #fff;
+                    border: 0;
+                    box-shadow: 0px -3px 4px 0px rgba(0, 0, 0, 0.1);
+                }
+            }
+        }
+        .email{
+            border: 0;
+            background: transparent;
+            border-bottom: 1px solid rgba(151, 151, 151, 0.2);
+            border-radius: 0;
+            &:focus{
+                box-shadow: none;
+                border-bottom: 1px solid #03A9F4;
+            }
+            &::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+                color: #6c6f70;
+                font-size: 16px;
+                line-height: 23px;
+            }
+            &::-moz-placeholder { /* Firefox 19+ */
+                color: #6c6f70;
+                font-size: 16px;
+                line-height: 23px;
+            }
+            &:-ms-input-placeholder { /* IE 10+ */
+                color: #6c6f70;
+                font-size: 16px;
+                line-height: 23px;
+            }
+            &:-moz-placeholder { /* Firefox 18- */
+                color: #6c6f70;
+                font-size: 16px;
+                line-height: 23px;
+            }
+        }
+        .attach-doc{
+            .row{
+                display: flex;
+                width: 100%;
+                align-items: center;
+                justify-content: space-between;
+            }
+            input.form-control{
+                visibility: hidden;
+                position: absolute;
+                margin-top: -43px;
+                left: 0px;
+                right: 0px;
+            }
+            label{
+                font-size: 16px;
+                line-height: 19px;
+                color: #343434;
+                padding-top: 12px;
+                border: 0;
+                background-color: transparent;
+                border-bottom: 1px solid rgba(151, 151, 151, 0.2);
+                @media(max-width: 991px){
+                    font-size: 14px;
+                    line-height: 17px;
+                    padding-top: 0px;
+                }
+            }
+            .resume{
+                .placeholder{
+                    position: absolute;
+                    bottom: 10px;
+                }
+            }
+        }
+        .btn-link{
+            padding: 10px 20px;
+            font-weight: 500;
+            font-size: 18px;
+            @media(max-width: 767px){
+                padding: 2px 20px;
+                font-size: 14px;
+                width: 100%;
+              }
+        }
+    }
+    @media(max-width: 767px){
+        background-color: transparent;
+        padding: 0;
+      }
+}
+
+.err{
+  border: 1px solid red;
+}
