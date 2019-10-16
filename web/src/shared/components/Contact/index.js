@@ -25,6 +25,7 @@ const Contact = ({ attachement, handleEnquiry }) => {
   const [filePath, setFilePath] = useState([]);
   const [submit, setSubmit] = useState(false);
   const [selectedId, setSelectedId] = useState(null);
+  let [fileArr, setFileArr] = useState([]);
 
   useEffect(() => {
     fetchEnquiry();
@@ -156,31 +157,52 @@ const Contact = ({ attachement, handleEnquiry }) => {
   };
 
   const handleFile = e => {
-    setFiles({});
+    // setFiles({});
     const { files } = e.target;
-    const filesLength = files.length;
+    fileArr = [...fileArr, ...files];
+    let fileArrLength = fileArr.length;
     let fileSize = 0;
-    for (let key in files) {
-      if (files.hasOwnProperty(key)) {
-        fileSize = fileSize + files[key].size;
+    for (let key in fileArr) {
+      if (fileArr.hasOwnProperty(key)) {
+        fileSize = fileSize + fileArr[key].size;
       }
     }
     const sizeInMB = fileSize / (1024 * 1024);
-    if (filesLength > 3 || sizeInMB > 5) {
+    if (fileArrLength > 3 || sizeInMB > 5) {
       setMaxFileLimitMsg('Max 3 files can be uploaded, with up to 5MB size.');
+      setFileArr([]);
     } else {
-      submitUploadAttachment(files);
+      submitUploadAttachment(fileArr);
       setMaxFileLimitMsg('');
-      setFiles(files);
+      // setFiles(files);
+      setFileArr(fileArr);
     }
+
+    // const filesLength = files.length;
+    // let fileSize = 0;
+    // for (let key in files) {
+    //   if (files.hasOwnProperty(key)) {
+    //     fileSize = fileSize + files[key].size;
+    //   }
+    // }
+    // const sizeInMB = fileSize / (1024 * 1024);
+    // if (filesLength > 3 || sizeInMB > 5) {
+    //   setMaxFileLimitMsg('Max 3 files can be uploaded, with up to 5MB size.');
+    // } else {
+    //   submitUploadAttachment(files);
+    //   setMaxFileLimitMsg('');
+    //   setFiles(files);
+    // }
   };
 
   const submitUploadAttachment = files => {
+    console.log(files);
     let formData = new FormData();
     let fileArr = [];
     for (let i = 0; i < files.length; i++) {
       let file = files[i];
       // fileArr.push(file);
+      console.log(file);
       formData.append('file[' + i + ']', file);
     }
     ContactUsService.uploadAttachement(formData)
@@ -334,9 +356,13 @@ const Contact = ({ attachement, handleEnquiry }) => {
                   pdf,jpeg,png,jpg
                 </span>
                 <p className="text-danger">{maxFileLimitMsg}</p>
-                {files && files[0] && <p>{files[0].name}</p>}
+                {/* {files && files[0] && <p>{files[0].name}</p>}
                 {files && files[1] && <p>{files[1].name}</p>}
-                {files && files[2] && <p>{files[2].name}</p>}
+                {files && files[2] && <p>{files[2].name}</p>} */}
+                {fileArr &&
+                  fileArr.map((file, i) => {
+                    return <p key={i}>{file.name}</p>;
+                  })}
               </div>
             </div>
           </div>
