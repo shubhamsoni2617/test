@@ -1,6 +1,18 @@
 .title{
   position: relative;
   display: block;
+  &.top{
+    .info-popover{
+    &:before{
+      border-top: unset;
+      border-bottom: 8px solid #616161;
+      right: unset;
+      bottom: unset;
+      top: -8px;
+      left: 50%;
+    }
+  }
+  }
   .info-popover{
     right: auto;
     width: auto;

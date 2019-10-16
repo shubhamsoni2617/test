@@ -55,7 +55,6 @@
           }
           .checked {
             position: relative;
-            background-color: rgba(0, 128, 215, 0.2);
             color: #0098ff;
             cursor: pointer;
             font-weight: 500;
@@ -127,6 +126,13 @@
               }
             }
         }
+      }
+    }
+    &.active{
+      .sortby-filter{
+         .filter-topbar:after{
+            transform: translate(0%, -50%) rotate(180deg);
+         }
       }
     }
 }

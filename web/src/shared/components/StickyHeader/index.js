@@ -170,7 +170,7 @@ function StickyHeader(props) {
     <div
       className={`event-detail ${sticky ? 'sticky-topbar' : ''} ${
         sticky && setHeader ? 'animate' : ''
-        }`}
+      }`}
     >
       {detailData.images && detailData.images.length > 0 && (
         <div className="tickets-demo-img">
@@ -235,12 +235,16 @@ function StickyHeader(props) {
                 <img src={calendarImg} alt="cal-icon" />
                 <div>
                   <span>{detailData.event_date}</span>
-                  <button
-                    className="link"
-                    onClick={() => setEventDateBlock(true)}
-                  >
-                    View all Dates & Time
-                  </button>
+                  {detailData.event_date_details &&
+                    detailData.event_date_details.length &&
+                    detailData.event_date_details[0] && (
+                      <button
+                        className="link"
+                        onClick={() => setEventDateBlock(true)}
+                      >
+                        View all Dates & Time
+                      </button>
+                    )}
                 </div>
               </li>
             )}
@@ -252,11 +256,18 @@ function StickyHeader(props) {
                   alt="location"
                 />
                 <div>
-                  <span>
-                    <Link to={`/venues?id=${detailData.venue_name.id}`}>
-                      {detailData.venue_name.name}
-                    </Link>
-                  </span>
+                  <Link to={`/venues?id=${detailData.venue_name.id}`}>
+                    <TitleToolTip
+                      title={
+                        detailData.venue_name.name +
+                        'Brevitas Volutpat Wisi Brevitas Volutpat Wisi'
+                      }
+                      lines={1}
+                      tag={false}
+                      height={20}
+                      eventDetail
+                    />
+                  </Link>
                   <button
                     className="link"
                     onClick={() => setVenueDetailsPopup(true)}
@@ -283,12 +294,14 @@ function StickyHeader(props) {
           </ul>
         </div>
       </div>
-      <div className="tickets-button">
-        {detailData.is_available_for_booking === 1 && (
+      {detailData.is_available_for_booking === 1 && (
+        <div className="tickets-button">
           <BuyTicketsButtonPopup detailData={detailData} />
-        )}
-        {buyPackages}
-        {detailData.is_available_for_booking === 0 && (
+        </div>
+      )}
+      {buyPackages}
+      {detailData.is_available_for_booking === 0 && (
+        <div className="tickets-button shows-over-tickets">
           <div className="shows-over">
             <div className="shows-over-icon">
               <img src={faceImg} alt="" />
@@ -298,8 +311,8 @@ function StickyHeader(props) {
               <p>This event has ended and no longer available for booking.</p>
             </div>
           </div>
-        )}
-      </div>
+        </div>
+      )}
     </div>
   );
 }

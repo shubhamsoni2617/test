@@ -184,8 +184,12 @@ export default class Events extends Component {
     // this.setState({shimmer: true});
     EventsService.getData(params)
       .then(res => {
-        if (!isLoadMore) this.setState({ eventsData: [] });
-        const eventData = [...this.state.eventsData, ...res.data.data];
+        let eventData = [];
+        if (isLoadMore) {
+          eventData = [...this.state.eventsData, ...res.data.data];
+        } else {
+          eventData = [...res.data.data];
+        }
         const isdataAvailable = eventData.length ? false : true;
         setTimeout(() => {
           this.setState({
@@ -354,7 +358,7 @@ export default class Events extends Component {
         filteredSortType: 'date',
         filteredSortOrder: '',
         isdataAvailable: false,
-        eventsData: [],
+        // eventsData: [],
         totalRecords: 0
       };
     }
@@ -381,6 +385,7 @@ export default class Events extends Component {
       localfilteredVenues: [...this.state.filteredVenues],
       localfilteredTags: [...this.state.filteredTags]
     });
+    document.body.classList.toggle('fixed-body');
   };
 
   toggleSortBy = () => {
@@ -389,6 +394,7 @@ export default class Events extends Component {
       localfilteredSortOrder: this.state.filteredSortOrder,
       localfilteredSortType: this.state.filteredSortType
     });
+    document.body.classList.toggle('fixed-body');
   };
 
   callAPI = () => {
@@ -415,6 +421,7 @@ export default class Events extends Component {
         }, 200);
       }
     );
+    document.body.classList.toggle('fixed-body');
   };
 
   clearSortFilters = () => {
@@ -564,7 +571,12 @@ export default class Events extends Component {
                         Close
                       </a>
 
-                      <a onClick={() => this.callAPI()} className="apply">
+                      <a
+                        className="apply"
+                        onClick={() => {
+                          this.callAPI();
+                        }}
+                      >
                         Apply
                       </a>
                     </div>
@@ -618,9 +630,11 @@ export default class Events extends Component {
                 </div>
                 {shimmer && (
                   <ShimmerEffect
-                    propCls="shm_col-xs-6 col-md-4"
+                    propCls={`${
+                      Utilities.mobileAndTabletcheck() ? 'shm_col-xs-6' : ''
+                    } col-md-4`}
                     height={150}
-                    count={3}
+                    count={Utilities.mobileAndTabletcheck() ? 2 : 3}
                     type="LIST"
                   />
                 )}
@@ -649,7 +663,12 @@ export default class Events extends Component {
                 )}
               </div>
               <div className="fixed-buttons-events">
-                <a className="sortby" onClick={this.toggleSortBy}>
+                <a
+                  className="sortby"
+                  onClick={() => {
+                    this.toggleSortBy();
+                  }}
+                >
                   sort by
                   <img src={sortbyIcon} alt="icon" />
                 </a>

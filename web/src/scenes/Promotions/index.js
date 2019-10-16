@@ -265,6 +265,7 @@ export default class Promotions extends Component {
   };
 
   toggleSortBy = () => {
+    document.body.classList.toggle('fixed-body');
     this.setState({
       sortByFlag: !this.state.sortByFlag,
       localsortBy: this.state.sortBy
@@ -283,6 +284,7 @@ export default class Promotions extends Component {
       sortBy: this.state.localsortBy,
       promotionTab: 0
     });
+    document.body.classList.toggle('fixed-body');
   };
 
   clearSortFilters = () => {
@@ -347,7 +349,9 @@ export default class Promotions extends Component {
                                 </a>
 
                                 <a
-                                  onClick={this.handleSortApply}
+                                  onClick={() => {
+                                    this.handleSortApply();
+                                  }}
                                   className="apply"
                                 >
                                   Apply
@@ -358,7 +362,12 @@ export default class Promotions extends Component {
                         </div>
                       </div>
                       <div className="fixed-buttons-events">
-                        <a className="sortby" onClick={this.toggleSortBy}>
+                        <a
+                          className="sortby"
+                          onClick={() => {
+                            this.toggleSortBy();
+                          }}
+                        >
                           sort by
                           <img src={sortbyIcon} alt="icon" />
                         </a>

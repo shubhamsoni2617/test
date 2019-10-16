@@ -237,6 +237,7 @@ export default class Attractions extends Component {
       filterFlag: !this.state.filterFlag,
       localfilteredCategory: [...this.state.filteredCategory]
     });
+    document.body.classList.toggle('fixed-body');
   };
 
   toggleSortBy = () => {
@@ -245,6 +246,7 @@ export default class Attractions extends Component {
       localfilteredSortOrder: this.state.filteredSortOrder,
       localfilteredSortType: this.state.filteredSortType
     });
+    document.body.classList.toggle('fixed-body');
   };
 
   callAPI = () => {
@@ -266,6 +268,7 @@ export default class Attractions extends Component {
         }, 200);
       }
     );
+    document.body.classList.toggle('fixed-body');
   };
 
   clearSortFilters = () => {
@@ -367,7 +370,12 @@ export default class Attractions extends Component {
                       Close
                     </a>
 
-                    <a onClick={() => this.callAPI()} className="apply">
+                    <a
+                      onClick={() => {
+                        this.callAPI();
+                      }}
+                      className="apply"
+                    >
                       Apply
                     </a>
                   </div>
@@ -432,7 +440,12 @@ export default class Attractions extends Component {
               )}
             </div>
             <div className="fixed-buttons-events">
-              <a className="sortby" onClick={this.toggleSortBy}>
+              <a
+                className="sortby"
+                onClick={() => {
+                  this.toggleSortBy();
+                }}
+              >
                 sort by
                 <img src={sortbyIcon} alt="icon" />
               </a>
