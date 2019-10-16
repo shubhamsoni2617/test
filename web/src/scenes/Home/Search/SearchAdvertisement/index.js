@@ -16,7 +16,7 @@ const MostViewed = () => {
     AdvertisementService.getGiftCardService(params)
       .then(res => {
         console.log(res.data.data);
-        setAdv(res.data.data[0]);
+        setAdv(res.data.data);
       })
       .catch(err => {
         console.log(err);
@@ -24,11 +24,18 @@ const MostViewed = () => {
   };
   return (
     <div className="">
-      {adv && (
-        <a href={adv.navigation_link}>
-          <Image src={adv.full_image} className="img-fluid" />
-        </a>
-      )}
+      <ul>
+        {adv &&
+          adv.map((elem, index) => {
+            return (
+              <li key={elem.primary_genere + index}>
+                <div className="most-viewed-img">
+                  <Image src={elem.full_image} className="img-fluid" />
+                </div>
+              </li>
+            );
+          })}
+      </ul>
     </div>
   );
 };

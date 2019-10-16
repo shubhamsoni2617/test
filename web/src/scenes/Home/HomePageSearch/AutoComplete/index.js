@@ -164,7 +164,7 @@ const Autocomplete = props => {
               See all results form <strong>{userInput}</strong>
             </div>
           </ul>
-        </div>
+        </div >
       );
     } else {
       suggestionsListComponent = (
