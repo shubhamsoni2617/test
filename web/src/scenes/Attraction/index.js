@@ -370,7 +370,12 @@ export default class Attractions extends Component {
                       Close
                     </a>
 
-                    <a onClick={() => this.callAPI()} className="apply">
+                    <a
+                      onClick={() => {
+                        this.callAPI();
+                      }}
+                      className="apply"
+                    >
                       Apply
                     </a>
                   </div>
@@ -435,7 +440,12 @@ export default class Attractions extends Component {
               )}
             </div>
             <div className="fixed-buttons-events">
-              <a className="sortby" onClick={this.toggleSortBy}>
+              <a
+                className="sortby"
+                onClick={() => {
+                  this.toggleSortBy();
+                }}
+              >
                 sort by
                 <img src={sortbyIcon} alt="icon" />
               </a>

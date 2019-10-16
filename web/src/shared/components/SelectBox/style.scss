@@ -103,6 +103,19 @@ body {
   background: #fff;
 }
 
+.options-top{
+  position: absolute;
+  top: -187px;
+  left: 0;
+  right: 0;
+  border: solid #ddd;
+  border-width: 0 1px;
+  background: #fff;
+  height: 195px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
 .option {
   padding: 10px 15px;
   border-bottom: 1px solid $grey-border;
