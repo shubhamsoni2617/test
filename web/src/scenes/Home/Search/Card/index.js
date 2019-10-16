@@ -8,7 +8,7 @@ const Card = props => {
   return (
     <div
       className={`event-block ${
-        cardData.type !== 'event' || cardData.type !== 'attractions'
+        cardData.type === 'event' || cardData.type === 'Attractions'
           ? `full-desc`
           : ``
       }`}
@@ -43,7 +43,7 @@ const Card = props => {
               )
             }
           >
-            {cardData.type === 'event' || cardData.type === 'attractions' ? (
+            {cardData.type === 'event' || cardData.type === 'Attractions' ? (
               <button type="button">Buy Tickets</button>
             ) : (
               <button type="button">Read More</button>
