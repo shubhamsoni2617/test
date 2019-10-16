@@ -55,7 +55,7 @@
                 > div{
                     flex: 0 0 100%;
                     width: 100%;
-                    margin-bottom: 0;
+                    margin-bottom: 0;                    
                     &:last-child{
                         .event-block{
                             border-bottom: 1px solid transparent;
@@ -288,18 +288,34 @@
         }
     }
 }
+//searchbar page
 .searchbar-page-wrapper{
+    margin-top: 17px;
+    & > .container{
+        @media(max-width: 768px){
+            padding-right: 0px;
+            padding-left: 0px;
+        }
+    }
     h2{
         color: #343434;
         font-family: 'Rubik', sans-serif;
         font-size: 24px;
         line-height: 28px;
         font-weight: 400;
-        padding: 35px 0px 0px;
+        padding: 42px 0px 0px;
+        @media(max-width: 767px){
+            padding: 20px 0px 0px;
+            font-size: 20px;
+            line-height: 22px;
+        }
     }
     .promotions-full-wrapper{
         .promotions-wrapper{
-            padding: 30px 0px 0px;
+            padding: 27px 0px 0px;
+            @media(max-width: 767px){
+                padding: 18px 0px 0px;
+            }
             .promotions-nav{
                 padding-bottom: 0px;
                 li{
@@ -314,39 +330,43 @@
             }
         }
     }
-    .events-listing{
-        width: 100%;
-        margin-left: 0px;
-        .event-details{
-            h6{
-                position: relative;
-                margin-bottom: 0px;
-                &:after{
-                    position: absolute;
-                    content: "";
-                    background-color: #0077C8;
-                    height: 2px;
-                    width: 27px;
-                    left: 0px;
-                    bottom: -3px;
-                }
-            }
-        }
-    }
     .wrapper-events-listing{
         padding-top: 47px;
+        @media(max-width: 768px){
+            padding-top: 20px;
+        }
+        @media(max-width: 767px){
+            padding-top: 10px;
+        }
         .item-title{
             h5{
                 color: #343434;
                 font-size: 17px;
                 line-height: 20px;
                 font-weight: 500;
-                margin-bottom: 8px;
+                margin-bottom: 0px;
+                @media(max-width: 767px){
+                    white-space: nowrap;
+                    text-overflow: ellipsis;
+                    overflow: hidden;
+                    display: block;
+                }
             }
             p{
                 margin-bottom: 5px;
                 &.event-place{
                     margin-bottom: 12px;
+                    @media(max-width: 767px){
+                        font-size: 13px;
+                        line-height: 20px;
+                    }
+                }
+                &.event-date{
+                    margin-top: 8px;
+                    @media(max-width: 767px){
+                        font-size: 13px;
+                        line-height: 20px;
+                    }
                 }
             }
             span{
@@ -367,6 +387,7 @@
                     padding: 0px 6px 1px;
                     font-weight: 600;
                     font-family: 'Montserrat', sans-serif;
+                    word-break: break-word;
                 }
                 &:empty{
                     display: none;
@@ -374,26 +395,155 @@
             }
         }
         .events-listing{
+            width: 100%;
+            margin-left: 0px;
             .events-section{
                 margin-top: 0px;
-                .event-block{
-                    &:hover{
-                        cursor: default;
-                        border: 1px solid transparent;
-                        border-bottom: 1px solid rgba(151, 151, 151, 0.2);
+                @media(max-width: 767px){
+                    display: flex;
+                    flex-wrap: wrap;
+                    width: 100% !important;
+                }
+                & > div{
+                    @media(max-width: 767px){
+                        flex: 0 0 50%;
+                        width: 50%;
+                        margin: 0;
+                        padding: 0px;
                     }
-                    button{
-                        padding: 6px 22px;
-                        line-height: normal;
-                        font-weight: 600;
+                    .event-block{
+                        @media(max-width: 767px){
+                            display: flex;
+                            flex-wrap: wrap;
+                            width: 100%;
+                            padding: 10px 5px 0px;
+                            align-items: flex-end;
+                        }
+                        &:hover{
+                            cursor: default;
+                            border: 1px solid transparent;
+                            border-bottom: 1px solid rgba(151, 151, 151, 0.2);
+                        }
+                        button{
+                            padding: 6px 22px;
+                            line-height: normal;
+                            font-weight: 600;
+                        }
+                        .event-img{
+                            @media(max-width: 767px){
+                                width: 100%;
+                                flex: 0 0 100%;
+                                padding: 0px;
+                                align-self: flex-start;
+                            }
+                            .image-conatiner{
+                                @media(max-width: 767px){
+                                    text-align: center;
+                                    height: auto;
+                                    width: auto;
+                                }
+                                img{
+                                    @media(max-width: 767px){
+                                        width: auto;
+                                        max-width: 100%;
+                                        height: auto;
+                                    }
+                                }
+                            }
+                        }
+                        .event-details{
+                            padding: 15px 0px 8px 30px !important;
+                            @media(max-width: 767px){
+                                width: 100%;
+                                flex: 0 0 100%;
+                                padding-left: 0px !important;
+                            }
+                            h6{
+                                position: relative;
+                                margin-bottom: 0px;
+                                &:after{
+                                    position: absolute;
+                                    content: "";
+                                    background-color: #0077C8;
+                                    height: 2px;
+                                    width: 27px;
+                                    left: 0px;
+                                    bottom: -3px;
+                                }
+                            }
+                            .price-event{
+                                @media(max-width: 767px){
+                                    width: 100%;
+                                }
+                                div{
+                                    @media(max-width: 767px){
+                                        width: 100%;
+                                        display: block;
+                                    }
+                                    button{
+                                        @media(max-width: 767px){
+                                            display: block;
+                                            width: 100%;
+                                            padding: 4px 22px;
+                                        }
+                                    }
+                                }
+                                .price{
+                                    @media(max-width: 767px){
+                                        text-align: left;
+                                        height: auto;
+                                    }
+                                }
+                            }
+                        }
+                        &.full-desc{
+                            h5{
+                                @media(max-width: 767px){
+                                    max-height: 112px;
+                                    min-height: 112px;
+                                    white-space: normal;
+                                    text-overflow: unset;
+                                    overflow: visible;
+                                    display: block;
+                                }
+                            }
+                        }
+                    }
+                    &:nth-last-child(2){
+                        .event-block{
+                            @media(max-width: 767px){
+                                border-bottom: 1px solid transparent;
+                            }
+                        }
                     }
                 }
                 div:last-child{
                     .event-block:hover{
-                        border: 1px solid transparent;
-                        border-bottom: 1px solid rgba(151, 151, 151, 0.2);
+                        border-bottom: none;
+                        @media(max-width: 767px){
+                            border: 1px solid transparent;
+                            border-bottom: 1px solid rgba(151, 151, 151, 0.2);
+                        }
                     }
                 }
+            }
+        }
+
+    }
+    .advertisment-listing{
+        display: block;
+        margin: 0 auto;
+        text-align: center;
+        li{
+            list-style: none;
+            display: inline-block;
+            padding-right: 10px;
+            width: auto;
+            @media(max-width: 1180px){
+                width: 50%;
+            }
+            &:last-child{
+                padding-right: 0px;
             }
         }
     }
