@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Breadcrub from '../../App/Breadcrumb';
-import JobDesBanner from '../../../../src/assets/images/job-des.png';
+import JobDesBanner from '../../../../src/assets/images/description-banner.png';
 import PersonalInfo from './PersonalInfo';
 import Description from './Description';
 import CareerService from '../../../shared/services/CareerService';
