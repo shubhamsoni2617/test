@@ -4,7 +4,6 @@ import './style.scss';
 import InstagramFeed from '../../shared/components/InstagramFeed/InstagramFeed';
 import CarouselConatiner from './CarouselConatiner';
 import PromotionCarousel from './PromotionCarousel';
-import TopPics from './TopPics';
 import HotShowPopup from '../../shared/components/HotShowPopup';
 import FeaturedEvents from './FeaturedEvents';
 import TrendingNow from './TrendingNow';
@@ -20,8 +19,8 @@ import HomeService from '../../shared/services/HomeService';
 import Utilities from '../../shared/utilities';
 import Constants from '../../shared/constants';
 import AdvertisementService from '../../shared/services/AdvertisementService';
-import CustomFeatureEvents from './CustomFeatureEvents';
-import Royals from './Royals';
+import CustomSection from './CustomSection';
+// import Royals from './Royals';
 
 class Home extends Component {
   constructor(props) {
@@ -81,7 +80,16 @@ class Home extends Component {
           />
           {/* <img className={`main-image ${this.state.imageUrl ? 'show-image' : ''}`} src={primeSlider} alt="prime Slider" /> */}
         </div>
-        <TopPics /> 
+        <CarouselConatiner
+          title="Top Picks For You"
+          classStr="whats-new"
+          arrows={true}
+          autoplay={false}
+          infinite={false}
+          dots={true}
+          api={HomeService.getTopPics}
+        />
+         
         {giftCard &&
           giftCard.map(elem => {
             return (
@@ -125,8 +133,7 @@ class Home extends Component {
           api={HomeService.getNewRelease}
         />
         <Explore />
-        <CustomFeatureEvents />
-        <Royals />
+        <CustomSection />
         <InstagramFeed />
         <Cookies />
         <ModalPopup
