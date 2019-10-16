@@ -1843,7 +1843,12 @@
 				}
 				p {
 					padding-bottom: 5px;
-					margin: 0px;
+          margin: 0px;
+          @media(max-width: 767px){
+            white-space: normal;
+            font-size: 12px;
+            line-height: 16px;
+          }
 					&:last-child {
 						padding-bottom: 14px;
 						@media(max-width: 767px){
