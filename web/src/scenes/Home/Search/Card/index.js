@@ -6,7 +6,13 @@ import navigateToLink from '../../../../shared/navigateToLink';
 const Card = props => {
   const { cardData } = props;
   return (
-    <div className="event-block">
+    <div
+      className={`event-block ${
+        cardData.type !== 'event' || cardData.type !== 'attractions'
+          ? `full-desc`
+          : ``
+      }`}
+    >
       <div className="event-img">
         <Image src={cardData.image} />
       </div>
@@ -16,7 +22,7 @@ const Card = props => {
           <div className="item-title">
             <h5>{cardData.title}</h5>
             {cardData.date && <p className="event-date">{cardData.date}</p>}
-            {cardData.date && <p className="event-place">{cardData.venue}</p>}
+            {cardData.venue && <p className="event-place">{cardData.venue}</p>}
             <span className={`${cardData.type === 'event' ? `event` : ``}`}>
               {cardData.category}
             </span>
