@@ -103,7 +103,10 @@ class Home extends Component {
               </a>
             );
           })}
-        <FeaturedEvents />
+        <FeaturedEvents
+          api={AdvertisementService.getFeaturedEvents}
+          heading="Featured Events"
+        />
         <CarouselConatiner
           title="Currently Showing"
           classStr="currently-showing"

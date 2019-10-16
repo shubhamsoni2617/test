@@ -58,6 +58,7 @@ const SamplePrevArrow = props => {
 };
 
 const FeaturedEvents = props => {
+  const { api, heading } = props;
   const element = useRef(null);
   const [featuredEvents, setFeaturedEvents] = useState([]);
   const [serverErr, setServerErr] = useState('');
@@ -73,8 +74,7 @@ const FeaturedEvents = props => {
 
   useEffect(() => {
     if (callAPI) {
-      const { customFeatureEvents } = props;
-      customFeatureEvents ? getCustomFeaturedEvents() : getFeaturedEvents();
+      getFeaturedEvents();
     }
   }, [callAPI]);
 
@@ -88,27 +88,7 @@ const FeaturedEvents = props => {
     const params = {
       client: Constants.CLIENT
     };
-    AdvertisementService.getFeaturedEvents(params)
-      .then(res => {
-        if (res && res.data) {
-          setTimeout(() => {
-            setFeaturedEvents(res.data.data);
-            setLoading(false);
-          }, 2000);
-        }
-      })
-      .catch(err => {
-        if (err && err.response) {
-          setServerErr('Something went wrong...');
-        }
-      });
-  };
-
-  const getCustomFeaturedEvents = () => {
-    const params = {
-      client: Constants.CLIENT
-    };
-    AdvertisementService.getCustomFeaturedEvents(params)
+    api(params)
       .then(res => {
         if (res && res.data) {
           setTimeout(() => {
@@ -154,7 +134,7 @@ const FeaturedEvents = props => {
     <section className="featured-events" ref={element}>
       <div className="container-fluid">
         <div className="section-top-wrapper">
-          <h2>Featured Events</h2>
+          <h2>{heading}</h2>
           <div className="carousel-dots">
             <a href="/events">
               See all{' '}
