@@ -29,10 +29,10 @@ const Opening = ({ jobListing, jobListingErr }) => {
                   <p>
                     {' '}
                     <span className="place">{elem.location} </span>
-                    {elem.job_type.map((jobType, i) => {
+                    {elem.job_type.map((jobType, i, a) => {
                       return (
                         <Fragment key={i}>
-                          <span> {jobType}</span>{' '}
+                          <span>{jobType}</span>{' '}
                         </Fragment>
                       );
                     })}

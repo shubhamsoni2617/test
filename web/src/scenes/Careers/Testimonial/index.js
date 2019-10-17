@@ -4,6 +4,7 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import './style.scss';
 import Utilities from '../../../shared/utilities';
+import Tooltip from '../../../shared/components/Tooltip';
 
 const Testimonials = ({ testimonial, testimonialErr }) => {
   const settings = {
@@ -44,7 +45,9 @@ const Testimonials = ({ testimonial, testimonialErr }) => {
                   return (
                     <li key={index}>
                       <div className="message">
-                        {Utilities.showLimitedChars(elem.message, 200)}
+                        <Tooltip height={19} title={elem.message}>
+                          {Utilities.showLimitedChars(elem.message, 200)}
+                        </Tooltip>
                       </div>
                       <div className="name text-center">
                         <h5>{elem.name}</h5>
