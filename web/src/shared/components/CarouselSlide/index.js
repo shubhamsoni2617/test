@@ -9,7 +9,7 @@ const CarouselSlide = ({ elem }) => {
     genre = elem.primary_genre.toLowerCase();
   }
   return (
-    <div className="item" key={elem.id}>
+    <div className="item" key={elem.id}> 
       <div className="item-wrapper">
         <div className="currently-showing-img">
           <div className="item-img">

@@ -1,0 +1,37 @@
+.career-title{
+    font-size: 36px;
+    line-height: 44px;
+    font-weight: 600;
+    font-family: 'Montserrat', sans-serif;
+    text-transform: capitalize;
+}
+.career-subtext{
+    p{
+        font-size: 16px;
+        color: #626262;
+        font-family: 'Rubik', sans-serif;
+        font-weight: normal;
+        line-height: 26px;
+    }
+}
+.blue-line{
+    &:before{
+        content: '';
+        position: absolute;
+        width: 80px;
+        height: 1px;
+        display: block;
+        background-color: #0077C8;
+        top: 70px;
+        left: -65px;
+        z-index: -1;
+    }
+    img{
+        width: 100%;
+    }
+    @media(max-width: 768px){
+        &:before{
+            content: unset;
+        }
+    }
+}

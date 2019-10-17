@@ -80,8 +80,12 @@ const Header = ({ menuActive, pathName }) => {
                 <li>
                   <a>Advertise</a>
                 </li>
-                <li>
-                  <a>Careers</a>
+                <li
+                  className={
+                    menuActive && pathName === 'careers' ? 'active-link' : ''
+                  }
+                >
+                  <Link to="/careers">Careers</Link>
                 </li>
                 <li
                   className={

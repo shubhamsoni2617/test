@@ -23,7 +23,7 @@ const MostViewed = () => {
   return (
     <div className="most-viewed">
       <h3>Most Viewed</h3>
-      <ul>
+      <ul className="advertisment-listing">
         {mostViewed &&
           mostViewed.map((elem, index) => {
             return (
