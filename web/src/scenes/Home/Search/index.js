@@ -87,25 +87,26 @@ const Search = props => {
         );
       })
     ) : (
-      <ShimmerEffect
-        height={10}
-        count={4}
-        type="LIST"
-        propCls="shm_col-xs-1 col-md-12"
-      />
-    );
+        <ShimmerEffect
+          height={10}
+          count={4}
+          type="LIST"
+          propCls="shm_col-xs-1 col-md-12"
+        />
+      );
   };
   return (
     <div className="searchbar-page-wrapper container-fluid">
-      <SearchAdvertisement />
       {!error ? (
         <div className="container">
-          {allResultCount ? (
-            <h2>
-              {allResultCount} results found for "
+          <SearchAdvertisement />
+          {
+            allResultCount ? (
+              <h2>
+                {allResultCount} results found for "
               <strong>{props.location.search.split('=')[1]}</strong>"
             </h2>
-          ) : null}
+            ) : null}
           <SearchCategory
             searchCategories={searchCategories}
             defaultCategoryId={defaultCategoryId}
@@ -143,11 +144,12 @@ const Search = props => {
           </div>
         </div>
       ) : (
-        <h2>NO data Found</h2>
-      )}
+          <h2>NO data Found</h2>
+        )
+      }
 
       {/* {error && <h2>NO data Found</h2>} */}
-    </div>
+    </div >
   );
 };
 
