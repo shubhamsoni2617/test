@@ -502,12 +502,12 @@
                         &.full-desc{
                             h5{
                                 @media(max-width: 767px){
+                                    -webkit-line-clamp: 4;                                                                         
                                     white-space: normal;
                                     text-overflow: unset;
                                     overflow: hidden;
-                                    -webkit-line-clamp: 3;
-                                    -webkit-box-orient: vertical;
-                                    display: -webkit-box;
+                                    display: -webkit-box;                                    
+                                    /* autoprefixer: off */ -webkit-box-orient: vertical; /* autoprefixer: on */
                                 }
                             }
                         }
