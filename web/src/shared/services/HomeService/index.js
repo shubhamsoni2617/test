@@ -44,6 +44,10 @@ class HomeService {
   getTopPics(params) {
     return API.get(`homepage/top-picks`, { params });
   }
+
+  getTrandingNow(params) {
+    return API.get(`homepage/trending-now`, { params });
+  }
 }
 
 export default new HomeService();
