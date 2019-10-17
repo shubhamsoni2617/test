@@ -350,6 +350,8 @@
                     text-overflow: ellipsis;
                     overflow: hidden;
                     display: block;
+                    font-size: 15px;
+                    line-height: 19px;
                 }
             }
             p{
@@ -492,6 +494,7 @@
                                     @media(max-width: 767px){
                                         text-align: left;
                                         height: auto;
+                                        min-height: 38px;
                                     }
                                 }
                             }
@@ -499,12 +502,12 @@
                         &.full-desc{
                             h5{
                                 @media(max-width: 767px){
-                                    max-height: 112px;
-                                    min-height: 112px;
+                                    -webkit-line-clamp: 4;                                                                         
                                     white-space: normal;
                                     text-overflow: unset;
-                                    overflow: visible;
-                                    display: block;
+                                    overflow: hidden;
+                                    display: -webkit-box;                                    
+                                    /* autoprefixer: off */ -webkit-box-orient: vertical; /* autoprefixer: on */
                                 }
                             }
                         }
