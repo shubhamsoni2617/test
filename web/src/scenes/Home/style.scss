@@ -173,6 +173,11 @@
 						line-height: 42px;
 						height: 42px;
 						border-radius: 30px;
+						padding-right: 40px;
+						max-width: 100%;
+						text-overflow: ellipsis;
+						overflow: hidden;
+						white-space: nowrap;
 					}
 					&::placeholder {
 						color: rgba(255, 255, 255, 0.6);

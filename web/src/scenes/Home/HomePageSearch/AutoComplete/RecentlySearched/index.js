@@ -51,6 +51,7 @@ const HomePageSearch = props => {
                       onClick={e => {
                         e.preventDefault();
                         redirectHandler(text);
+                        Utilities.mobilecheck() && document.getElementsByTagName("body")[0].classList.remove("fixed-body");
                       }}
                     >
                       <img src={recentSearchIconImage} alt="" /> {text}

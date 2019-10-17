@@ -145,6 +145,7 @@ const Autocomplete = props => {
                       suggestion.category,
                       suggestion.id
                     );
+                    Utilities.mobilecheck() && document.getElementsByTagName("body")[0].classList.remove("fixed-body");
                     setIsFocused(false)
 
                   }}
@@ -163,6 +164,7 @@ const Autocomplete = props => {
               onClick={() => {
                 onClick(userInput);
                 props.history.push(`/search-results?q=${userInput}`);
+                Utilities.mobilecheck() && document.getElementsByTagName("body")[0].classList.remove("fixed-body");
                 // return Utilities.mobilecheck() ? setIsFocused(false) : null
                 setIsFocused(false)
               }}
@@ -188,6 +190,7 @@ const Autocomplete = props => {
         {Utilities.mobilecheck() && <button className="search-popup-back" onClick={() => {
           setShowSuggestions(false);
           setIsFocused(false);
+          Utilities.mobilecheck() && document.getElementsByTagName("body")[0].classList.remove("fixed-body");
           props.history.goBack();
         }}>
           <img src={previousArrow} alt="previous-btn" />
@@ -197,10 +200,14 @@ const Autocomplete = props => {
           onChange={onChange}
           onKeyDown={onKeyDown}
           value={userInput}
+          onClick={() => {
+            Utilities.mobilecheck() && document.getElementsByTagName("body")[0].classList.add("fixed-body");
+          }}
           className="search-inputtype"
           onFocus={() => {
             setIsFocused(true);
-            props.buttonActiveHandler(true)
+            props.buttonActiveHandler(true);
+            Utilities.mobilecheck() && document.getElementsByTagName("body")[0].classList.add("fixed-body");
           }}
         />
         <button type="submit" className="search-btn">
