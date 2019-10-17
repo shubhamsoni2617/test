@@ -8,7 +8,7 @@ const Testimonials = ({ testimonial, testimonialErr }) => {
     focusOnSelect: false,
     className: 'center',
     centerMode: true,
-    infinite: false,
+    infinite: true,
     centerPadding: '300px',
     slidesToShow: 1,
     initialSlide: 1,
