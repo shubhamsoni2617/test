@@ -350,6 +350,8 @@
                     text-overflow: ellipsis;
                     overflow: hidden;
                     display: block;
+                    font-size: 15px;
+                    line-height: 19px;
                 }
             }
             p{
@@ -492,6 +494,7 @@
                                     @media(max-width: 767px){
                                         text-align: left;
                                         height: auto;
+                                        min-height: 38px;
                                     }
                                 }
                             }

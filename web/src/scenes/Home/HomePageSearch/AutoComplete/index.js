@@ -145,6 +145,8 @@ const Autocomplete = props => {
                       suggestion.category,
                       suggestion.id
                     );
+                    setIsFocused(false)
+
                   }}
                 >
                   <h4 className="suggestion-title">{suggestion.title}</h4>
@@ -161,6 +163,8 @@ const Autocomplete = props => {
               onClick={() => {
                 onClick(userInput);
                 props.history.push(`/search-results?q=${userInput}`);
+                // return Utilities.mobilecheck() ? setIsFocused(false) : null
+                setIsFocused(false)
               }}
               className="search-link-all-results"
             >
