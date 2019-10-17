@@ -1,0 +1,108 @@
+.open-position{
+  margin: 0px 0px 114px;
+  background-color: #F0F9FF;
+  padding: 40px 0px 30px 0px;
+  .career-title{
+    padding-bottom: 60px;
+    @media(max-width: 767px){
+      font-size: 25px;
+      padding-bottom: 35px;
+    }
+  }
+  .position-inner{
+    font-family: 'Rubik', sans-serif;
+    margin-bottom: 64px;
+    h4{
+      font-size: 24px;
+      line-height: 28px;
+      margin-bottom: 10px;
+    }
+    p{
+      font-family: 'Rubik', sans-serif;
+      font-size: 14px;
+      line-height: 17px;
+      color: #626262;
+      margin-bottom: 0px;
+      padding-bottom: 15px;
+      .place{
+        position: relative;
+        margin-right: 7px;
+        & + span{
+          margin-left: 7px;
+        }
+        &:after{
+          content: '';
+          position: absolute;
+          top: 50%;
+          transform: translateY(-50%);
+          right: -6px;
+          width: 1px;
+          height: 100%;
+          background-color:rgba(126, 126, 126, 0.2);
+          display: inline-block;
+        }
+      }
+    }
+    a{
+      color: #343434;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      transition: all 0.1s ease-out;
+      img{
+        margin-left: 10px;
+      }
+      .arrow-blue{
+        display: none;
+      }
+      &:hover{
+        color: #0098FF;
+        .arrow-black{
+          display: none;
+        }
+        .arrow-blue{
+          display: block;
+        }
+      }
+    }
+    @media(max-width: 767px){
+      text-align: left;
+      margin-bottom: 30px;
+      a{
+        display: flex;
+        justify-content: left;
+        font-size: 12px;
+      }
+      h4{
+        font-size: 14px;
+      }
+      p{
+        margin-bottom: 5px;
+        span{
+          font-size: 12px;
+        }
+      }
+    }
+  }
+  .view-jobs{
+    font-size: 18px;
+    line-height: 22px;
+    color: #0098FF;
+    font-family: 'Montserrat', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 600;
+    img{
+      margin-left: 10px;
+    }
+    @media(max-width: 767px){
+      font-size: 14px;
+    }
+  }
+  @media(max-width: 767px){
+    margin: 0 0 10px 0;
+    padding: 25px 0px 35px 0px;
+  }
+}

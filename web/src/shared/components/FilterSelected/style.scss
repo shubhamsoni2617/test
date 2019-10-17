@@ -1,0 +1,11 @@
+.filtered-tags{
+    width: 100%;
+    overflow: scroll;
+  ul{
+    white-space:nowrap;
+    width: 100%;
+    li{
+      display:inline;
+    }
+  }
+}

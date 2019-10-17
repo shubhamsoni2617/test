@@ -34,7 +34,7 @@ const Footer = () => {
                   <Link to="/apipartners">Partner with Us</Link>
                 </li>
                 <li>
-                  <a>Careers</a>
+                  <Link to="/careers">Careers</Link>
                 </li>
               </ul>
             </div>

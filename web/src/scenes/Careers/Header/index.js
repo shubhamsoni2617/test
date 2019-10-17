@@ -1,7 +1,9 @@
 import React from 'react';
 import "./style.scss";
 
-const Header = () => {
+const Header = ({
+
+}) => {
   return (
     <div>
 
