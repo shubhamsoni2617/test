@@ -29,13 +29,7 @@ const Opening = ({ jobListing, jobListingErr }) => {
                   <p>
                     {' '}
                     <span className="place">{elem.location} </span>
-                    {elem.job_type.map((jobType, i) => {
-                      return (
-                        <Fragment key={i}>
-                          <span> {jobType}</span>{' '}
-                        </Fragment>
-                      );
-                    })}
+                    {elem.job_type.toString().replace(',', ', ')}
                   </p>
                   <Link to={`/careers/jobdescription/${elem.job_id}`}>
                     Apply Now

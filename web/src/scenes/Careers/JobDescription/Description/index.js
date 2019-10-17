@@ -6,11 +6,11 @@ import { Link } from 'react-scroll';
 const Description = ({ jobDetail, jobDetailErr }) => {
   return (
     <div className="job-des-wrapper">
-      <h2>{jobDetail && jobDetail.title}
-      <Link
-            to="applynow"
-            spy={true}
-            smooth={true}>Apply Now</Link>
+      <h2>
+        {jobDetail && jobDetail.title}
+        <Link to="applynow" spy={true} smooth={true}>
+          Apply Now
+        </Link>
       </h2>
       <div className="experince-wrapper">
         <span className="experince">
