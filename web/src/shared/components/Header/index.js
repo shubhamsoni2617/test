@@ -141,9 +141,9 @@ const Header = ({ menuActive, pathName }) => {
                       submenuClass=""
                       link=""
                       closeSubmenu={handleNavigationClose}
-                      resetFilters={() => { }}
-                      clearFilters={() => { }}
-                      applyFilters={() => { }}
+                      resetFilters={() => {}}
+                      clearFilters={() => {}}
+                      applyFilters={() => {}}
                     />
                   </li>
                   <li className="has-submenu">
@@ -154,9 +154,9 @@ const Header = ({ menuActive, pathName }) => {
                       submenuClass=""
                       link=""
                       closeSubmenu={handleNavigationClose}
-                      resetFilters={() => { }}
-                      clearFilters={() => { }}
-                      applyFilters={() => { }}
+                      resetFilters={() => {}}
+                      clearFilters={() => {}}
+                      applyFilters={() => {}}
                     />
                   </li>
                   <li className="has-submenu">
@@ -167,9 +167,9 @@ const Header = ({ menuActive, pathName }) => {
                       submenuClass=""
                       link=""
                       closeSubmenu={handleNavigationClose}
-                      resetFilters={() => { }}
-                      clearFilters={() => { }}
-                      applyFilters={() => { }}
+                      resetFilters={() => {}}
+                      clearFilters={() => {}}
+                      applyFilters={() => {}}
                     />
                   </li>
                 </ul>
@@ -186,7 +186,9 @@ const Header = ({ menuActive, pathName }) => {
                 <a>Advertise</a>
               </li>
               <li>
-                <a>Careers</a>
+                <Link to="/careers" onClick={() => handleNavigationClose()}>
+                  Careers
+                </Link>
               </li>
               <li>
                 <Link to="/contact-us" onClick={() => handleNavigationClose()}>
