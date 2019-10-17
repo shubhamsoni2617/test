@@ -502,12 +502,12 @@
                         &.full-desc{
                             h5{
                                 @media(max-width: 767px){
-                                    max-height: 112px;
-                                    min-height: 112px;
                                     white-space: normal;
                                     text-overflow: unset;
-                                    overflow: visible;
-                                    display: block;
+                                    overflow: hidden;
+                                    -webkit-line-clamp: 3;
+                                    -webkit-box-orient: vertical;
+                                    display: -webkit-box;
                                 }
                             }
                         }

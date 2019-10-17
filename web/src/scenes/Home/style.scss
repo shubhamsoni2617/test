@@ -4382,7 +4382,10 @@ section{
 	box-shadow: 0 2px 34px 0 rgba(0,0,0,0.5);
 	min-height: 230px;
     overflow-y: auto;
-    max-height: 550px;
+	max-height: 550px;
+	@media(max-width: 991px){
+		max-height: 100%;
+	}
 	@media(max-width: 767px){
 		position: fixed;
 		width: 100%;
@@ -4462,6 +4465,9 @@ section{
 					display: block;
 					max-width: 550px;
 					width: 100%;
+					@media(max-width: 767px){
+						max-width: calc(100% - 40px);
+					}
 					img {
 						margin-right: 5px;
 					}
@@ -4477,8 +4483,29 @@ section{
 					-o-transition: 0.3s opacity;
 					top: 50%;
 					transform: translateY(-50%);
+					@media(max-width: 767px){
+						opacity: 1;
+					}
 					img {
 						max-width: 12px;
+						@media(max-width: 767px){
+							opacity: 0;
+						}
+						&.search-close-mobile-btn{
+							position: absolute;
+							left: 0px;
+							top: 50%;
+							transform: translateY(-50%);
+							width: auto;
+							height: auto;
+							margin-top: 1px;
+							margin-left: 1px;
+							opacity: 0;
+							transition: 0.5s opacity;
+							@media(max-width: 767px){
+								opacity: 1;
+							}
+						}
 					}
 				}
 				&.active,
