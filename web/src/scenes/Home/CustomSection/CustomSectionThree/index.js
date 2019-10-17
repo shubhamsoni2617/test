@@ -10,7 +10,7 @@ const CustomSectionThree = ({ customSectionThree }) => {
     if (customSectionThree && customSectionThree[0]) {
       setUrl(customSectionThree[0].video_url);
     }
-  }, []);
+  }, [customSectionThree]);
 
   console.log(url);
   return (
