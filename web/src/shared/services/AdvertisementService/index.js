@@ -28,6 +28,10 @@ class AdvertisementService {
   getCustomizeSectionTwo(params) {
     return API.get(`adv/customize-section-two`, { params });
   }
+
+  getCustomizeSectionThree(params) {
+    return API.get(`adv/customize-section-three`, { params });
+  }
 }
 
 export default new AdvertisementService();

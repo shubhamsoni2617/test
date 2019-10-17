@@ -1,131 +1,145 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, Fragment } from 'react';
 import './style.scss';
 import Utilities from '../../../shared/utilities';
 import HomeService from '../../../shared/services/HomeService';
 import Constants from '../../../shared/constants';
+import Image from '../../../shared/components/Image';
+import { CSSTransitionGroup } from 'react-transition-group';
+import ShimmerEffect from '../../../shared/components/ShimmerEffect';
 
 const TrendingNow = ({}) => {
-  useEffect(() => {}, []);
+  const [trendingNow, setTrandingNow] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  const [serverErr, setServerErr] = useState('');
+
+  useEffect(() => {
+    getTrandingNow();
+  }, []);
   const getTrandingNow = () => {
     const params = {
-      client: Constants.CLIENT
+      client: Constants.CLIENT,
+      first: 0,
+      limit: 9
     };
-    HomeService.getTrandingNow(params).then(res => {
-      if (res && res.data) {
-      }
-    });
+    HomeService.getTrandingNow(params)
+      .then(res => {
+        if (res && res.data) {
+          setTimeout(() => {
+            setLoading(false);
+            setTrandingNow(res.data.data);
+          }, 2000);
+        }
+      })
+      .catch(err => {
+        if (err && err.response) {
+          setServerErr(err.response.data);
+        }
+      });
   };
-  const trendingNow = [
-    {
-      id: '1',
-      img: 'assets/images/kurios.png',
-      category: 'dance'
-    },
-    {
-      id: '2',
-      img: 'assets/images/trending-now.jpg',
-      category: 'concert'
-    },
-    {
-      id: '3',
-      img: 'assets/images/hetty-keos.jpg',
-      category: 'concert'
-    },
-    {
-      id: '4',
-      img: 'assets/images/trending-now.jpg',
-      category: 'comedy'
-    },
-    {
-      id: '5',
-      img: 'assets/images/hetty-keos.jpg',
-      category: 'theatre'
-    },
-    {
-      id: '6',
-      img: 'assets/images/voice-legends.jpg',
-      category: 'theatre'
-    },
-    {
-      id: '7',
-      img: 'assets/images/hetty-keos.jpg',
-      category: 'comedy'
-    },
-    {
-      id: '8',
-      img: 'assets/images/aladdin.jpg',
-      category: 'concert'
-    },
-    {
-      id: '9',
-      img: 'assets/images/voice-legends.jpg',
-      category: 'dance'
-    }
-  ];
+
   return (
     <section className="trending-now">
       <div className="container-fluid">
         <h2>Trending Now</h2>
-        <div className="grid-container">
-          <div className="item">
-            <div className="item-wrapper">
-              <span className="category dance">Dance</span>
-              <div className="trending-now-image">
-                <div className="item-img">
-                  <img
-                    src={trendingNow[0].img}
-                    className="img-fluid"
-                    alt="kurios"
-                  />
-                </div>
-                <div className="video-icon">
-                  <img
-                    src="assets/images/video-icon.svg"
-                    className="img-fluid"
-                    alt="video-icon"
-                  />
-                </div>
-              </div>
-              <h3>
-                {Utilities.showLimitedChars(
-                  'Kurios Cabinet of Curiosities',
-                  30
-                )}
-              </h3>
-              <p>Thu, 2 May 2019</p>
-              <p>{Utilities.showLimitedChars('Esplanade Concert Hall', 15)}</p>
-            </div>
-          </div>
 
-          {trendingNow.slice(1, trendingNow.length).map((now, index) => {
-            return (
-              <div key={index} className="item">
+        <CSSTransitionGroup
+          transitionName="shimmer-carousel"
+          transitionEnter={true}
+          transitionEnterTimeout={1000}
+          transitionLeaveTimeout={1000}
+        >
+          {loading ? (
+            <ShimmerEffect
+              propCls={`shm_col-xs-6 col-md-2`}
+              height={300}
+              count={2}
+              type="TILE"
+            />
+          ) : (
+            <div className="grid-container">
+              <div className="item">
                 <div className="item-wrapper">
-                  <span className={`category ${now.category}`}>
-                    {now.category}
-                  </span>
+                  <span className="category dance">Dance</span>
                   <div className="trending-now-image">
                     <div className="item-img">
+                      {trendingNow && trendingNow[0] && (
+                        <Image
+                          src={trendingNow[0].vertical_image}
+                          className="img-fluid"
+                          alt="kurios"
+                          type="Vertical"
+                        />
+                      )}
+                    </div>
+                    <div className="video-icon">
                       <img
-                        src={now.img}
+                        src="assets/images/video-icon.svg"
                         className="img-fluid"
-                        alt="trending-now"
+                        alt="video-icon"
                       />
                     </div>
                   </div>
                   <h3>
                     {Utilities.showLimitedChars(
-                      'Singapore Dance Theatre- Season Pass',
+                      trendingNow && trendingNow[0] && trendingNow[0].title,
                       30
                     )}
                   </h3>
-                  <p>Thu, 2 May 2019</p>
-                  <p>{Utilities.showLimitedChars('Various Venues', 15)}</p>
+                  <p>
+                    {trendingNow && trendingNow[0] && trendingNow[0].event_date}
+                  </p>
+                  <p>
+                    {Utilities.showLimitedChars(
+                      trendingNow &&
+                        trendingNow[0] &&
+                        trendingNow[0].venue_name,
+                      15
+                    )}
+                  </p>
                 </div>
               </div>
-            );
-          })}
-        </div>
+
+              {trendingNow &&
+                trendingNow.slice(1, trendingNow.length).map((now, index) => {
+                  return (
+                    <div key={index} className="item">
+                      <div className="item-wrapper">
+                        <span
+                          className={`category ${now &&
+                            now.primary_genre.toLowerCase()}`}
+                        >
+                          {now && now.primary_genre}
+                        </span>
+                        <div className="trending-now-image">
+                          <div className="item-img">
+                            {now && now.horizontal_image && (
+                              <Image
+                                src={now && now.horizontal_image}
+                                className="img-fluid"
+                                alt="trending-now"
+                                type="Horizontal"
+                              />
+                            )}
+                          </div>
+                        </div>
+                        <h3>
+                          {Utilities.showLimitedChars(now && now.title, 30)}
+                        </h3>
+                        <p>{now && now.event_date}</p>
+                        <p>
+                          {Utilities.showLimitedChars(
+                            now && now.venue_name,
+                            15
+                          )}
+                        </p>
+                      </div>
+                    </div>
+                  );
+                })}
+            </div>
+          )}
+        </CSSTransitionGroup>
       </div>
     </section>
   );
