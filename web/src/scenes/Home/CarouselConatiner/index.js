@@ -80,7 +80,7 @@ const CarouselConatiner = props => {
           >
             {loading && (
               <ShimmerEffect
-                propCls="shm_col-xs-6 col-md-2"
+                propCls={`col-md-2`}
                 height={298}
                 count={6}
                 type="TILE"

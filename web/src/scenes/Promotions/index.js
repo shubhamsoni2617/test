@@ -349,7 +349,9 @@ export default class Promotions extends Component {
                                 </a>
 
                                 <a
-                                  onClick={this.handleSortApply}
+                                  onClick={() => {
+                                    this.handleSortApply();
+                                  }}
                                   className="apply"
                                 >
                                   Apply
@@ -360,7 +362,12 @@ export default class Promotions extends Component {
                         </div>
                       </div>
                       <div className="fixed-buttons-events">
-                        <a className="sortby" onClick={this.toggleSortBy}>
+                        <a
+                          className="sortby"
+                          onClick={() => {
+                            this.toggleSortBy();
+                          }}
+                        >
                           sort by
                           <img src={sortbyIcon} alt="icon" />
                         </a>

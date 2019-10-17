@@ -3,15 +3,21 @@ import PropTypes from 'prop-types';
 import Tooltip from '../../Tooltip';
 
 function TitleToolTip(props) {
-  const [allowTooltip, setAllowTooltip] = useState(props.allowTooltip);
+  const [allowTooltip, setAllowTooltip] = useState(false);
   const [styleObj, setStyleObj] = useState(null);
   const element = useRef();
 
   useEffect(() => {
+    console.log(
+      'ele',
+      element,
+      element.current.scrollWidth,
+      element.current.offsetWidth
+    );
     if (
       !allowTooltip &&
       ((props.lines === 1 &&
-        element.current.scrollWidth > element.current.offsetWidth + 150) ||
+        element.current.scrollWidth > element.current.offsetWidth) ||
         (props.lines > 1 &&
           element.current.scrollHeight > element.current.offsetHeight))
     ) {
@@ -20,15 +26,23 @@ function TitleToolTip(props) {
     let styleObjectDefault = {
       overflow: 'hidden',
       LineHeight: `${props.height}px`,
-      maxHeight: `${props.height * props.lines}px`,
-      minHeight: `${props.height * props.lines}px`,
-      width: '91%',
       fontSize: props.size,
       fontWeight: props.weight
+      // width: element.current.clientWidth
     };
-    if (element.current.offsetHeight >= props.height * props.lines) {
+    if (props.lines === 1) {
+      setStyleObj({
+        display: 'inline-block',
+        overflow: 'hidden',
+        whiteSpace: 'nowrap',
+        textOverflow: 'ellipsis',
+        ...styleObjectDefault
+      });
+    } else if (element.current.offsetHeight >= props.height * props.lines) {
       setStyleObj({
         textOverflow: 'ellipsis',
+        maxHeight: `${props.height * props.lines}px`,
+        minHeight: `${props.height * props.lines}px`,
         display:
           props.lines === 1 && !props.eventDetail ? 'block' : '-webkit-box',
         WebkitLineClamp: `${props.lines}`,
@@ -49,18 +63,39 @@ function TitleToolTip(props) {
 
   if (allowTooltip) {
     return (
-      <Tooltip title={props.title} height={props.height * props.lines + 5}>
-        <h3 style={styleObj} ref={element}>
-          {props.title}
-        </h3>
+      <Tooltip
+        title={props.title}
+        top={30}
+        class={'top'}
+        height={props.height * props.lines + 5}
+      >
+        {props.tag === false && (
+          <span style={styleObj} ref={element}>
+            {props.title}
+          </span>
+        )}
+        {props.tag !== false && (
+          <h3 style={styleObj} ref={element}>
+            {props.title}
+          </h3>
+        )}
       </Tooltip>
     );
   }
 
   return (
-    <h3 style={styleObj} ref={element}>
-      {props.title}
-    </h3>
+    <>
+      {props.tag === false && (
+        <span style={styleObj} ref={element}>
+          {props.title}
+        </span>
+      )}
+      {props.tag !== false && (
+        <h3 style={styleObj} ref={element}>
+          {props.title}
+        </h3>
+      )}
+    </>
   );
 }
 

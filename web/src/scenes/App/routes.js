@@ -16,6 +16,7 @@ import Careers from '../Careers';
 import JobDescription from '../Careers/JobDescription';
 import AboutUs from '../AboutUs';
 import ApiPartner from '../ApiPartner';
+import Search from '../Home/Search';
 
 const routes = [
   {
@@ -113,6 +114,11 @@ const routes = [
   {
     path: '/apipartners',
     component: ApiPartner,
+    exact: true
+  },
+  {
+    path: '/search-results',
+    component: Search,
     exact: true
   },
   {

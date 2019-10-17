@@ -15,6 +15,7 @@ import EventBreadcrumbImageBlur from '../../assets/images/events-blur.png';
 import filterIcon from '../../assets/images/events/filter.svg';
 import sortbyIcon from '../../assets/images/events/sortby.svg';
 import ShimmerEffect from '../../shared/components/ShimmerEffect';
+import FilterSelected from '../../shared/components/FilterSelected';
 import Utilities from '../../shared/utilities';
 import './style.scss';
 import SearchFilter from '../../shared/components/SearchFilter';
@@ -184,8 +185,12 @@ export default class Events extends Component {
     // this.setState({shimmer: true});
     EventsService.getData(params)
       .then(res => {
-        if (!isLoadMore) this.setState({ eventsData: [] });
-        const eventData = [...this.state.eventsData, ...res.data.data];
+        let eventData = [];
+        if (isLoadMore) {
+          eventData = [...this.state.eventsData, ...res.data.data];
+        } else {
+          eventData = [...res.data.data];
+        }
         const isdataAvailable = eventData.length ? false : true;
         setTimeout(() => {
           this.setState({
@@ -354,7 +359,7 @@ export default class Events extends Component {
         filteredSortType: 'date',
         filteredSortOrder: '',
         isdataAvailable: false,
-        eventsData: [],
+        // eventsData: [],
         totalRecords: 0
       };
     }
@@ -540,6 +545,18 @@ export default class Events extends Component {
                     handleFilters={this.handleFilters}
                     searchText={filteredSearch}
                   />
+                  <FilterSelected
+                    genreData={genre}
+                    venueData={venues}
+                    filterConfig={filterConfig}
+                    filteredPriceRange={filteredPriceRange}
+                    filteredGnere={filteredGnere}
+                    filteredPromotions={filteredPromotions}
+                    filteredVenues={filteredVenues}
+                    filteredTags={filteredTags}
+                    filteredDateRange={filteredDateRange}
+                    handleFilters={this.handleFilters}
+                  />
                   <SortBy
                     sortList={this.tabsSort.sortList}
                     handleListGridView={this.handleListGridView}
@@ -567,7 +584,12 @@ export default class Events extends Component {
                         Close
                       </a>
 
-                      <a onClick={() => this.callAPI()} className="apply">
+                      <a
+                        className="apply"
+                        onClick={() => {
+                          this.callAPI();
+                        }}
+                      >
                         Apply
                       </a>
                     </div>
@@ -621,9 +643,11 @@ export default class Events extends Component {
                 </div>
                 {shimmer && (
                   <ShimmerEffect
-                    propCls="shm_col-xs-6 col-md-4"
+                    propCls={`${
+                      Utilities.mobileAndTabletcheck() ? 'shm_col-xs-6' : ''
+                    } col-md-4`}
                     height={150}
-                    count={3}
+                    count={Utilities.mobileAndTabletcheck() ? 2 : 3}
                     type="LIST"
                   />
                 )}
@@ -652,7 +676,12 @@ export default class Events extends Component {
                 )}
               </div>
               <div className="fixed-buttons-events">
-                <a className="sortby" onClick={this.toggleSortBy}>
+                <a
+                  className="sortby"
+                  onClick={() => {
+                    this.toggleSortBy();
+                  }}
+                >
                   sort by
                   <img src={sortbyIcon} alt="icon" />
                 </a>

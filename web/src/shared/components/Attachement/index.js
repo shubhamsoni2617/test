@@ -4,33 +4,38 @@ import attach from '../../../assets/images/attach.svg';
 import ContactUsService from '../../services/ContactUsService';
 
 const Attachement = ({ attachedFiles, submit, mandatory, cv }) => {
-  const [files, setFiles] = useState({});
   const [maxFileLimitMsg, setMaxFileLimitMsg] = useState('');
   const [serverErr, setServerErr] = useState([]);
+  let [fileArr, setFileArr] = useState([]);
 
   useEffect(() => {
     if (submit) {
-      setFiles({});
+      setFileArr([]);
     }
   }, [submit]);
 
   const handleFiles = files => {
-    console.log(files);
-    setFiles({});
     setMaxFileLimitMsg('');
-    const filesLength = files.length;
-    let fileSize = 0;
-    for (let key in files) {
-      if (files.hasOwnProperty(key)) {
-        fileSize = fileSize + files[key].size;
+    fileArr = [...fileArr, ...files];
+    let fileArrLength = fileArr.length;
+    for (let key in fileArr) {
+      if (fileArr.hasOwnProperty(key)) {
+        let fileSize = fileArr[key].size;
+        let sizeInMB = fileSize / (1024 * 1024);
+        if (sizeInMB > 5) {
+          setMaxFileLimitMsg('files can be uploaded, with up to 5MB size.');
+          setFileArr([]);
+          return;
+        }
       }
     }
-    const sizeInMB = fileSize / (1024 * 1024);
-    if (filesLength > 3 || sizeInMB > 5) {
-      setMaxFileLimitMsg('Max 3 files can be uploaded, with up to 5MB size.');
+    if (fileArrLength > 3) {
+      setMaxFileLimitMsg('Max 3 files can be uploaded, with up to 5MB size.');
+      setFileArr([]);
     } else {
-      setFiles(files);
-      submitUploadAttachment(files);
+      submitUploadAttachment(fileArr);
+      setMaxFileLimitMsg('');
+      setFileArr(fileArr);
     }
     setServerErr([]);
   };
@@ -86,9 +91,11 @@ const Attachement = ({ attachedFiles, submit, mandatory, cv }) => {
         </div>
       </div>
       {maxFileLimitMsg && <p className="text-danger">{maxFileLimitMsg}</p>}
-      {files && files[0] && <p>{files[0].name}</p>}
-      {files && files[1] && <p>{files[1].name}</p>}
-      {files && files[2] && <p>{files[2].name}</p>}
+
+      {fileArr &&
+        fileArr.map((file, i) => {
+          return <p key={i}>{file.name}</p>;
+        })}
       {serverErr &&
         serverErr.map(err => {
           return (
