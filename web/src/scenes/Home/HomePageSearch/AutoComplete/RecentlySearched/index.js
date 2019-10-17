@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import recentSearchIconImage from '../../../../../assets/images/recent-search-icon.svg';
 import closeBlueColorImage from '../../../../../assets/images/close-blue-color.svg';
+import closeGreyColorImage from '../../../../../assets/images/cross-grey.svg';
 import './style.scss';
 import MostViewed from './MostViewed';
 import Utilities from '../../../../../shared/utilities';
@@ -50,6 +51,7 @@ const HomePageSearch = props => {
                       onClick={e => {
                         e.preventDefault();
                         redirectHandler(text);
+                        Utilities.mobilecheck() && document.getElementsByTagName("body")[0].classList.remove("fixed-body");
                       }}
                     >
                       <img src={recentSearchIconImage} alt="" /> {text}
@@ -63,6 +65,7 @@ const HomePageSearch = props => {
                       className="search-listing-close-btn"
                     >
                       <img src={closeBlueColorImage} alt="" />
+                      <img src={closeGreyColorImage} alt="" className="search-close-mobile-btn" />
                     </a>
                   </li>
                 );
