@@ -8,7 +8,7 @@ import ShimmerEffect from '../../../shared/components/ShimmerEffect';
 import Utilities from '../../../shared/utilities';
 
 const Opening = ({ jobListing, jobListingErr }) => {
-  const [limit, setLimit] = useState(5);
+  const [limit] = useState(5);
   const [display, setDisplay] = useState('none');
   const [loading, setLoading] = useState(false);
 
@@ -29,13 +29,7 @@ const Opening = ({ jobListing, jobListingErr }) => {
                   <p>
                     {' '}
                     <span className="place">{elem.location} </span>
-                    {elem.job_type.map((jobType, i, a) => {
-                      return (
-                        <Fragment key={i}>
-                          <span>{jobType}</span>{' '}
-                        </Fragment>
-                      );
-                    })}
+                    {elem.job_type.toString().replace(',', ', ')}
                   </p>
                   <Link to={`/careers/jobdescription/${elem.job_id}`}>
                     Apply Now
@@ -73,12 +67,13 @@ const Opening = ({ jobListing, jobListingErr }) => {
         {jobListing && jobListing.length > limit && (
           <div
             className="text-center"
+            id="button"
             onClick={() => {
+              document.getElementById('button').style.display = 'none';
               setLoading(true);
               setTimeout(() => {
-                setLoading(false);
                 setDisplay('block');
-                setLimit(jobListing && jobListing.length);
+                setLoading(false);
               }, 1000);
             }}
           >
