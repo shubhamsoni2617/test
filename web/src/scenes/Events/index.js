@@ -15,6 +15,7 @@ import EventBreadcrumbImageBlur from '../../assets/images/events-blur.png';
 import filterIcon from '../../assets/images/events/filter.svg';
 import sortbyIcon from '../../assets/images/events/sortby.svg';
 import ShimmerEffect from '../../shared/components/ShimmerEffect';
+import FilterSelected from '../../shared/components/FilterSelected';
 import Utilities from '../../shared/utilities';
 import './style.scss';
 import SearchFilter from '../../shared/components/SearchFilter';
@@ -543,6 +544,18 @@ export default class Events extends Component {
                   <SearchFilter
                     handleFilters={this.handleFilters}
                     searchText={filteredSearch}
+                  />
+                  <FilterSelected
+                    genreData={genre}
+                    venueData={venues}
+                    filterConfig={filterConfig}
+                    filteredPriceRange={filteredPriceRange}
+                    filteredGnere={filteredGnere}
+                    filteredPromotions={filteredPromotions}
+                    filteredVenues={filteredVenues}
+                    filteredTags={filteredTags}
+                    filteredDateRange={filteredDateRange}
+                    handleFilters={this.handleFilters}
                   />
                   <SortBy
                     sortList={this.tabsSort.sortList}
