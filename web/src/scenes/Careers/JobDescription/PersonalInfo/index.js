@@ -102,8 +102,8 @@ const PersonalInfo = ({
           {errMsg && !contact_number && (
             <span className="text-danger">Please enter phone number</span>
           )}
-          {/* <div className="form-group">
-            Earliest Start Date{' '}
+          <div className="form-group earliest-date">
+            <span>Earliest Start Date</span>{' '}
             <DayPickerInput
               className="form-control"
               value={startDate}
@@ -121,7 +121,7 @@ const PersonalInfo = ({
               }}
               onDayChange={handleStartDate}
             />
-          </div> */}
+          </div>
           <div className="form-group">
             <textarea
               name="message"

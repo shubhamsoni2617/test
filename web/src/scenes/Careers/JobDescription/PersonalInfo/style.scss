@@ -98,6 +98,29 @@
         font-size: 18px;
       }
     }
+    .earliest-date{
+      display: flex;
+      align-items: center;
+      span{
+        color: rgba(52, 52, 52, 0.7);
+        font-family: 'Rubik', sans-serif;
+        @media(max-width: 767px){
+          font-size: 12px;
+        }
+      }
+      input{
+        border-radius: 0;
+        max-height: 36px;
+        border: 1px solid rgba(151, 151, 151, 0.2);
+        font-size: 16px;
+        line-height: 19px;
+        padding: 10px;
+        margin-left: 20px;
+        @media(max-width: 767px){
+          margin-left: 5px;
+        }
+      }
+    }
   }
   .other-job{
     a{
