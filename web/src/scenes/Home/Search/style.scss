@@ -319,12 +319,19 @@
             .promotions-nav{
                 padding-bottom: 0px;
                 li{
+                    margin: 0 10px;
                     .nav-item{
                         text-transform: capitalize;
                         font-weight: 500;
                     }
                     &.no-category{
                         display: none;
+                    }
+                    &:first-child{
+                        margin-left: 0px;
+                    }
+                    &:last-child{
+                        margin-right: 0px;
                     }
                 }
             }
