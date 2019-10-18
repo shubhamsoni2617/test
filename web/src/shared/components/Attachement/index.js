@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, Fragment } from 'react';
 import './style.scss';
 import attach from '../../../assets/images/attach.svg';
 import ContactUsService from '../../services/ContactUsService';
@@ -6,7 +6,7 @@ import ContactUsService from '../../services/ContactUsService';
 const Attachement = ({ attachedFiles, submit, mandatory, cv }) => {
   const [maxFileLimitMsg, setMaxFileLimitMsg] = useState('');
   const [serverErr, setServerErr] = useState([]);
-  let [fileArr, setFileArr] = useState([]);
+  var [fileArr, setFileArr] = useState([]);
 
   useEffect(() => {
     if (submit) {
@@ -41,24 +41,29 @@ const Attachement = ({ attachedFiles, submit, mandatory, cv }) => {
   };
 
   const submitUploadAttachment = files => {
-    if (files.length) {
-      let formData = new FormData();
-      for (let i = 0; i < files.length; i++) {
-        let file = files[i];
-        formData.append('files[' + i + ']', file);
-      }
-      ContactUsService.uploadAttachement(formData)
-        .then(res => {
-          if (res && res.data) {
-            attachedFiles(res.data.path);
-          }
-        })
-        .catch(err => {
-          if (err && err.response) {
-            setServerErr(err.response.data.message);
-          }
-        });
+    // if (files.length) {
+    let formData = new FormData();
+    for (let i = 0; i < files.length; i++) {
+      let file = files[i];
+      formData.append('files[' + i + ']', file);
     }
+    ContactUsService.uploadAttachement(formData)
+      .then(res => {
+        if (res && res.data) {
+          attachedFiles(res.data.path);
+        }
+      })
+      .catch(err => {
+        if (err && err.response) {
+          setServerErr(err.response.data.message);
+        }
+      });
+    // }
+  };
+
+  const removeFiles = fileIndex => {
+    fileArr.splice(fileIndex, 1);
+    submitUploadAttachment(fileArr);
   };
 
   return (
@@ -94,7 +99,23 @@ const Attachement = ({ attachedFiles, submit, mandatory, cv }) => {
 
       {fileArr &&
         fileArr.map((file, i) => {
-          return <p key={i}>{file.name}</p>;
+          return (
+            <Fragment key={i}>
+              <div className={mandatory ? 'show-border' : ''}>
+                {file.name}
+                {mandatory && (
+                  <p
+                    className="cross-file"
+                    onClick={() => {
+                      removeFiles(i);
+                    }}
+                  >
+                    x
+                  </p>
+                )}
+              </div>
+            </Fragment>
+          );
         })}
       {serverErr &&
         serverErr.map(err => {

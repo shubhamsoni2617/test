@@ -44,11 +44,7 @@ const Testimonials = ({ testimonial, testimonialErr }) => {
                 testimonial.testimonials.map((elem, index) => {
                   return (
                     <li key={index}>
-                      <div className="message">
-                        <Tooltip height={19} title={elem.message}>
-                          {Utilities.showLimitedChars(elem.message, 200)}
-                        </Tooltip>
-                      </div>
+                      <div className="message">{elem.message}</div>
                       <div className="name text-center">
                         <h5>{elem.name}</h5>
                       </div>
