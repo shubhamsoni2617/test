@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import './style.scss';
-import UpArrow from '../../../assets/images/up.svg';
-import DownArrow from '../../../assets/images/down.svg';
-import Cross from '../../../assets/images/close-blue-color.svg';
+import DownArrow from '../../../assets/images/down-arrow-grey.svg';
+import UpArrow from '../../../assets/images/uparrow.svg';
+import Cross from '../../../assets/images/close-blue.svg';
 
 export default class Select extends Component {
   constructor(props) {
@@ -181,10 +181,10 @@ export default class Select extends Component {
   };
 
   onClick = () => {
-    const { onClickSubmit } = this.props;
+    const { onClickSubmit, multiple, submit } = this.props;
     this.setState(prevState => ({
       isOpen: !prevState.isOpen,
-      values: []
+      values: submit || !multiple ? [] : prevState.values
     }));
     onClickSubmit();
   };
@@ -203,7 +203,6 @@ export default class Select extends Component {
 
   onHoverOption = e => {
     const { options } = this.props;
-
     const { value } = e.currentTarget.dataset;
     const index = options.findIndex(option => option.name === value);
 
@@ -262,7 +261,7 @@ export default class Select extends Component {
               onClick={this.onDeleteOption}
               className="delete"
             >
-              <img src={Cross} alt="Cross" />
+              <img src={Cross} alt="cross" />
             </span>
           </span>
         );
@@ -273,14 +272,18 @@ export default class Select extends Component {
   };
 
   renderOptions = () => {
-    const { options } = this.props;
+    const { options, multiple } = this.props;
     const { isOpen } = this.state;
 
     if (!isOpen) {
       return null;
     }
 
-    return <div className="options">{options.map(this.renderOption)}</div>;
+    return (
+      <div className={multiple ? 'options-top' : 'options'}>
+        {options.map(this.renderOption)}
+      </div>
+    );
   };
 
   renderOption = (option, index) => {
@@ -299,7 +302,7 @@ export default class Select extends Component {
         key={index}
         data-value={name}
         className={className}
-        onMouseOver={this.onHoverOption}
+        // onMouseOver={this.onHoverOption}
         onClick={this.onClickOption}
       >
         {multiple ? (
@@ -313,7 +316,6 @@ export default class Select extends Component {
   render() {
     const { label } = this.props;
     const { isOpen } = this.state;
-
     return (
       <div
         className="select"

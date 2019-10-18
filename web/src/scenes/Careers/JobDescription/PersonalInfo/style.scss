@@ -1,0 +1,158 @@
+.personal-info-wrapper{
+  margin-bottom: 40px;
+  .personal-info{
+    padding: 40px 30px 30px 30px;
+    box-shadow: 0 0 28px 0 rgba(210,210,210,0.5);
+    margin: 170px 0 30px 0;
+    h3{
+      font-size: 20px;
+      font-weight: 600;
+      position: relative;
+      margin-bottom: 50px;
+      font-family: 'Montserrat', sans-serif;
+      &:after{
+        content: '';
+        position: absolute;
+        bottom: -10px;
+        left: 0;
+        width: 100%;
+        height: 1px;
+        display: block;
+        background-color: rgba(151, 151, 151, 0.2);
+      }
+      a{
+        display: none;
+        @media(max-width: 767px){
+          display: block;
+        }
+      }
+      @media(max-width: 767px){
+        display: flex;
+        font-size: 14px !important;
+        justify-content: space-between;
+      }
+    }
+    h5{
+      font-family: 'Rubik', sans-serif;
+      margin-bottom: 22px;
+      @media(max-width: 767px){
+        font-size: 14px !important;
+      }
+    }
+    form{
+      .btn-link{
+        font-weight: 500;
+        padding: 10px 20px;
+        display: block;
+        font-size: 18px;
+        width: 100%;
+        text-decoration: none;
+        @media(max-width: 767px){
+          padding: 2px 20px;
+          font-size: 14px;
+          width: 100%;
+        }
+      }
+    }
+    .form-group{
+      margin-bottom: 25px;
+      .form-control{
+        border-radius: 0;
+        min-height: 36px;
+        border: 1px solid rgba(151, 151, 151, 0.2);
+        font-size: 16px;
+        line-height: 19px;
+      }
+      &.attach-doc{
+        input.form-control{
+            visibility: hidden;
+            position: absolute;
+            margin-top: -43px;
+            left: 0px;
+            right: 0px;
+        }
+        .label{
+            font-size: 16px;
+            line-height: 19px;
+            color: #343434;
+            padding-top: 12px;
+            font-weight: 400;
+            @media(max-width: 991px){
+                font-size: 14px;
+                line-height: 17px;
+                padding-top: 0px;
+            }
+        }
+      }
+      &.custom-checkbox{
+        input{
+          margin-right: 10px;
+        }
+        font-size: 16px;
+      }
+    }
+    @media(max-width: 991px){
+      margin: 10px 0 30px 0;
+      padding: 30px 20px 30px 20px;
+      h3, h5{
+        font-size: 18px;
+      }
+    }
+    .earliest-date{
+      display: flex;
+      align-items: center;
+      span{
+        color: rgba(52, 52, 52, 0.7);
+        font-family: 'Rubik', sans-serif;
+        @media(max-width: 767px){
+          font-size: 12px;
+        }
+      }
+      input{
+        border-radius: 0;
+        max-height: 36px;
+        border: 1px solid rgba(151, 151, 151, 0.2);
+        font-size: 16px;
+        line-height: 19px;
+        padding: 10px;
+        margin-left: 20px;
+        @media(max-width: 767px){
+          margin-left: 5px;
+        }
+      }
+    }
+  }
+  .other-job{
+    a{
+      font-family: 'Rubik', sans-serif;
+      font-size: 18px;
+      font-weight: 500;
+      color: #0077C8;
+    }
+    @media(max-width: 767px){
+      display: none;
+    }
+  }
+}
+.attach-doc{
+  div{
+    font-size: 12px;
+  }
+  .col-5{
+    display: flex;
+    align-items: center;
+    span{
+      color: red;
+    }
+  }
+}
+.resume{
+  .placeholder{
+      position: absolute;
+      bottom: 10px;
+  }
+}
+.margin-negative
+{
+  margin-top: -20px;
+}

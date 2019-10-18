@@ -12,10 +12,13 @@ function EventHeading(props) {
     if (
       !allowTooltip &&
       ((props.lines === 1 &&
+        element.current &&
         element.current.scrollWidth > element.current.offsetWidth + 150) ||
         (props.lines > 1 &&
-          element.current.scrollHeight > element.current.offsetHeight))
+          element.current &&
+          element.current.scrollHeight > element.current.offsetHeight + 2))
     ) {
+      // debugger;
       setAllowTooltip(true);
     }
     let styleObjectDefault = {
@@ -27,7 +30,10 @@ function EventHeading(props) {
       fontSize: props.size,
       fontWeight: props.weight
     };
-    if (element.current.offsetHeight >= props.height * props.lines) {
+    if (
+      element.current &&
+      element.current.offsetHeight >= props.height * props.lines
+    ) {
       setStyleObj({
         textOverflow: 'ellipsis',
         display: props.lines === 1 ? 'block' : '-webkit-box',

@@ -16,6 +16,7 @@ import sortbyIcon from '../../assets/images/events/sortby.svg';
 import Utilities from '../../shared/utilities';
 import SearchFilter from '../../shared/components/SearchFilter';
 import Constants from '../../shared/constants';
+import FilterSelected from '../../shared/components/FilterSelected';
 export default class Attractions extends Component {
   constructor(props) {
     super(props);
@@ -133,11 +134,12 @@ export default class Attractions extends Component {
     // this.setState({shimmer: true});
     AttractionsService.getData(params)
       .then(res => {
-        if (!isLoadMore) this.setState({ attractionsData: [] });
-        const attractionsData = [
-          ...this.state.attractionsData,
-          ...res.data.data
-        ];
+        let attractionsData = [];
+        if (isLoadMore) {
+          attractionsData = [...this.state.attractionsData, ...res.data.data];
+        } else {
+          attractionsData = [...res.data.data];
+        }
         const isdataAvailable = attractionsData.length ? false : true;
         setTimeout(() => {
           this.setState({
@@ -343,6 +345,11 @@ export default class Attractions extends Component {
                   handleFilters={this.handleFilters}
                   searchText={filteredSearch}
                 />
+                <FilterSelected
+                  attractionCategories={attractionCategories}
+                  filteredCategory={filteredCategory}
+                  handleFilters={this.handleFilters}
+                />
                 <SortBy
                   sortList={this.tabsSort.sortList}
                   handleFilters={this.handleFilters}
@@ -370,7 +377,12 @@ export default class Attractions extends Component {
                       Close
                     </a>
 
-                    <a onClick={() => this.callAPI()} className="apply">
+                    <a
+                      onClick={() => {
+                        this.callAPI();
+                      }}
+                      className="apply"
+                    >
                       Apply
                     </a>
                   </div>
@@ -435,7 +447,12 @@ export default class Attractions extends Component {
               )}
             </div>
             <div className="fixed-buttons-events">
-              <a className="sortby" onClick={this.toggleSortBy}>
+              <a
+                className="sortby"
+                onClick={() => {
+                  this.toggleSortBy();
+                }}
+              >
                 sort by
                 <img src={sortbyIcon} alt="icon" />
               </a>
