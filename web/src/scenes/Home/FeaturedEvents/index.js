@@ -60,7 +60,7 @@ const SamplePrevArrow = props => {
 };
 
 const FeaturedEvents = props => {
-  const { api, heading } = props;
+  const { api, heading, cssClassName } = props;
   const element = useRef(null);
   const [featuredEvents, setFeaturedEvents] = useState([]);
   const [serverErr, setServerErr] = useState('');
@@ -133,7 +133,12 @@ const FeaturedEvents = props => {
     }
   };
   return (
-    <section className="featured-events" ref={element}>
+    <section
+      className={
+        cssClassName ? `featured-events ${cssClassName}` : 'featured-events'
+      }
+      ref={element}
+    >
       <div className="container-fluid">
         <div className="section-top-wrapper">
           {heading && <h2>{heading}</h2>}

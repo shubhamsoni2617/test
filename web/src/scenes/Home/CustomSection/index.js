@@ -53,7 +53,10 @@ const CustomSection = () => {
   };
   return (
     <Fragment>
-      <CustomSectionOne api={AdvertisementService.getCustomizeSectionOne} />
+      <CustomSectionOne
+        api={AdvertisementService.getCustomizeSectionOne}
+        cssClassName="alternate-featured-events"
+      />
       <CustomSectioTwo customSectionTwo={customSectionTwo} loading={loading} />
       <CustomSectionThree customSectionThree={customSectionThree} />
     </Fragment>
