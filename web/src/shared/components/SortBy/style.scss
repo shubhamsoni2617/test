@@ -1,16 +1,18 @@
 .event-listing-sorting {
-    display: flex;
-    flex-wrap: wrap;
-    width: 100%;
-    border-bottom: 1px solid rgba(126, 126, 126, 0.1);
-    justify-content: flex-end;
-    padding: 0 0 9px;
-     @media(min-width: 767px){
-            .filters-search {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  border-bottom: 1px solid rgba(126, 126, 126, 0.1);
+  justify-content: flex-end;
+  padding: 0 0 9px;
+    @media(min-width: 767px){
+    .filters-search {
       display: none;
     }
-        }
-
+  }
+  @media(max-width: 768px){
+    border-bottom: none;
+  }
 }
 .sortby {
     display: flex;
