@@ -23,45 +23,45 @@ const CustomSectionThree = ({ customSectionThree }) => {
           type="TILE"
         />
       ) : (
-        <div className="row">
-          <div className="col-lg-6">
-            <ReactPlayer
-              controls
-              url={url}
-              playing
-              // muted={false}
-              light
-            />{' '}
+          <div className="row">
+            <div className="col-lg-6">
+              <ReactPlayer
+                controls
+                url={url && url}
+                playing
+                // muted={true}
+                light
+              />{' '}
+            </div>
+            <div className="col-lg-6">
+              {customSectionThree &&
+                customSectionThree
+                  .slice(1, customSectionThree.length)
+                  .map((vdo, index) => {
+                    return (
+                      <div key={index} onClick={() => setUrl(vdo.video_url)}>
+                        <span>
+                          <img
+                            src={vdo.video_thumb}
+                            alt=""
+                            width="200"
+                            height="200"
+                          />
+                        </span>
+                        <a>{vdo.title}</a>
+                      </div>
+                    );
+                  })}
+            </div>
           </div>
-          <div className="col-lg-6">
-            {customSectionThree &&
-              customSectionThree
-                .slice(1, customSectionThree.length)
-                .map((vdo, index) => {
-                  return (
-                    <div key={index} onClick={() => setUrl(vdo.video_url)}>
-                      <span>
-                        <img
-                          src={vdo.video_thumb}
-                          alt=""
-                          width="200"
-                          height="200"
-                        />
-                      </span>
-                      <a>{vdo.title}</a>
-                    </div>
-                  );
-                })}
-          </div>
-        </div>
-      )
-      // <div>
-      //   <ul>
-      //     {url.map(({ link }) => {
-      //       return <li onClick={() => setUrlLink(link)}>{link}</li>;
-      //     })}
-      //   </ul>
-      // </div>
+        )
+        // <div>
+        //   <ul>
+        //     {url.map(({ link }) => {
+        //       return <li onClick={() => setUrlLink(link)}>{link}</li>;
+        //     })}
+        //   </ul>
+        // </div>
       }
     </div>
   );
