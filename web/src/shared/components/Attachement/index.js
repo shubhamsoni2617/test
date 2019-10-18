@@ -16,49 +16,51 @@ const Attachement = ({ attachedFiles, submit, mandatory, cv }) => {
 
   const handleFiles = files => {
     setMaxFileLimitMsg('');
-    fileArr = [...fileArr, ...files];
-    let fileArrLength = fileArr.length;
-    for (let key in fileArr) {
-      if (fileArr.hasOwnProperty(key)) {
-        let fileSize = fileArr[key].size;
-        let sizeInMB = fileSize / (1024 * 1024);
-        if (sizeInMB > 5) {
-          setMaxFileLimitMsg('files can be uploaded, with up to 5MB size.');
-          setFileArr([]);
-          return;
+    if (files) {
+      fileArr = [...fileArr, ...files];
+      let fileArrLength = fileArr.length;
+      for (let key in fileArr) {
+        if (fileArr.hasOwnProperty(key)) {
+          let fileSize = fileArr[key].size;
+          let sizeInMB = fileSize / (1024 * 1024);
+          if (sizeInMB > 5) {
+            setMaxFileLimitMsg('files can be uploaded, with up to 5MB size.');
+            setFileArr([]);
+            return;
+          }
         }
       }
-    }
-    if (fileArrLength > 3) {
-      setMaxFileLimitMsg('Max 3 files can be uploaded, with up to 5MB size.');
-      setFileArr([]);
-    } else {
-      submitUploadAttachment(fileArr);
-      setMaxFileLimitMsg('');
-      setFileArr(fileArr);
+      if (fileArrLength > 3) {
+        setMaxFileLimitMsg('Max 3 files can be uploaded, with up to 5MB size.');
+        setFileArr([]);
+      } else {
+        submitUploadAttachment(fileArr);
+        setMaxFileLimitMsg('');
+        setFileArr(fileArr);
+      }
     }
     setServerErr([]);
   };
 
   const submitUploadAttachment = files => {
-    // if (files.length) {
-    let formData = new FormData();
-    for (let i = 0; i < files.length; i++) {
-      let file = files[i];
-      formData.append('files[' + i + ']', file);
+    if (files) {
+      let formData = new FormData();
+      for (let i = 0; i < files.length; i++) {
+        let file = files[i];
+        formData.append('files[' + i + ']', file);
+      }
+      ContactUsService.uploadAttachement(formData)
+        .then(res => {
+          if (res && res.data) {
+            attachedFiles(res.data.path);
+          }
+        })
+        .catch(err => {
+          if (err && err.response) {
+            setServerErr(err.response.data.message);
+          }
+        });
     }
-    ContactUsService.uploadAttachement(formData)
-      .then(res => {
-        if (res && res.data) {
-          attachedFiles(res.data.path);
-        }
-      })
-      .catch(err => {
-        if (err && err.response) {
-          setServerErr(err.response.data.message);
-        }
-      });
-    // }
   };
 
   const removeFiles = fileIndex => {
