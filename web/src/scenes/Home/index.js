@@ -91,27 +91,30 @@ class Home extends Component {
           api={HomeService.getTopPics}
         />
         {/* <TopPics />  */}
-        {giftCard &&
-          giftCard.map(elem => {
-            return (
-              <a
-                href={elem && elem.navigation_link}
-                target="_blank"
-                key={elem.title}
-              >
-                <section className="gift-cart">
-                  <div className="gift-cart-image">
-                    <img
-                      src={elem && elem.full_image}
-                      className="img-fluid"
-                      alt={elem && elem.alt_text}
-                      title={elem && elem.title}
-                    />
-                  </div>
-                </section>
-              </a>
-            );
-          })}
+        <div className="giftcard-homepage-wrapper">
+          {giftCard &&
+            giftCard.map(elem => {
+              return (
+                <a
+                  href={elem && elem.navigation_link}
+                  className="giftcard-anchor"
+                  target="_blank"
+                  key={elem.title}
+                >
+                  <section className="gift-cart">
+                    <div className="gift-cart-image">
+                      <img
+                        src={elem && elem.full_image}
+                        className="img-fluid"
+                        alt={elem && elem.alt_text}
+                        title={elem && elem.title}
+                      />
+                    </div>
+                  </section>
+                </a>
+              );
+            })}
+        </div>
         <FeaturedEvents
           api={AdvertisementService.getFeaturedEvents}
           heading="Featured Events"
