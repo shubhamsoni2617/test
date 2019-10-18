@@ -8,8 +8,7 @@ import ShimmerEffect from '../../../shared/components/ShimmerEffect';
 import Utilities from '../../../shared/utilities';
 
 const Opening = ({ jobListing, jobListingErr }) => {
-  const [limit] = useState(5);
-  const [display, setDisplay] = useState('none');
+  const [limit, setLimit] = useState(6);
   const [loading, setLoading] = useState(false);
 
   return (
@@ -18,12 +17,11 @@ const Opening = ({ jobListing, jobListingErr }) => {
         <h2 className="text-center career-title">Open Positions</h2>
         <div className="row">
           {jobListing &&
-            jobListing.map((elem, index) => {
+            jobListing.slice(0, limit).map((elem, index) => {
               return (
                 <div
                   className="col-lg-4 col-md-6 col-6 position-inner"
                   key={elem.job_id}
-                  style={{ display: index > limit ? display : 'block' }}
                 >
                   <h4>{elem.title}</h4>
                   <p>
@@ -72,8 +70,8 @@ const Opening = ({ jobListing, jobListingErr }) => {
               document.getElementById('button').style.display = 'none';
               setLoading(true);
               setTimeout(() => {
-                setDisplay('block');
                 setLoading(false);
+                setLimit(jobListing.length);
               }, 1000);
             }}
           >
