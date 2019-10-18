@@ -1,6 +1,10 @@
 //tabs
 .event-detail-panel{
     padding: 25px 17px 30px 30px;
+    @media(max-width: 991px){
+        display: flex;
+        flex-direction: column;
+    }
     @media(max-width: 980px){
         order: 2;
         padding: 0px 0px 0px 0px;
@@ -11,6 +15,21 @@
                 border: 1px solid rgba(201, 201, 201, 0.2);
                 border-top: none;
                 // box-shadow: 0 2px 3px 0 rgba(201, 201, 201, 0.5);
+            }
+        }
+        &.promotion-accordian{
+            @media(max-width: 991px){
+                order: 1;
+            }
+        }
+        &.synopsis-accordian{
+            @media(max-width: 991px){
+                order: 2;
+            }
+        }
+        &.othertabs-accordian{
+            @media(max-width: 991px){
+                order: 3;
             }
         }
     }

@@ -285,7 +285,7 @@ export default class EventsDetail extends Component {
     }
   };
 
-  componentDidUpdate() {}
+  componentDidUpdate() { }
 
   onSynopsisData = (detailData, getSynopsisData) => {
     detailData &&
@@ -421,7 +421,7 @@ export default class EventsDetail extends Component {
                           detailData.is_available_for_booking === 1
                             ? 'synopsis'
                             : ''
-                        }`}
+                          }`}
                       />
                     )}
                     {detailData.tabs &&
@@ -442,7 +442,7 @@ export default class EventsDetail extends Component {
                         title="Price Details"
                         infoTag={
                           detailData.hide_booking_fee &&
-                          detailData.hide_booking_fee !== '1'
+                            detailData.hide_booking_fee !== '1'
                             ? detailData.hide_booking_fee
                             : null
                         }
@@ -451,7 +451,7 @@ export default class EventsDetail extends Component {
                           detailData.is_available_for_booking === 1
                             ? 'pricedetail'
                             : ''
-                        }`}
+                          }`}
                         desc={detailData.ticket_pricing}
                         openInfoPopup={this.openInfoPopup}
                         showInfo={showInfo}

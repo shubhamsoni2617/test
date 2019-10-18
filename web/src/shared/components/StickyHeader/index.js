@@ -170,7 +170,7 @@ function StickyHeader(props) {
     <div
       className={`event-detail ${sticky ? 'sticky-topbar' : ''} ${
         sticky && setHeader ? 'animate' : ''
-      }`}
+        }`}
     >
       {detailData.images && detailData.images.length > 0 && (
         <div className="tickets-demo-img">
