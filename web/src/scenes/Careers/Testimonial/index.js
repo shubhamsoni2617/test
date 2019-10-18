@@ -16,17 +16,19 @@ const Testimonials = ({ testimonial, testimonialErr }) => {
     speed: 500,
     responsive: [
       {
-        breakpoint: 1024,
+        breakpoint: 1025,
         settings: {
           centerMode: false,
-          centerPadding: '0px'
+          centerPadding: '0px',
+          slidesToShow: 1
         }
       },
       {
         breakpoint: 600,
         settings: {
           centerMode: false,
-          centerPadding: '0px'
+          centerPadding: '0px',
+          slidesToShow: 1
         }
       }
     ]
