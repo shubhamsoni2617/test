@@ -28,10 +28,11 @@ const PersonalInfo = ({
   handleSubmit
 }) => {
   return (
-    <div className="personal-info-wrapper" id='applynow'>
+    <div className="personal-info-wrapper" id="applynow">
       <div className="personal-info">
-        <h3>Apply for this position
-           <Link to="/careers">View Other Jobs</Link>
+        <h3>
+          Apply for this position
+          <Link to="/careers">View Other Jobs</Link>
         </h3>
         {successMsg && <h5 className="text-success">{successMsg}</h5>}
         {serverErr &&
@@ -54,10 +55,13 @@ const PersonalInfo = ({
               onChange={e => handleChange(e)}
               // required
             />
+            {errMsg && !firstName && (
+              <span className="text-danger mt-1 d-block">
+                Please enter first name
+              </span>
+            )}
           </div>
-          {errMsg && !firstName && (
-            <span className="text-danger">Please enter first name</span>
-          )}
+
           <div className="form-group">
             <input
               name="lastName"
@@ -68,10 +72,13 @@ const PersonalInfo = ({
               onChange={e => handleChange(e)}
               // required
             />
+            {errMsg && !lastName && (
+              <span className="text-danger mt-1 d-block">
+                Please enter last name
+              </span>
+            )}
           </div>
-          {errMsg && !lastName && (
-            <span className="text-danger">Please enter last name</span>
-          )}
+
           <div className="form-group">
             <input
               name="email"
@@ -82,10 +89,13 @@ const PersonalInfo = ({
               onChange={e => handleChange(e)}
               // required
             />
+            {errMsg && !email && (
+              <span className="text-danger mt-1 d-block">
+                Please enter email address
+              </span>
+            )}
           </div>
-          {errMsg && !email && (
-            <span className="text-danger">Please enter email address</span>
-          )}
+
           <div className="form-group">
             <input
               name="contact_number"
@@ -98,12 +108,15 @@ const PersonalInfo = ({
               onChange={e => handleChange(e)}
               // required
             />
+            {errMsg && !contact_number && (
+              <span className="text-danger mt-1 d-block">
+                Please enter phone number
+              </span>
+            )}
           </div>
-          {errMsg && !contact_number && (
-            <span className="text-danger">Please enter phone number</span>
-          )}
-          {/* <div className="form-group">
-            Earliest Start Date{' '}
+
+          <div className="form-group earliest-date">
+            <span>Earliest Start Date</span>{' '}
             <DayPickerInput
               className="form-control"
               value={startDate}
@@ -121,7 +134,7 @@ const PersonalInfo = ({
               }}
               onDayChange={handleStartDate}
             />
-          </div> */}
+          </div>
           <div className="form-group">
             <textarea
               name="message"
@@ -132,17 +145,22 @@ const PersonalInfo = ({
               value={message}
               onChange={e => handleChange(e)}
             />
+            {errMsg && !message && (
+              <span className="text-danger mt-1 d-block">
+                Please enter message
+              </span>
+            )}
           </div>
-          {errMsg && !message && (
-            <span className="text-danger">Please enter message</span>
-          )}
+
           <Attachement
             mandatory={isFileMandatory}
             attachedFiles={handleFiles}
             submit={submit}
           />
           {isFileMandatory && errMsg && !filePath.length && (
-            <span className="text-danger">Please attach files</span>
+            <span className="text-danger margin-negative d-block">
+              Please attach files
+            </span>
           )}
           <div className="form-group custom-checkbox">
             <input
