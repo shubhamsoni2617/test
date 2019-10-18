@@ -1,7 +1,7 @@
 .personal-info-wrapper{
   margin-bottom: 40px;
   .personal-info{
-    padding: 40px 30px 30px 30px;
+    padding: 40px 25px 30px 25px;
     box-shadow: 0 0 28px 0 rgba(210,210,210,0.5);
     margin: 170px 0 30px 0;
     h3{
@@ -135,6 +135,9 @@
   }
 }
 .attach-doc{
+  .attach-text{
+    padding: 0 10px !important;
+  }
   div{
     font-size: 12px;
   }
