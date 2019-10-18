@@ -2,7 +2,7 @@ import React, { useState, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import logo from '../../../assets/images/logo.png';
 import './style.scss';
-import Submenu from '../Submenu';
+import { Submenu } from '../Submenu';
 
 const Header = ({ menuActive, pathName }) => {
   let refValue = useRef();
