@@ -20,6 +20,7 @@ import Utilities from '../../shared/utilities';
 import Constants from '../../shared/constants';
 import AdvertisementService from '../../shared/services/AdvertisementService';
 import CustomSection from './CustomSection';
+import TopPics from './TopPics';
 // import Royals from './Royals';
 
 class Home extends Component {
@@ -80,7 +81,7 @@ class Home extends Component {
           />
           {/* <img className={`main-image ${this.state.imageUrl ? 'show-image' : ''}`} src={primeSlider} alt="prime Slider" /> */}
         </div>
-        <CarouselConatiner
+        {/* <CarouselConatiner
           title="Top Picks For You"
           classStr="whats-new"
           arrows={true}
@@ -88,8 +89,8 @@ class Home extends Component {
           infinite={false}
           dots={true}
           api={HomeService.getTopPics}
-        />
-         
+        /> */}
+        <TopPics /> 
         {giftCard &&
           giftCard.map(elem => {
             return (
