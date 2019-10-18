@@ -81,7 +81,7 @@ class Home extends Component {
           />
           {/* <img className={`main-image ${this.state.imageUrl ? 'show-image' : ''}`} src={primeSlider} alt="prime Slider" /> */}
         </div>
-        {/* <CarouselConatiner
+        <CarouselConatiner
           title="Top Picks For You"
           classStr="whats-new"
           arrows={true}
@@ -89,8 +89,8 @@ class Home extends Component {
           infinite={false}
           dots={true}
           api={HomeService.getTopPics}
-        /> */}
-        <TopPics /> 
+        />
+        {/* <TopPics />  */}
         {giftCard &&
           giftCard.map(elem => {
             return (
