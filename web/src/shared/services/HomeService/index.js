@@ -40,6 +40,10 @@ class HomeService {
   getPromotions(params) {
     return API.get(`homepage/promotions`, { params });
   }
+
+  getTopPics(params) {
+    return API.get(`homepage/top-picks`, { params });
+  }
 }
 
 export default new HomeService();
