@@ -7,6 +7,7 @@ import Constants from '../../../shared/constants';
 import Utilities from '../../../shared/utilities';
 import HomeService from '../../../shared/services/HomeService';
 import Image from '../../../shared/components/Image';
+import ShimmerEffect from '../../../shared/components/ShimmerEffect';
 
 const SampleNextArrow = props => {
   const { className, style, onClick } = props;
@@ -32,7 +33,6 @@ const SamplePrevArrow = props => {
 const TopPics = props => {
   const [topPics, setTopPics] = useState([]);
   const [width, setWidth] = useState(window.innerWidth);
-  const [topPicsData, setTopPicsData] = useState([]);
 
   useEffect(() => {
     window.addEventListener('resize', handleWindowResize);
@@ -53,8 +53,9 @@ const TopPics = props => {
     HomeService.getTopPics(params)
       .then(res => {
         if (res && res.data) {
-          console.log(res.data);
-          setTopPics(res.data.data);
+          setTimeout(() => {
+            setTopPics(res.data.data);
+          }, 2000);
         }
       })
       .catch(err => {
@@ -91,70 +92,86 @@ const TopPics = props => {
       <div className="container-fluid">
         <h2>Top Picks For You</h2>
         {width <= Constants.MOBILE_BREAK_POINT ? (
-          <div className="col-xs-12">
-            <div className="grid-container">
-              {topPics &&
-                topPics.map((pic, i) => {
-                  return (
-                    <div key={pic.id} className="item">
-                      <div className="item-wrapper">
-                        <div className="item-desc">
-                          <span className="video-icon">
-                            <img
-                              src="assets/images/video-icon.svg"
-                              alt="video"
-                            />
-                          </span>
-                          <div className="item-img">
-                            <Image
-                              src={pic.thumb_image}
-                              className="img-fluid item-image"
-                              alt="kurios"
-                              type="Vertical"
-                            />
-                          </div>
-                          <span
-                            className={`category ${pic.primary_genre
-                              .split('/')[0]
-                              .toLowerCase()} top-picks-category`}
-                          >
-                            {pic.primary_genre}
-                          </span>
-                          <div
-                            className={`item-overlay ${pic.primary_genre
-                              .split('/')[0]
-                              .toLowerCase()}-overlay`}
-                          >
-                            <div className="overlay-wrapper">
-                              <h3>{pic.title}</h3>
-                              <span>{pic.event_date}</span>
-                              <p
-                                dangerouslySetInnerHTML={{
-                                  __html: pic.description
-                                }}
-                              ></p>
+          !topPics.length ? (
+            <ShimmerEffect
+              height={100}
+              count={2}
+              type="TILE"
+              propCls={`shm_col-xs-2 col-md-2`}
+            />
+          ) : (
+            <div className="col-xs-12">
+              <div className="grid-container">
+                {topPics &&
+                  topPics.map((pic, i) => {
+                    return (
+                      <div key={pic.id} className="item">
+                        <div className="item-wrapper">
+                          <div className="item-desc">
+                            <span className="video-icon">
+                              <img
+                                src="assets/images/video-icon.svg"
+                                alt="video"
+                              />
+                            </span>
+                            <div className="item-img">
+                              <Image
+                                src={pic.thumb_image}
+                                className="img-fluid item-image"
+                                alt="kurios"
+                                type="Vertical"
+                              />
+                            </div>
+                            <span
+                              className={`category ${pic.primary_genre
+                                .split('/')[0]
+                                .toLowerCase()} top-picks-category`}
+                            >
+                              {pic.primary_genre}
+                            </span>
+                            <div
+                              className={`item-overlay ${pic.primary_genre
+                                .split('/')[0]
+                                .toLowerCase()}-overlay`}
+                            >
+                              <div className="overlay-wrapper">
+                                <h3>{pic.title}</h3>
+                                <span>{pic.event_date}</span>
+                                <p
+                                  dangerouslySetInnerHTML={{
+                                    __html: pic.description
+                                  }}
+                                ></p>
+                              </div>
                             </div>
                           </div>
+                          <h3>{Utilities.showLimitedChars(pic.title, 15)}</h3>
+                          <a
+                            href="/events"
+                            onClick={e => e.preventDefault()}
+                            className="item-title-overlay"
+                          >
+                            <span>BUY NOW </span>
+                            <img
+                              src="assets/images/next-arrow.svg"
+                              className="img-fluid"
+                              alt="buy-now"
+                            />
+                          </a>
                         </div>
-                        <h3>{Utilities.showLimitedChars(pic.title, 15)}</h3>
-                        <a
-                          href="/events"
-                          onClick={e => e.preventDefault()}
-                          className="item-title-overlay"
-                        >
-                          <span>BUY NOW </span>
-                          <img
-                            src="assets/images/next-arrow.svg"
-                            className="img-fluid"
-                            alt="buy-now"
-                          />
-                        </a>
                       </div>
-                    </div>
-                  );
-                })}
+                    );
+                  })}
+              </div>
             </div>
-          </div>
+          )
+        ) : !topPics.length ? (
+          <ShimmerEffect
+            height={200}
+            count={6}
+            type="TILE"
+            propCls={`shm_col-xs-2 col-md-2`}
+          />
         ) : (
           <Slider {...settings}>
             {topPics.map((pic, index) => {
