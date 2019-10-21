@@ -6,11 +6,11 @@ import { Link } from 'react-scroll';
 const Description = ({ jobDetail, jobDetailErr }) => {
   return (
     <div className="job-des-wrapper">
-      <h2>{jobDetail && jobDetail.title}
-      <Link
-            to="applynow"
-            spy={true}
-            smooth={true}>Apply Now</Link>
+      <h2>
+        {jobDetail && jobDetail.title}
+        <Link to="applynow" spy={true} smooth={true}>
+          Apply Now
+        </Link>
       </h2>
       <div className="experince-wrapper">
         <span className="experince">
@@ -24,17 +24,17 @@ const Description = ({ jobDetail, jobDetailErr }) => {
       </div>
       <div className="skills-requied">
         <h4>Skills Required</h4>
-        <ul>
-          {jobDetail &&
-            jobDetail.skills &&
-            jobDetail.skills.map(skill => {
+        {jobDetail && jobDetail.skills && (
+          <ul>
+            {jobDetail.skills.map(skill => {
               return (
                 <li className="skills" key={skill}>
                   {skill}
                 </li>
               );
             })}
-        </ul>
+          </ul>
+        )}
         <p
           className="career-subtext job-description"
           dangerouslySetInnerHTML={{

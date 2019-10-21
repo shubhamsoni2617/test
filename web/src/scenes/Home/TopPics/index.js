@@ -5,6 +5,8 @@ import 'slick-carousel/slick/slick-theme.css';
 import './style.scss';
 import Constants from '../../../shared/constants';
 import Utilities from '../../../shared/utilities';
+import HomeService from '../../../shared/services/HomeService';
+import Image from '../../../shared/components/Image';
 
 const SampleNextArrow = props => {
   const { className, style, onClick } = props;
@@ -30,9 +32,11 @@ const SamplePrevArrow = props => {
 
 const TopPics = props => {
   const [width, setWidth] = useState(window.innerWidth);
+  const [topPicsData, setTopPicsData] = useState([]);
 
   useEffect(() => {
     window.addEventListener('resize', handleWindowResize);
+    getTopPics();
     return () => {
       window.removeEventListener('resize', handleWindowResize);
     };
@@ -40,6 +44,23 @@ const TopPics = props => {
 
   const handleWindowResize = () => {
     setWidth(window.innerWidth);
+  };
+
+  const getTopPics = () => {
+    const params = {
+      client: Constants.CLIENT
+    };
+    HomeService.getTopPics(params)
+      .then(res => {
+        if (res && res.data) {
+          setTopPicsData(res.data.data);
+        }
+      })
+      .catch(err => {
+        if (err && err.response) {
+          console.log(err.response);
+        }
+      });
   };
 
   const topPics = [
@@ -134,117 +155,138 @@ const TopPics = props => {
         {width <= Constants.MOBILE_BREAK_POINT ? (
           <div className="col-xs-12">
             <div className="grid-container">
-              {topPics.map((pic, i) => {
-                return (
-                  <div key={pic.id} className="item">
-                    <div className="item-wrapper">
-                      <div className="item-desc">
-                        <span className="video-icon">
-                          <img src="assets/images/video-icon.svg" alt="video" />
-                        </span>
-                        <div className="item-img">
-                          <img
-                            src={pic.img}
-                            className="img-fluid item-image"
-                            alt="kurios"
-                          />
-                        </div>
-                        <span
-                          className={`category ${pic.category} top-picks-category`}
-                        >
-                          {pic.category}
-                        </span>
-                        <div className={`item-overlay ${pic.category}-overlay`}>
-                          <div className="overlay-wrapper">
-                            <h3>Kurios Cabinet of Curiosities</h3>
-                            <span>Fri, 19 Apr- Sun, 19 May 2019</span>
-                            <p>
-                              Under the big top Bayfront Avenue, beside Marina
-                              Bay Sands
-                            </p>
-                            <p>
-                              Cirque du Soleil comes to Singapore with its most
-                              acclaimed touring show, KURIOS – Cabinet of
-                              Curiosities.
-                            </p>
+              {topPicsData &&
+                topPicsData.map((pic, i) => {
+                  return (
+                    <div key={pic.id} className="item">
+                      <div className="item-wrapper">
+                        <div className="item-desc">
+                          <span className="video-icon">
+                            <img
+                              src="assets/images/video-icon.svg"
+                              alt="video"
+                            />
+                          </span>
+                          <div className="item-img">
+                            <Image
+                              src={pic.thumb_image}
+                              className="img-fluid item-image"
+                              alt="kurios"
+                              type="Vertical"
+                            />
+                          </div>
+                          <span
+                            className={`category ${pic.primary_genre.toLowerCase()} top-picks-category`}
+                          >
+                            {pic.primary_genre}
+                          </span>
+                          <div
+                            className={`item-overlay ${pic.primary_genre.toLowerCase()}-overlay`}
+                          >
+                            <div className="overlay-wrapper">
+                              <h3>{pic.title}</h3>
+                              <span>{pic.event_date}</span>
+                              {/* <p>
+                                Under the big top Bayfront Avenue, beside Marina
+                                Bay Sands
+                              </p>
+                              <p>
+                                Cirque du Soleil comes to Singapore with its
+                                most acclaimed touring show, KURIOS – Cabinet of
+                                Curiosities.
+                              </p> */}
+                              <p
+                                dangerouslySetInnerHTML={{
+                                  __html: pic.description
+                                }}
+                              ></p>
+                            </div>
                           </div>
                         </div>
+                        <h3>{Utilities.showLimitedChars(pic.title, 15)}</h3>
+                        <a
+                          href="/events"
+                          onClick={e => e.preventDefault()}
+                          className="item-title-overlay"
+                        >
+                          <span>BUY NOW </span>
+                          <img
+                            src="assets/images/next-arrow.svg"
+                            className="img-fluid"
+                            alt="buy-now"
+                          />
+                        </a>
                       </div>
-                      <h3>{Utilities.showLimitedChars(pic.description, 15)}</h3>
-                      <a
-                        href="/events"
-                        onClick={e => e.preventDefault()}
-                        className="item-title-overlay"
-                      >
-                        <span>BUY NOW </span>
-                        <img
-                          src="assets/images/next-arrow.svg"
-                          className="img-fluid"
-                          alt="buy-now"
-                        />
-                      </a>
                     </div>
-                  </div>
-                );
-              })}
+                  );
+                })}
             </div>
           </div>
         ) : (
           <Slider {...settings}>
-            {topPics.map((pic, index) => {
-              return (
-                <div className="grid-container" key={pic.id}>
-                  <div className="item">
-                    <div className="item-wrapper">
-                      <div className="item-desc">
-                        <span className="video-icon">
-                          <img
-                            src="assets/images/video-icon.svg"
-                            alt="video-icon"
-                          />
-                        </span>
-                        <div className="item-img">
-                          <img
-                            src={pic.img}
-                            className="img-fluid item-image"
-                            alt="kurios"
-                          />
-                        </div>
-                        <span
-                          className={`category ${pic.category} top-picks-category`}
-                        >
-                          {pic.category}
-                        </span>
-                        <div className={`item-overlay ${pic.category}-overlay`}>
-                          <div className="overlay-wrapper">
-                            <h3>Kurios Cabinet of Curiosities</h3>
-                            <span>Fri, 19 Apr- Sun, 19 May 2019</span>
-                            <p>
-                              Under the big top Bayfront Avenue, beside Marina
-                              Bay Sands
-                            </p>
-                            <p>
-                              Cirque du Soleil comes to Singapore with its most
-                              acclaimed touring show, KURIOS – Cabinet of
-                              Curiosities.
-                            </p>
+            {topPicsData &&
+              topPicsData.map((pic, index) => {
+                return (
+                  <div className="grid-container" key={pic.id}>
+                    <div className="item">
+                      <div className="item-wrapper">
+                        <div className="item-desc">
+                          <span className="video-icon">
+                            <img
+                              src="assets/images/video-icon.svg"
+                              alt="video-icon"
+                            />
+                          </span>
+                          <div className="item-img">
+                            <Image
+                              src={pic.thumb_image}
+                              className="img-fluid item-image"
+                              alt="kurios"
+                              type="Vertical"
+                            />
+                          </div>
+                          <span
+                            className={`category ${pic.primary_genre.toLowerCase()} top-picks-category`}
+                          >
+                            {pic.primary_genre}
+                          </span>
+                          <div
+                            className={`item-overlay ${pic.primary_genre.toLowerCase()}-overlay`}
+                          >
+                            <div className="overlay-wrapper">
+                              <h3>{pic.title}</h3>
+                              <span>{pic.event_date}</span>
+                              {/* <p>
+                                Under the big top Bayfront Avenue, beside Marina
+                                Bay Sands
+                              </p>
+                              <p>
+                                Cirque du Soleil comes to Singapore with its
+                                most acclaimed touring show, KURIOS – Cabinet of
+                                Curiosities.
+                              </p> */}
+                              <p
+                                dangerouslySetInnerHTML={{
+                                  __html: pic.description
+                                }}
+                              ></p>
+                            </div>
                           </div>
                         </div>
+                        <h3>{pic.title}</h3>
+                        <span className="item-title-overlay">
+                          <span>BUY NOW </span>
+                          <img
+                            src="assets/images/next-arrow.svg"
+                            className="img-fluid"
+                            alt="buy-now"
+                          />
+                        </span>
                       </div>
-                      <h3>Kurios Cabinet of Curiosities</h3>
-                      <span className="item-title-overlay">
-                        <span>BUY NOW </span>
-                        <img
-                          src="assets/images/next-arrow.svg"
-                          className="img-fluid"
-                          alt="buy-now"
-                        />
-                      </span>
                     </div>
                   </div>
-                </div>
-              );
-            })}
+                );
+              })}
           </Slider>
         )}
       </div>
