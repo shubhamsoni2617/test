@@ -182,7 +182,7 @@ const TopPics = props => {
                         >
                           <div className="overlay-wrapper">
                             <h3>{pic.title}</h3>
-                            <span>Fri, 19 Apr- Sun, 19 May 2019</span>
+                            <span>{pic.event_date}</span>
                             <p
                               dangerouslySetInnerHTML={{
                                 __html: pic.description
