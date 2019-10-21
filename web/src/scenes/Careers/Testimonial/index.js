@@ -4,6 +4,7 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import './style.scss';
 import Utilities from '../../../shared/utilities';
+import Tooltip from '../../../shared/components/Tooltip';
 
 const Testimonials = ({ testimonial, testimonialErr }) => {
   const settings = {
@@ -16,17 +17,19 @@ const Testimonials = ({ testimonial, testimonialErr }) => {
     speed: 500,
     responsive: [
       {
-        breakpoint: 1024,
+        breakpoint: 1025,
         settings: {
           centerMode: false,
-          centerPadding: '0px'
+          centerPadding: '0px',
+          slidesToShow: 1
         }
       },
       {
         breakpoint: 600,
         settings: {
           centerMode: false,
-          centerPadding: '0px'
+          centerPadding: '0px',
+          slidesToShow: 1
         }
       }
     ]
@@ -43,9 +46,7 @@ const Testimonials = ({ testimonial, testimonialErr }) => {
                 testimonial.testimonials.map((elem, index) => {
                   return (
                     <li key={index}>
-                      <div className="message">
-                        {Utilities.showLimitedChars(elem.message, 200)}
-                      </div>
+                      <div className="message">{elem.message}</div>
                       <div className="name text-center">
                         <h5>{elem.name}</h5>
                       </div>
