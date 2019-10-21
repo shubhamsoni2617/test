@@ -3,6 +3,9 @@
 .wrapper-events-listing{
     display: flex;
     padding-top: 45px;
+    @media(max-width: 767px){
+        padding-top: 15px;
+    }
     .events-listing {
         width: calc(100% - 338px);
         margin-left: 38px;

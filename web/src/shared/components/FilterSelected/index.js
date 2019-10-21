@@ -1,6 +1,7 @@
 import React from 'react';
 import * as moment from 'moment';
 import './style.scss';
+import closeBlueImg from '../../../assets/images/close-blue.svg'
 import Utilities from '../../utilities';
 
 function FilterSelected(props) {
@@ -27,7 +28,7 @@ function FilterSelected(props) {
     return (
       <>
         {text}
-        <button onClick={() => handleFilters(obj, true)}>X</button>
+        <button onClick={() => handleFilters(obj, true)} className="filtered-tags-close-btn"><img src={closeBlueImg} alt="close-btn" /></button>
       </>
     );
   };

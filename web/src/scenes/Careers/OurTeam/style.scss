@@ -29,6 +29,10 @@
       margin-bottom: 15px;
       padding-bottom: 0;
       line-height: 61px;
+      @media(max-width: 991px){
+        font-size: 38px;
+        line-height: 30px;
+      }
       @media(max-width: 767px){
         font-size: 14px;
       }
@@ -72,7 +76,7 @@
         font-size: 12px;
       }
     }
-    @media(max-width: 767px){
+    @media(max-width: 1024px){
       padding: 30px 25px 30px 25px;
       h2{
         font-size: 32px;
