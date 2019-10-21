@@ -141,7 +141,7 @@ const FeaturedEvents = props => {
     >
       <div className="container-fluid">
         <div className="section-top-wrapper">
-          {heading && <h2>{heading}</h2>}
+          <h2>{heading}</h2>
           <div className="carousel-dots">
             <a href="/events">
               See all{' '}
@@ -182,17 +182,17 @@ const FeaturedEvents = props => {
               </div>
             </div>
           ) : (
-            <Slider {...settings}>
-              {featuredEvents &&
-                featuredEvents.map((event, index) => {
-                  return (
-                    <div className="grid-container" key={index}>
-                      <Item event={event} />
-                    </div>
-                  );
-                })}
-            </Slider>
-          )}
+                <Slider {...settings}>
+                  {featuredEvents &&
+                    featuredEvents.map((event, index) => {
+                      return (
+                        <div className="grid-container" key={index}>
+                          <Item event={event} />
+                        </div>
+                      );
+                    })}
+                </Slider>
+              )}
         </CSSTransitionGroup>
       </div>
     </section>
