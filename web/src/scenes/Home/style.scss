@@ -25,6 +25,21 @@
 			height: auto;
 		}
 	}
+	.giftcard-homepage-wrapper {
+		display: flex;
+		flex-wrap: wrap;
+		width: 100%;
+		background-color: #051e46;
+		justify-content: center;
+		align-items: center;
+		.giftcard-anchor {
+			flex: 0 0 auto;
+			width: auto;
+			.gift-cart-image{
+				padding: 0px;
+			}
+		}
+	}
 }
 
 //header style start
@@ -2308,13 +2323,21 @@ p {
 			}
 		}
 		.item-wrapper {
-			margin-bottom: 20px;
+			margin-bottom: 35px;
+			padding: 0 11px;
 			@media (max-width: 767px) {
 				margin-bottom: 20px;
+				padding: 0 5px;
             }
             &.full-promo{
                 height: 100%;
-            }
+			}
+			.promotions-home-item {
+				display: flex;
+				flex-wrap: wrap;
+				flex-direction: column;
+				width: 100%;
+			}
 			.promotions-img {
 				margin-bottom: 12px;
 				position: relative;
@@ -2330,8 +2353,8 @@ p {
 				}
 			}
 			h3 {
-				font-size: 18px;
-				line-height: 22px;
+				font-size: 16px;
+				line-height: 19px;
 				text-decoration: none;
 				height: 21px;
                 display: block;
@@ -2384,7 +2407,7 @@ p {
 		li {
 			display: inline-block;
 			list-style: none;
-			padding-right: 24px;
+			padding-right: 5px;
 			vertical-align: middle;
 			text-align: center;
 			@media (max-width: 767px) {
@@ -2395,6 +2418,7 @@ p {
 				font-size: 20px;
 				font-family: 'Rubik', sans-serif;
 				color: #ffffff;
+				min-width: 40px;
 				font-weight: 500;
 				@media (max-width: 767px) {
 					font-size: 13px;

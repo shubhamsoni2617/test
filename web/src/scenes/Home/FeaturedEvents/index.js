@@ -10,28 +10,30 @@ import Image from '../../../shared/components/Image';
 
 const Item = ({ event }) => {
   return (
-    <div className="item">
-      <div className="item-wrapper">
-        <div className="featured-item-img">
-          <div className="item-img">
-            <Image
-              src={event && event.full_image}
-              className="img-fluid"
-              type="Tile"
-            />
+    <a href={event && event.navigation_link} target="_blank">
+      <div className="item">
+        <div className="item-wrapper">
+          <div className="featured-item-img">
+            <div className="item-img">
+              <Image
+                src={event && event.full_image}
+                className="img-fluid"
+                type="Tile"
+              />
+            </div>
+            <span
+              className={`category ${event &&
+                event.primary_genere.toLowerCase()}`}
+            >
+              {event.primary_genere}
+            </span>
           </div>
-          <span
-            className={`category ${event &&
-              event.primary_genere.toLowerCase()}`}
-          >
-            {event.primary_genere}
-          </span>
+          {event && event.title && <h3>{event.title}</h3>}
+          {event && event.event_date && <p>{event.event_date}</p>}
+          {event && event.venue_name && <p>{event.venue_name}</p>}
         </div>
-        {event && event.title && <h3>{event.title}</h3>}
-        {event && event.event_date && <p>{event.event_date}</p>}
-        {event && event.venue_name && <p>{event.venue_name}</p>}
       </div>
-    </div>
+    </a>
   );
 };
 
@@ -58,7 +60,7 @@ const SamplePrevArrow = props => {
 };
 
 const FeaturedEvents = props => {
-  const { api, heading } = props;
+  const { api, heading, cssClassName } = props;
   const element = useRef(null);
   const [featuredEvents, setFeaturedEvents] = useState([]);
   const [serverErr, setServerErr] = useState('');
@@ -131,7 +133,12 @@ const FeaturedEvents = props => {
     }
   };
   return (
-    <section className="featured-events" ref={element}>
+    <section
+      className={
+        cssClassName ? `featured-events ${cssClassName}` : 'featured-events'
+      }
+      ref={element}
+    >
       <div className="container-fluid">
         <div className="section-top-wrapper">
           <h2>{heading}</h2>
@@ -154,19 +161,9 @@ const FeaturedEvents = props => {
         >
           {loading ? (
             <ShimmerEffect
-              propCls={`shm_col-xs-6 col-md-${
-                Utilities.mobileAndTabletcheck() || Utilities.mobilecheck()
-                  ? 6
-                  : 2
-              }`}
+              propCls={`shm_col-xs-6 col-md-6`}
               height={150}
-              count={
-                Utilities.mobilecheck()
-                  ? 1
-                  : Utilities.mobileAndTabletcheck()
-                  ? 2
-                  : 6
-              }
+              count={2}
               type="TILE"
             />
           ) : Utilities.mobilecheck() ? (
@@ -185,17 +182,17 @@ const FeaturedEvents = props => {
               </div>
             </div>
           ) : (
-            <Slider {...settings}>
-              {featuredEvents &&
-                featuredEvents.map((event, index) => {
-                  return (
-                    <div className="grid-container" key={index}>
-                      <Item event={event} />
-                    </div>
-                  );
-                })}
-            </Slider>
-          )}
+                <Slider {...settings}>
+                  {featuredEvents &&
+                    featuredEvents.map((event, index) => {
+                      return (
+                        <div className="grid-container" key={index}>
+                          <Item event={event} />
+                        </div>
+                      );
+                    })}
+                </Slider>
+              )}
         </CSSTransitionGroup>
       </div>
     </section>

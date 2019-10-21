@@ -8,6 +8,7 @@ import Image from '../../../shared/components/Image';
 import ShimmerEffect from '../../../shared/components/ShimmerEffect';
 import './style.scss';
 import { CSSTransitionGroup } from 'react-transition-group';
+import { Link } from 'react-router-dom';
 
 const ItemWrapper = ({ promotion, expiredText, handlePromotionExpired }) => {
   return (
@@ -147,14 +148,14 @@ export default class PromotionCarousel extends Component {
               </span>
             </h2>
             <div className="carousel-dots">
-              <a href="/promotions" onClick={e => e.preventDefault()}>
+              <Link to="/promotions">
                 See all{' '}
                 <img
                   src="assets/images/right-arrow.svg"
                   className="img-fluid"
                   alt="arrow"
                 />
-              </a>
+              </Link>
             </div>
           </div>
           <div className="grid-container">
@@ -172,13 +173,7 @@ export default class PromotionCarousel extends Component {
                       : 2
                   }`}
                   height={150}
-                  count={
-                    Utilities.mobilecheck()
-                      ? 1
-                      : Utilities.mobileAndTabletcheck()
-                      ? 2
-                      : 6
-                  }
+                  count={2}
                   type="TILE"
                 />
               ) : Utilities.mobilecheck() ? (
