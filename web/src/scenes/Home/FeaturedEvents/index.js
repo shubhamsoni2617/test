@@ -141,7 +141,7 @@ const FeaturedEvents = props => {
     >
       <div className="container-fluid">
         <div className="section-top-wrapper">
-          {heading && <h2>{heading}</h2>}
+          <h2>{heading}</h2>
           <div className="carousel-dots">
             <a href="/events">
               See all{' '}

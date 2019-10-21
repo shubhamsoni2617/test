@@ -113,12 +113,16 @@ const TopPics = props => {
                             />
                           </div>
                           <span
-                            className={`category ${pic.primary_genre.toLowerCase()} top-picks-category`}
+                            className={`category ${pic.primary_genre
+                              .split('/')[0]
+                              .toLowerCase()} top-picks-category`}
                           >
                             {pic.primary_genre}
                           </span>
                           <div
-                            className={`item-overlay ${pic.primary_genre.toLowerCase()}-overlay`}
+                            className={`item-overlay ${pic.primary_genre
+                              .split('/')[0]
+                              .toLowerCase()}-overlay`}
                           >
                             <div className="overlay-wrapper">
                               <h3>{pic.title}</h3>
@@ -173,12 +177,16 @@ const TopPics = props => {
                           />
                         </div>
                         <span
-                          className={`category ${pic.primary_genre.toLowerCase()} top-picks-category`}
+                          className={`category ${pic.primary_genre
+                            .split('/')[0]
+                            .toLowerCase()} top-picks-category`}
                         >
                           {pic.primary_genre}
                         </span>
                         <div
-                          className={`item-overlay ${pic.primary_genre.toLowerCase()}-overlay`}
+                          className={`item-overlay ${pic.primary_genre
+                            .split('/')[0]
+                            .toLowerCase()}-overlay`}
                         >
                           <div className="overlay-wrapper">
                             <h3>{pic.title}</h3>
