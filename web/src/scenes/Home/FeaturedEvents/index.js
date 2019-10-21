@@ -182,17 +182,17 @@ const FeaturedEvents = props => {
               </div>
             </div>
           ) : (
-            <Slider {...settings}>
-              {featuredEvents &&
-                featuredEvents.map((event, index) => {
-                  return (
-                    <div className="grid-container" key={index}>
-                      <Item event={event} />
-                    </div>
-                  );
-                })}
-            </Slider>
-          )}
+                <Slider {...settings}>
+                  {featuredEvents &&
+                    featuredEvents.map((event, index) => {
+                      return (
+                        <div className="grid-container" key={index}>
+                          <Item event={event} />
+                        </div>
+                      );
+                    })}
+                </Slider>
+              )}
         </CSSTransitionGroup>
       </div>
     </section>
