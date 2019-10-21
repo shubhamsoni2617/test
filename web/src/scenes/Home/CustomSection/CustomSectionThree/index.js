@@ -1,7 +1,8 @@
 import React, { useState, useEffect, Fragment } from 'react';
 import ReactPlayer from 'react-player';
-import ShimmerEffect from '../../../../shared/components/ShimmerEffect';
 import Image from '../../../../shared/components/Image';
+import ShimmerEffect from '../../../../shared/components/ShimmerEffect';
+import './style.scss';
 
 const CustomSectionThree = ({ customSectionThree }) => {
   const [url, setUrl] = useState(null);
@@ -46,52 +47,70 @@ const CustomSectionThree = ({ customSectionThree }) => {
           type="TILE"
         />
       ) : (
-        <div className="row">
-          <div className="col-lg-6">
-            <ReactPlayer
-              width="100%"
-              height="100%"
-              controls
-              pip={pip}
-              muted={muted}
-              url={url && url}
-              playing={playing}
-              // light={light}
-              volume={volume}
-            />{' '}
-          </div>
-          <div className="col-lg-6">
-            {customSectionThree &&
-              customSectionThree
-                .slice(1, customSectionThree.length)
-                .map((vdo, index) => {
-                  return (
-                    <div
-                      key={index}
-                      onClick={() => {
-                        setUrl(vdo.video_url);
-                        setControls(true);
-                        setPip(true);
-                        setLight(false);
-                        setMuted(false);
-                        setVolume(0.5);
-                      }}
-                    >
-                      <span>
-                        <img
-                          src={vdo.video_thumb}
-                          alt=""
-                          width="200"
-                          height="200"
-                        />
-                      </span>
-                      <a>{vdo.title}</a>
-                    </div>
-                  );
-                })}
-          </div>
-        </div>
-      )}
+          <section className="video-gallery">
+            <div className="container-fluid">
+              <div className="section-top-wrapper">
+                <h2>{customSectionThree && customSectionThree[0] && customSectionThree[0].title}</h2>
+                <div className="carousel-dots">
+                  <a href="/events">
+                    See all {' '}
+                    <img
+                      src="assets/images/right-arrow.svg"
+                      className="img-fluid"
+                      alt="arrow"
+                    />
+                  </a>
+                </div>
+              </div>
+              <div className="video-gallery-wrapper">
+                <div className="video-only-section">
+                  <ReactPlayer
+                    width="100%"
+                    height="100%"
+                    controls
+                    pip={pip}
+                    muted={muted}
+                    url={url && url}
+                    playing={playing}
+                    // light={light}
+                    volume={volume}
+                  />{' '}
+                  <h3>Celebrate 2016 - Teaser: Tickets at SISTIC from 9 Nov</h3>
+                </div>
+                <div className="video-subwrapper">
+                  {customSectionThree &&
+                    customSectionThree
+                      .slice(1, customSectionThree.length)
+                      .map((vdo, index) => {
+                        return (
+                          <div className="video-item-image"
+                            key={index}
+                            onClick={() => {
+                              setUrl(vdo.video_url);
+                              setControls(true);
+                              setPip(true);
+                              setLight(false);
+                              setMuted(false);
+                              setVolume(0.5);
+                            }}
+                          >
+                            <span className="video-subwrapper-image">
+                              <img
+                                src={vdo.video_thumb}
+                                alt=""
+                                className="img-fluid"
+                              />
+                            </span>
+                            <a className="video-subwrapper-text">{vdo.title}</a>
+                            {/* <a >[HD] Universal Studios Singapore Tour - Universal Studios Theme Park</a> */}
+                          </div>
+                        );
+                      })}
+                </div>
+              </div>
+            </div>
+          </section>
+        )}
     </div>
   );
 };
