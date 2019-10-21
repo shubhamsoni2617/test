@@ -32,10 +32,10 @@
             .slick-slider{
                 .slick-prev{
                     left: 0;
-                    border: 2px solid #ddd;
+                    border: 2px solid rgba(52, 52, 52, 0.14);
                     border-radius: 50%;
-                    height: 45px;
-                    width: 45px;
+                    height: 46px;
+                    width: 46px;
                     background-color: transparent;
                     background-position: 14px 11px;
                     left: 190px;
@@ -56,10 +56,10 @@
                 }
                 .slick-next{
                     right: 0;
-                    border: 2px solid #ddd;
+                    border: 2px solid rgba(52, 52, 52, 0.14);
                     border-radius: 50%;
-                    height: 45px;
-                    width: 45px;
+                    height: 46px;
+                    width: 46px;
                     background-color: transparent;
                     background-position: 16px 11px;
                     right: 165px;
@@ -103,6 +103,8 @@
                     text-align: center;
                     font-weight: 500;
                     margin-bottom: 10px;
+                    max-height: 104px;
+                    overflow: hidden;
                 }
                 .name{
                     color: #9B9B9B;
