@@ -32,6 +32,7 @@ const SamplePrevArrow = props => {
 const TopPics = props => {
   const [topPics, setTopPics] = useState([]);
   const [width, setWidth] = useState(window.innerWidth);
+  const [topPicsData, setTopPicsData] = useState([]);
 
   useEffect(() => {
     window.addEventListener('resize', handleWindowResize);

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, Fragment } from 'react';
 import './style.scss';
 import attach from '../../../assets/images/attach.svg';
 import ContactUsService from '../../services/ContactUsService';
@@ -6,7 +6,7 @@ import ContactUsService from '../../services/ContactUsService';
 const Attachement = ({ attachedFiles, submit, mandatory, cv }) => {
   const [maxFileLimitMsg, setMaxFileLimitMsg] = useState('');
   const [serverErr, setServerErr] = useState([]);
-  let [fileArr, setFileArr] = useState([]);
+  var [fileArr, setFileArr] = useState([]);
 
   useEffect(() => {
     if (submit) {
@@ -16,32 +16,34 @@ const Attachement = ({ attachedFiles, submit, mandatory, cv }) => {
 
   const handleFiles = files => {
     setMaxFileLimitMsg('');
-    fileArr = [...fileArr, ...files];
-    let fileArrLength = fileArr.length;
-    for (let key in fileArr) {
-      if (fileArr.hasOwnProperty(key)) {
-        let fileSize = fileArr[key].size;
-        let sizeInMB = fileSize / (1024 * 1024);
-        if (sizeInMB > 5) {
-          setMaxFileLimitMsg('files can be uploaded, with up to 5MB size.');
-          setFileArr([]);
-          return;
+    if (files) {
+      fileArr = [...fileArr, ...files];
+      let fileArrLength = fileArr.length;
+      for (let key in fileArr) {
+        if (fileArr.hasOwnProperty(key)) {
+          let fileSize = fileArr[key].size;
+          let sizeInMB = fileSize / (1024 * 1024);
+          if (sizeInMB > 5) {
+            setMaxFileLimitMsg('files can be uploaded, with up to 5MB size.');
+            setFileArr([]);
+            return;
+          }
         }
       }
-    }
-    if (fileArrLength > 3) {
-      setMaxFileLimitMsg('Max 3 files can be uploaded, with up to 5MB size.');
-      setFileArr([]);
-    } else {
-      submitUploadAttachment(fileArr);
-      setMaxFileLimitMsg('');
-      setFileArr(fileArr);
+      if (fileArrLength > 3) {
+        setMaxFileLimitMsg('Max 3 files can be uploaded, with up to 5MB size.');
+        setFileArr([]);
+      } else {
+        submitUploadAttachment(fileArr);
+        setMaxFileLimitMsg('');
+        setFileArr(fileArr);
+      }
     }
     setServerErr([]);
   };
 
   const submitUploadAttachment = files => {
-    if (files.length) {
+    if (files) {
       let formData = new FormData();
       for (let i = 0; i < files.length; i++) {
         let file = files[i];
@@ -59,6 +61,11 @@ const Attachement = ({ attachedFiles, submit, mandatory, cv }) => {
           }
         });
     }
+  };
+
+  const removeFiles = fileIndex => {
+    fileArr.splice(fileIndex, 1);
+    submitUploadAttachment(fileArr);
   };
 
   return (
@@ -94,7 +101,23 @@ const Attachement = ({ attachedFiles, submit, mandatory, cv }) => {
 
       {fileArr &&
         fileArr.map((file, i) => {
-          return <p key={i}>{file.name}</p>;
+          return (
+            <Fragment key={i}>
+              <div className={mandatory ? 'show-border' : ''}>
+                {file.name}
+                {mandatory && (
+                  <p
+                    className="cross-file"
+                    onClick={() => {
+                      removeFiles(i);
+                    }}
+                  >
+                    x
+                  </p>
+                )}
+              </div>
+            </Fragment>
+          );
         })}
       {serverErr &&
         serverErr.map(err => {
