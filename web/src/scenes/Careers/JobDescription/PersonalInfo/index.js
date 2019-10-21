@@ -115,25 +115,27 @@ const PersonalInfo = ({
             )}
           </div>
 
-          <div className="form-group earliest-date">
-            <span>Earliest Start Date</span>{' '}
-            <DayPickerInput
-              className="form-control"
-              value={startDate}
-              placeholder="Start Date"
-              format="DD/MM/YYYY"
-              showOverlay={false}
-              formatDate={formatDate}
-              parseDate={parseDate}
-              inputProps={{ readOnly: true }}
-              dayPickerProps={{
-                selectedDays: [startDate],
-                disabledDays: { before: new Date() },
-                fromMonth: new Date(),
-                numberOfMonths: 1
-              }}
-              onDayChange={handleStartDate}
-            />
+          <div className="form-group earliest-date no-gutters">
+            <span className="col-lg-5 col-5 pl-2">Earliest Start Date</span>{' '}
+            <div className="datepicker col-lg-7 col-7">
+              <DayPickerInput
+                className="form-control"
+                value={startDate}
+                placeholder="DD/MM/YYYY"
+                format="DD/MM/YYYY"
+                showOverlay={false}
+                formatDate={formatDate}
+                parseDate={parseDate}
+                inputProps={{ readOnly: true }}
+                dayPickerProps={{
+                  selectedDays: [startDate],
+                  disabledDays: { before: new Date() },
+                  fromMonth: new Date(),
+                  numberOfMonths: 1
+                }}
+                onDayChange={handleStartDate}
+              />
+            </div>
           </div>
           <div className="form-group">
             <textarea
@@ -162,19 +164,25 @@ const PersonalInfo = ({
               Please attach files
             </span>
           )}
-          <div className="form-group custom-checkbox">
-            <input
-              name="copy"
-              type="checkbox"
-              checked={sendCopy ? true : false}
-              onChange={e => handleCopy(!sendCopy)}
-            />
-            Send Me a Copy
+          <div class="form-group custom-checkbox">
+          <div class="checkbox-block">
+            <div class="container-checkbox">
+              <input
+                  name="copy"
+                  type="checkbox"
+                  id="first" 
+                  name="first"
+                  checked={sendCopy ? true : false}
+                  onChange={e => handleCopy(!sendCopy) }
+                />
+              <label for="first" class="block-box">Send Me a Copy</label>
+            </div>
+          </div>
           </div>
           <input
             className="form-control btn-link"
             type="submit"
-            value={loading ? 'Submitting...' : 'Submit Application'}
+            value= 'Submit Application'
             disabled={loading ? true : false}
           />
         </form>

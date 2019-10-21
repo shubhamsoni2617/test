@@ -7,7 +7,7 @@
     a{
       display: none;
     }
-    @media(max-width: 767px){
+    @media(max-width: 991px){
         display: flex;
         justify-content: space-between;
         align-items: center;
@@ -26,6 +26,7 @@
       align-items: center;
       margin-right: 20px;
       color: #626262;
+      font-size: 16px;
       img{
         margin-right: 10px;
       }

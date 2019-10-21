@@ -1,5 +1,5 @@
 .small-header {
-    background-color: #1a70b7;
+    background-color: rgba(0, 119, 200, 0.8);
     position: fixed;
     top: 0px;
     left: 0px;
@@ -165,6 +165,7 @@
                         min-width: 200px;
                         transition: 0.5s opacity;
                         opacity: 0;
+                        visibility: hidden;
                         &:before{
                             position: absolute;
                             content: "";
@@ -205,6 +206,7 @@
                     &:hover{
                         .small-header-submenu{
                             opacity: 1;
+                            visibility: visible;
                         }
                     }
                 }

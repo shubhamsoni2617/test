@@ -15,7 +15,6 @@ const Contact = ({ attachement, handleEnquiry }) => {
   const [message, setMessage] = useState('');
   const [submitResponse, setSubmitResponse] = useState([]);
   const [successMsg, setSuccessMsg] = useState('');
-  const [files, setFiles] = useState({});
   const [maxFileLimitMsg, setMaxFileLimitMsg] = useState('');
   const [errMsg, setErrMsg] = useState('');
   const [loading, setLoading] = useState(false);
@@ -25,6 +24,7 @@ const Contact = ({ attachement, handleEnquiry }) => {
   const [filePath, setFilePath] = useState([]);
   const [submit, setSubmit] = useState(false);
   const [selectedId, setSelectedId] = useState(null);
+  let [fileArr, setFileArr] = useState([]);
 
   useEffect(() => {
     fetchEnquiry();
@@ -88,9 +88,9 @@ const Contact = ({ attachement, handleEnquiry }) => {
             setSelectedId(null);
             handleEnquiry && handleEnquiry('Select an Enquiry');
             setName('');
+            setFileArr([]);
             setEmail('');
             setPhone('');
-            setFiles({});
             setMessage('');
             setError(false);
           }, 1000);
@@ -156,31 +156,34 @@ const Contact = ({ attachement, handleEnquiry }) => {
   };
 
   const handleFile = e => {
-    setFiles({});
     const { files } = e.target;
-    const filesLength = files.length;
-    let fileSize = 0;
-    for (let key in files) {
-      if (files.hasOwnProperty(key)) {
-        fileSize = fileSize + files[key].size;
+    fileArr = [...fileArr, ...files];
+    let fileArrLength = fileArr.length;
+    for (let key in fileArr) {
+      if (fileArr.hasOwnProperty(key)) {
+        let fileSize = fileArr[key].size;
+        let sizeInMB = fileSize / (1024 * 1024);
+        if (sizeInMB > 5) {
+          setMaxFileLimitMsg('files can be uploaded, with up to 5MB size.');
+          setFileArr([]);
+          return;
+        }
       }
     }
-    const sizeInMB = fileSize / (1024 * 1024);
-    if (filesLength > 3 || sizeInMB > 5) {
-      setMaxFileLimitMsg('Max 3 files can be uploaded, with up to 5MB size.');
+    if (fileArrLength > 3) {
+      setMaxFileLimitMsg('Max 3 files can be uploaded, with up to 5MB size.');
+      setFileArr([]);
     } else {
-      submitUploadAttachment(files);
+      submitUploadAttachment(fileArr);
       setMaxFileLimitMsg('');
-      setFiles(files);
+      setFileArr(fileArr);
     }
   };
 
   const submitUploadAttachment = files => {
     let formData = new FormData();
-    let fileArr = [];
     for (let i = 0; i < files.length; i++) {
       let file = files[i];
-      // fileArr.push(file);
       formData.append('file[' + i + ']', file);
     }
     ContactUsService.uploadAttachement(formData)
@@ -312,8 +315,8 @@ const Contact = ({ attachement, handleEnquiry }) => {
         {attachement && (
           <div className="form-group attach-doc">
             <div className="row">
-              <div className="col-lg-4 label pr-0">Attach Documents</div>
-              <div className="col-lg-8">
+              <div className="col-lg-5 label pr-0">Attach Documents</div>
+              <div className="col-lg-7">
                 <label
                   htmlFor="file-upload"
                   className="custom-file-upload  form-control text-right"
@@ -334,9 +337,10 @@ const Contact = ({ attachement, handleEnquiry }) => {
                   pdf,jpeg,png,jpg
                 </span>
                 <p className="text-danger">{maxFileLimitMsg}</p>
-                {files && files[0] && <p>{files[0].name}</p>}
-                {files && files[1] && <p>{files[1].name}</p>}
-                {files && files[2] && <p>{files[2].name}</p>}
+                {fileArr &&
+                  fileArr.map((file, i) => {
+                    return <p key={i}>{file.name}</p>;
+                  })}
               </div>
             </div>
           </div>
