@@ -81,16 +81,7 @@ class Home extends Component {
           />
           {/* <img className={`main-image ${this.state.imageUrl ? 'show-image' : ''}`} src={primeSlider} alt="prime Slider" /> */}
         </div>
-        <CarouselConatiner
-          title="Top Picks For You"
-          classStr="whats-new"
-          arrows={true}
-          autoplay={false}
-          infinite={false}
-          dots={true}
-          api={HomeService.getTopPics}
-        />
-        {/* <TopPics />  */}
+        <TopPics /> 
         <div className="giftcard-homepage-wrapper">
           {giftCard &&
             giftCard.map(elem => {
