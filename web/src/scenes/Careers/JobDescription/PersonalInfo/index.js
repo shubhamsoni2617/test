@@ -120,7 +120,7 @@ const PersonalInfo = ({
             <DayPickerInput
               className="form-control"
               value={startDate}
-              placeholder="Start Date"
+              placeholder="DD/MM/YYYY"
               format="DD/MM/YYYY"
               showOverlay={false}
               formatDate={formatDate}

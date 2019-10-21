@@ -32,7 +32,7 @@ const Opening = ({ jobListing, jobListingErr }) => {
                     {elem.job_type.map((jobType, i) => {
                       return (
                         <Fragment key={i}>
-                          <span> {jobType}</span>{' '}
+                          <span className="place"> {jobType}</span>{' '}
                         </Fragment>
                       );
                     })}
