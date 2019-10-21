@@ -165,6 +165,7 @@
                         min-width: 200px;
                         transition: 0.5s opacity;
                         opacity: 0;
+                        visibility: hidden;
                         &:before{
                             position: absolute;
                             content: "";
@@ -205,6 +206,7 @@
                     &:hover{
                         .small-header-submenu{
                             opacity: 1;
+                            visibility: visible;
                         }
                     }
                 }

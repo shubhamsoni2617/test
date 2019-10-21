@@ -24,17 +24,17 @@ const Description = ({ jobDetail, jobDetailErr }) => {
       </div>
       <div className="skills-requied">
         <h4>Skills Required</h4>
-        <ul>
-          {jobDetail &&
-            jobDetail.skills &&
-            jobDetail.skills.map(skill => {
+        {jobDetail && jobDetail.skills && (
+          <ul>
+            {jobDetail.skills.map(skill => {
               return (
                 <li className="skills" key={skill}>
                   {skill}
                 </li>
               );
             })}
-        </ul>
+          </ul>
+        )}
         <p
           className="career-subtext job-description"
           dangerouslySetInnerHTML={{
