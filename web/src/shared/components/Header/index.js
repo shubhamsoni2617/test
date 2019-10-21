@@ -2,7 +2,7 @@ import React, { useState, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import logo from '../../../assets/images/logo.png';
 import './style.scss';
-import { Submenu } from '../Submenu';
+import { Submenu, SubmenuWrap } from '../Submenu';
 
 const Header = ({ menuActive, pathName }) => {
   let refValue = useRef();
@@ -126,53 +126,35 @@ const Header = ({ menuActive, pathName }) => {
             </ul> */}
             <ul>
               <li className="has-submenu">
-                <a
-                  className={`${showMegaMenu ? 'active' : ''}`}
-                  onClick={() => handleMouseStatus(!showMegaMenu)}
-                >
-                  Get Started
-                </a>
-                <ul className={`submenu ${showMegaMenu ? 'active' : ''}`}>
-                  <li className="has-submenu">
-                    <Submenu
-                      heading="Sell tickets with us"
-                      buttonText="Sell tickets with us"
-                      data={null}
-                      submenuClass=""
-                      link=""
-                      closeSubmenu={handleNavigationClose}
-                      resetFilters={() => {}}
-                      clearFilters={() => {}}
-                      applyFilters={() => {}}
-                    />
-                  </li>
-                  <li className="has-submenu">
-                    <Submenu
-                      heading="System Licencing"
-                      buttonText="System Licencing"
-                      data={null}
-                      submenuClass=""
-                      link=""
-                      closeSubmenu={handleNavigationClose}
-                      resetFilters={() => {}}
-                      clearFilters={() => {}}
-                      applyFilters={() => {}}
-                    />
-                  </li>
-                  <li className="has-submenu">
-                    <Submenu
-                      heading="Be our partner"
-                      buttonText="Be our partner"
-                      data={null}
-                      submenuClass=""
-                      link=""
-                      closeSubmenu={handleNavigationClose}
-                      resetFilters={() => {}}
-                      clearFilters={() => {}}
-                      applyFilters={() => {}}
-                    />
-                  </li>
-                </ul>
+                <Submenu>
+                  {(menueStatus, setMenuStatus) => (
+                    <>
+                      <button
+                        className={`backbutton ${menueStatus ? 'active' : ''}`}
+                        type="button"
+                        onClick={() => setMenuStatus(!menueStatus)}
+                      >
+                        Get Started
+                      </button>
+                      <SubmenuWrap
+                        menueStatus={menueStatus}
+                        setMenuStatus={setMenuStatus}
+                      >
+                        <ul className="submenu">
+                          <li className="has-submenu">
+                            <Link to="/">Subscription</Link>
+                          </li>
+                          <li className="has-submenu">
+                            <Link to="/">Booking History</Link>
+                          </li>
+                          <li className="has-submenu">
+                            <Link to="/">Logout</Link>
+                          </li>
+                        </ul>
+                      </SubmenuWrap>
+                    </>
+                  )}
+                </Submenu>
               </li>
               <li>
                 <Link to="/about-us" onClick={() => handleNavigationClose()}>
