@@ -1,14 +1,20 @@
 import React, { Fragment } from 'react';
 
 const SearchCategory = props => {
-  const { searchCategories, defaultCategoryId, handleActiveCategory } = props;
+  const { defaultCategoryId, handleActiveCategory } = props;
+  let searchCategories;
+  if (props.searchCategories) {
+    Object.keys(props.searchCategories).map((key) => {
+      return [props.searchCategories[key]];
+    });
+  }
   return (
     <div className="promotions-full-wrapper">
       <section className="promotions-wrapper">
         <div className="promotions-nav">
           <ul className="nav nav-tabs" id="nav-tab" role="tablist">
-            {searchCategories && searchCategories[0].total
-              ? searchCategories.map(category => {
+            {searchCategories && searchCategories[0] && searchCategories[0].total
+              ? searchCategories && searchCategories.map(category => {
                 return (
                   <li
                     key={category.type}

@@ -321,6 +321,9 @@
             }
             .promotions-nav{
                 padding-bottom: 0px;
+                .nav-tabs{
+                    justify-content: flex-start;
+                }
                 li{
                     margin: 0 10px;
                     .nav-item{
@@ -392,11 +395,13 @@
                 display: inline-block;
                 font-family: 'Montserrat', sans-serif;
                 background-color: #fff;
+                box-shadow: 0 0 0 1px #e2e2e2;
                 &.event {
                     background-color: #07B3F0;
                     color: #fff;
                     border-color: #07B3F0;
                     padding: 0px 6px 1px;
+                    box-shadow: none;
                     font-weight: 600;
                     font-family: 'Montserrat', sans-serif;
                     word-break: break-word;
