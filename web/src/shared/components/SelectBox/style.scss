@@ -105,15 +105,16 @@ body {
 
 .options-top{
   position: absolute;
-  top: -187px;
+  top: -190px;
   left: 0;
   right: 0;
-  border: solid #ddd;
-  border-width: 0 1px;
+  border: 0;
   background: #fff;
+  padding-top: 5px;
   height: 195px;
   overflow-y: scroll;
   overflow-x: hidden;
+  box-shadow: -1px -3px 2px 1px rgba(0, 0, 0, 0.04);
 }
 
 .option {

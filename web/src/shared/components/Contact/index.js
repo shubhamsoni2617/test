@@ -312,8 +312,8 @@ const Contact = ({ attachement, handleEnquiry }) => {
         {attachement && (
           <div className="form-group attach-doc">
             <div className="row">
-              <div className="col-lg-4 label pr-0">Attach Documents</div>
-              <div className="col-lg-8">
+              <div className="col-lg-5 label pr-0">Attach Documents</div>
+              <div className="col-lg-7">
                 <label
                   htmlFor="file-upload"
                   className="custom-file-upload  form-control text-right"

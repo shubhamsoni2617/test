@@ -71,10 +71,10 @@ const Attachement = ({ attachedFiles, submit, mandatory, cv }) => {
   return (
     <div className="form-group attach-doc">
       <div className="row no-gutters">
-        <span className="col-lg-4 col-5 pl-2 attach-text">
+        <span className="col-lg-5 col-5 pl-2 attach-text">
           Attach Documents {mandatory && <span>*</span>}
         </span>
-        <div className="col-lg-8 col-7 resume">
+        <div className="col-lg-7 col-7 resume">
           <span className="placeholder">Resume/CV</span>
           <label
             htmlFor="file-upload"
@@ -103,18 +103,20 @@ const Attachement = ({ attachedFiles, submit, mandatory, cv }) => {
         fileArr.map((file, i) => {
           return (
             <Fragment key={i}>
-              <div className={mandatory ? 'show-border' : ''}>
-                {file.name}
-                {mandatory && (
-                  <p
-                    className="cross-file"
-                    onClick={() => {
-                      removeFiles(i);
-                    }}
-                  >
-                    x
-                  </p>
-                )}
+              <div className="col-lg-8 col-7 ml-auto file-preview">
+                <div className={mandatory ? 'show-border' : ''}>
+                  {file.name}
+                  {mandatory && (
+                    <p
+                      className="cross-file"
+                      onClick={() => {
+                        removeFiles(i);
+                      }}
+                    >
+                      x
+                    </p>
+                  )}
+                </div>
               </div>
             </Fragment>
           );

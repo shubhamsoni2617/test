@@ -1,3 +1,21 @@
+%placeholder {
+  &::-webkit-input-placeholder { 
+    color: rgba(52, 52, 52, 0.7);
+    font-size: 16px;
+  }
+  &::-moz-placeholder { 
+    color: rgba(52, 52, 52, 0.7);
+    font-size: 16px;
+  }
+  &:-ms-input-placeholder { 
+    color: rgba(52, 52, 52, 0.7);
+    font-size: 16px;
+  }
+  &:-moz-placeholder { 
+    color: rgba(52, 52, 52, 0.7);
+    font-size: 16px;
+  }
+}
 .personal-info-wrapper{
   margin-bottom: 40px;
   .personal-info{
@@ -56,12 +74,34 @@
     }
     .form-group{
       margin-bottom: 25px;
+      input, textarea{
+        @extend %placeholder;
+        @media(max-width: 767px){
+          &::-webkit-input-placeholder { 
+              font-size: 14px;
+            }
+            &::-moz-placeholder { 
+              font-size: 14px;
+            }
+            &:-ms-input-placeholder { 
+              font-size: 14px;
+            }
+            &:-moz-placeholder { 
+              font-size: 14px;
+            }
+        }
+      }
+
       .form-control{
         border-radius: 0;
         min-height: 36px;
         border: 1px solid rgba(151, 151, 151, 0.2);
         font-size: 16px;
         line-height: 19px;
+        margin-bottom: 0;
+        @media(max-width: 767px){
+          font-size: 14px;
+        }
       }
       &.attach-doc{
         input.form-control{
@@ -83,13 +123,111 @@
                 padding-top: 0px;
             }
         }
+        .file-preview{
+          word-break: break-all;
+          padding: 10px 0 0px 35px;
+          div{
+              margin-bottom: 5px;
+          }
+          .show-border{
+              margin: 0;
+              padding: 5px 10px;
+              display: flex;
+              justify-content: space-between;
+              align-items: center;
+              border: 1px solid rgba(151, 151, 151, 0.2);
+              color: #0098FF;
+              font-size: 16px;
+              .cross-file{
+                margin-bottom: 0;
+                color: rgba(52, 52, 52, 0.5);
+                font-size: 20px;
+              }
+          }
+      }
       }
       &.custom-checkbox{
         input{
           margin-right: 10px;
         }
         font-size: 16px;
+        margin-top: 10px;
+        .container-checkbox {
+          display: block;
+          position: relative;
+          padding-left: 35px;
+          margin-bottom: 12px;
+          cursor: pointer;
+          font-size: 22px;
+          -webkit-user-select: none;
+          -moz-user-select: none;
+          -ms-user-select: none;
+          user-select: none;
+          // &:hover {
+          //   input {
+          //     & ~ label {
+          //       &:before {
+          //         background-color: #c1c1c1;
+          //       }
+          //     }
+          //   }
+          // }
+          input {
+            &:checked {
+              & ~ label {
+                &:before {
+                  background-color: #2196F3;
+                }
+                &:after {
+                  display: block;
+                }
+              }
+            }
+          }
+        }
+        .checkbox-block {
+          .container-checkbox {
+            input {
+              position: absolute;
+              opacity: 0;
+            }
+            label {
+              font-size: 16px;
+              color: #343434;
+              &:before {
+                content: '';
+                position: absolute;
+                width: 20px;
+                height: 20px;
+                left: 0;
+                top: 0px;
+                background-color: #fff;
+                border: 1px solid #CECECE;
+              }
+              &:after {
+                left: 7px;
+                top: 1px;
+                width: 7px;
+                height: 13px;
+                border: solid white;
+                border-width: 0px 2px 2px 0px;
+                -webkit-transform: rotate(45deg);
+                -moz-transform: rotate(45deg);
+                transform: rotate(45deg);
+              }
+            }
+          }
+        }
+        label {
+          &:after {
+            content: '';
+            position: absolute;
+            display: none;
+          }
+        }
+        
       }
+
     }
     @media(max-width: 991px){
       margin: 10px 0 30px 0;
@@ -104,8 +242,9 @@
       span{
         color: rgba(52, 52, 52, 0.7);
         font-family: 'Rubik', sans-serif;
+        font-size: 16px;
         @media(max-width: 767px){
-          font-size: 12px;
+          font-size: 14px;
         }
       }
       input{
@@ -115,9 +254,26 @@
         font-size: 16px;
         line-height: 19px;
         padding: 10px;
-        margin-left: 20px;
+        width: 100%;
         @media(max-width: 767px){
           margin-left: 5px;
+        }
+      }
+      .datepicker{
+        .DayPickerInput{
+          position: relative;
+          margin-right: 5px;
+          &:after{
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            background-image: url(../../../../assets/images/job-description/small-calendar.svg);
+            content: "";
+            width: 20px;
+            height: 20px;
+            background-repeat: no-repeat;
+          }
         }
       }
     }
@@ -136,7 +292,12 @@
 }
 .attach-doc{
   .attach-text{
-    padding: 0 10px !important;
+    padding: 0 10px 0 0 !important;
+    color: #343434;
+    font-size: 16px;
+    @media(max-width: 767px){
+        font-size: 14px;
+    }
   }
   div{
     font-size: 12px;
@@ -152,7 +313,9 @@
 .resume{
   .placeholder{
       position: absolute;
-      bottom: 10px;
+      bottom: 5px;
+      color: rgba(52, 52, 52, 0.7);
+      font-size: 16px;
   }
 }
 .margin-negative
