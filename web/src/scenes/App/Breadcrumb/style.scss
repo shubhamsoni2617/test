@@ -28,7 +28,7 @@
         left: 0px;
         top: 50%;
         transform: translateY(-50%);
-        padding-top: 108px;
+        padding-top: 128px;
         z-index: 1;
         @media(max-width: 991px) {
             padding-top: 101px;
@@ -51,7 +51,7 @@
     .banner-wrapper {
         margin: 0 auto;
         text-align: center;
-        height: 271px;
+        height: 290px;
         img {
             object-fit: cover;
             height: 100%;
@@ -60,6 +60,6 @@
         }
     }
     .breadcrumb li a{
-      font-weight: 500;
+      font-weight: 300;
     }
 }
