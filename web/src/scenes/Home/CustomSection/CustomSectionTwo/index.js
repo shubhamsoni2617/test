@@ -2,6 +2,8 @@ import React, { Fragment } from 'react';
 import './style.scss';
 import Image from '../../../../shared/components/Image';
 import ShimmerEffect from '../../../../shared/components/ShimmerEffect';
+import pridge from '../../../../assets/images/pride.jpg';
+import royalSubimg from '../../../../assets/images/royal-img.png';
 
 const CustomSectioTwo = ({ customSectionTwo, loading }) => {
   return !customSectionTwo.length ? (
@@ -12,13 +14,23 @@ const CustomSectioTwo = ({ customSectionTwo, loading }) => {
       type="TILE"
     />
   ) : (
-      <section className="Royals">
+      <section className="royal-wrapper">
         <div className="container-fluid">
-          <div className="container row w">
-            <div className="col-lg-6">
-              <h1>
-                {customSectionTwo && customSectionTwo[0] && customSectionTwo[0].title}
-              </h1>
+          <div className="section-top-wrapper">
+            <h2>Royals</h2>
+            <div className="carousel-dots">
+              <a href="/events">
+                More from Royals {' '}
+                <img
+                  src="assets/images/right-arrow.svg"
+                  className="img-fluid"
+                  alt="arrow"
+                />
+              </a>
+            </div>
+          </div>
+          <div className="royal-items-wrapper">
+            <div className="royal-leftsection">
               <a
                 href={
                   customSectionTwo &&
@@ -27,37 +39,44 @@ const CustomSectioTwo = ({ customSectionTwo, loading }) => {
                 }
                 target="_blank"
               >
-                <div style={{ margin: '20px' }}>
-                  {customSectionTwo && customSectionTwo[0] && (
+                <div>
+                  {/* {customSectionTwo && customSectionTwo[0] && (
                     <Image
                       src={customSectionTwo[0].full_image}
                       alt={customSectionTwo[0].alt}
                       type="BigBanner"
                     />
-                  )}
+                  )} */}
+                  <img src={pridge} alt="pride" className="img-fluid" />
                 </div>
               </a>
             </div>
-            <div className="col-lg-6">
-              {customSectionTwo &&
-                customSectionTwo.slice(1, customSectionTwo.length).map((elem, i) => {
-                  return (
-                    <div key={i}>
-                      <h3>{elem.title}</h3>
-                      <a href={elem.navigation_link} target="_blank">
-                        <div style={{ margin: '20px' }}>
-                          {elem && elem.full_image && (
+            <div className="royal-rightsection">
+              <h3>{customSectionTwo && customSectionTwo[0] && customSectionTwo[0].title}</h3>
+              <p>10 Jan 2019</p>
+              <div className="royal-items">
+                {customSectionTwo &&
+                  customSectionTwo.slice(1, customSectionTwo.length).map((elem, i) => {
+                    return (
+                      <div key={i} className="item-wrapper">
+                        <a className="item-img" href={elem.navigation_link} target="_blank">
+                          {/* {elem && elem.full_image && (
                             <Image
                               src={elem.full_image}
                               alt={elem.alt}
                               type="Horizontal"
                             />
-                          )}
+                          )} */}
+                          <img src={royalSubimg} alt="pride" className="img-fluid" />
+                        </a>
+                        <div className="royal-item-content">
+                          <h3>{elem.title}</h3>
+                          <p>24 May 2019</p>
                         </div>
-                      </a>
-                    </div>
-                  );
-                })}
+                      </div>
+                    );
+                  })}
+              </div>
             </div>
           </div>
         </div>
