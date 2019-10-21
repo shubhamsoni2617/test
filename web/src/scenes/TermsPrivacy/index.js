@@ -1,7 +1,6 @@
 import React, { Fragment, useState, useEffect } from 'react';
 import termsBanner from '../../assets/images/tc-banner.png';
 import privacyBanner from '../../assets/images/Privacy.png';
-
 import TermsAndPrivacyService from '../../shared/services/TermsAndPrivacyService';
 import './style.scss';
 import ShimmerEffect from '../../shared/components/ShimmerEffect';
@@ -39,15 +38,26 @@ const TermsPrivacy = props => {
           )}
 
           <div className="banner-overlay">
-            {termsprivacy && <h1>{termsprivacy[0].title}</h1>}
+            {props.cmsPageType === 1 && termsprivacy
+              ? termsprivacy && <h1>{termsprivacy.terms_cond.title}</h1>
+              : termsprivacy && <h1>{termsprivacy.privacy_policy.title}</h1>}
           </div>
         </div>
-        {termsprivacy ? (
+        {termsprivacy && props.cmsPageType === 1 ? (
           <div className="terms-privacy-body">
             <div
               className="container"
               dangerouslySetInnerHTML={{
-                __html: termsprivacy[0].description
+                __html: termsprivacy.terms_cond.description
+              }}
+            />
+          </div>
+        ) : termsprivacy && props.cmsPageType === 2 ? (
+          <div className="terms-privacy-body">
+            <div
+              className="container"
+              dangerouslySetInnerHTML={{
+                __html: termsprivacy.privacy_policy.description
               }}
             />
           </div>
