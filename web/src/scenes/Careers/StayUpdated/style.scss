@@ -20,7 +20,7 @@
 }
 .stay-update{
     background-color: #F0F9FF;
-    padding: 85px 67px 44px 105px;
+    padding: 85px 48px 44px 105px;
     .career-title{
         line-height: 52px;
         padding-bottom: 26px;
@@ -50,6 +50,10 @@
         }
     }
     form{
+        .text-danger{
+            padding-top: 5px;
+            display: block;
+        }
         .form-group{
             margin-top: 16px;
             margin-bottom: 0;
@@ -62,8 +66,11 @@
         }
         .select{
             width: 100%;
+            .label{
+                margin: 0;
+            }
             .selection{
-                padding: 5px 0;
+                padding: 10px 0;
                 border: 0;
                 background: transparent;
                 border-bottom: 1px solid rgba(151, 151, 151, 0.2);
@@ -72,6 +79,9 @@
                     top: 50%;
                     transform: translateY(-50%);
                     right: 6px;
+                    img{
+                        width: 10px;
+                    }
                 }
                 .placeholder{
                     font-size: 16px;
@@ -84,6 +94,11 @@
                         top: 2px;
                     }
                 }
+                .multiple{
+                    background: transparent;
+                    padding: 5px 30px 5px 17px;
+                    width: 90%;
+                }
             }
             .options{
                 border: 0;
@@ -91,10 +106,35 @@
                     border: 0;
                 }
             }
+            .options-top{
+                .option{
+                    font-size: 16px;
+                    color: #343434;
+                    border: 0;
+                    &.selected{
+                        background: #d9f2fb00;
+                        color: #0098FF;
+                        
+                        .checkbox{
+                            border: 1px solid #979797;
+                            svg{
+                                width: 10px;
+                                margin-top: -2px;
+                            }
+                        }
+                    }
+                    .checkbox{
+                        border: 1px solid #979797;
+                        width: 14px;
+                        height: 14px;
+                    }
+                }
+            }
             &:focus{
                 .selection{
                     background: #fff;
                     box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.1);
+                    border: 0;
                 }
                 .options{
                     background: #fff;
@@ -152,7 +192,8 @@
             .attach-text{
                 padding-right: 10px;
                 font-size: 16px;
-                color: rgba(52, 52, 52, 0.7);
+                color: #343434;
+                padding-left: 0 !important;
                 @media(max-width: 767px){
                     font-size: 14px;
                 }
@@ -192,6 +233,19 @@
                     @media(max-width: 767px){
                         bottom: 3px;
                     }
+                }
+            }
+            .file-preview{
+                word-break: break-all;
+                padding: 10px 0 10px 35px;
+                div{
+                    margin-bottom: 5px;
+                }
+                .show-border{
+                    margin-top: 10px;
+                }
+                @media(max-width: 767px){
+                    padding: 10px 0 10px 0px;
                 }
             }
         }
