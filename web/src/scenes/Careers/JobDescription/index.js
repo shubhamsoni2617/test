@@ -173,7 +173,6 @@ class JobDescription extends Component {
   };
 
   handleFiles = filePath => {
-    console.log(filePath);
     this.setState({ filePath, submit: false });
   };
 
