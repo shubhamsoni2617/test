@@ -7,6 +7,9 @@
             color: #fff;
         }
     }
+    .royal-side-padding{
+        padding: 0 50px;
+    }
     .royal-items-wrapper {
         display: flex;
         flex-wrap: wrap;
@@ -67,10 +70,19 @@
                 h3{
                     font-size: 14px;
                     line-height: 20px;
+                    transition: 0.5s color;
+                    -webkit-transition: 0.5s color;
+                    -moz-transition: 0.5s color;
+                    -o-transition: 0.5s color;
                 }
                 p{
                     font-size: 14px;
                     line-height: 22px;
+                }
+            }
+            &:hover{
+                h3{
+                    color: #0098ff;
                 }
             }
         }

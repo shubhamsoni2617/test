@@ -429,6 +429,7 @@ button,
 	}
 	&:empty{
 		padding: 0px;
+		display: none !important;
 	}
     &.musical {
         background-color: #07B3F0;

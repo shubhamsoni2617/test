@@ -151,12 +151,15 @@ section{
     background-color: $dance-color;
     display: inline-block;
     text-align: center;
-    text-transform: capitalize;
+    text-transform: capitalize; 
     padding: 0px 5px;
     @include mobile-view{
         font-size: 11px;
         line-height: 18px;
         height: 18px;
+    }
+    &:empty{
+        display: none;
     }
 }
 
