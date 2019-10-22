@@ -2,7 +2,6 @@ import React, { useState, useEffect, useRef } from 'react';
 import Slider from 'react-slick';
 import './style.scss';
 import Constants from '../../../shared/constants';
-import AdvertisementService from '../../../shared/services/AdvertisementService';
 import Utilities from '../../../shared/utilities';
 import { CSSTransitionGroup } from 'react-transition-group';
 import ShimmerEffect from '../../../shared/components/ShimmerEffect';
@@ -183,17 +182,17 @@ const FeaturedEvents = props => {
               </div>
             </div>
           ) : (
-                <Slider {...settings}>
-                  {featuredEvents &&
-                    featuredEvents.map((event, index) => {
-                      return (
-                        <div className="grid-container" key={index}>
-                          <Item event={event} />
-                        </div>
-                      );
-                    })}
-                </Slider>
-              )}
+            <Slider {...settings}>
+              {featuredEvents &&
+                featuredEvents.map((event, index) => {
+                  return (
+                    <div className="grid-container" key={index}>
+                      <Item event={event} />
+                    </div>
+                  );
+                })}
+            </Slider>
+          )}
         </CSSTransitionGroup>
       </div>
     </section>
