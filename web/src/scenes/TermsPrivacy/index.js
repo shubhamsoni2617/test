@@ -1,15 +1,12 @@
 import React, { Fragment, useState, useEffect } from 'react';
 import termsBanner from '../../assets/images/tc-banner.png';
-import privacyBanner from '../../assets/images/Privacy.png';
 import TermsAndPrivacyService from '../../shared/services/TermsAndPrivacyService';
 import './style.scss';
-import ShimmerEffect from '../../shared/components/ShimmerEffect';
 
 const TermsPrivacy = props => {
   const [termsprivacy, setTermsPrivacy] = useState(null);
   const [tabTitle, setTabTitle] = useState('');
   const [tabDescription, setTabDescription] = useState('');
-  const [isShimmerOn, setIsShimmerOn] = useState(false);
 
   let termsPrivacyArr;
 
@@ -18,13 +15,6 @@ const TermsPrivacy = props => {
     fetchTermsConditions();
   }, []);
 
-  useEffect(() => {
-    setIsShimmerOn(true);
-    setTimeout(() => {
-      setIsShimmerOn(false);
-    }, 1000);
-  }, [tabTitle]);
-
   const fetchTermsConditions = () => {
     const params = {
       type: props.cmsPageType
@@ -32,11 +22,9 @@ const TermsPrivacy = props => {
     TermsAndPrivacyService.getTermsAndPrivacyService(params)
       .then(res => {
         let data = res.data.data;
-        setTimeout(() => {
-          setTermsPrivacy(data);
-          setTabTitle(data.terms_cond.title);
-          setTabDescription(data.terms_cond.description);
-        }, 1000);
+        setTermsPrivacy(data);
+        setTabTitle(data.terms_cond.title);
+        setTabDescription(data.terms_cond.description);
       })
       .catch(err => {
         console.log(err);
@@ -87,23 +75,12 @@ const TermsPrivacy = props => {
           </ul>
         </div>
         <div className="terms-privacy-body">
-          {isShimmerOn ? (
-            <div className="container">
-              <ShimmerEffect
-                propCls="shm_col-xs-6 col-md-12"
-                height={200}
-                count={2}
-                type="TILE"
-              />
-            </div>
-          ) : (
-            <div
-              className="container"
-              dangerouslySetInnerHTML={{
-                __html: tabDescription
-              }}
-            />
-          )}
+          <div
+            className="container"
+            dangerouslySetInnerHTML={{
+              __html: tabDescription
+            }}
+          />
         </div>
       </section>
     </Fragment>
