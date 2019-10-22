@@ -200,6 +200,7 @@ const Autocomplete = props => {
           onChange={onChange}
           onKeyDown={onKeyDown}
           value={userInput}
+          placeholder="Search experiences…"
           onClick={() => {
             Utilities.mobilecheck() && document.getElementsByTagName("body")[0].classList.add("fixed-body");
           }}
