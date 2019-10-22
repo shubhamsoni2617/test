@@ -1,3 +1,8 @@
+.home-page-wrapper section.video-gallery{
+    @media(max-width: 991px){
+        padding: 20px 0px 20px;
+    }
+}
 .video-gallery-wrapper{
     display: flex;
     flex-wrap: wrap;
@@ -41,6 +46,7 @@
             .video-subwrapper-image{
                 width: 40%;
                 flex: 0 0 40%;
+                overflow: hidden;
                 img{
                     transition: 0.9s transform;
                     -webkit-transition: 0.9s transform;
