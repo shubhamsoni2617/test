@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import './style.scss';
 import place from '../../../../assets/images/job-description/place.svg';
 import experince from '../../../../assets/images/job-description/experince.svg';
@@ -27,19 +27,19 @@ const Description = ({ jobDetail, jobDetailErr }) => {
         )}
       </div>
       <div className="skills-requied">
-        <h4>Skills Required</h4>
-        {jobDetail && jobDetail.skills && (
-          <ul>
-            {jobDetail.skills.map(skill => {
-              return (
-                skill && (
+        {jobDetail && jobDetail.skills && jobDetail.skills[0] !== null && (
+          <Fragment>
+            <h4>Skills Required</h4>
+            <ul>
+              {jobDetail.skills.map(skill => {
+                return (
                   <li className="skills" key={skill}>
                     {skill}
                   </li>
-                )
-              );
-            })}
-          </ul>
+                );
+              })}
+            </ul>
+          </Fragment>
         )}
         <p
           className="career-subtext job-description"
@@ -48,59 +48,6 @@ const Description = ({ jobDetail, jobDetailErr }) => {
           }}
         ></p>
       </div>
-      {/* <div>
-        <div className="job-description">
-          <h4>Job Description</h4>
-          <ul>
-            <li>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas
-              varius tortor nibh, sit amet tempor nibh finibus et.
-            </li>
-            <li>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas
-              varius tortor nibh, sit amet tempor nibh finibus et.
-            </li>
-            <li>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas
-              varius tortor nibh, sit amet tempor nibh finibus et.
-            </li>
-            <li>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas
-              varius tortor nibh, sit amet tempor nibh finibus et.
-            </li>
-            <li>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas
-              varius tortor nibh, sit amet tempor nibh finibus et.
-            </li>
-          </ul>
-        </div>
-
-        <div className="job-description">
-          <h4>Roles & Responsibilities</h4>
-          <ul>
-            <li>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas
-              varius tortor nibh, sit amet tempor nibh finibus et.
-            </li>
-            <li>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas
-              varius tortor nibh, sit amet tempor nibh finibus et.
-            </li>
-            <li>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas
-              varius tortor nibh, sit amet tempor nibh finibus et.
-            </li>
-            <li>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas
-              varius tortor nibh, sit amet tempor nibh finibus et.
-            </li>
-            <li>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas
-              varius tortor nibh, sit amet tempor nibh finibus et.
-            </li>
-          </ul>
-        </div>
-      </div> */}
     </div>
   );
 };
