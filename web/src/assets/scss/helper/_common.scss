@@ -86,7 +86,7 @@ nav {
 		padding-left: 5px;
     color: #ffffff;
     font-family: 'Montserrat', sans-serif;
-			font-size: 13px;
+			font-size: 14px;
             line-height: 18px;
             font-weight: 300;
 		&::after {
@@ -105,7 +105,7 @@ nav {
 			font-family: 'Montserrat', sans-serif;
 			font-size: 13px;
             line-height: 18px;
-            font-weight: 300;
+            font-weight: 400;
 			@media (max-width: 767px) {
 				font-size: 12px;
 				line-height: 15px;
@@ -284,6 +284,9 @@ button,
 }
 
 // Overlay Background
+.item-overlay{
+	background: linear-gradient(180deg, rgba(242, 177, 25, 0) -5%, #F2B119 70%);
+}
 .dance-overlay {
 	background: linear-gradient(180deg, rgba(242, 177, 25, 0) -5%, #5F4F8B 70%);
 }

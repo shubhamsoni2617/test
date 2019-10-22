@@ -90,7 +90,7 @@ const StayUpdated = ({
               <input
                 className="form-control col-lg-5 btn-link"
                 type="submit"
-                value={loading ? 'Tunning...' : 'Stay Tuned'}
+                value= 'Stay Tuned'
                 disabled={loading ? true : false}
               />
             </form>
