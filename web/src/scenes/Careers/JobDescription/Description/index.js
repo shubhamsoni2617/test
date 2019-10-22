@@ -13,14 +13,18 @@ const Description = ({ jobDetail, jobDetailErr }) => {
         </Link>
       </h2>
       <div className="experince-wrapper">
-        <span className="experince">
-          <img src={place} alt="place" />
-          {jobDetail && jobDetail.location}
-        </span>
-        <span className="experince">
-          <img src={experince} alt="experince" />
-          {jobDetail && jobDetail.experience}
-        </span>
+        {jobDetail && jobDetail.location && (
+          <span className="experince">
+            <img src={place} alt="place" />
+            {jobDetail.location}
+          </span>
+        )}
+        {jobDetail && jobDetail.experience && (
+          <span className="experince">
+            <img src={experince} alt="experince" />
+            {jobDetail.experience}
+          </span>
+        )}
       </div>
       <div className="skills-requied">
         <h4>Skills Required</h4>
@@ -28,9 +32,11 @@ const Description = ({ jobDetail, jobDetailErr }) => {
           <ul>
             {jobDetail.skills.map(skill => {
               return (
-                <li className="skills" key={skill}>
-                  {skill}
-                </li>
+                skill && (
+                  <li className="skills" key={skill}>
+                    {skill}
+                  </li>
+                )
               );
             })}
           </ul>
