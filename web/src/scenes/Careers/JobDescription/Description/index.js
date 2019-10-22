@@ -3,6 +3,7 @@ import './style.scss';
 import place from '../../../../assets/images/job-description/place.svg';
 import experince from '../../../../assets/images/job-description/experince.svg';
 import { Link } from 'react-scroll';
+
 const Description = ({ jobDetail, jobDetailErr }) => {
   return (
     <div className="job-des-wrapper">
