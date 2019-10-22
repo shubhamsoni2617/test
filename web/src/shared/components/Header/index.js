@@ -60,7 +60,7 @@ const Header = ({ menuActive, pathName }) => {
                       <a>Sell tickets with us</a>
                     </li>
                     <li>
-                      <a>System Licensing</a>
+                      <Link to="/system-licensing">System Licensing</Link>
                     </li>
                     <li>
                       <a>Be our partner</a>
@@ -152,7 +152,7 @@ const Header = ({ menuActive, pathName }) => {
                       buttonText="System Licencing"
                       data={null}
                       submenuClass=""
-                      link=""
+                      link="/system-licensing"
                       closeSubmenu={handleNavigationClose}
                       resetFilters={() => {}}
                       clearFilters={() => {}}
