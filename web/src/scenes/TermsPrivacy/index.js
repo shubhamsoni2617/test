@@ -57,27 +57,12 @@ const TermsPrivacy = props => {
   return (
     <Fragment>
       <section className="terms-privacy-wrapper">
-        {/* <div className="banner-wrapper">
-          {props.cmsPageType === 1 ? (
-            <img src={termsBanner} className="img-fluid" alt="page-banner" />
-          ) : (
-            <img src={privacyBanner} className="img-fluid" alt="page-banner" />
-          )}
-
-          <div className="banner-overlay">
-            {props.cmsPageType === 1 && termsprivacy
-              ? termsprivacy && <h1>{tabTitle}</h1>
-              : termsprivacy && <h1>{termsprivacy.privacy_policy.title}</h1>}
-          </div>
-        </div> */}
-
         <div className="banner-wrapper">
           <img src={termsBanner} className="img-fluid" alt="page-banner" />
           <div className="banner-overlay">
             <h1>{tabTitle}</h1>
           </div>
         </div>
-
         <div className="promotions-nav container">
           <ul className="nav nav-tabs" id="nav-tab" role="tablist">
             {termsPrivacyArr &&
@@ -120,32 +105,6 @@ const TermsPrivacy = props => {
             />
           )}
         </div>
-        {/* {termsprivacy && props.cmsPageType === 1 ? (
-          <div className="terms-privacy-body">
-            <div
-              className="container"
-              dangerouslySetInnerHTML={{
-                __html: termsprivacy.terms_cond.description
-              }}
-            />
-          </div>
-        ) : termsprivacy && props.cmsPageType === 2 ? (
-          <div className="terms-privacy-body">
-            <div
-              className="container"
-              dangerouslySetInnerHTML={{
-                __html: termsprivacy.privacy_policy.description
-              }}
-            />
-          </div>
-        ) : (
-          <ShimmerEffect
-            propCls="shm_col-xs-6 col-md-12"
-            height={80}
-            count={3}
-            type="TILE"
-          />
-        )} */}
       </section>
     </Fragment>
   );
