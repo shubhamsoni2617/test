@@ -46,11 +46,14 @@ const ItemWrapper = ({ promotion, expiredText, handlePromotionExpired }) => {
           )}
         </div>
       )}
-      <h3>
-        {promotion && Utilities.mobilecheck()
-          ? Utilities.showLimitedChars(promotion.title, 15)
-          : promotion.title}
-      </h3>
+      <a href="/promotions" target="_blank">
+        <h3>
+          {promotion && Utilities.mobilecheck()
+            ? Utilities.showLimitedChars(promotion.title, 15)
+            : promotion.title}
+        </h3>
+      </a>
+
     </div>
   );
 };
@@ -131,7 +134,16 @@ export default class PromotionCarousel extends Component {
             <span />
           </div>
         );
-      }
+      },
+      responsive: [
+        {
+          breakpoint: 1140,
+          settings: {
+            //rows: 2,
+            slidesPerRow: 3
+          }
+        },
+      ]
     };
     return (
       <section className="promotions" ref={node => (this.element = node)}>
@@ -171,7 +183,7 @@ export default class PromotionCarousel extends Component {
                     Utilities.mobileAndTabletcheck() || Utilities.mobilecheck()
                       ? 6
                       : 2
-                  }`}
+                    }`}
                   height={150}
                   count={2}
                   type="TILE"
@@ -217,21 +229,21 @@ export default class PromotionCarousel extends Component {
                     })}
                 </div>
               ) : (
-                <Slider {...settings}>
-                  {promotions &&
-                    promotions.map((promotion, index) => {
-                      return (
-                        <div key={promotion.id} className="item-wrapper">
-                          <ItemWrapper
-                            promotion={promotion}
-                            expiredText={expiredText}
-                            handlePromotionExpired={this.handlePromotionExpired}
-                          />
-                        </div>
-                      );
-                    })}
-                </Slider>
-              )}
+                    <Slider {...settings}>
+                      {promotions &&
+                        promotions.map((promotion, index) => {
+                          return (
+                            <div key={promotion.id} className="item-wrapper">
+                              <ItemWrapper
+                                promotion={promotion}
+                                expiredText={expiredText}
+                                handlePromotionExpired={this.handlePromotionExpired}
+                              />
+                            </div>
+                          );
+                        })}
+                    </Slider>
+                  )}
             </CSSTransitionGroup>
           </div>
         </div>
