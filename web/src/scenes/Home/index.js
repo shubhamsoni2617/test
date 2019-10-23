@@ -81,8 +81,7 @@ class Home extends Component {
           />
           {/* <img className={`main-image ${this.state.imageUrl ? 'show-image' : ''}`} src={primeSlider} alt="prime Slider" /> */}
         </div>
-        <TopPics /> 
-        <div className="giftcard-homepage-wrapper">
+        <TopPics /><div className="giftcard-homepage-wrapper">
           {giftCard &&
             giftCard.map(elem => {
               return (
