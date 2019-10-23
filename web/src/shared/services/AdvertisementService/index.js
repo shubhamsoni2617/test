@@ -20,6 +20,18 @@ class AdvertisementService {
   getGiftCardService(params) {
     return API.get(`adv/side-panel`, { params });
   }
+
+  getCustomizeSectionOne(params) {
+    return API.get(`adv/customize-section-one`, { params });
+  }
+
+  getCustomizeSectionTwo(params) {
+    return API.get(`adv/customize-section-two`, { params });
+  }
+
+  getCustomizeSectionThree(params) {
+    return API.get(`adv/customize-section-three`, { params });
+  }
 }
 
 export default new AdvertisementService();
