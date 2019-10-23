@@ -63,6 +63,15 @@
             .text-danger{
                 padding-top: 5px;
             }
+            &.err{
+                .selection,
+                .email{
+                    padding-left: 10px;
+                }
+                .arrow{
+                    top: 1px;
+                }
+            }
         }
         .select{
             width: 100%;
@@ -70,7 +79,7 @@
                 margin: 0;
             }
             .selection{
-                padding: 10px 0 7px 0;
+                padding: 5px 0 7px 0;
                 border: 0;
                 background: transparent;
                 border-bottom: 1px solid rgba(151, 151, 151, 0.2);
@@ -90,6 +99,8 @@
                 }
                 @media(max-width: 767px){
                     border: 1px solid rgba(151, 151, 151, 0.2);
+                    padding: 5px 0 7px 10px;
+                    
                 }
                 .arrow{
                     @media(max-width: 767px){
@@ -100,6 +111,7 @@
                     background: transparent;
                     padding: 5px 30px 5px 17px;
                     width: 90%;
+                    color: #0098FF;
                 }
             }
             .options{
@@ -113,15 +125,19 @@
                     font-size: 16px;
                     color: #343434;
                     border: 0;
+                    display: flex;
+                    align-items: center;
                     .checkbox{
                         border-radius: 0;
+                        margin-top: 0;
                     }
                     &.selected{
                         background: #d9f2fb00;
                         color: #0098FF;
                         
                         .checkbox{
-                            border: 1px solid #979797;
+                            border: 1px solid transparent;
+                            background-color: #0098FF;
                             svg{
                                 width: 10px;
                                 margin-top: -3px;
@@ -157,6 +173,7 @@
             border-bottom: 1px solid rgba(151, 151, 151, 0.2);
             border-radius: 0;
             padding-left: 0px;
+            font-size: 16px;
             &:focus{
                 box-shadow: none;
                 border-bottom: 1px solid #03A9F4;
@@ -183,6 +200,7 @@
             }
             @media(max-width: 767px){
                 border: 1px solid rgba(151, 151, 151, 0.2);
+                padding-left: 10px;
                 &:focus{
                     box-shadow: none;
                     border: 1px solid #03A9F4;
@@ -202,7 +220,7 @@
                 padding-right: 10px;
                 font-size: 16px;
                 color: #343434;
-                padding-left: 0 !important;
+                padding: 0 0 0 0 !important;
                 @media(max-width: 767px){
                     font-size: 14px;
                 }
@@ -244,13 +262,14 @@
                     color: rgba(52, 52, 52, 0.5);
                     padding-left: 0;
                     @media(max-width: 767px){
-                        bottom: 3px;
+                        bottom: 1px;
+                        padding-left: 10px;
                     }
                 }
             }
             .file-preview{
                 word-break: break-all;
-                padding: 10px 0 10px 0px;
+                padding: 3px 0 0 0;
                 div{
                     margin-bottom: 5px;
                     font-size: 16px;

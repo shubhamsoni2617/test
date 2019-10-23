@@ -323,9 +323,14 @@
   }
   .attach-text{
     position: relative;
+    display: flex;
     i{
       position: absolute;
-      color: red;
+      color: #343434;
+      right: 3px;
+      vertical-align: top;
+      font-style: normal;
+      top: 0;
     }
   }
   div{
