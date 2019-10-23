@@ -57,7 +57,8 @@ const Attachement = ({ attachedFiles, submit, mandatory, cv }) => {
         })
         .catch(err => {
           if (err && err.response) {
-            setServerErr(err.response.data.message);
+            attachedFiles(err.response.data);
+            setServerErr(err.response.data);
           }
         });
     }

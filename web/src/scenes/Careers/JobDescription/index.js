@@ -47,6 +47,7 @@ class JobDescription extends Component {
         job_id: jobId
       };
       this.getParticularJobDetail(params);
+      this.scrollToTop();
     }
   }
 
@@ -63,6 +64,10 @@ class JobDescription extends Component {
         }
       });
   }
+
+  scrollToTop = () => {
+    window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
+  };
 
   handleSubmit = e => {
     e.preventDefault();
@@ -173,7 +178,6 @@ class JobDescription extends Component {
   };
 
   handleFiles = filePath => {
-    console.log(filePath);
     this.setState({ filePath, submit: false });
   };
 
