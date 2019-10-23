@@ -6,7 +6,6 @@ import SearchService from '../../../shared/services/SearchService';
 import Constants from '../../../shared/constants';
 import ShimmerEffect from '../../../shared/components/ShimmerEffect';
 import DownArrowBlue from '../../../assets/images/down-arrow-blue.svg';
-import noEvent from '../../../assets/images/no-event.svg';
 import searchApi from './SearchApi';
 import SearchAdvertisement from './SearchAdvertisement';
 
@@ -53,7 +52,7 @@ const Search = props => {
     };
     SearchService.getSearchCategories(params)
       .then(res => {
-        console.log(res.data)
+        console.log(res.data.data)
         setSearchCategories(res.data.data);
         setTotalResults(res.data.data.find(obj => obj.type === 'all').total);
         setAllResultCount(res.data.data.find(obj => obj.type === 'all').total);
@@ -109,11 +108,11 @@ const Search = props => {
               <strong>{props.location.search.split('=')[1]}</strong>"
             </h2>
             ) : null}
-          {searchCategories && searchCategories.length && <SearchCategory
+          {/* {searchCategories && searchCategories.length && <SearchCategory
             searchCategories={searchCategories}
             defaultCategoryId={defaultCategoryId}
             handleActiveCategory={handleActiveCategory}
-          />}
+          />} */}
           <div className="wrapper-events-listing">
             <div className="events-listing">
               <div className="events-section list-view">
@@ -146,14 +145,7 @@ const Search = props => {
           </div>
         </div>
       ) : (
-          // <h2>NO data Found</h2>
-          <div className="no-data">
-            <img src={noEvent} alt="No Event Data" />
-            <p>
-              <strong>No data found</strong>
-            </p>
-            <p>Try again with more general search data</p>
-          </div>
+          <h2>NO data Found</h2>
         )
       }
 
