@@ -65,6 +65,9 @@
         font-size: 18px;
         width: 100%;
         text-decoration: none;
+        &:focus{
+          border-color: #80bdff;
+        }
         @media(max-width: 767px){
           padding: 2px 20px;
           font-size: 14px;
@@ -125,26 +128,43 @@
         }
         .file-preview{
           word-break: break-all;
-          padding: 10px 0 0px 35px;
+          padding: 10px 0 0px 0px;
           div{
               margin-bottom: 5px;
           }
           .show-border{
               margin: 0;
-              padding: 5px 10px;
+              padding: 7px 30px 7px 5px;
               display: flex;
               justify-content: space-between;
               align-items: center;
               border: 1px solid rgba(151, 151, 151, 0.2);
               color: #0098FF;
               font-size: 16px;
+              position: relative;
               .cross-file{
-                margin-bottom: 0;
-                color: rgba(52, 52, 52, 0.5);
-                font-size: 20px;
+                position: absolute;
+                height: 30px;
+                width: 30px;
+                right: 10px;
+                top: 50%;
+                &:after,
+                &:before{
+                  content: '';
+                  position: absolute;
+                  width: 13px;
+                  height: 1px;
+                  right: 0;
+                  background-color: rgba(52, 52, 52, 0.5);
+                  display: inline-block;
+                  transform: rotate(45deg);
+                }
+                &:before{
+                  transform: rotate(135deg);
+                }
               }
           }
-      }
+        }
       }
       &.custom-checkbox{
         input{
@@ -243,6 +263,7 @@
         color: rgba(52, 52, 52, 0.7);
         font-family: 'Rubik', sans-serif;
         font-size: 16px;
+        padding-left: 0 !important;
         @media(max-width: 767px){
           font-size: 14px;
         }
@@ -255,6 +276,7 @@
         line-height: 19px;
         padding: 10px;
         width: 100%;
+        color: #495057;
         @media(max-width: 767px){
           margin-left: 5px;
         }
@@ -299,15 +321,20 @@
         font-size: 14px;
     }
   }
+  .attach-text{
+    position: relative;
+    i{
+      position: absolute;
+      color: red;
+    }
+  }
   div{
     font-size: 12px;
   }
   .col-5{
     display: flex;
     align-items: center;
-    span{
-      color: red;
-    }
+    
   }
 }
 .resume{
