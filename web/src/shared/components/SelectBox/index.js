@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './style.scss';
-import DownArrow from '../../../assets/images/down-arrow-grey.svg';
+import DownArrow from '../../../assets/images/career/Path.svg';
 import UpArrow from '../../../assets/images/uparrow.svg';
 import Cross from '../../../assets/images/close-blue.svg';
 
