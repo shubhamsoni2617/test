@@ -70,7 +70,7 @@
                 margin: 0;
             }
             .selection{
-                padding: 10px 0;
+                padding: 10px 0 7px 0;
                 border: 0;
                 background: transparent;
                 border-bottom: 1px solid rgba(151, 151, 151, 0.2);
@@ -85,6 +85,8 @@
                 }
                 .placeholder{
                     font-size: 16px;
+                    padding-left: 0;
+                    padding-bottom: 0;
                 }
                 @media(max-width: 767px){
                     border: 1px solid rgba(151, 151, 151, 0.2);
@@ -111,6 +113,9 @@
                     font-size: 16px;
                     color: #343434;
                     border: 0;
+                    .checkbox{
+                        border-radius: 0;
+                    }
                     &.selected{
                         background: #d9f2fb00;
                         color: #0098FF;
@@ -119,7 +124,9 @@
                             border: 1px solid #979797;
                             svg{
                                 width: 10px;
-                                margin-top: -2px;
+                                margin-top: -3px;
+                                margin-left: -1px;
+                                stroke: #0098ff;
                             }
                         }
                     }
@@ -135,6 +142,7 @@
                     background: #fff;
                     box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.1);
                     border: 0;
+                    padding-left: 15px;
                 }
                 .options{
                     background: #fff;
@@ -148,6 +156,7 @@
             background: transparent;
             border-bottom: 1px solid rgba(151, 151, 151, 0.2);
             border-radius: 0;
+            padding-left: 0px;
             &:focus{
                 box-shadow: none;
                 border-bottom: 1px solid #03A9F4;
@@ -213,6 +222,9 @@
                 border: 0;
                 background-color: transparent;
                 border-bottom: 1px solid rgba(151, 151, 151, 0.2);
+                img{
+                    margin-top: -5px;
+                }
                 @media(max-width: 991px){
                     font-size: 14px;
                     line-height: 17px;
@@ -230,6 +242,7 @@
                     bottom: 10px;
                     font-size: 16px;
                     color: rgba(52, 52, 52, 0.5);
+                    padding-left: 0;
                     @media(max-width: 767px){
                         bottom: 3px;
                     }
@@ -237,9 +250,10 @@
             }
             .file-preview{
                 word-break: break-all;
-                padding: 10px 0 10px 35px;
+                padding: 10px 0 10px 0px;
                 div{
                     margin-bottom: 5px;
+                    font-size: 16px;
                 }
                 .show-border{
                     margin-top: 10px;
