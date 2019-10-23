@@ -47,17 +47,16 @@
           background-color:rgba(126, 126, 126, 0.2);
           display: inline-block;
           @media(max-width: 767px){
-            content: ',';
-            width: unset;
-            height: unset;
-            background-color: unset;
-            right: -4px;
+            content: unset;
           }
         }
         &:last-child{
             &:after{
               content: unset;
             }
+        }
+        @media(max-width: 767px){
+          display: block;
         }
       }
     }
@@ -87,7 +86,7 @@
     }
     @media(max-width: 767px){
       text-align: left;
-      margin-bottom: 30px;
+      margin-bottom: 20px;
       a{
         display: flex;
         justify-content: left;
@@ -95,13 +94,19 @@
       }
       h4{
         font-size: 14px;
+        margin-bottom: 0;
       }
       p{
         margin-bottom: 5px;
+        padding-bottom: 5px;
         span{
           font-size: 12px;
         }
       }
+    }
+    @media(max-width: 576px){
+      padding-right: 5px;
+      
     }
   }
   .view-jobs{

@@ -5,7 +5,7 @@ body, *{
 }
 body{
     position: relative;
-    &.st-body-overlay{
+    &.body-overlay{
         position: relative;
         &::after{
             @include tablet-portrait{
@@ -35,7 +35,7 @@ body{
 .accent-text{
     color: $accent-color;
 }
-.st-item-title{
+.item-title{
     color: $title-color;
     font-family: 'rubikmedium';
     font-size: 17px;
@@ -60,7 +60,7 @@ ul{
 *:focus, *:active{
     outline: none;
 }
-.st-section-title{
+.section-title{
     font-family: "montserratmedium";
     font-size: 30px;
     font-weight: 600;	
@@ -82,11 +82,11 @@ section{
         padding: 20px 0px 0px;
     }
 }
-.st-section-top-wrapper{
+.section-top-wrapper{
     display: grid;
     grid-template-columns: auto auto;
 }
-.st-carousel-dots {
+.carousel-dots {
     margin-left: auto;
     text-align: right;
     a{
@@ -115,7 +115,7 @@ section{
         }
     }
 }
-.st-dots-group{
+.dots-group{
     span {
         height: 3px;
         width: 25px;
@@ -141,7 +141,7 @@ section{
         display: none;
     }
 }
-.st-category{
+.category{
     color: #fff;
     font-family: 'montserratsemibold';
     font-size: 14px;
@@ -151,33 +151,36 @@ section{
     background-color: $dance-color;
     display: inline-block;
     text-align: center;
-    text-transform: capitalize;
+    text-transform: capitalize; 
     padding: 0px 5px;
     @include mobile-view{
         font-size: 11px;
         line-height: 18px;
         height: 18px;
     }
+    &:empty{
+        display: none;
+    }
 }
 
 //category common classes
-.st-musical{
+.musical{
     background-color: $musical-color;
 }
-.st-dance{
+.dance{
     background-color: $dance-color;
 }
-.st-comedy{
+.comedy{
     background-color: $comedy-color;
 }
-.st-theatre{
+.theatre{
     background-color: $theatre-color;
 }
-.st-carousel-navigation {
-    .st-left-navigation{
+.carousel-navigation {
+    .left-navigation{
         left: 0px;
     }
-    .st-right-navigation, .st-left-navigation{
+    .right-navigation, .left-navigation{
         position: absolute;
         right: 0px;
         top: 50%;
@@ -206,7 +209,7 @@ section{
             }
         }
     }
-    .st-right-navigation{
+    .right-navigation{
         justify-content: end;
         text-align: right;
     }
@@ -228,7 +231,7 @@ section{
         padding-left: 10px;
     }
 }
-button , .st-btn-link{
+button , .btn-link{
     height: auto;
     width: auto;
     background-color: $accent-color;
@@ -266,7 +269,7 @@ button , .st-btn-link{
     }
 }
 //sortby filter
-.st-sortby-filter{
+.sortby-filter{
     width: auto;
     min-width: 231px;
     right: 0px;
@@ -280,7 +283,7 @@ button , .st-btn-link{
     @include mobile-view{
         display: none;
     }
-    .st-filter-topbar{
+    .filter-topbar{
         height: auto;
         border: 1px solid rgba(151, 151, 151, 0.2);
         padding: 7px 11px;
@@ -299,7 +302,7 @@ button , .st-btn-link{
             top: 50%;
             transform: translateY(-50%);
         }
-        .st-sortby-text{
+        .sortby-text{
             color: $title-color;
             font-family: "rubikmedium";
             font-size: 14px;
@@ -308,7 +311,7 @@ button , .st-btn-link{
             font-weight: bold;
             padding-right: 8px;
         }
-        .st-active-filter {
+        .active-filter {
             color: $accent-color;
             font-family: "rubikmedium";
             font-size: 16px;
@@ -368,7 +371,7 @@ button , .st-btn-link{
     }
 }
 
-.st-mobileview-filter{
+.mobileview-filter{
     display: none;
     @include mobile-view{
         display: block;
@@ -381,7 +384,7 @@ button , .st-btn-link{
         bottom: 0;
         z-index: 1;
         background-color: rgba(3, 13, 21, 0.5);
-        .st-sortby-filter{
+        .sortby-filter{
             margin-bottom: 0px;
             display: block;
             ul{
@@ -391,7 +394,7 @@ button , .st-btn-link{
                 height: 100%;
             }
         }
-        .st-filter-title{
+        .filter-title{
             display: flex;
             flex-wrap: wrap;
             padding: 12px 20px;
@@ -406,11 +409,11 @@ button , .st-btn-link{
                 margin-left: auto;
             }
         }
-        .st-filter-topbar{
+        .filter-topbar{
             text-align: center;
             padding: 10px 0px;
             background-color: $accent-color;
-            .st-sortby-text{
+            .sortby-text{
                 color: #fff;
                 text-transform: capitalize;
                 font-weight: normal;
@@ -425,10 +428,10 @@ button , .st-btn-link{
         }
         &.active{
             top: 0px;
-            .st-filter-topbar{
+            .filter-topbar{
                 opacity: 0;
             }
-            .st-sortby-filter{
+            .sortby-filter{
                 position: absolute;
                 bottom: 0px;
                 width: 100%;

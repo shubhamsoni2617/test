@@ -5,7 +5,6 @@ import Carousel from '../../../shared/components/Carousel';
 import rightArrow from '../../../assets/images/right-arrow.svg';
 import ShimmerEffect from '../../../shared/components/ShimmerEffect';
 import './style.scss';
-import Utilities from '../../../shared/utilities';
 
 const CarouselConatiner = props => {
   const element = useRef(null);

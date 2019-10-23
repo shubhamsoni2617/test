@@ -8,6 +8,7 @@ import Image from '../../../shared/components/Image';
 import ShimmerEffect from '../../../shared/components/ShimmerEffect';
 import './style.scss';
 import { CSSTransitionGroup } from 'react-transition-group';
+import { Link } from 'react-router-dom';
 
 const ItemWrapper = ({ promotion, expiredText, handlePromotionExpired }) => {
   return (
@@ -45,11 +46,14 @@ const ItemWrapper = ({ promotion, expiredText, handlePromotionExpired }) => {
           )}
         </div>
       )}
-      <h3>
-        {promotion && Utilities.mobilecheck()
-          ? Utilities.showLimitedChars(promotion.title, 15)
-          : promotion.title}
-      </h3>
+      <a href="/promotions" target="_blank">
+        <h3>
+          {promotion && Utilities.mobilecheck()
+            ? Utilities.showLimitedChars(promotion.title, 15)
+            : promotion.title}
+        </h3>
+      </a>
+
     </div>
   );
 };
@@ -130,7 +134,16 @@ export default class PromotionCarousel extends Component {
             <span />
           </div>
         );
-      }
+      },
+      responsive: [
+        {
+          breakpoint: 1140,
+          settings: {
+            //rows: 2,
+            slidesPerRow: 3
+          }
+        },
+      ]
     };
     return (
       <section className="promotions" ref={node => (this.element = node)}>
@@ -147,14 +160,14 @@ export default class PromotionCarousel extends Component {
               </span>
             </h2>
             <div className="carousel-dots">
-              <a href="/promotions" onClick={e => e.preventDefault()}>
+              <Link to="/promotions">
                 See all{' '}
                 <img
                   src="assets/images/right-arrow.svg"
                   className="img-fluid"
                   alt="arrow"
                 />
-              </a>
+              </Link>
             </div>
           </div>
           <div className="grid-container">
@@ -170,15 +183,9 @@ export default class PromotionCarousel extends Component {
                     Utilities.mobileAndTabletcheck() || Utilities.mobilecheck()
                       ? 6
                       : 2
-                  }`}
+                    }`}
                   height={150}
-                  count={
-                    Utilities.mobilecheck()
-                      ? 1
-                      : Utilities.mobileAndTabletcheck()
-                      ? 2
-                      : 6
-                  }
+                  count={2}
                   type="TILE"
                 />
               ) : Utilities.mobilecheck() ? (
@@ -222,21 +229,21 @@ export default class PromotionCarousel extends Component {
                     })}
                 </div>
               ) : (
-                <Slider {...settings}>
-                  {promotions &&
-                    promotions.map((promotion, index) => {
-                      return (
-                        <div key={promotion.id} className="item-wrapper">
-                          <ItemWrapper
-                            promotion={promotion}
-                            expiredText={expiredText}
-                            handlePromotionExpired={this.handlePromotionExpired}
-                          />
-                        </div>
-                      );
-                    })}
-                </Slider>
-              )}
+                    <Slider {...settings}>
+                      {promotions &&
+                        promotions.map((promotion, index) => {
+                          return (
+                            <div key={promotion.id} className="item-wrapper">
+                              <ItemWrapper
+                                promotion={promotion}
+                                expiredText={expiredText}
+                                handlePromotionExpired={this.handlePromotionExpired}
+                              />
+                            </div>
+                          );
+                        })}
+                    </Slider>
+                  )}
             </CSSTransitionGroup>
           </div>
         </div>

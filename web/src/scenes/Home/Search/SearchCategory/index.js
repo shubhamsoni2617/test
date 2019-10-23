@@ -1,7 +1,13 @@
 import React, { Fragment } from 'react';
 
 const SearchCategory = props => {
-  const { searchCategories, defaultCategoryId, handleActiveCategory } = props;
+  const { defaultCategoryId, handleActiveCategory } = props;
+  let searchCategories;
+  if (props.searchCategories) {
+    Object.keys(props.searchCategories).map((key) => {
+      return [props.searchCategories[key]];
+    });
+  }
   return (
     <div className="promotions-full-wrapper">
       <section className="promotions-wrapper">

@@ -27,7 +27,9 @@ const Opening = ({ jobListing, jobListingErr }) => {
                   <p>
                     {' '}
                     <span className="place">{elem.location} </span>
-                    <span>{elem.job_type.toString().replace(',', ', ')}</span>
+                    {elem.job_type && elem.job_type[0] !== null && (
+                      <span>{elem.job_type.toString().replace(',', ', ')}</span>
+                    )}
                   </p>
                   <Link to={`/careers/jobdescription/${elem.job_id}`}>
                     Apply Now
