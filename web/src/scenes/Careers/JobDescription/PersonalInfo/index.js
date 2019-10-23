@@ -164,25 +164,27 @@ const PersonalInfo = ({
               Please attach files
             </span>
           )}
-          <div class="form-group custom-checkbox">
-          <div class="checkbox-block">
-            <div class="container-checkbox">
-              <input
+          <div className="form-group custom-checkbox">
+            <div className="checkbox-block">
+              <div className="container-checkbox">
+                <input
                   name="copy"
                   type="checkbox"
-                  id="first" 
+                  id="first"
                   name="first"
                   checked={sendCopy ? true : false}
-                  onChange={e => handleCopy(!sendCopy) }
+                  onChange={e => handleCopy(!sendCopy)}
                 />
-              <label for="first" class="block-box">Send Me a Copy</label>
+                <label htmlFor="first" className="block-box">
+                  Send Me a Copy
+                </label>
+              </div>
             </div>
-          </div>
           </div>
           <input
             className="form-control btn-link"
             type="submit"
-            value= 'Submit Application'
+            value="Submit Application"
             disabled={loading ? true : false}
           />
         </form>
