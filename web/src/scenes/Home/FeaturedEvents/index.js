@@ -22,6 +22,7 @@ const Item = ({ event }) => {
           </div>
           <span
             className={`category ${event &&
+              event.primary_genere &&
               event.primary_genere.toLowerCase()}`}
           >
             {event.primary_genere}
