@@ -8,6 +8,7 @@ import ShimmerEffect from '../../../shared/components/ShimmerEffect';
 import DownArrowBlue from '../../../assets/images/down-arrow-blue.svg';
 import searchApi from './SearchApi';
 import SearchAdvertisement from './SearchAdvertisement';
+import SearchNotFound from './SearchNotFound';
 
 const Search = props => {
   const [searchCategories, setSearchCategories] = useState(null);
@@ -108,11 +109,11 @@ const Search = props => {
               <strong>{props.location.search.split('=')[1]}</strong>"
             </h2>
             ) : null}
-          {/* {searchCategories && searchCategories.length && <SearchCategory
+          {searchCategories  && <SearchCategory
             searchCategories={searchCategories}
             defaultCategoryId={defaultCategoryId}
             handleActiveCategory={handleActiveCategory}
-          />} */}
+          />}
           <div className="wrapper-events-listing">
             <div className="events-listing">
               <div className="events-section list-view">
@@ -145,7 +146,8 @@ const Search = props => {
           </div>
         </div>
       ) : (
-          <h2>NO data Found</h2>
+          // <h2>NO data Found</h2>
+          <SearchNotFound />
         )
       }
 
