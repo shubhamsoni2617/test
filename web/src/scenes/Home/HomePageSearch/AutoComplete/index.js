@@ -143,7 +143,8 @@ const Autocomplete = props => {
                       props.history,
                       suggestion.type,
                       suggestion.category,
-                      suggestion.id
+                      suggestion.id,
+                      suggestion.code
                     );
                     Utilities.mobilecheck() && document.getElementsByTagName("body")[0].classList.remove("fixed-body");
                     setIsFocused(false)

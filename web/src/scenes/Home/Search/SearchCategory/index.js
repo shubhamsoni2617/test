@@ -7,8 +7,7 @@ const SearchCategory = props => {
       <section className="promotions-wrapper">
         <div className="promotions-nav">
           <ul className="nav nav-tabs" id="nav-tab" role="tablist">
-            {searchCategories && searchCategories[0].total
-              ? searchCategories.map(category => {
+            { searchCategories.map(category => {
                 return (
                   <li
                     key={category.type}
@@ -32,7 +31,7 @@ const SearchCategory = props => {
                   </li>
                 );
               })
-              : null}
+              }
           </ul>
         </div>
       </section>

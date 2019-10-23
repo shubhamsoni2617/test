@@ -52,9 +52,10 @@ const Search = props => {
     };
     SearchService.getSearchCategories(params)
       .then(res => {
-        setSearchCategories(res.data);
-        setTotalResults(res.data.find(obj => obj.type === 'all').total);
-        setAllResultCount(res.data.find(obj => obj.type === 'all').total);
+        console.log(res.data)
+        setSearchCategories(res.data.data);
+        setTotalResults(res.data.data.find(obj => obj.type === 'all').total);
+        setAllResultCount(res.data.data.find(obj => obj.type === 'all').total);
       })
       .catch(err => {
         console.log(err);
@@ -107,11 +108,11 @@ const Search = props => {
               <strong>{props.location.search.split('=')[1]}</strong>"
             </h2>
             ) : null}
-          <SearchCategory
+          {searchCategories && searchCategories.length && <SearchCategory
             searchCategories={searchCategories}
             defaultCategoryId={defaultCategoryId}
             handleActiveCategory={handleActiveCategory}
-          />
+          />}
           <div className="wrapper-events-listing">
             <div className="events-listing">
               <div className="events-section list-view">

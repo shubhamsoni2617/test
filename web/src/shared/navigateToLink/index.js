@@ -1,11 +1,11 @@
-export default function navigateToLink(history, type, category, id) {
+export default function navigateToLink(history, type, category, id, code, categoryId) {
   switch (type) {
     case 'event':
     case 'attractions':
-      history.push(`/events/${id}`);
+      history.push(`/events/${code}`);
       break;
     case 'promotion':
-      history.push(`/promotions`);
+      history.push(`/promotions/${categoryId}/${id}`);
       break;
     case 'faq':
       history.push(
