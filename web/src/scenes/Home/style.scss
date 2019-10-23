@@ -51,10 +51,10 @@
 	background-color: #373E45;
 	padding: 0px;
 	z-index: 4;
-	transition: 0.3s ease-in;
-	-webkit-transition: 0.3s ease-in;
-	-moz-transition: 0.3s ease-in;
-	-o-transition: 0.3s ease-in;
+	transition: 0.9s top;
+	-webkit-transition: 0.9s top;
+	-moz-transition: 0.9s top;
+	-o-transition: 0.9s top;
 	position: relative;
 	&.sticky-header, &.homepage{
 		position: fixed;
@@ -1761,9 +1761,9 @@
 				}
 			}
 			@media (max-width: 767px) {
-				flex: 1 0 29%;
-				max-width: 29%;
-				margin-right: 10px;
+				flex: 1 0 28%;
+				max-width: 28%;
+				margin-right: 7px;
 			}
 		}
 	}
@@ -2167,9 +2167,9 @@ section.whats-new {
 				overflow-x: auto;
 				margin: 0;
 				.item{
-					flex: 1 0 29%;
-					max-width: 29%;
-					margin-right: 10px;
+					flex: 1 0 28%;
+					max-width: 28%;
+					margin-right: 7px;
 				}
 			}
 		}
@@ -2228,14 +2228,14 @@ p {
 
 //currently showing style end
 //promotions style start
-.promotions {
+.home-page-wrapper section.promotions {
 	background-color: #F0F9FF;
 	padding: 40px 0px 0px;
 	@media(max-width: 1024px){
-		padding: 40px 0px 10px !important;
+		padding: 40px 0px 10px;
 	}
 	@media (max-width: 767px) {
-		padding: 20px 0px 20px;
+		padding: 20px 0px 10px;
     }
     .slick-slider{
         .slick-list{
@@ -2383,7 +2383,7 @@ p {
 				margin-bottom: 25px;
 			}
 			@media (max-width: 767px) {
-				margin-bottom: 20px;
+				margin-bottom: 0px;
 				padding: 0 5px;
             }
             &.full-promo{
@@ -2548,6 +2548,9 @@ section.trending-now {
 			grid-template-columns: repeat(5, minmax(43%, 1fr));
 			grid-gap: 10px;
 			overflow-x: auto;
+		}
+		@media(max-width: 767px){
+			grid-template-columns: repeat(5, minmax(35%, 1fr));
 		}
 		// @media(min-width: 992px) and (max-width: 1280px) {
         //     grid-template-columns: 1.4fr repeat(4, 1fr);
@@ -3053,18 +3056,23 @@ section{
             justify-content: center;
             align-items: center;
         }
-        .sistic-moments-wrapper {
-          @media(max-width: 767px){
-            display: flex;
-            flex-wrap: nowrap;
-            overflow-x: auto;
-          }
-          img{
-            @media(max-width: 767px){
-              flex: 1 0 34%;
-              max-width: 34%;
-            }
-          }
+		.sistic-moments-wrapper {
+				-ms-overflow-style: none; // IE 10+ 
+				scrollbar-width: none; // Firefox 
+			@media(max-width: 767px){
+				display: flex;
+				flex-wrap: nowrap;
+				overflow-x: auto;
+			}
+			img{
+				@media(max-width: 767px){
+					flex: 1 0 34%;
+					max-width: 34%;
+				}
+			}
+			&::-webkit-scrollbar { 
+				display: none; // Safari and Chrome 
+			}
 		}
 		@media(max-width: 767px){
 			-ms-overflow-style: none; // IE 10+

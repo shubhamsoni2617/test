@@ -53,8 +53,10 @@ const CustomSectioTwo = ({ customSectionTwo, loading }) => {
                 </a>
               </div>
               <div className="royal-rightsection">
-                <h3>{customSectionTwo && customSectionTwo[0] && customSectionTwo[0].title}</h3>
-                <p>10 Jan 2019</p>
+                <div className="royal-rightside-textwrapper">
+                  <h3>{customSectionTwo && customSectionTwo[0] && customSectionTwo[0].title}</h3>
+                  <p>10 Jan 2019</p>
+                </div>
                 <div className="royal-items">
                   {customSectionTwo &&
                     customSectionTwo.slice(1, customSectionTwo.length).map((elem, i) => {
