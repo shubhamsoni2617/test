@@ -4,7 +4,6 @@ import './style.scss';
 import InstagramFeed from '../../shared/components/InstagramFeed/InstagramFeed';
 import CarouselConatiner from './CarouselConatiner';
 import PromotionCarousel from './PromotionCarousel';
-import TopPics from './TopPics';
 import HotShowPopup from '../../shared/components/HotShowPopup';
 import FeaturedEvents from './FeaturedEvents';
 import TrendingNow from './TrendingNow';
@@ -20,8 +19,9 @@ import HomeService from '../../shared/services/HomeService';
 import Utilities from '../../shared/utilities';
 import Constants from '../../shared/constants';
 import AdvertisementService from '../../shared/services/AdvertisementService';
-import CustomFeatureEvents from './CustomFeatureEvents';
-import Royals from './Royals';
+import CustomSection from './CustomSection';
+import TopPics from './TopPics';
+// import Royals from './Royals';
 
 class Home extends Component {
   constructor(props) {
@@ -82,27 +82,30 @@ class Home extends Component {
           {/* <img className={`main-image ${this.state.imageUrl ? 'show-image' : ''}`} src={primeSlider} alt="prime Slider" /> */}
         </div>
         <TopPics /> 
-        {giftCard &&
-          giftCard.map(elem => {
-            return (
-              <a
-                href={elem && elem.navigation_link}
-                target="_blank"
-                key={elem.title}
-              >
-                <section className="gift-cart">
-                  <div className="gift-cart-image">
-                    <img
-                      src={elem && elem.full_image}
-                      className="img-fluid"
-                      alt={elem && elem.alt_text}
-                      title={elem && elem.title}
-                    />
-                  </div>
-                </section>
-              </a>
-            );
-          })}
+        <div className="giftcard-homepage-wrapper">
+          {giftCard &&
+            giftCard.map(elem => {
+              return (
+                <a
+                  href={elem && elem.navigation_link}
+                  className="giftcard-anchor"
+                  target="_blank"
+                  key={elem.title}
+                >
+                  <section className="gift-cart">
+                    <div className="gift-cart-image">
+                      <img
+                        src={elem && elem.full_image}
+                        className="img-fluid"
+                        alt={elem && elem.alt_text}
+                        title={elem && elem.title}
+                      />
+                    </div>
+                  </section>
+                </a>
+              );
+            })}
+        </div>
         <FeaturedEvents
           api={AdvertisementService.getFeaturedEvents}
           heading="Featured Events"
@@ -125,8 +128,7 @@ class Home extends Component {
           api={HomeService.getNewRelease}
         />
         <Explore />
-        <CustomFeatureEvents />
-        <Royals />
+        <CustomSection />
         <InstagramFeed />
         <Cookies />
         <ModalPopup
