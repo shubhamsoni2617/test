@@ -1,4 +1,4 @@
-.st-banner-overlay {
+.banner-overlay {
 	position: absolute;
 	left: 0px;
 	top: 50%;
@@ -8,7 +8,7 @@
 	@include tablet-portrait{
 		padding-top: 95px;
 	}
-	.st-banner-title {
+	.banner-title {
 		color: $white;
 		font-family: "montserratsemibold";
 		font-size: 30px;
@@ -20,7 +20,7 @@
 			line-height: 20px;
 		}
 	}
-	.st-breadcrumb {
+	.breadcrumb {
 		li {
 			list-style: none;
 			position: relative;
@@ -56,7 +56,7 @@
 	}
 }
 
-.st-banner-wrapper {
+.banner-wrapper {
 	margin: 0 auto;
 	text-align: center;
 	height: 271px;
@@ -68,13 +68,13 @@
 	}
 }
 
-.st-promotions-wrapper {
+.promotions-wrapper {
 	padding: 57px 0px 0px;
 	border-bottom: 1px solid rgba(151, 151, 151, 0.2);
 	@include tablet-portrait {
 		padding: 20px 0px 0px;
 	}
-	.st-promotions-nav {
+	.promotions-nav {
 		display: block;
 		width: 100%;
 		padding-bottom: 13px;
@@ -161,14 +161,14 @@
 			}
 		}
 	}
-	.st-tab-content-wrapper {
+	.tab-content-wrapper {
 		padding-bottom: 60px;
 		@include tablet-portrait {
 			padding-bottom: 30px;
 			width: 100%;
 		}
 	}
-	.st-promotions-listing {
+	.promotions-listing {
 		position: relative;
 		display: grid;
 		grid-gap: 30px;
@@ -180,7 +180,7 @@
 			flex: 0 0 50%;
 			list-style: none;
 			margin-bottom: 0px;
-			.st-promotions-listing-wrapper {
+			.promotions-listing-wrapper {
 				border: 1px solid #EAEAEA;
 				height: 389px;
 				position: relative;
@@ -199,7 +199,7 @@
 					height: auto;
 				}
 			}
-			.st-promotion-dropdown-height {
+			.promotion-dropdown-height {
 				height: 0px;
 				opacity: 0;
 				overflow: hidden;
@@ -208,7 +208,7 @@
 				-moz-transition: 0.5s height;
 				-o-transition: 0.5s height;
 			}
-			.st-promotion-image {
+			.promotion-image {
 				height: 257px;
 				overflow: hidden;
 				img {
@@ -217,10 +217,10 @@
 					object-fit: cover;
 				}
 			}
-			.st-promotion-desc {
+			.promotion-desc {
 				padding: 20px 15px 16px;
 				position: relative;
-				.st-promotion-category {
+				.promotion-category {
 					color: #0077C8;
 					font-family: "montserratsemibold";
 					font-size: 14px;
@@ -233,7 +233,7 @@
 					text-align: center;
 					margin-bottom: 12px;
 				}
-				.st-promotions-share {
+				.promotions-share {
 					position: absolute;
 					right: 20px;
 					top: 15px;
@@ -244,7 +244,7 @@
 					border: 2.27px solid rgba(126, 126, 126, 0.2);
 					text-align: center;
 				}
-				.st-promotion-title {
+				.promotion-title {
 					color: #343434;
 					font-family: rubikmedium;
 					font-size: 18px;
@@ -257,11 +257,11 @@
 						min-height: auto;
 					}
 				}
-				.st-promotion-timer {
+				.promotion-timer {
 					position: absolute;
 					bottom: 0;
 					right: 0px;
-					.st-timer-tagline {
+					.timer-tagline {
 						color: #323232;
 						font-family: rubikregular;
 						font-size: 10.48px;
@@ -280,7 +280,7 @@
 								font-family: "rubikmedium";
 								font-weight: 500;
 							}
-							.st-timer-label {
+							.timer-label {
 								font-size: 9px;
 								font-family: 'rubikregular';
 								font-weight: 100;
@@ -289,7 +289,7 @@
 						}
 					}
 				}
-				.st-promotion-btn-wrapper {
+				.promotion-btn-wrapper {
 					margin-top: 10px;
 					position: relative;
 					button {
@@ -305,7 +305,7 @@
 					}
 				}
 			}
-			.st-promotion-tab-dropdown {
+			.promotion-tab-dropdown {
 				position: absolute;
 				padding-top: 20px;
 				width: 100%;
@@ -331,7 +331,7 @@
 					position: relative;
 					top: 0;
 				}
-				.st-top-dropdown-bar {
+				.top-dropdown-bar {
 					border: 5px solid $accent-color;
 					width: 100%;
 					display: block;
@@ -339,7 +339,7 @@
 						border: 3px solid $accent-color;
 					}
 				}
-				.st-promotion-tab-dropdown-content {
+				.promotion-tab-dropdown-content {
 					padding: 40px 25px;
 					background-color: #F0F9FF;
 					@include tablet-portrait {
@@ -382,30 +382,30 @@
 						left: 30px;
 					}
 				}
-				.st-promotion-tab-close-btn{
+				.promotion-tab-close-btn{
 					opacity: 0;
 				}
 			}
 			&.active {
-				.st-promotions-listing-wrapper {
+				.promotions-listing-wrapper {
 					border-color: transparent;
 					box-shadow: 0 3px 18px 12px rgba(223, 223, 223, 0.29);
 				}
-				.st-promotion-dropdown-height {
+				.promotion-dropdown-height {
 					height: 700px;
 					opacity: 1;
 					@include mobile-view {
 						height: auto;
 					}
 				}
-				.st-promotion-tab-dropdown {
+				.promotion-tab-dropdown {
 					height: 700px;
 					opacity: 1;
 					z-index: 1;
 					@include mobile-view {
 						height: auto;
 					}
-					.st-promotion-tab-close-btn {
+					.promotion-tab-close-btn {
 						position: absolute;
 						right: 17px;
 						top: 37px;
@@ -427,7 +427,7 @@
 				}
 			}
 			&:hover {
-				.st-promotions-listing-wrapper {
+				.promotions-listing-wrapper {
 					transform: translateY(-10px);
 					cursor: pointer;
 					border-color: transparent;
@@ -438,7 +438,7 @@
 				}
 			}
 			&.active:hover {
-				.st-promotions-listing-wrapper {
+				.promotions-listing-wrapper {
 					transform: none;
 				}
 			}
@@ -446,7 +446,7 @@
 	}
 }
 
-.st-promotion-load-more {
+.promotion-load-more {
 	display: block;
 	text-align: center;
 	width: 100%;
@@ -454,7 +454,7 @@
 	@include tablet-portrait {
 		padding-bottom: 30px;
 	}
-	.st-load-more-btn {
+	.load-more-btn {
 		border: 1px solid #dedede;
 		border-radius: 20px;
 		padding: 5px 18px;
@@ -499,8 +499,8 @@
 	}
 }
 
-.st-promotions-listing-body {
-	.st-banner {
+.promotions-listing-body {
+	.banner {
 		@include tablet-portrait {
 			position: relative;
 			max-height: 200px;

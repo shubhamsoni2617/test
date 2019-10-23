@@ -28,17 +28,17 @@ $duration: 10s;
 
 .ticker-wrap {
   position: absolute;
-  top: 202px;
+  // top: 202px;
   top: 0px;
   width: 100%;
   background-color: rgba(3, 13, 21, 0.8);
   padding: 0 60px 0 35px;
   z-index: 2;
   max-height: 0;
-  transition: max-height 0.5s ease-out;
-  -webkit-transition: max-height 0.5s ease-out;
-  -moz-transition: max-height 0.5s ease-out;
-  -o-transition: max-height 0.5s ease-out;
+  transition: 0.9s top;
+  -webkit-transition: 0.9s top;
+  -moz-transition: 0.9s top;
+  -o-transition: 0.9s top;
   overflow: hidden; 
   position: fixed;
   @media(max-width: 1440px){

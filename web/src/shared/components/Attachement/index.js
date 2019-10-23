@@ -24,7 +24,7 @@ const Attachement = ({ attachedFiles, submit, mandatory, cv }) => {
           let fileSize = fileArr[key].size;
           let sizeInMB = fileSize / (1024 * 1024);
           if (sizeInMB > 5) {
-            setMaxFileLimitMsg('files can be uploaded, with up to 5MB size.');
+            setMaxFileLimitMsg('Files can be uploaded, with up to 5MB size.');
             setFileArr([]);
             return;
           }
@@ -57,7 +57,8 @@ const Attachement = ({ attachedFiles, submit, mandatory, cv }) => {
         })
         .catch(err => {
           if (err && err.response) {
-            setServerErr(err.response.data.message);
+            attachedFiles(err.response.data);
+            setServerErr(err.response.data);
           }
         });
     }
@@ -72,7 +73,7 @@ const Attachement = ({ attachedFiles, submit, mandatory, cv }) => {
     <div className="form-group attach-doc">
       <div className="row no-gutters">
         <span className="col-lg-5 col-5 pl-2 attach-text">
-          Attach Documents {mandatory && <span>*</span>}
+          <span className="attach-text">Attach Documents *</span> 
         </span>
         <div className="col-lg-7 col-7 resume">
           <span className="placeholder">Resume/CV</span>
@@ -80,7 +81,7 @@ const Attachement = ({ attachedFiles, submit, mandatory, cv }) => {
             htmlFor="file-upload"
             className="custom-file-upload  form-control text-right"
           >
-            <img src={attach} height="20" width="20" />
+            <img src={attach} height="17" width="17" />
           </label>
           <input
             encType="multipart/form-data"
@@ -103,7 +104,7 @@ const Attachement = ({ attachedFiles, submit, mandatory, cv }) => {
         fileArr.map((file, i) => {
           return (
             <Fragment key={i}>
-              <div className="col-lg-8 col-7 ml-auto file-preview">
+              <div className="col-lg-7 col-7 ml-auto file-preview">
                 <div className={mandatory ? 'show-border' : ''}>
                   {file.name}
                   {mandatory && (
@@ -113,7 +114,7 @@ const Attachement = ({ attachedFiles, submit, mandatory, cv }) => {
                         removeFiles(i);
                       }}
                     >
-                      x
+                      
                     </p>
                   )}
                 </div>
