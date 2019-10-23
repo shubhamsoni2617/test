@@ -16,9 +16,43 @@ import fb from '../../../assets/images/fb.svg';
 import insta from '../../../assets/images/insta-unfill.svg';
 import Calender from '../../../shared/components/Calender';
 import DateRangeFilter from '../../../shared/components/DateRangeFilter';
-import Submenu from '../../../shared/components/Submenu';
+import { Submenu, SubmenuWrap } from '../../../shared/components/Submenu';
 import Header from '../../../shared/components/Header';
 import sendImage from '../../../assets/images/send.svg';
+
+function List({ data, menueStatus, setMenuStatus, closeSubmenu, link }) {
+  if (!data || !data.length) return null;
+
+  return (
+    <ul className={`submenu  ${menueStatus ? 'active' : ''}`}>
+      {data.map(event => {
+        return (
+          <li key={event.id}>
+            <Link
+              to={`${link}${event.id}`}
+              onClick={() => {
+                setMenuStatus(false);
+                closeSubmenu(false);
+              }}
+            >
+              {event.name}
+            </Link>
+          </li>
+        );
+      })}
+      <Link
+        to="/events"
+        onClick={() => {
+          setMenuStatus(false);
+          closeSubmenu(false);
+        }}
+        className="text-center see-all-sidebar"
+      >
+        See All Events
+      </Link>
+    </ul>
+  );
+}
 
 const TopNav = props => {
   let refValue = useRef();
@@ -298,48 +332,96 @@ const TopNav = props => {
                 </a>
                 <ul className={`submenu ${showMegaMenu ? 'active' : ''}`}>
                   <li className="has-submenu">
-                    <Submenu
-                      heading="Genre"
-                      buttonText="By Genre"
-                      data={byGenreEvent}
-                      submenuClass="genre submenu-wrap"
-                      link="/events/search?c="
-                      closeSubmenu={handleNavigationClose}
-                      resetFilters={() => {}}
-                      clearFilters={() => {}}
-                      applyFilters={() => {}}
-                    />
-                  </li>
-                  <li className="has-submenu">
-                    <Submenu
-                      heading="Calendar"
-                      buttonText="By Date"
-                      submenuClass="calendar submenu-wrap"
-                      closeSubmenu={handleNavigationClose}
-                      resetFilters={() => {}}
-                      clearFilters={() => {}}
-                      applyFilters={() => {}}
-                    >
-                      <DateRangeFilter
-                        filteredDateRange={{ from: '', to: '' }}
-                        handleFilters={handleFilters}
-                        autoSubmit={false}
-                        filterFlag={false}
-                      />
+                    <Submenu>
+                      {(menueStatus, setMenuStatus) => (
+                        <>
+                          <button
+                            className={`backbutton ${
+                              menueStatus ? 'active' : ''
+                            }`}
+                            type="button"
+                            onClick={() => setMenuStatus(!menueStatus)}
+                          >
+                            By Genre
+                          </button>
+                          <SubmenuWrap
+                            heading="Genre"
+                            submenuClass="genre submenu-wrap"
+                            menueStatus={menueStatus}
+                            setMenuStatus={setMenuStatus}
+                          >
+                            <List
+                              data={byGenreEvent}
+                              menueStatus={menueStatus}
+                              setMenuStatus={setMenuStatus}
+                              closeSubmenu={handleNavigationClose}
+                              link="/events/search?c="
+                            />
+                          </SubmenuWrap>
+                        </>
+                      )}
                     </Submenu>
                   </li>
                   <li className="has-submenu">
-                    <Submenu
-                      heading="Venue"
-                      buttonText="By Venue"
-                      data={byVenueEvent}
-                      submenuClass="venue submenu-wrap"
-                      link="/events/search?v="
-                      closeSubmenu={handleNavigationClose}
-                      resetFilters={() => {}}
-                      clearFilters={() => {}}
-                      applyFilters={() => {}}
-                    />
+                    <Submenu>
+                      {(menueStatus, setMenuStatus) => (
+                        <>
+                          <button
+                            className={`backbutton ${
+                              menueStatus ? 'active' : ''
+                            }`}
+                            type="button"
+                            onClick={() => setMenuStatus(!menueStatus)}
+                          >
+                            By Date
+                          </button>
+                          <SubmenuWrap
+                            heading="Calendar"
+                            submenuClass="calendar submenu-wrap"
+                            menueStatus={menueStatus}
+                            setMenuStatus={setMenuStatus}
+                          >
+                            <DateRangeFilter
+                              filteredDateRange={{ from: '', to: '' }}
+                              handleFilters={handleFilters}
+                              autoSubmit={false}
+                              filterFlag={false}
+                            />
+                          </SubmenuWrap>
+                        </>
+                      )}
+                    </Submenu>
+                  </li>
+                  <li className="has-submenu">
+                    <Submenu>
+                      {(menueStatus, setMenuStatus) => (
+                        <>
+                          <button
+                            className={`backbutton ${
+                              menueStatus ? 'active' : ''
+                            }`}
+                            type="button"
+                            onClick={() => setMenuStatus(!menueStatus)}
+                          >
+                            By Venue
+                          </button>
+                          <SubmenuWrap
+                            heading="Venue"
+                            submenuClass="venue submenu-wrap"
+                            menueStatus={menueStatus}
+                            setMenuStatus={setMenuStatus}
+                          >
+                            <List
+                              data={byVenueEvent}
+                              menueStatus={menueStatus}
+                              setMenuStatus={setMenuStatus}
+                              closeSubmenu={handleNavigationClose}
+                              link="/events/search?v="
+                            />
+                          </SubmenuWrap>
+                        </>
+                      )}
+                    </Submenu>
                   </li>
                 </ul>
               </li>
@@ -359,94 +441,143 @@ const TopNav = props => {
             </ul>
             <ul>
               <li className="has-submenu">
-                <Submenu
-                  buttonText="My Account"
-                  backButtonRequired={false}
-                  resetFilters={() => {}}
-                  clearFilters={() => {}}
-                  applyFilters={() => {}}
-                >
-                  <ul className="submenu">
-                    <li className="has-submenu">
-                      <Link to="/">Subscription</Link>
-                    </li>
-                    <li className="has-submenu">
-                      <Link to="/">Booking History</Link>
-                    </li>
-                    <li className="has-submenu">
-                      <Link to="/">Logout</Link>
-                    </li>
-                  </ul>
+                <Submenu>
+                  {(menueStatus, setMenuStatus) => (
+                    <>
+                      <button
+                        className={`backbutton ${menueStatus ? 'active' : ''}`}
+                        type="button"
+                        onClick={() => setMenuStatus(!menueStatus)}
+                      >
+                        My Account
+                      </button>
+                      <SubmenuWrap
+                        menueStatus={menueStatus}
+                        setMenuStatus={setMenuStatus}
+                      >
+                        <ul className="submenu">
+                          <li className="has-submenu">
+                            <Link to="/">Subscription</Link>
+                          </li>
+                          <li className="has-submenu">
+                            <Link to="/">Booking History</Link>
+                          </li>
+                          <li className="has-submenu">
+                            <Link to="/">Logout</Link>
+                          </li>
+                        </ul>
+                      </SubmenuWrap>
+                    </>
+                  )}
                 </Submenu>
               </li>
               <li className="has-submenu mycart">
-                <Submenu
-                  heading="My cart"
-                  buttonText="My cart"
-                  data={byGenreEvent}
-                  submenuClass="submenu-wrap"
-                  resetFilters={() => {}}
-                  clearFilters={() => {}}
-                  applyFilters={() => {}}
-                />
+                <Submenu>
+                  {(menueStatus, setMenuStatus) => (
+                    <>
+                      <button
+                        className={`backbutton ${menueStatus ? 'active' : ''}`}
+                        type="button"
+                        onClick={() => setMenuStatus(!menueStatus)}
+                      >
+                        My cart
+                      </button>
+                      <SubmenuWrap
+                        menueStatus={menueStatus}
+                        setMenuStatus={setMenuStatus}
+                      >
+                        <ul className="submenu">
+                          <li className="has-submenu">
+                            <Link to="/">Subscription</Link>
+                          </li>
+                          <li className="has-submenu">
+                            <Link to="/">Booking History</Link>
+                          </li>
+                          <li className="has-submenu">
+                            <Link to="/">Logout</Link>
+                          </li>
+                        </ul>
+                      </SubmenuWrap>
+                    </>
+                  )}
+                </Submenu>
               </li>
             </ul>
             <ul>
               <li className="has-submenu">
-                {/* <Link to="/">Our Company</Link> */}
-                <Submenu
-                  buttonText="Our Company"
-                  backButtonRequired={false}
-                  resetFilters={() => {}}
-                  clearFilters={() => {}}
-                  applyFilters={() => {}}
-                >
-                  <ul className="submenu">
-                    <li className="has-submenu">
-                      <Link to="/">About Us</Link>
-                    </li>
-                    <li className="has-submenu">
-                      <Link to="/">Sell with Us</Link>
-                    </li>
-                    <li className="has-submenu">
-                      <Link to="/">Ticketing Technology</Link>
-                    </li>
-                    <li className="has-submenu">
-                      <Link to="/apipartners">Partner with Us</Link>
-                    </li>
-                    <li className="has-submenu">
-                      <Link to="/">Careers</Link>
-                    </li>
-                  </ul>
+                <Submenu>
+                  {(menueStatus, setMenuStatus) => (
+                    <>
+                      <button
+                        className={`backbutton ${menueStatus ? 'active' : ''}`}
+                        type="button"
+                        onClick={() => setMenuStatus(!menueStatus)}
+                      >
+                        Our Company
+                      </button>
+                      <SubmenuWrap
+                        menueStatus={menueStatus}
+                        setMenuStatus={setMenuStatus}
+                      >
+                        <ul className="submenu">
+                          <li className="has-submenu">
+                            <Link to="/">About Us</Link>
+                          </li>
+                          <li className="has-submenu">
+                            <Link to="/">Sell with Us</Link>
+                          </li>
+                          <li className="has-submenu">
+                            <Link to="/">Ticketing Technology</Link>
+                          </li>
+                          <li className="has-submenu">
+                            <Link to="/apipartners">Partner with Us</Link>
+                          </li>
+                          <li className="has-submenu">
+                            <Link to="/">Careers</Link>
+                          </li>
+                        </ul>
+                      </SubmenuWrap>
+                    </>
+                  )}
                 </Submenu>
               </li>
               <li className="has-submenu">
-                <Submenu
-                  buttonText="Helpful Links"
-                  backButtonRequired={false}
-                  resetFilters={() => {}}
-                  clearFilters={() => {}}
-                  applyFilters={() => {}}
-                >
-                  <ul className="submenu">
-                    <li className="has-submenu">
-                      <Link to="/where-to-buy-tickets">
-                        Where to Buy Tickets
-                      </Link>
-                    </li>
-                    <li className="has-submenu">
-                      <Link to="/agents">Locate an Agent</Link>
-                    </li>
-                    <li className="has-submenu">
-                      <Link to="/venues">Locate a Venue</Link>
-                    </li>
-                    <li className="has-submenu">
-                      <Link to="/">Blog</Link>
-                    </li>
-                    <li className="has-submenu">
-                      <Link to="/">Media</Link>
-                    </li>
-                  </ul>
+                <Submenu>
+                  {(menueStatus, setMenuStatus) => (
+                    <>
+                      <button
+                        className={`backbutton ${menueStatus ? 'active' : ''}`}
+                        type="button"
+                        onClick={() => setMenuStatus(!menueStatus)}
+                      >
+                        Helpful Links
+                      </button>
+                      <SubmenuWrap
+                        menueStatus={menueStatus}
+                        setMenuStatus={setMenuStatus}
+                      >
+                        <ul className="submenu">
+                          <li className="has-submenu">
+                            <Link to="/where-to-buy-tickets">
+                              Where to Buy Tickets
+                            </Link>
+                          </li>
+                          <li className="has-submenu">
+                            <Link to="/agents">Locate an Agent</Link>
+                          </li>
+                          <li className="has-submenu">
+                            <Link to="/venues">Locate a Venue</Link>
+                          </li>
+                          <li className="has-submenu">
+                            <Link to="/">Blog</Link>
+                          </li>
+                          <li className="has-submenu">
+                            <Link to="/">Media</Link>
+                          </li>
+                        </ul>
+                      </SubmenuWrap>
+                    </>
+                  )}
                 </Submenu>
               </li>
               <li className="business">
