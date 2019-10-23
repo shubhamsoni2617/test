@@ -5,7 +5,6 @@ import Constants from '../../shared/constants';
 import Banner from './Banner';
 import WhySistic from './WhySistic';
 import TicketingSystem from './TicketingSystem';
-import Contact from '../../shared/components/Contact';
 
 const SystemLicensing = ({}) => {
   const [systemLicensing, setSystemLicensing] = useState([]);
@@ -25,7 +24,6 @@ const SystemLicensing = ({}) => {
         }
       });
   }, []);
-  console.log(systemLicensing);
   const {
     banner_title,
     button_link,
@@ -43,13 +41,6 @@ const SystemLicensing = ({}) => {
       />
       <WhySistic whySistic={content && content.why_sistic} />
       <TicketingSystem ticketingSystem={content && content.tickeying_system} />
-      <div className="customer-enquiry-wrapper">
-        <div className="customer-enquiry">
-          <h3 className="heading-text">Customer Enquiries</h3>
-          <Contact />
-          {/* <Contact attachement={true} handleEnquiry={handleEnquiry} /> */}
-        </div>
-      </div>
     </div>
   );
 };
