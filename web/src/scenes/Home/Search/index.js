@@ -21,6 +21,7 @@ const Search = props => {
   const [loadMore, setLoadMore] = useState(false);
   console.log(totalResults);
   useEffect(() => {
+    setDefaultCategoryId('all')
     fetchSearchCategoriesService();
   }, [props.location.search]);
   useEffect(() => {

@@ -44,6 +44,7 @@ const Autocomplete = props => {
   };
 
   const focusHandler = () => {
+    setShowSuggestions(false);
     setIsFocused(false);
     props.buttonActiveHandler(false)
   };
@@ -84,6 +85,7 @@ const Autocomplete = props => {
     setShowSuggestions(false);
     setUserInput(question);
     storageValuesHandler(question);
+ 
   };
 
   const storageValuesHandler = question => {
@@ -113,22 +115,10 @@ const Autocomplete = props => {
   };
 
   let suggestionsListComponent;
-  if (showSuggestions && userInput) {
+  if (showSuggestions && userInput.length>2) {
     if (suggestions && suggestions.length) {
       suggestionsListComponent = (
         <div className="search-popup-wrapper">
-          {/* {Utilities.mobilecheck() && (
-            <input
-              type="text"
-              onChange={onChange}
-              onKeyDown={onKeyDown}
-              value={userInput}
-              className="search-inputtype mobile"
-              onFocus={() => {
-                setIsFocused(true);
-              }}
-            />
-          )} */}
           <ul className="suggestions">
             {suggestions.map((suggestion, index) => {
               return (
@@ -143,7 +133,9 @@ const Autocomplete = props => {
                       props.history,
                       suggestion.type,
                       suggestion.category,
-                      suggestion.id
+                      suggestion.id,
+                      suggestion.code,
+                      suggestion.tid
                     );
                     Utilities.mobilecheck() && document.getElementsByTagName("body")[0].classList.remove("fixed-body");
                     setIsFocused(false)
@@ -165,12 +157,12 @@ const Autocomplete = props => {
                 onClick(userInput);
                 props.history.push(`/search-results?q=${userInput}`);
                 Utilities.mobilecheck() && document.getElementsByTagName("body")[0].classList.remove("fixed-body");
-                // return Utilities.mobilecheck() ? setIsFocused(false) : null
+              
                 setIsFocused(false)
               }}
               className="search-link-all-results"
             >
-              See all results form <strong>{userInput}</strong>
+              See all results from <strong>{userInput}</strong>
             </div>
           </ul>
         </div >
