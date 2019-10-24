@@ -204,9 +204,9 @@ const Autocomplete = props => {
           onClick={() => {
             Utilities.mobilecheck() && document.getElementsByTagName("body")[0].classList.add("fixed-body");
           }}
-          // onKeyDown={() => {
-          //   Utilities.mobilecheck() && document.getElementsByTagName("body")[0].classList.remove("fixed-body");
-          // }}
+          onKeyDown={() => {
+            Utilities.mobilecheck() && document.getElementsByTagName("body")[0].classList.remove("fixed-body");
+          }}
           className="search-inputtype"
           onFocus={() => {
             setIsFocused(true);
