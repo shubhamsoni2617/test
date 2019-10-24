@@ -41,7 +41,8 @@ const Card = props => {
                 cardData.type,
                 cardData.category,
                 cardData.id,
-                cardData.code
+                cardData.code,
+                cardData.tid
               )
             }
           >

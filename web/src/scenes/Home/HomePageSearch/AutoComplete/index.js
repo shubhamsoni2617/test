@@ -113,22 +113,10 @@ const Autocomplete = props => {
   };
 
   let suggestionsListComponent;
-  if (showSuggestions && userInput) {
+  if (showSuggestions && userInput.length>2) {
     if (suggestions && suggestions.length) {
       suggestionsListComponent = (
         <div className="search-popup-wrapper">
-          {/* {Utilities.mobilecheck() && (
-            <input
-              type="text"
-              onChange={onChange}
-              onKeyDown={onKeyDown}
-              value={userInput}
-              className="search-inputtype mobile"
-              onFocus={() => {
-                setIsFocused(true);
-              }}
-            />
-          )} */}
           <ul className="suggestions">
             {suggestions.map((suggestion, index) => {
               return (
@@ -144,7 +132,8 @@ const Autocomplete = props => {
                       suggestion.type,
                       suggestion.category,
                       suggestion.id,
-                      suggestion.code
+                      suggestion.code,
+                      suggestion.tid
                     );
                     Utilities.mobilecheck() && document.getElementsByTagName("body")[0].classList.remove("fixed-body");
                     setIsFocused(false)
