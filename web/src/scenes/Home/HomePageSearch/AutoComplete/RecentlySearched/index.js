@@ -7,7 +7,7 @@ import MostViewed from './MostViewed';
 import Utilities from '../../../../../shared/utilities';
 import backButton from '../../../../../assets/images/events/sortby.svg';
 
-const HomePageSearch = props => {
+const RecentlySearched = props => {
   const [storageValues, setStorageValues] = useState(
     JSON.parse(localStorage.getItem('recentlySearched'))
   );
@@ -32,15 +32,6 @@ const HomePageSearch = props => {
           <span onClick={props.history.goBack}>
             <image alt={'backButton'} src={backButton} />
           </span>
-          {/* {Utilities.mobilecheck() && (
-            <input
-              type="text"
-              onChange={props.onChange}
-              onKeyDown={props.onKeyDown}
-              value={props.userInput}
-              className="search-inputtype mobile"
-            />
-          )} */}
           <h3>Recently Searched</h3>
           <ul>
             {storageValues &&
@@ -78,4 +69,4 @@ const HomePageSearch = props => {
   );
 };
 
-export default HomePageSearch;
+export default RecentlySearched;
