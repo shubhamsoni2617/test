@@ -143,8 +143,7 @@ const Autocomplete = props => {
                       props.history,
                       suggestion.type,
                       suggestion.category,
-                      suggestion.id,
-                      suggestion.code
+                      suggestion.id
                     );
                     Utilities.mobilecheck() && document.getElementsByTagName("body")[0].classList.remove("fixed-body");
                     setIsFocused(false)
@@ -204,6 +203,9 @@ const Autocomplete = props => {
           placeholder="Search experiences…"
           onClick={() => {
             Utilities.mobilecheck() && document.getElementsByTagName("body")[0].classList.add("fixed-body");
+          }}
+          onKeyDown={() => {
+            Utilities.mobilecheck() && document.getElementsByTagName("body")[0].classList.remove("fixed-body");
           }}
           className="search-inputtype"
           onFocus={() => {
