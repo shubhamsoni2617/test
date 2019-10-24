@@ -44,6 +44,7 @@ const Autocomplete = props => {
   };
 
   const focusHandler = () => {
+    setShowSuggestions(false);
     setIsFocused(false);
     props.buttonActiveHandler(false)
   };
@@ -84,6 +85,7 @@ const Autocomplete = props => {
     setShowSuggestions(false);
     setUserInput(question);
     storageValuesHandler(question);
+ 
   };
 
   const storageValuesHandler = question => {
@@ -155,12 +157,12 @@ const Autocomplete = props => {
                 onClick(userInput);
                 props.history.push(`/search-results?q=${userInput}`);
                 Utilities.mobilecheck() && document.getElementsByTagName("body")[0].classList.remove("fixed-body");
-                // return Utilities.mobilecheck() ? setIsFocused(false) : null
+              
                 setIsFocused(false)
               }}
               className="search-link-all-results"
             >
-              See all results form <strong>{userInput}</strong>
+              See all results from <strong>{userInput}</strong>
             </div>
           </ul>
         </div >
