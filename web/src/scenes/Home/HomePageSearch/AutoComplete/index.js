@@ -92,10 +92,10 @@ const Autocomplete = props => {
     let storageValues = JSON.parse(localStorage.getItem('recentlySearched'));
     if (storageValues) {
       if (storageValues.length > 7) {
-        storageValues.shift();
+        storageValues.splice(storageValues.length-1);
       }
-      if (storageValues.indexOf(question) === -1) {
-        storageValues.push(question);
+      if (storageValues.indexOf(question.toLowerCase()) === -1 && question.trim().length) {
+        storageValues.unshift(question);
         localStorage.setItem('recentlySearched', JSON.stringify(storageValues));
       }
     }

@@ -28,13 +28,13 @@ const RecentlySearched = props => {
   return (
     <div className="header-search">
       <div className="searched-wrapper">
-        <div className="recently-search">
+       {storageValues.length ? <div className="recently-search">
           <span onClick={props.history.goBack}>
             <image alt={'backButton'} src={backButton} />
           </span>
           <h3>Recently Searched</h3>
           <ul>
-            {storageValues &&
+            {
               storageValues.map((text, index) => {
                 return (
                   <li key={text + index}>
@@ -62,7 +62,7 @@ const RecentlySearched = props => {
                 );
               })}
           </ul>
-        </div>
+        </div>:null}
         <MostViewed />
       </div>
     </div>
