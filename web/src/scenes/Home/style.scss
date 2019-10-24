@@ -284,7 +284,13 @@
 					@media(max-width: 991px) {
 						right: 10px;
 						margin-top: -2px;
-                    }
+					}
+					@media(max-width: 767px){
+						transition: none;
+						-webkit-transition: none;
+						-moz-transition: none;
+						-o-transition: none;
+					}
                     &::after{
                         display: none;
                     }
@@ -4510,11 +4516,11 @@ section{
 	@media(max-width: 767px){
 		position: fixed;
 		width: 100%;
-		margin-top: 100px;
+		margin-top: 80px;
 		right: 0px;
 		left: 0px;
 		transform: none;
-		height: calc(100% - 100px);
+		height: calc(100% - 80px);
 		min-height: auto;
 		display: block;
 		overflow-y: auto;
@@ -4718,6 +4724,21 @@ section{
 					margin-top: 8px;
 					line-height: 17px;
                     display: block;
+				}
+			}
+			&.advertisment-listing{
+				@media(max-width: 991px){
+					flex-wrap: wrap;
+					overflow-x: hidden;
+				}
+				li{
+					flex: 0 0 33%;
+					width: 33%;
+					margin-bottom: 10px;
+					@media(max-width: 991px){
+						flex: 0 0 50%;
+						width: 50%;
+					}
 				}
 			}
 		}
