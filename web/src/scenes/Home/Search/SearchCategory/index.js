@@ -1,20 +1,14 @@
 import React, { Fragment } from 'react';
 
 const SearchCategory = props => {
-  const { defaultCategoryId, handleActiveCategory } = props;
-  let searchCategories;
-  if (props.searchCategories) {
-    Object.keys(props.searchCategories).map((key) => {
-      return [props.searchCategories[key]];
-    });
-  }
+  const { defaultCategoryId, handleActiveCategory, searchCategories } = props;
+  
   return (
     <div className="promotions-full-wrapper">
       <section className="promotions-wrapper">
         <div className="promotions-nav">
           <ul className="nav nav-tabs" id="nav-tab" role="tablist">
-            {searchCategories && searchCategories[0].total
-              ? searchCategories.map(category => {
+            { searchCategories.map(category => {
                 return (
                   <li
                     key={category.type}
@@ -38,7 +32,7 @@ const SearchCategory = props => {
                   </li>
                 );
               })
-              : null}
+              }
           </ul>
         </div>
       </section>

@@ -40,7 +40,8 @@ const Card = props => {
                 props.history,
                 cardData.type,
                 cardData.category,
-                cardData.id
+                cardData.id,
+                cardData.code
               )
             }
           >
