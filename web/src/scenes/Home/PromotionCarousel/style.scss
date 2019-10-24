@@ -1,3 +1,106 @@
+.promo-animation-wrap{
+  position: relative;
+  display: flex;
+  margin-top: -24px;
+  padding-left: 15px;
+  img{
+    z-index: 0;
+    width: 100%;
+    display: block;
+    height: 65px;
+  }
+  .first{
+    width: 50px;
+    -webkit-animation-name: Floatingpromofirst;
+    -webkit-animation-duration: 3s;
+    -webkit-animation-iteration-count: infinite;
+    -webkit-animation-timing-function: ease-in-out;
+    animation-name: Floatingpromofirst;
+    animation-duration: 3s;
+    animation-iteration-count: infinite;
+    animation-timing-function: ease-in-out;
+  }
+  .second{
+    width: 50px;
+    -webkit-animation-name: Floatingpromosecond;
+    -webkit-animation-duration: 3s;
+    -webkit-animation-iteration-count: infinite;
+    -webkit-animation-timing-function: ease-in-out;
+    animation-name: Floatingpromosecond;
+    animation-duration: 3s;
+    animation-iteration-count: infinite;
+    animation-timing-function: ease-in-out;
+    margin: -5px 0 0 -7px;
+    animation-delay: 0.4s;
+  }
+  .third{
+    width: 50px;
+    -webkit-animation-name: Floatingpromothird;
+    -webkit-animation-duration: 3s;
+    -webkit-animation-iteration-count: infinite;
+    -webkit-animation-timing-function: ease-in-out;
+    animation-name: Floatingpromothird;
+    animation-duration: 3s;
+    animation-iteration-count: infinite;
+    animation-timing-function: ease-in-out;
+    margin: -4px 0 0 -6px;
+    animation-delay: 0.7s;
+  }
+  .fourth{
+    width: 50px;
+    -webkit-animation-name: Floatingpromofourth;
+    -webkit-animation-duration: 3s;
+    -webkit-animation-iteration-count: infinite;
+    -webkit-animation-timing-function: ease-in-out;
+    animation-name: Floatingpromofourth;
+    animation-duration: 3s;
+    animation-iteration-count: infinite;
+    animation-timing-function: ease-in-out;
+    margin: 0px 0 0 -11px;
+    animation-delay: 0.8s;
+  }
+  @keyframes Floatingpromofirst {
+    0%, 100% {
+        -webkit-transform: translate(0,0);
+        transform: translate(0,0);
+    }
+    65% {
+        -webkit-transform: translate(0, 7px);
+        transform: translate(0, 7px);
+    }
+  }
+  @keyframes Floatingpromosecond {
+    0%, 100% {
+        -webkit-transform: translate(0,0);
+        transform: translate(0,0);
+    }
+    65% {
+        -webkit-transform: translate(0, 7px);
+        transform: translate(0, 7px);
+    }
+  }
+  @keyframes Floatingpromothird {
+    0%, 100% {
+        -webkit-transform: translate(0,0);
+        transform: translate(0,0);
+    }
+    65% {
+        -webkit-transform: translate(0, 7px);
+        transform: translate(0, 7px);
+    }
+  }
+  @keyframes Floatingpromofourth {
+    0%, 100% {
+        -webkit-transform: translate(0,0);
+        transform: translate(0,0);
+    }
+    65% {
+        -webkit-transform: translate(0, 7px);
+        transform: translate(0, 7px);
+    }
+  }
+}
+
 .promotions-grid-wrapper {
   @media(max-width: 767px){
     display: flex;
