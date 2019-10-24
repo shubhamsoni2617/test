@@ -99,6 +99,18 @@
         transform: translate(0, 7px);
     }
   }
+  @media(max-width: 1024px){
+      margin-top: 0;
+      .first, 
+      .second,
+      .third,
+      .fourth{
+        width: 43px;
+      }
+      img{
+        height: 58px;
+      }
+    }
 }
 
 .promotions-grid-wrapper {
@@ -118,6 +130,13 @@
           height: auto;
         }
       }
+    }
+  }
+}
+.promotions{
+  .container-fluid{
+    @media(max-width: 1024px){
+      overflow: visible;
     }
   }
 }
