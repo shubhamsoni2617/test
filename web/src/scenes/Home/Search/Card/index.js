@@ -25,7 +25,7 @@ const Card = props => {
             {cardData.date && <p className="event-date">{cardData.date}</p>}
             {cardData.venue && <p className="event-place">{cardData.venue}</p>}
             <span className={`${cardData.type === 'event' ? `event` : ``}`}>
-              {cardData.type === 'event'?cardData.genre:cardData.category}
+              {cardData.category}
             </span>
           </div>
         </div>
