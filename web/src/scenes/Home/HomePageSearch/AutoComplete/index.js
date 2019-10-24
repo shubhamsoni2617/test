@@ -208,7 +208,18 @@ const Autocomplete = props => {
             Utilities.mobilecheck() && document.getElementsByTagName("body")[0].classList.add("fixed-body");
           }}
         />
-        <button type="submit" className="search-btn">
+        <button type="submit" className="search-btn" onClick={()=>{
+          if(userInput.length>2){
+            onClick(userInput);
+            props.history.push(`/search-results?q=${userInput}`);
+            Utilities.mobilecheck() && document.getElementsByTagName("body")[0].classList.remove("fixed-body");
+          
+            setIsFocused(false)
+          }else{
+            setIsFocused(false)
+          }
+
+        }}>
           <img src={searchImage} className="img-fluid" alt="search-icon" />
           <img
             src={searchImageBlue}

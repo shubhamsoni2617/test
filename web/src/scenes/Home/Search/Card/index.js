@@ -5,7 +5,6 @@ import navigateToLink from '../../../../shared/navigateToLink';
 
 const Card = props => {
   const { cardData } = props;
-  console.log(cardData.type)
   return (
     <div
       className={`event-block ${
