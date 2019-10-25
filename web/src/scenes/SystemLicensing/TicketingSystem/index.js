@@ -15,12 +15,15 @@ const TicketingSystem = ({ ticketingSystem }) => {
               </h2>
               <div className="stixxloud">
                 <h4>Stixcloud</h4>
-                <p
-                  className=""
-                  dangerouslySetInnerHTML={{
-                    __html: ticketingSystem && ticketingSystem.description
-                  }}
-                ></p>
+                <ul>
+                    <li
+                    className=""
+                    dangerouslySetInnerHTML={{
+                        __html: ticketingSystem && ticketingSystem.description
+                    }}
+                    ></li>
+                </ul>
+               
                 {/* <ul>
                   <li>- Event Configuration Tool</li>
                   <li>- Online Sales Booking Engine</li>
