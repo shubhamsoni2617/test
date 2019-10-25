@@ -205,6 +205,9 @@
 							opacity: 1;
 						}
 					}
+					&::-ms-clear {
+						display: none;
+					}
 					@media(max-width: 991px) {
 						font-size: 15px;
 						line-height: 18px;
