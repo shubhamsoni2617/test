@@ -12,16 +12,15 @@ import SearchNotFound from './SearchNotFound';
 
 const Search = props => {
   const [searchCategories, setSearchCategories] = useState(null);
-  const [allResultCount, setAllResultCount] = useState(0);
+  const [allResultCount, setAllResultCount] = useState('');
   const [totalResults, setTotalResults] = useState(0);
   const [defaultCategoryId, setDefaultCategoryId] = useState('all');
   const [allSearchResults, setAllSearchResults] = useState(null);
   const [constant, setConstant] = useState(6);
   const [error, setError] = useState(false);
   const [loadMore, setLoadMore] = useState(false);
-  console.log(totalResults);
   useEffect(() => {
-    setDefaultCategoryId('all')
+    setDefaultCategoryId('all');
     fetchSearchCategoriesService();
   }, [props.location.search]);
   useEffect(() => {
@@ -54,10 +53,10 @@ const Search = props => {
     };
     SearchService.getSearchCategories(params)
       .then(res => {
-        console.log(res.data.data)
-        setSearchCategories(res.data.data);
-        setTotalResults(res.data.data.find(obj => obj.type === 'all').total);
-        setAllResultCount(res.data.data.find(obj => obj.type === 'all').total);
+        console.log(res.data);
+        setSearchCategories(res.data);
+        setTotalResults(res.data.find(obj => obj.type === 'all').total);
+        setAllResultCount(res.data.find(obj => obj.type === 'all').total);
       })
       .catch(err => {
         console.log(err);
@@ -90,31 +89,33 @@ const Search = props => {
         );
       })
     ) : (
-        <ShimmerEffect
-          height={10}
-          count={4}
-          type="LIST"
-          propCls="shm_col-xs-1 col-md-12"
-        />
-      );
+      <ShimmerEffect
+        height={10}
+        count={4}
+        type="LIST"
+        propCls="shm_col-xs-1 col-md-12"
+      />
+    );
   };
+  console.log(allResultCount);
   return (
     <div className="searchbar-page-wrapper container-fluid">
       {!error ? (
         <div className="container">
           <SearchAdvertisement />
-          {
-            allResultCount ? (
-              <h2>
-                {allResultCount} results found for "
-              <strong>{props.location.search.split('=')[1]}</strong>"
-            </h2>
-            ) : null}
-          {searchCategories  && <SearchCategory
+
+          <h2>
+            {allResultCount} results found for "
+            <strong>{props.location.search.split('=')[1]}</strong>"
+          </h2>
+
+          {/* {searchCategories && ( */}
+          <SearchCategory
             searchCategories={searchCategories}
             defaultCategoryId={defaultCategoryId}
             handleActiveCategory={handleActiveCategory}
-          />}
+          />
+          {/* )} */}
           <div className="wrapper-events-listing">
             <div className="events-listing">
               <div className="events-section list-view">
@@ -147,13 +148,12 @@ const Search = props => {
           </div>
         </div>
       ) : (
-          // <h2>NO data Found</h2>
-          <SearchNotFound />
-        )
-      }
+        // <h2>NO data Found</h2>
+        <SearchNotFound />
+      )}
 
       {/* {error && <h2>NO data Found</h2>} */}
-    </div >
+    </div>
   );
 };
 
