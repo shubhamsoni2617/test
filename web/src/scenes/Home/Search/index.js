@@ -29,7 +29,7 @@ const Search = props => {
       client: Constants.CLIENT,
       limit: constant,
       first: 0,
-      search: props.location.search.split('=')[1]
+      search: decodeURI(props.location.search.split('=')[1])
     };
     fetchSearchResultsService(params);
   }, [defaultCategoryId, props.location.search]);
@@ -37,7 +37,7 @@ const Search = props => {
   useEffect(() => {
     const params = {
       client: Constants.CLIENT,
-      search: props.location.search.split('=')[1],
+      search: decodeURI(props.location.search.split('=')[1]),
       limit: constant,
       first: 0
     };
@@ -47,16 +47,18 @@ const Search = props => {
   }, [constant]);
 
   const fetchSearchCategoriesService = () => {
+    setSearchCategories(null);
+    setAllResultCount('');
     const params = {
       client: Constants.CLIENT,
-      search: props.location.search.split('=')[1]
+      search: decodeURI(props.location.search.split('=')[1])
     };
     SearchService.getSearchCategories(params)
       .then(res => {
         console.log(res.data);
-        setSearchCategories(res.data);
-        setTotalResults(res.data.find(obj => obj.type === 'all').total);
-        setAllResultCount(res.data.find(obj => obj.type === 'all').total);
+        setSearchCategories(res.data.data);
+        setTotalResults(res.data.data.find(obj => obj.type === 'all').total);
+        setAllResultCount(res.data.data.find(obj => obj.type === 'all').total);
       })
       .catch(err => {
         console.log(err);
@@ -103,19 +105,15 @@ const Search = props => {
       {!error ? (
         <div className="container">
           <SearchAdvertisement />
-
           <h2>
             {allResultCount} results found for "
-            <strong>{props.location.search.split('=')[1]}</strong>"
+            <strong>{decodeURI(props.location.search.split('=')[1])}</strong>"
           </h2>
-
-          {/* {searchCategories && ( */}
           <SearchCategory
             searchCategories={searchCategories}
             defaultCategoryId={defaultCategoryId}
             handleActiveCategory={handleActiveCategory}
           />
-          {/* )} */}
           <div className="wrapper-events-listing">
             <div className="events-listing">
               <div className="events-section list-view">
