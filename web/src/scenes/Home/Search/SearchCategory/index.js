@@ -2,13 +2,14 @@ import React, { Fragment } from 'react';
 
 const SearchCategory = props => {
   const { defaultCategoryId, handleActiveCategory, searchCategories } = props;
-  
+
   return (
     <div className="promotions-full-wrapper">
       <section className="promotions-wrapper">
         <div className="promotions-nav">
           <ul className="nav nav-tabs" id="nav-tab" role="tablist">
-            { searchCategories.map(category => {
+            {searchCategories &&
+              searchCategories.map(category => {
                 return (
                   <li
                     key={category.type}
@@ -17,22 +18,20 @@ const SearchCategory = props => {
                     <a
                       className={`nav-item nav-link ${
                         defaultCategoryId === category.type ? `active` : ``
-                        }`}
+                      }`}
                       onClick={() => handleActiveCategory(category.type)}
                     >
-                      {category.type[0].toUpperCase() +
-                        category.type.slice(1)}
+                      {category.type[0].toUpperCase() + category.type.slice(1)}
                       {category.type === 'event' ||
-                        category.type === 'attraction' ||
-                        category.type === 'promotion'
+                      category.type === 'attraction' ||
+                      category.type === 'promotion'
                         ? `s`
                         : ``}
                       ({category.total})
-                      </a>
+                    </a>
                   </li>
                 );
-              })
-              }
+              })}
           </ul>
         </div>
       </section>

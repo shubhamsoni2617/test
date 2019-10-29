@@ -40,13 +40,13 @@ const Autocomplete = props => {
     }
     setShowSuggestions(false);
     setIsFocused(false);
-    props.buttonActiveHandler(false)
+    props.buttonActiveHandler(false);
   };
 
   const focusHandler = () => {
     setShowSuggestions(false);
     setIsFocused(false);
-    props.buttonActiveHandler(false)
+    props.buttonActiveHandler(false);
   };
 
   useEffect(() => {
@@ -85,17 +85,26 @@ const Autocomplete = props => {
     setShowSuggestions(false);
     setUserInput(question);
     storageValuesHandler(question);
- 
   };
 
   const storageValuesHandler = question => {
     let storageValues = JSON.parse(localStorage.getItem('recentlySearched'));
     if (storageValues) {
       if (storageValues.length > 7) {
-        storageValues.splice(storageValues.length-1);
+        storageValues.splice(storageValues.length - 1);
       }
-      if (storageValues.indexOf(question.toLowerCase()) === -1 && question.trim().length) {
-        storageValues.unshift(question);
+      if (
+        storageValues.indexOf(question.toLowerCase()) !== -1 &&
+        question.trim().length
+      ) {
+        console.log(storageValues.indexOf(question.toLowerCase()));
+        storageValues.splice(storageValues.indexOf(question.toLowerCase()), 1);
+      }
+      if (
+        storageValues.indexOf(question.toLowerCase()) === -1 &&
+        question.trim().length
+      ) {
+        storageValues.unshift(question.toLowerCase());
         localStorage.setItem('recentlySearched', JSON.stringify(storageValues));
       }
     }
@@ -107,8 +116,8 @@ const Autocomplete = props => {
       setShowSuggestions(false);
       storageValuesHandler(userInput);
       props.history.push(`/search-results?q=${userInput}`);
-      Utilities.mobilecheck() && document.getElementsByTagName("body")[0].classList.remove("fixed-body");
-
+      Utilities.mobilecheck() &&
+        document.getElementsByTagName('body')[0].classList.remove('fixed-body');
     }
   };
 
@@ -117,7 +126,7 @@ const Autocomplete = props => {
   };
 
   let suggestionsListComponent;
-  if (showSuggestions && userInput.length>2) {
+  if (showSuggestions && userInput.length > 2) {
     if (suggestions && suggestions.length) {
       suggestionsListComponent = (
         <div className="search-popup-wrapper">
@@ -127,7 +136,7 @@ const Autocomplete = props => {
                 <li
                   className={`${
                     index === activeSuggestion ? `suggestion-active` : ``
-                    }`}
+                  }`}
                   key={suggestion.id}
                   onClick={() => {
                     onClick(suggestion.title);
@@ -139,18 +148,20 @@ const Autocomplete = props => {
                       suggestion.code,
                       suggestion.tid
                     );
-                    Utilities.mobilecheck() && document.getElementsByTagName("body")[0].classList.remove("fixed-body");
-                    setIsFocused(false)
-
+                    Utilities.mobilecheck() &&
+                      document
+                        .getElementsByTagName('body')[0]
+                        .classList.remove('fixed-body');
+                    setIsFocused(false);
                   }}
                 >
                   <h4 className="suggestion-title">{suggestion.title}</h4>
                   {suggestion.type === 'event' ||
-                    suggestion.type === 'attractions' ? (
-                      <button>{suggestion.category}</button>
-                    ) : (
-                      <p>{suggestion.category}</p>
-                    )}
+                  suggestion.type === 'attractions' ? (
+                    <button>{suggestion.category}</button>
+                  ) : (
+                    <p>{suggestion.category}</p>
+                  )}
                 </li>
               );
             })}
@@ -158,16 +169,19 @@ const Autocomplete = props => {
               onClick={() => {
                 onClick(userInput);
                 props.history.push(`/search-results?q=${userInput}`);
-                Utilities.mobilecheck() && document.getElementsByTagName("body")[0].classList.remove("fixed-body");
-              
-                setIsFocused(false)
+                Utilities.mobilecheck() &&
+                  document
+                    .getElementsByTagName('body')[0]
+                    .classList.remove('fixed-body');
+
+                setIsFocused(false);
               }}
               className="search-link-all-results"
             >
               See all results from <strong>{userInput}</strong>
             </div>
           </ul>
-        </div >
+        </div>
       );
     } else {
       suggestionsListComponent = (
@@ -179,16 +193,29 @@ const Autocomplete = props => {
   }
 
   return (
-    <div ref={node} className={`autocomplete ${Utilities.mobilecheck() && isFocused ? `search-open` : ``}`}>
+    <div
+      ref={node}
+      className={`autocomplete ${
+        Utilities.mobilecheck() && isFocused ? `search-open` : ``
+      }`}
+    >
       <div className="search-popup-topbar">
-        {Utilities.mobilecheck() && <button className="search-popup-back" onClick={() => {
-          setShowSuggestions(false);
-          setIsFocused(false);
-          Utilities.mobilecheck() && document.getElementsByTagName("body")[0].classList.remove("fixed-body");
-          props.history.goBack();
-        }}>
-          <img src={previousArrow} alt="previous-btn" />
-        </button>}
+        {Utilities.mobilecheck() && (
+          <button
+            className="search-popup-back"
+            onClick={() => {
+              setShowSuggestions(false);
+              setIsFocused(false);
+              Utilities.mobilecheck() &&
+                document
+                  .getElementsByTagName('body')[0]
+                  .classList.remove('fixed-body');
+              props.history.goBack();
+            }}
+          >
+            <img src={previousArrow} alt="previous-btn" />
+          </button>
+        )}
         <input
           type="text"
           onChange={onChange}
@@ -196,30 +223,39 @@ const Autocomplete = props => {
           value={userInput}
           placeholder="Search experiences…"
           onClick={() => {
-            Utilities.mobilecheck() && document.getElementsByTagName("body")[0].classList.add("fixed-body");
+            Utilities.mobilecheck() &&
+              document
+                .getElementsByTagName('body')[0]
+                .classList.add('fixed-body');
           }}
-          // onKeyDown={() => {
-          //   Utilities.mobilecheck() && document.getElementsByTagName("body")[0].classList.remove("fixed-body");
-          // }}
           className="search-inputtype"
           onFocus={() => {
             setIsFocused(true);
             props.buttonActiveHandler(true);
-            Utilities.mobilecheck() && document.getElementsByTagName("body")[0].classList.add("fixed-body");
+            Utilities.mobilecheck() &&
+              document
+                .getElementsByTagName('body')[0]
+                .classList.add('fixed-body');
           }}
         />
-        <button type="submit" className="search-btn" onClick={()=>{
-          if(userInput.length>2){
-            onClick(userInput);
-            props.history.push(`/search-results?q=${userInput}`);
-            Utilities.mobilecheck() && document.getElementsByTagName("body")[0].classList.remove("fixed-body");
-          
-            setIsFocused(false)
-          }else{
-            setIsFocused(false)
-          }
+        <button
+          type="submit"
+          className="search-btn"
+          onClick={() => {
+            if (userInput.length > 2) {
+              onClick(userInput);
+              props.history.push(`/search-results?q=${userInput}`);
+              Utilities.mobilecheck() &&
+                document
+                  .getElementsByTagName('body')[0]
+                  .classList.remove('fixed-body');
 
-        }}>
+              setIsFocused(false);
+            } else {
+              setIsFocused(false);
+            }
+          }}
+        >
           <img src={searchImage} className="img-fluid" alt="search-icon" />
           <img
             src={searchImageBlue}
@@ -235,9 +271,6 @@ const Autocomplete = props => {
           {...props}
           focusHandler={focusHandler}
           userInputHandler={userInputHandler}
-        // onChange={onChange}
-        // onKeyDown={onKeyDown}
-        // value={userInput}
         />
       )}
     </div>
