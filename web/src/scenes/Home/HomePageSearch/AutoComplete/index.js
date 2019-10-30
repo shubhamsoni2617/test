@@ -109,9 +109,7 @@ const Autocomplete = props => {
         storageValues.indexOf(question.toLowerCase()) === -1 &&
         question.trim().length
       ) {
-        console.log(storageValues);
         storageValues.unshift(question.trim().toLowerCase());
-        console.log(storageValues);
         localStorage.setItem('recentlySearched', JSON.stringify(storageValues));
       }
     }
@@ -290,6 +288,7 @@ const Autocomplete = props => {
           {...props}
           focusHandler={focusHandler}
           userInputHandler={userInputHandler}
+          storageValuesHandler={storageValuesHandler}
         />
       )}
     </div>
