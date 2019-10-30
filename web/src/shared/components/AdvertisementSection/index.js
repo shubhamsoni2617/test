@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Image from '../Image';
 import './style.scss';
+import useRemoveFixedBody from '../../hooks/useRemoveFixedBody';
 
 function AdvertisementBlock({ image, url, type }) {
   if (!image) return null;
@@ -14,7 +15,9 @@ function AdvertisementBlock({ image, url, type }) {
 
   return <Image src={image} type={type} />;
 }
-function AdvertisementSection({ data }) {
+function AdvertisementSection({ data, current }) {
+  useRemoveFixedBody(current);
+
   if (!data) return null;
   if (data && data.image) {
     return (

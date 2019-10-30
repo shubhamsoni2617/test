@@ -31,7 +31,7 @@ const MostViewed = () => {
                 <div className="most-viewed-img">
                   <Image src={elem.full_image} className="img-fluid" />
                 </div>
-                <span className="category musical">{elem.primary_genere}</span>
+                <span className="category musical">{elem.primary_genre}</span>
                 <h4>{elem.title}</h4>
               </li>
             );
