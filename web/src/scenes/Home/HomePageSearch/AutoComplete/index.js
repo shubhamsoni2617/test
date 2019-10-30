@@ -6,6 +6,8 @@ import RecentlySearched from './RecentlySearched';
 import loaderImage from '../../../../assets/images/loader.svg';
 import previousArrow from '../../../../assets/images/next.svg';
 import searchImage from '../../../../assets/images/search.svg';
+import cross from '../../../../assets/images/cross-grey.svg';
+
 import searchImageBlue from '../../../../assets/images/search-blue.svg';
 import './style.scss';
 import navigateToLink from '../../../../shared/navigateToLink';
@@ -20,6 +22,7 @@ const Autocomplete = props => {
   const [isFocused, setIsFocused] = useState(false);
   const debouncedSearchTerm = useDebounce(userInput, 500);
   const node = useRef(null);
+  const inputRef = useRef(null);
   useEffect(() => {
     let storageValues = JSON.parse(localStorage.getItem('recentlySearched'));
     if (!storageValues || !storageValues.length) {
@@ -94,23 +97,28 @@ const Autocomplete = props => {
         storageValues.splice(storageValues.length - 1);
       }
       if (
-        storageValues.indexOf(question.toLowerCase()) !== -1 &&
+        storageValues.indexOf(question.trim().toLowerCase()) !== -1 &&
         question.trim().length
       ) {
-        console.log(storageValues.indexOf(question.toLowerCase()));
-        storageValues.splice(storageValues.indexOf(question.toLowerCase()), 1);
+        storageValues.splice(
+          storageValues.indexOf(question.trim().toLowerCase()),
+          1
+        );
       }
       if (
         storageValues.indexOf(question.toLowerCase()) === -1 &&
         question.trim().length
       ) {
-        storageValues.unshift(question.toLowerCase());
+        storageValues.unshift(question.trim().toLowerCase());
         localStorage.setItem('recentlySearched', JSON.stringify(storageValues));
       }
     }
   };
 
   const onKeyDown = e => {
+    if (!userInput.trim().length) {
+      return;
+    }
     if (e.keyCode === 13) {
       setActiveSuggestion(0);
       setShowSuggestions(false);
@@ -217,6 +225,7 @@ const Autocomplete = props => {
           </button>
         )}
         <input
+          ref={inputRef}
           type="text"
           onChange={onChange}
           onKeyDown={onKeyDown}
@@ -238,10 +247,21 @@ const Autocomplete = props => {
                 .classList.add('fixed-body');
           }}
         />
+        {/* <button
+          onClick={() => {
+            setUserInput('');
+            inputRef.current.focus();
+          }}
+        >
+          <img src={cross} className="img-fluid active" alt="search-icon" />
+        </button> */}
         <button
           type="submit"
           className="search-btn"
           onClick={() => {
+            if (!userInput.trim().length) {
+              return;
+            }
             if (userInput.length > 2) {
               onClick(userInput);
               props.history.push(`/search-results?q=${userInput}`);
@@ -249,11 +269,8 @@ const Autocomplete = props => {
                 document
                   .getElementsByTagName('body')[0]
                   .classList.remove('fixed-body');
-
-              setIsFocused(false);
-            } else {
-              setIsFocused(false);
             }
+            setIsFocused(false);
           }}
         >
           <img src={searchImage} className="img-fluid" alt="search-icon" />
@@ -271,6 +288,7 @@ const Autocomplete = props => {
           {...props}
           focusHandler={focusHandler}
           userInputHandler={userInputHandler}
+          storageValuesHandler={storageValuesHandler}
         />
       )}
     </div>

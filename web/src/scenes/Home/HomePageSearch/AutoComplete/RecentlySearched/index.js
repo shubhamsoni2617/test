@@ -28,21 +28,25 @@ const RecentlySearched = props => {
   return (
     <div className="header-search">
       <div className="searched-wrapper">
-       {storageValues.length ? <div className="recently-search">
-          <span onClick={props.history.goBack}>
-            <image alt={'backButton'} src={backButton} />
-          </span>
-          <h3>Recently Searched</h3>
-          <ul>
-            {
-              storageValues.map((text, index) => {
+        {storageValues.length ? (
+          <div className="recently-search">
+            <span onClick={props.history.goBack}>
+              <image alt={'backButton'} src={backButton} />
+            </span>
+            <h3>Recently Searched</h3>
+            <ul>
+              {storageValues.map((text, index) => {
                 return (
                   <li key={text + index}>
                     <span
                       onClick={e => {
                         e.preventDefault();
+                        props.storageValuesHandler(text);
                         redirectHandler(text);
-                        Utilities.mobilecheck() && document.getElementsByTagName("body")[0].classList.remove("fixed-body");
+                        Utilities.mobilecheck() &&
+                          document
+                            .getElementsByTagName('body')[0]
+                            .classList.remove('fixed-body');
                       }}
                     >
                       <img src={recentSearchIconImage} alt="" /> {text}
@@ -56,13 +60,18 @@ const RecentlySearched = props => {
                       className="search-listing-close-btn"
                     >
                       <img src={closeBlueColorImage} alt="" />
-                      <img src={closeGreyColorImage} alt="" className="search-close-mobile-btn" />
+                      <img
+                        src={closeGreyColorImage}
+                        alt=""
+                        className="search-close-mobile-btn"
+                      />
                     </a>
                   </li>
                 );
               })}
-          </ul>
-        </div>:null}
+            </ul>
+          </div>
+        ) : null}
         <MostViewed />
       </div>
     </div>
