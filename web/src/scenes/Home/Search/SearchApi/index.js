@@ -13,7 +13,6 @@ export default function searchApi(
         SearchService.getAllSearchResults(params)
           .then(res => {
             setAllSearchResults(res.data.data);
-            console.log(res.data.data);
             setLoadMore(false);
             if (!res.data.data || !res.data.data.length) {
               setError(true);

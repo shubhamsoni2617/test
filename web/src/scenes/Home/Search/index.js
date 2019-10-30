@@ -9,6 +9,7 @@ import DownArrowBlue from '../../../assets/images/down-arrow-blue.svg';
 import searchApi from './SearchApi';
 import SearchAdvertisement from './SearchAdvertisement';
 import SearchNotFound from './SearchNotFound';
+import Utilities from '../../../shared/utilities';
 
 const Search = props => {
   const [searchCategories, setSearchCategories] = useState(null);
@@ -55,7 +56,6 @@ const Search = props => {
     };
     SearchService.getSearchCategories(params)
       .then(res => {
-        console.log(res.data);
         setSearchCategories(res.data.data);
         setTotalResults(res.data.data.find(obj => obj.type === 'all').total);
         setAllResultCount(res.data.data.find(obj => obj.type === 'all').total);
@@ -90,6 +90,13 @@ const Search = props => {
           </div>
         );
       })
+    ) : Utilities.mobileAndTabletcheck() ? (
+      <ShimmerEffect
+        height={150}
+        count={4}
+        type="LIST"
+        propCls="shm_col-xs-2 col-md-5"
+      />
     ) : (
       <ShimmerEffect
         height={10}
@@ -99,7 +106,6 @@ const Search = props => {
       />
     );
   };
-  console.log(allResultCount);
   return (
     <div className="searchbar-page-wrapper container-fluid">
       {!error ? (
