@@ -7,36 +7,53 @@ import loaderImage from '../../../../assets/images/loader.svg';
 import previousArrow from '../../../../assets/images/next.svg';
 import searchImage from '../../../../assets/images/search.svg';
 import cross from '../../../../assets/images/cross-grey.svg';
-
+import { setLocalStorage, setValuesInLocalStorage } from './setLocalStorage';
 import searchImageBlue from '../../../../assets/images/search-blue.svg';
 import './style.scss';
 import navigateToLink from '../../../../shared/navigateToLink';
 import Utilities from '../../../../shared/utilities';
 
 const Autocomplete = props => {
-  const [activeSuggestion, setActiveSuggestion] = useState(0);
   const [showSuggestions, setShowSuggestions] = useState(false);
   const [userInput, setUserInput] = useState('');
   const [suggestions, setSuggestions] = useState([]);
   const [isSearching, setIsSearching] = useState(false);
   const [isFocused, setIsFocused] = useState(false);
+  const [currentIndex, setCurrentIndex] = useState(-1);
   const debouncedSearchTerm = useDebounce(userInput, 500);
   const node = useRef(null);
   const inputRef = useRef(null);
   useEffect(() => {
-    let storageValues = JSON.parse(localStorage.getItem('recentlySearched'));
-    if (!storageValues || !storageValues.length) {
-      let recentlySearched = [];
-      localStorage.setItem(
-        'recentlySearched',
-        JSON.stringify(recentlySearched)
-      );
-    }
+    setLocalStorage();
     document.addEventListener('mousedown', handleClick);
     return () => {
       document.removeEventListener('mousedown', handleClick);
     };
   }, []);
+
+  useEffect(() => {
+    if (currentIndex > -1 && suggestions[currentIndex]) {
+      setUserInput(suggestions[currentIndex].title);
+    }
+  }, [currentIndex]);
+
+  useEffect(() => {
+    if (userInput === '') {
+      setCurrentIndex(-1);
+    }
+  }, [userInput]);
+
+  useEffect(() => {
+    if (currentIndex === -1) {
+      if (debouncedSearchTerm) {
+        setIsSearching(true);
+        fetchSearchSuggestionsService(debouncedSearchTerm);
+      } else {
+        setSuggestions([]);
+      }
+    }
+  }, [debouncedSearchTerm]);
+
   const handleClick = e => {
     if (node.current.contains(e.target)) {
       return;
@@ -51,15 +68,6 @@ const Autocomplete = props => {
     setIsFocused(false);
     props.buttonActiveHandler(false);
   };
-
-  useEffect(() => {
-    if (debouncedSearchTerm) {
-      setIsSearching(true);
-      fetchSearchSuggestionsService(debouncedSearchTerm);
-    } else {
-      setSuggestions([]);
-    }
-  }, [debouncedSearchTerm]);
 
   const fetchSearchSuggestionsService = debouncedSearchTerm => {
     const params = {
@@ -78,59 +86,66 @@ const Autocomplete = props => {
       });
   };
   const onChange = e => {
-    setActiveSuggestion(0);
     setShowSuggestions(true);
     setUserInput(e.currentTarget.value);
   };
 
   const onClick = question => {
-    setActiveSuggestion(0);
     setShowSuggestions(false);
     setUserInput(question);
     storageValuesHandler(question);
   };
 
   const storageValuesHandler = question => {
-    let storageValues = JSON.parse(localStorage.getItem('recentlySearched'));
-    if (storageValues) {
-      if (storageValues.length > 7) {
-        storageValues.splice(storageValues.length - 1);
-      }
-      if (
-        storageValues.indexOf(question.trim().toLowerCase()) !== -1 &&
-        question.trim().length
-      ) {
-        storageValues.splice(
-          storageValues.indexOf(question.trim().toLowerCase()),
-          1
-        );
-      }
-      if (
-        storageValues.indexOf(question.toLowerCase()) === -1 &&
-        question.trim().length
-      ) {
-        storageValues.unshift(question.trim().toLowerCase());
-        localStorage.setItem('recentlySearched', JSON.stringify(storageValues));
-      }
-    }
+    setValuesInLocalStorage(question);
   };
 
   const onKeyDown = e => {
-    if (!userInput.trim().length) {
+    e.stopPropagation();
+    console.log('keycode', currentIndex);
+    if (
+      userInput &&
+      suggestions.length &&
+      currentIndex === suggestions.length - 1
+    ) {
+      setCurrentIndex(0);
+    }
+    if (!userInput.trim().length && e.keyCode === 13) {
       return;
     }
     if (e.keyCode === 13) {
-      setActiveSuggestion(0);
       setShowSuggestions(false);
       storageValuesHandler(userInput);
       props.history.push(`/search-results?q=${userInput}`);
       Utilities.mobilecheck() &&
         document.getElementsByTagName('body')[0].classList.remove('fixed-body');
+      setSuggestions([]);
+      setCurrentIndex(-1);
+      inputRef.current.blur();
+      setUserInput('');
+      setIsFocused(false);
+    }
+    if (
+      e.keyCode === 40 &&
+      userInput &&
+      currentIndex < suggestions.length - 1
+    ) {
+      if (currentIndex === -1) {
+        setSuggestions([{ title: userInput }, ...suggestions]);
+        setCurrentIndex(currentIndex + 2);
+      } else {
+        setCurrentIndex(currentIndex + 1);
+      }
+    }
+    if (e.keyCode === 38 && userInput && currentIndex > 0) {
+      console.log('keycode', e.keyCode, currentIndex - 1);
+
+      setCurrentIndex(currentIndex - 1);
     }
   };
 
   const userInputHandler = value => {
-    setUserInput(value);
+    setUserInput('');
   };
 
   let suggestionsListComponent;
@@ -139,11 +154,11 @@ const Autocomplete = props => {
       suggestionsListComponent = (
         <div className="search-popup-wrapper">
           <ul className="suggestions">
-            {suggestions.map((suggestion, index) => {
+            {suggestions.slice(1).map((suggestion, index) => {
               return (
                 <li
                   className={`${
-                    index === activeSuggestion ? `suggestion-active` : ``
+                    index + 1 === currentIndex ? `suggestion-selected` : ``
                   }`}
                   key={suggestion.id}
                   onClick={() => {
@@ -156,6 +171,7 @@ const Autocomplete = props => {
                       suggestion.code,
                       suggestion.tid
                     );
+                    setUserInput('');
                     Utilities.mobilecheck() &&
                       document
                         .getElementsByTagName('body')[0]
@@ -186,7 +202,10 @@ const Autocomplete = props => {
               }}
               className="search-link-all-results"
             >
-              See all results from <strong>{userInput}</strong>
+              See all results from{' '}
+              <strong>
+                {currentIndex == -1 ? userInput : suggestions[0].title}
+              </strong>
             </div>
           </ul>
         </div>
@@ -227,6 +246,9 @@ const Autocomplete = props => {
         <input
           ref={inputRef}
           type="text"
+          autoComplete={false}
+          autoCorrect={false}
+          spellCheck={false}
           onChange={onChange}
           onKeyDown={onKeyDown}
           value={userInput}
@@ -281,7 +303,6 @@ const Autocomplete = props => {
           />
         </button>
       </div>
-
       {suggestionsListComponent}
       {isFocused && !userInput && (
         <RecentlySearched

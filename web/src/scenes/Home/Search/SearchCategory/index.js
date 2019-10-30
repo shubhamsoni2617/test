@@ -7,10 +7,9 @@ const SearchCategory = props => {
     <div className="promotions-full-wrapper">
       <section className="promotions-wrapper">
         <div className="promotions-nav">
-          <ul className="nav nav-tabs" id="nav-tab" role="tablist">
-            {searchCategories &&
-              searchCategories.length &&
-              searchCategories.map(category => {
+          {searchCategories && searchCategories.length ? (
+            <ul className="nav nav-tabs" id="nav-tab" role="tablist">
+              {searchCategories.map(category => {
                 return (
                   <li
                     key={category.type}
@@ -35,7 +34,12 @@ const SearchCategory = props => {
                   </li>
                 );
               })}
-          </ul>
+            </ul>
+          ) : (
+            <ul
+              style={{ borderBottom: `5px solid rgba(52, 52, 52, 0.1)` }}
+            ></ul>
+          )}
         </div>
       </section>
     </div>
