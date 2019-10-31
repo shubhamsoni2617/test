@@ -157,6 +157,33 @@ function ListShimmer(props) {
   return h;
 }
 
+function BlockShimmer(props) {
+  var h = [];
+  for (let i = 0; i < props.count; i++) {
+    h.push(
+      <div className={'shimmer-block'}>
+        <div key={i} className={props.propCls}>
+          <div className="contentLoader ListView">
+            <div className="shm_row">
+              <div className="shm_col-sm-12"></div>
+              <div className="shm_col-sm-12">
+                <div
+                  className="animated-backgroundlarge firstRow"
+                  style={{ height: '25px', marginBottom: '15px' }}
+                >
+                  {' '}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  return h;
+}
+
 function FilterShimmer(props) {
   var h = [];
   for (let i = 0; i < props.count; i++) {
@@ -419,7 +446,9 @@ export default class ShimmerEffect extends Component {
       case 'TILE':
         shimmer = <TileShimmer {...props} />;
         break;
-
+      case 'BLOCK':
+        shimmer = <BlockShimmer {...props} />;
+        break;
       default:
     }
 
