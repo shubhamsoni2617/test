@@ -9,6 +9,10 @@ import ShimmerEffect from '../../../shared/components/ShimmerEffect';
 import './style.scss';
 import { CSSTransitionGroup } from 'react-transition-group';
 import { Link } from 'react-router-dom';
+import promoImg1 from '../../../assets/images/promo-img1.svg';
+import promoImg2 from '../../../assets/images/promo-img2.svg';
+import promoImg3 from '../../../assets/images/promo-img3.svg';
+import promoImg4 from '../../../assets/images/promo-img4.svg';
 
 const ItemWrapper = ({ promotion, expiredText, handlePromotionExpired }) => {
   return (
@@ -46,11 +50,14 @@ const ItemWrapper = ({ promotion, expiredText, handlePromotionExpired }) => {
           )}
         </div>
       )}
-      <h3>
-        {promotion && Utilities.mobilecheck()
-          ? Utilities.showLimitedChars(promotion.title, 15)
-          : promotion.title}
-      </h3>
+      <a href="/promotions" target="_blank">
+        <h3>
+          {promotion && Utilities.mobilecheck()
+            ? Utilities.showLimitedChars(promotion.title, 15)
+            : promotion.title}
+        </h3>
+      </a>
+
     </div>
   );
 };
@@ -131,7 +138,16 @@ export default class PromotionCarousel extends Component {
             <span />
           </div>
         );
-      }
+      },
+      responsive: [
+        {
+          breakpoint: 1140,
+          settings: {
+            //rows: 2,
+            slidesPerRow: 3
+          }
+        },
+      ]
     };
     return (
       <section className="promotions" ref={node => (this.element = node)}>
@@ -139,13 +155,43 @@ export default class PromotionCarousel extends Component {
           <div className="section-top-wrapper">
             <h2>
               Promotions{' '}
-              <span className="promotions-animated-img">
+              {/* <span className="promotions-animated-img">
                 <img
                   src="assets/images/illustration.svg"
                   className="img-fluid"
                   alt="promotions"
                 />
-              </span>
+              </span> */}
+              <div className="promo-animation-wrap">
+                  <div className="promo-animation-img first">
+                    <img
+                      src={promoImg1}
+                      className="img-fluid"
+                      alt="promotions"
+                    />
+                  </div>
+                  <div className="promo-animation-img second">
+                  <img
+                      src={promoImg2}
+                      className="img-fluid"
+                      alt="promotions"
+                    />
+                  </div>
+                  <div className="promo-animation-img third">
+                    <img
+                      src={promoImg3}
+                      className="img-fluid"
+                      alt="promotions"
+                    />
+                  </div>
+                  <div className="promo-animation-img fourth">
+                    <img
+                      src={promoImg4}
+                      className="img-fluid"
+                      alt="promotions"
+                    />
+                  </div>
+              </div>
             </h2>
             <div className="carousel-dots">
               <Link to="/promotions">
@@ -171,7 +217,7 @@ export default class PromotionCarousel extends Component {
                     Utilities.mobileAndTabletcheck() || Utilities.mobilecheck()
                       ? 6
                       : 2
-                  }`}
+                    }`}
                   height={150}
                   count={2}
                   type="TILE"
@@ -217,21 +263,21 @@ export default class PromotionCarousel extends Component {
                     })}
                 </div>
               ) : (
-                <Slider {...settings}>
-                  {promotions &&
-                    promotions.map((promotion, index) => {
-                      return (
-                        <div key={promotion.id} className="item-wrapper">
-                          <ItemWrapper
-                            promotion={promotion}
-                            expiredText={expiredText}
-                            handlePromotionExpired={this.handlePromotionExpired}
-                          />
-                        </div>
-                      );
-                    })}
-                </Slider>
-              )}
+                    <Slider {...settings}>
+                      {promotions &&
+                        promotions.map((promotion, index) => {
+                          return (
+                            <div key={promotion.id} className="item-wrapper">
+                              <ItemWrapper
+                                promotion={promotion}
+                                expiredText={expiredText}
+                                handlePromotionExpired={this.handlePromotionExpired}
+                              />
+                            </div>
+                          );
+                        })}
+                    </Slider>
+                  )}
             </CSSTransitionGroup>
           </div>
         </div>

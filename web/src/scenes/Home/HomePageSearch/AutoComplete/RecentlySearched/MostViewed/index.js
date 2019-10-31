@@ -27,11 +27,11 @@ const MostViewed = () => {
         {mostViewed &&
           mostViewed.map((elem, index) => {
             return (
-              <li key={elem.primary_genere + index}>
+              <li key={index}>
                 <div className="most-viewed-img">
                   <Image src={elem.full_image} className="img-fluid" />
                 </div>
-                <span className="category musical">{elem.primary_genere}</span>
+                <span className="category musical">{elem.primary_genre}</span>
                 <h4>{elem.title}</h4>
               </li>
             );

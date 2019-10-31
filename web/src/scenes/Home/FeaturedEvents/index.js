@@ -20,15 +20,24 @@ const Item = ({ event }) => {
                 type="Tile"
               />
             </div>
-            <span
+            {/* <span
               className={`category ${event &&
                 event.primary_genere &&
                 event.primary_genere.toLowerCase()}`}
             >
               {event.primary_genere}
-            </span>
+            </span> */}
           </div>
-          {event && event.title && <h3>{event.title}</h3>}
+          <span
+            className={`category ${event &&
+              event.primary_genere &&
+              event.primary_genere.toLowerCase()}`}
+          >
+            {event.primary_genere}
+          </span>
+          {event && event.title && <h3>
+            {Utilities.showLimitedChars(event && event.title, Utilities.mobilecheck() ? 20 : 30)}
+          </h3>}
           {event && event.event_date && <p>{event.event_date}</p>}
           {event && event.venue_name && <p>{event.venue_name}</p>}
         </div>
@@ -182,17 +191,17 @@ const FeaturedEvents = props => {
               </div>
             </div>
           ) : (
-            <Slider {...settings}>
-              {featuredEvents &&
-                featuredEvents.map((event, index) => {
-                  return (
-                    <div className="grid-container" key={index}>
-                      <Item event={event} />
-                    </div>
-                  );
-                })}
-            </Slider>
-          )}
+                <Slider {...settings}>
+                  {featuredEvents &&
+                    featuredEvents.map((event, index) => {
+                      return (
+                        <div className="grid-container" key={index}>
+                          <Item event={event} />
+                        </div>
+                      );
+                    })}
+                </Slider>
+              )}
         </CSSTransitionGroup>
       </div>
     </section>

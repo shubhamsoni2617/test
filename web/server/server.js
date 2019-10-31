@@ -19,13 +19,17 @@ app.use(bodyParser.json());
 
 app.post('/sistic/docroot/**', function(req, res) {
   var newurl = `http://${req.hostname}:8081${req.originalUrl}`;
-  request
-    .post({
-      url: newurl,
-      body: JSON.stringify(req.body),
-      headers: req.headers
-    })
-    .pipe(res);
+  if (req.body && Object.keys(req.body).length !== 0) {
+    request
+      .post({
+        url: newurl,
+        body: JSON.stringify(req.body),
+        headers: req.headers
+      })
+      .pipe(res);
+  } else {
+    req.pipe(request.post(newurl)).pipe(res);
+  }
 });
 
 app.get('/sistic/docroot/**', function(req, res) {

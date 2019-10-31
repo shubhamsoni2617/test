@@ -51,10 +51,10 @@
 	background-color: #373E45;
 	padding: 0px;
 	z-index: 4;
-	transition: 0.3s ease-in;
-	-webkit-transition: 0.3s ease-in;
-	-moz-transition: 0.3s ease-in;
-	-o-transition: 0.3s ease-in;
+	transition: 0.9s top;
+	-webkit-transition: 0.9s top;
+	-moz-transition: 0.9s top;
+	-o-transition: 0.9s top;
 	position: relative;
 	&.sticky-header, &.homepage{
 		position: fixed;
@@ -147,11 +147,25 @@
 						@media(max-width: 767px){
 							position: fixed;
 						}
+						.search-popup-topbar{
+							.search-overlap-crossicon{
+								@media(max-width: 767px){
+									margin-top: 9px;
+									right: 57px;
+								}
+							}
+							& + .no-suggestions{
+								@media(max-width: 767px){
+									right: 75px;
+									margin-top: 10px;
+								}
+							}
+						}
 					}
 					.search-popup-topbar{
 						& + .no-suggestions{
 							position: absolute;
-							right: 50px;
+							right: 70px;
 							top: 50%;
 							width: auto;
 							height: auto;
@@ -167,6 +181,34 @@
 								margin-left: 0;
 								margin-top: 0;
 								z-index: 5;
+							}
+						}
+						.search-overlap-crossicon {
+							position: absolute;
+							right: 50px;
+							top: 50%;
+							transform: translateY(-50%);
+							background-color: transparent;
+							padding: 0px;
+							border: none;
+							outline: none;
+							transition: none;
+							-webkit-transition: none;
+							-moz-transition: none;
+							-o-transition: none;
+							@media(max-width: 767px){
+								right: 50px;
+								margin-top: -1px;
+								height: 42px;
+								line-height: 42px;
+							}
+							@media(max-width: 450px){
+								right: 50px;
+								margin-top: -1px;
+							}
+							&:hover, &:focus{
+								border: none;
+								outline: none;
 							}
 						}
 					}
@@ -190,8 +232,7 @@
 					overflow: hidden;
 					white-space: nowrap;
 					display: block;
-					padding-right: 40px;
-					width: 100%;
+					padding-right: 40px;					
 					&:focus {
 						background: linear-gradient(to bottom, #fcfcfc, #f3f3f3, #eaeaea, #E1E1E0, #d8d8d8);
 						opacity: 1;
@@ -204,6 +245,9 @@
 						&+button img.active {
 							opacity: 1;
 						}
+					}
+					&::-ms-clear {
+						display: none;
 					}
 					@media(max-width: 991px) {
 						font-size: 15px;
@@ -221,7 +265,10 @@
 						max-width: 100%;
 						text-overflow: ellipsis;
 						overflow: hidden;
-						white-space: nowrap;
+						white-space: nowrap;						
+						opacity: 1;
+						color: #343434;
+						box-shadow: none;
 					}
 					&::placeholder {
 						color: rgba(255, 255, 255, 0.6);
@@ -284,7 +331,13 @@
 					@media(max-width: 991px) {
 						right: 10px;
 						margin-top: -2px;
-                    }
+					}
+					@media(max-width: 767px){
+						transition: none;
+						-webkit-transition: none;
+						-moz-transition: none;
+						-o-transition: none;
+					}
                     &::after{
                         display: none;
                     }
@@ -1761,9 +1814,9 @@
 				}
 			}
 			@media (max-width: 767px) {
-				flex: 1 0 29%;
-				max-width: 29%;
-				margin-right: 10px;
+				flex: 1 0 28%;
+				max-width: 28%;
+				margin-right: 7px;
 			}
 		}
 	}
@@ -2167,9 +2220,9 @@ section.whats-new {
 				overflow-x: auto;
 				margin: 0;
 				.item{
-					flex: 1 0 29%;
-					max-width: 29%;
-					margin-right: 10px;
+					flex: 1 0 28%;
+					max-width: 28%;
+					margin-right: 7px;
 				}
 			}
 		}
@@ -2228,14 +2281,14 @@ p {
 
 //currently showing style end
 //promotions style start
-.promotions {
+.home-page-wrapper section.promotions {
 	background-color: #F0F9FF;
-	padding: 40px 0px 0px;
+	padding: 46px 0px 0px;
 	@media(max-width: 1024px){
-		padding: 40px 0px 10px !important;
+		padding: 40px 0px 10px;
 	}
 	@media (max-width: 767px) {
-		padding: 20px 0px 20px;
+		padding: 20px 0px 10px;
     }
     .slick-slider{
         .slick-list{
@@ -2252,7 +2305,10 @@ p {
         }
         .slick-dots{
             height: 20px;
-            top: -32px;
+			top: -32px;
+			@media(max-width: 1024px){
+				top: -52px;
+			}
             @media(min-width: 768px) and (max-width: 991px) {
                 top: -48px;
             }
@@ -2319,7 +2375,11 @@ p {
 		/*display: grid;
 		grid-template-columns: repeat(4, minmax(20%, 1fr));
 		grid-gap: 25px;*/
+		@media(max-width: 1024px){
+			padding-top: 20px;
+		}
 		@media(max-width: 991px) {
+			padding-top: 10px;
 			grid-template-columns: repeat(4, minmax(37%, 1fr));
 		}
 		@media(min-width: 992px) and (max-width: 1280px) {
@@ -2383,7 +2443,7 @@ p {
 				margin-bottom: 25px;
 			}
 			@media (max-width: 767px) {
-				margin-bottom: 20px;
+				margin-bottom: 0px;
 				padding: 0 5px;
             }
             &.full-promo{
@@ -2548,6 +2608,9 @@ section.trending-now {
 			grid-template-columns: repeat(5, minmax(43%, 1fr));
 			grid-gap: 10px;
 			overflow-x: auto;
+		}
+		@media(max-width: 767px){
+			grid-template-columns: repeat(5, minmax(35%, 1fr));
 		}
 		// @media(min-width: 992px) and (max-width: 1280px) {
         //     grid-template-columns: 1.4fr repeat(4, 1fr);
@@ -3053,18 +3116,23 @@ section{
             justify-content: center;
             align-items: center;
         }
-        .sistic-moments-wrapper {
-          @media(max-width: 767px){
-            display: flex;
-            flex-wrap: nowrap;
-            overflow-x: auto;
-          }
-          img{
-            @media(max-width: 767px){
-              flex: 1 0 34%;
-              max-width: 34%;
-            }
-          }
+		.sistic-moments-wrapper {
+				-ms-overflow-style: none; // IE 10+ 
+				scrollbar-width: none; // Firefox 
+			@media(max-width: 767px){
+				display: flex;
+				flex-wrap: nowrap;
+				overflow-x: auto;
+			}
+			img{
+				@media(max-width: 767px){
+					flex: 1 0 34%;
+					max-width: 34%;
+				}
+			}
+			&::-webkit-scrollbar { 
+				display: none; // Safari and Chrome 
+			}
 		}
 		@media(max-width: 767px){
 			-ms-overflow-style: none; // IE 10+
@@ -4502,11 +4570,11 @@ section{
 	@media(max-width: 767px){
 		position: fixed;
 		width: 100%;
-		margin-top: 100px;
+		margin-top: 80px;
 		right: 0px;
 		left: 0px;
 		transform: none;
-		height: calc(100% - 100px);
+		height: calc(100% - 80px);
 		min-height: auto;
 		display: block;
 		overflow-y: auto;
@@ -4710,6 +4778,21 @@ section{
 					margin-top: 8px;
 					line-height: 17px;
                     display: block;
+				}
+			}
+			&.advertisment-listing{
+				@media(max-width: 991px){
+					flex-wrap: wrap;
+					overflow-x: hidden;
+				}
+				li{
+					flex: 0 0 33%;
+					width: 33%;
+					margin-bottom: 10px;
+					@media(max-width: 991px){
+						flex: 0 0 50%;
+						width: 50%;
+					}
 				}
 			}
 		}

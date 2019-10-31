@@ -7,7 +7,7 @@ import MostViewed from './MostViewed';
 import Utilities from '../../../../../shared/utilities';
 import backButton from '../../../../../assets/images/events/sortby.svg';
 
-const HomePageSearch = props => {
+const RecentlySearched = props => {
   const [storageValues, setStorageValues] = useState(
     JSON.parse(localStorage.getItem('recentlySearched'))
   );
@@ -22,36 +22,30 @@ const HomePageSearch = props => {
   const redirectHandler = text => {
     props.history.push(`/search-results?q=${text}`);
     props.focusHandler();
-    props.userInputHandler(text);
   };
 
   return (
     <div className="header-search">
       <div className="searched-wrapper">
-        <div className="recently-search">
-          <span onClick={props.history.goBack}>
-            <image alt={'backButton'} src={backButton} />
-          </span>
-          {/* {Utilities.mobilecheck() && (
-            <input
-              type="text"
-              onChange={props.onChange}
-              onKeyDown={props.onKeyDown}
-              value={props.userInput}
-              className="search-inputtype mobile"
-            />
-          )} */}
-          <h3>Recently Searched</h3>
-          <ul>
-            {storageValues &&
-              storageValues.map((text, index) => {
+        {storageValues.length ? (
+          <div className="recently-search">
+            <span onClick={props.history.goBack}>
+              <image alt={'backButton'} src={backButton} />
+            </span>
+            <h3>Recently Searched</h3>
+            <ul>
+              {storageValues.map((text, index) => {
                 return (
                   <li key={text + index}>
                     <span
                       onClick={e => {
                         e.preventDefault();
+                        props.storageValuesHandler(text);
                         redirectHandler(text);
-                        Utilities.mobilecheck() && document.getElementsByTagName("body")[0].classList.remove("fixed-body");
+                        Utilities.mobilecheck() &&
+                          document
+                            .getElementsByTagName('body')[0]
+                            .classList.remove('fixed-body');
                       }}
                     >
                       <img src={recentSearchIconImage} alt="" /> {text}
@@ -65,17 +59,22 @@ const HomePageSearch = props => {
                       className="search-listing-close-btn"
                     >
                       <img src={closeBlueColorImage} alt="" />
-                      <img src={closeGreyColorImage} alt="" className="search-close-mobile-btn" />
+                      <img
+                        src={closeGreyColorImage}
+                        alt=""
+                        className="search-close-mobile-btn"
+                      />
                     </a>
                   </li>
                 );
               })}
-          </ul>
-        </div>
+            </ul>
+          </div>
+        ) : null}
         <MostViewed />
       </div>
     </div>
   );
 };
 
-export default HomePageSearch;
+export default RecentlySearched;

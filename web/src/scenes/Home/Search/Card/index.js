@@ -5,7 +5,6 @@ import navigateToLink from '../../../../shared/navigateToLink';
 
 const Card = props => {
   const { cardData } = props;
-  console.log(cardData.type)
   return (
     <div
       className={`event-block ${
@@ -19,7 +18,8 @@ const Card = props => {
       </div>
       <div className="event-details">
         <div className="event-detail-prime">
-          {cardData.type && <h6>{cardData.type.toUpperCase()}</h6>}
+          {cardData.type && cardData.type !== 'attractions' && <h6>{cardData.type.toUpperCase()}</h6>}
+          {cardData.type && cardData.type === 'attractions' && <h6>{'attraction'.toUpperCase()}</h6>}
           <div className="item-title">
             <h5>{cardData.title}</h5>
             {cardData.date && <p className="event-date">{cardData.date}</p>}
@@ -40,7 +40,9 @@ const Card = props => {
                 props.history,
                 cardData.type,
                 cardData.category,
-                cardData.id
+                cardData.id,
+                cardData.code,
+                cardData.tid
               )
             }
           >

@@ -6,56 +6,68 @@ import RecentlySearched from './RecentlySearched';
 import loaderImage from '../../../../assets/images/loader.svg';
 import previousArrow from '../../../../assets/images/next.svg';
 import searchImage from '../../../../assets/images/search.svg';
+import cross from '../../../../assets/images/cross-grey.svg';
+import { setLocalStorage, setValuesInLocalStorage } from './setLocalStorage';
 import searchImageBlue from '../../../../assets/images/search-blue.svg';
 import './style.scss';
 import navigateToLink from '../../../../shared/navigateToLink';
 import Utilities from '../../../../shared/utilities';
 
 const Autocomplete = props => {
-  const [activeSuggestion, setActiveSuggestion] = useState(0);
   const [showSuggestions, setShowSuggestions] = useState(false);
   const [userInput, setUserInput] = useState('');
   const [suggestions, setSuggestions] = useState([]);
   const [isSearching, setIsSearching] = useState(false);
   const [isFocused, setIsFocused] = useState(false);
+  const [currentIndex, setCurrentIndex] = useState(-1);
   const debouncedSearchTerm = useDebounce(userInput, 500);
   const node = useRef(null);
+  const inputRef = useRef(null);
   useEffect(() => {
-    let storageValues = JSON.parse(localStorage.getItem('recentlySearched'));
-    if (!storageValues || !storageValues.length) {
-      let recentlySearched = [];
-      localStorage.setItem(
-        'recentlySearched',
-        JSON.stringify(recentlySearched)
-      );
-    }
+    setLocalStorage();
     document.addEventListener('mousedown', handleClick);
     return () => {
       document.removeEventListener('mousedown', handleClick);
     };
   }, []);
+
+  useEffect(() => {
+    if (currentIndex > -1 && suggestions[currentIndex]) {
+      setUserInput(suggestions[currentIndex].title);
+    }
+  }, [currentIndex]);
+
+  useEffect(() => {
+    if (userInput === '') {
+      setCurrentIndex(-1);
+    }
+  }, [userInput]);
+
+  useEffect(() => {
+    if (currentIndex === -1) {
+      if (debouncedSearchTerm) {
+        setIsSearching(true);
+        fetchSearchSuggestionsService(debouncedSearchTerm);
+      } else {
+        setSuggestions([]);
+      }
+    }
+  }, [debouncedSearchTerm]);
+
   const handleClick = e => {
     if (node.current.contains(e.target)) {
       return;
     }
     setShowSuggestions(false);
     setIsFocused(false);
-    props.buttonActiveHandler(false)
+    props.buttonActiveHandler(false);
   };
 
   const focusHandler = () => {
+    setShowSuggestions(false);
     setIsFocused(false);
-    props.buttonActiveHandler(false)
+    props.buttonActiveHandler(false);
   };
-
-  useEffect(() => {
-    if (debouncedSearchTerm) {
-      setIsSearching(true);
-      fetchSearchSuggestionsService(debouncedSearchTerm);
-    } else {
-      setSuggestions([]);
-    }
-  }, [debouncedSearchTerm]);
 
   const fetchSearchSuggestionsService = debouncedSearchTerm => {
     const params = {
@@ -74,67 +86,80 @@ const Autocomplete = props => {
       });
   };
   const onChange = e => {
-    setActiveSuggestion(0);
     setShowSuggestions(true);
     setUserInput(e.currentTarget.value);
   };
 
   const onClick = question => {
-    setActiveSuggestion(0);
     setShowSuggestions(false);
     setUserInput(question);
     storageValuesHandler(question);
   };
 
   const storageValuesHandler = question => {
-    let storageValues = JSON.parse(localStorage.getItem('recentlySearched'));
-    if (storageValues) {
-      if (storageValues.length > 7) {
-        storageValues.shift();
-      }
-      if (storageValues.indexOf(question) === -1) {
-        storageValues.push(question);
-        localStorage.setItem('recentlySearched', JSON.stringify(storageValues));
-      }
-    }
+    setValuesInLocalStorage(question);
   };
 
   const onKeyDown = e => {
+    e.stopPropagation();
+    console.log('keycode', currentIndex);
+    if (
+      userInput &&
+      suggestions.length &&
+      currentIndex === suggestions.length - 1
+    ) {
+      setCurrentIndex(0);
+    }
+    if (!userInput.trim().length && e.keyCode === 13) {
+      return;
+    }
     if (e.keyCode === 13) {
-      setActiveSuggestion(0);
       setShowSuggestions(false);
       storageValuesHandler(userInput);
       props.history.push(`/search-results?q=${userInput}`);
+      Utilities.mobilecheck() &&
+        document.getElementsByTagName('body')[0].classList.remove('fixed-body');
+      setSuggestions([]);
+      setCurrentIndex(-1);
+      inputRef.current.blur();
+      setUserInput('');
+      setIsFocused(false);
+    }
+    if (
+      e.keyCode === 40 &&
+      userInput &&
+      currentIndex < suggestions.length - 1
+    ) {
+      if (currentIndex === -1) {
+        setSuggestions([{ title: userInput }, ...suggestions]);
+        setCurrentIndex(currentIndex + 2);
+      } else {
+        setCurrentIndex(currentIndex + 1);
+      }
+    }
+    if (e.keyCode === 38 && userInput && currentIndex > 0) {
+      console.log('keycode', e.keyCode, currentIndex - 1);
+
+      setCurrentIndex(currentIndex - 1);
     }
   };
 
-  const userInputHandler = value => {
-    setUserInput(value);
-  };
-
-  let suggestionsListComponent;
-  if (showSuggestions && userInput) {
+  let suggestionsListComponent, suggestionsList;
+  if (showSuggestions && userInput.length > 2) {
     if (suggestions && suggestions.length) {
+      if (suggestions.length === 6) {
+        suggestionsList = suggestions;
+      } else {
+        suggestionsList = suggestions.slice(1);
+      }
       suggestionsListComponent = (
         <div className="search-popup-wrapper">
-          {/* {Utilities.mobilecheck() && (
-            <input
-              type="text"
-              onChange={onChange}
-              onKeyDown={onKeyDown}
-              value={userInput}
-              className="search-inputtype mobile"
-              onFocus={() => {
-                setIsFocused(true);
-              }}
-            />
-          )} */}
           <ul className="suggestions">
-            {suggestions.map((suggestion, index) => {
+            {suggestionsList.map((suggestion, index) => {
               return (
                 <li
                   className={`${
-                    index === activeSuggestion ? `suggestion-active` : ``
+                    index + 1 === currentIndex ? `suggestion-selected` : ``
                     }`}
                   key={suggestion.id}
                   onClick={() => {
@@ -143,11 +168,16 @@ const Autocomplete = props => {
                       props.history,
                       suggestion.type,
                       suggestion.category,
-                      suggestion.id
+                      suggestion.id,
+                      suggestion.code,
+                      suggestion.tid
                     );
-                    Utilities.mobilecheck() && document.getElementsByTagName("body")[0].classList.remove("fixed-body");
-                    setIsFocused(false)
-
+                    setUserInput('');
+                    Utilities.mobilecheck() &&
+                      document
+                        .getElementsByTagName('body')[0]
+                        .classList.remove('fixed-body');
+                    setIsFocused(false);
                   }}
                 >
                   <h4 className="suggestion-title">{suggestion.title}</h4>
@@ -164,16 +194,22 @@ const Autocomplete = props => {
               onClick={() => {
                 onClick(userInput);
                 props.history.push(`/search-results?q=${userInput}`);
-                Utilities.mobilecheck() && document.getElementsByTagName("body")[0].classList.remove("fixed-body");
-                // return Utilities.mobilecheck() ? setIsFocused(false) : null
-                setIsFocused(false)
+                Utilities.mobilecheck() &&
+                  document
+                    .getElementsByTagName('body')[0]
+                    .classList.remove('fixed-body');
+
+                setIsFocused(false);
               }}
               className="search-link-all-results"
             >
-              See all results form <strong>{userInput}</strong>
+              See all results from{' '}
+              <strong>
+                {currentIndex == -1 ? userInput : suggestions[0].title}
+              </strong>
             </div>
           </ul>
-        </div >
+        </div>
       );
     } else {
       suggestionsListComponent = (
@@ -185,33 +221,82 @@ const Autocomplete = props => {
   }
 
   return (
-    <div ref={node} className={`autocomplete ${Utilities.mobilecheck() && isFocused ? `search-open` : ``}`}>
+    <div
+      ref={node}
+      className={`autocomplete ${
+        Utilities.mobilecheck() && isFocused ? `search-open` : ``
+        }`}
+    >
       <div className="search-popup-topbar">
-        {Utilities.mobilecheck() && <button className="search-popup-back" onClick={() => {
-          setShowSuggestions(false);
-          setIsFocused(false);
-          Utilities.mobilecheck() && document.getElementsByTagName("body")[0].classList.remove("fixed-body");
-          props.history.goBack();
-        }}>
-          <img src={previousArrow} alt="previous-btn" />
-        </button>}
+        {Utilities.mobilecheck() && (
+          <button
+            className="search-popup-back"
+            onClick={() => {
+              setShowSuggestions(false);
+              setIsFocused(false);
+              Utilities.mobilecheck() &&
+                document
+                  .getElementsByTagName('body')[0]
+                  .classList.remove('fixed-body');
+              props.history.goBack();
+            }}
+          >
+            <img src={previousArrow} alt="previous-btn" />
+          </button>
+        )}
         <input
+          ref={inputRef}
           type="text"
+          // autoComplete={false}
+          // autoCorrect={false}
+          spellCheck={false}
           onChange={onChange}
           onKeyDown={onKeyDown}
           value={userInput}
           placeholder="Search experiences…"
           onClick={() => {
-            Utilities.mobilecheck() && document.getElementsByTagName("body")[0].classList.add("fixed-body");
+            Utilities.mobilecheck() &&
+              document
+                .getElementsByTagName('body')[0]
+                .classList.add('fixed-body');
           }}
           className="search-inputtype"
           onFocus={() => {
             setIsFocused(true);
             props.buttonActiveHandler(true);
-            Utilities.mobilecheck() && document.getElementsByTagName("body")[0].classList.add("fixed-body");
+            Utilities.mobilecheck() &&
+              document
+                .getElementsByTagName('body')[0]
+                .classList.add('fixed-body');
           }}
         />
-        <button type="submit" className="search-btn">
+        <button
+          onClick={() => {
+            setUserInput('');
+            inputRef.current.focus();
+          }}
+          className="search-overlap-crossicon"
+        >
+          <img src={cross} className="img-fluid active" alt="search-icon" />
+        </button>
+        <button
+          type="submit"
+          className="search-btn"
+          onClick={() => {
+            setIsFocused(false);
+            if (!userInput.trim().length) {
+              return;
+            }
+            if (userInput.length > 2) {
+              onClick(userInput);
+              props.history.push(`/search-results?q=${userInput}`);
+              Utilities.mobilecheck() &&
+                document
+                  .getElementsByTagName('body')[0]
+                  .classList.remove('fixed-body');
+            }
+          }}
+        >
           <img src={searchImage} className="img-fluid" alt="search-icon" />
           <img
             src={searchImageBlue}
@@ -220,16 +305,12 @@ const Autocomplete = props => {
           />
         </button>
       </div>
-
       {suggestionsListComponent}
       {isFocused && !userInput && (
         <RecentlySearched
           {...props}
           focusHandler={focusHandler}
-          userInputHandler={userInputHandler}
-        // onChange={onChange}
-        // onKeyDown={onKeyDown}
-        // value={userInput}
+          storageValuesHandler={storageValuesHandler}
         />
       )}
     </div>
