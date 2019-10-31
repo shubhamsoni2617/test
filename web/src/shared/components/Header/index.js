@@ -126,7 +126,6 @@ const Header = ({ menuActive, pathName }) => {
             </ul> */}
             <ul>
               <li className="has-submenu">
-<<<<<<< HEAD
                 <a
                   className={`${showMegaMenu ? 'active' : ''}`}
                   onClick={() => handleMouseStatus(!showMegaMenu)}
@@ -174,37 +173,6 @@ const Header = ({ menuActive, pathName }) => {
                     />
                   </li>
                 </ul>
-=======
-                <Submenu>
-                  {(menueStatus, setMenuStatus) => (
-                    <>
-                      <button
-                        className={`backbutton ${menueStatus ? 'active' : ''}`}
-                        type="button"
-                        onClick={() => setMenuStatus(!menueStatus)}
-                      >
-                        Get Started
-                      </button>
-                      <SubmenuWrap
-                        menueStatus={menueStatus}
-                        setMenuStatus={setMenuStatus}
-                      >
-                        <ul className="submenu">
-                          <li className="has-submenu">
-                            <Link to="/">Subscription</Link>
-                          </li>
-                          <li className="has-submenu">
-                            <Link to="/">Booking History</Link>
-                          </li>
-                          <li className="has-submenu">
-                            <Link to="/">Logout</Link>
-                          </li>
-                        </ul>
-                      </SubmenuWrap>
-                    </>
-                  )}
-                </Submenu>
->>>>>>> 23925cce0288053aea69078c0e3458a5b2db03aa
               </li>
               <li>
                 <Link to="/about-us" onClick={() => handleNavigationClose()}>
