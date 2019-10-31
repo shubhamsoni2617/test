@@ -1,6 +1,9 @@
 .similar-picks{
     padding: 40px 0px 65px;
-    position: relative;
+	position: relative;
+	@media(max-width: 767px){
+		padding: 40px 0 20px;
+	}
     .section-top-wrapper h2{
         padding-bottom: 33px;
         @media(max-width: 767px){

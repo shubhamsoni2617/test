@@ -89,6 +89,9 @@
                     margin-top: -5px;
                 }
             }
+            &:empty {
+                display: none;
+            }
         }
         .accordion__panel{
             display: block !important;

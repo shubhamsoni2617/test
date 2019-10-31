@@ -55,6 +55,7 @@
                     @media(max-width: 767px){
                         height: 30px;
                         line-height: 30px;
+                        padding: 0px;
                     }
                 }
                 .options{
@@ -64,6 +65,9 @@
                     @media(max-width: 991px){
                         font-size: 13px;
                         line-height: 16px;
+                    }
+                    @media(max-width: 767px){
+                        z-index: 1;
                     }
                     .option{
                         color: #343434;
@@ -86,12 +90,13 @@
                         min-height: 30px;
                     }
                     @media(max-width: 767px){
-                        line-height: 18px;
-                        min-height: 23px;
+                        line-height: 30px;
+                        min-height: 30px;
+                        padding: 0px 28px 0px 0.75rem;
                     }
                 }
                 .value{
-                    text-overflow: ellipsis;
+                    text-overflow: ellipsis; 
                     overflow: hidden;
                     white-space: nowrap;
                     width: 100%;
@@ -105,13 +110,16 @@
                         line-height: 20px;
                     }
                     @media(max-width: 767px){
-                        line-height: 16px;
+                        line-height: 30px;
+                        min-height: 30px;
+                        padding: 0px 28px 0px 0.75rem;
                     }
                 }
                 .arrow{
                     margin-top: -4px;
                     @media(max-width: 767px){
                         margin-top: -7px;
+                        right: 0px;
                     }
                     svg{
                         @media(max-width: 991px){
