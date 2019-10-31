@@ -32,6 +32,15 @@
                 order: 3;
             }
         }
+        &:last-child{
+            .accordion__item {
+                .accordion__panel{
+                    @media(max-width: 767px){
+                        border-bottom: none;
+                    }
+                }
+            }
+        }
     }
 }
 .accordion__item + .accordion__item{
