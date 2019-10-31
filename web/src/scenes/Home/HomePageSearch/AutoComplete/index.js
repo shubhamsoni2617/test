@@ -160,7 +160,7 @@ const Autocomplete = props => {
                 <li
                   className={`${
                     index + 1 === currentIndex ? `suggestion-selected` : ``
-                  }`}
+                    }`}
                   key={suggestion.id}
                   onClick={() => {
                     onClick(suggestion.title);
@@ -182,11 +182,11 @@ const Autocomplete = props => {
                 >
                   <h4 className="suggestion-title">{suggestion.title}</h4>
                   {suggestion.type === 'event' ||
-                  suggestion.type === 'attractions' ? (
-                    <button>{suggestion.category}</button>
-                  ) : (
-                    <p>{suggestion.category}</p>
-                  )}
+                    suggestion.type === 'attractions' ? (
+                      <button>{suggestion.category}</button>
+                    ) : (
+                      <p>{suggestion.category}</p>
+                    )}
                 </li>
               );
             })}
@@ -225,7 +225,7 @@ const Autocomplete = props => {
       ref={node}
       className={`autocomplete ${
         Utilities.mobilecheck() && isFocused ? `search-open` : ``
-      }`}
+        }`}
     >
       <div className="search-popup-topbar">
         {Utilities.mobilecheck() && (
@@ -270,14 +270,15 @@ const Autocomplete = props => {
                 .classList.add('fixed-body');
           }}
         />
-        {/* <button
+        <button
           onClick={() => {
             setUserInput('');
             inputRef.current.focus();
           }}
+          className="search-overlap-crossicon"
         >
           <img src={cross} className="img-fluid active" alt="search-icon" />
-        </button> */}
+        </button>
         <button
           type="submit"
           className="search-btn"
