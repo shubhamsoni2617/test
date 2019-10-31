@@ -13,26 +13,25 @@ const TicketingSystem = ({ ticketingSystem }) => {
               <h2 className="section-title">
                 {ticketingSystem && ticketingSystem.title}
               </h2>
-              <div className="stixxloud">
-                <h4>Stixcloud</h4>
+
+              {ticketingSystem && (
+                <div
+                  className="stixxloud"
+                  dangerouslySetInnerHTML={{
+                    __html: ticketingSystem.description
+                  }}
+                />
+              )}
+              {/* <div className="stixxloud">
                 <ul>
-                    <li
+                  <li
                     className=""
                     dangerouslySetInnerHTML={{
-                        __html: ticketingSystem && ticketingSystem.description
+                      __html: ticketingSystem && ticketingSystem.description
                     }}
-                    ></li>
+                  ></li>
                 </ul>
-               
-                {/* <ul>
-                  <li>- Event Configuration Tool</li>
-                  <li>- Online Sales Booking Engine</li>
-                  <li>- Ticket Sales &amp; Managemen</li>
-                  <li>- Access Control System</li>
-                  <li>- Open API</li>
-                  <li>- Business Intelligence</li>
-                </ul> */}
-              </div>
+              </div> */}
             </div>
             <div className="col-md-6 text-right">
               <img src={Stixcloud} className="img-fluid" alt="stixcloud" />

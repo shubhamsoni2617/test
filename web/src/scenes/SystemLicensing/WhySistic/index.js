@@ -25,7 +25,7 @@ const WhySistic = ({ whySistic }) => {
                 return (
                   <div className="col-lg-3 col-6" key={title}>
                     <div className="why-sistic-innerblock">
-                      <img src={imgPath.img} alt="tile1" />
+                      <img src={imgPath.img} alt={title} />
                       <div className="why-sistic-content">
                         <h3>{title}</h3>
                         <p
@@ -37,66 +37,6 @@ const WhySistic = ({ whySistic }) => {
                   </div>
                 );
               })}
-            {/* <div className="col-lg-3 col-6">
-              <div className="why-sistic-innerblock">
-                <img src={Tile1} alt="tile1" />
-                <div className="why-sistic-content">
-                  <h3>Manage Complex Ticketing Features</h3>
-                  <p className="sub-text">
-                    The STiXCloud system offers an online service for resellers
-                    based overseas - like travel agents and concierge services -
-                    to access live inventory and transact tickets, enabling the
-                    tickets to be available to an international audience
-                    familiar with buying through their preferred local channels.
-                  </p>
-                </div>
-              </div>
-            </div>
-            <div className="col-lg-3 col-6">
-              <div className="why-sistic-innerblock">
-                <img src={Tile2} alt="tile2" />
-                <div className="why-sistic-content">
-                  <h3>Global Sales Network</h3>
-                  <p className="sub-text">
-                    The STiXCloud system offers an online service for resellers
-                    based overseas - like travel agents and concierge services -
-                    to access live inventory and transact tickets, enabling the
-                    tickets to be available to an international audience
-                    familiar with buying through their preferred local channels.
-                  </p>
-                </div>
-              </div>
-            </div>
-            <div className="col-lg-3 col-6">
-              <div className="why-sistic-innerblock">
-                <img src={Tile3} alt="tile3" />
-                <div className="why-sistic-content">
-                  <h3>Easy API Integration</h3>
-                  <p className="sub-text">
-                    The STiXCloud system offers an online service for resellers
-                    based overseas - like travel agents and concierge services -
-                    to access live inventory and transact tickets, enabling the
-                    tickets to be available to an international audience
-                    familiar with buying through their preferred local channels.
-                  </p>
-                </div>
-              </div>
-            </div>
-            <div className="col-lg-3 col-6">
-              <div className="why-sistic-innerblock">
-                <img src={Tile4} alt="tile4" />
-                <div className="why-sistic-content">
-                  <h3>Local Support</h3>
-                  <p className="sub-text">
-                    The STiXCloud system offers an online service for resellers
-                    based overseas - like travel agents and concierge services -
-                    to access live inventory and transact tickets, enabling the
-                    tickets to be available to an international audience
-                    familiar with buying through their preferred local channels.
-                  </p>
-                </div>
-              </div>
-            </div> */}
           </div>
         </div>
       </div>
