@@ -22,7 +22,6 @@ const RecentlySearched = props => {
   const redirectHandler = text => {
     props.history.push(`/search-results?q=${text}`);
     props.focusHandler();
-    props.userInputHandler(text);
   };
 
   return (
