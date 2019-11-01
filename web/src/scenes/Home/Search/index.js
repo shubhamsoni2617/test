@@ -10,6 +10,7 @@ import searchApi from './SearchApi';
 import SearchAdvertisement from './SearchAdvertisement';
 import SearchNotFound from './SearchNotFound';
 import Utilities from '../../../shared/utilities';
+import usePrevious from '../../../shared/hooks/usePrevious';
 
 const Search = props => {
   const [searchCategories, setSearchCategories] = useState(null);
@@ -20,39 +21,48 @@ const Search = props => {
   const [constant, setConstant] = useState(6);
   const [error, setError] = useState(false);
   const [loadMore, setLoadMore] = useState(false);
+  const searchKeyword = decodeURI(props.location.search.split('=')[1]);
+  const prevSearchKeyword = usePrevious(searchKeyword);
+  const prevDefaultCategoryId = usePrevious(defaultCategoryId);
   useEffect(() => {
     setDefaultCategoryId('all');
     fetchSearchCategoriesService();
-  }, [props.location.search]);
+  }, [searchKeyword]);
   useEffect(() => {
-    setAllSearchResults(null);
+    if (!loadMore) {
+      setAllSearchResults(null);
+    }
     const params = {
       client: Constants.CLIENT,
       limit: constant,
       first: 0,
-      search: decodeURI(props.location.search.split('=')[1])
+      search: searchKeyword
     };
-    fetchSearchResultsService(params);
-  }, [defaultCategoryId, props.location.search]);
-
-  useEffect(() => {
-    const params = {
-      client: Constants.CLIENT,
-      search: decodeURI(props.location.search.split('=')[1]),
-      limit: constant,
-      first: 0
-    };
-    if (constant !== 6) {
-      fetchSearchResultsService(params);
+    if (prevSearchKeyword !== searchKeyword) {
+      params.limit = 6;
+      setConstant(6);
     }
-  }, [constant]);
+    if (
+      prevSearchKeyword !== searchKeyword ||
+      loadMore ||
+      prevDefaultCategoryId !== defaultCategoryId
+    ) {
+      searchApi(
+        params,
+        defaultCategoryId,
+        setAllSearchResults,
+        setLoadMore,
+        setError
+      );
+    }
+  }, [defaultCategoryId, searchKeyword, constant]);
 
   const fetchSearchCategoriesService = () => {
     setSearchCategories(null);
     setAllResultCount('');
     const params = {
       client: Constants.CLIENT,
-      search: decodeURI(props.location.search.split('=')[1])
+      search: searchKeyword
     };
     SearchService.getSearchCategories(params)
       .then(res => {
@@ -65,32 +75,14 @@ const Search = props => {
       });
   };
 
-  const fetchSearchResultsService = params => {
-    searchApi(
-      params,
-      defaultCategoryId,
-      setAllSearchResults,
-      setLoadMore,
-      setError
-    );
-  };
-
   const handleActiveCategory = id => {
     setDefaultCategoryId(id);
     setConstant(6);
     setTotalResults(searchCategories.find(obj => obj.type === id).total);
   };
 
-  const searchResultHandler = searchResults => {
-    return searchResults ? (
-      searchResults.map(cardData => {
-        return (
-          <div key={cardData.id}>
-            <Card cardData={cardData} {...props} />
-          </div>
-        );
-      })
-    ) : Utilities.mobileAndTabletcheck() ? (
+  const handleShimmerEffect = () => {
+    return Utilities.mobileAndTabletcheck() ? (
       <ShimmerEffect
         height={150}
         count={4}
@@ -106,14 +98,26 @@ const Search = props => {
       />
     );
   };
+
+  const searchResultHandler = searchResults => {
+    return searchResults
+      ? searchResults.map(cardData => {
+          return (
+            <div key={cardData.id}>
+              <Card cardData={cardData} {...props} />
+            </div>
+          );
+        })
+      : handleShimmerEffect();
+  };
   return (
     <div className="searchbar-page-wrapper container-fluid">
       {!error ? (
         <div className="container">
           <SearchAdvertisement />
           <h2>
-            {allResultCount} results found for "
-            <strong>{decodeURI(props.location.search.split('=')[1])}</strong>"
+            {allResultCount} results found for "<strong>{searchKeyword}</strong>
+            "
           </h2>
           <SearchCategory
             searchCategories={searchCategories}
@@ -125,14 +129,7 @@ const Search = props => {
               <div className="events-section list-view">
                 {searchResultHandler(allSearchResults)}
               </div>
-              {loadMore && (
-                <ShimmerEffect
-                  height={10}
-                  count={4}
-                  type="LIST"
-                  propCls="shm_col-xs-1 col-md-12"
-                />
-              )}
+              {loadMore && handleShimmerEffect()}
               {totalResults - constant > 0 && (
                 <div className="promotion-load-more">
                   <button
@@ -152,11 +149,8 @@ const Search = props => {
           </div>
         </div>
       ) : (
-        // <h2>NO data Found</h2>
         <SearchNotFound />
       )}
-
-      {/* {error && <h2>NO data Found</h2>} */}
     </div>
   );
 };

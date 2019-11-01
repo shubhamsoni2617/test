@@ -144,22 +144,23 @@ const Autocomplete = props => {
     }
   };
 
-  const userInputHandler = value => {
-    setUserInput('');
-  };
-
-  let suggestionsListComponent;
+  let suggestionsListComponent, suggestionsList;
   if (showSuggestions && userInput.length > 2) {
     if (suggestions && suggestions.length) {
+      if (suggestions.length === 6) {
+        suggestionsList = suggestions;
+      } else {
+        suggestionsList = suggestions.slice(1);
+      }
       suggestionsListComponent = (
         <div className="search-popup-wrapper">
           <ul className="suggestions">
-            {suggestions.slice(1).map((suggestion, index) => {
+            {suggestionsList.map((suggestion, index) => {
               return (
                 <li
                   className={`${
                     index + 1 === currentIndex ? `suggestion-selected` : ``
-                  }`}
+                    }`}
                   key={suggestion.id}
                   onClick={() => {
                     onClick(suggestion.title);
@@ -181,11 +182,11 @@ const Autocomplete = props => {
                 >
                   <h4 className="suggestion-title">{suggestion.title}</h4>
                   {suggestion.type === 'event' ||
-                  suggestion.type === 'attractions' ? (
-                    <button>{suggestion.category}</button>
-                  ) : (
-                    <p>{suggestion.category}</p>
-                  )}
+                    suggestion.type === 'attractions' ? (
+                      <button>{suggestion.category}</button>
+                    ) : (
+                      <p>{suggestion.category}</p>
+                    )}
                 </li>
               );
             })}
@@ -224,7 +225,7 @@ const Autocomplete = props => {
       ref={node}
       className={`autocomplete ${
         Utilities.mobilecheck() && isFocused ? `search-open` : ``
-      }`}
+        }`}
     >
       <div className="search-popup-topbar">
         {Utilities.mobilecheck() && (
@@ -246,8 +247,8 @@ const Autocomplete = props => {
         <input
           ref={inputRef}
           type="text"
-          autoComplete={false}
-          autoCorrect={false}
+          // autoComplete={false}
+          // autoCorrect={false}
           spellCheck={false}
           onChange={onChange}
           onKeyDown={onKeyDown}
@@ -269,18 +270,20 @@ const Autocomplete = props => {
                 .classList.add('fixed-body');
           }}
         />
-        {/* <button
+        <button
           onClick={() => {
             setUserInput('');
             inputRef.current.focus();
           }}
+          className="search-overlap-crossicon"
         >
           <img src={cross} className="img-fluid active" alt="search-icon" />
-        </button> */}
+        </button>
         <button
           type="submit"
           className="search-btn"
           onClick={() => {
+            setIsFocused(false);
             if (!userInput.trim().length) {
               return;
             }
@@ -292,7 +295,6 @@ const Autocomplete = props => {
                   .getElementsByTagName('body')[0]
                   .classList.remove('fixed-body');
             }
-            setIsFocused(false);
           }}
         >
           <img src={searchImage} className="img-fluid" alt="search-icon" />
@@ -308,7 +310,6 @@ const Autocomplete = props => {
         <RecentlySearched
           {...props}
           focusHandler={focusHandler}
-          userInputHandler={userInputHandler}
           storageValuesHandler={storageValuesHandler}
         />
       )}

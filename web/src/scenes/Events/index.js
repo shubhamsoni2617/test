@@ -183,6 +183,7 @@ export default class Events extends Component {
 
   loadEvents = (params, isLoadMore) => {
     // this.setState({shimmer: true});
+    params.client = Constants.CLIENT;
     EventsService.getData(params)
       .then(res => {
         let eventData = [];
