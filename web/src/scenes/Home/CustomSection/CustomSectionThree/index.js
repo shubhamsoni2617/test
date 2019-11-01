@@ -70,7 +70,7 @@ const CustomSectionThree = ({ customSectionThree }) => {
                 <div className="video-only-section">
                   <ReactPlayer
                     width="100%"
-                    height="100%"
+                    height="465px"
                     controls
                     pip={pip}
                     muted={muted}
