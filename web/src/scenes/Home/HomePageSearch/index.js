@@ -2,15 +2,18 @@ import React, { useState } from 'react';
 import './style.scss';
 import Autocomplete from './AutoComplete';
 
-const HomePageSearch = props => {
-  const [buttonActive, setButtonActive] = useState(false)
+const HomePageSearch = ({ history }) => {
+  const [buttonActive, setButtonActive] = useState(false);
 
-  const buttonActiveHandler = (value) => {
-    setButtonActive(value)
-  }
+  const buttonActiveHandler = value => {
+    setButtonActive(value);
+  };
   return (
     <div className={`header-search ${buttonActive ? `active` : ``}`}>
-      <Autocomplete {...props} buttonActiveHandler={buttonActiveHandler} />
+      <Autocomplete
+        history={history}
+        buttonActiveHandler={buttonActiveHandler}
+      />
     </div>
   );
 };
