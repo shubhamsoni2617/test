@@ -1,4 +1,6 @@
 import React from 'react';
+import ShimmerEffect from '../../../../shared/components/ShimmerEffect'
+import Utilities from '../../../../shared/utilities';
 
 const SearchCategory = props => {
   const { defaultCategoryId, handleActiveCategory, searchCategories } = props;
@@ -8,8 +10,8 @@ const SearchCategory = props => {
       <section className="promotions-wrapper">
         <div className="promotions-nav">
 
-          <ul className="nav nav-tabs" id="nav-tab" role="tablist">
-            {searchCategories && searchCategories.length && searchCategories.map(category => {
+          {searchCategories && searchCategories.length ? <ul className="nav nav-tabs" id="nav-tab" role="tablist">
+            {searchCategories.map(category => {
               return (
                 <li
                   key={category.type}
@@ -33,10 +35,21 @@ const SearchCategory = props => {
                     </a>
                 </li>
               );
-            })}
-          </ul>
+            })
+            }
+          </ul> : <ShimmerEffect
+              height={50}
+              count={4}
+              type="BLOCK"
 
+            />
+          }
+          {/* <ShimmerEffect
+            height={50}
+            count={4}
+            type="BLOCK"
 
+          /> */}
         </div>
       </section>
     </div>

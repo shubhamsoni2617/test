@@ -161,7 +161,7 @@ function BlockShimmer(props) {
   var h = [];
   for (let i = 0; i < props.count; i++) {
     h.push(
-      <div className={'shimmer-block'}>
+      <div className={'shimmer-block'} style={{ height: props.height }}>
         <div key={i} className={props.propCls}>
           <div className="contentLoader ListView">
             <div className="shm_row">
