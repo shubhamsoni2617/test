@@ -43,11 +43,12 @@ export default class AccordionSection extends Component {
       uuid,
       preExpanded,
       infoTag,
-      gallery
+      gallery,
+      dynamicClass
     } = this.props;
 
     return (
-      <div className="sidebar-accordion">
+      <div className={`sidebar-accordion ${dynamicClass}`}>
         <Accordion allowZeroExpanded={true} preExpanded={preExpanded}>
           <AccordionItem uuid={uuid}>
             <AccordionItemHeading>
