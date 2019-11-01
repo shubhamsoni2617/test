@@ -438,6 +438,13 @@ export default class EventsDetail extends Component {
                           />
                         );
                       })}
+                    {detailData.gallery_images_videos &&
+                      detailData.gallery_images_videos.length > 0 && (
+                        <AccordionSection
+                          title="Gallery"
+                          gallery={detailData.gallery_images_videos}
+                        />
+                      )}
                   </div>
                   <div className="event-detail-sidebar">
                     {detailData.ticket_pricing && (
