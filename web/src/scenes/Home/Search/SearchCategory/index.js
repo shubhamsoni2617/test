@@ -44,12 +44,6 @@ const SearchCategory = props => {
 
             />
           }
-          {/* <ShimmerEffect
-            height={50}
-            count={4}
-            type="BLOCK"
-
-          /> */}
         </div>
       </section>
     </div>
