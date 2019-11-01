@@ -41,6 +41,20 @@
                 }
             }
         }
+        .accordion__button{
+            &:before{
+                @media(max-width: 767px){
+                    transform: translateY(-50%) rotate(45deg);
+                }
+            }
+            &[aria-expanded='true']{
+                &:before{
+                    @media(max-width: 767px){
+                        transform: translateY(-50%) rotate(-135deg);
+                    }
+                }
+            }
+        }
     }
 }
 .accordion__item + .accordion__item{
