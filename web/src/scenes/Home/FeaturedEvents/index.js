@@ -27,14 +27,14 @@ const Item = ({ event }) => {
             >
               {event.primary_genere}
             </span> */}
+            <span
+              className={`category ${event &&
+                event.primary_genere &&
+                event.primary_genere.toLowerCase()}`}
+            >
+              {event.primary_genere}
+            </span>
           </div>
-          <span
-            className={`category ${event &&
-              event.primary_genere &&
-              event.primary_genere.toLowerCase()}`}
-          >
-            {event.primary_genere}
-          </span>
           {event && event.title && <h3>
             {Utilities.showLimitedChars(event && event.title, Utilities.mobilecheck() ? 20 : 30)}
           </h3>}
