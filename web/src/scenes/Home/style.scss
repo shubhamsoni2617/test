@@ -161,6 +161,25 @@
 								}
 							}
 						}
+						input{
+							@media(max-width: 767px){
+								background: linear-gradient(to bottom, #fcfcfc, #f3f3f3, #eaeaea, #E1E1E0, #d8d8d8);
+								opacity: 1;
+								color: #343434;
+								box-shadow: none;						
+								outline: none;
+							}
+							&::placeholder {
+								@media(max-width: 767px){
+									color: #626262;
+								}
+							}
+							&+button img.active {
+								@media(max-width: 767px){
+									opacity: 1;
+								}
+							}
+						}
 					}
 					.search-popup-topbar{
 						& + .no-suggestions{
@@ -232,12 +251,12 @@
 					overflow: hidden;
 					white-space: nowrap;
 					display: block;
-					padding-right: 40px;					
+					padding-right: 60px;					
 					&:focus {
 						background: linear-gradient(to bottom, #fcfcfc, #f3f3f3, #eaeaea, #E1E1E0, #d8d8d8);
 						opacity: 1;
 						color: #343434;
-						box-shadow: none;
+						box-shadow: none;						
 						outline: none;
 						&::placeholder {
 							color: #626262;
@@ -261,13 +280,14 @@
 						line-height: 42px;
 						height: 42px;
 						border-radius: 30px;
-						padding-right: 40px;
+						padding-right: 60px;
 						max-width: 100%;
 						text-overflow: ellipsis;
 						overflow: hidden;
 						white-space: nowrap;						
 						opacity: 1;
-						color: #343434;
+						// color: #343434;
+						color: #ffffff99;
 						box-shadow: none;
 					}
 					&::placeholder {
@@ -4864,7 +4884,10 @@ section{
 		scrollbar-width: none; // Firefox 
 	} 
 	.advertisment-listing::-webkit-scrollbar { 
-		display: none; // Safari and Chrome 
+		display: none; // Safari and Chrome
+	}
+	.most-viewed:first-child{
+		padding-top: 24px;
 	}
 }
 .blur .searched-wrapper{
