@@ -175,7 +175,11 @@
             &::-ms-clear {
                 display: none;
             }
+            &.hide-text{
+                text-indent: -10000px;
+            }
         }
+        
         .search-btn{
             @media(max-width: 767px){
                 right: 20px !important;

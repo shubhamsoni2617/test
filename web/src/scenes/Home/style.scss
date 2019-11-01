@@ -335,7 +335,11 @@
 								}
 							}
 						}
+						&.hide-text{
+							text-indent: -10000px;
+						}
 					}
+					
 				}
 				.search-btn {
 					background-color: transparent;
