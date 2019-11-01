@@ -64,6 +64,9 @@
         position: relative;
         overflow: hidden;
         z-index: 0;
+        &.open{
+          z-index: 5;
+        }
         .contentLoader{
           margin-top: -10px;
         }
@@ -99,7 +102,7 @@
                 width: calc(33.33% - 19px);
                 margin-right: 17px;
                 @media(max-width: 768px){
-                    flex: 0 0 calc(50% - 19px); 
+                    flex: 0 0 calc(50% - 19px);
                     width: calc(50% - 19px);
                 }
                 @media(min-width: 1500px) and (max-width: 1900px){
@@ -142,7 +145,7 @@
                                 @media(max-width: 768px){
                                     text-align: left;
                                 }
-                              
+
                             }
                           }
                         }

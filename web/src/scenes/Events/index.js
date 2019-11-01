@@ -541,7 +541,11 @@ export default class Events extends Component {
                   )}
               </div>
 
-              <div className="events-listing">
+              <div
+                className={`events-listing ${
+                  this.state.sortByFlag ? 'open' : ''
+                }`}
+              >
                 <div className="event-listing-sorting">
                   <SearchFilter
                     handleFilters={this.handleFilters}
