@@ -73,6 +73,7 @@ const Autocomplete = ({ history, buttonActiveHandler }) => {
       });
   };
   const onChange = e => {
+    setActiveSuggestion(-1)
     setShowSuggestions(true);
     setUserInput(e.currentTarget.value);
   };
@@ -170,11 +171,11 @@ const Autocomplete = ({ history, buttonActiveHandler }) => {
                 >
                   <h4 className="suggestion-title">{suggestion.title}</h4>
                   {suggestion.type === 'event' ||
-                  suggestion.type === 'attractions' ? (
-                    <button>{suggestion.category}</button>
-                  ) : (
-                    <p>{suggestion.category}</p>
-                  )}
+                    suggestion.type === 'attractions' ? (
+                      <button>{suggestion.category}</button>
+                    ) : (
+                      <p>{suggestion.category}</p>
+                    )}
                 </li>
               );
             })}
@@ -206,7 +207,7 @@ const Autocomplete = ({ history, buttonActiveHandler }) => {
       ref={node}
       className={`autocomplete ${
         Utilities.mobilecheck() && isFocused ? `search-open` : ``
-      }`}
+        }`}
     >
       <div className="search-popup-topbar">
         {Utilities.mobilecheck() && (
@@ -265,12 +266,12 @@ const Autocomplete = ({ history, buttonActiveHandler }) => {
             }
           }}
         >
-          <img src={searchImage} className="img-fluid" alt="search-icon" />
-          <img
+          {!isFocused && <img src={searchImage} className="img-fluid" alt="search-icon" />}
+          {isFocused && <img
             src={searchImageBlue}
-            className="img-fluid active"
+            className="img-fluid"
             alt="search-icon"
-          />
+          />}
         </button>
       </div>
       {suggestionsListComponent}
