@@ -170,7 +170,7 @@ function StickyHeader(props) {
     <div
       className={`event-detail ${sticky ? 'sticky-topbar' : ''} ${
         sticky && setHeader ? 'animate' : ''
-        }`}
+      }`}
     >
       {detailData.images && detailData.images.length > 0 && (
         <div className="tickets-demo-img">
@@ -285,6 +285,28 @@ function StickyHeader(props) {
               </li>
             )}
             {seatMapButton && <li className="event-date">{seatMapButton}</li>}
+            {detailData.promoters && detailData.promoters.length > 0 && (
+              <li className="event-date">
+                <img src={calendarImg} alt="cal-icon" />
+                {detailData.promoters.map((item, index) => {
+                  if (item.url) {
+                    return (
+                      <a
+                        key={`${item.name}-${index}`}
+                        href={item.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        {item.name}&nbsp;
+                      </a>
+                    );
+                  }
+                  return (
+                    <span key={`${item.name}-${index}`}>{item.name}&nbsp;</span>
+                  );
+                })}
+              </li>
+            )}
             {detailData.price && (
               <li className="event-date">
                 <img src={coinsImg} className="coin" alt="cal-icon" />
