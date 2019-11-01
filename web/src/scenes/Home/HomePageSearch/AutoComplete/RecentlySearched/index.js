@@ -6,8 +6,9 @@ import './style.scss';
 import MostViewed from './MostViewed';
 import Utilities from '../../../../../shared/utilities';
 import backButton from '../../../../../assets/images/events/sortby.svg';
+import { setValuesInLocalStorage } from '../setLocalStorage';
 
-const RecentlySearched = props => {
+const RecentlySearched = ({ focusHandler, history }) => {
   const [storageValues, setStorageValues] = useState(
     JSON.parse(localStorage.getItem('recentlySearched'))
   );
@@ -19,9 +20,12 @@ const RecentlySearched = props => {
     localStorage.setItem('recentlySearched', JSON.stringify(values));
   };
 
-  const redirectHandler = text => {
-    props.history.push(`/search-results?q=${text}`);
-    props.focusHandler();
+  const onClickHandler = text => {
+    setValuesInLocalStorage(text);
+    history.push(`/search-results?q=${text}`);
+    focusHandler();
+    Utilities.mobilecheck() &&
+      document.getElementsByTagName('body')[0].classList.remove('fixed-body');
   };
 
   return (
@@ -29,25 +33,12 @@ const RecentlySearched = props => {
       <div className="searched-wrapper">
         {storageValues.length ? (
           <div className="recently-search">
-            <span onClick={props.history.goBack}>
-              <image alt={'backButton'} src={backButton} />
-            </span>
             <h3>Recently Searched</h3>
             <ul>
               {storageValues.map((text, index) => {
                 return (
                   <li key={text + index}>
-                    <span
-                      onClick={e => {
-                        e.preventDefault();
-                        props.storageValuesHandler(text);
-                        redirectHandler(text);
-                        Utilities.mobilecheck() &&
-                          document
-                            .getElementsByTagName('body')[0]
-                            .classList.remove('fixed-body');
-                      }}
-                    >
+                    <span onClick={() => onClickHandler(text)}>
                       <img src={recentSearchIconImage} alt="" /> {text}
                     </span>
                     <a
