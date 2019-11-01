@@ -12,6 +12,8 @@ import './style.scss';
 import InfoPopup from '../InfoPoup';
 import infoIcon from '../../../assets/images/info-icon.svg';
 import Utilities from '../../utilities';
+import Image from '../Image';
+import ReactPlayer from 'react-player';
 
 export default class AccordionSection extends Component {
   constructor(props) {
@@ -40,11 +42,13 @@ export default class AccordionSection extends Component {
       changeLang,
       uuid,
       preExpanded,
-      infoTag
+      infoTag,
+      gallery,
+      dynamicClass
     } = this.props;
 
     return (
-      <div className="sidebar-accordion">
+      <div className={`sidebar-accordion ${dynamicClass}`}>
         <Accordion allowZeroExpanded={true} preExpanded={preExpanded}>
           <AccordionItem uuid={uuid}>
             <AccordionItemHeading>
@@ -109,6 +113,31 @@ export default class AccordionSection extends Component {
                       desc={obj.description}
                     />
                   ))}
+
+                {gallery &&
+                  gallery.map(obj => {
+                    if (obj.type.name === 'Image') {
+                      return (
+                        <Image
+                          key={obj.id}
+                          src={obj.thumb_image}
+                          largeImage={obj.full_image}
+                        />
+                      );
+                    }
+
+                    return (
+                      <ReactPlayer
+                        key={obj.id}
+                        width="100%"
+                        height="400px"
+                        controls
+                        muted={true}
+                        url={obj.video_url}
+                        volume={0.5}
+                      />
+                    );
+                  })}
               </div>
             </AccordionItemPanel>
           </AccordionItem>

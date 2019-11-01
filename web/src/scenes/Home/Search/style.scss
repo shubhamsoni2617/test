@@ -100,6 +100,14 @@
             }
 
         }
+        .promotion-load-more{
+            @media(max-width: 767px){
+                padding-bottom: 30px;
+                padding-top: 20px;
+                border-top: 1px solid #fff;
+                position: relative;
+            }
+        }
     }
     .load-more-btn {
 		border: 1px solid #dedede;
@@ -417,12 +425,16 @@
         .events-listing{
             width: 100%;
             margin-left: 0px;
+            @media(max-width: 767px){
+                margin-bottom: 20px;
+            }
             .events-section{
                 margin-top: 0px;
                 @media(max-width: 767px){
                     display: flex;
                     flex-wrap: wrap;
                     width: 100% !important;
+                    margin-bottom: -1px;
                 }
                 & > div{
                     @media(max-width: 767px){
@@ -542,18 +554,32 @@
                     }
                     &:nth-last-child(2){
                         .event-block{
+                            // @media(max-width: 767px){
+                            //     border-bottom: 1px solid transparent;
+                            // }
+                        }
+                    }
+                    &.shim-container{
+                        @media(max-width: 767px){
+                            flex: 0 0 100%;
+                            width: 100%;
+                        }
+                        .contentLoader{
                             @media(max-width: 767px){
-                                border-bottom: 1px solid transparent;
+                                margin-top: 10px;
                             }
                         }
                     }
                 }
                 div:last-child{
-                    .event-block:hover{
-                        border-bottom: none;
-                        @media(max-width: 767px){
-                            border: 1px solid transparent;
-                            border-bottom: 1px solid rgba(151, 151, 151, 0.2);
+                    .event-block{
+                        border-bottom: 1px solid rgba(151, 151, 151, 0.2);
+                        &:hover{
+                            border-bottom: none;
+                            @media(max-width: 767px){
+                                // border: 1px solid transparent;
+                                border-bottom: 1px solid rgba(151, 151, 151, 0.2);
+                            }
                         }
                     }
                 }

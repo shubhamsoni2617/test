@@ -13,13 +13,14 @@ import './style.scss';
 import navigateToLink from '../../../../shared/navigateToLink';
 import Utilities from '../../../../shared/utilities';
 
-const Autocomplete = props => {
+const Autocomplete = ({ history, buttonActiveHandler }) => {
   const [showSuggestions, setShowSuggestions] = useState(false);
   const [userInput, setUserInput] = useState('');
   const [suggestions, setSuggestions] = useState([]);
   const [isSearching, setIsSearching] = useState(false);
   const [isFocused, setIsFocused] = useState(false);
-  const [currentIndex, setCurrentIndex] = useState(-1);
+  const [initialUserInput, setInitialUserInput] = useState('');
+  const [activeSuggestion, setActiveSuggestion] = useState(-1);
   const debouncedSearchTerm = useDebounce(userInput, 500);
   const node = useRef(null);
   const inputRef = useRef(null);
@@ -32,25 +33,11 @@ const Autocomplete = props => {
   }, []);
 
   useEffect(() => {
-    if (currentIndex > -1 && suggestions[currentIndex]) {
-      setUserInput(suggestions[currentIndex].title);
-    }
-  }, [currentIndex]);
-
-  useEffect(() => {
-    if (userInput === '') {
-      setCurrentIndex(-1);
-    }
-  }, [userInput]);
-
-  useEffect(() => {
-    if (currentIndex === -1) {
-      if (debouncedSearchTerm) {
-        setIsSearching(true);
-        fetchSearchSuggestionsService(debouncedSearchTerm);
-      } else {
-        setSuggestions([]);
-      }
+    if (debouncedSearchTerm) {
+      setIsSearching(true);
+      fetchSearchSuggestionsService(debouncedSearchTerm);
+    } else {
+      setSuggestions([]);
     }
   }, [debouncedSearchTerm]);
 
@@ -60,13 +47,13 @@ const Autocomplete = props => {
     }
     setShowSuggestions(false);
     setIsFocused(false);
-    props.buttonActiveHandler(false);
+    buttonActiveHandler(false);
   };
 
   const focusHandler = () => {
     setShowSuggestions(false);
     setIsFocused(false);
-    props.buttonActiveHandler(false);
+    buttonActiveHandler(false);
   };
 
   const fetchSearchSuggestionsService = debouncedSearchTerm => {
@@ -86,6 +73,7 @@ const Autocomplete = props => {
       });
   };
   const onChange = e => {
+    setActiveSuggestion(-1)
     setShowSuggestions(true);
     setUserInput(e.currentTarget.value);
   };
@@ -93,79 +81,83 @@ const Autocomplete = props => {
   const onClick = question => {
     setShowSuggestions(false);
     setUserInput(question);
-    storageValuesHandler(question);
-  };
-
-  const storageValuesHandler = question => {
     setValuesInLocalStorage(question);
   };
 
+  const addFixedBody = () => {
+    if (Utilities.mobilecheck()) {
+      document.getElementsByTagName('body')[0].classList.add('fixed-body');
+    }
+  };
+  const removeFixedBody = () => {
+    if (Utilities.mobilecheck()) {
+      document.getElementsByTagName('body')[0].classList.remove('fixed-body');
+    }
+  };
+
   const onKeyDown = e => {
+    // e.preventDefault();
     e.stopPropagation();
-    console.log('keycode', currentIndex);
-    if (
-      userInput &&
-      suggestions.length &&
-      currentIndex === suggestions.length - 1
-    ) {
-      setCurrentIndex(0);
+    if (!initialUserInput) {
+      setInitialUserInput(userInput);
     }
     if (!userInput.trim().length && e.keyCode === 13) {
       return;
     }
     if (e.keyCode === 13) {
+      setActiveSuggestion(0);
       setShowSuggestions(false);
-      storageValuesHandler(userInput);
-      props.history.push(`/search-results?q=${userInput}`);
-      Utilities.mobilecheck() &&
-        document.getElementsByTagName('body')[0].classList.remove('fixed-body');
+      setValuesInLocalStorage(userInput);
+      if (activeSuggestion === -1) {
+        history.push(`/search-results?q=${userInput}`);
+      } else {
+        let selectedSuggestion = suggestions[activeSuggestion];
+        navigateToLink(
+          history,
+          selectedSuggestion.type,
+          selectedSuggestion.category,
+          selectedSuggestion.id,
+          selectedSuggestion.code,
+          selectedSuggestion.tid
+        );
+      }
+      removeFixedBody();
       setSuggestions([]);
-      setCurrentIndex(-1);
       inputRef.current.blur();
       setUserInput('');
       setIsFocused(false);
-    }
-    if (
-      e.keyCode === 40 &&
-      userInput &&
-      currentIndex < suggestions.length - 1
-    ) {
-      if (currentIndex === -1) {
-        setSuggestions([{ title: userInput }, ...suggestions]);
-        setCurrentIndex(currentIndex + 2);
-      } else {
-        setCurrentIndex(currentIndex + 1);
-      }
-    }
-    if (e.keyCode === 38 && userInput && currentIndex > 0) {
-      console.log('keycode', e.keyCode, currentIndex - 1);
+    } else if (e.keyCode === 38) {
+      e.preventDefault();
 
-      setCurrentIndex(currentIndex - 1);
+      if (activeSuggestion === -1) {
+        return;
+      }
+      setActiveSuggestion(activeSuggestion - 1);
+    } else if (e.keyCode === 40) {
+      if (activeSuggestion === suggestions.length - 1) {
+        return;
+      }
+      setActiveSuggestion(activeSuggestion + 1);
     }
   };
 
-  let suggestionsListComponent, suggestionsList;
+  let suggestionsListComponent;
   if (showSuggestions && userInput.length > 2) {
     if (suggestions && suggestions.length) {
-      if (suggestions.length === 6) {
-        suggestionsList = suggestions;
-      } else {
-        suggestionsList = suggestions.slice(1);
-      }
       suggestionsListComponent = (
         <div className="search-popup-wrapper">
           <ul className="suggestions">
-            {suggestionsList.map((suggestion, index) => {
+            {suggestions.map((suggestion, index) => {
               return (
                 <li
-                  className={`${
-                    index + 1 === currentIndex ? `suggestion-selected` : ``
-                    }`}
+                  className={
+                    index === activeSuggestion ? `suggestion-selected` : ``
+                  }
                   key={suggestion.id}
                   onClick={() => {
                     onClick(suggestion.title);
                     navigateToLink(
-                      props.history,
+                      history,
                       suggestion.type,
                       suggestion.category,
                       suggestion.id,
@@ -173,10 +165,7 @@ const Autocomplete = props => {
                       suggestion.tid
                     );
                     setUserInput('');
-                    Utilities.mobilecheck() &&
-                      document
-                        .getElementsByTagName('body')[0]
-                        .classList.remove('fixed-body');
+                    removeFixedBody();
                     setIsFocused(false);
                   }}
                 >
@@ -193,20 +182,13 @@ const Autocomplete = props => {
             <div
               onClick={() => {
                 onClick(userInput);
-                props.history.push(`/search-results?q=${userInput}`);
-                Utilities.mobilecheck() &&
-                  document
-                    .getElementsByTagName('body')[0]
-                    .classList.remove('fixed-body');
-
+                history.push(`/search-results?q=${userInput}`);
+                removeFixedBody();
                 setIsFocused(false);
               }}
               className="search-link-all-results"
             >
-              See all results from{' '}
-              <strong>
-                {currentIndex == -1 ? userInput : suggestions[0].title}
-              </strong>
+              See all results from <strong>{userInput}</strong>
             </div>
           </ul>
         </div>
@@ -234,11 +216,7 @@ const Autocomplete = props => {
             onClick={() => {
               setShowSuggestions(false);
               setIsFocused(false);
-              Utilities.mobilecheck() &&
-                document
-                  .getElementsByTagName('body')[0]
-                  .classList.remove('fixed-body');
-              props.history.goBack();
+              removeFixedBody();
             }}
           >
             <img src={previousArrow} alt="previous-btn" />
@@ -247,71 +225,58 @@ const Autocomplete = props => {
         <input
           ref={inputRef}
           type="text"
-          // autoComplete={false}
-          // autoCorrect={false}
           spellCheck={false}
           onChange={onChange}
           onKeyDown={onKeyDown}
           value={userInput}
           placeholder="Search experiences…"
-          onClick={() => {
-            Utilities.mobilecheck() &&
-              document
-                .getElementsByTagName('body')[0]
-                .classList.add('fixed-body');
-          }}
+          onClick={() => addFixedBody()}
           className="search-inputtype"
           onFocus={() => {
             setIsFocused(true);
-            props.buttonActiveHandler(true);
-            Utilities.mobilecheck() &&
-              document
-                .getElementsByTagName('body')[0]
-                .classList.add('fixed-body');
+            buttonActiveHandler(true);
+            addFixedBody();
           }}
         />
-        <button
-          onClick={() => {
-            setUserInput('');
-            inputRef.current.focus();
-          }}
-          className="search-overlap-crossicon"
-        >
-          <img src={cross} className="img-fluid active" alt="search-icon" />
-        </button>
+        {userInput && (
+          <button
+            onClick={() => {
+              setUserInput('');
+              inputRef.current.focus();
+            }}
+            className="search-overlap-crossicon"
+          >
+            <img src={cross} className="img-fluid active" alt="search-icon" />
+          </button>
+        )}
         <button
           type="submit"
           className="search-btn"
           onClick={() => {
-            setIsFocused(false);
+            setIsFocused(!isFocused);
+            !isFocused ? inputRef.current.focus() : inputRef.current.blur();
             if (!userInput.trim().length) {
               return;
             }
             if (userInput.length > 2) {
               onClick(userInput);
-              props.history.push(`/search-results?q=${userInput}`);
-              Utilities.mobilecheck() &&
-                document
-                  .getElementsByTagName('body')[0]
-                  .classList.remove('fixed-body');
+              history.push(`/search-results?q=${userInput}`);
+              removeFixedBody();
+              setUserInput('');
             }
           }}
         >
-          <img src={searchImage} className="img-fluid" alt="search-icon" />
-          <img
+          {!isFocused && <img src={searchImage} className="img-fluid" alt="search-icon" />}
+          {isFocused && <img
             src={searchImageBlue}
-            className="img-fluid active"
+            className="img-fluid"
             alt="search-icon"
-          />
+          />}
         </button>
       </div>
       {suggestionsListComponent}
       {isFocused && !userInput && (
-        <RecentlySearched
-          {...props}
-          focusHandler={focusHandler}
-          storageValuesHandler={storageValuesHandler}
-        />
+        <RecentlySearched history={history} focusHandler={focusHandler} />
       )}
     </div>
   );
