@@ -322,7 +322,11 @@ export default class Promotions extends Component {
                   {Utilities.mobilecheck() && (
                     <>
                       <div className="wrapper-events-listing">
-                        <div className="events-listing">
+                        <div
+                          className={`events-listing ${
+                            this.state.sortByFlag ? 'open' : ''
+                          }`}
+                        >
                           <div className="event-listing-sorting">
                             <SortBy
                               defaultSortType="Promotions - A to Z"

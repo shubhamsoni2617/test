@@ -247,7 +247,8 @@ export default class Events extends Component {
       genre: reset ? '' : genreId,
       venue: reset ? '' : venueId,
       start_date: reset ? '' : dateRange.from,
-      end_date: reset ? '' : dateRange.to
+      end_date: reset ? '' : dateRange.to,
+      client: 1
     };
     return payload;
   };
@@ -540,7 +541,11 @@ export default class Events extends Component {
                   )}
               </div>
 
-              <div className="events-listing">
+              <div
+                className={`events-listing ${
+                  this.state.sortByFlag ? 'open' : ''
+                }`}
+              >
                 <div className="event-listing-sorting">
                   <SearchFilter
                     handleFilters={this.handleFilters}
