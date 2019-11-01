@@ -8,6 +8,7 @@ import Utilities from '../../../shared/utilities';
 import HomeService from '../../../shared/services/HomeService';
 import Image from '../../../shared/components/Image';
 import ShimmerEffect from '../../../shared/components/ShimmerEffect';
+import EventHeading from '../../../shared/components/EventHeading';
 
 const SampleNextArrow = props => {
   const { className, style, onClick } = props;
@@ -145,7 +146,12 @@ const TopPics = props => {
                               </div>
                             </div>
                           </div>
-                          <h3>{Utilities.showLimitedChars(pic.title, 15)}</h3>
+                          {/* <h3>{Utilities.showLimitedChars(pic.title, 15)}</h3> */}
+                          <EventHeading
+                            title={pic.title}
+                            lines={2}
+                            height={Utilities.mobileAndTabletcheck() ? 16 : 20}
+                          />
                           <a
                             href="/events"
                             onClick={e => e.preventDefault()}
@@ -217,7 +223,14 @@ const TopPics = props => {
                           </div>
                         </div>
                       </div>
-                      <h3>{Utilities.showLimitedChars(pic.title, 25)}</h3>
+                      <h3>
+                        <EventHeading
+                          title={pic.title}
+                          lines={2}
+                          height={Utilities.mobileAndTabletcheck() ? 20 : 25}
+                        />
+                      </h3>
+
                       <span className="item-title-overlay">
                         <span>BUY NOW </span>
                         <img
