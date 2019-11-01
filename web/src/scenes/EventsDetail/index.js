@@ -420,6 +420,7 @@ export default class EventsDetail extends Component {
                         langArr={getSynopsisData.languageArr}
                         changeLang={this.changeLang}
                         preExpanded={accrodian}
+                        dynamicClass="synopsis-accordian"
                         uuid={`${
                           detailData.is_available_for_booking === 1
                             ? 'synopsis'
@@ -435,6 +436,7 @@ export default class EventsDetail extends Component {
                             key={obj.title}
                             title={obj.title}
                             desc={obj.description}
+                            dynamicClass="othertabs-accordian"
                           />
                         );
                       })}
@@ -443,6 +445,7 @@ export default class EventsDetail extends Component {
                         <AccordionSection
                           title="Gallery"
                           gallery={detailData.gallery_images_videos}
+                          dynamicClass="othertabs-accordian"
                         />
                       )}
                   </div>
@@ -465,6 +468,7 @@ export default class EventsDetail extends Component {
                         desc={detailData.ticket_pricing}
                         openInfoPopup={this.openInfoPopup}
                         showInfo={showInfo}
+                        dynamicClass="price-accordian"
                       />
                     )}
 
@@ -474,6 +478,7 @@ export default class EventsDetail extends Component {
                         <AccordionSection
                           title="Promotion"
                           children={detailData.promotions}
+                          dynamicClass="promotion-accordian"
                         />
                       )}
                     <AdvertisementSection data={detailData.rectangle_image} />
