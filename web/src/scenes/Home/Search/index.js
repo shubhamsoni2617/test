@@ -11,7 +11,7 @@ import SearchAdvertisement from './SearchAdvertisement';
 import SearchNotFound from './SearchNotFound';
 import Utilities from '../../../shared/utilities';
 import usePrevious from '../../../shared/hooks/usePrevious';
-
+// import { UserInputHandler } from '../HomePageSearch/AutoComplete/index';
 const Search = props => {
   const [searchCategories, setSearchCategories] = useState(null);
   const [allResultCount, setAllResultCount] = useState('');
@@ -24,6 +24,15 @@ const Search = props => {
   const searchKeyword = decodeURI(props.location.search.split('=')[1]);
   const prevSearchKeyword = usePrevious(searchKeyword);
   const prevDefaultCategoryId = usePrevious(defaultCategoryId);
+
+  useEffect(() => {
+    return () => {
+      console.log(document.getElementsByClassName('search-inputtype'));
+      document
+        .getElementsByClassName('search-inputtype')[0]
+        .classList.add('hide-text');
+    };
+  }, []);
   useEffect(() => {
     setDefaultCategoryId('all');
     fetchSearchCategoriesService();
@@ -90,24 +99,24 @@ const Search = props => {
         propCls="shm_col-xs-2 col-md-5"
       />
     ) : (
-        <ShimmerEffect
-          height={10}
-          count={4}
-          type="LIST"
-          propCls="shm_col-xs-1 col-md-12"
-        />
-      );
+      <ShimmerEffect
+        height={10}
+        count={4}
+        type="LIST"
+        propCls="shm_col-xs-1 col-md-12"
+      />
+    );
   };
 
   const searchResultHandler = searchResults => {
     return searchResults
       ? searchResults.map(cardData => {
-        return (
-          <div key={cardData.id}>
-            <Card cardData={cardData} {...props} />
-          </div>
-        );
-      })
+          return (
+            <div key={cardData.id}>
+              <Card cardData={cardData} {...props} />
+            </div>
+          );
+        })
       : handleShimmerEffect();
   };
   return (
@@ -149,8 +158,8 @@ const Search = props => {
           </div>
         </div>
       ) : (
-          <SearchNotFound />
-        )}
+        <SearchNotFound />
+      )}
     </div>
   );
 };

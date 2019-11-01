@@ -50,7 +50,8 @@ const Autocomplete = ({ history, buttonActiveHandler }) => {
     buttonActiveHandler(false);
   };
 
-  const focusHandler = () => {
+  const focusHandler = text => {
+    setUserInput(text);
     setShowSuggestions(false);
     setIsFocused(false);
     buttonActiveHandler(false);
@@ -73,7 +74,7 @@ const Autocomplete = ({ history, buttonActiveHandler }) => {
       });
   };
   const onChange = e => {
-    setActiveSuggestion(-1)
+    setActiveSuggestion(-1);
     setShowSuggestions(true);
     setUserInput(e.currentTarget.value);
   };
@@ -96,6 +97,9 @@ const Autocomplete = ({ history, buttonActiveHandler }) => {
   };
 
   const onKeyDown = e => {
+    document
+      .getElementsByClassName('search-inputtype')[0]
+      .classList.remove('hide-text');
     // e.preventDefault();
     e.stopPropagation();
     if (!initialUserInput) {
@@ -120,11 +124,12 @@ const Autocomplete = ({ history, buttonActiveHandler }) => {
           selectedSuggestion.code,
           selectedSuggestion.tid
         );
+        setUserInput('');
       }
       removeFixedBody();
       setSuggestions([]);
       inputRef.current.blur();
-      setUserInput('');
+
       setIsFocused(false);
     } else if (e.keyCode === 38) {
       e.preventDefault();
@@ -171,11 +176,11 @@ const Autocomplete = ({ history, buttonActiveHandler }) => {
                 >
                   <h4 className="suggestion-title">{suggestion.title}</h4>
                   {suggestion.type === 'event' ||
-                    suggestion.type === 'attractions' ? (
-                      <button>{suggestion.category}</button>
-                    ) : (
-                      <p>{suggestion.category}</p>
-                    )}
+                  suggestion.type === 'attractions' ? (
+                    <button>{suggestion.category}</button>
+                  ) : (
+                    <p>{suggestion.category}</p>
+                  )}
                 </li>
               );
             })}
@@ -207,7 +212,7 @@ const Autocomplete = ({ history, buttonActiveHandler }) => {
       ref={node}
       className={`autocomplete ${
         Utilities.mobilecheck() && isFocused ? `search-open` : ``
-        }`}
+      }`}
     >
       <div className="search-popup-topbar">
         {Utilities.mobilecheck() && (
@@ -230,7 +235,15 @@ const Autocomplete = ({ history, buttonActiveHandler }) => {
           onKeyDown={onKeyDown}
           value={userInput}
           placeholder="Search experiences…"
-          onClick={() => addFixedBody()}
+          onClick={() => {
+            if (document.getElementsByClassName('hide-text')[0]) {
+              setUserInput('');
+            }
+            document
+              .getElementsByClassName('search-inputtype')[0]
+              .classList.remove('hide-text');
+            addFixedBody();
+          }}
           className="search-inputtype"
           onFocus={() => {
             setIsFocused(true);
@@ -262,16 +275,19 @@ const Autocomplete = ({ history, buttonActiveHandler }) => {
               onClick(userInput);
               history.push(`/search-results?q=${userInput}`);
               removeFixedBody();
-              setUserInput('');
             }
           }}
         >
-          {!isFocused && <img src={searchImage} className="img-fluid" alt="search-icon" />}
-          {isFocused && <img
-            src={searchImageBlue}
-            className="img-fluid"
-            alt="search-icon"
-          />}
+          {!isFocused && (
+            <img src={searchImage} className="img-fluid" alt="search-icon" />
+          )}
+          {isFocused && (
+            <img
+              src={searchImageBlue}
+              className="img-fluid"
+              alt="search-icon"
+            />
+          )}
         </button>
       </div>
       {suggestionsListComponent}
