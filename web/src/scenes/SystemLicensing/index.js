@@ -5,14 +5,30 @@ import Constants from '../../shared/constants';
 import Banner from './Banner';
 import WhySistic from './WhySistic';
 import TicketingSystem from './TicketingSystem';
+import Partners from '../ApiPartner/Partners';
+import ContactUs from '../ApiPartner/ContactUs';
+import ApiPartnersService from '../../shared/services/ApiPartnersService';
 
-const SystemLicensing = ({}) => {
+const SystemLicensing = ({ }) => {
   const [systemLicensing, setSystemLicensing] = useState([]);
+  const [partners, setPartners] = useState({});
   useEffect(() => {
     window.scrollTo(0, 0);
     const params = {
       client: Constants.CLIENT
     };
+    ApiPartnersService.getApiPartnersService({
+      first: 1,
+      limit: 10
+    })
+      .then(res => {
+        if (res.data) {
+          setPartners(res.data)
+        }
+      })
+      .catch(err => {
+        console.log(err);
+      });
     B2BService.getSystemLicensing(params)
       .then(res => {
         if (res && res.data) {
@@ -25,6 +41,7 @@ const SystemLicensing = ({}) => {
         }
       });
   }, []);
+
   const {
     banner_title,
     button_link,
@@ -32,6 +49,7 @@ const SystemLicensing = ({}) => {
     banner_description,
     content
   } = systemLicensing;
+  const { data } = partners;
   return (
     <div className="system-licence">
       <Banner
@@ -121,6 +139,10 @@ const SystemLicensing = ({}) => {
           </div>
         </div>
       </section>
+      <Partners partnersLogo={data} />
+      <div class="apipartners-wrapper">
+        <ContactUs />
+      </div>
     </div>
   );
 };

@@ -12,6 +12,7 @@ import insta from '../../assets/images/insta.png';
 import social from '../../assets/images/social.png';
 import apple from '../../assets/images/apple.svg';
 import android from '../../assets/images/android.png';
+import ContactUs from '../ApiPartner/ContactUs';
 
 const Advertise = props => {
   const [advertiseData, setAdvertiseData] = useState(null);
@@ -33,7 +34,7 @@ const Advertise = props => {
 
   console.log(advertiseData);
   return (
-    <div>
+    <div className="advertise-withus-wrapper">
       <section>
         <div className="event-wrapper">
           <div className="event-banner">
@@ -219,6 +220,9 @@ const Advertise = props => {
           </div>
         </div>
       </section>
+      <div className="apipartners-wrapper">
+        <ContactUs />
+      </div>
     </div>
   );
 };

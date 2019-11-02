@@ -6,7 +6,7 @@
     right: 0px;
     bottom: auto;
     z-index: 2;
-    @media(max-width: 768px){
+    @media(max-width: 991px){
         position: relative;
         padding: 15px 5px;
         min-height: 80px;
@@ -14,8 +14,8 @@
         align-items: flex-end;
     }
     & + div{
-        padding-top: 76px;
-        @media(max-width: 768px){
+        padding-top: 74px;
+        @media(max-width: 991px){
             padding-top: 0px;
         }
     }
@@ -40,7 +40,7 @@
             }
         }
         .top-header-left{
-            @media(max-width: 768px){
+            @media(max-width: 991px){
                 width: 100%;
                 display: flex;
                 flex-wrap: wrap;
@@ -61,7 +61,7 @@
     .bottom-header{
         display: flex;
         align-items: center;
-        @media(max-width: 768px){
+        @media(max-width: 991px){
             display: none;
         }
         ul{
