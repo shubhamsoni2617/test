@@ -43,7 +43,7 @@
             -o-transition: 0.5s background-color;
             &.suggestion-selected{
                 cursor: pointer;
-                background-color: rgba(237, 237, 237, 0.38);
+                background-color: rgba(237, 237, 237, 0.7);
             }
             h4{
                 font-size: 16px;
@@ -175,7 +175,11 @@
             &::-ms-clear {
                 display: none;
             }
+            &.hide-text{
+                text-indent: -10000px;
+            }
         }
+        
         .search-btn{
             @media(max-width: 767px){
                 right: 20px !important;

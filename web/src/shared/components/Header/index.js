@@ -60,7 +60,7 @@ const Header = ({ menuActive, pathName }) => {
                       <a>Sell tickets with us</a>
                     </li>
                     <li>
-                      <a>System Licensing</a>
+                      <Link to="/system-licensing">System Licensing</Link>
                     </li>
                     <li>
                       <a>Be our partner</a>
@@ -126,35 +126,53 @@ const Header = ({ menuActive, pathName }) => {
             </ul> */}
             <ul>
               <li className="has-submenu">
-                <Submenu>
-                  {(menueStatus, setMenuStatus) => (
-                    <>
-                      <button
-                        className={`backbutton ${menueStatus ? 'active' : ''}`}
-                        type="button"
-                        onClick={() => setMenuStatus(!menueStatus)}
-                      >
-                        Get Started
-                      </button>
-                      <SubmenuWrap
-                        menueStatus={menueStatus}
-                        setMenuStatus={setMenuStatus}
-                      >
-                        <ul className="submenu">
-                          <li className="has-submenu">
-                            <Link to="/">Subscription</Link>
-                          </li>
-                          <li className="has-submenu">
-                            <Link to="/">Booking History</Link>
-                          </li>
-                          <li className="has-submenu">
-                            <Link to="/">Logout</Link>
-                          </li>
-                        </ul>
-                      </SubmenuWrap>
-                    </>
-                  )}
-                </Submenu>
+                <a
+                  className={`${showMegaMenu ? 'active' : ''}`}
+                  onClick={() => handleMouseStatus(!showMegaMenu)}
+                >
+                  Get Started
+                </a>
+                <ul className={`submenu ${showMegaMenu ? 'active' : ''}`}>
+                  <li className="has-submenu">
+                    <Submenu
+                      heading="Sell tickets with us"
+                      buttonText="Sell tickets with us"
+                      data={null}
+                      submenuClass=""
+                      link=""
+                      closeSubmenu={handleNavigationClose}
+                      resetFilters={() => {}}
+                      clearFilters={() => {}}
+                      applyFilters={() => {}}
+                    />
+                  </li>
+                  <li className="has-submenu">
+                    <Submenu
+                      heading="System Licencing"
+                      buttonText="System Licencing"
+                      data={null}
+                      submenuClass=""
+                      link="/system-licensing"
+                      closeSubmenu={handleNavigationClose}
+                      resetFilters={() => {}}
+                      clearFilters={() => {}}
+                      applyFilters={() => {}}
+                    />
+                  </li>
+                  <li className="has-submenu">
+                    <Submenu
+                      heading="Be our partner"
+                      buttonText="Be our partner"
+                      data={null}
+                      submenuClass=""
+                      link=""
+                      closeSubmenu={handleNavigationClose}
+                      resetFilters={() => {}}
+                      clearFilters={() => {}}
+                      applyFilters={() => {}}
+                    />
+                  </li>
+                </ul>
               </li>
               <li>
                 <Link to="/about-us" onClick={() => handleNavigationClose()}>

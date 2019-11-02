@@ -19,7 +19,7 @@
         }
         &.promotion-accordian{
             @media(max-width: 991px){
-                order: 1;
+                order: 9;
             }
         }
         &.synopsis-accordian{
@@ -37,6 +37,20 @@
                 .accordion__panel{
                     @media(max-width: 767px){
                         border-bottom: none;
+                    }
+                }
+            }
+        }
+        .accordion__button{
+            &:before{
+                @media(max-width: 767px){
+                    transform: translateY(-50%) rotate(45deg);
+                }
+            }
+            &[aria-expanded='true']{
+                &:before{
+                    @media(max-width: 767px){
+                        transform: translateY(-50%) rotate(-135deg);
                     }
                 }
             }

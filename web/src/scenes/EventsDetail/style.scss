@@ -627,6 +627,20 @@
               border: 1px solid rgba(201, 201, 201, 0.2);
               border-top: none;
           }
+            .accordion__button{
+                &:before{
+                    @media(max-width: 767px){
+                        transform: translateY(-50%) rotate(45deg);
+                    }
+                }
+                &[aria-expanded='true']{
+                    &:before{
+                        @media(max-width: 767px){
+                            transform: translateY(-50%) rotate(-135deg);
+                        }
+                    }
+                }
+            }
       }
       .buy-package{
           display: block;

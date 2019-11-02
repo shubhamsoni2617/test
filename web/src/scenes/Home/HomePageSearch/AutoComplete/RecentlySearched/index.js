@@ -23,7 +23,7 @@ const RecentlySearched = ({ focusHandler, history }) => {
   const onClickHandler = text => {
     setValuesInLocalStorage(text);
     history.push(`/search-results?q=${text}`);
-    focusHandler();
+    focusHandler(text);
     Utilities.mobilecheck() &&
       document.getElementsByTagName('body')[0].classList.remove('fixed-body');
   };

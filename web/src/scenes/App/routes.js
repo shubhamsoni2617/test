@@ -17,6 +17,8 @@ import JobDescription from '../Careers/JobDescription';
 import AboutUs from '../AboutUs';
 import ApiPartner from '../ApiPartner';
 import Search from '../Home/Search';
+import SystemLicensing from '../SystemLicensing';
+import Advertise from '../Advertise';
 
 const routes = [
   {
@@ -119,6 +121,16 @@ const routes = [
   {
     path: '/search-results',
     component: Search,
+    exact: true
+  },
+  {
+    path: '/system-licensing',
+    component: SystemLicensing,
+    exact: true
+  },
+  {
+    path: '/advertise',
+    component: Advertise,
     exact: true
   },
   {
