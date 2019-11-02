@@ -13,7 +13,6 @@ const TicketingSystem = ({ ticketingSystem }) => {
               <h2 className="section-title">
                 {ticketingSystem && ticketingSystem.title}
               </h2>
-
               {ticketingSystem && (
                 <div
                   className="stixxloud"
