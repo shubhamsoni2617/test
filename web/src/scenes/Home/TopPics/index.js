@@ -138,11 +138,19 @@ const TopPics = props => {
                               <div className="overlay-wrapper">
                                 <h3>{pic.title}</h3>
                                 <span>{pic.event_date}</span>
-                                <p
-                                  dangerouslySetInnerHTML={{
-                                    __html: pic.description
-                                  }}
-                                ></p>
+                                {pic.description && (
+                                  <p
+                                    dangerouslySetInnerHTML={{
+                                      __html: Utilities.showLimitedChars(
+                                        pic.description.replace(
+                                          /(<([^>]+)>)/gi,
+                                          ''
+                                        ),
+                                        50
+                                      )
+                                    }}
+                                  ></p>
+                                )}
                               </div>
                             </div>
                           </div>
@@ -215,11 +223,19 @@ const TopPics = props => {
                           <div className="overlay-wrapper">
                             <h3>{pic.title}</h3>
                             <span>{pic.event_date}</span>
-                            <p
-                              dangerouslySetInnerHTML={{
-                                __html: pic.description
-                              }}
-                            ></p>
+                            {pic.description && (
+                              <p
+                                dangerouslySetInnerHTML={{
+                                  __html: Utilities.showLimitedChars(
+                                    pic.description.replace(
+                                      /(<([^>]+)>)/gi,
+                                      ''
+                                    ),
+                                    200
+                                  )
+                                }}
+                              ></p>
+                            )}
                           </div>
                         </div>
                       </div>
