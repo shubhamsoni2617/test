@@ -291,6 +291,11 @@
         flex: 0 0 calc(50% + 100px);
         min-width: calc(50% + 100px);
         margin-left: -50px;
+        @media(max-width: 991px){
+            min-width: 50%;
+            flex: 0 0 50%;
+            margin-left: 0px;
+        }
     }
 }
 .app-wrapper{
