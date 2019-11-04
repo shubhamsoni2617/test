@@ -249,8 +249,8 @@
         margin-bottom: 40px;
     }
     .website-content{
-        flex: 0 0 50%;
-        min-width: 50%;
+        flex: 0 0 calc(50% - 50px);
+        min-width: calc(50% - 50px);
         padding-left: 50px;
         align-self: center;
         @media(max-width: 768px){
@@ -288,8 +288,9 @@
         }
     }
     .website-image{
-        flex: 0 0 50%;
-        min-width: 50%;
+        flex: 0 0 calc(50% + 100px);
+        min-width: calc(50% + 100px);
+        margin-left: -50px;
     }
 }
 .app-wrapper{
@@ -587,6 +588,10 @@
         .why-sistic-head{
             p{
                 padding: 0px;
+            }
+            a{
+                color: #0098FF;
+                font-weight: 500;
             }
         }
     }
