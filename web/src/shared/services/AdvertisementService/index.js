@@ -14,7 +14,10 @@ class AdvertisementService {
   }
 
   getMostViewedService(params) {
-    return API.get(`adv/featured-event`, { params });
+    return API.get(`adv/search-autosuggest`, { params });
+  }
+  getSearchListService(params) {
+    return API.get(`adv/search-list`, { params });
   }
 
   getGiftCardService(params) {

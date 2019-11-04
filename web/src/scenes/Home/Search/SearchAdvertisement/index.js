@@ -13,7 +13,7 @@ const MostViewed = () => {
     const params = {
       client: Constants.CLIENT
     };
-    AdvertisementService.getGiftCardService(params)
+    AdvertisementService.getSearchListService(params)
       .then(res => {
         console.log(res.data.data);
         setAdv(res.data.data);
