@@ -8,9 +8,9 @@ import TicketingSystem from './TicketingSystem';
 import Partners from '../ApiPartner/Partners';
 import ContactUs from '../ApiPartner/ContactUs';
 import ApiPartnersService from '../../shared/services/ApiPartnersService';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 
-const SystemLicensing = ({}) => {
+const SystemLicensing = ({ }) => {
   const [systemLicensing, setSystemLicensing] = useState([]);
   const [partners, setPartners] = useState({});
   useEffect(() => {
@@ -97,16 +97,9 @@ const SystemLicensing = ({}) => {
         </div>
       </section>
       {content && content.clients && (
-        <>
-          <h2 className="text-center section-title">{content.clients.title}</h2>
-          <div
-            className="sub-text"
-            dangerouslySetInnerHTML={{ __html: content.clients.description }}
-          />
-        </>
+
+        <Partners partnersLogo={data} systemLicensing clients={content.clients} />
       )}
-      <Partners partnersLogo={data} />
-      <Link to="apipartners">View all Clients</Link>
       <div class="apipartners-wrapper">
         <ContactUs />
       </div>
