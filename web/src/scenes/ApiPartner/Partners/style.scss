@@ -62,8 +62,30 @@
         @media(max-width: 767px){
             padding: 35px 0px 35px;
         }
+        .sub-text{
+            padding-bottom: 0px;
+        }
         h2{
             padding-bottom: 24px;
+        }
+        .section-title{
+            line-height: 49px;
+            color: #343434;
+            font-size: 40px;
+            font-family: 'Montserrat', sans-serif;
+            padding-bottom: 22px;
+            @media(max-width: 1024px){
+                font-size: 30px;
+                line-height: 40px;
+            }
+            @media(max-width: 768px){
+                font-size: 26px;
+                line-height: 30px;
+            }
+            @media(max-width: 767px){
+            font-size: 25px;
+            line-height: 25px;
+            }
         }
         p{
             font-size: 16px;	
@@ -74,11 +96,24 @@
         }
         .partners-list{
             padding-top: 64px;
+            padding-bottom: 26px;
             @media(max-width: 767px){
                 padding-top: 35px;
+                padding-bottom: 10px;
             }
             li{
                 background-color: #FFFFFF;
+            }
+        }
+        .view-all-clients{
+            font-size: 16px;	
+            line-height: 19px;
+            color: #0098FF;
+            font-weight: 600;
+            font-family: 'Montserrat', sans-serif;
+            img{
+                margin-left: 4px;
+                min-width: 13px;
             }
         }
     }
