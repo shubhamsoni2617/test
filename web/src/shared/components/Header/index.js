@@ -77,8 +77,12 @@ const Header = ({ menuActive, pathName }) => {
                 <li>
                   <a>Media</a>
                 </li>
-                <li>
-                  <a>Advertise</a>
+                <li
+                  className={
+                    menuActive && pathName === 'advertise' ? 'active-link' : ''
+                  }
+                >
+                  <Link to="/advertise">Advertise</Link>
                 </li>
                 <li
                   className={
@@ -180,10 +184,12 @@ const Header = ({ menuActive, pathName }) => {
                 </Link>
               </li>
               <li>
-                <a>Media</a>
+                <a onClick={() => handleNavigationClose()}>Media</a>
               </li>
               <li>
-                <a>Advertise</a>
+                <Link to="/advertise" onClick={() => handleNavigationClose()}>
+                  Advertise
+                </Link>
               </li>
               <li>
                 <Link to="/careers" onClick={() => handleNavigationClose()}>
