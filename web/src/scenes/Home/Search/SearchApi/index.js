@@ -7,7 +7,7 @@ export default function searchApi(
   setLoadMore,
   setError
 ) {
-  switch (defaultCategoryId) {
+  switch (defaultCategoryId.toLowerCase()) {
     case 'all':
       setTimeout(() => {
         SearchService.getAllSearchResults(params)
@@ -27,7 +27,7 @@ export default function searchApi(
       }, 500);
       break;
 
-    case 'event':
+    case 'events':
       setTimeout(() => {
         SearchService.getEventsSearchResults(params)
           .then(res => {
@@ -46,6 +46,7 @@ export default function searchApi(
           });
       }, 500);
       break;
+    case 'promotions':
     case 'promotion':
       setTimeout(() => {
         SearchService.getPromotionSearchResults(params)
@@ -64,7 +65,7 @@ export default function searchApi(
           });
       }, 500);
       break;
-
+    case 'attractions':
     case 'attraction':
       setTimeout(() => {
         SearchService.getAttractionsSearchResults(params)
