@@ -8,7 +8,7 @@ const Partners = ({ partnersLogo }) => {
   return (
     <div className="work-with-partners">
       <div className="container">
-        <h2>View some of the partners that we work with</h2>
+        {/* <h2>View some of the partners that we work with</h2> */}
         <ul className="partners-list">
           {partnersLogo &&
             partnersLogo.map(({ logo, url }) => {

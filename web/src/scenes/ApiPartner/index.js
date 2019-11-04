@@ -43,6 +43,7 @@ class ApiPartner extends Component {
     return (
       <div className="apipartners-wrapper">
         <ApiBanner title={banner_title} description={banner_description} />
+        <h2>View some of the partners that we work with</h2>
         <Partners partnersLogo={data} />
         <ContactUs />
       </div>
