@@ -13,7 +13,7 @@ const MostViewed = () => {
     const params = {
       client: Constants.CLIENT,
       first: 0,
-      limit: 1
+      limit: 2
     };
     AdvertisementService.getSearchListService(params)
       .then(res => {
