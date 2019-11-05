@@ -98,6 +98,7 @@ const CarouselConatiner = props => {
                 arrows={props.arrows}
                 slidesToShow={6}
                 slidesToScroll={6}
+                dots={true}
                 autoplay={props.autoplay}
                 infinite={props.infinite}
               />

@@ -17,7 +17,7 @@ const Item = ({ event }) => {
               <Image
                 src={event && event.full_image}
                 className="img-fluid"
-                type="Tile"
+                type="Small"
               />
             </div>
             {/* <span

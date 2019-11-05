@@ -3,6 +3,7 @@ import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import './style.scss';
+import { Link } from 'react-router-dom';
 import Constants from '../../../shared/constants';
 import Utilities from '../../../shared/utilities';
 import HomeService from '../../../shared/services/HomeService';
@@ -158,11 +159,10 @@ const TopPics = props => {
                           <EventHeading
                             title={pic.title}
                             lines={2}
-                            height={Utilities.mobileAndTabletcheck() ? 16 : 20}
+                            height={Utilities.mobileAndTabletcheck() ? 22 : 20}
                           />
-                          <a
-                            href="/events"
-                            onClick={e => e.preventDefault()}
+                          <Link
+                            to={`/events/${pic.alias}`}
                             className="item-title-overlay"
                           >
                             <span>BUY NOW </span>
@@ -171,7 +171,7 @@ const TopPics = props => {
                               className="img-fluid"
                               alt="buy-now"
                             />
-                          </a>
+                          </Link>
                         </div>
                       </div>
                     );
@@ -243,18 +243,20 @@ const TopPics = props => {
                         <EventHeading
                           title={pic.title}
                           lines={2}
-                          height={Utilities.mobileAndTabletcheck() ? 20 : 25}
+                          height={Utilities.mobileAndTabletcheck() ? 25 : 25}
                         />
                       </h3>
 
-                      <span className="item-title-overlay">
-                        <span>BUY NOW </span>
-                        <img
-                          src="assets/images/next-arrow.svg"
-                          className="img-fluid"
-                          alt="buy-now"
-                        />
-                      </span>
+                      <Link to={`/events/${pic.alias}`}>
+                        <span className="item-title-overlay">
+                          <span>BUY NOW </span>
+                          <img
+                            src="assets/images/next-arrow.svg"
+                            className="img-fluid"
+                            alt="buy-now"
+                          />
+                        </span>
+                      </Link>
                     </div>
                   </div>
                 </div>

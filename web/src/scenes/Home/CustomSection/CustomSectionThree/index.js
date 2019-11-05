@@ -11,7 +11,7 @@ const CustomSectionThree = ({ customSectionThree }) => {
 
   const [pip, setPip] = useState(false);
   const [muted, setMuted] = useState(true);
-  const [playing, setPlaying] = useState(true);
+  const [playing, setPlaying] = useState(false);
   const [light, setLight] = useState(true);
   const [volume, setVolume] = useState(null);
 
@@ -36,16 +36,6 @@ const CustomSectionThree = ({ customSectionThree }) => {
           <div className="container-fluid">
             <div className="section-top-wrapper">
               <h2>Videos</h2>
-              <div className="carousel-dots">
-                <a href="/events">
-                  See all{' '}
-                  <img
-                    src="assets/images/right-arrow.svg"
-                    className="img-fluid"
-                    alt="arrow"
-                  />
-                </a>
-              </div>
             </div>
             <div className="video-gallery-wrapper">
               <div className="video-only-section">
@@ -79,6 +69,7 @@ const CustomSectionThree = ({ customSectionThree }) => {
                             setLight(false);
                             setMuted(false);
                             setVolume(0.5);
+                            setPlaying(true);
                           }}
                         >
                           <span className="video-subwrapper-image">
