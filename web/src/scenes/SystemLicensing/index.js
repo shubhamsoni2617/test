@@ -5,17 +5,35 @@ import Constants from '../../shared/constants';
 import Banner from './Banner';
 import WhySistic from './WhySistic';
 import TicketingSystem from './TicketingSystem';
+import Partners from '../ApiPartner/Partners';
+import ContactUs from '../ApiPartner/ContactUs';
+import ApiPartnersService from '../../shared/services/ApiPartnersService';
+// import { Link } from 'react-router-dom';
 
-const SystemLicensing = ({}) => {
+const SystemLicensing = ({ }) => {
   const [systemLicensing, setSystemLicensing] = useState([]);
+  const [partners, setPartners] = useState({});
   useEffect(() => {
     window.scrollTo(0, 0);
     const params = {
       client: Constants.CLIENT
     };
+    ApiPartnersService.getApiPartnersService({
+      first: 0,
+      limit: 4
+    })
+      .then(res => {
+        if (res.data) {
+          setPartners(res.data);
+        }
+      })
+      .catch(err => {
+        console.log(err);
+      });
     B2BService.getSystemLicensing(params)
       .then(res => {
         if (res && res.data) {
+          console.log(res.data);
           setSystemLicensing(res.data);
         }
       })
@@ -25,6 +43,7 @@ const SystemLicensing = ({}) => {
         }
       });
   }, []);
+
   const {
     banner_title,
     button_link,
@@ -32,6 +51,7 @@ const SystemLicensing = ({}) => {
     banner_description,
     content
   } = systemLicensing;
+  const { data } = partners;
   return (
     <div className="system-licence">
       <Banner
@@ -73,54 +93,16 @@ const SystemLicensing = ({}) => {
                 </div>
               </div>
             )}
-            <div className="methodology-inner-wrapper">
-              {/* <div className="item">
-                <h4>Strategy</h4>
-                <ul>
-                  <li>Product Vision</li>
-                  <li>Brand Stragedy</li>
-                  <li>Measure of Success</li>
-                </ul>
-              </div>
-              <div className="item blue">
-                <h4>Discovery</h4>
-                <ul>
-                  <li>Business Requirements</li>
-                  <li>Analytics Review</li>
-                  <li>Content Audit</li>
-                  <li>User Interviews</li>
-                  <li>Ethnography Research</li>
-                </ul>
-              </div>
-              <div className="item deep-orange">
-                <h4>Analysis</h4>
-                <ul>
-                  <li>Use Case</li>
-                  <li>Experience</li>
-                  <li>Map</li>
-                  <li> Workflow</li>
-                </ul>
-              </div>
-              <div className="item purple">
-                <h4>Design</h4>
-                <ul>
-                  <li>Prototype</li>
-                  <li>Usablity Testing</li>
-                </ul>
-              </div>
-              <div className="item light-green">
-                <h4>Production</h4>
-                <ul>
-                  <li>P.O.C</li>
-                  <li>Beta Launch</li>
-                  <li>User Testing</li>
-                  <li>Release</li>
-                </ul>
-              </div> */}
-            </div>
           </div>
         </div>
       </section>
+      {content && content.clients && (
+
+        <Partners partnersLogo={data} systemLicensing clients={content.clients} />
+      )}
+      <div class="apipartners-wrapper">
+        <ContactUs />
+      </div>
     </div>
   );
 };

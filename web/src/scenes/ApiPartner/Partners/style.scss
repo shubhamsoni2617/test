@@ -34,7 +34,7 @@
         }
     }
 }
-.work-with-partners{    
+.work-with-partners{
     text-align: center;
     padding: 98px 0px 60px;
     @media(max-width: 1024px){
@@ -53,6 +53,86 @@
             font-size: 20px;
             line-height: 29px;
             padding-bottom: 20px;
+        }
+    }
+}
+.system-licence{
+    .work-with-partners{
+        background-color: #F0F9FF;
+        @media(max-width: 767px){
+            padding: 35px 0px 35px;
+        }
+        .sub-text{
+            padding-bottom: 0px;
+        }
+        h2{
+            padding-bottom: 24px;
+        }
+        .section-title{
+            line-height: 49px;
+            color: #343434;
+            font-size: 40px;
+            font-family: 'Montserrat', sans-serif;
+            padding-bottom: 22px;
+            @media(max-width: 1024px){
+                font-size: 30px;
+                line-height: 40px;
+            }
+            @media(max-width: 768px){
+                font-size: 26px;
+                line-height: 30px;
+            }
+            @media(max-width: 767px){
+            font-size: 25px;
+            line-height: 25px;
+            }
+        }
+        p{
+            font-size: 16px;	
+            line-height: 26px;
+            color: #626262;
+            padding-bottom: 0px;
+            margin-bottom: 0px;
+        }
+        .partners-list{
+            padding-top: 64px;
+            padding-bottom: 26px;
+            @media(max-width: 767px){
+                padding-top: 35px;
+                padding-bottom: 10px;
+            }
+            li{
+                background-color: #FFFFFF;
+            }
+        }
+        .view-all-clients{
+            font-size: 16px;	
+            line-height: 19px;
+            color: #0098FF;
+            font-weight: 600;
+            font-family: 'Montserrat', sans-serif;
+            img{
+                margin-left: 4px;
+                min-width: 13px;
+            }
+        }
+    }
+    .contact-us{
+        background: #fff;
+        .contact-us-block{
+            margin: 0 auto 20px;
+            @media(max-width: 767px){
+                margin: 0 auto 0px;
+            }
+            .customer-enquiry-wrapper{
+                .form-group{
+                    .select{
+                        .arrow{
+                            margin-top: -10px;
+                        }
+                    }
+                }
+            }
         }
     }
 }

@@ -3,23 +3,60 @@
     background-size: cover;
     background-position: center;
     height: 389px;
+    @media(max-width: 768px){
+        height: 325px;
+        overflow: hidden;
+    }
+    @media(max-width: 576px){
+        max-height: 200px;
+    }
     .container-fluid{
         height: 100%;
         .advertise-banner{
             height: 100%;
             align-items: center;
+            @media(max-width: 768px){
+                max-width: 100%;
+                margin: 0 15px;
+                position: relative;
+            }
+            @media(max-width: 576px){
+                flex-wrap: nowrap;
+                margin: 0;
+                position: relative;
+            }
             .banner-content{
                 max-width: 750px;
                 display: flex;
                 flex-direction: column;
                 justify-content: center;
                 height: 100%;
+                @media(max-width: 576px){
+                    max-width: 186px;
+                }
                 h2{
                     font-size: 40px;
                     line-height: 49px;
                     margin: 0;
                     padding-bottom: 18px;
                     color: #fff;
+                    @media (max-width: 1024px){
+                        font-size: 34px;
+                        line-height: 40px;
+                    }
+                    @media (max-width: 768px){
+                        font-size: 24px;
+                        line-height: 28px;
+                    }
+                    @media (max-width: 767px){
+                        font-size: 25px;
+                        line-height: 32px;
+                        padding-bottom: 10px;
+                    }
+                    @media(max-width: 576px){
+                        font-size: 15px;
+                        line-height: 22px;
+                    }
                 }
                 p{
                     font-size: 16px;
@@ -27,7 +64,12 @@
                     padding-bottom: 12px;
                     font-family: 'Rubik', sans-serif;
                     color: #fff;
-                    
+                    margin-bottom: 0px;
+                    padding-bottom: 0px;
+                }
+                .sub-text{
+                    margin-bottom: 0px;
+                    padding-bottom: 13px;
                 }
                 a{
                     border: 2px solid #fff;
@@ -42,6 +84,11 @@
                     width: fit-content;
                     transition: all .3s ease-in;
                     max-width: inherit;
+                    @media(max-width: 576px){
+                        padding: 5px 5px;
+                        font-size: 8px;
+                        line-height: 9px;
+                    }
                     &:hover{
                         border: 2px solid #0098FF;
                         background-color: #fff;
@@ -50,11 +97,32 @@
                     }
                 }
             }
+            .pos-static{
+                @media(max-width: 768px){
+                    position: static;
+                }
+                .banner-image{
+                    img{
+                        @media(max-width: 576px){
+                            max-width: 276px;
+                            top: 0;
+                            right: -97px;
+                        }
+                    }
+                }
+            }
             .banner-image{
                 text-align: center;
                 img{
                     width: auto;
                     max-width: 100%;
+                    @media(max-width: 768px){
+                        position: absolute;
+                        max-width: 450px;
+                        width: 100%;
+                        top: 0;
+                        right: -179px;
+                    }
                 }
             }
         }
@@ -62,7 +130,13 @@
 }
 .why-sistic{
     text-align: center;
-    padding: 55px 0 125px;
+    padding: 55px 0 105px;
+    @media(max-width: 768px){
+        padding: 55px 0 58px;
+    }
+    @media(max-width: 576px){
+        padding: 35px 0 28px;
+    }
     .why-sistic-head{
         margin-bottom: 33px;
         h2{
@@ -71,20 +145,39 @@
             font-weight: 600;
             font-size: 36px;
             line-height: 44px;
+            @media(max-width: 576px){
+                font-size: 22px;
+            }
         }
         p{
             color: #626262;
             font-family: 'Rubik', sans-serif;
             font-size: 14px;
             line-height: 26px;
+            max-width: 900px;
+            margin: 0 auto;
+            @media(max-width: 1280px){
+                max-width: 100%;
+            }
+            @media(max-width: 576px){
+                font-size: 13px;
+                line-height: 20px;
+                padding-bottom: 8px;
+            }
         }
         span{
+            @media(max-width: 576px){
+                font-size: 13px;
+            }
             a{
                 color: #0098FF;
                 font-family: 'Rubik', sans-serif;
                 font-weight: 500;
                 font-size: 14px;
                 line-height: 28px;
+                @media(max-width: 576px){
+                    font-size: 13px;
+                }
             }
         }
     }
@@ -96,8 +189,16 @@
                 font-size: 26px;
                 line-height: 32px;
                 padding-bottom: 22px;
+                @media(max-width: 576px){
+                    font-size: 18px;
+                    line-height: 13px;
+                    padding-bottom: 0;
+                }
             }
             .sistic-tab-button{
+                @media(max-width: 768px){
+                    justify-content: center;
+                }
                 a{
                     border: 2px solid #0098FF;
                     background-color: #FFFFFF;
@@ -111,12 +212,26 @@
                     margin-left: 19px;
                     display: inline-block;
                     transition: all .3s ease-in;
+                    @media(max-width: 991px){
+                        margin-top: 16px;
+                    }
+                    @media(max-width: 576px){
+                        font-size: 14px;
+                        line-height: 9px;
+                        padding: 7px 3px;
+                        min-width: 127px;
+                        margin-left: 12px;
+                    }
                     &:hover{
                         border: 2px solid #0098FF;
                         background-color: #0098FF;
                         color: #fff;
                         transition: all .3s ease-in;
                     }
+                }
+                @media (max-width: 992px){
+                    display: flex;
+                    flex-wrap: wrap;
                 }
             }
 
@@ -126,11 +241,28 @@
 .website-wrapper{
     display: flex;
     margin-bottom: 100px;
+    @media(max-width: 768px){
+        flex-wrap: wrap;
+        flex-direction: column;
+    }
+    @media(max-width: 576px){
+        margin-bottom: 40px;
+    }
     .website-content{
-        flex: 0 0 50%;
-        min-width: 50%;
+        flex: 0 0 calc(50% - 50px);
+        min-width: calc(50% - 50px);
         padding-left: 50px;
         align-self: center;
+        @media(max-width: 768px){
+            text-align: center !important;
+            margin: 15px;
+            padding: 0 !important;
+        }
+        @media(max-width: 576px){
+            text-align: center !important;
+            margin: 15px;
+            padding: 0 !important;
+        }
         h2{
             color: #343434;
             font-family: 'Montserrat', sans-serif;
@@ -138,6 +270,9 @@
             font-size: 36px;
             line-height: 44px;
             padding-bottom: 0;
+            @media(max-width: 576px){
+                font-size: 22px;
+            }
         }
         p{
             color: #626262;
@@ -145,20 +280,53 @@
             font-size: 14px;
             line-height: 26px;
             padding: 38px 0;
+            @media(max-width: 576px){
+                padding: 15px 0;
+                font-size: 13px;
+                line-height: 20px;
+            }
         }
     }
     .website-image{
-        flex: 0 0 50%;
-        min-width: 50%;
+        flex: 0 0 calc(50% + 100px);
+        min-width: calc(50% + 100px);
+        margin-left: -50px;
+        @media(max-width: 991px){
+            min-width: 50%;
+            flex: 0 0 50%;
+            margin-left: 0px;
+        }
     }
 }
 .app-wrapper{
     display: flex;
     margin-bottom: 83px;
+    @media(max-width: 768px){
+        flex-wrap: wrap;
+        flex-direction: column !important;
+    }
+    @media(max-width: 576px){
+        margin-bottom: 40px;
+    }
+    &.flex-row-reverse{
+        @media(max-width: 768px){
+            flex-direction: column !important;
+        }
+    }
     .app-content{
         flex: 0 0 50%;
         min-width: 50%;
         align-self: center;
+        @media(max-width: 768px){
+            text-align: center !important;
+            margin: 15px;
+            padding: 0 !important;
+        }
+        @media(max-width: 576px){
+            text-align: center !important;
+            padding: 0 !important;
+            margin: 30px 0;
+        }
         h2{
             color: #343434;
             font-family: 'Montserrat', sans-serif;
@@ -166,6 +334,9 @@
             font-size: 36px;
             line-height: 44px;
             padding-bottom: 0;
+            @media(max-width: 576px){
+                font-size: 22px;
+            }
         }
         p{
             color: #626262;
@@ -173,22 +344,73 @@
             font-size: 14px;
             line-height: 26px;
             padding: 38px 0;
+            margin-bottom: 0px;
+            @media(max-width: 576px){
+                padding: 15px 0;
+                font-size: 13px;
+                line-height: 20px;
+            }
         }
         .app-option{
             flex-direction: row;
             justify-content: flex-end;
+            @media(max-width: 991px){
+                width: 100%;
+                justify-content: center;
+            }
+            @media(max-width: 768px){
+                justify-content: space-around;
+                width: 100%;
+            }
+            @media(max-width: 576px){
+                justify-content: space-around;
+                flex-wrap: nowrap;
+            }
             a{
                 margin-left: 10px;
+                @media(max-width: 991px){
+                    margin-right: 0px;
+                    max-width: 180px;
+                }
+                @media(max-width: 768px){
+                    width: 100%;
+                    max-width: 190px;
+                }
+                @media(max-width: 576px){
+                    max-width: 158px;
+                    margin-left: 3px;
+                    margin-right: 3px;
+                }
                 .fb{
                     height: 23px;
                 }
                 .insta{
                     height: 23px;
                 }
+                .ios{
+                    @media(max-width: 768px){
+                        height: unset;
+                    }
+                    @media(max-width: 576px){
+                        height: 30px;
+                    }
+                }
+                .android{
+                    @media(max-width: 768px){
+                        height: unset;
+                    }
+                    @media(max-width: 576px){
+                        height: 30px;
+                    }
+                }
                 span{
                     font-family: 'Rubik', sans-serif;
                     text-align: left;
                     line-height: 17px;
+                    @media(max-width: 576px){
+                        font-size: 11px;
+                        line-height: 12px;
+                    }
                 }
             }
         }
@@ -196,12 +418,35 @@
         .social-option{
             flex-direction: row;
             justify-content: flex-end;
+            @media(max-width: 991px){
+                width: 100%;
+                justify-content: center;
+                flex-wrap: nowrap;
+            }
+            @media(max-width: 768px){                
+                width: 100%;
+                justify-content: space-around;
+            }
+            @media(max-width: 576px){
+                justify-content: space-around;
+            }
             a{
                 margin-left: 10px;
                 height: 44px;
                 justify-content: center;
                 padding: 0px 24px;
                 max-width: 169px;
+                @media(max-width: 991px){
+                    margin-right: 0;
+                }
+                @media(max-width: 768px){
+                    width: 100%;
+                    max-width: 190px;
+                }
+                @media(max-width: 576px){
+                    max-width: 125px;
+                    height: 30px;
+                }
                 .fb{
                     height: 23px;
                 }
@@ -215,6 +460,9 @@
                     font-size: 18px;
                     line-height: 22px;
                     margin-left: 7px;
+                    @media(max-width: 576px){
+                        font-size: 16px;
+                    }
                 }
             }
         }
@@ -225,9 +473,16 @@
                 font-weight: 500;
                 font-size: 16px;
                 line-height: 19px;
+                @media(max-width: 576px){
+                    font-size: 14px;
+                    text-align: left;
+                }
             }
             .input-group{
                 max-width: 385px;
+                @media(max-width: 768px){
+                    margin: 0 auto;
+                }
                 input{
                     border: 1px solid rgba(160,215,255,.2);
                     color: #4b5562;
@@ -289,270 +544,73 @@
     .app-image{
         flex: 0 0 50%;
         min-width: 50%;
-    }
-}
-@media (max-width: 992px){
-    .why-sistic{
-        .why-sistic-tab{
-            .sistic-tab-button{
-                display: flex;
-                flex-wrap: wrap;
-                a{
-                    margin-top: 16px;
-                }
-            }
+        @media(max-width: 768px){
+            align-self: center;
         }
-    }
-    .app-wrapper{
-        .app-content{
-            .app-option{
-                width: 100%;
-                justify-content: center;
-                a{
-                    margin-right: 0;
-                    max-width: 180px;
-                    }
-                }
-                .social-option{
-                    width: 100%;
-                    justify-content: center;
-                    flex-wrap: nowrap;
-                    a{
-                        margin-right: 0;
-                    }
-                }
-            }
-    }
-}
-@media (max-width: 768px){
-    .event-banner{
-        height: 325px;
-        overflow: hidden;
-        .container-fluid{
-            .advertise-banner{
-                max-width: 100%;
-                margin: 0 15px;
-                position: relative;
-                .banner-content{
-                    h2{
-                        font-size: 31px;
-                    }
-                }
-               .pos-static{
-                   position: static;
-                .banner-image{
-                    img{
-                        position: absolute;
-                        max-width: 450px;
-                        width: 100%;
-                        top: 0;
-                        right: -179px;
-                    }
-                }
-               }
-            }
-        }
-    }
-    .why-sistic{
-        padding: 55px 0 58px;
-        .why-sistic-tab{
-            .sistic-tab-button{
-                justify-content: center;
-            }
-
-        }
-    }
-    .website-wrapper{
-        flex-wrap: wrap;
-        flex-direction: column;
-        .website-content{
-            text-align: center !important;
-            margin: 15px;
-            padding: 0 !important;
-        }
-    }
-    .app-wrapper{
-        flex-wrap: wrap;
-        flex-direction: column !important;
-        &.flex-row-reverse{
-            flex-direction: column !important;
-        }
-        .app-content{
-            text-align: center !important;
-            margin: 15px;
-            padding: 0 !important;
-            .app-option{
-                justify-content: space-around;
-                width: 100%;
-                a{
-                    width: 100%;
-                    max-width: 190px;
-                    .ios{
-                        height: unset;
-                    }
-                    .android{
-                        height: unset;
-                    }
-                }
-            }
-            .social-option{
-                justify-content: flex-start;
-                width: 100%;
-                a{
-                    width: 100%;
-                    max-width: 190px;
-                }
-            }
-            .buzz-connect{
-                .input-group{
-                    margin: 0 auto;
-                }
-            }
-            .social-option{
-                justify-content: space-around;
-            }
-        }
-        .app-image{
+        @media(max-width: 576px){
             align-self: center;
         }
     }
 }
-@media (max-width: 576px){
+
+.advertise-withus-wrapper{
     .event-banner{
-        max-height: 200px;
-        .container-fluid{
-            .advertise-banner{
-                flex-wrap: nowrap;
-                margin: 0;
-                position: relative;
-                .banner-content{
-                    max-width: 186px;
-                    h2{
-                        font-size: 17px;
-                        line-height: 22px;
-                    }
-                    a{
-                        padding: 5px 8px;
-                        font-size: 9px;
-                        line-height: 9px;
-                    }
+        background-image: none;
+        background-color: #1a1a1a;
+        .banner-content{
+            @media(max-width: 1024px){
+                padding-left: 0px;
+            }
+            @media(max-width: 576px){
+                padding: 0px;
+            }
+            a{
+                background-color: transparent;
+                &:hover{
+                    border-color: #fff;
                 }
-                .pos-static{
-                    .banner-image{
-                        img{
-                            max-width: 276px;
-                            top: 0;
-                            right: -97px;
-                        }
-                    }
+            }
+            h2{
+                max-width: 90%;
+                @media (max-width: 1024px){
+                    font-size: 34px;
+                    line-height: 40px;
+                }
+                @media (max-width: 768px){
+                    font-size: 24px;
+                    line-height: 28px;
+                }
+                @media (max-width: 767px){
+                    font-size: 25px;
+                    line-height: 25px;
+                    padding-bottom: 10px;
                 }
             }
         }
+
     }
     .why-sistic{
-        padding: 35px 0 28px;
         .why-sistic-head{
-            h2{
-                font-size: 22px;
-            }
             p{
-                font-size: 13px;
-                line-height: 20px;
-                padding-bottom: 8px;
+                padding: 0px;
             }
-            span{
-                font-size: 13px;
-                a{
-                    font-size: 13px;
-                }
-            }
-        }
-        .why-sistic-tab{
-            h2{
-                font-size: 18px;
-                line-height: 13px;
-                padding-bottom: 0;
-            }
-            .sistic-tab-button{
-                a{
-                    font-size: 14px;
-                    line-height: 9px;
-                    padding: 7px 3px;
-                    min-width: 127px;
-                    margin-left: 12px;
-
-                }
+            a{
+                color: #0098FF;
+                font-weight: 500;
             }
         }
     }
-    .website-wrapper{
-        margin-bottom: 40px;
-        .website-content{
-            text-align: center !important;
-            margin: 15px;
-            padding: 0 !important;
-            h2{
-                font-size: 22px;
+    .apipartners-wrapper{
+        .contact-us-block{
+            .customer-enquiry-wrapper{
+                 .form-group{
+                      .select{
+                          .arrow{
+                                margin-top: -10px;
+                            }
+                      }
+                 }
             }
-            p{
-                padding: 15px 0;
-                font-size: 13px;
-                line-height: 20px;
-            }
-        }
-    }
-    .app-wrapper{
-        margin-bottom: 40px;
-        .app-content{
-            text-align: center !important;
-            padding: 0 !important;
-            margin: 30px 0;
-            h2{
-                font-size: 22px;
-            }
-            p{
-                padding: 15px 0;
-                font-size: 13px;
-                line-height: 20px;
-            }
-            .app-option{
-                justify-content: space-around;
-                flex-wrap: nowrap;
-                a{
-                    max-width: 158px;
-                    margin-left: 0;
-                    .ios{
-                        height: 30px;
-                    }
-                    .android{
-                        height: 30px;
-                    }
-                    span{
-                        font-size: 11px;
-                        line-height: 12px;
-                    }
-                }
-            }
-            .buzz-connect{
-                h3{
-                    font-size: 14px;
-                    text-align: left;
-                }
-            }
-            .social-option{
-                justify-content: space-around;
-                a{
-                    max-width: 125px;
-                    height: 30px;
-                    span{
-                        font-size: 16px;
-
-                    }
-                }
-            }
-        }
-        .app-image{
-            align-self: center;
         }
     }
 }

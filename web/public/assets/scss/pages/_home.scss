@@ -101,7 +101,8 @@
 					-moz-transition: 0.3s background;
 					-o-transition: 0.3s background;
 					&:focus {
-						background: linear-gradient(to bottom, #fcfcfc, #f3f3f3, #eaeaea, #E1E1E0, #d8d8d8);
+						//background: linear-gradient(to bottom, #fcfcfc, #f3f3f3, #eaeaea, #E1E1E0, #d8d8d8);
+						background: linear-gradient(180deg,#fcfcfc,#f3f3f3,#ffffff,#ffffff,#ffffff);
 						opacity: 1;
 						color: $text-color;
 						box-shadow: none;

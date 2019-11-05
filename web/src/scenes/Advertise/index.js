@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import './style.scss';
+import { Link } from 'react-scroll';
 import B2BService from '../../shared/services/B2BService';
 import Constants from '../../shared/constants';
-import banner from '../../assets/images/Group-5.png';
+import banner from '../../assets/images/advertise-with-us-banner.png';
 import img1 from '../../assets/images/website.png';
-import img2 from '../../assets/images/Group-5.png';
+import img2 from '../../assets/images/mobile-app-section.png';
 import img3 from '../../assets/images/buzz.png';
 import img4 from '../../assets/images/send.svg';
 import fb from '../../assets/images/fb.png';
@@ -12,9 +13,19 @@ import insta from '../../assets/images/insta.png';
 import social from '../../assets/images/social.png';
 import apple from '../../assets/images/apple.svg';
 import android from '../../assets/images/android.png';
+import ContactUs from '../ApiPartner/ContactUs';
+import navigateToLink from '../../shared/navigateToLink';
 
 const Advertise = props => {
   const [advertiseData, setAdvertiseData] = useState(null);
+  let navigateProps = {
+    activeClass: 'active',
+    spy: true,
+    smooth: true,
+    offset: -70,
+    duration: 500,
+    className: 'wtbt-tab'
+  };
   useEffect(() => {
     window.scrollTo(0, 0);
     const params = {
@@ -33,7 +44,7 @@ const Advertise = props => {
 
   console.log(advertiseData);
   return (
-    <div>
+    <div className="advertise-withus-wrapper">
       <section>
         <div className="event-wrapper">
           <div className="event-banner">
@@ -80,10 +91,19 @@ const Advertise = props => {
             <div className="why-sistic-tab">
               <h2>Our Advertising channels</h2>
               <div className="sistic-tab-button">
-                <a href="#">Website</a>
-                <a href="#">Mobile App</a>
-                <a href="#">SISTIC Buzz</a>
-                <a href="#">Social Media</a>
+                {/* <a href="#">Website</a> */}
+                <Link to="website" {...navigateProps}>
+                  Website
+                </Link>
+                <Link to="mobile" {...navigateProps}>
+                  Mobile App
+                </Link>
+                <Link to="buzz" {...navigateProps}>
+                  SISTIC Buzz
+                </Link>
+                <Link to="social" {...navigateProps}>
+                  Social Media
+                </Link>
               </div>
             </div>
           </div>
@@ -94,7 +114,7 @@ const Advertise = props => {
         <div className="website-wrapper">
           {advertiseData && (
             <div className="website-content">
-              <h2>{advertiseData.content[1].title}</h2>
+              <h2 id="website">{advertiseData.content[1].title}</h2>
               <div
                 dangerouslySetInnerHTML={{
                   __html: advertiseData.content[1].description
@@ -114,7 +134,7 @@ const Advertise = props => {
             <div className="app-content text-right pl-5">
               {advertiseData && (
                 <>
-                  <h2>{advertiseData.content[2].title}</h2>
+                  <h2 id="mobile">{advertiseData.content[2].title}</h2>
                   <div
                     dangerouslySetInnerHTML={{
                       __html: advertiseData.content[2].description
@@ -155,7 +175,7 @@ const Advertise = props => {
             <div className="app-content pr-5">
               {advertiseData && (
                 <>
-                  <h2>{advertiseData.content[3].title}</h2>
+                  <h2 id="buzz">{advertiseData.content[3].title}</h2>
                   <div
                     dangerouslySetInnerHTML={{
                       __html: advertiseData.content[3].description
@@ -194,7 +214,7 @@ const Advertise = props => {
             <div className="app-content text-right pl-5">
               {advertiseData && (
                 <>
-                  <h2>{advertiseData.content[4].title}</h2>
+                  <h2 id="social">{advertiseData.content[4].title}</h2>
                   <div
                     dangerouslySetInnerHTML={{
                       __html: advertiseData.content[4].description
@@ -203,11 +223,27 @@ const Advertise = props => {
                 </>
               )}
               <div className="download-option social-option">
-                <a>
+                <a
+                  onClick={() => {
+                    window.open(
+                      'https://www.facebook.com/SISTICsingapore',
+                      'sharer',
+                      'toolbar=0,status=0,width=548,height=325'
+                    );
+                  }}
+                >
                   <img src={fb} className="fb" alt="" />
                   <span>Facebook</span>
                 </a>
-                <a>
+                <a
+                  onClick={() => {
+                    window.open(
+                      'https://www.instagram.com/sisticsingapore/',
+                      'sharer',
+                      'toolbar=0,status=0,width=548,height=325'
+                    );
+                  }}
+                >
                   <img src={insta} className="insta" alt="" />
                   <span>Instagram</span>
                 </a>
@@ -219,6 +255,9 @@ const Advertise = props => {
           </div>
         </div>
       </section>
+      <div className="apipartners-wrapper">
+        <ContactUs />
+      </div>
     </div>
   );
 };
