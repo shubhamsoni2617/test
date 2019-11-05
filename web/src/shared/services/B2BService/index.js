@@ -5,8 +5,8 @@ class B2BService {
     return API.get(`landing-page`);
   }
 
-  getSystemLicensing(params) {
-    return API.get(`system-licensing`, { params });
+  getSystemLicensing() {
+    return API.get(`system-licensing`);
   }
 
   getAdvertiseWithUs(params) {

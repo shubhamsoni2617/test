@@ -116,6 +116,7 @@
         -webkit-transition: all 0.3s ease-in-out;
         transition: all 0.3s ease-in-out;
         margin: 0 10px;
+        z-index: 1;
         .view {
             overflow: hidden;
             position: relative;

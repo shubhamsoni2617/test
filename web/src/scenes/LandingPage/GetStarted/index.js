@@ -12,23 +12,26 @@ const GetStarted = ({ getStartedData }) => {
   }
   return (
     <section>
-      <div class="getstarted-block">
+      <div className="getstarted-block">
         <h2>Get Started</h2>
-        <div class="container">
-          <div class="row d-flex justify-content-center">
-            <div class="col-lg-4 getstarted-content">
-              {getStartedData &&
-                getStartedData.map(getStarted => {
-                  return (
-                    <div class="view">
-                      <div class="front">
-                        <p class="programmes-img">
+        <div className="container">
+          <div className="row d-flex justify-content-center">
+            {getStartedData &&
+              getStartedData.map(getStarted => {
+                return (
+                  <div
+                    className="col-lg-4 getstarted-content"
+                    key={getStarted.title}
+                  >
+                    <div className="view">
+                      <div className="front">
+                        <p className="programmes-img">
                           <img src={getStarted.img} alt="reach-img" />
                         </p>
-                        <h3 class="programmes-text">{getStarted.title}</h3>
+                        <h3 className="programmes-text">{getStarted.title}</h3>
                       </div>
-                      <div class="mask">
-                        <div class="mask_view">
+                      <div className="mask">
+                        <div className="mask_view">
                           <h3>{getStarted.title}</h3>
                           <div
                             className="text-center sub-text"
@@ -42,9 +45,9 @@ const GetStarted = ({ getStartedData }) => {
                         </div>
                       </div>
                     </div>
-                  );
-                })}
-            </div>
+                  </div>
+                );
+              })}
           </div>
         </div>
       </div>

@@ -19,6 +19,8 @@ import DateRangeFilter from '../../../shared/components/DateRangeFilter';
 import { Submenu, SubmenuWrap } from '../../../shared/components/Submenu';
 import Header from '../../../shared/components/Header';
 import sendImage from '../../../assets/images/send.svg';
+import AdvertisementService from '../../../shared/services/AdvertisementService';
+import Constants from '../../../shared/constants';
 
 function List({ data, menueStatus, setMenuStatus, closeSubmenu, link }) {
   if (!data || !data.length) return null;
@@ -66,7 +68,7 @@ const TopNav = props => {
   const [changeHeader, setChangeHeader] = useState(false);
   const [headerClassScroll, setHeaderClassScroll] = useState(false);
   const [stickyHeader, setStickyHeader] = useState(false);
-
+  const [mostViewed, setMostViewed] = useState(null);
   const miniCartData = [
     { id: '1', img: 'assets/images/explore.png' },
     { id: '2', img: 'assets/images/explore.png' },
@@ -74,6 +76,7 @@ const TopNav = props => {
   ];
 
   useEffect(() => {
+    fetchMostViewedService();
     const first = 0;
     const limit = 5;
     const search = '';
@@ -117,6 +120,21 @@ const TopNav = props => {
         setHeaderClassScroll(false);
       }
     }
+  };
+
+  const fetchMostViewedService = () => {
+    const params = {
+      client: Constants.CLIENT,
+      limit: 3,
+      first: 0
+    };
+    AdvertisementService.getMostViewedService(params)
+      .then(res => {
+        setMostViewed(res.data.data);
+      })
+      .catch(err => {
+        console.log(err);
+      });
   };
 
   const processPath = location => {
@@ -221,7 +239,7 @@ const TopNav = props => {
                   <img src={logo} className="img-fluid" alt="Logo" />
                 </Link>
               </div>
-              <HomePageSearch {...props} />
+              <HomePageSearch history={props.history} mostViewed={mostViewed} />
             </div>
             <div className="top-header-right">
               <ul>

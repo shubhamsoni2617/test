@@ -1,30 +1,34 @@
-import React, { Fragment } from 'react';
-import article1 from '../../../assets/images/Bitmap.png';
-import article2 from '../../../assets/images/article-2.jpg';
-import article3 from '../../../assets/images/bitmap-3.png';
-import article4 from '../../../assets/images/Bitmap-4.png';
+import React, { useState } from 'react';
 import downloadIcon from '../../../assets/images/download-icon-blue.svg';
+
 const Media = ({ mediaData }) => {
+  const [seeMore, setSeeMore] = useState(false);
+  let fourMediaData;
+  if (mediaData && mediaData.length > 2 && !seeMore) {
+    fourMediaData = mediaData.slice(0, 4);
+  } else {
+    fourMediaData = mediaData;
+  }
   return (
     <section>
-      <div class="article-wrapper">
-        <div class="container">
-          <div class="article-heading">
+      <div className="article-wrapper">
+        <div className="container">
+          <div className="article-heading">
             <h2>Media</h2>
           </div>
-          <div class="article-box">
-            {mediaData &&
-              mediaData.map(media => {
+          <div className="article-box">
+            {fourMediaData &&
+              fourMediaData.map(media => {
                 return (
-                  <div class="article">
-                    <div class="article-img">
+                  <div className="article" key={media.title}>
+                    <div className="article-img">
                       <img
                         src={media.image}
                         alt="article-1"
-                        class="img-fluid"
+                        className="img-fluid"
                       />
                     </div>
-                    <div class="article-content">
+                    <div className="article-content">
                       <a href="#">
                         <span>{media.category}</span>
                       </a>
@@ -50,9 +54,11 @@ const Media = ({ mediaData }) => {
                 );
               })}
           </div>
-          <div class="article-bottom">
-            <a href="#">View all Media</a>
-          </div>
+          {mediaData && mediaData.length > 2 && !seeMore && (
+            <div className="article-bottom">
+              <span onClick={() => setSeeMore(true)}>View all Media</span>
+            </div>
+          )}
         </div>
       </div>
     </section>
