@@ -316,12 +316,12 @@ function StickyHeader(props) {
           </ul>
         </div>
       </div>
-      {detailData.is_available_for_booking === 1 && (
-        <div className="tickets-button">
+      <div className="tickets-button">
+        {detailData.is_available_for_booking === 1 && (
           <BuyTicketsButtonPopup detailData={detailData} />
-        </div>
-      )}
-      {buyPackages}
+        )}
+        {buyPackages}
+      </div>
       {detailData.is_available_for_booking === 0 && (
         <div className="tickets-button shows-over-tickets">
           <div className="shows-over">

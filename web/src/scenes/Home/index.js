@@ -49,7 +49,10 @@ class Home extends Component {
 
   getSidePanelBetweenTopPicksFeaturedEvents() {
     const params = {
-      client: Constants.CLIENT
+      client: Constants.CLIENT,
+      limit: 1,
+      first: 0,
+      sort_order: 'DESC'
     };
     AdvertisementService.getSidePanelBetweenTopPicksFeaturedEvents(params)
       .then(res => {
@@ -81,30 +84,31 @@ class Home extends Component {
           />
           {/* <img className={`main-image ${this.state.imageUrl ? 'show-image' : ''}`} src={primeSlider} alt="prime Slider" /> */}
         </div>
-        <TopPics /><div className="giftcard-homepage-wrapper">
-          {giftCard &&
-            giftCard.map(elem => {
-              return (
+        <TopPics />
+        {giftCard &&
+          giftCard.map(elem => {
+            return (
+              <div className="adds-container">
                 <a
                   href={elem && elem.navigation_link}
                   className="giftcard-anchor"
                   target="_blank"
                   key={elem.title}
                 >
-                  <section className="gift-cart">
-                    <div className="gift-cart-image">
-                      <img
-                        src={elem && elem.full_image}
-                        className="img-fluid"
-                        alt={elem && elem.alt_text}
-                        title={elem && elem.title}
-                      />
-                    </div>
-                  </section>
+                  {/* <section className="gift-cart">
+                    <div className="gift-cart-image"> */}
+                  <img
+                    src={elem && elem.full_image}
+                    className="img-fluid"
+                    alt={elem && elem.alt_text}
+                    title={elem && elem.title}
+                  />
+                  {/* </div>
+                  </section> */}
                 </a>
-              );
-            })}
-        </div>
+              </div>
+            );
+          })}
         <FeaturedEvents
           api={AdvertisementService.getFeaturedEvents}
           heading="Featured Events"
