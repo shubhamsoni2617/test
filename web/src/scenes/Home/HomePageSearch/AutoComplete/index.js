@@ -13,7 +13,7 @@ import './style.scss';
 import navigateToLink from '../../../../shared/navigateToLink';
 import Utilities from '../../../../shared/utilities';
 
-const Autocomplete = ({ history, buttonActiveHandler }) => {
+const Autocomplete = ({ history, buttonActiveHandler, mostViewed }) => {
   const [showSuggestions, setShowSuggestions] = useState(false);
   const [userInput, setUserInput] = useState('');
   const [suggestions, setSuggestions] = useState([]);
@@ -292,7 +292,11 @@ const Autocomplete = ({ history, buttonActiveHandler }) => {
       </div>
       {suggestionsListComponent}
       {isFocused && !userInput && (
-        <RecentlySearched history={history} focusHandler={focusHandler} />
+        <RecentlySearched
+          history={history}
+          focusHandler={focusHandler}
+          mostViewed={mostViewed}
+        />
       )}
     </div>
   );

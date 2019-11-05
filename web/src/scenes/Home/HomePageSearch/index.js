@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import './style.scss';
 import Autocomplete from './AutoComplete';
 
-const HomePageSearch = ({ history }) => {
+const HomePageSearch = ({ history, mostViewed }) => {
   const [buttonActive, setButtonActive] = useState(false);
 
   const buttonActiveHandler = value => {
@@ -13,6 +13,7 @@ const HomePageSearch = ({ history }) => {
       <Autocomplete
         history={history}
         buttonActiveHandler={buttonActiveHandler}
+        mostViewed={mostViewed}
       />
     </div>
   );
