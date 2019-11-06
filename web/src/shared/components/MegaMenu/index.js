@@ -111,9 +111,9 @@ const MegaMenu = props => {
                       />
                     </div>
                     <div className="featured-date-category">
-                      {/* {event.event_date && (
+                      {event.event_date && (
                         <span className="date">{event.event_date}</span>
-                      )} */}
+                      )}
                       {event.primary_genere && (
                         <span
                           className={
