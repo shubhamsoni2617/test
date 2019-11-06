@@ -57,7 +57,7 @@ const Header = ({ menuActive, pathName }) => {
                   <a>Get Started</a>
                   <ul className="small-header-submenu">
                     <li>
-                      <a>Sell tickets with us</a>
+                      <Link to="/sell-event-tickets">Sell tickets with us</Link>
                     </li>
                     <li>
                       <Link to="/system-licensing">System Licensing</Link>
@@ -143,7 +143,7 @@ const Header = ({ menuActive, pathName }) => {
                       buttonText="Sell tickets with us"
                       data={null}
                       submenuClass=""
-                      link=""
+                      link="/sell-event-tickets"
                       closeSubmenu={handleNavigationClose}
                       resetFilters={() => {}}
                       clearFilters={() => {}}

@@ -1,5 +1,10 @@
 import React from 'react';
 import './style.scss';
+import DayPickerInput from 'react-day-picker/DayPickerInput';
+import 'react-day-picker/lib/style.css';
+import { formatDate, parseDate } from 'react-day-picker/moment';
+import ReCAPTCHA from 'react-google-recaptcha';
+import Constants from '../../../shared/constants';
 
 const SellingForm = ({
   content,
@@ -10,7 +15,19 @@ const SellingForm = ({
   companyName,
   eventName,
   eventCapacity,
-  venueName
+  venueName,
+  eventDate,
+  ticketPrice,
+  additionalInformation,
+  captcha,
+  error,
+  loading,
+  successMsg,
+  serverErr,
+  handleEventDate,
+  handleCaptcha,
+  handleReset,
+  handleSubmit
 }) => {
   return (
     <section>
@@ -25,7 +42,16 @@ const SellingForm = ({
         </div>
 
         <div className="selling-form">
-          <form>
+          {successMsg && <h5 className="text-success">{successMsg}</h5>}
+          {serverErr &&
+            serverErr.map(errMsg => {
+              return (
+                <h5 key={errMsg} className="text-danger">
+                  {errMsg}
+                </h5>
+              );
+            })}
+          <form onSubmit={handleSubmit}>
             <div className="form-info">
               <div className="seller-info-heading">
                 <h2>Seller Information</h2>
@@ -37,18 +63,24 @@ const SellingForm = ({
                       type="text"
                       name="name"
                       placeholder="Name*"
-                      className="form-control"
+                      className={error ? 'form-control error' : 'form-control'}
                       value={name}
                       onChange={handleChange}
                     />
+                    {error && !name && (
+                      <span className="text-danger">Please enter name</span>
+                    )}
                     <input
                       type="email"
                       name="email"
                       placeholder="Email*"
-                      className="form-control"
+                      className={error ? 'form-control error' : 'form-control'}
                       value={email}
                       onChange={handleChange}
                     />
+                    {error && !email && (
+                      <span className="text-danger">Please enter email</span>
+                    )}
                   </div>
                 </div>
                 <div className="col-md-6">
@@ -65,11 +97,16 @@ const SellingForm = ({
                       type="text"
                       name="contact-no"
                       placeholder="Contact No.*"
-                      className="form-control"
+                      className={error ? 'form-control error' : 'form-control'}
                       value={contactNo}
                       maxLength={10}
                       onChange={handleChange}
                     />
+                    {error && !contactNo && (
+                      <span className="text-danger">
+                        Please enter contact number
+                      </span>
+                    )}
                   </div>
                 </div>
               </div>
@@ -85,48 +122,76 @@ const SellingForm = ({
                       type="text"
                       name="event-name"
                       placeholder="Event Name*"
-                      className="form-control"
+                      className={error ? 'form-control error' : 'form-control'}
                       value={eventName}
                       onChange={handleChange}
                     />
+                    {error && !eventName && (
+                      <span className="text-danger">
+                        Please enter event name
+                      </span>
+                    )}
                     <input
                       type="text"
                       name="venue-name"
                       placeholder="Venue Name*"
-                      className="form-control"
+                      className={error ? 'form-control error' : 'form-control'}
                       value={venueName}
                       onChange={handleChange}
                     />
+                    {error && !venueName && (
+                      <span className="text-danger">
+                        Please enter venue name
+                      </span>
+                    )}
                     <input
                       type="text"
-                      name="ticket-pride"
-                      placeholder="Ticket Pride (SGD)"
+                      name="ticket-price"
+                      placeholder="Ticket Price (SGD)"
                       className="form-control"
+                      maxLength={3}
+                      value={ticketPrice}
                       onChange={handleChange}
                     />
                   </div>
                 </div>
                 <div className="col-md-6">
                   <div className="seller-info">
-                    <input
-                      type="text"
-                      name="event-date"
-                      placeholder="Event Date"
+                    <DayPickerInput
                       className="form-control"
-                      onChange={handleChange}
+                      value={eventDate}
+                      placeholder="Event Date"
+                      format="DD/MM/YYYY"
+                      showOverlay={false}
+                      formatDate={formatDate}
+                      parseDate={parseDate}
+                      inputProps={{ readOnly: true }}
+                      dayPickerProps={{
+                        selectedDays: [eventDate],
+                        disabledDays: { before: new Date() },
+                        fromMonth: new Date(),
+                        numberOfMonths: 1
+                      }}
+                      onDayChange={handleEventDate}
                     />
                     <input
                       type="text"
                       name="event-capacity"
                       placeholder="Event Capacity (pax)*"
-                      className="form-control"
+                      className={error ? 'form-control error' : 'form-control'}
                       value={eventCapacity}
                       maxLength={3}
                       onChange={handleChange}
                     />
+                    {error && !eventCapacity && (
+                      <span className="text-danger">
+                        Please enter event capacity
+                      </span>
+                    )}
                     <textarea
                       placeholder="Additional Information"
                       name="additional-information"
+                      value={additionalInformation}
                       onChange={handleChange}
                     ></textarea>
                   </div>
@@ -141,20 +206,39 @@ const SellingForm = ({
                       <h2>Security Check</h2>
                     </div>
                     <div className="seller-info capcha-text">
-                      <input
+                      <ReCAPTCHA
+                        sitekey={Constants.SITE_KEY}
+                        name="captcha"
+                        onChange={handleCaptcha}
+                      />
+                      {error && !captcha && (
+                        <span className="text-danger">
+                          Please mark the security check
+                        </span>
+                      )}
+                      {/* <input
                         type="text"
                         name="security-check"
                         placeholder="Type the word above"
                         className="form-control"
+                        value={captchaInput}
                         onChange={handleChange}
-                      />
+                      /> */}
                     </div>
                   </div>
                   <div className="submit-btn">
-                    <button type="submit" className="btn submit">
+                    <button
+                      type="submit"
+                      className="btn submit"
+                      disabled={loading ? true : false}
+                    >
                       Submit
                     </button>
-                    <button type="submit" className="btn reset">
+                    <button
+                      type="button"
+                      className="btn reset"
+                      onClick={handleReset}
+                    >
                       Reset
                     </button>
                   </div>

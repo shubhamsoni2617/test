@@ -25,7 +25,7 @@ const Footer = () => {
                   <Link to="/about-us">About Us</Link>
                 </li>
                 <li>
-                  <a>Sell with Us</a>
+                  <Link to="/sell-event-tickets">Sell with Us</Link>
                 </li>
                 <li>
                   <a>Ticketing Technology</a>

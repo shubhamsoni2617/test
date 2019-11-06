@@ -7,6 +7,7 @@ import SisticStrength from './SisticStrength';
 import EventTicket from './EventTicket';
 import Banner from './Banner';
 import SellTicketService from '../../../src/shared/services/SellTicketService';
+import moment from 'moment';
 
 const SellTicketsWithUs = () => {
   const [sellTicketWithUs, setSellTicketWithUs] = useState('');
@@ -17,6 +18,14 @@ const SellTicketsWithUs = () => {
   const [eventName, setEventName] = useState('');
   const [eventCapacity, setEventCapacity] = useState('');
   const [venueName, setVenueName] = useState('');
+  const [eventDate, setEventDate] = useState('');
+  const [ticketPrice, setTicketPrice] = useState('');
+  const [additionalInformation, setAdditionalInformation] = useState('');
+  const [captcha, setCaptcha] = useState('');
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(false);
+  const [successMsg, setSuccessMsg] = useState('');
+  const [serverErr, setServerErr] = useState([]);
 
   useEffect(() => {
     SellTicketService.getSellTicketWithUs().then(res => {
@@ -24,14 +33,69 @@ const SellTicketsWithUs = () => {
         setSellTicketWithUs(res.data);
       }
     });
+    scrollToTop();
   }, []);
+
+  const scrollToTop = () => {
+    window.scrollTo(0, 0);
+  };
 
   const handleSubmit = event => {
     event.preventDefault();
+    if (name && email && contactNo && eventName && venueName && eventCapacity) {
+      setLoading(true);
+      const data = {
+        name,
+        email,
+        company_name: companyName,
+        contact_no: contactNo,
+        event_name: eventName,
+        event_date: eventDate ? moment(eventDate).format('YYYY-MM-DD') : '',
+        venue_name: venueName,
+        event_capacity: eventCapacity,
+        ticket_price: ticketPrice,
+        additional_info: additionalInformation
+      };
+      submitForm(data);
+    } else {
+      setError(true);
+    }
+  };
+
+  const submitForm = data => {
+    SellTicketService.submitSellerForm(data)
+      .then(res => {
+        if (res && res.data) {
+          handleReset();
+          setSuccessMsg(res.data.message);
+        }
+      })
+      .catch(err => {
+        if (err && err.response) {
+          setServerErr(err.response.data);
+        }
+      });
+  };
+
+  const handleReset = () => {
+    setName('');
+    setCompanyName('');
+    setEmail('');
+    setContactNo('');
+    setEventName('');
+    setEventCapacity('');
+    setVenueName('');
+    setEventDate('');
+    setTicketPrice('');
+    setAdditionalInformation('');
+    setCaptcha('');
+    setError(false);
+    setLoading(false);
+    setSuccessMsg('');
+    setServerErr([]);
   };
   const handleChange = event => {
     const { name, value } = event.target;
-    console.log(name, value);
     switch (name) {
       case 'name':
         setName(trimSpace(value));
@@ -54,15 +118,36 @@ const SellTicketsWithUs = () => {
       case 'venue-name':
         setVenueName(trimSpace(value));
         break;
+      case 'ticket-price':
+        const allowOnlyNumInTicket = /^[0-9\b]+$/;
+        if (value === '' || allowOnlyNumInTicket.test(value)) {
+          setTicketPrice(value);
+        }
+        break;
+      case 'additional-information':
+        setAdditionalInformation(trimSpace(value));
+        break;
       case 'event-capacity':
         const allowOnlyNumber = /^[0-9\b]+$/;
         if (value === '' || allowOnlyNumber.test(value)) {
           setEventCapacity(value);
         }
         break;
+      case 'security-check':
+        break;
       default:
         return;
     }
+    setSuccessMsg('');
+    setServerErr([]);
+  };
+
+  const handleEventDate = eventDate => {
+    setEventDate(eventDate);
+  };
+
+  const handleCaptcha = captcha => {
+    setCaptcha(captcha);
   };
 
   const trimSpace = value => {
@@ -116,6 +201,18 @@ const SellTicketsWithUs = () => {
         eventName={eventName}
         eventCapacity={eventCapacity}
         venueName={venueName}
+        eventDate={eventDate}
+        ticketPrice={ticketPrice}
+        additionalInformation={additionalInformation}
+        captcha={captcha}
+        error={error}
+        loading={loading}
+        successMsg={successMsg}
+        serverErr={serverErr}
+        handleEventDate={handleEventDate}
+        handleCaptcha={handleCaptcha}
+        handleReset={handleReset}
+        handleSubmit={handleSubmit}
       />
       {/* articles section starts here */}
       <Articles articles={articles} />

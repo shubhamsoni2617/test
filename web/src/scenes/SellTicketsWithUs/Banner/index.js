@@ -9,7 +9,7 @@ const Banner = ({ bannerTitle, bannerDescription, buttonLink, buttonText }) => {
           <div className="banner-content">
             <h2>{bannerTitle}</h2>
             <p dangerouslySetInnerHTML={{ __html: bannerDescription }}></p>
-            <a href={buttonLink}>{buttonText}</a>
+            {buttonText && <a href={buttonLink}>{buttonText}</a>}
           </div>
         </div>
       </div>

@@ -135,7 +135,7 @@ const routes = [
     exact: true
   },
   {
-    path: '/sell-tickets-with-us',
+    path: '/sell-event-tickets',
     component: SellTicketsWithUs,
     exact: true
   },
