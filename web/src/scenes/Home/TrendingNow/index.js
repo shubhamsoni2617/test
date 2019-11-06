@@ -98,7 +98,8 @@ const TrendingNow = ({ }) => {
                         trendingNow &&
                         trendingNow[0] &&
                         trendingNow[0].venue_name,
-                        15
+                        Utilities.mobilecheck() ? 15 : 25
+
                       )}
                     </p>
                   </div>
@@ -128,13 +129,12 @@ const TrendingNow = ({ }) => {
                             </div>
                           </div>
                           <h3>
-                            {Utilities.showLimitedChars(now && now.title, Utilities.mobilecheck() ? 15 : 25)}
+                            {Utilities.showLimitedChars(now && now.title, Utilities.mobilecheck() ? 15 : 27)}
                           </h3>
                           <p>{now && now.event_date}</p>
                           <p>
                             {Utilities.showLimitedChars(
-                              now && now.venue_name,
-                              15
+                              now && now.venue_name, Utilities.mobilecheck() ? 15 : 25
                             )}
                           </p>
                         </div>
