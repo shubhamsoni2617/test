@@ -50,7 +50,9 @@ const LandingPage = () => {
       <Network
         networkData={landingPageData && landingPageData.content.network}
       />
-      <ContactUs />
+      <div className="apipartners-wrapper">
+        <ContactUs />
+      </div>
     </div>
   );
 };
