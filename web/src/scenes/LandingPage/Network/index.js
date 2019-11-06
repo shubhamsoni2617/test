@@ -19,9 +19,11 @@ const Network = ({ networkData }) => {
                 <ul>
                   {networkData.data.map(network => {
                     return (
-                      <a href={network.url} target="_blank">
-                        <img src={network.logo} alt="logo" />
-                      </a>
+                      <li>
+                        <a href={network.url} target="_blank">
+                          <img src={network.logo} alt="logo" />
+                        </a>
+                      </li>
                     );
                   })}
                 </ul>
