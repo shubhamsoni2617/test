@@ -120,13 +120,19 @@ const Footer = () => {
                 <h3>Follow us on</h3>
                 <ul className="social">
                   <li>
-                    <a href="https://www.facebook.com/SISTICsingapore">
+                    <a
+                      href="https://www.facebook.com/SISTICsingapore"
+                      target="_blank"
+                    >
                       <img src={fb} alt="" />
                       <img className="active" src={fbFill} alt="" />
                     </a>
                   </li>
                   <li>
-                    <a href="https://www.facebook.com/SISTICsingapore">
+                    <a
+                      href="https://www.instagram.com/sisticsingapore/"
+                      target="_blank"
+                    >
                       <img src={insta} alt="" />
                       <img className="active" src={instaFill} alt="" />
                     </a>

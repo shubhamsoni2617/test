@@ -19,7 +19,6 @@ const Partners = ({ partnersLogo, clients }) => {
           className="sub-text"
           dangerouslySetInnerHTML={{ __html: clients.description }}
         />
-
         <ul className="partners-list">
           {partnersLogo &&
             partnersLogo.map(({ logo, url }) => {
@@ -32,17 +31,12 @@ const Partners = ({ partnersLogo, clients }) => {
               );
             })}
         </ul>
-
-        {/* <Link to="apipartners" className="view-all-clients">
-          View all Clients
-          <img src={arrowDown} alt="down" />
-        </Link> */}
-        {/* {partnersLogo && partnersLogo.length > 2 && !seeMore && ( */}
-        <div className="view-all-clients" onClick={() => setSeeMore(true)}>
-          View all Clients
-          <img src={arrowDown} alt="down" />
-        </div>
-        {/* )} */}
+        {partnersLogo && partnersLogo.length > 2 && !seeMore && (
+          <div className="view-all-clients" onClick={() => setSeeMore(true)}>
+            View all Clients
+            <img src={arrowDown} alt="down" />
+          </div>
+        )}
       </div>
     </div>
   );
