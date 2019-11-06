@@ -61,7 +61,7 @@ const Advertisement = props => {
       {homeAdv &&
         homeAdv.map(elem => {
           return (
-            <div className="container-fluid" key={elem.title}>
+            <div key={elem.title}>
               <a href={elem && elem.navigation_link} target="_blank">
                 <div className="ads-image">
                   <img

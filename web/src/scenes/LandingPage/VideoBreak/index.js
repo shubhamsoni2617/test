@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import ReactPlayer from 'react-player';
 import moment from 'moment';
+import downArrow from '../../../assets/images/more-arrow-white-blue.svg';
+
 const VideoBreak = ({ videoData }) => {
   const [seeMore, setSeeMore] = useState(false);
   let twoVideoData;
@@ -49,8 +51,8 @@ const VideoBreak = ({ videoData }) => {
           </div>
         </div>
         {videoData && videoData.length > 2 && !seeMore && (
-          <div className="article-bottom">
-            <span onClick={() => setSeeMore(true)}>View all Video</span>
+          <div className="video-bottom">
+            <span className="view-all-btn" onClick={() => setSeeMore(true)}>View all Video <img src={downArrow} alt="down-arrow" /></span>
           </div>
         )}
       </div>
