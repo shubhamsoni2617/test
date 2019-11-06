@@ -6,7 +6,7 @@ import AdvertisementService from '../../services/AdvertisementService';
 import Constants from '../../constants';
 const Advertisement = props => {
   const refValue = useRef();
-  const [homeAdv, setHomeAdv] = useState([]);
+  const [homeAdv, setHomeAdv] = useState(null);
 
   const handleClose = () => {
     sessionStorage.setItem('advertisment', false);
@@ -60,7 +60,7 @@ const Advertisement = props => {
   };
 
   if (homeAdv && homeAdv.length === 0)
-    return <div className={`no-ads`} ref={refValue}></div>;
+    return <div className={`show-add no-ads`} ref={refValue}></div>;
 
   return (
     <div className="top-ads" ref={refValue}>

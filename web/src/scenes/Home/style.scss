@@ -4252,11 +4252,16 @@ section{
 						.featured-date-category {
 							padding-top: 5px;
 							display: flex;
+							flex-wrap: wrap;
 							.date {
 								color: #908F8F;
 								font-family: 'Rubik', sans-serif;
 								font-size: 11.02px;
 								line-height: 13px;
+								padding-right: 4px;
+								flex: 0 0 auto;
+								max-width: 70%;
+
 							}
 							.category {
 								color: #ffffff;
@@ -4265,10 +4270,11 @@ section{
 								font-weight: 500;
 								line-height: 15px;
 								height: 15px;
-								width: 52.33px;
+								width: auto;
 								text-align: center;
-								padding: 0px;
 								margin-left: auto;
+								flex: 0 0 auto;
+								width: auto;
 								&:empty{
 									padding: 0px;
 								}
