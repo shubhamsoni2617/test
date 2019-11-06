@@ -89,7 +89,7 @@ const Advertise = props => {
               </div>
             )}
             <div className="why-sistic-tab">
-              <h2>Our Advertising channels</h2>
+              <h2>Our Advertising Channels</h2>
               <div className="sistic-tab-button">
                 {/* <a href="#">Website</a> */}
                 <Link to="website" {...navigateProps}>
