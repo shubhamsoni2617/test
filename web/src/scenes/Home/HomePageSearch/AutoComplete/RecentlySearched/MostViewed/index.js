@@ -3,23 +3,25 @@ import AdvertisementService from '../../../../../../shared/services/Advertisemen
 import Constants from '../../../../../../shared/constants';
 import Image from '../../../../../../shared/components/Image';
 
-const MostViewed = () => {
-  const [mostViewed, setMostViewed] = useState(null);
-  useEffect(() => {
-    fetchMostViewedService();
-  }, []);
-  const fetchMostViewedService = () => {
-    const params = {
-      client: Constants.CLIENT
-    };
-    AdvertisementService.getMostViewedService(params)
-      .then(res => {
-        setMostViewed(res.data.data);
-      })
-      .catch(err => {
-        console.log(err);
-      });
-  };
+const MostViewed = ({ mostViewed }) => {
+  // const [mostViewed, setMostViewed] = useState(null);
+  // useEffect(() => {
+  //   fetchMostViewedService();
+  // }, []);
+  // const fetchMostViewedService = () => {
+  //   const params = {
+  //     client: Constants.CLIENT,
+  //     limit: 3,
+  //     first: 0
+  //   };
+  //   AdvertisementService.getMostViewedService(params)
+  //     .then(res => {
+  //       setMostViewed(res.data.data);
+  //     })
+  //     .catch(err => {
+  //       console.log(err);
+  //     });
+  // };
   return (
     <div className="most-viewed">
       <h3>Most Viewed</h3>

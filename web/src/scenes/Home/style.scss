@@ -39,7 +39,12 @@
 				padding: 0px;
 			}
 		}
-	}
+  }
+  .adds-container{
+    img{
+      width: 100%;
+    }
+  }
 }
 
 //header style start
@@ -166,7 +171,7 @@
 								background: linear-gradient(to bottom, #fcfcfc, #f3f3f3, #eaeaea, #E1E1E0, #d8d8d8);
 								opacity: 1;
 								color: #343434;
-								box-shadow: none;						
+								box-shadow: none;
 								outline: none;
 							}
 							&::placeholder {
@@ -251,12 +256,12 @@
 					overflow: hidden;
 					white-space: nowrap;
 					display: block;
-					padding-right: 60px;					
+					padding-right: 60px;
 					&:focus {
 						background: linear-gradient(to bottom, #fcfcfc, #f3f3f3, #eaeaea, #E1E1E0, #d8d8d8);
 						opacity: 1;
 						color: #343434;
-						box-shadow: none;						
+						box-shadow: none;
 						outline: none;
 						&::placeholder {
 							color: #626262;
@@ -284,7 +289,7 @@
 						max-width: 100%;
 						text-overflow: ellipsis;
 						overflow: hidden;
-						white-space: nowrap;						
+						white-space: nowrap;
 						opacity: 1;
 						// color: #343434;
 						color: #ffffff99;
@@ -339,7 +344,7 @@
 							text-indent: -10000px;
 						}
 					}
-					
+
 				}
 				.search-btn {
 					background-color: transparent;
@@ -2099,7 +2104,7 @@
 //currently showing/whats new style start
 section.currently-showing,
 section.whats-new {
-	background-color: #092438;	
+	background-color: #092438;
 	padding-bottom: 40px;
 	@media (max-width: 767px) {
 		padding: 20px 0;
@@ -3141,8 +3146,8 @@ section{
             align-items: center;
         }
 		.sistic-moments-wrapper {
-				-ms-overflow-style: none; // IE 10+ 
-				scrollbar-width: none; // Firefox 
+				-ms-overflow-style: none; // IE 10+
+				scrollbar-width: none; // Firefox
 			@media(max-width: 767px){
 				display: flex;
 				flex-wrap: nowrap;
@@ -3154,8 +3159,8 @@ section{
 					max-width: 34%;
 				}
 			}
-			&::-webkit-scrollbar { 
-				display: none; // Safari and Chrome 
+			&::-webkit-scrollbar {
+				display: none; // Safari and Chrome
 			}
 		}
 		@media(max-width: 767px){
@@ -4604,6 +4609,10 @@ section{
 		overflow-y: auto;
 		max-height: 100%;
 	}
+	@media(max-width: 991px) and (min-width: 768px){
+		max-height: 100%;
+		min-height: 250px;
+	}
 	.header-search-fixed {
 		display: none;
 		@media (max-width: 767px) {
@@ -4669,7 +4678,7 @@ section{
 					white-space: nowrap;
 					overflow: hidden;
 					display: block;
-					max-width: 550px;					
+					max-width: 550px;
 					width: 100%;
 					padding-right: 25px;
 					@media(max-width: 767px){
@@ -4755,7 +4764,11 @@ section{
 				@media(min-width: 420px) and (max-width: 991px) {
 					flex: 0 0 33%;
 					width: 33%;
-                }
+				}
+				@media screen and (orientation:landscape) {
+					flex: 0 0 33%;
+					width: 33%;
+				}
                 .most-viewed-img{
                     overflow: hidden;
 					margin-bottom: 10px;
@@ -4777,8 +4790,12 @@ section{
                     }
                 }
 				img {
+					height: 130px;
+					min-height: 130px;
+					max-height: 130px;
+					width: 174px;
 					max-width: 100%;
-                    max-height: 200px;
+                    // max-height: 200px;
 					transition: 0.9s transform;
 					-webkit-transition: 0.9s transform;
 					-moz-transition: 0.9s transform;
@@ -4787,9 +4804,10 @@ section{
 				.category {
 					font-size: 12px;
 					font-weight: 500;
-					line-height: 20px;					
+					line-height: 20px;
 					height: auto;
 					text-align: left;
+					word-break: break-all;
 					@media(max-width: 768px){
 						height: auto;
 						text-align: left;
@@ -4817,6 +4835,10 @@ section{
 					@media(max-width: 991px){
 						flex: 0 0 50%;
 						width: 50%;
+					}
+					@media (max-width: 1024px) and (orientation: landscape){
+						flex: 0 0 33%;
+						width: 33%;
 					}
 				}
 			}
@@ -4884,11 +4906,11 @@ section{
 			}
 		}
 	}
-	.advertisment-listing { 
-		-ms-overflow-style: none; // IE 10+ 
-		scrollbar-width: none; // Firefox 
-	} 
-	.advertisment-listing::-webkit-scrollbar { 
+	.advertisment-listing {
+		-ms-overflow-style: none; // IE 10+
+		scrollbar-width: none; // Firefox
+	}
+	.advertisment-listing::-webkit-scrollbar {
 		display: none; // Safari and Chrome
 	}
 	.most-viewed:first-child{

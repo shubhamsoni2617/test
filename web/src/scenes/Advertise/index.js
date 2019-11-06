@@ -224,25 +224,15 @@ const Advertise = props => {
               )}
               <div className="download-option social-option">
                 <a
-                  onClick={() => {
-                    window.open(
-                      'https://www.facebook.com/SISTICsingapore',
-                      'sharer',
-                      'toolbar=0,status=0,width=548,height=325'
-                    );
-                  }}
+                  href="https://www.facebook.com/SISTICsingapore"
+                  target="_blank"
                 >
                   <img src={fb} className="fb" alt="" />
                   <span>Facebook</span>
                 </a>
                 <a
-                  onClick={() => {
-                    window.open(
-                      'https://www.instagram.com/sisticsingapore/',
-                      'sharer',
-                      'toolbar=0,status=0,width=548,height=325'
-                    );
-                  }}
+                  href="https://www.instagram.com/sisticsingapore/"
+                  target="_blank"
                 >
                   <img src={insta} className="insta" alt="" />
                   <span>Instagram</span>

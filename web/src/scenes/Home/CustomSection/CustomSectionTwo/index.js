@@ -14,55 +14,55 @@ const CustomSectioTwo = ({ customSectionTwo, loading }) => {
       type="TILE"
     />
   ) : (
-      <section className="royal-wrapper">
-        <div className="container-fluid">
-          <div className="royal-side-padding">
-            <div className="section-top-wrapper">
-              <h2>Royals</h2>
-              <div className="carousel-dots">
-                <a href="/events">
-                  More from Royals {' '}
-                  <img
-                    src="assets/images/right-arrow.svg"
-                    className="img-fluid"
-                    alt="arrow"
-                  />
-                </a>
-              </div>
-            </div>
-            <div className="royal-items-wrapper">
-              <div className="royal-leftsection">
-                <a
-                  href={
-                    customSectionTwo &&
-                    customSectionTwo[0] &&
-                    customSectionTwo[0].navigation_link
-                  }
-                  target="_blank"
-                >
-                  <div>
-                    {/* {customSectionTwo && customSectionTwo[0] && (
+    <section className="royal-wrapper">
+      <div className="container-fluid">
+        <div className="royal-side-padding">
+          <div className="section-top-wrapper">
+            <h2>Royals</h2>
+          </div>
+          <div className="royal-items-wrapper">
+            <div className="royal-leftsection">
+              <a
+                href={
+                  customSectionTwo &&
+                  customSectionTwo[0] &&
+                  customSectionTwo[0].navigation_link
+                }
+                target="_blank"
+              >
+                <div>
+                  {/* {customSectionTwo && customSectionTwo[0] && (
                     <Image
                       src={customSectionTwo[0].full_image}
                       alt={customSectionTwo[0].alt}
                       type="BigBanner"
                     />
                   )} */}
-                    <img src={royal} alt="pride" className="img-fluid" />
-                  </div>
-                </a>
-              </div>
-              <div className="royal-rightsection">
-                <div className="royal-rightside-textwrapper">
-                  <h3>{customSectionTwo && customSectionTwo[0] && customSectionTwo[0].title}</h3>
-                  <p>10 Jan 2019</p>
+                  <img src={royal} alt="pride" className="img-fluid" />
                 </div>
-                <div className="royal-items">
+              </a>
+            </div>
+            <div className="royal-rightsection">
+              <div className="royal-rightside-textwrapper">
+                <h3>
                   {customSectionTwo &&
-                    customSectionTwo.slice(1, customSectionTwo.length).map((elem, i) => {
+                    customSectionTwo[0] &&
+                    customSectionTwo[0].title}
+                </h3>
+                <p>10 Jan 2019</p>
+              </div>
+              <div className="royal-items">
+                {customSectionTwo &&
+                  customSectionTwo
+                    .slice(1, customSectionTwo.length)
+                    .map((elem, i) => {
                       return (
                         <div key={i} className="item-wrapper">
-                          <a className="item-img" href={elem.navigation_link} target="_blank">
+                          <a
+                            className="item-img"
+                            href={elem.navigation_link}
+                            target="_blank"
+                          >
                             {/* {elem && elem.full_image && (
                             <Image
                               src={elem.full_image}
@@ -70,7 +70,11 @@ const CustomSectioTwo = ({ customSectionTwo, loading }) => {
                               type="Horizontal"
                             />
                           )} */}
-                            <img src={royalSubimg} alt="pride" className="img-fluid" />
+                            <img
+                              src={royalSubimg}
+                              alt="pride"
+                              className="img-fluid"
+                            />
                           </a>
                           <div className="royal-item-content">
                             <h3>{elem.title}</h3>
@@ -79,13 +83,13 @@ const CustomSectioTwo = ({ customSectionTwo, loading }) => {
                         </div>
                       );
                     })}
-                </div>
               </div>
             </div>
           </div>
         </div>
-      </section>
-    );
+      </div>
+    </section>
+  );
 };
 
 export default CustomSectioTwo;

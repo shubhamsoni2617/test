@@ -20,6 +20,7 @@ import Search from '../Home/Search';
 import SystemLicensing from '../SystemLicensing';
 import Advertise from '../Advertise';
 import SellTicketsWithUs from '../SellTicketsWithUs';
+import LandingPage from '../LandingPage';
 
 const routes = [
   {
@@ -137,6 +138,11 @@ const routes = [
   {
     path: '/sell-event-tickets',
     component: SellTicketsWithUs,
+    exact: true
+  },
+  {
+    path: '/landing-page',
+    component: LandingPage,
     exact: true
   },
   {

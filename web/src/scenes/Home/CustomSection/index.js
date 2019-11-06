@@ -41,6 +41,7 @@ const CustomSection = () => {
       .then(res => {
         if (res && res.data) {
           setTimeout(() => {
+            console.log(res.data);
             setCustomSectionThree(res.data.data);
           }, 2000);
         }

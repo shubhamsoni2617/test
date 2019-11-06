@@ -60,6 +60,9 @@ const Header = ({ menuActive, pathName }) => {
                       <Link to="/sell-event-tickets">Sell tickets with us</Link>
                     </li>
                     <li>
+                      <Link to="/landing-page">B2B</Link>
+                    </li>
+                    <li>
                       <Link to="/system-licensing">System Licensing</Link>
                     </li>
                     <li>
@@ -143,6 +146,11 @@ const Header = ({ menuActive, pathName }) => {
                       onClick={handleNavigationClose}
                     >
                       Sell tickets with us
+                    </Link>
+                  </li>
+                  <li className="has-submenu">
+                    <Link to="/landing-page" onClick={handleNavigationClose}>
+                      B2B
                     </Link>
                   </li>
                   <li className="has-submenu">

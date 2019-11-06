@@ -11,7 +11,9 @@ const MostViewed = () => {
   }, []);
   const fetchMostViewedService = () => {
     const params = {
-      client: Constants.CLIENT
+      client: Constants.CLIENT,
+      first: 0,
+      limit: 2
     };
     AdvertisementService.getSearchListService(params)
       .then(res => {
