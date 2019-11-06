@@ -28,13 +28,13 @@ const Footer = () => {
                   <a>Sell with Us</a>
                 </li>
                 <li>
-                  <a>Ticketing Technology</a>
+                  <Link to="/system-licensing">Ticketing Technology</Link>
                 </li>
                 <li>
                   <Link to="/apipartners">Partner with Us</Link>
                 </li>
                 <li>
-                  <Link to="/careers">Careers</Link>
+                  <Link to="/career">Careers</Link>
                 </li>
               </ul>
             </div>
@@ -144,7 +144,7 @@ const Footer = () => {
             </div>
             <ul className="footer-btm-links">
               <li>
-                <Link to="/privacy">Privacy Policy</Link>
+                <Link to="/privacy-policy">Privacy Policy</Link>
               </li>
               <li>
                 <Link to="/terms-and-conditions">Terms & Conditions</Link>
