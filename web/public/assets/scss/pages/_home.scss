@@ -3107,6 +3107,7 @@ body.page-load {
 	.most-viewed {
 		padding: 0 20px;
 		padding-bottom: 10px;
+		width: 100%; 
 		@include tablet-portrait {
 			overflow-x: auto;
 		}

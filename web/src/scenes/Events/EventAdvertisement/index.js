@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import AdvertisementService from '../../../../shared/services/AdvertisementService';
-import Constants from '../../../../shared/constants';
-import Image from '../../../../shared/components/Image';
+import AdvertisementService from '../../../shared/services/AdvertisementService';
+import Constants from '../../../shared/constants';
+import Image from '../../../shared/components/Image';
 import './style.scss';
 
-const SearchAdvertisement = () => {
+const EventAdvertisement = () => {
   const [adv, setAdv] = useState(null);
   useEffect(() => {
     fetchMostViewedService();
@@ -15,7 +15,7 @@ const SearchAdvertisement = () => {
       first: 0,
       limit: 2
     };
-    AdvertisementService.getSearchListService(params)
+    AdvertisementService.getEventListService(params)
       .then(res => {
         console.log(res.data.data);
         setAdv(res.data.data);
@@ -46,4 +46,4 @@ const SearchAdvertisement = () => {
   );
 };
 
-export default SearchAdvertisement;
+export default EventAdvertisement;
