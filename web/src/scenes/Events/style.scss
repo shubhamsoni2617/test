@@ -318,6 +318,10 @@
                 padding-right: 0px;
             }
             .most-viewed-img{
+                display: block;
+                a{
+                    display: block;
+                }
                 .image-conatiner{        
                     width: 100%;
                     max-width: 473px;

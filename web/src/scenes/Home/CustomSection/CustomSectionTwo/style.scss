@@ -134,6 +134,8 @@
             .item-img{
                 flex: 0 0 auto;
                 width: auto;
+                height: 78px;
+                max-width: 167px;
                 img{
                     @media(max-width: 650px){
                         max-width: 140px;
