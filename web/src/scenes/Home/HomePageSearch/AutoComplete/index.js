@@ -278,15 +278,14 @@ const Autocomplete = ({ history, buttonActiveHandler, mostViewed }) => {
             }
           }}
         >
-          {!isFocused && (
-            <img src={searchImage} className="img-fluid" alt="search-icon" />
-          )}
-          {isFocused && (
+          {isFocused ? (
             <img
               src={searchImageBlue}
               className="img-fluid"
               alt="search-icon"
             />
+          ) : (
+            <img src={searchImage} className="img-fluid" alt="search-icon" />
           )}
         </button>
       </div>
