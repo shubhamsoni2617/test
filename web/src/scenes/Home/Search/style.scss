@@ -605,7 +605,7 @@
                 padding-right: 0px;
             }
             .most-viewed-img{
-                .image-conatiner{        
+                .image-conatiner{
                     width: 100%;
                     max-width: 455px;
                     max-height: 118px;
@@ -623,8 +623,10 @@
             &:only-child{
                 width: 100%;
                 .image-conatiner{
-                    max-width: 664px;
-                    max-height: 171px;
+                    // max-width: 664px;
+                    // max-height: 171px;
+                    max-width: 455px;
+                    max-height: 118px;
                     @media(max-width: 991px){
                         width: 100%;
                         height: auto;
@@ -634,6 +636,15 @@
                         height: auto;
                     }
                 }
+            }
+            &:first-child{
+                justify-content: flex-end;
+            }
+            &:last-child{
+                justify-content: flex-start;
+            }
+            &:only-child{
+                justify-content: center;
             }
         }
     }
