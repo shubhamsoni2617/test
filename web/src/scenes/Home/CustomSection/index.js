@@ -16,7 +16,9 @@ const CustomSection = () => {
   }, []);
   const getCustomizeSectionTwo = () => {
     const params = {
-      client: Constants.CLIENT
+      client: Constants.CLIENT,
+      limit: 3,
+      first: 0
     };
     AdvertisementService.getCustomizeSectionTwo(params)
       .then(res => {
