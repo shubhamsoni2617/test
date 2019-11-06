@@ -95,7 +95,7 @@ const FeaturedEvents = props => {
   }, [callAPI]);
 
   const scrollHandler = () => {
-    if (!callAPI && window.pageYOffset >= element.current.offsetTop - 100) {
+    if (!callAPI) {
       setCallAPI(true);
     }
   };
@@ -146,6 +146,11 @@ const FeaturedEvents = props => {
       );
     }
   };
+
+  if (!loading && featuredEvents && featuredEvents.length === 0) {
+    return null;
+  }
+
   return (
     <section
       className={
