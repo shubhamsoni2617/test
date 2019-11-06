@@ -1453,7 +1453,7 @@
 // Slider Arrow common CSS
 .slick-slider{
     .slick-prev, .slick-next{
-        height: 82px;
+        height: 85px;
         width: 35px;
         display: flex;
         justify-content: center;
@@ -1469,9 +1469,9 @@
     }
     .slick-prev{
         left: -50px;
-        background: rgba(0,0,0,0.05) url(../../assets/images/left-arrow-blue.svg) 10px 30px no-repeat;
+        background: url(../../assets/images/left-arrow-blue.svg) 5px 0px no-repeat;
         &:hover, &:focus{
-            background: rgba(0, 0, 0, 0.1) url(../../assets/images/left-arrow-blue.svg) 10px 30px no-repeat;
+            background: url(../../assets/images/left-arrow-blue.svg) 5px 0px no-repeat;
         }
         @media(min-width: 768px) and (max-width: 1023px) {
             left: -30px;
@@ -1481,10 +1481,10 @@
         }
     }
     .slick-next{
-        right: -50px;
-        background: rgba(0,0,0,0.05) url(../../assets/images/right-arrow-blue.svg) 12px 30px no-repeat;
+        right: -40px;
+        background: url(../../assets/images/right-arrow-blue.svg) 12px 0px no-repeat;
         &:hover, &:focus{
-            background: rgba(0, 0, 0, 0.1) url(../../assets/images/right-arrow-blue.svg) 12px 30px no-repeat;
+            background: url(../../assets/images/right-arrow-blue.svg) 12px 0px no-repeat;
         }
         @media(min-width: 768px) and (max-width: 1023px) {
             right: -30px;
