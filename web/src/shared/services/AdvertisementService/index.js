@@ -39,6 +39,9 @@ class AdvertisementService {
   getCustomizeSectionThree(params) {
     return API.get(`adv/customize-section-three`, { params });
   }
+  getFindAnEventAds(params) {
+    return API.get(`adv/find-an-event`, { params });
+  }
 }
 
 export default new AdvertisementService();
