@@ -19,7 +19,6 @@ const Banner = ({ bannerData }) => {
                     __html: bannerData.banner_description
                   }}
                 />
-
                 <a href={bannerData.button_link}>{bannerData.button_text}</a>
               </div>
             )}
