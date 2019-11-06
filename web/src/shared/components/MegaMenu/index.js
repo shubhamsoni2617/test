@@ -8,26 +8,10 @@ import eventGenere from '../../../assets/images/event.svg';
 import eventCalender from '../../../assets/images/cal.svg';
 import rightArrowImage from '../../../assets/images/right-arrow.svg';
 import seeAllEvent from '../../../assets/images/right-arrow.svg';
+import Image from '../Image';
 
 const MegaMenu = props => {
-  const featuredEvents = [
-    {
-      id: '1',
-      img: thumbnailImg1,
-      day: 'Sun, 26 May 2019',
-      genre: 'Theatre',
-      text: 'This Is What Happens To Pretty Girls'
-    },
-    {
-      id: '2',
-      img: thumbnailImg1,
-      day: 'Sun, 26 May 2019',
-      genre: 'Theatre',
-      text: 'This Is What Happens To Pretty Girls'
-    }
-  ];
-
-  const { byGenreEvent } = props;
+  const { byGenreEvent, featuredEvents } = props;
 
   return (
     <div className="submenu">
@@ -110,28 +94,49 @@ const MegaMenu = props => {
             </li>
           </ul>
           <ul>
-            {featuredEvents.map(event => {
-              return (
-                <li key={event.id}>
-                  <div className="featured-event-img">
-                    <img src={event.img} className="img-fluid" alt="" />
-                  </div>
-                  <div className="featured-date-category">
-                    <span className="date">{event.day}</span>
-                    <span
-                      className={
-                        event.genre === 'Theatre'
-                          ? 'category theatre'
-                          : 'category Dance'
-                      }
-                    >
-                      {event.genre}
-                    </span>
-                  </div>
-                  <span className="featured-event-title">{event.text}</span>
-                </li>
-              );
-            })}
+            {featuredEvents &&
+              featuredEvents.length > 0 &&
+              featuredEvents.map(event => {
+                return (
+                  <li key={event.id}>
+                    <div className="featured-event-img">
+                      {/* <Image
+                        src={event.full_image}
+                        largeImage={event.full_image}
+                      /> */}
+                      <img
+                        src={event.full_image}
+                        className="img-fluid"
+                        alt=""
+                      />
+                    </div>
+                    <div className="featured-date-category">
+                      {/* {event.event_date && (
+                        <span className="date">{event.event_date}</span>
+                      )} */}
+                      {event.primary_genere && (
+                        <span
+                          className={
+                            event.primary_genere === 'Theatre'
+                              ? 'category theatre'
+                              : `category ${event.primary_genere.toLowerCase()}`
+                          }
+                        >
+                          {event.primary_genere}
+                        </span>
+                      )}
+                    </div>
+                    <a href={event.navigation_link || ''} target="_blank">
+                      <span className="featured-event-title">
+                        {event.title}
+                      </span>
+                    </a>
+                  </li>
+                );
+              })}
+            {featuredEvents && featuredEvents.length === 0 && (
+              <div>No Featured Events</div>
+            )}
           </ul>
         </div>
       </div>
