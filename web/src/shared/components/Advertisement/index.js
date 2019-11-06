@@ -63,14 +63,12 @@ const Advertisement = props => {
           return (
             <div key={elem.title}>
               <a href={elem && elem.navigation_link} target="_blank">
-                <div className="ads-image">
-                  <img
-                    src={elem && elem.full_image}
-                    alt={elem && elem.alt_text}
-                    className="img-fluid"
-                    title={elem && elem.title}
-                  />
-                </div>
+                <img
+                  src={elem && elem.full_image}
+                  alt={elem && elem.alt_text}
+                  className="img-fluid"
+                  title={elem && elem.title}
+                />
               </a>
               <button
                 type="button"
