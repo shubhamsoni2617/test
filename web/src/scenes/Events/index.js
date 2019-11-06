@@ -20,6 +20,7 @@ import Utilities from '../../shared/utilities';
 import './style.scss';
 import SearchFilter from '../../shared/components/SearchFilter';
 import Constants from '../../shared/constants';
+import EventAdvertisement from './EventAdvertisement';
 
 export default class Events extends Component {
   constructor(props) {
@@ -620,6 +621,9 @@ export default class Events extends Component {
                       </span>
                     </li>
                   </ul>
+                </div>
+                <div className="event-listing-ads">
+                  <EventAdvertisement />
                 </div>
                 <div className={this.state.viewTypeClass}>
                   {loader && (
