@@ -42,7 +42,9 @@ const Advertisement = props => {
   const getLeaderboardImage = () => {
     const params = {
       client: Constants.CLIENT,
-      page: 1
+      page: 1,
+      limit: 1,
+      first: 0
     };
     AdvertisementService.getLeaderboardImage(params)
       .then(res => {
