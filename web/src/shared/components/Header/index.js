@@ -138,43 +138,28 @@ const Header = ({ menuActive, pathName }) => {
                 </a>
                 <ul className={`submenu ${showMegaMenu ? 'active' : ''}`}>
                   <li className="has-submenu">
-                    <Submenu
-                      heading="Sell tickets with us"
-                      buttonText="Sell tickets with us"
-                      data={null}
-                      submenuClass=""
-                      link="/sell-event-tickets"
-                      closeSubmenu={handleNavigationClose}
-                      resetFilters={() => {}}
-                      clearFilters={() => {}}
-                      applyFilters={() => {}}
-                    />
+                    <Link
+                      to="/sell-event-tickets"
+                      onClick={handleNavigationClose}
+                    >
+                      Sell tickets with us
+                    </Link>
                   </li>
                   <li className="has-submenu">
-                    <Submenu
-                      heading="System Licencing"
-                      buttonText="System Licencing"
-                      data={null}
-                      submenuClass=""
-                      link="/system-licensing"
-                      closeSubmenu={handleNavigationClose}
-                      resetFilters={() => {}}
-                      clearFilters={() => {}}
-                      applyFilters={() => {}}
-                    />
+                    <Link
+                      to="/system-licensing"
+                      onClick={handleNavigationClose}
+                    >
+                      System Licencing
+                    </Link>
                   </li>
                   <li className="has-submenu">
-                    <Submenu
-                      heading="Be our partner"
-                      buttonText="Be our partner"
-                      data={null}
-                      submenuClass=""
-                      link=""
-                      closeSubmenu={handleNavigationClose}
-                      resetFilters={() => {}}
-                      clearFilters={() => {}}
-                      applyFilters={() => {}}
-                    />
+                    <Link
+                      to="/system-licensing"
+                      onClick={handleNavigationClose}
+                    >
+                      Be our partner
+                    </Link>
                   </li>
                 </ul>
               </li>
