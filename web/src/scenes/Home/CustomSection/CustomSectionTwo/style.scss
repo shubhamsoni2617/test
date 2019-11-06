@@ -145,8 +145,8 @@
                 margin-right: 0px;
             }    
             .item-img{
-                flex: 0 0 auto;
-                width: auto;
+                flex: 0 0 167px;
+                width: 167px;
                 height: 78px;
                 max-width: 167px;
                 img{
@@ -156,8 +156,8 @@
                 }
             }
             .royal-item-content{
-                flex: 0 0 auto;
-                width: auto;
+                flex: 0 0 calc(100% - 167px);
+                width: calc(100% - 167px);
                 padding-left: 17px;
                 @media(max-width: 1180px){
                     padding-left: 0px;
