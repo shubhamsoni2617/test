@@ -32,11 +32,14 @@ const EventAdvertisement = () => {
             return (
               <li key={elem.primary_genere + index}>
                 <div className="most-viewed-img">
-                  <Image
-                    src={elem.full_image}
-                    type="MediumHorizontal"
-                    className="img-fluid"
-                  />
+                  <a href={elem.navigation_link} target='_blank'>
+
+                    <Image
+                      src={elem.full_image}
+                      type="MediumHorizontal"
+                      className="img-fluid"
+                    />
+                  </a>
                 </div>
               </li>
             );

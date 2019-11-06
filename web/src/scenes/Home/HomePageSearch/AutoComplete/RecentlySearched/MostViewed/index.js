@@ -18,7 +18,9 @@ const MostViewed = ({ mostViewed }) => {
                   />
                 </div>
                 <span className="category musical">{elem.primary_genre}</span>
-                <h4>{elem.title}</h4>
+                <a href={elem.navigation_link} target='_blank'>
+                  <h4>{elem.title}</h4>
+                </a>
               </li>
             );
           })}
