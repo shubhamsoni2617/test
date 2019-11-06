@@ -59,7 +59,8 @@ const Advertisement = props => {
       });
   };
 
-  if (homeAdv && homeAdv.length === 0) return <div ref={refValue}></div>;
+  if (homeAdv && homeAdv.length === 0)
+    return <div className={`no-ads`} ref={refValue}></div>;
 
   return (
     <div className="top-ads" ref={refValue}>
