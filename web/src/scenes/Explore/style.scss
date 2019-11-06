@@ -1,0 +1,53 @@
+.explore-page-banner {
+    background-color: #091118;
+    color: #fff;
+    display: flex;
+    flex-wrap: wrap;
+    overflow: hidden;
+    min-height: 377px;
+    .banner-content{
+        flex: 0 0 50%;
+        width: 50%;
+        padding: 78px 20px 75px 83px;
+        position: relative;
+        &:after{
+            position: absolute;
+            content: "";
+            width: 100px;
+            background-color: #091018;
+            height: calc(100% + 70px);
+            top: -40px;
+            bottom: 0;
+            transform: rotate3d(1, 1, 1, 27deg);
+            right: -44px;
+        }
+        h3{
+            font-size: 30px;
+            font-weight: 600;
+            font-family: 'Montserrat', sans-serif;
+            line-height: 37px;
+            padding-bottom: 28px;
+            border-bottom: 1px solid #0098FF;
+            margin-bottom: 35px;
+        }
+        p{
+            color: #B5BDC3;	
+            font-family: 'Rubik', sans-serif;	
+            font-size: 16px;	
+            line-height: 24px;
+            padding-bottom: 17PX;
+        }
+        a, a:not([href]):not([tabindex]){
+            font-size: 18px;
+            font-weight: 600;
+            color: #0098FF;
+            border: 1px solid #0098FF;
+            padding: 7px 25px;
+            font-family: 'Montserrat', sans-serif;
+        }
+    }
+    .banner-slider{
+        flex: 0 0 50%;
+        width: 50%;
+    }
+}

@@ -20,6 +20,7 @@ import Search from '../Home/Search';
 import SystemLicensing from '../SystemLicensing';
 import Advertise from '../Advertise';
 import LandingPage from '../LandingPage';
+import Explore from '../../scenes/Explore';
 
 const routes = [
   {
@@ -137,6 +138,11 @@ const routes = [
   {
     path: '/landing-page',
     component: LandingPage,
+    exact: true
+  },
+  {
+    path: '/explore',
+    component: Explore,
     exact: true
   },
   {
