@@ -164,7 +164,8 @@ const TopNav = props => {
         pathArr[1] === 'about-us' ||
         pathArr[1] === 'careers' ||
         pathArr[1] === 'system-licensing' ||
-        pathArr[1] === 'advertise'
+        pathArr[1] === 'advertise' ||
+        pathArr[1] === 'landing-page'
       ) {
         setChangeHeader(true);
         setPathName(pathArr[1]);
