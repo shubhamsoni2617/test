@@ -55,14 +55,11 @@ const Media = ({ mediaData }) => {
                 );
               })}
           </div>
-          {/* {mediaData && mediaData.length > 2 && !seeMore && (
+          {mediaData && mediaData.length > 2 && !seeMore && (
             <div className="article-bottom">
               <span onClick={() => setSeeMore(true)}>View all Media</span>
             </div>
-          )} */}
-          <div className="article-bottom">
-            <span className="view-all-btn" onClick={() => setSeeMore(true)}>View all Media <img src={downArrow} alt="down-arrow" /></span>
-          </div>
+          )}
         </div>
       </div>
     </section>

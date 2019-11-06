@@ -74,7 +74,7 @@ const routes = [
     cmsPageType: 1
   },
   {
-    path: '/privacy',
+    path: '/privacy-policy',
     component: TermsPrivacy,
     exact: true,
     cmsPageType: 2
@@ -100,12 +100,12 @@ const routes = [
     exact: true
   },
   {
-    path: '/careers',
+    path: '/career',
     component: Careers,
     exact: true
   },
   {
-    path: '/careers/jobdescription/:jobId',
+    path: '/career/jobdescription/:jobId',
     component: JobDescription,
     exact: true
   },
