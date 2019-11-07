@@ -23,9 +23,10 @@ const SearchCategory = props => {
                       }`}
                       onClick={() => handleActiveCategory(category.type)}
                     >
-                      {`${category.type[0].toUpperCase()}${category.type.slice(
-                        1
-                      )}`}
+                      {category.type &&
+                        `${category.type[0].toUpperCase()}${category.type.slice(
+                          1
+                        )}`}
                       {category.type === 'attraction' ||
                       category.type === 'promotion'
                         ? `s `

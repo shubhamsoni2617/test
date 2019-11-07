@@ -2,14 +2,14 @@ import React from 'react';
 import noEvent from '../../../../assets/images/no-event.svg';
 import './style.scss';
 
-const SearchNotFound = () => {
+const SearchNotFound = ({ searchKeyword }) => {
   return (
     <div className="searchnotfound">
       <div className="container">
         <div className="no-data">
           <img src={noEvent} alt="no-event" className="img-fluid" />
           <p>
-            <strong>Opps! Page Not Found</strong>
+            <strong>Opps! No Result Found For '{searchKeyword}'</strong>
           </p>
           <p>You can also visit</p>
           <ul className="no-result-search-listing">
