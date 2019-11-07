@@ -42,7 +42,15 @@ const SellTicketsWithUs = () => {
 
   const handleSubmit = event => {
     event.preventDefault();
-    if (name && email && contactNo && eventName && venueName && eventCapacity) {
+    if (
+      name &&
+      email &&
+      contactNo &&
+      eventName &&
+      venueName &&
+      eventCapacity &&
+      captcha
+    ) {
       setLoading(true);
       const data = {
         name,

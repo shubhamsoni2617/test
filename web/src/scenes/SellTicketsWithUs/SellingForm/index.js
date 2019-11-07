@@ -238,6 +238,7 @@ const SellingForm = ({
                       type="button"
                       className="btn reset"
                       onClick={handleReset}
+                      disabled={loading ? true : false}
                     >
                       Reset
                     </button>
