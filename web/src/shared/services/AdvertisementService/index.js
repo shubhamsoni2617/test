@@ -20,6 +20,10 @@ class AdvertisementService {
     return API.get(`adv/search-list`, { params });
   }
 
+  getEventListService(params) {
+    return API.get(`adv/event-listing`, { params });
+  }
+
   getGiftCardService(params) {
     return API.get(`adv/side-panel`, { params });
   }
@@ -34,6 +38,9 @@ class AdvertisementService {
 
   getCustomizeSectionThree(params) {
     return API.get(`adv/customize-section-three`, { params });
+  }
+  getFindAnEventAds(params) {
+    return API.get(`adv/find-an-event`, { params });
   }
 }
 

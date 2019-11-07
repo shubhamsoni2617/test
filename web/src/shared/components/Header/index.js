@@ -92,7 +92,7 @@ const Header = ({ menuActive, pathName }) => {
                     menuActive && pathName === 'careers' ? 'active-link' : ''
                   }
                 >
-                  <Link to="/careers">Careers</Link>
+                  <Link to="/career">Careers</Link>
                 </li>
                 <li
                   className={
@@ -185,7 +185,7 @@ const Header = ({ menuActive, pathName }) => {
                 </Link>
               </li>
               <li>
-                <Link to="/careers" onClick={() => handleNavigationClose()}>
+                <Link to="/career" onClick={() => handleNavigationClose()}>
                   Careers
                 </Link>
               </li>

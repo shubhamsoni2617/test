@@ -69,6 +69,7 @@ const TopNav = props => {
   const [headerClassScroll, setHeaderClassScroll] = useState(false);
   const [stickyHeader, setStickyHeader] = useState(false);
   const [mostViewed, setMostViewed] = useState(null);
+  const [featuredEvents, setFeaturedEvents] = useState([]);
   const miniCartData = [
     { id: '1', img: 'assets/images/explore.png' },
     { id: '2', img: 'assets/images/explore.png' },
@@ -97,6 +98,22 @@ const TopNav = props => {
       })
       .catch(err => {
         console.log(err);
+      });
+
+    AdvertisementService.getFindAnEventAds({
+      client: Constants.CLIENT,
+      limit: 2,
+      first: 0
+    })
+      .then(res => {
+        if (res && res.data) {
+          setFeaturedEvents(res.data.data);
+        }
+      })
+      .catch(err => {
+        if (err && err.response) {
+          console.log(err.response);
+        }
       });
     if (props.history.location.pathname) processPath(props.history.location);
 
@@ -278,6 +295,7 @@ const TopNav = props => {
                         handleMouseStatus={handleMouseStatus}
                         byGenreEvent={byGenreEvent}
                         byVenueEvent={byVenueEvent}
+                        featuredEvents={featuredEvents}
                       />
                     )}
                   </CSSTransitionGroup>

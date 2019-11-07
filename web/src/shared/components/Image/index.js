@@ -6,6 +6,8 @@ import Vertical from '../../../assets/images/vertical.png';
 import Tile from '../../../assets/images/Vertical Tile.png';
 import Small from '../../../assets/images/small.png';
 import Medium from '../../../assets/images/noimage.png';
+import MediumVertical from '../../../assets/images/mediumVertical.png';
+import MediumHorizontal from '../../../assets/images/mediumHorizontal.jpg';
 
 import './style.scss';
 
@@ -34,7 +36,12 @@ function Image(props) {
       case 'Vertical':
         newImg = Vertical;
         break;
-
+      case 'MediumVertical':
+        newImg = MediumVertical;
+        break;
+      case 'MediumHorizontal':
+        newImg = MediumHorizontal;
+        break;
       case 'Tile':
         newImg = Tile;
         break;

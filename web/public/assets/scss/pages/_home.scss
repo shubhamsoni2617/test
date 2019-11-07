@@ -622,9 +622,8 @@
 									font-weight: 500;
 									line-height: 15px;
 									height: 15px;
-									width: 52.33px;
+									width: auto;
 									text-align: center;
-									padding: 0px;
 									margin-left: auto;
 								}
 							}
@@ -3107,6 +3106,7 @@ body.page-load {
 	.most-viewed {
 		padding: 0 20px;
 		padding-bottom: 10px;
+		width: 100%; 
 		@include tablet-portrait {
 			overflow-x: auto;
 		}

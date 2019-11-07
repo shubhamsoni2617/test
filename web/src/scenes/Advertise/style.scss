@@ -557,6 +557,7 @@
     .event-banner{
         background-image: none;
         background-color: #1a1a1a;
+        max-height: 389px;
         .banner-content{
             @media(max-width: 1024px){
                 padding-left: 0px;

@@ -28,13 +28,13 @@ const Footer = () => {
                   <Link to="/sell-event-tickets">Sell with Us</Link>
                 </li>
                 <li>
-                  <a>Ticketing Technology</a>
+                  <Link to="/system-licensing">Ticketing Technology</Link>
                 </li>
                 <li>
                   <Link to="/apipartners">Partner with Us</Link>
                 </li>
                 <li>
-                  <Link to="/careers">Careers</Link>
+                  <Link to="/career">Careers</Link>
                 </li>
               </ul>
             </div>
@@ -120,13 +120,19 @@ const Footer = () => {
                 <h3>Follow us on</h3>
                 <ul className="social">
                   <li>
-                    <a href="https://www.facebook.com/SISTICsingapore">
+                    <a
+                      href="https://www.facebook.com/SISTICsingapore"
+                      target="_blank"
+                    >
                       <img src={fb} alt="" />
                       <img className="active" src={fbFill} alt="" />
                     </a>
                   </li>
                   <li>
-                    <a href="https://www.facebook.com/SISTICsingapore">
+                    <a
+                      href="https://www.instagram.com/sisticsingapore/"
+                      target="_blank"
+                    >
                       <img src={insta} alt="" />
                       <img className="active" src={instaFill} alt="" />
                     </a>
@@ -144,7 +150,7 @@ const Footer = () => {
             </div>
             <ul className="footer-btm-links">
               <li>
-                <Link to="/privacy">Privacy Policy</Link>
+                <Link to="/privacy-policy">Privacy Policy</Link>
               </li>
               <li>
                 <Link to="/terms-and-conditions">Terms & Conditions</Link>

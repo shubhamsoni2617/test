@@ -588,19 +588,67 @@
 
     }
     .advertisment-listing{
-        display: block;
+        display: flex;
+        justify-content: center;
         margin: 0 auto;
         text-align: center;
         li{
             list-style: none;
             display: inline-block;
             padding-right: 10px;
-            width: auto;
-            @media(max-width: 1180px){
-                width: 50%;
-            }
+            width: 50%;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
             &:last-child{
                 padding-right: 0px;
+            }
+            .most-viewed-img{
+                display: block;
+                a{
+                    display: block;
+                }
+                .image-conatiner{
+                    width: 100%;
+                    max-width: 455px;
+                    max-height: 118px;
+                    overflow: hidden;
+                    @media(max-width: 991px){
+                        width: 100%;
+                        height: auto;
+                    }
+                    img{
+                        max-width: 100%;
+                        height: auto;
+                    }
+                }
+            }
+            &:only-child{
+                width: 100%;
+                .image-conatiner{
+                    // max-width: 664px;
+                    // max-height: 171px;
+                    max-width: 455px;
+                    max-height: 118px;
+                    @media(max-width: 991px){
+                        width: 100%;
+                        height: auto;
+                    }
+                    img{
+                        max-width: 100%;
+                        height: auto;
+                    }
+                }
+            }
+            &:first-child{
+                justify-content: flex-end;
+            }
+            &:last-child{
+                justify-content: flex-start;
+            }
+            &:only-child{
+                justify-content: center;
             }
         }
     }
