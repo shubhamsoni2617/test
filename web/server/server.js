@@ -26,6 +26,9 @@ app.post('/sistic/docroot/**', function(req, res) {
         body: JSON.stringify(req.body),
         headers: req.headers
       })
+      .on('error', function(err) {
+        console.error(err);
+      })
       .pipe(res);
   } else {
     req.pipe(request.post(newurl)).pipe(res);
@@ -34,7 +37,12 @@ app.post('/sistic/docroot/**', function(req, res) {
 
 app.get('/sistic/docroot/**', function(req, res) {
   var newurl = `http://${req.hostname}:8081${req.originalUrl}`;
-  request(newurl).pipe(res);
+  request
+    .get(newurl)
+    .on('error', function(err) {
+      console.error(err);
+    })
+    .pipe(res);
 });
 
 app.get('*', (req, res, next) => {
