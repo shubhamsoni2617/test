@@ -12,9 +12,11 @@ const Banner = ({ title, buttonLink, buttonText, description }) => {
               className="sub-text"
               dangerouslySetInnerHTML={{ __html: description }}
             ></p>
-            <a href={buttonLink} target="_blank">
-              {buttonText}
-            </a>
+            {buttonText && (
+              <a href={buttonLink} target="_blank">
+                {buttonText}
+              </a>
+            )}
           </div>
         </div>
       </div>

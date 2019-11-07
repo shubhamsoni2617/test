@@ -179,10 +179,10 @@ const TopNav = props => {
       } else if (
         pathArr[1] === 'contact-us' ||
         pathArr[1] === 'about-us' ||
-        pathArr[1] === 'careers' ||
+        pathArr[1] === 'career' ||
         pathArr[1] === 'system-licensing' ||
         pathArr[1] === 'advertise' ||
-        pathArr[1] === 'landing-page'
+        pathArr[1] === 'b2b'
       ) {
         setChangeHeader(true);
         setPathName(pathArr[1]);
