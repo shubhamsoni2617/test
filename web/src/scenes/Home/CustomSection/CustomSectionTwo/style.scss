@@ -149,6 +149,7 @@
                 width: 167px;
                 height: 78px;
                 max-width: 167px;
+                overflow: hidden;
                 img{
                     @media(max-width: 650px){
                         max-width: 140px;
@@ -183,6 +184,9 @@
             &:hover{
                 h3{
                     color: #0098ff;
+                    a{
+                        color: #0098ff;
+                    }
                 }
             }
             &:last-child{
