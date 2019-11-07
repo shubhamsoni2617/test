@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import './style.scss';
-import { Link } from 'react-router-dom';
 import arrowDown from '../../../assets/images/more-arrow-white-blue.svg';
 
 const Partners = ({ partnersLogo, clients }) => {
@@ -20,8 +19,8 @@ const Partners = ({ partnersLogo, clients }) => {
           dangerouslySetInnerHTML={{ __html: clients.description }}
         />
         <ul className="partners-list">
-          {partnersLogo &&
-            partnersLogo.map(({ logo, url }) => {
+          {fourPartnerLogo &&
+            fourPartnerLogo.map(({ logo, url }) => {
               return (
                 <li key={logo}>
                   <a href={url} target="_blank">

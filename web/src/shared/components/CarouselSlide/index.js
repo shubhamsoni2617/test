@@ -25,7 +25,7 @@ const CarouselSlide = ({ elem }) => {
           </Link>
         )}
         {elem.navigation_link && (
-          <a href={`${elem.navigation_link}`}>
+          <a target="_blank" href={`${elem.navigation_link}`}>
             <EventHeading title={elem.title} lines={2} height={19} />
           </a>
         )}
