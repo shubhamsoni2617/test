@@ -34,7 +34,7 @@ class JobDescription extends Component {
       count: 0,
       breadcrumb_slug: [
         { path: '/', title: 'Home' },
-        { path: '/careers', title: 'Careers' },
+        { path: '/career', title: 'Careers' },
         { title: 'Job Description' }
       ]
     };

@@ -6,7 +6,7 @@ import AdvertisementService from '../../services/AdvertisementService';
 import Constants from '../../constants';
 const Advertisement = props => {
   const refValue = useRef();
-  const [homeAdv, setHomeAdv] = useState([]);
+  const [homeAdv, setHomeAdv] = useState(null);
 
   const handleClose = () => {
     sessionStorage.setItem('advertisment', false);
@@ -42,7 +42,9 @@ const Advertisement = props => {
   const getLeaderboardImage = () => {
     const params = {
       client: Constants.CLIENT,
-      page: 1
+      page: 1,
+      limit: 1,
+      first: 0
     };
     AdvertisementService.getLeaderboardImage(params)
       .then(res => {
@@ -56,21 +58,23 @@ const Advertisement = props => {
         }
       });
   };
+
+  if (homeAdv && homeAdv.length === 0)
+    return <div className={`show-add no-ads`} ref={refValue}></div>;
+
   return (
     <div className="top-ads" ref={refValue}>
       {homeAdv &&
         homeAdv.map(elem => {
           return (
-            <div className="container-fluid" key={elem.title}>
+            <div key={elem.title}>
               <a href={elem && elem.navigation_link} target="_blank">
-                <div className="ads-image">
-                  <img
-                    src={elem && elem.full_image}
-                    alt={elem && elem.alt_text}
-                    className="img-fluid"
-                    title={elem && elem.title}
-                  />
-                </div>
+                <img
+                  src={elem && elem.full_image}
+                  alt={elem && elem.alt_text}
+                  className="img-fluid"
+                  title={elem && elem.title}
+                />
               </a>
               <button
                 type="button"

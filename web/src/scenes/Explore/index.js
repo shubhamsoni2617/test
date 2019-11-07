@@ -3,6 +3,7 @@ import Sifa from '../../assets/images/sifa.png';
 import Festival from '../../assets/images/festival.png';
 import Chinese from '../../assets/images/chinese.png'
 import Chritmas from '../../assets/images/christmas.png'
+import Article from '../../assets/images/explore-article.png';
 import './style.scss';
 
 const Explore = () => {
@@ -93,7 +94,7 @@ const Explore = () => {
                                 Dolor Amet Gems Lorem ipsum.. <a>More</a></p>
                             </div>
                             <div className="col-md-5">
-                                <img src="assets/images/explore-article.png" alt="article" />
+                                <img src={Article} alt="article" />
                             </div>
                         </div>
                     </div>

@@ -6,7 +6,10 @@ import royal from '../../../../assets/images/royal.jpg';
 import royalSubimg from '../../../../assets/images/royal-img.png';
 
 const CustomSectioTwo = ({ customSectionTwo, loading }) => {
-  return !customSectionTwo.length ? (
+  if (!loading && customSectionTwo && customSectionTwo.length === 0) {
+    return null;
+  }
+  return loading ? (
     <ShimmerEffect
       propCls={`shm_col-xs-6 col-md-6`}
       height={300}
@@ -22,33 +25,33 @@ const CustomSectioTwo = ({ customSectionTwo, loading }) => {
           </div>
           <div className="royal-items-wrapper">
             <div className="royal-leftsection">
-              <a
-                href={
-                  customSectionTwo &&
-                  customSectionTwo[0] &&
-                  customSectionTwo[0].navigation_link
-                }
-                target="_blank"
-              >
-                <div>
-                  {/* {customSectionTwo && customSectionTwo[0] && (
-                    <Image
-                      src={customSectionTwo[0].full_image}
-                      alt={customSectionTwo[0].alt}
-                      type="BigBanner"
-                    />
-                  )} */}
-                  <img src={royal} alt="pride" className="img-fluid" />
-                </div>
-              </a>
+              <div>
+                {customSectionTwo && customSectionTwo[0] && (
+                  <img
+                    src={customSectionTwo[0].full_image}
+                    alt={customSectionTwo[0].alt_text}
+                    className="img-fluid"
+                  />
+                )}
+                {/* <img src={royal} alt="pride" className="img-fluid" /> */}
+              </div>
             </div>
             <div className="royal-rightsection">
               <div className="royal-rightside-textwrapper">
-                <h3>
-                  {customSectionTwo &&
+                <a
+                  href={
+                    customSectionTwo &&
                     customSectionTwo[0] &&
-                    customSectionTwo[0].title}
-                </h3>
+                    customSectionTwo[0].navigation_link
+                  }
+                  target="_blank"
+                >
+                  <h3>
+                    {customSectionTwo &&
+                      customSectionTwo[0] &&
+                      customSectionTwo[0].title}
+                  </h3>
+                </a>
                 <p>10 Jan 2019</p>
               </div>
               <div className="royal-items">
@@ -58,26 +61,30 @@ const CustomSectioTwo = ({ customSectionTwo, loading }) => {
                     .map((elem, i) => {
                       return (
                         <div key={i} className="item-wrapper">
-                          <a
-                            className="item-img"
-                            href={elem.navigation_link}
-                            target="_blank"
-                          >
-                            {/* {elem && elem.full_image && (
-                            <Image
-                              src={elem.full_image}
-                              alt={elem.alt}
-                              type="Horizontal"
-                            />
-                          )} */}
-                            <img
-                              src={royalSubimg}
-                              alt="pride"
-                              className="img-fluid"
-                            />
-                          </a>
+                          {elem && elem.full_image && (
+                            <div className="item-img">
+                              <img
+                                src={elem.full_image}
+                                alt={elem.alt_text}
+                                className="img-fluid"
+                              />
+                            </div>
+                          )}
+                          {/* <img
+                            src={royalSubimg}
+                            alt="pride"
+                            className="img-fluid"
+                          /> */}
                           <div className="royal-item-content">
-                            <h3>{elem.title}</h3>
+                            <h3>
+                              <a
+                                className="item-img"
+                                href={elem.navigation_link}
+                                target="_blank"
+                              >
+                                {elem.title}
+                              </a>
+                            </h3>
                             <p>24 May 2019</p>
                           </div>
                         </div>

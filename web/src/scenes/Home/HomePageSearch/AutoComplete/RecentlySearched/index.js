@@ -61,7 +61,9 @@ const RecentlySearched = ({ focusHandler, history, mostViewed }) => {
             </ul>
           </div>
         ) : null}
-        {mostViewed && <MostViewed mostViewed={mostViewed} />}
+        {mostViewed && mostViewed.length ? (
+          <MostViewed mostViewed={mostViewed} />
+        ) : null}
       </div>
     </div>
   );

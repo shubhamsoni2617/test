@@ -35,7 +35,6 @@ const LandingPage = () => {
         console.log(err);
       });
   };
-
   return (
     <div className="b2b-landing">
       <Banner bannerData={landingPageData} />
@@ -50,7 +49,9 @@ const LandingPage = () => {
       <Network
         networkData={landingPageData && landingPageData.content.network}
       />
-      <ContactUs />
+      <div className="apipartners-wrapper">
+        <ContactUs />
+      </div>
     </div>
   );
 };

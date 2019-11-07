@@ -57,7 +57,7 @@ const Header = ({ menuActive, pathName }) => {
                   <a>Get Started</a>
                   <ul className="small-header-submenu">
                     <li>
-                      <Link to="/landing-page">B2B</Link>
+                      <Link to="/b2b">B2B</Link>
                     </li>
                     <li>
                       <a>Sell tickets with us</a>
@@ -92,7 +92,7 @@ const Header = ({ menuActive, pathName }) => {
                     menuActive && pathName === 'careers' ? 'active-link' : ''
                   }
                 >
-                  <Link to="/careers">Careers</Link>
+                  <Link to="/career">Careers</Link>
                 </li>
                 <li
                   className={
@@ -195,7 +195,7 @@ const Header = ({ menuActive, pathName }) => {
                 </Link>
               </li>
               <li>
-                <Link to="/careers" onClick={() => handleNavigationClose()}>
+                <Link to="/career" onClick={() => handleNavigationClose()}>
                   Careers
                 </Link>
               </li>

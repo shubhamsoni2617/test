@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import downloadIcon from '../../../assets/images/download-icon-blue.svg';
+import downArrow from '../../../assets/images/more-arrow-white-blue.svg';
 
 const Media = ({ mediaData }) => {
   const [seeMore, setSeeMore] = useState(false);
@@ -32,9 +33,9 @@ const Media = ({ mediaData }) => {
                       <a href="#">
                         <span>{media.category}</span>
                       </a>
-                      <h2>{media.title}</h2>
+                      <h3>{media.title}</h3>
                       <div
-                        className="text-center sub-text"
+                        className="sub-text"
                         dangerouslySetInnerHTML={{
                           __html: media.description
                         }}

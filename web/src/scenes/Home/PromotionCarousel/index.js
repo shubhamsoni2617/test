@@ -99,8 +99,8 @@ export default class PromotionCarousel extends Component {
     }
   };
 
-  handlePromotionExpired = text => {
-    this.setState({ text });
+  handlePromotionExpired = expiredText => {
+    this.setState({ expiredText });
   };
 
   getPromotions() {
@@ -163,34 +163,34 @@ export default class PromotionCarousel extends Component {
                 />
               </span> */}
               <div className="promo-animation-wrap">
-                  <div className="promo-animation-img first">
-                    <img
-                      src={promoImg1}
-                      className="img-fluid"
-                      alt="promotions"
-                    />
-                  </div>
-                  <div className="promo-animation-img second">
+                <div className="promo-animation-img first">
                   <img
-                      src={promoImg2}
-                      className="img-fluid"
-                      alt="promotions"
-                    />
-                  </div>
-                  <div className="promo-animation-img third">
-                    <img
-                      src={promoImg3}
-                      className="img-fluid"
-                      alt="promotions"
-                    />
-                  </div>
-                  <div className="promo-animation-img fourth">
-                    <img
-                      src={promoImg4}
-                      className="img-fluid"
-                      alt="promotions"
-                    />
-                  </div>
+                    src={promoImg1}
+                    className="img-fluid"
+                    alt="promotions"
+                  />
+                </div>
+                <div className="promo-animation-img second">
+                  <img
+                    src={promoImg2}
+                    className="img-fluid"
+                    alt="promotions"
+                  />
+                </div>
+                <div className="promo-animation-img third">
+                  <img
+                    src={promoImg3}
+                    className="img-fluid"
+                    alt="promotions"
+                  />
+                </div>
+                <div className="promo-animation-img fourth">
+                  <img
+                    src={promoImg4}
+                    className="img-fluid"
+                    alt="promotions"
+                  />
+                </div>
               </div>
             </h2>
             <div className="carousel-dots">
