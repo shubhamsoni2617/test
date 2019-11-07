@@ -35,7 +35,6 @@ const LandingPage = () => {
         console.log(err);
       });
   };
-
   return (
     <div className="b2b-landing">
       <Banner bannerData={landingPageData} />
