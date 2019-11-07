@@ -57,7 +57,7 @@ const Header = ({ menuActive, pathName }) => {
                   <a>Get Started</a>
                   <ul className="small-header-submenu">
                     <li>
-                      <Link to="/landing-page">B2B</Link>
+                      <Link to="/b2b">B2B</Link>
                     </li>
                     <li>
                       <a>Sell tickets with us</a>

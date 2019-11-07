@@ -4,7 +4,7 @@ import Image from '../../../../shared/components/Image';
 import ShimmerEffect from '../../../../shared/components/ShimmerEffect';
 import './style.scss';
 
-const CustomSectionThree = ({ customSectionThree }) => {
+const CustomSectionThree = ({ customSectionThree, loading }) => {
   const [url, setUrl] = useState(null);
   const [title, setTitle] = useState(null);
   const [controls, setControls] = useState(false);
@@ -22,9 +22,13 @@ const CustomSectionThree = ({ customSectionThree }) => {
     }
   }, [customSectionThree]);
 
+  if (!loading && customSectionThree && customSectionThree.length === 0) {
+    return null;
+  }
+
   return (
     <div>
-      {!customSectionThree.length ? (
+      {loading ? (
         <ShimmerEffect
           propCls={`shm_col-xs-6 col-md-6`}
           height={300}
