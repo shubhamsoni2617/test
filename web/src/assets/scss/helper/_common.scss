@@ -1057,7 +1057,7 @@ button,
 			.DayPicker-Caption {
 				color: #343434;
 				font-size: 12px;
-				padding: 10px 10px 0px;
+				padding: 0px 10px 0px;
 				@media(max-width: 767px){
 					padding: 0px 10px 0px;
 				}
@@ -1126,6 +1126,12 @@ button,
 				transform: rotate(180deg);
 			}
 		}
+	}
+	.DayPicker-Month{
+		width: 100% !important;
+	}
+	.calender-action{
+		padding-left: 10px;
 	}
 }
 
