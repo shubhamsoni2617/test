@@ -135,7 +135,7 @@ const routes = [
     exact: true
   },
   {
-    path: '/landing-page',
+    path: '/b2b',
     component: LandingPage,
     exact: true
   },
