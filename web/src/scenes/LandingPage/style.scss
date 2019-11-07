@@ -94,6 +94,12 @@
         img{
             min-width: 14px;
         }
+        &:hover{
+            img{
+                animation: keydownbtn 0.5s linear;
+                animation-iteration-count: infinite;
+            }
+        }
     }
     h2 {
         color: #343434;
@@ -248,11 +254,17 @@
                     content: "";
                     background-color: #000000;
                     opacity: 0.4;
-                        -webkit-transition: all 0.3s ease-in-out;
+                    -webkit-transition: all 0.3s ease-in-out;
                     -moz-transition: all 0.3s ease-in-out;
                     -o-transition: all 0.3s ease-in-out;
                     -ms-transition: all 0.3s ease-in-out;
                     transition: all 0.3s ease-in-out;
+                }
+                .programmes-img{
+                    img{
+                        -webkit-filter: grayscale(100%);
+                        filter: grayscale(100%);
+                    }
                 }
             }
             .mask {
@@ -355,6 +367,11 @@
                     overflow: hidden;
                     padding: 0px;
                     margin-bottom: 0px;
+                    transition: 0.3s margin;
+                    -webkit-transition: 0.3s margin;
+                    -moz-transition: 0.3s margin;
+                    -o-transition: 0.3s margin;
+                    -ms-transition: 0.3s margin;
                 }
                 .sub-text{
                     padding: 0px;
@@ -503,6 +520,49 @@
     .video-bottom{
         margin: 0 auto 40px;
         text-align: center;
+    }
+}
+.network-wrapper{
+    padding: 47px 0px;
+    .section-title{
+        padding-bottom: 24px;
+    }
+    .sub-text{
+        max-width: 751px;
+        margin: 0 auto;
+        padding-bottom: 0px;
+        margin-bottom: 0px;
+    }
+    .network-inner-wrapper{
+        padding: 59px 0px 0px;
+        ul{
+            display: flex;
+            flex-wrap: wrap;
+            li{
+                flex: 0 0 calc(16.66% - 10px);
+                width: calc(16.66% - 10px);
+                list-style: none;
+                background-color: #fff;
+                box-shadow: 0 2px 10px 0 rgba(0,0,0,0.08);
+                margin: 0px 5px 25px;
+                overflow: hidden;
+                a{
+                    max-height: 144px;
+                    max-width: 154px;
+                    overflow: hidden;
+                    img{
+                        max-width: 100%;
+                        height: auto;
+                        transition: 0.5s transform;
+                    }
+                }
+                &:hover{
+                    img{
+                        transform: scale(1.2);
+                    }
+                }
+            }
+        }
     }
 }
 @media(max-width: 992px){
