@@ -4,6 +4,7 @@ import Festival from '../../assets/images/festival.png';
 import Chinese from '../../assets/images/chinese.png'
 import Chritmas from '../../assets/images/christmas.png'
 import Article from '../../assets/images/explore-article.png';
+import Arrow from '../../assets/images/right-arrow.svg'
 import './style.scss';
 
 const Explore = () => {
@@ -18,28 +19,34 @@ const Explore = () => {
                     <a>Read More</a>
                 </div>
                 <div className="banner-slider">
-                    <img src="assets/images/explore-banner.png" alt="explore-slider" />
+                    <img src={Article} alt="explore-slider" />
                 </div>
             </section>
-
             <section className="whtsup-wrapper">
                 <div className="container-fluid">
-                    <div className="row">
-                        <div className="col-md-3">
+                    <div class="section-top-wrapper">
+                        <h2>What’s Up</h2>
+                    </div>
+                    <div className="whtsup-container">
+                        <div className="item-wrapper">
                             <div className="image-wrapper">
-                                <img src={Sifa} alt="sifa" />
-                                <span className="category"></span>
+                                <div class="item-img">
+                                    <img src={Sifa} alt="sifa" />
+                                </div>
+                                <span className="category">Festival</span>
                             </div>
                             <div className="image-bottom-desc">
                                 <h3>SIFA 2019</h3>
                                 <p>Singapore International Festival of Arts (SIFA) presents captivating and diverse works
                                     across theatre, music, dance,
-                                film and visual arts.</p>
+                                    film and visual arts.</p>
                             </div>
                         </div>
-                        <div className="col-md-3">
+                        <div className="item-wrapper">
                             <div className="image-wrapper">
-                                <img src={Festival} alt="festival" />
+                                <div class="item-img">
+                                    <img src={Festival} alt="festival" />
+                                </div>
                                 <span className="category">Festival</span>
                             </div>
                             <div className="image-bottom-desc">
@@ -48,10 +55,12 @@ const Explore = () => {
                                 Vietnamese</p>
                             </div>
                         </div>
-                        <div className="col-md-3">
+                        <div className="item-wrapper">
                             <div className="image-wrapper">
-                                <img src={Chinese} alt="chinese" />
-                                <span className="category"></span>
+                                <div class="item-img">
+                                    <img src={Chinese} alt="chinese" />
+                                </div>
+                                <span className="category">Festival</span>
                             </div>
                             <div className="image-bottom-desc">
                                 <h3>Chinese New Year 2019</h3>
@@ -59,10 +68,12 @@ const Explore = () => {
                             </p>
                             </div>
                         </div>
-                        <div className="col-md-3">
+                        <div className="item-wrapper">
                             <div className="image-wrapper">
-                                <img src={Chritmas} />
-                                <span className="category"></span>
+                                <div class="item-img">
+                                    <img src={Chritmas} alt="Chritmas" />
+                                </div>
+                                <span className="category">Festival</span>
                             </div>
                             <div className="image-bottom-desc">
                                 <h3>Christmas</h3>
@@ -74,6 +85,12 @@ const Explore = () => {
             </section>
             <section className="articles-wrapper">
                 <div className="container-fluid">
+                    <div class="section-top-wrapper">
+                        <h2>Articles</h2>
+                        <div class="carousel-dots">
+                            <a href="">More from Articles <img src={Arrow} class="img-fluid" alt="arrow" /></a>
+                        </div>
+                    </div>
                     <div className="articles-item">
                         <div className="row">
                             <div className="col-md-7">
@@ -118,7 +135,7 @@ const Explore = () => {
                                 Dolor Amet Gems Lorem ipsum.. <a>More</a></p>
                             </div>
                             <div className="col-md-5">
-                                <img src="assets/images/article1.png" alt="article" />
+                                <img src={Article} alt="article" />
                             </div>
                         </div>
                     </div>
@@ -142,8 +159,161 @@ const Explore = () => {
                                 Dolor Amet Gems Lorem ipsum.. <a>More</a></p>
                             </div>
                             <div className="col-md-5">
-                                <img src="assets/images/article1.png" alt="article-images" />
+                                <img src={Article} alt="article" />
                             </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section className="festivals-wrapper">
+                <div className="container-fluid">
+                    <div class="section-top-wrapper">
+                        <h2>Festivals</h2>
+                        <div class="carousel-dots">
+                            <a href="">See all <img src={Arrow} class="img-fluid" alt="arrow" /></a>
+                        </div>
+                    </div>
+                    <div className="grid-container">
+                        <div className="item">
+                            <img src="" alt="festivals" />
+                            <h3>The GREAT Wine & Dine Festival</h3>
+                            <p>Indulge in delectable offerings through live demonstrations and hands-on masterclasses by Resorts WorldTM Sentosa’s celebrity chefs and patissiers.</p>
+                        </div>
+                        <div className="item">
+                            <img src="" alt="festivals" />
+                            <h3>Choral Festival 2019</h3>
+                            <p>The Choral Festival 2019 is a harvest festival celebrated notably by the Chinese, Vietnamese</p>
+                        </div>
+                        <div className="item">
+                            <img src="" alt="festivals" />
+                            <h3>Singapore Night Festival</h3>
+                            <p>The Singapore Night Festival is an annual street festival held over two weekends celebrating the arts and Singapore’s rich cultural heritage.</p>
+                        </div>
+                        <div className="item">
+                            <img src="" alt="festivals" />
+                            <h3>Sentosa GrillFest 2019</h3>
+                            <p>Sentosa GrillFest is back – bigger and better at that! Make time to feast at Singapore’s only food street by the beach</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section className="review-guide-surveys-wrapper">
+                <div className="container-fluid">
+                    <div class="reviews-wrapper">
+                        <div className="active-review">
+                            <img src="" alt="" />
+                            <h3>Singapore Neon Lights Festival 2019 - Mumford & Sons Honne</h3>
+                        </div>
+                        <div className="all-reviews">
+                            <span>By Larva May</span>
+                            <div className="review-item-wrapper">
+                                <div className="review-item">
+                                    <div className="review-item-image">
+                                        <img src="" alt="review" />
+                                    </div>
+                                    <div className="review-content">
+                                        <h3>Crowd by Gisèle Vienne</h3>
+                                        <span>By Larva May</span>
+                                    </div>
+                                </div>
+                                <div className="review-item">
+                                    <div className="review-item-image">
+                                        <img src="" alt="review" />
+                                    </div>
+                                    <div className="review-content">
+                                        <h3>Crowd by Gisèle Vienne</h3>
+                                        <span>By Larva May</span>
+                                    </div>
+                                </div>
+                                <a href="">More from Reviews <img src="" alt="arrow" /></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="reviews-wrapper">
+                        <div className="active-review">
+                            <img src="" alt="" />
+                            <h3>Singapore Neon Lights Festival 2019 - Mumford & Sons Honne</h3>
+                        </div>
+                        <div className="all-reviews">
+                            <span>By Larva May</span>
+                            <div className="review-item-wrapper">
+                                <div className="review-item">
+                                    <div className="review-item-image">
+                                        <img src="" alt="review" />
+                                    </div>
+                                    <div className="review-content">
+                                        <h3>Crowd by Gisèle Vienne</h3>
+                                        <span>By Larva May</span>
+                                    </div>
+                                </div>
+                                <div className="review-item">
+                                    <div className="review-item-image">
+                                        <img src="" alt="review" />
+                                    </div>
+                                    <div className="review-content">
+                                        <h3>Crowd by Gisèle Vienne</h3>
+                                        <span>By Larva May</span>
+                                    </div>
+                                </div>
+                                <a href="">More from Reviews <img src="" alt="arrow" /></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="reviews-wrapper">
+                        <div className="active-review">
+                            <img src="" alt="" />
+                            <h3>Singapore Neon Lights Festival 2019 - Mumford & Sons Honne</h3>
+                        </div>
+                        <div className="all-reviews">
+                            <span>By Larva May</span>
+                            <div className="review-item-wrapper">
+                                <div className="review-item">
+                                    <div className="review-item-image">
+                                        <img src="" alt="review" />
+                                    </div>
+                                    <div className="review-content">
+                                        <h3>Crowd by Gisèle Vienne</h3>
+                                        <span>By Larva May</span>
+                                    </div>
+                                </div>
+                                <div className="review-item">
+                                    <div className="review-item-image">
+                                        <img src="" alt="review" />
+                                    </div>
+                                    <div className="review-content">
+                                        <h3>Crowd by Gisèle Vienne</h3>
+                                        <span>By Larva May</span>
+                                    </div>
+                                </div>
+                                <a href="">More from Reviews <img src="" alt="arrow" /></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section className="trending-wrapper">
+                <div className="container-fluid">
+                    <div class="section-top-wrapper">
+                        <h2>Trending</h2>
+                        <div class="carousel-dots">
+                            <a href="">See all <img src={Arrow} class="img-fluid" alt="arrow" /></a>
+                        </div>
+                    </div>
+                    <div className="grid-container">
+                        <div className="item">
+                            <img srv="" alt="" />
+                        </div>
+                        <div className="item">
+                            <img srv="" alt="" />
+                        </div>
+                        <div className="item">
+                            <img srv="" alt="" />
+                        </div>
+                        <div className="item">
+                            <img srv="" alt="" />
+                        </div>
+                        <div className="item">
+                            <img srv="" alt="" />
                         </div>
                     </div>
                 </div>
