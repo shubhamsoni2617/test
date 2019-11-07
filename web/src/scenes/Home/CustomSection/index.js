@@ -6,9 +6,10 @@ import Constants from '../../../shared/constants';
 import CustomSectionThree from './CustomSectionThree';
 
 const CustomSection = () => {
-  const [customSectionTwo, setCustomSectionTwo] = useState([]);
-  const [customSectionThree, setCustomSectionThree] = useState([]);
+  const [customSectionTwo, setCustomSectionTwo] = useState(null);
+  const [customSectionThree, setCustomSectionThree] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [loadingSectionThree, setLoadingSectionThree] = useState(true);
 
   useEffect(() => {
     getCustomizeSectionTwo();
@@ -45,6 +46,7 @@ const CustomSection = () => {
           setTimeout(() => {
             console.log(res.data);
             setCustomSectionThree(res.data.data);
+            setLoadingSectionThree(false);
           }, 2000);
         }
       })
@@ -61,7 +63,10 @@ const CustomSection = () => {
         cssClassName="alternate-featured-events"
       />
       <CustomSectioTwo customSectionTwo={customSectionTwo} loading={loading} />
-      <CustomSectionThree customSectionThree={customSectionThree} />
+      <CustomSectionThree
+        customSectionThree={customSectionThree}
+        loading={loadingSectionThree}
+      />
     </Fragment>
   );
 };
