@@ -26,6 +26,7 @@ const Search = props => {
   const prevDefaultCategoryId = usePrevious(defaultCategoryId);
 
   useEffect(() => {
+    window.scrollTo(0, 0);
     setDefaultCategoryId('all');
     fetchSearchCategoriesService();
   }, [searchKeyword]);

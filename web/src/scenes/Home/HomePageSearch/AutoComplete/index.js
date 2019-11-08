@@ -25,7 +25,6 @@ const Autocomplete = ({ history, buttonActiveHandler, mostViewed }) => {
   const node = useRef(null);
   const inputRef = useRef(null);
   useEffect(() => {
-    window.scrollToTop();
     setLocalStorage();
     document.addEventListener('mousedown', handleClick);
     return () => {
