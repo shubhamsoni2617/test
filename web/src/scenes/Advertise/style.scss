@@ -83,7 +83,7 @@
                     display: inline-block;
                     width: fit-content;
                     transition: all .3s ease-in;
-                    max-width: inherit;
+                    max-width: 220px;
                     @media(max-width: 576px){
                         padding: 5px 5px;
                         font-size: 8px;
@@ -249,8 +249,8 @@
         margin-bottom: 40px;
     }
     .website-content{
-        flex: 0 0 50%;
-        min-width: 50%;
+        flex: 0 0 calc(50% - 50px);
+        min-width: calc(50% - 50px);
         padding-left: 50px;
         align-self: center;
         @media(max-width: 768px){
@@ -288,8 +288,14 @@
         }
     }
     .website-image{
-        flex: 0 0 50%;
-        min-width: 50%;
+        flex: 0 0 calc(50% + 100px);
+        min-width: calc(50% + 100px);
+        margin-left: -50px;
+        @media(max-width: 991px){
+            min-width: 50%;
+            flex: 0 0 50%;
+            margin-left: 0px;
+        }
     }
 }
 .app-wrapper{
@@ -551,6 +557,7 @@
     .event-banner{
         background-image: none;
         background-color: #1a1a1a;
+        max-height: 389px;
         .banner-content{
             @media(max-width: 1024px){
                 padding-left: 0px;
@@ -587,6 +594,10 @@
         .why-sistic-head{
             p{
                 padding: 0px;
+            }
+            a{
+                color: #0098FF;
+                font-weight: 500;
             }
         }
     }

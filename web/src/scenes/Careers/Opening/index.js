@@ -31,7 +31,7 @@ const Opening = ({ jobListing, jobListingErr }) => {
                       <span>{elem.job_type.toString().replace(',', ', ')}</span>
                     )}
                   </p>
-                  <Link to={`/careers/jobdescription/${elem.job_id}`}>
+                  <Link to={`/career/jobdescription/${elem.job_id}`}>
                     Apply Now
                     <img className="arrow-black" src={arrowBlack} alt="arrow" />
                     <img

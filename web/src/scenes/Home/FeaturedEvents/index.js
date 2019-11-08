@@ -17,7 +17,7 @@ const Item = ({ event }) => {
               <Image
                 src={event && event.full_image}
                 className="img-fluid"
-                type="Tile"
+                type="Small"
               />
             </div>
             {/* <span
@@ -29,15 +29,20 @@ const Item = ({ event }) => {
             </span> */}
             <span
               className={`category ${event &&
-                event.primary_genere &&
-                event.primary_genere.toLowerCase()}`}
+                event.primary_genre &&
+                event.primary_genre.toLowerCase()}`}
             >
-              {event.primary_genere}
+              {event.primary_genre}
             </span>
           </div>
-          {event && event.title && <h3>
-            {Utilities.showLimitedChars(event && event.title, Utilities.mobilecheck() ? 20 : 30)}
-          </h3>}
+          {event && event.title && (
+            <h3>
+              {Utilities.showLimitedChars(
+                event && event.title,
+                Utilities.mobilecheck() ? 20 : 30
+              )}
+            </h3>
+          )}
           {event && event.event_date && <p>{event.event_date}</p>}
           {event && event.venue_name && <p>{event.venue_name}</p>}
         </div>
@@ -90,7 +95,7 @@ const FeaturedEvents = props => {
   }, [callAPI]);
 
   const scrollHandler = () => {
-    if (!callAPI && window.pageYOffset >= element.current.offsetTop - 100) {
+    if (!callAPI) {
       setCallAPI(true);
     }
   };
@@ -141,6 +146,11 @@ const FeaturedEvents = props => {
       );
     }
   };
+
+  if (!loading && featuredEvents && featuredEvents.length === 0) {
+    return null;
+  }
+
   return (
     <section
       className={
@@ -191,17 +201,17 @@ const FeaturedEvents = props => {
               </div>
             </div>
           ) : (
-                <Slider {...settings}>
-                  {featuredEvents &&
-                    featuredEvents.map((event, index) => {
-                      return (
-                        <div className="grid-container" key={index}>
-                          <Item event={event} />
-                        </div>
-                      );
-                    })}
-                </Slider>
-              )}
+            <Slider {...settings}>
+              {featuredEvents &&
+                featuredEvents.map((event, index) => {
+                  return (
+                    <div className="grid-container" key={index}>
+                      <Item event={event} />
+                    </div>
+                  );
+                })}
+            </Slider>
+          )}
         </CSSTransitionGroup>
       </div>
     </section>

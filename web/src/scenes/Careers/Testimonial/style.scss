@@ -57,6 +57,9 @@
                     background-color: transparent;
                     background-position: 14px 11px;
                     left: 190px;
+                    background-image: url('../../../assets/images/arrow-right.svg');
+                    transform: rotate(180deg);
+                    background-position: 18px 14px;
                     @media(max-width: 1024px){
                         left: 30px;
                       }
@@ -81,6 +84,8 @@
                     background-color: transparent;
                     background-position: 16px 11px;
                     right: 165px;
+                    background-image: url('../../../assets/images/arrow-right.svg');
+                    background-position: 18px 14px;
                     @media(max-width: 1024px){
                         right: 30px;
                       }

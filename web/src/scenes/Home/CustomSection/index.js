@@ -6,9 +6,10 @@ import Constants from '../../../shared/constants';
 import CustomSectionThree from './CustomSectionThree';
 
 const CustomSection = () => {
-  const [customSectionTwo, setCustomSectionTwo] = useState([]);
-  const [customSectionThree, setCustomSectionThree] = useState([]);
+  const [customSectionTwo, setCustomSectionTwo] = useState(null);
+  const [customSectionThree, setCustomSectionThree] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [loadingSectionThree, setLoadingSectionThree] = useState(true);
 
   useEffect(() => {
     getCustomizeSectionTwo();
@@ -16,7 +17,9 @@ const CustomSection = () => {
   }, []);
   const getCustomizeSectionTwo = () => {
     const params = {
-      client: Constants.CLIENT
+      client: Constants.CLIENT,
+      limit: 3,
+      first: 0
     };
     AdvertisementService.getCustomizeSectionTwo(params)
       .then(res => {
@@ -41,7 +44,9 @@ const CustomSection = () => {
       .then(res => {
         if (res && res.data) {
           setTimeout(() => {
+            console.log(res.data);
             setCustomSectionThree(res.data.data);
+            setLoadingSectionThree(false);
           }, 2000);
         }
       })
@@ -58,7 +63,10 @@ const CustomSection = () => {
         cssClassName="alternate-featured-events"
       />
       <CustomSectioTwo customSectionTwo={customSectionTwo} loading={loading} />
-      <CustomSectionThree customSectionThree={customSectionThree} />
+      <CustomSectionThree
+        customSectionThree={customSectionThree}
+        loading={loadingSectionThree}
+      />
     </Fragment>
   );
 };

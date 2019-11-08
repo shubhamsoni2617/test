@@ -6,7 +6,10 @@ import royal from '../../../../assets/images/royal.jpg';
 import royalSubimg from '../../../../assets/images/royal-img.png';
 
 const CustomSectioTwo = ({ customSectionTwo, loading }) => {
-  return !customSectionTwo.length ? (
+  if (!loading && customSectionTwo && customSectionTwo.length === 0) {
+    return null;
+  }
+  return loading ? (
     <ShimmerEffect
       propCls={`shm_col-xs-6 col-md-6`}
       height={300}
@@ -14,24 +17,27 @@ const CustomSectioTwo = ({ customSectionTwo, loading }) => {
       type="TILE"
     />
   ) : (
-      <section className="royal-wrapper">
-        <div className="container-fluid">
-          <div className="royal-side-padding">
-            <div className="section-top-wrapper">
-              <h2>Royals</h2>
-              <div className="carousel-dots">
-                <a href="/events">
-                  More from Royals {' '}
+    <section className="royal-wrapper">
+      <div className="container-fluid">
+        <div className="royal-side-padding">
+          <div className="section-top-wrapper">
+            <h2>Royals</h2>
+          </div>
+          <div className="royal-items-wrapper">
+            <div className="royal-leftsection">
+              <div>
+                {customSectionTwo && customSectionTwo[0] && (
                   <img
-                    src="assets/images/right-arrow.svg"
+                    src={customSectionTwo[0].full_image}
+                    alt={customSectionTwo[0].alt_text}
                     className="img-fluid"
-                    alt="arrow"
                   />
-                </a>
+                )}
+                {/* <img src={royal} alt="pride" className="img-fluid" /> */}
               </div>
             </div>
-            <div className="royal-items-wrapper">
-              <div className="royal-leftsection">
+            <div className="royal-rightsection">
+              <div className="royal-rightside-textwrapper">
                 <a
                   href={
                     customSectionTwo &&
@@ -40,52 +46,57 @@ const CustomSectioTwo = ({ customSectionTwo, loading }) => {
                   }
                   target="_blank"
                 >
-                  <div>
-                    {/* {customSectionTwo && customSectionTwo[0] && (
-                    <Image
-                      src={customSectionTwo[0].full_image}
-                      alt={customSectionTwo[0].alt}
-                      type="BigBanner"
-                    />
-                  )} */}
-                    <img src={royal} alt="pride" className="img-fluid" />
-                  </div>
+                  <h3>
+                    {customSectionTwo &&
+                      customSectionTwo[0] &&
+                      customSectionTwo[0].title}
+                  </h3>
                 </a>
+                <p>10 Jan 2019</p>
               </div>
-              <div className="royal-rightsection">
-                <div className="royal-rightside-textwrapper">
-                  <h3>{customSectionTwo && customSectionTwo[0] && customSectionTwo[0].title}</h3>
-                  <p>10 Jan 2019</p>
-                </div>
-                <div className="royal-items">
-                  {customSectionTwo &&
-                    customSectionTwo.slice(1, customSectionTwo.length).map((elem, i) => {
+              <div className="royal-items">
+                {customSectionTwo &&
+                  customSectionTwo
+                    .slice(1, customSectionTwo.length)
+                    .map((elem, i) => {
                       return (
                         <div key={i} className="item-wrapper">
-                          <a className="item-img" href={elem.navigation_link} target="_blank">
-                            {/* {elem && elem.full_image && (
-                            <Image
-                              src={elem.full_image}
-                              alt={elem.alt}
-                              type="Horizontal"
-                            />
-                          )} */}
-                            <img src={royalSubimg} alt="pride" className="img-fluid" />
-                          </a>
+                          {elem && elem.full_image && (
+                            <div className="item-img">
+                              <img
+                                src={elem.full_image}
+                                alt={elem.alt_text}
+                                className="img-fluid"
+                              />
+                            </div>
+                          )}
+                          {/* <img
+                            src={royalSubimg}
+                            alt="pride"
+                            className="img-fluid"
+                          /> */}
                           <div className="royal-item-content">
-                            <h3>{elem.title}</h3>
+                            <h3>
+                              <a
+                                className="item-img"
+                                href={elem.navigation_link}
+                                target="_blank"
+                              >
+                                {elem.title}
+                              </a>
+                            </h3>
                             <p>24 May 2019</p>
                           </div>
                         </div>
                       );
                     })}
-                </div>
               </div>
             </div>
           </div>
         </div>
-      </section>
-    );
+      </div>
+    </section>
+  );
 };
 
 export default CustomSectioTwo;

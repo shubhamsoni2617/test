@@ -1,12 +1,12 @@
 import API from '../../api';
 
 class B2BService {
-  getLandingPage(params) {
-    return API.get(`b2b-pages/landing-page`, { params });
+  getLandingPage() {
+    return API.get(`landing-page`);
   }
 
-  getSystemLicensing(params) {
-    return API.get(`system-licensing`, { params });
+  getSystemLicensing() {
+    return API.get(`system-licensing`);
   }
 
   getAdvertiseWithUs(params) {

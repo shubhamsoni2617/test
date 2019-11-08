@@ -1,36 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import './style.scss';
 import B2BService from '../../shared/services/B2BService';
-import Constants from '../../shared/constants';
 import Banner from './Banner';
 import WhySistic from './WhySistic';
 import TicketingSystem from './TicketingSystem';
 import Partners from '../ApiPartner/Partners';
 import ContactUs from '../ApiPartner/ContactUs';
-import ApiPartnersService from '../../shared/services/ApiPartnersService';
-// import { Link } from 'react-router-dom';
+import Clients from './Clients';
 
-const SystemLicensing = ({ }) => {
+const SystemLicensing = ({}) => {
   const [systemLicensing, setSystemLicensing] = useState([]);
-  const [partners, setPartners] = useState({});
   useEffect(() => {
     window.scrollTo(0, 0);
-    const params = {
-      client: Constants.CLIENT
-    };
-    ApiPartnersService.getApiPartnersService({
-      first: 0,
-      limit: 4
-    })
-      .then(res => {
-        if (res.data) {
-          setPartners(res.data);
-        }
-      })
-      .catch(err => {
-        console.log(err);
-      });
-    B2BService.getSystemLicensing(params)
+    B2BService.getSystemLicensing()
       .then(res => {
         if (res && res.data) {
           console.log(res.data);
@@ -51,7 +33,7 @@ const SystemLicensing = ({ }) => {
     banner_description,
     content
   } = systemLicensing;
-  const { data } = partners;
+
   return (
     <div className="system-licence">
       <Banner
@@ -84,7 +66,7 @@ const SystemLicensing = ({ }) => {
                         <h4>{product.title}</h4>
                         <ul>
                           {product.category.map(category => (
-                            <li key={category}>{category}</li>
+                            <li>{category}</li>
                           ))}
                         </ul>
                       </div>
@@ -97,8 +79,10 @@ const SystemLicensing = ({ }) => {
         </div>
       </section>
       {content && content.clients && (
-
-        <Partners partnersLogo={data} systemLicensing clients={content.clients} />
+        <Clients
+          partnersLogo={content.clients.data}
+          clients={content.clients}
+        />
       )}
       <div class="apipartners-wrapper">
         <ContactUs />

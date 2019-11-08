@@ -5,10 +5,9 @@ import closeGreyColorImage from '../../../../../assets/images/cross-grey.svg';
 import './style.scss';
 import MostViewed from './MostViewed';
 import Utilities from '../../../../../shared/utilities';
-import backButton from '../../../../../assets/images/events/sortby.svg';
 import { setValuesInLocalStorage } from '../setLocalStorage';
 
-const RecentlySearched = ({ focusHandler, history }) => {
+const RecentlySearched = ({ focusHandler, history, mostViewed }) => {
   const [storageValues, setStorageValues] = useState(
     JSON.parse(localStorage.getItem('recentlySearched'))
   );
@@ -62,7 +61,9 @@ const RecentlySearched = ({ focusHandler, history }) => {
             </ul>
           </div>
         ) : null}
-        <MostViewed />
+        {mostViewed && mostViewed.length ? (
+          <MostViewed mostViewed={mostViewed} />
+        ) : null}
       </div>
     </div>
   );

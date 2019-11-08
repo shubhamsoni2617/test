@@ -3,9 +3,9 @@ import './style.scss';
 import { Link } from 'react-scroll';
 import B2BService from '../../shared/services/B2BService';
 import Constants from '../../shared/constants';
-import banner from '../../assets/images/Group-5.png';
+import banner from '../../assets/images/advertise-with-us-banner.png';
 import img1 from '../../assets/images/website.png';
-import img2 from '../../assets/images/Group-5.png';
+import img2 from '../../assets/images/mobile-app-section.png';
 import img3 from '../../assets/images/buzz.png';
 import img4 from '../../assets/images/send.svg';
 import fb from '../../assets/images/fb.png';
@@ -89,7 +89,7 @@ const Advertise = props => {
               </div>
             )}
             <div className="why-sistic-tab">
-              <h2>Our Advertising channels</h2>
+              <h2>Our Advertising Channels</h2>
               <div className="sistic-tab-button">
                 {/* <a href="#">Website</a> */}
                 <Link to="website" {...navigateProps}>
@@ -224,25 +224,15 @@ const Advertise = props => {
               )}
               <div className="download-option social-option">
                 <a
-                  onClick={() => {
-                    window.open(
-                      'https://www.facebook.com/SISTICsingapore',
-                      'sharer',
-                      'toolbar=0,status=0,width=548,height=325'
-                    );
-                  }}
+                  href="https://www.facebook.com/SISTICsingapore"
+                  target="_blank"
                 >
                   <img src={fb} className="fb" alt="" />
                   <span>Facebook</span>
                 </a>
                 <a
-                  onClick={() => {
-                    window.open(
-                      'https://www.instagram.com/sisticsingapore/',
-                      'sharer',
-                      'toolbar=0,status=0,width=548,height=325'
-                    );
-                  }}
+                  href="https://www.instagram.com/sisticsingapore/"
+                  target="_blank"
                 >
                   <img src={insta} className="insta" alt="" />
                   <span>Instagram</span>

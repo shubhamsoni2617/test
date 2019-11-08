@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
 import { Map, InfoWindow, Marker, GoogleApiWrapper } from 'google-maps-react';
 import './style.scss';
-import DirectionIcon from '../../../../assets/images/direction.png';
+import DirectionIcon from '../../../../assets/images/redirect.svg';
 import BluePin from '../../../../assets/images/bluepin.svg';
 import Constants from '../../../constants';
 import { useCustomWidth } from '../../CustomHooks';
@@ -117,8 +117,8 @@ const GoogleMap = ({
           style={{
             display:
               Utilities.mobileAndTabletcheck &&
-              window.innerWidth <= 960 &&
-              !mapInMobile
+                window.innerWidth <= 960 &&
+                !mapInMobile
                 ? 'none'
                 : 'block'
           }}
@@ -154,23 +154,23 @@ const GoogleMap = ({
                     icon={
                       elem.map_pin_icon !== '' && venue
                         ? {
-                            url: elem.map_pin_icon,
-                            scaledSize: new google.maps.Size(45, 45)
-                          }
+                          url: elem.map_pin_icon,
+                          scaledSize: new google.maps.Size(45, 45)
+                        }
                         : elem.map_pin_color !== '#FFFFFF' && venue
-                        ? {
+                          ? {
                             path: Constants.MAP_PATH,
                             scale: 1,
                             fillColor: elem.map_pin_color,
                             fillOpacity: 1,
                             strokeWeight: 2
                           }
-                        : elem.id === selectedPlace.id
-                        ? {
-                            url: showingInfoWindow && BluePin,
-                            scaledSize: new google.maps.Size(50, 50)
-                          }
-                        : null
+                          : elem.id === selectedPlace.id
+                            ? {
+                              url: showingInfoWindow && BluePin,
+                              scaledSize: new google.maps.Size(50, 50)
+                            }
+                            : null
                     }
                   />
                 );

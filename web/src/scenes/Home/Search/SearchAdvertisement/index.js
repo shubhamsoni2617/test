@@ -4,16 +4,18 @@ import Constants from '../../../../shared/constants';
 import Image from '../../../../shared/components/Image';
 import './style.scss';
 
-const MostViewed = () => {
+const SearchAdvertisement = () => {
   const [adv, setAdv] = useState(null);
   useEffect(() => {
     fetchMostViewedService();
   }, []);
   const fetchMostViewedService = () => {
     const params = {
-      client: Constants.CLIENT
+      client: Constants.CLIENT,
+      first: 0,
+      limit: 2
     };
-    AdvertisementService.getGiftCardService(params)
+    AdvertisementService.getSearchListService(params)
       .then(res => {
         console.log(res.data.data);
         setAdv(res.data.data);
@@ -30,7 +32,14 @@ const MostViewed = () => {
             return (
               <li key={elem.primary_genere + index}>
                 <div className="most-viewed-img">
-                  <Image src={elem.full_image} className="img-fluid" />
+                  <a href={elem.navigation_link} target='_blank'>
+
+                    <Image
+                      src={elem.full_image}
+                      type="MediumHorizontal"
+                      className="img-fluid"
+                    />
+                  </a>
                 </div>
               </li>
             );
@@ -40,4 +49,4 @@ const MostViewed = () => {
   );
 };
 
-export default MostViewed;
+export default SearchAdvertisement;

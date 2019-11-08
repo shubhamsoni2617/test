@@ -20,6 +20,7 @@ import Search from '../Home/Search';
 import SystemLicensing from '../SystemLicensing';
 import Advertise from '../Advertise';
 import SellTicketsWithUs from '../SellTicketsWithUs';
+import LandingPage from '../LandingPage';
 
 const routes = [
   {
@@ -74,7 +75,7 @@ const routes = [
     cmsPageType: 1
   },
   {
-    path: '/privacy',
+    path: '/privacy-policy',
     component: TermsPrivacy,
     exact: true,
     cmsPageType: 2
@@ -100,12 +101,12 @@ const routes = [
     exact: true
   },
   {
-    path: '/careers',
+    path: '/career',
     component: Careers,
     exact: true
   },
   {
-    path: '/careers/jobdescription/:jobId',
+    path: '/career/jobdescription/:jobId',
     component: JobDescription,
     exact: true
   },
@@ -137,6 +138,11 @@ const routes = [
   {
     path: '/sell-tickets-with-us',
     component: SellTicketsWithUs,
+    exact: true
+  },
+  {
+    path: '/b2b',
+    component: LandingPage,
     exact: true
   },
   {

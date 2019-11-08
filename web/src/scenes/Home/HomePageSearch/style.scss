@@ -84,6 +84,23 @@
                     cursor: pointer;
                 }
             }
+            button{
+                padding: 2px 6px;
+                background-color: #07B3F0;
+                color: #fff;
+                border: 1px solid #07B3F0;
+                &:hover{
+                    cursor: pointer;
+                    background-color: #07b3f0;
+                    color: #fff;
+                    border: 1px solid #07b3f0;
+                    padding: 2px 6px;
+                    margin-top: 7px;
+                    font-size: 14px;
+                    line-height: 17px;
+                    font-weight: 400;
+                }
+            }
         }
         .search-link-all-results{
             padding: 10px 20px;
