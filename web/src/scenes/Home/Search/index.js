@@ -26,13 +26,7 @@ const Search = props => {
   const prevDefaultCategoryId = usePrevious(defaultCategoryId);
 
   useEffect(() => {
-    return () => {
-      document
-        .getElementsByClassName('search-inputtype')[0]
-        .classList.add('hide-text');
-    };
-  }, []);
-  useEffect(() => {
+    window.scrollTo(0, 0);
     setDefaultCategoryId('all');
     fetchSearchCategoriesService();
   }, [searchKeyword]);

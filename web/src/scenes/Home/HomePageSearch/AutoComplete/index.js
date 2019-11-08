@@ -41,6 +41,11 @@ const Autocomplete = ({ history, buttonActiveHandler, mostViewed }) => {
     }
   }, [debouncedSearchTerm]);
 
+  useEffect(() => {
+    if (history.location.pathname.split('/')[1] !== 'search-results') {
+      setUserInput('');
+    }
+  }, [history.location.pathname.split('/')[1]]);
   const handleClick = e => {
     if (node.current.contains(e.target)) {
       return;
@@ -97,9 +102,6 @@ const Autocomplete = ({ history, buttonActiveHandler, mostViewed }) => {
   };
 
   const onKeyDown = e => {
-    document
-      .getElementsByClassName('search-inputtype')[0]
-      .classList.remove('hide-text');
     // e.preventDefault();
     e.stopPropagation();
     if (!initialUserInput) {
@@ -236,12 +238,6 @@ const Autocomplete = ({ history, buttonActiveHandler, mostViewed }) => {
           value={userInput}
           placeholder="Search experiences…"
           onClick={() => {
-            if (document.getElementsByClassName('hide-text')[0]) {
-              setUserInput('');
-            }
-            document
-              .getElementsByClassName('search-inputtype')[0]
-              .classList.remove('hide-text');
             addFixedBody();
           }}
           className="search-inputtype"
