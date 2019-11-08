@@ -1,122 +1,124 @@
-.section-title{
-	line-height: 49px;
-	color: #343434;
-	font-size: 40px;
-	font-family: 'Montserrat', sans-serif;
-	padding-bottom: 22px;
-	@media(max-width: 1024px){
-		font-size: 30px;
-		line-height: 40px;
+.system-licence{
+	.section-title{
+		line-height: 49px;
+		color: #343434;
+		font-size: 40px;
+		font-family: 'Montserrat', sans-serif;
+		padding-bottom: 22px;
+		@media(max-width: 1024px){
+			font-size: 30px;
+			line-height: 40px;
+		}
+		@media(max-width: 768px){
+			font-size: 26px;
+			line-height: 30px;
+		}
+		@media(max-width: 576px){
+		font-size: 25px;
+		line-height: 25px;
+		}
 	}
-	@media(max-width: 768px){
-		font-size: 26px;
-		line-height: 30px;
-	}
-	@media(max-width: 767px){
-      font-size: 25px;
-      line-height: 25px;
-    }
-}
-.sub-text{
-	font-size: 16px;
-    line-height: 26px;
-    padding-bottom: 12px;
-    font-family: 'Rubik', sans-serif;
-	color: #343434;
-	p{
+	.sub-text{
 		font-size: 16px;
 		line-height: 26px;
 		padding-bottom: 12px;
 		font-family: 'Rubik', sans-serif;
 		color: #343434;
-	}
-}
-.event-banner {
-    background-image: url(../../assets/images/System-licensing/system-banner.png);
-    background-size: cover;
-    background-position: center;
-    height: 389px;
-    .banner-content {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        height: 100%;
-        padding-left: 74px;
-        h2 {
-            font-size: 40px;
-            line-height: 49px;
-            margin: 0;
-            padding-bottom: 20px;
-			color: #fff;
-			@media(max-width: 1024px){
-				font-size: 34px;
-				line-height: 40px;
-			}
-			@media(max-width: 768px){
-				font-size: 24px;
-				line-height: 28px;
-			}
-        }
-        p {
-            color: #fff;
-		}
 		p{
 			font-size: 16px;
-			line-height: 26px;			
+			line-height: 26px;
+			padding-bottom: 12px;
 			font-family: 'Rubik', sans-serif;
-			color: #fff;
-			margin-bottom: 0px;
-			padding-bottom: 0px;
-			@media(max-width: 768px){
-				font-size: 14px;
-				line-height: 22px;
+			color: #343434;
+		}
+	}
+	.event-banner {
+		background-image: url(../../assets/images/System-licensing/system-banner.png);
+		background-size: cover;
+		background-position: center;
+		height: 389px;
+		.banner-content {
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			height: 100%;
+			padding-left: 74px;
+			h2 {
+				font-size: 40px;
+				line-height: 49px;
+				margin: 0;
+				padding-bottom: 20px;
+				color: #fff;
+				@media(max-width: 1024px){
+					font-size: 34px;
+					line-height: 40px;
+				}
+				@media(max-width: 768px){
+					font-size: 24px;
+					line-height: 28px;
+				}
+				@media(max-width: 576px){
+					font-size: 25px;
+					line-height: 25px;
+					padding-bottom: 10px;
+				}
 			}
-		}
-		.sub-text{
-			margin-bottom: 0px;
-			padding-bottom: 13px;
-		}
-		a{
-			color: #FFFFFF;
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 500;
-			font-size: 16px;
-			line-height: 19px;
-			background-color: #0098FF;
-			display: inline-block;
-			max-width: 127px;
-			text-align: center;
-			padding: 10px;
-			transition: 0.5s background-color, 0.5s color;
-			&:hover{
-				background-color: #fff;
-				color: #0098FF;
+			p {
+				color: #fff;
 			}
-		}
-        @media(max-width: 767px){
-			padding: 0px 10px;
-			width: 100%;
-        	h2{
-        		font-size: 25px;
-			    line-height: 25px;
-			    padding-bottom: 10px;
-        	}
-        	p{
-				line-height: 16px;
-				font-size: 12px;
+			p{
+				font-size: 16px;
+				line-height: 26px;			
+				font-family: 'Rubik', sans-serif;
+				color: #fff;
+				margin-bottom: 0px;
+				padding-bottom: 0px;
+				@media(max-width: 768px){
+					font-size: 14px;
+					line-height: 22px;
+				}
+				@media(max-width: 576px){
+					font-size: 12px;
+					line-height: 16px;
+				}
+			}
+			.sub-text{
+				margin-bottom: 0px;
+				padding-bottom: 13px;
 			}
 			a{
-				font-size: 15px;
-				line-height: 15px;
-				max-width: 106px;
-				padding: 4px;
+				color: #FFFFFF;
+				font-family: 'Montserrat', sans-serif;
+				font-weight: 500;
+				font-size: 16px;
+				line-height: 19px;
+				background-color: #0098FF;
+				display: inline-block;
+				max-width: 127px;
+				text-align: center;
+				padding: 10px;
+				transition: 0.5s background-color, 0.5s color;
+				margin-top: 0px;
+				&:hover{
+					background-color: #fff;
+					color: #0098FF;
+				}
+				@media(max-width: 576px){
+					font-size: 15px;
+					line-height: 15px;
+					max-width: 106px;
+					padding: 4px;
+				}
 			}
-			
-        }
-    }
-    @media(max-width: 767px){
-    	height: 280px;
-    }
+			@media(max-width: 767px){
+				padding: 0px 10px;
+				width: 100%;
+			}
+		}
+		@media(max-width: 576px){
+			height: 280px;
+		}
+	}
 }
 .system-licence {
 	.event-banner {
@@ -148,6 +150,10 @@
 			    background-color: rgba(255, 255, 255, 0.9);
 				transition: all 0.4s ease-out;
 				text-align: left;
+				width: 100%;
+				@media(max-width: 768px){
+					padding: 2px 20px 0px 20px;
+				}
 				&:before{
 					// right: 47%;
 					// -ms-transform-origin: 100% 100%;
@@ -201,23 +207,36 @@
 						font-size: 18px;
 						line-height: 22px;
 					}
-				    @media(max-width: 767px){
+					@media(max-width: 767px){
+						font-size: 16px;
+						line-height: 22px;
+						height: 40px;
+					}
+				    @media(max-width: 576px){
 			           	font-size: 13px;
 						line-height: 16px;
-						height: 25px;
+						height: 27px;
 			        }
 				}
 				.sub-text{
-					@media(max-width: 767px){
+					word-break: break-all;
+					@media(max-width: 576px){
 			           	line-height: 16px;
     					font-size: 14px;
-			        }
+					}
+					p{
+						word-break: break-all;
+						@media(max-width: 576px){
+							font-size: 9px;
+							line-height: 15px;
+						}
+					}
 				}
 				&:hover{
 					bottom: 0;
 					height: 80%;
 					@media(max-width: 767px){
-			           	height: 100%;
+			           	height: 90%;
 			        }
 				}
 				@media(max-width: 767px){
@@ -248,6 +267,12 @@
 		.section-title{
 			margin-top: 20px;
 			padding-bottom: 33px;
+		}
+		.ticket-system-img{
+			text-align: right;
+			@media(max-width: 767px){
+				text-align: center;
+			}
 		}
 		.stixxloud{
 			p{
@@ -321,7 +346,8 @@
 				flex: 0 0 18%;
 				max-width: 18%;
 				position: relative;
-				min-height: 242px;
+				min-height: 242px;	
+				margin-bottom: 10px;
 				&:nth-child(1){
 					background-color: #FF8180;
 				}

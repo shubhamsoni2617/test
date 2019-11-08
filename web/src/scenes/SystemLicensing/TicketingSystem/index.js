@@ -32,7 +32,7 @@ const TicketingSystem = ({ ticketingSystem }) => {
                 </ul>
               </div> */}
             </div>
-            <div className="col-md-6 text-right">
+            <div className="col-md-6 ticket-system-img">
               <img src={Stixcloud} className="img-fluid" alt="stixcloud" />
             </div>
           </div>

@@ -14,7 +14,7 @@ const SearchNotFound = ({ searchKeyword }) => {
           <p>You can also visit</p>
           <ul className="no-result-search-listing">
             <li>
-              <a href="/attractions">Go to Attractions</a>
+              <a href="/attraction">Go to Attractions</a>
             </li>
             <li>
               <a href="/events">Go to Events</a>
