@@ -1,19 +1,15 @@
 import React, { Component } from 'react';
 import Filters from '../../../shared/components/Filters';
-import SortBy from '../../../shared/components/SortBy';
-import Card from '../../../shared/components/Card';
+import Card from './Card';
 import EventsService from '../../../shared/services/EventsService';
 import HomeService from '../../../shared/services/HomeService';
 import DownArrowBlue from '../../../assets/images/down-arrow-blue.svg';
 import noEvent from '../../../assets/images/no-event.svg';
 import Breadcrub from '../../../scenes/App/Breadcrumb';
-import ListView from '../../../assets/images/list-view.svg';
-import GridView from '../../../assets/images/grid-view.svg';
 import loaderImage from '../../../assets/images/loader.svg';
 import EventBreadcrumbImage from '../../../assets/images/events.png';
 import EventBreadcrumbImageBlur from '../../../assets/images/events-blur.png';
 import filterIcon from '../../../assets/images/events/filter.svg';
-import sortbyIcon from '../../../assets/images/events/sortby.svg';
 import ShimmerEffect from '../../../shared/components/ShimmerEffect';
 import FilterSelected from '../../../shared/components/FilterSelected';
 import Utilities from '../../../shared/utilities';
@@ -68,54 +64,6 @@ export default class Events extends Component {
       breadcrumb_slug: [
         { path: '/', title: 'Home' },
         { path: '/events', title: 'Events' }
-      ]
-    };
-
-    this.tabsSort = {
-      isSortBy: true,
-      sortList: [
-        {
-          sortType: 'title',
-          sortOrder: 'ASC',
-          sortTitle: 'Events - A to Z',
-          sortTag: 'Events - A to Z'
-        },
-        {
-          sortType: 'title',
-          sortOrder: 'DESC',
-          sortTitle: 'Events - Z to A',
-          sortTag: 'Events - Z to A'
-        },
-        {
-          sortType: 'price',
-          sortOrder: 'ASC',
-          sortTitle: 'Price Low to High',
-          sortTag: 'Price Low to High'
-        },
-        {
-          sortType: 'price',
-          sortOrder: 'DESC',
-          sortTitle: 'Price High to Low',
-          sortTag: 'Price High to Low'
-        },
-        {
-          sortType: 'venue',
-          sortOrder: 'ASC',
-          sortTitle: 'Venue - A to Z',
-          sortTag: 'Venue - A to Z'
-        },
-        {
-          sortType: 'venue',
-          sortOrder: 'DESC',
-          sortTitle: 'Venue - Z to A',
-          sortTag: 'Venue - Z to A'
-        },
-        {
-          sortType: 'date',
-          sortOrder: '',
-          sortTitle: 'Date',
-          sortTag: 'Date'
-        }
       ]
     };
   }
@@ -184,7 +132,7 @@ export default class Events extends Component {
   loadEvents = (params, isLoadMore) => {
     // this.setState({shimmer: true});
     params.client = Constants.CLIENT;
-    EventsService.getData(params)
+    EventsService.getExploreArticleList(params)
       .then(res => {
         let eventData = [];
         if (isLoadMore) {
@@ -580,13 +528,7 @@ export default class Events extends Component {
                           key={event.id}
                           onClick={() => this.redirectToTarget(event.alias)}
                         >
-                          <Card
-                            cardData={event}
-                            cardClass={{
-                              cardBlock: 'event-block',
-                              cardButton: 'btn buy-btn'
-                            }}
-                          />
+                          <Card cardData={event} />
                         </div>
                       );
                     })}
