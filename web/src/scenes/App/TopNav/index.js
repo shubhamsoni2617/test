@@ -233,7 +233,11 @@ const TopNav = props => {
   };
 
   return changeHeader ? (
-    <Header menuActive={menuActive} pathName={pathName} />
+    <Header
+      menuActive={menuActive}
+      pathName={pathName}
+      history={props.history}
+    />
   ) : (
     <header
       className={`header ${headerClass ? 'homepage' : ''}

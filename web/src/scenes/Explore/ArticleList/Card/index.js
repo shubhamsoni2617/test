@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import './style.scss';
 import Image from '../../../../shared/components/Image';
 import Utilities from '../../../../shared/utilities';
+import EventHeading from '../../../../shared/components/EventHeading';
 
 //     return (
 //       <div className={this.props.cardClass.cardBlock}>
