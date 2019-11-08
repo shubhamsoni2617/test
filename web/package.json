@@ -66,11 +66,11 @@
     "prettier": "^1.16.0"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
+    "start": "node_modules/.bin/react-scripts start",
+    "build": "node_modules/.bin/react-scripts build",
     "serve": "node ./server/index.js",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject",
+    "test": "node_modules/.bin/react-scripts test --env=jsdom",
+    "eject": "node_modules/.bin/react-scripts eject",
     "format": "prettier --config ./.prettierrc --write src/**/*.js"
   },
   "proxy": "http://192.168.10.195:8081",
