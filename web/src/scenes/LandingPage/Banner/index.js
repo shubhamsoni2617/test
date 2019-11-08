@@ -2,7 +2,7 @@ import React from 'react';
 import yearsIcon from '../../../assets/images/Years-icon.svg';
 import ticketsIcon from '../../../assets/images/tickets-icon.svg';
 import partnersIcon from '../../../assets/images/Partners-icon.svg';
-import eventIcon from '../../../assets/images/Events-icon.svg';
+import eventIcon from '../../../assets/images/events-icon.svg';
 const Banner = ({ bannerData }) => {
   return (
     <>
