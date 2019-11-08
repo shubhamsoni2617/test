@@ -179,7 +179,7 @@ const SellTicketsWithUs = () => {
     content
   } = sellTicketWithUs;
   return (
-    <div>
+    <div className="sell-ticket-wrapper">
       {/* SISTIC banner starts here */}
       <Banner
         bannerTitle={banner_title}
