@@ -3,24 +3,24 @@ import API from "../../api";
 class AttractionsService {
 
 	getData(params) {
-		return API.get(`/attractions`, { params: params})
+		return API.get(`/attractions`, { params: params })
 	}
 
 	getAttractionsCategory() {
 		return API.get(`/attraction-categories`)
 	}
 
-	getFilterConfig(){
+	getFilterConfig() {
 		return API.get(`/configurations/search`)
 	}
 
-	
 
-	getSimilarEvents(params){
-		return API.get(`/similar-events`,{ params : params});
+
+	getSimilarEvents(params) {
+		return API.get(`/similar-events`, { params: params });
 	}
 
-	
+
 
 }
 

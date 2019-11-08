@@ -63,7 +63,7 @@ const routes = [
     component: WhereBuyTickets
   },
   {
-    path: '/attractions',
+    path: '/attraction',
     component: Attraction,
     exact: true
   },
