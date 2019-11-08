@@ -13,6 +13,11 @@
         height: 100%;
         .image-gallery {
           position: relative;
+          .image-gallery-image{
+            .image-conatiner{
+                max-height: 414px;
+            }
+          }
         }
         .image-gallery-thumbnails{
           padding: 0;
