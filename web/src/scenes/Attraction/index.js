@@ -110,7 +110,8 @@ export default class Attractions extends Component {
       first: 0,
       limit: Constants.LIMIT,
       sort_type: 'title',
-      sort_order: 'ASC'
+      sort_order: 'ASC',
+      client: Constants.CLIENT
     };
     return payload;
   };
