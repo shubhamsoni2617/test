@@ -21,7 +21,7 @@ import SystemLicensing from '../SystemLicensing';
 import Advertise from '../Advertise';
 import LandingPage from '../LandingPage';
 import Article from '../Explore/ArticleList';
-// import Explore from '../Explore';
+import Explore from '../Explore';
 
 const routes = [
   {

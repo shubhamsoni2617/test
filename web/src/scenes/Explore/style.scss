@@ -44,6 +44,10 @@
             border: 1px solid #0098FF;
             padding: 7px 25px;
             font-family: 'Montserrat', sans-serif;
+            &:hover{
+                background-color: #0098FF;
+                color: #ffffff;
+            }
         }
     }
     .banner-slider{
@@ -51,9 +55,9 @@
         width: 50%;
     }
 }
-.whtsup-wrapper{
+.whtsup-wrapper, .festivals-wrapper{
     padding: 43px 0px 49px;
-    .whtsup-container{
+    .whtsup-container, .festivals-container{
         display: flex;
         flex-wrap: wrap;
         .item-wrapper{
@@ -126,10 +130,31 @@
     padding: 50px 0px 59px;
     .section-top-wrapper{
         h2{
-            padding-bottom: 43px;
+            padding-bottom: 40px;
         }
     }
     .articles-item{
+        margin-top: 32px;
+        display: flex;
+        flex-wrap: wrap;
+        &:first-child{
+            margin-top: 0px;
+        }
+        .article-item-desc{
+            flex: 0 0 calc(70% - 71px);
+            width: calc(70% - 71px);
+            margin-right: 71px;
+            border-bottom: 1px solid rgba(126, 126, 126, 0.2);
+            p{
+                font-size: 14px;	
+                line-height: 22px;
+                color: #343434;
+            }
+        }
+        .article-item-img{
+            flex: 0 0 30%;
+            width: 30%;
+        }
         .category-group{
             padding-bottom: 19px;
             li{
