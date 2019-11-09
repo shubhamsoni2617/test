@@ -111,6 +111,15 @@
         height: 58px;
       }
     }
+    @media(max-width: 576px){
+      padding-left: 5px;
+      .first, 
+      .second,
+      .third,
+      .fourth{
+        width: 38px;
+      }
+    }
 }
 
 .promotions-grid-wrapper {
