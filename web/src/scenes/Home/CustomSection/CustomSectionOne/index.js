@@ -1,6 +1,6 @@
 import React from 'react';
 import './style.scss';
-import FeaturedEvents from '../../FeaturedEvents';
+import FeaturedEvents from '../../../../shared/components/FeaturedEvents';
 
 const CustomSectionOne = ({ api, cssClassName }) => {
   return (
