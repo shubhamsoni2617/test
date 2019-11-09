@@ -1,11 +1,11 @@
 import React, { useState, useEffect, useRef } from 'react';
 import Slider from 'react-slick';
 import './style.scss';
-import Constants from '../../../shared/constants';
-import Utilities from '../../../shared/utilities';
+import Constants from '../../constants';
+import Utilities from '../../utilities';
 import { CSSTransitionGroup } from 'react-transition-group';
-import ShimmerEffect from '../../../shared/components/ShimmerEffect';
-import Image from '../../../shared/components/Image';
+import ShimmerEffect from '../ShimmerEffect';
+import Image from '../Image';
 
 const Item = ({ event }) => {
   return (
@@ -161,16 +161,18 @@ const FeaturedEvents = props => {
       <div className="container-fluid">
         <div className="section-top-wrapper">
           <h2>{heading}</h2>
-          <div className="carousel-dots">
-            <a href="/events">
-              See all{' '}
-              <img
-                src="assets/images/right-arrow.svg"
-                className="img-fluid"
-                alt="arrow"
-              />
-            </a>
-          </div>
+          {!props.explore && (
+            <div className="carousel-dots">
+              <a href="/events">
+                See all{' '}
+                <img
+                  src="assets/images/right-arrow.svg"
+                  className="img-fluid"
+                  alt="arrow"
+                />
+              </a>
+            </div>
+          )}
         </div>
         <CSSTransitionGroup
           transitionName="shimmer-carousel"
