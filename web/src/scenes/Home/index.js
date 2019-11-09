@@ -13,7 +13,7 @@ import Image from '../../shared/components/Image';
 import NewsTicker from './NewsTicker';
 import ModalPopup from '../../shared/components/Modal';
 import primeSlider from '../../assets/images/main-banner.png';
-import primeSlider2 from '../../assets/images/main-banner-2.png';
+import primeSlider2 from '../../assets/images/main-banner.png';
 import mobileBanner from '../../assets/images/home-mobile-banner.png';
 import HomeService from '../../shared/services/HomeService';
 import Utilities from '../../shared/utilities';
@@ -76,7 +76,7 @@ class Home extends Component {
           showNewsTicker={this.showNewsTicker}
           modal={this.state.modal}
         />
-        <HotShowPopup />
+        {/* <HotShowPopup /> */}
         <div className={`banner`}>
           <Image
             src={Utilities.mobilecheck() ? mobileBanner : primeSlider2}
@@ -85,7 +85,7 @@ class Home extends Component {
           {/* <img className={`main-image ${this.state.imageUrl ? 'show-image' : ''}`} src={primeSlider} alt="prime Slider" /> */}
         </div>
         <TopPics />
-        {giftCard &&
+        {/* {giftCard &&
           giftCard.map(elem => {
             return (
               <div className="adds-container">
@@ -95,46 +95,42 @@ class Home extends Component {
                   target="_blank"
                   key={elem.title}
                 >
-                  {/* <section className="gift-cart">
-                    <div className="gift-cart-image"> */}
                   <img
                     src={elem && elem.full_image}
                     className="img-fluid"
                     alt={elem && elem.alt_text}
                     title={elem && elem.title}
                   />
-                  {/* </div>
-                  </section> */}
                 </a>
               </div>
             );
-          })}
-        <FeaturedEvents
+          })} */}
+        {/* <FeaturedEvents
           api={AdvertisementService.getFeaturedEvents}
           heading="Featured Events"
-        />
-        <CarouselConatiner
+        /> */}
+        {/* <CarouselConatiner
           title="Currently Showing"
           classStr="currently-showing"
           autoplay={true}
           infinite={false}
           api={HomeService.getCurrentlyShowing}
-        />
-        <PromotionCarousel />
-        <TrendingNow />
-        <CarouselConatiner
+        /> */}
+        {/* <PromotionCarousel /> */}
+        {/* <TrendingNow /> */}
+        {/* <CarouselConatiner
           title="What's New"
           classStr="whats-new"
           arrows={true}
           autoplay={false}
           infinite={false}
           api={HomeService.getNewRelease}
-        />
-        <Explore />
-        <CustomSection />
-        <InstagramFeed />
-        <Cookies />
-        <ModalPopup
+        /> */}
+        {/* <Explore /> */}
+        {/* <CustomSection /> */}
+        {/* <InstagramFeed /> */}
+        {/* <Cookies /> */}
+        {/* <ModalPopup
           showModal={this.state.modal}
           content={this.state.modalContent}
           title="News Ticker"
@@ -142,7 +138,7 @@ class Home extends Component {
             this.showNewsTicker({ modal: false, modalContent: '' })
           }
           htmlContent={true}
-        />
+        /> */}
       </div>
     );
   }

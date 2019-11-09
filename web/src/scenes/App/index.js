@@ -4,8 +4,26 @@ import Navigator from './Navigator';
 import TopNav from './TopNav';
 import Advertisement from '../../shared/components/Advertisement';
 import './style.css';
+import AdvertisementService from '../../shared/services/AdvertisementService';
+import Constants from '../../shared/constants';
+import HomeService from '../../shared/services/HomeService';
 
 export default class App extends React.Component {
+  static getInitialData() {
+    return [
+      AdvertisementService.getLeaderboardImage({
+        client: Constants.CLIENT,
+        page: 1
+      }),
+      HomeService.getHomepageVenues(0, 5, ''),
+      HomeService.getGenre(),
+      AdvertisementService.getFindAnEventAds({
+        client: Constants.CLIENT,
+        limit: 2,
+        first: 0
+      })
+    ];
+  }
   constructor(props) {
     super(props);
     this.state = {
@@ -16,7 +34,7 @@ export default class App extends React.Component {
   componentDidMount() {
     setTimeout(() => {
       document.body.classList.remove('fix-height');
-      document.getElementById('loader').classList.add('loaded');
+      // document.getElementById('loader').classList.add('loaded');
     }, 1000);
   }
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Modal from 'react-animated-modal';
+// import Modal from 'react-animated-modal';
 import './style.scss';
 export default class ModalPopup extends React.Component {
   render() {
@@ -10,7 +10,7 @@ export default class ModalPopup extends React.Component {
     }
     return (
       <div>
-        <Modal
+        {/* <Modal
           visible={showModal}
           closemodal={e => {
             document.body.classList.remove('fixed-body');
@@ -36,7 +36,7 @@ export default class ModalPopup extends React.Component {
               {this.props.children}
             </div>
           </div>
-        </Modal>
+        </Modal> */}
       </div>
     );
   }
