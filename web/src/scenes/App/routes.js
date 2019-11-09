@@ -20,7 +20,8 @@ import Search from '../Home/Search';
 import SystemLicensing from '../SystemLicensing';
 import Advertise from '../Advertise';
 import LandingPage from '../LandingPage';
-import Explore from '../../scenes/Explore';
+import Article from '../Explore/ArticleList';
+// import Explore from '../Explore';
 
 const routes = [
   {
@@ -64,7 +65,7 @@ const routes = [
     component: WhereBuyTickets
   },
   {
-    path: '/attractions',
+    path: '/attraction',
     component: Attraction,
     exact: true
   },
@@ -138,6 +139,16 @@ const routes = [
   {
     path: '/b2b',
     component: LandingPage,
+    exact: true
+  },
+  // {
+  //   path: '/explore',
+  //   component: Explore,
+  //   exact: true
+  // },
+  {
+    path: '/explore/article',
+    component: Article,
     exact: true
   },
   {

@@ -4,7 +4,7 @@ import logo from '../../../assets/images/logo.png';
 import './style.scss';
 import { Submenu, SubmenuWrap } from '../Submenu';
 
-const Header = ({ menuActive, pathName }) => {
+const Header = ({ menuActive, pathName, history }) => {
   let refValue = useRef();
   const [showMegaMenu, setShowMegaMenu] = useState(false);
 
@@ -66,7 +66,7 @@ const Header = ({ menuActive, pathName }) => {
                       <Link to="/system-licensing">System Licensing</Link>
                     </li>
                     <li>
-                      <a>Be our partner</a>
+                      <Link to="/apipartners">Be our partner</Link>
                     </li>
                   </ul>
                 </li>
@@ -140,44 +140,45 @@ const Header = ({ menuActive, pathName }) => {
                   Get Started
                 </a>
                 <ul className={`submenu ${showMegaMenu ? 'active' : ''}`}>
-                  <li className="has-submenu">
-                    <Submenu
-                      heading="Sell tickets with us"
-                      buttonText="Sell tickets with us"
-                      data={null}
-                      submenuClass=""
-                      link=""
-                      closeSubmenu={handleNavigationClose}
-                      resetFilters={() => {}}
-                      clearFilters={() => {}}
-                      applyFilters={() => {}}
-                    />
+                  <li>
+                    <span
+                      onClick={() => {
+                        handleNavigationClose();
+                        history.push('/b2b');
+                      }}
+                    >
+                      B2B
+                    </span>
                   </li>
-                  <li className="has-submenu">
-                    <Submenu
-                      heading="System Licencing"
-                      buttonText="System Licencing"
-                      data={null}
-                      submenuClass=""
-                      link="/system-licensing"
-                      closeSubmenu={handleNavigationClose}
-                      resetFilters={() => {}}
-                      clearFilters={() => {}}
-                      applyFilters={() => {}}
-                    />
+                  <li>
+                    <span
+                      onClick={() => {
+                        handleNavigationClose();
+                        history.push('/');
+                      }}
+                    >
+                      Sell tickets with us
+                    </span>
                   </li>
-                  <li className="has-submenu">
-                    <Submenu
-                      heading="Be our partner"
-                      buttonText="Be our partner"
-                      data={null}
-                      submenuClass=""
-                      link=""
-                      closeSubmenu={handleNavigationClose}
-                      resetFilters={() => {}}
-                      clearFilters={() => {}}
-                      applyFilters={() => {}}
-                    />
+                  <li>
+                    <span
+                      onClick={() => {
+                        handleNavigationClose();
+                        history.push('/system-licensing');
+                      }}
+                    >
+                      System Licensing
+                    </span>
+                  </li>
+                  <li>
+                    <span
+                      onClick={() => {
+                        handleNavigationClose();
+                        history.push('/apipartners');
+                      }}
+                    >
+                      Be our partner
+                    </span>
                   </li>
                 </ul>
               </li>

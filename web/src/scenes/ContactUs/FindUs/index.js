@@ -92,14 +92,14 @@ const FindUs = ({ }) => {
             <Career />
           </div>
           <div className="find-us-desc d-flex align-items-center">
-            <a>
+            <Link to="/career">
               <h5 className="text">
                 Careers
                 <span>
                   <Arrow />
                 </span>
               </h5>
-            </a>
+            </Link>
           </div>
         </div>
       </div>

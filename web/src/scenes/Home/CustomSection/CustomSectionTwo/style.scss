@@ -33,6 +33,10 @@
                 flex: 0 0 50%;
                 width: 50%;
             }
+            @media(max-width: 991px){
+                flex: 0 0 100%;
+                width: 100%;
+            }
             @media(max-width: 768px){
                 flex: 0 0 100%;
                 width: 100%; 
@@ -49,6 +53,10 @@
             @media(max-width: 1180px){
                 flex: 0 0 50%;
                 width: 50%;
+            }
+            @media(max-width: 991px){
+                flex: 0 0 100%;
+                width: 100%; 
             }
             @media(max-width: 768px){
                 flex: 0 0 100%;
@@ -70,7 +78,7 @@
                     height: auto; 
                     margin-bottom: 20px;
                 }
-                @media(max-width: 768px){
+                @media(max-width: 991px){
                     padding-top: 10px;
                 }
             }
@@ -96,6 +104,7 @@
                     font-size: 14px;	
                     font-weight: 500;	
                     line-height: 20px;
+                    word-break: break-all;
                 }
             }
             p{
@@ -110,6 +119,7 @@
     .royal-items {
         height: 65%;
         display: flex;
+        flex-wrap: wrap;
         flex-direction: column;
         justify-content: space-between;
         @media(min-width: 1580px){
@@ -122,11 +132,18 @@
             flex-direction: row;
             height: auto;
         }
-        @media(max-width: 1024px){
-           height: auto; 
+        @media(max-width: 1024px) and (min-width: 992px){
+            flex-direction: column;
+        }
+        @media(max-width: 991px){
+            height: auto;
+            flex-direction: row;
         }
         @media(max-width: 767px){
             flex-direction: column;
+        }
+        @media(max-width: 991px) and (orientation: landscape){
+            flex-direction: row;
         }
         .item-wrapper{
             display: flex;
@@ -137,19 +154,45 @@
                 margin-bottom: 0px;
                 margin-right: 10px;
             }
-            @media(max-width: 1024px){
-                margin-bottom: 0px;
+            @media(max-width: 1024px) and (min-width: 992px){
+                margin-bottom: 10px;
             }
-            @media(max-width: 767px){
+            @media(max-width: 991px){
+                margin-bottom: 10px;
+                margin-right: 20px;
+                flex: 0 0 100%;
+                width: 100%;
+            }
+            @media(max-width: 576px){
                 margin-bottom: 15px;
                 margin-right: 0px;
-            }    
+                flex: 0 0 100%;
+                width: 100%;
+            }
+            @media(max-width: 991px) and (orientation: landscape){
+                flex: 0 0 calc(50% - 5px);
+                width: calc(50% - 5px);
+                margin: 0px;
+            }
+            &:first-child{
+                @media(max-width: 991px) and (orientation: landscape){
+                    margin-right: 10px;
+                }
+            }
             .item-img{
                 flex: 0 0 167px;
                 width: 167px;
                 height: 78px;
                 max-width: 167px;
                 overflow: hidden;
+                @media(max-width: 576px){
+                    flex: 0 0 auto;
+                    width: auto;
+                }
+                @media(max-width: 991px) and (orientation: landscape){
+                    flex: 0 0 auto;
+                    width: auto;
+                }    
                 img{
                     @media(max-width: 650px){
                         max-width: 140px;
@@ -163,6 +206,9 @@
                 @media(max-width: 1180px){
                     padding-left: 0px;
                     padding-top: 10px;
+                }
+                @media(max-width: 1024px){
+                    padding-left: 10px;
                 }
                 @media(max-width: 768px){
                     padding-left: 15px;
@@ -179,6 +225,9 @@
                 p{
                     font-size: 14px;
                     line-height: 22px;
+                    @media(max-width: 576px){
+                        font-size: 13px;
+                    }
                 }
             }
             &:hover{
