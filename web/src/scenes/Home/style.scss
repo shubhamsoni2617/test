@@ -800,12 +800,15 @@
 	}
 	.submenu{
 		.has-submenu{
-			button, a{
+			button, a, p, span{
 				background-color: transparent;
 				color: #343434;
 				font-weight: 300;
 				width: 100%;
 				text-align: left;
+				&:hover{
+					cursor: pointer;
+				}
 			}
 			button{
 				@media(max-width: 767px){
@@ -863,7 +866,7 @@
 			}
 		}
 		.has-submenu {
-			& > a, & > button {
+			& > a, & > button, & > p {
 				position: relative;
 				border: none;
 				color: #343434;
@@ -873,7 +876,7 @@
 				position: relative;
 				font-size: 16px;
 				background-color: transparent;
-				font-weight: 400;
+				font-weight: 400 !important;
 				font-family: 'Rubik', sans-serif;
 				line-height: normal;
 				text-align: left;
@@ -975,13 +978,17 @@
 				padding: 11px 15px;
 			}
 		}
-		a {
+		a, p, span {
 			color: #343434;
 			padding: 14px 15px;
 			display: inline-block;
-			width: 100%;
+			width: auto;
 			position: relative;
 			font-size: 16px;
+			font-weight: 300;
+			&:hover{
+				cursor: pointer;
+			}
 		}
 		> ul {
 			border-bottom: 1px solid #d8d8d8;
@@ -1612,7 +1619,7 @@
 			overflow-x: auto;
     		display: flex;
 		}
-		.item {	
+		.item {
 			position: relative;
 			cursor: pointer;
 			overflow: hidden;
@@ -1638,18 +1645,29 @@
 					}
 				}
 				.image-conatiner{
-					max-height: 440px;
 					height: 100%;
-					min-height: 440px;
 					width: 100%;
+					@media(min-width: 1440px){
+						max-height: 440px;
+						min-height: 440px;
+					}
 					@media(max-width: 1366px){
 						max-height: 318px;
 						height: 100%;
 						min-height: 318px;
 						width: 100%;
 					}
-					@media(max-width: 991px) and (min-width: 768px){
-						min-height: 130px;
+					@media(max-width: 1024px){
+						max-height: 229px;
+						height: 100%;
+						min-height: 229px;
+						width: 100%;
+					}
+					@media(min-width: 768px) and (max-width: 800px){
+						max-height: 350px;
+						height: 100%;
+						min-height: 350px;
+						width: 100%;
 					}
 					@media(max-width: 576px){
 						max-height: 100%;
@@ -1660,9 +1678,11 @@
 				}
 				.item-img img {
 					height: 100%;
-					width: 100%;
-					min-height: 440px;
-					max-height: 440px;
+					width: 100%;					
+					@media(min-width: 1440px){
+						min-height: 440px;
+						max-height: 440px;
+					}
 					@media(max-width: 1366px) {
 						height: 100%;
 						width: 100%;
@@ -1673,10 +1693,16 @@
 					@media(max-width: 1024px){
 						height: 100%;
 						width: 100%;
-						min-height: 130px;
-						max-height: 130px;
+						min-height: 229px;
+						max-height: 229px;
 					}
-					@media (max-width: 767px) {
+					@media(min-width: 768px) and (max-width: 800px){
+						height: 100%;
+						width: 100%;
+						min-height: 350px;
+						max-height: 350px;
+					}
+					@media (max-width: 576px) {
 						height: auto;
 						width: 100%;
 						max-width: 100%;
@@ -1879,6 +1905,20 @@
 				max-width: 28%;
 				margin-right: 7px;
 			}
+		}
+	}
+	.slick-prev{
+		@media(min-width: 768px) and (max-width: 800px){
+			left: -38px;
+			height: 85px;
+			width: 45px;
+		}
+	}
+	.slick-next{
+		@media(min-width: 768px) and (max-width: 800px){
+			right: -33px;
+			height: 85px;
+			width: 45px;
 		}
 	}
 }
@@ -2237,39 +2277,116 @@ section.whats-new {
 				-webkit-transition: 0.5s transform;
 				-moz-transition: 0.5s transform;
 				-o-transition: 0.5s transform;
-				min-height: 440px;
-				max-height: 440px;
+				height: 100%;
+				width: 100%;
+				@media(min-width: 1440px){
+					max-height: 440px;
+					min-height: 440px;
+				}
 				@media(max-width: 1366px){
 					max-height: 318px;
 					height: 100%;
 					min-height: 318px;
 					width: 100%;
 				}
-				@media(max-width: 767px){
-					max-height: 100%;
-					height: 100%;					
+				@media(max-width: 1024px){
+					max-height: 229px;
+					height: 100%;
+					min-height: 229px;
 					width: 100%;
-					min-height: 130px;
-					max-height: 130px;
 				}
+				@media(min-width: 768px) and (max-width: 800px){
+					max-height: 350px;
+					height: 100%;
+					min-height: 350px;
+					width: 100%;
+				}
+				@media(max-width: 576px){
+					max-height: 100%;
+					height: 100%;
+					min-height: 130px;
+					width: 100%;
+				}
+				// @media(min-width: 1280px){	
+				// 	min-height: 440px;
+				// 	max-height: 440px;
+				// }
+				// @media(max-width: 1366px){
+				// 	max-height: 318px;
+				// 	height: 100%;
+				// 	min-height: 318px;
+				// 	width: 100%;
+				// }
+				// @media(min-width: 768px) and (max-width: 1024px){
+				// 	max-height: 350px; 
+				// 	height: 100%; 
+				// 	min-height: 350px; 
+				// 	width: 100%; 
+				// }
+				// @media(max-width: 767px){
+				// 	max-height: 100%;
+				// 	height: 100%;					
+				// 	width: 100%;
+				// 	min-height: 130px;
+				// 	max-height: 130px;
+				// }
 				img {
 					width: 100%;
-					height: 100%;
-					min-height: 440px;
-					max-height: 440px;
-					@media(max-width: 1366px){
+					height: 100%;				
+					@media(min-width: 1440px){
+						min-height: 440px;
+						max-height: 440px;
+					}
+					@media(max-width: 1366px) {
 						height: 100%;
 						width: 100%;
 						min-height: 318px;
-						max-height: 318px;		
+						max-height: 318px;
+						object-fit: cover;
 					}
-					@media (max-width: 767px) {
+					@media(max-width: 1024px){
+						height: 100%;
+						width: 100%;
+						min-height: 229px;
+						max-height: 229px;
+					}
+					@media(min-width: 768px) and (max-width: 800px){
+						height: 100%;
+						width: 100%;
+						min-height: 350px;
+						max-height: 350px;
+					}
+					@media (max-width: 576px) {
 						height: auto;
-						width: auto;
+						width: 100%;
 						max-width: 100%;
-						max-height: 130px;
 						min-height: 130px;
+						max-height: 130px;
 					}
+
+					// @media(min-width: 1280px){
+					// 	min-height: 440px;
+					// 	max-height: 440px;
+					// }
+					// @media(max-width: 1366px){
+					// 	height: 100%;
+					// 	width: 100%;
+					// 	min-height: 318px;
+					// 	max-height: 318px;		
+					// }
+					// @media(min-width: 768px) and (max-width: 1024px){
+					// 	height: 100%;
+					// 	width: 100%;
+					// 	min-height: 350px;
+					// 	max-height: 350px;
+					// }
+					// @media (max-width: 767px) {
+					// 	height: auto;
+					// 	width: auto;
+					// 	max-width: 100%;
+					// 	max-height: 130px;
+					// 	min-height: 130px;
+					// }
 				}
 			}
 			@media(min-width: 991px){
@@ -2339,7 +2456,7 @@ section.whats-new {
 		min-height: 54px;
         padding-bottom: 13px;
 		@media(max-width: 1366px) {
-			min-height: 54px;
+			min-height: 54px; 
 		}
 		@media(max-width: 991px) {
 			min-height: auto;
@@ -2706,7 +2823,12 @@ section.trending-now {
 	.grid-container {
 		display: grid;
 		grid-gap: 16px;
-        grid-template-columns: 1.4fr repeat(4, 1fr);
+		grid-template-columns: 1.4fr repeat(4, 1fr);
+		-ms-overflow-style: none; // IE 10+ 
+		scrollbar-width: none; // Firefox 
+		&::-webkit-scrollbar { 
+			display: none; // Safari and Chrome
+		}
 		@media(max-width: 1024px) {
 			grid-template-columns: repeat(5, minmax(43%, 1fr));
 			grid-gap: 10px;
@@ -2718,7 +2840,6 @@ section.trending-now {
 		// @media(min-width: 992px) and (max-width: 1280px) {
         //     grid-template-columns: 1.4fr repeat(4, 1fr);
 		// }
-
 		.item {
 			height: 100%;
 			display: flex;

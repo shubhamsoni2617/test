@@ -247,6 +247,11 @@ a{
 }
 
 .responsive-nav-links {
+  a, p, span{
+    &:hover{
+      cursor: pointer;
+    }
+  }
   @media(max-width: 768px){
     max-width: 350px;
   }

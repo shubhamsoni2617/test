@@ -224,6 +224,7 @@
             }
         }
         .banner-overlay{
+            z-index: 0;
             @media(max-width: 767px){
                 padding-top: 85px;
             }
