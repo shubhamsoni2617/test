@@ -18,6 +18,7 @@ class Constants {
   static SOURCE_FROM_WEBSITE = 1;
   static SOURCE_FROM_MOBILE_RESPONSIVE = 3;
   static LIMIT = Utilities.mobileAndTabletcheck() ? 6 : 9;
+  static SITE_KEY = '6LedScEUAAAAALMkHkGFibsc4yNxrajcV6wijeuP';
 }
 
 export default Constants;

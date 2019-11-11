@@ -167,6 +167,7 @@ const TopNav = props => {
         pathArr[1] === 'career' ||
         pathArr[1] === 'system-licensing' ||
         pathArr[1] === 'advertise' ||
+        pathArr[1] === 'sell-event-tickets' ||
         pathArr[1] === 'b2b'
       ) {
         setChangeHeader(true);
@@ -549,19 +550,21 @@ const TopNav = props => {
                       >
                         <ul className="submenu">
                           <li className="has-submenu">
-                            <Link to="/">About Us</Link>
+                            <Link to="/about-us">About Us</Link>
                           </li>
                           <li className="has-submenu">
-                            <Link to="/">Sell with Us</Link>
+                            <Link to="/sell-event-tickets">Sell with Us</Link>
                           </li>
                           <li className="has-submenu">
-                            <Link to="/">Ticketing Technology</Link>
+                            <Link to="/system-licensing">
+                              Ticketing Technology
+                            </Link>
                           </li>
                           <li className="has-submenu">
                             <Link to="/apipartners">Partner with Us</Link>
                           </li>
                           <li className="has-submenu">
-                            <Link to="/">Careers</Link>
+                            <Link to="/career">Careers</Link>
                           </li>
                         </ul>
                       </SubmenuWrap>
@@ -650,7 +653,7 @@ const TopNav = props => {
                 <span>Sistic on Mobile</span>
                 <div className="download-option">
                   <Link to="/">
-                    <img src={MainLogo} className="ios" alt="send" />
+                    <img src={AppleLogo} className="ios" alt="send" />
                     <span>
                       Available on the
                       <br />

@@ -2,9 +2,8 @@ import React, { useState, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import logo from '../../../assets/images/logo.png';
 import './style.scss';
-import { Submenu, SubmenuWrap } from '../Submenu';
 
-const Header = ({ menuActive, pathName, history }) => {
+const Header = ({ menuActive, pathName }) => {
   let refValue = useRef();
   const [showMegaMenu, setShowMegaMenu] = useState(false);
 
@@ -28,6 +27,21 @@ const Header = ({ menuActive, pathName, history }) => {
       document.body.classList.remove('body-overlay');
     }
   };
+
+  const topHeaderContent = [
+    { link: 'about-us', name: 'About Us' },
+    { link: 'apipartners', name: 'Media' },
+    { link: 'advertise', name: 'Advertise' },
+    { link: 'career', name: 'Careers' },
+    { link: 'contact-us', name: 'Contact Us' }
+  ];
+
+  const getStartedContent = [
+    { link: 'sell-event-tickets', name: 'Sell tickets with us' },
+    { link: 'b2b', name: 'B2B' },
+    { link: 'system-licensing', name: 'System Licensing' },
+    { link: 'apipartners', name: 'Be our partner' }
+  ];
 
   return (
     <header className="small-header">
@@ -56,51 +70,27 @@ const Header = ({ menuActive, pathName, history }) => {
                 <li className="has-submenu">
                   <a>Get Started</a>
                   <ul className="small-header-submenu">
-                    <li>
-                      <Link to="/b2b">B2B</Link>
-                    </li>
-                    <li>
-                      <a>Sell tickets with us</a>
-                    </li>
-                    <li>
-                      <Link to="/system-licensing">System Licensing</Link>
-                    </li>
-                    <li>
-                      <Link to="/apipartners">Be our partner</Link>
-                    </li>
+                    {getStartedContent.map(({ link, name }) => {
+                      return (
+                        <li key={link}>
+                          <Link to={`/${link}`}>{name}</Link>
+                        </li>
+                      );
+                    })}
                   </ul>
                 </li>
-                <li
-                  className={
-                    menuActive && pathName === 'about-us' ? 'active-link' : ''
-                  }
-                >
-                  <Link to="/about-us">About Us</Link>
-                </li>
-                <li>
-                  <a>Media</a>
-                </li>
-                <li
-                  className={
-                    menuActive && pathName === 'advertise' ? 'active-link' : ''
-                  }
-                >
-                  <Link to="/advertise">Advertise</Link>
-                </li>
-                <li
-                  className={
-                    menuActive && pathName === 'careers' ? 'active-link' : ''
-                  }
-                >
-                  <Link to="/career">Careers</Link>
-                </li>
-                <li
-                  className={
-                    menuActive && pathName === 'contact-us' ? 'active-link' : ''
-                  }
-                >
-                  <Link to="/contact-us">Contact Us</Link>
-                </li>
+                {topHeaderContent.map(({ link, name }) => {
+                  return (
+                    <li
+                      className={
+                        menuActive && pathName === link ? 'active-link' : ''
+                      }
+                      key={link}
+                    >
+                      <Link to={`/${link}`}>{name}</Link>
+                    </li>
+                  );
+                })}
               </ul>
             </div>
           </nav>
@@ -123,14 +113,6 @@ const Header = ({ menuActive, pathName, history }) => {
                 }}
               ></a>
             </div>
-            {/* <ul className="user-details">
-              <li className="user-icon">
-                <Link to="/">
-                  <span></span>
-                </Link>
-                <span>Login/ Register</span>
-              </li>
-            </ul> */}
             <ul>
               <li className="has-submenu">
                 <a
@@ -140,71 +122,29 @@ const Header = ({ menuActive, pathName, history }) => {
                   Get Started
                 </a>
                 <ul className={`submenu ${showMegaMenu ? 'active' : ''}`}>
-                  <li>
-                    <span
-                      onClick={() => {
-                        handleNavigationClose();
-                        history.push('/b2b');
-                      }}
-                    >
-                      B2B
-                    </span>
-                  </li>
-                  <li>
-                    <span
-                      onClick={() => {
-                        handleNavigationClose();
-                        history.push('/');
-                      }}
-                    >
-                      Sell tickets with us
-                    </span>
-                  </li>
-                  <li>
-                    <span
-                      onClick={() => {
-                        handleNavigationClose();
-                        history.push('/system-licensing');
-                      }}
-                    >
-                      System Licensing
-                    </span>
-                  </li>
-                  <li>
-                    <span
-                      onClick={() => {
-                        handleNavigationClose();
-                        history.push('/apipartners');
-                      }}
-                    >
-                      Be our partner
-                    </span>
-                  </li>
+                  {getStartedContent.map(({ link, name }) => {
+                    return (
+                      <li key={link}>
+                        <Link to={`/${link}`} onClick={handleNavigationClose}>
+                          {name}
+                        </Link>
+                      </li>
+                    );
+                  })}
                 </ul>
               </li>
-              <li>
-                <Link to="/about-us" onClick={() => handleNavigationClose()}>
-                  About Us
-                </Link>
-              </li>
-              <li>
-                <a onClick={() => handleNavigationClose()}>Media</a>
-              </li>
-              <li>
-                <Link to="/advertise" onClick={() => handleNavigationClose()}>
-                  Advertise
-                </Link>
-              </li>
-              <li>
-                <Link to="/career" onClick={() => handleNavigationClose()}>
-                  Careers
-                </Link>
-              </li>
-              <li>
-                <Link to="/contact-us" onClick={() => handleNavigationClose()}>
-                  Contact Us
-                </Link>
-              </li>
+              {topHeaderContent.map(({ link, name }) => {
+                return (
+                  <li key={link}>
+                    <Link
+                      to={`/${link}`}
+                      onClick={() => handleNavigationClose()}
+                    >
+                      {name}
+                    </Link>
+                  </li>
+                );
+              })}
             </ul>
           </div>
         </div>
