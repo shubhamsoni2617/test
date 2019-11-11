@@ -1,10 +1,12 @@
 import React from 'react';
+import './style.scss';
 import bannerImg from '../../assets/images/explore-banner2.png';
 import Sifa from '../../assets/images/sifa.png';
 import Festival from '../../assets/images/festival.png';
 import Chinese from '../../assets/images/chinese.png'
 import Chritmas from '../../assets/images/christmas.png'
 import Article from '../../assets/images/explore-article.png';
+import ArticleHall from '../../assets/images/article-hall.png';
 import Arrow from '../../assets/images/right-arrow.svg';
 import GreatWine from '../../assets/images/great-wine.png';
 import chrolFest from '../../assets/images/choral-festival.png';
@@ -13,7 +15,13 @@ import sentosaFest from '../../assets/images/sentosa-fest.png';
 import Mumford from '../../assets/images/mumford.png';
 import Guide from '../../assets/images/guides.png';
 import Survey from '../../assets/images/survey.png';
-import './style.scss';
+import reviewSmall from '../../assets/images/review-small.png';
+import guideSmall from '../../assets/images/guide-small.png';
+import surveySmall from '../../assets/images/survey-small.png';
+import rightArrow from '../../assets/images/right-arrow.svg';
+import Trending1 from '../../assets/images/trending1.png';
+import Trending2 from '../../assets/images/trending2.png';
+import Trending3 from '../../assets/images/trending3.png';
 
 const Explore = () => {
     return (
@@ -141,7 +149,7 @@ const Explore = () => {
                             Dolor Amet Gems Lorem ipsum.. <a>More</a></p>
                             </div>
                             <div className="article-item-img">
-                                <img src={Article} alt="article" />
+                                <img src={ArticleHall} alt="article" />
                             </div>
                         </div>
                         <div className="articles-item">
@@ -238,11 +246,11 @@ const Explore = () => {
                                 <h3>Singapore Neon Lights Festival 2019 - Mumford & Sons Honne</h3>
                             </div>
                             <div className="all-reviews">
-                                <span>By Larva May</span>
+                                <span className="review-subtext">By Larva May</span>
                                 <div className="review-item-wrapper">
                                     <div className="review-item">
                                         <div className="review-item-image">
-                                            <img src="" alt="review" />
+                                            <img src={reviewSmall} alt="review" />
                                         </div>
                                         <div className="review-content">
                                             <h3>Crowd by Gisèle Vienne</h3>
@@ -251,14 +259,14 @@ const Explore = () => {
                                     </div>
                                     <div className="review-item">
                                         <div className="review-item-image">
-                                            <img src="" alt="review" />
+                                            <img src={reviewSmall} alt="review" />
                                         </div>
                                         <div className="review-content">
                                             <h3>Crowd by Gisèle Vienne</h3>
                                             <span>By Larva May</span>
                                         </div>
                                     </div>
-                                    <a href="">More from Reviews <img src="" alt="arrow" /></a>
+                                    <a href="">More from Reviews <img src={rightArrow} alt="arrow" /></a>
                                 </div>
                             </div>
                         </div>
@@ -271,11 +279,11 @@ const Explore = () => {
                                 <h3>Singapore Neon Lights Festival 2019 - Mumford & Sons Honne</h3>
                             </div>
                             <div className="all-reviews">
-                                <span>By Larva May</span>
+                                <span className="review-subtext">By Larva May</span>
                                 <div className="review-item-wrapper">
                                     <div className="review-item">
                                         <div className="review-item-image">
-                                            <img src="" alt="review" />
+                                            <img src={guideSmall} alt="review" />
                                         </div>
                                         <div className="review-content">
                                             <h3>Crowd by Gisèle Vienne</h3>
@@ -284,31 +292,31 @@ const Explore = () => {
                                     </div>
                                     <div className="review-item">
                                         <div className="review-item-image">
-                                            <img src="" alt="review" />
+                                            <img src={guideSmall} alt="review" />
                                         </div>
                                         <div className="review-content">
                                             <h3>Crowd by Gisèle Vienne</h3>
                                             <span>By Larva May</span>
                                         </div>
                                     </div>
-                                    <a href="">More from Reviews <img src="" alt="arrow" /></a>
+                                    <a href="">More from Reviews <img src={rightArrow} alt="arrow" /></a>
                                 </div>
                             </div>
                         </div>
                         <div class="reviews-item">
+                            <div className="section-title">
+                                <h3>Surveys/ Quizzes</h3>
+                            </div>
                             <div className="active-review">
-                                <div className="section-title">
-                                    <h3>Surveys/ Quizzes</h3>
-                                </div>
                                 <img src={Survey} alt="" />
                                 <h3>Singapore Neon Lights Festival 2019 - Mumford & Sons Honne</h3>
                             </div>
                             <div className="all-reviews">
-                                <span>By Larva May</span>
+                                <span className="review-subtext">By Larva May</span>
                                 <div className="review-item-wrapper">
                                     <div className="review-item">
                                         <div className="review-item-image">
-                                            <img src="" alt="review" />
+                                            <img src={surveySmall} alt="review" />
                                         </div>
                                         <div className="review-content">
                                             <h3>Crowd by Gisèle Vienne</h3>
@@ -317,14 +325,14 @@ const Explore = () => {
                                     </div>
                                     <div className="review-item">
                                         <div className="review-item-image">
-                                            <img src="" alt="review" />
+                                            <img src={surveySmall} alt="review" />
                                         </div>
                                         <div className="review-content">
                                             <h3>Crowd by Gisèle Vienne</h3>
                                             <span>By Larva May</span>
                                         </div>
                                     </div>
-                                    <a href="">More from Reviews <img src="" alt="arrow" /></a>
+                                    <a href="">More from Reviews <img src={rightArrow} alt="arrow" /></a>
                                 </div>
                             </div>
                         </div>
@@ -335,26 +343,23 @@ const Explore = () => {
                 <div className="container-fluid">
                     <div class="section-top-wrapper">
                         <h2>Trending</h2>
-                        <div class="carousel-dots">
-                            <a href="">See all <img src={Arrow} class="img-fluid" alt="arrow" /></a>
-                        </div>
                     </div>
                     <div className="grid-container">
                         <div className="item">
-                            <img srv="" alt="" />
+                            <img src={Trending1} alt="" />
+                        </div>
+                        {/* <div className="item">
+                            <img src={Trending1} alt="" />
                         </div>
                         <div className="item">
-                            <img srv="" alt="" />
+                            <img src={Trending1} alt="" />
                         </div>
                         <div className="item">
-                            <img srv="" alt="" />
+                            <img src={Trending1} alt="" />
                         </div>
                         <div className="item">
-                            <img srv="" alt="" />
-                        </div>
-                        <div className="item">
-                            <img srv="" alt="" />
-                        </div>
+                            <img src={Trending1} alt="" />
+                        </div> */}
                     </div>
                 </div>
             </section>
