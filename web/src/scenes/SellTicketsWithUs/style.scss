@@ -289,6 +289,23 @@
                 font-size: 16px;
                 line-height: 19px;
                 border-radius: 0px;
+                padding: 0.375rem 0.75rem;
+                width: 100%;
+            }
+            .DayPickerInput{
+                width: 100%;
+            }
+            .DayPickerInput-OverlayWrapper{
+              margin-top: -24px;
+              @media(max-width: 576px){
+                margin-top: -20px;
+              }
+              .DayPicker-wrapper{
+                padding-top: 20px;
+                @media(max-width: 576px){
+                  padding-top: 15px;
+                }
+              }
             }
             textarea{
                 margin-bottom: 24px;
@@ -484,7 +501,7 @@
 }
 @media (max-width: 992px) {
     .sell-ticket-wrapper{
-    .event-list{        
+    .event-list{
         .year-icon{
             img{
                 padding-right: 12px;
@@ -773,9 +790,30 @@
             }
             .security-check{
                 .capcha-text{
-                    width: 291px;
-                    max-width: 100%;
-                    padding: 0px;
+                  width: 250px;
+                  max-width: 100%;
+                  padding: 0px;
+                  margin: 0 15px;
+                  .rc-anchor-normal{
+                    width: 245px;
+                    .rc-anchor-content{
+                      width: 150px;
+                      .rc-anchor-checkbox-label{
+                          width: 95px;
+                      }
+                    }
+                    .rc-anchor-normal-footer{
+                      width: 80px;
+                      .rc-anchor-logo-portrait{
+                        margin: 10px 0 0 15px;
+                      }
+                      .rc-anchor-pt{
+                        right: 65px;
+                        text-align: right;
+                        width: 116px;
+                      }
+                    }
+                  }
                 }
             }
             .submit-btn{
@@ -783,13 +821,15 @@
                     padding: 4px 10px;
                     font-size: 15px;
                     max-height: 33px;
-                    min-width: 150px;
+                    min-width: auto;
+                    max-width: 150px;
                 }
                 .reset{
                     padding: 4px 10px;
                     font-size: 15px;
                     max-height: 33px;
-                    min-width: 150px;
+                    min-width: auto;
+                    max-width: 150px;
                 }
             }
         }

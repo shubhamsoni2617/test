@@ -174,6 +174,7 @@ const SellingForm = ({
                       }}
                       onDayChange={handleEventDate}
                     />
+
                     <input
                       type="text"
                       name="event-capacity"
