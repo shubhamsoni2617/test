@@ -6,23 +6,23 @@ class Explore extends Component {
     const explore = [
       {
         id: '1',
-        img: 'assets/images/explore-01.jpg'
+        img: '../../../assets/images/explore-01.jpg'
       },
       {
         id: '2',
-        img: 'assets/images/explore-02.jpg'
+        img: '../../../assets/images/explore-02.jpg'
       },
       {
         id: '3',
-        img: 'assets/images/explore-02.jpg'
+        img: '../../../assets/images/explore-02.jpg'
       },
       {
         id: '4',
-        img: 'assets/images/explore-02.jpg'
+        img: '../../../assets/images/explore-02.jpg'
       },
       {
         id: '5',
-        img: 'assets/images/explore-02.jpg'
+        img: '../../../assets/images/explore-02.jpg'
       }
     ];
     return (
@@ -34,7 +34,7 @@ class Explore extends Component {
               <a>
                 See all{' '}
                 <img
-                  src="assets/images/right-arrow.svg"
+                  src="../../../assets/images/right-arrow.svg"
                   className="img-fluid"
                   alt="arrow"
                 />

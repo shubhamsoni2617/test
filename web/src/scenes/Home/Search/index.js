@@ -11,7 +11,7 @@ import SearchAdvertisement from './SearchAdvertisement';
 import SearchNotFound from './SearchNotFound';
 import Utilities from '../../../shared/utilities';
 import usePrevious from '../../../shared/hooks/usePrevious';
-// import { UserInputHandler } from '../HomePageSearch/AutoComplete/index';
+
 const Search = props => {
   const [searchCategories, setSearchCategories] = useState(null);
   const [allResultCount, setAllResultCount] = useState('');
@@ -26,14 +26,7 @@ const Search = props => {
   const prevDefaultCategoryId = usePrevious(defaultCategoryId);
 
   useEffect(() => {
-    return () => {
-      console.log(document.getElementsByClassName('search-inputtype'));
-      document
-        .getElementsByClassName('search-inputtype')[0]
-        .classList.add('hide-text');
-    };
-  }, []);
-  useEffect(() => {
+    window.scrollTo(0, 0);
     setDefaultCategoryId('all');
     fetchSearchCategoriesService();
   }, [searchKeyword]);
@@ -158,7 +151,7 @@ const Search = props => {
           </div>
         </div>
       ) : (
-        <SearchNotFound />
+        <SearchNotFound searchKeyword={searchKeyword} />
       )}
     </div>
   );

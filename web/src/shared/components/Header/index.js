@@ -38,7 +38,7 @@ const Header = ({ menuActive, pathName }) => {
 
   const getStartedContent = [
     { link: 'sell-event-tickets', name: 'Sell tickets with us' },
-    { link: 'landing-page', name: 'B2B' },
+    { link: 'b2b', name: 'B2B' },
     { link: 'system-licensing', name: 'System Licensing' },
     { link: 'apipartners', name: 'Be our partner' }
   ];

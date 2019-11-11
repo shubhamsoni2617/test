@@ -110,12 +110,13 @@ export default class Attractions extends Component {
       first: 0,
       limit: Constants.LIMIT,
       sort_type: 'title',
-      sort_order: 'ASC'
+      sort_order: 'ASC',
+      client: Constants.CLIENT
     };
     return payload;
   };
 
-  setInitialFilters({ first, limit }) {}
+  setInitialFilters({ first, limit }) { }
 
   getAttractionsCategory = () => {
     AttractionsService.getAttractionsCategory()
@@ -342,7 +343,7 @@ export default class Attractions extends Component {
             <div
               className={`events-listing ${
                 this.state.sortByFlag ? 'open' : ''
-              }`}
+                }`}
             >
               <div className="event-listing-sorting">
                 <SearchFilter

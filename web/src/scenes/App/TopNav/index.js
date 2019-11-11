@@ -172,7 +172,7 @@ const TopNav = props => {
         pathArr.length &&
         (pathArr[1] === 'events' ||
           pathArr[1] === 'promotions' ||
-          pathArr[1] === 'attractions')
+          pathArr[1] === 'attraction')
       ) {
         setPathName(pathArr[1]);
         setMenuActive(true);
@@ -183,7 +183,7 @@ const TopNav = props => {
         pathArr[1] === 'system-licensing' ||
         pathArr[1] === 'advertise' ||
         pathArr[1] === 'sell-event-tickets' ||
-        pathArr[1] === 'landing-page'
+        pathArr[1] === 'b2b'
       ) {
         setChangeHeader(true);
         setPathName(pathArr[1]);
@@ -234,7 +234,11 @@ const TopNav = props => {
   };
 
   return changeHeader ? (
-    <Header menuActive={menuActive} pathName={pathName} />
+    <Header
+      menuActive={menuActive}
+      pathName={pathName}
+      history={props.history}
+    />
   ) : (
     <header
       className={`header ${headerClass ? 'homepage' : ''}
@@ -302,10 +306,10 @@ const TopNav = props => {
                 </li>
                 <li
                   className={
-                    menuActive && pathName === 'attractions' ? 'active' : ''
+                    menuActive && pathName === 'attraction' ? 'active' : ''
                   }
                 >
-                  <Link to="/attractions">Attractions</Link>
+                  <Link to="/attraction">Attractions</Link>
                 </li>
                 <li
                   className={
@@ -466,7 +470,7 @@ const TopNav = props => {
                 </ul>
               </li>
               <li>
-                <Link to="/attractions" onClick={() => handleNavigationClose()}>
+                <Link to="/attraction" onClick={() => handleNavigationClose()}>
                   Attractions
                 </Link>
               </li>

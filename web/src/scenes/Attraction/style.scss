@@ -208,6 +208,9 @@
     }
 }
 .attractions-page-wrapper{
+    .filter-conatiner{
+        z-index: 0;
+    }
     .filters-search{
         @media(max-width: 767px){
             padding: 8px 8px 8px;
@@ -221,6 +224,7 @@
             }
         }
         .banner-overlay{
+            z-index: 0;
             @media(max-width: 767px){
                 padding-top: 85px;
             }

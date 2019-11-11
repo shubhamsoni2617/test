@@ -7,7 +7,7 @@ const TicketingSystem = ({ ticketingSystem }) => {
   return (
     <section>
       <div className="ticket-system">
-        <div className="container-fluid">
+        <div className="container">
           <div className="row">
             <div className="col-md-6 mb-5">
               <h2 className="section-title">
@@ -32,7 +32,7 @@ const TicketingSystem = ({ ticketingSystem }) => {
                 </ul>
               </div> */}
             </div>
-            <div className="col-md-6 text-right">
+            <div className="col-md-6 ticket-system-img">
               <img src={Stixcloud} className="img-fluid" alt="stixcloud" />
             </div>
           </div>
