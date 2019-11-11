@@ -372,6 +372,10 @@
                     -moz-transition: 0.3s margin;
                     -o-transition: 0.3s margin;
                     -ms-transition: 0.3s margin;
+                    @media(max-width: 767px){
+                        font-size: 14px;
+                        line-height: 18px;
+                    }
                 }
                 .sub-text{
                     padding: 0px;
@@ -637,7 +641,7 @@
         .event-list-icon{
             flex: 1 0 45%;
             max-width: 45%;
-            margin: 0 14px 20px 0;
+            margin: 0 0px 20px 0;
         }
     }
     .getstarted-block{
@@ -704,12 +708,9 @@
         padding: 30px 25px 7px;
         justify-content: space-between;
           .event-list-icon{
-            margin: 0 14px 20px 0;
-            flex: 1 0 43%;
-            max-width: 43%;
-            // &:nth-child(even){
-            //     justify-content: flex-end;
-            // }
+            margin: 0 0px 20px 0;
+            flex: 1 0 50%;
+            max-width: 50%;
               img{
                 max-width: 48px;
               }
