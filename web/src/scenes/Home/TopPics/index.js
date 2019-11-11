@@ -10,6 +10,8 @@ import HomeService from '../../../shared/services/HomeService';
 import Image from '../../../shared/components/Image';
 import ShimmerEffect from '../../../shared/components/ShimmerEffect';
 import EventHeading from '../../../shared/components/EventHeading';
+import videoImage from '../../../assets/images/video-icon.svg';
+import nextImage from '../../../assets/images/next-arrow.svg';
 
 const SampleNextArrow = props => {
   const { className, style, onClick } = props;
@@ -112,10 +114,7 @@ const TopPics = props => {
                         <div className="item-wrapper">
                           <div className="item-desc">
                             <span className="video-icon">
-                              <img
-                                src="assets/images/video-icon.svg"
-                                alt="video"
-                              />
+                              <img src={videoImage} alt="video" />
                             </span>
                             <div className="item-img">
                               <Image
@@ -168,7 +167,7 @@ const TopPics = props => {
                           >
                             <span>BUY NOW </span>
                             <img
-                              src="assets/images/next-arrow.svg"
+                              src={nextImage}
                               className="img-fluid"
                               alt="buy-now"
                             />
@@ -196,10 +195,7 @@ const TopPics = props => {
                     <div className="item-wrapper">
                       <div className="item-desc">
                         <span className="video-icon">
-                          <img
-                            src="assets/images/video-icon.svg"
-                            alt="video-icon"
-                          />
+                          <img src={videoImage} alt="video-icon" />
                         </span>
                         <div className="item-img">
                           <Image
@@ -252,7 +248,7 @@ const TopPics = props => {
                         <span className="item-title-overlay">
                           <span>BUY NOW </span>
                           <img
-                            src="assets/images/next-arrow.svg"
+                            src={nextImage}
                             className="img-fluid"
                             alt="buy-now"
                           />

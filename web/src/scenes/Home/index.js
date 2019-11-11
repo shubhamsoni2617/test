@@ -76,16 +76,15 @@ class Home extends Component {
           showNewsTicker={this.showNewsTicker}
           modal={this.state.modal}
         />
-        {/* <HotShowPopup /> */}
+        <HotShowPopup />
         <div className={`banner`}>
           <Image
             src={Utilities.mobilecheck() ? mobileBanner : primeSlider2}
             largeImage={Utilities.mobilecheck() ? mobileBanner : primeSlider}
           />
-          {/* <img className={`main-image ${this.state.imageUrl ? 'show-image' : ''}`} src={primeSlider} alt="prime Slider" /> */}
         </div>
         <TopPics />
-        {/* {giftCard &&
+        {giftCard &&
           giftCard.map(elem => {
             return (
               <div className="adds-container">
@@ -104,32 +103,32 @@ class Home extends Component {
                 </a>
               </div>
             );
-          })} */}
-        {/* <FeaturedEvents
+          })}
+        <FeaturedEvents
           api={AdvertisementService.getFeaturedEvents}
           heading="Featured Events"
-        /> */}
-        {/* <CarouselConatiner
+        />
+        <CarouselConatiner
           title="Currently Showing"
           classStr="currently-showing"
           autoplay={true}
           infinite={false}
           api={HomeService.getCurrentlyShowing}
-        /> */}
-        {/* <PromotionCarousel /> */}
-        {/* <TrendingNow /> */}
-        {/* <CarouselConatiner
+        />
+        <PromotionCarousel />
+        <TrendingNow />
+        <CarouselConatiner
           title="What's New"
           classStr="whats-new"
           arrows={true}
           autoplay={false}
           infinite={false}
           api={HomeService.getNewRelease}
-        /> */}
-        {/* <Explore /> */}
-        {/* <CustomSection /> */}
-        {/* <InstagramFeed /> */}
-        {/* <Cookies /> */}
+        />
+        <Explore />
+        <CustomSection />
+        <InstagramFeed />
+        <Cookies />
         {/* <ModalPopup
           showModal={this.state.modal}
           content={this.state.modalContent}

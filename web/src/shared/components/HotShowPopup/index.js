@@ -23,14 +23,14 @@ const HotShowPopup = () => {
     }
   }, []);
 
-  const body = document.body;
   const removeOverlayClass = () => {
     sessionStorage.setItem('hotshow', false);
     setFlag(false);
-    body.classList.remove('hotshowpopup-overlay');
+    document.body.classList.remove('hotshowpopup-overlay');
   };
 
-  const addOverlayClass = () => body.classList.add('hotshowpopup-overlay');
+  const addOverlayClass = () =>
+    document.body.classList.add('hotshowpopup-overlay');
 
   return (
     <CSSTransitionGroup

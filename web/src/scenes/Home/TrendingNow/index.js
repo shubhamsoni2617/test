@@ -6,8 +6,9 @@ import Constants from '../../../shared/constants';
 import Image from '../../../shared/components/Image';
 import { CSSTransitionGroup } from 'react-transition-group';
 import ShimmerEffect from '../../../shared/components/ShimmerEffect';
+import videoImage from '../../../assets/images/video-icon.svg';
 
-const TrendingNow = ({ }) => {
+const TrendingNow = ({}) => {
   const [trendingNow, setTrandingNow] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -57,92 +58,95 @@ const TrendingNow = ({ }) => {
               type="TILE"
             />
           ) : (
-              <div className="grid-container">
-                <div className="item">
-                  <div className="item-wrapper">
-                    <span className="category dance">Dance</span>
-                    <div className="trending-now-image">
-                      <div className="item-img">
-                        {trendingNow && trendingNow[0] && (
-                          <Image
-                            src={trendingNow[0].vertical_image}
-                            className="img-fluid"
-                            alt="kurios"
-                            type="Vertical"
-                          />
-                        )}
-                      </div>
-                      <div className="video-icon">
-                        <img
-                          src="assets/images/video-icon.svg"
+            <div className="grid-container">
+              <div className="item">
+                <div className="item-wrapper">
+                  <span className="category dance">Dance</span>
+                  <div className="trending-now-image">
+                    <div className="item-img">
+                      {trendingNow && trendingNow[0] && (
+                        <Image
+                          src={trendingNow[0].vertical_image}
                           className="img-fluid"
-                          alt="video-icon"
+                          alt="kurios"
+                          type="Vertical"
                         />
-                      </div>
-                    </div>
-                    <h3>
-                      {Utilities.showLimitedChars(
-                        trendingNow && trendingNow[0] && trendingNow[0].title,
-                        Utilities.mobilecheck() ? 15 : 30
                       )}
-                      {/* {Utilities.mobilecheck(
+                    </div>
+                    <div className="video-icon">
+                      <img
+                        src={videoImage}
+                        className="img-fluid"
+                        alt="video-icon"
+                      />
+                    </div>
+                  </div>
+                  <h3>
+                    {Utilities.showLimitedChars(
+                      trendingNow && trendingNow[0] && trendingNow[0].title,
+                      Utilities.mobilecheck() ? 15 : 30
+                    )}
+                    {/* {Utilities.mobilecheck(
                         trendingNow && trendingNow[0] && trendingNow[0].title,
                         20
                       )} */}
-                    </h3>
-                    <p>
-                      {trendingNow && trendingNow[0] && trendingNow[0].event_date}
-                    </p>
-                    <p>
-                      {Utilities.showLimitedChars(
-                        trendingNow &&
+                  </h3>
+                  <p>
+                    {trendingNow && trendingNow[0] && trendingNow[0].event_date}
+                  </p>
+                  <p>
+                    {Utilities.showLimitedChars(
+                      trendingNow &&
                         trendingNow[0] &&
                         trendingNow[0].venue_name,
-                        Utilities.mobilecheck() ? 15 : 25
-
-                      )}
-                    </p>
-                  </div>
+                      Utilities.mobilecheck() ? 15 : 25
+                    )}
+                  </p>
                 </div>
-
-                {trendingNow &&
-                  trendingNow.slice(1, trendingNow.length).map((now, index) => {
-                    return (
-                      <div key={index} className="item">
-                        <div className="item-wrapper">
-                          <span
-                            className={`category ${now &&
-                              now.primary_genre.toLowerCase()}`}
-                          >
-                            {now && now.primary_genre}
-                          </span>
-                          <div className="trending-now-image">
-                            <div className="item-img">
-                              {now && now.horizontal_image && (
-                                <Image
-                                  src={now && now.horizontal_image}
-                                  className="img-fluid"
-                                  alt="trending-now"
-                                  type="Horizontal"
-                                />
-                              )}
-                            </div>
-                          </div>
-                          <h3>
-                            {Utilities.showLimitedChars(now && now.title, Utilities.mobilecheck() ? 15 : 27)}
-                          </h3>
-                          <p>{now && now.event_date}</p>
-                          <p>
-                            {Utilities.showLimitedChars(
-                              now && now.venue_name, Utilities.mobilecheck() ? 15 : 25
-                            )}
-                          </p>
-                        </div>
-                      </div>
-                    );
-                  })}
               </div>
-            )}
+
+              {trendingNow &&
+                trendingNow.slice(1, trendingNow.length).map((now, index) => {
+                  return (
+                    <div key={index} className="item">
+                      <div className="item-wrapper">
+                        <span
+                          className={`category ${now &&
+                            now.primary_genre.toLowerCase()}`}
+                        >
+                          {now && now.primary_genre}
+                        </span>
+                        <div className="trending-now-image">
+                          <div className="item-img">
+                            {now && now.horizontal_image && (
+                              <Image
+                                src={now && now.horizontal_image}
+                                className="img-fluid"
+                                alt="trending-now"
+                                type="Horizontal"
+                              />
+                            )}
+                          </div>
+                        </div>
+                        <h3>
+                          {Utilities.showLimitedChars(
+                            now && now.title,
+                            Utilities.mobilecheck() ? 15 : 27
+                          )}
+                        </h3>
+                        <p>{now && now.event_date}</p>
+                        <p>
+                          {Utilities.showLimitedChars(
+                            now && now.venue_name,
+                            Utilities.mobilecheck() ? 15 : 25
+                          )}
+                        </p>
+                      </div>
+                    </div>
+                  );
+                })}
+            </div>
+          )}
         </CSSTransitionGroup>
       </div>
     </section>
