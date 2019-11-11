@@ -19,6 +19,7 @@ import ApiPartner from '../ApiPartner';
 import Search from '../Home/Search';
 import SystemLicensing from '../SystemLicensing';
 import Advertise from '../Advertise';
+import SellTicketsWithUs from '../SellTicketsWithUs';
 import LandingPage from '../LandingPage';
 import Article from '../Explore/ArticleList';
 // import Explore from '../Explore';
@@ -134,6 +135,11 @@ const routes = [
   {
     path: '/advertise',
     component: Advertise,
+    exact: true
+  },
+  {
+    path: '/sell-event-tickets',
+    component: SellTicketsWithUs,
     exact: true
   },
   {
