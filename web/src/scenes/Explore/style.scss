@@ -44,6 +44,7 @@
             border: 1px solid #0098FF;
             padding: 7px 25px;
             font-family: 'Montserrat', sans-serif;
+            display: inline-block;
             &:hover{
                 background-color: #0098FF;
                 color: #ffffff;
@@ -61,7 +62,7 @@
         display: flex;
         flex-wrap: wrap;
         .item-wrapper{
-            padding: 13px;
+            padding: 13px 14px 25px;
             flex: 0 0 25%;
             width: 25%;
             position: relative;
@@ -70,7 +71,7 @@
                     position: absolute;
                     left: 24px;
                     right: auto;
-                    top: 8px;
+                    top: 24px;
                     opacity: 0;
                     transition: 0.7s opacity;
                     -webkit-transition: 0.7s opacity;
@@ -94,6 +95,8 @@
                     font-size: 14px;
                     line-height: 22px;
                     color: #626262;
+                    margin-bottom: 0px;
+                    padding-bottom: 0px;
                 }
             }
             &:after{
@@ -161,7 +164,7 @@
                 display: inline-block;
                 list-style: none;
                 margin: 0px 5px 4px 0;
-                border: 1px solid #0098FF;
+                border: 1px solid rgba(0, 152, 255, 0.15);
                 padding: 5px 7px;
                 background-color: transparent;
                 transition: 0.3s background-color;
@@ -173,7 +176,10 @@
                 font-size: 13px;
                 line-height: 15px;
                 font-weight: 500;
-                color: #0098FF;
+                color: #0098ff;
+                a{
+                    color: #0098ff;
+                }
             }
         }
         h3{
@@ -203,4 +209,14 @@
 .review-guide-surveys-wrapper{
     display: flex;
     flex-wrap: wrap;
+    padding: 42px 0px 46px;
+    background-color: #F0F9FF;
+    .rgs-wrapper {
+        display: flex;
+        flex-wrap: wrap;
+        .reviews-item {
+            flex: 0 0 calc(33.33% - 30px);
+            width: calc(33.33% - 30px);
+        }
+    }
 }

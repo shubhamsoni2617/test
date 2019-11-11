@@ -1,4 +1,5 @@
 import React from 'react';
+import bannerImg from '../../assets/images/explore-banner2.png';
 import Sifa from '../../assets/images/sifa.png';
 import Festival from '../../assets/images/festival.png';
 import Chinese from '../../assets/images/chinese.png'
@@ -9,6 +10,9 @@ import GreatWine from '../../assets/images/great-wine.png';
 import chrolFest from '../../assets/images/choral-festival.png';
 import nightFest from '../../assets/images/nightfest.png';
 import sentosaFest from '../../assets/images/sentosa-fest.png';
+import Mumford from '../../assets/images/mumford.png';
+import Guide from '../../assets/images/guides.png';
+import Survey from '../../assets/images/survey.png';
 import './style.scss';
 
 const Explore = () => {
@@ -23,7 +27,7 @@ const Explore = () => {
                     <a>Read More</a>
                 </div>
                 <div className="banner-slider">
-                    <img src={Article} alt="explore-slider" />
+                    <img src={bannerImg} alt="explore-slider" />
                 </div>
             </section>
             <section className="whtsup-wrapper">
@@ -224,93 +228,104 @@ const Explore = () => {
             </section>
             <section className="review-guide-surveys-wrapper">
                 <div className="container-fluid">
-                    <div class="reviews-wrapper">
-                        <div className="active-review">
-                            <img src="" alt="" />
-                            <h3>Singapore Neon Lights Festival 2019 - Mumford & Sons Honne</h3>
-                        </div>
-                        <div className="all-reviews">
-                            <span>By Larva May</span>
-                            <div className="review-item-wrapper">
-                                <div className="review-item">
-                                    <div className="review-item-image">
-                                        <img src="" alt="review" />
+                    <div className="rgs-wrapper">
+                        <div class="reviews-item">
+                            <div className="section-title">
+                                <h3>Reviews</h3>
+                            </div>
+                            <div className="active-review">
+                                <img src={Mumford} alt="" />
+                                <h3>Singapore Neon Lights Festival 2019 - Mumford & Sons Honne</h3>
+                            </div>
+                            <div className="all-reviews">
+                                <span>By Larva May</span>
+                                <div className="review-item-wrapper">
+                                    <div className="review-item">
+                                        <div className="review-item-image">
+                                            <img src="" alt="review" />
+                                        </div>
+                                        <div className="review-content">
+                                            <h3>Crowd by Gisèle Vienne</h3>
+                                            <span>By Larva May</span>
+                                        </div>
                                     </div>
-                                    <div className="review-content">
-                                        <h3>Crowd by Gisèle Vienne</h3>
-                                        <span>By Larva May</span>
+                                    <div className="review-item">
+                                        <div className="review-item-image">
+                                            <img src="" alt="review" />
+                                        </div>
+                                        <div className="review-content">
+                                            <h3>Crowd by Gisèle Vienne</h3>
+                                            <span>By Larva May</span>
+                                        </div>
                                     </div>
+                                    <a href="">More from Reviews <img src="" alt="arrow" /></a>
                                 </div>
-                                <div className="review-item">
-                                    <div className="review-item-image">
-                                        <img src="" alt="review" />
-                                    </div>
-                                    <div className="review-content">
-                                        <h3>Crowd by Gisèle Vienne</h3>
-                                        <span>By Larva May</span>
-                                    </div>
-                                </div>
-                                <a href="">More from Reviews <img src="" alt="arrow" /></a>
                             </div>
                         </div>
-                    </div>
-                    <div class="reviews-wrapper">
-                        <div className="active-review">
-                            <img src="" alt="" />
-                            <h3>Singapore Neon Lights Festival 2019 - Mumford & Sons Honne</h3>
-                        </div>
-                        <div className="all-reviews">
-                            <span>By Larva May</span>
-                            <div className="review-item-wrapper">
-                                <div className="review-item">
-                                    <div className="review-item-image">
-                                        <img src="" alt="review" />
+                        <div class="reviews-item">
+                            <div className="section-title">
+                                <h3>Guides</h3>
+                            </div>
+                            <div className="active-review">
+                                <img src={Guide} alt="" />
+                                <h3>Singapore Neon Lights Festival 2019 - Mumford & Sons Honne</h3>
+                            </div>
+                            <div className="all-reviews">
+                                <span>By Larva May</span>
+                                <div className="review-item-wrapper">
+                                    <div className="review-item">
+                                        <div className="review-item-image">
+                                            <img src="" alt="review" />
+                                        </div>
+                                        <div className="review-content">
+                                            <h3>Crowd by Gisèle Vienne</h3>
+                                            <span>By Larva May</span>
+                                        </div>
                                     </div>
-                                    <div className="review-content">
-                                        <h3>Crowd by Gisèle Vienne</h3>
-                                        <span>By Larva May</span>
+                                    <div className="review-item">
+                                        <div className="review-item-image">
+                                            <img src="" alt="review" />
+                                        </div>
+                                        <div className="review-content">
+                                            <h3>Crowd by Gisèle Vienne</h3>
+                                            <span>By Larva May</span>
+                                        </div>
                                     </div>
+                                    <a href="">More from Reviews <img src="" alt="arrow" /></a>
                                 </div>
-                                <div className="review-item">
-                                    <div className="review-item-image">
-                                        <img src="" alt="review" />
-                                    </div>
-                                    <div className="review-content">
-                                        <h3>Crowd by Gisèle Vienne</h3>
-                                        <span>By Larva May</span>
-                                    </div>
-                                </div>
-                                <a href="">More from Reviews <img src="" alt="arrow" /></a>
                             </div>
                         </div>
-                    </div>
-                    <div class="reviews-wrapper">
-                        <div className="active-review">
-                            <img src="" alt="" />
-                            <h3>Singapore Neon Lights Festival 2019 - Mumford & Sons Honne</h3>
-                        </div>
-                        <div className="all-reviews">
-                            <span>By Larva May</span>
-                            <div className="review-item-wrapper">
-                                <div className="review-item">
-                                    <div className="review-item-image">
-                                        <img src="" alt="review" />
-                                    </div>
-                                    <div className="review-content">
-                                        <h3>Crowd by Gisèle Vienne</h3>
-                                        <span>By Larva May</span>
-                                    </div>
+                        <div class="reviews-item">
+                            <div className="active-review">
+                                <div className="section-title">
+                                    <h3>Surveys/ Quizzes</h3>
                                 </div>
-                                <div className="review-item">
-                                    <div className="review-item-image">
-                                        <img src="" alt="review" />
+                                <img src={Survey} alt="" />
+                                <h3>Singapore Neon Lights Festival 2019 - Mumford & Sons Honne</h3>
+                            </div>
+                            <div className="all-reviews">
+                                <span>By Larva May</span>
+                                <div className="review-item-wrapper">
+                                    <div className="review-item">
+                                        <div className="review-item-image">
+                                            <img src="" alt="review" />
+                                        </div>
+                                        <div className="review-content">
+                                            <h3>Crowd by Gisèle Vienne</h3>
+                                            <span>By Larva May</span>
+                                        </div>
                                     </div>
-                                    <div className="review-content">
-                                        <h3>Crowd by Gisèle Vienne</h3>
-                                        <span>By Larva May</span>
+                                    <div className="review-item">
+                                        <div className="review-item-image">
+                                            <img src="" alt="review" />
+                                        </div>
+                                        <div className="review-content">
+                                            <h3>Crowd by Gisèle Vienne</h3>
+                                            <span>By Larva May</span>
+                                        </div>
                                     </div>
+                                    <a href="">More from Reviews <img src="" alt="arrow" /></a>
                                 </div>
-                                <a href="">More from Reviews <img src="" alt="arrow" /></a>
                             </div>
                         </div>
                     </div>
