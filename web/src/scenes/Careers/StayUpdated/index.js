@@ -29,15 +29,17 @@ const StayUpdated = ({
         </div>
         <div className="col-lg-7">
           <div className="stay-update">
-            {successMsg && <h5 className="text-success">{successMsg}</h5>}
-            {serverErr &&
-              serverErr.map((elem, index) => {
-                return (
-                  <h5 key={index} className="text-danger">
-                    {elem}
-                  </h5>
-                );
-              })}
+            <div className="career-form-msg">
+              {successMsg && <h5 className="text-success">{successMsg}</h5>}
+              {serverErr &&
+                serverErr.map((elem, index) => {
+                  return (
+                    <h5 key={index} className="text-danger">
+                      {elem}
+                    </h5>
+                  );
+                })}
+            </div>
             <h2 className="career-title">{stayUpdated && stayUpdated.title}</h2>
             <p
               className="career-subtext"
@@ -64,7 +66,7 @@ const StayUpdated = ({
               </div>
               {errMsg && !selectedAreas.length ? (
                 <span className="text-danger">
-                  Please select Area(s) of interest    
+                  Please select Area(s) of interest
                 </span>
               ) : null}
               <div
