@@ -28,7 +28,7 @@ const SisticStrength = ({ content }) => {
                   return (
                     <div className="team-wrapper" key={index}>
                       <div className="team-content">
-                        <h2>{title}</h2>
+                        <h3>{title}</h3>
                         <p
                           dangerouslySetInnerHTML={{ __html: description }}
                         ></p>

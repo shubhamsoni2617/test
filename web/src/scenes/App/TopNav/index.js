@@ -565,19 +565,21 @@ const TopNav = props => {
                       >
                         <ul className="submenu">
                           <li className="has-submenu">
-                            <Link to="/">About Us</Link>
+                            <Link to="/about-us">About Us</Link>
                           </li>
                           <li className="has-submenu">
-                            <Link to="/">Sell with Us</Link>
+                            <Link to="/sell-event-tickets">Sell with Us</Link>
                           </li>
                           <li className="has-submenu">
-                            <Link to="/">Ticketing Technology</Link>
+                            <Link to="/system-licensing">
+                              Ticketing Technology
+                            </Link>
                           </li>
                           <li className="has-submenu">
                             <Link to="/apipartners">Partner with Us</Link>
                           </li>
                           <li className="has-submenu">
-                            <Link to="/">Careers</Link>
+                            <Link to="/career">Careers</Link>
                           </li>
                         </ul>
                       </SubmenuWrap>
