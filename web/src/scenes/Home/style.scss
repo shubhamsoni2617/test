@@ -800,12 +800,15 @@
 	}
 	.submenu{
 		.has-submenu{
-			button, a{
+			button, a, p, span{
 				background-color: transparent;
 				color: #343434;
 				font-weight: 300;
 				width: 100%;
 				text-align: left;
+				&:hover{
+					cursor: pointer;
+				}
 			}
 			button{
 				@media(max-width: 767px){
@@ -863,7 +866,7 @@
 			}
 		}
 		.has-submenu {
-			& > a, & > button {
+			& > a, & > button, & > p {
 				position: relative;
 				border: none;
 				color: #343434;
@@ -873,7 +876,7 @@
 				position: relative;
 				font-size: 16px;
 				background-color: transparent;
-				font-weight: 400;
+				font-weight: 400 !important;
 				font-family: 'Rubik', sans-serif;
 				line-height: normal;
 				text-align: left;
@@ -975,13 +978,17 @@
 				padding: 11px 15px;
 			}
 		}
-		a {
+		a, p, span {
 			color: #343434;
 			padding: 14px 15px;
 			display: inline-block;
-			width: 100%;
+			width: auto;
 			position: relative;
 			font-size: 16px;
+			font-weight: 300;
+			&:hover{
+				cursor: pointer;
+			}
 		}
 		> ul {
 			border-bottom: 1px solid #d8d8d8;
