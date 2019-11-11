@@ -20,13 +20,6 @@ const Item = ({ event }) => {
                 type="Small"
               />
             </div>
-            {/* <span
-              className={`category ${event &&
-                event.primary_genere &&
-                event.primary_genere.toLowerCase()}`}
-            >
-              {event.primary_genere}
-            </span> */}
             <span
               className={`category ${event &&
                 event.primary_genre &&
@@ -39,12 +32,19 @@ const Item = ({ event }) => {
             <h3>
               {Utilities.showLimitedChars(
                 event && event.title,
-                Utilities.mobilecheck() ? 20 : 30
+                Utilities.mobilecheck() ? 30 : 40
               )}
             </h3>
           )}
           {event && event.event_date && <p>{event.event_date}</p>}
-          {event && event.venue_name && <p>{event.venue_name}</p>}
+          {event && event.venue_name && (
+            <p className="venue-name">
+              {Utilities.showLimitedChars(
+                event && event.venue_name,
+                Utilities.mobilecheck() ? 35 : 50
+              )}
+            </p>
+          )}
         </div>
       </div>
     </a>
@@ -194,10 +194,6 @@ const FeaturedEvents = props => {
               <div className="grid-container">
                 {featuredEvents &&
                   featuredEvents.map((event, i) => {
-                    event.venue_name = Utilities.showLimitedChars(
-                      event.venue_name,
-                      20
-                    );
                     return <Item event={event} key={i} />;
                   })}
               </div>

@@ -108,71 +108,75 @@ const TopPics = props => {
                   topPics.map((pic, i) => {
                     return (
                       <div key={pic.id} className="item">
-                        <div className="item-wrapper">
-                          <div className="item-desc">
-                            <span className="video-icon">
-                              <img
-                                src="assets/images/video-icon.svg"
-                                alt="video"
-                              />
-                            </span>
-                            <div className="item-img">
-                              <Image
-                                src={pic.thumb_image}
-                                className="img-fluid item-image"
-                                alt="kurios"
-                                type="Vertical"
-                              />
-                            </div>
-                            <span
-                              className={`category ${pic.primary_genre
-                                .split('/')[0]
-                                .toLowerCase()} top-picks-category`}
-                            >
-                              {pic.primary_genre}
-                            </span>
-                            <div
-                              className={`item-overlay ${pic.primary_genre
-                                .split('/')[0]
-                                .toLowerCase()}-overlay`}
-                            >
-                              <div className="overlay-wrapper">
-                                <h3>{pic.title}</h3>
-                                <span>{pic.event_date}</span>
-                                {pic.description && (
-                                  <p
-                                    dangerouslySetInnerHTML={{
-                                      __html: Utilities.showLimitedChars(
-                                        pic.description.replace(
-                                          /(<([^>]+)>)/gi,
-                                          ''
-                                        ),
-                                        50
-                                      )
-                                    }}
-                                  ></p>
-                                )}
+                        <Link to={`/events/${pic.alias}`}>
+                          <div className="item-wrapper">
+                            <div className="item-desc">
+                              <span className="video-icon">
+                                <img
+                                  src="assets/images/video-icon.svg"
+                                  alt="video"
+                                />
+                              </span>
+                              <div className="item-img">
+                                <Image
+                                  src={pic.thumb_image}
+                                  className="img-fluid item-image"
+                                  alt="kurios"
+                                  type="Vertical"
+                                />
+                              </div>
+                              <span
+                                className={`category ${pic.primary_genre
+                                  .split('/')[0]
+                                  .toLowerCase()} top-picks-category`}
+                              >
+                                {pic.primary_genre}
+                              </span>
+                              <div
+                                className={`item-overlay ${pic.primary_genre
+                                  .split('/')[0]
+                                  .toLowerCase()}-overlay`}
+                              >
+                                <div className="overlay-wrapper">
+                                  <h3>{pic.title}</h3>
+                                  <span>{pic.event_date}</span>
+                                  {pic.description && (
+                                    <p
+                                      dangerouslySetInnerHTML={{
+                                        __html: Utilities.showLimitedChars(
+                                          pic.description.replace(
+                                            /(<([^>]+)>)/gi,
+                                            ''
+                                          ),
+                                          50
+                                        )
+                                      }}
+                                    ></p>
+                                  )}
+                                </div>
                               </div>
                             </div>
-                          </div>
-                          {/* <h3>{Utilities.showLimitedChars(pic.title, 15)}</h3> */}
-                          <EventHeading
-                            title={pic.title}
-                            lines={2}
-                            height={Utilities.mobileAndTabletcheck() ? 22 : 20}
-                          />
-                          <Link
-                            to={`/events/${pic.alias}`}
-                            className="item-title-overlay"
-                          >
-                            <span>BUY NOW </span>
-                            <img
-                              src="assets/images/next-arrow.svg"
-                              className="img-fluid"
-                              alt="buy-now"
+                            {/* <h3>{Utilities.showLimitedChars(pic.title, 15)}</h3> */}
+                            <EventHeading
+                              title={pic.title}
+                              lines={2}
+                              height={
+                                Utilities.mobileAndTabletcheck() ? 22 : 20
+                              }
                             />
-                          </Link>
-                        </div>
+                            <Link
+                              to={`/events/${pic.alias}`}
+                              className="item-title-overlay"
+                            >
+                              <span>BUY NOW </span>
+                              <img
+                                src="assets/images/next-arrow.svg"
+                                className="img-fluid"
+                                alt="buy-now"
+                              />
+                            </Link>
+                          </div>
+                        </Link>
                       </div>
                     );
                   })}
@@ -192,72 +196,74 @@ const TopPics = props => {
               return (
                 <div className="grid-container" key={pic.id}>
                   <div className="item">
-                    <div className="item-wrapper">
-                      <div className="item-desc">
-                        <span className="video-icon">
-                          <img
-                            src="assets/images/video-icon.svg"
-                            alt="video-icon"
-                          />
-                        </span>
-                        <div className="item-img">
-                          <Image
-                            src={pic.thumb_image}
-                            className="img-fluid item-image"
-                            alt="kurios"
-                            type="Vertical"
-                          />
-                        </div>
-                        <span
-                          className={`category ${pic.primary_genre
-                            .split('/')[0]
-                            .toLowerCase()} top-picks-category`}
-                        >
-                          {pic.primary_genre}
-                        </span>
-                        <div
-                          className={`item-overlay ${pic.primary_genre
-                            .split('/')[0]
-                            .toLowerCase()}-overlay`}
-                        >
-                          <div className="overlay-wrapper">
-                            <h3>{pic.title}</h3>
-                            <span>{pic.event_date}</span>
-                            {pic.description && (
-                              <p
-                                dangerouslySetInnerHTML={{
-                                  __html: Utilities.showLimitedChars(
-                                    pic.description.replace(
-                                      /(<([^>]+)>)/gi,
-                                      ''
-                                    ),
-                                    200
-                                  )
-                                }}
-                              ></p>
-                            )}
+                    <Link to={`/events/${pic.alias}`}>
+                      <div className="item-wrapper">
+                        <div className="item-desc">
+                          <span className="video-icon">
+                            <img
+                              src="assets/images/video-icon.svg"
+                              alt="video-icon"
+                            />
+                          </span>
+                          <div className="item-img">
+                            <Image
+                              src={pic.thumb_image}
+                              className="img-fluid item-image"
+                              alt="kurios"
+                              type="Vertical"
+                            />
+                          </div>
+                          <span
+                            className={`category ${pic.primary_genre
+                              .split('/')[0]
+                              .toLowerCase()} top-picks-category`}
+                          >
+                            {pic.primary_genre}
+                          </span>
+                          <div
+                            className={`item-overlay ${pic.primary_genre
+                              .split('/')[0]
+                              .toLowerCase()}-overlay`}
+                          >
+                            <div className="overlay-wrapper">
+                              <h3>{pic.title}</h3>
+                              <span>{pic.event_date}</span>
+                              {pic.description && (
+                                <p
+                                  dangerouslySetInnerHTML={{
+                                    __html: Utilities.showLimitedChars(
+                                      pic.description.replace(
+                                        /(<([^>]+)>)/gi,
+                                        ''
+                                      ),
+                                      200
+                                    )
+                                  }}
+                                ></p>
+                              )}
+                            </div>
                           </div>
                         </div>
-                      </div>
-                      <h3>
-                        <EventHeading
-                          title={pic.title}
-                          lines={2}
-                          height={Utilities.mobileAndTabletcheck() ? 25 : 25}
-                        />
-                      </h3>
-
-                      <Link to={`/events/${pic.alias}`}>
-                        <span className="item-title-overlay">
-                          <span>BUY NOW </span>
-                          <img
-                            src="assets/images/next-arrow.svg"
-                            className="img-fluid"
-                            alt="buy-now"
+                        <h3>
+                          <EventHeading
+                            title={pic.title}
+                            lines={2}
+                            height={Utilities.mobileAndTabletcheck() ? 25 : 25}
                           />
-                        </span>
-                      </Link>
-                    </div>
+                        </h3>
+
+                        <Link to={`/events/${pic.alias}`}>
+                          <span className="item-title-overlay">
+                            <span>BUY NOW </span>
+                            <img
+                              src="assets/images/next-arrow.svg"
+                              className="img-fluid"
+                              alt="buy-now"
+                            />
+                          </span>
+                        </Link>
+                      </div>
+                    </Link>
                   </div>
                 </div>
               );

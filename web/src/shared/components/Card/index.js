@@ -38,7 +38,7 @@ export default class Card extends Component {
         {this.props.cardData && this.props.cardData.is_featured == '1' && (
           <span className="featured-tag">Featured</span>
         )}
-        <div className="event-img">
+        <div className="event-img" onClick={() => redirectTo(cardData.alias)}>
           <Image src={cardData.thumb_image} />
         </div>
         <div className="event-details">
@@ -87,14 +87,14 @@ export default class Card extends Component {
           </div>
           <div className="price-event">
             <div className="price">
-                <span>
-                    <EventStatus
-                        status={cardData.event_status}
-                        color={cardData.event_status_text_color}
-                        background={cardData.event_status_background_color}
-                        paddingLeft={'2px'}
-                        paddingRight={'2px'}
-                    />
+              <span>
+                <EventStatus
+                  status={cardData.event_status}
+                  color={cardData.event_status_text_color}
+                  background={cardData.event_status_background_color}
+                  paddingLeft={'2px'}
+                  paddingRight={'2px'}
+                />
               </span>
               <p>{cardData.price ? cardData.price : ' '}</p>
             </div>

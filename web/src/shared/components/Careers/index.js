@@ -2,7 +2,7 @@ import React from 'react';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
-import Carrier from '../../../assets/images/carrier.png';
+import { Link } from 'react-router-dom';
 import suiteCase from '../../../assets/images/suitcase.svg';
 import './style.scss';
 
@@ -47,10 +47,10 @@ const Careers = ({ sliderArr }) => {
             </Slider>
           </ul>
           <div className="job-openings">
-            <a>
+            <Link to="/career">
               <img src={suiteCase} alt="job-opnings" />
               <span>See Job Openings</span>
-            </a>
+            </Link>
           </div>
         </div>
       </div>
