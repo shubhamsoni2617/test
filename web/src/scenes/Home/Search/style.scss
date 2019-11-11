@@ -438,8 +438,8 @@
                 }
                 & > div{
                     @media(max-width: 767px){
-                        flex: 0 0 50%;
-                        width: 50%;
+                        flex: 0 0 50% !important;
+                        width: 50% !important;
                         margin: 0;
                         padding: 0px;
                     }
