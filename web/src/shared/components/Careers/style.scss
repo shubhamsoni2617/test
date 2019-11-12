@@ -76,6 +76,7 @@
                 .slick-prev{
                     background-image: url('../../../assets/images/prev-arrow.svg');
                     background-color: transparent;
+                    background-position: 0px 30px;
                     @media(max-width: 991px){
                         left: -45px;
                     }

@@ -52,7 +52,7 @@ const Banner = ({ bannerData }) => {
             </div>
           </div>
           <div className="event-list-icon">
-            {/* <img src={eventIcon} alt="Events-icon" /> */}
+            <img src={eventIcon} alt="Events-icon" />
             <div className="year-content">
               {bannerData && <span>{bannerData.events}</span>}
               <p>Events</p>

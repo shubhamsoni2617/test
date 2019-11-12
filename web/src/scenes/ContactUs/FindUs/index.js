@@ -10,7 +10,7 @@ import { ReactComponent as Arrow } from '../../../assets/images/arrow-right.svg'
 import { useCustomContactDetail } from '../../../shared/components/CustomHooks';
 import './style.scss';
 
-const FindUs = ({ }) => {
+const FindUs = ({}) => {
   const [contactDetail] = useCustomContactDetail();
 
   return (
@@ -62,14 +62,14 @@ const FindUs = ({ }) => {
             <Ticket />
           </div>
           <div className="find-us-desc d-flex align-items-center">
-            <a>
+            <Link to="/sell-event-tickets">
               <h5 className="text">
                 Sell Tickets With Us
                 <span>
                   <Arrow />
                 </span>
               </h5>
-            </a>
+            </Link>
           </div>
         </div>
         <div className="find-us-content">
