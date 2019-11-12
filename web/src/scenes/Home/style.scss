@@ -5089,6 +5089,12 @@ section{
 			-webkit-transition: 1s all;
 			-moz-transition: 1s all;
 			-o-transition: 1s all;
+			text-overflow: ellipsis;
+			display: -webkit-box;
+			-webkit-line-clamp: 2;                
+			overflow: hidden;
+			height: auto;
+			/* autoprefixer: off */ -webkit-box-orient: vertical; /* autoprefixer: on */
 		}
 	}
 	.searched-filter {
