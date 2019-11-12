@@ -13,11 +13,11 @@ function DateRangeFilter(props) {
   const element = useRef(null);
   const [to, setTo] = useState('');
   const [from, setFrom] = useState('');
-  const [flag, setFlag] = useState(false);
+  const [flag, setFlag] = useState(true);
 
-  useEffect(() => {
-    setFlag(false);
-  }, [props.filterFlag]);
+  // useEffect(() => {
+  //   setFlag(false);
+  // }, [props.filterFlag]);
 
   useEffect(() => {
     const getDate = dateStr => {
@@ -57,12 +57,7 @@ function DateRangeFilter(props) {
   // Date Range methods
   const handleFromChange = fromDate => {
     setFrom(fromDate);
-    if (
-      Utilities.mobileAndTabletcheck() &&
-      props.autoSubmit &&
-      fromDate &&
-      to
-    ) {
+    if (Utilities.mobilecheck() && props.autoSubmit && fromDate && to) {
       filterByDateRange(fromDate, to);
     }
   };
@@ -70,23 +65,27 @@ function DateRangeFilter(props) {
   const handleToChange = toDate => {
     setTo(toDate);
     showFromMonth();
-    if (
-      Utilities.mobileAndTabletcheck() &&
-      props.autoSubmit &&
-      from &&
-      toDate
-    ) {
+    if (Utilities.mobilecheck() && props.autoSubmit && from && toDate) {
       filterByDateRange(from, toDate);
     }
   };
 
   const filterByDateRange = (fromDate, toDate) => {
-    props.handleFilters({
-      localfilteredDateRange: {
-        from: moment(fromDate).format('YYYY-MM-DD'),
-        to: moment(toDate).format('YYYY-MM-DD')
-      }
-    });
+    props.handleFilters(
+      Utilities.mobilecheck()
+        ? {
+          localfilteredDateRange: {
+            from: moment(fromDate).format('YYYY-MM-DD'),
+            to: moment(toDate).format('YYYY-MM-DD')
+          }
+        }
+        : {
+          filteredDateRange: {
+            from: moment(fromDate).format('YYYY-MM-DD'),
+            to: moment(toDate).format('YYYY-MM-DD')
+          }
+        }
+    );
   };
 
   const modifiers = { start: from, end: to };
@@ -94,7 +93,7 @@ function DateRangeFilter(props) {
   return (
     <div className="filter-grid date-range">
       <div className="filter-grid-heading">
-        <h3>Date Range</h3>
+        <h3>Selected Date range</h3>
         <ul>
           <li className="active clear">
             <a
@@ -110,7 +109,7 @@ function DateRangeFilter(props) {
         </ul>
       </div>
       <div className={`select-date select-range ${flag ? 'active' : ''}`}>
-        <button onClick={() => setFlag(!flag)}>Select range</button>
+        <button onClick={() => setFlag(!flag)}>Select Date</button>
       </div>
       <div className={`filters-panel ${flag ? 'open' : ''}`}>
         <div className="date-input-to">
@@ -178,13 +177,14 @@ function DateRangeFilter(props) {
             <img src={tickWhite} className="active" alt="tick" />
           </a>
         )}
-        {from && to && !props.autoSubmit && (
+        {!props.autoSubmit && (
           <button
-            className="btn buy-btn"
+            className="btn buy-btn cal-search"
             onClick={e => {
               e.preventDefault();
               filterByDateRange(from, to);
             }}
+            disabled={from && to ? false : true}
           >
             Search
           </button>

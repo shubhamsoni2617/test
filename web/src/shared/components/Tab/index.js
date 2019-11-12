@@ -18,8 +18,6 @@ const Tab = props => {
       yPosition += element.offsetTop - element.scrollTop + element.clientTop;
       element = element.offsetParent;
     }
-    console.log(yPosition, 'yPosition');
-
     return { x: xPosition, y: yPosition };
   };
   const promotionWrapper = e => {};

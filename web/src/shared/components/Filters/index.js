@@ -6,6 +6,7 @@ import useStickyPanel from '../../hooks/useStickyPanel';
 import './style.scss';
 import DateRangeFilter from '../DateRangeFilter';
 import SearchFilter from '../SearchFilter';
+import Utilities from '../../utilities';
 
 function useDebounce(value, delay) {
   const [debouncedValue, setDebouncedValue] = useState(value);
@@ -25,15 +26,15 @@ function useDebounce(value, delay) {
 
 function PriceRangeFilter(props) {
   const { priceConfig, filteredPriceRange, filterFlag } = props;
-  const [flag, setFlag] = useState(false);
+  const [flag, setFlag] = useState(true);
   const [priceRange, setPriceRange] = useState({
     min: parseInt(priceConfig.min_price) || null,
     max: parseInt(priceConfig.max_price) || null
   });
 
-  useEffect(() => {
-    setFlag(false);
-  }, [filterFlag]);
+  // useEffect(() => {
+  //   setFlag(false);
+  // }, [filterFlag]);
 
   useEffect(() => {
     if (!filteredPriceRange.min) {
@@ -56,7 +57,7 @@ function PriceRangeFilter(props) {
   return (
     <div className="filter-grid filter-price-range">
       <div className="filter-grid-heading">
-        <h3>Price Range</h3>
+        <h3>Price</h3>
         <ul>
           <li className="active">
             <a
@@ -72,7 +73,7 @@ function PriceRangeFilter(props) {
         </ul>
       </div>
       <div className={`select-range ${flag ? 'active' : ''}`}>
-        <button onClick={() => setFlag(!flag)}>Select range</button>
+        <button onClick={() => setFlag(!flag)}>Select Range</button>
       </div>
       <div className={`filters-panel ${flag ? 'open' : ''}`}>
         <span className="input-range-label-container min">
@@ -88,7 +89,11 @@ function PriceRangeFilter(props) {
           value={priceRange}
           onChange={value => setPriceRange(value)}
           onChangeComplete={value =>
-            props.handleFilters({ localfilteredPriceRange: value })
+            props.handleFilters(
+              Utilities.mobilecheck()
+                ? { localfilteredPriceRange: value }
+                : { filteredPriceRange: value }
+            )
           }
         />
       </div>
@@ -100,14 +105,16 @@ function Filters(props) {
   const element = useRef();
   // const [elementOffsetTop, setElementOffsetTop] = useState('');
   let stickyObj = {
-    sticky: { bottom: 0 },
+    sticky: { bottom: -10 },
     bottom: 0
+    // pixelBuffer: 40
   };
   if (props.attractions) {
     stickyObj = {
-      sticky: { top: 0, paddingTop: '40px' },
-      pixelBuffer: 40
-      // bottom: 0
+      sticky: { top: 153 },
+      pixelBuffer: 153,
+      // bottom: 0,
+      distanceFromTop: 153
     };
   }
   const [scrollContainerRef, styleObj] = useStickyPanel(stickyObj);
@@ -134,89 +141,99 @@ function Filters(props) {
     filterFlag
   } = props;
   const { price_config } = filterConfig ? filterConfig : 0;
-  console.log('filter');
+
   if (props.shimmerFilter) {
     return;
   }
   return (
-    <div className="filter-conatiner" ref={scrollContainerRef}>
-      <div className="inner" style={styleObj}>
-        <div className="filter-heading">
-          <h3>
-            FILTERS{' '}
-            <a
-              href="/"
-              onClick={e => {
-                e.preventDefault();
-                clearAllFilters();
-              }}
-            >
-              Clear all
-            </a>
-          </h3>
+    <div className="filter-conatiner">
+      <div
+        style={{
+          position: 'relative',
+          display: 'block',
+          height: '100%',
+          zIndex: 2
+        }}
+        ref={scrollContainerRef}
+      >
+        <div className="inner" style={styleObj}>
+          <div className="filter-heading">
+            <h3>
+              Filters{' '}
+              <a
+                href="/"
+                onClick={e => {
+                  e.preventDefault();
+                  clearAllFilters();
+                }}
+              >
+                Clear Filters
+              </a>
+            </h3>
+          </div>
+          <SearchFilter
+            handleFilters={handleFilters}
+            searchPlaceholder={props.searchPlaceholder}
+            searchText={filteredSearch}
+          />
+          {price_config != undefined && (
+            <PriceRangeFilter
+              priceConfig={price_config}
+              filteredPriceRange={filteredPriceRange}
+              handleFilters={handleFilters}
+              filterFlag={filterFlag}
+            />
+          )}
+          <FilterGrid
+            title="Genre"
+            category={'filteredGnere'}
+            handleFilters={handleFilters}
+            data={genreData ? genreData : []}
+            selectedFilter={filteredGnere}
+            limit={5}
+          />
+          <FilterGrid
+            title="Tags"
+            category={'filteredTags'}
+            handleFilters={handleFilters}
+            data={filterConfig ? filterConfig.tags : []}
+            selectedFilter={filteredTags}
+            limit={5}
+          />
+          {!hideCalendar && (
+            <DateRangeFilter
+              filteredDateRange={filteredDateRange}
+              handleFilters={handleFilters}
+              autoSubmit={true}
+              filterFlag={filterFlag}
+            />
+          )}
+          <FilterGrid
+            title="Promotion"
+            category={'filteredPromotions'}
+            handleFilters={handleFilters}
+            data={filterConfig ? filterConfig.promotion_categories : []}
+            selectedFilter={filteredPromotions}
+            limit={5}
+          />
+          <FilterGrid
+            title="Venue"
+            category={'filteredVenues'}
+            handleFilters={handleFilters}
+            data={venueData ? venueData : []}
+            showPanel={true}
+            selectedFilter={filteredVenues}
+            limit={5}
+          />
+          <FilterGrid
+            title="Categories"
+            category={'filteredCategory'}
+            handleFilters={handleFilters}
+            data={attractionCategories ? attractionCategories : []}
+            selectedFilter={filteredCategory}
+            limit={10}
+          />
         </div>
-        <SearchFilter
-          handleFilters={handleFilters}
-          searchPlaceholder={props.searchPlaceholder}
-          searchText={filteredSearch}
-        />
-        {price_config != undefined && (
-          <PriceRangeFilter
-            priceConfig={price_config}
-            filteredPriceRange={filteredPriceRange}
-            handleFilters={handleFilters}
-            filterFlag={filterFlag}
-          />
-        )}
-        <FilterGrid
-          title="Genre"
-          category="filteredGnere"
-          handleFilters={handleFilters}
-          data={genreData ? genreData : []}
-          selectedFilter={filteredGnere}
-          limit={5}
-        />
-        <FilterGrid
-          title="Tags"
-          category="filteredTags"
-          handleFilters={handleFilters}
-          data={filterConfig ? filterConfig.tags : []}
-          selectedFilter={filteredTags}
-          limit={5}
-        />
-        {!hideCalendar && (
-          <DateRangeFilter
-            filteredDateRange={filteredDateRange}
-            handleFilters={handleFilters}
-            autoSubmit={true}
-            filterFlag={filterFlag}
-          />
-        )}
-        <FilterGrid
-          title="Promotion"
-          category="filteredPromotions"
-          handleFilters={handleFilters}
-          data={filterConfig ? filterConfig.promotion_categories : []}
-          selectedFilter={filteredPromotions}
-          limit={5}
-        />
-        <FilterGrid
-          title="Venue"
-          category="filteredVenues"
-          handleFilters={handleFilters}
-          data={venueData ? venueData : []}
-          showPanel={true}
-          selectedFilter={filteredVenues}
-          limit={5}
-        />
-        <FilterGrid
-          title="Categories"
-          category="filteredCategory"
-          handleFilters={handleFilters}
-          data={attractionCategories ? attractionCategories : []}
-          selectedFilter={filteredCategory}
-          limit={10}
-        />
       </div>
       {props.children}
     </div>

@@ -14,6 +14,16 @@ $black-opacity-10:rgba($black,.15);
   &> div{
     padding: 0 10px;
   }
+  .shm_col-xs-6{
+    width: 50%;
+    max-width: 50%;
+    flex: 0 0 50%;
+  }
+  .shm_col-sm-6{
+    width: 50%;
+    max-width: 50%;
+    flex: 0 0 50%;
+  }
   .shm_col-sm-8{
     width: 75%;
   }
@@ -55,7 +65,11 @@ $black-opacity-10:rgba($black,.15);
     }
   }
 }
-
+@media screen and (max-width:767px) {
+.contentLoader.ListView .animated-backgroundlarge {
+    margin-left: 0px;
+}
+}
 @media screen and (min-width:768px) {
   .contentLoader.ListView .animated-background { width: 100%; margin-bottom:0px;}
   .contentLoader.ListView .animated-background { margin-left: 0;  margin-right:10px;  }

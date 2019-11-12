@@ -17,6 +17,8 @@
     "react-animated-modal": "^1.1.1",
     "react-day-picker": "^7.3.0",
     "react-dom": "^16.8.6",
+    "react-dropzone-uploader": "^2.10.1",
+    "react-google-recaptcha": "^2.0.1",
     "react-helmet": "^5.2.0",
     "react-image-gallery": "^0.8.18",
     "react-image-lightbox": "^5.1.0",
@@ -65,11 +67,11 @@
     "prettier": "^1.16.0"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
+    "start": "node_modules/.bin/react-scripts start",
+    "build": "node_modules/.bin/react-scripts build",
     "serve": "node ./server/index.js",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject",
+    "test": "node_modules/.bin/react-scripts test --env=jsdom",
+    "eject": "node_modules/.bin/react-scripts eject",
     "format": "prettier --config ./.prettierrc --write src/**/*.js"
   },
   "proxy": "http://192.168.10.195:8081",

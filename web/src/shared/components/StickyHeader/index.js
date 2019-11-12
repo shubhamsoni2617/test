@@ -12,6 +12,8 @@ import Info from '../../../assets/images/info-sign.svg';
 import SocialShare from '../../../shared/components/SocialShare';
 import ModalPopup from '../../../shared/components/Modal';
 import Image from '../../../shared/components/Image';
+import Utilities from '../../utilities';
+import TitleToolTip from './TitleToolTip';
 
 function Button({ styleObj, url, text }) {
   // if (!text) return null;
@@ -104,6 +106,7 @@ function BuyTicketsButtonPopup(props) {
                     };
                     return (
                       <Button
+                        key={button.id}
                         styleObj={styleObj}
                         text={button.text}
                         url={button.url}
@@ -200,25 +203,31 @@ function StickyHeader(props) {
             })}
           </ul>
         )}
-        <h2>
-          {detailData.title}
-          {detailData.pop_up_message.title && (
-            <div className="info-tooltip">
-              <span className="info" onClick={() => props.openNotice()}>
-                <img src={Info} alt="Info" />
-              </span>
-            </div>
-          )}
-          <div className="share-tooltip">
-            <span className="share" onClick={() => props.openSocialShare()}>
-              <img src={shareIcon} alt="" />
-              <SocialShare
-                shareUrl={shareUrl}
-                showSocialShare={showSocialShare}
-              />
+
+        <TitleToolTip
+          title={detailData.title}
+          lines={props.lines}
+          height={Utilities.mobileAndTabletcheck() ? 25 : 30}
+          eventDetail
+        />
+
+        {detailData.pop_up_message.title && (
+          <div className="info-tooltip">
+            <span className="info" onClick={() => props.openNotice()}>
+              <img src={Info} alt="Info" />
             </span>
           </div>
-        </h2>
+        )}
+        <div className="share-tooltip">
+          <span className="share" onClick={() => props.openSocialShare()}>
+            <img src={shareIcon} alt="" />
+            <SocialShare
+              shareUrl={shareUrl}
+              showSocialShare={showSocialShare}
+            />
+          </span>
+        </div>
+
         <div className="ticket-date-price">
           <ul className="date-address">
             {detailData.event_date && (
@@ -226,12 +235,16 @@ function StickyHeader(props) {
                 <img src={calendarImg} alt="cal-icon" />
                 <div>
                   <span>{detailData.event_date}</span>
-                  <button
-                    className="link"
-                    onClick={() => setEventDateBlock(true)}
-                  >
-                    View all Dates & Time
-                  </button>
+                  {detailData.event_date_details &&
+                    detailData.event_date_details.length &&
+                    detailData.event_date_details[0] && (
+                      <button
+                        className="link"
+                        onClick={() => setEventDateBlock(true)}
+                      >
+                        View all Dates & Time
+                      </button>
+                    )}
                 </div>
               </li>
             )}
@@ -243,11 +256,18 @@ function StickyHeader(props) {
                   alt="location"
                 />
                 <div>
-                  <span>
-                    <Link to={`/venues?id=${detailData.venue_name.id}`}>
-                      {detailData.venue_name.name}
-                    </Link>
-                  </span>
+                  <Link to={`/venues?id=${detailData.venue_name.id}`}>
+                    <TitleToolTip
+                      title={
+                        detailData.venue_name.name +
+                        'Brevitas Volutpat Wisi Brevitas Volutpat Wisi'
+                      }
+                      lines={1}
+                      tag={false}
+                      height={20}
+                      eventDetail
+                    />
+                  </Link>
                   <button
                     className="link"
                     onClick={() => setVenueDetailsPopup(true)}
@@ -265,6 +285,28 @@ function StickyHeader(props) {
               </li>
             )}
             {seatMapButton && <li className="event-date">{seatMapButton}</li>}
+            {detailData.promoters && detailData.promoters.length > 0 && (
+              <li className="event-date">
+                <img src={calendarImg} alt="cal-icon" />
+                {detailData.promoters.map((item, index) => {
+                  if (item.url) {
+                    return (
+                      <a
+                        key={`${item.name}-${index}`}
+                        href={item.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        {item.name}&nbsp;
+                      </a>
+                    );
+                  }
+                  return (
+                    <span key={`${item.name}-${index}`}>{item.name}&nbsp;</span>
+                  );
+                })}
+              </li>
+            )}
             {detailData.price && (
               <li className="event-date">
                 <img src={coinsImg} className="coin" alt="cal-icon" />
@@ -279,7 +321,9 @@ function StickyHeader(props) {
           <BuyTicketsButtonPopup detailData={detailData} />
         )}
         {buyPackages}
-        {detailData.is_available_for_booking === 0 && (
+      </div>
+      {detailData.is_available_for_booking === 0 && (
+        <div className="tickets-button shows-over-tickets">
           <div className="shows-over">
             <div className="shows-over-icon">
               <img src={faceImg} alt="" />
@@ -289,8 +333,8 @@ function StickyHeader(props) {
               <p>This event has ended and no longer available for booking.</p>
             </div>
           </div>
-        )}
-      </div>
+        </div>
+      )}
     </div>
   );
 }

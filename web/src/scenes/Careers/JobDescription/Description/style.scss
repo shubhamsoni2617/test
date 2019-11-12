@@ -1,0 +1,114 @@
+.job-des-wrapper{
+  margin: 45px 0;
+  h2{
+    font-family: 'Montserrat', sans-serif;
+    font-size: 36px;
+    padding-bottom: 15px;
+    a{
+      display: none;
+    }
+    @media(max-width: 991px){
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        a{
+          display: block;
+          border: 1px solid #0098FF;
+          padding: 10px;
+        }
+      
+    }
+  }
+  .experince-wrapper{
+    display: flex;
+    .experince{
+      display: flex;
+      align-items: center;
+      margin-right: 20px;
+      color: #626262;
+      font-size: 16px;
+      img{
+        margin-right: 10px;
+      }
+    }
+  }
+  .skills-requied,
+  .job-description{
+    margin: 40px 0 50px 0;
+    font-size: 18px;
+    h4{
+      font-size: 18px;
+      color: #343434;
+      margin-bottom: 14px;
+    }
+    ul{
+      padding-left: 0;
+      list-style-type: none;
+      margin: 10px 0 40px 0;
+      li{
+        display: inline-block;
+        border: 1px solid rgba(126, 126, 126, 0.2);
+        padding: 5px 10px;
+        margin-right: 10px;
+        font-size: 14px;
+        color: #626262;
+      }
+    }
+  }
+  .job-description{
+    ul{
+      padding-left: 20px;
+      li{
+        font-family: 'Rubik', sans-serif;
+        margin-bottom: 15px;
+        color: #626262;
+        border: 0;
+        display: block;
+        padding: 0;
+        margin-right: 0;
+        position: relative;
+        line-height: 26px;
+        font-size: 16px;
+        &:after{
+          content: '';
+          position: absolute;
+          top: 7px;
+          left: -19px;
+          display: inline-block;
+          width: 8px;
+          height: 8px;
+          background-color: rgba(52, 52, 52, 0.5);
+          border-radius: 50%;
+        }
+        @media(max-width: 767px){
+            font-size: 14px;
+            line-height: 20px;
+        }
+      }
+    }
+    @media(max-width: 767px){
+      p{
+        font-size: 14px;
+        line-height: 20px;
+      }
+    }
+  }
+  @media(max-width: 767px){
+    margin: 25px 0 25px 0;
+    h2{
+      font-size: 24px;
+      padding-bottom: 5px;
+    }
+    .skills-requied,
+    .job-description{
+        margin: 30px 0 20px 0;
+        ul{
+          margin: 10px 0 15px 0;
+          li{
+            margin-bottom: 10px;
+          }
+        }
+    }
+  }
+}
+

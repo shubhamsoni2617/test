@@ -317,7 +317,6 @@ export default class EventsDetail extends Component {
       setHeader,
       shimmer
     } = this.state;
-
     if (error) {
       return null;
     }
@@ -335,7 +334,7 @@ export default class EventsDetail extends Component {
         >
           {shimmer && (
             <ShimmerEffect
-              propCls="shm_col-xs-6 col-md-12"
+              propCls="col-md-12"
               height={400}
               count={2}
               type="DETAIL"
@@ -366,6 +365,7 @@ export default class EventsDetail extends Component {
                     <EventCarousel images={detailData.images} />
                   )}
                   <StickyHeader
+                    lines={2}
                     sticky={false}
                     detailData={detailData}
                     showSocialShare={showSocialShare}
@@ -373,7 +373,10 @@ export default class EventsDetail extends Component {
                     openSocialShare={this.openSocialShare}
                     shareUrl={shareUrl}
                     seatMapButton={
-                      <SeatMapButton seatingPlan={detailData.seating_plan} />
+                      detailData.seating_plan &&
+                      detailData.seating_plan.length > 0 && (
+                        <SeatMapButton seatingPlan={detailData.seating_plan} />
+                      )
                     }
                     buyPackages={
                       <BuyPackages
@@ -386,6 +389,7 @@ export default class EventsDetail extends Component {
                   />
 
                   <StickyHeader
+                    lines={1}
                     sticky={true}
                     setHeader={setHeader}
                     detailData={detailData}
@@ -397,7 +401,10 @@ export default class EventsDetail extends Component {
                 </section>
 
                 <section>
-                  <AdvertisementSection data={detailData.wallpaper} />
+                  <AdvertisementSection
+                    data={detailData.wallpaper}
+                    current={this.props.current}
+                  />
                 </section>
 
                 <section
@@ -413,6 +420,7 @@ export default class EventsDetail extends Component {
                         langArr={getSynopsisData.languageArr}
                         changeLang={this.changeLang}
                         preExpanded={accrodian}
+                        dynamicClass="synopsis-accordian"
                         uuid={`${
                           detailData.is_available_for_booking === 1
                             ? 'synopsis'
@@ -428,9 +436,18 @@ export default class EventsDetail extends Component {
                             key={obj.title}
                             title={obj.title}
                             desc={obj.description}
+                            dynamicClass="othertabs-accordian"
                           />
                         );
                       })}
+                    {detailData.gallery_images_videos &&
+                      detailData.gallery_images_videos.length > 0 && (
+                        <AccordionSection
+                          title="Gallery"
+                          gallery={detailData.gallery_images_videos}
+                          dynamicClass="othertabs-accordian"
+                        />
+                      )}
                   </div>
                   <div className="event-detail-sidebar">
                     {detailData.ticket_pricing && (
@@ -442,7 +459,7 @@ export default class EventsDetail extends Component {
                             ? detailData.hide_booking_fee
                             : null
                         }
-                        preExpanded={accrodian}
+                        // preExpanded={accrodian}
                         uuid={`${
                           detailData.is_available_for_booking === 1
                             ? 'pricedetail'
@@ -451,6 +468,7 @@ export default class EventsDetail extends Component {
                         desc={detailData.ticket_pricing}
                         openInfoPopup={this.openInfoPopup}
                         showInfo={showInfo}
+                        dynamicClass="price-accordian"
                       />
                     )}
 
@@ -460,6 +478,7 @@ export default class EventsDetail extends Component {
                         <AccordionSection
                           title="Promotion"
                           children={detailData.promotions}
+                          dynamicClass="promotion-accordian"
                         />
                       )}
                     <AdvertisementSection data={detailData.rectangle_image} />

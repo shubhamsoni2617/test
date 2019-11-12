@@ -16,6 +16,7 @@ import sortbyIcon from '../../assets/images/events/sortby.svg';
 import Utilities from '../../shared/utilities';
 import SearchFilter from '../../shared/components/SearchFilter';
 import Constants from '../../shared/constants';
+import FilterSelected from '../../shared/components/FilterSelected';
 export default class Attractions extends Component {
   constructor(props) {
     super(props);
@@ -26,8 +27,11 @@ export default class Attractions extends Component {
       attractionCategories: [],
       filteredSearch: [],
       filteredCategory: [],
+      localfilteredCategory: [],
       filteredSortType: 'title',
       filteredSortOrder: 'ASC',
+      localfilteredSortType: 'title',
+      localfilteredSortOrder: 'ASC',
       eventsData: [],
       attractionsData: [],
       first: 0,
@@ -75,8 +79,13 @@ export default class Attractions extends Component {
   }
 
   resetFilters = () => {
-    this.setState(
-      {
+    let obj = {};
+    if (Utilities.mobilecheck()) {
+      obj = {
+        localfilteredCategory: []
+      };
+    } else {
+      obj = {
         filteredCategory: [],
         filteredSearch: '',
         filteredSortType: 'title',
@@ -85,15 +94,15 @@ export default class Attractions extends Component {
         eventsData: [],
         attractionsData: [],
         totalRecords: 0
-      },
-      () => {
-        const payload = this.getInitialFilters(true);
-        this.setInitialFilters(payload);
-        if (!Utilities.mobilecheck()) {
-          this.loadAttractions(payload);
-        }
+      };
+    }
+    this.setState(obj, () => {
+      const payload = this.getInitialFilters(true);
+      this.setInitialFilters(payload);
+      if (!Utilities.mobilecheck()) {
+        this.loadAttractions(payload);
       }
-    );
+    });
   };
 
   getInitialFilters = (reset = false) => {
@@ -101,12 +110,13 @@ export default class Attractions extends Component {
       first: 0,
       limit: Constants.LIMIT,
       sort_type: 'title',
-      sort_order: 'ASC'
+      sort_order: 'ASC',
+      client: Constants.CLIENT
     };
     return payload;
   };
 
-  setInitialFilters({ first, limit }) {}
+  setInitialFilters({ first, limit }) { }
 
   getAttractionsCategory = () => {
     AttractionsService.getAttractionsCategory()
@@ -125,11 +135,12 @@ export default class Attractions extends Component {
     // this.setState({shimmer: true});
     AttractionsService.getData(params)
       .then(res => {
-        if (!isLoadMore) this.setState({ attractionsData: [] });
-        const attractionsData = [
-          ...this.state.attractionsData,
-          ...res.data.data
-        ];
+        let attractionsData = [];
+        if (isLoadMore) {
+          attractionsData = [...this.state.attractionsData, ...res.data.data];
+        } else {
+          attractionsData = [...res.data.data];
+        }
         const isdataAvailable = attractionsData.length ? false : true;
         setTimeout(() => {
           this.setState({
@@ -182,6 +193,12 @@ export default class Attractions extends Component {
   };
 
   handleFilters = (searchType, apply) => {
+    if (Utilities.mobilecheck) {
+      this.setState({
+        localfilteredSortType: searchType.filteredSortType,
+        localfilteredSortOrder: searchType.filteredSortOrder
+      });
+    }
     let obj = {
       ...searchType
     };
@@ -219,11 +236,20 @@ export default class Attractions extends Component {
   };
 
   toggleFilters = () => {
-    this.setState({ filterFlag: !this.state.filterFlag });
+    this.setState({
+      filterFlag: !this.state.filterFlag,
+      localfilteredCategory: [...this.state.filteredCategory]
+    });
+    document.body.classList.toggle('fixed-body');
   };
 
   toggleSortBy = () => {
-    this.setState({ sortByFlag: !this.state.sortByFlag });
+    this.setState({
+      sortByFlag: !this.state.sortByFlag,
+      localfilteredSortOrder: this.state.filteredSortOrder,
+      localfilteredSortType: this.state.filteredSortType
+    });
+    document.body.classList.toggle('fixed-body');
   };
 
   callAPI = () => {
@@ -234,7 +260,10 @@ export default class Attractions extends Component {
         totalRecords: 0,
         loader: true,
         filterFlag: false,
-        sortByFlag: false
+        sortByFlag: false,
+        filteredCategory: [...this.state.localfilteredCategory],
+        filteredSortOrder: this.state.localfilteredSortOrder,
+        filteredSortType: this.state.localfilteredSortType
       },
       () => {
         setTimeout(() => {
@@ -242,6 +271,14 @@ export default class Attractions extends Component {
         }, 200);
       }
     );
+    document.body.classList.toggle('fixed-body');
+  };
+
+  clearSortFilters = () => {
+    this.setState({
+      localfilteredSortOrder: '',
+      localfilteredSortType: ''
+    });
   };
 
   render() {
@@ -261,7 +298,7 @@ export default class Attractions extends Component {
     this.breadCrumbData.count = totalRecords;
 
     return (
-      <div>
+      <div className="attractions-page-wrapper">
         <Breadcrub breadCrumbData={this.breadCrumbData} />
         <div className="container-fluid">
           <div className="wrapper-events-listing attraction-wrapper-listing">
@@ -303,19 +340,37 @@ export default class Attractions extends Component {
               )}
             </div>
 
-            <div className="events-listing">
+            <div
+              className={`events-listing ${
+                this.state.sortByFlag ? 'open' : ''
+                }`}
+            >
               <div className="event-listing-sorting">
                 <SearchFilter
                   handleFilters={this.handleFilters}
                   searchText={filteredSearch}
+                />
+                <FilterSelected
+                  attractionCategories={attractionCategories}
+                  filteredCategory={filteredCategory}
+                  handleFilters={this.handleFilters}
                 />
                 <SortBy
                   sortList={this.tabsSort.sortList}
                   handleFilters={this.handleFilters}
                   defaultSortType={this.tabsSort.defaultSortType}
                   sortByFlag={this.state.sortByFlag}
-                  filteredSortType={this.state.filteredSortType}
-                  filteredSortOrder={this.state.filteredSortOrder}
+                  filteredSortType={
+                    Utilities.mobilecheck()
+                      ? this.state.localfilteredSortType
+                      : this.state.filteredSortType
+                  }
+                  filteredSortOrder={
+                    Utilities.mobilecheck()
+                      ? this.state.localfilteredSortOrder
+                      : this.state.filteredSortOrder
+                  }
+                  clearSortFilters={this.clearSortFilters}
                 >
                   <div className="fixed-buttons">
                     <a
@@ -326,7 +381,13 @@ export default class Attractions extends Component {
                     >
                       Close
                     </a>
-                    <a onClick={() => this.callAPI()} className="apply">
+
+                    <a
+                      onClick={() => {
+                        this.callAPI();
+                      }}
+                      className="apply"
+                    >
                       Apply
                     </a>
                   </div>
@@ -391,7 +452,12 @@ export default class Attractions extends Component {
               )}
             </div>
             <div className="fixed-buttons-events">
-              <a className="sortby" onClick={this.toggleSortBy}>
+              <a
+                className="sortby"
+                onClick={() => {
+                  this.toggleSortBy();
+                }}
+              >
                 sort by
                 <img src={sortbyIcon} alt="icon" />
               </a>

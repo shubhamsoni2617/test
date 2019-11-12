@@ -19,9 +19,16 @@ const CarouselSlide = ({ elem }) => {
         <span className={`category ${genre}`}>{elem.primary_genre}</span>
         <p className="dt-srt-end">{elem.event_date}</p>
         {/* <Link to={`/events/${elem.alias}`}><h3>{Utilities.showLimitedChars(elem.title, 40)}</h3></Link> */}
-        <Link to={`/events/${elem.alias}`}>
-          <EventHeading title={elem.title} lines={2} height={19} />
-        </Link>
+        {!elem.navigation_link && (
+          <Link to={`/events/${elem.alias}`}>
+            <EventHeading title={elem.title} lines={2} height={19} />
+          </Link>
+        )}
+        {elem.navigation_link && (
+          <a target="_blank" href={`${elem.navigation_link}`}>
+            <EventHeading title={elem.title} lines={2} height={19} />
+          </a>
+        )}
         <p>{elem.venue_name}</p>
       </div>
     </div>

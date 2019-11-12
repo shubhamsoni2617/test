@@ -1,9 +1,13 @@
 //tabs
 .event-detail-panel{
-    padding: 45px 17px 30px 30px;
+    padding: 25px 17px 30px 30px;
+    @media(max-width: 991px){
+        display: flex;
+        flex-direction: column;
+    }
     @media(max-width: 980px){
         order: 2;
-        padding: 0px 0px 20px 0px;
+        padding: 0px 0px 0px 0px;
     }
     .sidebar-accordion{
         .accordion__item{
@@ -11,6 +15,44 @@
                 border: 1px solid rgba(201, 201, 201, 0.2);
                 border-top: none;
                 // box-shadow: 0 2px 3px 0 rgba(201, 201, 201, 0.5);
+            }
+        }
+        &.promotion-accordian{
+            @media(max-width: 991px){
+                order: 9;
+            }
+        }
+        &.synopsis-accordian{
+            @media(max-width: 991px){
+                order: 2;
+            }
+        }
+        &.othertabs-accordian{
+            @media(max-width: 991px){
+                order: 3;
+            }
+        }
+        &:last-child{
+            .accordion__item {
+                .accordion__panel{
+                    @media(max-width: 767px){
+                        border-bottom: none;
+                    }
+                }
+            }
+        }
+        .accordion__button{
+            &:before{
+                @media(max-width: 767px){
+                    transform: translateY(-50%) rotate(45deg);
+                }
+            }
+            &[aria-expanded='true']{
+                &:before{
+                    @media(max-width: 767px){
+                        transform: translateY(-50%) rotate(-135deg);
+                    }
+                }
             }
         }
     }

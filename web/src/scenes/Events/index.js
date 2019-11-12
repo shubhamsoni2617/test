@@ -15,10 +15,12 @@ import EventBreadcrumbImageBlur from '../../assets/images/events-blur.png';
 import filterIcon from '../../assets/images/events/filter.svg';
 import sortbyIcon from '../../assets/images/events/sortby.svg';
 import ShimmerEffect from '../../shared/components/ShimmerEffect';
-import utilities from '../../shared/utilities';
+import FilterSelected from '../../shared/components/FilterSelected';
+import Utilities from '../../shared/utilities';
 import './style.scss';
 import SearchFilter from '../../shared/components/SearchFilter';
 import Constants from '../../shared/constants';
+import EventAdvertisement from './EventAdvertisement';
 
 export default class Events extends Component {
   constructor(props) {
@@ -34,10 +36,16 @@ export default class Events extends Component {
       filteredTags: [],
       filteredPriceRange: {},
       filteredDateRange: {},
+      localfilteredGnere: [],
+      localfilteredPromotions: [],
+      localfilteredVenues: [],
+      localfilteredTags: [],
       localfilteredPriceRange: {},
       localfilteredDateRange: {},
       filteredSortType: 'date',
       filteredSortOrder: '',
+      localfilteredSortType: 'date',
+      localfilteredSortOrder: '',
       eventsData: [],
       genre: [],
       venues: [],
@@ -176,10 +184,15 @@ export default class Events extends Component {
 
   loadEvents = (params, isLoadMore) => {
     // this.setState({shimmer: true});
+    params.client = Constants.CLIENT;
     EventsService.getData(params)
       .then(res => {
-        if (!isLoadMore) this.setState({ eventsData: [] });
-        const eventData = [...this.state.eventsData, ...res.data.data];
+        let eventData = [];
+        if (isLoadMore) {
+          eventData = [...this.state.eventsData, ...res.data.data];
+        } else {
+          eventData = [...res.data.data];
+        }
         const isdataAvailable = eventData.length ? false : true;
         setTimeout(() => {
           this.setState({
@@ -235,7 +248,8 @@ export default class Events extends Component {
       genre: reset ? '' : genreId,
       venue: reset ? '' : venueId,
       start_date: reset ? '' : dateRange.from,
-      end_date: reset ? '' : dateRange.to
+      end_date: reset ? '' : dateRange.to,
+      client: 1
     };
     return payload;
   };
@@ -253,7 +267,10 @@ export default class Events extends Component {
       },
       filteredGnere: genre ? [genre] : [],
       filteredVenues: venue ? [venue] : [],
-      filteredDateRange: dateRange
+      filteredDateRange: dateRange,
+      localfilteredGnere: genre ? [genre] : [],
+      localfilteredVenues: venue ? [venue] : [],
+      localfilteredDateRange: dateRange
     });
   }
 
@@ -293,10 +310,16 @@ export default class Events extends Component {
   };
 
   handleFilters = (searchType, apply) => {
+    if (Utilities.mobilecheck) {
+      this.setState({
+        localfilteredSortType: searchType.filteredSortType,
+        localfilteredSortOrder: searchType.filteredSortOrder
+      });
+    }
     let obj = {
       ...searchType
     };
-    if (!utilities.mobilecheck() || apply) {
+    if (!Utilities.mobilecheck() || apply) {
       obj = {
         ...searchType,
         first: 0,
@@ -308,7 +331,7 @@ export default class Events extends Component {
     }
     this.setState(obj, () => {
       setTimeout(() => {
-        if (!utilities.mobilecheck() || apply) {
+        if (!Utilities.mobilecheck() || apply) {
           this.loadEvents(this.getFilters(), false);
         }
       }, 200);
@@ -316,8 +339,19 @@ export default class Events extends Component {
   };
 
   resetFilters = () => {
-    this.setState(
-      {
+    let obj = {};
+    if (Utilities.mobilecheck()) {
+      obj = {
+        localfilteredGnere: [],
+        localfilteredSearch: [],
+        localfilteredPromotions: [],
+        localfilteredVenues: [],
+        localfilteredTags: [],
+        localfilteredPriceRange: {},
+        localfilteredDateRange: {}
+      };
+    } else {
+      obj = {
         filteredGnere: [],
         filteredSearch: [],
         filteredPromotions: [],
@@ -325,22 +359,20 @@ export default class Events extends Component {
         filteredTags: [],
         filteredPriceRange: {},
         filteredDateRange: {},
-        localfilteredPriceRange: {},
-        localfilteredDateRange: {},
         filteredSortType: 'date',
         filteredSortOrder: '',
         isdataAvailable: false,
-        eventsData: [],
+        // eventsData: [],
         totalRecords: 0
-      },
-      () => {
+      };
+    }
+    this.setState(obj, () => {
+      if (!Utilities.mobilecheck()) {
         const payload = this.getInitialFilters(true);
         this.setInitialFilters(payload);
-        if (!utilities.mobilecheck()) {
-          this.loadEvents(payload);
-        }
+        this.loadEvents(payload);
       }
-    );
+    });
   };
 
   redirectToTarget = alias => {
@@ -351,12 +383,22 @@ export default class Events extends Component {
     this.setState({
       filterFlag: !this.state.filterFlag,
       localfilteredPriceRange: { ...this.state.filteredPriceRange },
-      localfilteredDateRange: { ...this.state.filteredDateRange }
+      localfilteredDateRange: { ...this.state.filteredDateRange },
+      localfilteredGnere: [...this.state.filteredGnere],
+      localfilteredPromotions: [...this.state.filteredPromotions],
+      localfilteredVenues: [...this.state.filteredVenues],
+      localfilteredTags: [...this.state.filteredTags]
     });
+    document.body.classList.toggle('fixed-body');
   };
 
   toggleSortBy = () => {
-    this.setState({ sortByFlag: !this.state.sortByFlag });
+    this.setState({
+      sortByFlag: !this.state.sortByFlag,
+      localfilteredSortOrder: this.state.filteredSortOrder,
+      localfilteredSortType: this.state.filteredSortType
+    });
+    document.body.classList.toggle('fixed-body');
   };
 
   callAPI = () => {
@@ -369,7 +411,13 @@ export default class Events extends Component {
         filterFlag: false,
         sortByFlag: false,
         filteredPriceRange: { ...this.state.localfilteredPriceRange },
-        filteredDateRange: { ...this.state.localfilteredDateRange }
+        filteredDateRange: { ...this.state.localfilteredDateRange },
+        filteredGnere: [...this.state.localfilteredGnere],
+        filteredPromotions: [...this.state.localfilteredPromotions],
+        filteredVenues: [...this.state.localfilteredVenues],
+        filteredTags: [...this.state.localfilteredTags],
+        filteredSortOrder: this.state.localfilteredSortOrder,
+        filteredSortType: this.state.localfilteredSortType
       },
       () => {
         setTimeout(() => {
@@ -377,6 +425,14 @@ export default class Events extends Component {
         }, 200);
       }
     );
+    document.body.classList.toggle('fixed-body');
+  };
+
+  clearSortFilters = () => {
+    this.setState({
+      localfilteredSortOrder: '',
+      localfilteredSortType: ''
+    });
   };
 
   render() {
@@ -393,16 +449,22 @@ export default class Events extends Component {
       shimmer,
       shimmerFilter,
       filteredSearch,
-      localfilteredPriceRange,
+      filteredPriceRange,
       filteredGnere,
       filteredPromotions,
       filteredVenues,
       filteredTags,
+      filteredDateRange,
+      localfilteredPriceRange,
+      localfilteredGnere,
+      localfilteredPromotions,
+      localfilteredVenues,
+      localfilteredTags,
       localfilteredDateRange,
       filterFlag
     } = this.state;
     return (
-      <div>
+      <div className="events-page-wrapper">
         <Breadcrub breadCrumbData={this.breadCrumbData} />
         <section className="">
           <div className="container-fluid">
@@ -420,6 +482,7 @@ export default class Events extends Component {
                 {!shimmerFilter &&
                   genre.length > 0 &&
                   venues.length > 0 &&
+                  filterConfig &&
                   filterConfig.price_config &&
                   filterConfig.promotion_categories && (
                     <Filters
@@ -430,12 +493,36 @@ export default class Events extends Component {
                       venueData={venues}
                       filterConfig={filterConfig}
                       filteredSearch={filteredSearch}
-                      filteredPriceRange={localfilteredPriceRange}
-                      filteredGnere={filteredGnere}
-                      filteredPromotions={filteredPromotions}
-                      filteredVenues={filteredVenues}
-                      filteredTags={filteredTags}
-                      filteredDateRange={localfilteredDateRange}
+                      filteredPriceRange={
+                        Utilities.mobilecheck()
+                          ? localfilteredPriceRange
+                          : filteredPriceRange
+                      }
+                      filteredGnere={
+                        Utilities.mobilecheck()
+                          ? localfilteredGnere
+                          : filteredGnere
+                      }
+                      filteredPromotions={
+                        Utilities.mobilecheck()
+                          ? localfilteredPromotions
+                          : filteredPromotions
+                      }
+                      filteredVenues={
+                        Utilities.mobilecheck()
+                          ? localfilteredVenues
+                          : filteredVenues
+                      }
+                      filteredTags={
+                        Utilities.mobilecheck()
+                          ? localfilteredTags
+                          : filteredTags
+                      }
+                      filteredDateRange={
+                        Utilities.mobilecheck()
+                          ? localfilteredDateRange
+                          : filteredDateRange
+                      }
                       filterFlag={filterFlag}
                     >
                       <div className="fixed-buttons">
@@ -455,19 +542,44 @@ export default class Events extends Component {
                   )}
               </div>
 
-              <div className="events-listing">
+              <div
+                className={`events-listing ${
+                  this.state.sortByFlag ? 'open' : ''
+                }`}
+              >
                 <div className="event-listing-sorting">
                   <SearchFilter
                     handleFilters={this.handleFilters}
                     searchText={filteredSearch}
+                  />
+                  <FilterSelected
+                    genreData={genre}
+                    venueData={venues}
+                    filterConfig={filterConfig}
+                    filteredPriceRange={filteredPriceRange}
+                    filteredGnere={filteredGnere}
+                    filteredPromotions={filteredPromotions}
+                    filteredVenues={filteredVenues}
+                    filteredTags={filteredTags}
+                    filteredDateRange={filteredDateRange}
+                    handleFilters={this.handleFilters}
                   />
                   <SortBy
                     sortList={this.tabsSort.sortList}
                     handleListGridView={this.handleListGridView}
                     handleFilters={this.handleFilters}
                     sortByFlag={this.state.sortByFlag}
-                    filteredSortType={this.state.filteredSortType}
-                    filteredSortOrder={this.state.filteredSortOrder}
+                    filteredSortType={
+                      Utilities.mobilecheck()
+                        ? this.state.localfilteredSortType
+                        : this.state.filteredSortType
+                    }
+                    filteredSortOrder={
+                      Utilities.mobilecheck()
+                        ? this.state.localfilteredSortOrder
+                        : this.state.filteredSortOrder
+                    }
+                    clearSortFilters={this.clearSortFilters}
                   >
                     <div className="fixed-buttons">
                       <a
@@ -478,7 +590,13 @@ export default class Events extends Component {
                       >
                         Close
                       </a>
-                      <a onClick={() => this.callAPI()} className="apply">
+
+                      <a
+                        className="apply"
+                        onClick={() => {
+                          this.callAPI();
+                        }}
+                      >
                         Apply
                       </a>
                     </div>
@@ -503,6 +621,9 @@ export default class Events extends Component {
                       </span>
                     </li>
                   </ul>
+                </div>
+                <div className="event-listing-ads">
+                  <EventAdvertisement />
                 </div>
                 <div className={this.state.viewTypeClass}>
                   {loader && (
@@ -532,9 +653,11 @@ export default class Events extends Component {
                 </div>
                 {shimmer && (
                   <ShimmerEffect
-                    propCls="shm_col-xs-6 col-md-4"
+                    propCls={`${
+                      Utilities.mobileAndTabletcheck() ? 'shm_col-xs-6' : ''
+                    } col-md-4`}
                     height={150}
-                    count={3}
+                    count={Utilities.mobileAndTabletcheck() ? 2 : 3}
                     type="LIST"
                   />
                 )}
@@ -563,7 +686,12 @@ export default class Events extends Component {
                 )}
               </div>
               <div className="fixed-buttons-events">
-                <a className="sortby" onClick={this.toggleSortBy}>
+                <a
+                  className="sortby"
+                  onClick={() => {
+                    this.toggleSortBy();
+                  }}
+                >
                   sort by
                   <img src={sortbyIcon} alt="icon" />
                 </a>

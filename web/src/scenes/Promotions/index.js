@@ -15,7 +15,7 @@ export default class Promotions extends Component {
     this.state = {
       defaultTabId: null,
       tabsArray: [],
-      sortBy: 'ASC',
+      sortBy: 'date',
       first: 0,
       totalRecords: 0,
       listingArray: [],
@@ -27,7 +27,8 @@ export default class Promotions extends Component {
       sortApply: false,
       sortFilters: null,
 
-      filteredSortOrder: 'date'
+      filteredSortOrder: 'date',
+      localsortBy: 'ASC'
     };
     this.tabsSort = {
       isSortBy: true,
@@ -244,10 +245,16 @@ export default class Promotions extends Component {
   };
 
   handleFilters = obj => {
-    this.handleSortFilters(obj);
+    // this.handleSortFilters(obj);
+
     if (!Utilities.mobilecheck()) {
       this.setState({
         sortBy: obj.filteredSortOrder,
+        promotionTab: 0
+      });
+    } else {
+      this.setState({
+        localsortBy: obj.localfilteredSortOrder,
         promotionTab: 0
       });
     }
@@ -258,24 +265,36 @@ export default class Promotions extends Component {
   };
 
   toggleSortBy = () => {
-    this.setState({ sortByFlag: !this.state.sortByFlag });
+    document.body.classList.toggle('fixed-body');
+    this.setState({
+      sortByFlag: !this.state.sortByFlag,
+      localsortBy: this.state.sortBy
+    });
   };
 
   handleSortFilters = sortFilters => {
     this.setState({
-      sortFilters,
-      filteredSortOrder: sortFilters.filteredSortOrder
+      sortFilters
     });
   };
 
   handleSortApply = () => {
-    this.toggleSortBy();
-    if (this.state.sortFilters) {
-      this.setState({
-        sortBy: this.state.sortFilters.filteredSortOrder,
-        promotionTab: 0
-      });
-    }
+    this.setState({
+      sortByFlag: !this.state.sortByFlag,
+      sortBy: this.state.localsortBy,
+      promotionTab: 0
+    });
+    document.body.classList.toggle('fixed-body');
+  };
+
+  clearSortFilters = () => {
+    let sortFilters = { ...this.state.sortFilters };
+    sortFilters.filteredSortOrder = 'date';
+    this.setState({
+      // filteredSortOrder: '',
+      localsortBy: '',
+      sortFilters
+    });
   };
 
   render() {
@@ -303,7 +322,11 @@ export default class Promotions extends Component {
                   {Utilities.mobilecheck() && (
                     <>
                       <div className="wrapper-events-listing">
-                        <div className="events-listing">
+                        <div
+                          className={`events-listing ${
+                            this.state.sortByFlag ? 'open' : ''
+                          }`}
+                        >
                           <div className="event-listing-sorting">
                             <SortBy
                               defaultSortType="Promotions - A to Z"
@@ -311,17 +334,28 @@ export default class Promotions extends Component {
                               sortList={this.tabsSort.sortList}
                               sortByFlag={this.state.sortByFlag}
                               promotion
-                              filteredSortOrder={this.state.filteredSortOrder}
+                              filteredSortType="title"
+                              filteredSortOrder={
+                                Utilities.mobilecheck()
+                                  ? this.state.localsortBy
+                                  : this.state.sortBy
+                              }
+                              clearSortFilters={this.clearSortFilters}
                             >
                               <div className="fixed-buttons">
                                 <a
-                                  onClick={this.toggleSortBy}
+                                  onClick={() => {
+                                    this.toggleSortBy();
+                                  }}
                                   className="close"
                                 >
                                   Close
                                 </a>
+
                                 <a
-                                  onClick={this.handleSortApply}
+                                  onClick={() => {
+                                    this.handleSortApply();
+                                  }}
                                   className="apply"
                                 >
                                   Apply
@@ -332,7 +366,12 @@ export default class Promotions extends Component {
                         </div>
                       </div>
                       <div className="fixed-buttons-events">
-                        <a className="sortby" onClick={this.toggleSortBy}>
+                        <a
+                          className="sortby"
+                          onClick={() => {
+                            this.toggleSortBy();
+                          }}
+                        >
                           sort by
                           <img src={sortbyIcon} alt="icon" />
                         </a>

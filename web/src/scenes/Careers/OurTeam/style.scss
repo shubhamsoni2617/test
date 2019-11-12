@@ -1,0 +1,106 @@
+.our-team{
+  margin-bottom: 82px;
+  @media(max-width: 767px){
+    display: flex;
+    margin-bottom: 30px;
+  }
+  .ourteam-inner{
+    padding: 90px 57px 53px 68px;
+    background-color: #F0F9FF;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100%;
+    h4{
+      font-size: 20px;
+      line-height: 24px;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: bold;
+      margin-bottom: 15px;
+      @media(max-width: 767px){
+        font-size: 14px;
+      }
+    }
+    h2{
+      font-size: 50px;
+      line-height: 61px;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 600;
+      margin-bottom: 15px;
+      padding-bottom: 0;
+      line-height: 61px;
+      @media(max-width: 991px){
+        font-size: 38px;
+        line-height: 30px;
+      }
+      @media(max-width: 767px){
+        font-size: 14px;
+      }
+    }
+    p{
+      margin-bottom: 45px;
+      line-height: 26px;
+      font-size: 16px;
+    }
+    button{
+      font-size: 18px;
+      line-height: 22px;
+      text-align: left;
+      width: max-content;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-weight: 500;
+      padding: 12px 23px;
+      img{
+        width: 20px;
+        margin-left: 25px;
+        @media(max-width: 767px){
+          width: 15px;
+          margin-left: 10px;
+        }
+      }
+      .arrow-blue{
+        display: none;
+      }
+      &:hover{
+        .arrow-white{
+          display: none;
+        }
+        .arrow-blue{
+          display: block;
+        }
+      }
+      @media(max-width: 767px){
+        padding: 2px 12px;
+        font-size: 12px;
+      }
+    }
+    @media(max-width: 1024px){
+      padding: 30px 25px 30px 25px;
+      h2{
+        font-size: 32px;
+        line-height: 25px;
+      }
+      p{
+        margin-bottom: 20px;
+        line-height: 20px;
+        font-size: 12px;
+      }
+    }
+  }
+  .our-team-img{
+    background: url('../../../assets/images/team.png') no-repeat;
+    background-size: cover;
+    background-position: left top;
+    @media(max-width: 767px){
+      height: 240px;
+      order: 1;
+    }
+  }
+  .our-team-content{
+    @media(max-width: 767px){
+      order: 2;
+    }
+  }
+}

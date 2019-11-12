@@ -1,96 +1,161 @@
-
 // Top-advertisment style start
 .top-ads {
 	background-color: #121212;    
     z-index: 2;
     max-height: 0;
-    transition: max-height 0.5s ease-out;
-    -webkit-transition: max-height 0.5s ease-out;
-    -moz-transition: max-height 0.5s ease-out;
-    -o-transition: max-height 0.5s ease-out;
+    transition: max-height 0.5s height;
+    -webkit-transition: max-height 0.5s height;
+    -moz-transition: max-height 0.5s height;
+    -o-transition: max-height 0.5s height;
     overflow: hidden;
-    position: relative;
-    // position: fixed;
-    // width: 100%;
-    // left: 0px;
-    // right: 0px;
-    // top: 0px;
-    // @media(max-width: 767px){
-    //     position: relative;
-    // }
-    // & + .header.homepage{
-    //     top: 0px;
-    //     & + div{
-    //         padding-top: 112px;
-    //     }
-    //     & + .home-page-wrapper{
-    //         .ticker-wrap.hide-news{
-    //             top: 112px;
-    //         }
-    //     }
-    // }
+    position: fixed;
+    width: 100%;
+    left: 0px;
+    right: 0px;
+    top: 0px;
+    display: flex;
+    align-items: center;
+    @media(max-width: 767px){
+        position: relative;
+    }
+    & + .header.homepage{
+        top: 0px;
+        min-height: 107px;
+        max-height: 107px;
+        @media(max-width: 991px){
+            min-height: 55px;
+            max-height: 55px;
+        }
+        @media(max-width: 768px){
+            min-height: 60px;
+            max-height: 60px;
+        }
+        @media(max-width: 767px){
+            min-height: 104px;
+            max-height: 104px;
+        }
+        & + div{
+            padding-top: 112px;
+            @media(max-width: 767px){
+                padding-top: 7px;
+            }
+        }
+        & + .home-page-wrapper{
+            .ticker-wrap.hide-news{
+                top: 107px;
+                @media(max-width: 1440px){
+                    top: 107px;
+                }
+                @media(max-width: 1366px){
+                    top: 107px;
+                }
+                @media(max-width: 1280px){
+                    top: 107px;
+                }
+                @media(max-width: 1024px){
+                    top: 107px;
+                }
+                @media(max-width: 991px){
+                    top: 55px;
+                }
+                @media(max-width: 768px){
+                    top: 60px;
+                }
+                @media(max-width: 767px){
+                    top: 0px;
+                }
+            }
+        }
+    }
     &.show-add{
-        max-height: 150px;
+        max-height: 90px;
         transition: max-height 0.5s ease-in;
         -webkit-transition: max-height 0.5s ease-in;
         -moz-transition: max-height 0.5s ease-in;
         -o-transition: max-height 0.5s ease-in;
-        // & + .header.homepage{
-        //     top: 90px;
-        //     @media(max-width: 1440px){
-        //         top: 88px;
-        //     }
-        //     @media(max-width: 1280px){
-        //         top: 79px;
-        //     }
-        //     @media(max-width: 1024px){
-        //         top: 65px;
-        //     }
-        //     @media(max-width: 768px){
-        //         top: 51px;
-        //     }
-        //     @media(max-width: 767px){
-        //         top: 0px;
-        //     }
-        //     & + div{
-        //         padding-top: 202px;
-        //         @media(max-width: 1440px){
-        //             padding-top: 200px;
-        //         }
-        //         @media(max-width: 1280px){
-        //             padding-top: 191px;
-        //         }
-        //         @media(max-width: 1024px){
-        //             padding-top: 177px;
-        //         }
-        //         @media(max-width: 768px){
-        //             padding-top: 163px;
-        //         }
-        //         @media(max-width: 767px){
-        //             padding-top: 112px;
-        //         }
-        //     }
-        //      & + .home-page-wrapper{
-        //         .ticker-wrap.hide-news{
-        //             top: 202px !important;
-        //             @media(max-width: 1440px){
-        //                 top: 200px !important;
-        //             }
-        //             @media(max-width: 1280px){
-        //                 top: 191px !important;
-        //             }
-        //             @media(max-width: 1024px){
-        //                 top: 112px !important;
-        //             }
-        //             @media(max-width: 768px){
-        //                 top: 60px !important;
-        //             }
-        //             @media(max-width: 767px){
-        //                 top: 0px !important;
-        //             }
-        //         }
-        //     }
-        // }
+        min-height: 90px;
+        @media(max-width: 1366px){
+            min-height: 73px;
+            max-height: 73px;
+        }
+        @media(max-width: 1024px){
+            min-height: 65px;
+            max-height: 65px;
+        }
+        @media(max-width: 991px){
+            min-height: 55px;
+            max-height: 55px;
+        }
+        @media(max-width: 768px){
+            min-height: 50px;
+            max-height: 50px;
+        }
+        @media(max-width: 650px){
+            min-height: 30px;
+            max-height: 30px;
+        }
+        & + .header.homepage{
+            top: 89px;
+            @media(max-width: 1366px){
+                top: 73px;
+            }
+            @media(max-width: 1024px){
+                top: 65px;
+            }
+            @media(max-width: 991px){
+                top: 55px;
+            }
+            @media(max-width: 768px){
+                top: 50px;
+            }
+            @media(max-width: 740px){
+                top: 0px;
+            }
+            & + div{
+                padding-top: 202px;
+                @media(max-width: 1440px){
+                    padding-top: 185px;
+                }
+                @media(max-width: 1024px){
+                    padding-top: 177px;
+                }
+                @media(max-width: 991px){
+                    padding-top: 165px;
+                }
+                @media(max-width: 768px){
+                    padding-top: 162px;
+                }
+                @media(max-width: 767px){
+                    padding-top: 7px;
+                }
+            }
+             & + .home-page-wrapper{
+                .ticker-wrap.hide-news{
+                    top: 196px;
+                    @media(max-width: 1440px){
+                        top: 196px;
+                    }
+                    @media(max-width: 1366px){
+                        top: 180px;
+                    }
+                    @media(max-width: 1280px){
+                        top: 180px;
+                    }
+                    @media(max-width: 1024px){
+                        top: 172px;
+                    }
+                    @media(max-width: 991px){
+                        top: 110px;
+                    }
+                    @media(max-width: 768px){
+                        top: 110px;
+                    }
+                    @media(max-width: 767px){
+                        top: 0px;
+                    }
+                }
+            }
+        }
     }
 	.ads-image {
 		text-align: center;
@@ -120,4 +185,35 @@
             }
         }
 	}
+}
+.show-add{
+    &.no-ads{
+        & + .header.homepage{
+            top: 0px;
+            & + .home-page-wrapper .ticker-wrap.hide-news{
+                top: 108px;
+                @media(max-width: 1440px){
+                    top: 108px;
+                }
+                @media(max-width: 1366px){
+                    top: 108px;
+                }
+                @media(max-width: 1280px){
+                    top: 108px;
+                }
+                @media(max-width: 1024px){
+                    top: 108px;
+                }
+                @media(max-width: 991px){
+                    top: 55px;
+                }
+                @media(max-width: 768px){
+                    top: 60px;
+                }
+                @media(max-width: 767px){
+                    top: 115px;
+                }
+            }
+        }
+    }
 }

@@ -5,12 +5,17 @@ import './style.scss';
 export default class ModalPopup extends React.Component {
   render() {
     const { handleClose, content, title, showModal, htmlContent } = this.props;
-
+    if (showModal) {
+      document.body.classList.add('fixed-body');
+    }
     return (
       <div>
         <Modal
           visible={showModal}
-          closemodal={() => handleClose()}
+          closemodal={e => {
+            document.body.classList.remove('fixed-body');
+            handleClose(e);
+          }}
           type="fadeInDown"
         >
           <div className="modal-content">

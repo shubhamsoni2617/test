@@ -1,5 +1,3 @@
-// import { Alert } from 'react-native'
-
 class Utilities {
   static removeNulls(object) {
     for (const key of Object.keys(object)) {
@@ -35,7 +33,8 @@ class Utilities {
   // }
 
   static showLimitedChars = (string, limit) => {
-    if (string.length > limit) string = string.substring(0, limit) + '...';
+    if (string && string.length > limit)
+      string = string.substring(0, limit) + '...';
     return string;
   };
 
@@ -87,7 +86,7 @@ class Utilities {
       )
         check = true;
     })(navigator.userAgent || navigator.vendor || window.opera);
-    return check;
+    return check && window.innerWidth <= 767;
   };
 
   static mobileAndTabletcheck = () => {

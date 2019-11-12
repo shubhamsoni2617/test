@@ -1,16 +1,18 @@
 .event-listing-sorting {
-    display: flex;
-    flex-wrap: wrap;
-    width: 100%;
-    border-bottom: 1px solid rgba(126, 126, 126, 0.1);
-    justify-content: flex-end;
-    padding: 0 0 9px;
-     @media(min-width: 767px){
-            .filters-search {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  border-bottom: 1px solid rgba(126, 126, 126, 0.1);
+  justify-content: flex-end;
+  padding: 0 0 9px;
+    @media(min-width: 767px){
+    .filters-search {
       display: none;
     }
-        }
-
+  }
+  @media(max-width: 768px){
+    border-bottom: none;
+  }
 }
 .sortby {
     display: flex;
@@ -39,7 +41,7 @@
       display: none;
     }
     .fixed-buttons {
-display: none;
+      display: none;
     }
     @media(max-width: 767px){
       &.open{
@@ -55,6 +57,14 @@ display: none;
           }
           .checked {
             position: relative;
+            color: #0098ff;
+            cursor: pointer;
+            font-weight: 500;
+            transition: 0.8s all;
+            -webkit-transition: 0.8s all;
+            -moz-transition: 0.8s all;
+            -o-transition: 0.8s all;
+            padding-left: 23px;
             &:before{
               display: block;
               content: '';
@@ -94,11 +104,37 @@ display: none;
               position: relative;
               text-transform: capitalize;
               justify-content: center;
+              transition: none;
               &.close {
                   color: #626262;
               }
-          }
+              &:only-child{
+                width: 100%;
+                background-color: #0098FF;
+                color: #fff;
+                display: block;
+                flex: 0 0 100%;
+                max-width: 100%;
+              }
+              &:first-child:after {
+                position: absolute;
+                content: "";
+                border-right: 1px solid #a7a7a7;
+                height: 45%;
+                width: 2px;
+                top: 50%;
+                right: 0px;
+                transform: translateY(-50%);
+              }
+            }
         }
+      }
+    }
+    &.active{
+      .sortby-filter{
+         .filter-topbar:after{
+            transform: translate(0%, -50%) rotate(180deg);
+         }
       }
     }
 }

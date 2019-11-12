@@ -3,9 +3,13 @@ import './style.scss';
 import PropTypes from 'prop-types';
 
 function Tooltip(props) {
+  let styleObj = { bottom: props.height };
+  if (props.top) {
+    styleObj = { top: props.height, bottom: 'unset' };
+  }
   return (
-    <div className="title">
-      <div className="info-popover" style={{ bottom: props.height }}>
+    <div className={`title ${props.class || ''}`}>
+      <div className="info-popover" style={styleObj}>
         {props.title}
       </div>
       {props.children}

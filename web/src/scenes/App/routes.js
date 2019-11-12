@@ -13,9 +13,16 @@ import GiftVouchers from '../GiftVouchers';
 import ContactUs from '../ContactUs';
 import Faq from '../Faq';
 import Careers from '../Careers';
+import JobDescription from '../Careers/JobDescription';
 import AboutUs from '../AboutUs';
-import ApiPartnersService from '../../shared/services/ApiPartnersService';
 import ApiPartner from '../ApiPartner';
+import Search from '../Home/Search';
+import SystemLicensing from '../SystemLicensing';
+import Advertise from '../Advertise';
+import SellTicketsWithUs from '../SellTicketsWithUs';
+import LandingPage from '../LandingPage';
+import Article from '../Explore/ArticleList';
+// import Explore from '../Explore';
 
 const routes = [
   {
@@ -59,7 +66,7 @@ const routes = [
     component: WhereBuyTickets
   },
   {
-    path: '/attractions',
+    path: '/attraction',
     component: Attraction,
     exact: true
   },
@@ -70,7 +77,7 @@ const routes = [
     cmsPageType: 1
   },
   {
-    path: '/privacy',
+    path: '/privacy-policy',
     component: TermsPrivacy,
     exact: true,
     cmsPageType: 2
@@ -96,8 +103,13 @@ const routes = [
     exact: true
   },
   {
-    path: '/careers',
+    path: '/career',
     component: Careers,
+    exact: true
+  },
+  {
+    path: '/career/jobdescription/:jobId',
+    component: JobDescription,
     exact: true
   },
   {
@@ -108,6 +120,41 @@ const routes = [
   {
     path: '/apipartners',
     component: ApiPartner,
+    exact: true
+  },
+  {
+    path: '/search-results',
+    component: Search,
+    exact: true
+  },
+  {
+    path: '/system-licensing',
+    component: SystemLicensing,
+    exact: true
+  },
+  {
+    path: '/advertise',
+    component: Advertise,
+    exact: true
+  },
+  {
+    path: '/sell-event-tickets',
+    component: SellTicketsWithUs,
+    exact: true
+  },
+  {
+    path: '/b2b',
+    component: LandingPage,
+    exact: true
+  },
+  // {
+  //   path: '/explore',
+  //   component: Explore,
+  //   exact: true
+  // },
+  {
+    path: '/explore/article',
+    component: Article,
     exact: true
   },
   {

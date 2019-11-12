@@ -13,7 +13,8 @@ class Constants {
     'M 0,0 C -2,-20 -10,-22 -10,-30 A 10,10 0 1,1 10,-30 C 10,-22 2,-20 0,0 z';
   static SOURCE_FROM_WEBSITE = 1;
   static SOURCE_FROM_MOBILE_RESPONSIVE = 3;
-  static LIMIT = Utilities.mobilecheck() ? 6 : 9;
+  static LIMIT = Utilities.mobileAndTabletcheck() ? 6 : 9;
+  static SITE_KEY = '6LedScEUAAAAALMkHkGFibsc4yNxrajcV6wijeuP';
 }
 
 export default Constants;

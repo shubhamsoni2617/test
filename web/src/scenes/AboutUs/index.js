@@ -2,21 +2,25 @@ import React, { Component } from 'react';
 import Header from '../../shared/components/Header';
 import Banner from './Banner';
 import OurPeople from './OurPeople';
-import Careers from './Careers';
+
 import Description from './Description';
 import ContactUs from '../ApiPartner/ContactUs';
 import AboutUsService from '../../shared/services/AboutUsService';
 import './style.scss';
+import Careers from '../../shared/components/Careers';
+import CareerService from '../../shared/services/CareerService';
 
 class AboutUs extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      aboutUsContent: ''
+      aboutUsContent: '',
+      testimonial: null
     };
   }
   componentDidMount() {
     this.fetchAboutUsContent();
+    this.getTestimonial();
     this.scrollToTop();
   }
   scrollToTop = () => {
@@ -31,6 +35,18 @@ class AboutUs extends Component {
       })
       .catch(err => {});
   };
+  getTestimonial = () => {
+    CareerService.getTestimonial()
+      .then(res => {
+        if (res && res.data) {
+          this.setState({ testimonial: res.data });
+        }
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  };
+
   render() {
     const {
       banner_title,
@@ -49,7 +65,11 @@ class AboutUs extends Component {
         />
         <Description content={content && content} />
         <OurPeople content={content && content} />
-        <Careers />
+        <Careers
+          sliderArr={
+            this.state.testimonial && this.state.testimonial.testimonials
+          }
+        />
         <div className="apipartners-wrapper">
           <ContactUs />
         </div>

@@ -1,22 +1,20 @@
 import React, { Fragment, useState, useEffect } from 'react';
 import './style.scss';
-import attach from '../../../assets/images/attach.png';
+import attach from '../../../assets/images/attach.svg';
 import ContactUsService from '../../../shared/services/ContactUsService';
 import { Link } from 'react-router-dom';
 import Constants from '../../constants';
 import Utilities from '../../utilities';
-import { Select } from '../MultiPurposeCheckbox';
+import Select from '../SelectBox';
 
 const Contact = ({ attachement, handleEnquiry }) => {
   const [enquiryCategory, setEnquiryCategory] = useState([]);
-  const [enquiry, setEnquiry] = useState('Select an Enquiry *');
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
   const [message, setMessage] = useState('');
   const [submitResponse, setSubmitResponse] = useState([]);
   const [successMsg, setSuccessMsg] = useState('');
-  const [files, setFiles] = useState({});
   const [maxFileLimitMsg, setMaxFileLimitMsg] = useState('');
   const [errMsg, setErrMsg] = useState('');
   const [loading, setLoading] = useState(false);
@@ -24,6 +22,9 @@ const Contact = ({ attachement, handleEnquiry }) => {
   const [headerErr, setHeaderErr] = useState('');
   const [CSRFToken, setCSRFToken] = useState('');
   const [filePath, setFilePath] = useState([]);
+  const [submit, setSubmit] = useState(false);
+  const [selectedId, setSelectedId] = useState(null);
+  let [fileArr, setFileArr] = useState([]);
 
   useEffect(() => {
     fetchEnquiry();
@@ -56,26 +57,19 @@ const Contact = ({ attachement, handleEnquiry }) => {
 
   const handleSubmit = e => {
     e.preventDefault();
-    if (
-      (enquiry !== 'Select an Enquiry *' || enquiry !== 'Request type *') &&
-      name &&
-      email &&
-      phone &&
-      message
-    ) {
+    if (selectedId && name && email && phone && message) {
       setLoading(true);
-      const check = Utilities.mobilecheck();
+      const isMobile = Utilities.mobilecheck();
       const data = {
-        category: Number(enquiry),
+        category: selectedId,
         name,
         email,
         contact_number: phone,
         message,
         attachment: filePath,
-        source_from:
-          check > Constants.MOBILE_BREAK_POINT
-            ? Constants.SOURCE_FROM_WEBSITE
-            : Constants.SOURCE_FROM_MOBILE_RESPONSIVE
+        source_from: isMobile
+          ? Constants.SOURCE_FROM_MOBILE_RESPONSIVE
+          : Constants.SOURCE_FROM_WEBSITE
       };
       submitForm(data, CSRFToken);
     } else {
@@ -90,12 +84,13 @@ const Contact = ({ attachement, handleEnquiry }) => {
           setTimeout(() => {
             setLoading(false);
             setSuccessMsg(res.data.message);
-            setEnquiry('Select an Enquiry *');
-            handleEnquiry && handleEnquiry('Select an Enquiry *');
+            setSubmit(true);
+            setSelectedId(null);
+            handleEnquiry && handleEnquiry('Select an Enquiry');
             setName('');
+            setFileArr([]);
             setEmail('');
             setPhone('');
-            setFiles({});
             setMessage('');
             setError(false);
           }, 1000);
@@ -129,10 +124,6 @@ const Contact = ({ attachement, handleEnquiry }) => {
       }
     } else {
       switch (name) {
-        case 'enquiry':
-          setEnquiry(value);
-          handleEnquiry && handleEnquiry(value);
-          break;
         case 'name':
           let val = value.trim();
           if (val.length > 0) {
@@ -161,44 +152,44 @@ const Contact = ({ attachement, handleEnquiry }) => {
     setLoading(false);
     setError(false);
     setHeaderErr('');
-    setFiles({});
     setSuccessMsg('');
   };
 
   const handleFile = e => {
-    setFiles({});
     const { files } = e.target;
-    const filesLength = files.length;
-    let fileSize = 0;
-    for (let key in files) {
-      if (files.hasOwnProperty(key)) {
-        fileSize = fileSize + files[key].size;
+    fileArr = [...fileArr, ...files];
+    let fileArrLength = fileArr.length;
+    for (let key in fileArr) {
+      if (fileArr.hasOwnProperty(key)) {
+        let fileSize = fileArr[key].size;
+        let sizeInMB = fileSize / (1024 * 1024);
+        if (sizeInMB > 5) {
+          setMaxFileLimitMsg('files can be uploaded, with up to 5MB size.');
+          setFileArr([]);
+          return;
+        }
       }
     }
-    const sizeInMB = fileSize / (1024 * 1024);
-    if (filesLength > 3 || sizeInMB > 5) {
-      setMaxFileLimitMsg('Max 3 files can be uploaded, with up to 5MB size.');
+    if (fileArrLength > 3) {
+      setMaxFileLimitMsg('Max 3 files can be uploaded, with up to 5MB size.');
+      setFileArr([]);
     } else {
-      submitUploadAttachment(files);
+      submitUploadAttachment(fileArr);
       setMaxFileLimitMsg('');
-      setFiles(files);
+      setFileArr(fileArr);
     }
   };
 
   const submitUploadAttachment = files => {
     let formData = new FormData();
-    let fileArr = [];
     for (let i = 0; i < files.length; i++) {
       let file = files[i];
-      // fileArr.push(file);
-      formData.append('file', file);
+      formData.append('file[' + i + ']', file);
     }
     ContactUsService.uploadAttachement(formData)
       .then(res => {
         if (res && res.data) {
-          let filePath = [];
-          filePath = [...filePath, res.data.path];
-          setFilePath(filePath);
+          setFilePath(res.data.path);
         }
       })
       .catch(err => {
@@ -206,19 +197,27 @@ const Contact = ({ attachement, handleEnquiry }) => {
       });
   };
 
-  const handleEnquiryId = enquiryName => {
-    if (enquiryName.length) {
-      let enquiryId = enquiryCategory.find(el => el.name === enquiryName[0]).id;
+  const onSelect = values => {
+    if (values && typeof values !== 'object') {
+      let selectedId;
+      enquiryCategory.filter(elem => {
+        if (elem.name === values) {
+          selectedId = Number(elem.id);
+        }
+      });
+      setSelectedId(selectedId);
+      handleEnquiry && handleEnquiry(selectedId);
     }
   };
+
+  const onClickSubmit = () => {
+    setSubmit(false);
+    setSelectedId(null);
+    handleEnquiry && handleEnquiry('Select an Enquiry');
+  };
+
   return (
     <Fragment>
-      {/* <Select
-        options={enquiryCategory}
-        selectedValues={enquiryName => {
-          handleEnquiryId(enquiryName);
-        }}
-      /> */}
       {successMsg && <h5 className="text-success">{successMsg}</h5>}
       {submitResponse &&
         submitResponse.map((elem, index) => {
@@ -232,31 +231,21 @@ const Contact = ({ attachement, handleEnquiry }) => {
       <form onSubmit={handleSubmit}>
         <div
           className={
-            errMsg && enquiry === 'Select an Enquiry *'
-              ? 'form-group err'
-              : 'form-group'
+            errMsg && selectedId === null ? 'form-group err' : 'form-group'
           }
         >
-          <select
-            name="enquiry"
-            className="form-control"
-            onChange={handleChange}
-            value={enquiry}
-          >
-            <option>
-              {handleEnquiry ? 'Select an Enquiry *' : 'Request type *'}
-            </option>
-            {enquiryCategory &&
-              enquiryCategory.map(enq => {
-                return (
-                  <option key={enq.id} value={enq.id}>
-                    {enq.name}
-                  </option>
-                );
-              })}
-          </select>
+          <Select
+            submit={submit}
+            options={submit ? [] : enquiryCategory}
+            placeholder={
+              handleEnquiry ? 'Select an Enquiry *' : 'Request type *'
+            }
+            onSelect={onSelect}
+            onClickSubmit={onClickSubmit}
+            // multiple
+          />
         </div>
-        {errMsg && enquiry === 'Select an Enquiry *' ? (
+        {errMsg && selectedId === null ? (
           <span className="error-msg">Please select enquiry</span>
         ) : null}
         <div className={errMsg && !name ? 'form-group err' : 'form-group'}>
@@ -272,7 +261,7 @@ const Contact = ({ attachement, handleEnquiry }) => {
         </div>
         {errMsg && !name ? (
           <span className="error-msg">
-            Please enter {handleEnquiry ? 'name' : 'full name'}      
+            Please enter {handleEnquiry ? 'name' : 'full name'}
           </span>
         ) : null}
         <div className={errMsg && !email ? 'form-group err' : 'form-group'}>
@@ -288,7 +277,7 @@ const Contact = ({ attachement, handleEnquiry }) => {
         </div>
         {errMsg && !email ? (
           <span className="error-msg">
-            Please enter {handleEnquiry ? 'email address' : 'email'}      
+            Please enter {handleEnquiry ? 'email address' : 'email'}
           </span>
         ) : null}
         <div className={errMsg && !phone ? 'form-group err' : 'form-group'}>
@@ -305,7 +294,7 @@ const Contact = ({ attachement, handleEnquiry }) => {
         </div>
         {errMsg && !phone ? (
           <span className="error-msg">
-            Please enter {handleEnquiry ? 'phone' : 'mobile'} no.   
+            Please enter {handleEnquiry ? 'phone' : 'mobile'} number.   
           </span>
         ) : null}
         <div className={errMsg && !message ? 'form-group err' : 'form-group'}>
@@ -321,13 +310,13 @@ const Contact = ({ attachement, handleEnquiry }) => {
           />
         </div>
         {errMsg && !message ? (
-          <span className="error-msg">Please enter some messages</span>
+          <span className="error-msg">Please enter message</span>
         ) : null}
         {attachement && (
           <div className="form-group attach-doc">
             <div className="row">
-              <div className="col-lg-4 label pr-0">Attach Documents</div>
-              <div className="col-lg-8">
+              <div className="col-lg-5 label pr-0">Attach Documents</div>
+              <div className="col-lg-7">
                 <label
                   htmlFor="file-upload"
                   className="custom-file-upload  form-control text-right"
@@ -339,22 +328,23 @@ const Contact = ({ attachement, handleEnquiry }) => {
                   id="file-upload"
                   className="form-control"
                   type="file"
-                  multiple={false}
+                  multiple={true}
                   onChange={handleFile}
                   accept=".jpeg,.png,.pdf,.doc,.docx,.jpg"
                 />
                 <span>
-                  *File Size should be maximum 5mb and it can be pdf,jpeg,png
+                  *File Size should be maximum 5mb and it can be
+                  pdf,jpeg,png,jpg
                 </span>
                 <p className="text-danger">{maxFileLimitMsg}</p>
-                {files && files[0] && <p>{files[0].name}</p>}
-                {files && files[1] && <p>{files[1].name}</p>}
-                {files && files[2] && <p>{files[2].name}</p>}
+                {fileArr &&
+                  fileArr.map((file, i) => {
+                    return <p key={i}>{file.name}</p>;
+                  })}
               </div>
             </div>
           </div>
         )}
-        {/* {errMsg ? <span className="error-msg">{errMsg}</span> : null} */}
         <input
           className="form-control btn-info"
           type="submit"

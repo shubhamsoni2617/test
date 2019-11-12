@@ -16,12 +16,13 @@
             padding-top: 45px;
             @media(min-width: 767px){
                 display: none;
+                padding-top: 15px;
             }
         }
         .fixed-buttons-events{
                 display: none;
                 @media(min-width: 767px){
-                    display: none !important;
+                    display: none;
                 }
             }
             @media (max-width: 767px) {
