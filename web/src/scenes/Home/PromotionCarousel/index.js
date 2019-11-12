@@ -57,7 +57,6 @@ const ItemWrapper = ({ promotion, expiredText, handlePromotionExpired }) => {
             : promotion.title}
         </h3>
       </a>
-
     </div>
   );
 };
@@ -106,8 +105,8 @@ export default class PromotionCarousel extends Component {
   getPromotions() {
     const params = {
       client: Constants.CLIENT,
-      first: 1
-      // limit: 10
+      first: 0,
+      limit: 24
     };
     HomeService.getPromotions(params)
       .then(res => {
@@ -146,7 +145,7 @@ export default class PromotionCarousel extends Component {
             //rows: 2,
             slidesPerRow: 3
           }
-        },
+        }
       ]
     };
     return (
@@ -164,32 +163,16 @@ export default class PromotionCarousel extends Component {
               </span> */}
               <div className="promo-animation-wrap">
                 <div className="promo-animation-img first">
-                  <img
-                    src={promoImg1}
-                    className="img-fluid"
-                    alt="promotions"
-                  />
+                  <img src={promoImg1} className="img-fluid" alt="promotions" />
                 </div>
                 <div className="promo-animation-img second">
-                  <img
-                    src={promoImg2}
-                    className="img-fluid"
-                    alt="promotions"
-                  />
+                  <img src={promoImg2} className="img-fluid" alt="promotions" />
                 </div>
                 <div className="promo-animation-img third">
-                  <img
-                    src={promoImg3}
-                    className="img-fluid"
-                    alt="promotions"
-                  />
+                  <img src={promoImg3} className="img-fluid" alt="promotions" />
                 </div>
                 <div className="promo-animation-img fourth">
-                  <img
-                    src={promoImg4}
-                    className="img-fluid"
-                    alt="promotions"
-                  />
+                  <img src={promoImg4} className="img-fluid" alt="promotions" />
                 </div>
               </div>
             </h2>
@@ -217,7 +200,7 @@ export default class PromotionCarousel extends Component {
                     Utilities.mobileAndTabletcheck() || Utilities.mobilecheck()
                       ? 6
                       : 2
-                    }`}
+                  }`}
                   height={150}
                   count={2}
                   type="TILE"
@@ -263,21 +246,21 @@ export default class PromotionCarousel extends Component {
                     })}
                 </div>
               ) : (
-                    <Slider {...settings}>
-                      {promotions &&
-                        promotions.map((promotion, index) => {
-                          return (
-                            <div key={promotion.id} className="item-wrapper">
-                              <ItemWrapper
-                                promotion={promotion}
-                                expiredText={expiredText}
-                                handlePromotionExpired={this.handlePromotionExpired}
-                              />
-                            </div>
-                          );
-                        })}
-                    </Slider>
-                  )}
+                <Slider {...settings}>
+                  {promotions &&
+                    promotions.map((promotion, index) => {
+                      return (
+                        <div key={promotion.id} className="item-wrapper">
+                          <ItemWrapper
+                            promotion={promotion}
+                            expiredText={expiredText}
+                            handlePromotionExpired={this.handlePromotionExpired}
+                          />
+                        </div>
+                      );
+                    })}
+                </Slider>
+              )}
             </CSSTransitionGroup>
           </div>
         </div>
