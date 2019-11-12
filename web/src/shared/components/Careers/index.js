@@ -38,7 +38,7 @@ const Careers = ({ sliderArr }) => {
                 sliderArr.map(elem => {
                   return (
                     <li key={elem.name}>
-                      <img src={elem.image} alt="Carrier" />
+                      <img src={elem.image} alt="career" />
                       <h5>{elem.name}</h5>
                       {elem.message}
                     </li>
