@@ -1,5 +1,6 @@
 import React from 'react';
 import Slider from 'react-slick';
+import { Link } from 'react-router-dom';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import Carrier from '../../../assets/images/carrier.png';
@@ -47,10 +48,10 @@ const Careers = ({ sliderArr }) => {
             </Slider>
           </ul>
           <div className="job-openings">
-            <a>
+            <Link to="/career">
               <img src={suiteCase} alt="job-opnings" />
               <span>See Job Openings</span>
-            </a>
+            </Link>
           </div>
         </div>
       </div>
