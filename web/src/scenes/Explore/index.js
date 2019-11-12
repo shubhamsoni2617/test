@@ -28,11 +28,15 @@ const Explore = () => {
         <div className="explore-wrapper">
             <section className="explore-page-banner">
                 <div className="banner-content">
-                    <h3>Kurios: Cabinet of Curiosities Cirque du Soleil</h3>
-                    <p>Cirque du Soleil arrives in Singapore with its most acclaimed touring show to date called, KURIOS –
-                        Cabinet of
+                    <div className="banner-desc">
+                        <h3>Kurios: Cabinet of Curiosities Cirque du Soleil</h3>
+                        <p>Cirque du Soleil arrives in Singapore with its most acclaimed touring show to date called, KURIOS –
+                            Cabinet of
                     Curiosities. Kurios will premier under a new grey-and-white Big Top from 6 July 2019…</p>
-                    <a>Read More</a>
+                    </div>
+                    <div className="banner-btn">
+                        <a>Read More</a>
+                    </div>
                 </div>
                 <div className="banner-slider">
                     <img src={bannerImg} alt="explore-slider" />
@@ -127,7 +131,7 @@ const Explore = () => {
                             Dolor Amet Gems Lorem ipsum.. <a>More</a></p>
                             </div>
                             <div className="article-item-img">
-                                <img src={Article} alt="article" />
+                                <img src={Article} alt="article" className="img-fluid" />
                             </div>
                         </div>
                         <div className="articles-item">
@@ -149,7 +153,7 @@ const Explore = () => {
                             Dolor Amet Gems Lorem ipsum.. <a>More</a></p>
                             </div>
                             <div className="article-item-img">
-                                <img src={ArticleHall} alt="article" />
+                                <img src={ArticleHall} alt="article" className="img-fluid" />
                             </div>
                         </div>
                         <div className="articles-item">
@@ -171,7 +175,7 @@ const Explore = () => {
                             Dolor Amet Gems Lorem ipsum.. <a>More</a></p>
                             </div>
                             <div className="article-item-img">
-                                <img src={Article} alt="article" />
+                                <img src={Article} alt="article" className="img-fluid" />
                             </div>
                         </div>
                     </div>

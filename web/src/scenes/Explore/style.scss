@@ -5,21 +5,26 @@
     flex-wrap: wrap;
     overflow: hidden;
     min-height: 377px;
+    @media(max-width: 576px){   
+        flex-direction: column-reverse;
+        background-color: rgba(0, 0, 0, 0.77);
+        min-height: auto;
+    }
     .banner-content{
-        flex: 0 0 50%;
-        width: 50%;
-        padding: 78px 60px 75px 83px;
+        flex: 0 0 45%;
+        width: 45%;
+        //padding: 78px 60px 75px 83px;
+        padding: 0px 60px 0px 83px;
         position: relative;
-        &:after{
-            position: absolute;
-            content: "";
-            width: 100px;
-            background-color: #091018;
-            height: calc(100% + 70px);
-            top: -40px;
-            bottom: 0;
-            transform: rotate3d(1, 1, 1, 27deg);
-            right: -44px;
+        align-self: center;
+        @media(max-width: 576px){
+            flex: 0 0 100%;
+            width: 100%;
+            padding: 10px;
+            display: flex;
+            flex-wrap: wrap;
+            flex-direction: row;
+            align-items: center;
         }
         h3{
             font-size: 30px;
@@ -29,13 +34,31 @@
             padding-bottom: 28px;
             border-bottom: 1px solid #0098FF;
             margin-bottom: 35px;
+            @media(max-width: 576px){
+                font-size: 18px;
+                line-height: 24px;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                margin-bottom: 5px;
+                padding-bottom: 5px;
+            }
         }
         p{
             color: #B5BDC3;	
             font-family: 'Rubik', sans-serif;	
             font-size: 16px;	
             line-height: 24px;
-            padding-bottom: 17PX;
+            padding-bottom: 17px;
+            @media(max-width: 576px){
+                font-size: 14px;
+                line-height: 18px;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+                overflow: hidden;
+                margin-bottom: 0px;
+                padding-bottom: 0px;
+            }
         }
         a, a:not([href]):not([tabindex]){
             font-size: 18px;
@@ -45,17 +68,58 @@
             padding: 7px 25px;
             font-family: 'Montserrat', sans-serif;
             display: inline-block;
+            @media(max-width: 576px){
+                font-size: 12px;
+                font-weight: 600;
+                padding: 3px 5px;
+                display: block;
+                text-align: center;
+            }
             &:hover{
                 background-color: #0098FF;
                 color: #ffffff;
             }
         }
+        .banner-desc{
+            @media(max-width: 576px){
+                flex: 0 0 70%;
+                width: 70%;
+                padding-right: 15px;
+            }
+        }
+        .banner-btn {
+            @media(max-width: 576px){
+                flex: 0 0 30%;
+                width: 30%;
+            }
+        }
     }
     .banner-slider{
-        flex: 0 0 50%;
-        width: 50%;
+        flex: 0 0 55%;
+        width: 55%;
+        position: relative;
+        @media(max-width: 576px){
+            flex: 0 0 100%;
+            width: 100%;
+        }
+        &:before{
+            position: absolute;
+            content: "";
+            width: 100px;
+            background-color: #091018;
+            height: calc(100% + 70px);
+            top: -40px;
+            bottom: 0;
+            transform: rotate3d(1, 1, 1, 27deg);
+            right: auto;
+            left: -50px;
+            @media(max-width: 576px){
+                content: none;
+            }
+        }
         img{
             width: 100%;
+            height: 100%;
             max-height: 377px;
         }
     }
