@@ -8,17 +8,13 @@ function TitleToolTip(props) {
   const element = useRef();
 
   useEffect(() => {
-    console.log(
-      'ele',
-      element,
-      element.current.scrollWidth,
-      element.current.offsetWidth
-    );
     if (
       !allowTooltip &&
       ((props.lines === 1 &&
+        element.current &&
         element.current.scrollWidth > element.current.offsetWidth) ||
         (props.lines > 1 &&
+          element.current &&
           element.current.scrollHeight > element.current.offsetHeight))
     ) {
       setAllowTooltip(true);
@@ -38,7 +34,10 @@ function TitleToolTip(props) {
         textOverflow: 'ellipsis',
         ...styleObjectDefault
       });
-    } else if (element.current.offsetHeight >= props.height * props.lines) {
+    } else if (
+      element.current &&
+      element.current.offsetHeight >= props.height * props.lines
+    ) {
       setStyleObj({
         textOverflow: 'ellipsis',
         maxHeight: `${props.height * props.lines}px`,

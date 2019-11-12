@@ -142,7 +142,7 @@ export default class Promotions extends Component {
         this.setState({
           tabsArray: category,
           defaultTabId: defaultTabId,
-          count: this.calculateSum(category)
+          count: category[0].promotions
         });
       })
       .catch(err => {
