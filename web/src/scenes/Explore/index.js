@@ -246,11 +246,15 @@ const Explore = () => {
                                 <h3>Reviews</h3>
                             </div>
                             <div className="active-review">
-                                <img src={Mumford} alt="" />
-                                <h3>Singapore Neon Lights Festival 2019 - Mumford & Sons Honne</h3>
+                                <div className="review-item-image">
+                                    <img src={Mumford} alt="" />
+                                </div>
+                                <div className="review-content">
+                                    <h3>Singapore Neon Lights Festival 2019 - Mumford & Sons Honne</h3>
+                                    <span className="review-subtext">By Larva May</span>
+                                </div>
                             </div>
                             <div className="all-reviews">
-                                <span className="review-subtext">By Larva May</span>
                                 <div className="review-item-wrapper">
                                     <div className="review-item">
                                         <div className="review-item-image">
@@ -270,20 +274,24 @@ const Explore = () => {
                                             <span>By Larva May</span>
                                         </div>
                                     </div>
-                                    <a href="">More from Reviews <img src={rightArrow} alt="arrow" /></a>
                                 </div>
                             </div>
+                            <a className="more-review" href="">More from Reviews <img src={rightArrow} alt="arrow" /></a>
                         </div>
                         <div class="reviews-item">
                             <div className="section-title">
                                 <h3>Guides</h3>
                             </div>
                             <div className="active-review">
-                                <img src={Guide} alt="" />
-                                <h3>Singapore Neon Lights Festival 2019 - Mumford & Sons Honne</h3>
+                                <div className="review-item-image">
+                                    <img src={Guide} alt="" />
+                                </div>
+                                <div className="review-content">
+                                    <h3>Singapore Neon Lights Festival 2019 - Mumford & Sons Honne</h3>
+                                    <span className="review-subtext">By Larva May</span>
+                                </div>
                             </div>
                             <div className="all-reviews">
-                                <span className="review-subtext">By Larva May</span>
                                 <div className="review-item-wrapper">
                                     <div className="review-item">
                                         <div className="review-item-image">
@@ -303,20 +311,24 @@ const Explore = () => {
                                             <span>By Larva May</span>
                                         </div>
                                     </div>
-                                    <a href="">More from Reviews <img src={rightArrow} alt="arrow" /></a>
                                 </div>
                             </div>
+                            <a className="more-review" href="">More from Reviews <img src={rightArrow} alt="arrow" /></a>
                         </div>
                         <div class="reviews-item">
                             <div className="section-title">
                                 <h3>Surveys/ Quizzes</h3>
                             </div>
                             <div className="active-review">
-                                <img src={Survey} alt="" />
-                                <h3>Singapore Neon Lights Festival 2019 - Mumford & Sons Honne</h3>
+                                <div className="review-item-image">
+                                    <img src={Survey} alt="" />
+                                </div>
+                                <div className="review-content">
+                                    <h3>Singapore Neon Lights Festival 2019 - Mumford & Sons Honne</h3>
+                                    <span className="review-subtext">By Larva May</span>
+                                </div>
                             </div>
                             <div className="all-reviews">
-                                <span className="review-subtext">By Larva May</span>
                                 <div className="review-item-wrapper">
                                     <div className="review-item">
                                         <div className="review-item-image">
@@ -336,8 +348,8 @@ const Explore = () => {
                                             <span>By Larva May</span>
                                         </div>
                                     </div>
-                                    <a href="">More from Reviews <img src={rightArrow} alt="arrow" /></a>
                                 </div>
+                                <a className="more-review" href="">More from Reviews <img src={rightArrow} alt="arrow" /></a>
                             </div>
                         </div>
                     </div>
@@ -350,20 +362,20 @@ const Explore = () => {
                     </div>
                     <div className="grid-container">
                         <div className="item">
-                            <img src={Trending1} alt="" />
-                        </div>
-                        {/* <div className="item">
-                            <img src={Trending1} alt="" />
+                            <img src={Trending1} alt="" className="img-fluid" />
                         </div>
                         <div className="item">
-                            <img src={Trending1} alt="" />
+                            <img src={Trending1} alt="" className="img-fluid" />
                         </div>
                         <div className="item">
-                            <img src={Trending1} alt="" />
+                            <img src={Trending1} alt="" className="img-fluid" />
                         </div>
                         <div className="item">
-                            <img src={Trending1} alt="" />
-                        </div> */}
+                            <img src={Trending1} alt="" className="img-fluid" />
+                        </div>
+                        <div className="item">
+                            <img src={Trending1} alt="" className="img-fluid" />
+                        </div>
                     </div>
                 </div>
             </section>
