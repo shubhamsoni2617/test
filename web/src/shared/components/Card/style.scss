@@ -39,7 +39,7 @@
         -moz-transition: .5s ease-out;
         -o-transition: .5s ease-out;
         box-shadow: 0 2px 27px 0 rgba(0,0,0,0.09);
-        @media (max-width: 767px) {           
+        @media (max-width: 767px) {
             box-shadow: none;
             border: 1px solid #0098FF;
         }
@@ -55,14 +55,15 @@
             margin-bottom: 0px;
             height: 100%;
             margin: 0px;
-        }        
+        }
         &:hover{
-            transition: 0.3s border;          
+          cursor: default;
+            transition: 0.3s border;
             .event-details {
                 .price-event{
                     .buy-btn{
-                        background: #0098FF url(../../../assets/images/buy-arrow.png) 94% 15px no-repeat;                        
-                        color: #FFF;                        
+                        background: #0098FF url(../../../assets/images/buy-arrow.png) 94% 15px no-repeat;
+                        color: #FFF;
                         border: none;
                         @media(max-width: 991px){
                             background: #0098ff url(../../../assets/images/buy-arrow.png) 94% 13px no-repeat;
@@ -78,6 +79,11 @@
                     color: #626262;
                 }
             }
+        }
+        .event-img{
+          &:hover{
+            cursor: pointer;
+          }
         }
         .event-details {
             padding: 22px 15px 0px;
@@ -101,16 +107,17 @@
                         min-height: 20px;
                     }
                 }
-                
+
             }
             .attraction-show-more {
                 color: #2698ff;
                 text-transform: lowercase;
                 &:hover{
                     text-decoration: underline;
+                    cursor: pointer;
                 }
             }
-            .price-event{                
+            .price-event{
                 .price{
                     height: 50px;
                     position: relative;
@@ -445,7 +452,7 @@
                 padding-top: 12px;
                 align-items: flex-end;
                 @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
-                    padding-top: 4px; 
+                    padding-top: 4px;
                 }
                 .buy-btn{
                     min-width: 121px;
@@ -480,7 +487,7 @@
                 margin-bottom: 30px;
             }
             @media(max-width: 767px){
-                margin-bottom: 20px;  
+                margin-bottom: 20px;
             }
         }
     }

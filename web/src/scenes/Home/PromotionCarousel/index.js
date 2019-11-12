@@ -16,48 +16,48 @@ import promoImg4 from '../../../assets/images/promo-img4.svg';
 
 const ItemWrapper = ({ promotion, expiredText, handlePromotionExpired }) => {
   return (
-    <div className="promotions-home-item">
-      {promotion && (
-        <div className="promotions-img">
-          <div className="item-img">
-            <Image
-              src={promotion.featured_image}
-              className="img-fluid"
-              alt="promotion-img"
-              type="Horizontal"
-            />
-          </div>
-          {promotion.show_timer === '1' && (
-            <div className="promotion-timer">
-              <ul>
-                {!expiredText ? (
-                  <ul>
-                    <li className="timer-watch">
-                      <img
-                        src="assets/images/stopwatch.svg"
-                        className="img-fluid"
-                        alt="watch"
-                      />
-                    </li>
-                    <Timer
-                      endDate={promotion.publish_end_date}
-                      promotionExpired={handlePromotionExpired}
-                    />
-                  </ul>
-                ) : null}
-              </ul>
+    <a href="/promotions" target="_blank">
+      <div className="promotions-home-item">
+        {promotion && (
+          <div className="promotions-img">
+            <div className="item-img">
+              <Image
+                src={promotion.featured_image}
+                className="img-fluid"
+                alt="promotion-img"
+                type="Horizontal"
+              />
             </div>
-          )}
-        </div>
-      )}
-      <a href="/promotions" target="_blank">
+            {promotion.show_timer === '1' && (
+              <div className="promotion-timer">
+                <ul>
+                  {!expiredText ? (
+                    <ul>
+                      <li className="timer-watch">
+                        <img
+                          src="assets/images/stopwatch.svg"
+                          className="img-fluid"
+                          alt="watch"
+                        />
+                      </li>
+                      <Timer
+                        endDate={promotion.publish_end_date}
+                        promotionExpired={handlePromotionExpired}
+                      />
+                    </ul>
+                  ) : null}
+                </ul>
+              </div>
+            )}
+          </div>
+        )}
         <h3>
           {promotion && Utilities.mobilecheck()
             ? Utilities.showLimitedChars(promotion.title, 15)
             : promotion.title}
         </h3>
-      </a>
-    </div>
+      </div>
+    </a>
   );
 };
 
@@ -200,7 +200,7 @@ export default class PromotionCarousel extends Component {
                     Utilities.mobileAndTabletcheck() || Utilities.mobilecheck()
                       ? 6
                       : 2
-                  }`}
+                    }`}
                   height={150}
                   count={2}
                   type="TILE"
@@ -246,21 +246,21 @@ export default class PromotionCarousel extends Component {
                     })}
                 </div>
               ) : (
-                <Slider {...settings}>
-                  {promotions &&
-                    promotions.map((promotion, index) => {
-                      return (
-                        <div key={promotion.id} className="item-wrapper">
-                          <ItemWrapper
-                            promotion={promotion}
-                            expiredText={expiredText}
-                            handlePromotionExpired={this.handlePromotionExpired}
-                          />
-                        </div>
-                      );
-                    })}
-                </Slider>
-              )}
+                    <Slider {...settings}>
+                      {promotions &&
+                        promotions.map((promotion, index) => {
+                          return (
+                            <div key={promotion.id} className="item-wrapper">
+                              <ItemWrapper
+                                promotion={promotion}
+                                expiredText={expiredText}
+                                handlePromotionExpired={this.handlePromotionExpired}
+                              />
+                            </div>
+                          );
+                        })}
+                    </Slider>
+                  )}
             </CSSTransitionGroup>
           </div>
         </div>
