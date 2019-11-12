@@ -105,8 +105,8 @@ export default class PromotionCarousel extends Component {
   getPromotions() {
     const params = {
       client: Constants.CLIENT,
-      first: 1
-      // limit: 10
+      first: 0,
+      limit: 24
     };
     HomeService.getPromotions(params)
       .then(res => {
@@ -200,7 +200,7 @@ export default class PromotionCarousel extends Component {
                     Utilities.mobileAndTabletcheck() || Utilities.mobilecheck()
                       ? 6
                       : 2
-                  }`}
+                    }`}
                   height={150}
                   count={2}
                   type="TILE"
@@ -246,21 +246,21 @@ export default class PromotionCarousel extends Component {
                     })}
                 </div>
               ) : (
-                <Slider {...settings}>
-                  {promotions &&
-                    promotions.map((promotion, index) => {
-                      return (
-                        <div key={promotion.id} className="item-wrapper">
-                          <ItemWrapper
-                            promotion={promotion}
-                            expiredText={expiredText}
-                            handlePromotionExpired={this.handlePromotionExpired}
-                          />
-                        </div>
-                      );
-                    })}
-                </Slider>
-              )}
+                    <Slider {...settings}>
+                      {promotions &&
+                        promotions.map((promotion, index) => {
+                          return (
+                            <div key={promotion.id} className="item-wrapper">
+                              <ItemWrapper
+                                promotion={promotion}
+                                expiredText={expiredText}
+                                handlePromotionExpired={this.handlePromotionExpired}
+                              />
+                            </div>
+                          );
+                        })}
+                    </Slider>
+                  )}
             </CSSTransitionGroup>
           </div>
         </div>

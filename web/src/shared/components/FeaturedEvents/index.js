@@ -36,7 +36,7 @@ const Item = ({ event }) => {
               )}
             </h3>
           )}
-          {event && event.event_date && <p>{event.event_date}</p>}
+          {event && event.event_date && <p className="featured-event-date">{event.event_date}</p>}
           {event && event.venue_name && (
             <p className="venue-name">
               {Utilities.showLimitedChars(
@@ -199,17 +199,17 @@ const FeaturedEvents = props => {
               </div>
             </div>
           ) : (
-            <Slider {...settings}>
-              {featuredEvents &&
-                featuredEvents.map((event, index) => {
-                  return (
-                    <div className="grid-container" key={index}>
-                      <Item event={event} />
-                    </div>
-                  );
-                })}
-            </Slider>
-          )}
+                <Slider {...settings}>
+                  {featuredEvents &&
+                    featuredEvents.map((event, index) => {
+                      return (
+                        <div className="grid-container" key={index}>
+                          <Item event={event} />
+                        </div>
+                      );
+                    })}
+                </Slider>
+              )}
         </CSSTransitionGroup>
       </div>
     </section>
