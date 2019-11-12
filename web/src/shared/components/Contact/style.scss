@@ -27,6 +27,11 @@
             font-size: 28px;
             line-height: 35px;
         }
+        @media(max-width: 576px){
+            font-size: 24px;
+            line-height: 30px;
+            padding: 0px 0px 20px;
+        }
     }
     .contact-us-block{
         box-shadow: none;
@@ -67,10 +72,18 @@
                     line-height: 25px;
                     padding-bottom: 6px;
                 }
+                @media(max-width: 576px){
+                    font-size: 18px;
+                    line-height: 20px;
+                }
             }
             h4{
                 font-size: 18px;
                 line-height: 22px;
+                @media(max-width: 576px){
+                    font-size: 18px;
+                    line-height: 20px;
+                }
             }
             h5, p, a{
                 color: #626262;
