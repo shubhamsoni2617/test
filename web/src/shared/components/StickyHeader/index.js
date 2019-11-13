@@ -165,7 +165,6 @@ function StickyHeader(props) {
     seatMapButton,
     buyPackages
   } = props;
-  let promoter = [{ name: 'test', url: null }];
   return (
     <div
       className={`event-detail ${sticky ? 'sticky-topbar' : ''} ${
@@ -210,9 +209,9 @@ function StickyHeader(props) {
           height={Utilities.mobileAndTabletcheck() ? 25 : 30}
           eventDetail
         />
-        {promoter && promoter.length > 0 && (
+        {detailData.promoters && detailData.promoters.length > 0 && (
           <div className="promoters">
-            {promoter.map((item, index) => {
+            {detailData.promoters.map((item, index) => {
               if (item.url) {
                 return (
                   <a
