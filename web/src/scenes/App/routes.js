@@ -21,7 +21,9 @@ import SystemLicensing from '../SystemLicensing';
 import Advertise from '../Advertise';
 import SellTicketsWithUs from '../SellTicketsWithUs';
 import LandingPage from '../LandingPage';
-import Article from '../Explore/ArticleList';
+import ArticleList from '../Explore/ArticleList';
+import Article from '../Explore/Article';
+
 // import Explore from '../Explore';
 
 const routes = [
@@ -81,6 +83,18 @@ const routes = [
     component: TermsPrivacy,
     exact: true,
     cmsPageType: 2
+  },
+  {
+    path: '/condition-of-access',
+    component: TermsPrivacy,
+    exact: true,
+    cmsPageType: 3
+  },
+  {
+    path: '/transaction-security',
+    component: TermsPrivacy,
+    exact: true,
+    cmsPageType: 4
   },
   {
     path: '/gift-vouchers',
@@ -147,11 +161,11 @@ const routes = [
     component: LandingPage,
     exact: true
   },
-  // {
-  //   path: '/explore',
-  //   component: Explore,
-  //   exact: true
-  // },
+  {
+    path: '/explore/articlelist',
+    component: ArticleList,
+    exact: true
+  },
   {
     path: '/explore/article',
     component: Article,
