@@ -58,7 +58,7 @@ const SellTicketsWithUs = () => {
         company_name: companyName,
         contact_no: contactNo,
         event_name: eventName,
-        event_date: eventDate ? moment(eventDate).format('YYYY-MM-DD') : '',
+        event_date: eventDate,
         venue_name: venueName,
         event_capacity: eventCapacity,
         ticket_price: ticketPrice,
@@ -126,6 +126,9 @@ const SellTicketsWithUs = () => {
       case 'venue-name':
         setVenueName(trimSpace(value));
         break;
+      case 'event-date':
+        setEventDate(trimSpace(value));
+        break;
       case 'ticket-price':
         const allowOnlyNumInTicket = /^[0-9\b]+$/;
         if (value === '' || allowOnlyNumInTicket.test(value)) {
@@ -148,10 +151,6 @@ const SellTicketsWithUs = () => {
     }
     setSuccessMsg('');
     setServerErr([]);
-  };
-
-  const handleEventDate = eventDate => {
-    setEventDate(eventDate);
   };
 
   const handleCaptcha = captcha => {
@@ -217,7 +216,6 @@ const SellTicketsWithUs = () => {
         loading={loading}
         successMsg={successMsg}
         serverErr={serverErr}
-        handleEventDate={handleEventDate}
         handleCaptcha={handleCaptcha}
         handleReset={handleReset}
         handleSubmit={handleSubmit}

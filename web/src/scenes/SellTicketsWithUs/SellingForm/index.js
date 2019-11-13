@@ -24,7 +24,6 @@ const SellingForm = ({
   loading,
   successMsg,
   serverErr,
-  handleEventDate,
   handleCaptcha,
   handleReset,
   handleSubmit
@@ -172,22 +171,13 @@ const SellingForm = ({
                 <div className="col-md-6">
                   <div className="seller-info">
                     <div className="form-group">
-                      <DayPickerInput
-                        className="form-control"
-                        value={eventDate}
+                      <input
+                        type="text"
+                        name="event-date"
                         placeholder="Event Date"
-                        format="DD/MM/YYYY"
-                        showOverlay={false}
-                        formatDate={formatDate}
-                        parseDate={parseDate}
-                        inputProps={{ readOnly: true }}
-                        dayPickerProps={{
-                          selectedDays: [eventDate],
-                          disabledDays: { before: new Date() },
-                          fromMonth: new Date(),
-                          numberOfMonths: 1
-                        }}
-                        onDayChange={handleEventDate}
+                        className='form-control'
+                        value={eventDate}
+                        onChange={handleChange}
                       />
                     </div>
                     <div className="form-group">
