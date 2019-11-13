@@ -19,6 +19,7 @@ const app = express();
 
 // app.use(express.static(path.join(__dirname, '../build')));
 app.use('/static', express.static(path.join(__dirname, '../build/static')));
+app.use('/assets', express.static(path.join(__dirname, '../build/assets')));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
