@@ -123,30 +123,11 @@ const FeaturedEvents = props => {
   };
 
   const settings = {
-    className: 'center',
     dots: true,
-    centerMode: false,
     infinite: false,
-    slidesToShow: 1,
-    speed: 1500,
+    speed: 500,
     rows: 2,
-    slidesPerRow: 5,
-    nextArrow: <SampleNextArrow />,
-    prevArrow: <SamplePrevArrow />,
-    appendDots: dots => {
-      return <ul style={{ margin: '0px' }}> {dots} </ul>;
-    },
-    customPaging: i => {
-      return (
-        <div className="dots-group">
-          <span>
-            <a href="/" onClick={e => e.preventDefault()}>
-              {i}
-            </a>
-          </span>
-        </div>
-      );
-    }
+    slidesPerRow: 5
   };
 
   if (!loading && featuredEvents && featuredEvents.length === 0) {

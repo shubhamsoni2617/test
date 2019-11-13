@@ -1,5 +1,6 @@
 import React, { Fragment } from 'react';
 import Slider from 'react-slick';
+import './style.scss';
 import Image from '../../../assets/images/promo-img1.svg';
 const SliderBanner = () => {
   const settings = {
