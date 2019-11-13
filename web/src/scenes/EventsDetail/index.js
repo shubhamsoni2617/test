@@ -169,14 +169,22 @@ export default class EventsDetail extends Component {
         }
       }
     });
-    if (window.__INITIAL_DATA__.pageData) {
+    if (window.__INITIAL_DATA__ && window.__INITIAL_DATA__.pageData) {
       this.setState({
         detailData: window.__INITIAL_DATA__.pageData,
         shimmer: false
       });
+      delete window.__INITIAL_DATA__.pageData;
     } else {
       this.callAPI(payload);
     }
+    EventsService.getSimilarEvents(payload)
+      .then(res => {
+        this.setState({ similarEventsData: res.data.data });
+      })
+      .catch(err => {
+        console.log(err);
+      });
   }
 
   callAPI(payload) {
@@ -197,14 +205,6 @@ export default class EventsDetail extends Component {
         this.setState({
           shimmer: false
         });
-        console.log(err);
-      });
-
-    EventsService.getSimilarEvents(payload)
-      .then(res => {
-        this.setState({ similarEventsData: res.data.data });
-      })
-      .catch(err => {
         console.log(err);
       });
   }

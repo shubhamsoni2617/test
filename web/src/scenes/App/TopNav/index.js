@@ -90,13 +90,16 @@ const TopNav = props => {
 
   useEffect(() => {
     fetchMostViewedService();
-    if (window.__INITIAL_DATA__.venuesData) {
+    if (window.__INITIAL_DATA__ && window.__INITIAL_DATA__.venuesData) {
       setByVenueEvent(window.__INITIAL_DATA__.venuesData.data);
     }
-    if (window.__INITIAL_DATA__.genreData) {
+    if (window.__INITIAL_DATA__ && window.__INITIAL_DATA__.genreData) {
       setByGenreEvent(window.__INITIAL_DATA__.genreData.data);
     }
-    if (window.__INITIAL_DATA__.findAnEventAddsData) {
+    if (
+      window.__INITIAL_DATA__ &&
+      window.__INITIAL_DATA__.findAnEventAddsData
+    ) {
       setFeaturedEvents(window.__INITIAL_DATA__.findAnEventAddsData.data);
     }
 

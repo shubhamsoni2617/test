@@ -24,7 +24,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 app.post('/sistic/docroot/**', function(req, res) {
-  var newurl = `http://192.168.10.195:8081${req.originalUrl}`;
+  var newurl = `http://192.168.10.197:8081${req.originalUrl}`;
   if (req.body && Object.keys(req.body).length !== 0) {
     request
       .post({
@@ -42,7 +42,7 @@ app.post('/sistic/docroot/**', function(req, res) {
 });
 
 app.get('/sistic/docroot/**', function(req, res) {
-  var newurl = `http://192.168.10.195:8081${req.originalUrl}`;
+  var newurl = `http://192.168.10.197:8081${req.originalUrl}`;
   request
     .get(newurl)
     .on('error', function(err) {
@@ -72,7 +72,7 @@ app.get('*', (req, res, next) => {
               venuesData: result[1].data,
               genreData: result[2].data,
               findAnEventAddsData: result[3].data,
-              pageData: result[4] ? result[4].data : {}
+              pageData: result[4] ? result[4].data : null
             };
             const markup = renderToString(
               <StaticRouter location={req.url} context={{ data: result }}>

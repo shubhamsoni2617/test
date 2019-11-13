@@ -40,7 +40,7 @@ const Advertisement = props => {
   }, [refValue]);
 
   useEffect(() => {
-    if (window.__INITIAL_DATA__.leaderBoardData) {
+    if (window.__INITIAL_DATA__ && window.__INITIAL_DATA__.leaderBoardData) {
       setHomeAdv(window.__INITIAL_DATA__.leaderBoardData.data);
     } else {
       getLeaderboardImage();
