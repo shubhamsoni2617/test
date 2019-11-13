@@ -180,48 +180,54 @@ const SellTicketsWithUs = () => {
   return (
     <div className="sell-ticket-wrapper">
       {/* SISTIC banner starts here */}
-      <Banner
-        bannerTitle={banner_title}
-        bannerDescription={banner_description}
-        buttonLink={button_link}
-        buttonText={button_text}
-      />
+      {banner_title && (
+        <Banner
+          bannerTitle={banner_title}
+          bannerDescription={banner_description}
+          buttonLink={button_link}
+          buttonText={button_text}
+        />
+      )}
       {/* SISTIC event ticket blog */}
-      <EventTicket
-        events={events}
-        partnership={partnership}
-        tickets={tickets}
-        year={year}
-      />
+      {events && (
+        <EventTicket
+          events={events}
+          partnership={partnership}
+          tickets={tickets}
+          year={year}
+        />
+      )}
       {/* SISTIC strength */}
-      <SisticStrength content={content} />
+      {content && <SisticStrength content={content} />}
       {/* stucked help section */}
-      <StuckHelp content={content} />
+      {content && <StuckHelp content={content} />}
       {/* selling form */}
-      <SellingForm
-        content={content}
-        handleChange={handleChange}
-        name={name}
-        email={email}
-        contactNo={contactNo}
-        companyName={companyName}
-        eventName={eventName}
-        eventCapacity={eventCapacity}
-        venueName={venueName}
-        eventDate={eventDate}
-        ticketPrice={ticketPrice}
-        additionalInformation={additionalInformation}
-        captcha={captcha}
-        error={error}
-        loading={loading}
-        successMsg={successMsg}
-        serverErr={serverErr}
-        handleCaptcha={handleCaptcha}
-        handleReset={handleReset}
-        handleSubmit={handleSubmit}
-      />
+      {content && (
+        <SellingForm
+          content={content}
+          handleChange={handleChange}
+          name={name}
+          email={email}
+          contactNo={contactNo}
+          companyName={companyName}
+          eventName={eventName}
+          eventCapacity={eventCapacity}
+          venueName={venueName}
+          eventDate={eventDate}
+          ticketPrice={ticketPrice}
+          additionalInformation={additionalInformation}
+          captcha={captcha}
+          error={error}
+          loading={loading}
+          successMsg={successMsg}
+          serverErr={serverErr}
+          handleCaptcha={handleCaptcha}
+          handleReset={handleReset}
+          handleSubmit={handleSubmit}
+        />
+      )}
       {/* articles section starts here */}
-      <Articles articles={articles} />
+      {articles && <Articles articles={articles} />}
     </div>
   );
 };

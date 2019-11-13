@@ -1,8 +1,8 @@
-import API from "../../api";
+import API from '../../api';
 
 class TermsAndPrivacyService {
-  getTermsAndPrivacyService(params) {
-    return API.get(`cms-page`, { params });
+  getTermsAndPrivacyService() {
+    return API.get(`cms-page`);
   }
 }
 
