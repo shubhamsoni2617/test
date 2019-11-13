@@ -10,6 +10,7 @@ import routes from '../src/scenes/App/routes';
 import manifest from '../build/asset-manifest.json';
 import AdvertisementService from '../src/shared/services/AdvertisementService';
 import Constants from '../src/shared/constants';
+import EventDetails from '../src/scenes/EventsDetail';
 var bodyParser = require('body-parser');
 var fs = require('fs');
 var path = require('path');
@@ -52,19 +53,25 @@ app.get('/sistic/docroot/**', function(req, res) {
 app.get('*', (req, res, next) => {
   var filePath = path.join(__dirname, '../build', 'index.html');
   fs.readFile(filePath, { encoding: 'utf-8' }, function(err, data) {
-    const params = {
-      client: Constants.CLIENT,
-      page: 1
-    };
     if (!err) {
-      Promise.all(App.getInitialData())
+      const dataRequirements = routes
+        .filter(route => matchPath(req.url, route) && route.path !== '*')
+        .map(route => route.component)
+        .filter(comp => comp.getPageData);
+      // .map(comp => comp.getPageData(req));
+      // console.log('dataRequirements', dataRequirements);
+      var promiseArray = App.getInitialData().concat(
+        dataRequirements.length > 0 ? dataRequirements[0].getPageData(req) : []
+      );
+      Promise.all(promiseArray)
         .then(result => {
           if (result && result[0].data) {
             var dataObject = {
               leaderBoardData: result[0].data,
               venuesData: result[1].data,
               genreData: result[2].data,
-              findAnEventAddsData: result[3].data
+              findAnEventAddsData: result[3].data,
+              pageData: result[4] ? result[4].data : {}
             };
             const markup = renderToString(
               <StaticRouter location={req.url} context={{ data: result }}>

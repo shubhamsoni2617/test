@@ -107,8 +107,22 @@ function BuyPackages({ isAvailableForBooking, buyPackageUrl }) {
 }
 
 export default class EventsDetail extends Component {
+  static getPageData(props) {
+    let payload = {
+      code: '',
+      client: Constants.CLIENT
+    };
+    let pathArr = props.url.split('/');
+    if (pathArr.length && pathArr[1] === 'events') {
+      if (pathArr[2]) {
+        payload.code = pathArr[2];
+      }
+    }
+    return [EventsService.getEventDetails(payload)];
+  }
   constructor(props) {
     super(props);
+
     this.elemOffsetTop = 0;
     this.state = {
       code: props.match.params.icc,
@@ -124,7 +138,12 @@ export default class EventsDetail extends Component {
       setHeader: false,
       animation: true,
       shimmer: true,
-      getSynopsisData: { languageArr: [], activeLang: '', desc: '' }
+      shareUrl: '',
+      getSynopsisData: {
+        languageArr: [],
+        activeLang: '',
+        desc: ''
+      }
     };
   }
 
@@ -135,8 +154,12 @@ export default class EventsDetail extends Component {
   };
 
   componentDidMount() {
+    this.setState({ shareUrl: window.location.href });
     window.addEventListener('scroll', this.handleScroll);
-    const payload = { code: this.state.code, client: Constants.CLIENT };
+    const payload = {
+      code: this.state.code,
+      client: Constants.CLIENT
+    };
     this.unlisten = this.props.history.listen(location => {
       let pathArr = location.pathname.split('/');
       if (pathArr.length && pathArr[1] === 'events') {
@@ -146,7 +169,14 @@ export default class EventsDetail extends Component {
         }
       }
     });
-    this.callAPI(payload);
+    if (window.__INITIAL_DATA__.pageData) {
+      this.setState({
+        detailData: window.__INITIAL_DATA__.pageData,
+        shimmer: false
+      });
+    } else {
+      this.callAPI(payload);
+    }
   }
 
   callAPI(payload) {
@@ -315,12 +345,13 @@ export default class EventsDetail extends Component {
       showInfo,
       showNotice,
       setHeader,
-      shimmer
+      shimmer,
+      shareUrl
     } = this.state;
     if (error) {
       return null;
     }
-    let shareUrl = window.location.href;
+
     getSynopsisData.languageArr = [];
     let accrodian = ['synopsis', 'pricedetail'];
     this.onSynopsisData(detailData, getSynopsisData);
