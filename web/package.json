@@ -74,7 +74,7 @@
     "eject": "node_modules/.bin/react-scripts eject",
     "format": "prettier --config ./.prettierrc --write src/**/*.js"
   },
-  "proxy": "http://192.168.10.195:8081",
+  "proxy": "http://192.168.10.197:8081",
   "browserslist": {
     "production": [
       ">0.2%",
