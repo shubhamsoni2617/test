@@ -221,7 +221,6 @@ const SellTicketsWithUs = () => {
           loading={loading}
           successMsg={successMsg}
           serverErr={serverErr}
-          handleEventDate={handleEventDate}
           handleCaptcha={handleCaptcha}
           handleReset={handleReset}
           handleSubmit={handleSubmit}
