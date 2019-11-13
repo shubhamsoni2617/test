@@ -3,14 +3,17 @@
         background-image: url("../../assets/images/sell-tickets-banner.jpg");
         background-size: cover;
         background-position: center;
-        height: 389px;
+        height: 100%;
+        min-height: 389px;
+        align-items: center;
+        display: flex;
         .banner-content{
             max-width: 830px;
             display: flex;
             flex-direction: column;
             justify-content: center;
             height: 100%;
-            padding-left: 74px;
+            padding: 30px 0px 30px 74px;            
             width: 100%;
             h2{
                 font-size: 40px;
@@ -139,7 +142,8 @@
             padding: 60px 46px 52px 40px;
             flex: 0 0 50%;
             max-width: 50%;
-            max-height: 350px;
+            min-height: 350px;
+            max-height: 100%;
             h3{
                 color: #343434;
                 font-family: 'Rubik', sans-serif;

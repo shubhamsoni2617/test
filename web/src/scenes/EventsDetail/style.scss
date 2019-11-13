@@ -66,23 +66,28 @@
   }
   //event detail section
   .event-detail {
-      background-color: #F0F9FF;
-      padding: 22px 29px 0px;
-      position: relative;
-      // top: 30px;
-      // margin-top: -30px;
-      opacity: 1;
-
-
-      @media(max-width: 1280px){
-          padding: 20px 20px 15px;
-      }
-      @media(max-width: 1024px){
-          padding: 15px 20px 15px;
-      }
-      @media(max-width: 768px){
-          padding: 20px 15px 15px;
-      }
+    background-color: #F0F9FF;
+    padding: 22px 29px 0px;
+    position: relative;
+    // top: 30px;
+    // margin-top: -30px;
+    opacity: 1;
+    flex: 0 0 34.7%;
+    width: 34.7%;
+    margin-left: auto;
+    @media(max-width: 1280px){
+        padding: 20px 20px 15px;
+    }
+    @media(max-width: 1024px){
+        padding: 15px 20px 15px;
+    }
+    @media(max-width: 991px){
+        flex: 0 0 100%;
+        width: 100%;
+    }
+    @media(max-width: 768px){
+        padding: 20px 15px 15px;
+    }
       .tickets-button{
         .react-modal .react-modal-body{
           width: 450px;
