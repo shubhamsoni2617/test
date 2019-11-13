@@ -23,8 +23,8 @@ class ApiPartner extends Component {
 
   fetchApiPartners = () => {
     const params = {
-      first: 1,
-      limit: 10
+      first: 0
+      // limit: 10
     };
     ApiPartnersService.getApiPartnersService(params)
       .then(res => {
