@@ -42,6 +42,28 @@
     -moz-transition: all 500ms;
     -o-transition: all 500ms;
   }
+  .shimmer-enter {
+  opacity: 0;
+}
+.shimmer-enter-active {
+  opacity: 1;
+  transition: opacity 200ms;
+}
+.shimmer-exit {
+  opacity: 1;
+}
+.shimmer-exit-active {
+  opacity: 0;
+  transition: opacity 200ms;
+}
+.shimmer-exit-done{
+  opacity: 0;
+}
+  .promoters{
+        color: #6A6A6A;
+    font-family: 'Rubik', sans-serif;
+    margin-bottom: 15px;
+  }
   //event detail section
   .event-detail {
       background-color: #F0F9FF;
@@ -931,6 +953,9 @@
     z-index: 99;
     h3{
       width: 575px;
+    }
+    .promoters{
+      display: none;
     }
     .event-address span{
         width: 225px;

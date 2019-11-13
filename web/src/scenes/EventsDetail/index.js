@@ -1,5 +1,5 @@
 import React, { Component, useState } from 'react';
-import { CSSTransitionGroup } from 'react-transition-group';
+import { CSSTransition } from 'react-transition-group';
 import EventsService from '../../shared/services/EventsService';
 import Constants from '../../shared/constants';
 
@@ -357,22 +357,23 @@ export default class EventsDetail extends Component {
     this.onSynopsisData(detailData, getSynopsisData);
     return (
       <div className="event-detail-wrapper">
-        <CSSTransitionGroup
-          transitionName="shimmer"
-          transitionEnter={true}
-          transitionEnterTimeout={500}
-          transitionLeaveTimeout={500}
+        <CSSTransition
+          // transitionName="shimmer"
+          // transitionEnter={true}
+          // transitionEnterTimeout={500}
+          // transitionLeaveTimeout={500}
+          in={shimmer}
+          timeout={500}
+          classNames="shimmer"
         >
-          {shimmer && (
-            <ShimmerEffect
-              propCls="col-md-12"
-              height={400}
-              count={2}
-              type="DETAIL"
-              detail={true}
-            />
-          )}
-        </CSSTransitionGroup>
+          <ShimmerEffect
+            propCls="col-md-12"
+            height={400}
+            count={2}
+            type="DETAIL"
+            detail={true}
+          />
+        </CSSTransition>
 
         {detailData && (
           <div className={`main-container ${shimmer ? 'shimmer' : ''}`}>

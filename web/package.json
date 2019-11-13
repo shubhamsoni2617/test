@@ -70,7 +70,7 @@
     "react-slick": "^0.24.0",
     "react-spring": "^8.0.27",
     "react-tabs": "^3.0.0",
-    "react-transition-group": "^1.2.1",
+    "react-transition-group": "^4.3.0",
     "request": "^2.88.0",
     "resolve": "1.10.0",
     "sass-loader": "7.1.0",
@@ -122,7 +122,7 @@
     "test": "node_modules/.bin/node scripts/test.js --env=jsdom",
     "format": "prettier --config ./.prettierrc --write src/**/*.js"
   },
-  "proxy": "http://192.168.10.195:8081",
+  "proxy": "http://192.168.10.197:8081",
   "browserslist": {
     "production": [
       ">0.2%",

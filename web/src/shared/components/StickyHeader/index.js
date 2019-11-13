@@ -165,7 +165,7 @@ function StickyHeader(props) {
     seatMapButton,
     buyPackages
   } = props;
-
+  let promoter = [{ name: 'test', url: null }];
   return (
     <div
       className={`event-detail ${sticky ? 'sticky-topbar' : ''} ${
@@ -210,6 +210,27 @@ function StickyHeader(props) {
           height={Utilities.mobileAndTabletcheck() ? 25 : 30}
           eventDetail
         />
+        {promoter && promoter.length > 0 && (
+          <div className="promoters">
+            {promoter.map((item, index) => {
+              if (item.url) {
+                return (
+                  <a
+                    key={`${item.name}-${index}`}
+                    href={item.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    {item.name}&nbsp;
+                  </a>
+                );
+              }
+              return (
+                <span key={`${item.name}-${index}`}>{item.name}&nbsp;</span>
+              );
+            })}
+          </div>
+        )}
 
         {detailData.pop_up_message.title && (
           <div className="info-tooltip">
@@ -285,28 +306,7 @@ function StickyHeader(props) {
               </li>
             )}
             {seatMapButton && <li className="event-date">{seatMapButton}</li>}
-            {detailData.promoters && detailData.promoters.length > 0 && (
-              <li className="event-date">
-                <img src={calendarImg} alt="cal-icon" />
-                {detailData.promoters.map((item, index) => {
-                  if (item.url) {
-                    return (
-                      <a
-                        key={`${item.name}-${index}`}
-                        href={item.url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        {item.name}&nbsp;
-                      </a>
-                    );
-                  }
-                  return (
-                    <span key={`${item.name}-${index}`}>{item.name}&nbsp;</span>
-                  );
-                })}
-              </li>
-            )}
+
             {detailData.price && (
               <li className="event-date">
                 <img src={coinsImg} className="coin" alt="cal-icon" />

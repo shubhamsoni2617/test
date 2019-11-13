@@ -3,7 +3,7 @@ import './style.scss';
 import HomeService from '../../services/HomeService';
 import nextarrow from '../../../assets/images/next-arrow-white.svg';
 import ReactPlayer from 'react-player';
-import { CSSTransitionGroup } from 'react-transition-group';
+import { CSSTransition } from 'react-transition-group';
 
 const HotShowPopup = () => {
   const [popupData, setPopupData] = useState([]);
@@ -33,12 +33,13 @@ const HotShowPopup = () => {
     document.body.classList.add('hotshowpopup-overlay');
 
   return (
-    <CSSTransitionGroup
-      transitionName="hotshow"
-      transitionEnter={true}
-      transitionEnterTimeout={500}
-      transitionLeaveTimeout={500}
-    >
+    // <CSSTransitionGroup
+    //   transitionName="hotshow"
+    //   transitionEnter={true}
+    //   transitionEnterTimeout={500}
+    //   transitionLeaveTimeout={500}
+    // >
+    <>
       {flag && popupData.length && (
         <div className="hotshow-popup">
           <div className="hotshow-overlay" />
@@ -164,7 +165,8 @@ const HotShowPopup = () => {
           </div>
         </div>
       )}
-    </CSSTransitionGroup>
+      {/* </CSSTransitionGroup> */}
+    </>
   );
 };
 export default HotShowPopup;

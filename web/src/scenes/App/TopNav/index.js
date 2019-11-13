@@ -92,15 +92,53 @@ const TopNav = props => {
     fetchMostViewedService();
     if (window.__INITIAL_DATA__ && window.__INITIAL_DATA__.venuesData) {
       setByVenueEvent(window.__INITIAL_DATA__.venuesData.data);
+    } else {
+      const first = 0;
+      const limit = 5;
+      const search = '';
+      HomeService.getHomepageVenues(first, limit, search)
+        .then(res => {
+          setByVenueEvent(res.data.data);
+        })
+        .catch(err => {
+          console.log(err);
+        });
     }
     if (window.__INITIAL_DATA__ && window.__INITIAL_DATA__.genreData) {
       setByGenreEvent(window.__INITIAL_DATA__.genreData.data);
+    } else {
+      HomeService.getGenre()
+        .then(res => {
+          var result = Object.keys(res.data.data).map(key => {
+            return res.data.data[key];
+          });
+          setByGenreEvent(result);
+        })
+        .catch(err => {
+          console.log(err);
+        });
     }
     if (
       window.__INITIAL_DATA__ &&
       window.__INITIAL_DATA__.findAnEventAddsData
     ) {
       setFeaturedEvents(window.__INITIAL_DATA__.findAnEventAddsData.data);
+    } else {
+      AdvertisementService.getFindAnEventAds({
+        client: Constants.CLIENT,
+        limit: 2,
+        first: 0
+      })
+        .then(res => {
+          if (res && res.data) {
+            setFeaturedEvents(res.data.data);
+          }
+        })
+        .catch(err => {
+          if (err && err.response) {
+            console.log(err.response);
+          }
+        });
     }
 
     if (props.history.location.pathname) processPath(props.history.location);
@@ -276,21 +314,21 @@ const TopNav = props => {
                   onMouseLeave={() => handleMouseStatus(false)}
                 >
                   <a>Events</a>
-                  <CSSTransitionGroup
+                  {/* <CSSTransitionGroup
                     transitionName="mega"
                     transitionEnter={true}
                     transitionEnterTimeout={300}
                     transitionLeaveTimeout={300}
-                  >
-                    {showMegaMenu && (
-                      <MegaMenu
-                        handleMouseStatus={handleMouseStatus}
-                        byGenreEvent={byGenreEvent}
-                        byVenueEvent={byVenueEvent}
-                        featuredEvents={featuredEvents}
-                      />
-                    )}
-                  </CSSTransitionGroup>
+                  > */}
+                  {showMegaMenu && (
+                    <MegaMenu
+                      handleMouseStatus={handleMouseStatus}
+                      byGenreEvent={byGenreEvent}
+                      byVenueEvent={byVenueEvent}
+                      featuredEvents={featuredEvents}
+                    />
+                  )}
+                  {/* </CSSTransitionGroup> */}
                 </li>
                 <li
                   className={
