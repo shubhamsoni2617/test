@@ -1,7 +1,9 @@
 .event-detail-banner {
-    display: grid;
-    grid-template-columns: 65.3% 34.7%;
+    // display: grid;
+    // grid-template-columns: 65.3% 34.7%;
     position: relative;
+    display: flex;
+    flex-wrap: wrap;
     // z-index: 1;
     @media(max-width: 980px){
         // grid-template-columns: repeat(1, 1fr);
@@ -11,6 +13,12 @@
     .banner-carousel{
         position: relative;
         height: 100%;
+        flex: 0 0 65.3%;
+        width: 65.3%;
+        @media(max-width: 991px){
+          flex: 0 0 100%;
+          width: 100%;
+        }
         .image-gallery {
           position: relative;
           .image-gallery-image{
