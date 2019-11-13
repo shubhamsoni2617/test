@@ -1989,10 +1989,13 @@
         margin: -10px;
         .slick-slide{
 			padding: 10px 0;
-			display: flex;
+      display: flex;
+      width: 100%;
+      flex-wrap: wrap;
 			& > div{
-				display: flex;
-				width: 100%;
+        display: flex;
+        width: 100%;
+        flex: 0 0 100%;
 				.grid-container{
 					flex: 0 0 20%;
 					width: 20%;
@@ -5091,7 +5094,7 @@ section{
 			-o-transition: 1s all;
 			text-overflow: ellipsis;
 			display: -webkit-box;
-			-webkit-line-clamp: 2;                
+			-webkit-line-clamp: 2;
 			overflow: hidden;
 			height: auto;
 			/* autoprefixer: off */ -webkit-box-orient: vertical; /* autoprefixer: on */
