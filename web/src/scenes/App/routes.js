@@ -83,6 +83,18 @@ const routes = [
     cmsPageType: 2
   },
   {
+    path: '/condition-of-access',
+    component: TermsPrivacy,
+    exact: true,
+    cmsPageType: 3
+  },
+  {
+    path: '/transaction-security',
+    component: TermsPrivacy,
+    exact: true,
+    cmsPageType: 4
+  },
+  {
     path: '/gift-vouchers',
     component: GiftVouchers,
     exact: true

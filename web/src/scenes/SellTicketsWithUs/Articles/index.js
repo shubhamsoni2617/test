@@ -2,6 +2,7 @@ import React from 'react';
 import './style.scss';
 import downloadIcon from '../../../../src/assets/images/download-icon.svg';
 import Image from '../../../shared/components/Image';
+import Utilities from '../../../shared/utilities';
 
 const Articles = ({ articles }) => {
   return (
@@ -23,12 +24,19 @@ const Articles = ({ articles }) => {
                       <a>
                         <span>{article.category}</span>
                       </a>
-                      <h3>{article.title}</h3>
-                      <p
-                        dangerouslySetInnerHTML={{
-                          __html: article.description
-                        }}
-                      ></p>
+                      <h3>
+                        {Utilities.showLimitedChars(
+                          article.title,
+                          Utilities.mobilecheck() ? 23 : 35
+                        )}
+                      </h3>
+                      {!Utilities.mobilecheck() && (
+                        <p
+                          dangerouslySetInnerHTML={{
+                            __html: article.description
+                          }}
+                        ></p>
+                      )}
                     </div>
                     {article.download_file && (
                       <div className="download-icon">
