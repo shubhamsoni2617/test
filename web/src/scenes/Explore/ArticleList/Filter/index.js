@@ -9,16 +9,9 @@ const Filter = ({
   showHeader,
   closeFilters
 }) => {
-  console.log(showHeader);
-  //   const [targetChecked, setTargetChecked] = useState(false);
-  //   const [id, setId] = useState('');
   const onChange = (e, id) => {
     console.log(e.target.checked);
-    // setTargetChecked(e.target.checked);
-    // setId(id);
-    // if (!showHeader) {
     handleFilters(id, e.target.checked, filterTitle);
-    // }
   };
   return (
     <div>

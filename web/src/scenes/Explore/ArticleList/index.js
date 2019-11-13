@@ -1,30 +1,24 @@
 import React, { useState, useEffect } from 'react';
 import CardList from './CardList';
 import EventsService from '../../../shared/services/EventsService';
-import HomeService from '../../../shared/services/HomeService';
 import DownArrowBlue from '../../../assets/images/down-arrow-blue.svg';
 import Breadcrumb from '../../../scenes/App/Breadcrumb';
 import loaderImage from '../../../assets/images/loader.svg';
-import EventBreadcrumbImage from '../../../assets/images/events.png';
-import EventBreadcrumbImageBlur from '../../../assets/images/events-blur.png';
 import filterIcon from '../../../assets/images/events/filter.svg';
 import ShimmerEffect from '../../../shared/components/ShimmerEffect';
 import Utilities from '../../../shared/utilities';
 import './style.scss';
-import Constants from '../../../shared/constants';
 import ExploreService from '../../../shared/services/ExploreService';
-import FilterGrid from '../../../shared/components/FilterGrid';
-import Filters from '../../../shared/components/Filters';
 import Filter from './Filter';
 import { useCustomWidth } from '../../../shared/components/CustomHooks';
 import useStickyPanel from '../../../shared/hooks/useStickyPanel';
-
+import BreadCrumbData from './breadCrumbData';
+import selectOrClearAll from './selectOrClearAll';
 const ArticleList = props => {
   const [width] = useCustomWidth();
   let stickyObj = {
     sticky: { top: 153 },
     pixelBuffer: 153,
-    // bottom: 0,
     distanceFromTop: 153
   };
   const [scrollContainerRef, styleObj] = useStickyPanel(stickyObj);
@@ -60,7 +54,8 @@ const ArticleList = props => {
 
   const [showTags, setShowTags] = useState(false);
   const [showCategories, setShowCategories] = useState(false);
-
+  let mobileCheck =
+    (showTags && width <= 767) || (showCategories && width <= 767);
   useEffect(() => {
     getArticleList();
   }, [constant]);
@@ -71,10 +66,8 @@ const ArticleList = props => {
       client: 1,
       limit: constant
     };
-    // ExploreService.getExploreArticleList(params)
-
     setTimeout(() => {
-      EventsService.getData(params)
+      ExploreService.getExploreArticleList(params)
         .then(res => {
           console.log(res.data.data);
           setArticleList([...articleList, ...res.data.data]);
@@ -87,35 +80,22 @@ const ArticleList = props => {
         });
     }, 1000);
   };
-  const breadCrumbData = {
-    page_banner: EventBreadcrumbImage,
-    page_banner_blur: EventBreadcrumbImageBlur,
-    page: 'Listing',
-    count: 0,
-    breadcrumb_slug: [
-      { path: '/', title: 'Home' },
-      { path: '/explore', title: 'Explore' },
-      { path: '/article', title: 'Article' }
-    ]
-  };
 
   const selectOrClearAllHandler = (isChecked, filterTitle) => {
     if (filterTitle === 'Tags') {
-      const tagsUpdated = [...tags];
-      tagsUpdated.forEach(tag => (tag.isChecked = isChecked));
-      setTags(tagsUpdated);
-      setFilteredTags([]);
+      selectOrClearAll(isChecked, tags, setTags, setFilteredTags);
     }
     if (filterTitle === 'Categories') {
-      const categoriesUpdated = [...categories];
-      categoriesUpdated.forEach(tag => (tag.isChecked = isChecked));
-      setCategories(categoriesUpdated);
-      setFilteredCategories([]);
+      selectOrClearAll(
+        isChecked,
+        categories,
+        setCategories,
+        setFilteredCategories
+      );
     }
   };
 
   const handleFilters = (selected, isChecked, filterTitle) => {
-    console.log(selected);
     if (filterTitle === 'Tags') {
       let tagsToSearch = [...filteredTags];
       const tagsUpdated = [...tags];
@@ -162,9 +142,7 @@ const ArticleList = props => {
         handleFilters={handleFilters}
         filterTitle={title}
         selectOrClearAllHandler={selectOrClearAllHandler}
-        showHeader={
-          (showTags && width <= 767) || (showCategories && width <= 767)
-        }
+        showHeader={mobileCheck}
         closeFilters={closeFilters}
       />
     ) : null;
@@ -172,13 +150,11 @@ const ArticleList = props => {
 
   return (
     <div className="events-page-wrapper">
-      <Breadcrumb breadCrumbData={breadCrumbData} />
+      <Breadcrumb breadCrumbData={BreadCrumbData} />
       <section className="">
         <div className="container-fluid">
           <div className="wrapper-events-listing">
-            <div
-              className={`filters ${showTags || showCategories ? `open` : ``}`}
-            >
+            <div className={`filters ${mobileCheck ? `open` : ``}`}>
               <div className="filter-conatiner">
                 <div
                   style={{
@@ -203,8 +179,8 @@ const ArticleList = props => {
                         </span>
                       </>
                     )}
-                    {filterComponent(tags, 'Tags', showTags)}
                     {filterComponent(categories, 'Categories', showCategories)}
+                    {filterComponent(tags, 'Tags', showTags)}
                   </div>
                 </div>
               </div>
