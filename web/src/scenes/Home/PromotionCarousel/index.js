@@ -16,49 +16,48 @@ import promoImg4 from '../../../assets/images/promo-img4.svg';
 
 const ItemWrapper = ({ promotion, expiredText, handlePromotionExpired }) => {
   return (
-    <div className="promotions-home-item">
-      {promotion && (
-        <div className="promotions-img">
-          <div className="item-img">
-            <Image
-              src={promotion.featured_image}
-              className="img-fluid"
-              alt="promotion-img"
-              type="Horizontal"
-            />
-          </div>
-          {promotion.show_timer === '1' && (
-            <div className="promotion-timer">
-              <ul>
-                {!expiredText ? (
-                  <ul>
-                    <li className="timer-watch">
-                      <img
-                        src="assets/images/stopwatch.svg"
-                        className="img-fluid"
-                        alt="watch"
-                      />
-                    </li>
-                    <Timer
-                      endDate={promotion.publish_end_date}
-                      promotionExpired={handlePromotionExpired}
-                    />
-                  </ul>
-                ) : null}
-              </ul>
+    <a href="/promotions" target="_blank">
+      <div className="promotions-home-item">
+        {promotion && (
+          <div className="promotions-img">
+            <div className="item-img">
+              <Image
+                src={promotion.featured_image}
+                className="img-fluid"
+                alt="promotion-img"
+                type="Horizontal"
+              />
             </div>
-          )}
-        </div>
-      )}
-      <a href="/promotions" target="_blank">
+            {promotion.show_timer === '1' && (
+              <div className="promotion-timer">
+                <ul>
+                  {!expiredText ? (
+                    <ul>
+                      <li className="timer-watch">
+                        <img
+                          src="assets/images/stopwatch.svg"
+                          className="img-fluid"
+                          alt="watch"
+                        />
+                      </li>
+                      <Timer
+                        endDate={promotion.publish_end_date}
+                        promotionExpired={handlePromotionExpired}
+                      />
+                    </ul>
+                  ) : null}
+                </ul>
+              </div>
+            )}
+          </div>
+        )}
         <h3>
           {promotion && Utilities.mobilecheck()
             ? Utilities.showLimitedChars(promotion.title, 15)
             : promotion.title}
         </h3>
-      </a>
-
-    </div>
+      </div>
+    </a>
   );
 };
 
@@ -106,8 +105,8 @@ export default class PromotionCarousel extends Component {
   getPromotions() {
     const params = {
       client: Constants.CLIENT,
-      first: 1
-      // limit: 10
+      first: 0,
+      limit: 24
     };
     HomeService.getPromotions(params)
       .then(res => {
@@ -146,7 +145,7 @@ export default class PromotionCarousel extends Component {
             //rows: 2,
             slidesPerRow: 3
           }
-        },
+        }
       ]
     };
     return (
@@ -164,32 +163,16 @@ export default class PromotionCarousel extends Component {
               </span> */}
               <div className="promo-animation-wrap">
                 <div className="promo-animation-img first">
-                  <img
-                    src={promoImg1}
-                    className="img-fluid"
-                    alt="promotions"
-                  />
+                  <img src={promoImg1} className="img-fluid" alt="promotions" />
                 </div>
                 <div className="promo-animation-img second">
-                  <img
-                    src={promoImg2}
-                    className="img-fluid"
-                    alt="promotions"
-                  />
+                  <img src={promoImg2} className="img-fluid" alt="promotions" />
                 </div>
                 <div className="promo-animation-img third">
-                  <img
-                    src={promoImg3}
-                    className="img-fluid"
-                    alt="promotions"
-                  />
+                  <img src={promoImg3} className="img-fluid" alt="promotions" />
                 </div>
                 <div className="promo-animation-img fourth">
-                  <img
-                    src={promoImg4}
-                    className="img-fluid"
-                    alt="promotions"
-                  />
+                  <img src={promoImg4} className="img-fluid" alt="promotions" />
                 </div>
               </div>
             </h2>

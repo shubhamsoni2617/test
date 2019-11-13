@@ -104,7 +104,7 @@ const Carousel = props => {
               {imgArray.map(elem => {
                 elem.venue_name = Utilities.showLimitedChars(
                   elem.venue_name,
-                  20
+                  25
                 );
                 return <CarouselSlide elem={elem} key={elem.id} />;
               })}

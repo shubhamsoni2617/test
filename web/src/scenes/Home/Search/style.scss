@@ -430,11 +430,20 @@
             }
             .events-section{
                 margin-top: 0px;
+                position: relative;
                 @media(max-width: 767px){
                     display: flex;
                     flex-wrap: wrap;
                     width: 100% !important;
-                    margin-bottom: -1px;
+                }
+                &:after{
+                    position: absolute;
+                    content: "";
+                    border-bottom: 1px solid #fff;
+                    left: 0px;
+                    right: 0px;
+                    bottom: 0px;
+                    margin: 0px;
                 }
                 & > div{
                     @media(max-width: 767px){

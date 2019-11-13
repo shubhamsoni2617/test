@@ -84,12 +84,8 @@ const TrendingNow = ({}) => {
                   <h3>
                     {Utilities.showLimitedChars(
                       trendingNow && trendingNow[0] && trendingNow[0].title,
-                      Utilities.mobilecheck() ? 15 : 30
+                      Utilities.mobilecheck() ? 25 : 50
                     )}
-                    {/* {Utilities.mobilecheck(
-                        trendingNow && trendingNow[0] && trendingNow[0].title,
-                        20
-                      )} */}
                   </h3>
                   <p>
                     {trendingNow && trendingNow[0] && trendingNow[0].event_date}
@@ -99,7 +95,7 @@ const TrendingNow = ({}) => {
                       trendingNow &&
                         trendingNow[0] &&
                         trendingNow[0].venue_name,
-                      Utilities.mobilecheck() ? 15 : 25
+                      Utilities.mobilecheck() ? 25 : 50
                     )}
                   </p>
                 </div>
@@ -131,14 +127,14 @@ const TrendingNow = ({}) => {
                         <h3>
                           {Utilities.showLimitedChars(
                             now && now.title,
-                            Utilities.mobilecheck() ? 15 : 27
+                            Utilities.mobilecheck() ? 25 : 40
                           )}
                         </h3>
                         <p>{now && now.event_date}</p>
                         <p>
                           {Utilities.showLimitedChars(
                             now && now.venue_name,
-                            Utilities.mobilecheck() ? 15 : 25
+                            Utilities.mobilecheck() ? 25 : 40
                           )}
                         </p>
                       </div>

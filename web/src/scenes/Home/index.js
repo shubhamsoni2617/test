@@ -87,7 +87,7 @@ class Home extends Component {
         {giftCard &&
           giftCard.map(elem => {
             return (
-              <div className="adds-container">
+              <div className="adds-container" key={elem.title}>
                 <a
                   href={elem && elem.navigation_link}
                   className="giftcard-anchor"
