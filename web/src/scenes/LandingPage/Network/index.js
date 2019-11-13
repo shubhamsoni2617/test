@@ -1,4 +1,5 @@
 import React from 'react';
+import Image from '../../../shared/components/Image';
 
 const Network = ({ networkData }) => {
   return (
@@ -21,7 +22,7 @@ const Network = ({ networkData }) => {
                     return (
                       <li>
                         <a href={network.url} target="_blank">
-                          <img src={network.logo} alt="logo" />
+                          <Image src={network.logo} alt="logo" />
                         </a>
                       </li>
                     );

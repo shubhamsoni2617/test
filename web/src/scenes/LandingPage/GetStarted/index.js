@@ -2,12 +2,21 @@ import React from 'react';
 import getStartedimg1 from '../../../assets/images/Tile-1.png';
 import getStartedimg2 from '../../../assets/images/Tile-2.png';
 import getStartedimg3 from '../../../assets/images/Tile-3.png';
+import { Link } from 'react-router-dom';
 const GetStarted = ({ getStartedData }) => {
   let imgArr = [getStartedimg1, getStartedimg2, getStartedimg3];
-
+  let navigateArr = [
+    '/sell-event-tickets',
+    '/system-licensing',
+    '/apipartners'
+  ];
   if (getStartedData) {
     getStartedData = getStartedData.map((el, i) => {
-      return { ...el, img: imgArr[i] };
+      return {
+        ...el,
+        img: imgArr[i],
+        button_link: el.button_link || navigateArr[i]
+      };
     });
   }
   return (
@@ -39,9 +48,9 @@ const GetStarted = ({ getStartedData }) => {
                               __html: getStarted.description
                             }}
                           />
-                          <a href={getStarted.button_link}>
+                          <Link to={getStarted.button_link}>
                             {getStarted.button_text}
-                          </a>
+                          </Link>
                         </div>
                       </div>
                     </div>

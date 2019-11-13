@@ -1,0 +1,30 @@
+
+.slick-slider{
+    .slick-dots{
+        margin-bottom: 10px;
+        li{
+            margin-top: 30px;
+            height: 2px;
+            button{
+                width: 25px;
+                height: 2px;
+                &:before{
+                    content: '';
+                    background-color: #000000;
+                    opacity: 0.10;
+                    height: 2px;
+                    width: 26px;
+                }
+            }
+            &.slick-active{
+                button{
+                    &:before{
+                        opacity: 1;
+                        background-color: #0077C8;
+                        color: #0077C8;
+                    }
+                }
+            }
+        } 
+    }    
+}
