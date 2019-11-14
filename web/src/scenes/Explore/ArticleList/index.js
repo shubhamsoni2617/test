@@ -137,18 +137,18 @@ const ArticleList = props => {
           closeFilters={closeFilters}
         />
       ) : (
-        <ShimmerEffect
-          propCls="shm_col-xs-6 col-md-12"
-          height={65}
-          count={1}
-          type="TILE"
-        />
-      )
+          <ShimmerEffect
+            propCls="shm_col-xs-6 col-md-12"
+            height={65}
+            count={1}
+            type="TILE"
+          />
+        )
     ) : null;
   };
 
   return (
-    <div className="events-page-wrapper">
+    <div className="events-page-wrapper articlelist-wrapper">
       <Breadcrumb breadCrumbData={BreadCrumbData} />
       <section className="">
         <div className="container-fluid">
@@ -191,7 +191,7 @@ const ArticleList = props => {
                   <ShimmerEffect
                     propCls={`${
                       Utilities.mobileAndTabletcheck() ? 'shm_col-xs-6' : ''
-                    } col-md-4`}
+                      } col-md-4`}
                     height={150}
                     count={Utilities.mobileAndTabletcheck() ? 2 : 3}
                     type="LIST"

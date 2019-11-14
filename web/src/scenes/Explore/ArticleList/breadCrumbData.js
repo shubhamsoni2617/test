@@ -1,4 +1,4 @@
-import EventBreadcrumbImage from '../../../assets/images/events.png';
+import EventBreadcrumbImage from '../../../assets/images/article-list-banner.png';
 
 export default {
   page_banner: EventBreadcrumbImage,
