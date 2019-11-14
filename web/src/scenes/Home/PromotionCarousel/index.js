@@ -153,7 +153,7 @@ export default class PromotionCarousel extends Component {
         <div className="container-fluid">
           <div className="section-top-wrapper">
             <h2>
-              Promotions{' '}
+              {this.props.heading}
               {/* <span className="promotions-animated-img">
                 <img
                   src="assets/images/illustration.svg"
@@ -200,7 +200,7 @@ export default class PromotionCarousel extends Component {
                     Utilities.mobileAndTabletcheck() || Utilities.mobilecheck()
                       ? 6
                       : 2
-                    }`}
+                  }`}
                   height={150}
                   count={2}
                   type="TILE"
@@ -246,21 +246,21 @@ export default class PromotionCarousel extends Component {
                     })}
                 </div>
               ) : (
-                    <Slider {...settings}>
-                      {promotions &&
-                        promotions.map((promotion, index) => {
-                          return (
-                            <div key={promotion.id} className="item-wrapper">
-                              <ItemWrapper
-                                promotion={promotion}
-                                expiredText={expiredText}
-                                handlePromotionExpired={this.handlePromotionExpired}
-                              />
-                            </div>
-                          );
-                        })}
-                    </Slider>
-                  )}
+                <Slider {...settings}>
+                  {promotions &&
+                    promotions.map((promotion, index) => {
+                      return (
+                        <div key={promotion.id} className="item-wrapper">
+                          <ItemWrapper
+                            promotion={promotion}
+                            expiredText={expiredText}
+                            handlePromotionExpired={this.handlePromotionExpired}
+                          />
+                        </div>
+                      );
+                    })}
+                </Slider>
+              )}
             </CSSTransitionGroup>
           </div>
         </div>
