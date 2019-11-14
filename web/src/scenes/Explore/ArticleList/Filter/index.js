@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import BackButton from '../../../../assets/images/next.svg';
+import ShimmerEffect from '../../../../shared/components/ShimmerEffect';
 
 const Filter = ({
   dataToFilter,
@@ -7,7 +8,8 @@ const Filter = ({
   filterTitle,
   selectOrClearAllHandler,
   showHeader,
-  closeFilters
+  closeFilters,
+  handleFiltersForMobile
 }) => {
   const [activeSelectButton, setActiveSelectButton] = useState(false)
 
@@ -51,28 +53,40 @@ const Filter = ({
       </div>
       <div className="filters-panel">
         <ul>
-          {dataToFilter.map(data => {
-            return (
-              <li key={data.id}>
-                <input
-                  className="styled-checkbox"
-                  type="checkbox"
-                  id={data.id}
-                  checked={data.isChecked}
-                  onChange={e => onChange(e, data.id)}
-                />
-                <label htmlFor={data.id}>{data.name}({data.count})</label>
-              </li>
-            );
-          })}
+          {dataToFilter.length ? (
+            dataToFilter.map(data => {
+              return (
+                <li key={data.id}>
+                  <input
+                    type="checkbox"
+                    className="styled-checkbox"
+                    id={data.id}
+                    checked={data.isChecked}
+                    onChange={e => onChange(e, data.id)}
+                  />
+                  <label htmlFor={data.id}>{data.name}</label>
+                  <span>({data.count})</span>
+                </li>
+              );
+            })
+          ) : (
+              <ShimmerEffect
+                propCls="shm_col-xs-6 col-md-12"
+                height={65}
+                count={1}
+                type="TILE"
+              />
+            )}
         </ul>
       </div>
+
+
       {showHeader && (
         <div className={`filter-fixed-btn`}>
           <button
             onClick={() => {
               closeFilters();
-              //   handleFilters(id, targetChecked, filterTitle);
+              handleFiltersForMobile(filterTitle);
             }}
           >
             Apply

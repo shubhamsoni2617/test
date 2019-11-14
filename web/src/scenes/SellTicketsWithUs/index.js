@@ -106,7 +106,12 @@ const SellTicketsWithUs = () => {
     const { name, value } = event.target;
     switch (name) {
       case 'name':
-        setName(trimSpace(value));
+        var letters = /^[a-zA-Z_ ]*$/;
+        if (value.match(letters)) {
+          setName(value);
+        } else {
+          setName('');
+        }
         break;
       case 'email':
         setEmail(value);

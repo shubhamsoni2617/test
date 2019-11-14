@@ -32,7 +32,9 @@ const CardList = ({ articleList, loadMore }) => {
                     dangerouslySetInnerHTML={{
                       __html: cardData.description
                     }}
-                  />
+                  /> */}
+                  <p>{cardData.description.slice(0, 60)}</p>
+                  <span>...More</span>
                 </div>
                 <div className="item-bottom">
                   <span className="item-author">By {cardData.author_name}</span>

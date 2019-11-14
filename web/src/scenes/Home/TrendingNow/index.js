@@ -7,7 +7,7 @@ import Image from '../../../shared/components/Image';
 import { CSSTransitionGroup } from 'react-transition-group';
 import ShimmerEffect from '../../../shared/components/ShimmerEffect';
 
-const TrendingNow = ({}) => {
+const TrendingNow = ({ heading }) => {
   const [trendingNow, setTrandingNow] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -41,7 +41,7 @@ const TrendingNow = ({}) => {
   return (
     <section className="trending-now">
       <div className="container-fluid">
-        <h2>Trending Now</h2>
+        <h2>{heading}</h2>
 
         <CSSTransitionGroup
           transitionName="shimmer-carousel"

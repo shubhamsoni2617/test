@@ -1,8 +1,6 @@
 import React from 'react';
 import './style.scss';
-import DayPickerInput from 'react-day-picker/DayPickerInput';
 import 'react-day-picker/lib/style.css';
-import { formatDate, parseDate } from 'react-day-picker/moment';
 import ReCAPTCHA from 'react-google-recaptcha';
 import Constants from '../../../shared/constants';
 
@@ -63,8 +61,11 @@ const SellingForm = ({
                         type="text"
                         name="name"
                         placeholder="Name*"
-                        className={error ? 'form-control error' : 'form-control'}
+                        className={
+                          error ? 'form-control error' : 'form-control'
+                        }
                         value={name}
+                        maxLength={100}
                         onChange={handleChange}
                       />
                       {error && !name && (
@@ -76,8 +77,11 @@ const SellingForm = ({
                         type="email"
                         name="email"
                         placeholder="Email*"
-                        className={error ? 'form-control error' : 'form-control'}
+                        className={
+                          error ? 'form-control error' : 'form-control'
+                        }
                         value={email}
+                        maxLength={255}
                         onChange={handleChange}
                       />
                       {error && !email && (
@@ -95,6 +99,7 @@ const SellingForm = ({
                         placeholder="Company Name"
                         className="form-control"
                         value={companyName}
+                        maxLength={150}
                         onChange={handleChange}
                       />
                     </div>
@@ -103,7 +108,9 @@ const SellingForm = ({
                         type="text"
                         name="contact-no"
                         placeholder="Contact No.*"
-                        className={error ? 'form-control error' : 'form-control'}
+                        className={
+                          error ? 'form-control error' : 'form-control'
+                        }
                         value={contactNo}
                         maxLength={10}
                         onChange={handleChange}
@@ -111,7 +118,7 @@ const SellingForm = ({
                       {error && !contactNo && (
                         <span className="text-danger">
                           Please enter contact number
-                      </span>
+                        </span>
                       )}
                     </div>
                   </div>
@@ -130,14 +137,17 @@ const SellingForm = ({
                         type="text"
                         name="event-name"
                         placeholder="Event Name*"
-                        className={error ? 'form-control error' : 'form-control'}
+                        className={
+                          error ? 'form-control error' : 'form-control'
+                        }
                         value={eventName}
+                        maxLength={150}
                         onChange={handleChange}
                       />
                       {error && !eventName && (
                         <span className="text-danger">
                           Please enter event name
-                      </span>
+                        </span>
                       )}
                     </div>
                     <div className="form-group">
@@ -145,14 +155,17 @@ const SellingForm = ({
                         type="text"
                         name="venue-name"
                         placeholder="Venue Name*"
-                        className={error ? 'form-control error' : 'form-control'}
+                        className={
+                          error ? 'form-control error' : 'form-control'
+                        }
                         value={venueName}
+                        maxLength={100}
                         onChange={handleChange}
                       />
                       {error && !venueName && (
                         <span className="text-danger">
                           Please enter venue name
-                      </span>
+                        </span>
                       )}
                     </div>
                     <div className="form-group">
@@ -175,7 +188,7 @@ const SellingForm = ({
                         type="text"
                         name="event-date"
                         placeholder="Event Date"
-                        className='form-control'
+                        className="form-control"
                         value={eventDate}
                         onChange={handleChange}
                       />
@@ -185,7 +198,9 @@ const SellingForm = ({
                         type="text"
                         name="event-capacity"
                         placeholder="Event Capacity (pax)*"
-                        className={error ? 'form-control error' : 'form-control'}
+                        className={
+                          error ? 'form-control error' : 'form-control'
+                        }
                         value={eventCapacity}
                         maxLength={3}
                         onChange={handleChange}
@@ -193,7 +208,7 @@ const SellingForm = ({
                       {error && !eventCapacity && (
                         <span className="text-danger">
                           Please enter event capacity
-                      </span>
+                        </span>
                       )}
                     </div>
                     <div className="form-group">
@@ -201,6 +216,7 @@ const SellingForm = ({
                         placeholder="Additional Information"
                         name="additional-information"
                         value={additionalInformation}
+                        maxLength={500}
                         onChange={handleChange}
                       ></textarea>
                     </div>

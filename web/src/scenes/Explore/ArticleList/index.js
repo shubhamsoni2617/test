@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import CardList from './CardList';
-import EventsService from '../../../shared/services/EventsService';
 import DownArrowBlue from '../../../assets/images/down-arrow-blue.svg';
 import Breadcrumb from '../../../scenes/App/Breadcrumb';
 import loaderImage from '../../../assets/images/loader.svg';
@@ -29,7 +28,7 @@ const ArticleList = props => {
     Utilities.mobileAndTabletcheck() ? 6 : 6
   );
   const [loadMore, setLoadMore] = useState(false);
-  const [totalResults, setTotalResults] = useState(8);
+  const [totalResults, setTotalResults] = useState(0);
   const [first, setFirst] = useState(0);
   const [showFilter, setShowFilters] = useState('');
   const [filteredTags, setFilteredTags] = useState([]);
@@ -39,6 +38,12 @@ const ArticleList = props => {
 
   const [showTags, setShowTags] = useState(false);
   const [showCategories, setShowCategories] = useState(false);
+  const [filteredTagsForMobile, setFilteredTagsForMobile] = useState([]);
+  const [
+    filteredCategoriesForMobile,
+    setFilteredCategoriessForMobile
+  ] = useState([]);
+
   let mobileCheck =
     (showTags && width <= 767) || (showCategories && width <= 767);
   useEffect(() => {
@@ -51,6 +56,7 @@ const ArticleList = props => {
   }, [constant, filteredTags.toString(), filteredCategories.toString()]);
 
   const getArticleList = () => {
+    let articleListData = [...articleList];
     const params = {
       first: first,
       client: 1,
@@ -59,14 +65,20 @@ const ArticleList = props => {
       tags: filteredTags.toString()
     };
     if (!loadMore) {
+      params.first = 0;
+      params.limit = 6;
+      setFirst(0);
+      setConstant(6);
+      articleListData = [];
       setArticleList([]);
+      setTotalResults(0);
     }
     setTimeout(() => {
       ExploreService.getExploreArticleList(params)
         .then(res => {
           console.log(res.data.data);
-          setArticleList([...articleList, ...res.data.data]);
-          // setTotalResults(res.data.total_records);
+          setArticleList([...articleListData, ...res.data.data]);
+          setTotalResults(res.data.total_records);
           setLoadMore(false);
         })
         .catch(err => {
@@ -97,13 +109,20 @@ const ArticleList = props => {
       let index = tagsUpdated.findIndex(tag => tag.id === selected);
       tagsUpdated[index].isChecked = isChecked;
       setTags(tagsUpdated);
+
       if (isChecked) {
         tagsToSearch.push(selected);
-        setFilteredTags(tagsToSearch);
+        setFilteredTagsForMobile(tagsToSearch);
+        if (!mobileCheck) {
+          setFilteredTags(tagsToSearch);
+        }
       } else {
         let i = tagsToSearch.indexOf(selected);
         tagsToSearch.splice(i, 1);
-        setFilteredTags(tagsToSearch);
+        setFilteredTagsForMobile(tagsToSearch);
+        if (!mobileCheck) {
+          setFilteredTags(tagsToSearch);
+        }
       }
     }
     if (filterTitle === 'Categories') {
@@ -114,20 +133,33 @@ const ArticleList = props => {
       setCategories(categoriesUpdated);
       if (isChecked) {
         categoriesToSearch.push(selected);
-        setFilteredCategories(categoriesToSearch);
+        setFilteredCategoriessForMobile(categoriesToSearch);
+        if (!mobileCheck) {
+          setFilteredCategories(categoriesToSearch);
+        }
       } else {
         let i = categoriesToSearch.indexOf(selected);
         categoriesToSearch.splice(i, 1);
-        setFilteredCategories(categoriesToSearch);
+        setFilteredCategoriessForMobile(categoriesToSearch);
+        if (!mobileCheck) {
+          setFilteredCategories(categoriesToSearch);
+        }
       }
     }
   };
-  // console.log(filteredTags);
-  // console.log(filteredCategories);
 
   const closeFilters = () => {
     setShowTags(false);
     setShowCategories(false);
+  };
+
+  const handleFiltersForMobile = filterTitle => {
+    if (filterTitle === 'Tags') {
+      setFilteredTags(filteredTagsForMobile);
+    }
+    if (filterTitle === 'Categories') {
+      setFilteredCategories(filteredCategoriesForMobile);
+    }
   };
 
   const filterComponent = (data, title, showComponent) => {
