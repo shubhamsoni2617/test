@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import BackButton from '../../../../assets/images/next.svg';
+import ShimmerEffect from '../../../../shared/components/ShimmerEffect';
 
 const Filter = ({
   dataToFilter,
@@ -7,21 +8,20 @@ const Filter = ({
   filterTitle,
   selectOrClearAllHandler,
   showHeader,
-  closeFilters
+  closeFilters,
+  handleFiltersForMobile
 }) => {
-  console.log(showHeader);
-  //   const [targetChecked, setTargetChecked] = useState(false);
-  //   const [id, setId] = useState('');
+  const [activeSelectButton, setActiveSelectButton] = useState(false)
+
+  const activeSelectButtonhandler = () => {
+    setActiveSelectButton(!activeSelectButton)
+  }
   const onChange = (e, id) => {
     console.log(e.target.checked);
-    // setTargetChecked(e.target.checked);
-    // setId(id);
-    // if (!showHeader) {
     handleFilters(id, e.target.checked, filterTitle);
-    // }
   };
   return (
-    <div>
+    <div className="filter-grid">
       <div className="filter-grid-heading">
         {showHeader && (
           <button type="button" onClick={closeFilters}>
@@ -29,45 +29,64 @@ const Filter = ({
           </button>
         )}
         <h3>{filterTitle}</h3>
-        {!showHeader && (
-          <span
-            onClick={() => {
+        <ul>
+          {!showHeader && (
+            <li onClick={() => {
               selectOrClearAllHandler(true, filterTitle);
-            }}
-          >
-            Select all
-          </span>
-        )}
-        <span
-          onClick={() => {
+              activeSelectButtonhandler()
+            }} className={`${activeSelectButton ? `active` : ``}`}>
+              <span
+              >
+                Select all
+          </span></li>
+          )}
+          <li onClick={() => {
             selectOrClearAllHandler(false, filterTitle);
-          }}
-        >
-          Clear
+            activeSelectButtonhandler()
+          }} className={`${!activeSelectButton ? `active` : ``}`}>
+            <span
+            >
+              Clear
         </span>
+          </li>
+        </ul>
       </div>
-      <ul>
-        {dataToFilter.map(data => {
-          return (
-            <li key={data.id}>
-              <input
-                type="checkbox"
-                id={data.id}
-                checked={data.isChecked}
-                onChange={e => onChange(e, data.id)}
+      <div className="filters-panel">
+        <ul>
+          {dataToFilter.length ? (
+            dataToFilter.map(data => {
+              return (
+                <li key={data.id}>
+                  <input
+                    type="checkbox"
+                    className="styled-checkbox"
+                    id={data.id}
+                    checked={data.isChecked}
+                    onChange={e => onChange(e, data.id)}
+                  />
+                  <label htmlFor={data.id}>{data.name}</label>
+                  <span>({data.count})</span>
+                </li>
+              );
+            })
+          ) : (
+              <ShimmerEffect
+                propCls="shm_col-xs-6 col-md-12"
+                height={65}
+                count={1}
+                type="TILE"
               />
-              <label htmlFor={data.id}>{data.name}</label>
-            </li>
-          );
-        })}
-      </ul>
+            )}
+        </ul>
+      </div>
+
 
       {showHeader && (
         <div className={`filter-fixed-btn`}>
           <button
             onClick={() => {
               closeFilters();
-              //   handleFilters(id, targetChecked, filterTitle);
+              handleFiltersForMobile(filterTitle);
             }}
           >
             Apply

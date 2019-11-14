@@ -486,7 +486,7 @@ const TopNav = props => {
               </li>
               <li>
                 <Link
-                  to="/explore/article"
+                  to="/explore/articlelist"
                   onClick={() => handleNavigationClose()}
                 >
                   Explore

@@ -1,30 +1,24 @@
 import React, { useState, useEffect } from 'react';
 import CardList from './CardList';
-import EventsService from '../../../shared/services/EventsService';
-import HomeService from '../../../shared/services/HomeService';
 import DownArrowBlue from '../../../assets/images/down-arrow-blue.svg';
 import Breadcrumb from '../../../scenes/App/Breadcrumb';
 import loaderImage from '../../../assets/images/loader.svg';
-import EventBreadcrumbImage from '../../../assets/images/events.png';
-import EventBreadcrumbImageBlur from '../../../assets/images/events-blur.png';
 import filterIcon from '../../../assets/images/events/filter.svg';
 import ShimmerEffect from '../../../shared/components/ShimmerEffect';
 import Utilities from '../../../shared/utilities';
 import './style.scss';
-import Constants from '../../../shared/constants';
 import ExploreService from '../../../shared/services/ExploreService';
-import FilterGrid from '../../../shared/components/FilterGrid';
-import Filters from '../../../shared/components/Filters';
 import Filter from './Filter';
 import { useCustomWidth } from '../../../shared/components/CustomHooks';
 import useStickyPanel from '../../../shared/hooks/useStickyPanel';
-
+import BreadCrumbData from './breadCrumbData';
+import selectOrClearAll from './selectOrClearAll';
+import fetchFilterData from './fetchFilterData';
 const ArticleList = props => {
   const [width] = useCustomWidth();
   let stickyObj = {
     sticky: { top: 153 },
     pixelBuffer: 153,
-    // bottom: 0,
     distanceFromTop: 153
   };
   const [scrollContainerRef, styleObj] = useStickyPanel(stickyObj);
@@ -39,45 +33,51 @@ const ArticleList = props => {
   const [showFilter, setShowFilters] = useState('');
   const [filteredTags, setFilteredTags] = useState([]);
   const [filteredCategories, setFilteredCategories] = useState([]);
-  const [tags, setTags] = useState([
-    { id: '121', name: 'Adventure', isChecked: false },
-    { id: '124', name: 'Singapore', isChecked: false }
-  ]);
-  const [categories, setCategories] = useState([
-    {
-      events_count: '2',
-      id: '1',
-      name: 'Comedy',
-      isChecked: false
-    },
-    {
-      events_count: '3',
-      id: '2',
-      name: 'Lifestyle/Leisure',
-      isChecked: false
-    }
-  ]);
+  const [tags, setTags] = useState([]);
+  const [categories, setCategories] = useState([]);
 
   const [showTags, setShowTags] = useState(false);
   const [showCategories, setShowCategories] = useState(false);
+  const [filteredTagsForMobile, setFilteredTagsForMobile] = useState([]);
+  const [
+    filteredCategoriesForMobile,
+    setFilteredCategoriessForMobile
+  ] = useState([]);
+
+  let mobileCheck =
+    (showTags && width <= 767) || (showCategories && width <= 767);
+  useEffect(() => {
+    fetchFilterData(setCategories, ExploreService.getCategories);
+    fetchFilterData(setTags, ExploreService.getTags);
+  }, []);
 
   useEffect(() => {
     getArticleList();
-  }, [constant]);
+  }, [constant, filteredTags.toString(), filteredCategories.toString()]);
 
   const getArticleList = () => {
+    let articleListData = [...articleList];
     const params = {
       first: first,
       client: 1,
-      limit: constant
+      limit: constant,
+      category: filteredCategories.toString(),
+      tags: filteredTags.toString()
     };
-    // ExploreService.getExploreArticleList(params)
-
+    if (!loadMore) {
+      params.first = 0;
+      params.limit = 6;
+      setFirst(0);
+      setConstant(6);
+      articleListData = [];
+      setArticleList([]);
+      setTotalResults(0);
+    }
     setTimeout(() => {
-      EventsService.getData(params)
+      ExploreService.getExploreArticleList(params)
         .then(res => {
           console.log(res.data.data);
-          setArticleList([...articleList, ...res.data.data]);
+          setArticleList([...articleListData, ...res.data.data]);
           setTotalResults(res.data.total_records);
           setLoadMore(false);
         })
@@ -87,48 +87,42 @@ const ArticleList = props => {
         });
     }, 1000);
   };
-  const breadCrumbData = {
-    page_banner: EventBreadcrumbImage,
-    page_banner_blur: EventBreadcrumbImageBlur,
-    page: 'Listing',
-    count: 0,
-    breadcrumb_slug: [
-      { path: '/', title: 'Home' },
-      { path: '/explore', title: 'Explore' },
-      { path: '/article', title: 'Article' }
-    ]
-  };
 
   const selectOrClearAllHandler = (isChecked, filterTitle) => {
     if (filterTitle === 'Tags') {
-      const tagsUpdated = [...tags];
-      tagsUpdated.forEach(tag => (tag.isChecked = isChecked));
-      setTags(tagsUpdated);
-      setFilteredTags([]);
+      selectOrClearAll(isChecked, tags, setTags, setFilteredTags);
     }
     if (filterTitle === 'Categories') {
-      const categoriesUpdated = [...categories];
-      categoriesUpdated.forEach(tag => (tag.isChecked = isChecked));
-      setCategories(categoriesUpdated);
-      setFilteredCategories([]);
+      selectOrClearAll(
+        isChecked,
+        categories,
+        setCategories,
+        setFilteredCategories
+      );
     }
   };
 
   const handleFilters = (selected, isChecked, filterTitle) => {
-    console.log(selected);
     if (filterTitle === 'Tags') {
       let tagsToSearch = [...filteredTags];
       const tagsUpdated = [...tags];
       let index = tagsUpdated.findIndex(tag => tag.id === selected);
       tagsUpdated[index].isChecked = isChecked;
       setTags(tagsUpdated);
+
       if (isChecked) {
         tagsToSearch.push(selected);
-        setFilteredTags(tagsToSearch);
+        setFilteredTagsForMobile(tagsToSearch);
+        if (!mobileCheck) {
+          setFilteredTags(tagsToSearch);
+        }
       } else {
         let i = tagsToSearch.indexOf(selected);
         tagsToSearch.splice(i, 1);
-        setFilteredTags(tagsToSearch);
+        setFilteredTagsForMobile(tagsToSearch);
+        if (!mobileCheck) {
+          setFilteredTags(tagsToSearch);
+        }
       }
     }
     if (filterTitle === 'Categories') {
@@ -139,46 +133,64 @@ const ArticleList = props => {
       setCategories(categoriesUpdated);
       if (isChecked) {
         categoriesToSearch.push(selected);
-        setFilteredCategories(categoriesToSearch);
+        setFilteredCategoriessForMobile(categoriesToSearch);
+        if (!mobileCheck) {
+          setFilteredCategories(categoriesToSearch);
+        }
       } else {
         let i = categoriesToSearch.indexOf(selected);
         categoriesToSearch.splice(i, 1);
-        setFilteredCategories(categoriesToSearch);
+        setFilteredCategoriessForMobile(categoriesToSearch);
+        if (!mobileCheck) {
+          setFilteredCategories(categoriesToSearch);
+        }
       }
     }
   };
-  // console.log(filteredTags);
-  // console.log(filteredCategories);
 
   const closeFilters = () => {
     setShowTags(false);
     setShowCategories(false);
   };
 
+  const handleFiltersForMobile = filterTitle => {
+    if (filterTitle === 'Tags') {
+      setFilteredTags(filteredTagsForMobile);
+    }
+    if (filterTitle === 'Categories') {
+      setFilteredCategories(filteredCategoriesForMobile);
+    }
+  };
+
   const filterComponent = (data, title, showComponent) => {
     return showComponent || width > 767 ? (
-      <Filter
-        dataToFilter={data}
-        handleFilters={handleFilters}
-        filterTitle={title}
-        selectOrClearAllHandler={selectOrClearAllHandler}
-        showHeader={
-          (showTags && width <= 767) || (showCategories && width <= 767)
-        }
-        closeFilters={closeFilters}
-      />
+      data && data.length ? (
+        <Filter
+          dataToFilter={data}
+          handleFilters={handleFilters}
+          filterTitle={title}
+          selectOrClearAllHandler={selectOrClearAllHandler}
+          showHeader={mobileCheck}
+          closeFilters={closeFilters}
+        />
+      ) : (
+          <ShimmerEffect
+            propCls="shm_col-xs-6 col-md-12"
+            height={65}
+            count={1}
+            type="TILE"
+          />
+        )
     ) : null;
   };
 
   return (
-    <div className="events-page-wrapper">
-      <Breadcrumb breadCrumbData={breadCrumbData} />
+    <div className="events-page-wrapper articlelist-wrapper">
+      <Breadcrumb breadCrumbData={BreadCrumbData} />
       <section className="">
         <div className="container-fluid">
           <div className="wrapper-events-listing">
-            <div
-              className={`filters ${showTags || showCategories ? `open` : ``}`}
-            >
+            <div className={`filters ${mobileCheck ? `open` : ``}`}>
               <div className="filter-conatiner">
                 <div
                   style={{
@@ -191,8 +203,8 @@ const ArticleList = props => {
                 >
                   <div className="inner" style={styleObj}>
                     {width > 767 && (
-                      <>
-                        <h3>Filters</h3>
+                      <div className="filter-heading">
+                        <h3>FILTERS</h3>
                         <span
                           onClick={() => {
                             selectOrClearAllHandler(false, 'Tags');
@@ -201,10 +213,10 @@ const ArticleList = props => {
                         >
                           Clear All
                         </span>
-                      </>
+                      </div>
                     )}
-                    {filterComponent(tags, 'Tags', showTags)}
                     {filterComponent(categories, 'Categories', showCategories)}
+                    {filterComponent(tags, 'Tags', showTags)}
                   </div>
                 </div>
               </div>
@@ -216,31 +228,30 @@ const ArticleList = props => {
                   <ShimmerEffect
                     propCls={`${
                       Utilities.mobileAndTabletcheck() ? 'shm_col-xs-6' : ''
-                    } col-md-4`}
+                      } col-md-4`}
                     height={150}
                     count={Utilities.mobileAndTabletcheck() ? 2 : 3}
                     type="LIST"
                   />
                 )}
-                {totalResults - constant > 0 && (
-                  <div className="promotion-load-more">
-                    <button
-                      onClick={() => {
-                        setFirst(constant);
-                        setConstant(totalResults);
-                        setLoadMore(true);
-                      }}
-                      className="btn-link load-more-btn"
-                      target=""
-                    >
-                      <span>Load More ({totalResults - constant})</span>
-                      <img src={DownArrowBlue} alt="down arrow blue" />
-                    </button>
-                  </div>
-                )}
               </div>
+              {totalResults - constant > 0 && (
+                <div className="promotion-load-more">
+                  <button
+                    onClick={() => {
+                      setFirst(constant);
+                      setConstant(totalResults);
+                      setLoadMore(true);
+                    }}
+                    className="btn-link load-more-btn"
+                    target=""
+                  >
+                    <span>Load More ({totalResults - constant})</span>
+                    <img src={DownArrowBlue} alt="down arrow blue" />
+                  </button>
+                </div>
+              )}
             </div>
-
             <div className="fixed-buttons-events">
               <a
                 className="sortby"

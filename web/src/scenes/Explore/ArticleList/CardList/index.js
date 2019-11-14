@@ -11,32 +11,35 @@ const CardList = ({ articleList, loadMore }) => {
       return (
         <div key={cardData.id}>
           <div className="event-block">
-            {/* <span className="featured-tag">{cardData.genre[0]}</span> */}
-            <span className="featured-tag">{cardData.title}</span>
+            {/* <span className="category">{cardData.title}</span> */}
             <div className="event-img">
-              {/* <Image src={cardData.image} height="300px" /> */}
-              <img src={cardData.thumb_image} height="400px" />
+              <Image src={cardData.image} />
             </div>
             <div className="event-details">
               <div className="event-detail-prime">
-                {/* {cardData.tags &&
-                  cardData.tags.map(tag => {
-                    return <button className="">{tag}</button>;
-                  })} */}
-                {/* <div className="item-title">
+                <div className="category-group">
+                  <ul>
+                    {cardData.genre &&
+                      cardData.genre.map(genreName => {
+                        return <li><span className="">{genreName}</span></li>;
+                      })}
+                  </ul>
+                </div>
+                <h3>{cardData.title}</h3>
+                <div className="item-title">
                   <div
-                    className="text-center sub-text"
+                    className="sub-text"
                     dangerouslySetInnerHTML={{
                       __html: cardData.description
                     }}
-                  />
-                </div> */}
-                {cardData.synopsis && (
-                  <span>{cardData.synopsis.slice(0, 65)}...</span>
-                )}
-                {cardData.synopsis && cardData.synopsis.length > 65 && (
-                  <span>More</span>
-                )}
+                  /> */}
+                  <p>{cardData.description.slice(0, 60)}</p>
+                  <span>...More</span>
+                </div>
+                <div className="item-bottom">
+                  <span className="item-author">By {cardData.author_name}</span>
+                  <span className="item-date">{cardData.date}</span>
+                </div>
               </div>
             </div>
           </div>
@@ -44,14 +47,14 @@ const CardList = ({ articleList, loadMore }) => {
       );
     })
   ) : (
-    <ShimmerEffect
-      propCls={`${
-        Utilities.mobileAndTabletcheck() ? 'shm_col-xs-6' : ''
-      } col-md-4`}
-      height={150}
-      count={Utilities.mobileAndTabletcheck() ? 2 : 3}
-      type="LIST"
-    />
-  );
+      <ShimmerEffect
+        propCls={`${
+          Utilities.mobileAndTabletcheck() ? 'shm_col-xs-6' : ''
+          } col-md-4`}
+        height={150}
+        count={Utilities.mobileAndTabletcheck() ? 2 : 3}
+        type="LIST"
+      />
+    );
 };
 export default CardList;
