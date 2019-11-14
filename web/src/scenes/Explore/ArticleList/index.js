@@ -165,24 +165,15 @@ const ArticleList = props => {
 
   const filterComponent = (data, title, showComponent) => {
     return showComponent || width > 767 ? (
-      data && data.length ? (
-        <Filter
-          dataToFilter={data}
-          handleFilters={handleFilters}
-          filterTitle={title}
-          selectOrClearAllHandler={selectOrClearAllHandler}
-          showHeader={mobileCheck}
-          closeFilters={closeFilters}
-          handleFiltersForMobile={handleFiltersForMobile}
-        />
-      ) : (
-        <ShimmerEffect
-          propCls="shm_col-xs-6 col-md-12"
-          height={65}
-          count={1}
-          type="TILE"
-        />
-      )
+      <Filter
+        dataToFilter={data}
+        handleFilters={handleFilters}
+        filterTitle={title}
+        selectOrClearAllHandler={selectOrClearAllHandler}
+        showHeader={mobileCheck}
+        closeFilters={closeFilters}
+        handleFiltersForMobile={handleFiltersForMobile}
+      />
     ) : null;
   };
 

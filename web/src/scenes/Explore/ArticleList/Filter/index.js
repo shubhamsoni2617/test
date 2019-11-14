@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import BackButton from '../../../../assets/images/next.svg';
+import ShimmerEffect from '../../../../shared/components/ShimmerEffect';
 
 const Filter = ({
   dataToFilter,
@@ -42,20 +43,29 @@ const Filter = ({
         </span>
       </div>
       <ul>
-        {dataToFilter.map(data => {
-          return (
-            <li key={data.id}>
-              <input
-                type="checkbox"
-                id={data.id}
-                checked={data.isChecked}
-                onChange={e => onChange(e, data.id)}
-              />
-              <label htmlFor={data.id}>{data.name}</label>
-              <span>({data.count})</span>
-            </li>
-          );
-        })}
+        {dataToFilter.length ? (
+          dataToFilter.map(data => {
+            return (
+              <li key={data.id}>
+                <input
+                  type="checkbox"
+                  id={data.id}
+                  checked={data.isChecked}
+                  onChange={e => onChange(e, data.id)}
+                />
+                <label htmlFor={data.id}>{data.name}</label>
+                <span>({data.count})</span>
+              </li>
+            );
+          })
+        ) : (
+          <ShimmerEffect
+            propCls="shm_col-xs-6 col-md-12"
+            height={65}
+            count={1}
+            type="TILE"
+          />
+        )}
       </ul>
 
       {showHeader && (
