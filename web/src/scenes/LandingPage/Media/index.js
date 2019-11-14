@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import downloadIcon from '../../../assets/images/download-icon-blue.svg';
 import downArrow from '../../../assets/images/more-arrow-white-blue.svg';
+import btnArrow from '../../../assets/images/downarrow-blue.svg';
 import Image from '../../../shared/components/Image';
 
 const Media = ({ mediaData }) => {
@@ -56,7 +57,7 @@ const Media = ({ mediaData }) => {
           </div>
           {mediaData && mediaData.length > 4 && !seeMore && (
             <div className="article-bottom">
-              <span onClick={() => setSeeMore(true)}>View all Media</span>
+              <span className="view-all-media" onClick={() => setSeeMore(true)}>View all Media <img src={btnArrow} alt="down-arrow" /></span>
             </div>
           )}
         </div>
