@@ -7,7 +7,8 @@ const Filter = ({
   filterTitle,
   selectOrClearAllHandler,
   showHeader,
-  closeFilters
+  closeFilters,
+  handleFiltersForMobile
 }) => {
   console.log(dataToFilter);
   const onChange = (e, id) => {
@@ -62,7 +63,7 @@ const Filter = ({
           <button
             onClick={() => {
               closeFilters();
-              //   handleFilters(id, targetChecked, filterTitle);
+              handleFiltersForMobile(filterTitle);
             }}
           >
             Apply
