@@ -92,7 +92,7 @@ const TopPics = props => {
   return (
     <section className="top-picks">
       <div className="container-fluid">
-        <h2>Top Picks For You</h2>
+        <h2>{props.heading}</h2>
         {width <= Constants.MOBILE_BREAK_POINT ? (
           !topPics.length ? (
             <ShimmerEffect
