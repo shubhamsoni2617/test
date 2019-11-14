@@ -14,6 +14,7 @@ import { useCustomWidth } from '../../../shared/components/CustomHooks';
 import useStickyPanel from '../../../shared/hooks/useStickyPanel';
 import BreadCrumbData from './breadCrumbData';
 import selectOrClearAll from './selectOrClearAll';
+import fetchFilterData from './fetchFilterData';
 const ArticleList = props => {
   const [width] = useCustomWidth();
   let stickyObj = {
@@ -33,29 +34,18 @@ const ArticleList = props => {
   const [showFilter, setShowFilters] = useState('');
   const [filteredTags, setFilteredTags] = useState([]);
   const [filteredCategories, setFilteredCategories] = useState([]);
-  const [tags, setTags] = useState([
-    { id: '121', name: 'Adventure', isChecked: false },
-    { id: '124', name: 'Singapore', isChecked: false }
-  ]);
-  const [categories, setCategories] = useState([
-    {
-      events_count: '2',
-      id: '1',
-      name: 'Comedy',
-      isChecked: false
-    },
-    {
-      events_count: '3',
-      id: '2',
-      name: 'Lifestyle/Leisure',
-      isChecked: false
-    }
-  ]);
+  const [tags, setTags] = useState([]);
+  const [categories, setCategories] = useState([]);
 
   const [showTags, setShowTags] = useState(false);
   const [showCategories, setShowCategories] = useState(false);
   let mobileCheck =
     (showTags && width <= 767) || (showCategories && width <= 767);
+  useEffect(() => {
+    fetchFilterData(setCategories, ExploreService.getCategories);
+    fetchFilterData(setTags, ExploreService.getTags);
+  }, []);
+
   useEffect(() => {
     getArticleList();
   }, [constant]);
@@ -71,7 +61,7 @@ const ArticleList = props => {
         .then(res => {
           console.log(res.data.data);
           setArticleList([...articleList, ...res.data.data]);
-          setTotalResults(res.data.total_records);
+          // setTotalResults(res.data.total_records);
           setLoadMore(false);
         })
         .catch(err => {
@@ -137,14 +127,23 @@ const ArticleList = props => {
 
   const filterComponent = (data, title, showComponent) => {
     return showComponent || width > 767 ? (
-      <Filter
-        dataToFilter={data}
-        handleFilters={handleFilters}
-        filterTitle={title}
-        selectOrClearAllHandler={selectOrClearAllHandler}
-        showHeader={mobileCheck}
-        closeFilters={closeFilters}
-      />
+      data.length ? (
+        <Filter
+          dataToFilter={data}
+          handleFilters={handleFilters}
+          filterTitle={title}
+          selectOrClearAllHandler={selectOrClearAllHandler}
+          showHeader={mobileCheck}
+          closeFilters={closeFilters}
+        />
+      ) : (
+        <ShimmerEffect
+          propCls="shm_col-xs-6 col-md-12"
+          height={65}
+          count={1}
+          type="TILE"
+        />
+      )
     ) : null;
   };
 

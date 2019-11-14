@@ -50,6 +50,7 @@ const Filter = ({
                 onChange={e => onChange(e, data.id)}
               />
               <label htmlFor={data.id}>{data.name}</label>
+              <span>({data.count})</span>
             </li>
           );
         })}
