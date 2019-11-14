@@ -125,6 +125,10 @@
             flex: 1 0 50%;
             max-width: 50%;
         }
+        .image-conatiner{
+            flex: 0 0 auto;
+            width: auto;
+        }
         img {
             padding-right: 18px;
             padding-top: 10px;
@@ -779,6 +783,10 @@
                 img{
                     height: auto;
                     width: auto;
+                    position: absolute;
+                    transform: translate(-50%, -50%);
+                    top: 50%;
+                    left: 50%;
                 }
             }
             &:hover{
