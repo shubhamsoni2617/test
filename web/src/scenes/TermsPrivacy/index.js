@@ -2,14 +2,11 @@ import React, { Fragment, useState, useEffect } from 'react';
 import termsBanner from '../../assets/images/tc-banner.png';
 import TermsAndPrivacyService from '../../shared/services/TermsAndPrivacyService';
 import './style.scss';
-import { Link } from 'react-router-dom';
-import LoaderImg from '../../assets/images/loader.gif';
 
 const TermsPrivacy = ({ cmsPageType }) => {
   const [termsprivacy, setTermsPrivacy] = useState(null);
   const [tabTitle, setTabTitle] = useState('');
   const [tabDescription, setTabDescription] = useState('');
-  const [loading, setLoading] = useState(false);
 
   let termsPrivacyArr;
 
@@ -21,13 +18,9 @@ const TermsPrivacy = ({ cmsPageType }) => {
   const fetchTermsConditions = () => {
     TermsAndPrivacyService.getTermsAndPrivacyService()
       .then(res => {
-        setLoading(true);
         let data = res.data.data;
-        setTimeout(() => {
-          setTermsPrivacy(data);
-          cmsPageTypeRendering(cmsPageType, data);
-          setLoading(false);
-        }, 1000);
+        setTermsPrivacy(data);
+        cmsPageTypeRendering(cmsPageType, data);
       })
       .catch(err => {
         console.log(err);
@@ -57,6 +50,8 @@ const TermsPrivacy = ({ cmsPageType }) => {
   const handleActiveTab = (title, description) => {
     setTabTitle(title);
     setTabDescription(description);
+    let shareUrl = window.location.origin + renderSpecificLink(title);
+    window.history.pushState('string', 'Title', shareUrl);
   };
 
   const renderSpecificLink = title => {
@@ -87,37 +82,31 @@ const TermsPrivacy = ({ cmsPageType }) => {
             <h1>{tabTitle}</h1>
           </div>
         </div>
-        {loading && (
-          <div className="text-center">
-            <img height="50" width="50" src={LoaderImg} />
-          </div>
-        )}
-        {!loading && (
-          <div className="promotions-nav container">
-            <ul className="nav nav-tabs" id="nav-tab" role="tablist">
-              {termsPrivacyArr &&
-                termsPrivacyArr.map((category, i) => {
-                  return (
-                    <li key={category.title}>
-                      <Link
-                        to={renderSpecificLink(category.title)}
-                        className={
-                          tabTitle === category.title
-                            ? 'nav-item nav-link active'
-                            : 'nav-item nav-link'
-                        }
-                        onClick={() =>
-                          handleActiveTab(category.title, category.description)
-                        }
-                      >
-                        {category.title}
-                      </Link>
-                    </li>
-                  );
-                })}
-            </ul>
-          </div>
-        )}
+
+        <div className="promotions-nav container">
+          <ul className="nav nav-tabs" id="nav-tab" role="tablist">
+            {termsPrivacyArr &&
+              termsPrivacyArr.map((category, i) => {
+                return (
+                  <li key={category.title}>
+                    <a
+                      className={
+                        tabTitle === category.title
+                          ? 'nav-item nav-link active'
+                          : 'nav-item nav-link'
+                      }
+                      onClick={() =>
+                        handleActiveTab(category.title, category.description)
+                      }
+                    >
+                      {category.title}
+                    </a>
+                  </li>
+                );
+              })}
+          </ul>
+        </div>
+
         <div className="terms-privacy-body">
           <div
             className="container"

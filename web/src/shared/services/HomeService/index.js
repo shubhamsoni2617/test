@@ -48,6 +48,10 @@ class HomeService {
   getTrandingNow(params) {
     return API.get(`homepage/trending-now`, { params });
   }
+
+  getItemsOrder(params) {
+    return API.get(`general-home-settings`, { params });
+  }
 }
 
 export default new HomeService();
