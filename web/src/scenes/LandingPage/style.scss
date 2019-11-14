@@ -413,12 +413,6 @@
                         line-height: 22px;
                         text-align: center;
                         margin-bottom: 0;
-                        text-overflow: ellipsis;
-                        display: -webkit-box;
-                        -webkit-line-clamp: 3;                
-                        overflow: hidden;
-                        height: auto;
-                        /* autoprefixer: off */ -webkit-box-orient: vertical; /* autoprefixer: on */
                         @media(max-width: 767px){
                             -webkit-line-clamp: 2;
                             padding: 0px;
