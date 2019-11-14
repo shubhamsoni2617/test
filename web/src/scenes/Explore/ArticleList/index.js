@@ -171,8 +171,8 @@ const ArticleList = props => {
                 >
                   <div className="inner" style={styleObj}>
                     {width > 767 && (
-                      <>
-                        <h3>Filters</h3>
+                      <div className="filter-heading">
+                        <h3>FILTERS</h3>
                         <span
                           onClick={() => {
                             selectOrClearAllHandler(false, 'Tags');
@@ -181,7 +181,7 @@ const ArticleList = props => {
                         >
                           Clear All
                         </span>
-                      </>
+                      </div>
                     )}
                     {filterComponent(categories, 'Categories', showCategories)}
                     {filterComponent(tags, 'Tags', showTags)}
@@ -202,25 +202,24 @@ const ArticleList = props => {
                     type="LIST"
                   />
                 )}
-                {totalResults - constant > 0 && (
-                  <div className="promotion-load-more">
-                    <button
-                      onClick={() => {
-                        setFirst(constant);
-                        setConstant(totalResults);
-                        setLoadMore(true);
-                      }}
-                      className="btn-link load-more-btn"
-                      target=""
-                    >
-                      <span>Load More ({totalResults - constant})</span>
-                      <img src={DownArrowBlue} alt="down arrow blue" />
-                    </button>
-                  </div>
-                )}
               </div>
+              {totalResults - constant > 0 && (
+                <div className="promotion-load-more">
+                  <button
+                    onClick={() => {
+                      setFirst(constant);
+                      setConstant(totalResults);
+                      setLoadMore(true);
+                    }}
+                    className="btn-link load-more-btn"
+                    target=""
+                  >
+                    <span>Load More ({totalResults - constant})</span>
+                    <img src={DownArrowBlue} alt="down arrow blue" />
+                  </button>
+                </div>
+              )}
             </div>
-
             <div className="fixed-buttons-events">
               <a
                 className="sortby"
