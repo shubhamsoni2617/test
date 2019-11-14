@@ -36,13 +36,18 @@
 		background-image: url(../../assets/images/System-licensing/system-banner.png);
 		background-size: cover;
 		background-position: center;
-		height: 389px;
+		//height: 389px;
+		min-height: 389px;
+		height: 100%;
+		@media(max-width: 991px){
+			min-height: auto;
+		}
 		.banner-content {
 			display: flex;
 			flex-direction: column;
 			justify-content: center;
 			height: 100%;
-			padding-left: 74px;
+			padding: 30px 0px 30px 74px;
 			h2 {
 				font-size: 40px;
 				line-height: 49px;
@@ -125,7 +130,8 @@
 		background-image: url(../../assets/images/System-licensing/system-banner.png);
 		background-size: cover;
 		background-position: center;
-		height: 389px;
+		display: flex;
+		align-items: center;
 	}
 	.why-sistic{
 		padding: 57px 0 74px 0;

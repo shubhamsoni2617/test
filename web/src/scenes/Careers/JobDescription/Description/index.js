@@ -5,6 +5,9 @@ import experince from '../../../../assets/images/job-description/experince.svg';
 import { Link } from 'react-scroll';
 
 const Description = ({ jobDetail, jobDetailErr }) => {
+  const capitalizeFirstLetter = string => {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+  };
   return (
     <div className="job-des-wrapper">
       <h2>
@@ -17,13 +20,13 @@ const Description = ({ jobDetail, jobDetailErr }) => {
         {jobDetail && jobDetail.location && (
           <span className="experince">
             <img src={place} alt="place" />
-            {jobDetail.location}
+            {capitalizeFirstLetter(jobDetail.location)}
           </span>
         )}
         {jobDetail && jobDetail.experience && (
           <span className="experince">
             <img src={experince} alt="experince" />
-            {jobDetail.experience}
+            {jobDetail.experience} Experience
           </span>
         )}
       </div>

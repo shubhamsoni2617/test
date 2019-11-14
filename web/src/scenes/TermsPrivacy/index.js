@@ -3,7 +3,7 @@ import termsBanner from '../../assets/images/tc-banner.png';
 import TermsAndPrivacyService from '../../shared/services/TermsAndPrivacyService';
 import './style.scss';
 
-const TermsPrivacy = props => {
+const TermsPrivacy = ({ cmsPageType }) => {
   const [termsprivacy, setTermsPrivacy] = useState(null);
   const [tabTitle, setTabTitle] = useState('');
   const [tabDescription, setTabDescription] = useState('');
@@ -16,24 +16,55 @@ const TermsPrivacy = props => {
   }, []);
 
   const fetchTermsConditions = () => {
-    const params = {
-      type: props.cmsPageType
-    };
-    TermsAndPrivacyService.getTermsAndPrivacyService(params)
+    TermsAndPrivacyService.getTermsAndPrivacyService()
       .then(res => {
         let data = res.data.data;
         setTermsPrivacy(data);
-        setTabTitle(data.terms_cond.title);
-        setTabDescription(data.terms_cond.description);
+        cmsPageTypeRendering(cmsPageType, data);
       })
       .catch(err => {
         console.log(err);
       });
   };
 
+  const cmsPageTypeRendering = (pageType, data) => {
+    switch (pageType) {
+      case 1:
+        setTabTitle(data.terms_cond.title);
+        setTabDescription(data.terms_cond.description);
+        break;
+      case 2:
+        setTabTitle(data.privacy_policy.title);
+        setTabDescription(data.privacy_policy.description);
+        break;
+      case 3:
+        setTabTitle(data.conditions.title);
+        setTabDescription(data.conditions.description);
+        break;
+      case 4:
+        setTabTitle(data.transaction_security.title);
+        setTabDescription(data.transaction_security.description);
+        break;
+    }
+  };
   const handleActiveTab = (title, description) => {
     setTabTitle(title);
     setTabDescription(description);
+    let shareUrl = window.location.origin + renderSpecificLink(title);
+    window.history.pushState('string', 'Title', shareUrl);
+  };
+
+  const renderSpecificLink = title => {
+    switch (title) {
+      case 'Terms and Conditions of Ticket Sales ':
+        return '/terms-and-conditions';
+      case 'Privacy Policy':
+        return '/privacy-policy';
+      case 'Conditions of Access of  SISTIC Website':
+        return '/condition-of-access';
+      case 'Transaction Security':
+        return '/transaction-security';
+    }
   };
 
   if (termsprivacy) {
@@ -51,6 +82,7 @@ const TermsPrivacy = props => {
             <h1>{tabTitle}</h1>
           </div>
         </div>
+
         <div className="promotions-nav container">
           <ul className="nav nav-tabs" id="nav-tab" role="tablist">
             {termsPrivacyArr &&
@@ -74,6 +106,7 @@ const TermsPrivacy = props => {
               })}
           </ul>
         </div>
+
         <div className="terms-privacy-body">
           <div
             className="container"

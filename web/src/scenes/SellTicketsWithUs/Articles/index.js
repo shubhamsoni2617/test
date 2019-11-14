@@ -1,14 +1,9 @@
 import React from 'react';
 import './style.scss';
 import downloadIcon from '../../../../src/assets/images/download-icon.svg';
-import article1 from '../../../../src/assets/images/article-1.png';
-import article2 from '../../../../src/assets/images/article-2.jpg';
-import article3 from '../../../../src/assets/images/article-3.jpg';
-import article4 from '../../../../src/assets/images/article-4.jpg';
-import article5 from '../../../../src/assets/images/article-5.jpg';
-import article6 from '../../../../src/assets/images/article-6.jpg';
-import article7 from '../../../../src/assets/images/article-7.jpg';
-import article8 from '../../../../src/assets/images/article-8.jpg';
+import Image from '../../../shared/components/Image';
+import Utilities from '../../../shared/utilities';
+import EventHeading from '../../../shared/components/EventHeading';
 
 const Articles = ({ articles }) => {
   return (
@@ -24,17 +19,18 @@ const Articles = ({ articles }) => {
                 return (
                   <div className="article" key={index}>
                     <div className="article-img">
-                      <img
-                        src={article.image}
-                        alt="article-1"
-                        className="img-fluid"
-                      />
+                      <Image src={article.image} type="Horizontal" />
                     </div>
                     <div className="article-content">
                       <a>
                         <span>{article.category}</span>
                       </a>
-                      <h3>{article.title}</h3>
+                      <EventHeading
+                        title={article.title}
+                        lines={2}
+                        height={Utilities.mobileAndTabletcheck() ? 19 : 23}
+                      />
+
                       <p
                         dangerouslySetInnerHTML={{
                           __html: article.description

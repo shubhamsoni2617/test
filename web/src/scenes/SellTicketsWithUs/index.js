@@ -58,7 +58,7 @@ const SellTicketsWithUs = () => {
         company_name: companyName,
         contact_no: contactNo,
         event_name: eventName,
-        event_date: eventDate ? moment(eventDate).format('YYYY-MM-DD') : '',
+        event_date: eventDate,
         venue_name: venueName,
         event_capacity: eventCapacity,
         ticket_price: ticketPrice,
@@ -106,7 +106,12 @@ const SellTicketsWithUs = () => {
     const { name, value } = event.target;
     switch (name) {
       case 'name':
-        setName(trimSpace(value));
+        var letters = /^[a-zA-Z_ ]*$/;
+        if (value.match(letters)) {
+          setName(value);
+        } else {
+          setName('');
+        }
         break;
       case 'email':
         setEmail(value);
@@ -125,6 +130,9 @@ const SellTicketsWithUs = () => {
         break;
       case 'venue-name':
         setVenueName(trimSpace(value));
+        break;
+      case 'event-date':
+        setEventDate(trimSpace(value));
         break;
       case 'ticket-price':
         const allowOnlyNumInTicket = /^[0-9\b]+$/;
@@ -148,10 +156,6 @@ const SellTicketsWithUs = () => {
     }
     setSuccessMsg('');
     setServerErr([]);
-  };
-
-  const handleEventDate = eventDate => {
-    setEventDate(eventDate);
   };
 
   const handleCaptcha = captcha => {
@@ -181,49 +185,54 @@ const SellTicketsWithUs = () => {
   return (
     <div className="sell-ticket-wrapper">
       {/* SISTIC banner starts here */}
-      <Banner
-        bannerTitle={banner_title}
-        bannerDescription={banner_description}
-        buttonLink={button_link}
-        buttonText={button_text}
-      />
+      {banner_title && (
+        <Banner
+          bannerTitle={banner_title}
+          bannerDescription={banner_description}
+          buttonLink={button_link}
+          buttonText={button_text}
+        />
+      )}
       {/* SISTIC event ticket blog */}
-      <EventTicket
-        events={events}
-        partnership={partnership}
-        tickets={tickets}
-        year={year}
-      />
+      {events && (
+        <EventTicket
+          events={events}
+          partnership={partnership}
+          tickets={tickets}
+          year={year}
+        />
+      )}
       {/* SISTIC strength */}
-      <SisticStrength content={content} />
+      {content && <SisticStrength content={content} />}
       {/* stucked help section */}
-      <StuckHelp content={content} />
+      {content && <StuckHelp content={content} />}
       {/* selling form */}
-      <SellingForm
-        content={content}
-        handleChange={handleChange}
-        name={name}
-        email={email}
-        contactNo={contactNo}
-        companyName={companyName}
-        eventName={eventName}
-        eventCapacity={eventCapacity}
-        venueName={venueName}
-        eventDate={eventDate}
-        ticketPrice={ticketPrice}
-        additionalInformation={additionalInformation}
-        captcha={captcha}
-        error={error}
-        loading={loading}
-        successMsg={successMsg}
-        serverErr={serverErr}
-        handleEventDate={handleEventDate}
-        handleCaptcha={handleCaptcha}
-        handleReset={handleReset}
-        handleSubmit={handleSubmit}
-      />
+      {content && (
+        <SellingForm
+          content={content}
+          handleChange={handleChange}
+          name={name}
+          email={email}
+          contactNo={contactNo}
+          companyName={companyName}
+          eventName={eventName}
+          eventCapacity={eventCapacity}
+          venueName={venueName}
+          eventDate={eventDate}
+          ticketPrice={ticketPrice}
+          additionalInformation={additionalInformation}
+          captcha={captcha}
+          error={error}
+          loading={loading}
+          successMsg={successMsg}
+          serverErr={serverErr}
+          handleCaptcha={handleCaptcha}
+          handleReset={handleReset}
+          handleSubmit={handleSubmit}
+        />
+      )}
       {/* articles section starts here */}
-      <Articles articles={articles} />
+      {articles && <Articles articles={articles} />}
     </div>
   );
 };
