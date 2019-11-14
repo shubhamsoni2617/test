@@ -163,6 +163,11 @@ const routes = [
     exact: true
   },
   {
+    path: '/explore',
+    component: Explore,
+    exact: true
+  },
+  {
     path: '/explore/articlelist',
     component: ArticleList,
     exact: true
@@ -170,11 +175,6 @@ const routes = [
   {
     path: '/explore/article',
     component: Article,
-    exact: true
-  },
-  {
-    path: '/explore',
-    component: Explore,
     exact: true
   },
   {
