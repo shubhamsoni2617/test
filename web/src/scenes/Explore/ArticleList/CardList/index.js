@@ -11,32 +11,27 @@ const CardList = ({ articleList, loadMore }) => {
       return (
         <div key={cardData.id}>
           <div className="event-block">
-            {/* <span className="featured-tag">{cardData.genre[0]}</span> */}
             <span className="featured-tag">{cardData.title}</span>
             <div className="event-img">
-              {/* <Image src={cardData.image} height="300px" /> */}
-              <img src={cardData.thumb_image} height="400px" />
+              <Image src={cardData.image} />
             </div>
             <div className="event-details">
               <div className="event-detail-prime">
-                {/* {cardData.tags &&
-                  cardData.tags.map(tag => {
-                    return <button className="">{tag}</button>;
-                  })} */}
-                {/* <div className="item-title">
+                {cardData.genre &&
+                  cardData.genre.map(genreName => {
+                    return <button className="">{genreName}</button>;
+                  })}
+                <span>{cardData.title}</span>
+                <div className="item-title">
                   <div
                     className="text-center sub-text"
                     dangerouslySetInnerHTML={{
                       __html: cardData.description
                     }}
                   />
-                </div> */}
-                {cardData.synopsis && (
-                  <span>{cardData.synopsis.slice(0, 65)}...</span>
-                )}
-                {cardData.synopsis && cardData.synopsis.length > 65 && (
-                  <span>More</span>
-                )}
+                </div>
+                <span>By {cardData.author_name}</span>
+                <span>{cardData.date}</span>
               </div>
             </div>
           </div>
