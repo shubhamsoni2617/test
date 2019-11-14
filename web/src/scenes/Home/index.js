@@ -7,6 +7,9 @@ import PromotionCarousel from './PromotionCarousel';
 import HotShowPopup from '../../shared/components/HotShowPopup';
 import FeaturedEvents from '../../shared/components/FeaturedEvents';
 import TrendingNow from './TrendingNow';
+import CustomSectionTwo from './CustomSectionTwo';
+import CustomSectionThree from './CustomSectionThree';
+import GiftCard from './GiftCard';
 import Explore from '../../shared/components/Explore';
 import Cookies from '../../shared/components/Cookies';
 import Image from '../../shared/components/Image';
@@ -19,7 +22,7 @@ import HomeService from '../../shared/services/HomeService';
 import Utilities from '../../shared/utilities';
 import Constants from '../../shared/constants';
 import AdvertisementService from '../../shared/services/AdvertisementService';
-import CustomSection from './CustomSection';
+// import CustomSection from './CustomSection';
 import TopPics from './TopPics';
 // import Royals from './Royals';
 
@@ -34,40 +37,18 @@ class Home extends Component {
       modalContent: '',
       newsTickerStatus: true,
       imageUrl: '',
-      giftCard: [],
       itemsOrder: []
     };
     this.homePageRef = createRef();
   }
 
   componentDidMount() {
-    this.getSidePanelBetweenTopPicksFeaturedEvents();
     this.getItemsOrder();
   }
 
   showNewsTicker = data => {
     this.setState(data);
   };
-
-  getSidePanelBetweenTopPicksFeaturedEvents() {
-    const params = {
-      client: Constants.CLIENT,
-      limit: 1,
-      first: 0,
-      sort_order: 'DESC'
-    };
-    AdvertisementService.getSidePanelBetweenTopPicksFeaturedEvents(params)
-      .then(res => {
-        if (res && res.data) {
-          this.setState({ giftCard: res.data.data });
-        }
-      })
-      .catch(err => {
-        if (err && err.response) {
-          console.log(err.response);
-        }
-      });
-  }
 
   getItemsOrder() {
     const params = {
@@ -87,7 +68,6 @@ class Home extends Component {
   }
 
   render() {
-    const { giftCard } = this.state;
     return (
       <div className="home-page-wrapper" ref={this.homePageRef}>
         <NewsTicker
@@ -105,44 +85,23 @@ class Home extends Component {
         </div>
         {this.state.itemsOrder &&
           this.state.itemsOrder.length > 0 &&
-          this.state.itemsOrder.map(components => {
-            switch (components.sec_key) {
+          this.state.itemsOrder.map(({ sec_key, label }) => {
+            switch (sec_key) {
               case 'TOP_PICKS':
-                return <TopPics />;
+                return <TopPics heading={label} />;
               case 'MID_PANEL':
-                return (
-                  giftCard &&
-                  giftCard.map(elem => {
-                    return (
-                      <div className="adds-container" key={elem.title}>
-                        <a
-                          href={elem && elem.navigation_link}
-                          className="giftcard-anchor"
-                          target="_blank"
-                          key={elem.title}
-                        >
-                          <img
-                            src={elem && elem.full_image}
-                            className="img-fluid"
-                            alt={elem && elem.alt_text}
-                            title={elem && elem.title}
-                          />
-                        </a>
-                      </div>
-                    );
-                  })
-                );
+                return <GiftCard />;
               case 'FEATURED_EVENTS':
                 return (
                   <FeaturedEvents
                     api={AdvertisementService.getFeaturedEvents}
-                    heading="Featured Events"
+                    heading={label}
                   />
                 );
               case 'CURRENTLY_SHOWING':
                 return (
                   <CarouselConatiner
-                    title="Currently Showing"
+                    title={label}
                     classStr="currently-showing"
                     autoplay={true}
                     infinite={false}
@@ -150,13 +109,13 @@ class Home extends Component {
                   />
                 );
               case 'PROMOTIONS':
-                return <PromotionCarousel />;
+                return <PromotionCarousel heading={label} />;
               case 'TRENDING_NOW':
-                return <TrendingNow />;
+                return <TrendingNow heading={label} />;
               case 'WHATS_NEW':
                 return (
                   <CarouselConatiner
-                    title="What's New"
+                    title={label}
                     classStr="whats-new"
                     arrows={true}
                     autoplay={false}
@@ -165,14 +124,22 @@ class Home extends Component {
                   />
                 );
               case 'EXPLORE':
-                return <Explore />;
+                return <Explore heading={label} />;
               case 'CUS_SEC_1':
+                return (
+                  <FeaturedEvents
+                    heading={label}
+                    api={AdvertisementService.getCustomizeSectionOne}
+                    cssClassName="alternate-featured-events"
+                  />
+                );
               case 'CUS_SEC_2':
+                return <CustomSectionTwo heading={label} />;
               case 'CUS_SEC_3':
+                return <CustomSectionThree heading={label} />;
             }
           })}
 
-        <CustomSection />
         <InstagramFeed />
         <Cookies />
         <ModalPopup
