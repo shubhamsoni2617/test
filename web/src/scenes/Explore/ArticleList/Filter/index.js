@@ -9,6 +9,7 @@ const Filter = ({
   showHeader,
   closeFilters
 }) => {
+  console.log(dataToFilter);
   const onChange = (e, id) => {
     console.log(e.target.checked);
     handleFilters(id, e.target.checked, filterTitle);

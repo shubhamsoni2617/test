@@ -29,7 +29,7 @@ const ArticleList = props => {
     Utilities.mobileAndTabletcheck() ? 6 : 6
   );
   const [loadMore, setLoadMore] = useState(false);
-  const [totalResults, setTotalResults] = useState(0);
+  const [totalResults, setTotalResults] = useState(8);
   const [first, setFirst] = useState(0);
   const [showFilter, setShowFilters] = useState('');
   const [filteredTags, setFilteredTags] = useState([]);
@@ -48,14 +48,19 @@ const ArticleList = props => {
 
   useEffect(() => {
     getArticleList();
-  }, [constant]);
+  }, [constant, filteredTags.toString(), filteredCategories.toString()]);
 
   const getArticleList = () => {
     const params = {
       first: first,
       client: 1,
-      limit: constant
+      limit: constant,
+      category: filteredCategories.toString(),
+      tags: filteredTags.toString()
     };
+    if (!loadMore) {
+      setArticleList([]);
+    }
     setTimeout(() => {
       ExploreService.getExploreArticleList(params)
         .then(res => {
@@ -127,7 +132,7 @@ const ArticleList = props => {
 
   const filterComponent = (data, title, showComponent) => {
     return showComponent || width > 767 ? (
-      data.length ? (
+      data && data.length ? (
         <Filter
           dataToFilter={data}
           handleFilters={handleFilters}
