@@ -1,6 +1,6 @@
 import React from 'react';
 import './style.scss';
-import Trending1 from '../../../assets/images/trending1.png';
+import Trending1 from '../../../../assets/images/trending1.png';
 
 const Trending = ({}) => {
   return (

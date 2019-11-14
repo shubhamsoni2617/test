@@ -1,6 +1,6 @@
 import React from 'react';
 import './style.scss';
-import ArticleImg from '../../../../assets/images/explore-article.png';
+import ArticleImg from '../../../../../assets/images/explore-article.png';
 
 const Article = () => {
   return (

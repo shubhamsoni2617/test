@@ -1,9 +1,9 @@
 import React from 'react';
 import './style.scss';
-import Sifa from '../../../assets/images/sifa.png';
-import Festival from '../../../assets/images/festival.png';
-import Chinese from '../../../assets/images/chinese.png';
-import Chritmas from '../../../assets/images/christmas.png';
+import Sifa from '../../../../assets/images/sifa.png';
+import Festival from '../../../../assets/images/festival.png';
+import Chinese from '../../../../assets/images/chinese.png';
+import Chritmas from '../../../../assets/images/christmas.png';
 
 const WhatsUp = ({}) => {
   return (

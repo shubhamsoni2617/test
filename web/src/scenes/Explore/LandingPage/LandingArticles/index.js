@@ -1,6 +1,6 @@
 import React from 'react';
 import './style.scss';
-import Arrow from '../../../assets/images/right-arrow.svg';
+import Arrow from '../../../../assets/images/right-arrow.svg';
 import Article from './Article';
 
 const LandingArticles = ({}) => {

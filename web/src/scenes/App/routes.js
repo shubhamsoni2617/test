@@ -21,7 +21,7 @@ import SystemLicensing from '../SystemLicensing';
 import Advertise from '../Advertise';
 import SellTicketsWithUs from '../SellTicketsWithUs';
 import LandingPage from '../LandingPage';
-import Explore from '../Explore';
+import Explore from '../Explore/LandingPage';
 import ArticleList from '../Explore/ArticleList';
 import Article from '../Explore/Article';
 

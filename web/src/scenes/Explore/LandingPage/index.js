@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './style.scss';
-import ExploreService from '../../shared/services/ExploreService';
+import ExploreService from '../../../shared/services/ExploreService';
 import Banner from './Banner';
 import WhatsUp from './WhatsUp';
 import LandingArticles from './LandingArticles';

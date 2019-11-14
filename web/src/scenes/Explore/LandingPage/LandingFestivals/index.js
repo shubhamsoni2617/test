@@ -1,10 +1,10 @@
 import React from 'react';
 import './style.scss';
-import Arrow from '../../../assets/images/right-arrow.svg';
-import GreatWine from '../../../assets/images/great-wine.png';
-import chrolFest from '../../../assets/images/choral-festival.png';
-import nightFest from '../../../assets/images/nightfest.png';
-import sentosaFest from '../../../assets/images/sentosa-fest.png';
+import Arrow from '../../../../assets/images/right-arrow.svg';
+import GreatWine from '../../../../assets/images/great-wine.png';
+import chrolFest from '../../../../assets/images/choral-festival.png';
+import nightFest from '../../../../assets/images/nightfest.png';
+import sentosaFest from '../../../../assets/images/sentosa-fest.png';
 
 const LandingFestivals = ({}) => {
   return (

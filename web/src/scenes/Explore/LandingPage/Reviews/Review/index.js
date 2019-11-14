@@ -1,8 +1,8 @@
 import React from 'react';
 import './style.scss';
-import Survey from '../../../../assets/images/survey.png';
-import surveySmall from '../../../../assets/images/survey-small.png';
-import rightArrow from '../../../../assets/images/right-arrow.svg';
+import Survey from '../../../../../assets/images/survey.png';
+import surveySmall from '../../../../../assets/images/survey-small.png';
+import rightArrow from '../../../../../assets/images/right-arrow.svg';
 
 const Review = ({ heading }) => {
   return (
