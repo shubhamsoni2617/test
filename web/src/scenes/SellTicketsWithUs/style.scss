@@ -7,6 +7,9 @@
         min-height: 389px;
         align-items: center;
         display: flex;
+        @media(max-width: 991px){
+            min-height: auto;
+        }
         .banner-content{
             max-width: 830px;
             display: flex;
@@ -77,6 +80,16 @@
                     padding-left: 30px;
                 }
             }
+            &:nth-child(odd){
+                @media(max-width: 767px){
+                    margin: 0 0px 20px 0;
+                    padding-left: 0px;
+                }
+            }
+            .image-conatiner{
+                flex: 0 0 auto;
+                width: auto;
+            }
             img {
                 padding-right: 18px;
                 padding-top: 10px;
@@ -109,6 +122,14 @@
                     line-height: 17px;
                     font-family: 'Rubik', sans-serif;
                     color: #fff;
+                    word-break: break-all;
+                    @media(max-width: 992px){
+                        font-size: 13px;
+                    }
+                    @media(max-width: 576px){
+                        font-size: 11px;
+                        line-height: 15px;
+                    }
                 }
             }
         }
@@ -268,6 +289,12 @@
         &.security-info{
             max-width: 437px;
             margin: 0 auto;
+            @media(max-width: 991px){
+                min-width: 340px;
+            }
+            @media(max-width: 576px){
+                min-width: auto;
+            }
         }
         .seller-info-heading{
             width: 100%;
@@ -443,11 +470,18 @@
                 padding: 11px 18px;
                 transition: width .3s ease-in;
                 width: auto;
-               a{
+               a,span{
                 color: #0098FF;
                 font-family: 'Rubik', sans-serif;
                 font-size: 14px;
                 line-height: 17px;
+                text-overflow: ellipsis;
+                display: block;
+                -webkit-line-clamp: 1;                
+                overflow: hidden;
+                height: auto;
+                white-space: nowrap;
+                /* autoprefixer: off */ -webkit-box-orient: vertical; /* autoprefixer: on */
                 }
                 h3{
                     color: #343434;
@@ -456,6 +490,12 @@
                     line-height: 22px;
                     padding-bottom: 14px;
                     padding-top: 4px;
+                    text-overflow: ellipsis;
+                    display: -webkit-box;
+                    -webkit-line-clamp: 2;                
+                    overflow: hidden;
+                    height: auto;
+                    /* autoprefixer: off */ -webkit-box-orient: vertical; /* autoprefixer: on */
                 }
                 p{
                     color: #626262;
@@ -464,6 +504,12 @@
                     line-height: 16px;
                     display: none;
                     transition: all .3s ease-in-out;
+                    text-overflow: ellipsis;
+                    display: -webkit-box;
+                    -webkit-line-clamp: 2;                
+                    overflow: hidden;
+                    height: auto;
+                    /* autoprefixer: off */ -webkit-box-orient: vertical; /* autoprefixer: on */
                 }
             }
             .download-icon{
@@ -489,6 +535,10 @@
                 img{
                     height: auto;
                     width: auto;
+                    position: absolute;
+                    transform: translate(-50%, -50%);
+                    top: 50%;
+                    left: 50%;
                 }
             }
             &:hover{
@@ -500,7 +550,8 @@
                 .article-content{
                     transition: width .3s ease-in;
                     p{
-                        display: block;
+                        opacity: 1;
+                        height: auto;
                         transition: all .3s ease-in;
                     }
 
@@ -521,14 +572,6 @@
             img{
                 padding-right: 12px;
             }
-            .year-content{
-                span{
-                    font-size: 40px;
-                }
-                p{
-                    font-size: 13px;
-                }
-            }
 
         }
     }
@@ -539,6 +582,7 @@
             .team-wrapper{
                 .team-content{
                     padding: 36px 27px 35px 30px;
+                    min-height: auto;
                     p{
                         padding: 0px;
                     }
@@ -613,7 +657,22 @@
             .team-content{
                 flex: 0 0 100%;
                 max-width: 100%;
-                padding: 36px 27px 25px 30px;
+                //padding: 36px 27px 25px 30px;
+                padding: 26px 27px 25px 30px;
+                min-height: auto;
+                h3{
+                    padding-bottom: 18px;
+                }
+                p{
+                    font-size: 15px;
+                    line-height: 22px;
+                }
+                a{
+                    margin-top: 15px;
+                    padding: 9px 19px;
+                    font-size: 15px;
+                    line-height: 16px;
+                }
             }
             .team-img{
                 max-width: 100%;
@@ -707,17 +766,7 @@
                 // }
                 img{
                     max-width: 48px;
-                }
-                .year-content{
-                    span{
-                        font-size: 25px;
-                        line-height: 33px;
-                    }
-                    p{
-                        font-size: 11px;
-                        line-height: 15px;
-                    }
-                }
+                }                
             }
         }
     }
