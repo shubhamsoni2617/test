@@ -34,13 +34,15 @@ class Home extends Component {
       modalContent: '',
       newsTickerStatus: true,
       imageUrl: '',
-      giftCard: []
+      giftCard: [],
+      itemsOrder: []
     };
     this.homePageRef = createRef();
   }
 
   componentDidMount() {
     this.getSidePanelBetweenTopPicksFeaturedEvents();
+    this.getItemsOrder();
   }
 
   showNewsTicker = data => {
@@ -67,6 +69,23 @@ class Home extends Component {
       });
   }
 
+  getItemsOrder() {
+    const params = {
+      client: Constants.CLIENT
+    };
+    HomeService.getItemsOrder(params)
+      .then(res => {
+        if (res && res.data) {
+          this.setState({ itemsOrder: res.data.data });
+        }
+      })
+      .catch(err => {
+        if (err && err.response) {
+          console.log(err.response);
+        }
+      });
+  }
+
   render() {
     const { giftCard } = this.state;
     return (
@@ -84,53 +103,75 @@ class Home extends Component {
           />
           {/* <img className={`main-image ${this.state.imageUrl ? 'show-image' : ''}`} src={primeSlider} alt="prime Slider" /> */}
         </div>
-        <TopPics />
-        {giftCard &&
-          giftCard.map(elem => {
-            return (
-              <div className="adds-container" key={elem.title}>
-                <a
-                  href={elem && elem.navigation_link}
-                  className="giftcard-anchor"
-                  target="_blank"
-                  key={elem.title}
-                >
-                  {/* <section className="gift-cart">
-                    <div className="gift-cart-image"> */}
-                  <img
-                    src={elem && elem.full_image}
-                    className="img-fluid"
-                    alt={elem && elem.alt_text}
-                    title={elem && elem.title}
+        {this.state.itemsOrder &&
+          this.state.itemsOrder.length > 0 &&
+          this.state.itemsOrder.map(components => {
+            switch (components.sec_key) {
+              case 'TOP_PICKS':
+                return <TopPics />;
+              case 'MID_PANEL':
+                return (
+                  giftCard &&
+                  giftCard.map(elem => {
+                    return (
+                      <div className="adds-container" key={elem.title}>
+                        <a
+                          href={elem && elem.navigation_link}
+                          className="giftcard-anchor"
+                          target="_blank"
+                          key={elem.title}
+                        >
+                          <img
+                            src={elem && elem.full_image}
+                            className="img-fluid"
+                            alt={elem && elem.alt_text}
+                            title={elem && elem.title}
+                          />
+                        </a>
+                      </div>
+                    );
+                  })
+                );
+              case 'FEATURED_EVENTS':
+                return (
+                  <FeaturedEvents
+                    api={AdvertisementService.getFeaturedEvents}
+                    heading="Featured Events"
                   />
-                  {/* </div>
-                  </section> */}
-                </a>
-              </div>
-            );
+                );
+              case 'CURRENTLY_SHOWING':
+                return (
+                  <CarouselConatiner
+                    title="Currently Showing"
+                    classStr="currently-showing"
+                    autoplay={true}
+                    infinite={false}
+                    api={HomeService.getCurrentlyShowing}
+                  />
+                );
+              case 'PROMOTIONS':
+                return <PromotionCarousel />;
+              case 'TRENDING_NOW':
+                return <TrendingNow />;
+              case 'WHATS_NEW':
+                return (
+                  <CarouselConatiner
+                    title="What's New"
+                    classStr="whats-new"
+                    arrows={true}
+                    autoplay={false}
+                    infinite={false}
+                    api={HomeService.getNewRelease}
+                  />
+                );
+              case 'EXPLORE':
+                return <Explore />;
+              case 'CUS_SEC_1':
+              case 'CUS_SEC_2':
+              case 'CUS_SEC_3':
+            }
           })}
-        <FeaturedEvents
-          api={AdvertisementService.getFeaturedEvents}
-          heading="Featured Events"
-        />
-        <CarouselConatiner
-          title="Currently Showing"
-          classStr="currently-showing"
-          autoplay={true}
-          infinite={false}
-          api={HomeService.getCurrentlyShowing}
-        />
-        <PromotionCarousel />
-        <TrendingNow />
-        <CarouselConatiner
-          title="What's New"
-          classStr="whats-new"
-          arrows={true}
-          autoplay={false}
-          infinite={false}
-          api={HomeService.getNewRelease}
-        />
-        <Explore />
+
         <CustomSection />
         <InstagramFeed />
         <Cookies />
