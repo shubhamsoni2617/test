@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import CardList from './CardList';
-import EventsService from '../../../shared/services/EventsService';
 import DownArrowBlue from '../../../assets/images/down-arrow-blue.svg';
 import Breadcrumb from '../../../scenes/App/Breadcrumb';
 import loaderImage from '../../../assets/images/loader.svg';
@@ -29,7 +28,7 @@ const ArticleList = props => {
     Utilities.mobileAndTabletcheck() ? 6 : 6
   );
   const [loadMore, setLoadMore] = useState(false);
-  const [totalResults, setTotalResults] = useState(8);
+  const [totalResults, setTotalResults] = useState(0);
   const [first, setFirst] = useState(0);
   const [showFilter, setShowFilters] = useState('');
   const [filteredTags, setFilteredTags] = useState([]);
@@ -72,13 +71,14 @@ const ArticleList = props => {
       setConstant(6);
       articleListData = [];
       setArticleList([]);
+      setTotalResults(0);
     }
     setTimeout(() => {
       ExploreService.getExploreArticleList(params)
         .then(res => {
           console.log(res.data.data);
           setArticleList([...articleListData, ...res.data.data]);
-          // setTotalResults(res.data.total_records);
+          setTotalResults(res.data.total_records);
           setLoadMore(false);
         })
         .catch(err => {
@@ -147,13 +147,12 @@ const ArticleList = props => {
       }
     }
   };
-  // console.log(filteredTags);
-  // console.log(filteredCategories);
 
   const closeFilters = () => {
     setShowTags(false);
     setShowCategories(false);
   };
+
   const handleFiltersForMobile = filterTitle => {
     if (filterTitle === 'Tags') {
       setFilteredTags(filteredTagsForMobile);

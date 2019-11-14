@@ -23,12 +23,14 @@ const CardList = ({ articleList, loadMore }) => {
                   })}
                 <span>{cardData.title}</span>
                 <div className="item-title">
-                  <div
+                  {/* <div
                     className="text-center sub-text"
                     dangerouslySetInnerHTML={{
                       __html: cardData.description
                     }}
-                  />
+                  /> */}
+                  <p>{cardData.description.slice(0, 60)}</p>
+                  <span>...More</span>
                 </div>
                 <span>By {cardData.author_name}</span>
                 <span>{cardData.date}</span>
