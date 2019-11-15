@@ -145,6 +145,15 @@
             @media(max-width: 991px){
                 padding: 5px 0px 5px;
             }
+            span{
+              color: #949494;
+                font-size: 15px;
+                line-height: 20px;
+                word-break: break-word;
+                @media(max-width: 767px){
+                    font-size: 14px;
+                }
+            }
             a{
                 color: #949494;
                 font-size: 15px;
@@ -152,6 +161,9 @@
                 word-break: break-word;
                 @media(max-width: 767px){
                     font-size: 14px;
+                }
+                &:hover{
+                  color: #0098FF;
                 }
             }
         }
