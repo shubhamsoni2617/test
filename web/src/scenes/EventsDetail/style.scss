@@ -147,8 +147,12 @@
             }
             a{
                 color: #949494;
-                font-size: 14px;
-                line-height: 18px;
+                font-size: 15px;
+                line-height: 20px;
+                word-break: break-word;
+                @media(max-width: 767px){
+                    font-size: 14px;
+                }
             }
         }
           .title{
