@@ -1,4 +1,5 @@
-.event-banner{
+.festival-wrapper{
+    .event-banner{
         background-image: url("../../../assets/images/sell-tickets-banner.jpg");
         background-size: cover;
         background-position: center;
@@ -15,7 +16,7 @@
             p{
                 span{
                     color: #0098FF;
-                    font-family: Rubik;
+                    font-family: 'Rubik', sans-serif;
                     font-size: 14px;
                     line-height: 17px;
                     &:last-child{
@@ -36,7 +37,7 @@
         }
         h2{
             color: #343434;
-            font-family: Montserrat;
+            font-family: 'Montserrat', sans-serif;
             font-size: 32px;
             font-weight: 600;
             line-height: 39px;
@@ -48,7 +49,7 @@
         }
         span{
             color: #626262;
-            font-family: Rubik;
+            font-family: 'Rubik', sans-serif;
             font-size: 14px;
             font-style: italic;
             line-height: 17px;
@@ -62,7 +63,7 @@
         }
         p{
             color: #949494;
-            font-family: Rubik;
+            font-family: 'Rubik', sans-serif;
             font-size: 16px;
             line-height: 24px;
             padding-bottom: 27px;
@@ -93,7 +94,7 @@
                     }
                     h2{
                         color: #FFFFFF;
-                        font-family: Montserrat;
+                        font-family: 'Montserrat', sans-serif;
                         font-size: 30px;
                         font-weight: 600;
                         line-height: 37px;
@@ -107,19 +108,22 @@
                       display: flex;
                       flex-direction: column;
                       width: 100%;
-                    }
-                    img{
-                        max-width: 277px;
+                      img{
+                        width: 100%;
+                        max-width: 100%;
                         height: auto;
+                        max-height: 429px;
+                        object-position: center;
+                        object-fit: cover;
                         @media(max-width: 768px){
                             max-height: 171px;
                             max-width: 107px;
-
                         }
+                      }
                     }
                     h3{
                         color: #FFFFFF;
-                        font-family: Rubik;
+                        font-family: 'Rubik', sans-serif;
                         font-size: 18px;
                         font-weight: 500;
                         line-height: 22px;
@@ -131,7 +135,7 @@
                     }
                     p{
                         color: #B5BDC3;
-                        font-family: Rubik;
+                        font-family: 'Rubik', sans-serif;
                         font-size: 14px;
                         line-height: 20px;
                         @media(max-width:567px){
@@ -150,7 +154,7 @@
                     }
                     h2{
                         color: #343434;
-                        font-family: Montserrat;
+                        font-family: 'Montserrat', sans-serif;
                         font-size: 30px;
                         font-weight: 600;
                         line-height: 37px;
@@ -170,6 +174,33 @@
                         div{
                             width: 100%;
                         }
+                        .slick-arrow {
+                            position: absolute;
+                            top: 0px;
+                            right: 0px;
+                            width: 10px;
+                            height: 20px;
+                            transform: none;
+                            border: 1px solid transparent;
+                            background-color: transparent;
+                            margin-top: -46px;
+                            background-position: 0px;
+                            background-image: url('../../../assets/images/arrow-right.svg');
+                            .slick-prev{
+                                right: 0px;
+                                transform: none;
+                                left: auto !important;
+                                margin-right: 70px;
+                                transform: rotate(180deg) !important;
+                                margin-top: -45px !important;
+                            }
+                            .slick-next{
+                                right: 0px;
+                                transform: none;
+                                left: auto;
+                                margin-right: 30px;
+                            }
+                        }
                         .slick-slide{
                           & > div{
                             display: flex;
@@ -178,27 +209,27 @@
                         }
                         .event{
                             margin: 0 33px;
-                            flex: 0 0 33%;
-                            width: 100%;
-                            @media(max-width: 1024px){
-                                margin: 0px 33px;
-                                flex: 1 0 33%;
-                                max-width: 33%;
-                            }
-                            @media(max-width: 992px){
-                                margin: 0 14px;
-                            }
-                            @media (max-width: 768px) {
-                                margin: 0px 5px;
-                                flex: 1 0 42%;
-                                max-width: 42%;
-                            }
+                            // flex: 0 0 33%;
+                            // width: 100%;
+                            // @media(max-width: 1024px){
+                            //     margin: 0px 33px;
+                            //     flex: 1 0 33%;
+                            //     max-width: 33%;
+                            // }
+                            // @media(max-width: 992px){
+                            //     margin: 0 14px;
+                            // }
+                            // @media (max-width: 768px) {
+                            //     margin: 0px 5px;
+                            //     flex: 1 0 42%;
+                            //     max-width: 42%;
+                            // }
                             img{
                                 width: 100%;
                             }
                             h2{
                                 color: #343434;
-                                font-family: Rubik;
+                                font-family: 'Rubik', sans-serif;
                                 font-size: 17px;
                                 font-weight: 500;
                                 line-height: 20px;
@@ -213,11 +244,12 @@
                             }
                             p{
                                 color: #626262;
-                                font-family: Rubik;
+                                font-family: 'Rubik', sans-serif;
                                 font-size: 14px;
                                 line-height: 24px;
                                 padding: 10px 0 5px;
                                 max-height: 183px;
+                                min-height: 183px;
                                 overflow: hidden;
                                 @media (max-width: 768px) {
                                     font-size: 11px;
@@ -229,7 +261,7 @@
                             }
                             a{
                                 color: #FFFFFF;
-                                font-family: Montserrat;
+                                font-family: 'Montserrat', sans-serif;
                                 font-size: 16px;
                                 font-weight: 600;
                                 line-height: 26px;
@@ -257,7 +289,7 @@
             padding: 23px 0;
         }
         .music-fest-box{
-            display: flex;
+            display: flex !important;
             flex-wrap: wrap;
             .fest-img{
                 flex-basis: 65%;
@@ -290,7 +322,7 @@
                 }
                 h2{
                     color: #343434;
-                    font-family: Rubik;
+                    font-family: 'Rubik', sans-serif;
                     font-size: 18px;
                     font-weight: 500;
                     line-height: 22px;
@@ -298,7 +330,7 @@
                 }
                 span{
                     color: #343434;
-                    font-family: Rubik;
+                    font-family: 'Rubik', sans-serif;
                     font-size: 15px;
                     font-weight: 500;
                     line-height: 22px;
@@ -306,7 +338,7 @@
                 }
                 p{
                     color: #626262;
-                    font-family: Rubik;
+                    font-family: 'Rubik', sans-serif;
                     font-size: 14px;
                     line-height: 24px;
                     padding: 8px 0 34px;
@@ -358,6 +390,9 @@
                     max-width: 40%;
                     margin: 10px 10px 10px 0;
                 }
+                .image-conatiner{
+                    height: auto;
+                }
                 img{
                     width: 100%;
                     // @media (max-width: 768px){
@@ -366,7 +401,7 @@
                 }
                 h2{
                     color: #343434;
-                    font-family: Rubik;
+                    font-family: 'Rubik', sans-serif;
                     font-size: 17px;
                     font-weight: 500;
                     line-height: 20px;
@@ -378,7 +413,7 @@
                 }
                 span{
                     color: #626262;
-                    font-family: Rubik;
+                    font-family: 'Rubik', sans-serif;
                     font-size: 14px;
                     line-height: 17px;
                     padding: 14px 0 7px;
@@ -390,7 +425,7 @@
                 }
                 p{
                     color: #626262;
-                    font-family: Rubik;
+                    font-family: 'Rubik', sans-serif;
                     font-size: 14px;
                     line-height: 17px;
                     @media(max-width: 768px){
@@ -401,7 +436,7 @@
         }
         a{
             color: #0098FF;
-            font-family: Montserrat;
+            font-family: 'Montserrat', sans-serif;
             font-size: 16px;
             font-weight: 600;
             line-height: 19px;
@@ -424,7 +459,7 @@
        .tickets{
            h2{
             color: #343434;
-            font-family: Montserrat;
+            font-family: 'Montserrat', sans-serif;
             font-size: 30px;
             font-weight: 600;
             line-height: 37px;
@@ -463,7 +498,7 @@
                    }
                    h3{
                     color: #343434;
-                    font-family: Rubik;
+                    font-family: 'Rubik', sans-serif;
                     font-size: 17px;
                     font-weight: 500;
                     line-height: 20px;
@@ -525,7 +560,7 @@
                 }
                 h2{
                     color: #343434;
-                    font-family: Rubik;
+                    font-family: 'Rubik', sans-serif;
                     font-size: 18px;
                     font-weight: 500;
                     line-height: 22px;
@@ -537,7 +572,7 @@
                 }
                 p{
                     color: #626262;
-                    font-family: Rubik;
+                    font-family: 'Rubik', sans-serif;
                     font-size: 14px;
                     line-height: 24px;
                     padding: 0 0 30px;
@@ -554,7 +589,7 @@
                 }
                 a{
                     color: #FFFFFF;
-                    font-family: Montserrat;
+                    font-family: 'Montserrat', sans-serif;
                     font-size: 16px;
                     font-weight: 600;
                     line-height: 26px;
@@ -572,3 +607,4 @@
         }
     }
   }
+}
