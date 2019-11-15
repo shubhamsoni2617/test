@@ -3,6 +3,7 @@ import './style.scss';
 import axios from 'axios';
 import { useCustomWidth } from '../../../../shared/components/CustomHooks';
 import Constants from '../../../../shared/constants';
+import Image from '../../../../assets/images/core-value.png';
 
 const SocialWall = ({ socialUrl }) => {
   const [width] = useCustomWidth();
@@ -29,7 +30,33 @@ const SocialWall = ({ socialUrl }) => {
     }
   }, [socialUrl]);
 
-  console.log(feeds);
+  const imagesArr = [
+    { path: Image, height: 100, width: 30 },
+    { path: Image, height: 50, width: 130 },
+    { path: Image, height: 200, width: 300 },
+    { path: Image, height: 400, width: 400 },
+    { path: Image, height: 100, width: 300 },
+    { path: Image, height: 100, width: 300 },
+    { path: Image, height: 100, width: 30 },
+    { path: Image, height: 50, width: 130 },
+    { path: Image, height: 200, width: 300 },
+    { path: Image, height: 400, width: 400 },
+    { path: Image, height: 100, width: 300 },
+    { path: Image, height: 100, width: 300 },
+    { path: Image, height: 100, width: 30 },
+    { path: Image, height: 50, width: 130 },
+    { path: Image, height: 200, width: 300 },
+    { path: Image, height: 400, width: 400 },
+    { path: Image, height: 100, width: 300 },
+    { path: Image, height: 100, width: 300 },
+    { path: Image, height: 100, width: 30 },
+    { path: Image, height: 50, width: 130 },
+    { path: Image, height: 200, width: 300 },
+    { path: Image, height: 400, width: 400 },
+    { path: Image, height: 100, width: 300 },
+    { path: Image, height: 100, width: 300 }
+  ];
+
   if (error) {
     return <div>Error: {error.message}</div>;
   } else if (!isLoaded) {
@@ -42,6 +69,18 @@ const SocialWall = ({ socialUrl }) => {
             <div className="container-fluid">
               <h2>SocialWall</h2>
             </div>
+            {/* <div className="sistic-moments-wrapper" style={{ width: '1400px' }}>
+              {imagesArr &&
+                imagesArr.map(feed => (
+                  <img
+                    src={feed.path}
+                    height={feed.height}
+                    width={feed.width}
+                    alt=""
+                  />
+                ))}
+            </div> */}
+
             <div className="sistic-moments-wrapper">
               {feeds &&
                 feeds.map(feed => (
