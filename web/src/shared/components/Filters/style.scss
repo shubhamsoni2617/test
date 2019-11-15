@@ -243,13 +243,13 @@
 
 .filters {
     width: 300px;
-    &:empty{
-        display: none;
-        & + .events-listing{
-            width: 100%;
-            margin-left: 0px;
-        }
-    }
+    // &:empty{
+    //     display: none;
+    //     & + .events-listing{
+    //         width: 100%;
+    //         margin-left: 0px;
+    //     }
+    // }
     .fixed-buttons{
         display: none;
     }
