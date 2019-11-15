@@ -6,7 +6,6 @@ import { useCustomWidth } from '../../../../shared/components/CustomHooks';
 import Constants from '../../../../shared/constants';
 
 const SocialWall = ({ socialUrl }) => {
-  console.log(socialUrl);
   const [width] = useCustomWidth();
   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
@@ -24,7 +23,11 @@ const SocialWall = ({ socialUrl }) => {
   useEffect(() => {
     if (socialUrl) {
       axios
-        .get(`${socialUrl}/?access_token=` + Constants.INSTAGRAM_ACCESS_TOKEN)
+        // .get(`${socialUrl}/?access_token=` + Constants.INSTAGRAM_ACCESS_TOKEN)
+        .get(
+          `https://api.instagram.com/v1/users/self/media/recent/?access_token=` +
+            Constants.INSTAGRAM_ACCESS_TOKEN
+        )
         .then(result => {
           setFeeds(result.data.data);
           setIsLoaded(true);
@@ -36,6 +39,7 @@ const SocialWall = ({ socialUrl }) => {
     }
   }, [socialUrl]);
 
+  console.log(feeds);
   if (error) {
     return <div>Error: {error.message}</div>;
   } else if (!isLoaded) {
@@ -44,22 +48,13 @@ const SocialWall = ({ socialUrl }) => {
     return (
       <section className="sistic-moments">
         <div className="container-fluid">
-          <h2>#SISTICMoments</h2>
+          <h2>SocialWall</h2>
         </div>
         <div className="sistic-moments-wrapper">
-          {width <= Constants.MOBILE_BREAK_POINT ? (
-            feeds &&
+          {feeds &&
             feeds.map(feed => (
               <img key={feed.id} src={feed.images.thumbnail.url} alt="" />
-            ))
-          ) : (
-            <Slider {...settings}>
-              {feeds &&
-                feeds.map(feed => (
-                  <img key={feed.id} src={feed.images.thumbnail.url} alt="" />
-                ))}
-            </Slider>
-          )}
+            ))}
         </div>
       </section>
     );

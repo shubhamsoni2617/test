@@ -21,6 +21,8 @@ const CustomSectionThree = ({ heading, customData }) => {
   useEffect(() => {
     if (customData && customData.length > 0) {
       setData(customData);
+      setUrl(customData[0].video_url);
+      setTitle(customData[0].title);
       setLoading(false);
     } else if (customData && !customData.length) {
       getData();

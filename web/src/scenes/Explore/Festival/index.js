@@ -55,20 +55,27 @@ const Festival = ({}) => {
   return (
     <div className="festival-wrapper">
       <SliderBanner />
-      <Welcome
-        breadcrumbSlug={breadcrumbSlug}
-        title={title}
-        subtitle={subtitle}
-        description={description}
-      />
-      <FestivalEventLineUp sectionOne={section_one} sectionTwo={section_two} />
-      <MusicFestival sectionThree={section_three} />
-      <AllEvents sectionFour={section_four} />
-      <SocialWall socialUrl={social_wall_url} />
-      <TicketDeals sectionFive={section_five} />
-      <Articles sectionSix={section_six} />
-      <PollNServeys sectionSeven={section_seven} />
-      <VideoGallery sectionEight={section_eigth} />
+      {title && (
+        <Welcome
+          breadcrumbSlug={breadcrumbSlug}
+          title={title}
+          subtitle={subtitle}
+          description={description}
+        />
+      )}
+      {section_one && section_two && (
+        <FestivalEventLineUp
+          sectionOne={section_one}
+          sectionTwo={section_two}
+        />
+      )}
+      {section_three && <MusicFestival sectionThree={section_three} />}
+      {section_four && <AllEvents sectionFour={section_four} />}
+      {social_wall_url && <SocialWall socialUrl={social_wall_url} />}
+      {section_five && <TicketDeals sectionFive={section_five} />}
+      {section_six && <Articles sectionSix={section_six} />}
+      {section_seven && <PollNServeys sectionSeven={section_seven} />}
+      {section_eigth && <VideoGallery sectionEight={section_eigth} />}
 
       {/* <div class="festival-wrapper"> */}
 
