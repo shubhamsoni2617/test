@@ -37,13 +37,73 @@ class Home extends Component {
       modalContent: '',
       newsTickerStatus: true,
       imageUrl: '',
-      itemsOrder: []
+      itemsOrder: [
+        {
+          data: [
+            {
+              sec_key: 'TOP_PICKS',
+              label: 'Top Picks For you',
+              hide_section: '0'
+            },
+            {
+              sec_key: 'MID_PANEL',
+              label: 'Mid Panel Ad Slot',
+              hide_section: '0'
+            },
+            {
+              sec_key: 'FEATURED_EVENTS',
+              label: 'Featured Events',
+              hide_section: '0'
+            },
+            {
+              sec_key: 'CURRENTLY_SHOWING',
+              label: 'Currently Showing',
+              hide_section: '1'
+            },
+            {
+              sec_key: 'PROMOTIONS',
+              label: 'Promotions',
+              hide_section: '0'
+            },
+            {
+              sec_key: 'TRENDING_NOW',
+              label: 'Trending Now',
+              hide_section: '1'
+            },
+            {
+              sec_key: 'WHATS_NEW',
+              label: "What's New",
+              hide_section: '0'
+            },
+            {
+              sec_key: 'EXPLORE',
+              label: 'Explore',
+              hide_section: '0'
+            },
+            {
+              sec_key: 'CUS_SEC_1',
+              label: 'Featured Events',
+              hide_section: '0'
+            },
+            {
+              sec_key: 'CUS_SEC_2',
+              label: 'Royals',
+              hide_section: '0'
+            },
+            {
+              sec_key: 'CUS_SEC_3',
+              label: 'Videos',
+              hide_section: '1'
+            }
+          ]
+        }
+      ]
     };
     this.homePageRef = createRef();
   }
 
   componentDidMount() {
-    this.getItemsOrder();
+    // this.getItemsOrder();
   }
 
   showNewsTicker = data => {
