@@ -2,12 +2,11 @@ import React, { Component, Fragment } from 'react';
 import './style.scss';
 import Image from '../../../../shared/components/Image';
 import Utilities from '../../../../shared/utilities';
-import EventHeading from '../../../../shared/components/EventHeading';
 import ShimmerEffect from '../../../../shared/components/ShimmerEffect';
+import noEvent from '../../../../assets/images/no-event.svg';
 
-const CardList = ({ articleList }) => {
-
-  let textLimit = Utilities.mobilecheck() ? 45 : 50
+const CardList = ({ articleList, totalRecords }) => {
+  let textLimit = Utilities.mobilecheck() ? 45 : 50;
   return articleList.length ? (
     articleList.map(cardData => {
       return (
@@ -23,18 +22,16 @@ const CardList = ({ articleList }) => {
                   <ul>
                     {cardData.genre &&
                       cardData.genre.map(genreName => {
-                        return <li><span className="">{genreName}</span></li>;
+                        return (
+                          <li>
+                            <span className="">{genreName}</span>
+                          </li>
+                        );
                       })}
                   </ul>
                 </div>
                 <h3>{cardData.title}</h3>
                 <div className="item-title">
-                  {/* <div
-                    className="sub-text"
-                    dangerouslySetInnerHTML={{
-                      __html: cardData.description
-                    }}
-                  />  */}
                   <span>{cardData.description.slice(0, textLimit)}</span>
                   <span className="article-show-more">...More</span>
                 </div>
@@ -48,15 +45,23 @@ const CardList = ({ articleList }) => {
         </div>
       );
     })
+  ) : totalRecords === 0 ? (
+    <ShimmerEffect
+      propCls={`${
+        Utilities.mobileAndTabletcheck() ? 'shm_col-xs-6' : ''
+      } col-md-4`}
+      height={150}
+      count={Utilities.mobileAndTabletcheck() ? 2 : 3}
+      type="LIST"
+    />
   ) : (
-      <ShimmerEffect
-        propCls={`${
-          Utilities.mobileAndTabletcheck() ? 'shm_col-xs-6' : ''
-          } col-md-4`}
-        height={150}
-        count={Utilities.mobileAndTabletcheck() ? 2 : 3}
-        type="LIST"
-      />
-    );
+    <div className="no-data">
+      <img src={noEvent} alt="No Event Data" />
+      <p>
+        <strong>No Data found</strong>
+      </p>
+      <p>Try again with more general search events</p>
+    </div>
+  );
 };
 export default CardList;
