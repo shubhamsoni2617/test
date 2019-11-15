@@ -23,14 +23,17 @@
     overflow: hidden;
     min-height: 377px;
     position: relative;
+    text-align: center;
     @media(max-width: 768px){   
         flex-direction: column-reverse;
         background-color: rgba(0, 0, 0, 0.77);
         min-height: auto;
     }
     .banner-content{
-        flex: 0 0 45%;
-        width: 45%;
+        // flex: 0 0 45%;
+        // width: 45%;
+        flex: 0 0 100%;
+        width: 100%; 
         //padding: 78px 60px 75px 83px;
         padding: 0px 60px 0px 83px;
         position: relative;
@@ -154,8 +157,12 @@
         }
     }
     .banner-slider{
-        flex: 0 0 55%;
-        width: 55%;
+        // flex: 0 0 55%;
+        // width: 55%;
+        flex: 0 0 80%;
+        width: 80%;
+        position: relative;
+        margin: 0 auto;
         position: relative;
         @media(max-width: 768px){
             flex: 0 0 100%;
