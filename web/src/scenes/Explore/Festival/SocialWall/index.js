@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, Fragment } from 'react';
 import './style.scss';
 import axios from 'axios';
 import { useCustomWidth } from '../../../../shared/components/CustomHooks';
@@ -36,17 +36,27 @@ const SocialWall = ({ socialUrl }) => {
     return <div className="instafeeds-loading">Loading...</div>;
   } else {
     return (
-      <section className="sistic-moments">
-        <div className="container-fluid">
-          <h2>SocialWall</h2>
-        </div>
-        <div className="sistic-moments-wrapper">
-          {feeds &&
-            feeds.map(feed => (
-              <img key={feed.id} src={feed.images.thumbnail.url} alt="" />
-            ))}
-        </div>
-      </section>
+      <Fragment>
+        {feeds && (
+          <section className="sistic-moments">
+            <div className="container-fluid">
+              <h2>SocialWall</h2>
+            </div>
+            <div className="sistic-moments-wrapper">
+              {feeds &&
+                feeds.map(feed => (
+                  <img
+                    key={feed.id}
+                    src={feed.images.thumbnail.url}
+                    height={feed.images.thumbnail.height}
+                    width={feed.images.thumbnail.width}
+                    alt=""
+                  />
+                ))}
+            </div>
+          </section>
+        )}
+      </Fragment>
     );
   }
 };
