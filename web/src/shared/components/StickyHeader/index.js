@@ -120,9 +120,40 @@ function BuyTicketsButtonPopup(props) {
     </>
   );
 }
-function EventDateTime({ show, showBlock, data, eventDate }) {
+
+function ViewAllDateTimeButton({
+  data,
+  eventDate,
+  altEventStartDate,
+  eventDateNotes,
+  setEventDateBlock
+}) {
+  // if (!show) return null;
+  if (
+    (!data || !data.length) &&
+    !eventDate &&
+    !altEventStartDate &&
+    !eventDateNotes
+  )
+    return null;
+
+  return (
+    <button className="link" onClick={() => setEventDateBlock(true)}>
+      View all Dates & Time
+    </button>
+  );
+}
+
+function EventDateTime({
+  show,
+  showBlock,
+  data,
+  eventDate,
+  altEventStartDate,
+  eventDateNotes
+}) {
   if (!show) return null;
-  if (!data || !data.length) return null;
+  // if (!data || !data.length) return null;
 
   return (
     <div className="event-dates-time-block">
@@ -140,13 +171,28 @@ function EventDateTime({ show, showBlock, data, eventDate }) {
               <span>{eventDate}</span>
             </li>
           )}
-          {data.map(date => {
-            return (
-              <li className="event-date">
-                <span>{date}</span>
-              </li>
-            );
-          })}
+          {altEventStartDate && (
+            <li className="event-date">
+              <span
+                dangerouslySetInnerHTML={{ __html: altEventStartDate }}
+              ></span>
+            </li>
+          )}
+          {eventDateNotes && (
+            <li className="event-date">
+              <span dangerouslySetInnerHTML={{ __html: eventDateNotes }}></span>
+            </li>
+          )}
+          {data &&
+            data.length > 0 &&
+            data[0] &&
+            data.map(date => {
+              return (
+                <li className="event-date">
+                  <span>{date}</span>
+                </li>
+              );
+            })}
         </ul>
       </div>
     </div>
@@ -187,6 +233,8 @@ function StickyHeader(props) {
         showBlock={setEventDateBlock}
         data={detailData.event_date_details}
         eventDate={detailData.event_date}
+        altEventStartDate={detailData.alt_event_start_date}
+        eventDateNotes={detailData.event_date_notes}
       />
       <div className="tickets-desc">
         {detailData.genres && detailData.genres.length > 0 && (
@@ -257,16 +305,13 @@ function StickyHeader(props) {
                 <img src={calendarImg} alt="cal-icon" />
                 <div>
                   <span>{detailData.event_date}</span>
-                  {detailData.event_date_details &&
-                    detailData.event_date_details.length &&
-                    detailData.event_date_details[0] && (
-                      <button
-                        className="link"
-                        onClick={() => setEventDateBlock(true)}
-                      >
-                        View all Dates & Time
-                      </button>
-                    )}
+                  <ViewAllDateTimeButton
+                    data={detailData.event_date_details}
+                    eventDate={detailData.event_date}
+                    altEventStartDate={detailData.alt_event_start_date}
+                    eventDateNotes={detailData.event_date_notes}
+                    setEventDateBlock={setEventDateBlock}
+                  />
                 </div>
               </li>
             )}
@@ -307,28 +352,7 @@ function StickyHeader(props) {
               </li>
             )}
             {seatMapButton && <li className="event-date">{seatMapButton}</li>}
-            {detailData.promoters && detailData.promoters.length > 0 && (
-              <li className="event-date">
-                <img src={calendarImg} alt="cal-icon" />
-                {detailData.promoters.map((item, index) => {
-                  if (item.url) {
-                    return (
-                      <a
-                        key={`${item.name}-${index}`}
-                        href={item.url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        {item.name}&nbsp;
-                      </a>
-                    );
-                  }
-                  return (
-                    <span key={`${item.name}-${index}`}>{item.name}&nbsp;</span>
-                  );
-                })}
-              </li>
-            )}
+
             {detailData.price && (
               <li className="event-date">
                 <img src={coinsImg} className="coin" alt="cal-icon" />
