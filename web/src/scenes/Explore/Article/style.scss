@@ -191,6 +191,9 @@ section.whats-new {
         font-size: 13px;
         &.dt-srt-end{
             font-size: 12px;
+            @media(max-width: 576px){
+                font-size: 11px;
+            }
         }
 	}
 }
