@@ -261,6 +261,7 @@ function StickyHeader(props) {
 
         {detailData.promoters && detailData.promoters.length > 0 && (
           <div className="promoters">
+            <span>by </span>
             {detailData.promoters.map((item, index) => {
               if (item.url) {
                 return (
@@ -274,9 +275,7 @@ function StickyHeader(props) {
                   </a>
                 );
               }
-              return (
-                <span key={`${item.name}-${index}`}>{item.name}&nbsp;</span>
-              );
+              return <span key={`${item.name}-${index}`}>{item.name} </span>;
             })}
           </div>
         )}
