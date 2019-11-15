@@ -284,8 +284,7 @@
             }
             .filters-panel{
                 @media(max-width: 767px){
-                    padding: 0;
-                    margin-top: 0;
+                    display: block;
                 }
                 ul{
                     li{
@@ -294,51 +293,116 @@
                             border-bottom: 1px solid #d8d8d8;
                             background-color: #fff;
                         }
-                        .styled-checkbox{
-                            & + label{
+                        label{
+                            @media(max-width: 767px){
+                                text-transform: capitalize;
+                                font-size: 15px;
+                                line-height: 24px;
+                                color: #626262;
+                                display: flex;
+                                justify-content: space-between;
+                                flex-direction: row-reverse;
+                            }
+                            &:before{
                                 @media(max-width: 767px){
-                                    text-transform: capitalize;
-                                    font-size: 15px;
-                                    line-height: 24px;
-                                    color: #626262;
-                                    display: flex;
-                                    justify-content: space-between;
-                                    flex-direction: row-reverse;
+                                    background: url('../../../assets/images/Tick-unselected.svg');
+                                    width: 20px;
+                                    height: 20px;
+                                    background-repeat: no-repeat;
+                                    content: "";
+                                    margin-right: 6px;
+                                    display: inline-block;
+                                    vertical-align: text-top;
+                                    margin-top: 3px;
+                                }
+                            }
+                        }
+                        input.styled-checkbox{
+                            @media(max-width: 767px){
+                                box-sizing: border-box;
+                                padding: 0;
+                                position: absolute;
+                                opacity: 0;
+                            }
+                            &:checked + label{
+                                @media(max-width: 767px){
+                                    color: #0098ff;
                                 }
                                 &:before{
                                     @media(max-width: 767px){
-                                        background: url(../../../assets/images/Tick-unselected.svg);
+                                        background: url('../../../assets/images/Tick-selected.svg');
                                         width: 20px;
                                         height: 20px;
                                         background-repeat: no-repeat;
-                                    }
-                                }
-                            }
-                            &:checked{
-                                & + label{
-                                    &:before{
-                                        @media(max-width: 767px){
-                                            background: url(../../../assets/images/Tick-selected.svg);
-                                            width: 20px;
-                                            height: 20px;
-                                            background-repeat: no-repeat;
-                                        }
+                                        content: "";
+                                        margin-right: 6px;
+                                        display: inline-block;
+                                        vertical-align: text-top;
+                                        margin-top: 3px;
                                     }
                                 }
                             }
                         }
-                        label{
-                            
-                        }
-                    }
-                }
-                .view-all-filters{
-                    @media(max-width: 767px){
-                        padding: 18px 15px;
-                        display: block;
                     }
                 }
             }
+            // .filters-panel{
+            //     @media(max-width: 767px){
+            //         padding: 0;
+            //         margin-top: 0;
+            //     }
+            //     ul{
+            //         li{
+            //             @media(max-width: 767px){
+            //                 padding: 18px 21px;
+            //                 border-bottom: 1px solid #d8d8d8;
+            //                 background-color: #fff;
+            //             }
+            //             .styled-checkbox{
+            //                 & + label{
+            //                     @media(max-width: 767px){
+            //                         text-transform: capitalize;
+            //                         font-size: 15px;
+            //                         line-height: 24px;
+            //                         color: #626262;
+            //                         display: flex;
+            //                         justify-content: space-between;
+            //                         flex-direction: row-reverse;
+            //                     }
+            //                     &:before{
+            //                         @media(max-width: 767px){
+            //                             background: url(../../../assets/images/Tick-unselected.svg);
+            //                             width: 20px;
+            //                             height: 20px;
+            //                             background-repeat: no-repeat;
+            //                         }
+            //                     }
+            //                 }
+            //                 &:checked{
+            //                     & + label{
+            //                         &:before{
+            //                             @media(max-width: 767px){
+            //                                 background: url(../../../assets/images/Tick-selected.svg);
+            //                                 width: 20px;
+            //                                 height: 20px;
+            //                                 background-repeat: no-repeat;
+            //                             }
+            //                         }
+            //                     }
+            //                 }
+            //             }
+            //             label{
+                            
+            //             }
+            //         }
+            //     }
+            //     .view-all-filters{
+            //         @media(max-width: 767px){
+            //             padding: 18px 15px;
+            //             display: block;
+            //         }
+            //     }
+            // }
         }
     }
 }

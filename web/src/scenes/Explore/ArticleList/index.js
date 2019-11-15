@@ -172,6 +172,7 @@ const ArticleList = props => {
           selectOrClearAllHandler={selectOrClearAllHandler}
           showHeader={mobileCheck}
           closeFilters={closeFilters}
+          handleFiltersForMobile={handleFiltersForMobile}
         />
       ) : (
           <ShimmerEffect
