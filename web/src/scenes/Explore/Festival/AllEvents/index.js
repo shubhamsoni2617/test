@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import './style.scss';
 import Image from '../../../../shared/components/Image';
+import Utilities from '../../../../shared/utilities';
 
 const AllEvents = ({ sectionFour }) => {
   const [limit, setLimit] = useState(10);
@@ -21,9 +22,19 @@ const AllEvents = ({ sectionFour }) => {
                   return (
                     <div className="event-box" key={title}>
                       <Image src={image} type="Medium" />
-                      <h2>{title}</h2>
+                      <h2>
+                        {Utilities.showLimitedChars(
+                          title,
+                          Utilities.mobilecheck() ? 25 : 40
+                        )}
+                      </h2>
                       <span>{event_date}</span>
-                      <p>{venue}</p>
+                      <p>
+                        {Utilities.showLimitedChars(
+                          venue,
+                          Utilities.mobilecheck() ? 25 : 50
+                        )}
+                      </p>
                     </div>
                   );
                 })}

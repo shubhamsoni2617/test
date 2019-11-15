@@ -11,6 +11,7 @@ import ExploreService from '../../../shared/services/ExploreService';
 import FestivalEventLineUp from './FestivalEventLineUp';
 import Welcome from './Welcome';
 import SliderBanner from '../SliderBanner';
+import ShimmerEffect from '../../../shared/components/ShimmerEffect';
 
 const Festival = ({}) => {
   const [templateTwoContent, setTemplateTwoContent] = useState([]);
@@ -28,13 +29,26 @@ const Festival = ({}) => {
   const getTemplateTwo = () => {
     ExploreService.getTemplateTwo().then(res => {
       if (res && res.data) {
-        setTemplateTwoContent(res.data.data[0]);
+        setTimeout(() => {
+          setTemplateTwoContent(res.data.data[0]);
+        }, 2000);
       }
     });
   };
 
   const scrollToTop = () => {
     window.scrollTo(0, 0);
+  };
+
+  const reusedShimmer = (height, count, type, propCls) => {
+    return (
+      <ShimmerEffect
+        height={height}
+        count={count}
+        type={type}
+        propCls={`shm_col-xs-2 col-md-${propCls}`}
+      />
+    );
   };
 
   const {
@@ -55,26 +69,50 @@ const Festival = ({}) => {
   return (
     <div className="festival-wrapper">
       <SliderBanner />
-      {title && (
+      {title ? (
         <Welcome
           breadcrumbSlug={breadcrumbSlug}
           title={title}
           subtitle={subtitle}
           description={description}
         />
+      ) : (
+        reusedShimmer(300, 1, 'TILE', 12)
       )}
-      {section_one && section_two && (
+      {section_one && section_two ? (
         <FestivalEventLineUp
           sectionOne={section_one}
           sectionTwo={section_two}
         />
+      ) : (
+        reusedShimmer(300, 6, 'TILE', 2)
       )}
-      {section_three && <MusicFestival sectionThree={section_three} />}
-      {section_four && <AllEvents sectionFour={section_four} />}
+      {section_three ? (
+        <MusicFestival sectionThree={section_three} />
+      ) : (
+        reusedShimmer(300, 1, 'TILE', 12)
+      )}
+      {section_four ? (
+        <AllEvents sectionFour={section_four} />
+      ) : (
+        reusedShimmer(300, 6, 'TILE', 2)
+      )}
       {social_wall_url && <SocialWall socialUrl={social_wall_url} />}
-      {section_five && <TicketDeals sectionFive={section_five} />}
-      {section_six && <Articles sectionSix={section_six} />}
-      {section_seven && <PollNServeys sectionSeven={section_seven} />}
+      {section_five ? (
+        <TicketDeals sectionFive={section_five} />
+      ) : (
+        reusedShimmer(300, 6, 'TILE', 2)
+      )}
+      {section_six ? (
+        <Articles sectionSix={section_six} />
+      ) : (
+        reusedShimmer(300, 1, 'TILE', 12)
+      )}
+      {section_seven ? (
+        <PollNServeys sectionSeven={section_seven} />
+      ) : (
+        reusedShimmer(300, 1, 'TILE', 12)
+      )}
       {section_eigth && <VideoGallery sectionEight={section_eigth} />}
 
       {/* <div class="festival-wrapper"> */}

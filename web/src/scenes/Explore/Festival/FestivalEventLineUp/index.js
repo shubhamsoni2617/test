@@ -65,7 +65,13 @@ const FestivalEventLineUp = ({ sectionOne, sectionTwo }) => {
                       return (
                         <div className="event" key={title}>
                           <img src={festivalEvent} alt="event" />
-                          <h2>{title}</h2>
+
+                          <h2>
+                            {Utilities.showLimitedChars(
+                              title,
+                              Utilities.mobilecheck() ? 25 : 40
+                            )}
+                          </h2>
                           <p
                             dangerouslySetInnerHTML={{ __html: description }}
                           ></p>
