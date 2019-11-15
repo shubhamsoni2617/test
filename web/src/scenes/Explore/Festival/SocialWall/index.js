@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import './style.scss';
-import Slider from 'react-slick';
 import axios from 'axios';
 import { useCustomWidth } from '../../../../shared/components/CustomHooks';
 import Constants from '../../../../shared/constants';
@@ -10,15 +9,6 @@ const SocialWall = ({ socialUrl }) => {
   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
   const [feeds, setFeeds] = useState([]);
-
-  const settings = {
-    centerMode: false,
-    infinite: true,
-    slidesToScroll: 4,
-    centerPadding: '60px',
-    slidesToShow: 7,
-    speed: 500
-  };
 
   useEffect(() => {
     if (socialUrl) {
