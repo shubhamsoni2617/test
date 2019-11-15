@@ -107,7 +107,18 @@
                         min-height: 20px;
                     }
                 }
-
+                .react-modal{
+                    .react-modal-body{
+                        @media(max-width: 1600px) and (min-width: 991px){
+                            margin-top: 110px;
+                        }
+                        .modal-body{
+                            @media(max-width: 1600px) and (min-width: 991px){
+                                max-height: 350px;
+                            }
+                        }
+                    }
+                }
             }
             .attraction-show-more {
                 color: #2698ff;

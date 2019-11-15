@@ -1358,3 +1358,17 @@ em{
         }
     }
 }
+
+//homoepage flicker effect
+.body-overlay{
+    margin-right: 10px;
+	header {
+		width: calc(100% - 10px) !important;
+	}
+	.ticker-wrap{
+		width: calc(100% - 10px);
+	}
+	.scroll-top{
+		right: 15px;
+	}
+}
