@@ -7,16 +7,24 @@ import LandingArticles from './LandingArticles';
 import LandingFestivals from './LandingFestivals';
 import Reviews from './Reviews';
 import Trending from './Trending';
+import CustomtomSectionTwo from '../../Home/CustomSectionTwo';
+import CustomtomSectionThree from '../../Home/CustomSectionThree';
+import GiftCard from '../../Home/GiftCard';
 
 const Explore = () => {
   return (
     <div className="explore-wrapper">
       <Banner />
       <WhatsUp />
+      <div className="home-page-wrapper">
+        <CustomtomSectionTwo heading={'Royals'} isMoreFrom={true} />
+      </div>
       <LandingArticles />
+      <GiftCard />
       <LandingFestivals />
       <Reviews />
       <Trending />
+      <CustomtomSectionThree heading="Video Gallery" />
       {/* <section className="explore-page-banner">
         <div className="banner-content">
           <div className="banner-desc">
@@ -36,7 +44,6 @@ const Explore = () => {
           <img src={bannerImg} alt="explore-slider" />
         </div>
       </section> */}
-
       {/* <section className="whtsup-wrapper">
         <div className="container-fluid">
           <div class="section-top-wrapper">
@@ -221,7 +228,6 @@ const Explore = () => {
           </div>
         </div>
       </section> */}
-
       {/* <section className="festivals-wrapper">
         <div className="container-fluid">
           <div class="section-top-wrapper">
@@ -294,7 +300,6 @@ const Explore = () => {
           </div>
         </div>
       </section> */}
-
       {/* <section className="review-guide-surveys-wrapper">
         <div className="container-fluid">
           <div className="rgs-wrapper">
@@ -424,7 +429,6 @@ const Explore = () => {
           </div>
         </div>
       </section> */}
-
       {/* <section className="trending-wrapper">
         <div className="container-fluid">
           <div class="section-top-wrapper">

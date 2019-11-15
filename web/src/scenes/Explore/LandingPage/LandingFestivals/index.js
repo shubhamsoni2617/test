@@ -1,5 +1,6 @@
 import React from 'react';
 import './style.scss';
+import { Link } from 'react-router-dom';
 import Arrow from '../../../../assets/images/right-arrow.svg';
 import GreatWine from '../../../../assets/images/great-wine.png';
 import chrolFest from '../../../../assets/images/choral-festival.png';
@@ -13,9 +14,9 @@ const LandingFestivals = ({}) => {
         <div class="section-top-wrapper">
           <h2>Festivals</h2>
           <div class="carousel-dots">
-            <a href="">
+            <Link to="/explore/festival">
               See all <img src={Arrow} class="img-fluid" alt="arrow" />
-            </a>
+            </Link>
           </div>
         </div>
         <div className="festivals-container">
