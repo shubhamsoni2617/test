@@ -88,7 +88,9 @@ export default class AccordionSection extends Component {
                       return (
                         <li
                           key={obj + idx}
-                          className={`${activeLang === obj ? 'active' : ''}`}
+                          className={`${
+                            activeLang === obj.language ? 'active' : ''
+                          }`}
                         >
                           <a
                             href="/"
@@ -97,7 +99,7 @@ export default class AccordionSection extends Component {
                               changeLang(obj);
                             }}
                           >
-                            {obj}
+                            {obj.language}
                           </a>
                         </li>
                       );

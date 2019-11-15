@@ -124,7 +124,8 @@ export default class EventsDetail extends Component {
       setHeader: false,
       animation: true,
       shimmer: true,
-      getSynopsisData: { languageArr: [], activeLang: '', desc: '' }
+      getSynopsisData: { languageArr: [], activeLang: '', desc: '' },
+      synopsis: { language: '', description: '' }
     };
   }
 
@@ -266,9 +267,12 @@ export default class EventsDetail extends Component {
     }
   };
 
-  changeLang = lang => {
+  changeLang = synopsisObject => {
     this.setState({
-      synopsisLang: lang
+      synopsis: {
+        language: synopsisObject.language,
+        description: synopsisObject.description
+      }
     });
   };
 
@@ -287,22 +291,22 @@ export default class EventsDetail extends Component {
 
   componentDidUpdate() {}
 
-  onSynopsisData = (detailData, getSynopsisData) => {
-    detailData &&
-      detailData.synopsis &&
-      detailData.synopsis.forEach((obj, idx) => {
-        if (obj.language) {
-          getSynopsisData.languageArr.push(obj.language);
-        }
-        if (this.state.synopsisLang === obj.language) {
-          getSynopsisData.desc = obj.description;
-          getSynopsisData.activeLang = obj.language;
-        } else {
-          getSynopsisData.desc = detailData.synopsis[0].description;
-          getSynopsisData.activeLang = detailData.synopsis[0].language;
-        }
-      });
-  };
+  // onSynopsisData = (detailData, getSynopsisData) => {
+  //   detailData &&
+  //     detailData.synopsis &&
+  //     detailData.synopsis.forEach((obj, idx) => {
+  //       if (obj.language) {
+  //         getSynopsisData.languageArr.push(obj.language);
+  //       }
+  //       if (this.state.synopsisLang === obj.language) {
+  //         getSynopsisData.desc = obj.description;
+  //         getSynopsisData.activeLang = obj.language;
+  //       } else {
+  //         getSynopsisData.desc = detailData.synopsis[0].description;
+  //         getSynopsisData.activeLang = detailData.synopsis[0].language;
+  //       }
+  //     });
+  // };
 
   render() {
     const {
@@ -315,15 +319,16 @@ export default class EventsDetail extends Component {
       showInfo,
       showNotice,
       setHeader,
-      shimmer
+      shimmer,
+      synopsis
     } = this.state;
     if (error) {
       return null;
     }
     let shareUrl = window.location.href;
-    getSynopsisData.languageArr = [];
+    // getSynopsisData.languageArr = [];
     let accrodian = ['synopsis', 'pricedetail'];
-    this.onSynopsisData(detailData, getSynopsisData);
+    // this.onSynopsisData(detailData, getSynopsisData);
     return (
       <div className="event-detail-wrapper">
         <CSSTransitionGroup
@@ -412,12 +417,17 @@ export default class EventsDetail extends Component {
                   ref={this.setOffsetTop}
                 >
                   <div className="event-detail-panel">
-                    {detailData.synopsis && getSynopsisData.desc && (
+                    {detailData.synopsis && detailData.synopsis.length > 0 && (
                       <AccordionSection
                         title="Synopsis"
-                        activeLang={getSynopsisData.activeLang}
-                        desc={getSynopsisData.desc}
-                        langArr={getSynopsisData.languageArr}
+                        activeLang={
+                          synopsis.language || detailData.synopsis[0].language
+                        }
+                        desc={
+                          synopsis.description ||
+                          detailData.synopsis[0].description
+                        }
+                        langArr={detailData.synopsis}
                         changeLang={this.changeLang}
                         preExpanded={accrodian}
                         dynamicClass="synopsis-accordian"

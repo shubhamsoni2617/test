@@ -124,15 +124,15 @@
           }
         }
         .tickets-desc{
-          overflow-y: auto;
-          position: absolute;
-          height: calc(100% - 90px);
-          width: 100%;
-          left: 0;
-          padding: 0 30px;
-          margin-top: 68px;
-          border-left: 1px solid #979797;
-          border-bottom: 1px solid #979797;
+            overflow-y: auto;
+            position: absolute;
+            height: calc(100% - 90px);
+            width: 100%;
+            left: 0;
+            padding: 0 30px;
+            margin-top: 68px;
+            border-left: 1px solid #979797;
+            border-bottom: 1px solid #979797;
         }
       }
       .tickets-demo-img{
@@ -140,6 +140,33 @@
       }
       .tickets-desc{
           position: relative;
+          .promoters {
+            padding: 5px 0px 20px;
+            @media(max-width: 991px){
+                padding: 5px 0px 5px;
+            }
+            span{
+              color: #949494;
+                font-size: 15px;
+                line-height: 20px;
+                word-break: break-word;
+                @media(max-width: 767px){
+                    font-size: 14px;
+                }
+            }
+            a{
+                color: #949494;
+                font-size: 15px;
+                line-height: 20px;
+                word-break: break-word;
+                @media(max-width: 767px){
+                    font-size: 14px;
+                }
+                &:hover{
+                  color: #0098FF;
+                }
+            }
+        }
           .title{
               h3{
                   @media(max-width: 1024px){
@@ -309,6 +336,9 @@
                 margin: 20px 0 0px;
                 display: flex;
                 flex-wrap: wrap;
+              }
+              @media(max-width: 768px){
+                  margin: 10px 0 0px;
               }
               li{
                   display: flex;
@@ -937,6 +967,11 @@
     h3{
       width: 575px;
     }
+    .tickets-desc{
+          .promoters {
+            display: none;
+          }
+        }
     .event-address span{
         width: 225px;
       }
