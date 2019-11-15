@@ -44,10 +44,7 @@ const Filter = ({
             selectOrClearAllHandler(false, filterTitle);
             activeSelectButtonhandler()
           }} className={`${!activeSelectButton ? `active` : ``}`}>
-            <span
-            >
-              Clear
-        </span>
+            <span>Clear</span>
           </li>
         </ul>
       </div>
@@ -64,8 +61,7 @@ const Filter = ({
                     checked={data.isChecked}
                     onChange={e => onChange(e, data.id)}
                   />
-                  <label htmlFor={data.id}>{data.name}</label>
-                  <span>({data.count})</span>
+                  <label htmlFor={data.id}>{data.name}({data.count})</label>
                 </li>
               );
             })

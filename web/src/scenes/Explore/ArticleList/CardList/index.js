@@ -5,7 +5,9 @@ import Utilities from '../../../../shared/utilities';
 import EventHeading from '../../../../shared/components/EventHeading';
 import ShimmerEffect from '../../../../shared/components/ShimmerEffect';
 
-const CardList = ({ articleList, loadMore }) => {
+const CardList = ({ articleList }) => {
+
+  let textLimit = Utilities.mobilecheck() ? 45 : 50
   return articleList.length ? (
     articleList.map(cardData => {
       return (
@@ -27,14 +29,14 @@ const CardList = ({ articleList, loadMore }) => {
                 </div>
                 <h3>{cardData.title}</h3>
                 <div className="item-title">
-                  <div
+                  {/* <div
                     className="sub-text"
                     dangerouslySetInnerHTML={{
                       __html: cardData.description
                     }}
-                  /> */}
-                  <p>{cardData.description.slice(0, 60)}</p>
-                  <span>...More</span>
+                  />  */}
+                  <span>{cardData.description.slice(0, textLimit)}</span>
+                  <span className="article-show-more">...More</span>
                 </div>
                 <div className="item-bottom">
                   <span className="item-author">By {cardData.author_name}</span>

@@ -25,7 +25,7 @@ const ArticleList = props => {
 
   const [articleList, setArticleList] = useState([]);
   const [constant, setConstant] = useState(
-    Utilities.mobileAndTabletcheck() ? 6 : 6
+    Utilities.mobileAndTabletcheck() ? 6 : 9
   );
   const [loadMore, setLoadMore] = useState(false);
   const [totalResults, setTotalResults] = useState(0);
