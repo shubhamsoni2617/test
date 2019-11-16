@@ -14,8 +14,6 @@ import GreatWine from '../../../assets/images/great-wine.png';
 
 const Explore = () => {
   const [data, setData] = useState([]);
-  const { section_eigth } = data;
-
   useEffect(() => {
     scrollToTop();
     getExploreLanding();
@@ -65,22 +63,26 @@ const Explore = () => {
   ];
 
   console.log(data);
+  const { video_gallery, trending, royals, whats_up } = data;
+
   return (
     <div className="explore-wrapper">
       <Banner />
-      <WhatsUp />
-      {/* <LandingFestivals data={festivalData} heading={'Festivals'} /> */}
+      <WhatsUp whatsUpData={whats_up} />
       <div className="home-page-wrapper">
-        <CustomtomSectionTwo heading={'Royals'} isMoreFrom={true} />
+        <CustomtomSectionTwo
+          heading={royals && royals.heading}
+          customData={royals && royals.sub_section_two}
+        />
       </div>
       <LandingArticles />
       <GiftCard />
       <LandingFestivals data={festivalData} heading={'Festivals'} />
       <Reviews reviewsData={'reviewsData'} />
-      <Trending trendingImage={'trendingImage'} />
+      <Trending trending={trending} />
       <CustomtomSectionThree
         heading="Video Gallery"
-        customData={section_eigth}
+        customData={video_gallery}
       />
       {/* <section className="explore-page-banner">
         <div className="banner-content">

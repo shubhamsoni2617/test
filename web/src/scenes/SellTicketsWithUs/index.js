@@ -232,7 +232,7 @@ const SellTicketsWithUs = () => {
         />
       )}
       {/* articles section starts here */}
-      {articles && <Articles articles={articles} />}
+      {articles && articles.length > 0 && <Articles articles={articles} />}
     </div>
   );
 };

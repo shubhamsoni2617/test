@@ -5,7 +5,7 @@ import './style.scss';
 import Constants from '../../../shared/constants';
 import AdvertisementService from '../../../shared/services/AdvertisementService';
 
-const CustomSectionThree = ({ heading }) => {
+const CustomSectionThree = ({ heading, customData }) => {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [url, setUrl] = useState(null);
@@ -19,8 +19,15 @@ const CustomSectionThree = ({ heading }) => {
   const [volume, setVolume] = useState(null);
 
   useEffect(() => {
-    getData();
-  }, []);
+    if (customData && customData.length > 0) {
+      setData(customData);
+      setUrl(customData[0].video_url);
+      setTitle(customData[0].title);
+      setLoading(false);
+    } else if (customData && !customData.length) {
+      getData();
+    }
+  }, [customData]);
 
   const getData = () => {
     const params = {
@@ -49,6 +56,8 @@ const CustomSectionThree = ({ heading }) => {
   if (!loading && data && data.length === 0) {
     return null;
   }
+
+  console.log(data);
 
   return (
     <div>

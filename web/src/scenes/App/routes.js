@@ -24,6 +24,7 @@ import LandingPage from '../LandingPage';
 import Explore from '../Explore/LandingPage';
 import ArticleList from '../Explore/ArticleList';
 import Article from '../Explore/Article';
+import Festival from '../Explore/Festival';
 
 // import Explore from '../Explore';
 
@@ -170,6 +171,11 @@ const routes = [
   {
     path: '/explore/articlelist',
     component: ArticleList,
+    exact: true
+  },
+  {
+    path: '/explore/festival',
+    component: Festival,
     exact: true
   },
   {
