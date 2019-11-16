@@ -7,6 +7,12 @@ class ExploreService {
   getTemplateTwo() {
     return API.get(`/get-template-2`);
   }
+  getCategories() {
+    return API.get(`get-template-categories`);
+  }
+  getTags() {
+    return API.get(`get-template-tags`);
+  }
 }
 
 export default new ExploreService();
