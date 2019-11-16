@@ -7,6 +7,9 @@ import PromotionCarousel from './PromotionCarousel';
 import HotShowPopup from '../../shared/components/HotShowPopup';
 import FeaturedEvents from '../../shared/components/FeaturedEvents';
 import TrendingNow from './TrendingNow';
+import CustomSectionTwo from './CustomSectionTwo';
+import CustomSectionThree from './CustomSectionThree';
+import GiftCard from './GiftCard';
 import Explore from '../../shared/components/Explore';
 import Cookies from '../../shared/components/Cookies';
 import Image from '../../shared/components/Image';
@@ -19,7 +22,7 @@ import HomeService from '../../shared/services/HomeService';
 import Utilities from '../../shared/utilities';
 import Constants from '../../shared/constants';
 import AdvertisementService from '../../shared/services/AdvertisementService';
-import CustomSection from './CustomSection';
+// import CustomSection from './CustomSection';
 import TopPics from './TopPics';
 // import Royals from './Royals';
 
@@ -34,30 +37,83 @@ class Home extends Component {
       modalContent: '',
       newsTickerStatus: true,
       imageUrl: '',
-      giftCard: []
+      itemsOrder: [
+        {
+          sec_key: 'TOP_PICKS',
+          label: 'Top Picks For you',
+          hide_section: '0'
+        },
+        {
+          sec_key: 'MID_PANEL',
+          label: 'Mid Panel Ad Slot',
+          hide_section: '0'
+        },
+        {
+          sec_key: 'FEATURED_EVENTS',
+          label: 'Featured Events',
+          hide_section: '0'
+        },
+        {
+          sec_key: 'CURRENTLY_SHOWING',
+          label: 'Currently Showing',
+          hide_section: '1'
+        },
+        {
+          sec_key: 'PROMOTIONS',
+          label: 'Promotions',
+          hide_section: '0'
+        },
+        {
+          sec_key: 'TRENDING_NOW',
+          label: 'Trending Now',
+          hide_section: '1'
+        },
+        {
+          sec_key: 'WHATS_NEW',
+          label: "What's New",
+          hide_section: '0'
+        },
+        {
+          sec_key: 'EXPLORE',
+          label: 'Explore',
+          hide_section: '0'
+        },
+        {
+          sec_key: 'CUS_SEC_1',
+          label: 'Featured Events',
+          hide_section: '0'
+        },
+        {
+          sec_key: 'CUS_SEC_2',
+          label: 'Royals',
+          hide_section: '0'
+        },
+        {
+          sec_key: 'CUS_SEC_3',
+          label: 'Videos',
+          hide_section: '1'
+        }
+      ]
     };
     this.homePageRef = createRef();
   }
 
   componentDidMount() {
-    this.getSidePanelBetweenTopPicksFeaturedEvents();
+    // this.getItemsOrder();
   }
 
   showNewsTicker = data => {
     this.setState(data);
   };
 
-  getSidePanelBetweenTopPicksFeaturedEvents() {
+  getItemsOrder() {
     const params = {
-      client: Constants.CLIENT,
-      limit: 1,
-      first: 0,
-      sort_order: 'DESC'
+      client: Constants.CLIENT
     };
-    AdvertisementService.getSidePanelBetweenTopPicksFeaturedEvents(params)
+    HomeService.getItemsOrder(params)
       .then(res => {
         if (res && res.data) {
-          this.setState({ giftCard: res.data.data });
+          this.setState({ itemsOrder: res.data.data });
         }
       })
       .catch(err => {
@@ -68,7 +124,6 @@ class Home extends Component {
   }
 
   render() {
-    const { giftCard } = this.state;
     return (
       <div className="home-page-wrapper" ref={this.homePageRef}>
         <NewsTicker
@@ -83,50 +138,63 @@ class Home extends Component {
             largeImage={Utilities.mobilecheck() ? mobileBanner : primeSlider}
           />
         </div>
-        <TopPics />
-        {giftCard &&
-          giftCard.map(elem => {
-            return (
-              <div className="adds-container" key={elem.title}>
-                <a
-                  href={elem && elem.navigation_link}
-                  className="giftcard-anchor"
-                  target="_blank"
-                  key={elem.title}
-                >
-                  <img
-                    src={elem && elem.full_image}
-                    className="img-fluid"
-                    alt={elem && elem.alt_text}
-                    title={elem && elem.title}
+        {this.state.itemsOrder &&
+          this.state.itemsOrder.length > 0 &&
+          this.state.itemsOrder.map(({ sec_key, label }) => {
+            switch (sec_key) {
+              case 'TOP_PICKS':
+                return <TopPics heading={label} />;
+              case 'MID_PANEL':
+                return <GiftCard />;
+              case 'FEATURED_EVENTS':
+                return (
+                  <FeaturedEvents
+                    api={AdvertisementService.getFeaturedEvents}
+                    heading={label}
                   />
-                </a>
-              </div>
-            );
+                );
+              case 'CURRENTLY_SHOWING':
+                return (
+                  <CarouselConatiner
+                    title={label}
+                    classStr="currently-showing"
+                    autoplay={true}
+                    infinite={false}
+                    api={HomeService.getCurrentlyShowing}
+                  />
+                );
+              case 'PROMOTIONS':
+                return <PromotionCarousel heading={label} />;
+              case 'TRENDING_NOW':
+                return <TrendingNow heading={label} />;
+              case 'WHATS_NEW':
+                return (
+                  <CarouselConatiner
+                    title={label}
+                    classStr="whats-new"
+                    arrows={true}
+                    autoplay={false}
+                    infinite={false}
+                    api={HomeService.getNewRelease}
+                  />
+                );
+              case 'EXPLORE':
+                return <Explore heading={label} />;
+              case 'CUS_SEC_1':
+                return (
+                  <FeaturedEvents
+                    heading={label}
+                    api={AdvertisementService.getCustomizeSectionOne}
+                    cssClassName="alternate-featured-events"
+                  />
+                );
+              case 'CUS_SEC_2':
+                return <CustomSectionTwo heading={label} />;
+              case 'CUS_SEC_3':
+                return <CustomSectionThree heading={label} />;
+            }
           })}
-        <FeaturedEvents
-          api={AdvertisementService.getFeaturedEvents}
-          heading="Featured Events"
-        />
-        <CarouselConatiner
-          title="Currently Showing"
-          classStr="currently-showing"
-          autoplay={true}
-          infinite={false}
-          api={HomeService.getCurrentlyShowing}
-        />
-        <PromotionCarousel />
-        <TrendingNow />
-        <CarouselConatiner
-          title="What's New"
-          classStr="whats-new"
-          arrows={true}
-          autoplay={false}
-          infinite={false}
-          api={HomeService.getNewRelease}
-        />
-        <Explore />
-        <CustomSection />
+
         <InstagramFeed />
         <Cookies />
         {/* <ModalPopup

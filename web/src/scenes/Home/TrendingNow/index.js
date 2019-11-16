@@ -8,7 +8,7 @@ import { CSSTransition } from 'react-transition-group';
 import ShimmerEffect from '../../../shared/components/ShimmerEffect';
 import videoImage from '../../../assets/images/video-icon.svg';
 
-const TrendingNow = ({}) => {
+const TrendingNow = ({ heading }) => {
   const [trendingNow, setTrandingNow] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -42,7 +42,7 @@ const TrendingNow = ({}) => {
   return (
     <section className="trending-now">
       <div className="container-fluid">
-        <h2>Trending Now</h2>
+        <h2>{heading}</h2>
 
         {/* <CSSTransitionGroup
           transitionName="shimmer-carousel"
@@ -75,7 +75,7 @@ const TrendingNow = ({}) => {
                   </div>
                   <div className="video-icon">
                     <img
-                      src={videoImage}
+                      src="assets/images/video-icon.svg"
                       className="img-fluid"
                       alt="video-icon"
                     />

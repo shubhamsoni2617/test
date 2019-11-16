@@ -64,7 +64,11 @@ export default class Card extends Component {
                   <span
                     className="attraction-show-more"
                     onClick={() =>
-                      this.showPopUp(true, cardData.synopsis, cardData.name)
+                      this.showPopUp(
+                        true,
+                        cardData.rich_synopsis,
+                        cardData.title
+                      )
                     }
                   >
                     Show More

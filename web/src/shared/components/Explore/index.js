@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import './style.scss';
 
 class Explore extends Component {
+  constructor(props) {
+    super(props);
+  }
   render() {
     const explore = [
       {
@@ -29,7 +32,7 @@ class Explore extends Component {
       <section className="explore">
         <div className="container-fluid">
           <div className="section-top-wrapper">
-            <h2>Explore</h2>
+            <h2>{this.props.heading}</h2>
             <div className="carousel-dots">
               <a>
                 See all{' '}

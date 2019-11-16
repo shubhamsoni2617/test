@@ -153,7 +153,7 @@ export default class PromotionCarousel extends Component {
         <div className="container-fluid">
           <div className="section-top-wrapper">
             <h2>
-              Promotions{' '}
+              {this.props.heading}
               {/* <span className="promotions-animated-img">
                 <img
                   src="assets/images/illustration.svg"
