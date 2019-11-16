@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import './style.scss';
 import appleImage from '../../../assets/images/apple.svg';
@@ -11,8 +11,35 @@ import instaFill from '../../../assets/images/insta-fill.svg';
 import stixImage from '../../../assets/images/stix.png';
 import BackToTop from '../../../shared/components/BackToTop';
 import Utilities from '../../../shared/utilities';
+import NewsLetterService from '../../../shared/services/NewsLetterService';
 
 const Footer = () => {
+  const [email, setEmail] = useState('');
+
+  const handleEmail = event => {
+    setEmail(event.target.value);
+  };
+
+  const handleSubmit = event => {
+    event.preventDefault();
+    if (email) {
+      console.log(email);
+      // submitForm(email);
+    }
+  };
+
+  const submitForm = email => {
+    const data = {
+      email,
+      type: 'sistic'
+    };
+    NewsLetterService.newsLetterFormSubmission(data).then(res => {
+      if (res && res.data) {
+        console.log(res.data);
+      }
+    });
+  };
+
   const ourCompanyLinks = [
     { link: 'about-us', linkName: 'About Us' },
     { link: 'sell-event-tickets', linkName: 'Sell with Us' },
@@ -68,7 +95,7 @@ const Footer = () => {
                 <ul>
                   {thirdColLinks.map(({ link, linkName }) => {
                     return (
-                      <li key={link}>
+                      <li key={linkName}>
                         <Link to={`/${link}`}>{linkName}</Link>
                       </li>
                     );
@@ -100,20 +127,25 @@ const Footer = () => {
             <div className="footer-links stay-connected-wrapper">
               <div className="stay-connect">
                 <h3>Stay Connected</h3>
-                <div className="input-group">
-                  <input
-                    type="email"
-                    className="form-control"
-                    placeholder="Enter Your email"
-                    aria-label="Username"
-                    aria-describedby="basic-addon1"
-                  />
-                  <div className="input-group-prepend">
-                    <a className="input-group-text" id="basic-addon1">
-                      <img src={sendImage} className="img-fluid" alt="send" />
-                    </a>
+                <form onSubmit={handleSubmit}>
+                  <div className="input-group">
+                    <input
+                      type="email"
+                      name="email"
+                      value={email}
+                      onChange={handleEmail}
+                      className="form-control"
+                      placeholder="Enter Your email"
+                      aria-label="Username"
+                      aria-describedby="basic-addon1"
+                    />
+                    <div className="input-group-prepend">
+                      <a className="input-group-text" id="basic-addon1">
+                        <img src={sendImage} className="img-fluid" alt="send" />
+                      </a>
+                    </div>
                   </div>
-                </div>
+                </form>
               </div>
               <div className="follow-us">
                 <h3>Follow us on</h3>
