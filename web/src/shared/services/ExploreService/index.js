@@ -10,6 +10,9 @@ class ExploreService {
   getTags() {
     return API.get(`get-template-tags`);
   }
+  getExploreLanding() {
+    return API.get(`get-explore-landing`);
+  }
 }
 
 export default new ExploreService();

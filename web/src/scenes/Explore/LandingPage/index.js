@@ -10,21 +10,78 @@ import Trending from './Trending';
 import CustomtomSectionTwo from '../../Home/CustomSectionTwo';
 import CustomtomSectionThree from '../../Home/CustomSectionThree';
 import GiftCard from '../../Home/GiftCard';
+import GreatWine from '../../../assets/images/great-wine.png';
 
 const Explore = () => {
+  const [data, setData] = useState([]);
+  const { section_eigth } = data;
+
+  useEffect(() => {
+    scrollToTop();
+    getExploreLanding();
+  }, []);
+
+  const scrollToTop = () => {
+    window.scrollTo(0, 0);
+  };
+  const getExploreLanding = () => {
+    ExploreService.getExploreLanding()
+      .then(res => {
+        if (res && res.data) {
+          setData(res.data.data[0]);
+        }
+      })
+      .catch(err => {
+        if (err && err.response) {
+          console.log(err.response);
+        }
+      });
+  };
+  const festivalData = [
+    {
+      imgPath: GreatWine,
+      title: 'The GREAT Wine & Dine Festival',
+      description:
+        'Indulge in delectable offerings through live demonstrations and hands-on masterclasses by Resorts WorldTM Sentosa’s celebrity chefs and patissiers.'
+    },
+    {
+      imgPath: GreatWine,
+      title: 'The GREAT Wine & Dine Festival',
+      description:
+        'Indulge in delectable offerings through live demonstrations and hands-on masterclasses by Resorts WorldTM Sentosa’s celebrity chefs and patissiers.'
+    },
+    {
+      imgPath: GreatWine,
+      title: 'The GREAT Wine & Dine Festival',
+      description:
+        'Indulge in delectable offerings through live demonstrations and hands-on masterclasses by Resorts WorldTM Sentosa’s celebrity chefs and patissiers.'
+    },
+    {
+      imgPath: GreatWine,
+      title: 'The GREAT Wine & Dine Festival',
+      description:
+        'Indulge in delectable offerings through live demonstrations and hands-on masterclasses by Resorts WorldTM Sentosa’s celebrity chefs and patissiers.'
+    }
+  ];
+
+  console.log(data);
   return (
     <div className="explore-wrapper">
       <Banner />
       <WhatsUp />
+      {/* <LandingFestivals data={festivalData} heading={'Festivals'} /> */}
       <div className="home-page-wrapper">
         <CustomtomSectionTwo heading={'Royals'} isMoreFrom={true} />
       </div>
       <LandingArticles />
       <GiftCard />
-      <LandingFestivals />
-      <Reviews />
-      <Trending />
-      <CustomtomSectionThree heading="Video Gallery" />
+      <LandingFestivals data={festivalData} heading={'Festivals'} />
+      <Reviews reviewsData={'reviewsData'} />
+      <Trending trendingImage={'trendingImage'} />
+      <CustomtomSectionThree
+        heading="Video Gallery"
+        customData={section_eigth}
+      />
       {/* <section className="explore-page-banner">
         <div className="banner-content">
           <div className="banner-desc">

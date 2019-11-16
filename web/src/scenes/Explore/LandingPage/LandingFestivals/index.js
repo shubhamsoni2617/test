@@ -2,17 +2,14 @@ import React from 'react';
 import './style.scss';
 import { Link } from 'react-router-dom';
 import Arrow from '../../../../assets/images/right-arrow.svg';
-import GreatWine from '../../../../assets/images/great-wine.png';
-import chrolFest from '../../../../assets/images/choral-festival.png';
-import nightFest from '../../../../assets/images/nightfest.png';
-import sentosaFest from '../../../../assets/images/sentosa-fest.png';
+import Image from '../../../../shared/components/Image';
 
-const LandingFestivals = ({}) => {
+const LandingFestivals = ({ heading, data }) => {
   return (
     <section className="festivals-wrapper">
       <div className="container-fluid">
         <div class="section-top-wrapper">
-          <h2>Festivals</h2>
+          <h2>{heading}</h2>
           <div class="carousel-dots">
             <Link to="/explore/festival">
               See all <img src={Arrow} class="img-fluid" alt="arrow" />
@@ -20,64 +17,22 @@ const LandingFestivals = ({}) => {
           </div>
         </div>
         <div className="festivals-container">
-          <div className="item-wrapper">
-            <div className="image-wrapper">
-              <div class="item-img">
-                <img src={GreatWine} alt="sifa" />
-              </div>
-            </div>
-            <div className="image-bottom-desc">
-              <h3>The GREAT Wine & Dine Festival</h3>
-              <p>
-                Indulge in delectable offerings through live demonstrations and
-                hands-on masterclasses by Resorts WorldTM Sentosa’s celebrity
-                chefs and patissiers.
-              </p>
-            </div>
-          </div>
-          <div className="item-wrapper">
-            <div className="image-wrapper">
-              <div class="item-img">
-                <img src={chrolFest} alt="festival" />
-              </div>
-            </div>
-            <div className="image-bottom-desc">
-              <h3>Choral Festival 2019</h3>
-              <p>
-                The Choral Festival 2019 is a harvest festival celebrated
-                notably by the Chinese, Vietnamese
-              </p>
-            </div>
-          </div>
-          <div className="item-wrapper">
-            <div className="image-wrapper">
-              <div class="item-img">
-                <img src={nightFest} alt="chinese" />
-              </div>
-            </div>
-            <div className="image-bottom-desc">
-              <h3>Singapore Night Festival</h3>
-              <p>
-                The Singapore Night Festival is an annual street festival held
-                over two weekends celebrating the arts and Singapore’s rich
-                cultural heritage.
-              </p>
-            </div>
-          </div>
-          <div className="item-wrapper">
-            <div className="image-wrapper">
-              <div class="item-img">
-                <img src={sentosaFest} alt="Chritmas" />
-              </div>
-            </div>
-            <div className="image-bottom-desc">
-              <h3>Sentosa GrillFest 2019</h3>
-              <p>
-                Sentosa GrillFest is back – bigger and better at that! Make time
-                to feast at Singapore’s only food street by the beach
-              </p>
-            </div>
-          </div>
+          {data &&
+            data.map(({ imgPath, title, description }, index) => {
+              return (
+                <div className="item-wrapper" key={index}>
+                  <div className="image-wrapper">
+                    <div class="item-img">
+                      <Image src={imgPath} type="Horizontal" />
+                    </div>
+                  </div>
+                  <div className="image-bottom-desc">
+                    <h3>{title}</h3>
+                    <p>{description}</p>
+                  </div>
+                </div>
+              );
+            })}
         </div>
       </div>
     </section>

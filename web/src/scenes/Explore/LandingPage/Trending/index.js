@@ -1,8 +1,16 @@
 import React from 'react';
 import './style.scss';
 import Trending1 from '../../../../assets/images/trending1.png';
+import Image from '../../../../shared/components/Image';
 
 const Trending = ({}) => {
+  const trendingImage = [
+    { imgPath: Trending1 },
+    { imgPath: Trending1 },
+    { imgPath: Trending1 },
+    { imgPath: Trending1 },
+    { imgPath: Trending1 }
+  ];
   return (
     <section className="trending-wrapper">
       <div className="container-fluid">
@@ -10,21 +18,14 @@ const Trending = ({}) => {
           <h2>Trending</h2>
         </div>
         <div className="grid-container">
-          <div className="item">
-            <img src={Trending1} alt="" className="img-fluid" />
-          </div>
-          <div className="item">
-            <img src={Trending1} alt="" className="img-fluid" />
-          </div>
-          <div className="item">
-            <img src={Trending1} alt="" className="img-fluid" />
-          </div>
-          <div className="item">
-            <img src={Trending1} alt="" className="img-fluid" />
-          </div>
-          <div className="item">
-            <img src={Trending1} alt="" className="img-fluid" />
-          </div>
+          {trendingImage &&
+            trendingImage.map(({ imgPath }, index) => {
+              return (
+                <div className="item" key={index}>
+                  <Image src={imgPath} type="Horizontal" />
+                </div>
+              );
+            })}
         </div>
       </div>
     </section>
