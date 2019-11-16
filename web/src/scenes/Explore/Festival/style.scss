@@ -498,6 +498,11 @@
     @media(max-width: 768px){
         padding: 25px 0;
     }
+    .container-fluid{
+        @media(max-width: 576px){
+            padding-right: 0px;
+        }
+    }
     .fest-event-wrapper{
         // @media(max-width: 768px){
         //     width: calc(100% + 30px);
@@ -640,8 +645,13 @@
        background-color: #F0F9FF;
        padding: 45px 0;
        @media (max-width: 768px) {
-        padding: 0;
-    }
+            padding: 0;
+        }
+        .container-fluid{
+            @media(max-width: 576px){
+                padding-right: 0px;
+            }
+        }
        .tickets{
         //    @media(max-width: 768px){
         //         width: calc(100% + 30px);
