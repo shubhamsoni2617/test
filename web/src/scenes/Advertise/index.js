@@ -185,20 +185,6 @@ const Advertise = props => {
               <div className="stay-connect buzz-connect">
                 <h3>Subscribe to receive our newsletter</h3>
                 <NewsLetterForm type="advertise" />
-                {/* <div className="input-group">
-                  <input
-                    type="email"
-                    className="form-control"
-                    placeholder="Enter Your email"
-                    aria-label="Username"
-                    aria-describedby="basic-addon1"
-                  />
-                  <div className="input-group-prepend">
-                    <a className="input-group-text" id="basic-addon1">
-                      <img src={img4} className="img-fluid" alt="send" />
-                    </a>
-                  </div>
-                </div> */}
               </div>
             </div>
             <div className="app-image text-right">

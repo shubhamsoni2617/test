@@ -3,7 +3,7 @@ import './style.scss';
 import NewsLetterService from '../../services/NewsLetterService';
 import sendImage from '../../../assets/images/send.svg';
 
-const NewsLetterForm = ({ heading, type }) => {
+const NewsLetterForm = ({ type }) => {
   const [email, setEmail] = useState('');
   const [msg, setMsg] = useState('');
   const [loading, setLoding] = useState(false);
