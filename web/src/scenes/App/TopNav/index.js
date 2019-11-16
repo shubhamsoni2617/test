@@ -319,7 +319,7 @@ const TopNav = props => {
                   <Link to="/promotions">Promotions</Link>
                 </li>
                 <li>
-                  <Link to="/explore/article">Explore</Link>
+                  <Link to="/explore/articlelist">Explore</Link>
                 </li>
               </ul>
             </div>
@@ -481,7 +481,7 @@ const TopNav = props => {
               </li>
               <li>
                 <Link
-                  to="/explore/article"
+                  to="/explore/articlelist"
                   onClick={() => handleNavigationClose()}
                 >
                   Explore
