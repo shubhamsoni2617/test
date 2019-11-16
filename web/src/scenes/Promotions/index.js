@@ -164,7 +164,7 @@ export default class Promotions extends Component {
     const { defaultTabId, sortBy, first } = this.state;
     const params = {
       client: Constants.CLIENT,
-      category: defaultTabId,
+      category: defaultTabId || 1,
       first: first,
       limit: Constants.LIMIT,
       sort_type: 'title',
@@ -173,7 +173,6 @@ export default class Promotions extends Component {
 
     PromotionService.getPromotionList(params).then(res => {
       if (res.data && res.data.data) {
-        console.log('response', res);
         const listing = res.data.data;
         this.setState({
           totalRecords: res.data.total_records,
