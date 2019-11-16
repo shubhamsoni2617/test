@@ -25,7 +25,7 @@ const Article = props => {
 
   const getArticle = () => {
     const params = {
-      id: 8372
+      id: props.match.params.id
     };
     setTimeout(() => {
       ExploreService.getArticle(params)
