@@ -183,7 +183,8 @@ const TopNav = props => {
         pathArr[1] === 'system-licensing' ||
         pathArr[1] === 'advertise' ||
         pathArr[1] === 'sell-event-tickets' ||
-        pathArr[1] === 'b2b'
+        pathArr[1] === 'b2b' ||
+        pathArr[1] === 'apipartners'
       ) {
         setChangeHeader(true);
         setPathName(pathArr[1]);
@@ -267,7 +268,9 @@ const TopNav = props => {
             <div className="top-header-right">
               <ul>
                 <li className="user-icon">
-                  <ManLogo className="img-fluid" />
+                  <a href="https://ticketing.sistic.com.sg/sistic/patron/management">
+                    <ManLogo className="img-fluid" />
+                  </a>
                   <span></span>
                 </li>
                 <MiniCart data={miniCartData} />
@@ -319,7 +322,7 @@ const TopNav = props => {
                   <Link to="/promotions">Promotions</Link>
                 </li>
                 <li>
-                  <Link to="/explore/articlelist">Explore</Link>
+                  <Link to="/explore">Explore</Link>
                 </li>
               </ul>
             </div>
@@ -356,10 +359,10 @@ const TopNav = props => {
             ></a>
             <ul className="user-details">
               <li className="user-icon">
-                <Link to="/">
+                <a href="https://ticketing.sistic.com.sg/sistic/patron/management">
                   <ManLogo className="img-fluid" />
                   <span></span>
-                </Link>
+                </a>
                 <span>Login/ Register</span>
               </li>
               <li className="ticket-withus">
@@ -480,10 +483,7 @@ const TopNav = props => {
                 </Link>
               </li>
               <li>
-                <Link
-                  to="/explore/articlelist"
-                  onClick={() => handleNavigationClose()}
-                >
+                <Link to="/explore" onClick={() => handleNavigationClose()}>
                   Explore
                 </Link>
               </li>
@@ -620,10 +620,10 @@ const TopNav = props => {
                             <Link to="/venues">Locate a Venue</Link>
                           </li>
                           <li className="has-submenu">
-                            <Link to="/">Blog</Link>
+                            <Link to="/articles">Blog</Link>
                           </li>
                           <li className="has-submenu">
-                            <Link to="/">Media</Link>
+                            <Link to="/events">Media</Link>
                           </li>
                         </ul>
                       </SubmenuWrap>
@@ -672,10 +672,10 @@ const TopNav = props => {
               <li className="sistic-on-mobile">
                 <span>Sistic on Mobile</span>
                 <div className="download-option">
-                  <Link to="/">
+                  <Link to="https://itunes.apple.com/sg/app/sistic/id500601166?mt=8">
                     <AppleLogo className="ios" />
                     <span>
-                      Available on the
+                      Available
                       <br />
                       <strong>App Store</strong>
                     </span>
