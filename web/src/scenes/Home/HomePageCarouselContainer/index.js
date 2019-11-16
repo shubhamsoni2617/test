@@ -77,14 +77,13 @@ export default class HomePageCarouselContainer extends Component {
                 <Slider {...mainSliderSettings}
                     asNavFor={this.thumbSlider}
                     ref={slider => (this.mainSlider = slider)}
-                    afterChange={(index) => console.log(index)}
                     afterChange={(index) => this.changeBackgroundImage(index)}
                     className="slider-for">
 
                     {
                         posts.length ?
-                            posts.map(post => <div>
-                                <img src={post.full_image} alt="image1" className="img1 img-responsive"></img>
+                            posts.map((post, key) => <div>
+                                <img onClick={sliderBackgroudImage == key ? ()=> window.open("someLink", "_blank") : ''} src={post.full_image} alt="image1" className="img1 img-responsive"></img>
                             </div>) :
                             null
                     }
