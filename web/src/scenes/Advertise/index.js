@@ -144,7 +144,7 @@ const Advertise = props => {
               )}
 
               <div className="download-option app-option">
-                <a>
+                <a href="https://itunes.apple.com/sg/app/sistic/id500601166?mt=8">
                   <img src={apple} className="ios" alt="" />
                   <span>
                     Available on the
@@ -152,7 +152,7 @@ const Advertise = props => {
                     <strong>App Store</strong>
                   </span>
                 </a>
-                <a>
+                <a href="https://play.google.com/store/apps/details?id=com.rainmakerlabs.sistic&hl=en">
                   <img src={android} className="android" alt="" />
                   <span>
                     Get it on

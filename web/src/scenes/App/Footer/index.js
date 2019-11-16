@@ -52,7 +52,7 @@ const Footer = () => {
                     <Link to="/venues">Locate a Venue</Link>
                   </li>
                   <li>
-                    <a>Blog</a>
+                    <Link to="/articles">Blog</Link>
                   </li>
                   <li>
                     <a>Media</a>
@@ -80,7 +80,7 @@ const Footer = () => {
             <div className="footer-links">
               <h3>SISTIC on Mobile</h3>
               <div className="download-option">
-                <a>
+                <a href="https://itunes.apple.com/sg/app/sistic/id500601166?mt=8">
                   <img src={appleImage} className="ios" alt="" />
                   <span>
                     Available on the
@@ -88,7 +88,7 @@ const Footer = () => {
                     <strong>App Store</strong>
                   </span>
                 </a>
-                <a>
+                <a href="https://play.google.com/store/apps/details?id=com.rainmakerlabs.sistic&hl=en">
                   <img src={androidImage} className="android" alt="" />
                   <span>
                     Get it on

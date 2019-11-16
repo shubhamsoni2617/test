@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import CardList from './CardList';
 import DownArrowBlue from '../../../assets/images/down-arrow-blue.svg';
 import Breadcrumb from '../../../scenes/App/Breadcrumb';
-import loaderImage from '../../../assets/images/loader.svg';
 import filterIcon from '../../../assets/images/events/filter.svg';
 import ShimmerEffect from '../../../shared/components/ShimmerEffect';
 import Utilities from '../../../shared/utilities';
@@ -209,7 +208,11 @@ const ArticleList = props => {
                 </div>
               </div>
             </div>
-            <div className={`events-listing ${isNaN(totalResults) ? `article-list-notfound` : ``}`}>
+            <div
+              className={`events-listing ${
+                isNaN(totalResults) ? `article-list-notfound` : ``
+              }`}
+            >
               <div className="events-section">
                 <CardList
                   articleList={articleList}
@@ -219,7 +222,7 @@ const ArticleList = props => {
                   <ShimmerEffect
                     propCls={`${
                       Utilities.mobileAndTabletcheck() ? 'shm_col-xs-6' : ''
-                      } col-md-4`}
+                    } col-md-4`}
                     height={150}
                     count={Utilities.mobileAndTabletcheck() ? 2 : 3}
                     type="LIST"
