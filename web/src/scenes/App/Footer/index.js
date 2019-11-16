@@ -13,6 +13,29 @@ import BackToTop from '../../../shared/components/BackToTop';
 import Utilities from '../../../shared/utilities';
 
 const Footer = () => {
+  const ourCompanyLinks = [
+    { link: 'about-us', linkName: 'About Us' },
+    { link: 'sell-event-tickets', linkName: 'Sell with Us' },
+    { link: 'system-licensing', linkName: 'Ticketing Technology' },
+    { link: 'apipartners', linkName: 'Partner with Us' },
+    { link: 'career', linkName: 'Careers' }
+  ];
+
+  const helpFulLinks = [
+    { link: 'where-to-buy-tickets', linkName: 'Where to Buy Tickets' },
+    { link: 'agents', linkName: 'Locate an Agent' },
+    { link: 'venues', linkName: 'Locate a Venue' },
+    { link: 'articles', linkName: 'Blog' },
+    { link: '', linkName: 'Media' }
+  ];
+
+  const thirdColLinks = [
+    { link: '', linkName: 'My Account' },
+    { link: 'gift-vouchers', linkName: 'Gift Vouchers' },
+    { link: 'faq/top-questions', linkName: 'FAQ' },
+    { link: '', linkName: 'Cancellations/Refunds' },
+    { link: 'contact-us', linkName: 'Contact Us' }
+  ];
   return (
     <footer id="footer">
       <section className="footer">
@@ -21,59 +44,35 @@ const Footer = () => {
             <div className="footer-links">
               <h3>Our Company</h3>
               <ul>
-                <li>
-                  <Link to="/about-us">About Us</Link>
-                </li>
-                <li>
-                  <Link to="/sell-event-tickets">Sell with Us</Link>
-                </li>
-                <li>
-                  <Link to="/system-licensing">Ticketing Technology</Link>
-                </li>
-                <li>
-                  <Link to="/apipartners">Partner with Us</Link>
-                </li>
-                <li>
-                  <Link to="/career">Careers</Link>
-                </li>
+                {ourCompanyLinks.map(({ link, linkName }) => {
+                  return (
+                    <li key={link}>
+                      <Link to={`/${link}`}>{linkName}</Link>
+                    </li>
+                  );
+                })}
               </ul>
             </div>
             <div className="footer-links helpful-links">
               <h3>Helpful Links</h3>
               <div className="footer-groups">
                 <ul>
-                  <li>
-                    <Link to="/where-to-buy-tickets">Where to Buy Tickets</Link>
-                  </li>
-                  <li>
-                    <Link to="/agents">Locate an Agent</Link>
-                  </li>
-                  <li>
-                    <Link to="/venues">Locate a Venue</Link>
-                  </li>
-                  <li>
-                    <Link to="/articles">Blog</Link>
-                  </li>
-                  <li>
-                    <a>Media</a>
-                  </li>
+                  {helpFulLinks.map(({ link, linkName }) => {
+                    return (
+                      <li key={link}>
+                        <Link to={`/${link}`}>{linkName}</Link>
+                      </li>
+                    );
+                  })}
                 </ul>
                 <ul>
-                  <li>
-                    <a>My Account</a>
-                  </li>
-                  <li>
-                    <Link to="/gift-vouchers">Gift Vouchers</Link>
-                  </li>
-                  <li>
-                    <Link to="/faq/top-questions">FAQ</Link>
-                  </li>
-                  <li>
-                    <a>Cancellations/Refunds</a>
-                  </li>
-                  <li>
-                    <Link to="/contact-us">Contact Us</Link>
-                  </li>
+                  {thirdColLinks.map(({ link, linkName }) => {
+                    return (
+                      <li key={link}>
+                        <Link to={`/${link}`}>{linkName}</Link>
+                      </li>
+                    );
+                  })}
                 </ul>
               </div>
             </div>
