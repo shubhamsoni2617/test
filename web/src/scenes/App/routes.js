@@ -24,7 +24,7 @@ import LandingPage from '../LandingPage';
 import ArticleList from '../Explore/ArticleList';
 import Article from '../Explore/Article';
 
-// import Explore from '../Explore';
+// import Explore from '../Explore/';
 
 const routes = [
   {

@@ -275,7 +275,7 @@ const TopNav = props => {
                 </li>
                 <MiniCart data={miniCartData} />
                 <li className="ticket-withus">
-                  <a>Ticket With Us</a>
+                  <Link to="/sell-event-tickets">Ticket With Us</Link>
                 </li>
               </ul>
             </div>
@@ -366,7 +366,7 @@ const TopNav = props => {
                 <span>Login/ Register</span>
               </li>
               <li className="ticket-withus">
-                <a>Ticket With Us</a>
+                <Link to="/sell-event-tickets">Ticket With Us</Link>
               </li>
             </ul>
             <ul>
