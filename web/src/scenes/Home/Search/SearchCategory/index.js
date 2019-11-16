@@ -4,7 +4,6 @@ import Utilities from '../../../../shared/utilities';
 
 const SearchCategory = props => {
   const { defaultCategoryId, handleActiveCategory, searchCategories } = props;
-  console.log(searchCategories);
   return (
     <div className="promotions-full-wrapper">
       <section className="promotions-wrapper">
