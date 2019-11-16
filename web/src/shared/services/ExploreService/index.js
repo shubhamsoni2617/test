@@ -5,7 +5,7 @@ class ExploreService {
     return API.get(`/get-articles-listing`, { params });
   }
   getTemplateTwo() {
-    return API.get(`/get-template-2`);
+    return API.get(`/get-template-2?id=8277`);
   }
   getCategories() {
     return API.get(`get-template-categories`);
