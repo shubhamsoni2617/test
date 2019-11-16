@@ -2,6 +2,9 @@
     .events-listing{
         padding: 0 0px 0px 10px;
         overflow: visible;
+        &.article-list-notfound{
+            align-self: center;
+        }
         @media(max-width: 768px){
             padding: 0px;
         }
@@ -34,6 +37,11 @@
                     flex-shrink: 0;
                     flex-basis: calc(25% - 28px);
                     width: calc(25% - 28px);
+                }
+                &.no-data{
+                    flex-basis: 100%;
+                    width: 100%;
+                    margin-right: 0px;
                 }
             }
         }

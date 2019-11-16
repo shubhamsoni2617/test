@@ -209,7 +209,7 @@ const ArticleList = props => {
                 </div>
               </div>
             </div>
-            <div className="events-listing">
+            <div className={`events-listing ${isNaN(totalResults) ? `article-list-notfound` : ``}`}>
               <div className="events-section">
                 <CardList
                   articleList={articleList}
@@ -219,7 +219,7 @@ const ArticleList = props => {
                   <ShimmerEffect
                     propCls={`${
                       Utilities.mobileAndTabletcheck() ? 'shm_col-xs-6' : ''
-                    } col-md-4`}
+                      } col-md-4`}
                     height={150}
                     count={Utilities.mobileAndTabletcheck() ? 2 : 3}
                     type="LIST"

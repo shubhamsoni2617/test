@@ -49,19 +49,19 @@ const CardList = ({ articleList, totalRecords }) => {
     <ShimmerEffect
       propCls={`${
         Utilities.mobileAndTabletcheck() ? 'shm_col-xs-6' : ''
-      } col-md-4`}
+        } col-md-4`}
       height={150}
       count={Utilities.mobileAndTabletcheck() ? 2 : 3}
       type="LIST"
     />
   ) : (
-    <div className="no-data">
-      <img src={noEvent} alt="No Event Data" />
-      <p>
-        <strong>No Data found</strong>
-      </p>
-      <p>Try again with more general search events</p>
-    </div>
-  );
+        <div className="no-data">
+          <img src={noEvent} alt="No Event Data" />
+          <p>
+            <strong>No Data found</strong>
+          </p>
+          <p>Try again with more general search</p>
+        </div>
+      );
 };
 export default CardList;
