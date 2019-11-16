@@ -4,7 +4,6 @@ import Autocomplete from './AutoComplete';
 
 const HomePageSearch = ({ history, mostViewed }) => {
   const [buttonActive, setButtonActive] = useState(false);
-
   const buttonActiveHandler = value => {
     setButtonActive(value);
   };
