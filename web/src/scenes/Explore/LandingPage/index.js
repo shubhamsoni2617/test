@@ -63,7 +63,7 @@ const Explore = () => {
   ];
 
   console.log(data);
-  const { video_gallery, trending, royals, whats_up } = data;
+  const { video_gallery, trending, royals, whats_up, articles } = data;
 
   return (
     <div className="explore-wrapper">
@@ -75,7 +75,7 @@ const Explore = () => {
           customData={royals && royals.sub_section_two}
         />
       </div>
-      <LandingArticles />
+      <LandingArticles articles={articles} />
       <GiftCard />
       <LandingFestivals data={festivalData} heading={'Festivals'} />
       <Reviews reviewsData={'reviewsData'} />
