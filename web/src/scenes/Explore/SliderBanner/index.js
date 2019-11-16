@@ -1,8 +1,9 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import Slider from 'react-slick';
 import './style.scss';
-import Image from '../../../assets/images/promo-img1.svg';
-const SliderBanner = () => {
+
+const SliderBanner = ({ data }) => {
+  console.log(data);
   const settings = {
     dots: true,
     infinite: true,
@@ -14,11 +15,10 @@ const SliderBanner = () => {
   return (
     <div className="sliderBottomDot">
       <Slider {...settings}>
-        <img src={Image} height="300px" />
-        <img src={Image} height="300px" />
-        <img src={Image} height="300px" />
-        <img src={Image} height="300px" />
-        <img src={Image} height="300px" />
+        {data &&
+          data.map(image => {
+            return <img src={image} key={image} />;
+          })}
       </Slider>
     </div>
   );

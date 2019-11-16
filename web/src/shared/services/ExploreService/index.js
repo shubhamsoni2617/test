@@ -2,7 +2,10 @@ import API from '../../api';
 
 class ExploreService {
   getExploreArticleList(params) {
-    return API.get(`/get-articles-listing`, { params: params });
+    return API.get(`/get-articles-listing`, { params });
+  }
+  getArticle(params) {
+    return API.get(`get-template-1`, { params });
   }
   getCategories() {
     return API.get(`get-template-categories`);

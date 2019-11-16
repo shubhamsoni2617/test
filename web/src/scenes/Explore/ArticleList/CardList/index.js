@@ -19,7 +19,11 @@ const CardList = ({ history, articleList, totalRecords }) => {
             <div className="article-category-group">
               {cardData.categories &&
                 cardData.categories.map(category => {
-                  return <span className="category">{category}</span>;
+                  return (
+                    <span key={category} className="category">
+                      {category}
+                    </span>
+                  );
                 })}
             </div>
             <div className="event-img">
@@ -32,7 +36,7 @@ const CardList = ({ history, articleList, totalRecords }) => {
                     {cardData.genre &&
                       cardData.genre.map(genreName => {
                         return (
-                          <li>
+                          <li key={genreName}>
                             <span className="">{genreName}</span>
                           </li>
                         );
