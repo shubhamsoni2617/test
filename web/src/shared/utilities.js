@@ -73,7 +73,16 @@ class Utilities {
       .substr(url.lastIndexOf('.'));
   };
 
+  static isBrowser() {
+    if (typeof navigator === 'undefined') return false;
+    if (typeof window === 'undefined') return false;
+
+    return true;
+  }
+
   static mobilecheck = () => {
+    if (typeof navigator === 'undefined' || typeof window === 'undefined')
+      return false;
     var check = false;
     (function(a) {
       if (
@@ -90,6 +99,8 @@ class Utilities {
   };
 
   static mobileAndTabletcheck = () => {
+    if (typeof navigator === 'undefined' || typeof window === 'undefined')
+      return false;
     var check = false;
     (function(a) {
       if (

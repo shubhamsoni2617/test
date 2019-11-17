@@ -8,10 +8,10 @@ import DropDown from '../../../shared/components/DropDown';
 import HomePageSearch from '../../Home/HomePageSearch';
 import MiniCart from '../../Home/MiniCart';
 import HomeService from '../../../shared/services/HomeService';
-import { ReactComponent as ManLogo } from '../../../assets/images/man.svg';
+import MainLogo from '../../../assets/images/man.svg';
 import AndroidLogo from '../../../assets/images/android.png';
 import logo from '../../../assets/images/logo.png';
-import { ReactComponent as AppleLogo } from '../../../assets/images/apple.svg';
+import AppleLogo from '../../../assets/images/apple.svg';
 import fb from '../../../assets/images/fb.svg';
 import insta from '../../../assets/images/insta-unfill.svg';
 import Calender from '../../../shared/components/Calender';
@@ -62,14 +62,26 @@ const TopNav = props => {
   const [menuActive, setMenuActive] = useState(false);
   const [pathName, setPathName] = useState('events');
   const [headerClass, setHeaderClass] = useState(false);
-  const [byVenueEvent, setByVenueEvent] = useState([]);
-  const [byGenreEvent, setByGenreEvent] = useState([]);
-  const [showElementsInHeader, setShowElementsInHeader] = useState(4);
+  const [byVenueEvent, setByVenueEvent] = useState(
+    props.response && props.response.venuesData
+      ? props.response.venuesData.data
+      : []
+  );
+  const [byGenreEvent, setByGenreEvent] = useState(
+    props.response && props.response.genreData
+      ? props.response.genreData.data
+      : []
+  );
+  const [showElementsInHeader] = useState(4);
   const [changeHeader, setChangeHeader] = useState(false);
   const [headerClassScroll, setHeaderClassScroll] = useState(false);
   const [stickyHeader, setStickyHeader] = useState(false);
   const [mostViewed, setMostViewed] = useState(null);
-  const [featuredEvents, setFeaturedEvents] = useState([]);
+  const [featuredEvents, setFeaturedEvents] = useState(
+    props.response && props.response.findAnEventAddsData
+      ? props.response.findAnEventAddsData.data
+      : []
+  );
   const miniCartData = [
     { id: '1', img: 'assets/images/explore.png' },
     { id: '2', img: 'assets/images/explore.png' },
@@ -78,43 +90,57 @@ const TopNav = props => {
 
   useEffect(() => {
     fetchMostViewedService();
-    const first = 0;
-    const limit = 5;
-    const search = '';
-    HomeService.getHomepageVenues(first, limit, search)
-      .then(res => {
-        setByVenueEvent(res.data.data);
-      })
-      .catch(err => {
-        console.log(err);
-      });
-
-    HomeService.getGenre()
-      .then(res => {
-        var result = Object.keys(res.data.data).map(key => {
-          return res.data.data[key];
+    if (window.__INITIAL_DATA__ && window.__INITIAL_DATA__.venuesData) {
+      setByVenueEvent(window.__INITIAL_DATA__.venuesData.data);
+    } else {
+      const first = 0;
+      const limit = 5;
+      const search = '';
+      HomeService.getHomepageVenues(first, limit, search)
+        .then(res => {
+          setByVenueEvent(res.data.data);
+        })
+        .catch(err => {
+          console.log(err);
         });
-        setByGenreEvent(result);
+    }
+    if (window.__INITIAL_DATA__ && window.__INITIAL_DATA__.genreData) {
+      setByGenreEvent(window.__INITIAL_DATA__.genreData.data);
+    } else {
+      HomeService.getGenre()
+        .then(res => {
+          var result = Object.keys(res.data.data).map(key => {
+            return res.data.data[key];
+          });
+          setByGenreEvent(result);
+        })
+        .catch(err => {
+          console.log(err);
+        });
+    }
+    if (
+      window.__INITIAL_DATA__ &&
+      window.__INITIAL_DATA__.findAnEventAddsData
+    ) {
+      setFeaturedEvents(window.__INITIAL_DATA__.findAnEventAddsData.data);
+    } else {
+      AdvertisementService.getFindAnEventAds({
+        client: Constants.CLIENT,
+        limit: 2,
+        first: 0
       })
-      .catch(err => {
-        console.log(err);
-      });
+        .then(res => {
+          if (res && res.data) {
+            setFeaturedEvents(res.data.data);
+          }
+        })
+        .catch(err => {
+          if (err && err.response) {
+            console.log(err.response);
+          }
+        });
+    }
 
-    AdvertisementService.getFindAnEventAds({
-      client: Constants.CLIENT,
-      limit: 2,
-      first: 0
-    })
-      .then(res => {
-        if (res && res.data) {
-          setFeaturedEvents(res.data.data);
-        }
-      })
-      .catch(err => {
-        if (err && err.response) {
-          console.log(err.response);
-        }
-      });
     if (props.history.location.pathname) processPath(props.history.location);
 
     const unlisten = props.history.listen(location => {
@@ -269,7 +295,7 @@ const TopNav = props => {
               <ul>
                 <li className="user-icon">
                   <a href="https://ticketing.sistic.com.sg/sistic/patron/management">
-                    <ManLogo className="img-fluid" />
+                    <img src={MainLogo} className="img-fluid" alt="send" />
                   </a>
                   <span></span>
                 </li>
@@ -291,21 +317,21 @@ const TopNav = props => {
                   onMouseLeave={() => handleMouseStatus(false)}
                 >
                   <a>Events</a>
-                  <CSSTransitionGroup
+                  {/* <CSSTransitionGroup
                     transitionName="mega"
                     transitionEnter={true}
                     transitionEnterTimeout={300}
                     transitionLeaveTimeout={300}
-                  >
-                    {showMegaMenu && (
-                      <MegaMenu
-                        handleMouseStatus={handleMouseStatus}
-                        byGenreEvent={byGenreEvent}
-                        byVenueEvent={byVenueEvent}
-                        featuredEvents={featuredEvents}
-                      />
-                    )}
-                  </CSSTransitionGroup>
+                  > */}
+                  {showMegaMenu && (
+                    <MegaMenu
+                      handleMouseStatus={handleMouseStatus}
+                      byGenreEvent={byGenreEvent}
+                      byVenueEvent={byVenueEvent}
+                      featuredEvents={featuredEvents}
+                    />
+                  )}
+                  {/* </CSSTransitionGroup> */}
                 </li>
                 <li
                   className={
@@ -360,7 +386,7 @@ const TopNav = props => {
             <ul className="user-details">
               <li className="user-icon">
                 <a href="https://ticketing.sistic.com.sg/sistic/patron/management">
-                  <ManLogo className="img-fluid" />
+                  <img src={MainLogo} className="img-fluid" alt="send" />
                   <span></span>
                 </a>
                 <span>Login/ Register</span>
@@ -673,7 +699,7 @@ const TopNav = props => {
                 <span>Sistic on Mobile</span>
                 <div className="download-option">
                   <Link to="https://itunes.apple.com/sg/app/sistic/id500601166?mt=8">
-                    <AppleLogo className="ios" />
+                    <img src={AppleLogo} className="ios" alt="send" />
                     <span>
                       Available
                       <br />

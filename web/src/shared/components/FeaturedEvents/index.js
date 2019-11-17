@@ -3,7 +3,7 @@ import Slider from 'react-slick';
 import './style.scss';
 import Constants from '../../constants';
 import Utilities from '../../utilities';
-import { CSSTransitionGroup } from 'react-transition-group';
+import { CSSTransition } from 'react-transition-group';
 import ShimmerEffect from '../ShimmerEffect';
 import Image from '../Image';
 
@@ -157,43 +157,43 @@ const FeaturedEvents = props => {
             </div>
           )}
         </div>
-        <CSSTransitionGroup
+        {/* <CSSTransitionGroup
           transitionName="shimmer-carousel"
           transitionEnter={true}
           transitionEnterTimeout={1000}
           transitionLeaveTimeout={1000}
-        >
-          {loading ? (
-            <ShimmerEffect
-              propCls={`shm_col-xs-6 col-md-6`}
-              height={150}
-              count={2}
-              type="TILE"
-            />
-          ) : Utilities.mobilecheck() ? (
-            <div
-              style={{ width: '30em', overflowX: 'auto', whiteSpace: 'nowrap' }}
-            >
-              <div className="grid-container">
-                {featuredEvents &&
-                  featuredEvents.map((event, i) => {
-                    return <Item event={event} key={i} />;
-                  })}
-              </div>
-            </div>
-          ) : (
-            <Slider {...settings}>
+        > */}
+        {loading ? (
+          <ShimmerEffect
+            propCls={`shm_col-xs-6 col-md-6`}
+            height={150}
+            count={2}
+            type="TILE"
+          />
+        ) : Utilities.mobilecheck() ? (
+          <div
+            style={{ width: '30em', overflowX: 'auto', whiteSpace: 'nowrap' }}
+          >
+            <div className="grid-container">
               {featuredEvents &&
-                featuredEvents.map((event, index) => {
-                  return (
-                    <div className="grid-container" key={index}>
-                      <Item event={event} />
-                    </div>
-                  );
+                featuredEvents.map((event, i) => {
+                  return <Item event={event} key={i} />;
                 })}
-            </Slider>
-          )}
-        </CSSTransitionGroup>
+            </div>
+          </div>
+        ) : (
+          <Slider {...settings}>
+            {featuredEvents &&
+              featuredEvents.map((event, index) => {
+                return (
+                  <div className="grid-container" key={index}>
+                    <Item event={event} />
+                  </div>
+                );
+              })}
+          </Slider>
+        )}
+        {/* </CSSTransitionGroup> */}
       </div>
     </section>
   );
