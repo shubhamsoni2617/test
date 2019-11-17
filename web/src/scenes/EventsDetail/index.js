@@ -19,6 +19,8 @@ import StickyHeader from '../../shared/components/StickyHeader';
 
 import SimilarPicksSection from '../../shared/components/SimilarPicksSection';
 import AdvertisementSection from '../../shared/components/AdvertisementSection';
+import HomeService from '../../shared/services/HomeService';
+import MetaData from '../../shared/components/MetaData';
 
 function ShowOver({ isShowOver }) {
   if (isShowOver !== 1) return null;
@@ -122,9 +124,16 @@ export default class EventsDetail extends Component {
   }
   constructor(props) {
     super(props);
-
     this.elemOffsetTop = 0;
     this.state = {
+      title:
+        this.props.staticContext &&
+        this.props.staticContext.response &&
+        this.props.staticContext.response.metaData &&
+        this.props.staticContext.response.metaData.data &&
+        this.props.staticContext.response.metaData.data.title
+          ? this.props.staticContext.response.metaData.data.title
+          : '',
       code: props.match.params.icc,
       detailData: {},
       error: false,
@@ -155,6 +164,8 @@ export default class EventsDetail extends Component {
   };
 
   componentDidMount() {
+    console.log('props', this.props);
+
     this.setState({ shareUrl: window.location.href });
     window.addEventListener('scroll', this.handleScroll);
     const payload = {
@@ -362,6 +373,17 @@ export default class EventsDetail extends Component {
     // this.onSynopsisData(detailData, getSynopsisData);
     return (
       <div className="event-detail-wrapper">
+        {this.props.location && (
+          <MetaData
+            location={this.props.location}
+            data={
+              this.props.staticContext &&
+              this.props.staticContext.response &&
+              this.props.staticContext.response.metaData &&
+              this.props.staticContext.response.metaData.data
+            }
+          />
+        )}
         <CSSTransition
           // transitionName="shimmer"
           // transitionEnter={true}
@@ -379,7 +401,6 @@ export default class EventsDetail extends Component {
             detail={true}
           />
         </CSSTransition>
-
         {detailData && (
           <div className={`main-container ${shimmer ? 'shimmer' : ''}`}>
             <ShowOver isShowOver={detailData.is_show_over} />

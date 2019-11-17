@@ -4,7 +4,8 @@ import React from 'react';
 import { renderToString } from 'react-dom/server';
 import { StaticRouter, matchPath } from 'react-router-dom';
 import serialize from 'serialize-javascript';
-import Helmet from 'react-helmet';
+// import Helmet from 'react-helmet';
+import { Helmet, HelmetProvider } from 'react-helmet-async';
 import App from '../src/scenes/App';
 import routes from '../src/scenes/App/routes';
 import manifest from '../build/asset-manifest.json';
@@ -16,7 +17,7 @@ var fs = require('fs');
 var path = require('path');
 
 const app = express();
-
+const helmetContext = {};
 // app.use(express.static(path.join(__dirname, '../build')));
 app.use('/static', express.static(path.join(__dirname, '../build/static')));
 app.use('/assets', express.static(path.join(__dirname, '../build/assets')));
@@ -24,7 +25,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 app.post('/sistic/docroot/**', function(req, res) {
-  var newurl = `http://192.168.10.197:8081${req.originalUrl}`;
+  var newurl = `http://${req.hostname}:8081${req.originalUrl}`;
   if (req.body && Object.keys(req.body).length !== 0) {
     request
       .post({
@@ -42,7 +43,7 @@ app.post('/sistic/docroot/**', function(req, res) {
 });
 
 app.get('/sistic/docroot/**', function(req, res) {
-  var newurl = `http://192.168.10.197:8081${req.originalUrl}`;
+  var newurl = `http://${req.hostname}:8081${req.originalUrl}`;
   request
     .get(newurl)
     .on('error', function(err) {
@@ -50,7 +51,7 @@ app.get('/sistic/docroot/**', function(req, res) {
     })
     .pipe(res);
 });
-
+const htmlContent = () => {};
 app.get('*', (req, res, next) => {
   var filePath = path.join(__dirname, '../build', 'index.html');
   fs.readFile(filePath, { encoding: 'utf-8' }, function(err, data) {
@@ -61,26 +62,36 @@ app.get('*', (req, res, next) => {
         .filter(comp => comp.getPageData);
       // .map(comp => comp.getPageData(req));
       // console.log('dataRequirements', dataRequirements);
-      var promiseArray = App.getInitialData().concat(
+      var promiseArray = App.getInitialData(req).concat(
         dataRequirements.length > 0 ? dataRequirements[0].getPageData(req) : []
       );
       Promise.all(promiseArray)
         .then(result => {
           if (result && result[0].data) {
+            // const helmet = Helmet.renderStatic();
+
             var dataObject = {
-              leaderBoardData: result[0].data,
-              venuesData: result[1].data,
-              genreData: result[2].data,
-              findAnEventAddsData: result[3].data,
-              pageData: result[4] ? result[4].data : null
+              metaData: result[0].data,
+              leaderBoardData: result[1].data,
+              venuesData: result[2].data,
+              genreData: result[3].data,
+              findAnEventAddsData: result[4].data,
+              pageData: result[5] ? result[5].data : null
             };
             const markup = renderToString(
-              <StaticRouter location={req.url} context={{ data: result }}>
-                <App response={dataObject} />
-              </StaticRouter>
+              <HelmetProvider context={helmetContext}>
+                <StaticRouter
+                  location={req.url}
+                  context={{ response: dataObject }}
+                >
+                  <App response={dataObject} />
+                </StaticRouter>
+              </HelmetProvider>
             );
-
+            const { helmet } = helmetContext;
+            const metaDataStr = `${helmet.title.toString()}${helmet.meta.toString()}`;
             var html = data
+              .replace('<title>SISTIC Singapore</title>', metaDataStr)
               .replace(
                 '<div id="root"></div>',
                 '<div id="root">' + markup + '</div>'
@@ -91,16 +102,25 @@ app.get('*', (req, res, next) => {
                   serialize(dataObject) +
                   '</script>'
               );
-            res.writeHead(200, { 'Content-Type': 'text/html' });
+            res.writeHead(200, {
+              'Content-Type': 'text/html'
+            });
             res.write(html);
             res.end();
+          } else {
+            throw new Error('API error!');
           }
         })
         .catch(err => {
-          console.log(err);
+          // console.log('error', err);
+          res.writeHead(200, {
+            'Content-Type': 'text/html'
+          });
+          res.write(data);
+          res.end();
         });
     } else {
-      console.log(err);
+      // console.log(err);
     }
   });
   // res.status(200).sendFile(path.resolve(__dirname, '../build', 'index.html'));

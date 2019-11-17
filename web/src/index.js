@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { HelmetProvider } from 'react-helmet-async';
 import App from './scenes/App';
 import { Router } from 'react-router-dom';
 import { createBrowserHistory } from 'history';
@@ -11,9 +12,11 @@ import './assets/scss/main.scss';
 const history = createBrowserHistory();
 
 ReactDOM.hydrate(
-  <Router history={history}>
-    <App history={history} />
-  </Router>,
+  <HelmetProvider>
+    <Router history={history}>
+      <App history={history} />
+    </Router>
+  </HelmetProvider>,
   document.getElementById('root')
 );
 

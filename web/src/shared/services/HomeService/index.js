@@ -1,6 +1,9 @@
 import API from '../../../shared/api';
 
 class HomeService {
+  getMetadata(url) {
+    return API.get(`/get-metatags?url=${url}`);
+  }
   getData() {
     return API.get(
       `search/repositories?q=stars:>1+language:javascript&sort=stars&order=desc&type=Repositories`

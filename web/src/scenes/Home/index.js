@@ -24,6 +24,7 @@ import Constants from '../../shared/constants';
 import AdvertisementService from '../../shared/services/AdvertisementService';
 // import CustomSection from './CustomSection';
 import TopPics from './TopPics';
+import MetaData from '../../shared/components/MetaData';
 // import Royals from './Royals';
 
 class Home extends Component {
@@ -99,7 +100,7 @@ class Home extends Component {
   }
 
   componentDidMount() {
-    // this.getItemsOrder();
+    this.getItemsOrder();
   }
 
   showNewsTicker = data => {
@@ -126,6 +127,12 @@ class Home extends Component {
   render() {
     return (
       <div className="home-page-wrapper" ref={this.homePageRef}>
+        {this.props.location && (
+          <MetaData
+            location={this.props.location}
+            data={{ title: 'SISTIC Singapore' }}
+          />
+        )}
         <NewsTicker
           homePageRef={this.homePageRef}
           showNewsTicker={this.showNewsTicker}

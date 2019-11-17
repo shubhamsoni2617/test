@@ -257,27 +257,6 @@ function StickyHeader(props) {
           height={Utilities.mobileAndTabletcheck() ? 25 : 30}
           eventDetail
         />
-        {detailData.promoters && detailData.promoters.length > 0 && (
-          <div className="promoters">
-            {detailData.promoters.map((item, index) => {
-              if (item.url) {
-                return (
-                  <a
-                    key={`${item.name}-${index}`}
-                    href={item.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    {item.name}&nbsp;
-                  </a>
-                );
-              }
-              return (
-                <span key={`${item.name}-${index}`}>{item.name}&nbsp;</span>
-              );
-            })}
-          </div>
-        )}
 
         {detailData.promoters && detailData.promoters.length > 0 && (
           <div className="promoters">

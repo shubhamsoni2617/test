@@ -1,4 +1,5 @@
 import React from 'react';
+import { Helmet } from 'react-helmet';
 import Footer from './Footer';
 import Navigator from './Navigator';
 import TopNav from './TopNav';
@@ -9,8 +10,9 @@ import Constants from '../../shared/constants';
 import HomeService from '../../shared/services/HomeService';
 
 export default class App extends React.Component {
-  static getInitialData() {
+  static getInitialData(req) {
     return [
+      HomeService.getMetadata(req.url && req.url.substr(1)),
       AdvertisementService.getLeaderboardImage({
         client: Constants.CLIENT,
         page: 1
@@ -34,7 +36,7 @@ export default class App extends React.Component {
   componentDidMount() {
     setTimeout(() => {
       document.body.classList.remove('fix-height');
-      // document.getElementById('loader').classList.add('loaded');
+      document.getElementById('loader').classList.add('loaded');
     }, 1000);
   }
 
