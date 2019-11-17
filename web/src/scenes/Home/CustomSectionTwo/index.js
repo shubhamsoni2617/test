@@ -4,12 +4,18 @@ import ShimmerEffect from '../../../shared/components/ShimmerEffect';
 import Constants from '../../../shared/constants';
 import AdvertisementService from '../../../shared/services/AdvertisementService';
 
-const CustomSectionTwo = ({ heading }) => {
+const CustomSectionTwo = ({ heading, customData }) => {
+  console.log(customData);
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
   useEffect(() => {
-    getData();
-  }, []);
+    if (customData && customData.length > 0) {
+      setData(customData);
+      setLoading(false);
+    } else if (customData && !customData.length) {
+      getData();
+    }
+  }, [customData]);
   const getData = () => {
     const params = {
       client: Constants.CLIENT,
