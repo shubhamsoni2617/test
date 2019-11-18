@@ -138,7 +138,8 @@ function Filters(props) {
     filteredVenues,
     filteredCategory,
     hideCalendar,
-    filterFlag
+    filterFlag,
+    toggleFilterSection
   } = props;
   const { price_config } = filterConfig ? filterConfig : 0;
 
@@ -191,6 +192,7 @@ function Filters(props) {
             data={genreData ? genreData : []}
             selectedFilter={filteredGnere}
             limit={5}
+            toggleFilterSection={toggleFilterSection}
           />
           <FilterGrid
             title="Tags"
@@ -199,6 +201,7 @@ function Filters(props) {
             data={filterConfig ? filterConfig.tags : []}
             selectedFilter={filteredTags}
             limit={5}
+            toggleFilterSection={toggleFilterSection}
           />
           {!hideCalendar && (
             <DateRangeFilter
@@ -215,6 +218,7 @@ function Filters(props) {
             data={filterConfig ? filterConfig.promotion_categories : []}
             selectedFilter={filteredPromotions}
             limit={5}
+            toggleFilterSection={toggleFilterSection}
           />
           <FilterGrid
             title="Venue"
@@ -224,6 +228,7 @@ function Filters(props) {
             showPanel={true}
             selectedFilter={filteredVenues}
             limit={5}
+            toggleFilterSection={toggleFilterSection}
           />
           <FilterGrid
             title="Categories"
@@ -232,6 +237,7 @@ function Filters(props) {
             data={attractionCategories ? attractionCategories : []}
             selectedFilter={filteredCategory}
             limit={10}
+            toggleFilterSection={toggleFilterSection}
           />
         </div>
       </div>
@@ -260,6 +266,7 @@ Filters.propTypes = {
   filteredVenues: PropTypes.array.isRequired,
   genreData: PropTypes.array.isRequired,
   handleFilters: PropTypes.func.isRequired,
+  toggleFilterSection: PropTypes.func.isRequired,
   queryParams: PropTypes.object.isRequired,
   resetFilter: PropTypes.func,
   venueData: PropTypes.array.isRequired
