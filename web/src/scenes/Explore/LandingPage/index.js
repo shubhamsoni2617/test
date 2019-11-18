@@ -35,35 +35,16 @@ const Explore = () => {
         }
       });
   };
-  const festivalData = [
-    {
-      imgPath: GreatWine,
-      title: 'The GREAT Wine & Dine Festival',
-      description:
-        'Indulge in delectable offerings through live demonstrations and hands-on masterclasses by Resorts WorldTM Sentosa’s celebrity chefs and patissiers.'
-    },
-    {
-      imgPath: GreatWine,
-      title: 'The GREAT Wine & Dine Festival',
-      description:
-        'Indulge in delectable offerings through live demonstrations and hands-on masterclasses by Resorts WorldTM Sentosa’s celebrity chefs and patissiers.'
-    },
-    {
-      imgPath: GreatWine,
-      title: 'The GREAT Wine & Dine Festival',
-      description:
-        'Indulge in delectable offerings through live demonstrations and hands-on masterclasses by Resorts WorldTM Sentosa’s celebrity chefs and patissiers.'
-    },
-    {
-      imgPath: GreatWine,
-      title: 'The GREAT Wine & Dine Festival',
-      description:
-        'Indulge in delectable offerings through live demonstrations and hands-on masterclasses by Resorts WorldTM Sentosa’s celebrity chefs and patissiers.'
-    }
-  ];
 
   console.log(data);
-  const { video_gallery, trending, royals, whats_up, articles } = data;
+  const {
+    video_gallery,
+    trending,
+    royals,
+    whats_up,
+    articles,
+    festivals
+  } = data;
 
   return (
     <div className="explore-wrapper">
@@ -77,7 +58,7 @@ const Explore = () => {
       </div>
       <LandingArticles articles={articles} />
       <GiftCard />
-      <LandingFestivals data={festivalData} heading={'Festivals'} />
+      <LandingFestivals festivals={festivals} />
       <Reviews reviewsData={'reviewsData'} />
       <Trending trending={trending} />
       <CustomtomSectionThree

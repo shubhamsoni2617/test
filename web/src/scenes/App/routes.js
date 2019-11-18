@@ -26,7 +26,7 @@ import ArticleList from '../Explore/ArticleList';
 import Article from '../Explore/Article';
 import Festival from '../Explore/Festival';
 
-// import Explore from '../Explore';
+// import Explore from '../Explore/';
 
 const routes = [
   {

@@ -9,6 +9,7 @@ const Article = ({ article }) => {
         <div className="category-group">
           <ul>
             {article &&
+              article.genre &&
               article.genre.map(data => {
                 return (
                   <li key={data}>

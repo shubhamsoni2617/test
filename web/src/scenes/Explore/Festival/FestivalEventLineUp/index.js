@@ -1,11 +1,32 @@
 import React, { Fragment } from 'react';
 import './style.scss';
 import Image from '../../../../shared/components/Image';
-import festivalEvent from '../../../../assets/images/festival-event.png';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import Utilities from '../../../../shared/utilities';
+
+const EventItem = ({ title, description, button_url, button_text, image }) => {
+  return (
+    <div className="event" key={title}>
+      <Image src={image} type="Horizontal" />
+      <div className="event-desc">
+        <h2>
+          {Utilities.showLimitedChars(
+            title,
+            Utilities.mobilecheck() ? 25 : 40
+          )}
+        </h2>
+        <p
+          dangerouslySetInnerHTML={{ __html: description }}
+        ></p>
+        {button_text && (
+          <a href={button_url}>{button_text}</a>
+        )}
+      </div>
+    </div>
+  )
+}
 
 const FestivalEventLineUp = ({ sectionOne, sectionTwo }) => {
   const settings = {
@@ -52,77 +73,36 @@ const FestivalEventLineUp = ({ sectionOne, sectionTwo }) => {
           <div className="festival-lineup">
             <h2>{sectionTwo && sectionTwo.heading}</h2>
             <div className="festival-event">
-              <Slider {...settings}>
-                {sectionTwo &&
-                  sectionTwo.sub_section_two.map(
-                    ({
-                      title,
-                      button_text,
-                      button_url,
-                      description,
-                      image
-                    }) => {
-                      return (
-                        <div className="event" key={title}>
-                          <img src={festivalEvent} alt="event" />
+              {Utilities.mobilecheck() ? sectionTwo &&
+                sectionTwo.sub_section_two.map(
+                  ({
+                    title,
+                    button_text,
+                    button_url,
+                    description,
+                    image
+                  }) => {
+                    return (
+                      <EventItem title={title} description={description} button_url={button_url} button_text={button_text} image={image} />
+                    );
+                  }
+                ) : <Slider {...settings}>
+                  {sectionTwo &&
+                    sectionTwo.sub_section_two.map(
+                      ({
+                        title,
+                        button_text,
+                        button_url,
+                        description,
+                        image
+                      }) => {
+                        return (
+                          <EventItem title={title} description={description} button_url={button_url} button_text={button_text} image={image} />
+                        );
+                      }
+                    )}
+                </Slider>}
 
-                          <h2>
-                            {Utilities.showLimitedChars(
-                              title,
-                              Utilities.mobilecheck() ? 25 : 40
-                            )}
-                          </h2>
-                          <p
-                            dangerouslySetInnerHTML={{ __html: description }}
-                          ></p>
-                          {button_text && (
-                            <a href={button_url}>{button_text}</a>
-                          )}
-                        </div>
-                      );
-                    }
-                  )}
-                {/* <div className="event">
-                  <img src={festivalEvent} alt="event" />
-                  <h2></h2>
-                  <p></p>
-                </div>
-                <div className="event">
-                  <img src={festivalEvent} alt="event" />
-                  <h2></h2>
-                  <p></p>
-                </div>
-                <div className="event">
-                  <img src={festivalEvent} alt="event" />
-                  <h2></h2>
-                  <p></p>
-                </div>
-                <div className="event">
-                  <img src={festivalEvent} alt="event" />
-                  <h2></h2>
-                  <p></p>
-                </div>{' '}
-                <div className="event">
-                  <img src={festivalEvent} alt="event" />
-                  <h2></h2>
-                  <p></p>
-                </div>
-                <div className="event">
-                  <img src={festivalEvent} alt="event" />
-                  <h2></h2>
-                  <p></p>
-                </div>{' '}
-                <div className="event">
-                  <img src={festivalEvent} alt="event" />
-                  <h2></h2>
-                  <p></p>
-                </div>
-                <div className="event">
-                  <img src={festivalEvent} alt="event" />
-                  <h2></h2>
-                  <p></p>
-                </div> */}
-              </Slider>
             </div>
           </div>
         </div>
