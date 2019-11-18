@@ -97,6 +97,7 @@ const FilterGrid = props => {
     newFilterObject['local' + props.category] =
       newFilterValue || selectedFilters;
     props.handleFilters(newFilterObject, status);
+    
   };
 
   if (!data.length) return null;
