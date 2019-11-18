@@ -125,6 +125,9 @@ export default class PromotionCarousel extends Component {
 
   render() {
     const { loading, promotions, expiredText } = this.state;
+    if (!loading && promotions && promotions.length === 0) {
+      return null;
+    }
     const settings = {
       dots: true,
       infinite: false,
