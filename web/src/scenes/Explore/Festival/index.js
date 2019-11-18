@@ -13,7 +13,7 @@ import Welcome from './Welcome';
 import SliderBanner from '../SliderBanner';
 import ShimmerEffect from '../../../shared/components/ShimmerEffect';
 
-const Festival = ({ }) => {
+const Festival = ({}) => {
   const [templateTwoContent, setTemplateTwoContent] = useState([]);
   const breadcrumbSlug = [
     { path: '/', title: 'Home' },
@@ -63,12 +63,13 @@ const Festival = ({ }) => {
     section_six,
     section_seven,
     section_eigth,
-    social_wall_url
+    social_wall_url,
+    image
   } = templateTwoContent;
   console.log(templateTwoContent);
   return (
     <div className="festival-wrapper">
-      <SliderBanner />
+      {image && image.length > 0 && <SliderBanner data={image} />}
       {title ? (
         <Welcome
           breadcrumbSlug={breadcrumbSlug}
@@ -77,42 +78,42 @@ const Festival = ({ }) => {
           description={description}
         />
       ) : (
-          reusedShimmer(300, 1, 'TILE', 12)
-        )}
+        reusedShimmer(300, 1, 'TILE', 12)
+      )}
       {section_one && section_two ? (
         <FestivalEventLineUp
           sectionOne={section_one}
           sectionTwo={section_two}
         />
       ) : (
-          reusedShimmer(300, 6, 'TILE', 2)
-        )}
+        reusedShimmer(300, 6, 'TILE', 2)
+      )}
       {section_three ? (
         <MusicFestival sectionThree={section_three} />
       ) : (
-          reusedShimmer(300, 1, 'TILE', 12)
-        )}
+        reusedShimmer(300, 1, 'TILE', 12)
+      )}
       {section_four ? (
         <AllEvents sectionFour={section_four} />
       ) : (
-          reusedShimmer(300, 6, 'TILE', 2)
-        )}
+        reusedShimmer(300, 6, 'TILE', 2)
+      )}
       {social_wall_url && <SocialWall socialUrl={social_wall_url} />}
       {section_five ? (
         <TicketDeals sectionFive={section_five} />
       ) : (
-          reusedShimmer(300, 6, 'TILE', 2)
-        )}
+        reusedShimmer(300, 6, 'TILE', 2)
+      )}
       {section_six ? (
         <Articles sectionSix={section_six} />
       ) : (
-          reusedShimmer(300, 1, 'TILE', 12)
-        )}
+        reusedShimmer(300, 1, 'TILE', 12)
+      )}
       {section_seven ? (
         <PollNServeys sectionSeven={section_seven} />
       ) : (
-          reusedShimmer(300, 1, 'TILE', 12)
-        )}
+        reusedShimmer(300, 1, 'TILE', 12)
+      )}
       {section_eigth && <VideoGallery sectionEight={section_eigth} />}
 
       {/* <div class="festival-wrapper"> */}
