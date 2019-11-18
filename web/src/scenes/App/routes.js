@@ -173,6 +173,11 @@ const routes = [
     exact: true
   },
   {
+    path: '/explore/festival/:id',
+    component: Festival,
+    exact: true
+  },
+  {
     path: '*',
     component: PageNotFound
   }
