@@ -5,7 +5,6 @@ import Constants from '../../../shared/constants';
 import AdvertisementService from '../../../shared/services/AdvertisementService';
 
 const CustomSectionTwo = ({ heading, customData }) => {
-  console.log(customData);
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
   useEffect(() => {

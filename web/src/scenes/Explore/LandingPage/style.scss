@@ -23,17 +23,14 @@
     overflow: hidden;
     min-height: 377px;
     position: relative;
-    text-align: center;
-    @media(max-width: 768px){   
+    @media(max-width: 768px){
         flex-direction: column-reverse;
         background-color: rgba(0, 0, 0, 0.77);
         min-height: auto;
     }
     .banner-content{
-        // flex: 0 0 45%;
-        // width: 45%;
-        flex: 0 0 100%;
-        width: 100%; 
+        flex: 0 0 45%;
+        width: 45%;
         //padding: 78px 60px 75px 83px;
         padding: 0px 60px 0px 83px;
         position: relative;
@@ -85,9 +82,9 @@
             }
         }
         p{
-            color: #B5BDC3;	
-            font-family: 'Rubik', sans-serif;	
-            font-size: 16px;	
+            color: #B5BDC3;
+            font-family: 'Rubik', sans-serif;
+            font-size: 16px;
             line-height: 24px;
             padding-bottom: 17px;
             @media(max-width: 768px){
@@ -157,12 +154,8 @@
         }
     }
     .banner-slider{
-        // flex: 0 0 55%;
-        // width: 55%;
-        flex: 0 0 80%;
-        width: 80%;
-        position: relative;
-        margin: 0 auto;
+        flex: 0 0 55%;
+        width: 55%;
         position: relative;
         @media(max-width: 768px){
             flex: 0 0 100%;
@@ -270,6 +263,7 @@
                     color: #626262;
                     margin-bottom: 0px;
                     padding-bottom: 0px;
+                    word-break: break-all;
                     @media(max-width: 576px){
                         font-size: 12px;
                         line-height: 18px;
@@ -339,7 +333,7 @@
                 padding-top: 15px;
             }
             p{
-                font-size: 14px;	
+                font-size: 14px;
                 line-height: 22px;
                 color: #343434;
                 @media(max-width: 576px){
@@ -399,7 +393,7 @@
             }
         }
         h3{
-            font-size: 17px;	
+            font-size: 17px;
             font-weight: 500;
             line-height: 20px;
             color: #343434;
@@ -443,7 +437,7 @@
     @media(max-width: 768px){
         padding: 20px 0px 20px;
     }
-    .rgs-wrapper {  
+    .rgs-wrapper {
         display: flex;
         flex-wrap: wrap;
         .reviews-item {
@@ -467,10 +461,10 @@
             }
             .section-title{
                 h3{
-                    font-size: 30px;	
-                    font-weight: 600;	
+                    font-size: 30px;
+                    font-weight: 600;
                     line-height: 37px;
-                    color: #343434;	
+                    color: #343434;
                     font-family: 'Montserrat', sans-serif;
                     margin-bottom: 37px;
                     padding-bottom: 0px;
@@ -576,8 +570,8 @@
                                 line-height: 22px;
                             }
                             span{
-                                color: #626262;	                                
-                                font-size: 14px;	
+                                color: #626262;
+                                font-size: 14px;
                                 line-height: 22px
                             }
                         }
@@ -585,10 +579,10 @@
                 }
             }
             .more-review{
-                color: #0098FF;	
-                font-family: 'Montserrat', sans-serif;	
-                font-size: 16px;	
-                font-weight: 600;	
+                color: #0098FF;
+                font-family: 'Montserrat', sans-serif;
+                font-size: 16px;
+                font-weight: 600;
                 line-height: 19px;
                 padding-top: 5px;
                 @media(max-width: 768px){

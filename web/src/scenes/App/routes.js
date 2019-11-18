@@ -161,6 +161,7 @@ const routes = [
     component: LandingPage,
     exact: true
   },
+
   {
     path: '/articles',
     component: ArticleList,
@@ -169,6 +170,16 @@ const routes = [
   {
     path: '/explore/article/:id',
     component: Article,
+    exact: true
+  },
+  {
+    path: '/explore/festival/:id',
+    component: Festival,
+    exact: true
+  },
+  {
+    path: '/explore',
+    component: Explore,
     exact: true
   },
   {

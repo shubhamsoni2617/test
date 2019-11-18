@@ -1,10 +1,10 @@
 import React from 'react';
 import './style.scss';
-import Survey from '../../../../../assets/images/survey.png';
-import surveySmall from '../../../../../assets/images/survey-small.png';
 import rightArrow from '../../../../../assets/images/right-arrow.svg';
+import Image from '../../../../../shared/components/Image';
+import Utilities from '../../../../../shared/utilities';
 
-const Review = ({ heading }) => {
+const Review = ({ heading, reviewData }) => {
   return (
     <div class="reviews-item">
       <div className="section-title">
@@ -12,33 +12,39 @@ const Review = ({ heading }) => {
       </div>
       <div className="active-review">
         <div className="review-item-image">
-          <img src={Survey} alt="" />
+          <Image src={reviewData && reviewData[0].imgPath} type="Horizontal" />
         </div>
         <div className="review-content">
-          <h3>Singapore Neon Lights Festival 2019 - Mumford & Sons Honne</h3>
-          <span className="review-subtext">By Larva May</span>
+          <h3>
+            {reviewData && reviewData[0] && reviewData[0].title}
+            {/* {Utilities.showLimitedChars(
+              reviewData && reviewData[0] && reviewData[0].title,
+              Utilities.mobilecheck() ? 25 : 50
+            )} */}
+          </h3>
+          <span className="review-subtext">
+            {reviewData && reviewData[0].by}
+          </span>
         </div>
       </div>
       <div className="all-reviews">
         <div className="review-item-wrapper">
-          <div className="review-item">
-            <div className="review-item-image">
-              <img src={surveySmall} alt="review" />
-            </div>
-            <div className="review-content">
-              <h3>Crowd by Gisèle Vienne</h3>
-              <span>By Larva May</span>
-            </div>
-          </div>
-          <div className="review-item">
-            <div className="review-item-image">
-              <img src={surveySmall} alt="review" />
-            </div>
-            <div className="review-content">
-              <h3>Crowd by Gisèle Vienne</h3>
-              <span>By Larva May</span>
-            </div>
-          </div>
+          {reviewData &&
+            reviewData
+              .slice(1, reviewData.length)
+              .map(({ imgPath, title, by }, index) => {
+                return (
+                  <div className="review-item" key={index}>
+                    <div className="review-item-image">
+                      <img src={imgPath} alt="review" />
+                    </div>
+                    <div className="review-content">
+                      <h3>{title}</h3>
+                      <span>{by}</span>
+                    </div>
+                  </div>
+                );
+              })}
         </div>
         <a className="more-review" href="">
           More from {heading} <img src={rightArrow} alt="arrow" />

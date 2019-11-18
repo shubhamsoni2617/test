@@ -7,16 +7,65 @@ import LandingArticles from './LandingArticles';
 import LandingFestivals from './LandingFestivals';
 import Reviews from './Reviews';
 import Trending from './Trending';
+import CustomtomSectionTwo from '../../Home/CustomSectionTwo';
+import CustomtomSectionThree from '../../Home/CustomSectionThree';
+import GiftCard from '../../Home/GiftCard';
+import GreatWine from '../../../assets/images/great-wine.png';
 
 const Explore = () => {
+  const [data, setData] = useState([]);
+  useEffect(() => {
+    scrollToTop();
+    getExploreLanding();
+  }, []);
+
+  const scrollToTop = () => {
+    window.scrollTo(0, 0);
+  };
+  const getExploreLanding = () => {
+    ExploreService.getExploreLanding()
+      .then(res => {
+        if (res && res.data) {
+          setData(res.data.data[0]);
+        }
+      })
+      .catch(err => {
+        if (err && err.response) {
+          console.log(err.response);
+        }
+      });
+  };
+
+  console.log(data);
+  const {
+    video_gallery,
+    trending,
+    royals,
+    whats_up,
+    articles,
+    festivals,
+    banner
+  } = data;
+
   return (
     <div className="explore-wrapper">
-      <Banner bannerData={data && data.banner} />
-      <WhatsUp />
-      <LandingArticles />
-      <LandingFestivals />
-      <Reviews />
-      <Trending />
+      <Banner bannerData={banner} />
+      <WhatsUp whatsUpData={whats_up} />
+      <div className="home-page-wrapper">
+        <CustomtomSectionTwo
+          heading={royals && royals.heading}
+          customData={royals && royals.sub_section_two}
+        />
+      </div>
+      <LandingArticles articles={articles} />
+      <GiftCard />
+      <LandingFestivals festivals={festivals} />
+      <Reviews reviewsData={'reviewsData'} />
+      <Trending trending={trending} />
+      <CustomtomSectionThree
+        heading="Video Gallery"
+        customData={video_gallery}
+      />
       {/* <section className="explore-page-banner">
         <div className="banner-content">
           <div className="banner-desc">
@@ -36,7 +85,6 @@ const Explore = () => {
           <img src={bannerImg} alt="explore-slider" />
         </div>
       </section> */}
-
       {/* <section className="whtsup-wrapper">
         <div className="container-fluid">
           <div class="section-top-wrapper">
@@ -221,7 +269,6 @@ const Explore = () => {
           </div>
         </div>
       </section> */}
-
       {/* <section className="festivals-wrapper">
         <div className="container-fluid">
           <div class="section-top-wrapper">
@@ -294,7 +341,6 @@ const Explore = () => {
           </div>
         </div>
       </section> */}
-
       {/* <section className="review-guide-surveys-wrapper">
         <div className="container-fluid">
           <div className="rgs-wrapper">
@@ -424,7 +470,6 @@ const Explore = () => {
           </div>
         </div>
       </section> */}
-
       {/* <section className="trending-wrapper">
         <div className="container-fluid">
           <div class="section-top-wrapper">

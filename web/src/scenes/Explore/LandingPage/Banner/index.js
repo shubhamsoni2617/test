@@ -1,8 +1,6 @@
 import React, { useRef, useState, useEffect } from 'react';
 import './style.scss';
-import bannerImg from '../../../../assets/images/explore-banner2.png';
 import Slider from 'react-slick';
-
 const BannerSlider = ({ bannerData }) => {
   const [nav1, setNav1] = useState(null);
   const [nav2, setNav2] = useState(null);
@@ -13,7 +11,6 @@ const BannerSlider = ({ bannerData }) => {
     setNav1(slider1);
     setNav2(slider2);
   }, []);
-
   const settings = {
     arrows: false,
     draggable: false
@@ -51,7 +48,6 @@ const BannerSlider = ({ bannerData }) => {
             })}
         </Slider>
       </div>
-
       <div className="banner-slider">
         <Slider
           {...settingsSlider}
@@ -74,5 +70,4 @@ const BannerSlider = ({ bannerData }) => {
     </section>
   );
 };
-
 export default BannerSlider;
