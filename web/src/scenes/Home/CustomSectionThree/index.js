@@ -58,6 +58,7 @@ const CustomSectionThree = ({ heading, customData }) => {
   }
 
   console.log(data);
+  console.log(url);
 
   return (
     <div>
