@@ -17,6 +17,7 @@
         @media (max-width: 767px) {
             margin-left: 0;
             width: 100%;
+            overflow: inherit;
             // z-index: 3;
         }
         @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
@@ -618,6 +619,7 @@
             }
             .most-viewed-img{
                 display: block;
+                width: 100%;
                 a{
                     display: block;
                 }

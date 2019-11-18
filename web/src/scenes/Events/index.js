@@ -537,7 +537,7 @@ export default class Events extends Component {
                       }
                       filterFlag={filterFlag}
                     >
-                      <div className="fixed-buttons">
+                      <div className="fixed-buttons hide-inner">
                         <a
                           onClick={() => {
                             this.toggleFilterSection();
@@ -597,7 +597,7 @@ export default class Events extends Component {
                     }
                     clearSortFilters={this.clearSortFilters}
                   >
-                    <div className="fixed-buttons">
+                    <div className="fixed-buttons hide-inner">
                       <a
                         onClick={() => {
                           this.toggleFilterSection();
