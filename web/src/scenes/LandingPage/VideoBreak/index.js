@@ -26,7 +26,7 @@ const VideoBreak = ({ videoData }) => {
                     <div className="video-img">
                       <ReactPlayer
                         width="100%"
-                        height="316px"
+                        height="250px"
                         controls
                         pip={true}
                         muted={true}

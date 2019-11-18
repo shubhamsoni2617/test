@@ -163,17 +163,12 @@ const routes = [
     exact: true
   },
   {
-    path: '/explore/articlelist',
+    path: '/articles',
     component: ArticleList,
     exact: true
   },
   {
-    path: '/explore/festival',
-    component: Festival,
-    exact: true
-  },
-  {
-    path: '/explore/article',
+    path: '/explore/article/:id',
     component: Article,
     exact: true
   },

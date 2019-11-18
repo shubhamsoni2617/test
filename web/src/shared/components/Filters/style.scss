@@ -549,11 +549,11 @@
                 padding: 17px 25px;
                 position: fixed;
                 bottom: auto;
-                top: 50%;
+                top: 110px;
                 left: 0px;
                 z-index: 5;
                 max-height: 100%;
-                transform: translateY(-50%);
+                // transform: translateY(-50%);
                 @media(min-width: 768px) and (max-width: 1024px){
                     width: calc(100% - 20px);
                     max-width: 1060px;

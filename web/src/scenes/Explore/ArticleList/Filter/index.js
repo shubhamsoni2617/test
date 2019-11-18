@@ -65,7 +65,7 @@ const Filter = ({
                     onChange={e => onChange(e, data.id)}
                   />
                   <label htmlFor={data.id}>
-                    {data.name}({data.count})
+                    {data.name} ({data.count})
                   </label>
                 </li>
               );
