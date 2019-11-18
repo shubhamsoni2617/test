@@ -1,0 +1,18 @@
+.dots-group {
+    span {
+      a {
+        opacity: 0;
+      }
+    }
+  }
+  
+  .item-wrapper h3{
+    word-break: break-all;
+  }
+  .item-wrapper .venue-name{
+    word-break: break-all;
+  }
+  .featured-event-date {
+    min-height: 40px;
+    max-height: 40px;
+  }
