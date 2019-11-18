@@ -8,6 +8,7 @@ import './style.css';
 import AdvertisementService from '../../shared/services/AdvertisementService';
 import Constants from '../../shared/constants';
 import HomeService from '../../shared/services/HomeService';
+import DownloadAppPopup from '../../shared/components/DownloadAppPopup';
 
 export default class App extends React.Component {
   static getInitialData(req) {
@@ -29,7 +30,7 @@ export default class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      collapsed: false
+      collapsed: false,
     };
   }
 
@@ -40,6 +41,8 @@ export default class App extends React.Component {
     }, 1000);
   }
 
+
+
   toggle() {
     this.setState({
       collapsed: !this.state.collapsed
@@ -49,6 +52,7 @@ export default class App extends React.Component {
   render() {
     return (
       <div className="wrapper">
+        <DownloadAppPopup />
         <Advertisement {...this.props} />
         <TopNav {...this.props} />
         <Navigator {...this.props} />
