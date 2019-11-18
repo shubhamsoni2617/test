@@ -9,10 +9,9 @@ import ShimmerEffect from '../../../shared/components/ShimmerEffect';
 import videoImage from '../../../assets/images/video-icon.svg';
 
 const TrendingNow = ({ heading }) => {
-  const [trendingNow, setTrandingNow] = useState([]);
+  const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
-
-  const [serverErr, setServerErr] = useState('');
+  const [error, setError] = useState(false);
 
   useEffect(() => {
     getTrandingNow();
@@ -28,16 +27,20 @@ const TrendingNow = ({ heading }) => {
         if (res && res.data) {
           setTimeout(() => {
             setLoading(false);
-            setTrandingNow(res.data.data);
+            setData(res.data.data);
           }, 2000);
         }
       })
-      .catch(err => {
-        if (err && err.response) {
-          setServerErr(err.response.data);
-        }
+      .catch(() => {
+        setError(true);
       });
   };
+
+  if (!loading && data && data.length === 0) {
+    return null;
+  }
+
+  if (error) return null;
 
   return (
     <section className="trending-now">
@@ -64,9 +67,9 @@ const TrendingNow = ({ heading }) => {
                 <span className="category dance">Dance</span>
                 <div className="trending-now-image">
                   <div className="item-img">
-                    {trendingNow && trendingNow[0] && (
+                    {data && data[0] && (
                       <Image
-                        src={trendingNow[0].vertical_image}
+                        src={data[0].vertical_image}
                         className="img-fluid"
                         alt="kurios"
                         type="Vertical"
@@ -83,24 +86,22 @@ const TrendingNow = ({ heading }) => {
                 </div>
                 <h3>
                   {Utilities.showLimitedChars(
-                    trendingNow && trendingNow[0] && trendingNow[0].title,
+                    data && data[0] && data[0].title,
                     Utilities.mobilecheck() ? 25 : 50
                   )}
                 </h3>
-                <p>
-                  {trendingNow && trendingNow[0] && trendingNow[0].event_date}
-                </p>
+                <p>{data && data[0] && data[0].event_date}</p>
                 <p>
                   {Utilities.showLimitedChars(
-                    trendingNow && trendingNow[0] && trendingNow[0].venue_name,
+                    data && data[0] && data[0].venue_name,
                     Utilities.mobilecheck() ? 25 : 50
                   )}
                 </p>
               </div>
             </div>
 
-            {trendingNow &&
-              trendingNow.slice(1, trendingNow.length).map((now, index) => {
+            {data &&
+              data.slice(1, data.length).map((now, index) => {
                 return (
                   <div key={index} className="item">
                     <div className="item-wrapper">
