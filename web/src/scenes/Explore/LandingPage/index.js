@@ -9,6 +9,14 @@ import Reviews from './Reviews';
 import Trending from './Trending';
 
 const Explore = () => {
+  const [data, setdata] = useState([]);
+
+  useEffect(() => {
+    ExploreService.getEx().then(res => {
+      setdata(res.data.data);
+    });
+  }, []);
+  console.log(data);
   return (
     <div className="explore-wrapper">
       <Banner />
