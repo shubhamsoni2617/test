@@ -1,5 +1,5 @@
 // Top-advertisment style start
-.top-ads {
+.advertisementTop {
 	background-color: #121212;    
     z-index: 2;
     max-height: 0;
@@ -13,7 +13,7 @@
     left: 0px;
     right: 0px;
     top: 0px;
-    display: flex;
+    display: flex !important;
     align-items: center;
     @media(max-width: 767px){
         position: relative;
@@ -64,6 +64,18 @@
                 @media(max-width: 767px){
                     top: 0px;
                 }
+            }
+        }
+    }
+    div{
+        position: absolute;
+        height: 100%;
+        position: absolute; 
+        width: 100%;
+        text-align: center;
+        a{
+            img{
+                width: 100%;
             }
         }
     }
