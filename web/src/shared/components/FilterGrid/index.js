@@ -33,7 +33,7 @@ const FilterGrid = props => {
   useEffect(() => {
     setData(props.data || []);
     if (Utilities.mobilecheck()) {
-      setLimit(data.length);
+      setLimit(props.data.length);
     }
   }, [props.data]);
 

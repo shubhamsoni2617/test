@@ -174,13 +174,13 @@ const routes = [
     exact: true
   },
   {
-    path: '/explore/festival',
-    component: Festival,
+    path: '/explore/article/:id',
+    component: Article,
     exact: true
   },
   {
-    path: '/explore/article',
-    component: Article,
+    path: '/explore/festival',
+    component: Festival,
     exact: true
   },
   {
