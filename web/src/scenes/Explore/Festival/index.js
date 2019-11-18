@@ -72,12 +72,13 @@ const Festival = ({ match }) => {
     section_six,
     section_seven,
     section_eigth,
-    social_wall_url
+    social_wall_url,
+    image
   } = templateTwoContent;
   console.log(templateTwoContent);
   return (
     <div className="festival-wrapper">
-      <SliderBanner />
+      {image && image.length > 0 && <SliderBanner data={image} />}
       {title ? (
         <Welcome
           breadcrumbSlug={breadcrumbSlug}

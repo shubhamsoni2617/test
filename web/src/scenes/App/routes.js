@@ -21,11 +21,10 @@ import SystemLicensing from '../SystemLicensing';
 import Advertise from '../Advertise';
 import SellTicketsWithUs from '../SellTicketsWithUs';
 import LandingPage from '../LandingPage';
+import Explore from '../Explore/LandingPage';
 import ArticleList from '../Explore/ArticleList';
 import Article from '../Explore/Article';
 import Festival from '../Explore/Festival';
-
-// import Explore from '../Explore/';
 
 const routes = [
   {
@@ -162,6 +161,7 @@ const routes = [
     component: LandingPage,
     exact: true
   },
+
   {
     path: '/articles',
     component: ArticleList,
@@ -175,6 +175,11 @@ const routes = [
   {
     path: '/explore/festival/:id',
     component: Festival,
+    exact: true
+  },
+  {
+    path: '/explore',
+    component: Explore,
     exact: true
   },
   {
