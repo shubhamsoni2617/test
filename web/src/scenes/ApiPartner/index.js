@@ -4,6 +4,8 @@ import ApiBanner from './ApiBanner';
 import Partners from './Partners';
 import ContactUs from './ContactUs';
 import ApiPartnersService from '../../shared/services/ApiPartnersService';
+// import './style.scss';
+
 
 class ApiPartner extends Component {
   constructor(props) {
