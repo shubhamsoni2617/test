@@ -251,7 +251,7 @@
             }
 
         }
-    
+
 }
 .website-wrapper{
     display: flex;
@@ -365,6 +365,9 @@
                 font-size: 13px;
                 line-height: 20px;
             }
+            &.text-success, &.text-danger{
+              padding: 0px;
+            }
         }
         .app-option{
             flex-direction: row;
@@ -377,7 +380,7 @@
                 justify-content: center;
                 width: 100%;
             }
-            @media(max-width: 576px){                
+            @media(max-width: 576px){
                 flex-wrap: nowrap;
             }
             a{
@@ -441,7 +444,7 @@
                 justify-content: center;
                 flex-wrap: nowrap;
             }
-            @media(max-width: 768px){                
+            @media(max-width: 768px){
                 width: 100%;
                 justify-content: center;
             }
@@ -559,8 +562,8 @@
                             }
                         }
                     }
-                   
-                    
+
+
                 }
             }
         }
@@ -586,7 +589,7 @@
             height: 320px;
         }
         @media(max-width: 991px){
-            min-height: 200px;            
+            min-height: 200px;
             display: flex;
         }
         .banner-content{

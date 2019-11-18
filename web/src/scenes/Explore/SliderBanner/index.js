@@ -6,6 +6,7 @@ const SliderBanner = ({ data }) => {
   console.log(data);
   const settings = {
     dots: true,
+    arrows: true,
     infinite: true,
     speed: 500,
     rows: 1,
@@ -13,7 +14,7 @@ const SliderBanner = ({ data }) => {
     autoplay: true
   };
   return (
-    <div className="sliderBottomDot">
+    <div className="sliderBottomDot festival-top-slider">
       <Slider {...settings}>
         {data &&
           data.map(image => {

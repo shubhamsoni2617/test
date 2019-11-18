@@ -7,14 +7,13 @@ import banner from '../../assets/images/advertise-with-us-banner.png';
 import img1 from '../../assets/images/website.png';
 import img2 from '../../assets/images/mobile-app-section.png';
 import img3 from '../../assets/images/buzz.png';
-import img4 from '../../assets/images/send.svg';
 import fb from '../../assets/images/fb.png';
 import insta from '../../assets/images/insta.png';
 import social from '../../assets/images/social.png';
 import apple from '../../assets/images/apple.svg';
 import android from '../../assets/images/android.png';
 import ContactUs from '../ApiPartner/ContactUs';
-import navigateToLink from '../../shared/navigateToLink';
+import NewsLetterForm from '../../shared/components/NewsLetterForm';
 
 const Advertise = props => {
   const [advertiseData, setAdvertiseData] = useState(null);
@@ -185,20 +184,7 @@ const Advertise = props => {
               )}
               <div className="stay-connect buzz-connect">
                 <h3>Subscribe to receive our newsletter</h3>
-                <div className="input-group">
-                  <input
-                    type="email"
-                    className="form-control"
-                    placeholder="Enter Your email"
-                    aria-label="Username"
-                    aria-describedby="basic-addon1"
-                  />
-                  <div className="input-group-prepend">
-                    <a className="input-group-text" id="basic-addon1">
-                      <img src={img4} className="img-fluid" alt="send" />
-                    </a>
-                  </div>
-                </div>
+                <NewsLetterForm type="advertise" />
               </div>
             </div>
             <div className="app-image text-right">

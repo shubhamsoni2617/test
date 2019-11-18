@@ -16,7 +16,7 @@ import Image from '../../shared/components/Image';
 import NewsTicker from './NewsTicker';
 import ModalPopup from '../../shared/components/Modal';
 import primeSlider from '../../assets/images/main-banner.png';
-import primeSlider2 from '../../assets/images/main-banner-2.png';
+import primeSlider2 from '../../assets/images/main-banner.png';
 import mobileBanner from '../../assets/images/home-mobile-banner.png';
 import HomeService from '../../shared/services/HomeService';
 import Utilities from '../../shared/utilities';
@@ -24,6 +24,7 @@ import Constants from '../../shared/constants';
 import AdvertisementService from '../../shared/services/AdvertisementService';
 // import CustomSection from './CustomSection';
 import TopPics from './TopPics';
+import MetaData from '../../shared/components/MetaData';
 // import Royals from './Royals';
 
 class Home extends Component {
@@ -99,7 +100,7 @@ class Home extends Component {
   }
 
   componentDidMount() {
-    // this.getItemsOrder();
+    this.getItemsOrder();
   }
 
   showNewsTicker = data => {
@@ -126,6 +127,12 @@ class Home extends Component {
   render() {
     return (
       <div className="home-page-wrapper" ref={this.homePageRef}>
+        {this.props.location && (
+          <MetaData
+            location={this.props.location}
+            data={{ title: 'SISTIC Singapore' }}
+          />
+        )}
         <NewsTicker
           homePageRef={this.homePageRef}
           showNewsTicker={this.showNewsTicker}
@@ -137,7 +144,6 @@ class Home extends Component {
             src={Utilities.mobilecheck() ? mobileBanner : primeSlider2}
             largeImage={Utilities.mobilecheck() ? mobileBanner : primeSlider}
           />
-          {/* <img className={`main-image ${this.state.imageUrl ? 'show-image' : ''}`} src={primeSlider} alt="prime Slider" /> */}
         </div>
         {this.state.itemsOrder &&
           this.state.itemsOrder.length > 0 &&
@@ -190,15 +196,15 @@ class Home extends Component {
                   />
                 );
               case 'CUS_SEC_2':
-                return <CustomSectionTwo heading={label} />;
+                return <CustomSectionTwo heading={label} customData={[]} />;
               case 'CUS_SEC_3':
-                return <CustomSectionThree heading={label} />;
+                return <CustomSectionThree heading={label} customData={[]} />;
             }
           })}
 
         <InstagramFeed />
         <Cookies />
-        <ModalPopup
+        {/* <ModalPopup
           showModal={this.state.modal}
           content={this.state.modalContent}
           title="News Ticker"
@@ -206,7 +212,7 @@ class Home extends Component {
             this.showNewsTicker({ modal: false, modalContent: '' })
           }
           htmlContent={true}
-        />
+        /> */}
       </div>
     );
   }
