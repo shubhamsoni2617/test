@@ -33,8 +33,10 @@ const SamplePrevArrow = props => {
   );
 };
 const TopPics = props => {
-  const [topPics, setTopPics] = useState([]);
+  const [data, setData] = useState([]);
   const [width, setWidth] = useState('');
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(false);
 
   useEffect(() => {
     setWidth(window.innerWidth);
@@ -57,14 +59,13 @@ const TopPics = props => {
       .then(res => {
         if (res && res.data) {
           setTimeout(() => {
-            setTopPics(res.data.data);
+            setData(res.data.data);
+            setLoading(false);
           }, 2000);
         }
       })
-      .catch(err => {
-        if (err && err.response) {
-          console.log(err.response);
-        }
+      .catch(() => {
+        setError(true);
       });
   };
 
@@ -90,12 +91,18 @@ const TopPics = props => {
     ]
   };
 
+  if (!loading && data && data.length === 0) {
+    return null;
+  }
+
+  if (error) return null;
+
   return (
     <section className="top-picks">
       <div className="container-fluid">
         <h2>{props.heading}</h2>
         {width <= Constants.MOBILE_BREAK_POINT ? (
-          !topPics.length ? (
+          !data.length ? (
             <ShimmerEffect
               height={100}
               count={2}
@@ -105,8 +112,8 @@ const TopPics = props => {
           ) : (
             <div className="col-xs-12">
               <div className="grid-container">
-                {topPics &&
-                  topPics.map((pic, i) => {
+                {data &&
+                  data.map((pic, i) => {
                     return (
                       <div key={pic.id} className="item">
                         <Link to={`/events/${pic.alias}`}>
@@ -184,7 +191,7 @@ const TopPics = props => {
               </div>
             </div>
           )
-        ) : !topPics.length ? (
+        ) : !data.length ? (
           <ShimmerEffect
             height={200}
             count={6}
@@ -193,7 +200,7 @@ const TopPics = props => {
           />
         ) : (
           <Slider {...settings}>
-            {topPics.map((pic, index) => {
+            {data.map((pic, index) => {
               return (
                 <div className="grid-container" key={pic.id}>
                   <div className="item">

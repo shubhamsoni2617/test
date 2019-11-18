@@ -57,8 +57,6 @@ const CustomSectionThree = ({ heading, customData }) => {
     return null;
   }
 
-  console.log(data);
-
   return (
     <div>
       {loading ? (

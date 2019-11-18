@@ -311,7 +311,7 @@ export default class Events extends Component {
   };
 
   handleFilters = (searchType, apply) => {
-    if (Utilities.mobilecheck) {
+    if (Utilities.mobilecheck()) {
       this.setState({
         localfilteredSortType: searchType.filteredSortType,
         localfilteredSortOrder: searchType.filteredSortOrder
@@ -330,6 +330,7 @@ export default class Events extends Component {
         filterFlag: false
       };
     }
+    
     this.setState(obj, () => {
       setTimeout(() => {
         if (!Utilities.mobilecheck() || apply) {
@@ -380,6 +381,12 @@ export default class Events extends Component {
     this.props.history.push(`/events/` + alias);
   };
 
+  toggleFilterSection = () => {
+    if(Utilities.mobilecheck()){
+      document.body.classList.toggle('fixed-body');
+    }
+  }
+
   toggleFilters = () => {
     this.setState({
       filterFlag: !this.state.filterFlag,
@@ -390,7 +397,6 @@ export default class Events extends Component {
       localfilteredVenues: [...this.state.filteredVenues],
       localfilteredTags: [...this.state.filteredTags]
     });
-    document.body.classList.toggle('fixed-body');
   };
 
   toggleSortBy = () => {
@@ -399,7 +405,6 @@ export default class Events extends Component {
       localfilteredSortOrder: this.state.filteredSortOrder,
       localfilteredSortType: this.state.filteredSortType
     });
-    document.body.classList.toggle('fixed-body');
   };
 
   callAPI = () => {
@@ -426,7 +431,6 @@ export default class Events extends Component {
         }, 200);
       }
     );
-    document.body.classList.toggle('fixed-body');
   };
 
   clearSortFilters = () => {
@@ -496,6 +500,7 @@ export default class Events extends Component {
                       queryParams={queryParams}
                       resetFilters={this.resetFilters}
                       handleFilters={this.handleFilters}
+                      toggleFilterSection={this.toggleFilterSection}
                       genreData={genre}
                       venueData={venues}
                       filterConfig={filterConfig}
@@ -535,13 +540,17 @@ export default class Events extends Component {
                       <div className="fixed-buttons hide-inner">
                         <a
                           onClick={() => {
+                            this.toggleFilterSection();
                             this.toggleFilters();
                           }}
                           className="close"
                         >
                           Close
                         </a>
-                        <a onClick={() => this.callAPI()} className="apply">
+                        <a onClick={() => {
+                          this.toggleFilterSection();
+                          this.callAPI()
+                        }} className="apply">
                           Apply
                         </a>
                       </div>
@@ -552,7 +561,7 @@ export default class Events extends Component {
               <div
                 className={`events-listing ${
                   this.state.sortByFlag ? 'open' : ''
-                }`}
+                  }`}
               >
                 <div className="event-listing-sorting">
                   <SearchFilter
@@ -591,6 +600,7 @@ export default class Events extends Component {
                     <div className="fixed-buttons hide-inner">
                       <a
                         onClick={() => {
+                          this.toggleFilterSection();
                           this.toggleSortBy();
                         }}
                         className="close"
@@ -601,6 +611,7 @@ export default class Events extends Component {
                       <a
                         className="apply"
                         onClick={() => {
+                          this.toggleFilterSection();
                           this.callAPI();
                         }}
                       >
@@ -662,7 +673,7 @@ export default class Events extends Component {
                   <ShimmerEffect
                     propCls={`${
                       Utilities.mobileAndTabletcheck() ? 'shm_col-xs-6' : ''
-                    } col-md-4`}
+                      } col-md-4`}
                     height={150}
                     count={Utilities.mobileAndTabletcheck() ? 2 : 3}
                     type="LIST"
@@ -696,13 +707,17 @@ export default class Events extends Component {
                 <a
                   className="sortby"
                   onClick={() => {
+                    this.toggleFilterSection();
                     this.toggleSortBy();
                   }}
                 >
                   sort by
                   <img src={sortbyIcon} alt="icon" />
                 </a>
-                <a className="filter" onClick={this.toggleFilters}>
+                <a className="filter" onClick={() => {
+                  this.toggleFilterSection();
+                  this.toggleFilters()
+                }}>
                   filter
                   <img src={filterIcon} alt="icon" />
                 </a>

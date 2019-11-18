@@ -33,7 +33,7 @@ const FilterGrid = props => {
   useEffect(() => {
     setData(props.data || []);
     if (Utilities.mobilecheck()) {
-      setLimit(data.length);
+      setLimit(props.data.length);
     }
   }, [props.data]);
 
@@ -97,10 +97,10 @@ const FilterGrid = props => {
     newFilterObject['local' + props.category] =
       newFilterValue || selectedFilters;
     props.handleFilters(newFilterObject, status);
+
   };
 
   if (!data.length) return null;
-
   return (
     <div className="filter-grid">
       <div className="filter-grid-heading">
@@ -244,7 +244,9 @@ const FilterGrid = props => {
                 <button
                   onClick={() => {
                     setMenuStatus(false);
+                    props.toggleFilterSection();
                     applyFilters();
+                    
                   }}
                 >
                   Apply
