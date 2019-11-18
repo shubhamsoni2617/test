@@ -45,13 +45,22 @@
     }
     @media(max-width: 767px){
       &.open{
-        z-index: 4;
+        z-index: 100;
+        position: fixed;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        height: 100%;
+        width: 100%;
         .sortby-filter{
           display: block;
           width: 100%;
           top: 0;
           background: #fff;
           padding: 0;
+          height: 100%;
+          z-index: 100;
           .filter-topbar{
             display: none;
           }
@@ -108,6 +117,9 @@
               &.close {
                   color: #626262;
               }
+              &.hide-inner{
+                display: none;
+                }
               &:only-child{
                 width: 100%;
                 background-color: #0098FF;

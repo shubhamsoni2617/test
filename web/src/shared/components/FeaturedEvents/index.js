@@ -79,7 +79,7 @@ const FeaturedEvents = props => {
   const { api, heading, cssClassName } = props;
   const element = useRef(null);
   const [featuredEvents, setFeaturedEvents] = useState([]);
-  const [serverErr, setServerErr] = useState('');
+  const [error, setError] = useState(false);
   const [loading, setLoading] = useState(true);
   const [callAPI, setCallAPI] = useState(false);
 
@@ -116,9 +116,7 @@ const FeaturedEvents = props => {
         }
       })
       .catch(err => {
-        if (err && err.response) {
-          setServerErr('Something went wrong...');
-        }
+        setError(true);
       });
   };
 
@@ -133,6 +131,8 @@ const FeaturedEvents = props => {
   if (!loading && featuredEvents && featuredEvents.length === 0) {
     return null;
   }
+
+  if (error) return null;
 
   return (
     <section

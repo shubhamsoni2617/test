@@ -5,6 +5,7 @@ import AdvertisementService from '../../../shared/services/AdvertisementService'
 const GiftCard = () => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(false);
   useEffect(() => {
     getData();
   }, []);
@@ -25,14 +26,15 @@ const GiftCard = () => {
         }
       })
       .catch(err => {
-        if (err && err.response) {
-          console.log(err.response);
-        }
+        setError(true);
       });
   };
   if (!loading && data && data.length === 0) {
     return null;
   }
+
+  if (error) return null;
+
   return (
     <>
       {data.map(elem => {
