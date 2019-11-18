@@ -130,8 +130,6 @@ function ViewAllDateTimeButton({
 }) {
   // if (!show) return null;
   if (
-    (!data || !data.length) &&
-    !eventDate &&
     !altEventStartDate &&
     !eventDateNotes
   )
@@ -166,11 +164,6 @@ function EventDateTime({
       </div>
       <div className="tickets-desc">
         <ul className="date-address">
-          {eventDate && (
-            <li className="event-date">
-              <span>{eventDate}</span>
-            </li>
-          )}
           {altEventStartDate && (
             <li className="event-date">
               <span
@@ -183,16 +176,6 @@ function EventDateTime({
               <span dangerouslySetInnerHTML={{ __html: eventDateNotes }}></span>
             </li>
           )}
-          {data &&
-            data.length > 0 &&
-            data[0] &&
-            data.map(date => {
-              return (
-                <li className="event-date">
-                  <span>{date}</span>
-                </li>
-              );
-            })}
         </ul>
       </div>
     </div>
@@ -313,7 +296,7 @@ function StickyHeader(props) {
                 </div>
               </li>
             )}
-            {detailData.venue_name && (
+            {detailData.venue_name && detailData.venue_name.name && detailData.venue_name.description  &&(
               <li className="event-address">
                 <img
                   className="location-gray"
