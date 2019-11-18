@@ -1,6 +1,7 @@
 import React from 'react';
 import noEvent from '../../../../assets/images/no-event.svg';
 import './style.scss';
+import { Link } from 'react-router-dom';
 
 const SearchNotFound = ({ searchKeyword }) => {
   return (
@@ -14,16 +15,16 @@ const SearchNotFound = ({ searchKeyword }) => {
           <p>You can also visit</p>
           <ul className="no-result-search-listing">
             <li>
-              <a href="/attraction">Go to Attractions</a>
+              <Link to="/attraction">Go to Attractions</Link>
             </li>
             <li>
-              <a href="/events">Go to Events</a>
+              <Link to="/events">Go to Events</Link>
             </li>
             <li>
-              <a href="/promotions">Go to Promotions</a>
+              <Link to="/promotions">Go to Promotions</Link>
             </li>
             <li>
-              <a href="/explore">Go to Explore</a>
+              <Link to="/explore">Go to Explore</Link>
             </li>
           </ul>
         </div>

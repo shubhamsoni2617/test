@@ -256,7 +256,7 @@
             }
 
         }
-    
+
 }
 .website-wrapper{
     display: flex;
@@ -370,6 +370,9 @@
                 font-size: 13px;
                 line-height: 20px;
             }
+            &.text-success, &.text-danger{
+              padding: 0px;
+            }
         }
         .app-option{
             flex-direction: row;
@@ -446,7 +449,7 @@
                 justify-content: center;
                 flex-wrap: nowrap;
             }
-            @media(max-width: 768px){                
+            @media(max-width: 768px){
                 width: 100%;
                 justify-content: center;
             }
@@ -583,8 +586,8 @@
                             }
                         }
                     }
-                   
-                    
+
+
                 }
             }
         }
@@ -610,7 +613,7 @@
             height: 241px;
         }
         @media(max-width: 991px){
-            min-height: 200px;            
+            min-height: 200px;
             display: flex;
         }
         .banner-content{

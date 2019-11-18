@@ -1,0 +1,77 @@
+.share-rightalign{
+    position: relative;
+    margin-top: -8px;
+    margin-right: 2px;
+    .share{
+        position: absolute;
+        right: 0px;
+        top: 0;
+        height: 32px;
+        width: 32px;
+        margin: 0px;
+        padding: 14px;
+        img{
+            width: 14px;
+        }
+        .social-share{
+            position: absolute;
+            top: -10px;
+            right: 31px;
+            max-width: 0;
+            overflow: hidden;
+            transition: 0.5s max-width, 0.5s right;
+            -webkit-transition: 0.5s max-width, 0.5s right;
+            -moz-transition: 0.5s max-width, 0.5s right;
+            -o-transition: 0.5s max-width, 0.5s right;
+            padding-right: 0;
+            .social-share-wrapper{
+                background: #FFF;
+                border-radius: 5px;
+                display: flex;
+                box-shadow: 0 0px 7px #ddd;
+                padding: 5px 3px;
+                position: relative;
+                overflow: hidden;
+                transition: max-width 0.5s, overflow 0.5s 0.5s;
+                -webkit-transition: max-width 0.5s, overflow 0.5s 0.5s;
+                -moz-transition: max-width 0.5s, overflow 0.5s 0.5s;
+                -o-transition: max-width 0.5s, overflow 0.5s 0.5s;
+                svg{
+                    display: block;
+                    width: 100%;
+                    height: 100%;
+                    // @media(max-width: 768px){
+                    //     width: 100%;
+                    //     height: 100%;
+                    // }
+                }
+            }
+            &.share-visible{
+                height: auto;
+                overflow: inherit;
+                max-width: 12em;
+                transition: max-width 0.5s, overflow 0.5s 0.5s;
+                -webkit-transition: max-width 0.5s, overflow 0.5s 0.5s;
+                -moz-transition: max-width 0.5s, overflow 0.5s 0.5s;
+                -o-transition: max-width 0.5s, overflow 0.5s 0.5s;
+                padding-right: 10px;
+                z-index: 1;
+            }
+            .SocialMediaShareButton{
+                margin: 0 3px;
+                transition: 0.5s opacity;
+                -webkit-transition: 0.5s opacity;
+                -moz-transition: 0.5s opacity;
+                -o-transition: 0.5s opacity;
+                @media(max-width: 768px){
+
+                    overflow: hidden;
+                    display: block;
+                }
+                &:hover{
+                    opacity: 0.8;
+                }
+            }
+        }
+    }
+}

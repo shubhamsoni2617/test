@@ -21,6 +21,7 @@ import './style.scss';
 import SearchFilter from '../../shared/components/SearchFilter';
 import Constants from '../../shared/constants';
 import EventAdvertisement from './EventAdvertisement';
+import MetaData from '../../shared/components/MetaData';
 
 export default class Events extends Component {
   constructor(props) {
@@ -465,6 +466,12 @@ export default class Events extends Component {
     } = this.state;
     return (
       <div className="events-page-wrapper">
+        {this.props.location && (
+          <MetaData
+            location={this.props.location}
+            data={{ title: 'Event listing' }}
+          />
+        )}
         <Breadcrub breadCrumbData={this.breadCrumbData} />
         <section className="">
           <div className="container-fluid">
