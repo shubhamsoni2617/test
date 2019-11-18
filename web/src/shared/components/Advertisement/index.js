@@ -6,7 +6,11 @@ import AdvertisementService from '../../services/AdvertisementService';
 import Constants from '../../constants';
 const Advertisement = props => {
   const refValue = useRef();
-  const [homeAdv, setHomeAdv] = useState(null);
+  const [homeAdv, setHomeAdv] = useState(
+    props.response && props.response.leaderBoardData
+      ? props.response.leaderBoardData.data
+      : null
+  );
 
   const handleClose = () => {
     sessionStorage.setItem('advertisment', false);
@@ -36,7 +40,11 @@ const Advertisement = props => {
   }, [refValue]);
 
   useEffect(() => {
-    getLeaderboardImage();
+    if (window.__INITIAL_DATA__ && window.__INITIAL_DATA__.leaderBoardData) {
+      setHomeAdv(window.__INITIAL_DATA__.leaderBoardData.data);
+    } else {
+      getLeaderboardImage();
+    }
   }, []);
 
   const getLeaderboardImage = () => {

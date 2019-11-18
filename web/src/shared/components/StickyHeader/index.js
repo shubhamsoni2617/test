@@ -211,7 +211,6 @@ function StickyHeader(props) {
     seatMapButton,
     buyPackages
   } = props;
-
   return (
     <div
       className={`event-detail ${sticky ? 'sticky-topbar' : ''} ${

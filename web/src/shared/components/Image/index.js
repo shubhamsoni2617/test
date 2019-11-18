@@ -22,12 +22,15 @@ function Image(props) {
   useEffect(() => {
     SetSource(!props.largeImage ? props.src : props.largeImage);
     if (!props.src) onError();
+    setTimeout(() => {
+      setClassName('loaded');
+    }, 3000);
   }, [props.src, props.largeImage]);
 
   const onLoad = () => {
     setTimeout(() => {
       setClassName('loaded');
-    }, 300);
+    }, 500);
   };
 
   const onError = () => {
@@ -69,13 +72,13 @@ function Image(props) {
   return (
     <div className="image-conatiner">
       <img
-        className={`image ${props.className} ${className}`}
+        className={`image ${props.className || ''} ${className}`}
         src={source}
         alt="pic"
         onLoad={() => onLoad()}
       />
       <img
-        className={`image ${props.className} preview ${className}`}
+        className={`image ${props.className || ''} preview ${className}`}
         src={props.src}
         alt="pic"
         onError={() => onError()}

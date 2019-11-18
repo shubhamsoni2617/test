@@ -1,7 +1,7 @@
 import React, { Component, createRef } from 'react';
 import PropTypes from 'prop-types';
 import EventHeading from '../EventHeading';
-import { CSSTransitionGroup } from 'react-transition-group';
+import { CSSTransition } from 'react-transition-group';
 import CloseIcon from '../../../assets/images/close-blue.svg';
 import './style.scss';
 
@@ -180,54 +180,54 @@ export default class VenueFilter extends Component {
 
     return (
       <div className="filters-panel">
-        <CSSTransitionGroup
+        {/* <CSSTransitionGroup
           transitionName="dropdown"
           transitionEnter={true}
           transitionEnterTimeout={300}
           transitionLeaveTimeout={300}
-        >
-          {display && (
-            <div className="filter-directory-panel">
-              <div className="filter-directory-titlebar">
-                <div className="filter-directory-heading">
-                  <h3>Venue</h3>
-                  <span className="filter-directory-close">
-                    <img
-                      onClick={() => setPanelDisplay(false)}
-                      src={CloseIcon}
-                      alt="Close"
-                    />
-                  </span>
-                </div>
-                <div className="filter-directory-indices-list">
-                  <input
-                    type="text"
-                    value={search}
-                    onChange={event => this.updateSearch(event)}
-                    placeholder="Search in Venues"
-                    className="filter-directory-search-input"
+        > */}
+        {display && (
+          <div className="filter-directory-panel">
+            <div className="filter-directory-titlebar">
+              <div className="filter-directory-heading">
+                <h3>Venue</h3>
+                <span className="filter-directory-close">
+                  <img
+                    onClick={() => setPanelDisplay(false)}
+                    src={CloseIcon}
+                    alt="Close"
                   />
-                  <ul className="filter-directory-indices">
-                    {this.prepareAlphabets().map(alphabets => {
-                      return alphabets;
-                    })}
-                  </ul>
-                </div>
+                </span>
               </div>
-              <div>
-                <ul
-                  id="venueContainer"
-                  ref={node => (this.myRef = node)}
-                  className="filter-directory-list"
-                >
-                  {this.groupeFilter(this.groupedCollection).map(lidata => {
-                    return lidata;
+              <div className="filter-directory-indices-list">
+                <input
+                  type="text"
+                  value={search}
+                  onChange={event => this.updateSearch(event)}
+                  placeholder="Search in Venues"
+                  className="filter-directory-search-input"
+                />
+                <ul className="filter-directory-indices">
+                  {this.prepareAlphabets().map(alphabets => {
+                    return alphabets;
                   })}
                 </ul>
               </div>
             </div>
-          )}
-        </CSSTransitionGroup>
+            <div>
+              <ul
+                id="venueContainer"
+                ref={node => (this.myRef = node)}
+                className="filter-directory-list"
+              >
+                {this.groupeFilter(this.groupedCollection).map(lidata => {
+                  return lidata;
+                })}
+              </ul>
+            </div>
+          </div>
+        )}
+        {/* </CSSTransitionGroup> */}
       </div>
     );
   }

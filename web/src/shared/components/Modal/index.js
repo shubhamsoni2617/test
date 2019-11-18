@@ -1,11 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Modal from 'react-animated-modal';
+import Modal from './ModalComponent';
 import './style.scss';
 export default class ModalPopup extends React.Component {
   render() {
     const { handleClose, content, title, showModal, htmlContent } = this.props;
-    if (showModal) {
+    if (showModal && typeof window !== undefined) {
       document.body.classList.add('fixed-body');
     }
     return (
@@ -13,7 +13,9 @@ export default class ModalPopup extends React.Component {
         <Modal
           visible={showModal}
           closemodal={e => {
-            document.body.classList.remove('fixed-body');
+            if (typeof window !== undefined) {
+              document.body.classList.remove('fixed-body');
+            }
             handleClose(e);
           }}
           type="fadeInDown"

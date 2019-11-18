@@ -1,5 +1,5 @@
 import React, { Component, useState } from 'react';
-import { CSSTransitionGroup } from 'react-transition-group';
+import { CSSTransition } from 'react-transition-group';
 import EventsService from '../../shared/services/EventsService';
 import Constants from '../../shared/constants';
 
@@ -19,6 +19,8 @@ import StickyHeader from '../../shared/components/StickyHeader';
 
 import SimilarPicksSection from '../../shared/components/SimilarPicksSection';
 import AdvertisementSection from '../../shared/components/AdvertisementSection';
+import HomeService from '../../shared/services/HomeService';
+import MetaData from '../../shared/components/MetaData';
 
 function ShowOver({ isShowOver }) {
   if (isShowOver !== 1) return null;
@@ -107,10 +109,31 @@ function BuyPackages({ isAvailableForBooking, buyPackageUrl }) {
 }
 
 export default class EventsDetail extends Component {
+  static getPageData(props) {
+    let payload = {
+      code: '',
+      client: Constants.CLIENT
+    };
+    let pathArr = props.url.split('/');
+    if (pathArr.length && pathArr[1] === 'events') {
+      if (pathArr[2]) {
+        payload.code = pathArr[2];
+      }
+    }
+    return [EventsService.getEventDetails(payload)];
+  }
   constructor(props) {
     super(props);
     this.elemOffsetTop = 0;
     this.state = {
+      title:
+        this.props.staticContext &&
+        this.props.staticContext.response &&
+        this.props.staticContext.response.metaData &&
+        this.props.staticContext.response.metaData.data &&
+        this.props.staticContext.response.metaData.data.title
+          ? this.props.staticContext.response.metaData.data.title
+          : '',
       code: props.match.params.icc,
       detailData: {},
       error: false,
@@ -124,7 +147,12 @@ export default class EventsDetail extends Component {
       setHeader: false,
       animation: true,
       shimmer: true,
-      getSynopsisData: { languageArr: [], activeLang: '', desc: '' },
+      shareUrl: '',
+      getSynopsisData: {
+        languageArr: [],
+        activeLang: '',
+        desc: ''
+      },
       synopsis: { language: '', description: '' }
     };
   }
@@ -136,8 +164,14 @@ export default class EventsDetail extends Component {
   };
 
   componentDidMount() {
+    console.log('props', this.props);
+
+    this.setState({ shareUrl: window.location.href });
     window.addEventListener('scroll', this.handleScroll);
-    const payload = { code: this.state.code, client: Constants.CLIENT };
+    const payload = {
+      code: this.state.code,
+      client: Constants.CLIENT
+    };
     this.unlisten = this.props.history.listen(location => {
       let pathArr = location.pathname.split('/');
       if (pathArr.length && pathArr[1] === 'events') {
@@ -147,7 +181,22 @@ export default class EventsDetail extends Component {
         }
       }
     });
-    this.callAPI(payload);
+    if (window.__INITIAL_DATA__ && window.__INITIAL_DATA__.pageData) {
+      this.setState({
+        detailData: window.__INITIAL_DATA__.pageData,
+        shimmer: false
+      });
+      delete window.__INITIAL_DATA__.pageData;
+    } else {
+      this.callAPI(payload);
+    }
+    EventsService.getSimilarEvents(payload)
+      .then(res => {
+        this.setState({ similarEventsData: res.data.data });
+      })
+      .catch(err => {
+        console.log(err);
+      });
   }
 
   callAPI(payload) {
@@ -168,14 +217,6 @@ export default class EventsDetail extends Component {
         this.setState({
           shimmer: false
         });
-        console.log(err);
-      });
-
-    EventsService.getSimilarEvents(payload)
-      .then(res => {
-        this.setState({ similarEventsData: res.data.data });
-      })
-      .catch(err => {
         console.log(err);
       });
   }
@@ -320,34 +361,46 @@ export default class EventsDetail extends Component {
       showNotice,
       setHeader,
       shimmer,
+      shareUrl,
       synopsis
     } = this.state;
     if (error) {
       return null;
     }
-    let shareUrl = window.location.href;
+    // let shareUrl = window.location.href;
     // getSynopsisData.languageArr = [];
     let accrodian = ['synopsis', 'pricedetail'];
     // this.onSynopsisData(detailData, getSynopsisData);
     return (
       <div className="event-detail-wrapper">
-        <CSSTransitionGroup
-          transitionName="shimmer"
-          transitionEnter={true}
-          transitionEnterTimeout={500}
-          transitionLeaveTimeout={500}
+        {this.props.location && (
+          <MetaData
+            location={this.props.location}
+            data={
+              this.props.staticContext &&
+              this.props.staticContext.response &&
+              this.props.staticContext.response.metaData &&
+              this.props.staticContext.response.metaData.data
+            }
+          />
+        )}
+        <CSSTransition
+          // transitionName="shimmer"
+          // transitionEnter={true}
+          // transitionEnterTimeout={500}
+          // transitionLeaveTimeout={500}
+          in={shimmer}
+          timeout={500}
+          classNames="shimmer"
         >
-          {shimmer && (
-            <ShimmerEffect
-              propCls="col-md-12"
-              height={400}
-              count={2}
-              type="DETAIL"
-              detail={true}
-            />
-          )}
-        </CSSTransitionGroup>
-
+          <ShimmerEffect
+            propCls="col-md-12"
+            height={400}
+            count={2}
+            type="DETAIL"
+            detail={true}
+          />
+        </CSSTransition>
         {detailData && (
           <div className={`main-container ${shimmer ? 'shimmer' : ''}`}>
             <ShowOver isShowOver={detailData.is_show_over} />

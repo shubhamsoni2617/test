@@ -5,6 +5,7 @@ import Image from '../../../assets/images/promo-img1.svg';
 const SliderBanner = () => {
   const settings = {
     dots: true,
+    arrows: true,
     infinite: true,
     speed: 500,
     rows: 1,
@@ -12,7 +13,7 @@ const SliderBanner = () => {
     autoplay: true
   };
   return (
-    <div className="sliderBottomDot">
+    <div className="sliderBottomDot festival-top-slider">
       <Slider {...settings}>
         <img src={Image} height="300px" />
         <img src={Image} height="300px" />

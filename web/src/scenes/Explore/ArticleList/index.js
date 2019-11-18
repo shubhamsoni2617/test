@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import CardList from './CardList';
 import DownArrowBlue from '../../../assets/images/down-arrow-blue.svg';
 import Breadcrumb from '../../../scenes/App/Breadcrumb';
-import loaderImage from '../../../assets/images/loader.svg';
 import filterIcon from '../../../assets/images/events/filter.svg';
 import ShimmerEffect from '../../../shared/components/ShimmerEffect';
 import Utilities from '../../../shared/utilities';
@@ -22,20 +21,16 @@ const ArticleList = props => {
     distanceFromTop: 153
   };
   const [scrollContainerRef, styleObj] = useStickyPanel(stickyObj);
-
+  let mobileConstant = Utilities.mobileAndTabletcheck() ? 4 : 6;
   const [articleList, setArticleList] = useState([]);
-  const [constant, setConstant] = useState(
-    Utilities.mobileAndTabletcheck() ? 6 : 6
-  );
+  const [constant, setConstant] = useState(mobileConstant);
   const [loadMore, setLoadMore] = useState(false);
   const [totalResults, setTotalResults] = useState(0);
   const [first, setFirst] = useState(0);
-  const [showFilter, setShowFilters] = useState('');
   const [filteredTags, setFilteredTags] = useState([]);
   const [filteredCategories, setFilteredCategories] = useState([]);
   const [tags, setTags] = useState([]);
   const [categories, setCategories] = useState([]);
-
   const [showTags, setShowTags] = useState(false);
   const [showCategories, setShowCategories] = useState(false);
   const [filteredTagsForMobile, setFilteredTagsForMobile] = useState([]);
@@ -66,9 +61,9 @@ const ArticleList = props => {
     };
     if (!loadMore) {
       params.first = 0;
-      params.limit = 6;
+      params.limit = mobileConstant;
       setFirst(0);
-      setConstant(6);
+      setConstant(mobileConstant);
       articleListData = [];
       setArticleList([]);
       setTotalResults(0);
@@ -76,7 +71,7 @@ const ArticleList = props => {
     setTimeout(() => {
       ExploreService.getExploreArticleList(params)
         .then(res => {
-          console.log(res.data.data);
+          console.log(res.data.total_records);
           setArticleList([...articleListData, ...res.data.data]);
           setTotalResults(res.data.total_records);
           setLoadMore(false);
@@ -164,23 +159,15 @@ const ArticleList = props => {
 
   const filterComponent = (data, title, showComponent) => {
     return showComponent || width > 767 ? (
-      data && data.length ? (
-        <Filter
-          dataToFilter={data}
-          handleFilters={handleFilters}
-          filterTitle={title}
-          selectOrClearAllHandler={selectOrClearAllHandler}
-          showHeader={mobileCheck}
-          closeFilters={closeFilters}
-        />
-      ) : (
-          <ShimmerEffect
-            propCls="shm_col-xs-6 col-md-12"
-            height={65}
-            count={1}
-            type="TILE"
-          />
-        )
+      <Filter
+        dataToFilter={data}
+        handleFilters={handleFilters}
+        filterTitle={title}
+        selectOrClearAllHandler={selectOrClearAllHandler}
+        showHeader={mobileCheck}
+        closeFilters={closeFilters}
+        handleFiltersForMobile={handleFiltersForMobile}
+      />
     ) : null;
   };
 
@@ -221,14 +208,21 @@ const ArticleList = props => {
                 </div>
               </div>
             </div>
-            <div className="events-listing">
+            <div
+              className={`events-listing ${
+                isNaN(totalResults) ? `article-list-notfound` : ``
+              }`}
+            >
               <div className="events-section">
-                <CardList articleList={articleList} />
+                <CardList
+                  articleList={articleList}
+                  totalRecords={totalResults}
+                />
                 {loadMore && (
                   <ShimmerEffect
                     propCls={`${
                       Utilities.mobileAndTabletcheck() ? 'shm_col-xs-6' : ''
-                      } col-md-4`}
+                    } col-md-4`}
                     height={150}
                     count={Utilities.mobileAndTabletcheck() ? 2 : 3}
                     type="LIST"

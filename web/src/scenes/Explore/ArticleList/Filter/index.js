@@ -11,13 +11,12 @@ const Filter = ({
   closeFilters,
   handleFiltersForMobile
 }) => {
-  const [activeSelectButton, setActiveSelectButton] = useState(false)
+  const [activeSelectButton, setActiveSelectButton] = useState(false);
 
-  const activeSelectButtonhandler = () => {
-    setActiveSelectButton(!activeSelectButton)
-  }
+  const activeSelectButtonhandler = toggle => {
+    setActiveSelectButton(toggle);
+  };
   const onChange = (e, id) => {
-    console.log(e.target.checked);
     handleFilters(id, e.target.checked, filterTitle);
   };
   return (
@@ -31,23 +30,24 @@ const Filter = ({
         <h3>{filterTitle}</h3>
         <ul>
           {!showHeader && (
-            <li onClick={() => {
-              selectOrClearAllHandler(true, filterTitle);
-              activeSelectButtonhandler()
-            }} className={`${activeSelectButton ? `active` : ``}`}>
-              <span
-              >
-                Select all
-          </span></li>
-          )}
-          <li onClick={() => {
-            selectOrClearAllHandler(false, filterTitle);
-            activeSelectButtonhandler()
-          }} className={`${!activeSelectButton ? `active` : ``}`}>
-            <span
+            <li
+              onClick={() => {
+                selectOrClearAllHandler(true, filterTitle);
+                activeSelectButtonhandler(true);
+              }}
+              className={`${activeSelectButton ? `active` : ``}`}
             >
-              Clear
-        </span>
+              <span>Select all</span>
+            </li>
+          )}
+          <li
+            onClick={() => {
+              selectOrClearAllHandler(false, filterTitle);
+              activeSelectButtonhandler(false);
+            }}
+            className={`${!activeSelectButton ? `active` : ``}`}
+          >
+            <span>Clear</span>
           </li>
         </ul>
       </div>
@@ -64,22 +64,22 @@ const Filter = ({
                     checked={data.isChecked}
                     onChange={e => onChange(e, data.id)}
                   />
-                  <label htmlFor={data.id}>{data.name}</label>
-                  <span>({data.count})</span>
+                  <label htmlFor={data.id}>
+                    {data.name}({data.count})
+                  </label>
                 </li>
               );
             })
           ) : (
-              <ShimmerEffect
-                propCls="shm_col-xs-6 col-md-12"
-                height={65}
-                count={1}
-                type="TILE"
-              />
-            )}
+            <ShimmerEffect
+              propCls="shm_col-xs-6 col-md-12"
+              height={65}
+              count={1}
+              type="TILE"
+            />
+          )}
         </ul>
       </div>
-
 
       {showHeader && (
         <div className={`filter-fixed-btn`}>
