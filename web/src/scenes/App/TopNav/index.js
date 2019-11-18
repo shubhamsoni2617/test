@@ -198,7 +198,8 @@ const TopNav = props => {
         pathArr.length &&
         (pathArr[1] === 'events' ||
           pathArr[1] === 'promotions' ||
-          pathArr[1] === 'attraction')
+          pathArr[1] === 'attraction' ||
+          pathArr[1] === 'explore')
       ) {
         setPathName(pathArr[1]);
         setMenuActive(true);
@@ -347,7 +348,11 @@ const TopNav = props => {
                 >
                   <Link to="/promotions">Promotions</Link>
                 </li>
-                <li>
+                <li
+                  className={
+                    menuActive && pathName === 'explore' ? 'active' : ''
+                  }
+                >
                   <Link to="/explore">Explore</Link>
                 </li>
               </ul>
