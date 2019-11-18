@@ -8,11 +8,11 @@ const LandingFestivals = ({ festivals }) => {
   return (
     <section className="festivals-wrapper">
       <div className="container-fluid">
-        <div class="section-top-wrapper">
+        <div className="section-top-wrapper">
           <h2>{festivals && festivals.heading}</h2>
-          <div class="carousel-dots">
+          <div className="carousel-dots">
             <Link to="/explore/festival">
-              See all <img src={Arrow} class="img-fluid" alt="arrow" />
+              See all <img src={Arrow} className="img-fluid" alt="arrow" />
             </Link>
           </div>
         </div>
@@ -23,7 +23,7 @@ const LandingFestivals = ({ festivals }) => {
               return (
                 <div className="item-wrapper" key={index}>
                   <div className="image-wrapper">
-                    <div class="item-img">
+                    <div className="item-img">
                       <Image src={thumb_image} type="Horizontal" />
                     </div>
                   </div>

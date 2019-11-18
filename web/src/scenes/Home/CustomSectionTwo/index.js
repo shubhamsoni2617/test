@@ -4,7 +4,7 @@ import ShimmerEffect from '../../../shared/components/ShimmerEffect';
 import Constants from '../../../shared/constants';
 import AdvertisementService from '../../../shared/services/AdvertisementService';
 
-const CustomSectionTwo = ({ heading, customData }) => {
+const CustomSectionTwo = ({ heading, customData, isMoreFrom }) => {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
   useEffect(() => {
@@ -52,6 +52,7 @@ const CustomSectionTwo = ({ heading, customData }) => {
         <div className="royal-side-padding">
           <div className="section-top-wrapper">
             <h2>{heading}</h2>
+            {isMoreFrom && <a className="text-right">More from {heading}</a>}
           </div>
           <div className="royal-items-wrapper">
             <div className="royal-leftsection">
