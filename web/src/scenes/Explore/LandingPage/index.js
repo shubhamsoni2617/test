@@ -43,12 +43,13 @@ const Explore = () => {
     royals,
     whats_up,
     articles,
-    festivals
+    festivals,
+    banner
   } = data;
 
   return (
     <div className="explore-wrapper">
-      <Banner />
+      <Banner bannerData={banner} />
       <WhatsUp whatsUpData={whats_up} />
       <div className="home-page-wrapper">
         <CustomtomSectionTwo
