@@ -389,9 +389,9 @@
                 flex-wrap: nowrap;
             }
             a{
-                margin-left: 10px;
+                margin-left: 5px;
                 @media(max-width: 991px){
-                    margin: 0px;
+                    margin-left: 5px;
                     max-width: 162px;
                     padding: 5px 10px 5px 10px;
                 }
@@ -437,7 +437,7 @@
                     }
                 }
                 &:first-child{
-                    margin-right: 10px;
+                    margin-right: 5px;
                 }
             }
         }

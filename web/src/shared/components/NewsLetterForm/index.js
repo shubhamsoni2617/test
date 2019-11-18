@@ -79,7 +79,7 @@ const NewsLetterForm = ({ type }) => {
           value={email}
           onChange={handleEmail}
           className="form-control"
-          placeholder="Enter Your email"
+          placeholder="Enter your email"
           aria-label="Username"
           aria-describedby="basic-addon1"
           required

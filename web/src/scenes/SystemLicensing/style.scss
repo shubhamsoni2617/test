@@ -157,6 +157,9 @@
 				transition: all 0.4s ease-out;
 				text-align: left;
 				width: 100%;
+				@media(max-width: 991px){
+					cursor: pointer;
+				}
 				@media(max-width: 768px){
 					padding: 2px 20px 0px 20px;
 				}
