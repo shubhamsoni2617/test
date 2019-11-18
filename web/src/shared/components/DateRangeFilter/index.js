@@ -8,16 +8,30 @@ import 'react-day-picker/lib/style.css';
 import 'react-tabs/style/react-tabs.css';
 import 'react-input-range/lib/css/index.css';
 import tickWhite from '../../../assets/images/tick-white.svg';
+import { Submenu } from '../Submenu';
 
 function DateRangeFilter(props) {
   const element = useRef(null);
   const [to, setTo] = useState('');
   const [from, setFrom] = useState('');
   const [flag, setFlag] = useState(true);
+  const [buttonText, setButtonText] = useState('');
+
 
   // useEffect(() => {
   //   setFlag(false);
   // }, [props.filterFlag]);
+
+  useEffect(() => {
+    debugger
+      let text = `Select Date `;
+      if(props.filteredDateRange.from !== '' && props.filteredDateRange.to !== ''){
+        setButtonText(props.filteredDateRange.from, props.filteredDateRange.to);
+      }else{
+        setButtonText(text);
+      }
+     
+  }, []);
 
   useEffect(() => {
     const getDate = dateStr => {
@@ -37,14 +51,14 @@ function DateRangeFilter(props) {
   }, [props.filteredDateRange]);
 
   const clearCalender = () => {
-    if(Utilities.mobilecheck()){
+    if (Utilities.mobilecheck()) {
       props.handleFilters({
         localfilteredDateRange: {
           from: '',
           to: ''
         }
       });
-    }else{
+    } else {
       props.handleFilters({
         filteredDateRange: {
           from: '',
@@ -52,7 +66,7 @@ function DateRangeFilter(props) {
         }
       });
     }
-    
+
   };
 
   const showFromMonth = () => {
@@ -84,7 +98,7 @@ function DateRangeFilter(props) {
     props.handleFilters(
       Utilities.mobilecheck()
         ? {
-          localfilteredDateRange: {
+          filteredDateRange: {
             from: moment(fromDate).format('YYYY-MM-DD'),
             to: moment(toDate).format('YYYY-MM-DD')
           }
@@ -118,88 +132,142 @@ function DateRangeFilter(props) {
           </li>
         </ul>
       </div>
-      <div className={`select-date select-range ${flag ? 'active' : ''}`}>
-        <button onClick={() => setFlag(!flag)}>Select Date</button>
-      </div>
-      <div className={`filters-panel ${flag ? 'open' : ''}`}>
-        <div className="date-input-to">
-          <label>From</label>
-          <span className="InputFromTo">
-            <DayPickerInput
-              value={from}
-              placeholder="mm/dd/yyyy"
-              format="MM/DD/YYYY"
-              showOverlay={false}
-              formatDate={formatDate}
-              parseDate={parseDate}
-              inputProps={{ readOnly: true }}
-              dayPickerProps={{
-                selectedDays: [from, { from, to }],
-                disabledDays: { before: new Date(), after: to },
-                fromMonth: new Date(),
-                toMonth: to ? new Date(moment(to).format('YYYY-MM-DD')) : null,
-                modifiers,
-                numberOfMonths: 1,
-                onDayClick: () => element.current.getInput().focus()
-              }}
-              onDayChange={handleFromChange}
-            />
-          </span>
-        </div>
-        <div className="date-input-from">
-          <label>To</label>
-          <span className="InputFromTo-to">
-            <DayPickerInput
-              ref={element}
-              inputProps={{ readOnly: true }}
-              value={to}
-              placeholder="mm/dd/yyyy"
-              format="MM/DD/YYYY"
-              showOverlay={false}
-              formatDate={formatDate}
-              parseDate={parseDate}
-              dayPickerProps={{
-                selectedDays: [from, { from, to }],
-                disabledDays: { before: from },
-                modifiers,
-                month: from
-                  ? new Date(moment(from).format('YYYY-MM-DD'))
-                  : null,
-                fromMonth: from
-                  ? new Date(moment(from).format('YYYY-MM-DD'))
-                  : new Date(),
-                numberOfMonths: 1
-                //   onDayClick: () => this.from.getInput().focus()
-              }}
-              onDayChange={handleToChange}
-            />
-          </span>
-        </div>
-        {from && to && props.autoSubmit && (
-          <a
-            href="/"
-            onClick={e => {
-              e.preventDefault();
-              filterByDateRange(from, to);
-            }}
-            className="cal-apply-btn active"
-          >
-            <img src={tickWhite} className="active" alt="tick" />
-          </a>
-        )}
-        {!props.autoSubmit && (
-          <button
-            className="btn buy-btn cal-search"
-            onClick={e => {
-              e.preventDefault();
-              filterByDateRange(from, to);
-            }}
-            disabled={from && to ? false : true}
-          >
-            Search
+
+      <Submenu>
+        {(menueStatus, setMenuStatus) => (
+          <>
+            <button
+              className={`backbutton ${menueStatus ? 'active' : ''}`}
+              type="button"
+              onClick={() => setMenuStatus(!menueStatus)}
+            >
+             {buttonText}
+            </button>
+            <div
+              className={`submenu-holder submenu-wrap ${
+                menueStatus ? 'active' : ''
+                }`}
+            >
+              <div className="subholder-wrapper">
+                <div className="filter-heading">
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setMenuStatus(false);
+                    }}
+                  >
+                    <img src="../../assets/images/next.svg"></img>
+                  </button>
+                  <h3>
+                    {props.title}
+                    {/* <button
+                      className="homepage-clear-filter"
+                      onClick={() => selectAll(false)}
+                    >
+                      Clear Filters
+                    </button> */}
+                  </h3>
+                </div>
+              </div>
+
+              <div className={`filters-panel ${flag ? 'open' : ''}`}>
+                <div className="date-input-to">
+                  <label>From</label>
+                  <span className="InputFromTo">
+                    <DayPickerInput
+                      value={from}
+                      placeholder="mm/dd/yyyy"
+                      format="MM/DD/YYYY"
+                      showOverlay={false}
+                      formatDate={formatDate}
+                      parseDate={parseDate}
+                      inputProps={{ readOnly: true }}
+                      dayPickerProps={{
+                        selectedDays: [from, { from, to }],
+                        disabledDays: { before: new Date(), after: to },
+                        fromMonth: new Date(),
+                        toMonth: to ? new Date(moment(to).format('YYYY-MM-DD')) : null,
+                        modifiers,
+                        numberOfMonths: 1,
+                        onDayClick: () => element.current.getInput().focus()
+                      }}
+                      onDayChange={handleFromChange}
+                    />
+                  </span>
+                </div>
+                <div className="date-input-from">
+                  <label>To</label>
+                  <span className="InputFromTo-to">
+                    <DayPickerInput
+                      ref={element}
+                      inputProps={{ readOnly: true }}
+                      value={to}
+                      placeholder="mm/dd/yyyy"
+                      format="MM/DD/YYYY"
+                      showOverlay={false}
+                      formatDate={formatDate}
+                      parseDate={parseDate}
+                      dayPickerProps={{
+                        selectedDays: [from, { from, to }],
+                        disabledDays: { before: from },
+                        modifiers,
+                        month: from
+                          ? new Date(moment(from).format('YYYY-MM-DD'))
+                          : null,
+                        fromMonth: from
+                          ? new Date(moment(from).format('YYYY-MM-DD'))
+                          : new Date(),
+                        numberOfMonths: 1
+                        //   onDayClick: () => this.from.getInput().focus()
+                      }}
+                      onDayChange={handleToChange}
+                    />
+                  </span>
+                </div>
+                {from && to && props.autoSubmit && (
+                  <a
+                    href="/"
+                    onClick={e => {
+                      e.preventDefault();
+                      filterByDateRange(from, to);
+                    }}
+                    className="cal-apply-btn active"
+                  >
+                    <img src={tickWhite} className="active" alt="tick" />
+                  </a>
+                )}
+                {!props.autoSubmit && (
+                  <button
+                    className="btn buy-btn cal-search"
+                    onClick={e => {
+                      e.preventDefault();
+                      filterByDateRange(from, to);
+                    }}
+                    disabled={from && to ? false : true}
+                  >
+                    Search
           </button>
+                )}
+              </div>
+
+              <div
+                className={`filter-fixed-btn ${menueStatus ? 'show' : 'hide'}`}
+              >
+                <button
+                  onClick={() => {
+                    setMenuStatus(false);
+                    props.toggleFilterSection();
+                    filterByDateRange();
+
+                  }}
+                >
+                  SEARCH
+                </button>
+              </div>
+            </div>
+          </>
         )}
-      </div>
+      </Submenu>
     </div>
   );
 }

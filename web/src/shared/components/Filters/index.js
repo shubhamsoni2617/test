@@ -205,10 +205,13 @@ function Filters(props) {
           />
           {!hideCalendar && (
             <DateRangeFilter
+              title="Calendar"
               filteredDateRange={filteredDateRange}
+              // selectedFilter={filteredDateRange}
               handleFilters={handleFilters}
               autoSubmit={true}
               filterFlag={filterFlag}
+              toggleFilterSection={toggleFilterSection}
             />
           )}
           <FilterGrid
