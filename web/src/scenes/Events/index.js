@@ -311,7 +311,7 @@ export default class Events extends Component {
   };
 
   handleFilters = (searchType, apply) => {
-    if (Utilities.mobilecheck) {
+    if (Utilities.mobilecheck()) {
       this.setState({
         localfilteredSortType: searchType.filteredSortType,
         localfilteredSortOrder: searchType.filteredSortOrder
@@ -330,9 +330,7 @@ export default class Events extends Component {
         filterFlag: false
       };
     }
-    if(apply){
-      this.toggleFilterSection();
-    }
+    
     this.setState(obj, () => {
       setTimeout(() => {
         if (!Utilities.mobilecheck() || apply) {
@@ -502,6 +500,7 @@ export default class Events extends Component {
                       queryParams={queryParams}
                       resetFilters={this.resetFilters}
                       handleFilters={this.handleFilters}
+                      toggleFilterSection={this.toggleFilterSection}
                       genreData={genre}
                       venueData={venues}
                       filterConfig={filterConfig}
