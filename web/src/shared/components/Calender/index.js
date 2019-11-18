@@ -104,7 +104,6 @@ const Calender = props => {
               <img src={crossArrow} alt="" />
               <img src={crossArrowWhite} alt="cross-arrow" className="active" />
             </a>
-            {console.log('dfdf', fromDateValue, toDateValue)}
             {(fromDateValue !== null && toDateValue !== null) ? <Link
               to={
                 '/events/search?s=' +
