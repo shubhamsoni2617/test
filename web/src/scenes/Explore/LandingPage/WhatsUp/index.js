@@ -18,33 +18,37 @@ const WhatsUp = ({ whatsUpData }) => {
               ({ title, description, genre, image, id, type }, index) => {
                 return (
                   <Link
-                    to={type === 'multi_show_template' && `/festival/${id}`}
+                    className="item-wrapper"
+                    to={
+                      type === 'multi_show_template'
+                        ? `/explore/festival/${id}`
+                        : `/explore/article${id}`
+                    }
+                    key={title}
                   >
-                    <div className="item-wrapper" key={title}>
-                      <div className="image-wrapper">
-                        <div className="item-img">
-                          <Image src={image && image[0]} type="Horizontal" />
-                        </div>
-                        {genre && (
-                          <span className="category">
-                            {genre.toString().replace(',', '/')}
-                          </span>
+                    <div className="image-wrapper">
+                      <div className="item-img">
+                        <Image src={image && image[0]} type="Horizontal" />
+                      </div>
+                      {genre && (
+                        <span className="category">
+                          {genre.toString().replace(',', '/')}
+                        </span>
+                      )}
+                    </div>
+                    <div className="image-bottom-desc">
+                      <h3>
+                        {Utilities.showLimitedChars(
+                          title,
+                          Utilities.mobilecheck() ? 25 : 50
                         )}
-                      </div>
-                      <div className="image-bottom-desc">
-                        <h3>
-                          {Utilities.showLimitedChars(
-                            title,
-                            Utilities.mobilecheck() ? 25 : 50
-                          )}
-                        </h3>
-                        <p>
-                          {Utilities.showLimitedChars(
-                            description,
-                            Utilities.mobilecheck() ? 75 : 150
-                          )}
-                        </p>
-                      </div>
+                      </h3>
+                      <p>
+                        {Utilities.showLimitedChars(
+                          description,
+                          Utilities.mobilecheck() ? 75 : 150
+                        )}
+                      </p>
                     </div>
                   </Link>
                 );

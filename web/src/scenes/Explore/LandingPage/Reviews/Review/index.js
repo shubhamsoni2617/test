@@ -3,6 +3,7 @@ import './style.scss';
 import rightArrow from '../../../../../assets/images/right-arrow.svg';
 import Image from '../../../../../shared/components/Image';
 import Utilities from '../../../../../shared/utilities';
+import { Link } from 'react-router-dom';
 
 const Review = ({ reviewData }) => {
   return (
@@ -10,7 +11,14 @@ const Review = ({ reviewData }) => {
       <div className="section-title">
         <h3>{reviewData.name}</h3>
       </div>
-      <div className="active-review">
+      <Link
+        to={
+          reviewData && reviewData.data[0].type === 'multi_show_template'
+            ? `/explore/festival/${reviewData.data[0].id}`
+            : `/explore/article${reviewData.data[0].id}`
+        }
+        className="active-review"
+      >
         <div className="review-item-image">
           <Image
             src={reviewData && reviewData.data[0].image}
@@ -29,16 +37,24 @@ const Review = ({ reviewData }) => {
             {reviewData && reviewData.data[0] && reviewData.data[0].author_name}
           </span>
         </div>
-      </div>
+      </Link>
       <div className="all-reviews">
         <div className="review-item-wrapper">
           {reviewData &&
             reviewData.data &&
             reviewData.data
               .slice(1, reviewData.data.length)
-              .map(({ image, title, author_name }, index) => {
+              .map(({ image, title, author_name, type, id }, index) => {
                 return (
-                  <div className="review-item" key={index}>
+                  <Link
+                    to={
+                      type === 'multi_show_template'
+                        ? `/explore/festival/${id}`
+                        : `/explore/article${id}`
+                    }
+                    className="review-item"
+                    key={index}
+                  >
                     <div className="review-item-image">
                       <Image src={image} type="Small" />
                     </div>
@@ -46,7 +62,7 @@ const Review = ({ reviewData }) => {
                       <h3>{title}</h3>
                       <span>{author_name}</span>
                     </div>
-                  </div>
+                  </Link>
                 );
               })}
         </div>

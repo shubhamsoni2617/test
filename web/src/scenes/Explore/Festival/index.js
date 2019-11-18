@@ -13,7 +13,7 @@ import Welcome from './Welcome';
 import SliderBanner from '../SliderBanner';
 import ShimmerEffect from '../../../shared/components/ShimmerEffect';
 
-const Festival = ({}) => {
+const Festival = ({ match }) => {
   const [templateTwoContent, setTemplateTwoContent] = useState([]);
   const breadcrumbSlug = [
     { path: '/', title: 'Home' },
@@ -27,8 +27,9 @@ const Festival = ({}) => {
   }, []);
 
   const getTemplateTwo = () => {
-    ExploreService.getTemplateTwo().then(res => {
-      if (res && res.data) {
+    const params = { id: match.params.id };
+    ExploreService.getTemplateTwo(params).then(res => {
+      if (res && res.data && res.data.data.length > 0) {
         setTimeout(() => {
           setTemplateTwoContent(res.data.data[0]);
         }, 2000);

@@ -19,21 +19,31 @@ const LandingFestivals = ({ festivals }) => {
         <div className="festivals-container">
           {festivals &&
             festivals.data &&
-            festivals.data.map(({ thumb_image, title, description }, index) => {
-              return (
-                <div className="item-wrapper" key={index}>
-                  <div className="image-wrapper">
-                    <div className="item-img">
-                      <Image src={thumb_image} type="Horizontal" />
+            festivals.data.map(
+              ({ thumb_image, title, description, id, type }, index) => {
+                return (
+                  <Link
+                    to={
+                      type === 'multi_show_template'
+                        ? `/explore/festival/${id}`
+                        : `/explore/article/${id}`
+                    }
+                    className="item-wrapper"
+                    key={index}
+                  >
+                    <div className="image-wrapper">
+                      <div className="item-img">
+                        <Image src={thumb_image} type="Horizontal" />
+                      </div>
                     </div>
-                  </div>
-                  <div className="image-bottom-desc">
-                    <h3>{title}</h3>
-                    <p dangerouslySetInnerHTML={{ __html: description }}></p>
-                  </div>
-                </div>
-              );
-            })}
+                    <div className="image-bottom-desc">
+                      <h3>{title}</h3>
+                      <p dangerouslySetInnerHTML={{ __html: description }}></p>
+                    </div>
+                  </Link>
+                );
+              }
+            )}
         </div>
       </div>
     </section>
