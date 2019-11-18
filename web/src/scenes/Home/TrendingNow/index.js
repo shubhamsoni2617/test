@@ -11,8 +11,7 @@ import videoImage from '../../../assets/images/video-icon.svg';
 const TrendingNow = ({ heading }) => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
-
-  const [serverErr, setServerErr] = useState('');
+  const [error, setError] = useState(false);
 
   useEffect(() => {
     getTrandingNow();
@@ -32,16 +31,16 @@ const TrendingNow = ({ heading }) => {
           }, 2000);
         }
       })
-      .catch(err => {
-        if (err && err.response) {
-          setServerErr(err.response.data);
-        }
+      .catch(() => {
+        setError(true);
       });
   };
 
   if (!loading && data && data.length === 0) {
     return null;
   }
+
+  if (error) return null;
 
   return (
     <section className="trending-now">

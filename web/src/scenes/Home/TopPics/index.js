@@ -36,6 +36,7 @@ const TopPics = props => {
   const [data, setData] = useState([]);
   const [width, setWidth] = useState('');
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(false);
 
   useEffect(() => {
     setWidth(window.innerWidth);
@@ -63,10 +64,8 @@ const TopPics = props => {
           }, 2000);
         }
       })
-      .catch(err => {
-        if (err && err.response) {
-          console.log(err.response);
-        }
+      .catch(() => {
+        setError(true);
       });
   };
 
@@ -95,6 +94,8 @@ const TopPics = props => {
   if (!loading && data && data.length === 0) {
     return null;
   }
+
+  if (error) return null;
 
   return (
     <section className="top-picks">
