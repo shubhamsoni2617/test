@@ -130,9 +130,9 @@
 				position: relative;
 				width: 643px;
 				@media(max-width: 1366px) {
-					width: 530px;
+					width: 643px;
 				}
-				@media(max-width: 991px) {
+				@media(max-width: 1068px) {
 					max-width: 450px;
 				}
 				@media(max-width: 991px) {
@@ -883,7 +883,7 @@
 				&:after {
 					position: absolute;
 					right: 15px;
-					top: 17px;
+					top: 20px;
 					left: auto;
 					content: "";
 					border: solid #626262;
@@ -894,7 +894,7 @@
 					-webkit-transition: 0.5s transform;
 					-moz-transition: 0.5s transform;
 					-o-transition: 0.5s transform;
-					transform: rotate(45deg);
+					transform: rotate(-135deg);
 				}
 				&:hover{
 					color: #343434;
@@ -902,7 +902,7 @@
 				&.active{
 					&:after{
 						top: 15px;
-						transform: rotate(-135deg);
+						transform: rotate(45deg);
 					}
 				}
 			}
@@ -943,7 +943,8 @@
 					border-radius: 50%;
 					position: absolute;
 					bottom: 0;
-					right: -5px;
+                    right: -5px;
+                    padding: 0;
 					@media(max-width: 991px) {
 						bottom: 12px;
 						right: 5px;
@@ -964,8 +965,9 @@
 				}
 			}
 			span{
-				font-size: 18px;
-    			font-weight: 300;
+				font-size: 17px;
+                font-weight: 300;
+                color: #FFF;
 			}
 		}
 		.ticket-withus{

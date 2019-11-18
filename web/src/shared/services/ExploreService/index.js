@@ -7,11 +7,17 @@ class ExploreService {
   getTemplateTwo() {
     return API.get(`/get-template-2?id=8277`);
   }
+  getArticle(params) {
+    return API.get(`get-template-1`, { params });
+  }
   getCategories() {
     return API.get(`get-template-categories`);
   }
   getTags() {
     return API.get(`get-template-tags`);
+  }
+  getExploreLanding() {
+    return API.get(`get-explore-landing`);
   }
 }
 
