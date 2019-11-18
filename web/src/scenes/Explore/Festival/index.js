@@ -69,7 +69,7 @@ const Festival = ({}) => {
   console.log(templateTwoContent);
   return (
     <div className="festival-wrapper">
-      {image && <SliderBanner data={image} />}
+      {image && image.length > 0 && <SliderBanner data={image} />}
       {title ? (
         <Welcome
           breadcrumbSlug={breadcrumbSlug}

@@ -161,13 +161,9 @@ const routes = [
     component: LandingPage,
     exact: true
   },
+
   {
-    path: '/explore',
-    component: Explore,
-    exact: true
-  },
-  {
-    path: '/explore/articlelist',
+    path: '/articles',
     component: ArticleList,
     exact: true
   },
@@ -177,8 +173,13 @@ const routes = [
     exact: true
   },
   {
-    path: '/explore/festival',
+    path: '/explore/festival/:id',
     component: Festival,
+    exact: true
+  },
+  {
+    path: '/explore',
+    component: Explore,
     exact: true
   },
   {
