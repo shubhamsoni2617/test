@@ -3,51 +3,71 @@ import './style.scss';
 import rightArrow from '../../../../../assets/images/right-arrow.svg';
 import Image from '../../../../../shared/components/Image';
 import Utilities from '../../../../../shared/utilities';
+import { Link } from 'react-router-dom';
 
-const Review = ({ heading, reviewData }) => {
+const Review = ({ reviewData }) => {
   return (
-    <div class="reviews-item">
+    <div className="reviews-item">
       <div className="section-title">
-        <h3>{heading}</h3>
+        <h3>{reviewData.name}</h3>
       </div>
-      <div className="active-review">
+      <Link
+        to={
+          reviewData && reviewData.data[0].type === 'multi_show_template'
+            ? `/explore/festival/${reviewData.data[0].id}`
+            : `/explore/article${reviewData.data[0].id}`
+        }
+        className="active-review"
+      >
         <div className="review-item-image">
-          <Image src={reviewData && reviewData[0].imgPath} type="Horizontal" />
+          <Image
+            src={reviewData && reviewData.data[0].image}
+            type="Horizontal"
+          />
         </div>
         <div className="review-content">
           <h3>
-            {reviewData && reviewData[0] && reviewData[0].title}
+            {reviewData && reviewData.data[0] && reviewData.data[0].title}
             {/* {Utilities.showLimitedChars(
               reviewData && reviewData[0] && reviewData[0].title,
               Utilities.mobilecheck() ? 25 : 50
             )} */}
           </h3>
           <span className="review-subtext">
-            {reviewData && reviewData[0].by}
+            {reviewData && reviewData.data[0] && reviewData.data[0].author_name}
           </span>
         </div>
-      </div>
+      </Link>
       <div className="all-reviews">
         <div className="review-item-wrapper">
           {reviewData &&
-            reviewData
-              .slice(1, reviewData.length)
-              .map(({ imgPath, title, by }, index) => {
+            reviewData.data &&
+            reviewData.data
+              .slice(1, reviewData.data.length)
+              .map(({ image, title, author_name, type, id }, index) => {
                 return (
-                  <div className="review-item" key={index}>
+                  <Link
+                    to={
+                      type === 'multi_show_template'
+                        ? `/explore/festival/${id}`
+                        : `/explore/article${id}`
+                    }
+                    className="review-item"
+                    key={index}
+                  >
                     <div className="review-item-image">
-                      <img src={imgPath} alt="review" />
+                      <Image src={image} type="Small" />
                     </div>
                     <div className="review-content">
                       <h3>{title}</h3>
-                      <span>{by}</span>
+                      <span>{author_name}</span>
                     </div>
-                  </div>
+                  </Link>
                 );
               })}
         </div>
-        <a className="more-review" href="">
-          More from {heading} <img src={rightArrow} alt="arrow" />
+        <a className="more-review" href="/articles" target="_blank">
+          More from {reviewData.name} <img src={rightArrow} alt="arrow" />
         </a>
       </div>
     </div>
