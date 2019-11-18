@@ -7,87 +7,47 @@ import { CSSTransition } from 'react-transition-group';
 import ShimmerEffect from '../ShimmerEffect';
 import Image from '../Image';
 
-const Item = ({ event, explore }) => {
+const Item = ({ event }) => {
   return (
     <a href={event && event.navigation_link} target="_blank">
       <div className="item">
-        {!explore ? (
-          <div className="item-wrapper">
-            <div className="featured-item-img">
-              <div className="item-img">
-                <Image
-                  src={event && event.full_image}
-                  className="img-fluid"
-                  type="Small"
-                />
-              </div>
-              <span
-                className={`category ${event &&
-                  event.primary_genre &&
-                  event.primary_genre.toLowerCase()}`}
-              >
-                {event.primary_genre}
-              </span>
+        <div className="item-wrapper">
+          <div className="featured-item-img">
+            <div className="item-img">
+              <Image
+                src={event && event.full_image}
+                className="img-fluid"
+                type="Small"
+              />
             </div>
-            {event && event.title && (
-              <h3>
-                {Utilities.showLimitedChars(
-                  event && event.title,
-                  Utilities.mobilecheck() ? 30 : 40
-                )}
-              </h3>
-            )}
-            {event && event.event_date && (
-              <p className="featured-event-date">{event.event_date}</p>
-            )}
-            {event && event.venue_name && (
-              <p className="venue-name">
-                {Utilities.showLimitedChars(
-                  event && event.venue_name,
-                  Utilities.mobilecheck() ? 35 : 50
-                )}
-              </p>
-            )}
+            <span
+              className={`category ${event &&
+                event.primary_genre &&
+                event.primary_genre.toLowerCase()}`}
+            >
+              {event.primary_genre}
+            </span>
           </div>
-        ) : (
-            <div className="item-wrapper">
-              <div className="featured-item-img">
-                <div className="item-img">
-                  <Image
-                    src={event && event.full_image}
-                    className="img-fluid"
-                    type="Small"
-                  />
-                </div>
-                <span
-                  className={`category ${event &&
-                    event.primary_genre &&
-                    event.primary_genre.toLowerCase()}`}
-                >
-                  {event.primary_genre}
-                </span>
-              </div>
-              {event && event.event_date && (
-                <p className="featured-event-date">{event.event_date}</p>
+          {event && event.title && (
+            <h3>
+              {Utilities.showLimitedChars(
+                event && event.title,
+                Utilities.mobilecheck() ? 30 : 40
               )}
-              {event && event.title && (
-                <h3>
-                  {Utilities.showLimitedChars(
-                    event && event.title,
-                    Utilities.mobilecheck() ? 30 : 40
-                  )}
-                </h3>
-              )}
-              {event && event.venue_name && (
-                <p className="venue-name">
-                  {Utilities.showLimitedChars(
-                    event && event.venue_name,
-                    Utilities.mobilecheck() ? 35 : 50
-                  )}
-                </p>
-              )}
-            </div>
+            </h3>
           )}
+          {event && event.event_date && (
+            <p className="featured-event-date">{event.event_date}</p>
+          )}
+          {event && event.venue_name && (
+            <p className="venue-name">
+              {Utilities.showLimitedChars(
+                event && event.venue_name,
+                Utilities.mobilecheck() ? 35 : 50
+              )}
+            </p>
+          )}
+        </div>
       </div>
     </a>
   );
@@ -166,7 +126,7 @@ const FeaturedEvents = props => {
     dots: true,
     infinite: false,
     speed: 500,
-    rows: props.article ? 1 : 2,
+    rows: 2,
     slidesPerRow: 5
   };
 
@@ -219,24 +179,24 @@ const FeaturedEvents = props => {
                 featuredEvents.map((event, index) => {
                   return (
                     <div className="grid-container" key={index}>
-                      <Item event={event} explore={props.explore} />
+                      <Item event={event} />
                     </div>
                   );
                 })}
             </div>
           </div>
         ) : (
-              <Slider {...settings}>
-                {featuredEvents &&
-                  featuredEvents.map((event, index) => {
-                    return (
-                      <div className="grid-container" key={index}>
-                        <Item event={event} />
-                      </div>
-                    );
-                  })}
-              </Slider>
-            )}
+          <Slider {...settings}>
+            {featuredEvents &&
+              featuredEvents.map((event, index) => {
+                return (
+                  <div className="grid-container" key={index}>
+                    <Item event={event} />
+                  </div>
+                );
+              })}
+          </Slider>
+        )}
         {/* </CSSTransitionGroup> */}
       </div>
     </section>
