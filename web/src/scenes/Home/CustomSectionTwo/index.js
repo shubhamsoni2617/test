@@ -52,7 +52,11 @@ const CustomSectionTwo = ({ heading, customData, isMoreFrom }) => {
         <div className="royal-side-padding">
           <div className="section-top-wrapper">
             <h2>{heading}</h2>
-            {isMoreFrom && <a className="text-right">More from {heading}</a>}
+            {isMoreFrom && (
+              <a href="/articles" target="_blank" className="text-right">
+                More from {heading}
+              </a>
+            )}
           </div>
           <div className="royal-items-wrapper">
             <a

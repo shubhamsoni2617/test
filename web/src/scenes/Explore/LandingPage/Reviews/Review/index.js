@@ -66,7 +66,7 @@ const Review = ({ reviewData }) => {
                 );
               })}
         </div>
-        <a className="more-review" href="">
+        <a className="more-review" href="/articles" target="_blank">
           More from {reviewData.name} <img src={rightArrow} alt="arrow" />
         </a>
       </div>
