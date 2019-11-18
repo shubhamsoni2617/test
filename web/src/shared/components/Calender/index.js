@@ -104,7 +104,8 @@ const Calender = props => {
               <img src={crossArrow} alt="" />
               <img src={crossArrowWhite} alt="cross-arrow" className="active" />
             </a>
-            <Link
+            {console.log('dfdf', fromDateValue, toDateValue)}
+            {(fromDateValue !== null && toDateValue !== null) ? <Link
               to={
                 '/events/search?s=' +
                 moment(fromDateValue).format('YYYY-MM-DD') +
@@ -118,7 +119,10 @@ const Calender = props => {
             >
               <img src={tickArrow} alt="" />
               <img src={tickArrowWhite} className="active" alt="" />
-            </Link>
+            </Link> : <Link className="">
+                <img src={tickArrow} alt="" />
+                <img src={tickArrowWhite} className="active" alt="" />
+              </Link>}
           </div>
         </form>
       </div>
