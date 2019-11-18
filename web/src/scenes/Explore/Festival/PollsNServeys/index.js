@@ -1,6 +1,5 @@
 import React, { Fragment } from 'react';
 import './style.scss';
-import pollsSurveys from '../../../../assets/images/polls-surveys.png';
 import Image from '../../../../shared/components/Image';
 
 const PollsNServeys = ({ sectionSeven }) => {
@@ -42,5 +41,4 @@ const PollsNServeys = ({ sectionSeven }) => {
     </section>
   );
 };
-
 export default PollsNServeys;

@@ -26,8 +26,6 @@ import ArticleList from '../Explore/ArticleList';
 import Article from '../Explore/Article';
 import Festival from '../Explore/Festival';
 
-// import Explore from '../Explore/';
-
 const routes = [
   {
     path: '/',
@@ -164,22 +162,12 @@ const routes = [
     exact: true
   },
   {
-    path: '/explore',
-    component: Explore,
-    exact: true
-  },
-  {
-    path: '/explore/articlelist',
+    path: '/articles',
     component: ArticleList,
     exact: true
   },
   {
-    path: '/explore/festival',
-    component: Festival,
-    exact: true
-  },
-  {
-    path: '/explore/article',
+    path: '/explore/article/:id',
     component: Article,
     exact: true
   },

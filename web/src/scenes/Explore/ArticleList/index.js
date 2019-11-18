@@ -13,7 +13,7 @@ import useStickyPanel from '../../../shared/hooks/useStickyPanel';
 import BreadCrumbData from './breadCrumbData';
 import selectOrClearAll from './selectOrClearAll';
 import fetchFilterData from './fetchFilterData';
-const ArticleList = props => {
+const ArticleList = ({ history }) => {
   const [width] = useCustomWidth();
   let stickyObj = {
     sticky: { top: 153 },
@@ -217,6 +217,7 @@ const ArticleList = props => {
                 <CardList
                   articleList={articleList}
                   totalRecords={totalResults}
+                  history={history}
                 />
                 {loadMore && (
                   <ShimmerEffect
