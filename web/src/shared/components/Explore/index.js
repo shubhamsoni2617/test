@@ -44,11 +44,13 @@ class Explore extends Component {
               </a>
             </div>
           </div>
-          <span className="explore-text">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas
-            varius tortor nibh, sit amet tempor nibh finibus et. Aenean eu enim
-            justo.{' '}
-          </span>
+          {!this.props.article && (
+            <span className="explore-text">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas
+              varius tortor nibh, sit amet tempor nibh finibus et. Aenean eu
+              enim justo.{' '}
+            </span>
+          )}
           <div className="grid-container">
             <div className="item">
               <div className="item-wrapper explore-article">
