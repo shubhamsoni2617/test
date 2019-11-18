@@ -1,9 +1,6 @@
 import API from '../../api';
 
 class ExploreService {
-  getEx() {
-    return API.get('get-explore-landing');
-  }
   getExploreArticleList(params) {
     return API.get(`/get-articles-listing`, { params });
   }

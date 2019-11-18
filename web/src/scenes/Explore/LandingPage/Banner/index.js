@@ -3,12 +3,12 @@ import './style.scss';
 import bannerImg from '../../../../assets/images/explore-banner2.png';
 import Slider from 'react-slick';
 
-const BannerSlider = props => {
+const BannerSlider = ({ bannerData }) => {
   const [nav1, setNav1] = useState(null);
   const [nav2, setNav2] = useState(null);
   let slider1 = useRef();
   let slider2 = useRef();
-
+  console.log(bannerData);
   useEffect(() => {
     setNav1(slider1);
     setNav2(slider2);
@@ -29,30 +29,26 @@ const BannerSlider = props => {
           asNavFor={nav2}
           ref={slider => (slider1 = slider)}
         >
-          <div>
-            <h3>1</h3>
-            <img src={bannerImg} alt="explore-slider" />
-          </div>
-          <div>
-            <h3>2</h3>
-            <img src={bannerImg} alt="explore-slider" />
-          </div>
-          <div>
-            <h3>3</h3>
-            <img src={bannerImg} alt="explore-slider" />
-          </div>
-          <div>
-            <h3>4</h3>
-            <img src={bannerImg} alt="explore-slider" />
-          </div>
-          <div>
-            <h3>5</h3>
-            <img src={bannerImg} alt="explore-slider" />
-          </div>
-          <div>
-            <h3>6</h3>
-            <img src={bannerImg} alt="explore-slider" />
-          </div>
+          {bannerData &&
+            bannerData.map(banner => {
+              return (
+                <div>
+                  <div>
+                    <h2>{banner.banner_title}</h2>
+                    <div
+                      className="text-center sub-text"
+                      dangerouslySetInnerHTML={{
+                        __html: banner.banner_description
+                      }}
+                    />
+                    <a href={banner.banner_url} target="_blank">
+                      <button>{banner.button_text}</button>
+                    </a>
+                  </div>
+                  <img src={banner.image} alt="banner_image" />
+                </div>
+              );
+            })}
         </Slider>
       </div>
 
@@ -65,30 +61,14 @@ const BannerSlider = props => {
           swipeToSlide={true}
           focusOnSelect={true}
         >
-          <div>
-            <h3>1</h3>
-            <img src={bannerImg} alt="explore-slider" />
-          </div>
-          <div>
-            <h3>2</h3>
-            <img src={bannerImg} alt="explore-slider" />
-          </div>
-          <div>
-            <h3>3</h3>
-            <img src={bannerImg} alt="explore-slider" />
-          </div>
-          <div>
-            <h3>4</h3>
-            <img src={bannerImg} alt="explore-slider" />
-          </div>
-          <div>
-            <h3>5</h3>
-            <img src={bannerImg} alt="explore-slider" />
-          </div>
-          <div>
-            <h3>6</h3>
-            <img src={bannerImg} alt="explore-slider" />
-          </div>
+          {bannerData &&
+            bannerData.map(banner => {
+              return (
+                <div>
+                  <img src={banner.image} alt="banner_image" />
+                </div>
+              );
+            })}
         </Slider>
       </div>
     </section>
