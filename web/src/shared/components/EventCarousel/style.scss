@@ -29,6 +29,9 @@
                 justify-content: center;
                 align-items: center;
                 margin-top: -1px;
+                @media(max-width: 991px){
+                    height: auto;
+                }
             }
           }
         }
@@ -37,6 +40,14 @@
           .image-gallery-thumbnails-container{
             text-align: left;
             display: flex;
+            .image-gallery-thumbnail-inner{
+                .image-conatiner{
+                    img{
+                        height: 100%;
+                        border: 1px #e8e8e8 solid;
+                    }
+                }
+            }
           }
         }
         .image-gallery-thumbnail {
@@ -59,7 +70,7 @@
                 height: 100%;
                 position: relative;
                 div{
-                    display: flex;
+                    display: inherit;
                     height: 100% !important;
                     width: 100% !important;
                     justify-content: center;
@@ -97,10 +108,10 @@
         }
           .image-gallery-custom-nav{
             position: absolute;
-    bottom: -84px;
-    z-index: 2;
-    height: 80px;
-    width: 34px;
+            bottom: -84px;
+            z-index: 2;
+            height: 80px;
+            width: 34px;
           }
           .next{
             right: 0;
