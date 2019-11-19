@@ -118,7 +118,7 @@ const Calender = props => {
             >
               <img src={tickArrow} alt="" />
               <img src={tickArrowWhite} className="active" alt="" />
-            </Link> : <Link className="">
+            </Link> : <Link className="cal-apply-btn">
                 <img src={tickArrow} alt="" />
                 <img src={tickArrowWhite} className="active" alt="" />
               </Link>}
