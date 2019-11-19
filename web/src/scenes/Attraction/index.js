@@ -330,26 +330,30 @@ export default class Attractions extends Component {
                   filteredCategory={filteredCategory}
                   attractions={true}
                 >
-                  <div className="fixed-buttons hide-inner">
-                    <a
-                      onClick={() => {
-                        this.toggleFilterSection();
-                        this.toggleFilters();
-                      }}
-                      className="close"
+                  {fixed => (
+                    <div
+                      className={`fixed-buttons ${fixed ? 'hide-inner' : ''}`}
                     >
-                      Close
-                    </a>
-                    <a
-                      onClick={() => {
-                        this.toggleFilterSection();
-                        this.callAPI();
-                      }}
-                      className="apply"
-                    >
-                      Apply
-                    </a>
-                  </div>
+                      <a
+                        onClick={() => {
+                          this.toggleFilterSection();
+                          this.toggleFilters();
+                        }}
+                        className="close"
+                      >
+                        Close
+                      </a>
+                      <a
+                        onClick={() => {
+                          this.toggleFilterSection();
+                          this.callAPI();
+                        }}
+                        className="apply"
+                      >
+                        Apply
+                      </a>
+                    </div>
+                  )}
                 </Filters>
               )}
             </div>
