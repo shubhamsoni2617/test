@@ -37,14 +37,14 @@ function DateRangeFilter(props) {
   }, [props.filteredDateRange]);
 
   const clearCalender = () => {
-    if(Utilities.mobilecheck()){
+    if (Utilities.mobilecheck()) {
       props.handleFilters({
         localfilteredDateRange: {
           from: '',
           to: ''
         }
       });
-    }else{
+    } else {
       props.handleFilters({
         filteredDateRange: {
           from: '',
@@ -52,7 +52,6 @@ function DateRangeFilter(props) {
         }
       });
     }
-    
   };
 
   const showFromMonth = () => {
@@ -84,17 +83,17 @@ function DateRangeFilter(props) {
     props.handleFilters(
       Utilities.mobilecheck()
         ? {
-          localfilteredDateRange: {
-            from: moment(fromDate).format('YYYY-MM-DD'),
-            to: moment(toDate).format('YYYY-MM-DD')
+            localfilteredDateRange: {
+              from: moment(fromDate).format('YYYY-MM-DD'),
+              to: moment(toDate).format('YYYY-MM-DD')
+            }
           }
-        }
         : {
-          filteredDateRange: {
-            from: moment(fromDate).format('YYYY-MM-DD'),
-            to: moment(toDate).format('YYYY-MM-DD')
+            filteredDateRange: {
+              from: moment(fromDate).format('YYYY-MM-DD'),
+              to: moment(toDate).format('YYYY-MM-DD')
+            }
           }
-        }
     );
   };
 
