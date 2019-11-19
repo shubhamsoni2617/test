@@ -21,9 +21,13 @@
         }
         .image-gallery {
           position: relative;
+
           .image-gallery-image{
             .image-conatiner{
-                max-height: 414px;
+                height: 414px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
             }
           }
         }
@@ -35,11 +39,20 @@
           }
         }
         .image-gallery-thumbnail {
-          width: 130px;
-          margin-right: 4px;
+          width: 122px;
+          margin-right: 6px;
           margin-top: 4px;
           border: 0;
+          background: #e8e8e8;
+          height: 57px;
           margin-left: 0px;
+          div{
+            display: flex;
+            height: 100% !important;
+            width: 100% !important;
+            justify-content: center;
+            align-items: center;
+        }
               .videoimg{
                 display: inline-block;
                 height: 100%;
