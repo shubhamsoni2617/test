@@ -57,7 +57,7 @@ function PriceRangeFilter(props) {
   return (
     <div className="filter-grid filter-price-range">
       <div className="filter-grid-heading">
-        <h3>Price</h3>
+        <h3>Price Range</h3>
         <ul>
           <li className="active">
             <a
@@ -168,7 +168,7 @@ function Filters(props) {
                   clearAllFilters();
                 }}
               >
-                Clear Filters
+                Clear All
               </a>
             </h3>
           </div>

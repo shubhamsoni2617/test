@@ -320,7 +320,7 @@ export default class Events extends Component {
     let obj = {
       ...searchType
     };
-    if (!Utilities.mobilecheck() || apply) {
+    if (!Utilities.mobilecheck() || apply || (searchType && searchType.filteredSearch)) {
       obj = {
         ...searchType,
         first: 0,
@@ -333,7 +333,7 @@ export default class Events extends Component {
     
     this.setState(obj, () => {
       setTimeout(() => {
-        if (!Utilities.mobilecheck() || apply) {
+        if (!Utilities.mobilecheck() || apply || (searchType && searchType.filteredSearch)) {
           this.loadEvents(this.getFilters(), false);
         }
       }, 200);
@@ -383,6 +383,7 @@ export default class Events extends Component {
 
   toggleFilterSection = () => {
     if(Utilities.mobilecheck()){
+
       document.body.classList.toggle('fixed-body');
     }
   }

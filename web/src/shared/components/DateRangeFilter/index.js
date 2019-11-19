@@ -23,7 +23,6 @@ function DateRangeFilter(props) {
   // }, [props.filterFlag]);
 
   useEffect(() => {
-    debugger
       let text = `Select Date `;
       if(props.filteredDateRange.from !== '' && props.filteredDateRange.to !== ''){
         setButtonText(props.filteredDateRange.from, props.filteredDateRange.to);
@@ -117,7 +116,7 @@ function DateRangeFilter(props) {
   return (
     <div className="filter-grid date-range">
       <div className="filter-grid-heading">
-        <h3>Date range</h3>
+        <h3>Date Range</h3>
         <ul>
           <li className="active clear">
             <a
