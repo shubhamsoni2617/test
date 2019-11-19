@@ -133,6 +133,7 @@
                 }
             }
             .pos-static{
+                padding-bottom: 10px;
                 @media(max-width: 768px){
                     position: static;
                 }
@@ -631,7 +632,7 @@
         min-height: 389px;
         height: 389px;
         @media(max-width: 1024px){
-            min-height: 241px;
+            min-height: 300px !important;
             height: auto;
         }
         @media(max-width: 991px){
@@ -641,6 +642,7 @@
         @media(max-width: 680px){
             height: auto;
             padding: 0px 0px;
+            min-height: 200px;
         }
         .banner-content{
             @media(max-width: 1024px){
