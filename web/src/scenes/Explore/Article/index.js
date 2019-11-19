@@ -13,13 +13,14 @@ import ShimmerEffect from '../../../shared/components/ShimmerEffect';
 import Utilities from '../../../shared/utilities';
 
 const Article = props => {
-  const [articleData, setArticleData] = useState([]);
+  const [articleData, setArticleData] = useState(null);
   const [showSocialShare, setShowSocialShare] = useState(false);
   const handleSocialShare = () => {
     setShowSocialShare(!showSocialShare);
   };
 
   useEffect(() => {
+    setArticleData(null);
     getArticle();
   }, [props.match.params.id]);
 
@@ -46,18 +47,17 @@ const Article = props => {
   };
   return (
     <section>
-      {articleData &&
-        (articleData.image ? (
-          <SliderBanner data={articleData.image} />
-        ) : (
-          <div className="simmerOuter">
-            <ShimmerEffect
-              height={Utilities.mobilecheck() ? 130 : 250}
-              count={1}
-              type="SOLID"
-            />
-          </div>
-        ))}
+      {articleData && articleData.image ? (
+        <SliderBanner data={articleData.image} />
+      ) : (
+        <div className="simmerOuter">
+          <ShimmerEffect
+            height={Utilities.mobilecheck() ? 130 : 250}
+            count={1}
+            type="SOLID"
+          />
+        </div>
+      )}
 
       <div className="acticle">
         <div className="container-fluid">

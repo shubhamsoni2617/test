@@ -1,7 +1,6 @@
 import React from 'react';
 import Slider from 'react-slick';
 import './style.scss';
-import ShimmerEffect from '../../../shared/components/ShimmerEffect';
 
 const SliderBanner = ({ data }) => {
   console.log(data);
