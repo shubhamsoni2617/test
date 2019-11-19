@@ -421,9 +421,8 @@ export default class EventsDetail extends Component {
                   )}
 
                 <section className="event-detail-banner">
-                  {detailData.images && detailData.images.length > 0 && (
+
                     <EventCarousel images={detailData.images} />
-                  )}
                   <StickyHeader
                     lines={2}
                     sticky={false}

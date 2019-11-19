@@ -46,9 +46,9 @@ const DownloadAppPopup = () => {
         <a href={navigationURL} className="accept-btn" onClick={handleClick} target="_blank" title="Get App">Get App</a>
       </div>
       <div className="cookie-actions">
-        <Link to="/" className="hide-cookie" onClick={handleDecline}>
+        <button className="hide-cookie" onClick={handleDecline}>
           <img src={closeIcon} alt="" />
-        </Link>
+        </button>
       </div>
     </animated.div>
   );
