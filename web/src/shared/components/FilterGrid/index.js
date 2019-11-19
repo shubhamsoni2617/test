@@ -130,6 +130,7 @@ const FilterGrid = props => {
           </li>
         </ul>
       </div>
+      
       <Submenu>
         {(menueStatus, setMenuStatus) => (
           <>
