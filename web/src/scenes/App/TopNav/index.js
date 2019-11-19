@@ -236,12 +236,12 @@ const TopNav = props => {
   };
   const handleNavigationOpen = () => {
     refValue.classList.add('active');
-    document.body.classList.add('body-overlay');
+    document.body.classList.add('body-overlay', 'fixed-body');
   };
 
   const handleNavigationClose = () => {
     refValue.classList.remove('active');
-    document.body.classList.remove('body-overlay');
+    document.body.classList.remove('body-overlay', 'fixed-body');
   };
 
   const handleMouseStatus = status => {

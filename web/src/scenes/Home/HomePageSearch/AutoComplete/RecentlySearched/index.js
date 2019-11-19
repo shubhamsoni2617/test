@@ -34,7 +34,7 @@ const RecentlySearched = ({ focusHandler, history, mostViewed }) => {
           {storageValues.length ? (
             <div className="recently-search">
               <h3>Recently Searched</h3>
-              <ul>
+              <ul id="recently-searched">
                 {storageValues.map((text, index) => {
                   return (
                     <li key={text + index}>

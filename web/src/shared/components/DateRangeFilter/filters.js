@@ -143,7 +143,10 @@ function DateRangeFilter(props) {
             <button
               className={`backbutton ${menueStatus ? 'active' : ''}`}
               type="button"
-              onClick={() => setMenuStatus(!menueStatus)}
+              onClick={() => {
+                setMenuStatus(!menueStatus);
+                props.setFixed(true);
+              }}
             >
               {buttonText}
             </button>
@@ -158,6 +161,7 @@ function DateRangeFilter(props) {
                     type="button"
                     onClick={() => {
                       setMenuStatus(false);
+                      props.setFixed(false);
                     }}
                   >
                     <img src="../../assets/images/next.svg"></img>
@@ -262,6 +266,7 @@ function DateRangeFilter(props) {
                 <button
                   onClick={() => {
                     setMenuStatus(false);
+                    props.setFixed(false);
                     props.toggleFilterSection();
                     props.handleFilters(
                       {
