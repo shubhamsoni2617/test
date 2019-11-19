@@ -22,7 +22,7 @@ import sendImage from '../../../assets/images/send.svg';
 import AdvertisementService from '../../../shared/services/AdvertisementService';
 import Constants from '../../../shared/constants';
 
-function List({ data, menueStatus, setMenuStatus, closeSubmenu, link }) {
+function List({ data, type, menueStatus, setMenuStatus, closeSubmenu, link }) {
   if (!data || !data.length) return null;
 
   return (
@@ -43,14 +43,14 @@ function List({ data, menueStatus, setMenuStatus, closeSubmenu, link }) {
         );
       })}
       <Link
-        to="/events"
+        to={type == "Events" ? "/events" : "/venues"}
         onClick={() => {
           setMenuStatus(false);
           closeSubmenu(false);
         }}
         className="text-center see-all-sidebar"
       >
-        See All Events
+        See All {type}
       </Link>
     </ul>
   );
@@ -438,6 +438,7 @@ const TopNav = props => {
                           >
                             <List
                               data={byGenreEvent}
+                              type='Events'
                               menueStatus={menueStatus}
                               setMenuStatus={setMenuStatus}
                               closeSubmenu={handleNavigationClose}
@@ -499,6 +500,7 @@ const TopNav = props => {
                           >
                             <List
                               data={byVenueEvent}
+                              type='Venues'
                               menueStatus={menueStatus}
                               setMenuStatus={setMenuStatus}
                               closeSubmenu={handleNavigationClose}

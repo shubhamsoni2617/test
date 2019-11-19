@@ -102,7 +102,7 @@ function DateRangeFilter(props) {
   return (
     <div className="filter-grid date-range">
       <div className="filter-grid-heading">
-        <h3>Date range</h3>
+        <h3>Date Range</h3>
         <ul>
           <li className="active clear">
             <a
