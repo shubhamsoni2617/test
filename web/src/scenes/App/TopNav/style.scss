@@ -1,32 +1,49 @@
-.mega-enter {
-  top: 120%;
-  opacity: 0;
-}
 
-.mega-enter.mega-enter-active {
-  top: 100%;
-  opacity: 1;
-  transition: all 300ms ease-in-out;
-  -webkit-transition: all 300ms ease-in-out;
-  -moz-transition: all 300ms ease-in-out;
-  -o-transition: all 300ms ease-in-out;
-}
 
-.mega-leave {
-  top: 100%;
-  opacity: 1;
-}
-
-.mega-leave.mega-leave-active {
-  top: 120%;
-  opacity: 0;
-  transition: all 300ms ease-in-out;
-  -webkit-transition: all 300ms ease-in-out;
-  -moz-transition: all 300ms ease-in-out;
-  -o-transition: all 300ms ease-in-out;
-}
 a{
   cursor: pointer;
+}
+.has-submenu{
+  .submenu{
+    display: none;
+  }
+  .mega-enter {
+    top: 120%;
+    opacity: 0;
+    display: block;
+  }
+  .mega-enter.mega-enter-active {
+    top: 100%;
+    opacity: 1;
+    display: block;
+    transition: all 300ms ease-in-out;
+    -webkit-transition: all 300ms ease-in-out;
+    -moz-transition: all 300ms ease-in-out;
+    -o-transition: all 300ms ease-in-out;
+  }
+  .mega-enter-done{
+    display: block;
+    top: 100%;
+    opacity: 1;
+  }
+  .mega-exit {
+    top: 100%;
+    opacity: 1;
+    display: block;
+  }
+  .mega-exit.mega-exit-active {
+    top: 120%;
+    opacity: 0;
+    display: block;
+    transition: all 300ms ease-in-out;
+    -webkit-transition: all 1000ms ease-in-out;
+    -moz-transition: all 300ms ease-in-out;
+    -o-transition: all 300ms ease-in-out;
+  }
+  .mega-exit-done{
+    opacity: 0;
+    display: none;
+  }
 }
 .submenu-wrap{
     .subholder-wrapper{

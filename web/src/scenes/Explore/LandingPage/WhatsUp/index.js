@@ -1,25 +1,33 @@
 import React from 'react';
 import './style.scss';
-import Sifa from '../../../../assets/images/sifa.png';
 import Utilities from '../../../../shared/utilities';
 import Image from '../../../../shared/components/Image';
+import { Link } from 'react-router-dom';
 
 const WhatsUp = ({ whatsUpData }) => {
   return (
     <section className="whtsup-wrapper">
       <div className="container-fluid">
-        <div class="section-top-wrapper">
+        <div className="section-top-wrapper">
           <h2>{whatsUpData && whatsUpData.heading}</h2>
         </div>
         <div className="whtsup-container">
           {whatsUpData &&
             whatsUpData.data &&
             whatsUpData.data.map(
-              ({ title, description, genre, image }, index) => {
+              ({ title, description, genre, image, id, type }, index) => {
                 return (
-                  <div className="item-wrapper" key={title}>
+                  <Link
+                    className="item-wrapper"
+                    to={
+                      type === 'multi_show_template'
+                        ? `/explore/festival/${id}`
+                        : `/explore/article${id}`
+                    }
+                    key={title}
+                  >
                     <div className="image-wrapper">
-                      <div class="item-img">
+                      <div className="item-img">
                         <Image src={image && image[0]} type="Horizontal" />
                       </div>
                       {genre && (
@@ -42,7 +50,7 @@ const WhatsUp = ({ whatsUpData }) => {
                         )}
                       </p>
                     </div>
-                  </div>
+                  </Link>
                 );
               }
             )}

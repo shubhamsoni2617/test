@@ -19,6 +19,8 @@ class Constants {
   static SOURCE_FROM_MOBILE_RESPONSIVE = 3;
   static LIMIT = Utilities.mobileAndTabletcheck() ? 6 : 9;
   static SITE_KEY = '6LedScEUAAAAALMkHkGFibsc4yNxrajcV6wijeuP';
+  static SISTIC_APP_STORE_URL ='https://itunes.apple.com/sg/app/sistic/id500601166?mt=8';
+  static SISTIC_PLAY_STORE_URL = 'https://play.google.com/store/apps/details?id=com.rainmakerlabs.sistic&hl=en';
 }
 
 export default Constants;

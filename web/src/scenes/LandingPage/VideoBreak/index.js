@@ -36,9 +36,9 @@ const VideoBreak = ({ videoData }) => {
                     </div>
                     <div className="video-content">
                       <h3>{video.title}</h3>
-                      {video.date && (
-                        <span>{moment(video.date).format('DD MMM YYYY')}</span>
-                      )}
+                      {video.date ? (
+                        <span>{moment(video.date).format('DD MMM YYYY')}</span>) : <span></span>
+                      }
                       <div
                         dangerouslySetInnerHTML={{
                           __html: video.description

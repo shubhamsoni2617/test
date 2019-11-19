@@ -53,7 +53,7 @@ const LandingPage = () => {
         networkData={landingPageData && landingPageData.content.network}
       />
       <div className="apipartners-wrapper">
-        <ContactUs />
+        <ContactUs type="b2b" />
       </div>
     </div>
   );

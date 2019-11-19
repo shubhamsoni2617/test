@@ -10,7 +10,6 @@ import Trending from './Trending';
 import CustomtomSectionTwo from '../../Home/CustomSectionTwo';
 import CustomtomSectionThree from '../../Home/CustomSectionThree';
 import GiftCard from '../../Home/GiftCard';
-import GreatWine from '../../../assets/images/great-wine.png';
 
 const Explore = () => {
   const [data, setData] = useState([]);
@@ -35,8 +34,6 @@ const Explore = () => {
         }
       });
   };
-
-  console.log(data);
   const {
     video_gallery,
     trending,
@@ -44,28 +41,38 @@ const Explore = () => {
     whats_up,
     articles,
     festivals,
-    banner
+    banner,
+    section_five
   } = data;
 
   return (
     <div className="explore-wrapper">
-      <Banner bannerData={banner} />
-      <WhatsUp whatsUpData={whats_up} />
-      <div className="home-page-wrapper">
-        <CustomtomSectionTwo
-          heading={royals && royals.heading}
-          customData={royals && royals.sub_section_two}
-        />
-      </div>
-      <LandingArticles articles={articles} />
+      {banner && banner.length > 0 && <Banner bannerData={banner} />}
+      {whats_up && whats_up.heading && <WhatsUp whatsUpData={whats_up} />}
+      {royals && royals.heading && (
+        <div className="home-page-wrapper">
+          <CustomtomSectionTwo
+            heading={royals && royals.heading}
+            customData={royals && royals.sub_section_two}
+            isMoreFrom={true}
+          />
+        </div>
+      )}
+      {articles && articles.heading && <LandingArticles articles={articles} />}
       <GiftCard />
-      <LandingFestivals festivals={festivals} />
-      <Reviews reviewsData={'reviewsData'} />
-      <Trending trending={trending} />
-      <CustomtomSectionThree
-        heading="Video Gallery"
-        customData={video_gallery}
-      />
+      {festivals && festivals.heading && (
+        <LandingFestivals festivals={festivals} />
+      )}
+      {section_five && section_five.length > 0 && (
+        <Reviews reviewsData={section_five} />
+      )}
+      {trending && trending.heading && <Trending trending={trending} />}
+      {video_gallery && video_gallery.length > 0 && (
+        <CustomtomSectionThree
+          heading="Video Gallery"
+          customData={video_gallery}
+        />
+      )}
       {/* <section className="explore-page-banner">
         <div className="banner-content">
           <div className="banner-desc">
