@@ -365,6 +365,7 @@ export default class Attractions extends Component {
                   searchText={filteredSearch}
                 />
                 <FilterSelected
+                  type="ATTRACTIONS"
                   attractionCategories={attractionCategories}
                   filteredCategory={filteredCategory}
                   handleFilters={this.handleFilters}
