@@ -8,6 +8,7 @@ import videoImage from '../../../assets/images/slide1.jpg';
 import 'react-image-gallery/styles/css/image-gallery.css';
 import ImageGallery from 'react-image-gallery';
 import Image from '../Image';
+import Utilities from '../../utilities';
 const EventCarousel = ({ images }) => {
   const renderItem = item => {
     return (
@@ -19,7 +20,11 @@ const EventCarousel = ({ images }) => {
           </div>
         )}
         {item.video_url === '' && (
-          <Image largeImage={item.full_image} src={item.thumb_image} />
+          <Image
+            largeImage={item.full_image}
+            src={item.thumb_image}
+            type="BigBanner"
+          />
         )}
       </div>
     );
@@ -43,17 +48,24 @@ const EventCarousel = ({ images }) => {
       </div>
     );
   };
+
   return (
     <div className="banner-carousel">
-      <ImageGallery
-        items={images}
-        renderItem={renderItem}
-        renderThumbInner={renderThumbInner}
-        infinite={false}
-        showNav={false}
-        showFullscreenButton={false}
-        showPlayButton={false}
-      />
+      {images.length > 0 ? (
+        <ImageGallery
+          items={images}
+          renderItem={renderItem}
+          renderThumbInner={renderThumbInner}
+          infinite={false}
+          showNav={false}
+          showFullscreenButton={false}
+          showPlayButton={false}
+        />
+      ) : (
+        <div className="image-gallery-image">
+          <Image largeImage="" src="" type= {`${Utilities.mobileAndTabletcheck() ? "BigBannerMobile" : "BigBanner"}`} />
+        </div>
+      )}
     </div>
   );
 };
