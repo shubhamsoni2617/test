@@ -631,6 +631,11 @@
         background-color: #1a1a1a;
         min-height: 389px;
         height: 389px;
+        .container-fluid{
+            @media(max-width: 768px) and (max-width: 1024px){
+                height: auto;
+            }
+        }
         @media(max-width: 1024px){
             min-height: 300px !important;
             height: auto;
@@ -642,7 +647,7 @@
         @media(max-width: 680px){
             height: auto;
             padding: 0px 0px;
-            min-height: 200px;
+            min-height: 200px !important;
         }
         .banner-content{
             @media(max-width: 1024px){

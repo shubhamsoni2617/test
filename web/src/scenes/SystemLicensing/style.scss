@@ -505,7 +505,8 @@
 					max-width: 207px;
 				}
 		        @media(max-width: 767px){
-		            margin: 5px;
+					margin: 5px;
+					max-width: calc(33% - 10px);
 		        }
 		        @media(max-width: 576px){
 					flex: 1 0 46%;
