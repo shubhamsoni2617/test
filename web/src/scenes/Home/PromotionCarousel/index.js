@@ -52,14 +52,17 @@ const ItemWrapper = ({ promotion, expiredText, handlePromotionExpired }) => {
           </div>
         )}
         <h3>
-          {promotion && Utilities.mobilecheck()
-            ? Utilities.showLimitedChars(promotion.title, 15)
-            : promotion.title}
+          {Utilities.showLimitedChars(
+            promotion.title,
+            Utilities.mobilecheck() ? 25 : 55
+          )}
         </h3>
       </div>
     </a>
   );
 };
+
+
 
 export default class PromotionCarousel extends Component {
   constructor(props) {
@@ -204,7 +207,7 @@ export default class PromotionCarousel extends Component {
                   Utilities.mobileAndTabletcheck() || Utilities.mobilecheck()
                     ? 6
                     : 2
-                }`}
+                  }`}
                 height={150}
                 count={2}
                 type="TILE"
@@ -250,21 +253,21 @@ export default class PromotionCarousel extends Component {
                   })}
               </div>
             ) : (
-              <Slider {...settings}>
-                {promotions &&
-                  promotions.map((promotion, index) => {
-                    return (
-                      <div key={promotion.id} className="item-wrapper">
-                        <ItemWrapper
-                          promotion={promotion}
-                          expiredText={expiredText}
-                          handlePromotionExpired={this.handlePromotionExpired}
-                        />
-                      </div>
-                    );
-                  })}
-              </Slider>
-            )}
+                  <Slider {...settings}>
+                    {promotions &&
+                      promotions.map((promotion, index) => {
+                        return (
+                          <div key={promotion.id} className="item-wrapper">
+                            <ItemWrapper
+                              promotion={promotion}
+                              expiredText={expiredText}
+                              handlePromotionExpired={this.handlePromotionExpired}
+                            />
+                          </div>
+                        );
+                      })}
+                  </Slider>
+                )}
             {/* </CSSTransitionGroup> */}
           </div>
         </div>
