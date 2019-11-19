@@ -27,37 +27,39 @@ const Banner = ({ bannerData }) => {
           </div>
         </div>
       </section>
-      <section>
-        <div className="event-list">
-          <div className="event-list-icon">
-            <Image type="Small" src={yearsIcon} alt="Years-icon" />
-            <div className="year-content">
-              {bannerData && <span>{bannerData.year}</span>}
-              <p>Years Ticketing</p>
+      <section className="event-list-wrapper">
+        <div className="container">
+          <div className="event-list">
+            <div className="event-list-icon">
+              <Image type="Small" src={yearsIcon} alt="Years-icon" />
+              <div className="year-content">
+                {bannerData && <span>{bannerData.year}</span>}
+                <p>Years Ticketing</p>
+              </div>
             </div>
-          </div>
-          <div className="event-list-icon">
-            <Image type="Small" src={ticketsIcon} alt="tickets-icon" />
-            <div className="year-content">
-              {bannerData && <span>{bannerData.tickets}</span>}
-              <p>Tickets</p>
+            <div className="event-list-icon">
+              <Image type="Small" src={ticketsIcon} alt="tickets-icon" />
+              <div className="year-content">
+                {bannerData && <span>{bannerData.tickets}</span>}
+                <p>Tickets</p>
+              </div>
             </div>
-          </div>
-          <div className="event-list-icon">
-            <Image type="Small" src={partnersIcon} alt="Partners-icon" />
-            <div className="year-content">
-              {bannerData && <span>{bannerData.partnership}</span>}
-              <p>
-                Partnerships with promotors,
+            <div className="event-list-icon">
+              <Image type="Small" src={partnersIcon} alt="Partners-icon" />
+              <div className="year-content">
+                {bannerData && <span>{bannerData.partnership}</span>}
+                <p>
+                  Partnerships with promotors,
                 <br /> venues & attractions
               </p>
+              </div>
             </div>
-          </div>
-          <div className="event-list-icon">
-            <Image type="Small" src={eventIcon} alt="Events-icon" />
-            <div className="year-content">
-              {bannerData && <span>{bannerData.events}</span>}
-              <p>Events</p>
+            <div className="event-list-icon">
+              <Image type="Small" src={eventIcon} alt="Events-icon" />
+              <div className="year-content">
+                {bannerData && <span>{bannerData.events}</span>}
+                <p>Events</p>
+              </div>
             </div>
           </div>
         </div>

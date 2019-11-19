@@ -23,7 +23,10 @@ body {
 				left: 0px;
 				opacity: 0.6;
 				z-index: 1;
-		}
+        }
+        .top-ads{
+            width: calc(100% - 10px);
+        }
 	}
 	a {
         text-decoration: none;
@@ -1364,14 +1367,51 @@ em{
 
 //homoepage flicker effect
 .body-overlay{
-    margin-right: 10px;
-	header {
+	.advertisementTop{
 		width: calc(100% - 10px) !important;
 	}
-	.ticker-wrap{
-		width: calc(100% - 10px);
+	header.homepage {
+		width: calc(100% - 10px) !important;
 	}
-	.scroll-top{
-		right: 15px;
+	.home-page-wrapper{
+		margin-right: 10px;
+		.ticker-wrap{
+			width: calc(100% - 10px);
+		}
+		.cookies{
+			width: calc(100% - 10px) !important;
+		}
+		& + footer{
+			margin-right: 10px;
+			.scroll-top{
+				right: 15px;
+			}
+		}
+	}
+}
+
+//small-header mobile-view
+.body-overlay{
+	.small-header{
+		@media(max-width: 991px){
+			z-index: inherit;
+		}
+	}
+}
+
+.small-header{
+	.responsive-nav-links{
+		.has-submenu {
+			a{
+				@media(max-width: 991px){
+					color: #626262;
+				}
+			}
+			& > a{
+				@media(max-width: 991px){
+					color: #343434;
+				}
+			}
+		}
 	}
 }
