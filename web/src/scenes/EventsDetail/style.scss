@@ -283,6 +283,7 @@
           .zoner-group{
               margin-bottom: 14px;
               padding-right: 83px;
+              min-height: 26px;
               @media(max-width: 1024px){
                 margin-bottom: 10px;
               }
@@ -422,7 +423,7 @@
                           }
                           .seat-map-text{
                               color: #0098FF;
-                              top: 4px;
+                              top: 3px;
                               position: relative;
                           }
                       }
