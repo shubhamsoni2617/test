@@ -30,7 +30,7 @@ function FilterSelected(props) {
         {text}
         <button onClick={() => {
           setTimeout(() => {
-            props.type == "events" ? props.history.push(`/events`) : props.history.push(`/attraction`) ;
+            props.type == "EVENTS" ? props.history.push(`/events`) : props.history.push(`/attraction`) ;
           }, 100); handleFilters(obj, true)
         }} className="filtered-tags-close-btn"><img src={closeBlueImg} alt="close-btn" /></button>
       </>

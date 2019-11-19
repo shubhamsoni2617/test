@@ -574,7 +574,7 @@ export default class Events extends Component {
                   <FilterSelected
                     genreData={genre}
                     history={this.props.history}
-                    type="events"
+                    type="EVENTS"
                     venueData={venues}
                     filterConfig={filterConfig}
                     filteredPriceRange={filteredPriceRange}
