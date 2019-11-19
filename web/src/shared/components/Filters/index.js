@@ -4,7 +4,7 @@ import InputRange from 'react-input-range';
 import FilterGrid from '../FilterGrid';
 import useStickyPanel from '../../hooks/useStickyPanel';
 import './style.scss';
-import DateRangeFilter from '../DateRangeFilter';
+import DateRangeFilter from '../DateRangeFilter/filters';
 import SearchFilter from '../SearchFilter';
 import Utilities from '../../utilities';
 
@@ -57,7 +57,7 @@ function PriceRangeFilter(props) {
   return (
     <div className="filter-grid filter-price-range">
       <div className="filter-grid-heading">
-        <h3>Price</h3>
+        <h3>Price Range</h3>
         <ul>
           <li className="active">
             <a
@@ -168,7 +168,7 @@ function Filters(props) {
                   clearAllFilters();
                 }}
               >
-                Clear Filters
+                Clear All
               </a>
             </h3>
           </div>
@@ -205,10 +205,13 @@ function Filters(props) {
           />
           {!hideCalendar && (
             <DateRangeFilter
+              title="Date"
               filteredDateRange={filteredDateRange}
+              selectedFilter={filteredDateRange}
               handleFilters={handleFilters}
               autoSubmit={true}
               filterFlag={filterFlag}
+              toggleFilterSection={toggleFilterSection}
             />
           )}
           <FilterGrid
