@@ -492,7 +492,7 @@ export default class Events extends Component {
 
                 {!shimmerFilter &&
                   genre.length > 0 &&
-                  venues.length > 0 &&
+                  // venues.length > 0 &&
                   filterConfig &&
                   filterConfig.price_config &&
                   filterConfig.promotion_categories && (
@@ -573,6 +573,8 @@ export default class Events extends Component {
                   />
                   <FilterSelected
                     genreData={genre}
+                    history={this.props.history}
+                    type="EVENTS"
                     venueData={venues}
                     filterConfig={filterConfig}
                     filteredPriceRange={filteredPriceRange}
