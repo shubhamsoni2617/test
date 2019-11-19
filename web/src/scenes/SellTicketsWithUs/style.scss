@@ -188,6 +188,11 @@
         @media(max-width: 991px){
             padding: 35px 0 35px;
         }
+        @media(max-width: 680px){
+            font-size: 26px;
+            line-height: 30px;
+            padding: 35px 0 12px;
+        }
     }
     .team-wrapper{
         display: flex;
@@ -260,12 +265,20 @@
         @media(max-width: 991px){
             padding: 35px 0;
         }
+        @media(max-width: 680px){
+            padding: 15px 0;
+        }
         h2{
             color: #343434;
             font-family: 'Montserrat', sans-serif;
             font-size: 40px;
             line-height: 49px;
             padding-bottom: 31px;
+               @media(max-width: 680px){
+                font-size: 26px;
+                line-height: 30px;
+                padding: 35px 0 12px;
+            }
         }
         p{
             color: #626262;
