@@ -3,6 +3,7 @@ import './style.scss';
 import ShimmerEffect from '../../../shared/components/ShimmerEffect';
 import Constants from '../../../shared/constants';
 import AdvertisementService from '../../../shared/services/AdvertisementService';
+import Arrow from '../../../assets/images/right-arrow.svg';
 
 const CustomSectionTwo = ({ heading, customData, isMoreFrom }) => {
   const [data, setData] = useState(null);
@@ -54,7 +55,8 @@ const CustomSectionTwo = ({ heading, customData, isMoreFrom }) => {
             <h2>{heading}</h2>
             {isMoreFrom && (
               <a href="/articles" target="_blank" className="text-right">
-                More from {heading}
+                More from {heading}{' '}
+                <img src={Arrow} className="img-fluid" alt="arrow" />
               </a>
             )}
           </div>

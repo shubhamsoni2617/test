@@ -2,6 +2,7 @@ import React from 'react';
 import './style.scss';
 import ArticleImg from '../../../../../assets/images/explore-article.png';
 import { Link } from 'react-router-dom';
+import Image from '../../../../../shared/components/Image';
 
 const Article = ({ article }) => {
   return (
@@ -47,7 +48,7 @@ const Article = ({ article }) => {
         </p>
       </div>
       <div className="article-item-img">
-        <img src={ArticleImg} alt="article" className="img-fluid" />
+        <Image src={article.image && article.image[0]} type="Horizontal" />
       </div>
     </div>
   );
