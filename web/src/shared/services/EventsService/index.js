@@ -14,5 +14,9 @@ class EventsService {
   getSimilarEvents(params) {
     return API.get(`/similar-events`, { params: params });
   }
+
+  getArticleData(params){
+    return API.get(`/get-articles-on-event-detail`, {params: params});
+  }
 }
 export default new EventsService();
