@@ -320,7 +320,11 @@ export default class Events extends Component {
     let obj = {
       ...searchType
     };
-    if (!Utilities.mobilecheck() || apply || (searchType && searchType.filteredSearch)) {
+    if (
+      !Utilities.mobilecheck() ||
+      apply ||
+      (searchType && searchType.filteredSearch)
+    ) {
       obj = {
         ...searchType,
         first: 0,
@@ -333,7 +337,11 @@ export default class Events extends Component {
 
     this.setState(obj, () => {
       setTimeout(() => {
-        if (!Utilities.mobilecheck() || apply || (searchType && searchType.filteredSearch)) {
+        if (
+          !Utilities.mobilecheck() ||
+          apply ||
+          (searchType && searchType.filteredSearch)
+        ) {
           this.loadEvents(this.getFilters(), false);
         }
       }, 200);
@@ -537,26 +545,32 @@ export default class Events extends Component {
                       }
                       filterFlag={filterFlag}
                     >
-                      <div className="fixed-buttons">
-                        <a
-                          onClick={() => {
-                            this.toggleFilterSection();
-                            this.toggleFilters();
-                          }}
-                          className="close"
+                      {fixed => (
+                        <div
+                          className={`fixed-buttons ${
+                            fixed ? 'hide-inner' : ''
+                          }`}
                         >
-                          Close
-                        </a>
-                        <a
-                          onClick={() => {
-                            this.toggleFilterSection();
-                            this.callAPI();
-                          }}
-                          className="apply"
-                        >
-                          Apply
-                        </a>
-                      </div>
+                          <a
+                            onClick={() => {
+                              this.toggleFilterSection();
+                              this.toggleFilters();
+                            }}
+                            className="close"
+                          >
+                            Close
+                          </a>
+                          <a
+                            onClick={() => {
+                              this.toggleFilterSection();
+                              this.callAPI();
+                            }}
+                            className="apply"
+                          >
+                            Apply
+                          </a>
+                        </div>
+                      )}
                     </Filters>
                   )}
               </div>
