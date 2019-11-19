@@ -4,7 +4,7 @@ import InputRange from 'react-input-range';
 import FilterGrid from '../FilterGrid';
 import useStickyPanel from '../../hooks/useStickyPanel';
 import './style.scss';
-import DateRangeFilter from '../DateRangeFilter';
+import DateRangeFilter from '../DateRangeFilter/filters';
 import SearchFilter from '../SearchFilter';
 import Utilities from '../../utilities';
 
@@ -205,9 +205,9 @@ function Filters(props) {
           />
           {!hideCalendar && (
             <DateRangeFilter
-              title="Calendar"
+              title="Date"
               filteredDateRange={filteredDateRange}
-              // selectedFilter={filteredDateRange}
+              selectedFilter={filteredDateRange}
               handleFilters={handleFilters}
               autoSubmit={true}
               filterFlag={filterFlag}
