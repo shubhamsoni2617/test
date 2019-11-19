@@ -529,7 +529,7 @@
                         justify-content: center;
                     }
                     .mask_content{
-                        @media(max-width: 680px){
+                        @media(max-width: 767px){
                             display: none;
                         }
                     }
@@ -1030,7 +1030,7 @@
                 height: auto;
                 & > div{
                     @media(max-width: 767px){
-                        height: 275px;
+                        height: 340px !important;
                     }
                 }
                 img{

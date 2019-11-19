@@ -23,7 +23,7 @@ const WhySistic = ({ whySistic }) => {
             {whySistic &&
               whySistic.map(({ title, description, imgPath }, i) => {
                 return (
-                  <div className="col-lg-3 col-6" key={title}>
+                  <div className="col-lg-3 col-6 why-sistic-items" key={title}>
                     <div className="why-sistic-innerblock">
                       <img src={imgPath.img} alt={title} />
                       <div className="why-sistic-content">
