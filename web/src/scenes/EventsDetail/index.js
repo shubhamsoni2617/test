@@ -48,7 +48,7 @@ function SeatMapButton({ seatingPlan }) {
   return (
     <>
       <a onClick={() => setFlag(true)} className="seat-map">
-        <img alt="seat-map" src={SeatMapImg} />
+        <img alt="seat-map" width={20} height={21} src={SeatMapImg} />
         <span className="seat-map-text">Seat Map</span>
       </a>
       {flag && (

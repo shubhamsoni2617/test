@@ -10,7 +10,8 @@ body {
 	position: relative;
 	&.body-overlay {
 		position: relative;
-		overflow: hidden;
+        overflow: hidden;
+        padding-right: 10px;
 		&::after {
 				position: absolute;
 				content: "";
