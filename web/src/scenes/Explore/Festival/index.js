@@ -75,10 +75,13 @@ const Festival = ({ match }) => {
     social_wall_url,
     image
   } = templateTwoContent;
-  console.log(templateTwoContent);
   return (
     <div className="festival-wrapper">
-      {image && image.length > 0 && <SliderBanner data={image} />}
+      {image && image.length > 0 ? (
+        <SliderBanner data={image} />
+      ) : (
+        <div className="simmerOuter">{reusedShimmer(300, 1, 'SOLID', 12)}</div>
+      )}
       {title ? (
         <Welcome
           breadcrumbSlug={breadcrumbSlug}
@@ -87,7 +90,7 @@ const Festival = ({ match }) => {
           description={description}
         />
       ) : (
-        reusedShimmer(300, 1, 'TILE', 12)
+        <div className="simmerOuter">{reusedShimmer(300, 1, 'SOLID', 12)}</div>
       )}
       {section_one && section_two ? (
         <FestivalEventLineUp
@@ -95,17 +98,17 @@ const Festival = ({ match }) => {
           sectionTwo={section_two}
         />
       ) : (
-        reusedShimmer(300, 6, 'TILE', 2)
+        <div className="shimmer-margin">{reusedShimmer(300, 4, 'TILE', 3)}</div>
       )}
       {section_three ? (
         <MusicFestival sectionThree={section_three} />
       ) : (
-        reusedShimmer(300, 1, 'TILE', 12)
+        <div className="shimmer-margin">{reusedShimmer(300, 2, 'TILE', 6)}</div>
       )}
       {section_four ? (
         <AllEvents sectionFour={section_four} />
       ) : (
-        reusedShimmer(300, 6, 'TILE', 2)
+        <div className="shimmer-margin">{reusedShimmer(300, 2, 'TILE', 6)}</div>
       )}
       {social_wall_url && <SocialWall socialUrl={social_wall_url} />}
       {section_five ? (
@@ -116,14 +119,16 @@ const Festival = ({ match }) => {
       {section_six ? (
         <Articles sectionSix={section_six} />
       ) : (
-        reusedShimmer(300, 1, 'TILE', 12)
+        <div className="shimmer-margin">{reusedShimmer(300, 2, 'TILE', 6)}</div>
       )}
       {section_seven ? (
         <PollNServeys sectionSeven={section_seven} />
       ) : (
-        reusedShimmer(300, 1, 'TILE', 12)
+        <div className="shimmer-margin">{reusedShimmer(300, 2, 'TILE', 6)}</div>
       )}
-      {section_eigth && <VideoGallery sectionEight={section_eigth} />}
+      {section_eigth && section_eigth.length > 0 && (
+        <VideoGallery sectionEight={section_eigth} />
+      )}
 
       {/* <div class="festival-wrapper"> */}
 

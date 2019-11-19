@@ -5,7 +5,7 @@ import Utilities from '../../../../shared/utilities';
 
 const AllEvents = ({ sectionFour }) => {
   const [limit, setLimit] = useState(10);
-  return (
+  return sectionFour && sectionFour.events && sectionFour.events.length > 0 ? (
     <section className="festival-event-banner">
       <div className="container-fluid">
         <div className="fest-event-wrapper">
@@ -53,7 +53,7 @@ const AllEvents = ({ sectionFour }) => {
         </div>
       </div>
     </section>
-  );
+  ) : null;
 };
 
 export default AllEvents;

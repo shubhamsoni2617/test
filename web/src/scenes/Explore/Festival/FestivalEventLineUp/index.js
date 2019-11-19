@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import './style.scss';
 import Image from '../../../../shared/components/Image';
 import Slider from 'react-slick';
@@ -12,28 +12,30 @@ const EventItem = ({ title, description, button_url, button_text, image }) => {
       <Image src={image} type="Horizontal" />
       <div className="event-desc">
         <h2>
-          {Utilities.showLimitedChars(
-            title,
-            Utilities.mobilecheck() ? 25 : 40
-          )}
+          {Utilities.showLimitedChars(title, Utilities.mobilecheck() ? 25 : 40)}
         </h2>
         <p
-          dangerouslySetInnerHTML={{ __html: description }}
+          dangerouslySetInnerHTML={{
+            __html:
+              description &&
+              Utilities.showLimitedChars(
+                description.replace(/(<([^>]+)>)/gi, ''),
+                256
+              )
+          }}
         ></p>
-        {button_text && (
-          <a href={button_url}>{button_text}</a>
-        )}
+        {button_text && <a href={button_url}>{button_text}</a>}
       </div>
     </div>
-  )
-}
+  );
+};
 
 const FestivalEventLineUp = ({ sectionOne, sectionTwo }) => {
   const settings = {
     arrows: true,
     dots: false,
     infinite: false,
-    autoplay: true,
+    autoplay: false,
     speed: 500,
     slidesToShow: 3,
     slidesToScroll: 3
@@ -65,7 +67,12 @@ const FestivalEventLineUp = ({ sectionOne, sectionTwo }) => {
               <p
                 dangerouslySetInnerHTML={{
                   __html:
-                    sectionOne && sectionOne[0] && sectionOne[0].description
+                    sectionOne &&
+                    sectionOne[0] &&
+                    Utilities.showLimitedChars(
+                      sectionOne[0].description.replace(/(<([^>]+)>)/gi, ''),
+                      80
+                    )
                 }}
               ></p>
             </a>
@@ -73,20 +80,23 @@ const FestivalEventLineUp = ({ sectionOne, sectionTwo }) => {
           <div className="festival-lineup">
             <h2>{sectionTwo && sectionTwo.heading}</h2>
             <div className="festival-event">
-              {Utilities.mobilecheck() ? sectionTwo &&
+              {Utilities.mobilecheck() ? (
+                sectionTwo &&
                 sectionTwo.sub_section_two.map(
-                  ({
-                    title,
-                    button_text,
-                    button_url,
-                    description,
-                    image
-                  }) => {
+                  ({ title, button_text, button_url, description, image }) => {
                     return (
-                      <EventItem title={title} description={description} button_url={button_url} button_text={button_text} image={image} />
+                      <EventItem
+                        title={title}
+                        description={description}
+                        button_url={button_url}
+                        button_text={button_text}
+                        image={image}
+                      />
                     );
                   }
-                ) : <Slider {...settings}>
+                )
+              ) : (
+                <Slider {...settings}>
                   {sectionTwo &&
                     sectionTwo.sub_section_two.map(
                       ({
@@ -97,12 +107,19 @@ const FestivalEventLineUp = ({ sectionOne, sectionTwo }) => {
                         image
                       }) => {
                         return (
-                          <EventItem title={title} description={description} button_url={button_url} button_text={button_text} image={image} />
+                          <EventItem
+                            key={title}
+                            title={title}
+                            description={description}
+                            button_url={button_url}
+                            button_text={button_text}
+                            image={image}
+                          />
                         );
                       }
                     )}
-                </Slider>}
-
+                </Slider>
+              )}
             </div>
           </div>
         </div>

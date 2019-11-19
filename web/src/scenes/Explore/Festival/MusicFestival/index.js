@@ -14,7 +14,9 @@ const MusicFestival = ({ sectionThree }) => {
     slidesToShow: 1,
     slidesToScroll: 1
   };
-  return (
+  return sectionThree &&
+    sectionThree.sub_section_three &&
+    sectionThree.sub_section_three.length > 0 ? (
     <section>
       <div className="container-fluid">
         <div className="music-fest">
@@ -43,7 +45,7 @@ const MusicFestival = ({ sectionThree }) => {
         </div>
       </div>
     </section>
-  );
+  ) : null;
 };
 
 export default MusicFestival;
