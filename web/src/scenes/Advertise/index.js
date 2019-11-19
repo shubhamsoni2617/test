@@ -49,7 +49,7 @@ const Advertise = props => {
           <div className="event-banner">
             <div className="container-fluid">
               <div className="row advertise-banner">
-                <div className="col-md-6 col-sm-6 adv-banner-left">
+                <div className="col-md-7 col-sm-7 adv-banner-left">
                   {advertiseData && (
                     <div className="banner-content">
                       <h2>{advertiseData.banner_title} </h2>
@@ -59,7 +59,7 @@ const Advertise = props => {
                     </div>
                   )}
                 </div>
-                <div className="col-md-6 col-sm-6 pos-static">
+                <div className="col-md-5 col-sm-5 pos-static">
                   <div className="banner-image">
                     <img
                       src={banner}

@@ -341,7 +341,7 @@ export default class Promotions extends Component {
                               }
                               clearSortFilters={this.clearSortFilters}
                             >
-                              <div className="fixed-buttons">
+                              <div className="fixed-buttons hide-inner">
                                 <a
                                   onClick={() => {
                                     this.toggleSortBy();

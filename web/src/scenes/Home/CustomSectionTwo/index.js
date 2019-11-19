@@ -4,8 +4,7 @@ import ShimmerEffect from '../../../shared/components/ShimmerEffect';
 import Constants from '../../../shared/constants';
 import AdvertisementService from '../../../shared/services/AdvertisementService';
 
-const CustomSectionTwo = ({ heading, customData }) => {
-  console.log(customData);
+const CustomSectionTwo = ({ heading, customData, isMoreFrom }) => {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
   useEffect(() => {
@@ -53,9 +52,18 @@ const CustomSectionTwo = ({ heading, customData }) => {
         <div className="royal-side-padding">
           <div className="section-top-wrapper">
             <h2>{heading}</h2>
+            {isMoreFrom && (
+              <a href="/articles" target="_blank" className="text-right">
+                More from {heading}
+              </a>
+            )}
           </div>
           <div className="royal-items-wrapper">
-            <div className="royal-leftsection">
+            <a
+              href={data && data[0] && data[0].navigation_link}
+              target="_blank"
+              className="royal-leftsection"
+            >
               <div>
                 {data && data[0] && (
                   <img
@@ -64,24 +72,30 @@ const CustomSectionTwo = ({ heading, customData }) => {
                     className="img-fluid"
                   />
                 )}
-                {/* <img src={royal} alt="pride" className="img-fluid" /> */}
               </div>
-            </div>
+            </a>
             <div className="royal-rightsection">
-              <div className="royal-rightside-textwrapper">
-                <a
-                  href={data && data[0] && data[0].navigation_link}
-                  target="_blank"
-                >
+              <a
+                href={data && data[0] && data[0].navigation_link}
+                target="_blank"
+                className="royal-rightside-textwrapper"
+              >
+                <a>
                   <h3>{data && data[0] && data[0].title}</h3>
                 </a>
-                <p>10 Jan 2019</p>
-              </div>
+                <p>{data && data[0] && data[0].section_date}</p>
+              </a>
               <div className="royal-items">
                 {data &&
                   data.slice(1, data.length).map((elem, i) => {
                     return (
-                      <div key={i} className="item-wrapper">
+                      <a
+                        className="item-img"
+                        href={elem.navigation_link}
+                        target="_blank"
+                        key={i}
+                        className="item-wrapper"
+                      >
                         {elem && elem.full_image && (
                           <div className="item-img">
                             <img
@@ -91,24 +105,13 @@ const CustomSectionTwo = ({ heading, customData }) => {
                             />
                           </div>
                         )}
-                        {/* <img
-                            src={royalSubimg}
-                            alt="pride"
-                            className="img-fluid"
-                          /> */}
                         <div className="royal-item-content">
                           <h3>
-                            <a
-                              className="item-img"
-                              href={elem.navigation_link}
-                              target="_blank"
-                            >
-                              {elem.title}
-                            </a>
+                            <a>{elem.title}</a>
                           </h3>
-                          <p>24 May 2019</p>
+                          <p>{elem.section_date}</p>
                         </div>
-                      </div>
+                      </a>
                     );
                   })}
               </div>

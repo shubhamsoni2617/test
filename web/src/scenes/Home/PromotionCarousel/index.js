@@ -68,7 +68,8 @@ export default class PromotionCarousel extends Component {
       promotions: [],
       expiredText: '',
       loading: true,
-      callAPI: false
+      callAPI: false,
+      error: false
     };
     this.element = createRef(null);
   }
@@ -117,14 +118,17 @@ export default class PromotionCarousel extends Component {
         }
       })
       .catch(err => {
-        if (err && err.response) {
-          console.log(err.response);
-        }
+        this.setState({ error: true });
       });
   }
 
   render() {
-    const { loading, promotions, expiredText } = this.state;
+    const { loading, promotions, expiredText, error } = this.state;
+    if (!loading && promotions && promotions.length === 0) {
+      return null;
+    }
+    if (error) return null;
+
     const settings = {
       dots: true,
       infinite: false,

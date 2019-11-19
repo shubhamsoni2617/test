@@ -25,12 +25,12 @@ const Articles = ({ articles }) => {
                       <a>
                         <span>{article.category}</span>
                       </a>
-                      <EventHeading
+                      {/* <EventHeading
                         title={article.title}
                         lines={2}
                         height={Utilities.mobileAndTabletcheck() ? 19 : 23}
-                      />
-
+                      /> */}
+                      <h3>{article.title}</h3>
                       <p
                         dangerouslySetInnerHTML={{
                           __html: article.description

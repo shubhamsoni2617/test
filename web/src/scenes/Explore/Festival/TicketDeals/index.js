@@ -14,7 +14,7 @@ const TicketDeals = ({ sectionFive }) => {
                 return (
                   <div className="deal">
                     <a href={elem.url} key={index}>
-                      <Image src={elem.image} type="Vertical" />
+                      <Image src={elem.uri} type="Vertical" />
                       <h3>{elem.title}</h3>
                     </a>
                   </div>

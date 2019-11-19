@@ -323,7 +323,7 @@ export default class Attractions extends Component {
                   filteredCategory={filteredCategory}
                   attractions={true}
                 >
-                  <div className="fixed-buttons">
+                  <div className="fixed-buttons hide-inner">
                     <a
                       onClick={() => {
                         this.toggleFilters();
@@ -372,7 +372,7 @@ export default class Attractions extends Component {
                   }
                   clearSortFilters={this.clearSortFilters}
                 >
-                  <div className="fixed-buttons">
+                  <div className="fixed-buttons hide-inner">
                     <a
                       onClick={() => {
                         this.toggleSortBy();
