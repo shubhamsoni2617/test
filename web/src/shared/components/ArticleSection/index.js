@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import ArrowBlue from '../../../assets/images/right-arrow-blue.svg';
+import arrowSee from '../../../assets/images/right-arrow.svg';
 import Article1 from '../../../assets/images/article1.png';
 import Image from '../Image';
 import './style.scss';
@@ -37,7 +38,7 @@ const ArticleSection = ({ flag, code }) => {
           <h2>Articles</h2>
           <div className="carousel-dots">
             <Link to="/articles">
-              See all <img src={ArrowBlue} className="img-fluid" alt="arrow" />
+              See all <img src={arrowSee} className="img-fluid" alt="arrow" />
             </Link>
           </div>
         </div>

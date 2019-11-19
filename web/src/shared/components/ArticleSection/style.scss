@@ -101,6 +101,21 @@
                 }
             }
         }
+        .attraction-show-more{
+            color: #007bff;
+            transition: 0.3s all;
+            -webkit-transition: 0.3s all;
+            -moz-transition: 0.3s all;
+            -o-transition: 0.3s all;
+            cursor: pointer;
+            &:hover{
+                color: #000;
+                transition: 0.3s all;
+                -webkit-transition: 0.3s all;
+                -moz-transition: 0.3s all;
+                -o-transition: 0.3s all;
+            }
+        }
     }
     .section-top-wrArticleSectioner{
         display: grid;
