@@ -2,7 +2,7 @@ import React from 'react';
 import Contact from '../../../shared/components/Contact';
 import { useCustomContactDetail } from '../../../../src/shared/components/CustomHooks';
 
-const ContactUs = () => {
+const ContactUs = ({ type }) => {
   const [contactDetail] = useCustomContactDetail();
   return (
     <div className="contact-us banner-overlay">
@@ -38,7 +38,7 @@ const ContactUs = () => {
           <div className="customer-enquiry-wrapper">
             <div className="customer-enquiry">
               <h3 className="heading-text">Corporate Enquiries</h3>
-              <Contact />
+              <Contact type={type} />
             </div>
           </div>
         </div>

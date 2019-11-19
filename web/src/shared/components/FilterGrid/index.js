@@ -100,7 +100,6 @@ const FilterGrid = props => {
   };
 
   if (!data.length) return null;
-
   return (
     <div className="filter-grid">
       <div className="filter-grid-heading">
@@ -130,13 +129,17 @@ const FilterGrid = props => {
           </li>
         </ul>
       </div>
+
       <Submenu>
         {(menueStatus, setMenuStatus) => (
           <>
             <button
               className={`backbutton ${menueStatus ? 'active' : ''}`}
               type="button"
-              onClick={() => setMenuStatus(!menueStatus)}
+              onClick={() => {
+                setMenuStatus(!menueStatus);
+                props.setFixed(true);
+              }}
             >
               {buttonText}
             </button>
@@ -152,6 +155,7 @@ const FilterGrid = props => {
                     onClick={() => {
                       // resetFilters && resetFilters();
                       setMenuStatus(false);
+                      props.setFixed(false);
                     }}
                   >
                     <img src="../../assets/images/next.svg"></img>
@@ -244,6 +248,8 @@ const FilterGrid = props => {
                 <button
                   onClick={() => {
                     setMenuStatus(false);
+                    props.setFixed(false);
+                    props.toggleFilterSection();
                     applyFilters();
                   }}
                 >

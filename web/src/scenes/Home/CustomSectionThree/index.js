@@ -57,9 +57,6 @@ const CustomSectionThree = ({ heading, customData }) => {
     return null;
   }
 
-  console.log(data);
-  console.log(url);
-
   return (
     <div>
       {loading ? (
@@ -95,7 +92,7 @@ const CustomSectionThree = ({ heading, customData }) => {
                   data.map((vdo, index) => {
                     return (
                       <div
-                        className="video-item-image"
+                        className={vdo.video_url == url ? 'video-item-image active' : 'video-item-image'}
                         key={index}
                         onClick={() => {
                           setUrl(vdo.video_url);

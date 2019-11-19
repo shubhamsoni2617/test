@@ -41,13 +41,15 @@ const GetStarted = ({ getStartedData }) => {
                       </div>
                       <div className="mask">
                         <div className="mask_view">
-                          <h3>{getStarted.title}</h3>
-                          <div
-                            className="text-center sub-text"
-                            dangerouslySetInnerHTML={{
-                              __html: getStarted.description
-                            }}
-                          />
+                          <div className="mask_content">
+                            <h3>{getStarted.title}</h3>
+                            <div
+                              className="text-center sub-text"
+                              dangerouslySetInnerHTML={{
+                                __html: getStarted.description
+                              }}
+                            />
+                          </div>
                           <Link to={getStarted.button_link}>
                             {getStarted.button_text}
                           </Link>

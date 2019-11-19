@@ -7,12 +7,12 @@ const LandingArticles = ({ articles }) => {
   return (
     <section className="articles-wrapper">
       <div className="container-fluid">
-        <div class="section-top-wrapper">
+        <div className="section-top-wrapper">
           <h2>{articles && articles.heading}</h2>
-          <div class="carousel-dots">
-            <a href="">
-              More from Articles{' '}
-              <img src={Arrow} class="img-fluid" alt="arrow" />
+          <div className="carousel-dots">
+            <a href="/articles" target="_blank">
+              More from Articles
+              <img src={Arrow} className="img-fluid" alt="arrow" />
             </a>
           </div>
         </div>

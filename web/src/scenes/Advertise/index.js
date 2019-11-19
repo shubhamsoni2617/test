@@ -53,6 +53,11 @@ const Advertise = props => {
                   {advertiseData && (
                     <div className="banner-content">
                       <h2>{advertiseData.banner_title} </h2>
+                      <div
+                        dangerouslySetInnerHTML={{
+                          __html: advertiseData.banner_description
+                        }}
+                      />
                       <a href={advertiseData.button_link}>
                         {advertiseData.button_text}
                       </a>

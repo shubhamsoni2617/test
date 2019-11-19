@@ -29,8 +29,8 @@
                 position: relative;
             }
             .adv-banner-left{
-                @media(max-width: 680px){
-                    padding: 0 5px;
+                @media(max-width: 991px){
+                    padding: 20px 5px;
                 }
             }
             .banner-content{
@@ -57,9 +57,15 @@
                         font-size: 34px;
                         line-height: 40px;
                     }
+                    @media(max-width: 991px){
+                        font-size: 30px;
+                        line-height: 36px;
+                        padding-bottom: 10px;
+                    }
                     @media (max-width: 768px){
                         font-size: 24px;
                         line-height: 28px;
+                        font-weight: 600;
                     }
                     @media (max-width: 767px){
                         font-size: 25px;
@@ -67,7 +73,7 @@
                         padding-bottom: 10px;
                     }
                     @media(max-width: 680px){
-                        font-size: 20px;
+                        font-size: 18px;
                         line-height: 22px;
                     }
                 }
@@ -78,7 +84,18 @@
                     font-family: 'Rubik', sans-serif;
                     color: #fff;
                     margin-bottom: 0px;
-                    padding-bottom: 0px;
+                    padding-bottom: 10px;
+                    @media(max-width: 991px){
+                        font-size: 15px;
+                        line-height: 24px;
+                    }
+                    @media(max-width: 680px){
+                        font-size: 12px;
+                        line-height: 16px;
+                    }
+                    @media(max-width: 320px){
+                        font-size: 11px;
+                    }
                 }
                 .sub-text{
                     margin-bottom: 0px;
@@ -98,10 +115,13 @@
                     transition: all .3s ease-in;
                     max-width: 220px;
                     margin-top: 0px;
+                    @media(max-width: 991px){
+                        padding: 6px 8px;
+                    }
                     @media(max-width: 680px){
                         padding: 5px 5px;
-                        font-size: 9px;
-                        line-height: 10px;
+                        font-size: 10px;
+                        line-height: 12px;
                         margin: 0;
                     }
                     &:hover{
@@ -113,13 +133,14 @@
                 }
             }
             .pos-static{
+                padding-bottom: 10px;
                 @media(max-width: 768px){
                     position: static;
                 }
                 .banner-image{
                     img{
                         @media(max-width: 680px){
-                            max-width: 293px;
+                            max-width: 260px;
                             top: 0;
                             right: -97px;
                         }
@@ -389,9 +410,9 @@
                 flex-wrap: nowrap;
             }
             a{
-                margin-left: 10px;
+                margin-left: 5px;
                 @media(max-width: 991px){
-                    margin: 0px;
+                    margin-left: 5px;
                     max-width: 162px;
                     padding: 5px 10px 5px 10px;
                 }
@@ -437,7 +458,7 @@
                     }
                 }
                 &:first-child{
-                    margin-right: 10px;
+                    margin-right: 5px;
                 }
             }
         }
@@ -610,12 +631,23 @@
         background-color: #1a1a1a;
         min-height: 389px;
         height: 389px;
+        .container-fluid{
+            @media(max-width: 768px) and (max-width: 1024px){
+                height: auto;
+            }
+        }
         @media(max-width: 1024px){
-            height: 241px;
+            min-height: 300px !important;
+            height: auto;
         }
         @media(max-width: 991px){
-            min-height: 200px;
+            min-height: auto;
             display: flex;
+        }
+        @media(max-width: 680px){
+            height: auto;
+            padding: 0px 0px;
+            min-height: 200px !important;
         }
         .banner-content{
             @media(max-width: 1024px){

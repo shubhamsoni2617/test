@@ -40,7 +40,7 @@ const CarouselConatiner = props => {
             element.current.classList.add('hide-container');
           }
         })
-        .catch(err => {
+        .catch(() => {
           setError(true);
           setLoading(false);
         });
@@ -48,12 +48,21 @@ const CarouselConatiner = props => {
   }, [callAPI]);
 
   const scrollHandler = () => {
-    if (!callAPI && window.pageYOffset >= element.current.offsetTop - 400) {
+    if (
+      !callAPI &&
+      element &&
+      element.current &&
+      window.pageYOffset >= element.current.offsetTop - 400
+    ) {
       setCallAPI(true);
     }
   };
 
   if (error) {
+    return null;
+  }
+
+  if (!loading && data && data.length === 0) {
     return null;
   }
 
@@ -64,7 +73,7 @@ const CarouselConatiner = props => {
           <div className="section-top-wrapper">
             <h2>{props.title}</h2>
             <div className="carousel-dots">
-              <Link to="/events">
+              <Link to="/events" id={props.classStr}>
                 See all{' '}
                 <img src={rightArrow} className="img-fluid" alt="arrow" />
                 &nbsp;

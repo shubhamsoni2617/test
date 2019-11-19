@@ -7,7 +7,7 @@ const Trending = ({ trending }) => {
     <section className="trending-wrapper">
       <div className="container-fluid">
         {trending && (
-          <div class="section-top-wrapper">
+          <div className="section-top-wrapper">
             <h2>{trending.heading}</h2>
           </div>
         )}

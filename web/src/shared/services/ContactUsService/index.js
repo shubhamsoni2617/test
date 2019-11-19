@@ -5,8 +5,8 @@ class ContactUsService {
     return API.get(`rest/session/token`);
   }
 
-  getEnquiry() {
-    return API.get(`contact-us/enquiry-categories`);
+  getEnquiry(params) {
+    return API.get(`contact-us/enquiry-categories`, { params });
   }
 
   getContactDetail() {
