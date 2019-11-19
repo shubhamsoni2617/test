@@ -181,7 +181,7 @@ export default class PromotionCarousel extends Component {
               </div>
             </h2>
             <div className="carousel-dots">
-              <Link to="/promotions">
+              <Link to="/promotions" id="promotions">
                 See all{' '}
                 <img
                   src="assets/images/right-arrow.svg"

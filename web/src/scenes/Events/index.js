@@ -320,7 +320,11 @@ export default class Events extends Component {
     let obj = {
       ...searchType
     };
-    if (!Utilities.mobilecheck() || apply || (searchType && searchType.filteredSearch)) {
+    if (
+      !Utilities.mobilecheck() ||
+      apply ||
+      (searchType && searchType.filteredSearch)
+    ) {
       obj = {
         ...searchType,
         first: 0,
@@ -333,7 +337,11 @@ export default class Events extends Component {
 
     this.setState(obj, () => {
       setTimeout(() => {
-        if (!Utilities.mobilecheck() || apply || (searchType && searchType.filteredSearch)) {
+        if (
+          !Utilities.mobilecheck() ||
+          apply ||
+          (searchType && searchType.filteredSearch)
+        ) {
           this.loadEvents(this.getFilters(), false);
         }
       }, 200);
@@ -690,6 +698,7 @@ export default class Events extends Component {
                       onClick={() => this.loadMoreEvents()}
                       className="btn-link load-more-btn"
                       target=""
+                      id="event-load-more"
                     >
                       <span>
                         Load More ({totalRecords - eventsData.length})
