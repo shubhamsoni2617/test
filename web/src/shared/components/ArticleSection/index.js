@@ -1,7 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import { CSSTransition } from 'react-transition-group';
+import ShimmerEffect from '../../components/ShimmerEffect';
 import ArrowBlue from '../../../assets/images/right-arrow-blue.svg';
+import arrowSee from '../../../assets/images/right-arrow.svg';
 import Article1 from '../../../assets/images/article1.png';
 import Image from '../Image';
 import './style.scss';
@@ -13,6 +16,7 @@ import ModalPopup from '../../../shared/components/Modal';
 const ArticleSection = ({ flag, code }) => {
   const [articleData, setArticleData] = useState([]);
   const [showPopUp, setShowpopup] = useState(false);
+  const [shimmer, setShimmer] = useState(true)
 
   useEffect(() => {
     let params = { code: code, client: Constants.CLIENT };
@@ -20,24 +24,43 @@ const ArticleSection = ({ flag, code }) => {
       .then(res => {
         if (res.data.data) {
           setArticleData(res.data.data);
+          setShimmer(false)
         }
         console.log('article section', res);
       })
       .catch(error => {
+        setShimmer(false)
         console.log(error);
       });
   }, []);
 
-  if (!flag) return null;
+  if (!flag || (!shimmer && articleData.length == 0)) return null;
 
   return (
     <section className="event-articles">
       <div className="container-fluid">
+      <CSSTransition
+          // transitionName="shimmer"
+          // transitionEnter={true}
+          // transitionEnterTimeout={500}
+          // transitionLeaveTimeout={500}
+          in={shimmer}
+          timeout={500}
+          classNames="shimmer"
+        >
+          <ShimmerEffect
+            propCls="col-md-12"
+            height={400}
+            count={2}
+            type="DETAIL"
+            detail={true}
+          />
+        </CSSTransition>
         <div className="section-top-wrArticleSectioner">
           <h2>Articles</h2>
           <div className="carousel-dots">
             <Link to="/articles">
-              See all <img src={ArrowBlue} className="img-fluid" alt="arrow" />
+              See all <img src={arrowSee} className="img-fluid" alt="arrow" />
             </Link>
           </div>
         </div>
@@ -51,7 +74,7 @@ const ArticleSection = ({ flag, code }) => {
                       src={item.thmumb_image}
                       className="img-fluid"
                       alt="article"
-                      type="Vertical"
+                      type="Horizontal"
                     />
                   </div>
                   <Link to={`/explore/article/${item.id}`}>

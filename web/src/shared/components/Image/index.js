@@ -8,6 +8,7 @@ import Small from '../../../assets/images/small.png';
 import Medium from '../../../assets/images/noimage.png';
 import MediumVertical from '../../../assets/images/mediumVertical.png';
 import MediumHorizontal from '../../../assets/images/mediumHorizontal.jpg';
+import BigBannerMobile from '../../../assets/images/Big_Banner.png'
 
 import './style.scss';
 
@@ -51,6 +52,10 @@ function Image(props) {
 
       case 'BigBanner':
         newImg = BigBanner;
+        break;
+
+      case 'BigBannerMobile':
+        newImg = BigBannerMobile;
         break;
 
       case 'Medium':

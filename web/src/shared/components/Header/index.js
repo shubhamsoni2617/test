@@ -20,11 +20,11 @@ const Header = ({ menuActive, pathName }) => {
   const handleMouseStatus = status => {
     if (status === true) {
       setTimeout(() => setShowMegaMenu(status), 0);
-      document.body.classList.add('body-overlay');
+      // document.body.classList.add('body-overlay');
     }
     if (status === false) {
       setTimeout(() => setShowMegaMenu(status), 0);
-      document.body.classList.remove('body-overlay');
+      // document.body.classList.remove('body-overlay');
     }
   };
 
