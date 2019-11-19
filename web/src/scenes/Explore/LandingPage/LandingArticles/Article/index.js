@@ -1,6 +1,7 @@
 import React from 'react';
 import './style.scss';
 import ArticleImg from '../../../../../assets/images/explore-article.png';
+import { Link } from 'react-router-dom';
 
 const Article = ({ article }) => {
   return (
@@ -19,14 +20,30 @@ const Article = ({ article }) => {
               })}
           </ul>
         </div>
-        <h3>{article.title}</h3>
+        <Link
+          to={
+            article.type === 'multi_show_template'
+              ? `/explore/festival/${article.id}`
+              : `/explore/article/${article.id}`
+          }
+        >
+          <h3>{article.title}</h3>
+        </Link>
         <div className="article-place-date">
-          <span className="article-place">By Larva May </span>
+          <span className="article-place">{article.author_name}</span>
           <span className="date">{article.date}</span>
         </div>
         <p>
           {article.description}
-          <a>More</a>
+          <Link
+            to={
+              article.type === 'multi_show_template'
+                ? `/explore/festival/${article.id}`
+                : `/explore/article/${article.id}`
+            }
+          >
+            More
+          </Link>
         </p>
       </div>
       <div className="article-item-img">

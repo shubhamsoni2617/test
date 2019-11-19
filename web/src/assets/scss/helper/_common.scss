@@ -1300,7 +1300,10 @@ em{
 	height: 100%;
 	width: 100%;
 	-ms-overflow-style: none; // IE 10+
-	scrollbar-width: none; // Firefox
+    scrollbar-width: none; // Firefox
+    .container-fluid{
+        overflow: inherit !important;
+    }
 	&::-webkit-scrollbar { 
 		display: none; // Safari and Chrome 
 	}

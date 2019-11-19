@@ -3,13 +3,12 @@ import SliderBanner from '../SliderBanner';
 import './style.scss';
 import Artist from '../../../assets/images/people2.png';
 import ArticleImage from '../../../assets/images/article-4.jpg';
-import FeaturedEvents from '../../../shared/components/FeaturedEvents';
-import AdvertisementService from '../../../shared/services/AdvertisementService';
 import Explore from '../../../shared/components/Explore';
 import BreadcrumbSlug from '../../../shared/components/BreadcrumbSlug';
 import SocialShare from '../../../shared/components/SocialShare';
 import ShareIcon from '../../../assets/images/share-icon.svg';
 import ExploreService from '../../../shared/services/ExploreService';
+import FeaturedArticles from './FeaturedArticle';
 
 const Article = props => {
   console.log(props);
@@ -21,7 +20,7 @@ const Article = props => {
 
   useEffect(() => {
     getArticle();
-  }, []);
+  }, [props.match.params.id]);
 
   const getArticle = () => {
     const params = {
@@ -100,11 +99,9 @@ const Article = props => {
         </div>
       </div>
       <div className="article-featured">
-        <FeaturedEvents
-          api={AdvertisementService.getFeaturedEvents}
-          heading="Featured in Article"
-          explore
-          article
+        <FeaturedArticles
+          featuredArticles={articleData && articleData.featured_articles}
+          history={props.history}
         />
       </div>
       <div className="article-explore">

@@ -271,6 +271,10 @@
     margin-left: 150px;
     margin-top: 70px;
     z-index: 5;
+    @media (max-width: 767px) {
+        transform: translateY(-50%);
+        margin-left: 0 !important;
+    }
 }
 .ReactModalPortal{
     .ril-toolbar.ril__toolbar{
@@ -282,7 +286,7 @@
 .events-page-wrapper{
     .filters-search{
         @media(max-width: 767px){
-            padding: 8px 8px 8px;
+            padding: 8px 0 8px;
             margin-bottom: 0px;
         }
     }
@@ -302,13 +306,19 @@
 .event-listing-ads{
     padding-top: 45px;
     @media(max-width: 767px){
-        padding-top: 10px;
+        padding-top: 0;
+      
     }
     .advertisment-listing{
         display: flex;
         justify-content: center;
         margin: 0 auto;
         text-align: center;
+        @media(max-width: 767px){
+            display: block;
+            margin-left: -10px;
+            width: calc(100% + 20px);
+        }
         li{
             list-style: none;
             display: inline-block;
@@ -318,11 +328,19 @@
             display: flex;
             justify-content: center;
             align-items: center;
+            @media(max-width: 767px){
+                width: 100%;
+                padding: 0 0 15px;
+            }
             &:last-child{
                 padding-right: 0px;
+                @media(max-width: 767px){
+                    padding-bottom: 0;
+                }
             }
             .most-viewed-img{
                 display: block;
+                width: 100%;
                 a{
                     display: block;
                 }
@@ -334,6 +352,9 @@
                     @media(max-width: 991px){
                         width: 100%;
                         height: auto;
+                    }
+                    @media(max-width: 767px){
+                        max-width: 100%;
                     }
                     img{
                         max-width: 100%;

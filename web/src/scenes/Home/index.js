@@ -147,7 +147,8 @@ class Home extends Component {
         </div>
         {this.state.itemsOrder &&
           this.state.itemsOrder.length > 0 &&
-          this.state.itemsOrder.map(({ sec_key, label }) => {
+          this.state.itemsOrder.map(({ sec_key, label, hide_section }) => {
+            if (hide_section === '1') return null;
             switch (sec_key) {
               case 'TOP_PICKS':
                 return <TopPics heading={label} />;
