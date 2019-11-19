@@ -704,6 +704,7 @@ export default class Events extends Component {
                       onClick={() => this.loadMoreEvents()}
                       className="btn-link load-more-btn"
                       target=""
+                      id="event-load-more"
                     >
                       <span>
                         Load More ({totalRecords - eventsData.length})
