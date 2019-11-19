@@ -21,6 +21,7 @@ import SimilarPicksSection from '../../shared/components/SimilarPicksSection';
 import AdvertisementSection from '../../shared/components/AdvertisementSection';
 import HomeService from '../../shared/services/HomeService';
 import MetaData from '../../shared/components/MetaData';
+import Utilities from '../../shared/utilities';
 
 function ShowOver({ isShowOver }) {
   if (isShowOver !== 1) return null;
@@ -48,7 +49,7 @@ function SeatMapButton({ seatingPlan }) {
   return (
     <>
       <a onClick={() => setFlag(true)} className="seat-map">
-        <img alt="seat-map" src={SeatMapImg} />
+        <img alt="seat-map" width={20} height={21} src={SeatMapImg} />
         <span className="seat-map-text">Seat Map</span>
       </a>
       {flag && (
@@ -362,7 +363,8 @@ export default class EventsDetail extends Component {
       setHeader,
       shimmer,
       shareUrl,
-      synopsis
+      synopsis,
+      code
     } = this.state;
     if (error) {
       return null;
@@ -482,10 +484,11 @@ export default class EventsDetail extends Component {
                         }
                         langArr={detailData.synopsis}
                         changeLang={this.changeLang}
+                        noIcon ={Utilities.mobileAndTabletcheck() ? false : true}
                         preExpanded={accrodian}
                         dynamicClass="synopsis-accordian"
                         uuid={`${
-                          detailData.is_available_for_booking === 1
+                          detailData.is_available_for_booking === 1 && ! Utilities.mobileAndTabletcheck()
                             ? 'synopsis'
                             : ''
                         }`}
@@ -494,6 +497,7 @@ export default class EventsDetail extends Component {
                     {detailData.tabs &&
                       detailData.tabs.length > 0 &&
                       detailData.tabs.map((obj, idx) => {
+                        if(obj.title && obj.description ){
                         return (
                           <AccordionSection
                             key={obj.title}
@@ -502,6 +506,9 @@ export default class EventsDetail extends Component {
                             dynamicClass="othertabs-accordian"
                           />
                         );
+                        } else {
+                          return null
+                        }
                       })}
                     {detailData.gallery_images_videos &&
                       detailData.gallery_images_videos.length > 0 && (
@@ -524,7 +531,7 @@ export default class EventsDetail extends Component {
                         }
                         // preExpanded={accrodian}
                         uuid={`${
-                          detailData.is_available_for_booking === 1
+                          detailData.is_available_for_booking === 1 && ! Utilities.mobileAndTabletcheck()
                             ? 'pricedetail'
                             : ''
                         }`}
@@ -548,14 +555,14 @@ export default class EventsDetail extends Component {
                   </div>
                 </section>
                 <EventTags tags={detailData.tags} />
-                <ArticleSection flag={true} />
+                <ArticleSection flag={true} code={code} />
               </div>
             )}
             <SimilarPicksSection data={similarEventsData} />
             {detailData.is_show_over === 1 && (
               <>
                 <GiftCard flag={true} />
-                <ArticleSection flag={true} />
+                <ArticleSection flag={true} code={code} />
               </>
             )}
           </div>

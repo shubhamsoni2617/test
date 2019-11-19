@@ -2043,7 +2043,7 @@
 			grid-template-columns: repeat(5, minmax(90%, 1fr));
 			overflow-x: auto;
 			display: flex;
-			width: calc(100% - 70px);
+			width: calc(100% - 0px);
 		}
 		a{
 			@media(max-width: 767px){
@@ -4409,7 +4409,7 @@ section{
                                 }
                             }
                             .cal-apply-btn {
-                                background-color: #0098ff;
+                                // background-color: #0098ff;
                                 margin-right: 0;
                             }
                             &.calender-action-btn {

@@ -4,7 +4,7 @@ import InputRange from 'react-input-range';
 import FilterGrid from '../FilterGrid';
 import useStickyPanel from '../../hooks/useStickyPanel';
 import './style.scss';
-import DateRangeFilter from '../DateRangeFilter';
+import DateRangeFilter from '../DateRangeFilter/filters';
 import SearchFilter from '../SearchFilter';
 import Utilities from '../../utilities';
 
@@ -57,7 +57,7 @@ function PriceRangeFilter(props) {
   return (
     <div className="filter-grid filter-price-range">
       <div className="filter-grid-heading">
-        <h3>Price</h3>
+        <h3>Price Range</h3>
         <ul>
           <li className="active">
             <a
@@ -103,6 +103,7 @@ function PriceRangeFilter(props) {
 
 function Filters(props) {
   const element = useRef();
+  const [fixed, setFixed] = useState(false);
   // const [elementOffsetTop, setElementOffsetTop] = useState('');
   let stickyObj = {
     sticky: { bottom: -10 },
@@ -157,7 +158,7 @@ function Filters(props) {
         }}
         ref={scrollContainerRef}
       >
-        <div className="inner" style={styleObj}>
+        <div className={`inner ${fixed ? 'fixed' : ''}`} style={styleObj}>
           <div className="filter-heading">
             <h3>
               Filters{' '}
@@ -168,7 +169,7 @@ function Filters(props) {
                   clearAllFilters();
                 }}
               >
-                Clear Filters
+                Clear All
               </a>
             </h3>
           </div>
@@ -193,6 +194,7 @@ function Filters(props) {
             selectedFilter={filteredGnere}
             limit={5}
             toggleFilterSection={toggleFilterSection}
+            setFixed={setFixed}
           />
           <FilterGrid
             title="Tags"
@@ -202,13 +204,18 @@ function Filters(props) {
             selectedFilter={filteredTags}
             limit={5}
             toggleFilterSection={toggleFilterSection}
+            setFixed={setFixed}
           />
           {!hideCalendar && (
             <DateRangeFilter
+              title="Date"
               filteredDateRange={filteredDateRange}
+              selectedFilter={filteredDateRange}
               handleFilters={handleFilters}
               autoSubmit={true}
               filterFlag={filterFlag}
+              toggleFilterSection={toggleFilterSection}
+              setFixed={setFixed}
             />
           )}
           <FilterGrid
@@ -219,6 +226,7 @@ function Filters(props) {
             selectedFilter={filteredPromotions}
             limit={5}
             toggleFilterSection={toggleFilterSection}
+            setFixed={setFixed}
           />
           <FilterGrid
             title="Venue"
@@ -229,6 +237,7 @@ function Filters(props) {
             selectedFilter={filteredVenues}
             limit={5}
             toggleFilterSection={toggleFilterSection}
+            setFixed={setFixed}
           />
           <FilterGrid
             title="Categories"
@@ -238,10 +247,12 @@ function Filters(props) {
             selectedFilter={filteredCategory}
             limit={10}
             toggleFilterSection={toggleFilterSection}
+            setFixed={setFixed}
           />
         </div>
       </div>
-      {props.children}
+      {typeof props.children === 'function' && props.children(fixed, setFixed)}
+      {typeof props.children !== 'function' && props.children}
     </div>
   );
 }

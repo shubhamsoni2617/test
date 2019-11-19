@@ -20,7 +20,7 @@ function Button({ styleObj, url, text }) {
 
   return (
     <div className="buy-tickets-btn">
-      <a style={styleObj} href={url}>
+      <a style={styleObj} href={url} target="_blank">
         {text}
       </a>
     </div>
@@ -159,7 +159,7 @@ function EventDateTime({
         <img src={closeIcon} alt="Close Icon" />
       </button>
       <div className="block-header">
-        <img src={calendarImg} alt="cal-icon" />
+        <img src={calendarImg}  alt="cal-icon" />
         <h3>Event dates & Time</h3>
       </div>
       <div className="tickets-desc">
@@ -219,20 +219,18 @@ function StickyHeader(props) {
         eventDateNotes={detailData.event_date_notes}
       />
       <div className="tickets-desc">
-        {detailData.genres && detailData.genres.length > 0 && (
-          <ul className="zoner-group">
-            {detailData.genres.map((obj, index) => {
-              return (
-                <li
-                  className={`${obj.is_primary === 1 ? 'active' : ''}`}
-                  key={index}
-                >
-                  {obj.name}
-                </li>
-              );
-            })}
-          </ul>
-        )}
+        <ul className="zoner-group">
+            {detailData.genres && detailData.genres.length > 0 && detailData.genres.map((obj, index) => {
+                    return (
+                        <li
+                        className={`${obj.is_primary === 1 ? 'active' : ''}`}
+                        key={index}
+                        >
+                        {obj.name}
+                        </li>
+                    );
+                })}
+        </ul>
 
         <TitleToolTip
           title={detailData.title}
@@ -243,7 +241,7 @@ function StickyHeader(props) {
 
         {detailData.promoters && detailData.promoters.length > 0 && (
           <div className="promoters">
-            <span>by </span>
+            <span>By </span>
             {detailData.promoters.map((item, index) => {
               if (item.url) {
                 return (
@@ -283,7 +281,7 @@ function StickyHeader(props) {
           <ul className="date-address">
             {detailData.event_date && (
               <li className="event-date">
-                <img src={calendarImg} alt="cal-icon" />
+                <img src={calendarImg} height={16} width='16' alt="cal-icon" />
                 <div>
                   <span>{detailData.event_date}</span>
                   <ViewAllDateTimeButton
@@ -300,6 +298,7 @@ function StickyHeader(props) {
               <li className="event-address">
                 <img
                   className="location-gray"
+                  width={16} height={19}
                   src={locationGray}
                   alt="location"
                 />
@@ -336,7 +335,7 @@ function StickyHeader(props) {
 
             {detailData.price && (
               <li className="event-date">
-                <img src={coinsImg} className="coin" alt="cal-icon" />
+                <img src={coinsImg} className="coin" width={19} height={19} alt="cal-icon" />
                 <span className="detail">{detailData.price}</span>
               </li>
             )}
