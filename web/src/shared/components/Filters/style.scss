@@ -33,6 +33,10 @@
         height: auto;
         padding-top: 80px;
         -webkit-overflow-scrolling: touch;
+        &.fixed{
+          overflow-y: hidden;
+        }
+
       }
     }
 }
@@ -275,8 +279,12 @@
                 width: 100%;
                 display: flex;
                 justify-content: space-between;
+                z-index: 1;
                 @media(max-width: 767px){
                     border-top: 8px solid #efefef;
+                }
+                &.hide-inner{
+                    display: none;
                 }
                 a{
                     flex: 1 0 50%;
@@ -816,7 +824,7 @@
                         background: white;
                         box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
                         @media(max-width: 767px){
-                            width: auto;    
+                            width: auto;
                             overflow: hidden;
                             min-width: auto;
                         }
@@ -863,17 +871,21 @@
                          top: 15px;
                          .DayPicker-NavButton--prev{
                              background-image: url(../../../assets/images/left-arrow-blue.svg);
-                             max-width: 10px;
+                             max-width: 30px;
                              margin: 0;
                              top: 50%;
                              left: 20%;
+                             width: 30px;
+                             height: 30px;
                              transform: translateY(-50%);
                           }
                           .DayPicker-NavButton--next{
                              background-image: url(../../../assets/images/right-arrow-blue.svg);
-                             max-width: 10px;
+                             max-width: 30px;
                              top: 50%;
                              right: 20%;
+                             width: 30px;
+                             height: 30px;
                              transform: translateY(-50%);
                              margin: 0px;
                           }

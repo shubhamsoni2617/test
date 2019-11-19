@@ -1,12 +1,14 @@
 import React, { useRef, useState, useEffect } from 'react';
 import './style.scss';
 import Slider from 'react-slick';
+
 const BannerSlider = ({ bannerData }) => {
   const [nav1, setNav1] = useState(null);
   const [nav2, setNav2] = useState(null);
+
   let slider1 = useRef();
   let slider2 = useRef();
-  console.log(bannerData);
+
   useEffect(() => {
     setNav1(slider1);
     setNav2(slider2);
@@ -29,7 +31,7 @@ const BannerSlider = ({ bannerData }) => {
           {bannerData &&
             bannerData.map(banner => {
               return (
-                <div>
+                <div key={banner.banner_title}>
                   <div>
                     <h2>{banner.banner_title}</h2>
                     <div
@@ -60,7 +62,7 @@ const BannerSlider = ({ bannerData }) => {
           {bannerData &&
             bannerData.map(banner => {
               return (
-                <div>
+                <div key={banner.banner_title}>
                   <img src={banner.image} alt="banner_image" />
                 </div>
               );

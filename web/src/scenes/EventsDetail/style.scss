@@ -89,6 +89,11 @@
         padding: 20px 15px 15px;
     }
       .tickets-button{
+          height: 90px;
+          position: absolute;
+          left: 30px;
+          width: calc(100% - 60px);
+          bottom: 20px;
         .react-modal .react-modal-body{
           width: 450px;
           margin: 0 10px;
@@ -169,7 +174,7 @@
             }
             span{
               color: #949494;
-                font-size: 15px;
+                font-size: 18px;
                 line-height: 20px;
                 word-break: break-word;
                 @media(max-width: 767px){
@@ -178,7 +183,7 @@
             }
             a{
                 color: #949494;
-                font-size: 15px;
+                font-size: 18px;
                 line-height: 20px;
                 word-break: break-word;
                 @media(max-width: 767px){
@@ -278,6 +283,7 @@
           .zoner-group{
               margin-bottom: 14px;
               padding-right: 83px;
+              min-height: 26px;
               @media(max-width: 1024px){
                 margin-bottom: 10px;
               }
@@ -417,6 +423,8 @@
                           }
                           .seat-map-text{
                               color: #0098FF;
+                              top: 3px;
+                              position: relative;
                           }
                       }
                       .detail{
@@ -544,7 +552,12 @@
       .tickets-button {
           @media(max-width: 991px){
             display: flex;
+            height: auto;
             flex-wrap: wrap;
+            position: relative;
+            left: 0;
+            width: 100%;
+            bottom: 0;
           }
         .buy-tickets-btn {
             @media(max-width: 991px){

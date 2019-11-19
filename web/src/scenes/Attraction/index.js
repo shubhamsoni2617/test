@@ -116,7 +116,7 @@ export default class Attractions extends Component {
     return payload;
   };
 
-  setInitialFilters({ first, limit }) { }
+  setInitialFilters({ first, limit }) {}
 
   getAttractionsCategory = () => {
     AttractionsService.getAttractionsCategory()
@@ -235,6 +235,12 @@ export default class Attractions extends Component {
     return count;
   };
 
+  toggleFilterSection = () => {
+    if (Utilities.mobilecheck()) {
+      document.body.classList.toggle('fixed-body');
+    }
+  };
+
   toggleFilters = () => {
     this.setState({
       filterFlag: !this.state.filterFlag,
@@ -315,6 +321,7 @@ export default class Attractions extends Component {
                 <Filters
                   searchPlaceholder="Search in attractions"
                   queryParams={queryParams}
+                  toggleFilterSection={this.toggleFilterSection}
                   resetFilters={this.resetFilters}
                   handleFilters={this.handleFilters}
                   hideCalendar={true}
@@ -323,16 +330,23 @@ export default class Attractions extends Component {
                   filteredCategory={filteredCategory}
                   attractions={true}
                 >
-                  <div className="fixed-buttons">
+                  <div className="fixed-buttons hide-inner">
                     <a
                       onClick={() => {
+                        this.toggleFilterSection();
                         this.toggleFilters();
                       }}
                       className="close"
                     >
                       Close
                     </a>
-                    <a onClick={() => this.callAPI()} className="apply">
+                    <a
+                      onClick={() => {
+                        this.toggleFilterSection();
+                        this.callAPI();
+                      }}
+                      className="apply"
+                    >
                       Apply
                     </a>
                   </div>
@@ -343,7 +357,7 @@ export default class Attractions extends Component {
             <div
               className={`events-listing ${
                 this.state.sortByFlag ? 'open' : ''
-                }`}
+              }`}
             >
               <div className="event-listing-sorting">
                 <SearchFilter
@@ -351,6 +365,7 @@ export default class Attractions extends Component {
                   searchText={filteredSearch}
                 />
                 <FilterSelected
+                  type="ATTRACTIONS"
                   attractionCategories={attractionCategories}
                   filteredCategory={filteredCategory}
                   handleFilters={this.handleFilters}
@@ -372,9 +387,10 @@ export default class Attractions extends Component {
                   }
                   clearSortFilters={this.clearSortFilters}
                 >
-                  <div className="fixed-buttons">
+                  <div className="fixed-buttons hide-inner">
                     <a
                       onClick={() => {
+                        this.toggleFilterSection();
                         this.toggleSortBy();
                       }}
                       className="close"
@@ -384,6 +400,7 @@ export default class Attractions extends Component {
 
                     <a
                       onClick={() => {
+                        this.toggleFilterSection();
                         this.callAPI();
                       }}
                       className="apply"
