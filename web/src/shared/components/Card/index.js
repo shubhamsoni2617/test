@@ -87,7 +87,14 @@ export default class Card extends Component {
               </React.Fragment>
             )}
             <p className="event-date">{cardData.event_date}</p>
-            {cardData && cardData.venue_name && <p className="event-place">{Utilities.showLimitedChars(cardData.venue_name, Utilities.mobilecheck() ? 20 : 55)}</p>}
+            {cardData && cardData.venue_name && (
+              <p className="event-place">
+                {Utilities.showLimitedChars(
+                  cardData.venue_name,
+                  Utilities.mobilecheck() ? 20 : 55
+                )}
+              </p>
+            )}
           </div>
           <div className="price-event">
             <div className="price">
@@ -103,6 +110,7 @@ export default class Card extends Component {
               <p>{cardData.price ? cardData.price : ' '}</p>
             </div>
             <button
+              id="event-buy"
               type="button"
               onClick={() => redirectTo(cardData.alias)}
               className={cardClass.cardButton}

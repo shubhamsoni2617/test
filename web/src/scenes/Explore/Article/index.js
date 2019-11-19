@@ -11,7 +11,6 @@ import ExploreService from '../../../shared/services/ExploreService';
 import FeaturedArticles from './FeaturedArticle';
 
 const Article = props => {
-  console.log(props);
   const [articleData, setArticleData] = useState([]);
   const [showSocialShare, setShowSocialShare] = useState(false);
   const handleSocialShare = () => {

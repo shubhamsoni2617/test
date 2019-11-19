@@ -251,7 +251,8 @@ function Filters(props) {
           />
         </div>
       </div>
-      {props.children}
+      {typeof props.children === 'function' && props.children(fixed, setFixed)}
+      {typeof props.children !== 'function' && props.children}
     </div>
   );
 }
