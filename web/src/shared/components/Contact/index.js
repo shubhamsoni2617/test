@@ -7,7 +7,7 @@ import Constants from '../../constants';
 import Utilities from '../../utilities';
 import Select from '../SelectBox';
 
-const Contact = ({ attachement, handleEnquiry }) => {
+const Contact = ({ attachement, handleEnquiry, type }) => {
   const [enquiryCategory, setEnquiryCategory] = useState([]);
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
@@ -44,7 +44,11 @@ const Contact = ({ attachement, handleEnquiry }) => {
   };
 
   const fetchEnquiry = () => {
-    ContactUsService.getEnquiry()
+    let params = {};
+    if (type) {
+      params.page = type;
+    }
+    ContactUsService.getEnquiry(params)
       .then(res => {
         if (res && res.data) {
           setEnquiryCategory(res.data.data);
