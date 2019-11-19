@@ -20,7 +20,7 @@ function Button({ styleObj, url, text }) {
 
   return (
     <div className="buy-tickets-btn">
-      <a style={styleObj} href={url}>
+      <a style={styleObj} href={url} target="_blank">
         {text}
       </a>
     </div>
@@ -129,11 +129,7 @@ function ViewAllDateTimeButton({
   setEventDateBlock
 }) {
   // if (!show) return null;
-  if (
-    !altEventStartDate &&
-    !eventDateNotes
-  )
-    return null;
+  if (!altEventStartDate && !eventDateNotes) return null;
 
   return (
     <button className="link" onClick={() => setEventDateBlock(true)}>
@@ -159,7 +155,7 @@ function EventDateTime({
         <img src={closeIcon} alt="Close Icon" />
       </button>
       <div className="block-header">
-        <img src={calendarImg} alt="cal-icon" />
+        <img src={calendarImg}  alt="cal-icon" />
         <h3>Event dates & Time</h3>
       </div>
       <div className="tickets-desc">
@@ -219,31 +215,35 @@ function StickyHeader(props) {
         eventDateNotes={detailData.event_date_notes}
       />
       <div className="tickets-desc">
-        {detailData.genres && detailData.genres.length > 0 && (
-          <ul className="zoner-group">
-            {detailData.genres.map((obj, index) => {
-              return (
-                <li
-                  className={`${obj.is_primary === 1 ? 'active' : ''}`}
-                  key={index}
-                >
-                  {obj.name}
-                </li>
-              );
-            })}
-          </ul>
-        )}
+        <ul className="zoner-group">
+            {detailData.genres && detailData.genres.length > 0 && detailData.genres.map((obj, index) => {
+                    return (
+                        <li
+                        className={`${obj.is_primary === 1 ? 'active' : ''}`}
+                        key={index}
+                        >
+                        {obj.name}
+                        </li>
+                    );
+                })}
+        </ul>
 
-        <TitleToolTip
-          title={detailData.title}
-          lines={props.lines}
-          height={Utilities.mobileAndTabletcheck() ? 25 : 30}
-          eventDetail
-        />
+        {sticky ? (
+          <TitleToolTip
+            title={detailData.title}
+            lines={props.lines}
+            height={Utilities.mobileAndTabletcheck() ? 25 : 30}
+            eventDetail
+          />
+        ) : (
+          <div className="title top">
+            <h3>{detailData.title}</h3>
+          </div>
+        )}
 
         {detailData.promoters && detailData.promoters.length > 0 && (
           <div className="promoters">
-            <span>by </span>
+            <span>By </span>
             {detailData.promoters.map((item, index) => {
               if (item.url) {
                 return (
@@ -283,7 +283,7 @@ function StickyHeader(props) {
           <ul className="date-address">
             {detailData.event_date && (
               <li className="event-date">
-                <img src={calendarImg} alt="cal-icon" />
+                <img src={calendarImg} height={16} width='16' alt="cal-icon" />
                 <div>
                   <span>{detailData.event_date}</span>
                   <ViewAllDateTimeButton
@@ -300,55 +300,62 @@ function StickyHeader(props) {
               <li className="event-address">
                 <img
                   className="location-gray"
+                  width={16} height={19}
                   src={locationGray}
                   alt="location"
                 />
-                <div>
-                  <Link to={`/venues?id=${detailData.venue_name.id}`}>
-                    <TitleToolTip
-                      title={
-                        detailData.venue_name.name +
-                        'Brevitas Volutpat Wisi Brevitas Volutpat Wisi'
-                      }
-                      lines={1}
-                      tag={false}
-                      height={20}
-                      eventDetail
+                  <div>
+                    <Link to={`/venues?id=${detailData.venue_name.id}`}>
+                      {sticky ? (
+                        <TitleToolTip
+                          title={
+                            detailData.venue_name.name +
+                            'Brevitas Volutpat Wisi Brevitas Volutpat Wisi'
+                          }
+                          lines={1}
+                          tag={false}
+                          height={20}
+                          eventDetail
+                        />
+                      ) : (
+                        <div>
+                          <span>{detailData.venue_name.name}</span>
+                        </div>
+                      )}
+                    </Link>
+                    <button
+                      className="link"
+                      onClick={() => setVenueDetailsPopup(true)}
+                    >
+                      View all Venues
+                    </button>
+                    <ModalPopup
+                      showModal={venueDetailsPopup}
+                      content={detailData.venue_name.description}
+                      title="Venue Details"
+                      handleClose={() => setVenueDetailsPopup(false)}
+                      htmlContent={true}
                     />
-                  </Link>
-                  <button
-                    className="link"
-                    onClick={() => setVenueDetailsPopup(true)}
-                  >
-                    View all Venues
-                  </button>
-                  <ModalPopup
-                    showModal={venueDetailsPopup}
-                    content={detailData.venue_name.description}
-                    title="Venue Details"
-                    handleClose={() => setVenueDetailsPopup(false)}
-                    htmlContent={true}
-                  />
-                </div>
-              </li>
-            )}
+                  </div>
+                </li>
+              )}
             {seatMapButton && <li className="event-date">{seatMapButton}</li>}
 
             {detailData.price && (
               <li className="event-date">
-                <img src={coinsImg} className="coin" alt="cal-icon" />
+                <img src={coinsImg} className="coin" width={19} height={19} alt="cal-icon" />
                 <span className="detail">{detailData.price}</span>
               </li>
             )}
           </ul>
         </div>
       </div>
+      {detailData.is_available_for_booking === 1 &&  buyPackages &&(
       <div className="tickets-button">
-        {detailData.is_available_for_booking === 1 && (
           <BuyTicketsButtonPopup detailData={detailData} />
-        )}
         {buyPackages}
       </div>
+      )}
       {detailData.is_available_for_booking === 0 && (
         <div className="tickets-button shows-over-tickets">
           <div className="shows-over">

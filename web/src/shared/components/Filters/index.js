@@ -103,6 +103,7 @@ function PriceRangeFilter(props) {
 
 function Filters(props) {
   const element = useRef();
+  const [fixed, setFixed] = useState(false);
   // const [elementOffsetTop, setElementOffsetTop] = useState('');
   let stickyObj = {
     sticky: { bottom: -10 },
@@ -157,7 +158,7 @@ function Filters(props) {
         }}
         ref={scrollContainerRef}
       >
-        <div className="inner" style={styleObj}>
+        <div className={`inner ${fixed ? 'fixed' : ''}`} style={styleObj}>
           <div className="filter-heading">
             <h3>
               Filters{' '}
@@ -193,6 +194,7 @@ function Filters(props) {
             selectedFilter={filteredGnere}
             limit={5}
             toggleFilterSection={toggleFilterSection}
+            setFixed={setFixed}
           />
           <FilterGrid
             title="Tags"
@@ -202,6 +204,7 @@ function Filters(props) {
             selectedFilter={filteredTags}
             limit={5}
             toggleFilterSection={toggleFilterSection}
+            setFixed={setFixed}
           />
           {!hideCalendar && (
             <DateRangeFilter
@@ -212,6 +215,7 @@ function Filters(props) {
               autoSubmit={true}
               filterFlag={filterFlag}
               toggleFilterSection={toggleFilterSection}
+              setFixed={setFixed}
             />
           )}
           <FilterGrid
@@ -222,6 +226,7 @@ function Filters(props) {
             selectedFilter={filteredPromotions}
             limit={5}
             toggleFilterSection={toggleFilterSection}
+            setFixed={setFixed}
           />
           <FilterGrid
             title="Venue"
@@ -232,6 +237,7 @@ function Filters(props) {
             selectedFilter={filteredVenues}
             limit={5}
             toggleFilterSection={toggleFilterSection}
+            setFixed={setFixed}
           />
           <FilterGrid
             title="Categories"
@@ -241,10 +247,12 @@ function Filters(props) {
             selectedFilter={filteredCategory}
             limit={10}
             toggleFilterSection={toggleFilterSection}
+            setFixed={setFixed}
           />
         </div>
       </div>
-      {props.children}
+      {typeof props.children === 'function' && props.children(fixed, setFixed)}
+      {typeof props.children !== 'function' && props.children}
     </div>
   );
 }

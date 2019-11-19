@@ -129,7 +129,7 @@ const SellingForm = ({
               <div className="seller-info-heading">
                 <h2>Event Information</h2>
               </div>
-              <div className="row">
+              <div className="row event-info-formfields">
                 <div className="col-md-6">
                   <div className="seller-info">
                     <div className="form-group">
@@ -150,6 +150,24 @@ const SellingForm = ({
                         </span>
                       )}
                     </div>
+                  </div>
+                </div>
+                <div className="col-md-6">
+                  <div className="seller-info">
+                    <div className="form-group">
+                      <input
+                        type="text"
+                        name="event-date"
+                        placeholder="Event Date"
+                        className="form-control"
+                        value={eventDate}
+                        onChange={handleChange}
+                      />
+                    </div>
+                  </div>
+                </div>
+                <div className="col-md-6">
+                  <div className="seller-info">
                     <div className="form-group">
                       <input
                         type="text"
@@ -168,31 +186,10 @@ const SellingForm = ({
                         </span>
                       )}
                     </div>
-                    <div className="form-group">
-                      <input
-                        type="text"
-                        name="ticket-price"
-                        placeholder="Ticket Price (SGD)"
-                        className="form-control"
-                        maxLength={3}
-                        value={ticketPrice}
-                        onChange={handleChange}
-                      />
-                    </div>
                   </div>
                 </div>
                 <div className="col-md-6">
                   <div className="seller-info">
-                    <div className="form-group">
-                      <input
-                        type="text"
-                        name="event-date"
-                        placeholder="Event Date"
-                        className="form-control"
-                        value={eventDate}
-                        onChange={handleChange}
-                      />
-                    </div>
                     <div className="form-group">
                       <input
                         type="text"
@@ -211,6 +208,25 @@ const SellingForm = ({
                         </span>
                       )}
                     </div>
+                  </div>
+                </div>
+                <div className="col-md-6">
+                  <div className="seller-info">
+                    <div className="form-group">
+                      <input
+                        type="text"
+                        name="ticket-price"
+                        placeholder="Ticket Price (SGD)"
+                        className="form-control"
+                        maxLength={3}
+                        value={ticketPrice}
+                        onChange={handleChange}
+                      />
+                    </div>
+                  </div>
+                </div>
+                <div className="col-md-6">
+                  <div className="seller-info">
                     <div className="form-group">
                       <textarea
                         placeholder="Additional Information"

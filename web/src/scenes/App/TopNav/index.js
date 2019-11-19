@@ -43,7 +43,7 @@ function List({ data, type, menueStatus, setMenuStatus, closeSubmenu, link }) {
         );
       })}
       <Link
-        to={type == "Events" ? "/events" : "/venues"}
+        to={type == 'Events' ? '/events' : '/venues'}
         onClick={() => {
           setMenuStatus(false);
           closeSubmenu(false);
@@ -183,6 +183,10 @@ const TopNav = props => {
   };
 
   const processPath = location => {
+    setTimeout(() => {
+      document.body.classList.remove('fixed-body');
+    }, 100);
+
     if (location.pathname) {
       let pathArr = location.pathname.split('/');
       if (pathArr.length) {
@@ -232,12 +236,12 @@ const TopNav = props => {
   };
   const handleNavigationOpen = () => {
     refValue.classList.add('active');
-    document.body.classList.add('body-overlay');
+    document.body.classList.add('body-overlay', 'fixed-body');
   };
 
   const handleNavigationClose = () => {
     refValue.classList.remove('active');
-    document.body.classList.remove('body-overlay');
+    document.body.classList.remove('body-overlay', 'fixed-body');
   };
 
   const handleMouseStatus = status => {
@@ -258,6 +262,17 @@ const TopNav = props => {
         setMegaMenuAnimating(false);
       }, 500);
     }, 600);
+  };
+
+  const handleMouseStatusMobile = status => {
+    if (status === true) {
+      setTimeout(() => setShowMegaMenu(status), 0);
+      // document.body.classList.add('body-overlay');
+    }
+    if (status === false) {
+      setTimeout(() => setShowMegaMenu(status), 0);
+      // document.body.classList.remove('body-overlay');
+    }
   };
 
   const handleFilters = data => {
@@ -412,7 +427,7 @@ const TopNav = props => {
               <li className="has-submenu">
                 <a
                   className={`${showMegaMenu ? 'active' : ''}`}
-                  onClick={() => handleMouseStatus(!showMegaMenu)}
+                  onClick={() => handleMouseStatusMobile(!showMegaMenu)}
                 >
                   Events
                 </a>
@@ -438,7 +453,7 @@ const TopNav = props => {
                           >
                             <List
                               data={byGenreEvent}
-                              type='Events'
+                              type="Events"
                               menueStatus={menueStatus}
                               setMenuStatus={setMenuStatus}
                               closeSubmenu={handleNavigationClose}
@@ -500,7 +515,7 @@ const TopNav = props => {
                           >
                             <List
                               data={byVenueEvent}
-                              type='Venues'
+                              type="Venues"
                               menueStatus={menueStatus}
                               setMenuStatus={setMenuStatus}
                               closeSubmenu={handleNavigationClose}

@@ -4,6 +4,7 @@ import Image from '../Image';
 import ShimmerEffect from '../ShimmerEffect';
 import Utilities from '../../utilities';
 import ExploreService from '../../services/ExploreService';
+import { Link } from 'react-router-dom';
 
 const Explore = props => {
   const [exploreData, setExploreData] = useState(null);
@@ -35,14 +36,14 @@ const Explore = props => {
         <div className="section-top-wrapper">
           <h2>{props.heading}</h2>
           <div className="carousel-dots">
-            <a>
+            <Link to="/explore" id="explore">
               See all{' '}
               <img
                 src="../../../assets/images/right-arrow.svg"
                 className="img-fluid"
                 alt="arrow"
               />
-            </a>
+            </Link>
           </div>
         </div>
         {!props.article && (
