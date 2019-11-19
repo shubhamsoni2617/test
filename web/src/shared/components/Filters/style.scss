@@ -33,6 +33,10 @@
         height: auto;
         padding-top: 80px;
         -webkit-overflow-scrolling: touch;
+        &.fixed{
+          overflow-y: hidden;
+        }
+
       }
     }
 }
@@ -820,7 +824,7 @@
                         background: white;
                         box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
                         @media(max-width: 767px){
-                            width: auto;    
+                            width: auto;
                             overflow: hidden;
                             min-width: auto;
                         }
