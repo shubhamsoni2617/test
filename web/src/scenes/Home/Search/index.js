@@ -135,6 +135,7 @@ const Search = props => {
               {totalResults - constant > 0 && (
                 <div className="promotion-load-more">
                   <button
+                    id="search-load-more"
                     onClick={() => {
                       setConstant(totalResults);
                       setLoadMore(true);

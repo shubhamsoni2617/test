@@ -20,7 +20,7 @@ function Button({ styleObj, url, text }) {
 
   return (
     <div className="buy-tickets-btn">
-      <a style={styleObj} href={url}>
+      <a style={styleObj} href={url} target="_blank">
         {text}
       </a>
     </div>
@@ -241,7 +241,7 @@ function StickyHeader(props) {
 
         {detailData.promoters && detailData.promoters.length > 0 && (
           <div className="promoters">
-            <span>by </span>
+            <span>By </span>
             {detailData.promoters.map((item, index) => {
               if (item.url) {
                 return (

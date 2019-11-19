@@ -14,17 +14,24 @@
         align-items: center;
         justify-content: center;
         padding: 30px;
+        min-width: 229px;
+        min-height: 192px;
         @media(max-width: 1024px){
             height: auto;
+            min-width: auto;
+            min-height: auto;
         }
-        @media(max-width: 768px){
-            flex-basis: calc(50% - 8px);
-            width: calc(50% - 8px);
-            margin: 0 4px 10px;
+        @media(max-width: 767px){
+            // flex-basis: calc(50% - 8px);
+            // width: calc(50% - 8px);
+            // margin: 0 4px 10px;
+            padding: 15px;
         }
         @media(max-width: 680px){
+            min-width: 135px;
             min-height: 120px;
-            max-width: 120px;
+            flex-basis: auto;
+            width: auto;
             padding: 15px;
         }
         img{

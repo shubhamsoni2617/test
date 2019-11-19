@@ -9,7 +9,7 @@ import noEvent from '../../assets/images/no-event.svg';
 import Breadcrub from '../../scenes/App/Breadcrumb';
 import ListView from '../../assets/images/list-view.svg';
 import GridView from '../../assets/images/grid-view.svg';
-import loaderImage from '../../assets/images/loader.svg';
+import loaderImage from '../../assets/images/loader-tick3.gif';
 import EventBreadcrumbImage from '../../assets/images/events.png';
 import EventBreadcrumbImageBlur from '../../assets/images/events-blur.png';
 import filterIcon from '../../assets/images/events/filter.svg';
@@ -320,7 +320,11 @@ export default class Events extends Component {
     let obj = {
       ...searchType
     };
-    if (!Utilities.mobilecheck() || apply || (searchType && searchType.filteredSearch)) {
+    if (
+      !Utilities.mobilecheck() ||
+      apply ||
+      (searchType && searchType.filteredSearch)
+    ) {
       obj = {
         ...searchType,
         first: 0,
@@ -333,7 +337,11 @@ export default class Events extends Component {
 
     this.setState(obj, () => {
       setTimeout(() => {
-        if (!Utilities.mobilecheck() || apply || (searchType && searchType.filteredSearch)) {
+        if (
+          !Utilities.mobilecheck() ||
+          apply ||
+          (searchType && searchType.filteredSearch)
+        ) {
           this.loadEvents(this.getFilters(), false);
         }
       }, 200);
@@ -537,26 +545,32 @@ export default class Events extends Component {
                       }
                       filterFlag={filterFlag}
                     >
-                      <div className="fixed-buttons">
-                        <a
-                          onClick={() => {
-                            this.toggleFilterSection();
-                            this.toggleFilters();
-                          }}
-                          className="close"
+                      {fixed => (
+                        <div
+                          className={`fixed-buttons ${
+                            fixed ? 'hide-inner' : ''
+                          }`}
                         >
-                          Close
-                        </a>
-                        <a
-                          onClick={() => {
-                            this.toggleFilterSection();
-                            this.callAPI();
-                          }}
-                          className="apply"
-                        >
-                          Apply
-                        </a>
-                      </div>
+                          <a
+                            onClick={() => {
+                              this.toggleFilterSection();
+                              this.toggleFilters();
+                            }}
+                            className="close"
+                          >
+                            Close
+                          </a>
+                          <a
+                            onClick={() => {
+                              this.toggleFilterSection();
+                              this.callAPI();
+                            }}
+                            className="apply"
+                          >
+                            Apply
+                          </a>
+                        </div>
+                      )}
                     </Filters>
                   )}
               </div>
@@ -690,6 +704,7 @@ export default class Events extends Component {
                       onClick={() => this.loadMoreEvents()}
                       className="btn-link load-more-btn"
                       target=""
+                      id="event-load-more"
                     >
                       <span>
                         Load More ({totalRecords - eventsData.length})

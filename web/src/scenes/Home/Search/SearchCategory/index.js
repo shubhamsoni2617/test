@@ -9,7 +9,7 @@ const SearchCategory = props => {
       <section className="promotions-wrapper">
         <div className="promotions-nav">
           {searchCategories && searchCategories.length ? (
-            <ul className="nav nav-tabs" id="nav-tab" role="tablist">
+            <ul className="nav nav-tabs" id="search-categories" role="tablist">
               {searchCategories.map(category => {
                 return (
                   <li

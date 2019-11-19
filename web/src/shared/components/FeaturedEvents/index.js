@@ -3,10 +3,9 @@ import Slider from 'react-slick';
 import './style.scss';
 import Constants from '../../constants';
 import Utilities from '../../utilities';
-import { CSSTransition } from 'react-transition-group';
+// import { CSSTransitionGroup } from 'react-transition-group';
 import ShimmerEffect from '../ShimmerEffect';
 import Image from '../Image';
-
 const Item = ({ event }) => {
   return (
     <a href={event && event.navigation_link} target="_blank">
@@ -53,55 +52,29 @@ const Item = ({ event }) => {
   );
 };
 
-const SampleNextArrow = props => {
-  const { className, style, onClick } = props;
-  return (
-    <div
-      className={className}
-      style={{ ...style, display: 'block' }}
-      onClick={onClick}
-    />
-  );
-};
-
-const SamplePrevArrow = props => {
-  const { className, style, onClick } = props;
-  return (
-    <div
-      className={className}
-      style={{ ...style, display: 'block' }}
-      onClick={onClick}
-    />
-  );
-};
-
 const FeaturedEvents = props => {
   const { api, heading, cssClassName } = props;
   const element = useRef(null);
   const [featuredEvents, setFeaturedEvents] = useState([]);
-  const [error, setError] = useState(false);
+  const [serverErr, setServerErr] = useState('');
   const [loading, setLoading] = useState(true);
   const [callAPI, setCallAPI] = useState(false);
-
   useEffect(() => {
     window.addEventListener('scroll', scrollHandler, true);
     return () => {
       window.removeEventListener('scroll', scrollHandler, true);
     };
   }, []);
-
   useEffect(() => {
     if (callAPI) {
       getFeaturedEvents();
     }
   }, [callAPI]);
-
   const scrollHandler = () => {
     if (!callAPI) {
       setCallAPI(true);
     }
   };
-
   const getFeaturedEvents = () => {
     const params = {
       client: Constants.CLIENT
@@ -116,10 +89,11 @@ const FeaturedEvents = props => {
         }
       })
       .catch(err => {
-        setError(true);
+        if (err && err.response) {
+          setServerErr('Something went wrong...');
+        }
       });
   };
-
   const settings = {
     dots: true,
     infinite: false,
@@ -127,13 +101,9 @@ const FeaturedEvents = props => {
     rows: 2,
     slidesPerRow: 5
   };
-
   if (!loading && featuredEvents && featuredEvents.length === 0) {
     return null;
   }
-
-  if (error) return null;
-
   return (
     <section
       className={
@@ -165,7 +135,7 @@ const FeaturedEvents = props => {
         > */}
         {loading ? (
           <ShimmerEffect
-            propCls={`shm_col-xs-6 col-md-6`}
+            propCls={'shm_col-xs-6 col-md-6'}
             height={150}
             count={2}
             type="TILE"
@@ -176,12 +146,8 @@ const FeaturedEvents = props => {
           >
             <div className="grid-container">
               {featuredEvents &&
-                featuredEvents.map((event, index) => {
-                  return (
-                    <div className="grid-container" key={index}>
-                      <Item event={event} />
-                    </div>
-                  );
+                featuredEvents.map((event, i) => {
+                  return <Item event={event} key={i} />;
                 })}
             </div>
           </div>
@@ -202,5 +168,4 @@ const FeaturedEvents = props => {
     </section>
   );
 };
-
 export default FeaturedEvents;
