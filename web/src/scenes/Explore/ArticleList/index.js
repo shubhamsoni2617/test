@@ -70,7 +70,7 @@ const ArticleList = ({ history }) => {
       ExploreService.getExploreArticleList(params)
         .then(res => {
           if (loadMore) {
-            setArticleList([...articleListData, ...res.data.data]);
+            setArticleList([...articleList, ...res.data.data]);
           } else {
             setArticleList(res.data.data);
           }
