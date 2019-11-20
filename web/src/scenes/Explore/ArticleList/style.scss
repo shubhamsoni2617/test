@@ -1,7 +1,11 @@
 .articlelist-wrapper.events-page-wrapper{
+    .wrapper-events-listing{
+        padding-top: 35px;
+        padding-bottom: 20px;
+    }
     .events-listing{
-        padding: 0 0px 0px 10px;
-        overflow: visible;
+        padding: 15px 0px 0px 10px;
+        overflow: hidden;
         &.article-list-notfound{
             align-self: center;
         }
@@ -94,24 +98,35 @@
                     }
                 }
             }
-            .category {
-                color: #fff;
-                font-family: 'Montserrat', sans-serif;
-                font-size: 14px;
-                font-weight: 500;
-                line-height: 20px;
-                background-color: #225275;
-                display: inline-block;
-                text-transform: capitalize;
-                padding: 0px 5px;
+            .article-category-group{
                 top: 15px;
-                left: 14px;
-                position: absolute;
+                left: 14px;                
+                padding: 0px 5px;
                 z-index: 1;
                 height: auto;
-                text-align: left;
+                position: absolute;
+                opacity: 0;
+                transition: 0.5s opacity;
+                .category {
+                    color: #fff;
+                    font-family: 'Montserrat', sans-serif;
+                    font-size: 14px;
+                    font-weight: 500;
+                    line-height: 20px;
+                    display: inline-block;
+                    text-transform: capitalize;
+                    text-align: left;
+                    background-color: #225275;
+                    margin-right: 5px;
+                    margin-bottom: 5px;
+                }
             }
             .category-group{
+                margin-bottom: 5px;
+                min-height: 52px;
+                @media(max-width: 576px){
+                    min-height: auto;
+                }
                 li{
                     display: inline-block;
                     list-style: none;
@@ -186,11 +201,14 @@
                     top: -10px;
                     opacity: 1;
                 }
+                .article-category-group{
+                    opacity: 1;
+                }
             }
         }
     }
     .filters{
-        padding-top: 5px;
+        padding-top: 15px;
         .filter-heading{
             margin-bottom: 28px;
             h3{
@@ -223,7 +241,7 @@
                 align-items: flex-end;
                 position: fixed;
             }
-            .filter-grid-heading{
+            .filter-grid-heading{                
                 @media(max-width: 767px){
                     padding: 0;
                     display: flex;

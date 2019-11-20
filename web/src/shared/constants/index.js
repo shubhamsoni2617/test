@@ -2,7 +2,11 @@ import Utilities from '../utilities';
 
 class Constants {
   static WEBSITE_URL = 'http://sistic.com';
-  static BASE_URL = '/sistic/docroot/';
+  static API_URL =
+    typeof navigator === 'undefined' || typeof window === 'undefined'
+      ? 'http://192.168.10.197'
+      : '';
+  static BASE_URL = this.API_URL + '/sistic/docroot/';
   static INSTAGRAM_ACCESS_TOKEN =
     '3225660226.f09c095.d66beeb477664e4091320bcfe6e3991a';
   static MOBILE_BREAK_POINT = 767;
@@ -15,6 +19,8 @@ class Constants {
   static SOURCE_FROM_MOBILE_RESPONSIVE = 3;
   static LIMIT = Utilities.mobileAndTabletcheck() ? 6 : 9;
   static SITE_KEY = '6LedScEUAAAAALMkHkGFibsc4yNxrajcV6wijeuP';
+  static SISTIC_APP_STORE_URL ='https://itunes.apple.com/sg/app/sistic/id500601166?mt=8';
+  static SISTIC_PLAY_STORE_URL = 'https://play.google.com/store/apps/details?id=com.rainmakerlabs.sistic&hl=en';
 }
 
 export default Constants;

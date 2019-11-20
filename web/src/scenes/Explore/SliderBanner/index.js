@@ -1,27 +1,27 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import Slider from 'react-slick';
 import './style.scss';
-import Image from '../../../assets/images/promo-img1.svg';
-const SliderBanner = () => {
+
+const SliderBanner = ({ data }) => {
   const settings = {
     dots: true,
+    arrows: true,
     infinite: true,
     speed: 500,
     rows: 1,
     slidesPerRow: 1,
     autoplay: true
   };
-  return (
-    <div className="sliderBottomDot">
+  return data && data.length > 0 ? (
+    <div className="sliderBottomDot festival-top-slider">
       <Slider {...settings}>
-        <img src={Image} height="300px" />
-        <img src={Image} height="300px" />
-        <img src={Image} height="300px" />
-        <img src={Image} height="300px" />
-        <img src={Image} height="300px" />
+        {data &&
+          data.map(image => {
+            return <img src={image} key={image} />;
+          })}
       </Slider>
     </div>
-  );
+  ) : null;
 };
 
 export default SliderBanner;

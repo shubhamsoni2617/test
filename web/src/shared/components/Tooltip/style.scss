@@ -5,7 +5,7 @@
     .info-popover{
     &:before{
       border-top: unset;
-      border-bottom: 8px solid #616161;
+      border-bottom: 8px solid #ececec;
       right: unset;
       bottom: unset;
       top: -8px;
@@ -17,19 +17,21 @@
     right: auto;
     width: auto;
     bottom: 35px;
-    background: #616161;
-    color: white;
+    background: #ececec;
+    color: #313131;
     white-space: normal;
     opacity: 0;
-    padding: 12px;
+    padding: 5px 10px;
+    line-height: 17px;
       height: auto;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
       overflow: inherit;
     transition: opacity .5s;
     -webkit-transition: opacity .5s;
     -moz-transition: opacity .5s;
     -o-transition: opacity .5s;
     &:before{
-      border-top: 8px solid #616161;
+      border-top: 8px solid #ececec;
     }
   }
   &:hover{

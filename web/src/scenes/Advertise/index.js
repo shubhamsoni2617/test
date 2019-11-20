@@ -7,14 +7,13 @@ import banner from '../../assets/images/advertise-with-us-banner.png';
 import img1 from '../../assets/images/website.png';
 import img2 from '../../assets/images/mobile-app-section.png';
 import img3 from '../../assets/images/buzz.png';
-import img4 from '../../assets/images/send.svg';
 import fb from '../../assets/images/fb.png';
 import insta from '../../assets/images/insta.png';
 import social from '../../assets/images/social.png';
 import apple from '../../assets/images/apple.svg';
 import android from '../../assets/images/android.png';
 import ContactUs from '../ApiPartner/ContactUs';
-import navigateToLink from '../../shared/navigateToLink';
+import NewsLetterForm from '../../shared/components/NewsLetterForm';
 
 const Advertise = props => {
   const [advertiseData, setAdvertiseData] = useState(null);
@@ -50,17 +49,22 @@ const Advertise = props => {
           <div className="event-banner">
             <div className="container-fluid">
               <div className="row advertise-banner">
-                <div className="col-md-6 col-sm-6 adv-banner-left">
+                <div className="col-md-7 col-sm-7 adv-banner-left">
                   {advertiseData && (
                     <div className="banner-content">
                       <h2>{advertiseData.banner_title} </h2>
+                      <div
+                        dangerouslySetInnerHTML={{
+                          __html: advertiseData.banner_description
+                        }}
+                      />
                       <a href={advertiseData.button_link}>
                         {advertiseData.button_text}
                       </a>
                     </div>
                   )}
                 </div>
-                <div className="col-md-6 col-sm-6 pos-static">
+                <div className="col-md-5 col-sm-5 pos-static">
                   <div className="banner-image">
                     <img
                       src={banner}
@@ -144,7 +148,7 @@ const Advertise = props => {
               )}
 
               <div className="download-option app-option">
-                <a>
+                <a href="https://itunes.apple.com/sg/app/sistic/id500601166?mt=8">
                   <img src={apple} className="ios" alt="" />
                   <span>
                     Available on the
@@ -152,7 +156,7 @@ const Advertise = props => {
                     <strong>App Store</strong>
                   </span>
                 </a>
-                <a>
+                <a href="https://play.google.com/store/apps/details?id=com.rainmakerlabs.sistic&hl=en">
                   <img src={android} className="android" alt="" />
                   <span>
                     Get it on
@@ -185,20 +189,7 @@ const Advertise = props => {
               )}
               <div className="stay-connect buzz-connect">
                 <h3>Subscribe to receive our newsletter</h3>
-                <div className="input-group">
-                  <input
-                    type="email"
-                    className="form-control"
-                    placeholder="Enter Your email"
-                    aria-label="Username"
-                    aria-describedby="basic-addon1"
-                  />
-                  <div className="input-group-prepend">
-                    <a className="input-group-text" id="basic-addon1">
-                      <img src={img4} className="img-fluid" alt="send" />
-                    </a>
-                  </div>
-                </div>
+                <NewsLetterForm type="advertise" />
               </div>
             </div>
             <div className="app-image text-right">

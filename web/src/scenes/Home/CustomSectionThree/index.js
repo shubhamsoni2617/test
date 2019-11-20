@@ -4,8 +4,9 @@ import ShimmerEffect from '../../../shared/components/ShimmerEffect';
 import './style.scss';
 import Constants from '../../../shared/constants';
 import AdvertisementService from '../../../shared/services/AdvertisementService';
+import Image from '../../../shared/components/Image';
 
-const CustomSectionThree = ({ heading }) => {
+const CustomSectionThree = ({ heading, customData }) => {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [url, setUrl] = useState(null);
@@ -19,8 +20,15 @@ const CustomSectionThree = ({ heading }) => {
   const [volume, setVolume] = useState(null);
 
   useEffect(() => {
-    getData();
-  }, []);
+    if (customData && customData.length > 0) {
+      setData(customData);
+      setUrl(customData[0].video_url);
+      setTitle(customData[0].title);
+      setLoading(false);
+    } else if (customData && !customData.length) {
+      getData();
+    }
+  }, [customData]);
 
   const getData = () => {
     const params = {
@@ -85,7 +93,11 @@ const CustomSectionThree = ({ heading }) => {
                   data.map((vdo, index) => {
                     return (
                       <div
-                        className="video-item-image"
+                        className={
+                          vdo.video_url == url
+                            ? 'video-item-image active'
+                            : 'video-item-image'
+                        }
                         key={index}
                         onClick={() => {
                           setUrl(vdo.video_url);
@@ -99,10 +111,11 @@ const CustomSectionThree = ({ heading }) => {
                         }}
                       >
                         <span className="video-subwrapper-image">
-                          <img
+                          <Image
                             src={vdo.video_thumb}
                             alt=""
                             className="img-fluid"
+                            type="VdoSmall"
                           />
                         </span>
                         <a className="video-subwrapper-text">{vdo.title}</a>

@@ -29,42 +29,44 @@ const RecentlySearched = ({ focusHandler, history, mostViewed }) => {
 
   return (
     <div className="header-search">
-      <div className="searched-wrapper">
-        {storageValues.length ? (
-          <div className="recently-search">
-            <h3>Recently Searched</h3>
-            <ul>
-              {storageValues.map((text, index) => {
-                return (
-                  <li key={text + index}>
-                    <span onClick={() => onClickHandler(text)}>
-                      <img src={recentSearchIconImage} alt="" /> {text}
-                    </span>
-                    <a
-                      href="/"
-                      onClick={e => {
-                        e.preventDefault();
-                        clearLocalStorageHandler(index);
-                      }}
-                      className="search-listing-close-btn"
-                    >
-                      <img src={closeBlueColorImage} alt="" />
-                      <img
-                        src={closeGreyColorImage}
-                        alt=""
-                        className="search-close-mobile-btn"
-                      />
-                    </a>
-                  </li>
-                );
-              })}
-            </ul>
-          </div>
-        ) : null}
-        {mostViewed && mostViewed.length ? (
-          <MostViewed mostViewed={mostViewed} />
-        ) : null}
-      </div>
+      {storageValues.length || (mostViewed && mostViewed.length) ? (
+        <div className="searched-wrapper">
+          {storageValues.length ? (
+            <div className="recently-search">
+              <h3>Recently Searched</h3>
+              <ul id="recently-searched">
+                {storageValues.map((text, index) => {
+                  return (
+                    <li key={text + index}>
+                      <span onClick={() => onClickHandler(text)}>
+                        <img src={recentSearchIconImage} alt="" /> {text}
+                      </span>
+                      <a
+                        href="/"
+                        onClick={e => {
+                          e.preventDefault();
+                          clearLocalStorageHandler(index);
+                        }}
+                        className="search-listing-close-btn"
+                      >
+                        <img src={closeBlueColorImage} alt="" />
+                        <img
+                          src={closeGreyColorImage}
+                          alt=""
+                          className="search-close-mobile-btn"
+                        />
+                      </a>
+                    </li>
+                  );
+                })}
+              </ul>
+            </div>
+          ) : null}
+          {mostViewed && mostViewed.length ? (
+            <MostViewed mostViewed={mostViewed} />
+          ) : null}
+        </div>
+      ) : null}
     </div>
   );
 };

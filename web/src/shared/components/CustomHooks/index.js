@@ -2,9 +2,10 @@ import { useState, useEffect } from 'react';
 import ContactUsService from '../../services/ContactUsService';
 
 const useCustomWidth = () => {
-  const [width, setWidth] = useState(window.innerWidth);
+  const [width, setWidth] = useState(null);
 
   useEffect(() => {
+    handleWidth();
     window.addEventListener('resize', handleWidth);
     return () => {
       window.removeEventListener('resize', handleWidth);

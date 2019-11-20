@@ -7,7 +7,7 @@ import Timer from '../../../shared/components/Timer';
 import Image from '../../../shared/components/Image';
 import ShimmerEffect from '../../../shared/components/ShimmerEffect';
 import './style.scss';
-import { CSSTransitionGroup } from 'react-transition-group';
+import { CSSTransition } from 'react-transition-group';
 import { Link } from 'react-router-dom';
 import promoImg1 from '../../../assets/images/promo-img1.svg';
 import promoImg2 from '../../../assets/images/promo-img2.svg';
@@ -52,14 +52,17 @@ const ItemWrapper = ({ promotion, expiredText, handlePromotionExpired }) => {
           </div>
         )}
         <h3>
-          {promotion && Utilities.mobilecheck()
-            ? Utilities.showLimitedChars(promotion.title, 15)
-            : promotion.title}
+          {Utilities.showLimitedChars(
+            promotion.title,
+            Utilities.mobilecheck() ? 25 : 55
+          )}
         </h3>
       </div>
     </a>
   );
 };
+
+
 
 export default class PromotionCarousel extends Component {
   constructor(props) {
@@ -68,7 +71,8 @@ export default class PromotionCarousel extends Component {
       promotions: [],
       expiredText: '',
       loading: true,
-      callAPI: false
+      callAPI: false,
+      error: false
     };
     this.element = createRef(null);
   }
@@ -117,14 +121,17 @@ export default class PromotionCarousel extends Component {
         }
       })
       .catch(err => {
-        if (err && err.response) {
-          console.log(err.response);
-        }
+        this.setState({ error: true });
       });
   }
 
   render() {
-    const { loading, promotions, expiredText } = this.state;
+    const { loading, promotions, expiredText, error } = this.state;
+    if (!loading && promotions && promotions.length === 0) {
+      return null;
+    }
+    if (error) return null;
+
     const settings = {
       dots: true,
       infinite: false,
@@ -177,7 +184,7 @@ export default class PromotionCarousel extends Component {
               </div>
             </h2>
             <div className="carousel-dots">
-              <Link to="/promotions">
+              <Link to="/promotions" id="promotions">
                 See all{' '}
                 <img
                   src="assets/images/right-arrow.svg"
@@ -188,80 +195,80 @@ export default class PromotionCarousel extends Component {
             </div>
           </div>
           <div className="grid-container">
-            <CSSTransitionGroup
+            {/* <CSSTransitionGroup
               transitionName="shimmer-carousel"
               transitionEnter={true}
               transitionEnterTimeout={1000}
               transitionLeaveTimeout={1000}
-            >
-              {loading ? (
-                <ShimmerEffect
-                  propCls={`shm_col-xs-6 col-md-${
-                    Utilities.mobileAndTabletcheck() || Utilities.mobilecheck()
-                      ? 6
-                      : 2
+            > */}
+            {loading ? (
+              <ShimmerEffect
+                propCls={`shm_col-xs-6 col-md-${
+                  Utilities.mobileAndTabletcheck() || Utilities.mobilecheck()
+                    ? 6
+                    : 2
                   }`}
-                  height={150}
-                  count={2}
-                  type="TILE"
-                />
-              ) : Utilities.mobilecheck() ? (
-                <div className="promotions-grid-wrapper">
-                  {promotions &&
-                    promotions.map((promotion, index, array) => {
-                      if (index % 2 === 0) {
-                        if (array[index] && array[index + 1]) {
-                          return (
-                            <div key={promotion.id} className="item-wrapper">
-                              <ItemWrapper
-                                promotion={array[index]}
-                                expiredText={expiredText}
-                                handlePromotionExpired={
-                                  this.handlePromotionExpired
-                                }
-                              />
-                              <ItemWrapper
-                                promotion={array[index + 1]}
-                                expiredText={expiredText}
-                                handlePromotionExpired={
-                                  this.handlePromotionExpired
-                                }
-                              />
-                            </div>
-                          );
-                        } else if (array[index]) {
-                          return (
-                            <div key={promotion.id} className="item-wrapper">
-                              <ItemWrapper
-                                promotion={array[index]}
-                                expiredText={expiredText}
-                                handlePromotionExpired={
-                                  this.handlePromotionExpired
-                                }
-                              />
-                            </div>
-                          );
-                        }
+                height={150}
+                count={2}
+                type="TILE"
+              />
+            ) : Utilities.mobilecheck() ? (
+              <div className="promotions-grid-wrapper">
+                {promotions &&
+                  promotions.map((promotion, index, array) => {
+                    if (index % 2 === 0) {
+                      if (array[index] && array[index + 1]) {
+                        return (
+                          <div key={promotion.id} className="item-wrapper">
+                            <ItemWrapper
+                              promotion={array[index]}
+                              expiredText={expiredText}
+                              handlePromotionExpired={
+                                this.handlePromotionExpired
+                              }
+                            />
+                            <ItemWrapper
+                              promotion={array[index + 1]}
+                              expiredText={expiredText}
+                              handlePromotionExpired={
+                                this.handlePromotionExpired
+                              }
+                            />
+                          </div>
+                        );
+                      } else if (array[index]) {
+                        return (
+                          <div key={promotion.id} className="item-wrapper">
+                            <ItemWrapper
+                              promotion={array[index]}
+                              expiredText={expiredText}
+                              handlePromotionExpired={
+                                this.handlePromotionExpired
+                              }
+                            />
+                          </div>
+                        );
                       }
-                    })}
-                </div>
-              ) : (
-                <Slider {...settings}>
-                  {promotions &&
-                    promotions.map((promotion, index) => {
-                      return (
-                        <div key={promotion.id} className="item-wrapper">
-                          <ItemWrapper
-                            promotion={promotion}
-                            expiredText={expiredText}
-                            handlePromotionExpired={this.handlePromotionExpired}
-                          />
-                        </div>
-                      );
-                    })}
-                </Slider>
-              )}
-            </CSSTransitionGroup>
+                    }
+                  })}
+              </div>
+            ) : (
+                  <Slider {...settings}>
+                    {promotions &&
+                      promotions.map((promotion, index) => {
+                        return (
+                          <div key={promotion.id} className="item-wrapper">
+                            <ItemWrapper
+                              promotion={promotion}
+                              expiredText={expiredText}
+                              handlePromotionExpired={this.handlePromotionExpired}
+                            />
+                          </div>
+                        );
+                      })}
+                  </Slider>
+                )}
+            {/* </CSSTransitionGroup> */}
           </div>
         </div>
       </section>

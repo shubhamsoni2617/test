@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
-import { CSSTransitionGroup } from 'react-transition-group';
+import { CSSTransition } from 'react-transition-group';
 import moment from 'moment';
 import './style.scss';
 import MegaMenu from '../../../shared/components/MegaMenu';
@@ -8,10 +8,10 @@ import DropDown from '../../../shared/components/DropDown';
 import HomePageSearch from '../../Home/HomePageSearch';
 import MiniCart from '../../Home/MiniCart';
 import HomeService from '../../../shared/services/HomeService';
-import { ReactComponent as ManLogo } from '../../../assets/images/man.svg';
+import MainLogo from '../../../assets/images/man.svg';
 import AndroidLogo from '../../../assets/images/android.png';
 import logo from '../../../assets/images/logo.png';
-import { ReactComponent as AppleLogo } from '../../../assets/images/apple.svg';
+import AppleLogo from '../../../assets/images/apple.svg';
 import fb from '../../../assets/images/fb.svg';
 import insta from '../../../assets/images/insta-unfill.svg';
 import Calender from '../../../shared/components/Calender';
@@ -22,7 +22,7 @@ import sendImage from '../../../assets/images/send.svg';
 import AdvertisementService from '../../../shared/services/AdvertisementService';
 import Constants from '../../../shared/constants';
 
-function List({ data, menueStatus, setMenuStatus, closeSubmenu, link }) {
+function List({ data, type, menueStatus, setMenuStatus, closeSubmenu, link }) {
   if (!data || !data.length) return null;
 
   return (
@@ -43,14 +43,14 @@ function List({ data, menueStatus, setMenuStatus, closeSubmenu, link }) {
         );
       })}
       <Link
-        to="/events"
+        to={type == 'Events' ? '/events' : '/venues'}
         onClick={() => {
           setMenuStatus(false);
           closeSubmenu(false);
         }}
         className="text-center see-all-sidebar"
       >
-        See All Events
+        See All {type}
       </Link>
     </ul>
   );
@@ -59,17 +59,31 @@ function List({ data, menueStatus, setMenuStatus, closeSubmenu, link }) {
 const TopNav = props => {
   let refValue = useRef();
   const [showMegaMenu, setShowMegaMenu] = useState(false);
+  const [flag, setFlag] = useState(false);
   const [menuActive, setMenuActive] = useState(false);
+  const [megaMenuAnimating, setMegaMenuAnimating] = useState(false);
   const [pathName, setPathName] = useState('events');
   const [headerClass, setHeaderClass] = useState(false);
-  const [byVenueEvent, setByVenueEvent] = useState([]);
-  const [byGenreEvent, setByGenreEvent] = useState([]);
-  const [showElementsInHeader, setShowElementsInHeader] = useState(4);
+  const [byVenueEvent, setByVenueEvent] = useState(
+    props.response && props.response.venuesData
+      ? props.response.venuesData.data
+      : []
+  );
+  const [byGenreEvent, setByGenreEvent] = useState(
+    props.response && props.response.genreData
+      ? props.response.genreData.data
+      : []
+  );
+  const [showElementsInHeader] = useState(4);
   const [changeHeader, setChangeHeader] = useState(false);
   const [headerClassScroll, setHeaderClassScroll] = useState(false);
   const [stickyHeader, setStickyHeader] = useState(false);
   const [mostViewed, setMostViewed] = useState(null);
-  const [featuredEvents, setFeaturedEvents] = useState([]);
+  const [featuredEvents, setFeaturedEvents] = useState(
+    props.response && props.response.findAnEventAddsData
+      ? props.response.findAnEventAddsData.data
+      : []
+  );
   const miniCartData = [
     { id: '1', img: 'assets/images/explore.png' },
     { id: '2', img: 'assets/images/explore.png' },
@@ -78,43 +92,57 @@ const TopNav = props => {
 
   useEffect(() => {
     fetchMostViewedService();
-    const first = 0;
-    const limit = 5;
-    const search = '';
-    HomeService.getHomepageVenues(first, limit, search)
-      .then(res => {
-        setByVenueEvent(res.data.data);
-      })
-      .catch(err => {
-        console.log(err);
-      });
-
-    HomeService.getGenre()
-      .then(res => {
-        var result = Object.keys(res.data.data).map(key => {
-          return res.data.data[key];
+    if (window.__INITIAL_DATA__ && window.__INITIAL_DATA__.venuesData) {
+      setByVenueEvent(window.__INITIAL_DATA__.venuesData.data);
+    } else {
+      const first = 0;
+      const limit = 5;
+      const search = '';
+      HomeService.getHomepageVenues(first, limit, search)
+        .then(res => {
+          setByVenueEvent(res.data.data);
+        })
+        .catch(err => {
+          console.log(err);
         });
-        setByGenreEvent(result);
+    }
+    if (window.__INITIAL_DATA__ && window.__INITIAL_DATA__.genreData) {
+      setByGenreEvent(window.__INITIAL_DATA__.genreData.data);
+    } else {
+      HomeService.getGenre()
+        .then(res => {
+          var result = Object.keys(res.data.data).map(key => {
+            return res.data.data[key];
+          });
+          setByGenreEvent(result);
+        })
+        .catch(err => {
+          console.log(err);
+        });
+    }
+    if (
+      window.__INITIAL_DATA__ &&
+      window.__INITIAL_DATA__.findAnEventAddsData
+    ) {
+      setFeaturedEvents(window.__INITIAL_DATA__.findAnEventAddsData.data);
+    } else {
+      AdvertisementService.getFindAnEventAds({
+        client: Constants.CLIENT,
+        limit: 2,
+        first: 0
       })
-      .catch(err => {
-        console.log(err);
-      });
+        .then(res => {
+          if (res && res.data) {
+            setFeaturedEvents(res.data.data);
+          }
+        })
+        .catch(err => {
+          if (err && err.response) {
+            console.log(err.response);
+          }
+        });
+    }
 
-    AdvertisementService.getFindAnEventAds({
-      client: Constants.CLIENT,
-      limit: 2,
-      first: 0
-    })
-      .then(res => {
-        if (res && res.data) {
-          setFeaturedEvents(res.data.data);
-        }
-      })
-      .catch(err => {
-        if (err && err.response) {
-          console.log(err.response);
-        }
-      });
     if (props.history.location.pathname) processPath(props.history.location);
 
     const unlisten = props.history.listen(location => {
@@ -155,6 +183,10 @@ const TopNav = props => {
   };
 
   const processPath = location => {
+    setTimeout(() => {
+      document.body.classList.remove('fixed-body');
+    }, 100);
+
     if (location.pathname) {
       let pathArr = location.pathname.split('/');
       if (pathArr.length) {
@@ -172,7 +204,8 @@ const TopNav = props => {
         pathArr.length &&
         (pathArr[1] === 'events' ||
           pathArr[1] === 'promotions' ||
-          pathArr[1] === 'attraction')
+          pathArr[1] === 'attraction' ||
+          pathArr[1] === 'explore')
       ) {
         setPathName(pathArr[1]);
         setMenuActive(true);
@@ -183,7 +216,8 @@ const TopNav = props => {
         pathArr[1] === 'system-licensing' ||
         pathArr[1] === 'advertise' ||
         pathArr[1] === 'sell-event-tickets' ||
-        pathArr[1] === 'b2b'
+        pathArr[1] === 'b2b' ||
+        pathArr[1] === 'apipartners'
       ) {
         setChangeHeader(true);
         setPathName(pathArr[1]);
@@ -202,22 +236,42 @@ const TopNav = props => {
   };
   const handleNavigationOpen = () => {
     refValue.classList.add('active');
-    document.body.classList.add('body-overlay');
+    document.body.classList.add('body-overlay', 'fixed-body');
   };
 
   const handleNavigationClose = () => {
     refValue.classList.remove('active');
-    document.body.classList.remove('body-overlay');
+    document.body.classList.remove('body-overlay', 'fixed-body');
   };
 
   const handleMouseStatus = status => {
+    refValue.flag = status;
+    if (megaMenuAnimating || status === showMegaMenu) return;
+
+    setTimeout(() => {
+      if (refValue && refValue.flag === showMegaMenu) return;
+      setMegaMenuAnimating(true);
+      if (status === true) {
+        document.body.classList.add('body-overlay');
+      }
+      if (status === false) {
+        document.body.classList.remove('body-overlay');
+      }
+      setShowMegaMenu(status);
+      setTimeout(() => {
+        setMegaMenuAnimating(false);
+      }, 500);
+    }, 600);
+  };
+
+  const handleMouseStatusMobile = status => {
     if (status === true) {
       setTimeout(() => setShowMegaMenu(status), 0);
-      document.body.classList.add('body-overlay');
+      // document.body.classList.add('body-overlay');
     }
     if (status === false) {
       setTimeout(() => setShowMegaMenu(status), 0);
-      document.body.classList.remove('body-overlay');
+      // document.body.classList.remove('body-overlay');
     }
   };
 
@@ -226,9 +280,9 @@ const TopNav = props => {
     handleNavigationClose();
     setTimeout(() => {
       props.history.push(
-        `/events/search?s=${moment(data.from).format('YYYY-MM-DD')}--${moment(
-          data.to
-        ).format('YYYY-MM-DD')}`
+        `/events/search?s=${moment(data.localfilteredDateRange.from).format(
+          'YYYY-MM-DD'
+        )}--${moment(data.localfilteredDateRange.to).format('YYYY-MM-DD')}`
       );
     }, 100);
   };
@@ -267,12 +321,14 @@ const TopNav = props => {
             <div className="top-header-right">
               <ul>
                 <li className="user-icon">
-                  <ManLogo className="img-fluid" />
+                  <a href="https://ticketing.sistic.com.sg/sistic/patron/management">
+                    <img src={MainLogo} className="img-fluid" alt="send" />
+                  </a>
                   <span></span>
                 </li>
                 <MiniCart data={miniCartData} />
                 <li className="ticket-withus">
-                  <a>Ticket With Us</a>
+                  <Link to="/sell-event-tickets">Ticket With Us</Link>
                 </li>
               </ul>
             </div>
@@ -288,21 +344,18 @@ const TopNav = props => {
                   onMouseLeave={() => handleMouseStatus(false)}
                 >
                   <a>Events</a>
-                  <CSSTransitionGroup
-                    transitionName="mega"
-                    transitionEnter={true}
-                    transitionEnterTimeout={300}
-                    transitionLeaveTimeout={300}
+                  <CSSTransition
+                    in={showMegaMenu}
+                    timeout={1000}
+                    classNames="mega"
                   >
-                    {showMegaMenu && (
-                      <MegaMenu
-                        handleMouseStatus={handleMouseStatus}
-                        byGenreEvent={byGenreEvent}
-                        byVenueEvent={byVenueEvent}
-                        featuredEvents={featuredEvents}
-                      />
-                    )}
-                  </CSSTransitionGroup>
+                    <MegaMenu
+                      handleMouseStatus={handleMouseStatus}
+                      byGenreEvent={byGenreEvent}
+                      byVenueEvent={byVenueEvent}
+                      featuredEvents={featuredEvents}
+                    />
+                  </CSSTransition>
                 </li>
                 <li
                   className={
@@ -318,8 +371,12 @@ const TopNav = props => {
                 >
                   <Link to="/promotions">Promotions</Link>
                 </li>
-                <li>
-                  <Link to="/explore/articlelist">Explore</Link>
+                <li
+                  className={
+                    menuActive && pathName === 'explore' ? 'active' : ''
+                  }
+                >
+                  <Link to="/explore">Explore</Link>
                 </li>
               </ul>
             </div>
@@ -356,21 +413,21 @@ const TopNav = props => {
             ></a>
             <ul className="user-details">
               <li className="user-icon">
-                <Link to="/">
-                  <ManLogo className="img-fluid" />
+                <a href="https://ticketing.sistic.com.sg/sistic/patron/management">
+                  <img src={MainLogo} className="img-fluid" alt="send" />
                   <span></span>
-                </Link>
+                </a>
                 <span>Login/ Register</span>
               </li>
               <li className="ticket-withus">
-                <a>Ticket With Us</a>
+                <Link to="/sell-event-tickets">Ticket With Us</Link>
               </li>
             </ul>
             <ul>
               <li className="has-submenu">
                 <a
                   className={`${showMegaMenu ? 'active' : ''}`}
-                  onClick={() => handleMouseStatus(!showMegaMenu)}
+                  onClick={() => handleMouseStatusMobile(!showMegaMenu)}
                 >
                   Events
                 </a>
@@ -396,6 +453,7 @@ const TopNav = props => {
                           >
                             <List
                               data={byGenreEvent}
+                              type="Events"
                               menueStatus={menueStatus}
                               setMenuStatus={setMenuStatus}
                               closeSubmenu={handleNavigationClose}
@@ -427,7 +485,10 @@ const TopNav = props => {
                           >
                             <DateRangeFilter
                               filteredDateRange={{ from: '', to: '' }}
-                              handleFilters={handleFilters}
+                              handleFilters={data => {
+                                handleFilters(data);
+                                setMenuStatus();
+                              }}
                               autoSubmit={false}
                               filterFlag={false}
                             />
@@ -457,6 +518,7 @@ const TopNav = props => {
                           >
                             <List
                               data={byVenueEvent}
+                              type="Venues"
                               menueStatus={menueStatus}
                               setMenuStatus={setMenuStatus}
                               closeSubmenu={handleNavigationClose}
@@ -480,10 +542,7 @@ const TopNav = props => {
                 </Link>
               </li>
               <li>
-                <Link
-                  to="/explore/articlelist"
-                  onClick={() => handleNavigationClose()}
-                >
+                <Link to="/explore" onClick={() => handleNavigationClose()}>
                   Explore
                 </Link>
               </li>
@@ -620,10 +679,10 @@ const TopNav = props => {
                             <Link to="/venues">Locate a Venue</Link>
                           </li>
                           <li className="has-submenu">
-                            <Link to="/">Blog</Link>
+                            <Link to="/articles">Blog</Link>
                           </li>
                           <li className="has-submenu">
-                            <Link to="/">Media</Link>
+                            <Link to="/events">Media</Link>
                           </li>
                         </ul>
                       </SubmenuWrap>
@@ -672,10 +731,10 @@ const TopNav = props => {
               <li className="sistic-on-mobile">
                 <span>Sistic on Mobile</span>
                 <div className="download-option">
-                  <Link to="/">
-                    <AppleLogo className="ios" />
+                  <Link to="https://itunes.apple.com/sg/app/sistic/id500601166?mt=8">
+                    <img src={AppleLogo} className="ios" alt="send" />
                     <span>
-                      Available on the
+                      Available
                       <br />
                       <strong>App Store</strong>
                     </span>

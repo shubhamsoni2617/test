@@ -1,6 +1,6 @@
 import React, { useState, useEffect, memo } from 'react';
 import PropTypes from 'prop-types';
-import BigBanner from '../../../assets/images/big_banner.png';
+import BigBanner from '../../../assets/images/Big_Banner.png';
 import Horizontal from '../../../assets/images/horizontal.png';
 import Vertical from '../../../assets/images/vertical.png';
 import Tile from '../../../assets/images/Vertical Tile.png';
@@ -8,7 +8,9 @@ import Small from '../../../assets/images/small.png';
 import Medium from '../../../assets/images/noimage.png';
 import MediumVertical from '../../../assets/images/mediumVertical.png';
 import MediumHorizontal from '../../../assets/images/mediumHorizontal.jpg';
-
+import BigBannerMobile from '../../../assets/images/Big_Banner.png';
+import NoImage from '../../../assets/images/No image-.png';
+import Smaller from '../../../assets/images/smaller.png';
 import './style.scss';
 
 function Image(props) {
@@ -22,12 +24,15 @@ function Image(props) {
   useEffect(() => {
     SetSource(!props.largeImage ? props.src : props.largeImage);
     if (!props.src) onError();
+    setTimeout(() => {
+      setClassName('loaded');
+    }, 3000);
   }, [props.src, props.largeImage]);
 
   const onLoad = () => {
     setTimeout(() => {
       setClassName('loaded');
-    }, 300);
+    }, 500);
   };
 
   const onError = () => {
@@ -50,11 +55,21 @@ function Image(props) {
         newImg = BigBanner;
         break;
 
+      case 'BigBannerMobile':
+        newImg = BigBannerMobile;
+        break;
+
       case 'Medium':
         newImg = Medium;
         break;
       case 'Small':
         newImg = Small;
+        break;
+      case 'VdoSmall':
+        newImg = NoImage;
+        break;
+      case 'Smaller':
+        newImg = Smaller;
         break;
       default:
         newImg = Horizontal;
@@ -69,13 +84,13 @@ function Image(props) {
   return (
     <div className="image-conatiner">
       <img
-        className={`image ${props.className} ${className}`}
+        className={`image ${props.className || ''} ${className}`}
         src={source}
         alt="pic"
         onLoad={() => onLoad()}
       />
       <img
-        className={`image ${props.className} preview ${className}`}
+        className={`image ${props.className || ''} preview ${className}`}
         src={props.src}
         alt="pic"
         onError={() => onError()}

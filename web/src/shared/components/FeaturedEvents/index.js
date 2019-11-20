@@ -3,10 +3,9 @@ import Slider from 'react-slick';
 import './style.scss';
 import Constants from '../../constants';
 import Utilities from '../../utilities';
-import { CSSTransitionGroup } from 'react-transition-group';
+// import { CSSTransitionGroup } from 'react-transition-group';
 import ShimmerEffect from '../ShimmerEffect';
 import Image from '../Image';
-
 const Item = ({ event }) => {
   return (
     <a href={event && event.navigation_link} target="_blank">
@@ -53,28 +52,6 @@ const Item = ({ event }) => {
   );
 };
 
-const SampleNextArrow = props => {
-  const { className, style, onClick } = props;
-  return (
-    <div
-      className={className}
-      style={{ ...style, display: 'block' }}
-      onClick={onClick}
-    />
-  );
-};
-
-const SamplePrevArrow = props => {
-  const { className, style, onClick } = props;
-  return (
-    <div
-      className={className}
-      style={{ ...style, display: 'block' }}
-      onClick={onClick}
-    />
-  );
-};
-
 const FeaturedEvents = props => {
   const { api, heading, cssClassName } = props;
   const element = useRef(null);
@@ -82,26 +59,22 @@ const FeaturedEvents = props => {
   const [serverErr, setServerErr] = useState('');
   const [loading, setLoading] = useState(true);
   const [callAPI, setCallAPI] = useState(false);
-
   useEffect(() => {
     window.addEventListener('scroll', scrollHandler, true);
     return () => {
       window.removeEventListener('scroll', scrollHandler, true);
     };
   }, []);
-
   useEffect(() => {
     if (callAPI) {
       getFeaturedEvents();
     }
   }, [callAPI]);
-
   const scrollHandler = () => {
     if (!callAPI) {
       setCallAPI(true);
     }
   };
-
   const getFeaturedEvents = () => {
     const params = {
       client: Constants.CLIENT
@@ -121,19 +94,24 @@ const FeaturedEvents = props => {
         }
       });
   };
-
   const settings = {
     dots: true,
     infinite: false,
     speed: 500,
     rows: 2,
-    slidesPerRow: 5
+    slidesPerRow: 5,
+    responsive: [{
+      breakpoint: 1024,
+      settings: {
+        slidesPerRow: 3
+      }
+    }
+    ]
   };
 
   if (!loading && featuredEvents && featuredEvents.length === 0) {
     return null;
   }
-
   return (
     <section
       className={
@@ -157,32 +135,31 @@ const FeaturedEvents = props => {
             </div>
           )}
         </div>
-        <CSSTransitionGroup
+        {/* <CSSTransitionGroup
           transitionName="shimmer-carousel"
           transitionEnter={true}
           transitionEnterTimeout={1000}
           transitionLeaveTimeout={1000}
-        >
-          {loading ? (
-            <ShimmerEffect
-              propCls={`shm_col-xs-6 col-md-6`}
-              height={150}
-              count={2}
-              type="TILE"
-            />
-          ) : Utilities.mobilecheck() ? (
-            <div
-              style={{ width: '30em', overflowX: 'auto', whiteSpace: 'nowrap' }}
-            >
-              <div className="grid-container">
-                {featuredEvents &&
-                  featuredEvents.map((event, i) => {
-                    return <Item event={event} key={i} />;
-                  })}
-              </div>
+        > */}
+        {loading ? (
+          <ShimmerEffect
+            propCls={'shm_col-xs-6 col-md-6'}
+            height={150}
+            count={2}
+            type="TILE"
+          />
+        ) : Utilities.mobilecheck() ? (
+          <div
+            style={{ width: '30em', overflowX: 'auto', whiteSpace: 'nowrap' }}
+          >
+            <div className="grid-container">
+              {featuredEvents &&
+                featuredEvents.map((event, i) => {
+                  return <Item event={event} key={i} />;
+                })}
             </div>
-          ) : (
-            <Slider {...settings}>
+          </div>
+        ) : <Slider {...settings}>
               {featuredEvents &&
                 featuredEvents.map((event, index) => {
                   return (
@@ -192,11 +169,10 @@ const FeaturedEvents = props => {
                   );
                 })}
             </Slider>
-          )}
-        </CSSTransitionGroup>
+        }
+        {/* </CSSTransitionGroup> */}
       </div>
     </section>
   );
 };
-
 export default FeaturedEvents;

@@ -12,8 +12,8 @@ const BreadcrumbSlug = ({ breadcrumbSlug }) => {
                 {breadcrumbSlug.length === i + 1 ? (
                   link.title
                 ) : (
-                  <Link to={link.path}>{link.title}/</Link>
-                )}
+                    <Link to={link.path}>{link.title}</Link>
+                  )}
               </li>
             );
           })}

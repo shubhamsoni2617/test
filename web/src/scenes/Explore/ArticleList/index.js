@@ -2,27 +2,26 @@ import React, { useState, useEffect } from 'react';
 import CardList from './CardList';
 import DownArrowBlue from '../../../assets/images/down-arrow-blue.svg';
 import Breadcrumb from '../../../scenes/App/Breadcrumb';
-import loaderImage from '../../../assets/images/loader.svg';
 import filterIcon from '../../../assets/images/events/filter.svg';
 import ShimmerEffect from '../../../shared/components/ShimmerEffect';
 import Utilities from '../../../shared/utilities';
 import './style.scss';
 import ExploreService from '../../../shared/services/ExploreService';
 import Filter from './Filter';
-import { useCustomWidth } from '../../../shared/components/CustomHooks';
+import loaderImage from '../../../assets/images/loader-tick3.gif';
 import useStickyPanel from '../../../shared/hooks/useStickyPanel';
 import BreadCrumbData from './breadCrumbData';
 import selectOrClearAll from './selectOrClearAll';
 import fetchFilterData from './fetchFilterData';
-const ArticleList = props => {
-  const [width] = useCustomWidth();
+import handleFilter from './handleFilters';
+const ArticleList = ({ history }) => {
   let stickyObj = {
     sticky: { top: 153 },
     pixelBuffer: 153,
     distanceFromTop: 153
   };
   const [scrollContainerRef, styleObj] = useStickyPanel(stickyObj);
-  let mobileConstant = Utilities.mobileAndTabletcheck() ? 4 : 6;
+  let mobileConstant = Utilities.mobileAndTabletcheck() ? 6 : 9;
   const [articleList, setArticleList] = useState([]);
   const [constant, setConstant] = useState(mobileConstant);
   const [loadMore, setLoadMore] = useState(false);
@@ -35,13 +34,13 @@ const ArticleList = props => {
   const [showTags, setShowTags] = useState(false);
   const [showCategories, setShowCategories] = useState(false);
   const [filteredTagsForMobile, setFilteredTagsForMobile] = useState([]);
+  const [loadWithFilters, setLoadWithFilters] = useState(false);
   const [
     filteredCategoriesForMobile,
     setFilteredCategoriessForMobile
   ] = useState([]);
 
-  let mobileCheck =
-    (showTags && width <= 767) || (showCategories && width <= 767);
+  let mobileCheck = showTags || showCategories;
   useEffect(() => {
     fetchFilterData(setCategories, ExploreService.getCategories);
     fetchFilterData(setTags, ExploreService.getTags);
@@ -52,7 +51,6 @@ const ArticleList = props => {
   }, [constant, filteredTags.toString(), filteredCategories.toString()]);
 
   const getArticleList = () => {
-    let articleListData = [...articleList];
     const params = {
       first: first,
       client: 1,
@@ -61,19 +59,22 @@ const ArticleList = props => {
       tags: filteredTags.toString()
     };
     if (!loadMore) {
+      setLoadWithFilters(true);
       params.first = 0;
       params.limit = mobileConstant;
       setFirst(0);
       setConstant(mobileConstant);
-      articleListData = [];
-      setArticleList([]);
       setTotalResults(0);
     }
     setTimeout(() => {
       ExploreService.getExploreArticleList(params)
         .then(res => {
-          console.log(res.data.total_records);
-          setArticleList([...articleListData, ...res.data.data]);
+          if (loadMore) {
+            setArticleList([...articleList, ...res.data.data]);
+          } else {
+            setArticleList(res.data.data);
+          }
+          setLoadWithFilters(false);
           setTotalResults(res.data.total_records);
           setLoadMore(false);
         })
@@ -100,47 +101,28 @@ const ArticleList = props => {
 
   const handleFilters = (selected, isChecked, filterTitle) => {
     if (filterTitle === 'Tags') {
-      let tagsToSearch = [...filteredTags];
-      const tagsUpdated = [...tags];
-      let index = tagsUpdated.findIndex(tag => tag.id === selected);
-      tagsUpdated[index].isChecked = isChecked;
-      setTags(tagsUpdated);
-
-      if (isChecked) {
-        tagsToSearch.push(selected);
-        setFilteredTagsForMobile(tagsToSearch);
-        if (!mobileCheck) {
-          setFilteredTags(tagsToSearch);
-        }
-      } else {
-        let i = tagsToSearch.indexOf(selected);
-        tagsToSearch.splice(i, 1);
-        setFilteredTagsForMobile(tagsToSearch);
-        if (!mobileCheck) {
-          setFilteredTags(tagsToSearch);
-        }
-      }
+      handleFilter(
+        isChecked,
+        tags,
+        setTags,
+        selected,
+        setFilteredTagsForMobile,
+        filteredTags,
+        setFilteredTags,
+        mobileCheck
+      );
     }
     if (filterTitle === 'Categories') {
-      let categoriesToSearch = [...filteredCategories];
-      const categoriesUpdated = [...categories];
-      let index = categoriesUpdated.findIndex(tag => tag.id === selected);
-      categoriesUpdated[index].isChecked = isChecked;
-      setCategories(categoriesUpdated);
-      if (isChecked) {
-        categoriesToSearch.push(selected);
-        setFilteredCategoriessForMobile(categoriesToSearch);
-        if (!mobileCheck) {
-          setFilteredCategories(categoriesToSearch);
-        }
-      } else {
-        let i = categoriesToSearch.indexOf(selected);
-        categoriesToSearch.splice(i, 1);
-        setFilteredCategoriessForMobile(categoriesToSearch);
-        if (!mobileCheck) {
-          setFilteredCategories(categoriesToSearch);
-        }
-      }
+      handleFilter(
+        isChecked,
+        categories,
+        setCategories,
+        selected,
+        setFilteredCategoriessForMobile,
+        filteredCategories,
+        setFilteredCategories,
+        mobileCheck
+      );
     }
   };
 
@@ -159,7 +141,7 @@ const ArticleList = props => {
   };
 
   const filterComponent = (data, title, showComponent) => {
-    return showComponent || width > 767 ? (
+    return showComponent || !Utilities.mobilecheck() ? (
       <Filter
         dataToFilter={data}
         handleFilters={handleFilters}
@@ -190,7 +172,7 @@ const ArticleList = props => {
                   ref={scrollContainerRef}
                 >
                   <div className="inner" style={styleObj}>
-                    {width > 767 && (
+                    {!Utilities.mobilecheck() && (
                       <div className="filter-heading">
                         <h3>FILTERS</h3>
                         <span
@@ -209,12 +191,29 @@ const ArticleList = props => {
                 </div>
               </div>
             </div>
-            <div className={`events-listing ${isNaN(totalResults) ? `article-list-notfound` : ``}`}>
+            <div
+              className={`events-listing ${
+                isNaN(totalResults) ? `article-list-notfound` : ``
+                }`}
+            >
               <div className="events-section">
                 <CardList
                   articleList={articleList}
                   totalRecords={totalResults}
+                  history={history}
                 />
+                {loadWithFilters && articleList.length ? (
+                  <img
+                    className="filter-loader"
+                    alt="filter loader"
+                    src={loaderImage}
+                  />
+                ) : null}
+                {/* <img
+                  className="filter-loader"
+                  alt="filter loader"
+                  src={loaderImage}
+                /> */}
                 {loadMore && (
                   <ShimmerEffect
                     propCls={`${

@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
-import { CSSTransitionGroup } from 'react-transition-group';
+import { CSSTransition } from 'react-transition-group';
 import Carousel from '../../../shared/components/Carousel';
 import rightArrow from '../../../assets/images/right-arrow.svg';
 import ShimmerEffect from '../../../shared/components/ShimmerEffect';
@@ -40,7 +40,7 @@ const CarouselConatiner = props => {
             element.current.classList.add('hide-container');
           }
         })
-        .catch(err => {
+        .catch(() => {
           setError(true);
           setLoading(false);
         });
@@ -48,12 +48,21 @@ const CarouselConatiner = props => {
   }, [callAPI]);
 
   const scrollHandler = () => {
-    if (!callAPI && window.pageYOffset >= element.current.offsetTop - 400) {
+    if (
+      !callAPI &&
+      element &&
+      element.current &&
+      window.pageYOffset >= element.current.offsetTop - 400
+    ) {
       setCallAPI(true);
     }
   };
 
   if (error) {
+    return null;
+  }
+
+  if (!loading && data && data.length === 0) {
     return null;
   }
 
@@ -64,46 +73,46 @@ const CarouselConatiner = props => {
           <div className="section-top-wrapper">
             <h2>{props.title}</h2>
             <div className="carousel-dots">
-              <Link to="/events">
+              <Link to="/events" id={props.classStr}>
                 See all{' '}
                 <img src={rightArrow} className="img-fluid" alt="arrow" />
                 &nbsp;
               </Link>
             </div>
           </div>
+          {/* <CSSTransitionGroup
+            transitionName="shimmer-carousel"
+            transitionEnter={true}
+            transitionEnterTimeout={1000}
+            transitionLeaveTimeout={1000}
+          > */}
+          {loading && (
+            <ShimmerEffect
+              propCls={`col-md-2`}
+              height={298}
+              count={6}
+              type="TILE"
+            />
+          )}
+          {/* </CSSTransitionGroup>
           <CSSTransitionGroup
             transitionName="shimmer-carousel"
             transitionEnter={true}
             transitionEnterTimeout={1000}
             transitionLeaveTimeout={1000}
-          >
-            {loading && (
-              <ShimmerEffect
-                propCls={`col-md-2`}
-                height={298}
-                count={6}
-                type="TILE"
-              />
-            )}
-          </CSSTransitionGroup>
-          <CSSTransitionGroup
-            transitionName="shimmer-carousel"
-            transitionEnter={true}
-            transitionEnterTimeout={1000}
-            transitionLeaveTimeout={1000}
-          >
-            {!loading && data && data.length && (
-              <Carousel
-                imgArray={data}
-                arrows={props.arrows}
-                slidesToShow={6}
-                slidesToScroll={6}
-                dots={true}
-                autoplay={props.autoplay}
-                infinite={props.infinite}
-              />
-            )}
-          </CSSTransitionGroup>
+          > */}
+          {!loading && data && data.length && (
+            <Carousel
+              imgArray={data}
+              arrows={props.arrows}
+              slidesToShow={6}
+              slidesToScroll={6}
+              dots={true}
+              autoplay={props.autoplay}
+              infinite={props.infinite}
+            />
+          )}
+          {/* </CSSTransitionGroup> */}
         </div>
       </section>
     </div>

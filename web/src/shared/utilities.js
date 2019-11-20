@@ -73,7 +73,16 @@ class Utilities {
       .substr(url.lastIndexOf('.'));
   };
 
+  static isBrowser() {
+    if (typeof navigator === 'undefined') return false;
+    if (typeof window === 'undefined') return false;
+
+    return true;
+  }
+
   static mobilecheck = () => {
+    if (typeof navigator === 'undefined' || typeof window === 'undefined')
+      return false;
     var check = false;
     (function(a) {
       if (
@@ -90,6 +99,8 @@ class Utilities {
   };
 
   static mobileAndTabletcheck = () => {
+    if (typeof navigator === 'undefined' || typeof window === 'undefined')
+      return false;
     var check = false;
     (function(a) {
       if (
@@ -104,6 +115,26 @@ class Utilities {
     })(navigator.userAgent || navigator.vendor || window.opera);
     return check;
   };
+
+  static  getMobileOperatingSystem() {
+    var userAgent = navigator.userAgent || navigator.vendor || window.opera;
+
+        // Windows Phone must come first because its UA also contains "Android"
+      if (/windows phone/i.test(userAgent)) {
+          return "unknown"; /// we don't have app for windows phone
+      }
+
+      if (/android/i.test(userAgent)) {
+          return "Android";
+      }
+
+      // iOS detection from: http://stackoverflow.com/a/9039885/177710
+      if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
+          return "iOS";
+      }
+
+      return "unknown";
+  }
 }
 
 export default Utilities;

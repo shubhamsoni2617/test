@@ -7,6 +7,6 @@ export default {
   breadcrumb_slug: [
     { path: '/', title: 'Home' },
     { path: '/explore', title: 'Explore' },
-    { path: '/article', title: 'Article' }
+    { path: '/article', title: 'Listing' }
   ]
 };

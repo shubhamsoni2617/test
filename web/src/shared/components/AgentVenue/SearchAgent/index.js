@@ -6,7 +6,7 @@ import AgentService from '../../../services/AgentService';
 import AgentVenuePopUp from '../../AgentVenuePopUp';
 import Utilities from '../../../utilities';
 import ShimmerEffect from '../../ShimmerEffect';
-import { CSSTransitionGroup } from 'react-transition-group';
+import { CSSTransition } from 'react-transition-group';
 import useStickyPanel from '../../../hooks/useStickyPanel';
 import './style.scss';
 import { Link } from 'react-scroll';
@@ -266,22 +266,22 @@ const SearchAgent = props => {
                   <p>
                     {item.address},{item.country}
                   </p>
-                  <CSSTransitionGroup
+                  {/* <CSSTransitionGroup
                     transitionName="mega"
                     transitionEnter={true}
                     transitionEnterTimeout={300}
                     transitionLeaveTimeout={300}
-                  >
-                    {item.id === popUpDetail.id && (
-                      <AgentVenuePopUp
-                        item={item}
-                        popUpDetail={popUpDetail}
-                        venue={venue}
-                        currentlyShowingData={popUpDetail.currentlyShowingData}
-                        closePopup={closePopup}
-                      />
-                    )}
-                  </CSSTransitionGroup>
+                  > */}
+                  {item.id === popUpDetail.id && (
+                    <AgentVenuePopUp
+                      item={item}
+                      popUpDetail={popUpDetail}
+                      venue={venue}
+                      currentlyShowingData={popUpDetail.currentlyShowingData}
+                      closePopup={closePopup}
+                    />
+                  )}
+                  {/* </CSSTransitionGroup> */}
                 </li>
               );
             })}

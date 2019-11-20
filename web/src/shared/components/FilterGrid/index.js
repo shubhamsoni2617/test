@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef, memo } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import { CSSTransitionGroup } from 'react-transition-group';
+import { CSSTransition } from 'react-transition-group';
 import VenueFilter from '../VenueFilter';
 import { Submenu } from '../Submenu';
 import Utilities from '../../utilities';
@@ -33,7 +33,7 @@ const FilterGrid = props => {
   useEffect(() => {
     setData(props.data || []);
     if (Utilities.mobilecheck()) {
-      setLimit(data.length);
+      setLimit(props.data.length);
     }
   }, [props.data]);
 
@@ -100,7 +100,6 @@ const FilterGrid = props => {
   };
 
   if (!data.length) return null;
-
   return (
     <div className="filter-grid">
       <div className="filter-grid-heading">
@@ -130,13 +129,17 @@ const FilterGrid = props => {
           </li>
         </ul>
       </div>
+
       <Submenu>
         {(menueStatus, setMenuStatus) => (
           <>
             <button
               className={`backbutton ${menueStatus ? 'active' : ''}`}
               type="button"
-              onClick={() => setMenuStatus(!menueStatus)}
+              onClick={() => {
+                setMenuStatus(!menueStatus);
+                props.setFixed(true);
+              }}
             >
               {buttonText}
             </button>
@@ -152,6 +155,7 @@ const FilterGrid = props => {
                     onClick={() => {
                       // resetFilters && resetFilters();
                       setMenuStatus(false);
+                      props.setFixed(false);
                     }}
                   >
                     <img src="../../assets/images/next.svg"></img>
@@ -169,42 +173,40 @@ const FilterGrid = props => {
               </div>
               <div className="filters-panel open">
                 <ul>
-                  <CSSTransitionGroup
+                  {/* <CSSTransitionGroup
                     transitionName="dropdown"
                     transitionEnter={true}
                     transitionEnterTimeout={300}
                     transitionLeaveTimeout={300}
-                  >
-                    {data.length &&
-                      data.slice(0, limit).map((item, key) => {
-                        let id = 'item-' + item.id;
-                        let isChecked = false;
-                        let index;
-                        if (selectedFilters) {
-                          index = selectedFilters.indexOf(item.id);
-                          isChecked = index > -1;
-                        }
-                        return (
-                          <li key={key}>
-                            <input
-                              checked={isChecked}
-                              onChange={e => onChange(e, data[key].id)}
-                              className="styled-checkbox"
-                              type="checkbox"
-                              id={id}
-                              value=""
-                            />
-                            <label htmlFor={id}>
-                              {item.name}{' '}
-                              {item.events_count
-                                ? `(${item.events_count})`
-                                : ''}
-                              {item.attractions ? `(${item.attractions})` : ''}
-                            </label>
-                          </li>
-                        );
-                      })}
-                  </CSSTransitionGroup>
+                  > */}
+                  {data.length &&
+                    data.slice(0, limit).map((item, key) => {
+                      let id = 'item-' + item.id;
+                      let isChecked = false;
+                      let index;
+                      if (selectedFilters) {
+                        index = selectedFilters.indexOf(item.id);
+                        isChecked = index > -1;
+                      }
+                      return (
+                        <li key={key}>
+                          <input
+                            checked={isChecked}
+                            onChange={e => onChange(e, data[key].id)}
+                            className="styled-checkbox"
+                            type="checkbox"
+                            id={id}
+                            value=""
+                          />
+                          <label htmlFor={id}>
+                            {item.name}{' '}
+                            {item.events_count ? `(${item.events_count})` : ''}
+                            {item.attractions ? `(${item.attractions})` : ''}
+                          </label>
+                        </li>
+                      );
+                    })}
+                  {/* </CSSTransitionGroup> */}
                 </ul>
                 {props.limit !== data.length && !Utilities.mobilecheck() ? (
                   <>
@@ -246,6 +248,8 @@ const FilterGrid = props => {
                 <button
                   onClick={() => {
                     setMenuStatus(false);
+                    props.setFixed(false);
+                    props.toggleFilterSection();
                     applyFilters();
                   }}
                 >

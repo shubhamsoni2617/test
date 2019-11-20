@@ -9,7 +9,7 @@ import noEvent from '../../assets/images/no-event.svg';
 import Breadcrub from '../../scenes/App/Breadcrumb';
 import ListView from '../../assets/images/list-view.svg';
 import GridView from '../../assets/images/grid-view.svg';
-import loaderImage from '../../assets/images/loader.svg';
+import loaderImage from '../../assets/images/loader-tick3.gif';
 import EventBreadcrumbImage from '../../assets/images/events.png';
 import EventBreadcrumbImageBlur from '../../assets/images/events-blur.png';
 import filterIcon from '../../assets/images/events/filter.svg';
@@ -21,6 +21,7 @@ import './style.scss';
 import SearchFilter from '../../shared/components/SearchFilter';
 import Constants from '../../shared/constants';
 import EventAdvertisement from './EventAdvertisement';
+import MetaData from '../../shared/components/MetaData';
 
 export default class Events extends Component {
   constructor(props) {
@@ -310,7 +311,7 @@ export default class Events extends Component {
   };
 
   handleFilters = (searchType, apply) => {
-    if (Utilities.mobilecheck) {
+    if (Utilities.mobilecheck()) {
       this.setState({
         localfilteredSortType: searchType.filteredSortType,
         localfilteredSortOrder: searchType.filteredSortOrder
@@ -319,7 +320,11 @@ export default class Events extends Component {
     let obj = {
       ...searchType
     };
-    if (!Utilities.mobilecheck() || apply) {
+    if (
+      !Utilities.mobilecheck() ||
+      apply ||
+      (searchType && searchType.filteredSearch)
+    ) {
       obj = {
         ...searchType,
         first: 0,
@@ -329,9 +334,14 @@ export default class Events extends Component {
         filterFlag: false
       };
     }
+
     this.setState(obj, () => {
       setTimeout(() => {
-        if (!Utilities.mobilecheck() || apply) {
+        if (
+          !Utilities.mobilecheck() ||
+          apply ||
+          (searchType && searchType.filteredSearch)
+        ) {
           this.loadEvents(this.getFilters(), false);
         }
       }, 200);
@@ -379,6 +389,12 @@ export default class Events extends Component {
     this.props.history.push(`/events/` + alias);
   };
 
+  toggleFilterSection = () => {
+    if (Utilities.mobilecheck()) {
+      document.body.classList.toggle('fixed-body');
+    }
+  };
+
   toggleFilters = () => {
     this.setState({
       filterFlag: !this.state.filterFlag,
@@ -389,7 +405,6 @@ export default class Events extends Component {
       localfilteredVenues: [...this.state.filteredVenues],
       localfilteredTags: [...this.state.filteredTags]
     });
-    document.body.classList.toggle('fixed-body');
   };
 
   toggleSortBy = () => {
@@ -398,7 +413,6 @@ export default class Events extends Component {
       localfilteredSortOrder: this.state.filteredSortOrder,
       localfilteredSortType: this.state.filteredSortType
     });
-    document.body.classList.toggle('fixed-body');
   };
 
   callAPI = () => {
@@ -417,7 +431,7 @@ export default class Events extends Component {
         filteredVenues: [...this.state.localfilteredVenues],
         filteredTags: [...this.state.localfilteredTags],
         filteredSortOrder: this.state.localfilteredSortOrder,
-        filteredSortType: this.state.localfilteredSortType
+        filteredSortType: this.state.localfilteredSortType == "" ? "date" : this.state.localfilteredSortType
       },
       () => {
         setTimeout(() => {
@@ -425,7 +439,6 @@ export default class Events extends Component {
         }, 200);
       }
     );
-    document.body.classList.toggle('fixed-body');
   };
 
   clearSortFilters = () => {
@@ -465,6 +478,12 @@ export default class Events extends Component {
     } = this.state;
     return (
       <div className="events-page-wrapper">
+        {this.props.location && (
+          <MetaData
+            location={this.props.location}
+            data={{ title: 'Event listing' }}
+          />
+        )}
         <Breadcrub breadCrumbData={this.breadCrumbData} />
         <section className="">
           <div className="container-fluid">
@@ -481,7 +500,7 @@ export default class Events extends Component {
 
                 {!shimmerFilter &&
                   genre.length > 0 &&
-                  venues.length > 0 &&
+                  // venues.length > 0 &&
                   filterConfig &&
                   filterConfig.price_config &&
                   filterConfig.promotion_categories && (
@@ -489,6 +508,7 @@ export default class Events extends Component {
                       queryParams={queryParams}
                       resetFilters={this.resetFilters}
                       handleFilters={this.handleFilters}
+                      toggleFilterSection={this.toggleFilterSection}
                       genreData={genre}
                       venueData={venues}
                       filterConfig={filterConfig}
@@ -525,19 +545,32 @@ export default class Events extends Component {
                       }
                       filterFlag={filterFlag}
                     >
-                      <div className="fixed-buttons">
-                        <a
-                          onClick={() => {
-                            this.toggleFilters();
-                          }}
-                          className="close"
+                      {fixed => (
+                        <div
+                          className={`fixed-buttons ${
+                            fixed ? 'hide-inner' : ''
+                          }`}
                         >
-                          Close
-                        </a>
-                        <a onClick={() => this.callAPI()} className="apply">
-                          Apply
-                        </a>
-                      </div>
+                          <a
+                            onClick={() => {
+                              this.toggleFilterSection();
+                              this.toggleFilters();
+                            }}
+                            className="close"
+                          >
+                            Close
+                          </a>
+                          <a
+                            onClick={() => {
+                              this.toggleFilterSection();
+                              this.callAPI();
+                            }}
+                            className="apply"
+                          >
+                            Apply
+                          </a>
+                        </div>
+                      )}
                     </Filters>
                   )}
               </div>
@@ -554,6 +587,8 @@ export default class Events extends Component {
                   />
                   <FilterSelected
                     genreData={genre}
+                    history={this.props.history}
+                    type="EVENTS"
                     venueData={venues}
                     filterConfig={filterConfig}
                     filteredPriceRange={filteredPriceRange}
@@ -581,9 +616,10 @@ export default class Events extends Component {
                     }
                     clearSortFilters={this.clearSortFilters}
                   >
-                    <div className="fixed-buttons">
+                    <div className="fixed-buttons hide-inner">
                       <a
                         onClick={() => {
+                          this.toggleFilterSection();
                           this.toggleSortBy();
                         }}
                         className="close"
@@ -594,6 +630,7 @@ export default class Events extends Component {
                       <a
                         className="apply"
                         onClick={() => {
+                          this.toggleFilterSection();
                           this.callAPI();
                         }}
                       >
@@ -667,6 +704,7 @@ export default class Events extends Component {
                       onClick={() => this.loadMoreEvents()}
                       className="btn-link load-more-btn"
                       target=""
+                      id="event-load-more"
                     >
                       <span>
                         Load More ({totalRecords - eventsData.length})
@@ -689,13 +727,20 @@ export default class Events extends Component {
                 <a
                   className="sortby"
                   onClick={() => {
+                    this.toggleFilterSection();
                     this.toggleSortBy();
                   }}
                 >
                   sort by
                   <img src={sortbyIcon} alt="icon" />
                 </a>
-                <a className="filter" onClick={this.toggleFilters}>
+                <a
+                  className="filter"
+                  onClick={() => {
+                    this.toggleFilterSection();
+                    this.toggleFilters();
+                  }}
+                >
                   filter
                   <img src={filterIcon} alt="icon" />
                 </a>

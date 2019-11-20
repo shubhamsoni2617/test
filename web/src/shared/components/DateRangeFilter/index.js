@@ -37,12 +37,21 @@ function DateRangeFilter(props) {
   }, [props.filteredDateRange]);
 
   const clearCalender = () => {
-    props.handleFilters({
-      localfilteredDateRange: {
-        from: '',
-        to: ''
-      }
-    });
+    if (Utilities.mobilecheck()) {
+      props.handleFilters({
+        localfilteredDateRange: {
+          from: '',
+          to: ''
+        }
+      });
+    } else {
+      props.handleFilters({
+        filteredDateRange: {
+          from: '',
+          to: ''
+        }
+      });
+    }
   };
 
   const showFromMonth = () => {
@@ -74,17 +83,17 @@ function DateRangeFilter(props) {
     props.handleFilters(
       Utilities.mobilecheck()
         ? {
-          localfilteredDateRange: {
-            from: moment(fromDate).format('YYYY-MM-DD'),
-            to: moment(toDate).format('YYYY-MM-DD')
+            localfilteredDateRange: {
+              from: moment(fromDate).format('YYYY-MM-DD'),
+              to: moment(toDate).format('YYYY-MM-DD')
+            }
           }
-        }
         : {
-          filteredDateRange: {
-            from: moment(fromDate).format('YYYY-MM-DD'),
-            to: moment(toDate).format('YYYY-MM-DD')
+            filteredDateRange: {
+              from: moment(fromDate).format('YYYY-MM-DD'),
+              to: moment(toDate).format('YYYY-MM-DD')
+            }
           }
-        }
     );
   };
 
@@ -93,7 +102,7 @@ function DateRangeFilter(props) {
   return (
     <div className="filter-grid date-range">
       <div className="filter-grid-heading">
-        <h3>Selected Date range</h3>
+        <h3>Date Range</h3>
         <ul>
           <li className="active clear">
             <a

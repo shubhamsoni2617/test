@@ -46,7 +46,6 @@ const Autocomplete = ({ history, buttonActiveHandler, mostViewed }) => {
       setUserInput('');
     }
   }, [history.location.pathname]);
-
   const handleClick = e => {
     if (node.current.contains(e.target)) {
       return;
@@ -246,6 +245,9 @@ const Autocomplete = ({ history, buttonActiveHandler, mostViewed }) => {
             setIsFocused(true);
             buttonActiveHandler(true);
             addFixedBody();
+          }}
+          onBlur={() => {
+            removeFixedBody();
           }}
         />
         {userInput && (
