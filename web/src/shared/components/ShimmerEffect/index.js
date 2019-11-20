@@ -324,6 +324,24 @@ function GridShimmer(props) {
   return h;
 }
 
+function SolidShimmer(props) {
+  var h = [];
+  for (let i = 0; i < props.count; i++) {
+    h.push(
+      <div key={i} className={props.columnCls}>
+        <div className="contentLoader">
+          <div
+            className="animated-background "
+            style={{ height: props.height }}
+          ></div>
+        </div>
+      </div>
+    );
+  }
+
+  return h;
+}
+
 function BannerShimmer(props) {
   return (
     <div className={props.propCls}>
@@ -448,6 +466,9 @@ export default class ShimmerEffect extends Component {
         break;
       case 'BLOCK':
         shimmer = <BlockShimmer {...props} />;
+        break;
+      case 'SOLID':
+        shimmer = <SolidShimmer {...props} />;
         break;
       default:
     }

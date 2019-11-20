@@ -34,7 +34,7 @@ const CardList = ({ history, articleList, totalRecords }) => {
                 <div className="category-group">
                   <ul>
                     {cardData.genre &&
-                      cardData.genre.map(genreName => {
+                      cardData.tags.map(genreName => {
                         return (
                           <li key={genreName}>
                             <span className="">{genreName}</span>
