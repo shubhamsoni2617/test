@@ -99,8 +99,16 @@ const FeaturedEvents = props => {
     infinite: false,
     speed: 500,
     rows: 2,
-    slidesPerRow: 5
+    slidesPerRow: 5,
+    responsive: [{
+      breakpoint: 1024,
+      settings: {
+        slidesPerRow: 3
+      }
+    }
+    ]
   };
+
   if (!loading && featuredEvents && featuredEvents.length === 0) {
     return null;
   }
@@ -151,18 +159,17 @@ const FeaturedEvents = props => {
                 })}
             </div>
           </div>
-        ) : (
-          <Slider {...settings}>
-            {featuredEvents &&
-              featuredEvents.map((event, index) => {
-                return (
-                  <div className="grid-container" key={index}>
-                    <Item event={event} />
-                  </div>
-                );
-              })}
-          </Slider>
-        )}
+        ) : <Slider {...settings}>
+              {featuredEvents &&
+                featuredEvents.map((event, index) => {
+                  return (
+                    <div className="grid-container" key={index}>
+                      <Item event={event} />
+                    </div>
+                  );
+                })}
+            </Slider>
+        }
         {/* </CSSTransitionGroup> */}
       </div>
     </section>

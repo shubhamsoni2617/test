@@ -58,7 +58,9 @@ const Explore = () => {
           />
         </div>
       )}
-      {articles && articles.heading && <LandingArticles articles={articles} />}
+      {articles && articles.heading && articles.data.length > 0 && (
+        <LandingArticles articles={articles} />
+      )}
       <GiftCard />
       {festivals && festivals.heading && (
         <LandingFestivals festivals={festivals} />
