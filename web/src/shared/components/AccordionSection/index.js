@@ -14,13 +14,16 @@ import infoIcon from '../../../assets/images/info-icon.svg';
 import Utilities from '../../utilities';
 import Image from '../Image';
 import ReactPlayer from 'react-player';
+import { CSSTransition } from 'react-transition-group';
+import LoadMore from '../LoadMore';
 
 export default class AccordionSection extends Component {
   constructor(props) {
     super(props);
     this.state = {
       showSection: false,
-      showInfo: false
+      showInfo: false,
+      showMore : false
     };
   }
 
@@ -31,6 +34,10 @@ export default class AccordionSection extends Component {
       this.setState({ showSection: true });
     }
   };
+
+  handleMore = ()=> {
+    this.setState({showMore :!this.state.showMore})
+  }
 
   render() {
     const {
@@ -45,14 +52,16 @@ export default class AccordionSection extends Component {
       infoTag,
       gallery,
       dynamicClass,
-      noIcon
+      noIcon,
     } = this.props;
+
+    const { showMore } = this.state;
 
     return (
       <div className={`sidebar-accordion ${dynamicClass}`}>
         <Accordion allowZeroExpanded={true} preExpanded={preExpanded}>
           <AccordionItem uuid={uuid}>
-            <AccordionItemHeading className={`${ noIcon ? 'noicon' :''}`}>
+            <AccordionItemHeading className={`${noIcon ? 'noicon' : ''}`}>
               <AccordionItemButton>
                 {title}
                 {infoTag && (
@@ -86,31 +95,42 @@ export default class AccordionSection extends Component {
                 {langArr && (
                   <ul className="languages-group">
                     {langArr.map((obj, idx) => {
-                      if(obj.language && obj.description){
-                      return (
-                        <li
-                          key={obj + idx}
-                          className={`${
-                            activeLang === obj.language ? 'active' : ''
-                          }`}
-                        >
-                          <a
-                            href="/"
-                            onClick={e => {
-                              e.preventDefault();
-                              changeLang(obj);
-                            }}
+                      if (obj.language && obj.description) {
+                        return (
+                          <li
+                            key={obj + idx}
+                            className={`${
+                              activeLang === obj.language ? 'active' : ''
+                            }`}
                           >
-                            {obj.language}
-                          </a>
-                        </li>
-                      )} else{
-                        return null
+                            <a
+                              href="/"
+                              onClick={e => {
+                                e.preventDefault();
+                                changeLang(obj);
+                              }}
+                            >
+                              {obj.language}
+                            </a>
+                          </li>
+                        );
+                      } else {
+                        return null;
                       }
                     })}
                   </ul>
                 )}
-                {desc && <div dangerouslySetInnerHTML={{ __html: desc }} />}
+                {noIcon ? (
+                  <LoadMore
+                    limit ={600}
+                    content ={desc}
+                    showMore ={showMore}
+                    handleMore={this.handleMore}
+                    />
+                ) : (
+                  <div dangerouslySetInnerHTML={{ __html: desc }} />
+                )}
+
                 {children &&
                   children.map(obj => (
                     <AccordionSection
