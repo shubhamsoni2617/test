@@ -32,9 +32,16 @@ class Utilities {
   // 	);
   // }
 
-  static showLimitedChars = (string, limit) => {
-    if (string && string.length > limit)
-      string = string.substring(0, limit) + '...';
+  static showLimitedChars = (string, limit, showDotted = true) => {
+    let dots;
+    if (string && string.length > limit) {
+      if (showDotted) {
+        dots = '...';
+      } else {
+        dots = '';
+      }
+      string = string.substring(0, limit) + dots;
+    }
     return string;
   };
 
@@ -116,24 +123,24 @@ class Utilities {
     return check;
   };
 
-  static  getMobileOperatingSystem() {
+  static getMobileOperatingSystem() {
     var userAgent = navigator.userAgent || navigator.vendor || window.opera;
 
-        // Windows Phone must come first because its UA also contains "Android"
-      if (/windows phone/i.test(userAgent)) {
-          return "unknown"; /// we don't have app for windows phone
-      }
+    // Windows Phone must come first because its UA also contains "Android"
+    if (/windows phone/i.test(userAgent)) {
+      return 'unknown'; /// we don't have app for windows phone
+    }
 
-      if (/android/i.test(userAgent)) {
-          return "Android";
-      }
+    if (/android/i.test(userAgent)) {
+      return 'Android';
+    }
 
-      // iOS detection from: http://stackoverflow.com/a/9039885/177710
-      if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
-          return "iOS";
-      }
+    // iOS detection from: http://stackoverflow.com/a/9039885/177710
+    if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
+      return 'iOS';
+    }
 
-      return "unknown";
+    return 'unknown';
   }
 }
 
