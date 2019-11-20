@@ -77,11 +77,7 @@ const Festival = ({ match }) => {
   } = templateTwoContent;
   return (
     <div className="festival-wrapper">
-      {image && image.length > 0 ? (
-        <SliderBanner data={image} />
-      ) : (
-        <div className="simmerOuter">{reusedShimmer(300, 1, 'SOLID', 12)}</div>
-      )}
+      {image && image.length > 0 && <SliderBanner data={image} />}
       {title ? (
         <Welcome
           breadcrumbSlug={breadcrumbSlug}
@@ -90,7 +86,11 @@ const Festival = ({ match }) => {
           description={description}
         />
       ) : (
-        <div className="simmerOuter">{reusedShimmer(300, 1, 'SOLID', 12)}</div>
+        <div className="shimmer-margin">
+          <div className="simmerOuter">
+            {reusedShimmer(300, 1, 'SOLID', 12)}
+          </div>
+        </div>
       )}
       {section_one && section_two ? (
         <FestivalEventLineUp
@@ -114,7 +114,7 @@ const Festival = ({ match }) => {
       {section_five ? (
         <TicketDeals sectionFive={section_five} />
       ) : (
-        reusedShimmer(300, 6, 'TILE', 2)
+        <div className="shimmer-margin">{reusedShimmer(300, 6, 'TILE', 2)}</div>
       )}
       {section_six ? (
         <Articles sectionSix={section_six} />
@@ -125,6 +125,9 @@ const Festival = ({ match }) => {
         <PollNServeys sectionSeven={section_seven} />
       ) : (
         <div className="shimmer-margin">{reusedShimmer(300, 2, 'TILE', 6)}</div>
+        // <div className="simmerOuter">
+        //   {reusedShimmer(400, 1, 'DESCRIPTIONDETAIL', 12)}
+        // </div>
       )}
       {section_eigth && section_eigth.length > 0 && (
         <VideoGallery sectionEight={section_eigth} />

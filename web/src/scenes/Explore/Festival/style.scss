@@ -8,6 +8,14 @@
     //         max-height: 174px;
     //     }
     // }
+    .simmerOuter{
+      .contentLoader{
+         .animated-background{
+            width: calc(100% - 30px);
+            margin: 0 auto;
+        }
+      }
+    }
     .festival-top-slider{
         .slick-arrow{
             height: 85px;
