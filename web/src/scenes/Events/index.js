@@ -238,16 +238,24 @@ export default class Events extends Component {
     const query = new URLSearchParams(this.props.location.search);
     let genreId = query.get('c') ? query.get('c') : '';
     let venueId = query.get('v') ? query.get('v') : '';
+    let tagsId = query.get('t') ? query.get('t') : '';
+    let promotionsId = query.get('p') ? query.get('p') : '';
+    let searchString = query.get('q') ? query.get('q') : '';
+
     let dateRange = query.get('s') ? query.get('s') : '';
     if (dateRange !== '' || !dateRange) {
       dateRange = dateRange.split('--');
       dateRange = { from: dateRange[0], to: dateRange[1] };
     }
+
     const payload = {
       first: 0,
       limit: Constants.LIMIT,
       genre: reset ? '' : genreId,
       venue: reset ? '' : venueId,
+      tags: reset ? '' : tagsId,
+      search: reset ? '' : searchString,
+      promotions: reset ? '' : promotionsId,
       start_date: reset ? '' : dateRange.from,
       end_date: reset ? '' : dateRange.to,
       client: 1
@@ -255,7 +263,7 @@ export default class Events extends Component {
     return payload;
   };
 
-  setInitialFilters({ genre, venue, start_date, end_date }) {
+  setInitialFilters({ genre, venue, promotions, tags, search, start_date, end_date }) {
     const dateRange = {
       from: start_date || '',
       to: end_date || ''
@@ -264,13 +272,19 @@ export default class Events extends Component {
       queryParams: {
         genreId: genre,
         venueId: venue,
+        promotionsId: promotions,
+        tagsId: tags,
+        search: search,
         dateRange: dateRange
       },
-      filteredGnere: genre ? [genre] : [],
-      filteredVenues: venue ? [venue] : [],
+      filteredGnere: genre ? genre.split(',') : [],
+      filteredVenues: venue ? venue.split(',') : [],
+      filteredPromotions: promotions ? promotions.split(',') : [],
+      filteredTags: tags ? tags.split(',') : [],
+      filteredSearch: search ? search : "", 
       filteredDateRange: dateRange,
-      localfilteredGnere: genre ? [genre] : [],
-      localfilteredVenues: venue ? [venue] : [],
+      localfilteredGnere: genre ? genre.split(',') : [],
+      localfilteredVenues: venue ? venue.split(',') : [],
       localfilteredDateRange: dateRange
     });
   }
@@ -520,6 +534,7 @@ export default class Events extends Component {
                           : filteredPriceRange
                       }
                       filteredGnere={
+                        console.log(filteredGnere),
                         Utilities.mobilecheck()
                           ? localfilteredGnere
                           : filteredGnere

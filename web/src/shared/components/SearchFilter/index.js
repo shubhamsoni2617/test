@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import SearchIcon from '../../../assets/images/search-icon-gray.svg';
 import './style.scss';
@@ -17,6 +17,12 @@ const SearchFilter = props => {
   //   //   props.handleFilters({ filteredSearch: search });
   //   // }
   // }, [search]);
+
+  useEffect(() => {
+    searchRef.current.value = props.searchText;
+
+  }, []);
+
 
   const onChangeHandler = () => {
     if (loading) return;
