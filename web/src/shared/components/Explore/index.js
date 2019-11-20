@@ -35,16 +35,18 @@ const Explore = props => {
       <div className="container-fluid">
         <div className="section-top-wrapper">
           <h2>{props.heading}</h2>
-          <div className="carousel-dots">
-            <Link to="/explore" id="explore">
-              See all{' '}
-              <img
-                src="../../../assets/images/right-arrow.svg"
-                className="img-fluid"
-                alt="arrow"
-              />
-            </Link>
-          </div>
+          {!props.article && (
+            <div className="carousel-dots">
+              <Link to="/explore">
+                See all{' '}
+                <img
+                  src="../../../assets/images/right-arrow.svg"
+                  className="img-fluid"
+                  alt="arrow"
+                />
+              </Link>
+            </div>
+          )}
         </div>
         {!props.article && (
           <span className="explore-text">

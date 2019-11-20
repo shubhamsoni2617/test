@@ -4,6 +4,7 @@ import ShimmerEffect from '../../../shared/components/ShimmerEffect';
 import Constants from '../../../shared/constants';
 import AdvertisementService from '../../../shared/services/AdvertisementService';
 import Arrow from '../../../assets/images/right-arrow.svg';
+import Image from '../../../shared/components/Image';
 
 const CustomSectionTwo = ({ heading, customData, isMoreFrom }) => {
   const [data, setData] = useState(null);
@@ -68,10 +69,11 @@ const CustomSectionTwo = ({ heading, customData, isMoreFrom }) => {
             >
               <div>
                 {data && data[0] && (
-                  <img
+                  <Image
                     src={data[0].full_image}
                     alt={data[0].alt_text}
                     className="img-fluid"
+                    type="BigBanner"
                   />
                 )}
               </div>
@@ -100,10 +102,11 @@ const CustomSectionTwo = ({ heading, customData, isMoreFrom }) => {
                       >
                         {elem && elem.full_image && (
                           <div className="item-img">
-                            <img
+                            <Image
                               src={elem.full_image}
                               alt={elem.alt_text}
                               className="img-fluid"
+                              type="Small"
                             />
                           </div>
                         )}
