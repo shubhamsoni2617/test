@@ -22,7 +22,7 @@ const PollsNServeys = ({ sectionSeven }) => {
                     {heading && <h2>{heading}</h2>}
                     <div className="polls-box">
                       <div className="polls-img">
-                        <Image src={image} type="MediumHorizontal" />
+                        <Image src={image} type="BigBanner" />
                       </div>
                       <div className="polls-cont">
                         {title && <h2>{title}</h2>}
