@@ -336,6 +336,7 @@ export default class Events extends Component {
     }
 
     this.setState(obj, () => {
+      Utilities.updateUrl(this.props.history, this.state)
       setTimeout(() => {
         if (
           !Utilities.mobilecheck() ||
