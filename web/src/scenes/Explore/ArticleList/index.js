@@ -8,13 +8,13 @@ import Utilities from '../../../shared/utilities';
 import './style.scss';
 import ExploreService from '../../../shared/services/ExploreService';
 import Filter from './Filter';
-import { useCustomWidth } from '../../../shared/components/CustomHooks';
+import loaderImage from '../../../assets/images/loader-tick3.gif';
 import useStickyPanel from '../../../shared/hooks/useStickyPanel';
 import BreadCrumbData from './breadCrumbData';
 import selectOrClearAll from './selectOrClearAll';
 import fetchFilterData from './fetchFilterData';
+import handleFilter from './handleFilters';
 const ArticleList = ({ history }) => {
-  const [width] = useCustomWidth();
   let stickyObj = {
     sticky: { top: 153 },
     pixelBuffer: 153,
@@ -34,13 +34,13 @@ const ArticleList = ({ history }) => {
   const [showTags, setShowTags] = useState(false);
   const [showCategories, setShowCategories] = useState(false);
   const [filteredTagsForMobile, setFilteredTagsForMobile] = useState([]);
+  const [loadWithFilters, setLoadWithFilters] = useState(false);
   const [
     filteredCategoriesForMobile,
     setFilteredCategoriessForMobile
   ] = useState([]);
 
-  let mobileCheck =
-    (showTags && width <= 767) || (showCategories && width <= 767);
+  let mobileCheck = showTags || showCategories;
   useEffect(() => {
     fetchFilterData(setCategories, ExploreService.getCategories);
     fetchFilterData(setTags, ExploreService.getTags);
@@ -51,7 +51,6 @@ const ArticleList = ({ history }) => {
   }, [constant, filteredTags.toString(), filteredCategories.toString()]);
 
   const getArticleList = () => {
-    let articleListData = [...articleList];
     const params = {
       first: first,
       client: 1,
@@ -60,19 +59,22 @@ const ArticleList = ({ history }) => {
       tags: filteredTags.toString()
     };
     if (!loadMore) {
+      setLoadWithFilters(true);
       params.first = 0;
       params.limit = mobileConstant;
       setFirst(0);
       setConstant(mobileConstant);
-      articleListData = [];
-      setArticleList([]);
       setTotalResults(0);
     }
     setTimeout(() => {
       ExploreService.getExploreArticleList(params)
         .then(res => {
-          console.log(res.data.total_records);
-          setArticleList([...articleListData, ...res.data.data]);
+          if (loadMore) {
+            setArticleList([...articleListData, ...res.data.data]);
+          } else {
+            setArticleList(res.data.data);
+          }
+          setLoadWithFilters(false);
           setTotalResults(res.data.total_records);
           setLoadMore(false);
         })
@@ -98,54 +100,29 @@ const ArticleList = ({ history }) => {
   };
 
   const handleFilters = (selected, isChecked, filterTitle) => {
-    window &&
-      window.scrollTo({
-        top: 150,
-        left: 0,
-        behavior: 'smooth'
-      });
     if (filterTitle === 'Tags') {
-      let tagsToSearch = [...filteredTags];
-      const tagsUpdated = [...tags];
-      let index = tagsUpdated.findIndex(tag => tag.id === selected);
-      tagsUpdated[index].isChecked = isChecked;
-      setTags(tagsUpdated);
-
-      if (isChecked) {
-        tagsToSearch.push(selected);
-        setFilteredTagsForMobile(tagsToSearch);
-        if (!mobileCheck) {
-          setFilteredTags(tagsToSearch);
-        }
-      } else {
-        let i = tagsToSearch.indexOf(selected);
-        tagsToSearch.splice(i, 1);
-        setFilteredTagsForMobile(tagsToSearch);
-        if (!mobileCheck) {
-          setFilteredTags(tagsToSearch);
-        }
-      }
+      handleFilter(
+        isChecked,
+        tags,
+        setTags,
+        selected,
+        setFilteredTagsForMobile,
+        filteredTags,
+        setFilteredTags,
+        mobileCheck
+      );
     }
     if (filterTitle === 'Categories') {
-      let categoriesToSearch = [...filteredCategories];
-      const categoriesUpdated = [...categories];
-      let index = categoriesUpdated.findIndex(tag => tag.id === selected);
-      categoriesUpdated[index].isChecked = isChecked;
-      setCategories(categoriesUpdated);
-      if (isChecked) {
-        categoriesToSearch.push(selected);
-        setFilteredCategoriessForMobile(categoriesToSearch);
-        if (!mobileCheck) {
-          setFilteredCategories(categoriesToSearch);
-        }
-      } else {
-        let i = categoriesToSearch.indexOf(selected);
-        categoriesToSearch.splice(i, 1);
-        setFilteredCategoriessForMobile(categoriesToSearch);
-        if (!mobileCheck) {
-          setFilteredCategories(categoriesToSearch);
-        }
-      }
+      handleFilter(
+        isChecked,
+        categories,
+        setCategories,
+        selected,
+        setFilteredCategoriessForMobile,
+        filteredCategories,
+        setFilteredCategories,
+        mobileCheck
+      );
     }
   };
 
@@ -164,7 +141,7 @@ const ArticleList = ({ history }) => {
   };
 
   const filterComponent = (data, title, showComponent) => {
-    return showComponent || width > 767 ? (
+    return showComponent || !Utilities.mobilecheck() ? (
       <Filter
         dataToFilter={data}
         handleFilters={handleFilters}
@@ -195,7 +172,7 @@ const ArticleList = ({ history }) => {
                   ref={scrollContainerRef}
                 >
                   <div className="inner" style={styleObj}>
-                    {width > 767 && (
+                    {!Utilities.mobilecheck() && (
                       <div className="filter-heading">
                         <h3>FILTERS</h3>
                         <span
@@ -225,6 +202,13 @@ const ArticleList = ({ history }) => {
                   totalRecords={totalResults}
                   history={history}
                 />
+                {loadWithFilters && articleList.length ? (
+                  <img
+                    className="filter-loader"
+                    alt="filter loader"
+                    src={loaderImage}
+                  />
+                ) : null}
                 {loadMore && (
                   <ShimmerEffect
                     propCls={`${
