@@ -115,7 +115,7 @@ const CustomSectionThree = ({ heading, customData }) => {
                             src={vdo.video_thumb}
                             alt=""
                             className="img-fluid"
-                            type="Small"
+                            type="VdoSmall"
                           />
                         </span>
                         <a className="video-subwrapper-text">{vdo.title}</a>

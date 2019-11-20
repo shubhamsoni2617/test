@@ -3,6 +3,8 @@ import './style.scss';
 import { Link } from 'react-router-dom';
 import Arrow from '../../../../assets/images/right-arrow.svg';
 import Image from '../../../../shared/components/Image';
+import Utilities from '../../../../shared/utilities';
+import EventHeading from '../../../../shared/components/EventHeading';
 
 const LandingFestivals = ({ festivals }) => {
   return (
@@ -37,8 +39,21 @@ const LandingFestivals = ({ festivals }) => {
                       </div>
                     </div>
                     <div className="image-bottom-desc">
-                      <h3>{title}</h3>
-                      <p dangerouslySetInnerHTML={{ __html: description }}></p>
+                      <EventHeading
+                        title={title}
+                        lines={1}
+                        height={25}
+                        // size={13}
+                        allowTooltip={true}
+                      />
+                      <p
+                        dangerouslySetInnerHTML={{
+                          __html: Utilities.showLimitedChars(
+                            description.replace(/(<([^>]+)>)/gi, ''),
+                            150
+                          )
+                        }}
+                      ></p>
                     </div>
                   </Link>
                 );

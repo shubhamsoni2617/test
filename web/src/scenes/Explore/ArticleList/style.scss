@@ -1,6 +1,7 @@
 .articlelist-wrapper.events-page-wrapper{
     .wrapper-events-listing{
         padding-top: 35px;
+        padding-bottom: 20px;
     }
     .events-listing{
         padding: 15px 0px 0px 10px;
@@ -117,9 +118,15 @@
                     text-align: left;
                     background-color: #225275;
                     margin-right: 5px;
+                    margin-bottom: 5px;
                 }
             }
             .category-group{
+                margin-bottom: 5px;
+                min-height: 52px;
+                @media(max-width: 576px){
+                    min-height: auto;
+                }
                 li{
                     display: inline-block;
                     list-style: none;
@@ -234,7 +241,7 @@
                 align-items: flex-end;
                 position: fixed;
             }
-            .filter-grid-heading{
+            .filter-grid-heading{                
                 @media(max-width: 767px){
                     padding: 0;
                     display: flex;

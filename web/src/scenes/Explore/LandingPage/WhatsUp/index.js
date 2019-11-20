@@ -3,6 +3,7 @@ import './style.scss';
 import Utilities from '../../../../shared/utilities';
 import Image from '../../../../shared/components/Image';
 import { Link } from 'react-router-dom';
+import EventHeading from '../../../../shared/components/EventHeading';
 
 const WhatsUp = ({ whatsUpData }) => {
   return (
@@ -37,16 +38,17 @@ const WhatsUp = ({ whatsUpData }) => {
                       )}
                     </div>
                     <div className="image-bottom-desc">
-                      <h3>
-                        {Utilities.showLimitedChars(
-                          title,
-                          Utilities.mobilecheck() ? 25 : 50
-                        )}
-                      </h3>
+                      <EventHeading
+                        title={title}
+                        lines={1}
+                        height={25}
+                        // size={13}
+                        allowTooltip={true}
+                      />
                       <p>
                         {Utilities.showLimitedChars(
                           description,
-                          Utilities.mobilecheck() ? 75 : 150
+                          Utilities.mobilecheck() ? 130 : 150
                         )}
                       </p>
                     </div>

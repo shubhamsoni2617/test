@@ -11,7 +11,10 @@ body {
 	&.body-overlay {
 		position: relative;
         overflow: hidden;
-        padding-right: 10px;
+		padding-right: 10px;
+		@media(max-width: 1024px){
+			padding-right: 0px;
+		}
 		&::after {
 				position: absolute;
 				content: "";
@@ -1367,22 +1370,25 @@ em{
 }
 
 //homoepage flicker effect
-.body-overlay{
-	.advertisementTop{
-		width: calc(100% - 10px) !important;
-	}
-	header.homepage {
-		width: calc(100% - 10px) !important;
-	}
-	.home-page-wrapper{
-		margin-right: 10px;
+@media(min-width: 1024px){
+	.body-overlay{
+		header{
+			margin-right: 10px;
+			width: calc(100% - 10px) !important;
+		}
+		.advertisementTop{
+			width: calc(100% - 10px) !important;
+		}
+		header.homepage {
+			width: calc(100% - 10px) !important;
+		}	
 		.ticker-wrap{
 			width: calc(100% - 10px);
 		}
 		.cookies{
 			width: calc(100% - 10px) !important;
 		}
-		& + footer{
+		footer{
 			margin-right: 10px;
 			.scroll-top{
 				right: 15px;
