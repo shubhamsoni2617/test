@@ -4,7 +4,7 @@
     display: flex;
     padding-top: 45px;
     @media(max-width: 767px){
-        padding-top: 15px;
+        padding-top: 10px;
     }
     .events-listing {
         width: calc(100% - 338px);
@@ -65,6 +65,9 @@
                             border-bottom: 1px solid transparent;
                             &:hover{
                                 border-bottom: 1px solid #0098FF;
+                                @media(max-width: 991px){
+                                    border: none;
+                                }
                             }
 
                         }
@@ -104,7 +107,7 @@
         .promotion-load-more{
             @media(max-width: 767px){
                 padding-bottom: 30px;
-                padding-top: 20px;
+                padding-top: 0;
                 border-top: 1px solid #fff;
                 position: relative;
             }
@@ -465,6 +468,9 @@
                             cursor: default;
                             border: 1px solid transparent;
                             border-bottom: 1px solid rgba(151, 151, 151, 0.2);
+                            @media(max-width: 991px){
+                                border: none;
+                            }
                         }
                         button{
                             padding: 6px 22px;
@@ -589,9 +595,9 @@
                         border-bottom: 1px solid rgba(151, 151, 151, 0.2);
                         &:hover{
                             border-bottom: none;
-                            @media(max-width: 767px){
+                            @media(max-width: 991px){
                                 // border: 1px solid transparent;
-                                border-bottom: 1px solid rgba(151, 151, 151, 0.2);
+                                border-bottom: none;
                             }
                         }
                     }
