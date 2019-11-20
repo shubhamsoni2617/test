@@ -34,16 +34,23 @@
 		// margin-top: -114px;
 	}
 	.banner-carousel {
-		padding-top: 123px;
+		padding-top: 140px;
 		height: 100%;
 		position: relative;
         z-index: 1;
-        padding-bottom: 25px;
+        padding-bottom: 35px;
+        @media(max-width: 1260px) {
+            padding-bottom: 25px;
+        }
 		@media(max-width: 991px) {
 			padding-top: 90px;
 			width: 100%;
 			text-align: center;
-		}
+        }
+        @media(max-width: 767px) {
+            padding-bottom: 15px;
+            padding-top: 116px;
+        }
 		ul {
 			display: grid;
 			padding-top: 22px;
@@ -108,7 +115,23 @@
 					}
 				}
 			}
-		}
+        }
+        .shadow{
+            position: absolute;
+            z-index: 1;
+            left: 20%;
+            /* top: 0px; */
+            bottom: -25px;
+            right: 0;
+            width: 60%;
+            @media(max-width: 1260px) {
+                bottom: -25px;
+            }
+            @media(max-width: 767px) {
+                bottom: -7px;
+                opacity: 0.7;
+            }
+        }
 		.active-banner-image {
 			border-bottom-left-radius: 100%;
 			border-bottom-right-radius: 100%;
@@ -133,21 +156,26 @@
                 background: transparent;
                 box-shadow: 0 0 50px #000;
             }
+            @media(max-width: 1260px) {
+                max-height: 86%;
+            }
 			@media(max-width: 991px) {
 				max-height: 100%;
-				margin-top: -50px;
+				margin-top: -45px;
 			}
 			@media (max-width: 767px) {
 				margin-top: 0px;
 				border-bottom-left-radius: 50%;
-				border-bottom-right-radius: 50%;
+                border-bottom-right-radius: 50%;
+                max-height: 86%;
 			}
 			img {
 				width: 100%;
 				object-fit: cover;
 				object-position: 0% 40%;
 				filter: blur(20px);
-				height: 600px;
+                height: 600px;
+                transition: background-image 3s ease-in-out;
 				@media(max-width: 991px) {
 					object-position: center;
 					filter: blur(5px);
@@ -158,10 +186,16 @@
 		.slick-slider  {
             margin-left: 0px;
             z-index: 10;
+            .slick-list{
+                overflow: inherit;
+            }
             .slick-slide{
                 &.slick-center{
                     > div{
                         transform: scale(1.05);
+                        div{
+                            box-shadow: 0 0 25px rgba(0, 0, 0, 0.3);
+                        }
                     }
                 }
                 > div{
@@ -180,6 +214,9 @@
                 &:hover{
                     border: none;
                 }
+                @media(max-width: 767px) {
+                    display: none !important;
+                }
             }
             .slick-next{
                 background-color: rgba(0, 0, 0, 0.6);
@@ -193,12 +230,16 @@
                 &:hover{
                     border: none;
                 }
+                @media(max-width: 767px) {
+                    display: none !important;
+                }
             }
 		}
 	}
 	.banner-thumbnail {
         padding: 0;
         position: relative;
+        z-index: 2;
         .slick-slider{
             .slick-list{
                 .slick-slide{
@@ -217,6 +258,9 @@
                                 bottom: 0;
                                 left: 0;
                                 width: 100%;
+                                @media(max-width: 767px) {
+                                    height: 3px;
+                                }
                             }
                         }
                     }
@@ -225,18 +269,38 @@
             .slick-prev{
                 position: absolute;
                 left: 15px;
-                top: 45%;
+                top: 48%;
                 background: url(../../../assets/images/left-oval-arrow.svg) no-repeat;
-                height: 26px;
-                width: 26px;
+                height: 28px;
+                width: 28px;
+                &:hover{
+                    opacity: 0.9;
+                    border: none;
+                }
+                @media(max-width: 767px) {
+                    height: 20px;
+                    width: 20px;
+                    background-size: 100% 100%;
+                    left: 10px;
+                }
             }
             .slick-next{
                 position: absolute;
                 right: 15px;
-                top: 45%;
+                top: 48%;
                 background: url(../../../assets/images/right-oval-arrow.svg) no-repeat;
-                height: 26px;
-                width: 26px;
+                height: 28px;
+                width: 28px;
+                &:hover{
+                    opacity: 0.9;
+                    border: none;
+                }
+                @media(max-width: 767px) {
+                    height: 20px;
+                    width: 20px;
+                    background-size: 100% 100%;
+                    right: 10px;
+                }
             }
         }
 		ul {

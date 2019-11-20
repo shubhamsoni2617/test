@@ -3,22 +3,23 @@ import Slider from "react-slick";
 import './style.scss';
 import HomeService from '../../../shared/services/HomeService';
 import Utilities from '../../../shared/utilities';
+import Shadow from '../../../assets/images/shadow.png';
 
 const mainSliderSettings = {
     className: "center",
     centerMode: true,
     infinite: true,
     focusOnSelect: true,
-    centerPadding: Utilities.mobilecheck() ? "60px" : "200px" ,
+    centerPadding: Utilities.mobilecheck() ? "60px" : "250px" ,
     slidesToShow: 1,
     speed: 500,
     arrows: true
 };
 const thumbSliderSettings = {
-    centerMode: false,
+    centerMode: true,
     infinite: true,
     speed: 500,
-    slidesToShow: Utilities.mobilecheck() ? 6 : 13,
+    slidesToShow: Utilities.mobilecheck() ? 5 : 13,
     slidesToScroll: 1,
     focusOnSelect: true,
     arrows: true
@@ -74,6 +75,9 @@ export default class HomePageCarouselContainer extends Component {
         return (
             <div className="banner">
                 <div className="banner-carousel">
+                    <div className="shadow">
+                        <img src={Shadow} />
+                    </div>
                 {posts.length > 0 && <div className="active-banner-image">
                     <img src={posts[sliderBackgroudImage].full_image} /></div>}
                     <Slider {...mainSliderSettings}
