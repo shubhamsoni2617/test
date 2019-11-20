@@ -7,4 +7,10 @@ export default (isChecked, filterList, setFilterList, setFilteredId) => {
   }
   setFilterList(tagsUpdated);
   setFilteredId(filteredId);
+  window &&
+    window.scrollTo({
+      top: 150,
+      left: 0,
+      behavior: 'smooth'
+    });
 };

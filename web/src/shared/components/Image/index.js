@@ -8,8 +8,10 @@ import Small from '../../../assets/images/small.png';
 import Medium from '../../../assets/images/noimage.png';
 import MediumVertical from '../../../assets/images/mediumVertical.png';
 import MediumHorizontal from '../../../assets/images/mediumHorizontal.jpg';
+import HorizontalMin from '../../../assets/images/HorizontalMin.png'
 import BigBannerMobile from '../../../assets/images/Big_Banner.png'
-
+import NoImage from '../../../assets/images/No image-.png';
+import Smaller from '../../../assets/images/smaller.png';
 import './style.scss';
 
 function Image(props) {
@@ -50,6 +52,10 @@ function Image(props) {
         newImg = Tile;
         break;
 
+      case 'HorizontalMin':
+        newImg = HorizontalMin;
+        break;
+
       case 'BigBanner':
         newImg = BigBanner;
         break;
@@ -63,6 +69,12 @@ function Image(props) {
         break;
       case 'Small':
         newImg = Small;
+        break;
+      case 'VdoSmall':
+        newImg = NoImage;
+        break;
+      case 'Smaller':
+        newImg = Smaller;
         break;
       default:
         newImg = Horizontal;
