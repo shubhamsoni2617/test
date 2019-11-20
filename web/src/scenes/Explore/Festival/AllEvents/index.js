@@ -21,7 +21,7 @@ const AllEvents = ({ sectionFour }) => {
                 .map(({ image, event_date, title, venue }) => {
                   return (
                     <div className="event-box" key={title}>
-                      <Image src={image} type="Medium" />
+                      <Image src={image} type="Horizontal" />
                       <h2>
                         {Utilities.showLimitedChars(
                           title,

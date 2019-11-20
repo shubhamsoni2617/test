@@ -28,7 +28,7 @@ const MusicFestival = ({ sectionThree }) => {
                   return (
                     <div className="music-fest-box" key={title}>
                       <div className="fest-img">
-                        <Image src={image} type="MediumHorizontal" />
+                        <Image src={image} type="BigBanner" />
                       </div>
                       <div className="fest-cont">
                         <h2>{title}</h2>

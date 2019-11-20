@@ -77,51 +77,59 @@ const FestivalEventLineUp = ({ sectionOne, sectionTwo }) => {
               ></p>
             </a>
           </div>
-          <div className="festival-lineup">
-            <h2>{sectionTwo && sectionTwo.heading}</h2>
-            <div className="festival-event">
-              {Utilities.mobilecheck() ? (
-                sectionTwo &&
-                sectionTwo.sub_section_two.map(
-                  ({ title, button_text, button_url, description, image }) => {
-                    return (
-                      <EventItem
-                        title={title}
-                        description={description}
-                        button_url={button_url}
-                        button_text={button_text}
-                        image={image}
-                      />
-                    );
-                  }
-                )
-              ) : (
-                <Slider {...settings}>
-                  {sectionTwo &&
-                    sectionTwo.sub_section_two.map(
-                      ({
-                        title,
-                        button_text,
-                        button_url,
-                        description,
-                        image
-                      }) => {
-                        return (
-                          <EventItem
-                            key={title}
-                            title={title}
-                            description={description}
-                            button_url={button_url}
-                            button_text={button_text}
-                            image={image}
-                          />
-                        );
-                      }
-                    )}
-                </Slider>
-              )}
+          {sectionTwo && sectionTwo.sub_section_two.length > 0 && (
+            <div className="festival-lineup">
+              <h2>{sectionTwo && sectionTwo.heading}</h2>
+              <div className="festival-event">
+                {Utilities.mobilecheck() ? (
+                  sectionTwo &&
+                  sectionTwo.sub_section_two.map(
+                    ({
+                      title,
+                      button_text,
+                      button_url,
+                      description,
+                      image
+                    }) => {
+                      return (
+                        <EventItem
+                          title={title}
+                          description={description}
+                          button_url={button_url}
+                          button_text={button_text}
+                          image={image}
+                        />
+                      );
+                    }
+                  )
+                ) : (
+                  <Slider {...settings}>
+                    {sectionTwo &&
+                      sectionTwo.sub_section_two.map(
+                        ({
+                          title,
+                          button_text,
+                          button_url,
+                          description,
+                          image
+                        }) => {
+                          return (
+                            <EventItem
+                              key={title}
+                              title={title}
+                              description={description}
+                              button_url={button_url}
+                              button_text={button_text}
+                              image={image}
+                            />
+                          );
+                        }
+                      )}
+                  </Slider>
+                )}
+              </div>
             </div>
-          </div>
+          )}
         </div>
       </div>
     </section>
