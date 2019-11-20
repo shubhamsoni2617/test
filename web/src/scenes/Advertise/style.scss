@@ -488,6 +488,9 @@
                 width: 70%;
                 margin: 0 auto;
             }
+            @media(min-width: 769px) and (max-width: 965px) and (orientation: landscape){
+                justify-content: flex-end;
+            }
             a{
                 margin-left: 10px;
                 height: 44px;
