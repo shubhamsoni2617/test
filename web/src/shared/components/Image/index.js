@@ -8,7 +8,8 @@ import Small from '../../../assets/images/small.png';
 import Medium from '../../../assets/images/noimage.png';
 import MediumVertical from '../../../assets/images/mediumVertical.png';
 import MediumHorizontal from '../../../assets/images/mediumHorizontal.jpg';
-import BigBannerMobile from '../../../assets/images/Big_Banner.png';
+import HorizontalMin from '../../../assets/images/HorizontalMin.png'
+import BigBannerMobile from '../../../assets/images/Big_Banner.png'
 import NoImage from '../../../assets/images/No image-.png';
 import Smaller from '../../../assets/images/smaller.png';
 import './style.scss';
@@ -49,6 +50,10 @@ function Image(props) {
         break;
       case 'Tile':
         newImg = Tile;
+        break;
+
+      case 'HorizontalMin':
+        newImg = HorizontalMin;
         break;
 
       case 'BigBanner':

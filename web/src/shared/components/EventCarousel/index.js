@@ -63,7 +63,7 @@ const EventCarousel = ({ images }) => {
         />
       ) : (
         <div className="image-gallery-image">
-          <Image largeImage="" src="" type= {`${Utilities.mobileAndTabletcheck() ? "BigBannerMobile" : "BigBanner"}`} />
+          <Image largeImage="" src="" type= "BigBanner"/>
         </div>
       )}
     </div>
