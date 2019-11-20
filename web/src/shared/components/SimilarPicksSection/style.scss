@@ -10,6 +10,16 @@
             padding-bottom: 15px;
         }
     }
+    .category {
+        margin-bottom: 11px;
+        &:empty{
+            display: block !important;
+            background: none;
+        }
+        @media (max-width: 767px) {
+            margin-bottom: 8px;
+        }
+    }
     h2 {
         font-size: 30px;
         line-height: 37px;
@@ -61,12 +71,7 @@
 				max-width: 50%;
 				margin-right: 10px;
             }
-			.category {
-                margin-bottom: 11px;
-				@media (max-width: 767px) {
-					margin-bottom: 8px;
-				}
-			}
+			
 			.currently-showing-img {
 				img {
 					width: 100%;

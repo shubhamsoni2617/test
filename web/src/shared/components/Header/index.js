@@ -9,22 +9,22 @@ const Header = ({ menuActive, pathName }) => {
 
   const handleNavigationOpen = () => {
     refValue.classList.add('active');
-    document.body.classList.add('body-overlay');
+    document.body.classList.add('body-overlay', 'fixed-body');
   };
 
   const handleNavigationClose = () => {
     refValue.classList.remove('active');
-    document.body.classList.remove('body-overlay');
+    document.body.classList.remove('body-overlay', 'fixed-body');
   };
 
   const handleMouseStatus = status => {
     if (status === true) {
       setTimeout(() => setShowMegaMenu(status), 0);
-      document.body.classList.add('body-overlay');
+      // document.body.classList.add('body-overlay');
     }
     if (status === false) {
       setTimeout(() => setShowMegaMenu(status), 0);
-      document.body.classList.remove('body-overlay');
+      // document.body.classList.remove('body-overlay');
     }
   };
 

@@ -139,6 +139,9 @@
                 }
                 .banner-image{
                     img{
+                        @media(max-width: 1024px){
+                            padding-top: 10px;
+                        }
                         @media(max-width: 680px){
                             max-width: 260px;
                             top: 0;
@@ -368,6 +371,11 @@
             padding: 0 !important;
             margin: 30px 0;
         }
+        &.pl-5{
+            @media(min-width: 769px) and (max-width: 821px){
+                padding-left: 10px !important;
+            }
+        }
         h2{
             color: #343434;
             font-family: 'Montserrat', sans-serif;
@@ -479,6 +487,9 @@
                 justify-content: space-around;
                 width: 70%;
                 margin: 0 auto;
+            }
+            @media(min-width: 769px) and (max-width: 965px) and (orientation: landscape){
+                justify-content: flex-end;
             }
             a{
                 margin-left: 10px;
@@ -631,8 +642,13 @@
         background-color: #1a1a1a;
         min-height: 389px;
         height: 389px;
+        .container-fluid{
+            @media(max-width: 768px) and (max-width: 1024px){
+                height: auto;
+            }
+        }
         @media(max-width: 1024px){
-            min-height: 300px !important;
+            min-height: 330px !important;
             height: auto;
         }
         @media(max-width: 991px){
@@ -642,7 +658,7 @@
         @media(max-width: 680px){
             height: auto;
             padding: 0px 0px;
-            min-height: 200px;
+            min-height: 200px !important;
         }
         .banner-content{
             @media(max-width: 1024px){

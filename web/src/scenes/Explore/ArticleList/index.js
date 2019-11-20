@@ -21,7 +21,7 @@ const ArticleList = ({ history }) => {
     distanceFromTop: 153
   };
   const [scrollContainerRef, styleObj] = useStickyPanel(stickyObj);
-  let mobileConstant = Utilities.mobileAndTabletcheck() ? 4 : 6;
+  let mobileConstant = Utilities.mobileAndTabletcheck() ? 6 : 9;
   const [articleList, setArticleList] = useState([]);
   const [constant, setConstant] = useState(mobileConstant);
   const [loadMore, setLoadMore] = useState(false);
@@ -98,6 +98,12 @@ const ArticleList = ({ history }) => {
   };
 
   const handleFilters = (selected, isChecked, filterTitle) => {
+    window &&
+      window.scrollTo({
+        top: 150,
+        left: 0,
+        behavior: 'smooth'
+      });
     if (filterTitle === 'Tags') {
       let tagsToSearch = [...filteredTags];
       const tagsUpdated = [...tags];
