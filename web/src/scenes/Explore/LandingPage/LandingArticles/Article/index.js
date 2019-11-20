@@ -1,8 +1,8 @@
 import React from 'react';
 import './style.scss';
-import ArticleImg from '../../../../../assets/images/explore-article.png';
 import { Link } from 'react-router-dom';
 import Image from '../../../../../shared/components/Image';
+import Utilities from '../../../../../shared/utilities';
 
 const Article = ({ article }) => {
   return (
@@ -35,7 +35,7 @@ const Article = ({ article }) => {
           <span className="date">{article.date}</span>
         </div>
         <p>
-          {article.description}
+          {Utilities.showLimitedChars(article.description, 98)}
           <Link
             to={
               article.type === 'multi_show_template'
@@ -48,7 +48,7 @@ const Article = ({ article }) => {
         </p>
       </div>
       <div className="article-item-img">
-        <Image src={article.image && article.image[0]} type="Horizontal" />
+        <Image src={article.image && article.image[0]} type="BigBanner" />
       </div>
     </div>
   );

@@ -103,10 +103,10 @@ const CustomSectionTwo = ({ heading, customData, isMoreFrom }) => {
                         {elem && elem.full_image && (
                           <div className="item-img">
                             <Image
-                              src={elem.full_image}
+                              src={'elem.full_image'}
                               alt={elem.alt_text}
                               className="img-fluid"
-                              type="Small"
+                              type="Smaller"
                             />
                           </div>
                         )}
