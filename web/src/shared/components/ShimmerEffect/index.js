@@ -324,6 +324,23 @@ function GridShimmer(props) {
   return h;
 }
 
+function SolidShimmer(props) {
+  var h = [];
+  for (let i = 0; i < props.count; i++) {
+    h.push(
+      <div key={i} className={props.columnCls}>
+        <div className="contentLoader">
+          <div
+            className="animated-background "
+            style={{ height: props.height }}
+          ></div>
+        </div>
+      </div>
+    );
+  }
+  return h;
+}
+
 function BannerShimmer(props) {
   return (
     <div className={props.propCls}>
@@ -421,6 +438,68 @@ function DetailShimmer(props) {
   );
 }
 
+function DescriptionDetailShimmer(props) {
+  return (
+    <div className="shimmer-container">
+      <div className={props.propCls}>
+        <div className="contentLoader ListView">
+          <div className="shm_row">
+            <div className="col-md-8">
+              <div className="shm_col-sm-12">
+                <div
+                  className="animated-background main"
+                  style={{ height: props.height }}
+                >
+                  {' '}
+                </div>
+              </div>
+            </div>
+            <div className="col-md-4">
+              <div className="shm_col-sm-12">
+                <div
+                  className="animated-backgroundlarge secondRow"
+                  style={{
+                    height: '25px',
+                    width: '30%',
+                    marginTop: '25px',
+                    marginBottom: '50px'
+                  }}
+                >
+                  {' '}
+                </div>
+                <div
+                  className="animated-backgroundlarge secondRow"
+                  style={{ height: '25px', marginBottom: '50px' }}
+                >
+                  {' '}
+                </div>
+                <div
+                  className="animated-backgroundlarge firstRow"
+                  style={{ height: '50px', marginBottom: '50px' }}
+                >
+                  {' '}
+                </div>
+                <div
+                  className="animated-backgroundlarge firstRow"
+                  style={{ height: '25px', marginBottom: '50px' }}
+                >
+                  {' '}
+                </div>
+                <div
+                  className="animated-backgroundlarge secondRow"
+                  style={{ height: '40px', marginBottom: '50px' }}
+                >
+                  {' '}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export default class ShimmerEffect extends Component {
   render() {
     let props = this.props;
@@ -448,6 +527,12 @@ export default class ShimmerEffect extends Component {
         break;
       case 'BLOCK':
         shimmer = <BlockShimmer {...props} />;
+        break;
+      case 'SOLID':
+        shimmer = <SolidShimmer {...props} />;
+        break;
+      case 'DESCRIPTIONDETAIL':
+        shimmer = <DescriptionDetailShimmer {...props} />;
         break;
       default:
     }

@@ -59,11 +59,17 @@
             display: flex;
             flex-wrap: wrap;
             padding-bottom: 13px;
+            &.active{
+                .video-subwrapper-image{
+                    border: 2px #0098FF solid;
+                }
+            }
             .video-subwrapper-image{
                 width: 37%;
                 flex: 0 0 37%;
                 overflow: hidden;
                 max-height: 87px;
+                border: 2px transparent solid;
                 img{
                     transition: 0.9s transform;
                     -webkit-transition: 0.9s transform;

@@ -446,7 +446,7 @@ export default class Events extends Component {
         filteredVenues: [...this.state.localfilteredVenues],
         filteredTags: [...this.state.localfilteredTags],
         filteredSortOrder: this.state.localfilteredSortOrder,
-        filteredSortType: this.state.localfilteredSortType
+        filteredSortType: this.state.localfilteredSortType == "" ? "date" : this.state.localfilteredSortType
       },
       () => {
         setTimeout(() => {

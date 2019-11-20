@@ -27,11 +27,10 @@ const Review = ({ reviewData }) => {
         </div>
         <div className="review-content">
           <h3>
-            {reviewData && reviewData.data[0] && reviewData.data[0].title}
-            {/* {Utilities.showLimitedChars(
+            {Utilities.showLimitedChars(
               reviewData && reviewData[0] && reviewData[0].title,
-              Utilities.mobilecheck() ? 25 : 50
-            )} */}
+              Utilities.mobilecheck() ? 30 : 60
+            )}
           </h3>
           <span className="review-subtext">
             {reviewData && reviewData.data[0] && reviewData.data[0].author_name}
@@ -56,19 +55,26 @@ const Review = ({ reviewData }) => {
                     key={index}
                   >
                     <div className="review-item-image">
-                      <Image src={image} type="Small" />
+                      <Image src={image} type="VdoSmall" />
                     </div>
                     <div className="review-content">
-                      <h3>{title}</h3>
+                      <h3>
+                        {Utilities.showLimitedChars(
+                          reviewData && reviewData[0] && reviewData[0].title,
+                          Utilities.mobilecheck() ? 20 : 40
+                        )}
+                      </h3>
                       <span>{author_name}</span>
                     </div>
                   </Link>
                 );
               })}
         </div>
-        <a className="more-review" href="/articles" target="_blank">
-          More from {reviewData.name} <img src={rightArrow} alt="arrow" />
-        </a>
+        {reviewData.name && (
+          <a className="more-review" href="/articles" target="_blank">
+            More from {reviewData.name} <img src={rightArrow} alt="arrow" />
+          </a>
+        )}
       </div>
     </div>
   );
