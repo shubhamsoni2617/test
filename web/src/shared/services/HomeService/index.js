@@ -55,6 +55,10 @@ class HomeService {
   getItemsOrder(params) {
     return API.get(`general-home-settings`, { params });
   }
+
+  getRotationalBanner() {
+    return API.get(`adv/rotational-banner?client=1`, { });
+  }
 }
 
 export default new HomeService();
