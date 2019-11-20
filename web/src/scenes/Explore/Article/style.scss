@@ -404,10 +404,14 @@ section.whats-new {
             &::-webkit-scrollbar { 
                 display: none;
             }
-            @media(max-width: 991px){
-                flex: 0 0 33% !important;
-                width: 33% !important; 
-            }
+            // @media(max-width: 965px){
+            //     flex: 0 0 33.33% !important;
+            //     width: 33.33% !important;
+            // }
+            // @media(max-width: 767px){
+            //     flex: 0 0 45% !important;
+            //     width: 45% !important;
+            // }
             a{
                 @media(max-width: 767px){
                     flex: 0 0 45%;
@@ -457,6 +461,9 @@ section.whats-new {
                         @media(max-width: 767px){
                             font-size: 12px;
                             line-height: 16px;
+                        }
+                        @media(max-width: 450px){
+                            min-height: 32px;
                         }
                     }
                 }

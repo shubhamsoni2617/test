@@ -12,23 +12,14 @@ const FeaturedArticles = ({ featuredArticles, history }) => {
     speed: 500,
     rows: 1,
     slidesPerRow: 5,
-    responsive: [
-      {
-        breakpoint: 768,
-        settings: {
-          slidesPerRow: 3,
-        }
-      },]
+    responsive: [{
+      breakpoint: 1024,
+      settings: {
+        slidesPerRow: 3
+      }
+    }
+    ]
   };
-
-  const tabletSettings = {
-    dots: false,
-    infinite: false,
-    speed: 500,
-    rows: 1,
-    slidesPerRow: 3,
-  };
-
 
   if (!featuredArticles || !featuredArticles.length) {
     return <ShimmerEffect

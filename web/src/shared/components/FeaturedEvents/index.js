@@ -94,22 +94,20 @@ const FeaturedEvents = props => {
         }
       });
   };
-  const webSettings = {
+  const settings = {
     dots: true,
     infinite: false,
     speed: 500,
     rows: 2,
     slidesPerRow: 5,
+    responsive: [{
+      breakpoint: 1024,
+      settings: {
+        slidesPerRow: 3
+      }
+    }
+    ]
   };
-  const tabletSettings = {
-    dots: true,
-    infinite: false,
-    speed: 500,
-    rows: 2,
-    slidesPerRow: 3,
-  };
-
-  const sliderSettings = Utilities.mobileAndTabletcheck() ? tabletSettings : webSettings
 
   if (!loading && featuredEvents && featuredEvents.length === 0) {
     return null;
@@ -161,7 +159,7 @@ const FeaturedEvents = props => {
                 })}
             </div>
           </div>
-        ) : <Slider {...sliderSettings}>
+        ) : <Slider {...settings}>
               {featuredEvents &&
                 featuredEvents.map((event, index) => {
                   return (
