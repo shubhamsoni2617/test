@@ -1,4 +1,5 @@
 .sliderBottomDot{
+
     padding-bottom: 20px;
     .slick-dots{
         top: auto;
@@ -435,6 +436,44 @@ section.whats-new {
         }
         &:hover{
             opacity: 0.8;
+        }
+    }
+}
+//feedback CSS
+.articledetail-wrapper{
+    .festival-top-slider{
+        max-height: 460px;
+        overflow: hidden;
+        .slick-slide{
+            img{
+                max-height: 349px;
+                object-fit: cover;
+                object-position: center;
+            }
+        }
+        .slick-arrow{
+            height: 85px;
+            width: 35px;
+            background-position: 10px 32px;
+            background-color: rgba(0, 0, 0, 0.7);
+            @media(max-width: 768px){
+                display: none !important;
+            }
+            &:hover{
+                border: none;
+                outline: none;
+            }
+            &.slick-prev{
+                left: -5px;
+                background-image: url('../../../assets/images/left-arrow-white.svg');
+                @media(max-width: 1440px){
+                    left: 0px;
+                }
+            }
+            &.slick-next{
+                right: 0px;
+                background-image: url('../../../assets/images/right-arrow-white.svg');
+            }
         }
     }
 }

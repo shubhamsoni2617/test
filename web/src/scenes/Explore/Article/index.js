@@ -37,7 +37,7 @@ const Article = props => {
     }, 1000);
   };
   return (
-    <section>
+    <section className="articledetail-wrapper">
       <SliderBanner data={articleData && articleData.image} />
       <div className="acticle">
         <div className="container-fluid">
