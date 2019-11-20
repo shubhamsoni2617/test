@@ -15,7 +15,8 @@ import ModalPopup from '../../../shared/components/Modal';
 const ArticleSection = ({ flag, code }) => {
   const [articleData, setArticleData] = useState([]);
   const [showPopUp, setShowpopup] = useState(false);
-  const [shimmer, setShimmer] = useState(true)
+  const [shimmer, setShimmer] = useState(true);
+
 
   useEffect(() => {
     let params = { code: code, client: Constants.CLIENT };
@@ -23,12 +24,12 @@ const ArticleSection = ({ flag, code }) => {
       .then(res => {
         if (res.data.data) {
           setArticleData(res.data.data);
-          setShimmer(false)
+          setShimmer(false);
         }
         console.log('article section', res);
       })
       .catch(error => {
-        setShimmer(false)
+        setShimmer(false);
         console.log(error);
       });
   }, []);
@@ -38,23 +39,25 @@ const ArticleSection = ({ flag, code }) => {
   return (
     <section className="event-articles">
       <div className="container-fluid">
-      <CSSTransition
-          // transitionName="shimmer"
-          // transitionEnter={true}
-          // transitionEnterTimeout={500}
-          // transitionLeaveTimeout={500}
-          in={shimmer}
-          timeout={500}
-          classNames="shimmer"
-        >
-          <ShimmerEffect
-            propCls="col-md-12"
-            height={400}
-            count={2}
-            type="DETAIL"
-            detail={true}
-          />
-        </CSSTransition>
+        {shimmer && (
+          <CSSTransition
+            // transitionName="shimmer"
+            // transitionEnter={true}
+            // transitionEnterTimeout={500}
+            // transitionLeaveTimeout={500}
+            in={shimmer}
+            timeout={500}
+            classNames="shimmer"
+          >
+            <ShimmerEffect
+              propCls="col-md-12"
+              height={400}
+              count={2}
+              type="DETAIL"
+              detail={true}
+            />
+          </CSSTransition>
+        )}
         <div className="section-top-wrArticleSectioner">
           <h2>Articles</h2>
           <div className="carousel-dots">
@@ -73,7 +76,7 @@ const ArticleSection = ({ flag, code }) => {
                       src={item.thmumb_image}
                       className="img-fluid"
                       alt="article"
-                      type="Horizontal"
+                      type="HorizontalMin"
                     />
                   </div>
                   <Link to={`/explore/article/${item.id}`}>
@@ -88,22 +91,13 @@ const ArticleSection = ({ flag, code }) => {
                         )}
                       </p>
                       {item.plain_description.length > 100 && (
+                        <Link to={`/explore/article/${item.id}`}>
                         <span
                           className="attraction-show-more"
-                          onClick={() => setShowpopup(true)}
                         >
                           More
                         </span>
-                      )}
-
-                      {showPopUp && (
-                        <ModalPopup
-                          showModal={true}
-                          content={item.plain_description}
-                          title={item.title}
-                          handleClose={() => setShowpopup(false)}
-                          htmlContent={true}
-                        />
+                        </Link>
                       )}
                     </React.Fragment>
                   )}

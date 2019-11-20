@@ -86,6 +86,7 @@ export default class AccordionSection extends Component {
                 {langArr && (
                   <ul className="languages-group">
                     {langArr.map((obj, idx) => {
+                      if(obj.language && obj.description){
                       return (
                         <li
                           key={obj + idx}
@@ -103,7 +104,9 @@ export default class AccordionSection extends Component {
                             {obj.language}
                           </a>
                         </li>
-                      );
+                      )} else{
+                        return null
+                      }
                     })}
                   </ul>
                 )}

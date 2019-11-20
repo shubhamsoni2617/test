@@ -8,6 +8,7 @@ import Small from '../../../assets/images/small.png';
 import Medium from '../../../assets/images/noimage.png';
 import MediumVertical from '../../../assets/images/mediumVertical.png';
 import MediumHorizontal from '../../../assets/images/mediumHorizontal.jpg';
+import HorizontalMin from '../../../assets/images/HorizontalMin.png'
 import BigBannerMobile from '../../../assets/images/Big_Banner.png'
 
 import './style.scss';
@@ -48,6 +49,10 @@ function Image(props) {
         break;
       case 'Tile':
         newImg = Tile;
+        break;
+
+      case 'HorizontalMin':
+        newImg = HorizontalMin;
         break;
 
       case 'BigBanner':
