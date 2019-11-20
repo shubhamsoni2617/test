@@ -48,27 +48,31 @@ const Explore = () => {
   return (
     <div className="explore-wrapper">
       {banner && banner.length > 0 && <Banner bannerData={banner} />}
-      {whats_up && whats_up.heading && <WhatsUp whatsUpData={whats_up} />}
-      {royals && royals.heading && (
+      {whats_up && whats_up.data.length > 0 && (
+        <WhatsUp whatsUpData={whats_up} />
+      )}
+      {royals && royals.sub_section_two.length > 0 && (
         <div className="home-page-wrapper">
           <CustomtomSectionTwo
-            heading={royals && royals.heading}
-            customData={royals && royals.sub_section_two}
+            heading={royals.heading}
+            customData={royals.sub_section_two}
             isMoreFrom={true}
           />
         </div>
       )}
-      {articles && articles.heading && articles.data.length > 0 && (
+      {articles && articles.data.length > 0 && (
         <LandingArticles articles={articles} />
       )}
       <GiftCard />
-      {festivals && festivals.heading && (
+      {festivals && festivals.data.length > 0 && (
         <LandingFestivals festivals={festivals} />
       )}
       {section_five && section_five.length > 0 && (
         <Reviews reviewsData={section_five} />
       )}
-      {trending && trending.heading && <Trending trending={trending} />}
+      {trending && trending.sub_section_six.length > 0 && (
+        <Trending trending={trending} />
+      )}
       {video_gallery && video_gallery.length > 0 && (
         <CustomtomSectionThree
           heading="Video Gallery"
