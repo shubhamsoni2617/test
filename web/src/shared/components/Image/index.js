@@ -1,6 +1,6 @@
 import React, { useState, useEffect, memo } from 'react';
 import PropTypes from 'prop-types';
-import BigBanner from '../../../assets/images/big_banner.png';
+import BigBanner from '../../../assets/images/Big_Banner.png';
 import Horizontal from '../../../assets/images/horizontal.png';
 import Vertical from '../../../assets/images/vertical.png';
 import Tile from '../../../assets/images/Vertical Tile.png';

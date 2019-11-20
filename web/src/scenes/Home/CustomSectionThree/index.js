@@ -4,6 +4,7 @@ import ShimmerEffect from '../../../shared/components/ShimmerEffect';
 import './style.scss';
 import Constants from '../../../shared/constants';
 import AdvertisementService from '../../../shared/services/AdvertisementService';
+import Image from '../../../shared/components/Image';
 
 const CustomSectionThree = ({ heading, customData }) => {
   const [data, setData] = useState(null);
@@ -92,7 +93,11 @@ const CustomSectionThree = ({ heading, customData }) => {
                   data.map((vdo, index) => {
                     return (
                       <div
-                        className={vdo.video_url == url ? 'video-item-image active' : 'video-item-image'}
+                        className={
+                          vdo.video_url == url
+                            ? 'video-item-image active'
+                            : 'video-item-image'
+                        }
                         key={index}
                         onClick={() => {
                           setUrl(vdo.video_url);
@@ -106,10 +111,11 @@ const CustomSectionThree = ({ heading, customData }) => {
                         }}
                       >
                         <span className="video-subwrapper-image">
-                          <img
+                          <Image
                             src={vdo.video_thumb}
                             alt=""
                             className="img-fluid"
+                            type="Small"
                           />
                         </span>
                         <a className="video-subwrapper-text">{vdo.title}</a>
