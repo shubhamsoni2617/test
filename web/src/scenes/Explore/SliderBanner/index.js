@@ -3,7 +3,6 @@ import Slider from 'react-slick';
 import './style.scss';
 
 const SliderBanner = ({ data }) => {
-  console.log(data);
   const settings = {
     dots: true,
     arrows: true,
@@ -13,7 +12,7 @@ const SliderBanner = ({ data }) => {
     slidesPerRow: 1,
     autoplay: true
   };
-  return (
+  return data && data.length > 0 ? (
     <div className="sliderBottomDot festival-top-slider">
       <Slider {...settings}>
         {data &&
@@ -22,7 +21,7 @@ const SliderBanner = ({ data }) => {
           })}
       </Slider>
     </div>
-  );
+  ) : null;
 };
 
 export default SliderBanner;

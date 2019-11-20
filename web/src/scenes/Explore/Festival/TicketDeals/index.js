@@ -3,7 +3,7 @@ import './style.scss';
 import Image from '../../../../shared/components/Image';
 
 const TicketDeals = ({ sectionFive }) => {
-  return (
+  return sectionFive && sectionFive.length > 0 ? (
     <section className="deal-wrapper">
       <div className="container-fluid">
         <div className="tickets">
@@ -24,7 +24,7 @@ const TicketDeals = ({ sectionFive }) => {
         </div>
       </div>
     </section>
-  );
+  ) : null;
 };
 
 export default TicketDeals;
