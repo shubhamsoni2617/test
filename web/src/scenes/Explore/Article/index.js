@@ -47,7 +47,7 @@ const Article = props => {
   };
   return (
     <section className="articledetail-wrapper">
-      {articleData && articleData.image ? (
+      {/* {articleData && articleData.image ? (
         <SliderBanner data={articleData.image} />
       ) : (
           <div className="simmerOuter">
@@ -57,36 +57,43 @@ const Article = props => {
               type="SOLID"
             />
           </div>
-        )}
+        )} */}
+
+      {articleData && articleData.image && (
+        <SliderBanner data={articleData.image} />)}
 
       <div className="acticle">
         <div className="container-fluid">
-          <div className="offset-lg-2">
-            <div className="breadcrumbs-section">
-              <BreadcrumbSlug
-                breadcrumbSlug={[
-                  { path: '/', title: 'Home' },
-                  { path: '/explore', title: 'Explore' },
-                  { path: '/article', title: 'Article' }
-                ]}
-              />
-              <span className="share" onClick={handleSocialShare}>
-                <img src={ShareIcon} alt="share-icon" />
-                <SocialShare
-                  shareUrl={window.location.href}
-                  showSocialShare={showSocialShare}
-                />
-              </span>
+          <div className="offset-lg-2 breadcrumb-category-group">
+            <div className="row">
+              <div className="breadcrumb-category-group col-md-10">
+                <div className="breadcrumbs-section">
+                  <BreadcrumbSlug
+                    breadcrumbSlug={[
+                      { path: '/', title: 'Home' },
+                      { path: '/explore', title: 'Explore' },
+                      { path: '/article', title: 'Article' }
+                    ]}
+                  />
+                  <span className="share" onClick={handleSocialShare}>
+                    <img src={ShareIcon} alt="share-icon" />
+                    <SocialShare
+                      shareUrl={window.location.href}
+                      showSocialShare={showSocialShare}
+                    />
+                  </span>
+                </div>
+                {articleData && articleData.tags ? (
+                  <ul className="category-section">
+                    {articleData.tags.map(tag => (
+                      <li key={tag}>{tag}</li>
+                    ))}
+                  </ul>
+                ) : (
+                    <ShimmerEffect count={4} type="BLOCK" />
+                  )}
+              </div>
             </div>
-            {articleData && articleData.tags ? (
-              <ul className="category-section">
-                {articleData.tags.map(tag => (
-                  <li key={tag}>{tag}</li>
-                ))}
-              </ul>
-            ) : (
-                <ShimmerEffect count={4} type="BLOCK" />
-              )}
           </div>
           <div className="row">
             <div className="col-xs-12 col-lg-2 pl-lg-0">
@@ -104,7 +111,7 @@ const Article = props => {
               )}
             </div>
 
-            <div className="col-xs-12 col-lg-10 mb-5">
+            <div className="col-xs-8 col-lg-8 mb-5 col-lg-offset-4">
               <div className="article-content">
                 {articleData && articleData.title && (
                   <h2>{articleData.title}</h2>
@@ -130,11 +137,16 @@ const Article = props => {
           </div>
         </div>
       </div>
-      <div className="article-featured">
-        <FeaturedArticles
-          featuredArticles={articleData && articleData.featured_articles}
-          history={props.history}
-        />
+      <div className="article-featured featured-events">
+        <div className="container-fluid">
+          <div class="section-top-wrapper">
+            <h2>Featured in Article</h2>
+          </div>
+          <FeaturedArticles
+            featuredArticles={articleData && articleData.featured_articles}
+            history={props.history}
+          />
+        </div>
       </div>
       <div className="article-explore">
         <Explore article heading="You Might Like" />

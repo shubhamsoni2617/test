@@ -94,13 +94,23 @@ const FeaturedEvents = props => {
         }
       });
   };
-  const settings = {
+  const webSettings = {
     dots: true,
     infinite: false,
     speed: 500,
     rows: 2,
-    slidesPerRow: 5
+    slidesPerRow: 5,
   };
+  const tabletSettings = {
+    dots: true,
+    infinite: false,
+    speed: 500,
+    rows: 2,
+    slidesPerRow: 3,
+  };
+
+  const sliderSettings = Utilities.mobileAndTabletcheck() ? tabletSettings : webSettings
+
   if (!loading && featuredEvents && featuredEvents.length === 0) {
     return null;
   }
@@ -151,18 +161,17 @@ const FeaturedEvents = props => {
                 })}
             </div>
           </div>
-        ) : (
-          <Slider {...settings}>
-            {featuredEvents &&
-              featuredEvents.map((event, index) => {
-                return (
-                  <div className="grid-container" key={index}>
-                    <Item event={event} />
-                  </div>
-                );
-              })}
-          </Slider>
-        )}
+        ) : <Slider {...sliderSettings}>
+              {featuredEvents &&
+                featuredEvents.map((event, index) => {
+                  return (
+                    <div className="grid-container" key={index}>
+                      <Item event={event} />
+                    </div>
+                  );
+                })}
+            </Slider>
+        }
         {/* </CSSTransitionGroup> */}
       </div>
     </section>
