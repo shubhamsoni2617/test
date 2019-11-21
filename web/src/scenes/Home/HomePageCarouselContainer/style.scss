@@ -1,4 +1,6 @@
-.slick-slide > div {
+
+.banner {
+    .slick-slide > div {
     transform: scale(.85);
     transition: transform .3s cubic-bezier(.4,0,.2,1);  
   }
@@ -13,6 +15,7 @@
   height: 350px;
   width: 600px;
   }
+}
   //Banner style start
 .banner {
 	padding: 0px;
