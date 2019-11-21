@@ -143,30 +143,31 @@ class Utilities {
     return "unknown";
   }
 
-  static updateUrl(history,state) {
-    // debugger
+  static updateUrl(history, state) {
     let url;
-    let searchParam; 
-    let pathName = history.location.pathname.replace(/\/$/,"");
-    pathName = pathName.replace("/search", "");
-    searchParam = "/search?";
-    url = pathName + searchParam;
-    let filteredGnere = state.filteredGnere.length > 0 ? `${'c='+state.filteredGnere.toString()+ '&'}` : ""; 
-    url = url + filteredGnere;
-    let filteredTags = state.filteredTags.length > 0 ? `${'t='+state.filteredTags.toString()+ '&'}` : ""; 
-    url = url + filteredTags;
-    let filteredVenues = state.filteredVenues.length > 0 ? `${'v='+state.filteredVenues.toString()+ '&'}` : ""; 
-    url = url + filteredVenues;  
-    let filteredSearch = state.filteredSearch !== "" ? `${'q='+state.filteredSearch+ '&'}` : ""; 
-    url = url + filteredSearch;
-    let filteredPromotions = state.filteredPromotions.length > 0 ? `${'p='+state.filteredPromotions.toString()+ '&'}` : ""; 
-    url = url + filteredPromotions;
-    let filteredDateRange = (state.filteredDateRange.from !== "" && state.filteredDateRange.to !== "") ? `${'s='+state.filteredDateRange.from+'--'+state.filteredDateRange.to + '&'}` : ""; 
-    url = url + filteredDateRange;
+    let searchParam = "";
+    let pathName = history.location.pathname.replace(/\/$/, "");
+    searchParam = "?";
+    // url = pathName + searchParam;
+    let filteredGnere = state.filteredGnere.length > 0 ? `${'c=' + state.filteredGnere.toString() + '&'}` : "";
+    url = filteredGnere;
+    // let filteredTags = state.filteredTags.length > 0 ? `${'t=' + state.filteredTags.toString() + '&'}` : "";
+    // url = url + filteredTags;
+    // let filteredVenues = state.filteredVenues.length > 0 ? `${'v=' + state.filteredVenues.toString() + '&'}` : "";
+    // url = url + filteredVenues;
+    // let filteredSearch = state.filteredSearch !== "" ? `${'q=' + state.filteredSearch + '&'}` : "";
+    // url = url + filteredSearch;
+    // let filteredPromotions = state.filteredPromotions.length > 0 ? `${'p=' + state.filteredPromotions.toString() + '&'}` : "";
+    // url = url + filteredPromotions;
+    // let filteredDateRange = (state.filteredDateRange.from !== "" && state.filteredDateRange.to !== "") ? `${'s=' + state.filteredDateRange.from + '--' + state.filteredDateRange.to + '&'}` : "";
+    // url = url + filteredDateRange;
 
-    history.push(
-      url
-    );
+    // let filteredPriceRange = (state.filteredPriceRange.min !== undefined && state.filteredPriceRange.max !== undefined) ? `${'r=' + state.filteredPriceRange.min + '--' + state.filteredPriceRange.max + '&'}` : "";
+    // url = url + filteredPriceRange;
+
+    history.push({
+      search: url
+    });
   }
 }
 

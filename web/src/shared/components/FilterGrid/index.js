@@ -45,7 +45,6 @@ const FilterGrid = props => {
 
   useEffect(() => {
     if (selectedFilters) {
-      debugger
       let text = `Select ${props.title}`;
       if (selectedFilters && selectedFilters.length) {
         let selectedValue = props.data.filter(

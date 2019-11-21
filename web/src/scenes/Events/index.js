@@ -392,6 +392,7 @@ export default class Events extends Component {
       };
     }
     this.setState(obj, () => {
+      Utilities.updateUrl(this.props.history, this.state)
       if (!Utilities.mobilecheck()) {
         const payload = this.getInitialFilters(true);
         this.setInitialFilters(payload);
