@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import './style.scss';
 import Contact from '../../../shared/components/Contact';
 
-const CustomerEnquiry = ({ sendCategoryToFaqs }) => {
+const CustomerEnquiry = ({ sendCategoryToFaqs, type }) => {
   const [enquiry, setEnquiry] = useState('Select an Enquiry');
 
   useEffect(() => {
@@ -17,7 +17,7 @@ const CustomerEnquiry = ({ sendCategoryToFaqs }) => {
     <div className="customer-enquiry-wrapper">
       <div className="customer-enquiry">
         <h3 className="heading-text">Customer Enquiries</h3>
-        <Contact attachement={true} handleEnquiry={handleEnquiry} />
+        <Contact attachement={true} type={type} handleEnquiry={handleEnquiry} />
       </div>
     </div>
   );
