@@ -6,7 +6,8 @@ export default (
   setFiltersForMobile,
   filteredId,
   setFilteredId,
-  mobileCheck
+  mobileCheck,
+  filteredTagsForMobile
 ) => {
   window &&
     window.scrollTo({
@@ -14,6 +15,7 @@ export default (
       left: 0,
       behavior: 'smooth'
     });
+
   let tagsToSearch = [...filteredId];
   const tagsUpdated = [...filterList];
   let index = tagsUpdated.findIndex(tag => tag.id === selected);
@@ -21,16 +23,22 @@ export default (
   setFilterList(tagsUpdated);
   if (isChecked) {
     tagsToSearch.push(selected);
-    setFiltersForMobile(tagsToSearch);
+
     if (!mobileCheck) {
       setFilteredId(tagsToSearch);
+    } else {
+      setFiltersForMobile([...filteredTagsForMobile, selected]);
     }
   } else {
     let i = tagsToSearch.indexOf(selected);
     tagsToSearch.splice(i, 1);
-    setFiltersForMobile(tagsToSearch);
+
     if (!mobileCheck) {
       setFilteredId(tagsToSearch);
+    } else {
+      let i = filteredTagsForMobile.indexOf(selected);
+      filteredTagsForMobile.splice(i, 1);
+      setFiltersForMobile([...filteredTagsForMobile]);
     }
   }
 };
