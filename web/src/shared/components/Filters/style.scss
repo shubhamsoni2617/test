@@ -394,6 +394,9 @@
                     max-width: 50%;
                     margin-left: auto;
                     text-align: right;
+                    @media(max-width:767px){
+                        font-weight: 500;
+                    }
                 }
             }
         }
