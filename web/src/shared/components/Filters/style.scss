@@ -126,6 +126,9 @@
                 &:-moz-placeholder {
                     color: rgba(52,52,52,0.25);
                 }
+                @media(max-width: 767px){
+                    height: 40px;
+                }
             }
         }
         .react-tabs{
