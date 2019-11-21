@@ -472,6 +472,9 @@
             .input-range{
                 width: calc(100% - 12px);
                 margin-left: 5px;
+                @media(max-width: 767px){
+                   margin-top: 10px;
+                }
             }
             .input-range__track--active {
                 background: #0098FF;
@@ -484,6 +487,12 @@
                 height: 15px;
                 width: 15px;
                 margin-top: -11px;
+                @media(max-width: 767px){
+                    height: 25px;
+                    width: 25px;
+                    border: 7px solid #0098FF;
+                    margin-top: -17px;
+                }
             }
             .input-range__track--background{
                 height: 1px;
@@ -528,7 +537,7 @@
                 flex: 0 0 100%;
                 margin-bottom: 0;
                 @media(max-width: 768px){
-                    margin-bottom: 20px;
+                    margin-bottom: 0;
                 }
                 @media(max-width: 767px){
                     position: fixed;
@@ -556,7 +565,7 @@
                     }
                     &:hover{
                         label{
-                            color: #0098ff;
+                            color: #626262;
                         }
                     }
                     input[type="checkbox"]:checked + label {

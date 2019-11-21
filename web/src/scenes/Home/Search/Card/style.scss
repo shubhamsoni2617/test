@@ -286,6 +286,9 @@
             font-size: 13px;
             margin-bottom: 6px;
             padding: 0;
+            @media (max-width: 1024px) {
+                min-height: 35px;
+            }
             @media (max-width: 767px) {
                 font-size: 12px;
             }
