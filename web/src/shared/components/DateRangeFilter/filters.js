@@ -219,7 +219,10 @@ function DateRangeFilter(props) {
                           : null,
                         modifiers,
                         numberOfMonths: 1,
-                        onDayClick: () => element.current.getInput().focus()
+                        onDayClick: () => {
+                          element.current.input.disabled = false;
+                          element.current.getInput().focus();
+                        }
                       }}
                       onDayChange={handleFromChange}
                     />
