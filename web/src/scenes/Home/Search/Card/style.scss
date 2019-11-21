@@ -380,8 +380,8 @@
                     -moz-transition: 0.8s all;
                     -o-transition: 0.8s all;
                     @media(max-width: 991px){
-                        border-radius: 0;
-                        border: 1px transparent solid;
+                        background-color: #0098ff;
+                        color: #fff;
                     }
                 }
                 @media (max-width: 768px) {
