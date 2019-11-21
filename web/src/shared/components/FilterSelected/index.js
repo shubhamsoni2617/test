@@ -28,19 +28,12 @@ function FilterSelected(props) {
     return (
       <>
         {text}
-        <button
-          onClick={() => {
-            setTimeout(() => {
-              props.type == 'EVENTS'
-                ? props.history.push(`/events`)
-                : props.history.push(`/attraction`);
-            }, 100);
-            handleFilters(obj, true);
-          }}
-          className="filtered-tags-close-btn"
-        >
-          <img src={closeBlueImg} alt="close-btn" />
-        </button>
+        <button onClick={() => {
+          setTimeout(() => {
+            handleFilters(obj, true)
+            // props.type == "EVENTS" ? props.history.push(`/events/search`) : props.history.push(`/attraction`) ;
+          }, 100); 
+        }} className="filtered-tags-close-btn"><img src={closeBlueImg} alt="close-btn" /></button>
       </>
     );
   };
