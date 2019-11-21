@@ -146,7 +146,7 @@ const ArticleList = ({ history }) => {
             isChecked: filteredCategories.indexOf(el.id) === -1 ? false : true
           };
         });
-        setFilteredCategories(restoredCategories);
+        setCategories(restoredCategories);
       }
     }
     setShowTags(false);
@@ -175,8 +175,6 @@ const ArticleList = ({ history }) => {
       />
     ) : null;
   };
-  console.log(filteredTagsForMobile);
-  console.log(filteredTags);
 
   return (
     <div className="events-page-wrapper articlelist-wrapper">
