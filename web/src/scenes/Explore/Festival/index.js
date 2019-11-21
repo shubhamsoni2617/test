@@ -182,7 +182,7 @@ const Festival = ({ match }) => {
 
   return (
     <div className="festival-wrapper">
-      {/* {bannerPart}
+      {bannerPart}
       {welcomePart}
       {festivalPart}
       {musicalPart}
@@ -191,16 +191,16 @@ const Festival = ({ match }) => {
       {ticketDealsPart}
       {articlesPart}
       {pollNSurveysPart}
-      {videoGalleryPart} */}
+      {videoGalleryPart}
 
-      {sectionOrders &&
+      {/* {sectionOrders &&
         sectionOrders.map(({ order }) => {
           return sectionArray.map(({ orderNo, returnPart }) => {
             if (order === orderNo) {
               return returnPart;
             }
           });
-        })}
+        })} */}
     </div>
   );
 };
