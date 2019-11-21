@@ -59,7 +59,31 @@ function PriceRangeFilter(props) {
       <div className="filter-grid-heading">
         <h3>Price Range</h3>
         <ul>
-          <li className="active">
+          <li
+            className={
+              filteredPriceRange &&
+              (filteredPriceRange.min || filteredPriceRange.max)
+                ? 'active'
+                : ''
+            }
+          >
+            {filteredPriceRange &&
+              (filteredPriceRange.min || filteredPriceRange.max) && (
+                <a
+                  href="/"
+                  onClick={e => {
+                    e.preventDefault();
+                    clearPriceRange();
+                  }}
+                >
+                  Clear
+                </a>
+              )}
+            {!filteredPriceRange.min && !filteredPriceRange.max && (
+              <span>Clear</span>
+            )}
+          </li>
+          {/* <li className="active">
             <a
               href="/"
               onClick={e => {
@@ -69,7 +93,7 @@ function PriceRangeFilter(props) {
             >
               Clear
             </a>
-          </li>
+          </li> */}
         </ul>
       </div>
       <div className={`select-range ${flag ? 'active' : ''}`}>
@@ -162,15 +186,32 @@ function Filters(props) {
           <div className="filter-heading">
             <h3>
               Filters{' '}
-              <a
-                href="/"
-                onClick={e => {
-                  e.preventDefault();
-                  clearAllFilters();
-                }}
-              >
-                Clear All
-              </a>
+              {((filteredPriceRange && filteredPriceRange.min) ||
+                (filteredGnere && filteredGnere.length > 0) ||
+                (filteredTags && filteredTags.length > 0) ||
+                (filteredDateRange && filteredDateRange.to) ||
+                (filteredPromotions && filteredPromotions.length) ||
+                (filteredVenues && filteredVenues.length > 0) ||
+                (filteredCategory && filteredCategory.length > 0)) && (
+                <a
+                  href="/"
+                  onClick={e => {
+                    e.preventDefault();
+                    clearAllFilters();
+                  }}
+                >
+                  Clear All
+                </a>
+              )}
+              {!(filteredPriceRange && filteredPriceRange.min) &&
+                !(filteredGnere && filteredGnere.length > 0) &&
+                !(filteredTags && filteredTags.length > 0) &&
+                !(filteredDateRange && filteredDateRange.to) &&
+                !(filteredPromotions && filteredPromotions.length > 0) &&
+                !(filteredVenues && filteredVenues.length > 0) &&
+                !(filteredCategory && filteredCategory.length > 0) && (
+                  <span>Clear All</span>
+                )}
             </h3>
           </div>
           <SearchFilter
