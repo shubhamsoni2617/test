@@ -40,7 +40,7 @@ function FilterSelected(props) {
   const ListItem = ({ selectedFilters, title, data, category }) => {
     let newFilterObject = {};
     newFilterObject[category] = [];
-    if (selectedFilters.length === 1) {
+    if (selectedFilters.length === 1 && data) {
       const selected = data.find(item => item.id === selectedFilters[0]);
       return selected ? (
         <li>
