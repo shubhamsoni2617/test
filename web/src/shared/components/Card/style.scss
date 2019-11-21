@@ -1,9 +1,9 @@
 .event-block{
     display: flex;
     flex-direction: column;
-    box-shadow: 0 0px 1px rgba(154, 154, 154, 0.9);
-    -moz-box-shadow: 0 0px 1px rgba(154, 154, 154, 0.9);
-    -webkit-box-shadow: 0 0px 1px rgba(154, 154, 154, 0.9);
+    box-shadow: 0 0px 2px rgba(154, 154, 154, 0.5);
+    -moz-box-shadow: 0 0px 2px rgba(154, 154, 154, 0.5);
+    -webkit-box-shadow: 0 0px 2px rgba(154, 154, 154, 0.5);
     border: 2px solid transparent;
     margin-bottom: 35px;
     width: 100%;
@@ -14,7 +14,7 @@
     cursor: pointer;
     position: relative;
     @supports (-ms-ime-align:auto) {
-        box-shadow: 0 0px 1px rgba(154, 154, 154, 0.7);
+        box-shadow: 0 0px 2px rgba(154, 154, 154, 0.7);
     }
     @media(max-width: 1024px){
         height: 100%;
@@ -41,11 +41,11 @@
         -webkit-transition: .5s ease-out;
         -moz-transition: .5s ease-out;
         -o-transition: .5s ease-out;
-        box-shadow: 0 2px 27px 0 rgba(0,0,0,0.09);
+        box-shadow: 0 2px 27px 0 rgba(0,0,0,0.05);
         @media (max-width: 991px) {
-            box-shadow: 0 0px 1px rgba(154, 154, 154, 0.9);
-            -moz-box-shadow: 0 0px 1px rgba(154, 154, 154, 0.9);
-            -webkit-box-shadow: 0 0px 1px rgba(154, 154, 154, 0.9);
+            box-shadow: 0 0px 1px rgba(154, 154, 154, 0.5);
+            -moz-box-shadow: 0 0px 1px rgba(154, 154, 154, 0.5);
+            -webkit-box-shadow: 0 0px 1px rgba(154, 154, 154, 0.5);
             border: 2px solid transparent;
         }
     }

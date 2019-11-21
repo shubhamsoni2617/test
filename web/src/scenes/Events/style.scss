@@ -282,7 +282,7 @@
     left: 50%;
     top: 50%;
     width: 60px;
-    box-shadow: 0 0 10px #DDD;
+    box-shadow: none;
     border-radius: 50%;
     overflow: hidden;
     margin-left: 150px;
@@ -290,7 +290,7 @@
     z-index: 5;
     @media (max-width: 767px) {
         transform: translateY(-50%);
-        margin-left: 0 !important;
+        margin-left: -30px !important;
     }
 }
 .ReactModalPortal{
