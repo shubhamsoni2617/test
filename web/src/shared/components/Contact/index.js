@@ -44,9 +44,11 @@ const Contact = ({ attachement, handleEnquiry, type }) => {
   };
 
   const fetchEnquiry = () => {
-    let params = {};
-    if (type) {
-      params.page = type;
+    let params = {
+      page: 'b2b'
+    };
+    if (type === 'contact') {
+      delete params.page;
     }
     ContactUsService.getEnquiry(params)
       .then(res => {
