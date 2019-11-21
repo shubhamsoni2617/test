@@ -40,6 +40,7 @@ function FilterSelected(props) {
   const ListItem = ({ selectedFilters, title, data, category }) => {
     let newFilterObject = {};
     newFilterObject[category] = [];
+    newFilterObject[`local${category}`] = [];
     if (selectedFilters.length === 1 && data) {
       const selected = data.find(item => item.id === selectedFilters[0]);
       return selected ? (
@@ -77,7 +78,7 @@ function FilterSelected(props) {
           <li>
             <Button
               text={`S$${filteredPriceRange.min} - S$${filteredPriceRange.max}`}
-              obj={{ filteredPriceRange: { min: '', max: '' } }}
+              obj={{ filteredPriceRange: { min: '', max: '' }, localfilteredPriceRange: { min: '', max: '' }  }}
             />
           </li>
         )}
@@ -105,6 +106,10 @@ function FilterSelected(props) {
               )} - ${moment(filteredDateRange.to).format('D-MMM-YYYY')}`}
               obj={{
                 filteredDateRange: {
+                  from: '',
+                  to: ''
+                },
+                localfilteredDateRange: {
                   from: '',
                   to: ''
                 }

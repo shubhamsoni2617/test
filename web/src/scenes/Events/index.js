@@ -345,7 +345,6 @@ export default class Events extends Component {
   };
 
   handleFilters = (searchType, apply) => {
-    
     if (Utilities.mobilecheck()) {
       this.setState({
         localfilteredSortType: searchType.filteredSortType,
@@ -444,6 +443,7 @@ export default class Events extends Component {
   };
 
   callAPI = () => {
+    debugger
     this.setState(
       {
         first: 0,
