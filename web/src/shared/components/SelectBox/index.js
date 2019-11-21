@@ -3,7 +3,8 @@ import './style.scss';
 import DownArrow from '../../../assets/images/career/Path.svg';
 import UpArrow from '../../../assets/images/uparrow.svg';
 import Cross from '../../../assets/images/close-blue.svg';
-
+import ArrowDropdownUp from '../../../assets/images/dropdown-arrow-up.svg';
+import ArrowDropdown from '../../../assets/images/dropdown-arrow.svg';
 export default class Select extends Component {
   constructor(props) {
     super(props);
@@ -329,9 +330,9 @@ export default class Select extends Component {
           {this.renderValues()}
           <span className="arrow">
             {isOpen ? (
-              <img src={UpArrow} alt="UpArrow" />
+              <img src={ArrowDropdownUp} alt="UpArrow" />
             ) : (
-              <img src={DownArrow} alt="DownArrow" />
+              <img src={ArrowDropdown} alt="DownArrow" />
             )}
           </span>
         </div>
