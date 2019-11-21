@@ -12,6 +12,7 @@ import FestivalEventLineUp from './FestivalEventLineUp';
 import Welcome from './Welcome';
 import SliderBanner from '../SliderBanner';
 import ShimmerEffect from '../../../shared/components/ShimmerEffect';
+import Utilities from '../../../shared/utilities';
 
 const Festival = ({ match }) => {
   const [templateTwoContent, setTemplateTwoContent] = useState([]);
@@ -70,7 +71,9 @@ const Festival = ({ match }) => {
         height={height}
         count={count}
         type={type}
-        propCls={`shm_col-xs-2 col-md-${propCls}`}
+        propCls={`shm_col-xs-${
+          Utilities.mobilecheck() ? 12 : 2
+        } col-md-${propCls}`}
       />
     );
   };
@@ -104,7 +107,6 @@ const Festival = ({ match }) => {
     social_wall_url,
     image
   } = templateTwoContent;
-  
 
   const bannerPart = image && image.length > 0 && <SliderBanner data={image} />;
   const welcomePart = title ? (
@@ -124,7 +126,14 @@ const Festival = ({ match }) => {
     section_one && section_two ? (
       <FestivalEventLineUp sectionOne={section_one} sectionTwo={section_two} />
     ) : (
-      <div className="shimmer-margin">{reusedShimmer(300, 4, 'TILE', 3)}</div>
+      <div className="shimmer-margin">
+        {reusedShimmer(
+          Utilities.mobilecheck() ? 120 : 300,
+          Utilities.mobilecheck() ? 1 : 4,
+          'TILE',
+          Utilities.mobilecheck() ? 12 : 3
+        )}
+      </div>
     );
 
   const musicalPart = section_three ? (
@@ -136,7 +145,14 @@ const Festival = ({ match }) => {
   const allEventPart = section_four ? (
     <AllEvents sectionFour={section_four} />
   ) : (
-    <div className="shimmer-margin">{reusedShimmer(300, 2, 'TILE', 6)}</div>
+    <div className="shimmer-margin">
+      {reusedShimmer(
+        Utilities.mobilecheck() ? 120 : 300,
+        Utilities.mobilecheck() ? 1 : 2,
+        'TILE',
+        Utilities.mobilecheck() ? 12 : 6
+      )}
+    </div>
   );
 
   const socialWallPart = social_wall_url && (
@@ -149,12 +165,11 @@ const Festival = ({ match }) => {
     <div className="shimmer-margin">{reusedShimmer(300, 6, 'TILE', 2)}</div>
   );
 
-  const articlesPart = section_six  && section_six.sub_section_six.length>0 ? (
-    <Articles sectionSix={section_six} />
-  ) : (
-    // <div className="shimmer-margin">{reusedShimmer(300, 2, 'TILE', 6)}</div>
-    null
-  );
+  const articlesPart =
+    section_six && section_six.sub_section_six.length > 0 ? (
+      <Articles sectionSix={section_six} />
+    ) : // <div className="shimmer-margin">{reusedShimmer(300, 2, 'TILE', 6)}</div>
+    null;
 
   const pollNSurveysPart = section_seven ? (
     <PollNServeys sectionSeven={section_seven} />
