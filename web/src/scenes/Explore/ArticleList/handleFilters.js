@@ -15,7 +15,7 @@ export default (
       left: 0,
       behavior: 'smooth'
     });
-
+  let tagsToSearchMobile = [...filteredTagsForMobile];
   let tagsToSearch = [...filteredId];
   const tagsUpdated = [...filterList];
   let index = tagsUpdated.findIndex(tag => tag.id === selected);
@@ -27,18 +27,18 @@ export default (
     if (!mobileCheck) {
       setFilteredId(tagsToSearch);
     } else {
-      setFiltersForMobile([...filteredTagsForMobile, selected]);
+      tagsToSearchMobile.push(selected);
+      setFiltersForMobile(tagsToSearchMobile);
     }
   } else {
-    let i = tagsToSearch.indexOf(selected);
-    tagsToSearch.splice(i, 1);
-
     if (!mobileCheck) {
+      let i = tagsToSearch.indexOf(selected);
+      tagsToSearch.splice(i, 1);
       setFilteredId(tagsToSearch);
     } else {
-      let i = filteredTagsForMobile.indexOf(selected);
-      filteredTagsForMobile.splice(i, 1);
-      setFiltersForMobile([...filteredTagsForMobile]);
+      let i = tagsToSearchMobile.indexOf(selected);
+      tagsToSearchMobile.splice(i, 1);
+      setFiltersForMobile(tagsToSearchMobile);
     }
   }
 };
