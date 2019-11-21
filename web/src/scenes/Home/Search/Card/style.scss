@@ -261,6 +261,9 @@
           margin: 0;
           line-height: 20px;
           min-height: 61px;
+          @media(max-width: 991px){
+              padding-bottom: 5px;
+          }
           @media(max-width: 767px){
               min-height: auto;
           }
@@ -289,6 +292,7 @@
             min-height: 18px;
             @media (max-width: 1024px) {
                 min-height: 35px;
+                margin-bottom: 0;
             }
             @media (max-width: 767px) {
                 font-size: 12px;
