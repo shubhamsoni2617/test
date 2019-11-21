@@ -10,7 +10,7 @@ import './style.scss';
 export default class SortBy extends Component {
   state = {
     sort: {
-      tag: this.props.defaultSortType ? this.props.defaultSortType : 'Date',
+      tag: this.props.defaultSortType ? this.props.defaultSortType : 'Date - ASC',
       active: ''
     },
     showSortMenu: Utilities.mobilecheck() ? true : false,
