@@ -109,7 +109,8 @@ const ArticleList = ({ history }) => {
         setFilteredTagsForMobile,
         filteredTags,
         setFilteredTags,
-        mobileCheck
+        mobileCheck,
+        filteredTagsForMobile
       );
     }
     if (filterTitle === 'Categories') {
@@ -121,12 +122,33 @@ const ArticleList = ({ history }) => {
         setFilteredCategoriessForMobile,
         filteredCategories,
         setFilteredCategories,
-        mobileCheck
+        mobileCheck,
+        filteredCategoriesForMobile
       );
     }
   };
 
-  const closeFilters = () => {
+  const closeFilters = (filterTitle, action) => {
+    if (action === 'back') {
+      if (filterTitle === 'Tags') {
+        let restoredTags = tags.map(el => {
+          return {
+            ...el,
+            isChecked: filteredTags.indexOf(el.id) === -1 ? false : true
+          };
+        });
+        setTags(restoredTags);
+      }
+      if (filterTitle === 'Categories') {
+        let restoredCategories = categories.map(el => {
+          return {
+            ...el,
+            isChecked: filteredCategories.indexOf(el.id) === -1 ? false : true
+          };
+        });
+        setFilteredCategories(restoredCategories);
+      }
+    }
     setShowTags(false);
     setShowCategories(false);
   };
@@ -153,6 +175,8 @@ const ArticleList = ({ history }) => {
       />
     ) : null;
   };
+  console.log(filteredTagsForMobile);
+  console.log(filteredTags);
 
   return (
     <div className="events-page-wrapper articlelist-wrapper">
@@ -194,7 +218,7 @@ const ArticleList = ({ history }) => {
             <div
               className={`events-listing ${
                 isNaN(totalResults) ? `article-list-notfound` : ``
-                }`}
+              }`}
             >
               <div className="events-section">
                 <CardList
@@ -218,7 +242,7 @@ const ArticleList = ({ history }) => {
                   <ShimmerEffect
                     propCls={`${
                       Utilities.mobileAndTabletcheck() ? 'shm_col-xs-6' : ''
-                      } col-md-4`}
+                    } col-md-4`}
                     height={150}
                     count={Utilities.mobileAndTabletcheck() ? 2 : 3}
                     type="LIST"
