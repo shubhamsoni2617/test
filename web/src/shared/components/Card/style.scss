@@ -184,6 +184,11 @@
                         color: #FFF;
                         line-height: 22px;
                         border: none;
+                        @media(max-width: 991px){
+                            color: #fff;
+                            background: #0098ff url(../../../assets/images/buy-arrow.png) 94% 13px no-repeat;
+                            background-size: 20px;
+                        }
                     }
                 }
             }
@@ -395,7 +400,8 @@
                     -moz-transition: 0.8s all;
                     -o-transition: 0.8s all;
                     @media(max-width: 991px){
-                        border: 1px transparent solid;
+                        background-color: #0098ff;
+                        color: #fff;
                     }
                 }
                 @media (max-width: 768px) {
