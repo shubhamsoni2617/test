@@ -427,9 +427,15 @@
                     &:last-child{
                         border: none;
                     }
+                    span{
+                        color: #0098ff;
+                        opacity: 0.5;
+                        font-size: 12px;
+                    }
                     &.active {
                         a{
                             color: #0098ff;
+                            opacity: 1;
                         }
                     }
                     a {
