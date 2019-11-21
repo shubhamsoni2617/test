@@ -1066,7 +1066,11 @@ button,
 				font-size: 12px;
 				padding: 0px 10px 0px;
 				@media(max-width: 767px){
-					padding: 0px 10px 0px;
+                    padding: 0px 10px 0px;
+                    display: flex;
+                    width: 100%;
+                    align-items: center;
+                    justify-content: center;
 				}
 			}
 		}

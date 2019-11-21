@@ -51,7 +51,7 @@
 
             input {
                 border: 1px solid rgba(151,151,151,0.2);
-                height: 36px;
+                height: 40px;
                 padding: 3px 40px 3px 10px;
                 border-radius: 0;
                 &::-webkit-input-placeholder {
@@ -238,7 +238,7 @@
 
         input {
             border: 1px solid rgba(151,151,151,0.2);
-            height: 30px;
+            height: 40px;
             padding: 3px 40px 3px 10px;
             border-radius: 0;
             &::-webkit-input-placeholder {
@@ -297,8 +297,14 @@
                     &:last-child{
                         border: none;
                     }
+                    span{
+                        color: #0098ff;
+                        opacity: 0.5;
+                        font-size: 12px;
+                    }
                     &.active {
                         a{
+                            opacity: 1;
                             color: #0098ff;
                         }
                     }
