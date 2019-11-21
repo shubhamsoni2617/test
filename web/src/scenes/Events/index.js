@@ -448,6 +448,12 @@ export default class Events extends Component {
     });
   };
 
+  closeFilter = () => {
+    this.setState({
+      filterFlag: false
+    });
+  };
+
   toggleSortBy = () => {
     this.setState({
       sortByFlag: !this.state.sortByFlag,
@@ -457,7 +463,6 @@ export default class Events extends Component {
   };
 
   callAPI = () => {
-    debugger;
     this.setState(
       {
         first: 0,
@@ -589,6 +594,7 @@ export default class Events extends Component {
                           : filteredDateRange
                       }
                       filterFlag={filterFlag}
+                      closeFilter={this.closeFilter}
                     >
                       {fixed => (
                         <div

@@ -150,9 +150,10 @@ function Filters(props) {
 
   const handleResize = () => {
     if (props.filterFlag && window.innerHeight > window.innerWidth) {
-      window.document.body.classList.add('fixed-body');
+      // window.document.body.classList.add('fixed-body');
     } else if (window.innerHeight < window.innerWidth) {
       window.document.body.classList.remove('fixed-body');
+      props.closeFilter();
     }
   };
   const clearAllFilters = () => {
