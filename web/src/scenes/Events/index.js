@@ -141,7 +141,7 @@ export default class Events extends Component {
       const payload = this.getInitialFilters();
       this.setInitialFilters(payload);
       this.loadEvents(payload);
-      window.scrollTo(0, 0);
+      // window.scrollTo(0, 0);
     }
   }
 
@@ -238,39 +238,72 @@ export default class Events extends Component {
     const query = new URLSearchParams(this.props.location.search);
     let genreId = query.get('c') ? query.get('c') : '';
     let venueId = query.get('v') ? query.get('v') : '';
+    let tagsId = query.get('t') ? query.get('t') : '';
+    let promotionsId = query.get('p') ? query.get('p') : '';
+    let searchString = query.get('q') ? query.get('q') : '';
+
     let dateRange = query.get('s') ? query.get('s') : '';
     if (dateRange !== '' || !dateRange) {
       dateRange = dateRange.split('--');
       dateRange = { from: dateRange[0], to: dateRange[1] };
+      
     }
+
+    let priceRange = query.get('r') ? query.get('r') : '';
+    if (priceRange !== '' || !priceRange) {
+      priceRange = priceRange.split('--');
+      priceRange = { min: priceRange[0], max: priceRange[1] };
+    }
+
+
     const payload = {
       first: 0,
       limit: Constants.LIMIT,
       genre: reset ? '' : genreId,
       venue: reset ? '' : venueId,
+      tags: reset ? '' : tagsId,
+      search: reset ? '' : searchString,
+      promotions: reset ? '' : promotionsId,
       start_date: reset ? '' : dateRange.from,
       end_date: reset ? '' : dateRange.to,
+      min_price: reset ? '' : priceRange.min,
+      max_price: reset ? '' : priceRange.max,
       client: 1
     };
     return payload;
   };
 
-  setInitialFilters({ genre, venue, start_date, end_date }) {
+  setInitialFilters({ genre, venue, promotions, tags, search, start_date, end_date, min_price, max_price }) {
     const dateRange = {
       from: start_date || '',
       to: end_date || ''
+    };
+    const priceRange = {
+      min: min_price || '',
+      max: max_price || ''
     };
     this.setState({
       queryParams: {
         genreId: genre,
         venueId: venue,
-        dateRange: dateRange
+        promotionsId: promotions,
+        tagsId: tags,
+        search: search,
+        dateRange: dateRange,
+        priceRange: priceRange
       },
-      filteredGnere: genre ? [genre] : [],
-      filteredVenues: venue ? [venue] : [],
+      filteredGnere: genre ? genre.split(',') : [],
+      filteredVenues: venue ? venue.split(',') : [],
+      filteredPromotions: promotions ? promotions.split(',') : [],
+      filteredTags: tags ? tags.split(',') : [],
+      filteredSearch: search ? search : "", 
+      localfilteredSearch: search ? search : "", 
       filteredDateRange: dateRange,
-      localfilteredGnere: genre ? [genre] : [],
-      localfilteredVenues: venue ? [venue] : [],
+      filteredPriceRange: priceRange,
+      localfilteredDateRange: dateRange,
+      localfilteredPriceRange: priceRange,
+      localfilteredGnere: genre ? genre.split(',') : [],
+      localfilteredVenues: venue ? venue.split(',') : [],
       localfilteredDateRange: dateRange
     });
   }
@@ -306,11 +339,13 @@ export default class Events extends Component {
       sort_type: filteredSortType,
       sort_order: filteredSortOrder
     };
+    Utilities.updateUrl(this.props.history, this.state)
 
     return params;
   };
 
   handleFilters = (searchType, apply) => {
+    
     if (Utilities.mobilecheck()) {
       this.setState({
         localfilteredSortType: searchType.filteredSortType,
@@ -369,6 +404,7 @@ export default class Events extends Component {
       };
     }
     this.setState(obj, () => {
+      Utilities.updateUrl(this.props.history, this.state)
       if (!Utilities.mobilecheck()) {
         const payload = this.getInitialFilters(true);
         this.setInitialFilters(payload);
@@ -514,6 +550,7 @@ export default class Events extends Component {
                           : filteredPriceRange
                       }
                       filteredGnere={
+                        console.log(filteredGnere),
                         Utilities.mobilecheck()
                           ? localfilteredGnere
                           : filteredGnere
