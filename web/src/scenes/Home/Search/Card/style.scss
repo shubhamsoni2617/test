@@ -286,6 +286,9 @@
             font-size: 13px;
             margin-bottom: 6px;
             padding: 0;
+            @media (max-width: 1024px) {
+                min-height: 35px;
+            }
             @media (max-width: 767px) {
                 font-size: 12px;
             }
@@ -295,10 +298,14 @@
             font-size: 13px;
             margin-bottom: 10px;
             padding: 0;
-            max-width: 100%;
+            width: 250px;
             min-height: 18px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
             @media (max-width: 768px) {
                 font-size: 12px;
+                width: 145px;
             }
         }
         .price-event{
@@ -376,8 +383,8 @@
                     -moz-transition: 0.8s all;
                     -o-transition: 0.8s all;
                     @media(max-width: 991px){
-                        border-radius: 0;
-                        border: 1px transparent solid;
+                        background-color: #0098ff;
+                        color: #fff;
                     }
                 }
                 @media (max-width: 768px) {
@@ -432,8 +439,9 @@
         }
         .event-img{
             margin: 0;
-            width: 260px;
+            width: 200px;
             height: 130px;
+            flex: 0 0 200px;
         }
         .event-details{
             width: 100%;

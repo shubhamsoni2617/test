@@ -184,7 +184,7 @@ export default class VenueFilter extends Component {
         return venues.name.toLowerCase().indexOf(search) !== -1;
       });
     this.sortAndGroup(filteredVenue);
-
+    if (!display) return null;
     return (
       <div className="filters-panel">
         {/* <CSSTransitionGroup

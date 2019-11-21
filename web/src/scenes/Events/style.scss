@@ -6,7 +6,7 @@
     & + label {
       position: relative;
       cursor: pointer;
-      padding: 0;
+      padding: 0 0 0 20px;
       margin: 0;
       color: rgba(98, 98, 98, 0.8);
     }
@@ -52,6 +52,7 @@
 
 }
 /******** Listing  **********/
+
 .wrapper-events-listing{
     display: flex;
     padding-top: 45px;
@@ -60,6 +61,9 @@
     }
     @media(max-width: 767px){
         padding-top: 10px;
+    }
+    .shimmerPosition{
+        margin-top: 20px;
     }
     .events-listing {
         width: calc(100% - 338px);
@@ -98,7 +102,7 @@
                 height: 100%;
             }
             @media (max-width: 767px) {
-                margin-bottom: 20px;
+                margin-bottom: 10px;
             }
             > div{
                 flex: 0 0 calc(33.33% - 19px);
@@ -200,6 +204,12 @@
                 text-transform: capitalize;
                 justify-content: center;
                 margin-left: auto;
+                &.filter{
+                    img{
+                        width: 20px;
+                        margin-top: -2px;
+                    }
+                }
                 img{
                     width: 15px;
                     margin-left: 8px;
@@ -315,15 +325,19 @@
         }
         .banner-overlay{
             @media(max-width: 767px){
-                padding-top: 85px;
+                padding-top: 100px;
             }
         }
     }
 }
 .event-listing-ads{
     padding-top: 45px;
+    padding-left: 8px;
     @media(max-width: 991px){
         padding-top: 0;
+    }
+    @media(max-width: 767px){
+        padding-left: 0;
     }
     .advertisment-listing{
         display: flex;
@@ -338,7 +352,7 @@
         li{
             list-style: none;
             display: inline-block;
-            padding-right: 10px;
+            padding-right: 5px;
             width: 50%;
             overflow: hidden;
             display: flex;

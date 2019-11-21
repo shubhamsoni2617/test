@@ -142,8 +142,19 @@ function Filters(props) {
       distanceFromTop: 153
     };
   }
+  useEffect(() => {
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, [props.filterFlag]);
   const [scrollContainerRef, styleObj] = useStickyPanel(stickyObj);
 
+  const handleResize = () => {
+    if (props.filterFlag && window.innerHeight > window.innerWidth) {
+      window.document.body.classList.add('fixed-body');
+    } else if (window.innerHeight < window.innerWidth) {
+      window.document.body.classList.remove('fixed-body');
+    }
+  };
   const clearAllFilters = () => {
     props.resetFilters();
   };

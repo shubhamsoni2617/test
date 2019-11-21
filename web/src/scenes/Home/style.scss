@@ -870,8 +870,8 @@
                         .DayPicker-NavButton--prev, .DayPicker-NavButton--next{
                             background-image: url(../../assets/images/right-arrow-blue.svg);
                             max-width: 30px;
-                            top: 12px;
-                            right: 40px;
+                            top: 6px;
+                            left: 20px;
                             width: 30px;
                             height: 30px;
                             transform: translateY(50%);
@@ -889,6 +889,7 @@
                         }
                         .DayPicker-NavButton--next{
                             right: 20px;
+                            left: inherit;
                             transform: rotateY(0deg);
                         }
                     }
@@ -905,8 +906,8 @@
                         .DayPicker-NavButton--prev, .DayPicker-NavButton--next{
                             background-image: url(../../assets/images/right-arrow-blue.svg);
                             max-width: 30px;
-                            top: 12px;
-                            right: 40px;
+                            top: 6px;
+                            left: 20px;
                             width: 30px;
                             height: 30px;
                             transform: translateY(50%);
@@ -924,6 +925,7 @@
                         }
                         .DayPicker-NavButton--next{
                             right: 20px;
+                            left: inherit;
                             transform: rotateY(0deg);
                         }
                     }
@@ -1235,7 +1237,7 @@
 				padding: 10px;
 				h3{
 				font-size: 16px;
-				margin-bottom: 0px;
+                margin-bottom: 0px;
 				}
 			}
 			}

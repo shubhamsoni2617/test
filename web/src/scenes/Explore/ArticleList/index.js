@@ -37,7 +37,7 @@ const ArticleList = ({ history }) => {
   const [loadWithFilters, setLoadWithFilters] = useState(false);
   const [
     filteredCategoriesForMobile,
-    setFilteredCategoriessForMobile
+    setFilteredCategoriesForMobile
   ] = useState([]);
 
   let mobileCheck = showTags || showCategories;
@@ -107,10 +107,8 @@ const ArticleList = ({ history }) => {
         setTags,
         selected,
         setFilteredTagsForMobile,
-        filteredTags,
         setFilteredTags,
-        mobileCheck,
-        filteredTagsForMobile
+        mobileCheck
       );
     }
     if (filterTitle === 'Categories') {
@@ -119,11 +117,9 @@ const ArticleList = ({ history }) => {
         categories,
         setCategories,
         selected,
-        setFilteredCategoriessForMobile,
-        filteredCategories,
+        setFilteredCategoriesForMobile,
         setFilteredCategories,
-        mobileCheck,
-        filteredCategoriesForMobile
+        mobileCheck
       );
     }
   };
@@ -138,6 +134,7 @@ const ArticleList = ({ history }) => {
           };
         });
         setTags(restoredTags);
+        setFilteredTagsForMobile(filteredTags);
       }
       if (filterTitle === 'Categories') {
         let restoredCategories = categories.map(el => {
@@ -146,7 +143,8 @@ const ArticleList = ({ history }) => {
             isChecked: filteredCategories.indexOf(el.id) === -1 ? false : true
           };
         });
-        setFilteredCategories(restoredCategories);
+        setCategories(restoredCategories);
+        setFilteredCategoriesForMobile(filteredCategories);
       }
     }
     setShowTags(false);
@@ -175,8 +173,9 @@ const ArticleList = ({ history }) => {
       />
     ) : null;
   };
-  console.log(filteredTagsForMobile);
+
   console.log(filteredTags);
+  console.log(filteredTagsForMobile);
 
   return (
     <div className="events-page-wrapper articlelist-wrapper">
@@ -233,11 +232,6 @@ const ArticleList = ({ history }) => {
                     src={loaderImage}
                   />
                 ) : null}
-                {/* <img
-                  className="filter-loader"
-                  alt="filter loader"
-                  src={loaderImage}
-                /> */}
                 {loadMore && (
                   <ShimmerEffect
                     propCls={`${

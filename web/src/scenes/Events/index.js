@@ -246,7 +246,6 @@ export default class Events extends Component {
     if (dateRange !== '' || !dateRange) {
       dateRange = dateRange.split('--');
       dateRange = { from: dateRange[0], to: dateRange[1] };
-      
     }
 
     let priceRange = query.get('r') ? query.get('r') : '';
@@ -254,7 +253,6 @@ export default class Events extends Component {
       priceRange = priceRange.split('--');
       priceRange = { min: priceRange[0], max: priceRange[1] };
     }
-
 
     const payload = {
       first: 0,
@@ -273,7 +271,17 @@ export default class Events extends Component {
     return payload;
   };
 
-  setInitialFilters({ genre, venue, promotions, tags, search, start_date, end_date, min_price, max_price }) {
+  setInitialFilters({
+    genre,
+    venue,
+    promotions,
+    tags,
+    search,
+    start_date,
+    end_date,
+    min_price,
+    max_price
+  }) {
     const dateRange = {
       from: start_date || '',
       to: end_date || ''
@@ -296,8 +304,8 @@ export default class Events extends Component {
       filteredVenues: venue ? venue.split(',') : [],
       filteredPromotions: promotions ? promotions.split(',') : [],
       filteredTags: tags ? tags.split(',') : [],
-      filteredSearch: search ? search : "", 
-      localfilteredSearch: search ? search : "", 
+      filteredSearch: search ? search : '',
+      localfilteredSearch: search ? search : '',
       filteredDateRange: dateRange,
       filteredPriceRange: priceRange,
       localfilteredDateRange: dateRange,
@@ -339,7 +347,7 @@ export default class Events extends Component {
       sort_type: filteredSortType,
       sort_order: filteredSortOrder
     };
-    Utilities.updateUrl(this.props.history, this.state)
+    Utilities.updateUrl(this.props.history, this.state);
 
     return params;
   };
@@ -403,7 +411,7 @@ export default class Events extends Component {
       };
     }
     this.setState(obj, () => {
-      Utilities.updateUrl(this.props.history, this.state)
+      Utilities.updateUrl(this.props.history, this.state);
       if (!Utilities.mobilecheck()) {
         const payload = this.getInitialFilters(true);
         this.setInitialFilters(payload);
@@ -443,7 +451,7 @@ export default class Events extends Component {
   };
 
   callAPI = () => {
-    debugger
+    debugger;
     this.setState(
       {
         first: 0,
@@ -550,7 +558,6 @@ export default class Events extends Component {
                           : filteredPriceRange
                       }
                       filteredGnere={
-                        console.log(filteredGnere),
                         Utilities.mobilecheck()
                           ? localfilteredGnere
                           : filteredGnere
@@ -721,14 +728,16 @@ export default class Events extends Component {
                     })}
                 </div>
                 {shimmer && (
-                  <ShimmerEffect
-                    propCls={`${
-                      Utilities.mobileAndTabletcheck() ? 'shm_col-xs-6' : ''
-                    } col-md-4`}
-                    height={150}
-                    count={Utilities.mobileAndTabletcheck() ? 2 : 3}
-                    type="LIST"
-                  />
+                  <div className="shimmerPosition">
+                    <ShimmerEffect
+                      propCls={`${
+                        Utilities.mobileAndTabletcheck() ? 'shm_col-xs-6' : ''
+                      } col-md-4`}
+                      height={150}
+                      count={Utilities.mobileAndTabletcheck() ? 2 : 3}
+                      type="LIST"
+                    />
+                  </div>
                 )}
                 {!shimmer && eventsData.length < totalRecords && (
                   <div className="promotion-load-more">
