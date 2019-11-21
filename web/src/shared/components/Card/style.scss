@@ -309,6 +309,7 @@
             white-space: nowrap;
             text-overflow: ellipsis;
             overflow: hidden;
+            min-height: 18px;
             @media (max-width: 768px) {
                 font-size: 12px;
             }
