@@ -17,6 +17,25 @@
       }
     }
     .festival-top-slider{
+        max-height: 460px;
+        overflow: hidden;
+        padding-bottom: 40px;
+        @media(max-width: 767px){
+            .slick-slider{
+                .slick-dots{
+                    li{
+                        margin-top: 15px;
+                    }
+                }
+            }
+        }
+        .slick-slide{
+            img{
+                max-height: 349px;
+                object-fit: cover;
+                object-position: center;
+            }
+        }
         .slick-arrow{
             height: 85px;
             width: 35px;
@@ -45,22 +64,32 @@
     .Home-tab{
         display: flex;
         justify-content: space-between;
-        padding: 22px 0 17px;
+        padding: 22px 0 10px;
+        @media(max-width: 767px){
+            padding: 0px 0 10px;
+        }
         .explore-nav{
-            p{
-                span{
-                    color: #0098FF;
-                    font-family: 'Rubik', sans-serif;
-                    font-size: 14px;
-                    line-height: 17px;
+            ul{
+                li{
+                    a{
+                        color: #0098FF;
+                        font-family: 'Rubik', sans-serif;
+                        font-size: 14px;
+                        line-height: 17px;
+                    }
                     &:last-child{
                         color: #6A6A6A;
-                    }
-                    @media(max-width: 576px){
-                        font-size: 13px;
+                        @media(max-width: 576px){
+                            font-size: 13px;
+                        }
+                        a{
+                            color: #6A6A6A;
+                            @media(max-width: 576px){
+                                font-size: 13px;
+                            }
+                        }
                     }
                 }
-
             }
         }
     }
@@ -77,6 +106,9 @@
             line-height: 39px;
             padding: 0;
             text-align: center;
+            @media(max-width: 767px){
+                line-height: normal;
+            }
             @media(max-width: 576px){
                 font-size: 20px;
             }
@@ -90,9 +122,9 @@
             text-align: center;
             display: block;
             padding: 6px 0 14px;
-            @media(max-width: 576px){
+            @media(max-width: 767px){
                 font-size: 12px;
-                padding: 0px 0 6px;
+                padding: 5px 0 6px;
             }
         }
         p{
@@ -101,6 +133,7 @@
             font-size: 16px;
             line-height: 24px;
             padding-bottom: 27px;
+            margin-bottom: 0;
             @media(max-width: 576px){
                 font-size: 11px;
                 padding-bottom: 10px;
@@ -164,8 +197,8 @@
                             object-position: center;
                             object-fit: cover;
                             @media(max-width: 767px){
-                                max-height: 171px;
-                                max-width: 107px;
+                                // max-height: 171px;
+                                // max-width: 107px;
                             }
                         }
                         h3{
@@ -300,13 +333,15 @@
                                 margin: 0 10px;
                             }
                             @media(max-width: 767px){
-                                margin: 0 3px;
+                                margin: 0 5px;
                                 flex: 1 0 42%;
                                 max-width: 42%;
                             }
                             .image-conatiner{
+                                max-height: 185px;
                                 @media(max-width: 767px){
                                     min-height: 98px;
+                                    height: auto;
                                 }
                             }
                             img{
@@ -364,11 +399,13 @@
                                 padding: 2px 13px;
                                 display: inline-block;
                                 margin-top: 10px;
+                                @media(max-width: 767px){
+                                    margin: 0 5px 0 0;
+                                }
                                 @media(max-width: 567px){
                                     font-size: 11px;
                                     font-weight: 600;
                                     line-height: 18px;
-                                    margin: 15px 0 10px;
                                     padding: 2px 8px;
                                 }
                                 &:hover{
@@ -388,7 +425,7 @@
         }
     }
     .music-fest{
-        padding: 54px 0;
+        padding: 54px 0 0 0;
         @media(max-width: 768px){
             padding: 23px 0;
         }
@@ -415,7 +452,6 @@
                 }
                 img{
                     width: 100%;
-                    max-height: 357px;
                 }
             }
             .fest-cont{
@@ -541,7 +577,7 @@
             .event-box{
                 flex: 17.5%;
                 max-width: 20%;
-                margin: 22px 30px 22px 0;
+                margin: 22px 30px 0px 0;
                 transition: 0.3s box-shadow, 0.5s background-color, 0.5s transform;
                 -webkit-transition: 0.3s box-shadow, 0.5s background-color, 0.5s transform;
                 -moz-transition: 0.3s box-shadow, 0.5s background-color, 0.5s transform;
@@ -639,15 +675,35 @@
             font-size: 16px;
             font-weight: 600;
             line-height: 19px;
-            text-align: center;
-            display: block;
             padding-top: 46px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            .image-conatiner{
+                width: auto;
+                transform: rotate(90deg);
+                margin-left: 13px;
+            }
             @media(max-width: 768px){
                 display: none;
                 padding-top: unset;
             }
         }
     }
+   }
+   .sistic-moments{
+       background-color: #fff;
+       .sistic-moments-wrapper{
+           margin-bottom: 40px;
+           img{
+               width: 300px;
+               height: 300px;
+               @media(max-width: 767px){
+                   width: auto;
+                   height: auto;;
+               }
+           }
+       }
    }
    .deal-wrapper{
        background-color: #F0F9FF;
@@ -816,6 +872,7 @@
                     font-size: 14px;
                     line-height: 24px;
                     padding: 0 0 30px;
+                    margin-bottom: 0;
                     @media(max-width:576px){
                         font-size: 12px;
                     }

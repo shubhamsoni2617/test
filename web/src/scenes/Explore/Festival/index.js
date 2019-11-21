@@ -19,8 +19,8 @@ const Festival = ({ match }) => {
 
   const breadcrumbSlug = [
     { path: '/', title: 'Home' },
-    { path: '/explore', title: 'Explore' },
-    { path: '/festival', title: 'Festival' }
+    { path: '/explore', title: '/ Explore' },
+    { path: '/festival', title: '/ Festival' }
   ];
 
   useEffect(() => {
@@ -104,6 +104,7 @@ const Festival = ({ match }) => {
     social_wall_url,
     image
   } = templateTwoContent;
+  
 
   const bannerPart = image && image.length > 0 && <SliderBanner data={image} />;
   const welcomePart = title ? (
@@ -148,10 +149,11 @@ const Festival = ({ match }) => {
     <div className="shimmer-margin">{reusedShimmer(300, 6, 'TILE', 2)}</div>
   );
 
-  const articlesPart = section_six ? (
+  const articlesPart = section_six  && section_six.sub_section_six.length>0 ? (
     <Articles sectionSix={section_six} />
   ) : (
-    <div className="shimmer-margin">{reusedShimmer(300, 2, 'TILE', 6)}</div>
+    // <div className="shimmer-margin">{reusedShimmer(300, 2, 'TILE', 6)}</div>
+    null
   );
 
   const pollNSurveysPart = section_seven ? (
@@ -182,7 +184,7 @@ const Festival = ({ match }) => {
 
   return (
     <div className="festival-wrapper">
-      {/* {bannerPart}
+      {bannerPart}
       {welcomePart}
       {festivalPart}
       {musicalPart}
@@ -191,16 +193,16 @@ const Festival = ({ match }) => {
       {ticketDealsPart}
       {articlesPart}
       {pollNSurveysPart}
-      {videoGalleryPart} */}
+      {videoGalleryPart}
 
-      {sectionOrders &&
+      {/* {sectionOrders &&
         sectionOrders.map(({ order }) => {
           return sectionArray.map(({ orderNo, returnPart }) => {
             if (order === orderNo) {
               return returnPart;
             }
           });
-        })}
+        })} */}
     </div>
   );
 };
