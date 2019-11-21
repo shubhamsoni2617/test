@@ -295,10 +295,14 @@
             font-size: 13px;
             margin-bottom: 10px;
             padding: 0;
-            max-width: 100%;
+            width: 250px;
             min-height: 18px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
             @media (max-width: 768px) {
                 font-size: 12px;
+                width: 145px;
             }
         }
         .price-event{
@@ -432,8 +436,9 @@
         }
         .event-img{
             margin: 0;
-            width: 260px;
+            width: 200px;
             height: 130px;
+            flex: 0 0 200px;
         }
         .event-details{
             width: 100%;

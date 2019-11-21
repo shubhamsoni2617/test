@@ -52,6 +52,7 @@
 
 }
 /******** Listing  **********/
+
 .wrapper-events-listing{
     display: flex;
     padding-top: 45px;
@@ -60,6 +61,9 @@
     }
     @media(max-width: 767px){
         padding-top: 10px;
+    }
+    .shimmerPosition{
+        margin-top: 20px;
     }
     .events-listing {
         width: calc(100% - 338px);
