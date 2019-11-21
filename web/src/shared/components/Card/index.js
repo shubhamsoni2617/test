@@ -87,14 +87,7 @@ export default class Card extends Component {
               </React.Fragment>
             )}
             <p className="event-date">{cardData.event_date}</p>
-            {cardData && cardData.venue_name && (
-              <p className="event-place">
-                {Utilities.showLimitedChars(
-                  cardData.venue_name,
-                  Utilities.mobilecheck() ? 20 : 55
-                )}
-              </p>
-            )}
+            <p className="event-place">{cardData && cardData.venue_name}</p>
           </div>
           <div className="price-event">
             <div className="price">
