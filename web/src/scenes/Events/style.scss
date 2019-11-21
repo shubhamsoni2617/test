@@ -55,6 +55,9 @@
 .wrapper-events-listing{
     display: flex;
     padding-top: 45px;
+    @media(max-width: 991px){
+        padding-top: 25px;
+    }
     @media(max-width: 767px){
         padding-top: 10px;
     }
@@ -101,7 +104,7 @@
                 flex: 0 0 calc(33.33% - 19px);
                 width: calc(33.33% - 19px);
                 margin-right: 17px;
-                @media(max-width: 768px){
+                @media(max-width: 991px){
                     flex: 0 0 calc(50% - 19px);
                     width: calc(50% - 19px);
                 }
@@ -128,7 +131,7 @@
                             &:hover{
                                 border-bottom: 1px solid #0098FF;
                                 @media(max-width: 991px){
-                                    border: none;
+                                    border-bottom: 1px solid transparent;
                                 }
                             }
 
@@ -138,8 +141,10 @@
                         align-items: flex-start;
                       .event-img{
                           height: 150px;
-                        @media(max-width: 768px){
-                            padding: 15px 0 0 0;
+                        @media(max-width: 991px){
+                            padding: 0 0 0 0;
+                            height: auto;
+                            flex: 0 0 150px;
                         }
                       }
                       .event-details{
@@ -317,9 +322,8 @@
 }
 .event-listing-ads{
     padding-top: 45px;
-    @media(max-width: 767px){
+    @media(max-width: 991px){
         padding-top: 0;
-      
     }
     .advertisment-listing{
         display: flex;

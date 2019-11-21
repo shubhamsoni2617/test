@@ -114,7 +114,7 @@
                             &:hover{
                                 border-bottom: 1px solid #0098FF;
                                 @media(max-width: 991px){
-                                    border: none;
+                                    border-bottom: 1px solid transparent;
                                 }
                             }
                         }

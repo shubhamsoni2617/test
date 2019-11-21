@@ -2,6 +2,8 @@
     display: flex;
     flex-direction: column;
     box-shadow: 0 0px 1px rgba(154, 154, 154, 0.9);
+    -webkit-box-shadow: 0 0px 1px rgba(154, 154, 154, 0.9);
+    -moz-box-shadow: 0 0px 1px rgba(154, 154, 154, 0.9);
     border: 2px solid transparent;
     margin-bottom: 35px;
     width: 100%;
@@ -40,12 +42,10 @@
         -o-transition: .5s ease-out;
         box-shadow: 0 2px 27px 0 rgba(0,0,0,0.09);
         @media(max-width: 991px){
-            border: none;
-            box-shadow: none;
-        }
-        @media (max-width: 767px) {           
-            box-shadow: none;
-            border: none;
+            box-shadow: 0 0px 1px rgba(154, 154, 154, 0.9);
+            -webkit-box-shadow: 0 0px 1px rgba(154, 154, 154, 0.9);
+            -moz-box-shadow: 0 0px 1px rgba(154, 154, 154, 0.9);
+            border: 2px solid transparent;
         }
     }
     &.attraction-block{
@@ -166,7 +166,11 @@
                         line-height: 22px;
                         border: none;
                         @media(max-width: 991px){
-                            background-color: inherit;
+                             background: #FFF;
+                            color: #0098FF;
+                            border: none;
+                            background: url(../../../../assets/images/buy-arrow-b.png) 94% 15px no-repeat;
+                            font-weight: 600;
                         }
                     }
                 }
@@ -250,7 +254,7 @@
             padding: 10px 5px 0;
         }
         @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
-            padding: 15px 5px 10px;
+            padding: 10px 5px 0;
         }
         .item-title{
           padding: 10px 0;
@@ -291,10 +295,7 @@
             font-size: 13px;
             margin-bottom: 10px;
             padding: 0;
-            max-width: 200px;
-            white-space: nowrap;
-            text-overflow: ellipsis;
-            overflow: hidden;
+            max-width: 100%;
             min-height: 18px;
             @media (max-width: 768px) {
                 font-size: 12px;
@@ -375,9 +376,8 @@
                     -moz-transition: 0.8s all;
                     -o-transition: 0.8s all;
                     @media(max-width: 991px){
-                        background-color: inherit;
-                        border: none;
-                        color: inherit;
+                        border-radius: 0;
+                        border: 1px transparent solid;
                     }
                 }
                 @media (max-width: 768px) {
@@ -426,7 +426,8 @@
         &:hover{
             border: 1px solid #0098FF;
             @media(max-width: 991px){
-                border: none;
+                border: 1px solid transparent;
+                border-bottom: 1px solid rgba(151,151,151,0.2);
             }
         }
         .event-img{
@@ -440,6 +441,8 @@
             padding: 15px 20px 8px 30px;
             @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
                 padding: 5px 5px 8px 20px;
+                flex-direction: column;
+                align-items: flex-start;
             }
             .event-detail-prime{
                 width: 100%;
@@ -450,7 +453,7 @@
                     color: #626262;
                 }
                 .event-place{
-                    min-height: auto;
+                    min-height: 18px;
                     margin-bottom: 0px;
                 }
             }
@@ -463,6 +466,7 @@
                 align-items: flex-end;
                 @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
                     padding-top: 4px; 
+                    align-items: flex-start;
                 }
                 .buy-btn{
                     min-width: 121px;
@@ -477,6 +481,9 @@
                     }
                     span{
                         line-height: 14px;
+                        @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
+                            text-align: left;
+                        }
                     }
                     p{
                         line-height: 19px;
