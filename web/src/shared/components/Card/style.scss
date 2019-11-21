@@ -305,6 +305,7 @@
             font-size: 13px;
             margin-bottom: 8px;
             padding: 0;
+            min-height: 18px;
             @media (max-width: 1024px) {
                 min-height: 35px;
             }
@@ -326,6 +327,13 @@
             @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
                 font-size: 12px;
                 width: 170px;
+            }
+            @media (max-width: 768px) {
+                font-size: 12px;
+                width: 170px !important;
+            }
+            @media (max-width: 480px) {
+                width: 128px !important;
             }
         }
         .price-event{

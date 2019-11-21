@@ -32,7 +32,7 @@
         margin: 0px;
         height: auto;
         padding-top: 80px;
-        -webkit-overflow-scrolling: touch;
+        // -webkit-overflow-scrolling: touch;
         &.fixed{
           overflow-y: hidden;
           position: relative;
@@ -513,9 +513,11 @@
               text-align: center;
               line-height: 26px;
               color: #343434;
-              font-weight: 500;
               font-family: 'Rubik', sans-serif;
               background: #FFF;
+              @media(max-width: 767px) {
+                font-weight: 500;
+              }
           }
           span.input-range-label-container.min {
             left: 5px;
@@ -1038,11 +1040,14 @@
                                 background-color: #fff;
                                 .styled-checkbox {
                                     & + label{
+                                        margin: 0;
                                         &:before{
                                             background: url(../../../assets/images/Tick-unselected.svg);
                                             width: 20px;
                                             height: 20px;
                                             background-repeat: no-repeat;
+                                            position: relative;
+                                            left: 0;
                                         }
                                     }
                                     &:checked{
