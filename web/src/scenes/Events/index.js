@@ -450,7 +450,8 @@ export default class Events extends Component {
 
   closeFilter = () => {
     this.setState({
-      filterFlag: false
+      filterFlag: false,
+      sortByFlag: false
     });
   };
 
