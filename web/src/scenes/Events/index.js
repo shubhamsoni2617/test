@@ -141,7 +141,7 @@ export default class Events extends Component {
       const payload = this.getInitialFilters();
       this.setInitialFilters(payload);
       this.loadEvents(payload);
-      window.scrollTo(0, 0);
+      // window.scrollTo(0, 0);
     }
   }
 
@@ -246,7 +246,15 @@ export default class Events extends Component {
     if (dateRange !== '' || !dateRange) {
       dateRange = dateRange.split('--');
       dateRange = { from: dateRange[0], to: dateRange[1] };
+      
     }
+
+    let priceRange = query.get('r') ? query.get('r') : '';
+    if (priceRange !== '' || !priceRange) {
+      priceRange = priceRange.split('--');
+      priceRange = { min: priceRange[0], max: priceRange[1] };
+    }
+
 
     const payload = {
       first: 0,
@@ -258,15 +266,21 @@ export default class Events extends Component {
       promotions: reset ? '' : promotionsId,
       start_date: reset ? '' : dateRange.from,
       end_date: reset ? '' : dateRange.to,
+      min_price: reset ? '' : priceRange.min,
+      max_price: reset ? '' : priceRange.max,
       client: 1
     };
     return payload;
   };
 
-  setInitialFilters({ genre, venue, promotions, tags, search, start_date, end_date }) {
+  setInitialFilters({ genre, venue, promotions, tags, search, start_date, end_date, min_price, max_price }) {
     const dateRange = {
       from: start_date || '',
       to: end_date || ''
+    };
+    const priceRange = {
+      min: min_price || '',
+      max: max_price || ''
     };
     this.setState({
       queryParams: {
@@ -275,14 +289,19 @@ export default class Events extends Component {
         promotionsId: promotions,
         tagsId: tags,
         search: search,
-        dateRange: dateRange
+        dateRange: dateRange,
+        priceRange: priceRange
       },
       filteredGnere: genre ? genre.split(',') : [],
       filteredVenues: venue ? venue.split(',') : [],
       filteredPromotions: promotions ? promotions.split(',') : [],
       filteredTags: tags ? tags.split(',') : [],
       filteredSearch: search ? search : "", 
+      localfilteredSearch: search ? search : "", 
       filteredDateRange: dateRange,
+      filteredPriceRange: priceRange,
+      localfilteredDateRange: dateRange,
+      localfilteredPriceRange: priceRange,
       localfilteredGnere: genre ? genre.split(',') : [],
       localfilteredVenues: venue ? venue.split(',') : [],
       localfilteredDateRange: dateRange
@@ -320,11 +339,13 @@ export default class Events extends Component {
       sort_type: filteredSortType,
       sort_order: filteredSortOrder
     };
+    Utilities.updateUrl(this.props.history, this.state)
 
     return params;
   };
 
   handleFilters = (searchType, apply) => {
+    
     if (Utilities.mobilecheck()) {
       this.setState({
         localfilteredSortType: searchType.filteredSortType,
@@ -346,7 +367,6 @@ export default class Events extends Component {
     }
 
     this.setState(obj, () => {
-      Utilities.updateUrl(this.props.history, this.state)
       setTimeout(() => {
         if (!Utilities.mobilecheck() || apply) {
           this.loadEvents(this.getFilters(), false);

@@ -20,8 +20,7 @@ const SearchFilter = props => {
 
   useEffect(() => {
     searchRef.current.value = props.searchText;
-
-  }, []);
+  }, [searchRef.current]);
 
 
   const onChangeHandler = () => {
