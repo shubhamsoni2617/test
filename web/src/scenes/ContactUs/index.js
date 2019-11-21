@@ -28,7 +28,10 @@ class ContactUs extends Component {
         <h1 className="text-center contact-us-header">Contact Us</h1>
         <div className="container">
           <div className="contact-us-block">
-            <CustomerEnquiry sendCategoryToFaqs={this.sendCategoryToFaqs} />
+            <CustomerEnquiry
+              sendCategoryToFaqs={this.sendCategoryToFaqs}
+              type="contact"
+            />
             <div className="contact-find-us">
               <FindUs />
             </div>
