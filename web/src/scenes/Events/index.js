@@ -44,9 +44,9 @@ export default class Events extends Component {
       localfilteredPriceRange: {},
       localfilteredDateRange: {},
       filteredSortType: 'date',
-      filteredSortOrder: '',
+      filteredSortOrder: 'ASC',
       localfilteredSortType: 'date',
-      localfilteredSortOrder: '',
+      localfilteredSortOrder: 'ASC',
       eventsData: [],
       genre: [],
       venues: [],
@@ -114,9 +114,15 @@ export default class Events extends Component {
         },
         {
           sortType: 'date',
-          sortOrder: '',
-          sortTitle: 'Date',
-          sortTag: 'Date'
+          sortOrder: 'ASC',
+          sortTitle: 'Date - ASC',
+          sortTag: 'Date - ASC'
+        },
+        {
+          sortType: 'date',
+          sortOrder: 'DESC',
+          sortTitle: 'Date - DESC',
+          sortTag: 'Date - DESC'
         }
       ]
     };
@@ -404,7 +410,7 @@ export default class Events extends Component {
         filteredPriceRange: {},
         filteredDateRange: {},
         filteredSortType: 'date',
-        filteredSortOrder: '',
+        filteredSortOrder: 'ASC',
         isdataAvailable: false,
         // eventsData: [],
         totalRecords: 0
