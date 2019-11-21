@@ -3,6 +3,9 @@
 .wrapper-events-listing{
     display: flex;
     padding-top: 45px;
+    @media(max-width: 991px){
+        padding-top: 25px;
+    }
     @media(max-width: 767px){
         padding-top: 10px;
     }
@@ -46,7 +49,7 @@
                 flex: 0 0 calc(33.33% - 19px);
                 width: calc(33.33% - 19px);
                 margin-right: 17px;
-                @media(max-width: 768px){
+                @media(max-width: 991px){
                     flex: 0 0 calc(50% - 19px);
                     width: calc(50% - 19px);
                 }
@@ -66,7 +69,7 @@
                             &:hover{
                                 border-bottom: 1px solid #0098FF;
                                 @media(max-width: 991px){
-                                    border: none;
+                                    border-bottom: 1px solid transparent;
                                 }
                             }
 
@@ -269,7 +272,7 @@
     left: 50%;
     top: 50%;
     width: 60px;
-    box-shadow: 0 0 10px #DDD;
+    box-shadow: none;
     border-radius: 50%;
     overflow: hidden;
     margin-left: 150px;
@@ -468,9 +471,6 @@
                             cursor: default;
                             border: 1px solid transparent;
                             border-bottom: 1px solid rgba(151, 151, 151, 0.2);
-                            @media(max-width: 991px){
-                                border: none;
-                            }
                         }
                         button{
                             padding: 6px 22px;
@@ -597,7 +597,7 @@
                             border-bottom: none;
                             @media(max-width: 991px){
                                 // border: 1px solid transparent;
-                                border-bottom: none;
+                                border-bottom: 1px solid rgba(151, 151, 151, 0.2);
                             }
                         }
                     }
