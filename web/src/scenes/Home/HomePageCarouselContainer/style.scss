@@ -1,20 +1,19 @@
-
-.banner {
-    .slick-slide > div {
-    transform: scale(.85);
-    transition: transform .3s cubic-bezier(.4,0,.2,1);  
-  }
-  .slick-center > div {
-    transform: scale(1.05); 
-  }
-  .slider__item > img {
-    width: 100%;
-    height: auto;
-  }
-  .img1{
-  height: 350px;
-  width: 600px;
-  }
+.banner .banner-carousel{
+        .slick-slide > div {
+        transform: scale(.85);
+        transition: transform .3s cubic-bezier(.4,0,.2,1);  
+    }
+    .slick-center > div {
+        transform: scale(1.05); 
+    }
+    .slider__item > img {
+        width: 100%;
+        height: auto;
+    }
+    // .img1{
+    // height: 350px;
+    // width: 600px;
+    // }
 }
   //Banner style start
 .banner {
