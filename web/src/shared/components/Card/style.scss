@@ -327,6 +327,13 @@
                 font-size: 12px;
                 width: 170px;
             }
+            @media (max-width: 768px) {
+                font-size: 12px;
+                width: 170px !important;
+            }
+            @media (max-width: 480px) {
+                width: 128px !important;
+            }
         }
         .price-event{
             display: flex;
