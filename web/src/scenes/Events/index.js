@@ -320,11 +320,7 @@ export default class Events extends Component {
     let obj = {
       ...searchType
     };
-    if (
-      !Utilities.mobilecheck() ||
-      apply ||
-      (searchType && searchType.filteredSearch)
-    ) {
+    if (!Utilities.mobilecheck() || apply) {
       obj = {
         ...searchType,
         first: 0,
@@ -337,11 +333,7 @@ export default class Events extends Component {
 
     this.setState(obj, () => {
       setTimeout(() => {
-        if (
-          !Utilities.mobilecheck() ||
-          apply ||
-          (searchType && searchType.filteredSearch)
-        ) {
+        if (!Utilities.mobilecheck() || apply) {
           this.loadEvents(this.getFilters(), false);
         }
       }, 200);
@@ -431,7 +423,10 @@ export default class Events extends Component {
         filteredVenues: [...this.state.localfilteredVenues],
         filteredTags: [...this.state.localfilteredTags],
         filteredSortOrder: this.state.localfilteredSortOrder,
-        filteredSortType: this.state.localfilteredSortType == "" ? "date" : this.state.localfilteredSortType
+        filteredSortType:
+          this.state.localfilteredSortType == ''
+            ? 'date'
+            : this.state.localfilteredSortType
       },
       () => {
         setTimeout(() => {
@@ -582,7 +577,9 @@ export default class Events extends Component {
               >
                 <div className="event-listing-sorting">
                   <SearchFilter
-                    handleFilters={this.handleFilters}
+                    handleFilters={data => {
+                      this.handleFilters(data, true);
+                    }}
                     searchText={filteredSearch}
                   />
                   <FilterSelected
@@ -659,9 +656,7 @@ export default class Events extends Component {
                     </li>
                   </ul>
                 </div>
-                <div className="event-listing-ads">
-                  <EventAdvertisement />
-                </div>
+                <EventAdvertisement shimmer={shimmer} />
                 <div className={this.state.viewTypeClass}>
                   {loader && (
                     <img
