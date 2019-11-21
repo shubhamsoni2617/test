@@ -123,7 +123,7 @@ function DateRangeFilter(props) {
       <div className="filter-grid-heading">
         <h3>Date Range</h3>
         <ul>
-          <li className="active clear">
+          {/* <li className="active clear">
             <a
               href="/"
               onClick={e => {
@@ -133,6 +133,20 @@ function DateRangeFilter(props) {
             >
               Clear
             </a>
+          </li> */}
+          <li className={from || to ? 'active' : ''}>
+            {(from || to) && (
+              <a
+                href="/"
+                onClick={e => {
+                  e.preventDefault();
+                  clearCalender();
+                }}
+              >
+                Clear
+              </a>
+            )}
+            {!from && !to && <span>Clear</span>}
           </li>
         </ul>
       </div>

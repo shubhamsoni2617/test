@@ -1,7 +1,7 @@
 import React from 'react';
 import * as moment from 'moment';
 import './style.scss';
-import closeBlueImg from '../../../assets/images/close-blue.svg'
+import closeBlueImg from '../../../assets/images/close-blue.svg';
 import Utilities from '../../utilities';
 
 function FilterSelected(props) {
@@ -28,12 +28,28 @@ function FilterSelected(props) {
     return (
       <>
         {text}
+<<<<<<< HEAD
         <button onClick={() => {
           setTimeout(() => {
             handleFilters(obj, true)
             // props.type == "EVENTS" ? props.history.push(`/events/search`) : props.history.push(`/attraction`) ;
           }, 100); 
         }} className="filtered-tags-close-btn"><img src={closeBlueImg} alt="close-btn" /></button>
+=======
+        <button
+          onClick={() => {
+            setTimeout(() => {
+              props.type == 'EVENTS'
+                ? props.history.push(`/events`)
+                : props.history.push(`/attraction`);
+            }, 100);
+            handleFilters(obj, true);
+          }}
+          className="filtered-tags-close-btn"
+        >
+          <img src={closeBlueImg} alt="close-btn" />
+        </button>
+>>>>>>> f68c558459f50e682992bb2fef62aa8d49892f7e
       </>
     );
   };
@@ -58,6 +74,17 @@ function FilterSelected(props) {
       </li>
     );
   };
+
+  if (
+    !(filteredPriceRange && filteredPriceRange.min) &&
+    !(filteredGnere && filteredGnere.length) &&
+    !(filteredTags && filteredTags.length) &&
+    !(filteredDateRange && filteredDateRange.to) &&
+    !(filteredPromotions && filteredPromotions.length) &&
+    !(filteredVenues && filteredVenues.length) &&
+    !(filteredCategory && filteredCategory.length)
+  )
+    return null;
 
   return (
     <div className="filtered-tags">

@@ -116,16 +116,21 @@ const FilterGrid = props => {
               Select all
             </a>
           </li>
-          <li className={activeClass ? '' : 'active'}>
-            <a
-              href="/"
-              onClick={e => {
-                e.preventDefault();
-                selectAll(false);
-              }}
-            >
-              Clear
-            </a>
+          <li className={selectedFilters.length > 0 ? 'active' : ''}>
+            {selectedFilters && selectedFilters.length > 0 && (
+              <a
+                href="/"
+                onClick={e => {
+                  e.preventDefault();
+                  selectAll(false);
+                }}
+              >
+                Clear
+              </a>
+            )}
+            {selectedFilters && selectedFilters.length === 0 && (
+              <span>Clear</span>
+            )}
           </li>
         </ul>
       </div>
