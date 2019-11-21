@@ -23,7 +23,10 @@ const Filter = ({
     <div className="filter-grid">
       <div className="filter-grid-heading">
         {showHeader && (
-          <button type="button" onClick={closeFilters}>
+          <button
+            type="button"
+            onClick={() => closeFilters(filterTitle, 'back')}
+          >
             <img src={BackButton} alt="back"></img>
           </button>
         )}
@@ -85,7 +88,7 @@ const Filter = ({
         <div className={`filter-fixed-btn`}>
           <button
             onClick={() => {
-              closeFilters();
+              closeFilters(filterTitle, 'apply');
               handleFiltersForMobile(filterTitle);
             }}
           >
