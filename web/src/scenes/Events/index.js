@@ -684,6 +684,7 @@ export default class Events extends Component {
                     })}
                 </div>
                 {shimmer && (
+                <div className="shimmerPosition">
                   <ShimmerEffect
                     propCls={`${
                       Utilities.mobileAndTabletcheck() ? 'shm_col-xs-6' : ''
@@ -692,6 +693,7 @@ export default class Events extends Component {
                     count={Utilities.mobileAndTabletcheck() ? 2 : 3}
                     type="LIST"
                   />
+                  </div>
                 )}
                 {!shimmer && eventsData.length < totalRecords && (
                   <div className="promotion-load-more">
