@@ -486,7 +486,7 @@ export default class Events extends Component {
               <div className={`filters ${this.state.filterFlag ? 'open' : ''}`}>
                 {shimmerFilter && (
                   <ShimmerEffect
-                    propCls="shm_col-xs-6 col-md-12"
+                    propCls="col-xs-12 col-md-12"
                     height={150}
                     count={1}
                     type="FILTER"
@@ -693,7 +693,7 @@ export default class Events extends Component {
                     type="LIST"
                   />
                 )}
-                {eventsData.length < totalRecords && (
+                {!shimmer && eventsData.length < totalRecords && (
                   <div className="promotion-load-more">
                     <button
                       onClick={() => this.loadMoreEvents()}
