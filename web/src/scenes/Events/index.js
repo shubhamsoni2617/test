@@ -119,7 +119,7 @@ export default class Events extends Component {
           sortTag: 'Date - ASC'
         },
         {
-          sortType: 'date',
+          sortType: 'date - DESC',
           sortOrder: 'DESC',
           sortTitle: 'Date - DESC',
           sortTag: 'Date - DESC'
@@ -451,7 +451,7 @@ export default class Events extends Component {
   closeFilter = () => {
     this.setState({
       filterFlag: false,
-      sortByFlag: false
+      sortByFlag: true
     });
   };
 
@@ -478,7 +478,7 @@ export default class Events extends Component {
         filteredPromotions: [...this.state.localfilteredPromotions],
         filteredVenues: [...this.state.localfilteredVenues],
         filteredTags: [...this.state.localfilteredTags],
-        filteredSortOrder: this.state.localfilteredSortOrder,
+        filteredSortOrder: this.state.localfilteredSortOrder == "" ? 'ASC' : this.state.localfilteredSortOrder,
         filteredSortType:
           this.state.localfilteredSortType == ''
             ? 'date'
