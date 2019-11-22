@@ -62,7 +62,7 @@ const CustomSectionTwo = ({ heading, customData, isMoreFrom }) => {
             )}
           </div>
           <div className="royal-items-wrapper">
-            <a
+            {!Utilities.mobilecheck() && <a
               href={data && data[0] && data[0].navigation_link}
               target="_blank"
               className="royal-leftsection"
@@ -77,19 +77,7 @@ const CustomSectionTwo = ({ heading, customData, isMoreFrom }) => {
                   />
                 )}
               </div>
-              {Utilities.mobilecheck() && (
-                <a
-                  href={data && data[0] && data[0].navigation_link}
-                  target="_blank"
-                  className="royal-rightside-textwrapper"
-                >
-                  <a>
-                    <h3>{data && data[0] && data[0].title}</h3>
-                  </a>
-                  <p>{data && data[0] && data[0].section_date}</p>
-                </a>
-              )}
-            </a>
+            </a> }
             <div className="royal-rightsection">
               {!Utilities.mobilecheck() && (
                 <a
@@ -105,7 +93,7 @@ const CustomSectionTwo = ({ heading, customData, isMoreFrom }) => {
               )}
               <div className="royal-items">
                 {data &&
-                  data.slice(1, data.length).map((elem, i) => {
+                  data.slice(Utilities.mobilecheck()?0:1, data.length).map((elem, i) => {
                     return (
                       <a
                         className="item-img"

@@ -18,7 +18,7 @@ const BannerSlider = ({ bannerData }) => {
     draggable: false
   };
   const settingsSlider = {
-    autoplay: true
+    autoplay: false
   };
   return (
     <section className="explore-page-banner">
@@ -33,6 +33,7 @@ const BannerSlider = ({ bannerData }) => {
               return (
                 <div className="explore-content-wrapper" key={banner.banner_title}>
                   <div className="explore-content">
+                    <div className="explore-mobile-wrapper">
                     <h3>{banner.banner_title}</h3>
                     <div
                       className="sub-text"
@@ -40,6 +41,7 @@ const BannerSlider = ({ bannerData }) => {
                         __html: banner.banner_description
                       }}
                     />
+                    </div>
                     <a href={banner.banner_url} target="_blank">
                       {banner.button_text}
                     </a>
@@ -55,7 +57,7 @@ const BannerSlider = ({ bannerData }) => {
           {...settingsSlider}
           asNavFor={nav1}
           ref={slider => (slider2 = slider)}
-          slidesToShow={5}
+          slidesToShow={bannerData.length<8? bannerData.length: 2}
           swipeToSlide={true}
           focusOnSelect={true}
         >
