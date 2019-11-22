@@ -23,7 +23,7 @@ const WhatsUp = ({ whatsUpData }) => {
                     to={
                       type === 'multi_show_template'
                         ? `/explore/festival/${id}`
-                        : `/explore/article${id}`
+                        : `/explore/article/${id}`
                     }
                     key={title}
                   >

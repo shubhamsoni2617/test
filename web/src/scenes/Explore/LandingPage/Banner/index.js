@@ -31,17 +31,17 @@ const BannerSlider = ({ bannerData }) => {
           {bannerData &&
             bannerData.map(banner => {
               return (
-                <div key={banner.banner_title}>
-                  <div>
-                    <h2>{banner.banner_title}</h2>
+                <div className="explore-content-wrapper" key={banner.banner_title}>
+                  <div className="explore-content">
+                    <h3>{banner.banner_title}</h3>
                     <div
-                      className="text-center sub-text"
+                      className="sub-text"
                       dangerouslySetInnerHTML={{
                         __html: banner.banner_description
                       }}
                     />
                     <a href={banner.banner_url} target="_blank">
-                      <button>{banner.button_text}</button>
+                      {banner.button_text}
                     </a>
                   </div>
                   <img src={banner.image} alt="banner_image" />
