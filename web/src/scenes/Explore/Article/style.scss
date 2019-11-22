@@ -1,7 +1,7 @@
 .sliderBottomDot{
     padding-bottom: 20px;
     .slick-dots{
-        top: auto;
+        top: 100%;
         width: auto;
         right: 0;
         height: 30px;
@@ -30,6 +30,7 @@ section.whats-new {
             }
             .slick-dots{
                 top: -35px;
+                
                 @media (max-width: 767px) {
                     top: -22px;
                 }

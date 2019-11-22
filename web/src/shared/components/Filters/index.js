@@ -208,7 +208,7 @@ function Filters(props) {
           />
           {!hideCalendar && (
             <DateRangeFilter
-              title="Date"
+              title="Date Range"
               filteredDateRange={filteredDateRange}
               selectedFilter={filteredDateRange}
               handleFilters={handleFilters}
