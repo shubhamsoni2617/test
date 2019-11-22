@@ -1,6 +1,7 @@
 import React, { Component, createRef } from 'react';
 import PropTypes from 'prop-types';
 import EventHeading from '../EventHeading';
+import Utilities from "../../utilities";
 import { CSSTransition } from 'react-transition-group';
 import CloseIcon from '../../../assets/images/close-blue.svg';
 import './style.scss';
@@ -21,7 +22,7 @@ export default class VenueFilter extends Component {
     this.myRef = createRef();
   }
 
-  componentDidMount() {}
+  componentDidMount() { }
 
   componentWillReceiveProps(props) {
     this.setState({ display: props.panelDisplay || false });
@@ -42,12 +43,18 @@ export default class VenueFilter extends Component {
 
   scrollToRef = ref => {
     let el = document.getElementById('li-' + ref.target.id);
+
+    let ele = document.getElementById('venueContainer');
     if (el !== null) {
-      this.myRef.scrollTo({
-        top: 0,
-        left: el.offsetLeft - 25,
-        behavior: 'smooth'
-      });
+      if (Utilities.browserDetect() == "msie") {
+        el.scrollIntoView(0, el.offsetRight - 25);
+      } else {
+        this.myRef.scrollTo({
+          top: 0,
+          left: el.offsetLeft - 25,
+          behavior: 'smooth'
+        });
+      }
     }
   };
 
@@ -177,7 +184,7 @@ export default class VenueFilter extends Component {
         return venues.name.toLowerCase().indexOf(search) !== -1;
       });
     this.sortAndGroup(filteredVenue);
-
+    if (!display) return null;
     return (
       <div className="filters-panel">
         {/* <CSSTransitionGroup

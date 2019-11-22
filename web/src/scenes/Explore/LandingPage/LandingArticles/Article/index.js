@@ -35,7 +35,10 @@ const Article = ({ article }) => {
           <span className="date">{article.date}</span>
         </div>
         <p>
-          {Utilities.showLimitedChars(article.description, 98)}
+          {Utilities.showLimitedChars(
+            article.description,
+            Utilities.mobilecheck() ? 80 : 98
+          )}
           <Link
             to={
               article.type === 'multi_show_template'

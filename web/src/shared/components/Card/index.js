@@ -38,7 +38,10 @@ export default class Card extends Component {
         {this.props.cardData && this.props.cardData.is_featured == '1' && (
           <span className="featured-tag">Featured</span>
         )}
-        <div className="event-img" onClick={() => redirectTo(cardData.alias)}>
+        <div
+          className="event-img"
+          onClick={() => redirectTo && redirectTo(cardData.alias)}
+        >
           <Image src={cardData.thumb_image} />
         </div>
         <div className="event-details">
@@ -87,14 +90,7 @@ export default class Card extends Component {
               </React.Fragment>
             )}
             <p className="event-date">{cardData.event_date}</p>
-            {cardData && cardData.venue_name && (
-              <p className="event-place">
-                {Utilities.showLimitedChars(
-                  cardData.venue_name,
-                  Utilities.mobilecheck() ? 20 : 55
-                )}
-              </p>
-            )}
+            <p className="event-place">{cardData && cardData.venue_name}</p>
           </div>
           <div className="price-event">
             <div className="price">
@@ -112,7 +108,7 @@ export default class Card extends Component {
             <button
               id="event-buy"
               type="button"
-              onClick={() => redirectTo(cardData.alias)}
+              onClick={() => redirectTo && redirectTo(cardData.alias)}
               className={cardClass.cardButton}
             >
               Buy Tickets

@@ -27,6 +27,8 @@ import TopPics from './TopPics';
 import MetaData from '../../shared/components/MetaData';
 // import Royals from './Royals';
 
+import HomePageCarouselContainer from './HomePageCarouselContainer';
+
 class Home extends Component {
   constructor(props) {
     super(props);
@@ -140,10 +142,12 @@ class Home extends Component {
         />
         <HotShowPopup />
         <div className={`banner`}>
-          <Image
+          <HomePageCarouselContainer />
+          {/* <Image
             src={Utilities.mobilecheck() ? mobileBanner : primeSlider2}
             largeImage={Utilities.mobilecheck() ? mobileBanner : primeSlider}
-          />
+          /> */}
+          {/* <img className={`main-image ${this.state.imageUrl ? 'show-image' : ''}`} src={primeSlider} alt="prime Slider" /> */}
         </div>
         {this.state.itemsOrder &&
           this.state.itemsOrder.length > 0 &&
