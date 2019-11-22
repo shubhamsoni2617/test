@@ -51,7 +51,6 @@ const CustomSectionTwo = ({ heading, customData, isMoreFrom }) => {
   ) : (
     <section className="royal-wrapper">
       <div className="container-fluid">
-        <div className="royal-side-padding">
           <div className="section-top-wrapper">
             <h2>{heading}</h2>
             {isMoreFrom && (
@@ -122,7 +121,6 @@ const CustomSectionTwo = ({ heading, customData, isMoreFrom }) => {
               </div>
             </div>
           </div>
-        </div>
       </div>
     </section>
   );
