@@ -39,7 +39,7 @@ const Trending = ({ trending }) => {
           </div>
         )}
         {Utilities.mobilecheck() ? (
-          Item(trending)
+        <div className="item-wrapper">  {Item(trending)} </div>
         ) : (
           <Slider {...settings}>{Item(trending)}</Slider>
         )}
