@@ -5,6 +5,7 @@ import Constants from '../../../shared/constants';
 import AdvertisementService from '../../../shared/services/AdvertisementService';
 import Arrow from '../../../assets/images/right-arrow.svg';
 import Image from '../../../shared/components/Image';
+import Utilities from '../../../shared/utilities';
 
 const CustomSectionTwo = ({ heading, customData, isMoreFrom }) => {
   const [data, setData] = useState(null);
@@ -51,7 +52,6 @@ const CustomSectionTwo = ({ heading, customData, isMoreFrom }) => {
   ) : (
     <section className="royal-wrapper">
       <div className="container-fluid">
-        <div className="royal-side-padding">
           <div className="section-top-wrapper">
             <h2>{heading}</h2>
             {isMoreFrom && (
@@ -77,18 +77,32 @@ const CustomSectionTwo = ({ heading, customData, isMoreFrom }) => {
                   />
                 )}
               </div>
+              {Utilities.mobilecheck() && (
+                <a
+                  href={data && data[0] && data[0].navigation_link}
+                  target="_blank"
+                  className="royal-rightside-textwrapper"
+                >
+                  <a>
+                    <h3>{data && data[0] && data[0].title}</h3>
+                  </a>
+                  <p>{data && data[0] && data[0].section_date}</p>
+                </a>
+              )}
             </a>
             <div className="royal-rightsection">
-              <a
-                href={data && data[0] && data[0].navigation_link}
-                target="_blank"
-                className="royal-rightside-textwrapper"
-              >
-                <a>
-                  <h3>{data && data[0] && data[0].title}</h3>
+              {!Utilities.mobilecheck() && (
+                <a
+                  href={data && data[0] && data[0].navigation_link}
+                  target="_blank"
+                  className="royal-rightside-textwrapper"
+                >
+                  <a>
+                    <h3>{data && data[0] && data[0].title}</h3>
+                  </a>
+                  <p>{data && data[0] && data[0].section_date}</p>
                 </a>
-                <p>{data && data[0] && data[0].section_date}</p>
-              </a>
+              )}
               <div className="royal-items">
                 {data &&
                   data.slice(1, data.length).map((elem, i) => {
@@ -122,7 +136,6 @@ const CustomSectionTwo = ({ heading, customData, isMoreFrom }) => {
               </div>
             </div>
           </div>
-        </div>
       </div>
     </section>
   );

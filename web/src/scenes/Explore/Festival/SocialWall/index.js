@@ -40,8 +40,7 @@ const SocialWall = ({ socialUrl }) => {
           <section className="sistic-moments">
             <div className="container-fluid">
               <h2>SocialWall</h2>
-            </div>
-            <div className="sistic-moments-wrapper">
+              <div className="sistic-moments-wrapper">
               {feeds &&
                 feeds.map(feed => (
                   <img
@@ -52,6 +51,7 @@ const SocialWall = ({ socialUrl }) => {
                     alt=""
                   />
                 ))}
+            </div>
             </div>
           </section>
         )}

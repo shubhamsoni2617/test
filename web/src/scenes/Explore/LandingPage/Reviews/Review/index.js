@@ -15,7 +15,7 @@ const Review = ({ reviewData }) => {
         to={
           reviewData && reviewData.data[0].type === 'multi_show_template'
             ? `/explore/festival/${reviewData.data[0].id}`
-            : `/explore/article${reviewData.data[0].id}`
+            : `/explore/article/${reviewData.data[0].id}`
         }
         className="active-review"
       >
