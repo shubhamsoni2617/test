@@ -117,8 +117,10 @@ const Festival = ({ match }) => {
       description={description}
     />
   ) : (
-    <div className="shimmer-margin">
-      <div className="simmerOuter">{reusedShimmer(300, 1, 'SOLID', 12)}</div>
+    <div className={Utilities.mobilecheck() ? '' : 'shimmer-margin'}>
+      <div className="simmerOuter">
+        {reusedShimmer(Utilities.mobilecheck() ? 200 : 300, 1, 'SOLID', 12)}
+      </div>
     </div>
   );
 
@@ -128,7 +130,7 @@ const Festival = ({ match }) => {
     ) : (
       <div className="shimmer-margin">
         {reusedShimmer(
-          Utilities.mobilecheck() ? 120 : 300,
+          Utilities.mobilecheck() ? 150 : 300,
           Utilities.mobilecheck() ? 1 : 4,
           'TILE',
           Utilities.mobilecheck() ? 12 : 3
@@ -147,7 +149,7 @@ const Festival = ({ match }) => {
   ) : (
     <div className="shimmer-margin">
       {reusedShimmer(
-        Utilities.mobilecheck() ? 120 : 300,
+        Utilities.mobilecheck() ? 150 : 300,
         Utilities.mobilecheck() ? 1 : 2,
         'TILE',
         Utilities.mobilecheck() ? 12 : 6
