@@ -130,7 +130,7 @@ const Festival = ({ match }) => {
     ) : (
       <div className="shimmer-margin">
         {reusedShimmer(
-          Utilities.mobilecheck() ? 150 : 300,
+          Utilities.mobilecheck() ? 200 : 300,
           Utilities.mobilecheck() ? 1 : 4,
           'TILE',
           Utilities.mobilecheck() ? 12 : 3
@@ -141,7 +141,14 @@ const Festival = ({ match }) => {
   const musicalPart = section_three ? (
     <MusicFestival sectionThree={section_three} />
   ) : (
-    <div className="shimmer-margin">{reusedShimmer(300, 2, 'TILE', 6)}</div>
+    <div className="shimmer-margin">
+      {reusedShimmer(
+        300,
+        Utilities.mobilecheck() ? 1 : 4,
+        'TILE',
+        Utilities.mobilecheck() ? 12 : 3
+      )}
+    </div>
   );
 
   const allEventPart = section_four ? (
@@ -164,22 +171,41 @@ const Festival = ({ match }) => {
   const ticketDealsPart = section_five ? (
     <TicketDeals sectionFive={section_five} />
   ) : (
-    <div className="shimmer-margin">{reusedShimmer(300, 6, 'TILE', 2)}</div>
+    <div className="shimmer-margin">
+      {reusedShimmer(
+        Utilities.mobilecheck() ? 200 : 300,
+        Utilities.mobilecheck() ? 1 : 4,
+        'TILE',
+        Utilities.mobilecheck() ? 12 : 3
+      )}
+    </div>
   );
 
   const articlesPart =
     section_six && section_six.sub_section_six.length > 0 ? (
       <Articles sectionSix={section_six} />
-    ) : // <div className="shimmer-margin">{reusedShimmer(300, 2, 'TILE', 6)}</div>
-    null;
+    ) : (
+      <div className="shimmer-margin">
+        {reusedShimmer(
+          Utilities.mobilecheck() ? 150 : 300,
+          Utilities.mobilecheck() ? 1 : 2,
+          'TILE',
+          Utilities.mobilecheck() ? 12 : 6
+        )}
+      </div>
+    );
 
   const pollNSurveysPart = section_seven ? (
     <PollNServeys sectionSeven={section_seven} />
   ) : (
-    <div className="shimmer-margin">{reusedShimmer(300, 2, 'TILE', 6)}</div>
-    // <div className="simmerOuter">
-    //   {reusedShimmer(400, 1, 'DESCRIPTIONDETAIL', 12)}
-    // </div>
+    <div className="shimmer-margin">
+      {reusedShimmer(
+        300,
+        Utilities.mobilecheck() ? 1 : 4,
+        'TILE',
+        Utilities.mobilecheck() ? 12 : 3
+      )}
+    </div>
   );
 
   const videoGalleryPart = section_eigth && section_eigth.length > 0 && (
