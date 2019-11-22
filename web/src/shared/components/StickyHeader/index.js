@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import { Scrollbars } from 'react-custom-scrollbars';
 import calendarImg from '../../../assets/images/event-calender.svg';
 import coinsImg from '../../../assets/images/price.svg';
 import locationGray from '../../../assets/images/location-gray.svg';
@@ -155,24 +156,42 @@ function EventDateTime({
         <img src={closeIcon} alt="Close Icon" />
       </button>
       <div className="block-header">
-        <img src={calendarImg}  alt="cal-icon" />
+        <img src={calendarImg} alt="cal-icon" />
         <h3>Event dates & Time</h3>
       </div>
       <div className="tickets-desc">
-        <ul className="date-address">
-          {altEventStartDate && (
-            <li className="event-date">
-              <span
-                dangerouslySetInnerHTML={{ __html: altEventStartDate }}
-              ></span>
-            </li>
-          )}
-          {eventDateNotes && (
-            <li className="event-date">
-              <span dangerouslySetInnerHTML={{ __html: eventDateNotes }}></span>
-            </li>
-          )}
-        </ul>
+        <Scrollbars
+        // renderTrackVertical={({ style, ...props }) => {
+        //   console.log('style', style);
+        //   return (
+        //     <div {...props} style={{ ...style, backgroundColor: 'blue' }} />
+        //   );
+        // }}
+        // renderThumbVertical={({ style, ...props }) => {
+        //   console.log('style---ss', style);
+        //   return (
+        //     <div {...props} style={{ ...style, backgroundColor: 'blue' }} />
+        //   );
+        // }}
+        // renderView={props => <div {...props} className="view" />}
+        >
+          <ul className="date-address">
+            {altEventStartDate && (
+              <li className="event-date">
+                <span
+                  dangerouslySetInnerHTML={{ __html: altEventStartDate }}
+                ></span>
+              </li>
+            )}
+            {eventDateNotes && (
+              <li className="event-date">
+                <span
+                  dangerouslySetInnerHTML={{ __html: eventDateNotes }}
+                ></span>
+              </li>
+            )}
+          </ul>
+        </Scrollbars>
       </div>
     </div>
   );
@@ -216,16 +235,18 @@ function StickyHeader(props) {
       />
       <div className="tickets-desc">
         <ul className="zoner-group">
-            {detailData.genres && detailData.genres.length > 0 && detailData.genres.map((obj, index) => {
-                    return (
-                        <li
-                        className={`${obj.is_primary === 1 ? 'active' : ''}`}
-                        key={index}
-                        >
-                        {obj.name}
-                        </li>
-                    );
-                })}
+          {detailData.genres &&
+            detailData.genres.length > 0 &&
+            detailData.genres.map((obj, index) => {
+              return (
+                <li
+                  className={`${obj.is_primary === 1 ? 'active' : ''}`}
+                  key={index}
+                >
+                  {obj.name}
+                </li>
+              );
+            })}
         </ul>
 
         {sticky ? (
@@ -283,7 +304,7 @@ function StickyHeader(props) {
           <ul className="date-address">
             {detailData.event_date && (
               <li className="event-date">
-                <img src={calendarImg} height={16} width='16' alt="cal-icon" />
+                <img src={calendarImg} height={16} width="16" alt="cal-icon" />
                 <div>
                   <span>{detailData.event_date}</span>
                   <ViewAllDateTimeButton
@@ -296,14 +317,17 @@ function StickyHeader(props) {
                 </div>
               </li>
             )}
-            {detailData.venue_name && detailData.venue_name.name && detailData.venue_name.description  &&(
-              <li className="event-address">
-                <img
-                  className="location-gray"
-                  width={16} height={19}
-                  src={locationGray}
-                  alt="location"
-                />
+            {detailData.venue_name &&
+              detailData.venue_name.name &&
+              detailData.venue_name.description && (
+                <li className="event-address">
+                  <img
+                    className="location-gray"
+                    width={16}
+                    height={19}
+                    src={locationGray}
+                    alt="location"
+                  />
                   <div>
                     <Link to={`/venues?id=${detailData.venue_name.id}`}>
                       {sticky ? (
@@ -343,18 +367,24 @@ function StickyHeader(props) {
 
             {detailData.price && (
               <li className="event-date">
-                <img src={coinsImg} className="coin" width={19} height={19} alt="cal-icon" />
+                <img
+                  src={coinsImg}
+                  className="coin"
+                  width={19}
+                  height={19}
+                  alt="cal-icon"
+                />
                 <span className="detail">{detailData.price}</span>
               </li>
             )}
           </ul>
         </div>
       </div>
-      {detailData.is_available_for_booking === 1 &&  buyPackages &&(
-      <div className="tickets-button">
+      {detailData.is_available_for_booking === 1 && buyPackages && (
+        <div className="tickets-button">
           <BuyTicketsButtonPopup detailData={detailData} />
-        {buyPackages}
-      </div>
+          {buyPackages}
+        </div>
       )}
       {detailData.is_available_for_booking === 0 && (
         <div className="tickets-button shows-over-tickets">
