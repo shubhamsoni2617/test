@@ -49,6 +49,26 @@ const EventCarousel = ({ images }) => {
     );
   };
 
+  const renderLeftNav = (onClick, disabled) => {
+    return (
+      <button
+        className="image-gallery-custom-nav prev"
+        disabled={disabled}
+        onClick={onClick}
+      />
+    );
+  };
+
+  const renderRightNav = (onClick, disabled) => {
+    return (
+      <button
+        className="image-gallery-custom-nav next"
+        disabled={disabled}
+        onClick={onClick}
+      />
+    );
+  };
+
   return (
     <div className="banner-carousel">
       {images.length > 0 ? (
@@ -57,13 +77,16 @@ const EventCarousel = ({ images }) => {
           renderItem={renderItem}
           renderThumbInner={renderThumbInner}
           infinite={false}
-          showNav={false}
+          // showNav={false}
           showFullscreenButton={false}
           showPlayButton={false}
+          // disableThumbnailScroll={true}
+          renderLeftNav={renderLeftNav}
+          renderRightNav={renderRightNav}
         />
       ) : (
         <div className="image-gallery-image">
-          <Image largeImage="" src="" type= "BigBanner"/>
+          <Image largeImage="" src="" type="BigBanner" />
         </div>
       )}
     </div>
