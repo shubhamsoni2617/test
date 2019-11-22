@@ -1066,7 +1066,11 @@ button,
 				font-size: 12px;
 				padding: 0px 10px 0px;
 				@media(max-width: 767px){
-					padding: 0px 10px 0px;
+                    padding: 0px 10px 0px;
+                    display: flex;
+                    width: 100%;
+                    align-items: center;
+                    justify-content: center;
 				}
 			}
 		}
@@ -1227,6 +1231,9 @@ em{
     font-size: inherit;
 	}
 }
+input:disabled {
+  pointer-events: none;
+}
 .DayPickerInput-Overlay .DayPicker-Day--start ~ .DayPicker-Day:hover:before{
 	// left: auto;
     // right: 5px;
@@ -1381,7 +1388,7 @@ em{
 		}
 		header.homepage {
 			width: calc(100% - 10px) !important;
-		}	
+		}
 		.ticker-wrap{
 			width: calc(100% - 10px);
 		}

@@ -1,6 +1,6 @@
 import React, { useState, useEffect, memo } from 'react';
 import PropTypes from 'prop-types';
-// import BigBanner from '../../../assets/images/Big_Banner.png';
+import BigBanner from '../../../assets/images/Big_Banner.png';
 import Horizontal from '../../../assets/images/horizontal.png';
 import Vertical from '../../../assets/images/vertical.png';
 import Tile from '../../../assets/images/Vertical Tile.png';
@@ -8,7 +8,8 @@ import Small from '../../../assets/images/small.png';
 import Medium from '../../../assets/images/noimage.png';
 import MediumVertical from '../../../assets/images/mediumVertical.png';
 import MediumHorizontal from '../../../assets/images/mediumHorizontal.jpg';
-// import BigBannerMobile from '../../../assets/images/Big_Banner.png';
+import HorizontalMin from '../../../assets/images/HorizontalMin.png';
+import BigBannerMobile from '../../../assets/images/Big_Banner.png';
 import NoImage from '../../../assets/images/No image-.png';
 import Smaller from '../../../assets/images/smaller.png';
 import './style.scss';
@@ -51,9 +52,13 @@ function Image(props) {
         newImg = Tile;
         break;
 
-      // case 'BigBanner':
-      //   newImg = BigBanner;
-      //   break;
+      case 'HorizontalMin':
+        newImg = HorizontalMin;
+        break;
+
+      case 'BigBanner':
+        newImg = BigBanner;
+        break;
 
       case 'BigBannerMobile':
         newImg = BigBannerMobile;

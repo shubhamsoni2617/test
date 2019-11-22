@@ -44,9 +44,9 @@ export default class Events extends Component {
       localfilteredPriceRange: {},
       localfilteredDateRange: {},
       filteredSortType: 'date',
-      filteredSortOrder: '',
+      filteredSortOrder: 'ASC',
       localfilteredSortType: 'date',
-      localfilteredSortOrder: '',
+      localfilteredSortOrder: 'ASC',
       eventsData: [],
       genre: [],
       venues: [],
@@ -114,9 +114,15 @@ export default class Events extends Component {
         },
         {
           sortType: 'date',
-          sortOrder: '',
-          sortTitle: 'Date',
-          sortTag: 'Date'
+          sortOrder: 'ASC',
+          sortTitle: 'Event Date - Earliest to Latest',
+          sortTag: 'Event Date - Earliest to Latest'
+        },
+        {
+          sortType: 'date',
+          sortOrder: 'DESC',
+          sortTitle: 'Event Date - Latest to Earliest',
+          sortTag: 'Event Date - Latest to Earliest'
         }
       ]
     };
@@ -141,7 +147,7 @@ export default class Events extends Component {
       const payload = this.getInitialFilters();
       this.setInitialFilters(payload);
       this.loadEvents(payload);
-      window.scrollTo(0, 0);
+      // window.scrollTo(0, 0);
     }
   }
 
@@ -238,39 +244,82 @@ export default class Events extends Component {
     const query = new URLSearchParams(this.props.location.search);
     let genreId = query.get('c') ? query.get('c') : '';
     let venueId = query.get('v') ? query.get('v') : '';
+    let tagsId = query.get('t') ? query.get('t') : '';
+    let promotionsId = query.get('p') ? query.get('p') : '';
+    let searchString = query.get('q') ? query.get('q') : '';
+
     let dateRange = query.get('s') ? query.get('s') : '';
     if (dateRange !== '' || !dateRange) {
       dateRange = dateRange.split('--');
       dateRange = { from: dateRange[0], to: dateRange[1] };
     }
+
+    let priceRange = query.get('r') ? query.get('r') : '';
+    if (priceRange !== '' || !priceRange) {
+      priceRange = priceRange.split('--');
+      priceRange = { min: priceRange[0], max: priceRange[1] };
+    }
+
     const payload = {
       first: 0,
       limit: Constants.LIMIT,
+      sort_type:"date",
+      sort_order:"ASC",
       genre: reset ? '' : genreId,
       venue: reset ? '' : venueId,
+      tags: reset ? '' : tagsId,
+      search: reset ? '' : searchString,
+      promotions: reset ? '' : promotionsId,
       start_date: reset ? '' : dateRange.from,
       end_date: reset ? '' : dateRange.to,
+      min_price: reset ? '' : priceRange.min,
+      max_price: reset ? '' : priceRange.max,
       client: 1
     };
     return payload;
   };
 
-  setInitialFilters({ genre, venue, start_date, end_date }) {
+  setInitialFilters({
+    genre,
+    venue,
+    promotions,
+    tags,
+    search,
+    start_date,
+    end_date,
+    min_price,
+    max_price
+  }) {
     const dateRange = {
       from: start_date || '',
       to: end_date || ''
+    };
+    const priceRange = {
+      min: min_price || '',
+      max: max_price || ''
     };
     this.setState({
       queryParams: {
         genreId: genre,
         venueId: venue,
-        dateRange: dateRange
+        promotionsId: promotions,
+        tagsId: tags,
+        search: search,
+        dateRange: dateRange,
+        priceRange: priceRange
       },
-      filteredGnere: genre ? [genre] : [],
-      filteredVenues: venue ? [venue] : [],
+      filteredGnere: genre ? genre.split(',') : [],
+      filteredVenues: venue ? venue.split(',') : [],
+      filteredPromotions: promotions ? promotions.split(',') : [],
+      filteredTags: tags ? tags.split(',') : [],
+      filteredSearch: search ? search : '',
+      localfilteredSearch: search ? search : '',
       filteredDateRange: dateRange,
-      localfilteredGnere: genre ? [genre] : [],
-      localfilteredVenues: venue ? [venue] : [],
+      filteredPriceRange: priceRange,
+      localfilteredDateRange: dateRange,
+      localfilteredPriceRange: priceRange,
+      localfilteredGnere: genre ? genre.split(',') : [],
+      localfilteredVenues: venue ? venue.split(',') : [],
       localfilteredDateRange: dateRange
     });
   }
@@ -306,6 +355,7 @@ export default class Events extends Component {
       sort_type: filteredSortType,
       sort_order: filteredSortOrder
     };
+    Utilities.updateUrl(this.props.history, this.state);
 
     return params;
   };
@@ -320,11 +370,7 @@ export default class Events extends Component {
     let obj = {
       ...searchType
     };
-    if (
-      !Utilities.mobilecheck() ||
-      apply ||
-      (searchType && searchType.filteredSearch)
-    ) {
+    if (!Utilities.mobilecheck() || apply) {
       obj = {
         ...searchType,
         first: 0,
@@ -337,11 +383,7 @@ export default class Events extends Component {
 
     this.setState(obj, () => {
       setTimeout(() => {
-        if (
-          !Utilities.mobilecheck() ||
-          apply ||
-          (searchType && searchType.filteredSearch)
-        ) {
+        if (!Utilities.mobilecheck() || apply) {
           this.loadEvents(this.getFilters(), false);
         }
       }, 200);
@@ -370,13 +412,14 @@ export default class Events extends Component {
         filteredPriceRange: {},
         filteredDateRange: {},
         filteredSortType: 'date',
-        filteredSortOrder: '',
+        filteredSortOrder: 'ASC',
         isdataAvailable: false,
         // eventsData: [],
         totalRecords: 0
       };
     }
     this.setState(obj, () => {
+      Utilities.updateUrl(this.props.history, this.state);
       if (!Utilities.mobilecheck()) {
         const payload = this.getInitialFilters(true);
         this.setInitialFilters(payload);
@@ -407,6 +450,13 @@ export default class Events extends Component {
     });
   };
 
+  closeFilter = () => {
+    this.setState({
+      filterFlag: false,
+      sortByFlag: true
+    });
+  };
+
   toggleSortBy = () => {
     this.setState({
       sortByFlag: !this.state.sortByFlag,
@@ -430,8 +480,11 @@ export default class Events extends Component {
         filteredPromotions: [...this.state.localfilteredPromotions],
         filteredVenues: [...this.state.localfilteredVenues],
         filteredTags: [...this.state.localfilteredTags],
-        filteredSortOrder: this.state.localfilteredSortOrder,
-        filteredSortType: this.state.localfilteredSortType == "" ? "date" : this.state.localfilteredSortType
+        filteredSortOrder: this.state.localfilteredSortOrder == "" ? 'ASC' : this.state.localfilteredSortOrder,
+        filteredSortType:
+          this.state.localfilteredSortType == ''
+            ? 'date'
+            : this.state.localfilteredSortType
       },
       () => {
         setTimeout(() => {
@@ -491,7 +544,7 @@ export default class Events extends Component {
               <div className={`filters ${this.state.filterFlag ? 'open' : ''}`}>
                 {shimmerFilter && (
                   <ShimmerEffect
-                    propCls="shm_col-xs-6 col-md-12"
+                    propCls="col-xs-12 col-md-12"
                     height={150}
                     count={1}
                     type="FILTER"
@@ -544,6 +597,7 @@ export default class Events extends Component {
                           : filteredDateRange
                       }
                       filterFlag={filterFlag}
+                      closeFilter={this.closeFilter}
                     >
                       {fixed => (
                         <div
@@ -582,7 +636,9 @@ export default class Events extends Component {
               >
                 <div className="event-listing-sorting">
                   <SearchFilter
-                    handleFilters={this.handleFilters}
+                    handleFilters={data => {
+                      this.handleFilters(data, true);
+                    }}
                     searchText={filteredSearch}
                   />
                   <FilterSelected
@@ -659,9 +715,7 @@ export default class Events extends Component {
                     </li>
                   </ul>
                 </div>
-                <div className="event-listing-ads">
-                  <EventAdvertisement />
-                </div>
+                <EventAdvertisement shimmer={shimmer} />
                 <div className={this.state.viewTypeClass}>
                   {loader && (
                     <img
@@ -689,16 +743,18 @@ export default class Events extends Component {
                     })}
                 </div>
                 {shimmer && (
-                  <ShimmerEffect
-                    propCls={`${
-                      Utilities.mobileAndTabletcheck() ? 'shm_col-xs-6' : ''
-                    } col-md-4`}
-                    height={150}
-                    count={Utilities.mobileAndTabletcheck() ? 2 : 3}
-                    type="LIST"
-                  />
+                  <div className="shimmerPosition">
+                    <ShimmerEffect
+                      propCls={`${
+                        Utilities.mobileAndTabletcheck() ? 'shm_col-xs-6' : ''
+                      } col-md-4`}
+                      height={150}
+                      count={Utilities.mobileAndTabletcheck() ? 2 : 3}
+                      type="LIST"
+                    />
+                  </div>
                 )}
-                {eventsData.length < totalRecords && (
+                {!shimmer && eventsData.length < totalRecords && (
                   <div className="promotion-load-more">
                     <button
                       onClick={() => this.loadMoreEvents()}

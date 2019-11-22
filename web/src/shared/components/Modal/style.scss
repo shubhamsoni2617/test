@@ -42,6 +42,7 @@
         }
         .notice{
             padding: 0 25px;
+            word-break: break-word;
             @media(max-width: 768px){
                 padding: 0 10px;
             }

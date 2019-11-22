@@ -37,7 +37,7 @@ const ArticleList = ({ history }) => {
   const [loadWithFilters, setLoadWithFilters] = useState(false);
   const [
     filteredCategoriesForMobile,
-    setFilteredCategoriessForMobile
+    setFilteredCategoriesForMobile
   ] = useState([]);
 
   let mobileCheck = showTags || showCategories;
@@ -107,7 +107,6 @@ const ArticleList = ({ history }) => {
         setTags,
         selected,
         setFilteredTagsForMobile,
-        filteredTags,
         setFilteredTags,
         mobileCheck
       );
@@ -118,15 +117,36 @@ const ArticleList = ({ history }) => {
         categories,
         setCategories,
         selected,
-        setFilteredCategoriessForMobile,
-        filteredCategories,
+        setFilteredCategoriesForMobile,
         setFilteredCategories,
         mobileCheck
       );
     }
   };
 
-  const closeFilters = () => {
+  const closeFilters = (filterTitle, action) => {
+    if (action === 'back') {
+      if (filterTitle === 'Tags') {
+        let restoredTags = tags.map(el => {
+          return {
+            ...el,
+            isChecked: filteredTags.indexOf(el.id) === -1 ? false : true
+          };
+        });
+        setTags(restoredTags);
+        setFilteredTagsForMobile(filteredTags);
+      }
+      if (filterTitle === 'Categories') {
+        let restoredCategories = categories.map(el => {
+          return {
+            ...el,
+            isChecked: filteredCategories.indexOf(el.id) === -1 ? false : true
+          };
+        });
+        setCategories(restoredCategories);
+        setFilteredCategoriesForMobile(filteredCategories);
+      }
+    }
     setShowTags(false);
     setShowCategories(false);
   };
@@ -153,6 +173,9 @@ const ArticleList = ({ history }) => {
       />
     ) : null;
   };
+
+  console.log(filteredTags);
+  console.log(filteredTagsForMobile);
 
   return (
     <div className="events-page-wrapper articlelist-wrapper">
@@ -194,7 +217,7 @@ const ArticleList = ({ history }) => {
             <div
               className={`events-listing ${
                 isNaN(totalResults) ? `article-list-notfound` : ``
-                }`}
+              }`}
             >
               <div className="events-section">
                 <CardList
@@ -209,16 +232,11 @@ const ArticleList = ({ history }) => {
                     src={loaderImage}
                   />
                 ) : null}
-                {/* <img
-                  className="filter-loader"
-                  alt="filter loader"
-                  src={loaderImage}
-                /> */}
                 {loadMore && (
                   <ShimmerEffect
                     propCls={`${
                       Utilities.mobileAndTabletcheck() ? 'shm_col-xs-6' : ''
-                      } col-md-4`}
+                    } col-md-4`}
                     height={150}
                     count={Utilities.mobileAndTabletcheck() ? 2 : 3}
                     type="LIST"

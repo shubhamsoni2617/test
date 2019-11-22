@@ -32,7 +32,7 @@
         margin: 0px;
         height: auto;
         padding-top: 80px;
-        -webkit-overflow-scrolling: touch;
+        // -webkit-overflow-scrolling: touch;
         &.fixed{
           overflow-y: hidden;
           position: relative;
@@ -125,6 +125,9 @@
                 }
                 &:-moz-placeholder {
                     color: rgba(52,52,52,0.25);
+                }
+                @media(max-width: 767px){
+                    height: 40px;
                 }
             }
         }
@@ -343,6 +346,17 @@
             font-size: 16px;
             line-height: 19px;
             width: 100%;
+            span{
+                float: right;
+                color: #0098ff;
+                text-decoration: none;
+                font-size: 12px;
+                line-height: 14px;
+                font-family: 'Rubik', sans-serif;
+                font-weight: 400;
+                margin-top: 4px;
+                opacity: 0.5;
+            }
             a {
                 float: right;
                 color: #0098ff;
@@ -350,7 +364,8 @@
                 font-size: 12px;
                 line-height: 14px;
                 font-family: 'Rubik', sans-serif;
-                font-weight: 500;
+                font-weight: 400;
+                margin-top: 4px;
             }
         }
         @media(max-width: 767px){
@@ -370,7 +385,7 @@
                 display: flex;
                 align-items: center;
                 justify-content: space-between;
-                a, button{
+                a, button, span{
                     margin-left: auto;
                     color: #0098FF;
                     font-size: 16px;
@@ -379,6 +394,9 @@
                     max-width: 50%;
                     margin-left: auto;
                     text-align: right;
+                    @media(max-width:767px){
+                        font-weight: 500;
+                    }
                 }
             }
         }
@@ -426,9 +444,15 @@
                     &:last-child{
                         border: none;
                     }
+                    span{
+                        color: #0098ff;
+                        opacity: 0.5;
+                        font-size: 12px;
+                    }
                     &.active {
                         a{
                             color: #0098ff;
+                            opacity: 1;
                         }
                     }
                     a {
@@ -445,9 +469,6 @@
                 }
             }
         }
-        .select-range{
-            // display: none;
-        }
         .filters-panel {
             padding: 8px;
             display: flex;
@@ -457,6 +478,9 @@
             .input-range{
                 width: calc(100% - 12px);
                 margin-left: 5px;
+                @media(max-width: 767px){
+                   margin-top: 10px;
+                }
             }
             .input-range__track--active {
                 background: #0098FF;
@@ -469,6 +493,12 @@
                 height: 15px;
                 width: 15px;
                 margin-top: -11px;
+                @media(max-width: 767px){
+                    height: 25px;
+                    width: 25px;
+                    border: 7px solid #0098FF;
+                    margin-top: -17px;
+                }
             }
             .input-range__track--background{
                 height: 1px;
@@ -480,7 +510,7 @@
               position: absolute;
               top: -30px;
               height: 26px;
-              width: 60px;
+              width: 70px;
               border: 1px solid rgba(126, 126, 126, 0.2);
               display: inline-block;
               text-align: center;
@@ -488,6 +518,9 @@
               color: #343434;
               font-family: 'Rubik', sans-serif;
               background: #FFF;
+              @media(max-width: 767px) {
+                font-weight: 500;
+              }
           }
           span.input-range-label-container.min {
             left: 5px;
@@ -510,9 +543,9 @@
                 display: flex;
                 flex-direction: column;
                 flex: 0 0 100%;
-                margin-bottom: 20px;
+                margin-bottom: 0;
                 @media(max-width: 768px){
-                    margin-bottom: 20px;
+                    margin-bottom: 0;
                 }
                 @media(max-width: 767px){
                     position: fixed;
@@ -540,7 +573,7 @@
                     }
                     &:hover{
                         label{
-                            color: #0098ff;
+                            color: #626262;
                         }
                     }
                     input[type="checkbox"]:checked + label {
@@ -732,7 +765,7 @@
                 font-size: 14px;
                 color: #0098ff;
                 padding: 5px 0 0;
-                margin-top: 0px;
+                margin-top: 20px;
                 cursor: pointer;
             }
             // dateinput
@@ -1010,11 +1043,14 @@
                                 background-color: #fff;
                                 .styled-checkbox {
                                     & + label{
+                                        margin: 0;
                                         &:before{
                                             background: url(../../../assets/images/Tick-unselected.svg);
                                             width: 20px;
                                             height: 20px;
                                             background-repeat: no-repeat;
+                                            position: relative;
+                                            left: 0;
                                         }
                                     }
                                     &:checked{
