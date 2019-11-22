@@ -1,12 +1,23 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Contact from '../../../shared/components/Contact';
 import { useCustomContactDetail } from '../../../../src/shared/components/CustomHooks';
+import { animateScroll } from 'react-scroll';
+const ContactUs = ({ type, location, dataLoaded }) => {
+  useEffect(() => {
+    if (dataLoaded && location && location.hash) {
+      const offset = document
+        .getElementById(location.hash)
+        .getBoundingClientRect().top;
+      animateScroll.scrollMore(offset - 75);
+    }
+  }, [dataLoaded]);
 
-const ContactUs = ({ type }) => {
   const [contactDetail] = useCustomContactDetail();
   return (
     <div className="contact-us banner-overlay">
-      <h1 className="text-center contact-us-header">Contact Us</h1>
+      <h1 className="text-center contact-us-header" id="#contact-us">
+        Contact Us
+      </h1>
       <div className="container">
         <div className="contact-us-block">
           <div className="contact-we-are-at">

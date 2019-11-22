@@ -63,10 +63,6 @@ const Article = props => {
         <SliderBanner data={articleData.image} />
       )}
 
-      {/* {articleData && articleData.image && (
-        <SliderBanner data={articleData.media} />
-      )} */}
-
       <div className="acticle">
         <div className="container-fluid">
           <div className="offset-lg-2 breadcrumb-category-group">

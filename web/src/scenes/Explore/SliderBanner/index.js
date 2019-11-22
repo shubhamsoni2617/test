@@ -13,21 +13,28 @@ const SliderBanner = ({ data }) => {
     slidesPerRow: 1,
     autoplay: true
   };
-  return data && data.length > 0 ? (
+
+  return data && data.length ? (
     <div className="sliderBottomDot festival-top-slider">
       <Slider {...settings}>
         {data &&
-          data.map((image, i) => {
-            return <img src={image} key={image} />;
-            // return (
-            //   <ReactPlayer
-            //     className="react-player"
-            //     url="https://www.youtube.com/watch?v=-l5G5BT8-fQ"
-            //     width="100%"
-            //     height="349px"
-            //     controls
-            //   />
-            // );
+          data.map((dataObj, i) => {
+            if (dataObj.type.id == 1) {
+              return (
+                <img src={dataObj.full_image} key={dataObj.thumb_image + i} />
+              );
+            } else {
+              return (
+                <ReactPlayer
+                  key={dataObj.thumb_image + i}
+                  className="react-player"
+                  url={dataObj.video_url}
+                  width="100%"
+                  height="349px"
+                  controls
+                />
+              );
+            }
           })}
       </Slider>
     </div>
