@@ -1,18 +1,19 @@
 import React from 'react';
 import Utilities from '../../../../../shared/utilities';
 import Image from '../../../../../shared/components/Image';
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
 const Item = ({ event, history }) => {
   return (
     <Link to={`/explore/article/${event.id}`}>
       <div className="item">
-        <div
-          className="item-wrapper"
-        // onClick={() => history.push(`/explore/article/${event.id}`)}
-        >
+        <div className="item-wrapper">
           <div className="featured-item-img">
             <div className="item-img">
-              <Image src={event && event.image} className="img-fluid" type="Small" />
+              <Image
+                src={event && event.image}
+                className="img-fluid"
+                type="Small"
+              />
             </div>
             <span
               className={`category ${event &&
@@ -33,11 +34,11 @@ const Item = ({ event, history }) => {
               )}
             </h3>
           )}
-          {event && event.venue_name && (
+          {event && event.venue && (
             <p className="venue-name">
               {Utilities.showLimitedChars(
-                event && event.venue_name,
-                Utilities.mobilecheck() ? 35 : 50
+                event && event.venue,
+                Utilities.mobilecheck() ? 20 : 30
               )}
             </p>
           )}
