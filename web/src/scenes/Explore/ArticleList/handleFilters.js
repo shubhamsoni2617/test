@@ -4,7 +4,6 @@ export default (
   setFilterList,
   selected,
   setFiltersForMobile,
-  filteredId,
   setFilteredId,
   mobileCheck
 ) => {
@@ -14,23 +13,19 @@ export default (
       left: 0,
       behavior: 'smooth'
     });
-  let tagsToSearch = [...filteredId];
-  const tagsUpdated = [...filterList];
-  let index = tagsUpdated.findIndex(tag => tag.id === selected);
-  tagsUpdated[index].isChecked = isChecked;
-  setFilterList(tagsUpdated);
-  if (isChecked) {
-    tagsToSearch.push(selected);
-    setFiltersForMobile(tagsToSearch);
-    if (!mobileCheck) {
-      setFilteredId(tagsToSearch);
+  const updatedFilteredlist = [...filterList];
+  let index = updatedFilteredlist.findIndex(list => list.id === selected);
+  updatedFilteredlist[index].isChecked = isChecked;
+  let filteredData = [];
+  updatedFilteredlist.map(el => {
+    if (el.isChecked) {
+      filteredData.push(el.id);
     }
+  });
+  setFilterList(updatedFilteredlist);
+  if (!mobileCheck) {
+    setFilteredId(filteredData);
   } else {
-    let i = tagsToSearch.indexOf(selected);
-    tagsToSearch.splice(i, 1);
-    setFiltersForMobile(tagsToSearch);
-    if (!mobileCheck) {
-      setFilteredId(tagsToSearch);
-    }
+    setFiltersForMobile(filteredData);
   }
 };

@@ -59,6 +59,9 @@
 		}
 	}
 	.grid-container {
+        @media (max-width: 767px) {
+            overflow: auto;
+        }
 		.item {
 			position: relative;
 			z-index: 1;
@@ -166,7 +169,13 @@
 		transition: 1s all;
 		-webkit-transition:  1s all;
 		-moz-transition:  1s all;
-		-o-transition:  1s all;
+        -o-transition:  1s all;
+        &.dt-srt-end{
+            @media(max-width: 1024px) {
+                font-size: 13px;
+            }
+        }
+        
 		@media(max-width: 767px) {
 			font-size: 13px;
 			line-height: 15px;

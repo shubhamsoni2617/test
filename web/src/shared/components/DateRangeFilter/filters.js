@@ -17,9 +17,13 @@ function DateRangeFilter(props) {
   const [flag, setFlag] = useState(true);
   const [buttonText, setButtonText] = useState('');
 
-  // useEffect(() => {
-  //   setFlag(false);
-  // }, [props.filterFlag]);
+  useEffect(() => {
+    if (from && element.current) {
+      element.current.input.disabled = false;
+    } else {
+      element.current.input.disabled = true;
+    }
+  }, [element.current, from]);
 
   useEffect(() => {
     let text = `Select Date `;
@@ -54,7 +58,6 @@ function DateRangeFilter(props) {
         : ''
     );
   }, [props.filteredDateRange]);
-
   const clearCalender = () => {
     if (Utilities.mobilecheck()) {
       props.handleFilters({
@@ -91,6 +94,9 @@ function DateRangeFilter(props) {
   };
 
   const handleToChange = toDate => {
+    if (element.current) {
+      element.current.getInput().blur();
+    }
     setTo(toDate);
     showFromMonth();
     if (Utilities.mobilecheck() && props.autoSubmit && from && toDate) {
@@ -123,7 +129,7 @@ function DateRangeFilter(props) {
       <div className="filter-grid-heading">
         <h3>Date Range</h3>
         <ul>
-          <li className="active clear">
+          {/* <li className="active clear">
             <a
               href="/"
               onClick={e => {
@@ -133,6 +139,20 @@ function DateRangeFilter(props) {
             >
               Clear
             </a>
+          </li> */}
+          <li className={from || to ? 'active' : ''}>
+            {(from || to) && (
+              <a
+                href="/"
+                onClick={e => {
+                  e.preventDefault();
+                  clearCalender();
+                }}
+              >
+                Clear
+              </a>
+            )}
+            {!from && !to && <span>Clear</span>}
           </li>
         </ul>
       </div>
@@ -199,7 +219,10 @@ function DateRangeFilter(props) {
                           : null,
                         modifiers,
                         numberOfMonths: 1,
-                        onDayClick: () => element.current.getInput().focus()
+                        onDayClick: () => {
+                          element.current.input.disabled = false;
+                          element.current.getInput().focus();
+                        }
                       }}
                       onDayChange={handleFromChange}
                     />

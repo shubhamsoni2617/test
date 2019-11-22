@@ -35,6 +35,7 @@
                 width: 100%;
                 &:focus {
                     box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+                    outline: none;
                     .selection{
                         box-shadow: none;
                     }
@@ -116,12 +117,14 @@
                     }
                 }
                 .arrow{
-                    margin-top: -4px;
+                    margin-top: -6px;
+                    right: 0;
                     @media(max-width: 767px){
                         margin-top: -7px;
                         right: 0px;
                     }
                     svg, img{
+                        width: 10px;
                         @media(max-width: 991px){
                             max-width: 10px;
                         }
