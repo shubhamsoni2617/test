@@ -31,7 +31,10 @@ const BannerSlider = ({ bannerData }) => {
           {bannerData &&
             bannerData.map(banner => {
               return (
-                <div className="explore-content-wrapper" key={banner.banner_title}>
+                <div
+                  className="explore-content-wrapper"
+                  key={banner.banner_title}
+                >
                   <div className="explore-content">
                     <h3>{banner.banner_title}</h3>
                     <div
@@ -55,7 +58,7 @@ const BannerSlider = ({ bannerData }) => {
           {...settingsSlider}
           asNavFor={nav1}
           ref={slider => (slider2 = slider)}
-          slidesToShow={5}
+          slidesToShow={bannerData.length < 8 ? bannerData.length : 8}
           swipeToSlide={true}
           focusOnSelect={true}
         >
