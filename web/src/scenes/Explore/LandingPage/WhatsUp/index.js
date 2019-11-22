@@ -41,7 +41,7 @@ const WhatsUp = ({ whatsUpData }) => {
                       <EventHeading
                         title={title}
                         lines={1}
-                        height={25}
+                        height={Utilities.mobilecheck() ? 20 : 25}
                         // size={13}
                         allowTooltip={true}
                       />
