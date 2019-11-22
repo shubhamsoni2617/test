@@ -9,8 +9,7 @@ import CareerService from '../../shared/services/CareerService';
 import Careers from '../../shared/components/Careers';
 import Network from './Network';
 import ContactUs from '../ApiPartner/ContactUs';
-
-const LandingPage = () => {
+const LandingPage = ({ location }) => {
   const [landingPageData, setLandingPageData] = useState(null);
   const [testimonial, setTestimonial] = useState(null);
   useEffect(() => {
@@ -18,8 +17,10 @@ const LandingPage = () => {
     getTestimonial();
   }, []);
   useEffect(() => {
-    window && window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
-  });
+    if (!location.hash) {
+      window && window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+    }
+  }, []);
 
   const fetchLandingPageData = () => {
     B2BService.getLandingPage()
@@ -53,7 +54,10 @@ const LandingPage = () => {
         networkData={landingPageData && landingPageData.content.network}
       />
       <div className="apipartners-wrapper">
-        <ContactUs />
+        <ContactUs
+          location={location}
+          dataLoaded={landingPageData && testimonial}
+        />
       </div>
     </div>
   );

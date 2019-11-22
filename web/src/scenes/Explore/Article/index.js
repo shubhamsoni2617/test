@@ -141,9 +141,9 @@ const Article = props => {
       <div className="article-featured featured-events">
         <div className="container-fluid">
           <div class="section-top-wrapper">
-            {articleData && articleData.featured_articles.length && (
+            {articleData && articleData.featured_articles.length ? (
               <h2>Featured in Article</h2>
-            )}
+            ) : null}
           </div>
           <FeaturedArticles
             featuredArticles={articleData && articleData.featured_articles}
