@@ -1231,6 +1231,9 @@ em{
     font-size: inherit;
 	}
 }
+input:disabled {
+  pointer-events: none;
+}
 .DayPickerInput-Overlay .DayPicker-Day--start ~ .DayPicker-Day:hover:before{
 	// left: auto;
     // right: 5px;
@@ -1385,7 +1388,7 @@ em{
 		}
 		header.homepage {
 			width: calc(100% - 10px) !important;
-		}	
+		}
 		.ticker-wrap{
 			width: calc(100% - 10px);
 		}
