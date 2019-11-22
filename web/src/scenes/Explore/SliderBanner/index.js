@@ -1,6 +1,7 @@
 import React from 'react';
 import Slider from 'react-slick';
 import './style.scss';
+import ReactPlayer from 'react-player';
 
 const SliderBanner = ({ data }) => {
   const settings = {
@@ -16,8 +17,17 @@ const SliderBanner = ({ data }) => {
     <div className="sliderBottomDot festival-top-slider">
       <Slider {...settings}>
         {data &&
-          data.map(image => {
+          data.map((image, i) => {
             return <img src={image} key={image} />;
+            // return (
+            //   <ReactPlayer
+            //     className="react-player"
+            //     url="https://www.youtube.com/watch?v=-l5G5BT8-fQ"
+            //     width="100%"
+            //     height="349px"
+            //     controls
+            //   />
+            // );
           })}
       </Slider>
     </div>

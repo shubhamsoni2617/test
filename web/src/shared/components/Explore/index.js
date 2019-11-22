@@ -77,7 +77,7 @@ const Explore = props => {
                     </span>
                   );
                 })}
-                <h3>{exploreData[0].description}</h3>
+                <h3>{exploreData[0].description.slice(0, 60)}</h3>
               </div>
             </div>
           </div>
@@ -97,7 +97,7 @@ const Explore = props => {
                           </span>
                         );
                       })}
-                    <h3>{cardData.description.slice(0, 60)}</h3>
+                    <h3>{cardData.description.slice(0, 50)}</h3>
                   </div>
                 </div>
               </div>
