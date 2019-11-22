@@ -3,7 +3,7 @@ import './style.scss';
 import Image from '../../../../shared/components/Image';
 
 const TicketDeals = ({ sectionFive }) => {
-  return sectionFive && sectionFive.length > 0 ? (
+  return sectionFive && sectionFive.sub_section_five.length > 0 ? (
     <section className="deal-wrapper">
       <div className="container-fluid">
         <div className="tickets">
