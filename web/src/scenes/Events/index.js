@@ -115,14 +115,14 @@ export default class Events extends Component {
         {
           sortType: 'date',
           sortOrder: 'ASC',
-          sortTitle: 'Date - ASC',
-          sortTag: 'Date - ASC'
+          sortTitle: 'Event Date - Earliest to Latest',
+          sortTag: 'Event Date - Earliest to Latest'
         },
         {
-          sortType: 'date - DESC',
+          sortType: 'date',
           sortOrder: 'DESC',
-          sortTitle: 'Date - DESC',
-          sortTag: 'Date - DESC'
+          sortTitle: 'Event Date - Latest to Earliest',
+          sortTag: 'Event Date - Latest to Earliest'
         }
       ]
     };
@@ -263,6 +263,8 @@ export default class Events extends Component {
     const payload = {
       first: 0,
       limit: Constants.LIMIT,
+      sort_type:"date",
+      sort_order:"ASC",
       genre: reset ? '' : genreId,
       venue: reset ? '' : venueId,
       tags: reset ? '' : tagsId,
