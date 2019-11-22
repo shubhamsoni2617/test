@@ -280,9 +280,9 @@ const TopNav = props => {
     handleNavigationClose();
     setTimeout(() => {
       props.history.push(
-        `/events/search?s=${moment(data.from).format('YYYY-MM-DD')}--${moment(
-          data.to
-        ).format('YYYY-MM-DD')}`
+        `/events/search?s=${moment(data.localfilteredDateRange.from).format(
+          'YYYY-MM-DD'
+        )}--${moment(data.localfilteredDateRange.to).format('YYYY-MM-DD')}`
       );
     }, 100);
   };
@@ -485,7 +485,10 @@ const TopNav = props => {
                           >
                             <DateRangeFilter
                               filteredDateRange={{ from: '', to: '' }}
-                              handleFilters={handleFilters}
+                              handleFilters={data => {
+                                handleFilters(data);
+                                setMenuStatus();
+                              }}
                               autoSubmit={false}
                               filterFlag={false}
                             />
