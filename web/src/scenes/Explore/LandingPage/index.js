@@ -127,7 +127,7 @@ const Explore = () => {
 
   return (
     <div className="explore-wrapper">
-      {/* {bannerPart}
+      {bannerPart}
       {whatsUpPart}
       {royalsPart}
       {articlesPart}
@@ -135,16 +135,16 @@ const Explore = () => {
       {festivalsPart}
       {reviewsPart}
       {trendingPart}
-      {videoGalleryPart} */}
+      {videoGalleryPart}
 
-      {sectionOrders &&
+      {/* {sectionOrders &&
         sectionOrders.map(({ order }) => {
           return sectionArray.map(({ orderNo, returnPart }) => {
             if (order === orderNo) {
               return returnPart;
             }
           });
-        })}
+        })} */}
     </div>
   );
 };
