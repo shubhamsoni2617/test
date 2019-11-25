@@ -10,7 +10,9 @@ import './style.scss';
 export default class SortBy extends Component {
   state = {
     sort: {
-      tag: this.props.defaultSortType ? this.props.defaultSortType : 'Event Date - Earliest to Latest',
+      tag: this.props.defaultSortType
+        ? this.props.defaultSortType
+        : 'Event Date - Earliest to Latest',
       active: ''
     },
     showSortMenu: Utilities.mobilecheck() ? true : false,
@@ -30,7 +32,7 @@ export default class SortBy extends Component {
   }
 
   handleResize = () => {
-    if (window.innerWidth > window.innerHeight) {
+    if (!Utilities.mobilecheck() && window.innerWidth > window.innerHeight) {
       this.setState({ showSortMenu: false });
     } else {
       this.setState({ showSortMenu: true });

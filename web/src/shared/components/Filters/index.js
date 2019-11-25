@@ -143,19 +143,19 @@ function Filters(props) {
     };
   }
   useEffect(() => {
+    const handleResize = () => {
+      if (window.innerHeight > window.innerWidth) {
+        props.changeMode('PORTRAIT');
+      } else if (window.innerHeight < window.innerWidth) {
+        props.changeMode('LANDSCAPE');
+      }
+    };
+    handleResize();
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
   }, [props.filterFlag]);
   const [scrollContainerRef, styleObj] = useStickyPanel(stickyObj);
 
-  const handleResize = () => {
-    if (props.filterFlag && window.innerHeight > window.innerWidth) {
-      // window.document.body.classList.add('fixed-body');
-    } else if (window.innerHeight < window.innerWidth) {
-      window.document.body.classList.remove('fixed-body');
-      props.closeFilter();
-    }
-  };
   const clearAllFilters = () => {
     props.resetFilters();
   };
