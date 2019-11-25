@@ -142,7 +142,7 @@ export default class EventsDetail extends Component {
       showSeatMap: false,
       showSocialShare: false,
       showInfo: false,
-      showNotice: true,
+      showNotice: false,
       synopsisLang: '',
       similarEventsData: [],
       setHeader: false,
@@ -165,8 +165,6 @@ export default class EventsDetail extends Component {
   };
 
   componentDidMount() {
-    console.log('props', this.props);
-
     this.setState({ shareUrl: window.location.href });
     window.addEventListener('scroll', this.handleScroll);
     const payload = {
@@ -209,7 +207,16 @@ export default class EventsDetail extends Component {
         // Utilities.preloadImages(res.data.images, "full_image", () => {
         //   Utilities.preloadImages(res.data.images, "thumb_image", () => {
         setTimeout(() => {
-          this.setState({ shimmer: false });
+          let obj = { shimmer: false };
+          if (
+            res &&
+            res.data &&
+            res.data.pop_up_message &&
+            res.data.pop_up_message.description
+          ) {
+            obj = { ...obj, showNotice: true };
+          }
+          this.setState(obj);
         }, 1000);
         //   });
         // });
@@ -386,6 +393,29 @@ export default class EventsDetail extends Component {
             }
           />
         )}
+        <ModalPopup
+          showModal={
+            detailData.pop_up_message &&
+            detailData.pop_up_message.description &&
+            showNotice
+              ? true
+              : showNotice
+          }
+          content={
+            detailData &&
+            detailData.pop_up_message &&
+            detailData.pop_up_message.description &&
+            detailData.pop_up_message.description
+          }
+          title={
+            detailData &&
+            detailData.pop_up_message &&
+            detailData.pop_up_message.title &&
+            detailData.pop_up_message.title
+          }
+          handleClose={this.handleClose}
+          htmlContent={true}
+        />
         <CSSTransition
           // transitionName="shimmer"
           // transitionEnter={true}
@@ -408,7 +438,7 @@ export default class EventsDetail extends Component {
             <ShowOver isShowOver={detailData.is_show_over} />
             {detailData.is_show_over === 0 && (
               <div>
-                {detailData.pop_up_message &&
+                {/* {detailData.pop_up_message &&
                   detailData.pop_up_message.description &&
                   showNotice && (
                     <ModalPopup
@@ -418,11 +448,10 @@ export default class EventsDetail extends Component {
                       handleClose={this.handleClose}
                       htmlContent={true}
                     />
-                  )}
+                  )} */}
 
                 <section className="event-detail-banner">
-
-                    <EventCarousel images={detailData.images} />
+                  <EventCarousel images={detailData.images} />
                   <StickyHeader
                     lines={2}
                     sticky={false}
@@ -483,11 +512,12 @@ export default class EventsDetail extends Component {
                         }
                         langArr={detailData.synopsis}
                         changeLang={this.changeLang}
-                        noIcon ={Utilities.mobileAndTabletcheck() ? false : true}
+                        noIcon={Utilities.mobileAndTabletcheck() ? false : true}
                         preExpanded={accrodian}
                         dynamicClass="synopsis-accordian"
                         uuid={`${
-                          detailData.is_available_for_booking === 1 && ! Utilities.mobileAndTabletcheck()
+                          detailData.is_available_for_booking === 1 &&
+                          !Utilities.mobileAndTabletcheck()
                             ? 'synopsis'
                             : ''
                         }`}
@@ -496,17 +526,17 @@ export default class EventsDetail extends Component {
                     {detailData.tabs &&
                       detailData.tabs.length > 0 &&
                       detailData.tabs.map((obj, idx) => {
-                        if(obj.title && obj.description ){
-                        return (
-                          <AccordionSection
-                            key={obj.title}
-                            title={obj.title}
-                            desc={obj.description}
-                            dynamicClass="othertabs-accordian"
-                          />
-                        );
+                        if (obj.title && obj.description) {
+                          return (
+                            <AccordionSection
+                              key={obj.title}
+                              title={obj.title}
+                              desc={obj.description}
+                              dynamicClass="othertabs-accordian"
+                            />
+                          );
                         } else {
-                          return null
+                          return null;
                         }
                       })}
                     {detailData.gallery_images_videos &&
@@ -530,7 +560,8 @@ export default class EventsDetail extends Component {
                         }
                         // preExpanded={accrodian}
                         uuid={`${
-                          detailData.is_available_for_booking === 1 && ! Utilities.mobileAndTabletcheck()
+                          detailData.is_available_for_booking === 1 &&
+                          !Utilities.mobileAndTabletcheck()
                             ? 'pricedetail'
                             : ''
                         }`}
