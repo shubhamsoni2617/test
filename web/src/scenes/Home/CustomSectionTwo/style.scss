@@ -97,6 +97,10 @@
                     font-size: 14px;
                     line-height: 18px;
                 }
+                @media(max-width: 576px){
+                    height: 55px;
+                    overflow: hidden;
+                }
                 a{
                     color: #fff;
                     font-family: "Rubik", sans-serif;

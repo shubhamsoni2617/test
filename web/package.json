@@ -53,6 +53,7 @@
     "react-accessible-accordion": "^3.0.0",
     "react-animated-modal": "^1.1.1",
     "react-app-polyfill": "^1.0.1",
+    "react-custom-scrollbars": "^4.2.1",
     "react-day-picker": "^7.3.0",
     "react-dev-utils": "^9.0.1",
     "react-dom": "^16.8.6",
