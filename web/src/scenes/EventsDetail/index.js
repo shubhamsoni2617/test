@@ -207,11 +207,17 @@ export default class EventsDetail extends Component {
         // Utilities.preloadImages(res.data.images, "full_image", () => {
         //   Utilities.preloadImages(res.data.images, "thumb_image", () => {
         setTimeout(() => {
-          this.setState({ shimmer: false });
-        }, 500);
-        setTimeout(() => {
-          this.setState({ showNotice: true });
-        }, 3000);
+          let obj = { shimmer: false };
+          if (
+            res &&
+            res.data &&
+            res.data.pop_up_message &&
+            res.data.pop_up_message.description
+          ) {
+            obj = { ...obj, showNotice: true };
+          }
+          this.setState(obj);
+        }, 1000);
         //   });
         // });
       })
