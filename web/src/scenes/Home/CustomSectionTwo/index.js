@@ -5,6 +5,7 @@ import Constants from '../../../shared/constants';
 import AdvertisementService from '../../../shared/services/AdvertisementService';
 import Arrow from '../../../assets/images/right-arrow.svg';
 import Image from '../../../shared/components/Image';
+import Utilities from '../../../shared/utilities';
 
 const CustomSectionTwo = ({ heading, customData, isMoreFrom }) => {
   const [data, setData] = useState(null);
@@ -51,17 +52,17 @@ const CustomSectionTwo = ({ heading, customData, isMoreFrom }) => {
   ) : (
     <section className="royal-wrapper">
       <div className="container-fluid">
-        <div className="royal-side-padding">
-          <div className="section-top-wrapper">
-            <h2>{heading}</h2>
-            {isMoreFrom && (
-              <a href="/articles" target="_blank" className="text-right">
-                More from {heading}{' '}
-                <img src={Arrow} className="img-fluid" alt="arrow" />
-              </a>
-            )}
-          </div>
-          <div className="royal-items-wrapper">
+        <div className="section-top-wrapper">
+          <h2>{heading}</h2>
+          {isMoreFrom && (
+            <a href="/articles" target="_blank" className="text-right">
+              More from {heading}{' '}
+              <img src={Arrow} className="img-fluid" alt="arrow" />
+            </a>
+          )}
+        </div>
+        <div className="royal-items-wrapper">
+          {!Utilities.mobilecheck() && (
             <a
               href={data && data[0] && data[0].navigation_link}
               target="_blank"
@@ -78,7 +79,9 @@ const CustomSectionTwo = ({ heading, customData, isMoreFrom }) => {
                 )}
               </div>
             </a>
-            <div className="royal-rightsection">
+          )}
+          <div className="royal-rightsection">
+            {!Utilities.mobilecheck() && (
               <a
                 href={data && data[0] && data[0].navigation_link}
                 target="_blank"
@@ -89,9 +92,12 @@ const CustomSectionTwo = ({ heading, customData, isMoreFrom }) => {
                 </a>
                 <p>{data && data[0] && data[0].section_date}</p>
               </a>
-              <div className="royal-items">
-                {data &&
-                  data.slice(1, data.length).map((elem, i) => {
+            )}
+            <div className="royal-items">
+              {data &&
+                data
+                  .slice(Utilities.mobilecheck() ? 0 : 1, data.length)
+                  .map((elem, i) => {
                     return (
                       <a
                         className="item-img"
@@ -119,7 +125,6 @@ const CustomSectionTwo = ({ heading, customData, isMoreFrom }) => {
                       </a>
                     );
                   })}
-              </div>
             </div>
           </div>
         </div>

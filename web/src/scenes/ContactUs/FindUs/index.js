@@ -17,7 +17,7 @@ const FindUs = ({}) => {
     <Fragment>
       <h3 className="heading-text">Find Us</h3>
       <div className="find-us">
-        <div className="find-us-content">
+        <div className="find-us-content des">
           <div className="find-us-img">
             <Location />
           </div>
@@ -77,14 +77,14 @@ const FindUs = ({}) => {
             <Corporate />
           </div>
           <div className="find-us-desc d-flex align-items-center">
-            <a>
+            <Link to="/b2b#contact-us">
               <h5 className="text">
                 Corporate Enquiries
                 <span>
                   <Arrow />
                 </span>
               </h5>
-            </a>
+            </Link>
           </div>
         </div>
         <div className="find-us-content">

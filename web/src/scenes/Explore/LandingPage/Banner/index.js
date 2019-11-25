@@ -18,7 +18,7 @@ const BannerSlider = ({ bannerData }) => {
     draggable: false
   };
   const settingsSlider = {
-    autoplay: true
+    autoplay: false
   };
   return (
     <section className="explore-page-banner">
@@ -31,18 +31,25 @@ const BannerSlider = ({ bannerData }) => {
           {bannerData &&
             bannerData.map(banner => {
               return (
-                <div key={banner.banner_title}>
-                  <div>
-                    <h2>{banner.banner_title}</h2>
-                    <div
-                      className="text-center sub-text"
-                      dangerouslySetInnerHTML={{
-                        __html: banner.banner_description
-                      }}
-                    />
-                    <a href={banner.banner_url} target="_blank">
-                      <button>{banner.button_text}</button>
-                    </a>
+                <div
+                  className="explore-content-wrapper"
+                  key={banner.banner_title}
+                >
+                  <div className="explore-content">
+                    <div className="explore-mobile-wrapper">
+                      <h3>{banner.banner_title}</h3>
+                      <div
+                        className="sub-text"
+                        dangerouslySetInnerHTML={{
+                          __html: banner.banner_description
+                        }}
+                      />
+                    </div>
+                    {banner.button_text && (
+                      <a href={banner.banner_url} target="_blank">
+                        {banner.button_text}
+                      </a>
+                    )}
                   </div>
                   <img src={banner.image} alt="banner_image" />
                 </div>
@@ -55,7 +62,7 @@ const BannerSlider = ({ bannerData }) => {
           {...settingsSlider}
           asNavFor={nav1}
           ref={slider => (slider2 = slider)}
-          slidesToShow={5}
+          slidesToShow={bannerData.length < 8 ? bannerData.length : 8}
           swipeToSlide={true}
           focusOnSelect={true}
         >

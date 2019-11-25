@@ -23,7 +23,7 @@ const WhatsUp = ({ whatsUpData }) => {
                     to={
                       type === 'multi_show_template'
                         ? `/explore/festival/${id}`
-                        : `/explore/article${id}`
+                        : `/explore/article/${id}`
                     }
                     key={title}
                   >
@@ -41,7 +41,7 @@ const WhatsUp = ({ whatsUpData }) => {
                       <EventHeading
                         title={title}
                         lines={1}
-                        height={25}
+                        height={Utilities.mobilecheck() ? 20 : 23}
                         // size={13}
                         allowTooltip={true}
                       />

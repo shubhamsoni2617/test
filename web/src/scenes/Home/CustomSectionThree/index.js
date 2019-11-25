@@ -5,6 +5,7 @@ import './style.scss';
 import Constants from '../../../shared/constants';
 import AdvertisementService from '../../../shared/services/AdvertisementService';
 import Image from '../../../shared/components/Image';
+import Utilities from '../../../shared/utilities';
 
 const CustomSectionThree = ({ heading, customData }) => {
   const [data, setData] = useState(null);
@@ -77,7 +78,7 @@ const CustomSectionThree = ({ heading, customData }) => {
               <div className="video-only-section">
                 <ReactPlayer
                   width="100%"
-                  height="465px"
+                  height={Utilities.mobilecheck()? "190px": "465px" }
                   controls
                   pip={pip}
                   muted={muted}
