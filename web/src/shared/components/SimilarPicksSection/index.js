@@ -10,6 +10,7 @@ const SimilarPicksSection = ({ data }) => {
       <div className="container-fluid">
         <div className="section-top-wrapper">
           <h2>Similar Picks</h2>
+          <h2>See All</h2>
         </div>
         <Carousel
           imgArray={data}

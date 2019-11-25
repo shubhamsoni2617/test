@@ -41,6 +41,7 @@ const Carousel = props => {
   } = props;
 
   const settings = {
+    dots: true,
     arrows: arrows,
     dots: props.dots === false ? false : true,
     infinite: infinite || false,
