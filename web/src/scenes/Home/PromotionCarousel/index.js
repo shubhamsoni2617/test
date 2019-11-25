@@ -136,7 +136,7 @@ export default class PromotionCarousel extends Component {
       dots: true,
       infinite: false,
       speed: 500,
-      rows: 2,
+      rows: 1,
       slidesPerRow: 4,
       customPaging: i => {
         return (
@@ -253,20 +253,45 @@ export default class PromotionCarousel extends Component {
                   })}
               </div>
             ) : (
-                  <Slider {...settings}>
-                    {promotions &&
-                      promotions.map((promotion, index) => {
-                        return (
-                          <div key={promotion.id} className="item-wrapper">
-                            <ItemWrapper
-                              promotion={promotion}
-                              expiredText={expiredText}
-                              handlePromotionExpired={this.handlePromotionExpired}
-                            />
-                          </div>
-                        );
-                      })}
-                  </Slider>
+                <Slider {...settings}>
+                {promotions &&
+                promotions.map((promotion, index, array) => {
+                if (index % 2 === 0) {
+                if (array[index] && array[index + 1]) {
+                return (
+                <div key={promotion.id} className="item-wrapper">
+                <ItemWrapper
+                promotion={array[index]}
+                expiredText={expiredText}
+                handlePromotionExpired={
+                this.handlePromotionExpired
+                }
+                />
+                <ItemWrapper
+                promotion={array[index + 1]}
+                expiredText={expiredText}
+                handlePromotionExpired={
+                this.handlePromotionExpired
+                }
+                />
+                </div>
+                );
+                } else if (array[index]) {
+                return (
+                <div key={promotion.id} className="item-wrapper">
+                <ItemWrapper
+                promotion={array[index]}
+                expiredText={expiredText}
+                handlePromotionExpired={
+                this.handlePromotionExpired
+                }
+                />
+                </div>
+                );
+                }
+                }
+                })}
+                </Slider>
                 )}
             {/* </CSSTransitionGroup> */}
           </div>

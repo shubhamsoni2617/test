@@ -447,6 +447,9 @@
                     .image-conatiner{
                         img{
                             max-width: 140px;
+                            @media(max-width: 768px){
+                                max-width: 100%;
+                            }
                         }
                     }
                 }
@@ -911,5 +914,8 @@
     .video-subwrapper{
         height: 500px;
         overflow-y: auto;
+        @media (max-width: 768px){
+            height: auto;
+        }
     }
 }
