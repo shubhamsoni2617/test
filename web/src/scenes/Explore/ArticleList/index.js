@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import './style.scss';
 import CardList from './CardList';
 import DownArrowBlue from '../../../assets/images/down-arrow-blue.svg';
@@ -15,20 +15,25 @@ import selectOrClearAll from './selectOrClearAll';
 import fetchFilterData from './fetchFilterData';
 import handleFilter from './handleFilters';
 import Constants from '../../../shared/constants';
-const ArticleList = ({ history }) => {
+
+const ArticleList = ({ history, location }) => {
   let stickyObj = {
     sticky: { top: 153 },
     pixelBuffer: 153,
     distanceFromTop: 153
   };
-
+  const node = useRef(null);
+  let cardInViewConstant =
+    window.innerWidth > 1499 ? 4 : window.innerWidth > 850 ? 3 : 2;
   const [scrollContainerRef, styleObj] = useStickyPanel(stickyObj);
   const [articleList, setArticleList] = useState([]);
   const [loadMore, setLoadMore] = useState(false);
   const [totalResults, setTotalResults] = useState(0);
   const [first, setFirst] = useState(0);
   const [filteredTags, setFilteredTags] = useState([]);
-  const [filteredCategories, setFilteredCategories] = useState([]);
+  const [filteredCategories, setFilteredCategories] = useState(
+    location.hash ? [location.hash.slice(1)] : []
+  );
   const [tags, setTags] = useState([]);
   const [categories, setCategories] = useState([]);
   const [showTags, setShowTags] = useState(false);
@@ -44,7 +49,23 @@ const ArticleList = ({ history }) => {
   useEffect(() => {
     fetchFilterData(setCategories, ExploreService.getCategories);
     fetchFilterData(setTags, ExploreService.getTags);
+    console.log(node);
   }, []);
+
+  useEffect(() => {
+    if (articleList.length && location.hash) {
+      handleFilter(
+        false,
+        categories,
+        setCategories,
+        null,
+        setFilteredCategoriesForMobile,
+        setFilteredCategories,
+        mobileCheck,
+        location.hash.slice(1)
+      );
+    }
+  }, [location.hash, articleList.length]);
 
   useEffect(() => {
     getArticleList();
@@ -98,6 +119,7 @@ const ArticleList = ({ history }) => {
   };
 
   const handleFilters = (selected, isChecked, filterTitle) => {
+    history.push('/articles');
     if (filterTitle === 'Tags') {
       handleFilter(
         isChecked,
@@ -222,6 +244,7 @@ const ArticleList = ({ history }) => {
                   articleList={articleList}
                   totalRecords={totalResults}
                   history={history}
+                  ref={node}
                 />
                 {loadWithFilters && articleList.length ? (
                   <img
@@ -247,6 +270,12 @@ const ArticleList = ({ history }) => {
                     onClick={() => {
                       setFirst(first + Constants.LIMIT);
                       setLoadMore(true);
+                      window.scrollTo(
+                        0,
+                        node.current.clientHeight *
+                          (articleList.length / cardInViewConstant).toFixed() -
+                          node.current.clientHeight / 2
+                      );
                     }}
                     className="btn-link load-more-btn"
                     target=""

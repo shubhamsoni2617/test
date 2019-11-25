@@ -5,7 +5,8 @@ import Utilities from '../../../../shared/utilities';
 import ShimmerEffect from '../../../../shared/components/ShimmerEffect';
 import noEvent from '../../../../assets/images/no-event.svg';
 
-const CardList = ({ history, articleList, totalRecords }) => {
+const CardList = React.forwardRef((props, ref) => {
+  const { history, articleList, totalRecords } = props;
   let textLimit = Utilities.mobilecheck() ? 45 : 50;
   return articleList.length ? (
     articleList.map(cardData => {
@@ -14,7 +15,11 @@ const CardList = ({ history, articleList, totalRecords }) => {
           ? `/explore/article/${cardData.id}`
           : `/explore/festival/${cardData.id}`;
       return (
-        <div key={cardData.id} onClick={() => history.push(routePath)}>
+        <div
+          key={cardData.id}
+          ref={ref}
+          onClick={() => history.push(routePath)}
+        >
           <div className="event-block">
             <div className="article-category-group">
               {cardData.categories &&
@@ -78,5 +83,5 @@ const CardList = ({ history, articleList, totalRecords }) => {
           <p>Try again with more general search</p>
         </div>
       );
-};
+});
 export default CardList;
