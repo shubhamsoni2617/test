@@ -1,6 +1,6 @@
 .apipartners-wrapper{
     .contact-us{
-        background-color: rgba(240, 249, 255, 0.58);
+        background-color: #F7FAFC;
         background-image: none;
         background-size: 100%;
         margin: 0px;
@@ -283,6 +283,14 @@
                         line-height: 28px;
                         font-size: 14px;
                     }
+                }
+            }
+        }
+        .contact-we-are-at{
+            .text{
+                width: 60%;
+                @media(max-width: 768px){
+                    width: 100%;
                 }
             }
         }
