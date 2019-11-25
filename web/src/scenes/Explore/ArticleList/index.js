@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
+import './style.scss';
 import CardList from './CardList';
 import DownArrowBlue from '../../../assets/images/down-arrow-blue.svg';
 import Breadcrumb from '../../../scenes/App/Breadcrumb';
 import filterIcon from '../../../assets/images/events/filter.svg';
 import ShimmerEffect from '../../../shared/components/ShimmerEffect';
 import Utilities from '../../../shared/utilities';
-import './style.scss';
 import ExploreService from '../../../shared/services/ExploreService';
 import Filter from './Filter';
 import loaderImage from '../../../assets/images/loader-tick3.gif';
@@ -14,16 +14,16 @@ import BreadCrumbData from './breadCrumbData';
 import selectOrClearAll from './selectOrClearAll';
 import fetchFilterData from './fetchFilterData';
 import handleFilter from './handleFilters';
+import Constants from '../../../shared/constants';
 const ArticleList = ({ history }) => {
   let stickyObj = {
     sticky: { top: 153 },
     pixelBuffer: 153,
     distanceFromTop: 153
   };
+
   const [scrollContainerRef, styleObj] = useStickyPanel(stickyObj);
-  let mobileConstant = Utilities.mobileAndTabletcheck() ? 6 : 9;
   const [articleList, setArticleList] = useState([]);
-  const [constant, setConstant] = useState(mobileConstant);
   const [loadMore, setLoadMore] = useState(false);
   const [totalResults, setTotalResults] = useState(0);
   const [first, setFirst] = useState(0);
@@ -48,22 +48,20 @@ const ArticleList = ({ history }) => {
 
   useEffect(() => {
     getArticleList();
-  }, [constant, filteredTags.toString(), filteredCategories.toString()]);
+  }, [first, filteredTags.toString(), filteredCategories.toString()]);
 
   const getArticleList = () => {
     const params = {
       first: first,
       client: 1,
-      limit: constant,
+      limit: Constants.LIMIT,
       category: filteredCategories.toString(),
       tags: filteredTags.toString()
     };
     if (!loadMore) {
       setLoadWithFilters(true);
       params.first = 0;
-      params.limit = mobileConstant;
       setFirst(0);
-      setConstant(mobileConstant);
       setTotalResults(0);
     }
     setTimeout(() => {
@@ -243,18 +241,17 @@ const ArticleList = ({ history }) => {
                   />
                 )}
               </div>
-              {totalResults - constant > 0 && (
+              {totalResults - articleList.length > 0 && (
                 <div className="promotion-load-more">
                   <button
                     onClick={() => {
-                      setFirst(constant);
-                      setConstant(totalResults);
+                      setFirst(first + Constants.LIMIT);
                       setLoadMore(true);
                     }}
                     className="btn-link load-more-btn"
                     target=""
                   >
-                    <span>Load More ({totalResults - constant})</span>
+                    <span>Load More ({totalResults - articleList.length})</span>
                     <img src={DownArrowBlue} alt="down arrow blue" />
                   </button>
                 </div>
