@@ -71,7 +71,7 @@ function BuyTicketsButtonPopup(props) {
           setFlag={setFlag}
         />
       </div>
-      {/* <ModalPopup
+      <ModalPopup
         showModal={flag}
         title="Buy Tickets"
         handleClose={() => setFlag(false)}
@@ -117,7 +117,7 @@ function BuyTicketsButtonPopup(props) {
               </div>
             );
           })}
-      </ModalPopup> */}
+      </ModalPopup>
     </>
   );
 }
@@ -353,13 +353,13 @@ function StickyHeader(props) {
                     >
                       View all Venues
                     </button>
-                    {/* <ModalPopup
+                    <ModalPopup
                       showModal={venueDetailsPopup}
                       content={detailData.venue_name.description}
                       title="Venue Details"
                       handleClose={() => setVenueDetailsPopup(false)}
                       htmlContent={true}
-                    /> */}
+                    />
                   </div>
                 </li>
               )}
