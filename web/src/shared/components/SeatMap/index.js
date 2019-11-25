@@ -18,7 +18,10 @@ const SeatMap = props => {
           ? imgArr[(photoIndex + imgArr.length - 1) % imgArr.length]
           : false
       }
-      onCloseRequest={() => handleClose()}
+      onCloseRequest={() => {
+        document.body.classList.remove('fixed-body');
+        handleClose();
+      }}
       onMovePrevRequest={() =>
         setPhotoIdx((photoIndex + imgArr.length - 1) % imgArr.length)
       }

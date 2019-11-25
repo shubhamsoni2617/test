@@ -1,6 +1,6 @@
 .contact-us{
   background: url('../../assets//images/contact-us-banner.png') no-repeat;
-  background-size: 100% 417px;
+  background-size: 100% 492px;
   object-fit: cover;
   object-position: center;
   margin-top: -112px;
@@ -85,9 +85,12 @@
       height: auto;
     }
     .find-us-content{
-      margin: 0 0 35px;
+      margin: 0 0 30px;
       display: flex;
       flex-wrap: wrap;
+      &.des{
+        padding-bottom: 10px;
+      }
       @media(max-width: 991px){
         margin: 0 0 18px;
       }
@@ -112,7 +115,7 @@
           display: flex;
           align-items: center;
           justify-content: space-between;
-          max-width: 230px;
+          max-width: 225px;
           margin-bottom: 0px;
           @media(max-width: 991px){
             min-width: auto;

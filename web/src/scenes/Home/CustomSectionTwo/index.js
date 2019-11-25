@@ -52,17 +52,18 @@ const CustomSectionTwo = ({ heading, customData, isMoreFrom }) => {
   ) : (
     <section className="royal-wrapper">
       <div className="container-fluid">
-          <div className="section-top-wrapper">
-            <h2>{heading}</h2>
-            {isMoreFrom && (
-              <a href="/articles" target="_blank" className="text-right">
-                More from {heading}{' '}
-                <img src={Arrow} className="img-fluid" alt="arrow" />
-              </a>
-            )}
-          </div>
-          <div className="royal-items-wrapper">
-            {!Utilities.mobilecheck() && <a
+        <div className="section-top-wrapper">
+          <h2>{heading}</h2>
+          {isMoreFrom && (
+            <a href="/articles" target="_blank" className="text-right">
+              More from {heading}{' '}
+              <img src={Arrow} className="img-fluid" alt="arrow" />
+            </a>
+          )}
+        </div>
+        <div className="royal-items-wrapper">
+          {!Utilities.mobilecheck() && (
+            <a
               href={data && data[0] && data[0].navigation_link}
               target="_blank"
               className="royal-leftsection"
@@ -77,23 +78,26 @@ const CustomSectionTwo = ({ heading, customData, isMoreFrom }) => {
                   />
                 )}
               </div>
-            </a> }
-            <div className="royal-rightsection">
-              {!Utilities.mobilecheck() && (
-                <a
-                  href={data && data[0] && data[0].navigation_link}
-                  target="_blank"
-                  className="royal-rightside-textwrapper"
-                >
-                  <a>
-                    <h3>{data && data[0] && data[0].title}</h3>
-                  </a>
-                  <p>{data && data[0] && data[0].section_date}</p>
+            </a>
+          )}
+          <div className="royal-rightsection">
+            {!Utilities.mobilecheck() && (
+              <a
+                href={data && data[0] && data[0].navigation_link}
+                target="_blank"
+                className="royal-rightside-textwrapper"
+              >
+                <a>
+                  <h3>{data && data[0] && data[0].title}</h3>
                 </a>
-              )}
-              <div className="royal-items">
-                {data &&
-                  data.slice(Utilities.mobilecheck()?0:1, data.length).map((elem, i) => {
+                <p>{data && data[0] && data[0].section_date}</p>
+              </a>
+            )}
+            <div className="royal-items">
+              {data &&
+                data
+                  .slice(Utilities.mobilecheck() ? 0 : 1, data.length)
+                  .map((elem, i) => {
                     return (
                       <a
                         className="item-img"
@@ -121,9 +125,9 @@ const CustomSectionTwo = ({ heading, customData, isMoreFrom }) => {
                       </a>
                     );
                   })}
-              </div>
             </div>
           </div>
+        </div>
       </div>
     </section>
   );
