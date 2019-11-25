@@ -326,13 +326,13 @@
 }
 .fadeInDown-enter-active {
     display: block !important;
-    -webkit-animation: fadeInDown 500ms infinite;
-    animation: fadeInDown 500ms infinite;
+    -webkit-animation: fadeInDown 500ms;
+    animation: fadeInDown 500ms;
 }
 .fadeInDown-exit-active {
     display: block !important;
-    -webkit-animation: fadeOutDown 500ms infinite;
-    animation: fadeOutDown 500ms infinite;
+    -webkit-animation: fadeOutDown 500ms;
+    animation: fadeOutDown 500ms;
 }
 .fadeInDown-exit-done {
     display: none !important;
