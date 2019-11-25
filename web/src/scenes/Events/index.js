@@ -263,8 +263,8 @@ export default class Events extends Component {
     const payload = {
       first: 0,
       limit: Constants.LIMIT,
-      sort_type:"date",
-      sort_order:"ASC",
+      sort_type: 'date',
+      sort_order: 'ASC',
       genre: reset ? '' : genreId,
       venue: reset ? '' : venueId,
       tags: reset ? '' : tagsId,
@@ -453,7 +453,7 @@ export default class Events extends Component {
   closeFilter = () => {
     this.setState({
       filterFlag: false,
-      sortByFlag: true
+      sortByFlag: false
     });
   };
 
@@ -480,7 +480,10 @@ export default class Events extends Component {
         filteredPromotions: [...this.state.localfilteredPromotions],
         filteredVenues: [...this.state.localfilteredVenues],
         filteredTags: [...this.state.localfilteredTags],
-        filteredSortOrder: this.state.localfilteredSortOrder == "" ? 'ASC' : this.state.localfilteredSortOrder,
+        filteredSortOrder:
+          this.state.localfilteredSortOrder == ''
+            ? 'ASC'
+            : this.state.localfilteredSortOrder,
         filteredSortType:
           this.state.localfilteredSortType == ''
             ? 'date'
