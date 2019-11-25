@@ -145,10 +145,38 @@ function EventDateTime({
   data,
   eventDate,
   altEventStartDate,
-  eventDateNotes
+  eventDateNotes,
+  setEventDateBlock
 }) {
   if (!show) return null;
   // if (!data || !data.length) return null;
+
+  const HtmlDescription = () => {
+    return <ul className="date-address">
+      {altEventStartDate && (
+        <li className="event-date">
+          <span
+            dangerouslySetInnerHTML={{ __html: altEventStartDate }}
+          ></span>
+        </li>
+      )}
+      {eventDateNotes && (
+        <li className="event-date">
+          <span
+            dangerouslySetInnerHTML={{ __html: eventDateNotes }}
+          ></span>
+        </li>
+      )}
+    </ul>
+  };
+
+  if (Utilities.mobilecheck()) {
+    return <ModalPopup showModal={setEventDateBlock}
+      title="Event dates & Time"
+      handleClose={() => setEventDateBlock(false)} >
+      <HtmlDescription />
+    </ModalPopup>
+  }
 
   return (
     <div className="event-dates-time-block">
@@ -160,37 +188,8 @@ function EventDateTime({
         <h3>Event dates & Time</h3>
       </div>
       <div className="tickets-desc">
-        <Scrollbars
-        // renderTrackVertical={({ style, ...props }) => {
-        //   console.log('style', style);
-        //   return (
-        //     <div {...props} style={{ ...style, backgroundColor: 'blue' }} />
-        //   );
-        // }}
-        // renderThumbVertical={({ style, ...props }) => {
-        //   console.log('style---ss', style);
-        //   return (
-        //     <div {...props} style={{ ...style, backgroundColor: 'blue' }} />
-        //   );
-        // }}
-        // renderView={props => <div {...props} className="view" />}
-        >
-          <ul className="date-address">
-            {altEventStartDate && (
-              <li className="event-date">
-                <span
-                  dangerouslySetInnerHTML={{ __html: altEventStartDate }}
-                ></span>
-              </li>
-            )}
-            {eventDateNotes && (
-              <li className="event-date">
-                <span
-                  dangerouslySetInnerHTML={{ __html: eventDateNotes }}
-                ></span>
-              </li>
-            )}
-          </ul>
+        <Scrollbars>
+          <HtmlDescription />
         </Scrollbars>
       </div>
     </div>
@@ -213,7 +212,7 @@ function StickyHeader(props) {
     <div
       className={`event-detail ${sticky ? 'sticky-topbar' : ''} ${
         sticky && setHeader ? 'animate' : ''
-      }`}
+        }`}
     >
       {detailData.images && detailData.images.length > 0 && (
         <div className="tickets-demo-img">
@@ -232,6 +231,7 @@ function StickyHeader(props) {
         eventDate={detailData.event_date}
         altEventStartDate={detailData.alt_event_start_date}
         eventDateNotes={detailData.event_date_notes}
+        setEventDateBlock={setEventDateBlock}
       />
       <div className="tickets-desc">
         <ul className="zoner-group">
@@ -257,10 +257,10 @@ function StickyHeader(props) {
             eventDetail
           />
         ) : (
-          <div className="title top">
-            <h3>{detailData.title}</h3>
-          </div>
-        )}
+            <div className="title top">
+              <h3>{detailData.title}</h3>
+            </div>
+          )}
 
         {detailData.promoters && detailData.promoters.length > 0 && (
           <div className="promoters">
@@ -342,10 +342,10 @@ function StickyHeader(props) {
                           eventDetail
                         />
                       ) : (
-                        <div>
-                          <span>{detailData.venue_name.name}</span>
-                        </div>
-                      )}
+                          <div>
+                            <span>{detailData.venue_name.name}</span>
+                          </div>
+                        )}
                     </Link>
                     <button
                       className="link"
@@ -380,13 +380,12 @@ function StickyHeader(props) {
           </ul>
         </div>
       </div>
-      <div className="tickets-button">
-        {detailData.is_available_for_booking === 1 && (
+      {detailData.is_available_for_booking === 1 && buyPackages && (
+        <div className="tickets-button">
           <BuyTicketsButtonPopup detailData={detailData} />
-        )}
-        {buyPackages}
-      </div>
-
+          {buyPackages}
+        </div>
+      )}
       {detailData.is_available_for_booking === 0 && (
         <div className="tickets-button shows-over-tickets">
           <div className="shows-over">
