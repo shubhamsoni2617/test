@@ -189,13 +189,13 @@ export default class EventsDetail extends Component {
     } else {
       this.callAPI(payload);
     }
-    // EventsService.getSimilarEvents(payload)
-    //   .then(res => {
-    //     this.setState({ similarEventsData: res.data.data });
-    //   })
-    //   .catch(err => {
-    //     console.log(err);
-    //   });
+    EventsService.getSimilarEvents(payload)
+      .then(res => {
+        this.setState({ similarEventsData: res.data.data });
+      })
+      .catch(err => {
+        console.log(err);
+      });
   }
 
   callAPI(payload) {
