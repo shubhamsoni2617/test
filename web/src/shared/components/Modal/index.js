@@ -10,7 +10,6 @@ function ModalPopup({
   htmlContent,
   children
 }) {
-  console.log('modal');
   if (showModal && typeof window !== undefined) {
     document.body.classList.add('fixed-body');
   }
