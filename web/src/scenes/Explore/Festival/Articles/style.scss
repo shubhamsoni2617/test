@@ -1,0 +1,148 @@
+.festival-wrapper{
+    .festival-event-banner{
+        .fest-event-wrapper{
+            .fest-box{
+                .event-box{
+                    .image-conatiner{
+                        padding-bottom: 30px;
+                    }
+                    h2{
+                        max-height: 40px;
+                        min-height: 40px;
+                        overflow: hidden;
+                        padding-top: 0;
+                    }
+                }
+            }
+        }
+    }
+}
+@media (max-width: 1180px) and (min-width: 1025px){
+    .home-page-wrapper{
+        .royal-wrapper{
+            .royal-items-wrapper{
+                align-items: unset !important;
+                
+            }
+            .royal-items{
+                .item-wrapper{
+                    .royal-item-content{
+                        padding-left: 10px !important;
+                    }
+                }
+            }  
+        }
+    } 
+}
+ @media (max-width: 768px){
+//     .home-page-wrapper {
+//         .royal-wrapper {
+//             .royal-items-wrapper{
+//                 flex-wrap: unset !important;
+//                 .royal-leftsection{
+//                     flex: 0 0 50% !important;
+//                     width: 50% !important;
+//                     padding-right: 0;
+//                     margin-right: 12px;
+//                 }
+//             }
+//             .royal-items{
+//                 .item-wrapper{
+//                     flex: 0 0 50% !important;
+//                 }
+//             }
+//         }
+//     }
+.festival-wrapper{
+    .featured-container{
+        .featured-box{
+            .festival-lineup{
+                .festival-event{
+                    .event{
+                        h2{
+                            height: 65px !important;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}     
+  
+ }
+@media (max-width: 567px){
+    .home-page-wrapper {
+        .royal-wrapper {
+            .royal-items-wrapper{
+                .royal-leftsection{
+                    flex: 1 0 40%;
+                    max-width: 40%;
+                    padding-right: 0 !important;
+                    max-width: 140px;
+                    margin-right: 10px;
+                    .royal-rightside-textwrapper{
+                        h3{
+                            color: #ffffff;
+                        }
+                    }
+                    .image-conatiner{
+                        img{
+                            max-width: 140px;
+                        }
+                    }
+                }
+                .royal-rightsection{
+                    flex: 1 0 40%;
+                    max-width: 40%;
+                    h3{
+                        a{
+                            word-break: break-word !important;
+                        }
+                    }
+                }
+                .royal-items{
+                    .item-wrapper{
+                        .item-img{
+                            height: auto;
+                        }
+                        .royal-item-content{
+                            flex-basis: 100%;
+                            width: auto;
+                            padding-left: 0;
+                        }
+                    }
+                }
+                }
+           
+        }
+        p{
+            color: #B5BDC3;
+        }
+    }
+    .festival-wrapper{
+        .festival-event-banner{
+            .fest-event-wrapper{
+                .fest-box{
+                    .event-box{
+                        h2{
+                            height: 40px;
+                        }
+                        span{
+                            min-height: 40px;
+                            max-height: 40px;
+                        }
+                        p{
+                            min-height: 30px;
+                        }
+                    }
+                }
+            }
+        }
+    } 
+   
+    .deal-wrapper{
+        .tickets{
+            padding: 10px 0;
+        }
+    }
+}

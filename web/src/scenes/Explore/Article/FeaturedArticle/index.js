@@ -5,29 +5,32 @@ import Slider from 'react-slick';
 import './style.scss';
 import Item from './Item';
 
-const FeaturedArticles = ({ featuredArticles, history }) => {
+const FeaturedArticles = ({ featuredArticles, history, articleDataIsNull }) => {
   const settings = {
     dots: false,
     infinite: false,
     speed: 500,
     rows: 1,
     slidesPerRow: 5,
-    responsive: [{
-      breakpoint: 1024,
-      settings: {
-        slidesPerRow: 3
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesPerRow: 3
+        }
       }
-    }
     ]
   };
 
-  if (!featuredArticles || !featuredArticles.length) {
-    return <ShimmerEffect
-      height={Utilities.mobilecheck() ? 100 : 200}
-      count={Utilities.mobilecheck() ? 2 : 6}
-      type="TILE"
-      propCls={`shm_col-xs-2 col-md-2`}
-    />
+  if (articleDataIsNull && !featuredArticles) {
+    return (
+      <ShimmerEffect
+        height={Utilities.mobilecheck() ? 100 : 200}
+        count={Utilities.mobilecheck() ? 2 : 6}
+        type="TILE"
+        propCls={`shm_col-xs-2 col-md-2`}
+      />
+    );
   }
 
   return Utilities.mobilecheck() ? (
@@ -35,11 +38,11 @@ const FeaturedArticles = ({ featuredArticles, history }) => {
       <div className="grid-container">
         {featuredArticles &&
           featuredArticles.map((event, index) => {
-            return <Item event={event} history={history} key={index} />
+            return <Item event={event} history={history} key={index} />;
           })}
       </div>
     </div>
-  ) :
+  ) : (
     <Slider {...settings}>
       {featuredArticles &&
         featuredArticles.map((event, index) => {
@@ -50,6 +53,7 @@ const FeaturedArticles = ({ featuredArticles, history }) => {
           );
         })}
     </Slider>
+  );
 };
 
 export default FeaturedArticles;

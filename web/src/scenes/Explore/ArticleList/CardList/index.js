@@ -27,7 +27,7 @@ const CardList = ({ history, articleList, totalRecords }) => {
                 })}
             </div>
             <div className="event-img">
-              <Image src={cardData.image} />
+              <Image src={cardData.thumb_image} />
             </div>
             <div className="event-details">
               <div className="event-detail-prime">

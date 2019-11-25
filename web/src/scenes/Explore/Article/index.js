@@ -60,7 +60,8 @@ const Article = props => {
         )} */}
 
       {articleData && articleData.image && (
-        <SliderBanner data={articleData.image} />)}
+        <SliderBanner data={articleData.image} />
+      )}
 
       <div className="acticle">
         <div className="container-fluid">
@@ -90,8 +91,8 @@ const Article = props => {
                     ))}
                   </ul>
                 ) : (
-                    <ShimmerEffect count={4} type="BLOCK" />
-                  )}
+                  <ShimmerEffect count={4} type="BLOCK" />
+                )}
               </div>
             </div>
           </div>
@@ -124,14 +125,14 @@ const Article = props => {
                     }}
                   />
                 ) : (
-                    <div className="simmerOuter">
-                      <ShimmerEffect
-                        height={Utilities.mobilecheck() ? 100 : 200}
-                        count={2}
-                        type="LIST"
-                      />
-                    </div>
-                  )}
+                  <div className="simmerOuter">
+                    <ShimmerEffect
+                      height={Utilities.mobilecheck() ? 100 : 200}
+                      count={2}
+                      type="LIST"
+                    />
+                  </div>
+                )}
               </div>
             </div>
           </div>
@@ -140,10 +141,13 @@ const Article = props => {
       <div className="article-featured featured-events">
         <div className="container-fluid">
           <div class="section-top-wrapper">
-            <h2>Featured in Article</h2>
+            {articleData && articleData.featured_articles.length ? (
+              <h2>Featured in Article</h2>
+            ) : null}
           </div>
           <FeaturedArticles
             featuredArticles={articleData && articleData.featured_articles}
+            articleDataIsNull={articleData === null}
             history={props.history}
           />
         </div>
