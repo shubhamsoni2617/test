@@ -16,7 +16,7 @@ import fetchFilterData from './fetchFilterData';
 import handleFilter from './handleFilters';
 import Constants from '../../../shared/constants';
 
-const ArticleList = ({ history }) => {
+const ArticleList = ({ history, location }) => {
   let stickyObj = {
     sticky: { top: 153 },
     pixelBuffer: 153,
@@ -31,7 +31,9 @@ const ArticleList = ({ history }) => {
   const [totalResults, setTotalResults] = useState(0);
   const [first, setFirst] = useState(0);
   const [filteredTags, setFilteredTags] = useState([]);
-  const [filteredCategories, setFilteredCategories] = useState([]);
+  const [filteredCategories, setFilteredCategories] = useState(
+    location.hash ? [location.hash.slice(1)] : []
+  );
   const [tags, setTags] = useState([]);
   const [categories, setCategories] = useState([]);
   const [showTags, setShowTags] = useState(false);
@@ -49,6 +51,21 @@ const ArticleList = ({ history }) => {
     fetchFilterData(setTags, ExploreService.getTags);
     console.log(node);
   }, []);
+
+  useEffect(() => {
+    if (articleList.length && location.hash) {
+      handleFilter(
+        false,
+        categories,
+        setCategories,
+        null,
+        setFilteredCategoriesForMobile,
+        setFilteredCategories,
+        mobileCheck,
+        location.hash.slice(1)
+      );
+    }
+  }, [location.hash, articleList.length]);
 
   useEffect(() => {
     getArticleList();
@@ -102,6 +119,7 @@ const ArticleList = ({ history }) => {
   };
 
   const handleFilters = (selected, isChecked, filterTitle) => {
+    history.push('/articles');
     if (filterTitle === 'Tags') {
       handleFilter(
         isChecked,
