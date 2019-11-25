@@ -7,7 +7,7 @@ const ModalBody = memo(({ type, animateBody, closemodal, children }) => {
   return (
     <CSSTransition
       in={animateBody}
-      timeout={4500}
+      timeout={450}
       mountOnEnter
       unmountOnExit
       classNames={type !== undefined ? type : 'flipInX'}
