@@ -207,11 +207,8 @@ export default class EventsDetail extends Component {
         // Utilities.preloadImages(res.data.images, "full_image", () => {
         //   Utilities.preloadImages(res.data.images, "thumb_image", () => {
         setTimeout(() => {
-          this.setState({ shimmer: false });
+          this.setState({ shimmer: false, showNotice: true });
         }, 500);
-        setTimeout(() => {
-          this.setState({ showNotice: true });
-        }, 3000);
         //   });
         // });
       })
