@@ -264,6 +264,9 @@ section.whats-new {
         @media(max-width: 992px){
             margin: 43px 0 15px 0;
         }
+        @media(max-width: 767px){
+            margin: 15px 0 15px 0;
+        }
         & + .shim-container.shm_row{
             .shimmer-block{
                 max-width: 150px;
@@ -273,6 +276,7 @@ section.whats-new {
     .category-section{
         list-style-type: none;
         display: flex;
+        flex-wrap: wrap;
         li{
             margin: 5px 5px 5px 0;
             padding: 4px 7px;
@@ -282,6 +286,9 @@ section.whats-new {
             font-size: 13px;
             font-family: 'Rubik', sans-serif;
             border-radius: 0px;
+            @media(max-width: 767px){
+                margin: 0px 5px 5px 0;
+            }
         }
     }
     .artist-block{
@@ -390,7 +397,7 @@ section.whats-new {
             font-size: 16px;
             line-height: 26px;
             color: #949494;
-            word-break: break-all;
+            word-break: break-word;
             @media(max-width: 576px){
                 font-size: 14px;
                 line-height: 24px;
@@ -467,6 +474,11 @@ section.whats-new {
                     .featured-item-img{
                         @media(max-width: 991px){
                             padding-bottom: 7px;
+                        }
+                        .item-img{
+                            @media(max-width: 767px){
+                                min-height: 104px;
+                            }
                         }
                         .image-conatiner{
                             img{

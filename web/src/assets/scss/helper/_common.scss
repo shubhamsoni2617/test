@@ -242,6 +242,10 @@ h2 {
 		padding-right: 10px;
 		padding-left: 10px;
 	}
+	@media(min-width: 601px) and (max-width: 965px){
+		padding-right: 15px;
+		padding-left: 15px;
+	}
 }
 
 // Slider

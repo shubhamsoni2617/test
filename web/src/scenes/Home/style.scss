@@ -3221,13 +3221,14 @@ section.explore {
 				margin: 0 3px 5px;
 				@media (max-width: 767px) {
 					width: auto;
-					margin: 0 3px 6px;
+					margin: 0 3px 3px;
 					display: inline-block;
-					padding: 0 10px;
+					padding: 0 5px;
 					font-size: 11px;
 					line-height: 18px;
 					min-height: 18px;
 					height: auto;
+					text-align: left;
 				}
 			}
 			.item-wrapper {

@@ -122,8 +122,8 @@
                 min-height: 222px;
                 max-height: 222px;
                 @media(max-width: 601px){
-                    height: auto;    
-                    min-height: auto;
+                    height: auto; 
+                    min-height: 100px;
                 }
                 img{
                     width: 100%;
@@ -166,11 +166,11 @@
                     }
                     .sub-text, span, p{                
                         font-family: 'Rubik', sans-serif;	
-                        font-size: 14px;	
+                        font-size: 14px;
                         line-height: 22px;
                         color: #626262;
                         min-height: 50px;
-                        word-break: break-all;
+                        word-break: break-word;
                     }
                     .article-show-more{
                         color: #2698ff;
@@ -270,7 +270,7 @@
                     line-height: 22px;
                     flex: 0 0 60%;
                     width: 60%;
-                    word-break: break-all;
+                    word-break: break-word;
                     @media(max-width: 1024px){
                         flex: 0 0 50%;
                         width: 50%;
@@ -281,6 +281,9 @@
                     @media(max-width:767px){
                         font-size: 12px;
                         line-height: 18px;                        
+                    }
+                    @media(max-width: 450px){
+                        font-size: 11px;
                     }
                     &.item-date {
                         margin-left: auto;
@@ -437,7 +440,7 @@
                                 color: #626262;
                                 display: flex;
                                 justify-content: space-between;
-                                flex-direction: row-reverse;
+                                //flex-direction: row-reverse;
                             }
                             &:before{
                                 @media(max-width: 767px){
@@ -460,6 +463,15 @@
                                 position: absolute;
                                 opacity: 0;
                             }
+                            & + label{
+                                margin-left: 0px;
+                                &:before{
+                                    @media(max-width: 767px){
+                                        left: auto;
+                                        right: 0px;
+                                    }
+                                }
+                            }
                             &:checked + label{
                                 @media(max-width: 767px){
                                     color: #0098ff;
@@ -475,6 +487,8 @@
                                         display: inline-block;
                                         vertical-align: text-top;
                                         margin-top: 3px;
+                                        left: auto;
+                                        right: 0px;
                                     }
                                 }
                             }
