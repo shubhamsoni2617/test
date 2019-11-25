@@ -201,6 +201,13 @@ section.whats-new {
 
 .acticle{
     position: relative;
+    .breadcrumb-category-group{
+        @media(max-width: 965px){
+            width: 100%;
+            flex: 0 0 100%;
+            max-width: 100%;
+        }
+    }
     .breadcrumbs-section{
         margin: 30px 0 30px 0;
         display: flex;
@@ -210,6 +217,12 @@ section.whats-new {
             height: 32px;
             width: 32px;
             top: 0px;
+            @media(max-width: 991px){
+                top: -8px;
+            }
+            @media(max-width: 768px){
+                top: -10px;
+            }
         }
         ul{
             display: flex;
@@ -242,6 +255,9 @@ section.whats-new {
                     &:after{
                         background-color: #6A6A6A;
                     }
+                }
+                a{
+                    color: #0098FF;
                 }
             }
         }
@@ -374,6 +390,7 @@ section.whats-new {
             font-size: 16px;
             line-height: 26px;
             color: #949494;
+            word-break: break-all;
             @media(max-width: 576px){
                 font-size: 14px;
                 line-height: 24px;
@@ -396,6 +413,9 @@ section.whats-new {
     &.featured-events{
         background-color: #ffffff;
         padding: 0px 0px 38px;
+        @media(max-width: 1024px){
+            padding: 0px 0px 10px;
+        }
         @media(max-width: 767px){
             padding: 20px 0px 0px;
         }
@@ -417,14 +437,18 @@ section.whats-new {
             &::-webkit-scrollbar { 
                 display: none;
             }
-            // @media(max-width: 965px){
-            //     flex: 0 0 33.33% !important;
-            //     width: 33.33% !important;
-            // }
-            // @media(max-width: 767px){
-            //     flex: 0 0 45% !important;
-            //     width: 45% !important;
-            // }
+            @media(max-width: 991px){
+                flex: 0 0 33.33% !important;
+                width: 33.33% !important;
+            }
+            @media(min-width: 602px) and (max-width: 965px){
+                flex: 0 0 33.33% !important;
+                width: 33.33% !important;
+            }
+            @media(max-width: 601px){
+                flex: 0 0 auto !important;
+                width: auto !important;
+            }
             a{
                 @media(max-width: 767px){
                     flex: 0 0 45%;
@@ -464,6 +488,9 @@ section.whats-new {
                         padding-top: 11px;
                         height: auto;
                         max-height: 100%;
+                        @media(max-width: 965px){
+                            min-height: 51px !important;
+                        }
                         @media(max-width: 576px){
                             font-size: 14px;
                             line-height: 18px;
@@ -485,6 +512,25 @@ section.whats-new {
                         @media(max-width: 450px){
                             min-height: 32px;
                         }
+                        &.featured-event-date{
+                            min-height: 17px;
+                            @media(max-width: 1024px){
+                                min-height: 34px;
+                            }
+                            @media(max-width: 768px){
+                                min-height: 17px;
+                            }
+                            @media(max-width: 767px){
+                                min-height: 32px;
+                            }
+                        }
+                    }
+                }
+            }
+            .slick-arrow{
+                .slick-prev{
+                    @media(max-width: 965px) {
+                        left: -10px !important;
                     }
                 }
             }
@@ -598,12 +644,14 @@ section.whats-new {
 }
 //feedback CSS
 .articledetail-wrapper{
+    margin-top: -2px;
     .festival-top-slider{
         max-height: 460px;
         overflow: hidden;
         .slick-slide{
             img{
                 max-height: 349px;
+                min-height: 200px;
                 object-fit: cover;
                 object-position: center;
             }
@@ -631,6 +679,14 @@ section.whats-new {
             &.slick-next{
                 right: 0px;
                 background-image: url('../../../assets/images/right-arrow-white.svg');
+            }
+        }
+        .slick-dots{
+            .slick-active{
+                &:before{
+                    color :#1c77c8;
+                    background-color: #1c77c8;
+                }
             }
         }
         &.sliderBottomDot{
