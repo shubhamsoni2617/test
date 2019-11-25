@@ -207,6 +207,9 @@
                         transform: unset;
                     }
                 }
+                @media(max-width: 576px){
+                    padding: 15px;
+                }
                 @media(max-width: 768px){
                     .explore-mobile-wrapper{
                         flex: 1 0 70%;
@@ -215,8 +218,9 @@
                 }
                 a{
                     @media(max-width: 768px){
-                        flex: 1 0 25%;
-                        max-width: 25%;
+                        flex: 1 0 26%;
+                        max-width: 26%;
+                        padding: 5px 3px;
                     }
                 }
             }
@@ -318,6 +322,14 @@
         @media(max-width: 768px){
             flex-wrap: unset;
             overflow-x: auto;
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+            .container-fluid{
+                overflow: inherit !important;
+            }
+            &::-webkit-scrollbar {
+            display: none;
+            }
         }
         .item-wrapper{
             padding: 13px 14px 25px;
@@ -820,8 +832,19 @@
     @media(max-width: 576px){
         .item-wrapper{
             display: flex;
+            overflow-x: auto;
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+            .container-fluid{
+                overflow: inherit !important;
+            }
+            &::-webkit-scrollbar {
+            display: none;
+            }
             .item{
                 margin: 0 5px;
+                flex: 1 0 45%;
+                max-width: 45%;
                 &:first-child{
                     margin-left: 0;
                 }
@@ -873,7 +896,6 @@
     .slick-arrow{
         height: 85px;
         width: 35px;
-        background-position: 10px 32px;
         background-color: rgba(0, 0, 0, 0.7);
         @media(max-width: 768px){
             display: none !important;
@@ -881,25 +903,23 @@
         &:hover{
             border: none;
             outline: none;
-            background-position: 10px 32px;
         }
         &.slick-prev{
             left: -40px;
-            background-image: url('../../../assets/images/left-arrow-white.svg');
-            &:hover{
-                border: none;
-                outline: none;
-                background-position: 10px 32px;
-            }
+            background: url('../../../assets/images/left-arrow-white.svg') 10px 32px no-repeat;
+            background-color: rgba(0, 0, 0, 0.7)
+           
         }
         &.slick-next{
             right: -40px;
-            background-image: url('../../../assets/images/right-arrow-white.svg');
-            &:hover{
-                border: none;
-                outline: none;
-                background-position: 10px 32px;
-            }
+            background: url('../../../assets/images/right-arrow-white.svg') 10px 32px no-repeat;
+            background-color: rgba(0, 0, 0, 0.7)
+            // &:hover,
+            // &:focus{
+            //     border: none;
+            //     outline: none;
+            //     background-position: 12px 0;
+            // }
         }
     }
 }
