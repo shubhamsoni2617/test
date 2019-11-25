@@ -64,6 +64,14 @@ function SeatMapButton({ seatingPlan }) {
   );
 }
 
+function EventNotAvailable() {
+  return (
+    <div className="event-not-available">
+      The event is currently not available.
+    </div>
+  );
+}
+
 function GiftCard({ flag }) {
   if (!flag) return null;
   return (
@@ -203,23 +211,24 @@ export default class EventsDetail extends Component {
     this.setState({ shimmer: true });
     EventsService.getEventDetails(payload)
       .then(res => {
-        this.setState({ detailData: res.data });
-        // Utilities.preloadImages(res.data.images, "full_image", () => {
-        //   Utilities.preloadImages(res.data.images, "thumb_image", () => {
-        setTimeout(() => {
-          let obj = { shimmer: false };
-          if (
-            res &&
-            res.data &&
-            res.data.pop_up_message &&
-            res.data.pop_up_message.description
-          ) {
-            obj = { ...obj, showNotice: true };
-          }
-          this.setState(obj);
-        }, 1000);
-        //   });
-        // });
+        if (
+          res &&
+          res.data &&
+          res.data.pop_up_message &&
+          res.data.pop_up_message.description
+        ) {
+          this.setState({ showNotice: true }, () => {
+            this.setState({ detailData: res.data });
+            setTimeout(() => {
+              this.setState({ shimmer: false });
+            }, 1000);
+          });
+        } else {
+          this.setState({ detailData: res.data });
+          setTimeout(() => {
+            this.setState({ shimmer: false });
+          }, 1000);
+        }
       })
       .catch(err => {
         this.setState({
@@ -595,6 +604,8 @@ export default class EventsDetail extends Component {
                 <ArticleSection flag={true} code={code} />
               </>
             )}
+
+            {detailData && !detailData.id && <EventNotAvailable />}
           </div>
         )}
       </div>
