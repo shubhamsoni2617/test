@@ -59,7 +59,8 @@ export default class Events extends Component {
       loader: false,
       queryParams: {},
       filterFlag: false,
-      sortByFlag: false
+      sortByFlag: false,
+      mode: ''
     };
 
     this.breadCrumbData = {
@@ -457,6 +458,18 @@ export default class Events extends Component {
     });
   };
 
+  changeMode = mode => {
+    console.log('mode', mode, this.state.mode);
+
+    if (this.state.mode === mode) return;
+
+    if (this.state.mode !== '') {
+      window.document.body.classList.remove('fixed-body');
+      this.closeFilter();
+    }
+    this.setState({ mode: mode });
+  };
+
   toggleSortBy = () => {
     this.setState({
       sortByFlag: !this.state.sortByFlag,
@@ -530,7 +543,8 @@ export default class Events extends Component {
       localfilteredVenues,
       localfilteredTags,
       localfilteredDateRange,
-      filterFlag
+      filterFlag,
+      mode
     } = this.state;
     return (
       <div className="events-page-wrapper">
@@ -600,7 +614,7 @@ export default class Events extends Component {
                           : filteredDateRange
                       }
                       filterFlag={filterFlag}
-                      closeFilter={this.closeFilter}
+                      changeMode={this.changeMode}
                     >
                       {fixed => (
                         <div
@@ -674,6 +688,7 @@ export default class Events extends Component {
                         : this.state.filteredSortOrder
                     }
                     clearSortFilters={this.clearSortFilters}
+                    changeMode={this.changeMode}
                   >
                     <div className="fixed-buttons hide-inner">
                       <a
