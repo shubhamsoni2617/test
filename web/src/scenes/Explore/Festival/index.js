@@ -17,6 +17,7 @@ import Utilities from '../../../shared/utilities';
 const Festival = ({ match }) => {
   const [templateTwoContent, setTemplateTwoContent] = useState([]);
   const [sectionOrders, setSectionOrders] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   const breadcrumbSlug = [
     { path: '/', title: 'Home' },
@@ -38,6 +39,7 @@ const Festival = ({ match }) => {
       { order: 'articles' },
       { order: 'ticketDeals' }
     ];
+    setLoading(true);
     setSectionOrders(shuffle(sectionOrders));
     getTemplateTwo();
   }, []);
@@ -51,12 +53,16 @@ const Festival = ({ match }) => {
         if (res && res.data && res.data.data.length > 0) {
           setTimeout(() => {
             setTemplateTwoContent(res.data.data[0]);
+            setLoading(false);
           }, 2000);
+        } else if (res && res.data.data.length === 0) {
+          setLoading(false);
         }
       })
       .catch(err => {
         if (err && err.response) {
           console.log(err.response);
+          setLoading(false);
         }
       });
   };
@@ -116,18 +122,18 @@ const Festival = ({ match }) => {
       subtitle={subtitle}
       description={description}
     />
-  ) : (
+  ) : loading ? (
     <div className={Utilities.mobilecheck() ? '' : 'shimmer-margin'}>
       <div className="simmerOuter">
         {reusedShimmer(Utilities.mobilecheck() ? 200 : 300, 1, 'SOLID', 12)}
       </div>
     </div>
-  );
+  ) : null;
 
   const festivalPart =
     section_one && section_two ? (
       <FestivalEventLineUp sectionOne={section_one} sectionTwo={section_two} />
-    ) : (
+    ) : loading ? (
       <div className="shimmer-margin">
         {reusedShimmer(
           Utilities.mobilecheck() ? 200 : 300,
@@ -136,11 +142,11 @@ const Festival = ({ match }) => {
           Utilities.mobilecheck() ? 12 : 3
         )}
       </div>
-    );
+    ) : null;
 
   const musicalPart = section_three ? (
     <MusicFestival sectionThree={section_three} />
-  ) : (
+  ) : loading ? (
     <div className="shimmer-margin">
       {reusedShimmer(
         300,
@@ -149,11 +155,11 @@ const Festival = ({ match }) => {
         Utilities.mobilecheck() ? 12 : 3
       )}
     </div>
-  );
+  ) : null;
 
   const allEventPart = section_four ? (
     <AllEvents sectionFour={section_four} />
-  ) : (
+  ) : loading ? (
     <div className="shimmer-margin">
       {reusedShimmer(
         Utilities.mobilecheck() ? 150 : 300,
@@ -162,7 +168,7 @@ const Festival = ({ match }) => {
         Utilities.mobilecheck() ? 12 : 6
       )}
     </div>
-  );
+  ) : null;
 
   const socialWallPart = social_wall_url && (
     <SocialWall socialUrl={social_wall_url} />
@@ -170,7 +176,7 @@ const Festival = ({ match }) => {
 
   const ticketDealsPart = section_five ? (
     <TicketDeals sectionFive={section_five} />
-  ) : (
+  ) : loading ? (
     <div className="shimmer-margin">
       {reusedShimmer(
         Utilities.mobilecheck() ? 200 : 300,
@@ -179,12 +185,12 @@ const Festival = ({ match }) => {
         Utilities.mobilecheck() ? 12 : 3
       )}
     </div>
-  );
+  ) : null;
 
   const articlesPart =
     section_six && section_six.sub_section_six.length > 0 ? (
       <Articles sectionSix={section_six} />
-    ) : (
+    ) : loading ? (
       <div className="shimmer-margin">
         {reusedShimmer(
           Utilities.mobilecheck() ? 150 : 300,
@@ -193,11 +199,11 @@ const Festival = ({ match }) => {
           Utilities.mobilecheck() ? 12 : 6
         )}
       </div>
-    );
+    ) : null;
 
   const pollNSurveysPart = section_seven ? (
     <PollNServeys sectionSeven={section_seven} />
-  ) : (
+  ) : loading ? (
     <div className="shimmer-margin">
       {reusedShimmer(
         300,
@@ -206,7 +212,7 @@ const Festival = ({ match }) => {
         Utilities.mobilecheck() ? 12 : 3
       )}
     </div>
-  );
+  ) : null;
 
   const videoGalleryPart = section_eigth && section_eigth.length > 0 && (
     <VideoGallery sectionEight={section_eigth} />
