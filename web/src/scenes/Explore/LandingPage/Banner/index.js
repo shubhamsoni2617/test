@@ -37,17 +37,19 @@ const BannerSlider = ({ bannerData }) => {
                 >
                   <div className="explore-content">
                     <div className="explore-mobile-wrapper">
-                    <h3>{banner.banner_title}</h3>
-                    <div
-                      className="sub-text"
-                      dangerouslySetInnerHTML={{
-                        __html: banner.banner_description
-                      }}
-                    />
+                      <h3>{banner.banner_title}</h3>
+                      <div
+                        className="sub-text"
+                        dangerouslySetInnerHTML={{
+                          __html: banner.banner_description
+                        }}
+                      />
                     </div>
-                    <a href={banner.banner_url} target="_blank">
-                      {banner.button_text}
-                    </a>
+                    {banner.button_text && (
+                      <a href={banner.banner_url} target="_blank">
+                        {banner.button_text}
+                      </a>
+                    )}
                   </div>
                   <img src={banner.image} alt="banner_image" />
                 </div>

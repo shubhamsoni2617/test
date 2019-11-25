@@ -51,7 +51,10 @@ const Article = ({ article }) => {
         </p>
       </div>
       <div className="article-item-img">
-        <Image src={article.image && article.image[0]} type="BigBanner" />
+        <Image
+          src={article.image && article.image[0]}
+          type="MediumHorizontal"
+        />
       </div>
     </div>
   );
