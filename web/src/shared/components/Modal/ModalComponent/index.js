@@ -90,18 +90,22 @@ export default class Modal extends React.Component {
     }
   }
   closemodal = () => {
-    this.setState({ animateBody: false }, () => {
-      this.setState({ animateOverlay: false, animateBody: false }, () => {
+    console.log('closepopup');
+    setTimeout(() => {
+      this.setState({ animateBody: false }, () => {
         setTimeout(() => {
-          this.props.closemodal();
+          this.setState({ animateOverlay: false }, () => {
+            setTimeout(() => {
+              this.props.closemodal();
+            }, 501);
+          });
         }, 501);
       });
-    });
+    }, 1);
   };
   render() {
     let { animateOverlay, animateBody } = this.state;
     let { visible } = this.props;
-    console.log('modal real', visible, animateBody);
     let type = undefined;
     if (this.props.type !== undefined) {
       type = this.props.type;
