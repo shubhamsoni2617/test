@@ -49,10 +49,12 @@ const CardList = React.forwardRef((props, ref) => {
                   </ul>
                 </div>
                 <div className="article-bottom-details">
-                  <h3>{cardData.title}</h3>
-                  <div className="item-title">
-                    <span>{cardData.description.slice(0, textLimit)}</span>
-                    <span className="article-show-more">...More</span>
+                  <div className="article-text-content">
+                    <h3>{cardData.title}</h3>
+                    <div className="item-title">
+                      <span>{cardData.description.slice(0, textLimit)}</span>
+                      <span className="article-show-more">...More</span>
+                    </div>
                   </div>
                   <div className="item-bottom">
                     <span className="item-author">By {cardData.author_name}</span>

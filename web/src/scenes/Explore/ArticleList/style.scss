@@ -123,7 +123,8 @@
                 max-height: 222px;
                 @media(max-width: 601px){
                     height: auto; 
-                    min-height: 100px;
+                    min-height: 122px;
+                    max-height: 122px;
                 }
                 img{
                     width: 100%;
@@ -153,6 +154,12 @@
                     flex-direction: column;
                     justify-content: space-between;
                     width: 100%;
+                    .article-bottom-details{
+                        display: flex;
+                        flex-direction: column;
+                        height: 100%;
+                        justify-content: space-between;
+                    }
                 }
                 .item-title{
                     @media(max-width: 1024px){
@@ -160,9 +167,11 @@
                     }
                     @media(max-width: 767px){
                         min-height: 65px;
+                        padding-top: 5px;
                     }
                     @media(max-width: 576px){
-                        min-height: 108px;
+                        //min-height: 108px;
+                        min-height: auto;
                     }
                     .sub-text, span, p{                
                         font-family: 'Rubik', sans-serif;	
@@ -171,6 +180,10 @@
                         color: #626262;
                         min-height: 50px;
                         word-break: break-word;
+                        @media(max-width: 767px){
+                            font-size: 13px;
+                            line-height: 18px;
+                        }
                     }
                     .article-show-more{
                         color: #2698ff;
@@ -188,18 +201,31 @@
                 position: absolute;
                 opacity: 0;
                 transition: 0.5s opacity;
+                @media(max-width: 767px){
+                    opacity: 1;
+                    left: 5px;
+                    top: 10px;
+                }
                 .category {
                     color: #fff;
                     font-family: 'Montserrat', sans-serif;
                     font-size: 14px;
                     font-weight: 500;
-                    line-height: 20px;
+                    line-height: 17px;
                     display: inline-block;
                     text-transform: capitalize;
                     text-align: left;
-                    background-color: #225275;
+                    background-color: #092438;
                     margin-right: 5px;
                     margin-bottom: 5px;
+                    @media(max-width: 767px){
+                        font-size: 13px;
+                        margin-right: 3px;
+                        margin-bottom: 3px;
+                        height: auto;
+                        display: inline-block;
+                        width: auto;
+                    }
                 }
             }
             .category-group{
@@ -207,6 +233,11 @@
                 min-height: 52px;
                 @media(max-width: 576px){
                     min-height: auto;
+                }
+                ul{
+                    @media(max-width: 576px){
+                        min-height: 32px;
+                    }
                 }
                 li{
                     display: inline-block;
@@ -258,6 +289,9 @@
                     text-overflow: ellipsis;
                     /* autoprefixer: off */ -webkit-box-orient: vertical; /* autoprefixer: on */
                 }
+                @media(max-width: 767px){
+                    margin-bottom: 5px;
+                }
             }
             .item-bottom {
                 display: flex;
@@ -302,14 +336,20 @@
                 }
             }
             &:hover{
-                border: 1px solid transparent;
-                box-shadow: none;
-                &:after{
-                    top: -10px;
-                    opacity: 1;
-                }
-                .article-category-group{
-                    opacity: 1;
+                @media(min-width: 767px){
+                    border: 1px solid transparent;
+                    box-shadow: none;
+                    &:after{
+                        @media(min-width: 767px){
+                            top: -10px;
+                            opacity: 1;
+                        }
+                    }
+                    .article-category-group{
+                        @media(min-width: 767px){
+                            opacity: 1;
+                        }
+                    }
                 }
             }
         }
@@ -464,7 +504,9 @@
                                 opacity: 0;
                             }
                             & + label{
-                                margin-left: 0px;
+                                @media(max-width: 767px){
+                                    margin-left: 0px;
+                                }
                                 &:before{
                                     @media(max-width: 767px){
                                         left: auto;

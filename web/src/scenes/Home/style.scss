@@ -428,7 +428,7 @@
 					@media(max-width: 767px){
 						padding: 21px 5px 8px;
                     }
-                    &.user-icon, &.cart-icon{
+                    &.user-icon, &.cart-icon, &.search-icon{
                         height: 45px;
                         width: 45px;
                         @media (max-width: 767px){
@@ -440,7 +440,13 @@
                                 padding: 0;
                             }
                         }
-                    }
+					}
+					&.search-icon{
+						padding: 23px 5px 8px;
+						@media(min-width: 767px){
+							display: none;
+						}
+					}
 					&:hover {
                         background-color: #092438;
 						transition: 0.8s color;
