@@ -29,18 +29,18 @@ const Header = ({ menuActive, pathName }) => {
   };
 
   const topHeaderContent = [
-    { link: 'about-us', name: 'About Us' },
-    { link: 'apipartners', name: 'Media' },
-    { link: 'advertise', name: 'Advertise' },
-    { link: 'career', name: 'Careers' },
-    { link: 'contact-us', name: 'Contact Us' }
+    { link: '/corporate/about-us', name: 'About Us' },
+    { link: 'corporate#media', name: 'Media' },
+    { link: 'corporate/advertise-with-us', name: 'Advertise' },
+    { link: 'corporate/careers', name: 'Careers' },
+    { link: 'corporate#contact', name: 'Contact Us' }
   ];
 
   const getStartedContent = [
-    { link: 'sell-event-tickets', name: 'Sell tickets with us' },
-    { link: 'b2b', name: 'B2B' },
-    { link: 'system-licensing', name: 'System Licensing' },
-    { link: 'apipartners', name: 'Be our partner' }
+    { link: 'corporate/ticket-with-us', name: 'Sell tickets with us' },
+    // { link: 'corporate', name: 'B2B' },
+    { link: 'corporate/ticketing-technology', name: 'System Licensing' },
+    { link: 'corporate/partner-with-us', name: 'Be our partner' }
   ];
 
   return (
@@ -67,6 +67,13 @@ const Header = ({ menuActive, pathName }) => {
           <nav className="bottom-header">
             <div className="bottom-header-left">
               <ul>
+                <li
+                  className={
+                    menuActive && pathName === 'corporate' ? 'active-link' : ''
+                  }
+                >
+                  <Link to={`/corporate`}>Home</Link>
+                </li>
                 <li className="has-submenu">
                   <a>Get Started</a>
                   <ul className="small-header-submenu">

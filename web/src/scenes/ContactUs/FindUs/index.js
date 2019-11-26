@@ -62,7 +62,7 @@ const FindUs = ({}) => {
             <Ticket />
           </div>
           <div className="find-us-desc d-flex align-items-center">
-            <Link to="/sell-event-tickets">
+            <Link to="/corporate/ticket-with-us">
               <h5 className="text">
                 Sell Tickets With Us
                 <span>
@@ -77,7 +77,7 @@ const FindUs = ({}) => {
             <Corporate />
           </div>
           <div className="find-us-desc d-flex align-items-center">
-            <Link to="/b2b#contact-us">
+            <Link to="/corporate#contact">
               <h5 className="text">
                 Corporate Enquiries
                 <span>
@@ -92,7 +92,7 @@ const FindUs = ({}) => {
             <Career />
           </div>
           <div className="find-us-desc d-flex align-items-center">
-            <Link to="/career">
+            <Link to="/corporate/careers">
               <h5 className="text">
                 Careers
                 <span>
