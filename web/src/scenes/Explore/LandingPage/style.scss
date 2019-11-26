@@ -112,6 +112,7 @@
                 align-items: center;
                 display: flex;
                 justify-content: center;
+                margin-top: 14px;
             }
             @media(max-width: 576px){
                 font-size: 12px;
@@ -180,7 +181,7 @@
                     }
                 }
                 @media(max-width: 768px){
-                    height: 150px;
+                    height: 125px;
                     bottom: 0;
                     width: 100%;
                     color: #fff;
@@ -501,8 +502,8 @@
                     flex-direction: row;
                     flex-wrap: nowrap;
                     .item-wrapper{
-                        flex: 0 0 34%;
-                        max-width: 34%;
+                        flex: 0 0 32%;
+                        max-width: 32%;
                         .item-img{
                             height: auto;
                         }
