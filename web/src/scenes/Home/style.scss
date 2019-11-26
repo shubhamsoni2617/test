@@ -2103,6 +2103,9 @@
                     }
                     &.featured-event-date{
                         min-height: 40px;
+                        @media(min-width: 1480px) and (max-width: 2200px) {
+                            min-height: 18px;
+                        }
                     }
 					&:last-child {
 						padding-bottom: 14px;
@@ -2582,7 +2585,10 @@ p {
                                 position: relative;
                                 height: 170px;
                                 background: #000;
-                                @media(min-width: 768px) {
+                                @media(min-width: 1480px) and (max-width: 1980px) {
+                                    height: 220px;
+                                }
+                                @media(max-width: 768px) {
                                     height: 135px;
                                 }
                                 &:after{
@@ -4328,8 +4334,13 @@ section{
 								-o-transition: 0.3s background-color;
 								margin-right: 3px;
                                 cursor: pointer;
+                                &:last-child{
+                                    img{
+                                        max-width: 12px;
+                                    }
+                                }
                                 img {
-                                    max-width: 12px;
+                                    max-width: 10px;
                                 }
                                 img.active {
                                     position: absolute;

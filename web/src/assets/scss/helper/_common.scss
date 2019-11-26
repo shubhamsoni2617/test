@@ -65,7 +65,7 @@ ul {
 
 // Buttons
 button{
-    &:focus{
+    &:focus, &:active{
         outline: none;
     }
 }
