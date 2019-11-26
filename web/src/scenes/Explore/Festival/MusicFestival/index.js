@@ -32,7 +32,6 @@ const MusicFestival = ({ sectionThree }) => {
                       </div>
                       <div className="fest-cont">
                         <h2>{title}</h2>
-                        <span>Day 1</span>
                         <p
                           dangerouslySetInnerHTML={{ __html: description }}
                         ></p>

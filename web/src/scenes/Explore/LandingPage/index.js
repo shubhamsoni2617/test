@@ -81,33 +81,35 @@ const Explore = () => {
     <WhatsUp whatsUpData={whats_up} />
   );
 
-  const royalsPart = royals &&  royals.sub_section_two && royals.sub_section_two.length > 0 && (
-    <div className="home-page-wrapper">
-      <CustomtomSectionTwo
-        heading={royals.heading}
-        customData={royals.sub_section_two}
-        isMoreFrom={true}
-      />
-    </div>
-  );
+  const royalsPart = royals &&
+    royals.sub_section_two &&
+    royals.sub_section_two.length > 0 && (
+      <div className="home-page-wrapper">
+        <CustomtomSectionTwo
+          heading={royals.heading}
+          customData={royals.sub_section_two}
+          isMoreFrom={true}
+        />
+      </div>
+    );
 
-  const articlesPart = articles && articles.data && articles.data.length > 0 && (
-    <LandingArticles articles={articles} />
-  );
+  const articlesPart = articles &&
+    articles.data &&
+    articles.data.length > 0 && <LandingArticles articles={articles} />;
 
   const giftCardPart = <GiftCard />;
 
-  const festivalsPart = festivals && festivals.data&& festivals.data.length > 0 && (
-    <LandingFestivals festivals={festivals} />
-  );
+  const festivalsPart = festivals &&
+    festivals.data &&
+    festivals.data.length > 0 && <LandingFestivals festivals={festivals} />;
 
   const reviewsPart = section_five && section_five && section_five.length > 0 && (
     <Reviews reviewsData={section_five} />
   );
 
-  const trendingPart = trending &&  trending.sub_section_six && trending.sub_section_six.length > 0 && (
-    <Trending trending={trending} />
-  );
+  const trendingPart = trending &&
+    trending.sub_section_six &&
+    trending.sub_section_six.length > 0 && <Trending trending={trending} />;
 
   const videoGalleryPart = video_gallery && video_gallery.length > 0 && (
     <CustomtomSectionThree heading="Video Gallery" customData={video_gallery} />

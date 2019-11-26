@@ -9,7 +9,6 @@ const TermsPrivacy = ({ cmsPageType }) => {
   const [tabDescription, setTabDescription] = useState('');
   const [tabIndex, setTabIndex] = useState(0);
 
-
   let termsPrivacyArr;
 
   useEffect(() => {
@@ -49,25 +48,36 @@ const TermsPrivacy = ({ cmsPageType }) => {
         break;
     }
   };
-
-  const handleActiveTab = (title, description,i) => {
+  const handleActiveTab = (title, description, i) => {
     setTabTitle(title);
     setTabDescription(description);
-    setTabIndex(i)
-    let shareUrl = window.location.origin + renderSpecificLink(i);
+    setTabIndex(i);
+    let link;
+    const routeParts = title.split(' ');
+    if (routeParts[0] && routeParts[1] && routeParts[2]) {
+      link =
+        routeParts[0].toLowerCase() +
+        '-' +
+        routeParts[1].toLowerCase() +
+        '-' +
+        routeParts[2].toLowerCase();
+    } else if (routeParts[0] && routeParts[1]) {
+      link = routeParts[0].toLowerCase() + '-' + routeParts[1].toLowerCase();
+    }
+    let shareUrl = window.location.origin + renderSpecificLink(i, link);
     window.history.pushState('string', 'Title', shareUrl);
   };
 
-  const renderSpecificLink = index => {
+  const renderSpecificLink = (index, link) => {
     switch (index) {
       case 0:
-        return '/terms-and-conditions';
+        return `/${link}`;
       case 1:
-        return '/privacy-policy';
+        return `/${link}`;
       case 2:
-        return '/condition-of-access';
+        return `/${link}`;
       case 3:
-        return '/transaction-security';
+        return `/${link}`;
     }
   };
 
@@ -100,7 +110,7 @@ const TermsPrivacy = ({ cmsPageType }) => {
                           : 'nav-item nav-link'
                       }
                       onClick={() =>
-                        handleActiveTab(category.title, category.description,i)
+                        handleActiveTab(category.title, category.description, i)
                       }
                     >
                       {category.title}
