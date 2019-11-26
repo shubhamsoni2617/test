@@ -606,6 +606,9 @@ section.whats-new {
                 max-height: 349px;
                 object-fit: cover;
                 object-position: center;
+                @media(max-width: 576px){
+                    height: 190px;
+                }
             }
         }
         .slick-arrow{
