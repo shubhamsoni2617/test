@@ -7,6 +7,8 @@ const TermsPrivacy = ({ cmsPageType }) => {
   const [termsprivacy, setTermsPrivacy] = useState(null);
   const [tabTitle, setTabTitle] = useState('');
   const [tabDescription, setTabDescription] = useState('');
+  const [tabIndex, setTabIndex] = useState(0);
+
 
   let termsPrivacyArr;
 
@@ -48,22 +50,23 @@ const TermsPrivacy = ({ cmsPageType }) => {
     }
   };
 
-  const handleActiveTab = (title, description) => {
+  const handleActiveTab = (title, description,i) => {
     setTabTitle(title);
     setTabDescription(description);
-    let shareUrl = window.location.origin + renderSpecificLink(title);
+    setTabIndex(i)
+    let shareUrl = window.location.origin + renderSpecificLink(i);
     window.history.pushState('string', 'Title', shareUrl);
   };
 
-  const renderSpecificLink = title => {
-    switch (title) {
-      case 'Terms and Conditions of Ticket Sales ':
+  const renderSpecificLink = index => {
+    switch (index) {
+      case 0:
         return '/terms-and-conditions';
-      case 'Privacy Policy':
+      case 1:
         return '/privacy-policy';
-      case 'Conditions of Access of  SISTIC Website':
+      case 2:
         return '/condition-of-access';
-      case 'Transaction Security':
+      case 3:
         return '/transaction-security';
     }
   };
@@ -97,7 +100,7 @@ const TermsPrivacy = ({ cmsPageType }) => {
                           : 'nav-item nav-link'
                       }
                       onClick={() =>
-                        handleActiveTab(category.title, category.description)
+                        handleActiveTab(category.title, category.description,i)
                       }
                     >
                       {category.title}
@@ -110,7 +113,7 @@ const TermsPrivacy = ({ cmsPageType }) => {
 
         <div className="terms-privacy-body">
           <div
-            className={tabTitle==="Terms and Conditions of Ticket Sales "?"tab-1 container": tabTitle==="Privacy Policy"?"tab-2 container": tabTitle==="Conditions of Access of  SISTIC Website"?"tab-3 container": tabTitle==="Transaction Security"?"tab-4 container": "container"}
+            className="container"
             dangerouslySetInnerHTML={{
               __html: tabDescription
             }}

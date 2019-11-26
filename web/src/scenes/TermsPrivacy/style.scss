@@ -166,15 +166,5 @@
     & li:last-child {
       padding-bottom: 0px;
     }
-    .tab-1, .tab-2, .tab-3, .tab-4{
-      opacity: 0;
-      transition: opacity 3s linear;
-    }
-    .container{
-      &.tab-1, &.tab-2, &.tab-3, &.tab-4{
-        opacity: 1;
-        transition: opacity 3s linear;
-      }
-    }
   }
 }
