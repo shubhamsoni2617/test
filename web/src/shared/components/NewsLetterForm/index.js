@@ -68,9 +68,9 @@ const NewsLetterForm = ({ type }) => {
 
   return (
     <Fragment>
-      <p className={errColor ? 'text-danger' : 'text-success'}>
+      {(successMsg || errMsg) && <p className={errColor ? 'text-danger' : 'text-success'}>
         {successMsg || errMsg}
-      </p>
+      </p>}
 
       <div className="input-group">
         <input

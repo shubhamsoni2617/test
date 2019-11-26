@@ -1,6 +1,6 @@
 .apipartners-wrapper{
     .contact-us{
-        background-color: rgba(240, 249, 255, 0.58);
+        background-color: #F7FAFC;
         background-image: none;
         background-size: 100%;
         margin: 0px;
@@ -155,6 +155,9 @@
                             height: 30px;
                             line-height: 30px;
                         }
+                        &::-ms-clear{
+                            border: 1px solid #ddd;
+                        }
                     }
                     .options{
                         color: #626262;
@@ -208,7 +211,7 @@
                         }
                     }
                     .arrow{
-                        margin-top: -4px;
+                        margin-top: -8px;
                         @media(max-width: 767px){
                             margin-top: -7px;
                         }
@@ -242,6 +245,9 @@
                     }
                     &:-moz-placeholder { /* Firefox 18- */
                         color: #626262;
+                    }
+                    &::-ms-clear{
+                        border: 1px solid #D3D3D3;
                     }
                 }
                 &.has-error{
@@ -283,6 +289,14 @@
                         line-height: 28px;
                         font-size: 14px;
                     }
+                }
+            }
+        }
+        .contact-we-are-at{
+            .text{
+                width: 60%;
+                @media(max-width: 768px){
+                    width: 100%;
                 }
             }
         }
