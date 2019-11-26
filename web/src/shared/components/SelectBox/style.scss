@@ -119,7 +119,7 @@ body {
 
 .option {
   padding: 10px 15px;
-  border-bottom: 1px solid $grey-border;
+  border-bottom: 0;
   cursor: pointer;
 
   &.selected {
