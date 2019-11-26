@@ -156,7 +156,7 @@
         -webkit-transition: 0.9s all;
         -moz-transition: 0.9s all;
         -o-transition: 0.9s all;
-		&:hover {
+		&:hover, &:focus {
             background-color: #FFF;
             border: 1px solid #0098ff;
             color: #0098ff;

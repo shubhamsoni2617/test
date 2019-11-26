@@ -114,11 +114,11 @@ nav {
 		display: inline-block;
 		padding-right: 10px;
 		padding-left: 5px;
-    color: #ffffff;
-    font-family: 'Montserrat', sans-serif;
-			font-size: 14px;
-            line-height: 18px;
-            font-weight: 300;
+		color: #ffffff;
+		font-family: 'Montserrat', sans-serif;
+		font-size: 14px;
+		line-height: 18px;
+		font-weight: 400;
 		&::after {
 			position: absolute;
 			content: "/";
@@ -133,7 +133,7 @@ nav {
 		a {
 			color: inherit;
 			font-family: 'Montserrat', sans-serif;
-			font-size: 13px;
+			font-size: 14px;
             line-height: 18px;
             font-weight: 400;
 			@media (max-width: 767px) {
@@ -264,6 +264,10 @@ h2 {
 	@media (max-width: 767px) {
 		padding-right: 10px;
 		padding-left: 10px;
+	}
+	@media(min-width: 601px) and (max-width: 965px){
+		padding-right: 15px;
+		padding-left: 15px;
 	}
 }
 

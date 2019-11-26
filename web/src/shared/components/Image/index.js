@@ -9,7 +9,7 @@ import Medium from '../../../assets/images/noimage.png';
 import MediumVertical from '../../../assets/images/mediumVertical.png';
 import MediumHorizontal from '../../../assets/images/mediumHorizontal.jpg';
 import HorizontalMin from '../../../assets/images/HorizontalMin.png';
-import BigBannerMobile from '../../../assets/images/big_banner.png';
+// import BigBannerMobile from '../../../assets/images/big_banner.png';
 import NoImage from '../../../assets/images/No image-.png';
 import Smaller from '../../../assets/images/smaller.png';
 import './style.scss';
@@ -56,13 +56,13 @@ function Image(props) {
         newImg = HorizontalMin;
         break;
 
-      case 'BigBanner':
-        newImg = BigBanner;
-        break;
+      // case 'BigBanner':
+      //   newImg = BigBanner;
+      //   break;
 
-      case 'BigBannerMobile':
-        newImg = BigBannerMobile;
-        break;
+      // case 'BigBannerMobile':
+      //   newImg = BigBannerMobile;
+      //   break;
 
       case 'Medium':
         newImg = Medium;
