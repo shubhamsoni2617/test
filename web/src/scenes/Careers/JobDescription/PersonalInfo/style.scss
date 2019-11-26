@@ -317,6 +317,9 @@
     padding: 0 10px 0 0 !important;
     color: #343434;
     font-size: 16px;
+    .astrick{
+      display: contents;
+    }
     @media(max-width: 767px){
         font-size: 14px;
     }

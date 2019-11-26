@@ -64,6 +64,14 @@ function SeatMapButton({ seatingPlan }) {
   );
 }
 
+function EventNotAvailable() {
+  return (
+    <div className="event-not-available">
+      The event is currently not available.
+    </div>
+  );
+}
+
 function GiftCard({ flag }) {
   if (!flag) return null;
   return (
@@ -154,7 +162,10 @@ export default class EventsDetail extends Component {
         activeLang: '',
         desc: ''
       },
-      synopsis: { language: '', description: '' }
+      synopsis: { language: '', description: '' },
+      popupContent: '',
+      popupTitle: '',
+      data: {}
     };
   }
 
@@ -203,23 +214,30 @@ export default class EventsDetail extends Component {
     this.setState({ shimmer: true });
     EventsService.getEventDetails(payload)
       .then(res => {
-        this.setState({ detailData: res.data });
-        // Utilities.preloadImages(res.data.images, "full_image", () => {
-        //   Utilities.preloadImages(res.data.images, "thumb_image", () => {
-        setTimeout(() => {
-          let obj = { shimmer: false };
-          if (
-            res &&
-            res.data &&
-            res.data.pop_up_message &&
-            res.data.pop_up_message.description
-          ) {
-            obj = { ...obj, showNotice: true };
-          }
-          this.setState(obj);
-        }, 1000);
-        //   });
-        // });
+        if (
+          res &&
+          res.data &&
+          res.data.pop_up_message &&
+          res.data.pop_up_message.description
+        ) {
+          this.setState(
+            {
+              showNotice: true,
+              popupContent: res.data.pop_up_message.description,
+              popupTitle: res.data.pop_up_message.title
+            },
+            () => {
+              setTimeout(() => {
+                this.setState({ detailData: res.data });
+              }, 1000);
+            }
+          );
+        } else {
+          this.setState({ detailData: res.data });
+          setTimeout(() => {
+            this.setState({ shimmer: false });
+          }, 1000);
+        }
       })
       .catch(err => {
         this.setState({
@@ -327,9 +345,16 @@ export default class EventsDetail extends Component {
 
   handleClose = () => {
     if (this.state.showNotice) {
-      this.setState({
-        showNotice: false
-      });
+      this.setState(
+        {
+          showNotice: false
+        },
+        () => {
+          // setTimeout(() => {
+          this.setState({ shimmer: false });
+          // }, 500);
+        }
+      );
     }
     if (this.state.showSeatMap) {
       this.setState({
@@ -339,23 +364,6 @@ export default class EventsDetail extends Component {
   };
 
   componentDidUpdate() {}
-
-  // onSynopsisData = (detailData, getSynopsisData) => {
-  //   detailData &&
-  //     detailData.synopsis &&
-  //     detailData.synopsis.forEach((obj, idx) => {
-  //       if (obj.language) {
-  //         getSynopsisData.languageArr.push(obj.language);
-  //       }
-  //       if (this.state.synopsisLang === obj.language) {
-  //         getSynopsisData.desc = obj.description;
-  //         getSynopsisData.activeLang = obj.language;
-  //       } else {
-  //         getSynopsisData.desc = detailData.synopsis[0].description;
-  //         getSynopsisData.activeLang = detailData.synopsis[0].language;
-  //       }
-  //     });
-  // };
 
   render() {
     const {
@@ -401,18 +409,8 @@ export default class EventsDetail extends Component {
               ? true
               : showNotice
           }
-          content={
-            detailData &&
-            detailData.pop_up_message &&
-            detailData.pop_up_message.description &&
-            detailData.pop_up_message.description
-          }
-          title={
-            detailData &&
-            detailData.pop_up_message &&
-            detailData.pop_up_message.title &&
-            detailData.pop_up_message.title
-          }
+          content={this.state.popupContent}
+          title={this.state.popupTitle}
           handleClose={this.handleClose}
           htmlContent={true}
         />
@@ -433,7 +431,7 @@ export default class EventsDetail extends Component {
             detail={true}
           />
         </CSSTransition>
-        {detailData && (
+        {!shimmer && detailData && (
           <div className={`main-container ${shimmer ? 'shimmer' : ''}`}>
             <ShowOver isShowOver={detailData.is_show_over} />
             {detailData.is_show_over === 0 && (
@@ -595,6 +593,8 @@ export default class EventsDetail extends Component {
                 <ArticleSection flag={true} code={code} />
               </>
             )}
+
+            {detailData && !detailData.id && <EventNotAvailable />}
           </div>
         )}
       </div>
