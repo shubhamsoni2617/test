@@ -47,6 +47,7 @@ const TermsPrivacy = ({ cmsPageType }) => {
         break;
     }
   };
+
   const handleActiveTab = (title, description) => {
     setTabTitle(title);
     setTabDescription(description);
@@ -109,7 +110,7 @@ const TermsPrivacy = ({ cmsPageType }) => {
 
         <div className="terms-privacy-body">
           <div
-            className="container"
+            className={tabTitle==="Terms and Conditions of Ticket Sales "?"tab-1 container": tabTitle==="Privacy Policy"?"tab-2 container": tabTitle==="Conditions of Access of  SISTIC Website"?"tab-3 container": tabTitle==="Transaction Security"?"tab-4 container": "container"}
             dangerouslySetInnerHTML={{
               __html: tabDescription
             }}
