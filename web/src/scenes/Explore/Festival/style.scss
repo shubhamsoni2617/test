@@ -524,6 +524,9 @@
                     margin-right: 30px;
                     margin-top: -34px !important;
                 }
+                &:hover{
+                    border: none;
+                }
             }
             &.slick-next{
                 right: 0px;
@@ -532,6 +535,9 @@
                 margin-right: 35px;
                 @media(max-width: 767px){
                     margin-right: 0px;
+                }
+                &:hover{
+                    border: none;
                 }
             }
         }

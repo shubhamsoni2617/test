@@ -38,7 +38,10 @@ body {
 		transition: 1s all;
 		-webkit-transition: 1s all;
 		-moz-transition: 1s all;
-		-o-transition: 1s all;
+        -o-transition: 1s all;
+        &:hover{
+            color: #1f82d7;
+        }
 		&:hover,
 		&:focus,
 		&:active {
@@ -62,6 +65,26 @@ ul {
 .accent-text {
 	color: #0098ff;
 }
+// Common Table UI 
+table{
+    width: 100%;
+    border-top: 1px #e8e8e8 solid;
+    border-left: 1px #e8e8e8 solid;
+    margin-bottom: 10px;
+    th{
+        font-weight: 600;
+    }
+    td, th{
+        border-bottom: 1px #e8e8e8 solid;
+        border-right: 1px #e8e8e8 solid;
+        padding: 5px 10px;
+    }
+}
+
+// Caption 
+caption {
+    caption-side: top;
+  }
 
 // Buttons
 button{
@@ -310,7 +333,17 @@ button,
 	display: grid;
 	grid-template-columns: auto auto;
 }
-
+.similar-picks, .event-articles {
+    .carousel-dots {
+        a{
+            img{
+                @media (max-width: 767px) {
+                    max-width: 6px;
+                }
+            }
+        }
+    }
+}
 .carousel-dots {
 	margin-left: auto;
 	text-align: right;

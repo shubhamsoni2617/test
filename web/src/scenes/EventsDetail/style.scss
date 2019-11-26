@@ -97,6 +97,7 @@
           display: flex;
           align-items: flex-end;
           flex-direction: column;
+          justify-content: end;
           &.shows-over-tickets{
               bottom: 0;
           }
@@ -130,11 +131,15 @@
             height: 32px;
             padding: 0;
             background: none;
+            @media(max-width: 1024px){
+                padding: 0 20px;
+            }
                 img{
                     height: 20px;
                 }
                 &:hover{
                     background: none;
+                    border: none;
                 }
             }
 
@@ -162,13 +167,22 @@
         .tickets-desc{
             overflow-y: auto;
             position: absolute;
-            height: calc(100% - 90px);
-            width: 100%;
+            height: calc(100% - 95px);
+            width: calc(100% + 10px);
             left: 0;
             padding: 0 30px;
             margin-top: 68px;
             border-bottom: 1px solid #979797;
+            @media(max-width: 991px){
+                height: calc(100% - 55px);
+                margin-top: 40px;
+            }
             div {
+                div {
+                    &:first-child{
+                        margin-bottom: -16px !important;
+                    }
+                }
               div:nth-last-child(1) {
               background: #ebebeb;
             }
@@ -212,6 +226,9 @@
                 }
                 &:hover{
                   color: #0098FF;
+                  @media(max-width: 991px){
+                    color: #949494;
+                  }
                 }
             }
         }
@@ -435,6 +452,9 @@
                               font-size: 18px;
                               color: #626262;
                           }
+                          a{
+                            font-size: 18px;
+                        }
                       }
                       &:first-child{
                         span{
@@ -446,6 +466,7 @@
                       }
                       .seat-map{
                           margin-bottom: 10px;
+                          display: flex;
                           @media(max-width: 1024px){
                                 margin-bottom: 5px;
                           }
@@ -494,6 +515,9 @@
                           }
                           &:hover{
                             color: #0098FF;
+                            @media(max-width: 991px){
+                                color: #6A6A6A;
+                              }
                           }
                         }
                       }
@@ -562,9 +586,14 @@
 
               }
               &:hover{
-                  background-color: #FFF;
-                  color: #0098ff;
-                  border: 1px solid #0098ff;
+                  background-color: #1f82d7;
+                  color: #FFF;
+                  border: 1px solid #1f82d7;
+                  @media(max-width: 991px){
+                    background-color: #0098ff;
+                    color: #FFF;
+                    border: 1px solid transparent;
+                  }
               }
           }
 
@@ -589,6 +618,15 @@
             bottom: 0;
             flex-direction: initial;
           }
+          .react-modal{
+            .buy-tickets-btn {
+                @media(max-width: 991px){
+                    flex: 0 0 100%;
+                    width: 100%;
+                    margin-right: 0;;
+                }
+            }
+        }
         .buy-tickets-btn {
             @media(max-width: 991px){
                 flex: 0 0 calc(50% - 10px);
@@ -599,6 +637,7 @@
                 flex: 0 0 100%;
                 width: 100%;
             }
+            
         }
         &.shows-over-tickets{
             @media(max-width: 991px){
@@ -703,6 +742,9 @@
                   &.active, &:hover{
                       a{
                           color: #0098FF;
+                          @media(max-width: 991px){
+                            color: #626262;
+                          }
                       }
                   }
               }
@@ -765,6 +807,11 @@
               background-color: #FFF;
               color: #0098ff;
               border: 1px solid #0098ff;
+              @media(max-width: 991px){
+                background-color: #0098ff;
+                color: #FFF;
+                border: 1px solid transparent;
+              }
          }
       }
       .panel{
@@ -1047,7 +1094,7 @@
           }
         }
     .event-address span{
-        width: 225px;
+        width: 267px;
       }
     @media(max-width: 768px){
      h3{
@@ -1164,18 +1211,27 @@
           height: auto;
           margin-top: 0;
           padding-top: 0;
+          overflow: inherit;
           @media(max-width: 1280px){
               padding-left: 10px;
               flex: 0 0 63%;
+          }
+          .title{
+              .info-popover{
+                  display: none !important;
+              }
           }
           .link{
               display: none;
           }
           .info-tooltip, .share-tooltip {
               position: absolute;
-              right: 18px;
+              right: 190px;
               display: inline-block;
               top: 8px;
+              @media(max-width: 1136px){
+                right: 45px;
+              }
               .share, .info {
                   position: relative;
                   right: 0px;
@@ -1195,11 +1251,15 @@
                   cursor: pointer;
                   background-color: #fff;
                   border-color: #0098ff;
+                  
                   }
               }
           }
           .share-tooltip {
-              right: 61px;
+              right: 145px;
+              @media(max-width: 1136px){
+                right: 0;
+              }
           }
           h2{
               font-size: 22px;
@@ -1262,7 +1322,7 @@
                                 // text-overflow: ellipsis;
                           }
                           span{
-                              color:#0098FF;
+                              color:#626262;
                           }
                       }
                   }
@@ -1276,7 +1336,7 @@
                       &.location-gray{
                         display: block;
                         width: 16px;
-                        margin: 1px 10px 0 0;
+                        margin: 0 10px 0 0;
                       }
                       @media(max-width: 1280px){
                           margin-right: 10px;
@@ -1577,4 +1637,15 @@
             overflow: inherit;
         }
     }
+}
+.event-not-available{
+    background: #f1f1f1;
+    padding: 40px 0;
+    min-height: 250px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 400;
+    font-size: 17px;
+    color: #343434;
 }
