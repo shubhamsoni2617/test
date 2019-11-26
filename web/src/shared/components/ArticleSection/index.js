@@ -61,20 +61,20 @@ const ArticleSection = ({ flag, code }) => {
         )}
         <div className="section-top-wrArticleSectioner">
           <h2>Articles</h2>
-          <div className="carousel-dots">
+          {articleData.length > 3 && <div className="carousel-dots">
             <Link to="/articles">
               See all <img src={arrowSee} className="img-fluid" alt="arrow" />
             </Link>
-          </div>
+          </div>}
         </div>
         <div className="grid-container">
-          {articleData.map((item, index) => {
+          {articleData.slice(0, 3).map((item, index) => {
             return (
               <div className="item">
                 <div className="item-wrArticleSectioner">
                   <div className="item-img">
                     <Image
-                      src={item.thmumb_image}
+                      src={item.thumb_image}
                       className="img-fluid"
                       alt="article"
                       type="HorizontalMin"
@@ -90,16 +90,15 @@ const ArticleSection = ({ flag, code }) => {
                           item.plain_description,
                           100
                         )}
+
+                        {item.plain_description.length > 100 && (
+                          <span
+                            className="attraction-show-more"
+                          ><Link to={`/explore/article/${item.id}`}>
+                              More
+                        </Link></span>
+                        )}
                       </p>
-                      {item.plain_description.length > 100 && (
-                        <Link to={`/explore/article/${item.id}`}>
-                        <span
-                          className="attraction-show-more"
-                        >
-                          More
-                        </span>
-                        </Link>
-                      )}
                     </React.Fragment>
                   )}
                 </div>

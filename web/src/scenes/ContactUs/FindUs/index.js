@@ -17,7 +17,7 @@ const FindUs = ({}) => {
     <Fragment>
       <h3 className="heading-text">Find Us</h3>
       <div className="find-us">
-        <div className="find-us-content">
+        <div className="find-us-content des">
           <div className="find-us-img">
             <Location />
           </div>
