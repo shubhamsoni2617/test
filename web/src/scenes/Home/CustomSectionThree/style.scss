@@ -61,10 +61,11 @@
             padding-bottom: 13px;
             &.active{
                 .video-subwrapper-image{
-                    border: 2px #0098FF solid;
+                  border: 2px #0098FF solid;
                 }
             }
             .video-subwrapper-image{
+                cursor: pointer;
                 width: 37%;
                 flex: 0 0 37%;
                 overflow: hidden;

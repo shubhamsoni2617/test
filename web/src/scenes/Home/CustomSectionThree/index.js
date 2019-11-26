@@ -7,7 +7,7 @@ import AdvertisementService from '../../../shared/services/AdvertisementService'
 import Image from '../../../shared/components/Image';
 import Utilities from '../../../shared/utilities';
 
-const CustomSectionThree = ({ heading, customData }) => {
+const CustomSectionThree = ({ heading, customData, isHomePage }) => {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [url, setUrl] = useState(null);
@@ -19,12 +19,14 @@ const CustomSectionThree = ({ heading, customData }) => {
   const [playing, setPlaying] = useState(false);
   const [light, setLight] = useState(true);
   const [volume, setVolume] = useState(null);
+  const [vdoIndex, setVdoIndex] = useState(0);
 
   useEffect(() => {
     if (customData && customData.length > 0) {
       setData(customData);
       setUrl(customData[0].video_url);
       setTitle(customData[0].title);
+      setVdoIndex(0);
       setLoading(false);
     } else if (customData && !customData.length) {
       getData();
@@ -44,6 +46,7 @@ const CustomSectionThree = ({ heading, customData }) => {
             if (res.data.data && res.data.data[0]) {
               setUrl(res.data.data[0].video_url);
               setTitle(res.data.data[0].title);
+              setVdoIndex(0);
             }
           }, 2000);
         }
@@ -78,7 +81,7 @@ const CustomSectionThree = ({ heading, customData }) => {
               <div className="video-only-section">
                 <ReactPlayer
                   width="100%"
-                  height={Utilities.mobilecheck()? "190px": "465px" }
+                  height={Utilities.mobilecheck() ? '190px' : '465px'}
                   controls
                   pip={pip}
                   muted={muted}
@@ -95,7 +98,7 @@ const CustomSectionThree = ({ heading, customData }) => {
                     return (
                       <div
                         className={
-                          vdo.video_url == url
+                          vdoIndex === index
                             ? 'video-item-image active'
                             : 'video-item-image'
                         }
@@ -109,6 +112,7 @@ const CustomSectionThree = ({ heading, customData }) => {
                           setMuted(false);
                           setVolume(0.5);
                           setPlaying(true);
+                          setVdoIndex(index);
                         }}
                       >
                         <span className="video-subwrapper-image">
@@ -120,7 +124,11 @@ const CustomSectionThree = ({ heading, customData }) => {
                           />
                         </span>
                         <a className="video-subwrapper-text">{vdo.title}</a>
-                        {/* <a >[HD] Universal Studios Singapore Tour - Universal Studios Theme Park</a> */}
+                        {!isHomePage && vdo.count && (
+                          <span>
+                            {vdo.count} {vdo.posted_date}
+                          </span>
+                        )}
                       </div>
                     );
                   })}

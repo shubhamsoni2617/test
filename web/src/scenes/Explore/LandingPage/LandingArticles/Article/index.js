@@ -58,8 +58,9 @@ const Article = ({ article }) => {
       </div>
       <div className="article-item-img">
         <Image
-          src={article.image && article.image[0]}
-          type="MediumHorizontal"
+          src={`article && article.image`}
+          type="BigBanner"
+          className="img-fluid"
         />
       </div>
     </div>
