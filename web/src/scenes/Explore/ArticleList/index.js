@@ -3,7 +3,7 @@ import './style.scss';
 import CardList from './CardList';
 import DownArrowBlue from '../../../assets/images/down-arrow-blue.svg';
 import Breadcrumb from '../../../scenes/App/Breadcrumb';
-import filterIcon from '../../../assets/images/events/filter.svg';
+import filterIcon from '../../../assets/images/down_arrow.svg';
 import ShimmerEffect from '../../../shared/components/ShimmerEffect';
 import Utilities from '../../../shared/utilities';
 import ExploreService from '../../../shared/services/ExploreService';
@@ -237,7 +237,7 @@ const ArticleList = ({ history, location }) => {
             <div
               className={`events-listing ${
                 isNaN(totalResults) ? `article-list-notfound` : ``
-              }`}
+                }`}
             >
               <div className="events-section">
                 <CardList
@@ -257,7 +257,7 @@ const ArticleList = ({ history, location }) => {
                   <ShimmerEffect
                     propCls={`${
                       Utilities.mobileAndTabletcheck() ? 'shm_col-xs-6' : ''
-                    } col-md-4`}
+                      } col-md-4`}
                     height={150}
                     count={Utilities.mobileAndTabletcheck() ? 2 : 3}
                     type="LIST"
@@ -273,8 +273,8 @@ const ArticleList = ({ history, location }) => {
                       window.scrollTo(
                         0,
                         node.current.clientHeight *
-                          (articleList.length / cardInViewConstant).toFixed() -
-                          node.current.clientHeight / 2
+                        (articleList.length / cardInViewConstant).toFixed() -
+                        node.current.clientHeight / 2
                       );
                     }}
                     className="btn-link load-more-btn"

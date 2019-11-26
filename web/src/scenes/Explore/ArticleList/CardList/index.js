@@ -48,14 +48,18 @@ const CardList = React.forwardRef((props, ref) => {
                       })}
                   </ul>
                 </div>
-                <h3>{cardData.title}</h3>
-                <div className="item-title">
-                  <span>{cardData.description.slice(0, textLimit)}</span>
-                  <span className="article-show-more">...More</span>
-                </div>
-                <div className="item-bottom">
-                  <span className="item-author">By {cardData.author_name}</span>
-                  <span className="item-date">{cardData.date}</span>
+                <div className="article-bottom-details">
+                  <div className="article-text-content">
+                    <h3>{cardData.title}</h3>
+                    <div className="item-title">
+                      <span>{cardData.description.slice(0, textLimit)}</span>
+                      <span className="article-show-more">...More</span>
+                    </div>
+                  </div>
+                  <div className="item-bottom">
+                    <span className="item-author">By {cardData.author_name}</span>
+                    <span className="item-date">{cardData.date}</span>
+                  </div>
                 </div>
               </div>
             </div>
@@ -67,19 +71,19 @@ const CardList = React.forwardRef((props, ref) => {
     <ShimmerEffect
       propCls={`${
         Utilities.mobileAndTabletcheck() ? 'shm_col-xs-6' : ''
-      } col-md-4`}
+        } col-md-4`}
       height={150}
       count={Utilities.mobileAndTabletcheck() ? 2 : 3}
       type="LIST"
     />
   ) : (
-    <div className="no-data">
-      <img src={noEvent} alt="No Event Data" />
-      <p>
-        <strong>No Data found</strong>
-      </p>
-      <p>Try again with more general search</p>
-    </div>
-  );
+        <div className="no-data">
+          <img src={noEvent} alt="No Event Data" />
+          <p>
+            <strong>No Data found</strong>
+          </p>
+          <p>Try again with more general search</p>
+        </div>
+      );
 });
 export default CardList;
