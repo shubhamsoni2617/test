@@ -9,10 +9,13 @@
       background: #0098FF;
       width: 20px;
       border-radius: 0;
+      left: 11px;
   }
   .react-modal-body-close{
       z-index: 5;
-      top: 18px;
+      top: 0;
+    right: 0;
+    padding: 22px;
   }
   .react-modal-overlay{
     z-index: 101;

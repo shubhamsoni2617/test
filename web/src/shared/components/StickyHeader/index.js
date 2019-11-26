@@ -152,30 +152,34 @@ function EventDateTime({
   // if (!data || !data.length) return null;
 
   const HtmlDescription = () => {
-    return <ul className="date-address">
-      {altEventStartDate && (
-        <li className="event-date">
-          <span
-            dangerouslySetInnerHTML={{ __html: altEventStartDate }}
-          ></span>
-        </li>
-      )}
-      {eventDateNotes && (
-        <li className="event-date">
-          <span
-            dangerouslySetInnerHTML={{ __html: eventDateNotes }}
-          ></span>
-        </li>
-      )}
-    </ul>
+    return (
+      <ul className="date-address">
+        {altEventStartDate && (
+          <li className="event-date">
+            <span
+              dangerouslySetInnerHTML={{ __html: altEventStartDate }}
+            ></span>
+          </li>
+        )}
+        {eventDateNotes && (
+          <li className="event-date">
+            <span dangerouslySetInnerHTML={{ __html: eventDateNotes }}></span>
+          </li>
+        )}
+      </ul>
+    );
   };
 
   if (Utilities.mobilecheck()) {
-    return <ModalPopup showModal={setEventDateBlock}
-      title="Event dates & Time"
-      handleClose={() => setEventDateBlock(false)} >
-      <HtmlDescription />
-    </ModalPopup>
+    return (
+      <ModalPopup
+        showModal={setEventDateBlock}
+        title="Event Dates & Time"
+        handleClose={() => setEventDateBlock(false)}
+      >
+        <HtmlDescription />
+      </ModalPopup>
+    );
   }
 
   return (
@@ -185,7 +189,7 @@ function EventDateTime({
       </button>
       <div className="block-header">
         <img src={calendarImg} alt="cal-icon" />
-        <h3>Event dates & Time</h3>
+        <h3>Event Dates & Time</h3>
       </div>
       <div className="tickets-desc">
         <Scrollbars>
@@ -212,7 +216,7 @@ function StickyHeader(props) {
     <div
       className={`event-detail ${sticky ? 'sticky-topbar' : ''} ${
         sticky && setHeader ? 'animate' : ''
-        }`}
+      }`}
     >
       {detailData.images && detailData.images.length > 0 && (
         <div className="tickets-demo-img">
@@ -257,14 +261,14 @@ function StickyHeader(props) {
             eventDetail
           />
         ) : (
-            <div className="title top">
-              <h3>{detailData.title}</h3>
-            </div>
-          )}
+          <div className="title top">
+            <h3>{detailData.title}</h3>
+          </div>
+        )}
 
         {detailData.promoters && detailData.promoters.length > 0 && (
           <div className="promoters">
-            <span>By </span>
+            <span>by </span>
             {detailData.promoters.map((item, index) => {
               if (item.url) {
                 return (
@@ -332,20 +336,17 @@ function StickyHeader(props) {
                     <Link to={`/venues?id=${detailData.venue_name.id}`}>
                       {sticky ? (
                         <TitleToolTip
-                          title={
-                            detailData.venue_name.name +
-                            'Brevitas Volutpat Wisi Brevitas Volutpat Wisi'
-                          }
+                          title={detailData.venue_name.name}
                           lines={1}
                           tag={false}
                           height={20}
                           eventDetail
                         />
                       ) : (
-                          <div>
-                            <span>{detailData.venue_name.name}</span>
-                          </div>
-                        )}
+                        <div>
+                          <span>{detailData.venue_name.name}</span>
+                        </div>
+                      )}
                     </Link>
                     <button
                       className="link"
@@ -380,12 +381,12 @@ function StickyHeader(props) {
           </ul>
         </div>
       </div>
-      {detailData.is_available_for_booking === 1 && buyPackages && (
-        <div className="tickets-button">
+      <div className="tickets-button">
+        {detailData.is_available_for_booking === 1 && (
           <BuyTicketsButtonPopup detailData={detailData} />
-          {buyPackages}
-        </div>
-      )}
+        )}
+        {buyPackages}
+      </div>
       {detailData.is_available_for_booking === 0 && (
         <div className="tickets-button shows-over-tickets">
           <div className="shows-over">
