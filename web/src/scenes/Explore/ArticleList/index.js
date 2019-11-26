@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
+import './style.scss';
 import CardList from './CardList';
 import DownArrowBlue from '../../../assets/images/down-arrow-blue.svg';
 import Breadcrumb from '../../../scenes/App/Breadcrumb';
-import filterIcon from '../../../assets/images/events/filter.svg';
+import filterIcon from '../../../assets/images/down_arrow.svg';
 import ShimmerEffect from '../../../shared/components/ShimmerEffect';
 import Utilities from '../../../shared/utilities';
-import './style.scss';
 import ExploreService from '../../../shared/services/ExploreService';
 import Filter from './Filter';
 import loaderImage from '../../../assets/images/loader-tick3.gif';
@@ -14,21 +14,26 @@ import BreadCrumbData from './breadCrumbData';
 import selectOrClearAll from './selectOrClearAll';
 import fetchFilterData from './fetchFilterData';
 import handleFilter from './handleFilters';
-const ArticleList = ({ history }) => {
+import Constants from '../../../shared/constants';
+
+const ArticleList = ({ history, location }) => {
   let stickyObj = {
     sticky: { top: 153 },
     pixelBuffer: 153,
     distanceFromTop: 153
   };
+  const node = useRef(null);
+  let cardInViewConstant =
+    window.innerWidth > 1499 ? 4 : window.innerWidth > 850 ? 3 : 2;
   const [scrollContainerRef, styleObj] = useStickyPanel(stickyObj);
-  let mobileConstant = Utilities.mobileAndTabletcheck() ? 6 : 9;
   const [articleList, setArticleList] = useState([]);
-  const [constant, setConstant] = useState(mobileConstant);
   const [loadMore, setLoadMore] = useState(false);
   const [totalResults, setTotalResults] = useState(0);
   const [first, setFirst] = useState(0);
   const [filteredTags, setFilteredTags] = useState([]);
-  const [filteredCategories, setFilteredCategories] = useState([]);
+  const [filteredCategories, setFilteredCategories] = useState(
+    location.hash ? [location.hash.slice(1)] : []
+  );
   const [tags, setTags] = useState([]);
   const [categories, setCategories] = useState([]);
   const [showTags, setShowTags] = useState(false);
@@ -44,26 +49,40 @@ const ArticleList = ({ history }) => {
   useEffect(() => {
     fetchFilterData(setCategories, ExploreService.getCategories);
     fetchFilterData(setTags, ExploreService.getTags);
+    console.log(node);
   }, []);
 
   useEffect(() => {
+    if (articleList.length && location.hash) {
+      handleFilter(
+        false,
+        categories,
+        setCategories,
+        null,
+        setFilteredCategoriesForMobile,
+        setFilteredCategories,
+        mobileCheck,
+        location.hash.slice(1)
+      );
+    }
+  }, [location.hash, articleList.length]);
+
+  useEffect(() => {
     getArticleList();
-  }, [constant, filteredTags.toString(), filteredCategories.toString()]);
+  }, [first, filteredTags.toString(), filteredCategories.toString()]);
 
   const getArticleList = () => {
     const params = {
       first: first,
       client: 1,
-      limit: constant,
+      limit: Constants.LIMIT,
       category: filteredCategories.toString(),
       tags: filteredTags.toString()
     };
     if (!loadMore) {
       setLoadWithFilters(true);
       params.first = 0;
-      params.limit = mobileConstant;
       setFirst(0);
-      setConstant(mobileConstant);
       setTotalResults(0);
     }
     setTimeout(() => {
@@ -100,6 +119,7 @@ const ArticleList = ({ history }) => {
   };
 
   const handleFilters = (selected, isChecked, filterTitle) => {
+    history.push('/articles');
     if (filterTitle === 'Tags') {
       handleFilter(
         isChecked,
@@ -217,13 +237,14 @@ const ArticleList = ({ history }) => {
             <div
               className={`events-listing ${
                 isNaN(totalResults) ? `article-list-notfound` : ``
-              }`}
+                }`}
             >
               <div className="events-section">
                 <CardList
                   articleList={articleList}
                   totalRecords={totalResults}
                   history={history}
+                  ref={node}
                 />
                 {loadWithFilters && articleList.length ? (
                   <img
@@ -236,25 +257,30 @@ const ArticleList = ({ history }) => {
                   <ShimmerEffect
                     propCls={`${
                       Utilities.mobileAndTabletcheck() ? 'shm_col-xs-6' : ''
-                    } col-md-4`}
+                      } col-md-4`}
                     height={150}
                     count={Utilities.mobileAndTabletcheck() ? 2 : 3}
                     type="LIST"
                   />
                 )}
               </div>
-              {totalResults - constant > 0 && (
+              {totalResults - articleList.length > 0 && (
                 <div className="promotion-load-more">
                   <button
                     onClick={() => {
-                      setFirst(constant);
-                      setConstant(totalResults);
+                      setFirst(first + Constants.LIMIT);
                       setLoadMore(true);
+                      window.scrollTo(
+                        0,
+                        node.current.clientHeight *
+                        (articleList.length / cardInViewConstant).toFixed() -
+                        node.current.clientHeight / 2
+                      );
                     }}
                     className="btn-link load-more-btn"
                     target=""
                   >
-                    <span>Load More ({totalResults - constant})</span>
+                    <span>Load More ({totalResults - articleList.length})</span>
                     <img src={DownArrowBlue} alt="down arrow blue" />
                   </button>
                 </div>

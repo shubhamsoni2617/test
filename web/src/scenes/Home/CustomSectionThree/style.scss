@@ -23,6 +23,11 @@
             flex: 0 0 100%;
             height: 100%;
         }
+        & >div{
+            @media(max-width: 767px){
+                height: 270px !important;
+            }
+        }
         h3{
             padding-top: 15px;
             font-size: 15px;
@@ -70,6 +75,12 @@
                 overflow: hidden;
                 max-height: 87px;
                 border: 2px transparent solid;
+                @media(max-width: 991px){
+                    min-height: 144px;
+                }
+                @media(max-width: 767px){
+                    min-height: inherit;
+                }
                 img{
                     transition: 0.9s transform;
                     -webkit-transition: 0.9s transform;
