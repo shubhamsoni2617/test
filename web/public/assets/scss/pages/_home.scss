@@ -45,7 +45,7 @@
 		flex-wrap: wrap;
 		width: 100%;
 		@include tablet-portrait {
-			padding: 0 10px;
+			padding: 0 15px;
 		}
 		.top-header-left {
 			flex: 0 0 auto;
@@ -356,7 +356,7 @@
 						padding-right: 0px;
 						a {
 							font-size: 16px;
-							font-weight: 300;
+							font-weight: 400;
 							line-height: 17px;
 						}
 						@include tablet-portrait {
@@ -1703,7 +1703,8 @@
 					margin-bottom: 0px;
 					padding-bottom: 20px;
 					.promotions-img {
-						height: calc(100% - 34px);
+                        height: calc(100% - 34px);
+                        position: relative;
 						@include mobile-view {
 							height: calc(100% - 14px);
 						}
@@ -1922,7 +1923,11 @@
 				}
 				@include mobile-view {
 					margin-bottom: 4px;
-				}
+                }
+                p{
+                    font-weight: 400;
+                    color: #626262;
+                }
 				img {
 					transition: 0.7s transform;
 					-webkit-transition: 0.7s transform;

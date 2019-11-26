@@ -3,7 +3,6 @@ import Slider from 'react-slick';
 import './style.scss';
 import Constants from '../../constants';
 import Utilities from '../../utilities';
-// import { CSSTransitionGroup } from 'react-transition-group';
 import ShimmerEffect from '../ShimmerEffect';
 import Image from '../Image';
 const Item = ({ event }) => {
@@ -98,7 +97,7 @@ const FeaturedEvents = props => {
     dots: true,
     infinite: false,
     speed: 500,
-    rows: 2,
+    rows: 1,
     slidesPerRow: 5,
     responsive: [{
       breakpoint: 1024,
@@ -135,12 +134,6 @@ const FeaturedEvents = props => {
             </div>
           )}
         </div>
-        {/* <CSSTransitionGroup
-          transitionName="shimmer-carousel"
-          transitionEnter={true}
-          transitionEnterTimeout={1000}
-          transitionLeaveTimeout={1000}
-        > */}
         {loading ? (
           <ShimmerEffect
             propCls={'shm_col-xs-6 col-md-6'}
@@ -160,17 +153,27 @@ const FeaturedEvents = props => {
             </div>
           </div>
         ) : <Slider {...settings}>
-              {featuredEvents &&
-                featuredEvents.map((event, index) => {
-                  return (
-                    <div className="grid-container" key={index}>
-                      <Item event={event} />
-                    </div>
-                  );
-                })}
-            </Slider>
+            {featuredEvents &&
+            featuredEvents.map((event, index, array) => {
+            if (index % 2 === 0) {
+            if (array[index] && array[index + 1]) {
+            return (
+            <div className="grid-container" key={index}>
+                <Item event={array[index]} />
+                <Item event={array[index + 1]} />
+            </div>
+            );
+            } else if (array[index]) {
+            return (
+            <div className="grid-container" key={index}>
+                <Item event={array[index]} />
+            </div>
+            );
+            }
+            }
+            })}
+        </Slider>
         }
-        {/* </CSSTransitionGroup> */}
       </div>
     </section>
   );

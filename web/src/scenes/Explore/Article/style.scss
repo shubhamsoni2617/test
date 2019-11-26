@@ -83,7 +83,12 @@ section.whats-new {
 			margin-bottom: 11px;
 			@media (max-width: 767px) {
 				margin-bottom: 8px;
-			}
+            }
+            &:empty{
+                display: block !important;
+                padding: inherit;
+                background: transparent;
+            }
 		}
 		a{
 			& + p{
@@ -175,6 +180,7 @@ section.whats-new {
 		color: #ffffff;
 		min-height: 54px;
         padding-bottom: 13px;
+        margin-bottom: 10px;
 		@media(max-width: 1366px) {
 			min-height: 54px;
 		}
@@ -192,6 +198,7 @@ section.whats-new {
         font-size: 13px;
         &.dt-srt-end{
             font-size: 12px;
+            min-height: 18px;
             @media(max-width: 576px){
                 font-size: 11px;
             }
@@ -549,6 +556,14 @@ section.whats-new {
         }
     }
 }
+@media(max-width: 991px){
+    .explore-text-wrapper{
+        .category{
+            margin-bottom: 6px;
+        }
+    }
+}
+
 .article-explore{
     background-color: #F0F9FF;
     .explore{
