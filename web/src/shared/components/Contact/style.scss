@@ -155,6 +155,9 @@
                             height: 30px;
                             line-height: 30px;
                         }
+                        &::-ms-clear{
+                            border: 1px solid #ddd;
+                        }
                     }
                     .options{
                         color: #626262;
@@ -242,6 +245,9 @@
                     }
                     &:-moz-placeholder { /* Firefox 18- */
                         color: #626262;
+                    }
+                    &::-ms-clear{
+                        border: 1px solid #D3D3D3;
                     }
                 }
                 &.has-error{

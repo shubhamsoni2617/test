@@ -427,10 +427,9 @@
 					@media(max-width: 767px){
 						padding: 21px 5px 8px;
                     }
-                    &.user-icon, &.cart-icon{
-                        height: 60px;
-                        width: 50px;
-                        display: block;
+                    &.user-icon, &.cart-icon, &.search-icon{
+                        height: 45px;
+                        width: 45px;
                         @media (max-width: 767px){
                             height: 35px;
                             width: 35px;
@@ -440,7 +439,13 @@
                                 padding: 0;
                             }
                         }
-                    }
+					}
+					&.search-icon{
+						padding: 23px 5px 8px;
+						@media(min-width: 767px){
+							display: none;
+						}
+					}
 					&:hover {
                         background-color: #092438;
 						transition: 0.8s color;
@@ -3222,16 +3227,17 @@ section.explore {
 				padding: 2px 4px;
 				font-size: 14px;
 				min-width: 50px;
-				margin: 0 3px 10px;
+				margin: 0 3px 5px;
 				@media (max-width: 767px) {
 					width: auto;
-					margin: 0 3px 6px;
+					margin: 0 3px 3px;
 					display: inline-block;
-					padding: 0 10px;
+					padding: 0 5px;
 					font-size: 11px;
 					line-height: 18px;
 					min-height: 18px;
 					height: auto;
+					text-align: left;
 				}
 			}
 			.item-wrapper {

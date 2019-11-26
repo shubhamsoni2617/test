@@ -36,10 +36,10 @@
         h1 {
             color: #ffffff;
             font-size: 30px;
-            line-height: 37px;
-            font-weight: 500;
+            line-height: 37px;            
             font-family: 'Montserrat', sans-serif;
-            margin: 0px;
+            font-weight: 600;
+            margin-bottom: 2px;
             @media(max-width: 991px) {
                 font-size: 18px;
                 line-height: 20px;
@@ -60,6 +60,6 @@
         }
     }
     .breadcrumb li a{
-      font-weight: 300;
+      font-weight: 400;
     }
 }
