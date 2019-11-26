@@ -31,7 +31,13 @@ const Article = ({ article }) => {
           <h3>{article.title}</h3>
         </Link>
         <div className="article-place-date">
-          <span className="article-place">{article.author_name}</span>
+          {article.author_name && (
+            <span className="article-place">
+              By{' '}
+              {article.author_name[0].toUpperCase() +
+                article.author_name.slice(1)}
+            </span>
+          )}
           <span className="date">{article.date}</span>
         </div>
         <p>
@@ -52,8 +58,9 @@ const Article = ({ article }) => {
       </div>
       <div className="article-item-img">
         <Image
-          src={article.image && article.image[0]}
-          type="MediumHorizontal"
+          src={`article && article.image`}
+          type="BigBanner"
+          className="img-fluid"
         />
       </div>
     </div>
