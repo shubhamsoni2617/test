@@ -51,10 +51,10 @@ const Festival = ({ match }) => {
     ExploreService.getTemplateTwo(params)
       .then(res => {
         if (res && res.data && res.data.data.length > 0) {
-          setTimeout(() => {
-            setTemplateTwoContent(res.data.data[0]);
-            setLoading(false);
-          }, 2000);
+          // setTimeout(() => {
+          setTemplateTwoContent(res.data.data[0]);
+          setLoading(false);
+          // }, 2000);
         } else if (res && res.data.data.length === 0) {
           setLoading(false);
         }
@@ -101,6 +101,7 @@ const Festival = ({ match }) => {
   const {
     title,
     subtitle,
+    date,
     description,
     section_one,
     section_two,
@@ -120,6 +121,7 @@ const Festival = ({ match }) => {
       breadcrumbSlug={breadcrumbSlug}
       title={title}
       subtitle={subtitle}
+      date={date}
       description={description}
     />
   ) : loading ? (
