@@ -13,7 +13,11 @@
     .banner-carousel{
         position: relative;
         height: 100%;
-        flex: 0 0 65.3%;
+        -webkit-box-flex: 0 0 65.3%;      
+        -moz-box-flex: 0 0 65.3%;               
+        -webkit-flex: 0 0 65.3%;       
+        -ms-flex: 0 0 65.3%;              
+        flex: 0 0 65.3%;                  
         width: 65.3%;
         @media(max-width: 991px){
           flex: 0 0 100%;

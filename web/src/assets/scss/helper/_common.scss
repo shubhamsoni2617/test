@@ -65,7 +65,7 @@ ul {
 
 // Buttons
 button{
-    &:focus{
+    &:focus, &:active{
         outline: none;
     }
 }
@@ -342,7 +342,7 @@ button,
 			@media (max-width: 767px) {
 				margin-left: 1px;
 				padding-bottom: 1px;
-				max-width: 5px;
+				max-width: 8px;
 			}
 		}
 		&:hover {
@@ -1383,7 +1383,7 @@ input:disabled {
 			margin-right: 10px;
 			width: calc(100% - 10px) !important;
 		}
-		.advertisementTop{
+		.homeTop{
 			width: calc(100% - 10px) !important;
 		}
 		header.homepage {

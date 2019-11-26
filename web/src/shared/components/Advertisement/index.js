@@ -71,7 +71,7 @@ const Advertisement = props => {
     return <div className={`show-add no-ads`} ref={refValue}></div>;
 
   return (
-    <div className="advertisementTop" ref={refValue}>
+    <div className="homeTop" ref={refValue}>
       {homeAdv &&
         homeAdv.map(elem => {
           return (
