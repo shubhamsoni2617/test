@@ -13,6 +13,15 @@
         .inner{
             bottom: 0px !important;
         }
+        .fixed-buttons-events{
+            .filter{
+                img{
+                    @media(max-width: 767px){
+                        width: 15px;
+                    }
+                }
+            }
+        }
     }
     .events-listing{
         padding: 15px 0px 0px 10px;
