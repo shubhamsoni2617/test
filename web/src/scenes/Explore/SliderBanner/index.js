@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Slider from 'react-slick';
 import './style.scss';
 import ReactPlayer from 'react-player';
 
 const SliderBanner = ({ data }) => {
+  const [activeSlide, setActiveSlide] = useState(0);
+
   const settings = {
     dots: true,
     arrows: true,
@@ -11,7 +13,10 @@ const SliderBanner = ({ data }) => {
     speed: 500,
     rows: 1,
     slidesPerRow: 1,
-    autoplay: true
+    autoplay: false,
+    beforeChange: current => {
+      setActiveSlide(current);
+    }
   };
 
   return data && data.length ? (
@@ -32,6 +37,7 @@ const SliderBanner = ({ data }) => {
                   width="100%"
                   height="349px"
                   controls
+                  playing={activeSlide === i && true}
                 />
               );
             }

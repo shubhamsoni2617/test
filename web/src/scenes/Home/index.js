@@ -203,7 +203,13 @@ class Home extends Component {
               case 'CUS_SEC_2':
                 return <CustomSectionTwo heading={label} customData={[]} />;
               case 'CUS_SEC_3':
-                return <CustomSectionThree heading={label} customData={[]} />;
+                return (
+                  <CustomSectionThree
+                    heading={label}
+                    customData={[]}
+                    isHomePage={true}
+                  />
+                );
             }
           })}
 
