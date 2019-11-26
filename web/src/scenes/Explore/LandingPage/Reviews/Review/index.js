@@ -13,7 +13,9 @@ const Review = ({ reviewData }) => {
       </div>
       <Link
         to={
-          reviewData && reviewData.data[0].type === 'multi_show_template'
+          reviewData &&
+          reviewData.data &&
+          reviewData.data[0].type === 'multi_show_template'
             ? `/explore/festival/${reviewData.data[0].id}`
             : `/explore/article/${reviewData.data[0].id}`
         }

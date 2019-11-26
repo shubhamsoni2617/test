@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, Fragment } from 'react';
 import './style.scss';
 import ExploreService from '../../../shared/services/ExploreService';
 import Banner from './Banner';
@@ -10,10 +10,14 @@ import Trending from './Trending';
 import CustomtomSectionTwo from '../../Home/CustomSectionTwo';
 import CustomtomSectionThree from '../../Home/CustomSectionThree';
 import GiftCard from '../../Home/GiftCard';
+import Utilities from '../../../shared/utilities';
+import ShimmerEffect from '../../../shared/components/ShimmerEffect';
 
 const Explore = () => {
   const [data, setData] = useState([]);
   const [sectionOrders, setSectionOrders] = useState([]);
+  const [loading, setLoading] = useState(false);
+
   useEffect(() => {
     scrollToTop();
     const sectionOrders = [
@@ -28,6 +32,7 @@ const Explore = () => {
       { order: 'trending' }
     ];
     setSectionOrders(shuffle(sectionOrders));
+    setLoading(true);
     getExploreLanding();
   }, []);
 
@@ -39,11 +44,13 @@ const Explore = () => {
       .then(res => {
         if (res && res.data) {
           setData(res.data.data[0]);
+          setLoading(false);
         }
       })
       .catch(err => {
         if (err && err.response) {
           console.log(err.response);
+          setLoading(false);
         }
       });
   };
@@ -60,6 +67,19 @@ const Explore = () => {
       array[index] = temp;
     }
     return array;
+  };
+
+  const reusedShimmer = (height, count, type, propCls) => {
+    return (
+      <ShimmerEffect
+        height={height}
+        count={count}
+        type={type}
+        propCls={`shm_col-xs-${
+          Utilities.mobilecheck() ? 12 : 2
+        } col-md-${propCls}`}
+      />
+    );
   };
 
   const {
@@ -103,16 +123,20 @@ const Explore = () => {
     festivals.data &&
     festivals.data.length > 0 && <LandingFestivals festivals={festivals} />;
 
-  const reviewsPart = section_five && section_five && section_five.length > 0 && (
-    <Reviews reviewsData={section_five} />
-  );
+  const reviewsPart = section_five &&
+    section_five &&
+    section_five.length > 0 && <Reviews reviewsData={section_five} />;
 
   const trendingPart = trending &&
     trending.sub_section_six &&
     trending.sub_section_six.length > 0 && <Trending trending={trending} />;
 
   const videoGalleryPart = video_gallery && video_gallery.length > 0 && (
-    <CustomtomSectionThree heading="Video Gallery" customData={video_gallery} />
+    <CustomtomSectionThree
+      heading="Video Gallery"
+      customData={video_gallery}
+      isHomePage={true}
+    />
   );
 
   const sectionArray = [
@@ -129,15 +153,48 @@ const Explore = () => {
 
   return (
     <div className="explore-wrapper">
-      {bannerPart}
-      {whatsUpPart}
-      {royalsPart}
-      {articlesPart}
-      {giftCardPart}
-      {festivalsPart}
-      {reviewsPart}
-      {trendingPart}
-      {videoGalleryPart}
+      {loading ? (
+        <Fragment>
+          <div className={Utilities.mobilecheck() ? '' : 'shimmer-margin'}>
+            <div className="simmerOuter">
+              {reusedShimmer(
+                Utilities.mobilecheck() ? 200 : 300,
+                1,
+                'SOLID',
+                12
+              )}
+            </div>
+          </div>
+          <div className="shimmer-margin">
+            {reusedShimmer(
+              Utilities.mobilecheck() ? 200 : 300,
+              Utilities.mobilecheck() ? 1 : 4,
+              'TILE',
+              Utilities.mobilecheck() ? 12 : 3
+            )}
+          </div>
+          <div className="shimmer-margin">
+            {reusedShimmer(
+              300,
+              Utilities.mobilecheck() ? 1 : 2,
+              'TILE',
+              Utilities.mobilecheck() ? 12 : 6
+            )}
+          </div>
+        </Fragment>
+      ) : (
+        <Fragment>
+          {bannerPart}
+          {whatsUpPart}
+          {royalsPart}
+          {articlesPart}
+          {giftCardPart}
+          {festivalsPart}
+          {reviewsPart}
+          {trendingPart}
+          {videoGalleryPart}
+        </Fragment>
+      )}
 
       {/* {sectionOrders &&
         sectionOrders.map(({ order }) => {

@@ -58,7 +58,7 @@ const Article = ({ article }) => {
       </div>
       <div className="article-item-img">
         <Image
-          src={`article && article.image`}
+          src={article && article.image}
           type="BigBanner"
           className="img-fluid"
         />

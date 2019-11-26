@@ -209,9 +209,9 @@ const Festival = ({ match }) => {
     <div className="shimmer-margin">
       {reusedShimmer(
         300,
-        Utilities.mobilecheck() ? 1 : 4,
+        Utilities.mobilecheck() ? 1 : 2,
         'TILE',
-        Utilities.mobilecheck() ? 12 : 3
+        Utilities.mobilecheck() ? 12 : 6
       )}
     </div>
   ) : null;
