@@ -49,7 +49,7 @@ const AllEvents = ({ sectionFour }) => {
                   setLimit(sectionFour.events.length);
                 }}
               >
-                Load more  ({sectionFour.events.length - limit}) <Image src={arrowDown} />
+                Load more  ({sectionFour.events.length - limit})<Image src={arrowDown} />
               </a>
             )}
         </div>

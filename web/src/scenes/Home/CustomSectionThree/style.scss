@@ -66,10 +66,11 @@
             padding-bottom: 13px;
             &.active{
                 .video-subwrapper-image{
-                    border: 2px #0098FF solid;
+                  border: 2px #0098FF solid;
                 }
             }
             .video-subwrapper-image{
+                cursor: pointer;
                 width: 37%;
                 flex: 0 0 37%;
                 overflow: hidden;
@@ -94,8 +95,8 @@
                 font-size: 15.3px;
                 line-height: 18px;
                 color: #343434;
-                width: 63%;
-                flex: 0 0 63%;
+                width: 62%;
+                flex: 0 0 62%;
                 padding-left: 12px;
                 font-weight: 500;
                 text-overflow: ellipsis;

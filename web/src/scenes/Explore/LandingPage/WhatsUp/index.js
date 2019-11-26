@@ -29,7 +29,7 @@ const WhatsUp = ({ whatsUpData }) => {
                   >
                     <div className="image-wrapper">
                       <div className="item-img">
-                        <Image src={image && image[0]} type="Horizontal" />
+                        <Image src={image} type="Horizontal" />
                       </div>
                       {genre && (
                         <span className="category">

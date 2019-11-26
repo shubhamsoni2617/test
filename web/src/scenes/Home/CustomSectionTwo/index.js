@@ -87,9 +87,7 @@ const CustomSectionTwo = ({ heading, customData, isMoreFrom }) => {
                 target="_blank"
                 className="royal-rightside-textwrapper"
               >
-                <a>
-                  <h3>{data && data[0] && data[0].title}</h3>
-                </a>
+                <h3>{data && data[0] && data[0].title}</h3>
                 <p>{data && data[0] && data[0].section_date}</p>
               </a>
             )}
@@ -117,9 +115,7 @@ const CustomSectionTwo = ({ heading, customData, isMoreFrom }) => {
                           </div>
                         )}
                         <div className="royal-item-content">
-                          <h3>
-                            <a>{elem.title}</a>
-                          </h3>
+                          <h3>{elem.title}</h3>
                           <p>{elem.section_date}</p>
                         </div>
                       </a>
