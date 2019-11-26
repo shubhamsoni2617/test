@@ -23,7 +23,7 @@ const Item = ({ event, history }) => {
               {event.primary_genre}
             </span>
           </div>
-          {event && event.event_date && (
+          {event && (
             <p className="featured-event-date">{event.event_date}</p>
           )}
           {event && event.title && (
