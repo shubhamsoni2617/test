@@ -103,7 +103,7 @@ const Explore = () => {
     festivals.data &&
     festivals.data.length > 0 && <LandingFestivals festivals={festivals} />;
 
-  const reviewsPart = section_five && section_five.length > 0 && (
+  const reviewsPart = section_five && section_five && section_five.length > 0 && (
     <Reviews reviewsData={section_five} />
   );
 
