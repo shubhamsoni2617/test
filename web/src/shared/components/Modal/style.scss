@@ -58,6 +58,9 @@
                     font-size: 14px;
                     line-height: 20px;
                 }
+                &:last-child{
+                    margin-bottom: 0;
+                }
                 a{
                     font-size: 15px;
                     strong{
