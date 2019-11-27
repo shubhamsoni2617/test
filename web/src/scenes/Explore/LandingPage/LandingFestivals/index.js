@@ -13,9 +13,9 @@ const LandingFestivals = ({ festivals }) => {
         <div className="section-top-wrapper">
           <h2>{festivals && festivals.heading}</h2>
           <div className="carousel-dots">
-            <Link to="/explore/articles">
+            <a href={`/explore/articles?c=${festivals.id}`} target="_blank">
               See all <img src={Arrow} className="img-fluid" alt="arrow" />
-            </Link>
+            </a>
           </div>
         </div>
         <div className="festivals-container">

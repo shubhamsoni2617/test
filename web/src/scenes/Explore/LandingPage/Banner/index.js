@@ -2,6 +2,7 @@ import React, { useRef, useState, useEffect } from 'react';
 import './style.scss';
 import Slider from 'react-slick';
 import Image from '../../../../shared/components/Image';
+import Utilities from '../../../../shared/utilities';
 
 const BannerSlider = ({ bannerData }) => {
   const [nav1, setNav1] = useState(null);
@@ -42,7 +43,10 @@ const BannerSlider = ({ bannerData }) => {
                       <div
                         className="sub-text"
                         dangerouslySetInnerHTML={{
-                          __html: banner.banner_description
+                          __html: Utilities.showLimitedChars(
+                            banner.banner_description,
+                            230
+                          )
                         }}
                       />
                     </div>
