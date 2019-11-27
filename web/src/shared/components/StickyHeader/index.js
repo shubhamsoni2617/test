@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { Scrollbars } from 'react-custom-scrollbars';
@@ -18,7 +18,7 @@ import TitleToolTip from './TitleToolTip';
 
 function Button({ styleObj, url, text }) {
   // if (!text) return null;
-
+  console.log('url', url);
   return (
     <div className="buy-tickets-btn">
       <a style={styleObj} href={url} target="_blank">
@@ -203,20 +203,37 @@ function EventDateTime({
 function StickyHeader(props) {
   const [showEventDateBlock, setEventDateBlock] = useState(false);
   const [venueDetailsPopup, setVenueDetailsPopup] = useState(false);
+  const [stickyHeader, setStickyHeader] = useState(false);
+
+  useEffect(() => {
+    if (props.sticky && props.elemOffsetTop > 100) {
+      const handleScroll = () => {
+        if (!stickyHeader && window.pageYOffset >= props.elemOffsetTop + 100) {
+          setStickyHeader(true);
+        } else if (window.pageYOffset < props.elemOffsetTop) {
+          setStickyHeader(false);
+        }
+      };
+      window.addEventListener('scroll', handleScroll);
+      return () => {
+        window.removeEventListener('scroll', handleScroll);
+      };
+    }
+  }, [props.elemOffsetTop, props.sticky]);
+
   const {
     detailData,
     sticky,
     showSocialShare,
     shareUrl,
-    setHeader,
     seatMapButton,
     buyPackages
   } = props;
   return (
     <div
       className={`event-detail ${sticky ? 'sticky-topbar' : ''} ${
-        sticky && setHeader ? 'animate' : ''
-        }`}
+        sticky && stickyHeader ? 'animate' : ''
+      }`}
     >
       {detailData.images && detailData.images.length > 0 && (
         <div className="tickets-demo-img">
@@ -255,16 +272,18 @@ function StickyHeader(props) {
 
         {sticky ? (
           <TitleToolTip
-            title={<h3 dangerouslySetInnerHTML={{__html :detailData.title}}></h3>}
+            title={
+              <h3 dangerouslySetInnerHTML={{ __html: detailData.title }}></h3>
+            }
             lines={props.lines}
             height={Utilities.mobileAndTabletcheck() ? 25 : 30}
             eventDetail
           />
         ) : (
-            <div className="title top">
-              <h3 dangerouslySetInnerHTML={{__html :detailData.title}}></h3>
-            </div>
-          )}
+          <div className="title top">
+            <h3 dangerouslySetInnerHTML={{ __html: detailData.title }}></h3>
+          </div>
+        )}
 
         {detailData.promoters && detailData.promoters.length > 0 && (
           <div className="promoters">
@@ -287,8 +306,7 @@ function StickyHeader(props) {
           </div>
         )}
 
-
-{detailData.pop_up_message.title && (
+        {detailData.pop_up_message.title && (
           <div className="info-tooltip">
             <span className="info" onClick={() => props.openNotice()}>
               <img src={Info} alt="Info" />
@@ -304,8 +322,6 @@ function StickyHeader(props) {
             />
           </span>
         </div>
-        
-
 
         <div className="ticket-date-price">
           <ul className="date-address">
@@ -346,10 +362,10 @@ function StickyHeader(props) {
                           eventDetail
                         />
                       ) : (
-                          <div>
-                            <span>{detailData.venue_name.name}</span>
-                          </div>
-                        )}
+                        <div>
+                          <span>{detailData.venue_name.name}</span>
+                        </div>
+                      )}
                     </Link>
                     <button
                       className="link"
