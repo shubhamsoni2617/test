@@ -346,7 +346,8 @@ function StickyHeader(props) {
                 <li className="event-address">
                   <img
                     className="location-gray"
-                    width={16}
+                    style={{ height: 20, width: 19 }}
+                    width={19}
                     height={19}
                     src={locationGray}
                     alt="location"
