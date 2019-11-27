@@ -7,6 +7,7 @@ const TermsPrivacy = ({ cmsPageType }) => {
   const [termsprivacy, setTermsPrivacy] = useState(null);
   const [tabTitle, setTabTitle] = useState('');
   const [tabDescription, setTabDescription] = useState('');
+  const [tabIndex, setTabIndex] = useState(0);
 
   let termsPrivacyArr;
 
@@ -47,23 +48,36 @@ const TermsPrivacy = ({ cmsPageType }) => {
         break;
     }
   };
-  const handleActiveTab = (title, description) => {
+  const handleActiveTab = (title, description, i) => {
     setTabTitle(title);
     setTabDescription(description);
-    let shareUrl = window.location.origin + renderSpecificLink(title);
+    setTabIndex(i);
+    let link;
+    const routeParts = title.split(' ');
+    if (routeParts[0] && routeParts[1] && routeParts[2]) {
+      link =
+        routeParts[0].toLowerCase() +
+        '-' +
+        routeParts[1].toLowerCase() +
+        '-' +
+        routeParts[2].toLowerCase();
+    } else if (routeParts[0] && routeParts[1]) {
+      link = routeParts[0].toLowerCase() + '-' + routeParts[1].toLowerCase();
+    }
+    let shareUrl = window.location.origin + renderSpecificLink(i, link);
     window.history.pushState('string', 'Title', shareUrl);
   };
 
-  const renderSpecificLink = title => {
-    switch (title) {
-      case 'Terms and Conditions of Ticket Sales ':
-        return '/terms-and-conditions';
-      case 'Privacy Policy':
-        return '/privacy-policy';
-      case 'Conditions of Access of  SISTIC Website':
-        return '/condition-of-access';
-      case 'Transaction Security':
-        return '/transaction-security';
+  const renderSpecificLink = (index, link) => {
+    switch (index) {
+      case 0:
+        return `/${link}`;
+      case 1:
+        return `/${link}`;
+      case 2:
+        return `/${link}`;
+      case 3:
+        return `/${link}`;
     }
   };
 
@@ -96,7 +110,7 @@ const TermsPrivacy = ({ cmsPageType }) => {
                           : 'nav-item nav-link'
                       }
                       onClick={() =>
-                        handleActiveTab(category.title, category.description)
+                        handleActiveTab(category.title, category.description, i)
                       }
                     >
                       {category.title}

@@ -21,10 +21,9 @@ const Search = props => {
   const [constant, setConstant] = useState(6);
   const [error, setError] = useState(false);
   const [loadMore, setLoadMore] = useState(false);
-  const searchKeyword = decodeURI(props.location.search.split('=')[1]);
+  const searchKeyword = decodeURI(props.location.search.split('?')[1]);
   const prevSearchKeyword = usePrevious(searchKeyword);
   const prevDefaultCategoryId = usePrevious(defaultCategoryId);
-
   useEffect(() => {
     window.scrollTo(0, 0);
     setDefaultCategoryId('all');

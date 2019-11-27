@@ -22,14 +22,14 @@ const WhatsUp = ({ whatsUpData }) => {
                     className="item-wrapper"
                     to={
                       type === 'multi_show_template'
-                        ? `/explore/festival/${id}`
-                        : `/explore/article/${id}`
+                        ? `/explore/2/${id}`
+                        : `/explore/1/${id}`
                     }
                     key={title}
                   >
                     <div className="image-wrapper">
                       <div className="item-img">
-                        <Image src={image && image[0]} type="Horizontal" />
+                        <Image src={image} type="Horizontal" />
                       </div>
                       {genre && (
                         <span className="category">

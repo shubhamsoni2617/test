@@ -14,6 +14,7 @@ import logo from '../../../assets/images/logo.png';
 import AppleLogo from '../../../assets/images/apple.svg';
 import fb from '../../../assets/images/fb.svg';
 import insta from '../../../assets/images/insta-unfill.svg';
+import searchImage from '../../../assets/images/search.svg';
 import Calender from '../../../shared/components/Calender';
 import DateRangeFilter from '../../../shared/components/DateRangeFilter';
 import { Submenu, SubmenuWrap } from '../../../shared/components/Submenu';
@@ -189,6 +190,7 @@ const TopNav = props => {
 
     if (location.pathname) {
       let pathArr = location.pathname.split('/');
+
       if (pathArr.length) {
         if (
           (pathArr[1] === 'events' && location.pathname.length > 8) ||
@@ -204,19 +206,19 @@ const TopNav = props => {
         pathArr.length &&
         (pathArr[1] === 'events' ||
           pathArr[1] === 'promotions' ||
-          pathArr[1] === 'attraction' ||
+          pathArr[1] === 'attractions' ||
           pathArr[1] === 'explore')
       ) {
         setPathName(pathArr[1]);
         setMenuActive(true);
       } else if (
         pathArr[1] === 'contact-us' ||
-        pathArr[1] === 'about-us' ||
-        pathArr[1] === 'career' ||
+        pathArr[1] === 'corporate/about-us' ||
+        pathArr[1] === 'corporate/careers' ||
         pathArr[1] === 'system-licensing' ||
-        pathArr[1] === 'advertise' ||
-        pathArr[1] === 'sell-event-tickets' ||
-        pathArr[1] === 'b2b' ||
+        pathArr[1] === 'corporate/advertise-with-us' ||
+        pathArr[1] === 'corporate/ticket-with-us' ||
+        pathArr[1] === 'corporate' ||
         pathArr[1] === 'apipartners'
       ) {
         setChangeHeader(true);
@@ -320,6 +322,12 @@ const TopNav = props => {
             </div>
             <div className="top-header-right">
               <ul>
+                <li className="search-icon">
+                  <a href="">
+                    <img src={searchImage} className="img-fluid" alt="search" />
+                  </a>
+                  <span></span>
+                </li>
                 <li className="user-icon">
                   <a href="https://ticketing.sistic.com.sg/sistic/patron/management">
                     <img src={MainLogo} className="img-fluid" alt="send" />
@@ -328,7 +336,7 @@ const TopNav = props => {
                 </li>
                 <MiniCart data={miniCartData} />
                 <li className="ticket-withus">
-                  <Link to="/sell-event-tickets">Ticket With Us</Link>
+                  <Link to="/corporate/ticket-with-us">Ticket With Us</Link>
                 </li>
               </ul>
             </div>
@@ -359,10 +367,10 @@ const TopNav = props => {
                 </li>
                 <li
                   className={
-                    menuActive && pathName === 'attraction' ? 'active' : ''
+                    menuActive && pathName === 'attractions' ? 'active' : ''
                   }
                 >
-                  <Link to="/attraction">Attractions</Link>
+                  <Link to="/attractions">Attractions</Link>
                 </li>
                 <li
                   className={
@@ -420,7 +428,7 @@ const TopNav = props => {
                 <span>Login/ Register</span>
               </li>
               <li className="ticket-withus">
-                <Link to="/sell-event-tickets">Ticket With Us</Link>
+                <Link to="/corporate/ticket-with-us">Ticket With Us</Link>
               </li>
             </ul>
             <ul>
@@ -532,7 +540,7 @@ const TopNav = props => {
                 </ul>
               </li>
               <li>
-                <Link to="/attraction" onClick={() => handleNavigationClose()}>
+                <Link to="/attractions" onClick={() => handleNavigationClose()}>
                   Attractions
                 </Link>
               </li>
@@ -629,21 +637,25 @@ const TopNav = props => {
                       >
                         <ul className="submenu">
                           <li className="has-submenu">
-                            <Link to="/about-us">About Us</Link>
+                            <Link to="/corporate/about-us">About Us</Link>
                           </li>
                           <li className="has-submenu">
-                            <Link to="/sell-event-tickets">Sell with Us</Link>
+                            <Link to="/corporate/ticket-with-us">
+                              Sell with Us
+                            </Link>
                           </li>
                           <li className="has-submenu">
-                            <Link to="/system-licensing">
+                            <Link to="/corporate/ticketing-technology">
                               Ticketing Technology
                             </Link>
                           </li>
                           <li className="has-submenu">
-                            <Link to="/apipartners">Partner with Us</Link>
+                            <Link to="/corporate/partner-with-us">
+                              Partner with Us
+                            </Link>
                           </li>
                           <li className="has-submenu">
-                            <Link to="/career">Careers</Link>
+                            <Link to="/corporate/careers">Careers</Link>
                           </li>
                         </ul>
                       </SubmenuWrap>

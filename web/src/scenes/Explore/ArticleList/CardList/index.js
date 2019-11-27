@@ -5,16 +5,21 @@ import Utilities from '../../../../shared/utilities';
 import ShimmerEffect from '../../../../shared/components/ShimmerEffect';
 import noEvent from '../../../../assets/images/no-event.svg';
 
-const CardList = ({ history, articleList, totalRecords }) => {
+const CardList = React.forwardRef((props, ref) => {
+  const { history, articleList, totalRecords } = props;
   let textLimit = Utilities.mobilecheck() ? 45 : 50;
   return articleList.length ? (
     articleList.map(cardData => {
       let routePath =
         cardData.type === 'templates_1_2_'
-          ? `/explore/article/${cardData.id}`
-          : `/explore/festival/${cardData.id}`;
+          ? `/explore/1/${cardData.id}`
+          : `/explore/2/${cardData.id}`;
       return (
-        <div key={cardData.id} onClick={() => history.push(routePath)}>
+        <div
+          key={cardData.id}
+          ref={ref}
+          onClick={() => history.push(routePath)}
+        >
           <div className="event-block">
             <div className="article-category-group">
               {cardData.categories &&
@@ -43,14 +48,20 @@ const CardList = ({ history, articleList, totalRecords }) => {
                       })}
                   </ul>
                 </div>
-                <h3>{cardData.title}</h3>
-                <div className="item-title">
-                  <span>{cardData.description.slice(0, textLimit)}</span>
-                  <span className="article-show-more">...More</span>
-                </div>
-                <div className="item-bottom">
-                  <span className="item-author">By {cardData.author_name}</span>
-                  <span className="item-date">{cardData.date}</span>
+                <div className="article-bottom-details">
+                  <div className="article-text-content">
+                    <h3>{cardData.title}</h3>
+                    <div className="item-title">
+                      <span>{cardData.description.slice(0, textLimit)}</span>
+                      <span className="article-show-more">...More</span>
+                    </div>
+                  </div>
+                  <div className="item-bottom">
+                    <span className="item-author">
+                      By {cardData.author_name}
+                    </span>
+                    <span className="item-date">{cardData.date}</span>
+                  </div>
                 </div>
               </div>
             </div>
@@ -76,5 +87,5 @@ const CardList = ({ history, articleList, totalRecords }) => {
       <p>Try again with more general search</p>
     </div>
   );
-};
+});
 export default CardList;

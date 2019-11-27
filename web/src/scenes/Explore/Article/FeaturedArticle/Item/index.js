@@ -4,7 +4,7 @@ import Image from '../../../../../shared/components/Image';
 import { Link } from 'react-router-dom';
 const Item = ({ event, history }) => {
   return (
-    <Link to={`/explore/article/${event.id}`}>
+    <Link to={`/explore/1/${event.id}`}>
       <div className="item">
         <div className="item-wrapper">
           <div className="featured-item-img">
@@ -23,9 +23,7 @@ const Item = ({ event, history }) => {
               {event.primary_genre}
             </span>
           </div>
-          {event && event.event_date && (
-            <p className="featured-event-date">{event.event_date}</p>
-          )}
+          {event && <p className="featured-event-date">{event.event_date}</p>}
           {event && event.title && (
             <h3>
               {Utilities.showLimitedChars(

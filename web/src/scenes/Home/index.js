@@ -43,7 +43,7 @@ class Home extends Component {
       itemsOrder: [
         {
           sec_key: 'TOP_PICKS',
-          label: 'Top Picks For you',
+          label: 'Top Picks For You',
           hide_section: '0'
         },
         {
@@ -203,7 +203,13 @@ class Home extends Component {
               case 'CUS_SEC_2':
                 return <CustomSectionTwo heading={label} customData={[]} />;
               case 'CUS_SEC_3':
-                return <CustomSectionThree heading={label} customData={[]} />;
+                return (
+                  <CustomSectionThree
+                    heading={label}
+                    customData={[]}
+                    isHomePage={true}
+                  />
+                );
             }
           })}
 

@@ -5,7 +5,8 @@ export default (
   selected,
   setFiltersForMobile,
   setFilteredId,
-  mobileCheck
+  mobileCheck,
+  hashId
 ) => {
   window &&
     window.scrollTo({
@@ -15,7 +16,13 @@ export default (
     });
   const updatedFilteredlist = [...filterList];
   let index = updatedFilteredlist.findIndex(list => list.id === selected);
-  updatedFilteredlist[index].isChecked = isChecked;
+  if (index > -1) {
+    updatedFilteredlist[index].isChecked = isChecked;
+  }
+  let indexHash = updatedFilteredlist.findIndex(list => list.id == hashId);
+  if (indexHash > -1) {
+    updatedFilteredlist[indexHash].isChecked = true;
+  }
   let filteredData = [];
   updatedFilteredlist.map(el => {
     if (el.isChecked) {

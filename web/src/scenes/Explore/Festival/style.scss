@@ -21,6 +21,7 @@
         overflow: hidden;
         padding-bottom: 40px;
         @media(max-width: 767px){
+            padding-bottom: 25px;
             .slick-slider{
                 .slick-dots{
                     li{
@@ -41,6 +42,7 @@
             width: 35px;
             background-position: 10px 32px;
             background-color: rgba(0, 0, 0, 0.7);
+            background-size: 10px 18px;
             @media(max-width: 768px){
                 display: none !important;
             }
@@ -66,7 +68,7 @@
         justify-content: space-between;
         padding: 22px 0 10px;
         @media(max-width: 767px){
-            padding: 0px 0 10px;
+            padding: 15px 0 10px;
         }
         .explore-nav{
             ul{
@@ -360,6 +362,12 @@
                                 -webkit-transition: 0.5s color;
                                 -moz-transition: 0.5s color;
                                 -o-transition: 0.5s color;
+                                text-overflow: ellipsis;
+                                display: -webkit-box;
+                                -webkit-line-clamp: 3;
+                                overflow: hidden;
+                                height: auto;
+                                -webkit-box-orient: vertical;
                                 @media (max-width: 768px) {
                                     font-size: 13px;
                                     max-height: 65px;
@@ -683,6 +691,10 @@
                 width: auto;
                 transform: rotate(90deg);
                 margin-left: 13px;
+                img{
+                    width: 12px;
+                    height: 13px;
+                }
             }
             @media(max-width: 768px){
                 display: none;
@@ -749,7 +761,7 @@
                .deal{
                     flex: 23.7%;
                     max-width: 23.6%;
-                    margin: 8px;
+                    margin: 8px 8px 8px 0px;
                     max-height: 505px;
                     overflow: hidden;
                     @media(max-width: 1024px){
