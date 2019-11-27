@@ -3,7 +3,6 @@ import './style.scss';
 import Image from '../../../../shared/components/Image';
 
 const PollsNServeys = ({ sectionSeven }) => {
-  sectionSeven[0].image;
   return sectionSeven[0].image || sectionSeven[0].heading ? (
     <section className="polls-survey">
       <div className="container-fluid">

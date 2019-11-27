@@ -20,7 +20,7 @@ const BannerSlider = ({ bannerData }) => {
     draggable: false
   };
   const settingsSlider = {
-    autoplay: false
+    autoplay: true
   };
   return (
     <section className="explore-page-banner">

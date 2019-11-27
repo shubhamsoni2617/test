@@ -50,7 +50,7 @@ const Festival = ({ match }) => {
     };
     ExploreService.getTemplateTwo(params)
       .then(res => {
-        if (res && res.data && res.data.data.length > 0) {
+        if (res && res.data.data && res.data.data.length > 0) {
           // setTimeout(() => {
           setTemplateTwoContent(res.data.data[0]);
           setLoading(false);
@@ -190,7 +190,9 @@ const Festival = ({ match }) => {
   ) : null;
 
   const articlesPart =
-    section_six && section_six.sub_section_six.length > 0 ? (
+    section_six &&
+    section_six.sub_section_six &&
+    section_six.sub_section_six.length > 0 ? (
       <Articles sectionSix={section_six} />
     ) : loading ? (
       <div className="shimmer-margin">
