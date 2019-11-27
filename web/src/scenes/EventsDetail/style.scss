@@ -98,6 +98,10 @@
           align-items: flex-end;
           flex-direction: column;
           justify-content: flex-end;
+          @media (max-width: 1280px){
+            left: 20px;
+            width: calc(100% - 50px);
+          }
           &.shows-over-tickets{
               bottom: 0;
           }
@@ -199,6 +203,21 @@
         display: block;
         margin-top: -10px;
         padding-top: 10px;
+        > div{
+            > div{
+                overflow: inherit !important;
+            }
+        }
+        @media(min-width: 768px) and (max-width: 980px){
+            > div{
+                overflow: inherit !important;
+                height: auto !important;
+                > div{
+                    position: relative !important;
+                    overflow: inherit !important;
+                }
+            }
+        }
         @media(max-width: 991px){
             overflow: inherit;
         }
@@ -621,9 +640,6 @@
                 font-size: 16px;
                 line-height: 20px;
                 margin-top: 7px;
-              }
-              @media(min-width: 768px) and (max-width: 980px){
-
               }
               &:hover{
                   background-color: #1f82d7;
@@ -1318,6 +1334,7 @@
               @media(min-width: 1024px) and (max-width: 1280px) {
                 right: 0;
               }
+              
           }
           h2{
               font-size: 22px;
@@ -1639,8 +1656,11 @@
   //tooltip design
   .info-tooltip, .share-tooltip{
       position: absolute;
-      right: 0px;
+      right: 15px;
       top: 12px;
+      @media(min-width: 768px) and (max-width: 1023px) {
+        right: 10px;
+      }
       .info, .share{
           .tooltip-text {
               position: absolute;

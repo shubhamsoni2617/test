@@ -372,7 +372,7 @@ function EventInfoBlock(props) {
                     <>
                       <img
                         className="location-gray"
-                        width={16}
+                        width={19}
                         height={19}
                         src={locationGray}
                         alt="location"
@@ -528,7 +528,7 @@ function EventInfoBlock(props) {
                     <>
                       <img
                         className="location-gray"
-                        width={16}
+                        width={19}
                         height={19}
                         src={locationGray}
                         alt="location"
