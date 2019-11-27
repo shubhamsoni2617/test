@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, Fragment } from 'react';
 import './style.scss';
 import MusicFestival from './MusicFestival';
 import AllEvents from './AllEvents';
@@ -16,7 +16,6 @@ import Utilities from '../../../shared/utilities';
 
 const Festival = ({ match }) => {
   const [templateTwoContent, setTemplateTwoContent] = useState([]);
-  const [sectionOrders, setSectionOrders] = useState([]);
   const [loading, setLoading] = useState(false);
 
   const breadcrumbSlug = [
@@ -27,20 +26,7 @@ const Festival = ({ match }) => {
 
   useEffect(() => {
     scrollToTop();
-    const sectionOrders = [
-      { order: 'welcome' },
-      { order: 'banner' },
-      { order: 'musical' },
-      { order: 'festival' },
-      { order: 'videoGallery' },
-      { order: 'pollNSurveys' },
-      { order: 'socialWall' },
-      { order: 'allEvents' },
-      { order: 'articles' },
-      { order: 'ticketDeals' }
-    ];
     setLoading(true);
-    setSectionOrders(shuffle(sectionOrders));
     getTemplateTwo();
   }, []);
 
@@ -51,10 +37,10 @@ const Festival = ({ match }) => {
     ExploreService.getTemplateTwo(params)
       .then(res => {
         if (res && res.data.data && res.data.data.length > 0) {
-          // setTimeout(() => {
-          setTemplateTwoContent(res.data.data[0]);
-          setLoading(false);
-          // }, 2000);
+          setTimeout(() => {
+            setTemplateTwoContent(res.data.data[0]);
+            setLoading(false);
+          }, 500);
         } else if (res && res.data.data.length === 0) {
           setLoading(false);
         }
@@ -84,20 +70,6 @@ const Festival = ({ match }) => {
     );
   };
 
-  const shuffle = array => {
-    var ctr = array.length,
-      temp,
-      index;
-    while (ctr > 0) {
-      index = Math.floor(Math.random() * ctr);
-      ctr--;
-      temp = array[ctr];
-      array[ctr] = array[index];
-      array[index] = temp;
-    }
-    return array;
-  };
-
   const {
     title,
     subtitle,
@@ -112,7 +84,8 @@ const Festival = ({ match }) => {
     section_seven,
     section_eigth,
     social_wall_url,
-    image
+    image,
+    order
   } = templateTwoContent;
 
   const bannerPart = image && image.length > 0 && <SliderBanner data={image} />;
@@ -224,39 +197,41 @@ const Festival = ({ match }) => {
   );
 
   const sectionArray = [
-    { orderNo: 'banner', returnPart: bannerPart },
-    { orderNo: 'welcome', returnPart: welcomePart },
-    { orderNo: 'festival', returnPart: festivalPart },
-    { orderNo: 'musical', returnPart: musicalPart },
-    { orderNo: 'allEvents', returnPart: allEventPart },
-    { orderNo: 'socialWall', returnPart: socialWallPart },
-    { orderNo: 'ticketDeals', returnPart: ticketDealsPart },
-    { orderNo: 'articles', returnPart: articlesPart },
-    { orderNo: 'pollNSurveys', returnPart: pollNSurveysPart },
-    { orderNo: 'videoGallery', returnPart: videoGalleryPart }
+    { orderNo: 'section_two', returnPart: festivalPart },
+    { orderNo: 'section_two', returnPart: musicalPart },
+    { orderNo: 'section_three', returnPart: allEventPart },
+    { orderNo: 'section_four', returnPart: socialWallPart },
+    { orderNo: 'section_five', returnPart: ticketDealsPart },
+    { orderNo: 'section_six', returnPart: articlesPart },
+    { orderNo: 'section_seven', returnPart: pollNSurveysPart },
+    { orderNo: 'section_eight', returnPart: videoGalleryPart }
   ];
 
   return (
     <div className="festival-wrapper">
       {bannerPart}
       {welcomePart}
-      {festivalPart}
-      {musicalPart}
-      {allEventPart}
-      {socialWallPart}
-      {ticketDealsPart}
-      {articlesPart}
-      {pollNSurveysPart}
-      {videoGalleryPart}
-
-      {/* {sectionOrders &&
-        sectionOrders.map(({ order }) => {
+      {order && order.length > 0 ? (
+        order &&
+        order.map(serverOrderNo => {
           return sectionArray.map(({ orderNo, returnPart }) => {
-            if (order === orderNo) {
+            if (serverOrderNo === orderNo) {
               return returnPart;
             }
           });
-        })} */}
+        })
+      ) : (
+        <Fragment>
+          {festivalPart}
+          {musicalPart}
+          {allEventPart}
+          {socialWallPart}
+          {ticketDealsPart}
+          {articlesPart}
+          {pollNSurveysPart}
+          {videoGalleryPart}
+        </Fragment>
+      )}
     </div>
   );
 };

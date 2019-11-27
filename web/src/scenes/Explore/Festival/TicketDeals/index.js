@@ -14,8 +14,8 @@ const TicketDeals = ({ sectionFive }) => {
             {sectionFive &&
               sectionFive.sub_section_five.map((elem, index) => {
                 return (
-                  <div className="deal">
-                    <a href={elem.url} key={index}>
+                  <div className="deal" key={index}>
+                    <a href={elem.url}>
                       <Image src={elem.uri} type="Vertical" />
                       <h3>{elem.title}</h3>
                     </a>
