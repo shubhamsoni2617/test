@@ -13,7 +13,7 @@ const SliderBanner = ({ data }) => {
     speed: 500,
     rows: 1,
     slidesPerRow: 1,
-    autoplay: false,
+    autoplay: true,
     beforeChange: current => {
       setActiveSlide(current);
     }
