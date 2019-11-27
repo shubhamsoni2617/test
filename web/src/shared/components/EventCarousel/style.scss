@@ -169,6 +169,7 @@
                 border: none;
                 outline: none;
             }
+            
             @media(max-width: 767px){
                 background-position: 8px 15px;
             }
@@ -182,8 +183,12 @@
                   border: none;
                   outline: none;
               }
+              @media(max-width: 768px){
+                bottom: -61px;
+            }
               @media(max-width: 767px){
                 background-position: 6px 15px;
+                bottom: -53px;
             }
           }
 
