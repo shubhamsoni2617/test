@@ -449,7 +449,11 @@ export default class EventsDetail extends Component {
           />
         </CSSTransition>
         {!shimmer && detailData && (
-          <div className={`main-container ${shimmer ? 'shimmer' : ''}`}>
+          <div
+            className={`main-container ${
+              detailData.is_show_over ? 'show-over' : ''
+            } ${shimmer ? 'shimmer' : ''}`}
+          >
             <ShowOver isShowOver={detailData.is_show_over} />
             {detailData.is_show_over === 0 && (
               <div>
@@ -502,17 +506,19 @@ export default class EventsDetail extends Component {
                     }
                   />
 
-                  <StickyHeader
-                    lines={1}
-                    sticky={true}
-                    elemOffsetTop={this.state.elemOffsetTop}
-                    // setHeader={setHeader}
-                    detailData={detailData}
-                    showSocialShare={showSocialShare}
-                    openNotice={this.openNotice}
-                    openSocialShare={this.openSocialShare}
-                    shareUrl={shareUrl}
-                  />
+                  {detailData && detailData.is_show_over === 0 && (
+                    <StickyHeader
+                      lines={1}
+                      sticky={true}
+                      elemOffsetTop={this.state.elemOffsetTop}
+                      // setHeader={setHeader}
+                      detailData={detailData}
+                      showSocialShare={showSocialShare}
+                      openNotice={this.openNotice}
+                      openSocialShare={this.openSocialShare}
+                      shareUrl={shareUrl}
+                    />
+                  )}
                 </section>
 
                 <section>
@@ -625,7 +631,9 @@ export default class EventsDetail extends Component {
               </>
             )}
 
-            {detailData && !detailData.id && <EventNotAvailable />}
+            {detailData && !detailData.id && !detailData.is_show_over && (
+              <EventNotAvailable />
+            )}
           </div>
         )}
       </div>
