@@ -523,7 +523,17 @@ export default class EventsDetail extends Component {
 
                 <section>
                   <AdvertisementSection
-                    data={detailData.wallpaper}
+                    data={
+                      Utilities.mobilecheck()
+                        ? {
+                            image: detailData.wallpaper.mobile_image,
+                            url: detailData.wallpaper.mobile_url
+                          }
+                        : {
+                            image: detailData.wallpaper.image,
+                            url: detailData.wallpaper.url
+                          }
+                    }
                     current={this.props.current}
                   />
                 </section>
