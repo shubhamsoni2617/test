@@ -123,12 +123,15 @@ const CustomSectionThree = ({ heading, customData, isHomePage }) => {
                             type="VdoSmall"
                           />
                         </span>
-                        <a className="video-subwrapper-text">{vdo.title}</a>
-                        {!isHomePage && vdo.count && (
+                        <div className="video-subwrapper-text">
+                        <a>{vdo.title}</a>
+                        {!isHomePage && (
                           <span>
-                            {vdo.count} {vdo.posted_date}
+                            {vdo.count !== ' views' ? vdo.count : null}{' '}
+                            {vdo.count !== ' views' ?".":null}{vdo.posted_date}
                           </span>
                         )}
+                        </div>
                       </div>
                     );
                   })}

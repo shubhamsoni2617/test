@@ -35,6 +35,9 @@
                 max-height: 349px;
                 object-fit: cover;
                 object-position: center;
+                @media(max-width: 768px){
+                    min-height: 190px;
+                }
             }
         }
         .slick-arrow{
@@ -202,6 +205,11 @@
                                 // max-height: 171px;
                                 // max-width: 107px;
                             }
+                            @media(max-width: 576px){
+                                max-height: 170px;
+                                object-position: unset;
+                                object-fit: unset;
+                            }
                         }
                         h3{
                             color: #FFFFFF;
@@ -243,10 +251,10 @@
                     padding: 20px 51px 25px 0px;
                     @media (max-width: 768px) {
                         overflow: auto;
-                        padding: 10px 22px 10px 3px;
+                        padding: 10px 22px 15px 3px;
                     }
                     @media(max-width: 767px){
-                        padding : 5px 0px 10px 3px;
+                        padding : 5px 0px 15px 3px;
                         width: 68%;
                         flex: 0 0 68%;
                     }
@@ -342,7 +350,7 @@
                             .image-conatiner{
                                 max-height: 185px;
                                 @media(max-width: 767px){
-                                    min-height: 98px;
+                                    min-height: 85px;
                                     height: auto;
                                 }
                             }
@@ -433,7 +441,7 @@
         }
     }
     .music-fest{
-        padding: 54px 0 0 0;
+        padding: 54px 0 50px 0;
         @media(max-width: 768px){
             padding: 23px 0;
         }
@@ -569,6 +577,7 @@
             padding: 0;
             @media (max-width: 767px){
                 font-size: 20px;
+                margin-bottom: 6px;
                 line-height: 24px;
             }
         }
