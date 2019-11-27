@@ -164,8 +164,7 @@ export default class EventsDetail extends Component {
       },
       synopsis: { language: '', description: '' },
       popupContent: '',
-      popupTitle: '',
-      data: {}
+      popupTitle: ''
     };
   }
 
@@ -214,6 +213,16 @@ export default class EventsDetail extends Component {
     this.setState({ shimmer: true });
     EventsService.getEventDetails(payload)
       .then(res => {
+        let newState = { detailData: res.data };
+        if (res.data && res.data.synopsis && res.data.synopsis.length > 0) {
+          newState = {
+            ...newState,
+            synopsis: {
+              language: res.data.synopsis[0].language,
+              description: res.data.synopsis[0].description
+            }
+          };
+        }
         if (
           res &&
           res.data &&
@@ -228,12 +237,12 @@ export default class EventsDetail extends Component {
             },
             () => {
               setTimeout(() => {
-                this.setState({ detailData: res.data });
+                this.setState(newState);
               }, 1000);
             }
           );
         } else {
-          this.setState({ detailData: res.data });
+          this.setState(newState);
           setTimeout(() => {
             this.setState({ shimmer: false });
           }, 1000);
@@ -334,14 +343,14 @@ export default class EventsDetail extends Component {
     }
   };
 
-  changeLang = synopsisObject => {
-    this.setState({
-      synopsis: {
-        language: synopsisObject.language,
-        description: synopsisObject.description
-      }
-    });
-  };
+  // changeLang = synopsisObject => {
+  //   this.setState({
+  //     synopsis: {
+  //       language: synopsisObject.language,
+  //       description: synopsisObject.description
+  //     }
+  //   });
+  // };
 
   handleClose = () => {
     if (this.state.showNotice) {
@@ -388,6 +397,7 @@ export default class EventsDetail extends Component {
     // getSynopsisData.languageArr = [];
     let accrodian = ['synopsis', 'pricedetail'];
     // this.onSynopsisData(detailData, getSynopsisData);
+    console.log('detail');
     return (
       <div className="event-detail-wrapper">
         {this.props.location && (
@@ -501,15 +511,10 @@ export default class EventsDetail extends Component {
                     {detailData.synopsis && detailData.synopsis.length > 0 && (
                       <AccordionSection
                         title="Synopsis"
-                        activeLang={
-                          synopsis.language || detailData.synopsis[0].language
-                        }
-                        desc={
-                          synopsis.description ||
-                          detailData.synopsis[0].description
-                        }
+                        activeLang={detailData.synopsis[0].language}
+                        desc={detailData.synopsis[0].description}
                         langArr={detailData.synopsis}
-                        changeLang={this.changeLang}
+                        // changeLang={this.changeLang}
                         noIcon={Utilities.mobileAndTabletcheck() ? false : true}
                         preExpanded={accrodian}
                         dynamicClass="synopsis-accordian"
@@ -579,10 +584,13 @@ export default class EventsDetail extends Component {
                           dynamicClass="promotion-accordian"
                         />
                       )}
-                    <AdvertisementSection data={detailData.rectangle_image} />
+                    {!Utilities.mobilecheck() && <AdvertisementSection data={detailData.rectangle_image} />}
                   </div>
                 </section>
                 <EventTags tags={detailData.tags} />
+
+                {Utilities.mobilecheck() && <AdvertisementSection data={detailData.rectangle_image} />}
+
                 <ArticleSection flag={true} code={code} />
               </div>
             )}

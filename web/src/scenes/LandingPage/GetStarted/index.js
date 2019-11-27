@@ -6,9 +6,9 @@ import { Link } from 'react-router-dom';
 const GetStarted = ({ getStartedData }) => {
   let imgArr = [getStartedimg1, getStartedimg2, getStartedimg3];
   let navigateArr = [
-    '/sell-event-tickets',
-    '/system-licensing',
-    '/apipartners'
+    '/corporate/ticket-with-us',
+    '/corporate/ticketing-technology',
+    '/corporate/partner-with-us'
   ];
   if (getStartedData) {
     getStartedData = getStartedData.map((el, i) => {

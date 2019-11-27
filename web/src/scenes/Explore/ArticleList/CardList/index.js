@@ -12,8 +12,8 @@ const CardList = React.forwardRef((props, ref) => {
     articleList.map(cardData => {
       let routePath =
         cardData.type === 'templates_1_2_'
-          ? `/explore/article/${cardData.id}`
-          : `/explore/festival/${cardData.id}`;
+          ? `/explore/1/${cardData.id}`
+          : `/explore/2/${cardData.id}`;
       return (
         <div
           key={cardData.id}
@@ -57,7 +57,11 @@ const CardList = React.forwardRef((props, ref) => {
                     </div>
                   </div>
                   <div className="item-bottom">
-                    <span className="item-author">By {cardData.author_name}</span>
+                    <span className="item-author">
+                      {cardData.author_name
+                        ? `By ${cardData.author_name}`
+                        : null}
+                    </span>
                     <span className="item-date">{cardData.date}</span>
                   </div>
                 </div>
@@ -71,19 +75,19 @@ const CardList = React.forwardRef((props, ref) => {
     <ShimmerEffect
       propCls={`${
         Utilities.mobileAndTabletcheck() ? 'shm_col-xs-6' : ''
-        } col-md-4`}
+      } col-md-4`}
       height={150}
       count={Utilities.mobileAndTabletcheck() ? 2 : 3}
       type="LIST"
     />
   ) : (
-        <div className="no-data">
-          <img src={noEvent} alt="No Event Data" />
-          <p>
-            <strong>No Data found</strong>
-          </p>
-          <p>Try again with more general search</p>
-        </div>
-      );
+    <div className="no-data">
+      <img src={noEvent} alt="No Event Data" />
+      <p>
+        <strong>No Data found</strong>
+      </p>
+      <p>Try again with more general search</p>
+    </div>
+  );
 });
 export default CardList;

@@ -271,6 +271,9 @@
             border-radius: 50%;
             background-size: 10px 10px;
             background-position: center;
+            &:hover{
+                border: none;
+            }
         }
         .slick-next{
             right: 4px;
@@ -281,6 +284,9 @@
             border-radius: 50%;
             background-size: 10px 10px;
             background-position: center;
+            &:hover{
+                border: none;
+            }
         }
         .slick-slider{
             .slick-list{
@@ -961,6 +967,9 @@
             background: url('../../../assets/images/left-arrow-white.svg') 10px 32px no-repeat;
             background-color: rgba(0, 0, 0, 0.7);
             background-size: 10px 18px;
+            &:hover{
+                border: none;
+            }
 
         }
         &.slick-next{
@@ -968,6 +977,9 @@
             background: url('../../../assets/images/right-arrow-white.svg') 10px 32px no-repeat;
             background-color: rgba(0, 0, 0, 0.7);
             background-size: 10px 18px;
+            &:hover{
+                border: none;
+            }
             // &:hover,
             // &:focus{
             //     border: none;

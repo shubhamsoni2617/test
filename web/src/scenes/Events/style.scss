@@ -333,6 +333,9 @@
 .event-listing-ads{
     padding-top: 45px;
     padding-left: 8px;
+    @media(min-width: 1400px) and (max-width: 1980px){
+        padding-left: 0;
+    }
     @media(max-width: 991px){
         padding-top: 0;
     }

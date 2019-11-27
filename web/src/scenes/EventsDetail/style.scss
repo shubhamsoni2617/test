@@ -97,6 +97,7 @@
           display: flex;
           align-items: flex-end;
           flex-direction: column;
+          justify-content: end;
           &.shows-over-tickets{
               bottom: 0;
           }
@@ -130,11 +131,15 @@
             height: 32px;
             padding: 0;
             background: none;
+            @media(max-width: 1024px){
+                padding: 0 20px;
+            }
                 img{
                     height: 20px;
                 }
                 &:hover{
                     background: none;
+                    border: none;
                 }
             }
 
@@ -162,13 +167,22 @@
         .tickets-desc{
             overflow-y: auto;
             position: absolute;
-            height: calc(100% - 90px);
-            width: 100%;
+            height: calc(100% - 95px);
+            width: calc(100% + 10px);
             left: 0;
             padding: 0 30px;
             margin-top: 68px;
             border-bottom: 1px solid #979797;
+            @media(max-width: 991px){
+                height: calc(100% - 55px);
+                margin-top: 40px;
+            }
             div {
+                div {
+                    &:first-child{
+                        margin-bottom: -16px !important;
+                    }
+                }
               div:nth-last-child(1) {
               background: #ebebeb;
             }
@@ -212,6 +226,9 @@
                 }
                 &:hover{
                   color: #0098FF;
+                  @media(max-width: 991px){
+                    color: #949494;
+                  }
                 }
             }
         }
@@ -311,8 +328,8 @@
               li {
                   display: inline-block;
                   list-style: none;
-                  margin: 0px 4px 4px 0;
-                  border: 1px solid rgba(106, 106, 106, 0.25);
+                  margin: 0px 8px 4px 0;
+                  border: 2px solid rgba(106, 106, 106, 0.25);
                   padding: 1px 5px;
                   background-color: transparent;
                   transition: 0.3s background-color;
@@ -321,9 +338,14 @@
                   -o-transition: 0.3s background-color;
                   color: rgba(106,106,106,0.8);
                   font-family: 'Montserrat', sans-serif;
-                  font-size: 14px;
+                  font-size: 13px;
                   line-height: 18px;
                   font-weight: 500;
+                  @media(max-width: 767px){
+                    border: 1px solid rgba(106, 106, 106, 0.25); 
+                    padding: 0px 3px;
+                    font-size: 12px;
+                  }
                   &.active{
                       background-color: #07B3F0;
                       border-color: #07B3F0;
@@ -371,7 +393,9 @@
             background: none;
             color: #0098ff;
             padding: 0;
+            font-size: 15px;
             font-weight: 500;
+            margin-left: 1px;
           }
           .date-address {
               margin: 0px 0 24px;
@@ -417,6 +441,9 @@
                       margin-right: 15px;
                       width: 19px;
                       margin-top: 3px;
+                      &.location-gray{
+                          margin-top: 0;
+                      }
                       &.sticky-location-icon {
                           display: none;
                       }
@@ -435,6 +462,9 @@
                               font-size: 18px;
                               color: #626262;
                           }
+                          a{
+                            font-size: 18px;
+                        }
                       }
                       &:first-child{
                         span{
@@ -442,10 +472,12 @@
                         }
                       }
                       .coin{
-                          width: 22px;
+                          width: 21px;
+                          height: 21px;
                       }
                       .seat-map{
                           margin-bottom: 10px;
+                          display: flex;
                           @media(max-width: 1024px){
                                 margin-bottom: 5px;
                           }
@@ -494,6 +526,9 @@
                           }
                           &:hover{
                             color: #0098FF;
+                            @media(max-width: 991px){
+                                color: #6A6A6A;
+                              }
                           }
                         }
                       }
@@ -562,9 +597,14 @@
 
               }
               &:hover{
-                  background-color: #FFF;
-                  color: #0098ff;
-                  border: 1px solid #0098ff;
+                  background-color: #1f82d7;
+                  color: #FFF;
+                  border: 1px solid #1f82d7;
+                  @media(max-width: 991px){
+                    background-color: #0098ff;
+                    color: #FFF;
+                    border: 1px solid transparent;
+                  }
               }
           }
 
@@ -589,6 +629,15 @@
             bottom: 0;
             flex-direction: initial;
           }
+          .react-modal{
+            .buy-tickets-btn {
+                @media(max-width: 991px){
+                    flex: 0 0 100%;
+                    width: 100%;
+                    margin-right: 0;;
+                }
+            }
+        }
         .buy-tickets-btn {
             @media(max-width: 991px){
                 flex: 0 0 calc(50% - 10px);
@@ -599,6 +648,7 @@
                 flex: 0 0 100%;
                 width: 100%;
             }
+            
         }
         &.shows-over-tickets{
             @media(max-width: 991px){
@@ -691,7 +741,7 @@
                       font-family: 'Montserrat', sans-serif;
                       font-size: 14px;
                       line-height: 18px;
-                      color: #626262;
+                      color: rgba(98,98,98,0.5);
                       font-weight: normal;
                       display: inline-block;
                       transition: 0.3s color;
@@ -703,6 +753,9 @@
                   &.active, &:hover{
                       a{
                           color: #0098FF;
+                          @media(max-width: 991px){
+                            color: #626262;
+                          }
                       }
                   }
               }
@@ -765,6 +818,11 @@
               background-color: #FFF;
               color: #0098ff;
               border: 1px solid #0098ff;
+              @media(max-width: 991px){
+                background-color: #0098ff;
+                color: #FFF;
+                border: 1px solid transparent;
+              }
          }
       }
       .panel{
@@ -918,6 +976,9 @@
   //event zoner
   .event-zoner-group{
     padding: 20px 0px 75px;
+    @media(max-width: 767px){
+        padding: 7px 0px 12px !important;
+    }
     ul {
         display: flex;
         flex-wrap: wrap;
@@ -956,6 +1017,9 @@
             }
             @media(max-width: 767px){
                 margin-bottom: 10px;
+                padding: 0px 3px;
+                font-size: 12px;
+                font-weight: 500;
             }
         }
     }
@@ -1047,7 +1111,7 @@
           }
         }
     .event-address span{
-        width: 225px;
+        width: 267px;
       }
     @media(max-width: 768px){
      h3{
@@ -1164,18 +1228,27 @@
           height: auto;
           margin-top: 0;
           padding-top: 0;
+          overflow: inherit;
           @media(max-width: 1280px){
               padding-left: 10px;
               flex: 0 0 63%;
+          }
+          .title{
+              .info-popover{
+                  display: none !important;
+              }
           }
           .link{
               display: none;
           }
           .info-tooltip, .share-tooltip {
               position: absolute;
-              right: 18px;
+              right: 190px;
               display: inline-block;
               top: 8px;
+              @media(max-width: 1136px){
+                right: 45px;
+              }
               .share, .info {
                   position: relative;
                   right: 0px;
@@ -1195,11 +1268,15 @@
                   cursor: pointer;
                   background-color: #fff;
                   border-color: #0098ff;
+                  
                   }
               }
           }
           .share-tooltip {
-              right: 61px;
+              right: 145px;
+              @media(max-width: 1136px){
+                right: 0;
+              }
           }
           h2{
               font-size: 22px;
@@ -1262,7 +1339,7 @@
                                 // text-overflow: ellipsis;
                           }
                           span{
-                              color:#0098FF;
+                              color:#626262;
                           }
                       }
                   }
@@ -1276,7 +1353,7 @@
                       &.location-gray{
                         display: block;
                         width: 16px;
-                        margin: 1px 10px 0 0;
+                        margin: 0 10px 0 0;
                       }
                       @media(max-width: 1280px){
                           margin-right: 10px;
@@ -1577,4 +1654,15 @@
             overflow: inherit;
         }
     }
+}
+.event-not-available{
+    background: #f1f1f1;
+    padding: 40px 0;
+    min-height: 250px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 400;
+    font-size: 17px;
+    color: #343434;
 }
