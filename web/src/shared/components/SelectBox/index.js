@@ -11,8 +11,8 @@ export default class Select extends Component {
     this.state = {
       values: [],
       focusedValue: -1,
-      isFocused: false,
-      isOpen: false,
+      isFocused: true,
+      isOpen: true,
       typed: ''
     };
   }
@@ -31,8 +31,8 @@ export default class Select extends Component {
       if (multiple) {
         return {
           focusedValue: -1,
-          isFocused: false,
-          isOpen: false
+          isFocused: true,
+          isOpen: true
         };
       } else {
         const value = values[0];
@@ -45,8 +45,8 @@ export default class Select extends Component {
 
         return {
           focusedValue,
-          isFocused: false,
-          isOpen: false
+          isFocused: true,
+          isOpen: true
         };
       }
     });
@@ -90,7 +90,7 @@ export default class Select extends Component {
         if (isOpen) {
           e.preventDefault();
           this.setState({
-            isOpen: false
+            isOpen: true
           });
         }
         break;
@@ -220,7 +220,7 @@ export default class Select extends Component {
         onSelect(value);
         return {
           values: [value],
-          isOpen: false
+          isOpen: true
         };
       }
 
