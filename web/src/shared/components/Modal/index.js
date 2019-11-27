@@ -1,6 +1,7 @@
 import React, { memo } from 'react';
 import PropTypes from 'prop-types';
 import Modal from './ModalComponent';
+import Utilities from '../../utilities';
 import './style.scss';
 function ModalPopup({
   handleClose,
@@ -10,7 +11,7 @@ function ModalPopup({
   htmlContent,
   children
 }) {
-  if (showModal && typeof window !== undefined) {
+  if (showModal && typeof window !== undefined && Utilities.mobilecheck()) {
     document.body.classList.add('fixed-body');
   }
   return (
@@ -18,7 +19,7 @@ function ModalPopup({
       <Modal
         visible={showModal}
         closemodal={e => {
-          if (typeof window !== undefined) {
+          if (typeof window !== undefined && Utilities.mobilecheck()) {
             document.body.classList.remove('fixed-body');
           }
           handleClose(e);
