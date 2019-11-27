@@ -343,8 +343,9 @@
                   font-weight: 500;
                   @media(max-width: 767px){
                     border: 1px solid rgba(106, 106, 106, 0.25); 
-                    padding: 0px 3px;
+                    padding: 0px 2px;
                     font-size: 12px;
+                    line-height: 17px;
                   }
                   &.active{
                       background-color: #07B3F0;
@@ -442,6 +443,9 @@
                       margin-right: 15px;
                       width: 19px;
                       margin-top: 3px;
+                      @media(max-width: 767px){
+                        margin-top: 0;
+                        }
                       &.location-gray{
                           margin-top: 0;
                           width: 19px;
@@ -460,7 +464,7 @@
                   &.event-date {
                       margin-bottom: 15px;
                       @media(max-width: 1024px){
-                            margin-bottom: 10px;
+                            margin-bottom: 15px;
                       }
                       span{
                           p{
@@ -479,6 +483,7 @@
                       .calenderIcon{
                           width: 19px;
                           height: 19px;
+                          
                       }
                       .coin{
                           width: 21px;
@@ -504,7 +509,7 @@
                           margin-top: 2px;
                       }
                       @media(max-width: 991px){
-                        margin-bottom: 10px;
+                        margin-bottom: 15px;
                         flex: 0 0 50%;
                         width: 50%;
                     }
@@ -516,7 +521,7 @@
                   &.event-address{
                     margin-bottom: 15px;
                     @media(max-width: 1024px){
-                        margin-bottom: 10px;
+                        margin-bottom: 15px;
                     }
                       a{
                           display: flex;
@@ -546,6 +551,11 @@
                         flex: 0 0 50%;
                         width: 50%;
                       }
+                      @media(max-width: 991px){
+                        flex: 0 0 100%;
+                        width: 100%;
+                      }
+
                   }
               }
           }
@@ -690,6 +700,9 @@
         margin-top: 20px;
         flex-direction: column;
       }
+      @media(max-width: 991px){
+          box-shadow: 0 2px 3px #e8e8e8; 
+      }
       &:after{
           position: absolute;
           content: "";
@@ -801,6 +814,9 @@
           & > .accordion > .accordion__item > .accordion__panel{
               border: 1px solid rgba(201, 201, 201, 0.2);
               border-top: none;
+              @media(max-width: 767px){
+                  padding: 15px 20px;
+              }
           }
             .accordion__button{
                 &:before{
@@ -993,7 +1009,7 @@
   .event-zoner-group{
     padding: 20px 0px 0;
     @media(max-width: 767px){
-        padding: 7px 0px 0 !important;
+        padding: 25px 0px  15px !important;
     }
     ul {
         display: flex;
@@ -1036,6 +1052,7 @@
                 padding: 0px 3px;
                 font-size: 12px;
                 font-weight: 500;
+                margin-right: 6px;
             }
         }
     }

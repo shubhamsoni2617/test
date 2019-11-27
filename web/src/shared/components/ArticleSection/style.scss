@@ -59,6 +59,9 @@
                 -webkit-transition: 0.3s all;
                 -moz-transition: 0.3s all;
                 -o-transition: 0.3s all;
+                @media (max-width: 767px) {
+                    color: #343434;
+                }
             }
             .item-img{
                 img{

@@ -197,17 +197,18 @@
             img{
               position: relative;
               z-index: 1;
+              height: 412px;
               @media (min-device-width: 1500px) and (max-device-width: 1980px) {
-                height: 520px;
+                height: 519px;
                 }
                 @media (min-device-width: 1135px) and (max-device-width: 1280px) {
-                    height: 387px;
+                    height: 386px;
                 }
               @media(max-width: 1024px){
-                height: 359px;
+                height: 358px;
                 }
               @media(max-width: 767px){
-                height: 178px;
+                height: 177px;
               }
             }
            & > div{
