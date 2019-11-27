@@ -23,7 +23,9 @@ export default class AccordionSection extends Component {
     this.state = {
       showSection: false,
       showInfo: false,
-      showMore : false
+      showMore: false,
+      language: props.activeLang,
+      description: props.desc
     };
   }
 
@@ -35,9 +37,16 @@ export default class AccordionSection extends Component {
     }
   };
 
-  handleMore = ()=> {
-    this.setState({showMore :!this.state.showMore})
-  }
+  handleMore = () => {
+    this.setState({ showMore: !this.state.showMore });
+  };
+
+  changeLang = synopsisObject => {
+    this.setState({
+      language: synopsisObject.language,
+      description: synopsisObject.description
+    });
+  };
 
   render() {
     const {
@@ -52,11 +61,11 @@ export default class AccordionSection extends Component {
       infoTag,
       gallery,
       dynamicClass,
-      noIcon,
+      noIcon
     } = this.props;
 
     const { showMore } = this.state;
-
+    console.log('accordian sectio');
     return (
       <div className={`sidebar-accordion ${dynamicClass}`}>
         <Accordion allowZeroExpanded={true} preExpanded={preExpanded}>
@@ -100,14 +109,16 @@ export default class AccordionSection extends Component {
                           <li
                             key={obj + idx}
                             className={`${
-                              activeLang === obj.language ? 'active' : ''
+                              this.state.language === obj.language
+                                ? 'active'
+                                : ''
                             }`}
                           >
                             <a
                               href="/"
                               onClick={e => {
                                 e.preventDefault();
-                                changeLang(obj);
+                                this.changeLang(obj);
                               }}
                             >
                               {obj.language}
@@ -122,13 +133,15 @@ export default class AccordionSection extends Component {
                 )}
                 {noIcon ? (
                   <LoadMore
-                    limit ={600}
-                    content ={desc}
-                    showMore ={showMore}
+                    limit={600}
+                    content={desc}
+                    showMore={showMore}
                     handleMore={this.handleMore}
-                    />
+                  />
                 ) : (
-                  <div dangerouslySetInnerHTML={{ __html: desc }} />
+                  <div
+                    dangerouslySetInnerHTML={{ __html: this.state.description }}
+                  />
                 )}
 
                 {children &&
