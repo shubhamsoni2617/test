@@ -98,18 +98,20 @@ const Article = props => {
           </div>
           <div className="row">
             <div className="col-xs-12 col-lg-2 pl-lg-0">
-              {articleData && articleData.author_name && (
-                <div className="artist-block">
+              {/* {articleData && articleData.author_name && ( */}
+              <div className="artist-block">
+                {articleData && (
                   <Image
                     src={articleData.author_image || DefaultUser}
                     alt="Artist"
                   />
-                  <div className="artist-content">
-                    <h4>{articleData.author_name}</h4>
-                    <span>{articleData.author_posted_date}</span>
-                  </div>
+                )}
+                <div className="artist-content">
+                  {articleData && <h4>{articleData.author_name}</h4>}
+                  {articleData && <span>{articleData.author_posted_date}</span>}
                 </div>
-              )}
+              </div>
+              {/* )} */}
             </div>
 
             <div className="col-xs-8 col-lg-8 mb-5 col-lg-offset-4">
