@@ -105,6 +105,7 @@ const ArticleList = ({ history, location }) => {
   };
 
   const selectOrClearAllHandler = (isChecked, filterTitle) => {
+    history.push('/explore/articles');
     if (filterTitle === 'Tags') {
       selectOrClearAll(isChecked, tags, setTags, setFilteredTags);
     }

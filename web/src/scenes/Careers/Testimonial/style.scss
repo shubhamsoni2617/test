@@ -74,6 +74,9 @@
                         background-size: 10px 13px;
                         border-width: 1px;
                       }
+                      &:hover{
+                        border: none;
+                    }
                 }
                 .slick-next{
                     right: 0;
@@ -100,6 +103,9 @@
                         background-size: 10px 13px;
                         border-width: 1px;
                       }
+                      &:hover{
+                        border: none;
+                    }
                 }
             }
             li{

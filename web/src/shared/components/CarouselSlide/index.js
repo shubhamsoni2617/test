@@ -2,6 +2,7 @@ import React from 'react';
 import Image from '../Image';
 import { Link } from 'react-router-dom';
 import EventHeading from '../EventHeading';
+import Utilities from '../../utilities';
 
 const ItemWrapper = (elem, genre) => {
   return (
@@ -12,9 +13,9 @@ const ItemWrapper = (elem, genre) => {
         </div>
       </div>
       <span className={`category ${genre}`}>{elem.primary_genre}</span>
-      <p className="dt-srt-end">{elem.event_date}</p>
-      <EventHeading title={elem.title} lines={2} height={19} />
-      <p>{elem.venue_name}</p>
+      {elem.event_date === null || elem.event_date === "" ? <p></p> : <p className="dt-srt-end">{elem.event_date}</p>}
+      {elem.title === null || elem.title === "" ? <h3></h3> : <EventHeading title={elem.title} lines={2} height={19} />}
+      <p>{Utilities.showLimitedChars(elem.venue_name, 25) }</p>
     </div>
   );
 };

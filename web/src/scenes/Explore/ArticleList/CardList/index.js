@@ -58,7 +58,9 @@ const CardList = React.forwardRef((props, ref) => {
                   </div>
                   <div className="item-bottom">
                     <span className="item-author">
-                      By {cardData.author_name}
+                      {cardData.author_name
+                        ? `By ${cardData.author_name}`
+                        : null}
                     </span>
                     <span className="item-date">{cardData.date}</span>
                   </div>
