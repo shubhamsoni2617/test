@@ -18,7 +18,6 @@ const ArticleSection = ({ flag, code }) => {
   const [showPopUp, setShowpopup] = useState(false);
   const [shimmer, setShimmer] = useState(true);
 
-
   useEffect(() => {
     let params = { code: code, client: Constants.CLIENT };
     EventsService.getArticleData(params)
@@ -61,11 +60,13 @@ const ArticleSection = ({ flag, code }) => {
         )}
         <div className="section-top-wrArticleSectioner">
           <h2>Articles</h2>
-          {articleData.length > 3 && <div className="carousel-dots">
-            <Link to="/articles">
-              See all <img src={arrowSee} className="img-fluid" alt="arrow" />
-            </Link>
-          </div>}
+          {articleData.length > 3 && (
+            <div className="carousel-dots">
+              <Link to="/explore/articles">
+                See all <img src={arrowSee} className="img-fluid" alt="arrow" />
+              </Link>
+            </div>
+          )}
         </div>
         <div className="grid-container">
           {articleData.slice(0, 3).map((item, index) => {
@@ -80,7 +81,7 @@ const ArticleSection = ({ flag, code }) => {
                       type="HorizontalMin"
                     />
                   </div>
-                  <Link to={`/explore/article/${item.id}`}>
+                  <Link to={`/explore/1/${item.id}`}>
                     <h3>{item.title}</h3>
                   </Link>
                   {item.plain_description && (
@@ -92,11 +93,9 @@ const ArticleSection = ({ flag, code }) => {
                         )}
 
                         {item.plain_description.length > 100 && (
-                          <span
-                            className="attraction-show-more"
-                          ><Link to={`/explore/article/${item.id}`}>
-                              More
-                        </Link></span>
+                          <span className="attraction-show-more">
+                            <Link to={`/explore/1/${item.id}`}>More</Link>
+                          </span>
                         )}
                       </p>
                     </React.Fragment>

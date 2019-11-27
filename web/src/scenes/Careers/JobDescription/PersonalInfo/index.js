@@ -32,7 +32,7 @@ const PersonalInfo = ({
       <div className="personal-info">
         <h3>
           Apply for this position
-          <Link to="/career">View Other Jobs</Link>
+          <Link to="/corporate/careers">View Other Jobs</Link>
         </h3>
         {successMsg && <h5 className="text-success">{successMsg}</h5>}
         {serverErr &&
@@ -190,7 +190,7 @@ const PersonalInfo = ({
         </form>
       </div>
       <div className="text-center other-job">
-        <Link to="/career">View Other Jobs</Link>
+        <Link to="/corporate/careers">View Other Jobs</Link>
       </div>
     </div>
   );

@@ -55,7 +55,7 @@ const CustomSectionTwo = ({ heading, customData, isMoreFrom }) => {
         <div className="section-top-wrapper">
           <h2>{heading}</h2>
           {isMoreFrom && (
-            <a href="/articles" target="_blank" className="text-right">
+            <a href="/explore/articles" target="_blank" className="text-right">
               More from {heading}{' '}
               <img src={Arrow} className="img-fluid" alt="arrow" />
             </a>
