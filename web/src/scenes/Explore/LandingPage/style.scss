@@ -166,7 +166,7 @@
                 justify-content: center;
                 align-items: flex-start;
                 z-index: 0;
-                &:before{
+                &:after{
                     position: absolute;
                     content: "";
                     width: 100px;
@@ -232,6 +232,8 @@
                 margin-left: auto;
                 width: 100%;
                 min-height: 377px;
+                max-height: 377px;
+                object-fit: cover;
                 @media(max-width: 768px){
                     flex: 1 0 100%;
                     max-width: 100%;
@@ -347,7 +349,7 @@
     .whtsup-container, .festivals-container{
         display: flex;
         flex-wrap: wrap;
-        margin: -13px;
+        margin: -8px;
         @media(max-width: 768px){
             flex-wrap: unset;
             overflow-x: auto;
@@ -360,8 +362,11 @@
             display: none;
             }
         }
+        @media(max-width: 576px){
+            margin: -5px;
+        }
         .item-wrapper{
-            padding: 13px 14px 25px;
+            padding: 8px;
             flex: 0 0 25%;
             width: 25%;
             position: relative;
