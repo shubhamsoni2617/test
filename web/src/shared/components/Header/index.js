@@ -130,6 +130,11 @@ const Header = ({ menuActive, location, hashPath }) => {
               ></a>
             </div>
             <ul>
+              <li>
+                <Link to={`/corporate`} onClick={() => handleNavigationClose()}>
+                  Home
+                </Link>
+              </li>
               <li className="has-submenu">
                 <a
                   className={`${showMegaMenu ? 'active' : ''}`}
