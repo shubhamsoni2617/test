@@ -114,6 +114,12 @@
           .modal-content{
             .modal-body{
               padding: 15px 25px 20px;
+              .buy-tickets-btn{
+                  margin-bottom: 20px;
+                  a{
+                      width: 100%;
+                  }
+              }
             }
           }
         }
@@ -1426,6 +1432,7 @@
               }
           }
           h3{
+              min-height: auto;
             @media(max-width: 1280px){
                 width: 90% !important;
             }
@@ -1450,7 +1457,7 @@
               a{
                   font-weight: 600;
                   margin: 0;
-                  width: auto;
+                  width: 100%;
                   display: inline-block;
                   padding-left: 50px;
                   padding-right: 50px;

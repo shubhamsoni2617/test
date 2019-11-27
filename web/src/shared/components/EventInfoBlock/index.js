@@ -374,6 +374,7 @@ function EventInfoBlock(props) {
                         className="location-gray"
                         width={19}
                         height={19}
+                        style={{ height: 19, width: 19 }}
                         src={locationGray}
                         alt="location"
                       />
@@ -530,6 +531,7 @@ function EventInfoBlock(props) {
                         className="location-gray"
                         width={19}
                         height={19}
+                        style={{ height: 20, width: 19 }}
                         src={locationGray}
                         alt="location"
                       />
