@@ -1,4 +1,4 @@
-import React, { memo } from 'react';
+import React, { memo, useState } from 'react';
 import PropTypes from 'prop-types';
 // import Slider from "react-slick";
 import './style.scss';
@@ -10,13 +10,20 @@ import ImageGallery from 'react-image-gallery';
 import Image from '../Image';
 import Utilities from '../../utilities';
 const EventCarousel = ({ images }) => {
-  const renderItem = item => {
+  const [play, setPlay] = useState(false);
+  const [items, setItems] = useState(images);
+  const [index, setIndex] = useState(0);
+  
+  const renderItem = (item) => {
+    console.log( item.playing)
+
     return (
       <div className="image-gallery-image">
+
         {item.video_url !== '' && (
           <div className="videoimg" style={{ width: '100%' }}>
             <img src={videoImage} alt="video-pic" />
-            <ReactPlayer url={item.video_url} controls={true} />
+            <ReactPlayer pip={true} onPlay={()=>{item.playing = true}} playing={item.playing} url={item.video_url} controls={true} />
           </div>
         )}
         {item.video_url === '' && (
@@ -69,11 +76,22 @@ const EventCarousel = ({ images }) => {
     );
   };
 
+  const pauseVideoOnSlide = (index) => {
+    
+    items.map(item => {
+      item.playing = false;
+    });
+    setItems(items);
+    setIndex(index);
+  };
+
+
+
   return (
     <div className="banner-carousel">
-      {images.length > 0 ? (
+      {items.length > 0 ? (
         <ImageGallery
-          items={images}
+          items={items}
           renderItem={renderItem}
           renderThumbInner={renderThumbInner}
           infinite={false}
@@ -83,12 +101,14 @@ const EventCarousel = ({ images }) => {
           // disableThumbnailScroll={true}
           renderLeftNav={renderLeftNav}
           renderRightNav={renderRightNav}
+          onSlide={(index) => pauseVideoOnSlide(index)}
+
         />
       ) : (
-        <div className="image-gallery-image">
-          <Image largeImage="" src="" type="BigBanner" />
-        </div>
-      )}
+          <div className="image-gallery-image">
+            <Image largeImage="" src="" type="BigBanner" />
+          </div>
+        )}
     </div>
   );
 };
