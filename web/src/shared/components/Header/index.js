@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import logo from '../../../assets/images/logo.png';
 import './style.scss';
 
-const Header = ({ menuActive, pathName }) => {
+const Header = ({ menuActive, location, hashPath }) => {
   let refValue = useRef();
   const [showMegaMenu, setShowMegaMenu] = useState(false);
 
@@ -30,15 +30,14 @@ const Header = ({ menuActive, pathName }) => {
 
   const topHeaderContent = [
     { link: '/corporate/about-us', name: 'About Us' },
-    { link: 'corporate#media', name: 'Media' },
-    { link: 'corporate/advertise-with-us', name: 'Advertise' },
-    { link: 'corporate/careers', name: 'Careers' },
-    { link: 'corporate#contact', name: 'Contact Us' }
+    { link: '/corporate#media', name: 'Media' },
+    { link: '/corporate/advertise-with-us', name: 'Advertise' },
+    { link: '/corporate/careers', name: 'Careers' },
+    { link: '/corporate#contact', name: 'Contact Us' }
   ];
 
   const getStartedContent = [
     { link: 'corporate/ticket-with-us', name: 'Sell tickets with us' },
-    // { link: 'corporate', name: 'B2B' },
     { link: 'corporate/ticketing-technology', name: 'System Licensing' },
     { link: 'corporate/partner-with-us', name: 'Be our partner' }
   ];
@@ -69,7 +68,11 @@ const Header = ({ menuActive, pathName }) => {
               <ul>
                 <li
                   className={
-                    menuActive && pathName === 'corporate' ? 'active-link' : ''
+                    menuActive &&
+                    location.pathname === '/corporate' &&
+                    !hashPath
+                      ? 'active-link'
+                      : ''
                   }
                 >
                   <Link to={`/corporate`}>Home</Link>
@@ -90,11 +93,17 @@ const Header = ({ menuActive, pathName }) => {
                   return (
                     <li
                       className={
-                        menuActive && pathName === link ? 'active-link' : ''
+                        !hashPath
+                          ? menuActive && location.pathname === link
+                            ? 'active-link'
+                            : ''
+                          : link.split('#')[1] === hashPath
+                          ? 'active-link'
+                          : ''
                       }
                       key={link}
                     >
-                      <Link to={`/${link}`}>{name}</Link>
+                      <Link to={`${link}`}>{name}</Link>
                     </li>
                   );
                 })}
@@ -144,7 +153,7 @@ const Header = ({ menuActive, pathName }) => {
                 return (
                   <li key={link}>
                     <Link
-                      to={`/${link}`}
+                      to={`${link}`}
                       onClick={() => handleNavigationClose()}
                     >
                       {name}
