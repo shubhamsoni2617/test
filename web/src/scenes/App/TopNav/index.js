@@ -217,7 +217,7 @@ const TopNav = props => {
         setPathName(pathArr[1]);
         setMenuActive(true);
       } else if (
-        pathArr[1] === 'contact-us' ||
+        // pathArr[1] === 'contact-us' ||
         pathArr[1] === 'corporate/about-us' ||
         pathArr[1] === 'corporate/careers' ||
         pathArr[1] === 'system-licensing' ||
