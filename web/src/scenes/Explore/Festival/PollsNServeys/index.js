@@ -3,7 +3,8 @@ import './style.scss';
 import Image from '../../../../shared/components/Image';
 
 const PollsNServeys = ({ sectionSeven }) => {
-  return (
+  sectionSeven[0].image;
+  return sectionSeven[0].image || sectionSeven[0].heading ? (
     <section className="polls-survey">
       <div className="container-fluid">
         <div className="polls-wrapper">
@@ -39,6 +40,6 @@ const PollsNServeys = ({ sectionSeven }) => {
         </div>
       </div>
     </section>
-  );
+  ) : null;
 };
 export default PollsNServeys;

@@ -1,6 +1,8 @@
 import React, { useRef, useState, useEffect } from 'react';
 import './style.scss';
 import Slider from 'react-slick';
+import Image from '../../../../shared/components/Image';
+import Utilities from '../../../../shared/utilities';
 
 const BannerSlider = ({ bannerData }) => {
   const [nav1, setNav1] = useState(null);
@@ -41,7 +43,10 @@ const BannerSlider = ({ bannerData }) => {
                       <div
                         className="sub-text"
                         dangerouslySetInnerHTML={{
-                          __html: banner.banner_description
+                          __html: Utilities.showLimitedChars(
+                            banner.banner_description,
+                            230
+                          )
                         }}
                       />
                     </div>
@@ -51,7 +56,8 @@ const BannerSlider = ({ bannerData }) => {
                       </a>
                     )}
                   </div>
-                  <img src={banner.image} alt="banner_image" />
+                  <Image src={banner.image} type="Medium" />
+                  {/* <img src={banner.image} alt="banner_image" /> */}
                 </div>
               );
             })}
@@ -70,7 +76,8 @@ const BannerSlider = ({ bannerData }) => {
             bannerData.map(banner => {
               return (
                 <div key={banner.banner_title}>
-                  <img src={banner.image} alt="banner_image" />
+                  <Image src={banner.image} type="VdoSmall" />
+                  {/* <img src={banner.image} alt="banner_image" /> */}
                 </div>
               );
             })}
