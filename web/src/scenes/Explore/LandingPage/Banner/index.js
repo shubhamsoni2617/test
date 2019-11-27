@@ -52,8 +52,8 @@ const BannerSlider = ({ bannerData }) => {
                       </a>
                     )}
                   </div>
-                  {/* <Image src={banner.image} type="Medium" /> */}
-                  <img src={banner.image} alt="banner_image" />
+                  <Image src={banner.image} type="Medium" />
+                  {/* <img src={banner.image} alt="banner_image" /> */}
                 </div>
               );
             })}

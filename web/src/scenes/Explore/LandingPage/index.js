@@ -135,7 +135,7 @@ const Explore = () => {
     <CustomtomSectionThree
       heading="Video Gallery"
       customData={video_gallery}
-      isHomePage={true}
+      isHomePage={false}
     />
   );
 
@@ -171,6 +171,14 @@ const Explore = () => {
               Utilities.mobilecheck() ? 1 : 4,
               'TILE',
               Utilities.mobilecheck() ? 12 : 3
+            )}
+          </div>
+          <div className="shimmer-margin">
+            {reusedShimmer(
+              300,
+              Utilities.mobilecheck() ? 1 : 2,
+              'TILE',
+              Utilities.mobilecheck() ? 12 : 6
             )}
           </div>
           <div className="shimmer-margin">
