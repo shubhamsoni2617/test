@@ -255,6 +255,7 @@
                 height: 100%;
                 @media(max-width: 576px){
                     min-height: auto;
+                    height: auto;
                 }
                 ul{
                     min-height: 52px;
@@ -273,13 +274,17 @@
                     font-family: 'Montserrat', sans-serif;
                     font-size: 14px;
                     line-height: 18px;
-                    font-weight: 500;
+                    font-weight: 400;
                     color: #0098FF;
                     span{
                         border: 1px solid rgba(2, 152, 255, 0.15);
                         padding: 4px 5px;
                         margin: 0px 5px 5px 0px;
                         display: inline-block;
+                        font-size: 14px;
+                        line-height: 18px;
+                        font-weight: 400;
+                        color: #0098FF;
                         &:empty{
                             display: none;
                         }
@@ -320,6 +325,7 @@
                 display: flex;
                 flex-wrap: wrap;
                 align-items: flex-start;
+                min-height: 18px;
                 span{
                     color: #626262;	
                     font-family: 'Rubik', sans-serif;	
@@ -371,6 +377,16 @@
                     .article-category-group{
                         @media(min-width: 767px){
                             opacity: 1;
+                        }
+                    }
+                }
+                .category-group{
+                    li{
+                        span{
+                            font-size: 14px;
+                            line-height: 18px;
+                            font-weight: 400;
+                            color: #0098FF;
                         }
                     }
                 }
