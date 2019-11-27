@@ -78,7 +78,7 @@ const ArticleSection = ({ flag, code }) => {
                       src={item.thumb_image}
                       className="img-fluid"
                       alt="article"
-                      type="HorizontalMin"
+                      type="MediumVertical"
                     />
                   </div>
                   <Link to={`/explore/1/${item.id}`}>
