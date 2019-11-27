@@ -657,6 +657,7 @@
             @media(max-width: 767px){
                 flex: 0 0 100%;
                 width: 100%;
+                margin-right: 0;
             }
             
         }
@@ -1403,7 +1404,7 @@
           }
           .buy-tickets-btn{
                 width: auto;
-              margin-left: auto;
+                margin-left: auto;
               a{
                   font-weight: 600;
                   margin: 0;
