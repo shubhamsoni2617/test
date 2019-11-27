@@ -216,7 +216,7 @@ function StickyHeader(props) {
     <div
       className={`event-detail ${sticky ? 'sticky-topbar' : ''} ${
         sticky && setHeader ? 'animate' : ''
-      }`}
+        }`}
     >
       {detailData.images && detailData.images.length > 0 && (
         <div className="tickets-demo-img">
@@ -261,10 +261,10 @@ function StickyHeader(props) {
             eventDetail
           />
         ) : (
-          <div className="title top">
-            <h3>{detailData.title}</h3>
-          </div>
-        )}
+            <div className="title top">
+              <h3>{detailData.title}</h3>
+            </div>
+          )}
 
         {detailData.promoters && detailData.promoters.length > 0 && (
           <div className="promoters">
@@ -287,7 +287,8 @@ function StickyHeader(props) {
           </div>
         )}
 
-        {detailData.pop_up_message.title && (
+
+{detailData.pop_up_message.title && (
           <div className="info-tooltip">
             <span className="info" onClick={() => props.openNotice()}>
               <img src={Info} alt="Info" />
@@ -303,6 +304,8 @@ function StickyHeader(props) {
             />
           </span>
         </div>
+        
+
 
         <div className="ticket-date-price">
           <ul className="date-address">
@@ -343,10 +346,10 @@ function StickyHeader(props) {
                           eventDetail
                         />
                       ) : (
-                        <div>
-                          <span>{detailData.venue_name.name}</span>
-                        </div>
-                      )}
+                          <div>
+                            <span>{detailData.venue_name.name}</span>
+                          </div>
+                        )}
                     </Link>
                     <button
                       className="link"
