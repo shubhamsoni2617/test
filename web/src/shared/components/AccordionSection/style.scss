@@ -11,7 +11,8 @@
                 border: 1px solid rgba(201, 201, 201, 0.2);
                 border-top: none;
                 @media(max-width: 767px){
-                    padding: 15px 20px;
+                    padding-left: 20px;
+                    padding-right: 20px;
                 }
                 iframe{
                     padding-bottom: 20px;

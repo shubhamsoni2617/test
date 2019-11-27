@@ -200,12 +200,15 @@
         margin-top: -10px;
         padding-top: 10px;
         @media(max-width: 991px){
-            height: auto;
+            overflow: inherit;
         }
           .promoters {
-            padding: 0 0px 10px;
+            padding: 1px 0px 10px;
+            margin-bottom: 10px;
+            min-height: 31px;
             @media(max-width: 991px){
                 padding: 5px 0px 5px;
+                min-height: auto;
             }
             span{
               color: #949494;
@@ -234,6 +237,7 @@
         }
           .title{
               h3{
+                    min-height: 60px;
                   @media(max-width: 1024px){
                     font-size: 20px;
                     margin-bottom: 0px;
@@ -419,6 +423,9 @@
                   display: flex;
                   align-items: flex-start;
                   margin: 0px;
+                  &:empty{
+                      display: none;
+                  }
                   span{
                       color: #6A6A6A;
                       font-family: 'Rubik', sans-serif;
@@ -463,6 +470,7 @@
 
                   &.event-date {
                       margin-bottom: 15px;
+                      min-height: 24px;
                       @media(max-width: 1024px){
                             margin-bottom: 15px;
                       }
@@ -520,6 +528,7 @@
                   }
                   &.event-address{
                     margin-bottom: 15px;
+                    min-height: 24px;
                     @media(max-width: 1024px){
                         margin-bottom: 15px;
                     }
@@ -646,6 +655,7 @@
             position: relative;
             left: 0;
             width: 100%;
+            justify-content: flex-start;
             bottom: 0;
             flex-direction: initial;
           }
@@ -777,9 +787,6 @@
                   &.active, &:hover{
                       a{
                           color: #0098FF;
-                          @media(max-width: 991px){
-                            color: #626262;
-                          }
                       }
                   }
               }
@@ -815,7 +822,8 @@
               border: 1px solid rgba(201, 201, 201, 0.2);
               border-top: none;
               @media(max-width: 767px){
-                  padding: 15px 20px;
+                padding-left: 20px;
+                padding-right: 20px;
               }
           }
             .accordion__button{

@@ -6,6 +6,9 @@
                 .event-box{
                     .image-conatiner{
                         padding-bottom: 30px;
+                        @media (max-width: 768px){
+                            padding-bottom: 10px;
+                        }
                     }
                     h2{
                         max-height: 40px;

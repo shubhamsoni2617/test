@@ -1,6 +1,9 @@
 .event-detail-wrapper{
     .event-articles{
         margin-top: 75px;
+        @media(max-width: 991px){
+            margin-top: 35px;
+        }
         @media(max-width: 767px){
             margin-top: 12px;
         }
