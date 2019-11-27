@@ -304,7 +304,11 @@
     }
 }
 .ReactModalPortal{
+    .ril__inner{
+        z-index: 2;
+    }
     .ril-toolbar.ril__toolbar{
+        z-index: 1;
         .ril__toolbarRightSide{
             padding-right: 0px;
         }
@@ -333,6 +337,9 @@
 .event-listing-ads{
     padding-top: 45px;
     padding-left: 8px;
+    @media(min-width: 1400px) and (max-width: 1980px){
+        padding-left: 0;
+    }
     @media(max-width: 991px){
         padding-top: 0;
     }

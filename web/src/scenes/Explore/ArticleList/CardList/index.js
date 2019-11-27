@@ -23,7 +23,7 @@ const CardList = React.forwardRef((props, ref) => {
           <div className="event-block">
             <div className="article-category-group">
               {cardData.categories &&
-                cardData.categories.map(category => {
+                cardData.categories.slice(0, 1).map(category => {
                   return (
                     <span key={category} className="category">
                       {category}
@@ -38,8 +38,8 @@ const CardList = React.forwardRef((props, ref) => {
               <div className="event-detail-prime">
                 <div className="category-group">
                   <ul>
-                    {cardData.genre &&
-                      cardData.tags.map(genreName => {
+                    {cardData.tags &&
+                      cardData.tags.slice(0, 4).map(genreName => {
                         return (
                           <li key={genreName}>
                             <span className="">{genreName}</span>
@@ -58,7 +58,9 @@ const CardList = React.forwardRef((props, ref) => {
                   </div>
                   <div className="item-bottom">
                     <span className="item-author">
-                      By {cardData.author_name}
+                      {cardData.author_name
+                        ? `By ${cardData.author_name}`
+                        : null}
                     </span>
                     <span className="item-date">{cardData.date}</span>
                   </div>

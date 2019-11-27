@@ -1,3 +1,11 @@
+.event-detail-wrapper{
+    .event-articles{
+        margin-top: 75px;
+        @media(max-width: 767px){
+            margin-top: 12px;
+        }
+    }
+}
 .event-articles{
     padding: 40px 30px;
     background-color: #F0F9FF;
@@ -21,6 +29,17 @@
 			grid-template-columns: repeat(3, minmax(27%, 1fr));
 		}
 		@media (max-width: 768px) {
+            grid-template-columns: repeat(3, minmax(31%, 1fr));
+            grid-gap: 10px;
+            overflow-x: auto;
+            -ms-overflow-style: none; // IE 10+
+            scrollbar-width: none; // Firefox
+            &::-webkit-scrollbar {
+                display: none;
+                // Safari and Chrome
+            }
+        }
+        @media (max-width: 767px) {
             grid-template-columns: repeat(3, minmax(85%, 1fr));
             grid-gap: 10px;
             overflow-x: auto;
@@ -44,6 +63,9 @@
             .item-img{
                 img{
                     transform: scale(1.05);
+                    @media (max-width: 767px) {
+                        transform: scale(1);
+                    }
                 }
             }
         }
@@ -68,7 +90,8 @@
             margin-bottom: 8px;
             transition: 0.3s all;
             -webkit-transition: 0.3s all;
-			-moz-transition: 0.3s all;
+            -moz-transition: 0.3s all;
+            min-height: 38px;
 			-o-transition: 0.3s all;
             @media (max-width: 767px) {
                 font-size: 14px;
@@ -92,12 +115,19 @@
                 -webkit-transition: 0.3s all;
                 -moz-transition: 0.3s all;
                 -o-transition: 0.3s all;
+                @media(max-width: 767px) {
+                    font-size: 13px;
+                }
                 &:hover{
                     color: #000;
                     transition: 0.3s all;
                     -webkit-transition: 0.3s all;
                     -moz-transition: 0.3s all;
                     -o-transition: 0.3s all;
+                    @media(max-width: 991px) {
+                        font-size: 13px;
+                        color: #007bff;
+                    }
                 }
             }
         }
@@ -120,6 +150,9 @@
     .section-top-wrArticleSectioner{
         display: grid;
         grid-template-columns: auto auto;
+        @media(max-width: 767px) {
+            margin-bottom: 10px;
+        }
         h2{
             @media(max-width: 768px){
                 font-size: 20px;

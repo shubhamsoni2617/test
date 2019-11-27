@@ -333,6 +333,8 @@ section.whats-new {
             width: 72px;
             border-radius: 50%;
             margin-bottom: 20px;
+            object-fit: cover;
+            object-position: center;
         }
         h4{
             color: #343434;
@@ -705,10 +707,17 @@ section.whats-new {
                 @media(max-width: 1440px){
                     left: 0px;
                 }
+                &:hover{
+                    border: none;
+                }
+                
             }
             &.slick-next{
                 right: 0px;
                 background-image: url('../../../assets/images/right-arrow-white.svg');
+                &:hover{
+                    border: none;
+                }
             }
         }
         .slick-dots{
