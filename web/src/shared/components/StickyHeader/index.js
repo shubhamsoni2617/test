@@ -278,7 +278,7 @@ function StickyHeader(props) {
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    {item.name}&nbsp;6.75rem
+                    {item.name}
                   </a>
                 );
               }
