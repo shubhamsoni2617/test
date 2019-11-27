@@ -224,7 +224,7 @@ const ArticleList = ({ history, location }) => {
                             selectOrClearAllHandler(false, 'Categories');
                           }}
                         >
-                          Clear All
+                          Clear all
                         </span>
                       </div>
                     )}
