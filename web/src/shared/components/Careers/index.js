@@ -47,7 +47,7 @@ const Careers = ({ sliderArr }) => {
             </Slider>
           </ul>
           <div className="job-openings">
-            <Link to="/career">
+            <Link to="/corporate/careers">
               <img src={suiteCase} alt="job-opnings" />
               <span>See Job Openings</span>
             </Link>
