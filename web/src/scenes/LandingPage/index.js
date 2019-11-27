@@ -18,17 +18,19 @@ const LandingPage = ({ location }) => {
     fetchLandingPageData();
     getTestimonial();
   }, []);
-  useEffect(() => {
-    if (!location.hash) {
-      window && window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
-    }
-  }, []);
+  // useEffect(() => {
+  //   if (!location.hash) {
+  //     window && window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+  //   }
+  // }, []);
   useEffect(() => {
     if (landingPageData && location.hash) {
       const offset = document
         .getElementById(location.hash)
         .getBoundingClientRect().top;
       animateScroll.scrollMore(offset - 75);
+    } else {
+      window && window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
     }
   }, [landingPageData, location.hash]);
 
