@@ -16,8 +16,8 @@ const Review = ({ reviewData }) => {
           reviewData &&
           reviewData.data &&
           reviewData.data[0].type === 'multi_show_template'
-            ? `/explore/festival/${reviewData.data[0].id}`
-            : `/explore/article/${reviewData.data[0].id}`
+            ? `/explore/2/${reviewData.data[0].id}`
+            : `/explore/1/${reviewData.data[0].id}`
         }
         className="active-review"
       >
@@ -55,7 +55,7 @@ const Review = ({ reviewData }) => {
                     to={
                       type === 'multi_show_template'
                         ? `/explore/2/${id}`
-                        : `/explore/article${id}`
+                        : `/explore/1/${id}`
                     }
                     className="review-item"
                     key={index}
@@ -82,7 +82,11 @@ const Review = ({ reviewData }) => {
               })}
         </div>
         {reviewData.name && (
-          <a className="more-review" href="/articles" target="_blank">
+          <a
+            className="more-review"
+            href={`/explore/articles?c=${reviewData.id}`}
+            target="_blank"
+          >
             More from {reviewData.name} <img src={rightArrow} alt="arrow" />
           </a>
         )}
