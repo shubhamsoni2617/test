@@ -17,7 +17,7 @@ const Media = ({ mediaData }) => {
       <div className="article-wrapper">
         <div className="container">
           <div className="article-heading">
-            <h2>Media</h2>
+            <h2 id="#media">Media</h2>
           </div>
           <div className="article-box">
             {fourMediaData &&
@@ -57,7 +57,9 @@ const Media = ({ mediaData }) => {
           </div>
           {mediaData && mediaData.length > 4 && !seeMore && (
             <div className="article-bottom">
-              <span className="view-all-media" onClick={() => setSeeMore(true)}>View all Media <img src={btnArrow} alt="down-arrow" /></span>
+              <span className="view-all-media" onClick={() => setSeeMore(true)}>
+                View all Media <img src={btnArrow} alt="down-arrow" />
+              </span>
             </div>
           )}
         </div>

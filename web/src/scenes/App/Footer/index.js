@@ -14,17 +14,17 @@ import NewsLetterForm from '../../../shared/components/NewsLetterForm';
 
 const Footer = () => {
   const ourCompanyLinks = [
-    { link: 'about-us', linkName: 'About Us' },
+    { link: 'corporate/about-us', linkName: 'About Us' },
     {
-      link: 'sell-event-tickets',
+      link: 'corporate/ticket-with-us',
       linkName: 'Sell with Us'
     },
     {
-      link: 'system-licensing',
+      link: 'corporate/ticketing-technology',
       linkName: 'Ticketing Technology'
     },
-    { link: 'apipartners', linkName: 'Partner with Us' },
-    { link: 'career', linkName: 'Careers' }
+    { link: 'corporate/partner-with-us', linkName: 'Partner with Us' },
+    { link: 'corporate/careers', linkName: 'Careers' }
   ];
 
   const helpFulLinks = [
@@ -34,7 +34,7 @@ const Footer = () => {
     },
     { link: 'agents', linkName: 'Locate an Agent' },
     { link: 'venues', linkName: 'Locate a Venue' },
-    { link: 'articles', linkName: 'Blog' },
+    { link: 'explore/articles', linkName: 'Blog' },
     { link: '', linkName: 'Media' }
   ];
 

@@ -54,7 +54,7 @@ const Review = ({ reviewData }) => {
                   <Link
                     to={
                       type === 'multi_show_template'
-                        ? `/explore/festival/${id}`
+                        ? `/explore/2/${id}`
                         : `/explore/article${id}`
                     }
                     className="review-item"

@@ -24,8 +24,8 @@ const Article = ({ article }) => {
         <Link
           to={
             article.type === 'multi_show_template'
-              ? `/explore/festival/${article.id}`
-              : `/explore/article/${article.id}`
+              ? `/explore/2/${article.id}`
+              : `/explore/1/${article.id}`
           }
         >
           <h3>{article.title}</h3>
@@ -48,8 +48,8 @@ const Article = ({ article }) => {
           <Link
             to={
               article.type === 'multi_show_template'
-                ? `/explore/festival/${article.id}`
-                : `/explore/article/${article.id}`
+                ? `/explore/2/${article.id}`
+                : `/explore/1/${article.id}`
             }
           >
             More

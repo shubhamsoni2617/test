@@ -42,7 +42,7 @@ const Autocomplete = ({ history, buttonActiveHandler, mostViewed }) => {
   }, [debouncedSearchTerm]);
 
   useEffect(() => {
-    if (history.location.pathname.split('/')[1] !== 'search-results') {
+    if (history.location.pathname.split('/')[1] !== 'search') {
       setUserInput('');
     }
   }, [history.location.pathname]);
@@ -115,7 +115,7 @@ const Autocomplete = ({ history, buttonActiveHandler, mostViewed }) => {
       setShowSuggestions(false);
       setValuesInLocalStorage(userInput);
       if (activeSuggestion === -1) {
-        history.push(`/search-results?q=${userInput}`);
+        history.push(`/search?${userInput}`);
       } else {
         let selectedSuggestion = suggestions[activeSuggestion];
         navigateToLink(
@@ -189,7 +189,7 @@ const Autocomplete = ({ history, buttonActiveHandler, mostViewed }) => {
             <div
               onClick={() => {
                 onClick(userInput);
-                history.push(`/search-results?q=${userInput}`);
+                history.push(`/search?${userInput}`);
                 removeFixedBody();
                 setIsFocused(false);
               }}
@@ -272,7 +272,7 @@ const Autocomplete = ({ history, buttonActiveHandler, mostViewed }) => {
             }
             if (userInput.length > 2) {
               onClick(userInput);
-              history.push(`/search-results?q=${userInput}`);
+              history.push(`/search?${userInput}`);
               removeFixedBody();
             }
           }}
