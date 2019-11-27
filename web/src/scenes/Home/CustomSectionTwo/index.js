@@ -7,7 +7,7 @@ import Arrow from '../../../assets/images/right-arrow.svg';
 import Image from '../../../shared/components/Image';
 import Utilities from '../../../shared/utilities';
 
-const CustomSectionTwo = ({ heading, customData, isMoreFrom }) => {
+const CustomSectionTwo = ({ heading, customData, isMoreFrom, id }) => {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
   useEffect(() => {
@@ -55,7 +55,11 @@ const CustomSectionTwo = ({ heading, customData, isMoreFrom }) => {
         <div className="section-top-wrapper">
           <h2>{heading}</h2>
           {isMoreFrom && (
-            <a href="/explore/articles" target="_blank" className="text-right">
+            <a
+              href={`/explore/articles?c=${id}`}
+              target="_blank"
+              className="text-right"
+            >
               More from {heading}{' '}
               <img src={Arrow} className="img-fluid" alt="arrow" />
             </a>

@@ -3,6 +3,7 @@ import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import Image from '../../../../shared/components/Image';
+import Utilities from '../../../../shared/utilities';
 
 const MusicFestival = ({ sectionThree }) => {
   const settings = {
@@ -33,7 +34,9 @@ const MusicFestival = ({ sectionThree }) => {
                       <div className="fest-cont">
                         <h2>{title}</h2>
                         <p
-                          dangerouslySetInnerHTML={{ __html: description }}
+                          dangerouslySetInnerHTML={{
+                            __html: Utilities.showLimitedChars(description, 500)
+                          }}
                         ></p>
                       </div>
                     </div>

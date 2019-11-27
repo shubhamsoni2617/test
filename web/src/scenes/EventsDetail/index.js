@@ -166,7 +166,8 @@ export default class EventsDetail extends Component {
       synopsis: { language: '', description: '' },
       popupContent: '',
       popupTitle: '',
-      elemOffsetTop: 0
+      elemOffsetTop: 0,
+      eventDetailBannerHeight: 0
     };
   }
 
@@ -393,7 +394,8 @@ export default class EventsDetail extends Component {
       shimmer,
       shareUrl,
       synopsis,
-      code
+      code,
+      eventDetailBannerHeight
     } = this.state;
     if (error) {
       return null;
@@ -463,7 +465,16 @@ export default class EventsDetail extends Component {
                     />
                   )} */}
 
-                <section className="event-detail-banner">
+                <section
+                  className="event-detail-banner"
+                  ref={node => {
+                    if (!eventDetailBannerHeight && node && node.offsetHeight) {
+                      this.setState({
+                        eventDetailBannerHeight: node.offsetHeight - 120
+                      });
+                    }
+                  }}
+                >
                   <EventCarousel images={detailData.images} />
 
                   <EventInfoBlock
@@ -474,6 +485,7 @@ export default class EventsDetail extends Component {
                     openNotice={this.openNotice}
                     openSocialShare={this.openSocialShare}
                     shareUrl={shareUrl}
+                    eventDetailBannerHeight={eventDetailBannerHeight}
                     seatMapButton={
                       detailData.seating_plan &&
                       detailData.seating_plan.length > 0 && (

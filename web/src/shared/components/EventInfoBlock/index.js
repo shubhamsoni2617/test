@@ -214,16 +214,17 @@ function EventInfoBlock(props) {
     shareUrl,
     setHeader,
     seatMapButton,
-    buyPackages
+    buyPackages,
+    eventDetailBannerHeight
   } = props;
 
   useEffect(() => {
     setScrollbarHeight();
-  }, []);
+  }, [eventDetailBannerHeight]);
 
   const setScrollbarHeight = (button = false) => {
     if (detailData.is_available_for_booking === 0) {
-      setScrollHeight(380);
+      setScrollHeight(eventDetailBannerHeight + 26);
     } else if (
       buyPackages &&
       !detailData.buttons &&
@@ -234,7 +235,7 @@ function EventInfoBlock(props) {
       !detailData.buttonGroups[0].title &&
       !detailData.buy_now_url
     ) {
-      setScrollHeight(395);
+      setScrollHeight(eventDetailBannerHeight + 41);
     } else if (
       !buyPackages &&
       !(
@@ -247,7 +248,9 @@ function EventInfoBlock(props) {
         !detailData.buy_now_url
       )
     ) {
-      setScrollHeight(395);
+      setScrollHeight(eventDetailBannerHeight + 41);
+    } else {
+      setScrollHeight(eventDetailBannerHeight);
     }
   };
 
