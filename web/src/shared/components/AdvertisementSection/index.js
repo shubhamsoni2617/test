@@ -2,12 +2,12 @@ import React, { useEffect } from 'react';
 import Image from '../Image';
 import './style.scss';
 import useRemoveFixedBody from '../../hooks/useRemoveFixedBody';
-
+import Utilities from '../../utilities';
 function AdvertisementBlock({ image, url, type }) {
   if (!image) return null;
   if (url) {
     return (
-      <a href={url}>
+      <a href={Utilities.mobilecheck() ? mobile_url : url}>
         <Image src={image} type={type} />
       </a>
     );
@@ -23,7 +23,7 @@ function AdvertisementSection({ data, current }) {
     return (
       <div className="advertisement-banner">
         <AdvertisementBlock
-          image={data.image}
+          image={Utilities.mobilecheck() ? data.mobile_image : data.image}
           url={data.url}
           type="BigBanner"
         />
@@ -37,7 +37,7 @@ function AdvertisementSection({ data, current }) {
         return (
           <div key={item.image} className="advertisement-block">
             <AdvertisementBlock
-              image={item.image}
+              image={Utilities.mobilecheck() ? item.mobile_image : item.image}
               url={item.url}
               type="Vertical"
             />
