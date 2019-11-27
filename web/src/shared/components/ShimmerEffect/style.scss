@@ -12,7 +12,7 @@ $black-opacity-10:rgba($black,.15);
   display: flex;
   flex-wrap: wrap;
   &> div{
-    padding: 0 10px;
+    padding: 0 10px 0 0;
   }
   .shm_col-xs-6{
     width: 50%;
@@ -49,7 +49,7 @@ $black-opacity-10:rgba($black,.15);
 .shm_col-xs-12{
   width: 100%;
 }
-.contentLoader { background-color: #fff; color: #141823; padding-top: 20px; padding-bottom: 20px; border: 1px solid $black-opacity-10; width: 100%; margin: 20px auto; }
+.contentLoader { padding-right: 29px; background-color: #fff; color: #141823; padding-top: 20px; padding-bottom: 20px; border: 1px solid $black-opacity-10; width: 100%; margin: 20px auto; }
 .contentLoader .animated-background {margin: 0 15px; -webkit-animation-duration: 1s; animation-duration: 1s; -webkit-animation-fill-mode: forwards; animation-fill-mode: forwards; -webkit-animation-iteration-count: infinite; animation-iteration-count: infinite; -webkit-animation-name: placeHolderShimmerlarge; animation-name: placeHolderShimmerlarge; -webkit-animation-timing-function: linear; animation-timing-function: linear; background: #f6f7f8; background: #eeeeee; background: -webkit-gradient(linear, left top, right top, color-stop(8%, #eeeeee), color-stop(18%, #dddddd), color-stop(33%, #eeeeee)); background: -webkit-linear-gradient(left, #eeeeee 8%, #dddddd 18%, #eeeeee 33%); background: linear-gradient(to right, #eeeeee 8%, #dddddd 18%, #eeeeee 33%); -webkit-background-size: 400% 16px; background-size: 400% 16px; height: 16px; position: relative; margin-bottom: 10px; }
 .contentLoader .animated-backgroundlarge {    margin: 0 15px 10px; -webkit-animation-duration: 1s; animation-duration: 1s; -webkit-animation-fill-mode: forwards; animation-fill-mode: forwards; -webkit-animation-iteration-count: infinite; animation-iteration-count: infinite; -webkit-animation-name: placeHolderShimmerlarge; animation-name: placeHolderShimmerlarge; -webkit-animation-timing-function: linear; animation-timing-function: linear; background: #f6f7f8; background: #eeeeee; background: -webkit-gradient(linear, left top, right top, color-stop(8%, #eeeeee), color-stop(18%, #dddddd), color-stop(33%, #eeeeee)); background: -webkit-linear-gradient(left, #eeeeee 8%, #dddddd 18%, #eeeeee 33%); background: linear-gradient(to right, #eeeeee 8%, #dddddd 18%, #eeeeee 33%); -webkit-background-size: 400% 16px; background-size: 400% 16px; height: 16px; position: relative; margin-bottom: 10px; }
 .contentLoader .animated-background.firstRow { width: 85%; }
