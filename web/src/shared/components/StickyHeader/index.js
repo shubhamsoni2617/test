@@ -45,10 +45,8 @@ function BuyTicketsButton({ url, buttons, buttonGroups, setFlag }) {
   );
 }
 
-function BuyTicketsButtonPopup(props) {
-  const [flag, setFlag] = useState(false);
-  const { detailData } = props;
-
+function BuyTicketsButtonPopup({ detailData, flag, setFlag }) {
+  console.log('flag', flag);
   if (
     !detailData.buttons &&
     !detailData.buttons.length &&
@@ -204,6 +202,7 @@ function StickyHeader(props) {
   const [showEventDateBlock, setEventDateBlock] = useState(false);
   const [venueDetailsPopup, setVenueDetailsPopup] = useState(false);
   const [stickyHeader, setStickyHeader] = useState(false);
+  const [flag, setFlag] = useState(false);
 
   useEffect(() => {
     if (props.sticky && props.elemOffsetTop > 100) {
@@ -212,6 +211,7 @@ function StickyHeader(props) {
           setStickyHeader(true);
         } else if (window.pageYOffset < props.elemOffsetTop) {
           setStickyHeader(false);
+          setFlag(false);
         }
       };
       window.addEventListener('scroll', handleScroll);
@@ -327,7 +327,13 @@ function StickyHeader(props) {
           <ul className="date-address">
             {detailData.event_date && (
               <li className="event-date">
-                <img src={calendarImg} height={16} width="16" className="calenderIcon" alt="cal-icon" />
+                <img
+                  src={calendarImg}
+                  height={16}
+                  width="16"
+                  className="calenderIcon"
+                  alt="cal-icon"
+                />
                 <div>
                   <span>{detailData.event_date}</span>
                   <ViewAllDateTimeButton
@@ -354,19 +360,13 @@ function StickyHeader(props) {
                   />
                   <div>
                     <Link to={`/venues?id=${detailData.venue_name.id}`}>
-                      {sticky ? (
-                        <TitleToolTip
-                          title={detailData.venue_name.name}
-                          lines={1}
-                          tag={false}
-                          height={20}
-                          eventDetail
-                        />
-                      ) : (
-                        <div>
-                          <span>{detailData.venue_name.name}</span>
-                        </div>
-                      )}
+                      <TitleToolTip
+                        title={detailData.venue_name.name}
+                        lines={1}
+                        tag={false}
+                        height={20}
+                        eventDetail
+                      />
                     </Link>
                     <button
                       className="link"
@@ -403,7 +403,11 @@ function StickyHeader(props) {
       </div>
       <div className="tickets-button">
         {detailData.is_available_for_booking === 1 && (
-          <BuyTicketsButtonPopup detailData={detailData} />
+          <BuyTicketsButtonPopup
+            detailData={detailData}
+            flag={flag}
+            setFlag={setFlag}
+          />
         )}
         {buyPackages}
       </div>
