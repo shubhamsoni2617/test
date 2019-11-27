@@ -506,7 +506,7 @@ export default class EventsDetail extends Component {
                     }
                   />
 
-                  {detailData && detailData.is_show_over === 0 && (
+                  {detailData && detailData.is_available_for_booking === 1 && (
                     <StickyHeader
                       lines={1}
                       sticky={true}
