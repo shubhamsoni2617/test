@@ -75,6 +75,7 @@ const FestivalEventLineUp = ({ sectionOne, sectionTwo }) => {
                       __html:
                         sectionOne &&
                         sectionOne[0] &&
+                        sectionOne[0].description &&
                         Utilities.showLimitedChars(
                           sectionOne[0].description.replace(
                             /(<([^>]+)>)/gi,

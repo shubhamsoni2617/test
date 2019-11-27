@@ -1,9 +1,9 @@
 import React, { Fragment } from 'react';
 import './style.scss';
 import Image from '../../../../shared/components/Image';
+import Utilities from '../../../../shared/utilities';
 
 const PollsNServeys = ({ sectionSeven }) => {
-  sectionSeven[0].image;
   return sectionSeven[0].image || sectionSeven[0].heading ? (
     <section className="polls-survey">
       <div className="container-fluid">
@@ -28,7 +28,9 @@ const PollsNServeys = ({ sectionSeven }) => {
                       <div className="polls-cont">
                         {title && <h2>{title}</h2>}
                         <p
-                          dangerouslySetInnerHTML={{ __html: description }}
+                          dangerouslySetInnerHTML={{
+                            __html: Utilities.showLimitedChars(description, 500)
+                          }}
                         ></p>
                         {button_text && <a href={button_url}>{button_text}</a>}
                       </div>
