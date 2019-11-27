@@ -449,7 +449,9 @@ function EventInfoBlock(props) {
             </ul>
 
             <div className="title top">
-              <h3 dangerouslySetInnerHTML={{ __html: detailData.title }}></h3>
+              <h3
+                dangerouslySetInnerHTML={{ __html: detailData.rich_title }}
+              ></h3>
             </div>
 
             <div className="promoters">
