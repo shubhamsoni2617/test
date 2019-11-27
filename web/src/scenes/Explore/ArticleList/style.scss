@@ -6,6 +6,17 @@
             transform: translateY(-50%);
             padding-top: 120px;
         }
+        .breadcrumb{
+            li{
+                color: rgba(255, 255, 255, 0.9);
+                a{
+                    color: rgba(255, 255, 255, 0.9);
+                }
+                &:after{
+                    color: rgba(255, 255, 255, 0.9);
+                }
+            }
+        }
     }
     .wrapper-events-listing{
         padding-top: 35px;
@@ -231,6 +242,8 @@
                         font-size: 13px;
                         margin-right: 3px;
                         margin-bottom: 3px;
+                        line-height: 13px;
+                        padding: 4px 5px;
                         height: auto;
                         display: inline-block;
                         width: auto;
@@ -239,12 +252,12 @@
             }
             .category-group{
                 margin-bottom: 5px;
-                min-height: 52px;
                 height: 100%;
                 @media(max-width: 576px){
                     min-height: auto;
                 }
                 ul{
+                    min-height: 52px;
                     @media(max-width: 576px){
                         min-height: 32px;
                     }

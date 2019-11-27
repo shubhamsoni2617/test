@@ -333,6 +333,8 @@ section.whats-new {
             width: 72px;
             border-radius: 50%;
             margin-bottom: 20px;
+            object-fit: cover;
+            object-position: center;
         }
         h4{
             color: #343434;
