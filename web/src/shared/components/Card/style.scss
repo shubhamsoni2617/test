@@ -308,7 +308,6 @@
             min-height: 18px;
             @media (max-width: 1024px) {
                 min-height: 35px;
-                margin-bottom: 0;
             }
             @media (max-width: 767px) {
                 font-size: 12px;
@@ -436,7 +435,7 @@
             max-height: calc(100% - 40px);
         }
         .modal-content .modal-body{
-            padding: 15px 15px 20px;
+            padding: 15px 20px 20px;
             border-radius: 0;
             @media(max-width: 767px){
                 max-height: 220px;

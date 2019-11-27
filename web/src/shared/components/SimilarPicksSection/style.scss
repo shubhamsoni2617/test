@@ -157,10 +157,12 @@
 		transition: 1s all;
 		-webkit-transition:  1s all;
 		-moz-transition:  1s all;
-		-o-transition:  1s all;
+        -o-transition:  1s all;
+        min-height: 38px;
 		@media (max-width: 767px) {
 			font-size: 14px;
-			line-height: 18px;
+            line-height: 18px;
+            margin-bottom: 2px;
 		}
 	}
 	p {
@@ -172,7 +174,8 @@
         margin: 0px;
 		transition: 1s all;
 		-webkit-transition:  1s all;
-		-moz-transition:  1s all;
+        -moz-transition:  1s all;
+        min-height: 18px;
         -o-transition:  1s all;
         &.dt-srt-end{
             @media(max-width: 1024px) {

@@ -4,7 +4,6 @@ import Image from '../../../../shared/components/Image';
 import Utilities from '../../../../shared/utilities';
 import arrowDown from '../../../../assets/images/arrow-right.svg';
 
-
 const AllEvents = ({ sectionFour }) => {
   const [limit, setLimit] = useState(10);
   return sectionFour && sectionFour.events && sectionFour.events.length > 0 ? (
@@ -49,7 +48,8 @@ const AllEvents = ({ sectionFour }) => {
                   setLimit(sectionFour.events.length);
                 }}
               >
-                Load more  ({sectionFour.events.length - limit})<Image src={arrowDown} />
+                Load more ({sectionFour.events.length - limit})
+                <Image src={arrowDown} />
               </a>
             )}
         </div>

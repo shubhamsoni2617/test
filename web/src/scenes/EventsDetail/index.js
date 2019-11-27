@@ -16,6 +16,7 @@ import SeatMap from '../../shared/components/SeatMap';
 import ModalPopup from '../../shared/components/Modal';
 import ShimmerEffect from '../../shared/components/ShimmerEffect';
 import StickyHeader from '../../shared/components/StickyHeader';
+import EventInfoBlock from '../../shared/components/EventInfoBlock';
 
 import SimilarPicksSection from '../../shared/components/SimilarPicksSection';
 import AdvertisementSection from '../../shared/components/AdvertisementSection';
@@ -164,19 +165,24 @@ export default class EventsDetail extends Component {
       },
       synopsis: { language: '', description: '' },
       popupContent: '',
-      popupTitle: ''
+      popupTitle: '',
+      elemOffsetTop: 0,
+      eventDetailBannerHeight: 0
     };
   }
 
   setOffsetTop = elem => {
     if (elem) {
-      this.elemOffsetTop = elem.offsetTop;
+      setTimeout(() => {
+        this.setState({ elemOffsetTop: elem.offsetTop });
+      }, 1000);
+      // this.elemOffsetTop = elem.offsetTop;
     }
   };
 
   componentDidMount() {
     this.setState({ shareUrl: window.location.href });
-    window.addEventListener('scroll', this.handleScroll);
+    // window.addEventListener('scroll', this.handleScroll);
     const payload = {
       code: this.state.code,
       client: Constants.CLIENT
@@ -257,24 +263,24 @@ export default class EventsDetail extends Component {
   }
 
   componentWillUnmount() {
-    window.removeEventListener('scroll', this.handleScroll);
+    // window.removeEventListener('scroll', this.handleScroll);
     this.unlisten();
   }
 
-  handleScroll = () => {
-    if (
-      !this.state.setHeader &&
-      window.pageYOffset >= this.elemOffsetTop + 100
-    ) {
-      this.setState({
-        setHeader: true
-      });
-    } else if (window.pageYOffset < this.elemOffsetTop) {
-      this.setState({
-        setHeader: false
-      });
-    }
-  };
+  // handleScroll = () => {
+  //   if (
+  //     !this.state.setHeader &&
+  //     window.pageYOffset >= this.elemOffsetTop + 100
+  //   ) {
+  //     this.setState({
+  //       setHeader: true
+  //     });
+  //   } else if (window.pageYOffset < this.elemOffsetTop) {
+  //     this.setState({
+  //       setHeader: false
+  //     });
+  //   }
+  // };
 
   openBuyTicketPopup = () => {
     let flag;
@@ -388,7 +394,8 @@ export default class EventsDetail extends Component {
       shimmer,
       shareUrl,
       synopsis,
-      code
+      code,
+      eventDetailBannerHeight
     } = this.state;
     if (error) {
       return null;
@@ -458,9 +465,19 @@ export default class EventsDetail extends Component {
                     />
                   )} */}
 
-                <section className="event-detail-banner">
+                <section
+                  className="event-detail-banner"
+                  ref={node => {
+                    if (!eventDetailBannerHeight && node && node.offsetHeight) {
+                      this.setState({
+                        eventDetailBannerHeight: node.offsetHeight - 120
+                      });
+                    }
+                  }}
+                >
                   <EventCarousel images={detailData.images} />
-                  <StickyHeader
+
+                  <EventInfoBlock
                     lines={2}
                     sticky={false}
                     detailData={detailData}
@@ -468,6 +485,7 @@ export default class EventsDetail extends Component {
                     openNotice={this.openNotice}
                     openSocialShare={this.openSocialShare}
                     shareUrl={shareUrl}
+                    eventDetailBannerHeight={eventDetailBannerHeight}
                     seatMapButton={
                       detailData.seating_plan &&
                       detailData.seating_plan.length > 0 && (
@@ -487,7 +505,8 @@ export default class EventsDetail extends Component {
                   <StickyHeader
                     lines={1}
                     sticky={true}
-                    setHeader={setHeader}
+                    elemOffsetTop={this.state.elemOffsetTop}
+                    // setHeader={setHeader}
                     detailData={detailData}
                     showSocialShare={showSocialShare}
                     openNotice={this.openNotice}
@@ -584,12 +603,16 @@ export default class EventsDetail extends Component {
                           dynamicClass="promotion-accordian"
                         />
                       )}
-                    {!Utilities.mobilecheck() && <AdvertisementSection data={detailData.rectangle_image} />}
+                    {!Utilities.mobilecheck() && (
+                      <AdvertisementSection data={detailData.rectangle_image} />
+                    )}
                   </div>
                 </section>
                 <EventTags tags={detailData.tags} />
 
-                {Utilities.mobilecheck() && <AdvertisementSection data={detailData.rectangle_image} />}
+                {Utilities.mobilecheck() && (
+                  <AdvertisementSection data={detailData.rectangle_image} />
+                )}
 
                 <ArticleSection flag={true} code={code} />
               </div>

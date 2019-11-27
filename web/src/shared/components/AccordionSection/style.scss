@@ -10,6 +10,13 @@
             .accordion__panel{
                 border: 1px solid rgba(201, 201, 201, 0.2);
                 border-top: none;
+                @media(max-width: 767px){
+                    padding-left: 20px;
+                    padding-right: 20px;
+                }
+                iframe{
+                    padding-bottom: 20px;
+                }
                 // box-shadow: 0 2px 3px 0 rgba(201, 201, 201, 0.5);
             }
         }
@@ -64,7 +71,7 @@
                 padding: 18px 20px;
             }
             @media(max-width: 768px){
-                padding: 10px 15px;
+                padding: 13px 15px;
                 font-size: 16px;
             }
             &::before{
