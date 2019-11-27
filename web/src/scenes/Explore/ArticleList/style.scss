@@ -23,6 +23,9 @@
         padding-bottom: 20px;
         .inner{
             bottom: 0px !important;
+            @media(max-width: 767px){
+                max-height: calc(100% - 0px);
+            }
         }
         .fixed-buttons-events{
             .filter{
@@ -96,6 +99,10 @@
                     width: calc(25% - 28px);
                     margin-right: 28px;
                 }
+                @media(max-width: 767px) and (orientation: landscape){
+                    display: flex;
+                    height: 100%;
+                }
                 &.no-data{
                     flex-basis: 100%;
                     width: 100%;
@@ -166,6 +173,9 @@
                 @media(max-width: 767px){
                     padding: 5px 8px 5px;
                 }
+                @media(max-width: 767px) and (orientation: landscape){
+                    height: 100%;
+                }
                 @media(max-width: 450px){
                     padding: 5px 5px 5px;
                 }
@@ -174,11 +184,17 @@
                     flex-direction: column;
                     justify-content: space-between;
                     width: 100%;
+                    @media(max-width: 767px) and (orientation: landscape){
+                        height: 100%;
+                    }
                     .article-bottom-details{
                         display: flex;
                         flex-direction: column;
                         height: 100%;
                         justify-content: space-between;
+                         @media(max-width: 767px) and (orientation: landscape){
+                            height: auto;
+                        }
                     }
                 }
                 .item-title{
@@ -260,7 +276,7 @@
                 ul{
                     min-height: 52px;
                     @media(max-width: 576px){
-                        min-height: 32px;
+                        min-height: 66px;
                     }
                 }
                 li{
@@ -357,10 +373,18 @@
                             flex: 0 0 50%;
                             width: 50%;
                         }
+                        @media(max-width: 767px) and (orientation: landscape){
+                            flex: 0 0 35%;
+                            width: 35%;
+                        }
                     }
                     &.item-author{
                         text-transform: capitalize;
                         padding-right: 10px;
+                        @media(max-width: 767px) and (orientation: landscape){
+                            flex: 0 0 65%;
+                            width: 65%;
+                        }
                     }
                 }
             }
