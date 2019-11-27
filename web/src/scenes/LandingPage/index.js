@@ -9,6 +9,8 @@ import CareerService from '../../shared/services/CareerService';
 import Careers from '../../shared/components/Careers';
 import Network from './Network';
 import ContactUs from '../ApiPartner/ContactUs';
+import { animateScroll } from 'react-scroll';
+
 const LandingPage = ({ location }) => {
   const [landingPageData, setLandingPageData] = useState(null);
   const [testimonial, setTestimonial] = useState(null);
@@ -21,6 +23,14 @@ const LandingPage = ({ location }) => {
       window && window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
     }
   }, []);
+  useEffect(() => {
+    if (landingPageData && location.hash) {
+      const offset = document
+        .getElementById(location.hash)
+        .getBoundingClientRect().top;
+      animateScroll.scrollMore(offset - 75);
+    }
+  }, [landingPageData, location.hash]);
 
   const fetchLandingPageData = () => {
     B2BService.getLandingPage()
@@ -54,10 +64,7 @@ const LandingPage = ({ location }) => {
         networkData={landingPageData && landingPageData.content.network}
       />
       <div className="apipartners-wrapper">
-        <ContactUs
-          location={location}
-          dataLoaded={landingPageData && testimonial}
-        />
+        <ContactUs />
       </div>
     </div>
   );

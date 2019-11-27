@@ -13,7 +13,7 @@ const LandingFestivals = ({ festivals }) => {
         <div className="section-top-wrapper">
           <h2>{festivals && festivals.heading}</h2>
           <div className="carousel-dots">
-            <Link to="/articles">
+            <Link to="/explore/articles">
               See all <img src={Arrow} className="img-fluid" alt="arrow" />
             </Link>
           </div>
@@ -27,8 +27,8 @@ const LandingFestivals = ({ festivals }) => {
                   <Link
                     to={
                       type === 'multi_show_template'
-                        ? `/explore/festival/${id}`
-                        : `/explore/article/${id}`
+                        ? `/explore/2/${id}`
+                        : `/explore/1/${id}`
                     }
                     className="item-wrapper"
                     key={index}
