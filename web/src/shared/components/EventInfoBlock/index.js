@@ -220,7 +220,6 @@ function EventInfoBlock(props) {
   }, []);
 
   const setScrollbarHeight = (button = false) => {
-    debugger;
     if (detailData.is_available_for_booking === 0) {
       setScrollHeight(380);
     } else if (
