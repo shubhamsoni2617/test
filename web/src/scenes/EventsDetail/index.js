@@ -16,6 +16,7 @@ import SeatMap from '../../shared/components/SeatMap';
 import ModalPopup from '../../shared/components/Modal';
 import ShimmerEffect from '../../shared/components/ShimmerEffect';
 import StickyHeader from '../../shared/components/StickyHeader';
+import EventInfoBlock from '../../shared/components/EventInfoBlock';
 
 import SimilarPicksSection from '../../shared/components/SimilarPicksSection';
 import AdvertisementSection from '../../shared/components/AdvertisementSection';
@@ -464,7 +465,8 @@ export default class EventsDetail extends Component {
 
                 <section className="event-detail-banner">
                   <EventCarousel images={detailData.images} />
-                  <StickyHeader
+
+                  <EventInfoBlock
                     lines={2}
                     sticky={false}
                     detailData={detailData}
