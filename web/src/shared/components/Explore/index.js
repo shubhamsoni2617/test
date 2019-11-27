@@ -66,7 +66,7 @@ const Explore = props => {
                 />
               </div>
               <div className="explore-text-wrapper">
-                {exploreData[0].categories.map(category => {
+                {exploreData[0].categories.slice(0, 1).map(category => {
                   return (
                     <span
                       className="explore-category"
@@ -90,7 +90,7 @@ const Explore = props => {
                   </div>
                   <div className="explore-text-wrapper">
                     {cardData.categories &&
-                      cardData.categories.map(category => {
+                      cardData.categories.slice(0, 1).map(category => {
                         return (
                           <span key={category} className="explore-category">
                             {category}
