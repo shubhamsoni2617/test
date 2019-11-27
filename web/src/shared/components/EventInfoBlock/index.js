@@ -432,6 +432,7 @@ function EventInfoBlock(props) {
           </Scrollbars>
         )}
         {Utilities.mobilecheck() && (
+          <>
             <ul className="zoner-group">
               {detailData.genres &&
                 detailData.genres.length > 0 &&
@@ -538,10 +539,10 @@ function EventInfoBlock(props) {
                               eventDetail
                             />
                           ) : (
-                              <div>
-                                <span>{detailData.venue_name.name}</span>
-                              </div>
-                            )}
+                            <div>
+                              <span>{detailData.venue_name.name}</span>
+                            </div>
+                          )}
                         </Link>
                         {detailData.venue_name.description && (
                           <>
@@ -582,7 +583,7 @@ function EventInfoBlock(props) {
                 </li>
               </ul>
             </div>
-            </>
+          </>
         )}
       </div>
       <div className="tickets-button">
