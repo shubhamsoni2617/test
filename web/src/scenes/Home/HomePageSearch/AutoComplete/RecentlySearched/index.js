@@ -21,7 +21,7 @@ const RecentlySearched = ({ focusHandler, history, mostViewed }) => {
 
   const onClickHandler = text => {
     setValuesInLocalStorage(text);
-    history.push(`/search-results?q=${text}`);
+    history.push(`/search?${text}`);
     focusHandler(text);
     Utilities.mobilecheck() &&
       document.getElementsByTagName('body')[0].classList.remove('fixed-body');

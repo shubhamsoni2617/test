@@ -68,7 +68,7 @@ const routes = [
     component: WhereBuyTickets
   },
   {
-    path: '/attraction',
+    path: '/attractions',
     component: Attraction,
     exact: true
   },
@@ -117,63 +117,63 @@ const routes = [
     exact: true
   },
   {
-    path: '/career',
-    component: Careers,
-    exact: true
-  },
-  {
-    path: '/career/jobdescription/:jobId',
+    path: '/corporate/career/:jobId',
     component: JobDescription,
     exact: true
   },
   {
-    path: '/about-us',
+    path: '/corporate/careers',
+    component: Careers,
+    exact: true
+  },
+  {
+    path: '/corporate/about-us',
     component: AboutUs,
     exact: true
   },
   {
-    path: '/apipartners',
+    path: '/corporate/partner-with-us',
     component: ApiPartner,
     exact: true
   },
   {
-    path: '/search-results',
+    path: '/search',
     component: Search,
     exact: true
   },
   {
-    path: '/system-licensing',
+    path: '/corporate/ticketing-technology',
     component: SystemLicensing,
     exact: true
   },
   {
-    path: '/advertise',
+    path: '/corporate/advertise-with-us',
     component: Advertise,
     exact: true
   },
   {
-    path: '/sell-event-tickets',
+    path: '/corporate/ticket-with-us',
     component: SellTicketsWithUs,
     exact: true
   },
   {
-    path: '/b2b',
+    path: '/corporate',
     component: LandingPage,
     exact: true
   },
 
   {
-    path: '/articles',
+    path: '/explore/articles',
     component: ArticleList,
     exact: true
   },
   {
-    path: '/explore/article/:id',
+    path: '/explore/1/:id',
     component: Article,
     exact: true
   },
   {
-    path: '/explore/festival/:id',
+    path: '/explore/2/:id',
     component: Festival,
     exact: true
   },
