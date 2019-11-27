@@ -584,10 +584,13 @@ export default class EventsDetail extends Component {
                           dynamicClass="promotion-accordian"
                         />
                       )}
-                    <AdvertisementSection data={detailData.rectangle_image} />
+                    {!Utilities.mobilecheck() && <AdvertisementSection data={detailData.rectangle_image} />}
                   </div>
                 </section>
                 <EventTags tags={detailData.tags} />
+
+                {Utilities.mobilecheck() && <AdvertisementSection data={detailData.rectangle_image} />}
+
                 <ArticleSection flag={true} code={code} />
               </div>
             )}

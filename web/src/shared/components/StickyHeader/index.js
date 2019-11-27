@@ -255,14 +255,14 @@ function StickyHeader(props) {
 
         {sticky ? (
           <TitleToolTip
-            title={detailData.title}
+            title={<h3 dangerouslySetInnerHTML={{__html :detailData.title}}></h3>}
             lines={props.lines}
             height={Utilities.mobileAndTabletcheck() ? 25 : 30}
             eventDetail
           />
         ) : (
             <div className="title top">
-              <h3>{detailData.title}</h3>
+              <h3 dangerouslySetInnerHTML={{__html :detailData.title}}></h3>
             </div>
           )}
 
@@ -278,7 +278,7 @@ function StickyHeader(props) {
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    {item.name}&nbsp;
+                    {item.name}&nbsp;6.75rem
                   </a>
                 );
               }
