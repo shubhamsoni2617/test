@@ -179,7 +179,7 @@
                         background-size: 18px;
                     }
                     &:hover{
-                        background: #0098FF url(../../../assets/images/buy-arrow.png) 94% 15px no-repeat;
+                        background: #1f82d7 url(../../../assets/images/buy-arrow.png) 94% 15px no-repeat;
                         font-size: 18px;
                         color: #FFF;
                         line-height: 22px;
@@ -404,9 +404,9 @@
                     display: none;
                 }
                 &:hover{
-                    border: 1px #0098FF solid;
-                    background: #FFF;
-                    color: #0098FF;
+                    border: 1px #1f82d7 solid;
+                    background: #1f82d7;
+                    color: #FFF;
                     transition: 0.8s all;
                     -webkit-transition: 0.8s all;
                     -moz-transition: 0.8s all;
@@ -433,13 +433,13 @@
         max-height: 100%;
         border-radius: 0;
         @media(max-width: 767px){
-            max-height: calc(100% - 100px);
+            max-height: calc(100% - 40px);
         }
         .modal-content .modal-body{
             padding: 15px 15px 20px;
             border-radius: 0;
             @media(max-width: 767px){
-                max-height: 260px;
+                max-height: 220px;
             }
             .notice{
                 word-break: break-word;
