@@ -311,7 +311,7 @@ function StickyHeader(props) {
           <ul className="date-address">
             {detailData.event_date && (
               <li className="event-date">
-                <img src={calendarImg} height={16} width="16" alt="cal-icon" />
+                <img src={calendarImg} height={16} width="16" className="calenderIcon" alt="cal-icon" />
                 <div>
                   <span>{detailData.event_date}</span>
                   <ViewAllDateTimeButton

@@ -19,7 +19,7 @@ const thumbSliderSettings = {
     centerMode: true,
     infinite: true,
     speed: 500,
-    slidesToShow: Utilities.mobilecheck() ? 5 : 13,
+    slidesToShow: Utilities.mobilecheck() ? 3 : 13,
     slidesToScroll: 1,
     focusOnSelect: true,
     arrows: true
