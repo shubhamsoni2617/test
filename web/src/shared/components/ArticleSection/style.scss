@@ -55,6 +55,9 @@
             .item-img{
                 img{
                     transform: scale(1.05);
+                    @media (max-width: 767px) {
+                        transform: scale(1);
+                    }
                 }
             }
         }
@@ -103,12 +106,19 @@
                 -webkit-transition: 0.3s all;
                 -moz-transition: 0.3s all;
                 -o-transition: 0.3s all;
+                @media(max-width: 767px) {
+                    font-size: 13px;
+                }
                 &:hover{
                     color: #000;
                     transition: 0.3s all;
                     -webkit-transition: 0.3s all;
                     -moz-transition: 0.3s all;
                     -o-transition: 0.3s all;
+                    @media(max-width: 991px) {
+                        font-size: 13px;
+                        color: #007bff;
+                    }
                 }
             }
         }
@@ -131,6 +141,9 @@
     .section-top-wrArticleSectioner{
         display: grid;
         grid-template-columns: auto auto;
+        @media(max-width: 767px) {
+            margin-bottom: 10px;
+        }
         h2{
             @media(max-width: 768px){
                 font-size: 20px;

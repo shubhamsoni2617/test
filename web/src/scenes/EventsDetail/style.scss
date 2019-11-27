@@ -328,8 +328,8 @@
               li {
                   display: inline-block;
                   list-style: none;
-                  margin: 0px 4px 4px 0;
-                  border: 1px solid rgba(106, 106, 106, 0.25);
+                  margin: 0px 8px 4px 0;
+                  border: 2px solid rgba(106, 106, 106, 0.25);
                   padding: 1px 5px;
                   background-color: transparent;
                   transition: 0.3s background-color;
@@ -338,9 +338,14 @@
                   -o-transition: 0.3s background-color;
                   color: rgba(106,106,106,0.8);
                   font-family: 'Montserrat', sans-serif;
-                  font-size: 14px;
+                  font-size: 13px;
                   line-height: 18px;
                   font-weight: 500;
+                  @media(max-width: 767px){
+                    border: 1px solid rgba(106, 106, 106, 0.25); 
+                    padding: 0px 3px;
+                    font-size: 12px;
+                  }
                   &.active{
                       background-color: #07B3F0;
                       border-color: #07B3F0;
@@ -388,7 +393,9 @@
             background: none;
             color: #0098ff;
             padding: 0;
+            font-size: 15px;
             font-weight: 500;
+            margin-left: 1px;
           }
           .date-address {
               margin: 0px 0 24px;
@@ -434,6 +441,9 @@
                       margin-right: 15px;
                       width: 19px;
                       margin-top: 3px;
+                      &.location-gray{
+                          margin-top: 0;
+                      }
                       &.sticky-location-icon {
                           display: none;
                       }
@@ -462,7 +472,8 @@
                         }
                       }
                       .coin{
-                          width: 22px;
+                          width: 21px;
+                          height: 21px;
                       }
                       .seat-map{
                           margin-bottom: 10px;
@@ -730,7 +741,7 @@
                       font-family: 'Montserrat', sans-serif;
                       font-size: 14px;
                       line-height: 18px;
-                      color: #626262;
+                      color: rgba(98,98,98,0.5);
                       font-weight: normal;
                       display: inline-block;
                       transition: 0.3s color;
@@ -965,6 +976,9 @@
   //event zoner
   .event-zoner-group{
     padding: 20px 0px 75px;
+    @media(max-width: 767px){
+        padding: 7px 0px 12px !important;
+    }
     ul {
         display: flex;
         flex-wrap: wrap;
@@ -1003,6 +1017,9 @@
             }
             @media(max-width: 767px){
                 margin-bottom: 10px;
+                padding: 0px 3px;
+                font-size: 12px;
+                font-weight: 500;
             }
         }
     }
