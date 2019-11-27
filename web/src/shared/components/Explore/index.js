@@ -59,8 +59,8 @@ const Explore = props => {
           <div className="item">
             <div className="item-wrapper explore-article">
               <div className="explore-image item-img">
-                <img
-                  src={exploreData[0].image}
+                <Image
+                  src={exploreData[0].thumb_image}
                   className="img-fluid"
                   alt="explore"
                 />
@@ -77,7 +77,7 @@ const Explore = props => {
                     </span>
                   );
                 })}
-                <h3>{exploreData[0].description.slice(0, 60)}</h3>
+                <h3>{exploreData[0].title.slice(0, 60)}</h3>
               </div>
             </div>
           </div>
@@ -86,7 +86,7 @@ const Explore = props => {
               <div key={cardData.id} className="item explore-rightside-content">
                 <div className="item-wrapper">
                   <div className="explore-image item-img">
-                    <Image src={cardData.image} className="img-fluid" />
+                    <Image src={cardData.thumb_image} className="img-fluid" />
                   </div>
                   <div className="explore-text-wrapper">
                     {cardData.categories &&
@@ -97,7 +97,7 @@ const Explore = props => {
                           </span>
                         );
                       })}
-                    <h3>{cardData.description.slice(0, 50)}</h3>
+                    <h3>{cardData.title.slice(0, 50)}</h3>
                   </div>
                 </div>
               </div>
