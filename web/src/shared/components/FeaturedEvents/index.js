@@ -143,14 +143,14 @@ const FeaturedEvents = props => {
           <h2>{heading}</h2>
           {!props.explore && (
             <div className="carousel-dots">
-              <a href="/events">
+              {props.seeAll && <a href="/events">
                 See all{' '}
                 <img
                   src="assets/images/right-arrow.svg"
                   className="img-fluid"
                   alt="arrow"
                 />
-              </a>
+              </a>}
             </div>
           )}
         </div>
