@@ -12,7 +12,7 @@
     // Carousel section
     .banner-carousel{
         position: relative;
-        height: 100%;                 
+        height: 100%;
         width: 65.3%;
         @media(max-width: 991px){
           flex: 0 0 100%;
@@ -35,7 +35,7 @@
                     height: 360px;
                 }
                 @media(max-width: 767px){
-                    height: 176px;
+                    height: 172px;
                 }
                 img{
                     max-width: 100%;
@@ -62,7 +62,7 @@
                     height: 360px;
                 }
                 @media(max-width: 767px){
-                    height: 176px;
+                    height: 172px;
                 }
             }
           }
@@ -146,6 +146,7 @@
               bottom: 0;
               width: 100%;
               border-bottom: 4px solid #337ab7;
+              z-index: 2;
             }
         }
           .image-gallery-custom-nav{
@@ -169,6 +170,9 @@
                 border: none;
                 outline: none;
             }
+            @media(max-width: 768px){
+                bottom: -61px;
+            }
             @media(max-width: 767px){
                 background-position: 8px 15px;
             }
@@ -182,8 +186,12 @@
                   border: none;
                   outline: none;
               }
+              @media(max-width: 768px){
+                bottom: -61px;
+            }
               @media(max-width: 767px){
                 background-position: 6px 15px;
+                bottom: -53px;
             }
           }
 
@@ -197,17 +205,18 @@
             img{
               position: relative;
               z-index: 1;
+              height: 412px;
               @media (min-device-width: 1500px) and (max-device-width: 1980px) {
-                height: 520px;
+                height: 519px;
                 }
                 @media (min-device-width: 1135px) and (max-device-width: 1280px) {
-                    height: 387px;
+                    height: 386px;
                 }
               @media(max-width: 1024px){
-                height: 359px;
+                height: 358px;
                 }
               @media(max-width: 767px){
-                height: 178px;
+                height: 177px;
               }
             }
            & > div{

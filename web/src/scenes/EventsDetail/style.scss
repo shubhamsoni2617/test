@@ -98,6 +98,10 @@
           align-items: flex-end;
           flex-direction: column;
           justify-content: flex-end;
+          @media (max-width: 1280px){
+            left: 20px;
+            width: calc(100% - 50px);
+          }
           &.shows-over-tickets{
               bottom: 0;
           }
@@ -110,6 +114,12 @@
           .modal-content{
             .modal-body{
               padding: 15px 25px 20px;
+              .buy-tickets-btn{
+                  margin-bottom: 20px;
+                  a{
+                      width: 100%;
+                  }
+              }
             }
           }
         }
@@ -199,13 +209,31 @@
         display: block;
         margin-top: -10px;
         padding-top: 10px;
+        > div{
+            > div{
+                overflow: inherit !important;
+            }
+        }
+        @media(min-width: 768px) and (max-width: 980px){
+            > div{
+                overflow: inherit !important;
+                height: auto !important;
+                > div{
+                    position: relative !important;
+                    overflow: inherit !important;
+                }
+            }
+        }
         @media(max-width: 991px){
-            height: auto;
+            overflow: inherit;
         }
           .promoters {
-            padding: 0 0px 10px;
+            padding: 1px 0px 10px;
+            margin-bottom: 10px;
+            min-height: 31px;
             @media(max-width: 991px){
                 padding: 5px 0px 5px;
+                min-height: auto;
             }
             span{
               color: #949494;
@@ -234,6 +262,7 @@
         }
           .title{
               h3{
+                    min-height: 60px;
                   @media(max-width: 1024px){
                     font-size: 20px;
                     margin-bottom: 0px;
@@ -343,8 +372,9 @@
                   font-weight: 500;
                   @media(max-width: 767px){
                     border: 1px solid rgba(106, 106, 106, 0.25); 
-                    padding: 0px 3px;
+                    padding: 0px 2px;
                     font-size: 12px;
+                    line-height: 17px;
                   }
                   &.active{
                       background-color: #07B3F0;
@@ -418,6 +448,9 @@
                   display: flex;
                   align-items: flex-start;
                   margin: 0px;
+                  &:empty{
+                      display: none;
+                  }
                   span{
                       color: #6A6A6A;
                       font-family: 'Rubik', sans-serif;
@@ -442,6 +475,9 @@
                       margin-right: 15px;
                       width: 19px;
                       margin-top: 3px;
+                      @media(max-width: 767px){
+                        margin-top: 0;
+                        }
                       &.location-gray{
                           margin-top: 0;
                           width: 19px;
@@ -459,8 +495,9 @@
 
                   &.event-date {
                       margin-bottom: 15px;
+                      min-height: 24px;
                       @media(max-width: 1024px){
-                            margin-bottom: 10px;
+                            margin-bottom: 15px;
                       }
                       span{
                           p{
@@ -479,6 +516,7 @@
                       .calenderIcon{
                           width: 19px;
                           height: 19px;
+                          
                       }
                       .coin{
                           width: 21px;
@@ -504,7 +542,7 @@
                           margin-top: 2px;
                       }
                       @media(max-width: 991px){
-                        margin-bottom: 10px;
+                        margin-bottom: 15px;
                         flex: 0 0 50%;
                         width: 50%;
                     }
@@ -515,8 +553,9 @@
                   }
                   &.event-address{
                     margin-bottom: 15px;
+                    min-height: 24px;
                     @media(max-width: 1024px){
-                        margin-bottom: 10px;
+                        margin-bottom: 15px;
                     }
                       a{
                           display: flex;
@@ -546,6 +585,11 @@
                         flex: 0 0 50%;
                         width: 50%;
                       }
+                      @media(max-width: 991px){
+                        flex: 0 0 100%;
+                        width: 100%;
+                      }
+
                   }
               }
           }
@@ -603,9 +647,6 @@
                 line-height: 20px;
                 margin-top: 7px;
               }
-              @media(min-width: 768px) and (max-width: 980px){
-
-              }
               &:hover{
                   background-color: #1f82d7;
                   color: #FFF;
@@ -636,6 +677,7 @@
             position: relative;
             left: 0;
             width: 100%;
+            justify-content: flex-start;
             bottom: 0;
             flex-direction: initial;
           }
@@ -657,6 +699,7 @@
             @media(max-width: 767px){
                 flex: 0 0 100%;
                 width: 100%;
+                margin-right: 0;
             }
             
         }
@@ -688,6 +731,9 @@
         display: flex;
         margin-top: 20px;
         flex-direction: column;
+      }
+      @media(max-width: 991px){
+          box-shadow: 0 2px 3px #e8e8e8; 
       }
       &:after{
           position: absolute;
@@ -763,9 +809,6 @@
                   &.active, &:hover{
                       a{
                           color: #0098FF;
-                          @media(max-width: 991px){
-                            color: #626262;
-                          }
                       }
                   }
               }
@@ -800,6 +843,10 @@
           & > .accordion > .accordion__item > .accordion__panel{
               border: 1px solid rgba(201, 201, 201, 0.2);
               border-top: none;
+              @media(max-width: 767px){
+                padding-left: 20px;
+                padding-right: 20px;
+              }
           }
             .accordion__button{
                 &:before{
@@ -992,7 +1039,7 @@
   .event-zoner-group{
     padding: 20px 0px 0;
     @media(max-width: 767px){
-        padding: 7px 0px 0 !important;
+        padding: 25px 0px  15px !important;
     }
     ul {
         display: flex;
@@ -1035,6 +1082,7 @@
                 padding: 0px 3px;
                 font-size: 12px;
                 font-weight: 500;
+                margin-right: 6px;
             }
         }
     }
@@ -1292,6 +1340,7 @@
               @media(min-width: 1024px) and (max-width: 1280px) {
                 right: 0;
               }
+              
           }
           h2{
               font-size: 22px;
@@ -1383,6 +1432,7 @@
               }
           }
           h3{
+              min-height: auto;
             @media(max-width: 1280px){
                 width: 90% !important;
             }
@@ -1403,11 +1453,11 @@
           }
           .buy-tickets-btn{
                 width: auto;
-              margin-left: auto;
+                margin-left: auto;
               a{
                   font-weight: 600;
                   margin: 0;
-                  width: auto;
+                  width: 100%;
                   display: inline-block;
                   padding-left: 50px;
                   padding-right: 50px;
@@ -1613,8 +1663,11 @@
   //tooltip design
   .info-tooltip, .share-tooltip{
       position: absolute;
-      right: 0px;
+      right: 15px;
       top: 12px;
+      @media(min-width: 768px) and (max-width: 1023px) {
+        right: 10px;
+      }
       .info, .share{
           .tooltip-text {
               position: absolute;

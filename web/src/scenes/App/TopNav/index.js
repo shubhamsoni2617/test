@@ -64,6 +64,8 @@ const TopNav = props => {
   const [menuActive, setMenuActive] = useState(false);
   const [megaMenuAnimating, setMegaMenuAnimating] = useState(false);
   const [pathName, setPathName] = useState('events');
+  const [wholePath, setWholePath] = useState('/');
+  const [hashPath, setHashPath] = useState('');
   const [headerClass, setHeaderClass] = useState(false);
   const [byVenueEvent, setByVenueEvent] = useState(
     props.response && props.response.venuesData
@@ -184,6 +186,9 @@ const TopNav = props => {
   };
 
   const processPath = location => {
+    setWholePath(props.history.location);
+    setHashPath(props.history.location.hash.slice(1));
+    // console.log(props.history.location.hash);
     setTimeout(() => {
       document.body.classList.remove('fixed-body');
     }, 100);
@@ -212,7 +217,7 @@ const TopNav = props => {
         setPathName(pathArr[1]);
         setMenuActive(true);
       } else if (
-        pathArr[1] === 'contact-us' ||
+        // pathArr[1] === 'contact-us' ||
         pathArr[1] === 'corporate/about-us' ||
         pathArr[1] === 'corporate/careers' ||
         pathArr[1] === 'system-licensing' ||
@@ -290,11 +295,7 @@ const TopNav = props => {
   };
 
   return changeHeader ? (
-    <Header
-      menuActive={menuActive}
-      pathName={pathName}
-      history={props.history}
-    />
+    <Header menuActive={menuActive} location={wholePath} hashPath={hashPath} />
   ) : (
     <header
       className={`header ${headerClass ? 'homepage' : ''}

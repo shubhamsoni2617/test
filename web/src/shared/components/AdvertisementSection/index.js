@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import Image from '../Image';
 import './style.scss';
 import useRemoveFixedBody from '../../hooks/useRemoveFixedBody';
-
+import Utilities from '../../utilities';
 function AdvertisementBlock({ image, url, type }) {
   if (!image) return null;
   if (url) {
@@ -17,9 +17,8 @@ function AdvertisementBlock({ image, url, type }) {
 }
 function AdvertisementSection({ data, current }) {
   useRemoveFixedBody(current);
-
   if (!data) return null;
-  if (data && data.image) {
+  if (data && data.hasOwnProperty('image')) {
     return (
       <div className="advertisement-banner">
         <AdvertisementBlock

@@ -166,7 +166,8 @@ export default class EventsDetail extends Component {
       synopsis: { language: '', description: '' },
       popupContent: '',
       popupTitle: '',
-      elemOffsetTop: 0
+      elemOffsetTop: 0,
+      eventDetailBannerHeight: 0
     };
   }
 
@@ -393,7 +394,8 @@ export default class EventsDetail extends Component {
       shimmer,
       shareUrl,
       synopsis,
-      code
+      code,
+      eventDetailBannerHeight
     } = this.state;
     if (error) {
       return null;
@@ -447,7 +449,11 @@ export default class EventsDetail extends Component {
           />
         </CSSTransition>
         {!shimmer && detailData && (
-          <div className={`main-container ${shimmer ? 'shimmer' : ''}`}>
+          <div
+            className={`main-container ${
+              detailData.is_show_over ? 'show-over' : ''
+            } ${shimmer ? 'shimmer' : ''}`}
+          >
             <ShowOver isShowOver={detailData.is_show_over} />
             {detailData.is_show_over === 0 && (
               <div>
@@ -463,7 +469,16 @@ export default class EventsDetail extends Component {
                     />
                   )} */}
 
-                <section className="event-detail-banner">
+                <section
+                  className="event-detail-banner"
+                  ref={node => {
+                    if (!eventDetailBannerHeight && node && node.offsetHeight) {
+                      this.setState({
+                        eventDetailBannerHeight: node.offsetHeight - 140
+                      });
+                    }
+                  }}
+                >
                   <EventCarousel images={detailData.images} />
 
                   <EventInfoBlock
@@ -474,6 +489,7 @@ export default class EventsDetail extends Component {
                     openNotice={this.openNotice}
                     openSocialShare={this.openSocialShare}
                     shareUrl={shareUrl}
+                    eventDetailBannerHeight={eventDetailBannerHeight}
                     seatMapButton={
                       detailData.seating_plan &&
                       detailData.seating_plan.length > 0 && (
@@ -490,22 +506,34 @@ export default class EventsDetail extends Component {
                     }
                   />
 
-                  <StickyHeader
-                    lines={1}
-                    sticky={true}
-                    elemOffsetTop={this.state.elemOffsetTop}
-                    // setHeader={setHeader}
-                    detailData={detailData}
-                    showSocialShare={showSocialShare}
-                    openNotice={this.openNotice}
-                    openSocialShare={this.openSocialShare}
-                    shareUrl={shareUrl}
-                  />
+                  {detailData && detailData.is_available_for_booking === 1 && (
+                    <StickyHeader
+                      lines={1}
+                      sticky={true}
+                      elemOffsetTop={this.state.elemOffsetTop}
+                      // setHeader={setHeader}
+                      detailData={detailData}
+                      showSocialShare={showSocialShare}
+                      openNotice={this.openNotice}
+                      openSocialShare={this.openSocialShare}
+                      shareUrl={shareUrl}
+                    />
+                  )}
                 </section>
 
                 <section>
                   <AdvertisementSection
-                    data={detailData.wallpaper}
+                    data={
+                      Utilities.mobilecheck()
+                        ? {
+                            image: detailData.wallpaper.mobile_image,
+                            url: detailData.wallpaper.mobile_url
+                          }
+                        : {
+                            image: detailData.wallpaper.image,
+                            url: detailData.wallpaper.url
+                          }
+                    }
                     current={this.props.current}
                   />
                 </section>
@@ -613,7 +641,9 @@ export default class EventsDetail extends Component {
               </>
             )}
 
-            {detailData && !detailData.id && <EventNotAvailable />}
+            {detailData && !detailData.id && !detailData.is_show_over && (
+              <EventNotAvailable />
+            )}
           </div>
         )}
       </div>

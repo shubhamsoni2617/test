@@ -30,7 +30,7 @@ export default class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      collapsed: false,
+      collapsed: false
     };
   }
 
@@ -41,8 +41,6 @@ export default class App extends React.Component {
     }, 1000);
   }
 
-
-
   toggle() {
     this.setState({
       collapsed: !this.state.collapsed
@@ -52,7 +50,7 @@ export default class App extends React.Component {
   render() {
     return (
       <div className="wrapper">
-        <DownloadAppPopup />
+        {/* <DownloadAppPopup /> */}
         <Advertisement {...this.props} />
         <TopNav {...this.props} />
         <Navigator {...this.props} />
