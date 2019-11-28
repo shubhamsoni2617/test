@@ -99,18 +99,38 @@ const FeaturedEvents = props => {
     speed: 500,
     rows: 1,
     slidesPerRow: 5,
-    responsive: [{
-      breakpoint: 1024,
-      settings: {
-        slidesPerRow: 3
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesPerRow: 4
+        }
       }
-    }
     ]
   };
 
   if (!loading && featuredEvents && featuredEvents.length === 0) {
     return null;
   }
+
+  let shimmerWebTab = (
+    <>
+      <ShimmerEffect
+        height={150}
+        count={Utilities.mobileAndTabletcheck() ? 4 : 5}
+        type="TILE"
+        propCls={`shm_col-xs-2 col-md-2`}
+      />
+      <br />
+      <ShimmerEffect
+        height={150}
+        count={Utilities.mobileAndTabletcheck() ? 4 : 5}
+        type="TILE"
+        propCls={`shm_col-xs-2 col-md-2`}
+      />
+    </>
+  );
+
   return (
     <section
       className={
@@ -135,45 +155,49 @@ const FeaturedEvents = props => {
           )}
         </div>
         {loading ? (
-          <ShimmerEffect
-            propCls={'shm_col-xs-6 col-md-6'}
-            height={150}
-            count={2}
-            type="TILE"
-          />
+          Utilities.mobilecheck() ? (
+            <ShimmerEffect
+              height={60}
+              count={2}
+              type="TILE"
+              propCls={`shm_col-xs-2 col-md-2`}
+            />
+          ) : (
+            shimmerWebTab
+          )
         ) : Utilities.mobilecheck() ? (
           <div
+            className="featured-wrapper"
             style={{ width: '30em', overflowX: 'auto', whiteSpace: 'nowrap' }}
           >
-            <div className="grid-container">
-              {featuredEvents &&
-                featuredEvents.map((event, i) => {
-                  return <Item event={event} key={i} />;
-                })}
-            </div>
-          </div>
-        ) : <Slider {...settings}>
             {featuredEvents &&
-            featuredEvents.map((event, index, array) => {
-            if (index % 2 === 0) {
-            if (array[index] && array[index + 1]) {
-            return (
-            <div className="grid-container" key={index}>
-                <Item event={array[index]} />
-                <Item event={array[index + 1]} />
-            </div>
-            );
-            } else if (array[index]) {
-            return (
-            <div className="grid-container" key={index}>
-                <Item event={array[index]} />
-            </div>
-            );
-            }
-            }
-            })}
-        </Slider>
-        }
+              featuredEvents.map(event => {
+                return <Item event={event} />;
+              })}
+          </div>
+        ) : (
+          <Slider {...settings}>
+            {featuredEvents &&
+              featuredEvents.map((event, index, array) => {
+                if (index % 2 === 0) {
+                  if (array[index] && array[index + 1]) {
+                    return (
+                      <div className="grid-container" key={index}>
+                        <Item event={array[index]} />
+                        <Item event={array[index + 1]} />
+                      </div>
+                    );
+                  } else if (array[index]) {
+                    return (
+                      <div className="grid-container" key={index}>
+                        <Item event={array[index]} />
+                      </div>
+                    );
+                  }
+                }
+              })}
+          </Slider>
+        )}
       </div>
     </section>
   );

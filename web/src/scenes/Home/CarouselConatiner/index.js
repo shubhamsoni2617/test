@@ -5,6 +5,7 @@ import Carousel from '../../../shared/components/Carousel';
 import rightArrow from '../../../assets/images/right-arrow.svg';
 import ShimmerEffect from '../../../shared/components/ShimmerEffect';
 import './style.scss';
+import Utilities from '../../../shared/utilities';
 
 const CarouselConatiner = props => {
   const element = useRef(null);
@@ -89,8 +90,14 @@ const CarouselConatiner = props => {
           {loading && (
             <ShimmerEffect
               propCls={`col-md-2`}
-              height={298}
-              count={6}
+              height={Utilities.mobilecheck() ? 60 : 298}
+              count={
+                Utilities.mobilecheck()
+                  ? 3
+                  : Utilities.mobileAndTabletcheck()
+                  ? 4
+                  : 6
+              }
               type="TILE"
             />
           )}
