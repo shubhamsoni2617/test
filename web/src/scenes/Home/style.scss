@@ -1899,9 +1899,18 @@
 	@media (max-width: 767px) {
 		padding: 20px 0px 0px;
     }
+    .section-top-wrapper{
+        @media (max-width: 991px) {
+            padding-bottom: 0;
+        }
+    }
     h2{
         padding-bottom: 0;
-	}
+    }
+    .carousel-dots{
+        position: relative;
+        top: -5px;
+    }
 	.slick-arrow{
 		background-position: 0px 0px;
 		&:hover{
@@ -1944,9 +1953,9 @@
     }
 
     .slick-dots{
-        top: -20px;
+        top: -24px;
         @media (max-width: 991px) {
-            top: -30px
+            top: -25px
         }
         @media (max-width: 767px) {
             top: -15px;
@@ -2160,9 +2169,10 @@ section.whats-new {
     }
     .slick-slider{
         .slick-dots{
-            top: -38px;
+            top: -40px;
+            right: 2px;
             @media (max-width: 991px) {
-                top: -35px;
+                top: -36px;
             }
         }
         .slick-list{
@@ -2188,7 +2198,7 @@ section.whats-new {
         top: -15px;
         position: relative;
         @media (max-width: 991px) {
-            top: -7px;
+            top: -8px;
         }
     }
 	.dots-group {
@@ -2504,7 +2514,12 @@ p {
 	@media (max-width: 767px) {
 		padding: 20px 0px 10px;
     }
-    
+    .carousel-dots{
+        margin-top: 3px;
+        @media(min-width: 991px) and (max-width: 1024px) {
+            margin-top: 18px;
+        }
+    }
     .slick-slider{
         .slick-list{
             width: calc(100% + 24px);
@@ -2524,7 +2539,7 @@ p {
                         }
                         @media(max-width: 991px) {
                             padding-top: 10px;
-                            grid-template-columns: repeat(3, minmax(32%, 1fr));
+                            grid-template-columns: repeat(3, minmax(31%, 1fr));
                         }
                         @media(min-width: 992px) and (max-width: 1280px) {
                             grid-template-columns: repeat(3, minmax(27%, 1fr));
@@ -2637,9 +2652,9 @@ p {
         }
         .slick-dots{
             height: 20px;
-			top: -32px;
+			top: -30px;
 			@media(max-width: 1024px){
-				top: -52px;
+				top: -14px;
 			}
             @media(min-width: 768px) and (max-width: 991px) {
                 top: -35px;
@@ -3029,7 +3044,10 @@ section.trending-now {
 	background-color: #F0F9FF;
 	h2 {
 		color: #343434;
-		padding-bottom: 18px;
+        padding-bottom: 18px;
+        @media (max-width: 1024px) {
+            padding-bottom: 0;
+        }
 		@media (max-width: 767px) {
 			padding-bottom: 20px;
 		}
