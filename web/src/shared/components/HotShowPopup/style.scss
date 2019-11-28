@@ -138,7 +138,7 @@
             .hotshowimg{
               position: relative;
                 min-height: 190px;
-                background-color: #e8e8e8;
+                background-color: transparent;
                 img, div{
                     width: 100% !important;
                     height: auto;
@@ -203,7 +203,7 @@
                             @media(max-width: 860px){
                                 font-size: 13px;
                                 line-height: 15px;
-                                display: none;
+                                display: block;
                             }
                         }
                     }
@@ -219,7 +219,7 @@
                     @media(max-width: 860px){
                         font-size: 13px;
                         line-height: 15px;
-                        display: none;
+                        display: block;
                     }
                 }
                 .hotshow-note{
@@ -267,7 +267,7 @@
             .hotshowimg{
                 flex: 0 0 65%;
                 min-height: 246px;
-                background-color: #e8e8e8;
+                background-color: transparent;
                 @media(max-width: 991px){
                     flex: 0 0 100%;
                 }

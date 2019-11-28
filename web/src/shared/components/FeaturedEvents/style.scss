@@ -25,3 +25,48 @@
     flex: 1 0 42%;
     max-width: 42%;
   }
+  @media(max-width: 576px){
+    .featured-wrapper {
+      align-items: flex-start;
+      -ms-overflow-style: none; // IE 10+ 
+      scrollbar-width: none; // Firefox
+      padding-bottom: 15px;
+      &::-webkit-scrollbar { 
+        display: none; // Safari and Chrome 
+      }
+      h3{
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        overflow: hidden;
+        line-height: 18px;
+        white-space: normal;
+        height: 36px;
+        /* autoprefixer: off */ -webkit-box-orient: vertical; /* autoprefixer: on */
+      }
+      .featured-item-img{
+        min-height: 150px;
+        .category{
+          margin-bottom: 10px;
+          &:empty{
+            display: flex !important;
+            background: transparent;
+          }
+        }
+      }
+      .item-img{
+        margin-bottom: 10px;
+        
+      }
+      .featured-event-date{
+        word-break: break-word;
+        white-space: normal;
+      }
+      .venue-name{
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        color: #626262;
+      }
+    }
+  }
