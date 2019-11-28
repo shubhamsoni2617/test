@@ -70,7 +70,7 @@ const Explore = props => {
                     <span
                       className="explore-category"
                       key={category}
-                      className="category"
+                      className="explore-category"
                     >
                       {category}
                     </span>

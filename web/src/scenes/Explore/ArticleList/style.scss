@@ -8,12 +8,12 @@
         }
         .breadcrumb{
             li{
-                color: rgba(255, 255, 255, 0.9);
+                color: rgba(255, 255, 255, 0.7);
                 a{
-                    color: rgba(255, 255, 255, 0.9);
+                    color: rgba(255, 255, 255, 0.7);
                 }
                 &:after{
-                    color: rgba(255, 255, 255, 0.9);
+                    color: rgba(255, 255, 255, 0.7);
                 }
             }
         }
@@ -23,6 +23,9 @@
         padding-bottom: 20px;
         .inner{
             bottom: 0px !important;
+            @media(max-width: 767px){
+                max-height: calc(100% - 0px);
+            }
         }
         .fixed-buttons-events{
             .filter{
@@ -96,6 +99,10 @@
                     width: calc(25% - 28px);
                     margin-right: 28px;
                 }
+                @media(max-width: 767px) and (orientation: landscape){
+                    display: flex;
+                    height: 100%;
+                }
                 &.no-data{
                     flex-basis: 100%;
                     width: 100%;
@@ -166,6 +173,9 @@
                 @media(max-width: 767px){
                     padding: 5px 8px 5px;
                 }
+                @media(max-width: 767px) and (orientation: landscape){
+                    height: 100%;
+                }
                 @media(max-width: 450px){
                     padding: 5px 5px 5px;
                 }
@@ -174,11 +184,17 @@
                     flex-direction: column;
                     justify-content: space-between;
                     width: 100%;
+                    @media(max-width: 767px) and (orientation: landscape){
+                        height: 100%;
+                    }
                     .article-bottom-details{
                         display: flex;
                         flex-direction: column;
                         height: 100%;
                         justify-content: space-between;
+                         @media(max-width: 767px) and (orientation: landscape){
+                            height: auto;
+                        }
                     }
                 }
                 .item-title{
@@ -206,7 +222,7 @@
                         }
                     }
                     .article-show-more{
-                        color: #2698ff;
+                        color: #0098ff;
                         text-transform: lowercase;
                         text-decoration: none;
                     }
@@ -255,11 +271,12 @@
                 height: 100%;
                 @media(max-width: 576px){
                     min-height: auto;
+                    height: auto;
                 }
                 ul{
                     min-height: 52px;
                     @media(max-width: 576px){
-                        min-height: 32px;
+                        min-height: 66px;
                     }
                 }
                 li{
@@ -270,16 +287,15 @@
                     -webkit-transition: 0.3s background-color;
                     -moz-transition: 0.3s background-color;
                     -o-transition: 0.3s background-color;
-                    font-family: 'Montserrat', sans-serif;
-                    font-size: 14px;
-                    line-height: 18px;
-                    font-weight: 500;
-                    color: #0098FF;
+                    border: 1px solid rgba(2, 152, 255, 0.15);
+                    margin: 0px 5px 5px 0px;
                     span{
-                        border: 1px solid rgba(2, 152, 255, 0.15);
                         padding: 4px 5px;
-                        margin: 0px 5px 5px 0px;
                         display: inline-block;
+                        font-size: 12px;
+                        line-height: 14px;
+                        font-weight: normal;
+                        color: #0098FF;
                         &:empty{
                             display: none;
                         }
@@ -320,6 +336,7 @@
                 display: flex;
                 flex-wrap: wrap;
                 align-items: flex-start;
+                min-height: 18px;
                 span{
                     color: #626262;	
                     font-family: 'Rubik', sans-serif;	
@@ -351,10 +368,18 @@
                             flex: 0 0 50%;
                             width: 50%;
                         }
+                        @media(max-width: 767px) and (orientation: landscape){
+                            flex: 0 0 35%;
+                            width: 35%;
+                        }
                     }
                     &.item-author{
                         text-transform: capitalize;
                         padding-right: 10px;
+                        @media(max-width: 767px) and (orientation: landscape){
+                            flex: 0 0 65%;
+                            width: 65%;
+                        }
                     }
                 }
             }
@@ -371,6 +396,16 @@
                     .article-category-group{
                         @media(min-width: 767px){
                             opacity: 1;
+                        }
+                    }
+                }
+                .category-group{
+                    li{
+                        span{
+                            font-size: 12px;
+                            line-height: 14px;
+                            font-weight: normal;
+                            color: #0098FF;
                         }
                     }
                 }
@@ -391,7 +426,7 @@
                 font-size: 12px;
                 line-height: 14px;
                 font-family: 'Rubik', sans-serif;
-                font-weight: 500;
+                font-weight: normal;
                 width: auto;
                 margin-left: auto;
                 cursor: pointer;
@@ -464,7 +499,7 @@
                     }
                     li{
                         span{
-                            color: #949494;
+                            color: rgba(148, 148, 148, 0.9);
                             font-family: 'Rubik', sans-serif;
                             font-size: 12px;
                             line-height: 14px;
@@ -478,7 +513,7 @@
                         }
                         &.active{
                             span{
-                                color: #0098ff;
+                                color: rgba(0, 152, 255, 0.9);
                             }
                         }
                     }

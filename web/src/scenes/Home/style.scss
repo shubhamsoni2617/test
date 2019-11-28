@@ -1383,7 +1383,7 @@
 // Slider Arrow common CSS
 .slick-slider{
     .slick-prev, .slick-next{
-        height: 85px;
+        height: 82px;
         width: 35px;
         display: flex;
         justify-content: center;
@@ -1398,10 +1398,10 @@
         }
     }
     .slick-prev{
-        left: -50px;
-        background: url(../../assets/images/left-arrow-blue.svg) 5px 0px no-repeat;
+        left: -40px;
+        background: url(../../assets/images/left-arrow-blue.svg) 0 0px no-repeat;
         &:hover, &:focus{
-            background: url(../../assets/images/left-arrow-blue.svg) 5px 0px no-repeat;
+            background: url(../../assets/images/left-arrow-blue.svg) 0 0px no-repeat;
             border: none;
         }
         @media(min-width: 768px) and (max-width: 1023px) {
@@ -1413,9 +1413,9 @@
     }
     .slick-next{
         right: -40px;
-        background: url(../../assets/images/right-arrow-blue.svg) 12px 0px no-repeat;
+        background: url(../../assets/images/right-arrow-blue.svg) 0 0px no-repeat;
         &:hover, &:focus{
-            background: url(../../assets/images/right-arrow-blue.svg) 12px 0px no-repeat;
+            background: url(../../assets/images/right-arrow-blue.svg) 0 0px no-repeat;
             border: none;
         }
         @media(min-width: 768px) and (max-width: 1023px) {
@@ -1842,20 +1842,6 @@
 			}
 		}
 	}
-	.slick-prev{
-		@media(min-width: 768px) and (max-width: 800px){
-			left: -38px;
-			height: 85px;
-			width: 45px;
-		}
-	}
-	.slick-next{
-		@media(min-width: 768px) and (max-width: 800px){
-			right: -33px;
-			height: 85px;
-			width: 45px;
-		}
-	}
 }
 
 @keyframes buynowarrow {
@@ -1925,9 +1911,6 @@
 		&:focus{
 			background-position: 0px 0px;
 			border: none;
-		}
-		&.slick-prev{
-			left: -40px;
 		}
 	}
     .slick-list{
@@ -3181,10 +3164,15 @@ section.explore {
 				transition: 1s all;
 				-webkit-transition: 1s all;
 				-moz-transition: 1s all;
-				-o-transition: 1s all;
+                -o-transition: 1s all;
+                margin-bottom: 0;
+                margin-top: 10px;
+                @media (max-width: 991px) {
+                    margin-bottom: 20px;
+                }
             }
 			.explore-image {
-				margin-bottom: 16px;
+				margin-bottom: 0;
 				position: relative;
 				overflow: hidden;
 				@media (max-width: 767px) {
@@ -3222,7 +3210,7 @@ section.explore {
 				padding: 2px 4px;
 				font-size: 14px;
 				min-width: 50px;
-				margin: 0 3px 5px;
+				margin: 20px 0 5px;
 				@media (max-width: 767px) {
 					width: auto;
 					margin: 0 3px 3px;
@@ -3258,7 +3246,7 @@ section.explore {
                 }
                 h3{
                     color: #0098ff;
-					transition: 1s all;
+                    transition: 1s all;
 					-webkit-transition: 1s all;
 					-moz-transition: 1s all;
 					-o-transition: 1s all;
@@ -3268,10 +3256,13 @@ section.explore {
 		.explore-rightside-content {
 			.item-wrapper {
 				display: grid;
-				grid-template-columns: 2fr 1fr;
-				grid-gap: 19px;
+				grid-template-columns: 1.5fr 1fr;
+                grid-gap: 19px;
+                .explore-category{
+                    margin-top: 0;
+                }
 				@media(max-width: 1366px) {
-					grid-template-columns: repeat(2, auto);
+					grid-template-columns: repeat(1.5, auto);
 					.explore-image {
 						width: 230px;
 						@media (max-width: 991px) {

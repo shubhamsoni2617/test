@@ -9,16 +9,21 @@ import androidImage from '../../../assets/images/android.png';
 
 const Content = ({ whereBuyTicketsDetails, apiPartners }) => {
   let contactNumber;
-   if(whereBuyTicketsDetails[4].title.length>0 && whereBuyTicketsDetails){
-      let index= whereBuyTicketsDetails[4].title.match(/\d/).index
-    if(index){
-     let initial= whereBuyTicketsDetails[4].title.slice(0,index)
-     let number= whereBuyTicketsDetails[4].title.slice(index,whereBuyTicketsDetails[4].title.length)
-     contactNumber= <>{initial} <a href={`tel:+${number}`}>{number}</a></>
+  if (whereBuyTicketsDetails[4].title.length > 0 && whereBuyTicketsDetails) {
+    let index = whereBuyTicketsDetails[4].title.match(/\d/).index;
+    if (index) {
+      let initial = whereBuyTicketsDetails[4].title.slice(0, index);
+      let number = whereBuyTicketsDetails[4].title.slice(
+        index,
+        whereBuyTicketsDetails[4].title.length
+      );
+      contactNumber = (
+        <>
+          {initial} <a href={`tel:+${number}`}>{number}</a>
+        </>
+      );
     }
-   }
- 
-
+  }
 
   return (
     <Fragment>
@@ -137,9 +142,12 @@ const Content = ({ whereBuyTicketsDetails, apiPartners }) => {
                     __html: whereBuyTicketsDetails[3].description
                   }}
                 />
-                <Link className="wtbt-btn api-see-all-btn" to="/events">
+                {/* <Link
+                  className="wtbt-btn api-see-all-btn"
+                  to="/corporate/partner-with-us"
+                >
                   See All Partners
-                </Link>
+                </Link> */}
               </div>
             </div>
           </div>
@@ -149,7 +157,9 @@ const Content = ({ whereBuyTicketsDetails, apiPartners }) => {
             <div className="wtbt-desc">
               <div className="wtbt-content">
                 <h1 id={whereBuyTicketsDetails[4].title}>
-                {contactNumber?contactNumber: whereBuyTicketsDetails[4].title}       
+                  {contactNumber
+                    ? contactNumber
+                    : whereBuyTicketsDetails[4].title}
                 </h1>
                 <div
                   dangerouslySetInnerHTML={{
