@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, Fragment } from 'react';
 import ReactPlayer from 'react-player';
 import ShimmerEffect from '../../../shared/components/ShimmerEffect';
 import './style.scss';
@@ -13,6 +13,7 @@ const CustomSectionThree = ({ heading, customData, isHomePage }) => {
   const [url, setUrl] = useState(null);
   const [title, setTitle] = useState(null);
   const [controls, setControls] = useState(false);
+  let [duration, setDuration] = useState([]);
 
   const [pip, setPip] = useState(false);
   const [muted, setMuted] = useState(true);
@@ -22,6 +23,7 @@ const CustomSectionThree = ({ heading, customData, isHomePage }) => {
   const [vdoIndex, setVdoIndex] = useState(0);
 
   useEffect(() => {
+    setDuration([]);
     if (customData && customData.length > 0) {
       setData(customData);
       setUrl(customData[0].video_url);
@@ -58,9 +60,18 @@ const CustomSectionThree = ({ heading, customData, isHomePage }) => {
       });
   };
 
+  const secondToMinute = sec => {
+    let minutes = Math.floor(sec / 60);
+    let seconds = sec - minutes * 60;
+    let duration = minutes + ':' + seconds;
+    return duration;
+  };
+
   if (!loading && data && data.length === 0) {
     return null;
   }
+
+  console.log(duration);
 
   return (
     <div>
@@ -116,21 +127,49 @@ const CustomSectionThree = ({ heading, customData, isHomePage }) => {
                         }}
                       >
                         <span className="video-subwrapper-image">
-                          <Image
-                            src={vdo.video_thumb}
-                            alt=""
-                            className="img-fluid"
-                            type="VdoSmall"
-                          />
+                          <Fragment>
+                            <div
+                              className="video-restrict-overlay"
+                              style={{ display: 'none' }}
+                            >
+                              <ReactPlayer
+                                width="100%"
+                                height="70px"
+                                muted={true}
+                                url={vdo.video_url}
+                                playing={false}
+                                pip={false}
+                                controls={false}
+                                onDuration={sec => {
+                                  duration = [...duration, secondToMinute(sec)];
+                                  setDuration(duration);
+                                }}
+                              />
+                            </div>
+                          </Fragment>
+                          <div className="video-restrict-overlay">
+                            <Image
+                              src={vdo.video_thumb}
+                              alt=""
+                              className="img-fluid"
+                              type="VdoSmall"
+                            />
+                            {!isHomePage && (
+                              <span className="video-duration">
+                                {duration && duration[index]}
+                              </span>
+                            )}
+                          </div>
                         </span>
                         <div className="video-subwrapper-text">
-                        <a>{vdo.title}</a>
-                        {!isHomePage && (
-                          <span>
-                            {vdo.count !== ' views' ? vdo.count : null}{' '}
-                            {vdo.count !== ' views' ?".":null}{vdo.posted_date}
-                          </span>
-                        )}
+                          <a>{Utilities.showLimitedChars(vdo.title, 60)}</a>
+                          {!isHomePage && (
+                            <span>
+                              {vdo.count !== ' views' ? vdo.count : null}{' '}
+                              {vdo.count !== ' views' ? '.' : null}
+                              {vdo.posted_date}
+                            </span>
+                          )}
                         </div>
                       </div>
                     );

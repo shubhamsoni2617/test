@@ -12,7 +12,7 @@ const EventItem = ({ title, description, button_url, button_text, image }) => {
       <Image src={image} type="Horizontal" />
       <div className="event-desc">
         <div><h2>
-          {Utilities.showLimitedChars(title, Utilities.mobilecheck() ? 25 : 40)}
+          {Utilities.showLimitedChars(title, Utilities.mobilecheck() ? 25 : 50)}
         </h2>
           <p
             dangerouslySetInnerHTML={{
@@ -50,7 +50,16 @@ const FestivalEventLineUp = ({ sectionOne, sectionTwo }) => {
               (sectionOne[0].heading || sectionOne[0].image) && (
                 <div className="featured">
                   {sectionOne && sectionOne[0] && (
+<<<<<<< HEAD
                     <h2>{sectionOne[0].heading}</h2>
+=======
+                    <h3>
+                      {Utilities.showLimitedChars(
+                        sectionOne[0].title,
+                        Utilities.mobilecheck() ? 25 : 60
+                      )}
+                    </h3>
+>>>>>>> 7ba244821f0f5143dd0f8a82f14adee44c311a5a
                   )}
                   <a
                     className="featured-title-link"

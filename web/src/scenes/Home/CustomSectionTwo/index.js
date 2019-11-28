@@ -74,60 +74,39 @@ const CustomSectionTwo = ({ heading, customData, isMoreFrom, id }) => {
                 target="_blank"
                 className="royal-leftsection"
               >
-                <div>
-                  {data && data[0] && (
-                    <Image
-                      src={data[0].full_image}
-                      alt={data[0].alt_text}
-                      className="img-fluid"
-                      type="BigBanner"
-                    />
-                  )}
-                </div>
+                <h3>{data && data[0] && data[0].title}</h3>
+                <p>{data && data[0] && data[0].event_date}</p>
               </a>
             )}
-            <div className="royal-rightsection">
-              {!Utilities.mobilecheck() && (
-                <a
-                  href={data && data[0] && data[0].navigation_link}
-                  target="_blank"
-                  className="royal-rightside-textwrapper"
-                >
-                  <h3>{data && data[0] && data[0].title}</h3>
-                  <p>{data && data[0] && data[0].section_date}</p>
-                </a>
-              )}
-              <div className="royal-items">
-                {data &&
-                  data
-                    .slice(Utilities.mobilecheck() ? 0 : 1, data.length)
-                    .map((elem, i) => {
-                      return (
-                        <a
-                          className="item-img"
-                          href={elem.navigation_link}
-                          target="_blank"
-                          key={i}
-                          className="item-wrapper"
-                        >
-                          {elem && elem.full_image && (
-                            <div className="item-img">
-                              <Image
-                                src={elem.full_image}
-                                alt={elem.alt_text}
-                                className="img-fluid"
-                                type="Smaller"
-                              />
-                            </div>
-                          )}
-                          <div className="royal-item-content">
-                            <h3>{elem.title}</h3>
-                            <p>{elem.section_date}</p>
-                          </div>
-                        </a>
-                      );
-                    })}
-              </div>
+            <div className="royal-items">
+              {data &&
+                data
+                  .slice(Utilities.mobilecheck() ? 0 : 1, data.length)
+                  .map((elem, i) => {
+                    return (
+                      <a
+                        className="item-img"
+                        href={elem.navigation_link}
+                        target="_blank"
+                        key={i}
+                        className="item-wrapper"
+                      >
+                        <div className="item-img">
+                          <Image
+                            src={elem.full_image}
+                            alt={elem.alt_text}
+                            className="img-fluid"
+                            type="Smaller"
+                          />
+                        </div>
+
+                        <div className="royal-item-content">
+                          <h3>{elem.title}</h3>
+                          <p>{elem.event_date}</p>
+                        </div>
+                      </a>
+                    );
+                  })}
             </div>
           </div>
         </div>

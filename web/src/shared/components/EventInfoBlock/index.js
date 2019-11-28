@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { Scrollbars } from 'react-custom-scrollbars';
@@ -215,9 +215,12 @@ function EventDateTime({
 function EventInfoBlockInner(props) {}
 
 function EventInfoBlock(props) {
+  let refValue = useRef();
   const [showEventDateBlock, setEventDateBlock] = useState(false);
   const [venueDetailsPopup, setVenueDetailsPopup] = useState(false);
   const [scrollHeight, setScrollHeight] = useState(354);
+  const [buttonStatus, setButtonStatus] = useState(false);
+  const [height, setHeight] = useState(0);
 
   const {
     detailData,
@@ -231,52 +234,248 @@ function EventInfoBlock(props) {
   } = props;
 
   useEffect(() => {
+    // const handleResize = () => {
+    //   if (window.innerHeight > window.innerWidth) {
+    //     setScrollbarHeight(buttonStatus);
+    //   } else if (window.innerHeight < window.innerWidth) {
+    //     setScrollbarHeight(buttonStatus);
+    //   }
+    // };
+    // window.addEventListener('resize', handleResize);
+    // return () => window.removeEventListener('resize', handleResize);
+    if (!height) {
+      setHeight(document.getElementById('banner-carousel').offsetHeight);
+    }
+  }, [refValue.current]);
+
+  useEffect(() => {
     setScrollbarHeight();
   }, [eventDetailBannerHeight]);
 
   const setScrollbarHeight = (button = false) => {
+    if (button === true) {
+      setButtonStatus(true);
+    }
     if (detailData.is_available_for_booking === 0) {
-      setScrollHeight(eventDetailBannerHeight - 60);
+      setScrollHeight(
+        (Utilities.mobileAndTabletcheck ? height : eventDetailBannerHeight) - 60
+      );
     } else if (buyPackages.props.buyPackageUrl && button === false) {
-      setScrollHeight(eventDetailBannerHeight - 60);
+      setScrollHeight(
+        (Utilities.mobileAndTabletcheck ? height : eventDetailBannerHeight) - 60
+      );
     } else if (!buyPackages.props.buyPackageUrl && button === true) {
-      setScrollHeight(eventDetailBannerHeight - 60);
+      setScrollHeight(
+        (Utilities.mobileAndTabletcheck ? height : eventDetailBannerHeight) - 60
+      );
     } else if (buyPackages.props.buyPackageUrl && button === true) {
-      setScrollHeight(eventDetailBannerHeight - 120);
+      setScrollHeight(
+        (Utilities.mobileAndTabletcheck ? height : eventDetailBannerHeight) -
+          120
+      );
     } else if (!buyPackages.props.buyPackageUrl && button === false) {
-      setScrollHeight(eventDetailBannerHeight);
+      setScrollHeight(
+        Utilities.mobileAndTabletcheck ? height : eventDetailBannerHeight
+      );
     }
   };
 
   return (
     <div
+      id="event-detail"
       className={`event-detail ${sticky ? 'sticky-topbar' : ''} ${
         sticky && setHeader ? 'animate' : ''
       }`}
     >
-      {detailData.images && detailData.images.length > 0 && (
-        <div className="tickets-demo-img">
-          <Image
-            src={detailData.images[0].thumb_image}
-            alt="joker"
-            className="img-fluid"
-            type="Horizontal"
-          />
-        </div>
-      )}
-      <EventDateTime
-        show={showEventDateBlock}
-        showBlock={setEventDateBlock}
-        data={detailData.event_date_details}
-        eventDate={detailData.event_date}
-        altEventStartDate={detailData.alt_event_start_date}
-        eventDateNotes={detailData.event_date_notes}
-        setEventDateBlock={setEventDateBlock}
-      />
-      <div className="tickets-desc">
-        {!Utilities.mobilecheck() && (
-          <Scrollbars style={{ height: scrollHeight }}>
-            <div style={{ paddingRight: '20px' }}>
+      <div ref={refValue}>
+        {detailData.images && detailData.images.length > 0 && (
+          <div className="tickets-demo-img">
+            <Image
+              src={detailData.images[0].thumb_image}
+              alt="joker"
+              className="img-fluid"
+              type="Horizontal"
+            />
+          </div>
+        )}
+        <EventDateTime
+          show={showEventDateBlock}
+          showBlock={setEventDateBlock}
+          data={detailData.event_date_details}
+          eventDate={detailData.event_date}
+          altEventStartDate={detailData.alt_event_start_date}
+          eventDateNotes={detailData.event_date_notes}
+          setEventDateBlock={setEventDateBlock}
+        />
+        <div className="tickets-desc">
+          {!Utilities.mobilecheck() && (
+            <Scrollbars style={{ height: scrollHeight }}>
+              <div style={{ paddingRight: '20px' }}>
+                <ul className="zoner-group">
+                  {detailData.genres &&
+                    detailData.genres.length > 0 &&
+                    detailData.genres.map((obj, index) => {
+                      return (
+                        <li
+                          className={`${obj.is_primary === 1 ? 'active' : ''}`}
+                          key={index}
+                        >
+                          {obj.name}
+                        </li>
+                      );
+                    })}
+                </ul>
+
+                <div className="title top">
+                  <h3
+                    dangerouslySetInnerHTML={{ __html: detailData.rich_title }}
+                  ></h3>
+                </div>
+
+                <div className="promoters">
+                  {detailData.promoters && detailData.promoters.length > 0 && (
+                    <>
+                      <span>by </span>
+                      {detailData.promoters.map((item, index) => {
+                        if (item.url) {
+                          return (
+                            <a
+                              key={`${item.name}-${index}`}
+                              href={item.url}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                            >
+                              {item.name}
+                            </a>
+                          );
+                        }
+                        return (
+                          <span key={`${item.name}-${index}`}>
+                            {item.name}{' '}
+                          </span>
+                        );
+                      })}
+                    </>
+                  )}
+                </div>
+
+                {detailData.pop_up_message.title && (
+                  <div className="info-tooltip">
+                    <span className="info" onClick={() => props.openNotice()}>
+                      <img src={Info} alt="Info" />
+                    </span>
+                  </div>
+                )}
+                <div className="share-tooltip">
+                  <span
+                    className="share"
+                    onClick={() => props.openSocialShare()}
+                  >
+                    <img src={shareIcon} alt="" />
+                    <SocialShare
+                      shareUrl={shareUrl}
+                      showSocialShare={showSocialShare}
+                    />
+                  </span>
+                </div>
+
+                <div className="ticket-date-price">
+                  <ul className="date-address">
+                    <li className="event-date">
+                      {detailData.event_date && (
+                        <>
+                          <img
+                            src={calendarImg}
+                            height={16}
+                            width="16"
+                            alt="cal-icon"
+                          />
+                          <div>
+                            <span>{detailData.event_date}</span>
+                            <ViewAllDateTimeButton
+                              data={detailData.event_date_details}
+                              eventDate={detailData.event_date}
+                              altEventStartDate={
+                                detailData.alt_event_start_date
+                              }
+                              eventDateNotes={detailData.event_date_notes}
+                              setEventDateBlock={setEventDateBlock}
+                            />
+                          </div>
+                        </>
+                      )}
+                    </li>
+                    <li className="event-address">
+                      {detailData.venue_name && detailData.venue_name.name && (
+                        <>
+                          <img
+                            className="location-gray"
+                            width={19}
+                            height={19}
+                            style={{ height: 19, width: 19 }}
+                            src={locationGray}
+                            alt="location"
+                          />
+                          <div>
+                            <Link to={`/venues?id=${detailData.venue_name.id}`}>
+                              {sticky ? (
+                                <TitleToolTip
+                                  title={detailData.venue_name.name}
+                                  lines={1}
+                                  tag={false}
+                                  height={20}
+                                  eventDetail
+                                />
+                              ) : (
+                                <span>{detailData.venue_name.name}</span>
+                              )}
+                            </Link>
+                            {detailData.venue_name.description && (
+                              <>
+                                <button
+                                  className="link"
+                                  onClick={() => setVenueDetailsPopup(true)}
+                                >
+                                  View all Venues
+                                </button>
+                                <ModalPopup
+                                  showModal={venueDetailsPopup}
+                                  content={detailData.venue_name.description}
+                                  title="Venue Details"
+                                  handleClose={() =>
+                                    setVenueDetailsPopup(false)
+                                  }
+                                  htmlContent={true}
+                                />
+                              </>
+                            )}
+                          </div>
+                        </>
+                      )}
+                    </li>
+                    <li className="event-date">{seatMapButton}</li>
+
+                    <li className="event-date">
+                      {detailData.price && (
+                        <>
+                          <img
+                            src={coinsImg}
+                            className="coin"
+                            width={19}
+                            height={19}
+                            alt="cal-icon"
+                          />
+                          <span className="detail">{detailData.price}</span>
+                        </>
+                      )}
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </Scrollbars>
+          )}
+          {Utilities.mobilecheck() && (
+            <>
               <ul className="zoner-group">
                 {detailData.genres &&
                   detailData.genres.length > 0 &&
@@ -371,7 +570,7 @@ function EventInfoBlock(props) {
                           className="location-gray"
                           width={19}
                           height={19}
-                          style={{ height: 19, width: 19 }}
+                          style={{ height: 20, width: 19 }}
                           src={locationGray}
                           alt="location"
                         />
@@ -386,7 +585,9 @@ function EventInfoBlock(props) {
                                 eventDetail
                               />
                             ) : (
-                              <span>{detailData.venue_name.name}</span>
+                              <div>
+                                <span>{detailData.venue_name.name}</span>
+                              </div>
                             )}
                           </Link>
                           {detailData.venue_name.description && (
@@ -428,189 +629,32 @@ function EventInfoBlock(props) {
                   </li>
                 </ul>
               </div>
-            </div>
-          </Scrollbars>
-        )}
-        {Utilities.mobilecheck() && (
-          <>
-            <ul className="zoner-group">
-              {detailData.genres &&
-                detailData.genres.length > 0 &&
-                detailData.genres.map((obj, index) => {
-                  return (
-                    <li
-                      className={`${obj.is_primary === 1 ? 'active' : ''}`}
-                      key={index}
-                    >
-                      {obj.name}
-                    </li>
-                  );
-                })}
-            </ul>
-
-            <div className="title top">
-              <h3
-                dangerouslySetInnerHTML={{ __html: detailData.rich_title }}
-              ></h3>
-            </div>
-
-            <div className="promoters">
-              {detailData.promoters && detailData.promoters.length > 0 && (
-                <>
-                  <span>by </span>
-                  {detailData.promoters.map((item, index) => {
-                    if (item.url) {
-                      return (
-                        <a
-                          key={`${item.name}-${index}`}
-                          href={item.url}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                        >
-                          {item.name}
-                        </a>
-                      );
-                    }
-                    return (
-                      <span key={`${item.name}-${index}`}>{item.name} </span>
-                    );
-                  })}
-                </>
-              )}
-            </div>
-
-            {detailData.pop_up_message.title && (
-              <div className="info-tooltip">
-                <span className="info" onClick={() => props.openNotice()}>
-                  <img src={Info} alt="Info" />
-                </span>
+            </>
+          )}
+        </div>
+        <div className="tickets-button">
+          {detailData.is_available_for_booking === 1 && (
+            <BuyTicketsButtonPopup
+              detailData={detailData}
+              setScrollbarHeight={setScrollbarHeight}
+            />
+          )}
+          {buyPackages}
+        </div>
+        {detailData.is_available_for_booking === 0 && (
+          <div className="tickets-button shows-over-tickets">
+            <div className="shows-over">
+              <div className="shows-over-icon">
+                <img src={faceImg} alt="" />
               </div>
-            )}
-            <div className="share-tooltip">
-              <span className="share" onClick={() => props.openSocialShare()}>
-                <img src={shareIcon} alt="" />
-                <SocialShare
-                  shareUrl={shareUrl}
-                  showSocialShare={showSocialShare}
-                />
-              </span>
-            </div>
-
-            <div className="ticket-date-price">
-              <ul className="date-address">
-                <li className="event-date">
-                  {detailData.event_date && (
-                    <>
-                      <img
-                        src={calendarImg}
-                        height={16}
-                        width="16"
-                        alt="cal-icon"
-                      />
-                      <div>
-                        <span>{detailData.event_date}</span>
-                        <ViewAllDateTimeButton
-                          data={detailData.event_date_details}
-                          eventDate={detailData.event_date}
-                          altEventStartDate={detailData.alt_event_start_date}
-                          eventDateNotes={detailData.event_date_notes}
-                          setEventDateBlock={setEventDateBlock}
-                        />
-                      </div>
-                    </>
-                  )}
-                </li>
-                <li className="event-address">
-                  {detailData.venue_name && detailData.venue_name.name && (
-                    <>
-                      <img
-                        className="location-gray"
-                        width={19}
-                        height={19}
-                        style={{ height: 20, width: 19 }}
-                        src={locationGray}
-                        alt="location"
-                      />
-                      <div>
-                        <Link to={`/venues?id=${detailData.venue_name.id}`}>
-                          {sticky ? (
-                            <TitleToolTip
-                              title={detailData.venue_name.name}
-                              lines={1}
-                              tag={false}
-                              height={20}
-                              eventDetail
-                            />
-                          ) : (
-                            <div>
-                              <span>{detailData.venue_name.name}</span>
-                            </div>
-                          )}
-                        </Link>
-                        {detailData.venue_name.description && (
-                          <>
-                            <button
-                              className="link"
-                              onClick={() => setVenueDetailsPopup(true)}
-                            >
-                              View all Venues
-                            </button>
-                            <ModalPopup
-                              showModal={venueDetailsPopup}
-                              content={detailData.venue_name.description}
-                              title="Venue Details"
-                              handleClose={() => setVenueDetailsPopup(false)}
-                              htmlContent={true}
-                            />
-                          </>
-                        )}
-                      </div>
-                    </>
-                  )}
-                </li>
-                <li className="event-date">{seatMapButton}</li>
-
-                <li className="event-date">
-                  {detailData.price && (
-                    <>
-                      <img
-                        src={coinsImg}
-                        className="coin"
-                        width={19}
-                        height={19}
-                        alt="cal-icon"
-                      />
-                      <span className="detail">{detailData.price}</span>
-                    </>
-                  )}
-                </li>
-              </ul>
-            </div>
-          </>
-        )}
-      </div>
-      <div className="tickets-button">
-        {detailData.is_available_for_booking === 1 && (
-          <BuyTicketsButtonPopup
-            detailData={detailData}
-            setScrollbarHeight={setScrollbarHeight}
-          />
-        )}
-        {buyPackages}
-      </div>
-      {detailData.is_available_for_booking === 0 && (
-        <div className="tickets-button shows-over-tickets">
-          <div className="shows-over">
-            <div className="shows-over-icon">
-              <img src={faceImg} alt="" />
-            </div>
-            <div className="shows-over-desc">
-              <h4>Shows over!</h4>
-              <p>This event has ended and no longer available for booking.</p>
+              <div className="shows-over-desc">
+                <h4>Shows over!</h4>
+                <p>This event has ended and no longer available for booking.</p>
+              </div>
             </div>
           </div>
-        </div>
-      )}
+        )}
+      </div>
     </div>
   );
 }
