@@ -5,26 +5,6 @@ import HomeService from '../../../shared/services/HomeService';
 import Utilities from '../../../shared/utilities';
 import Shadow from '../../../assets/images/shadow.png';
 
-// const mainSliderSettings = {
-//   className: 'center',
-//   centerMode: true,
-//   infinite: true,
-//   focusOnSelect: true,
-//   centerPadding: Utilities.mobilecheck() ? '60px' : '250px',
-//   slidesToShow: 1,
-//   speed: 500,
-//   arrows: true
-// };
-// const thumbSliderSettings = {
-//   centerMode: true,
-//   infinite: true,
-//   speed: 500,
-//   slidesToShow: Utilities.mobilecheck() ? 3 : 13,
-//   slidesToScroll: 1,
-//   focusOnSelect: true,
-//   arrows: true
-// };
-
 export default class HomePageCarouselContainer extends Component {
   constructor(props) {
     super(props);
@@ -35,7 +15,7 @@ export default class HomePageCarouselContainer extends Component {
       posts: [],
       errorMsg: '',
       sliderBackgroudImage: 0,
-
+      sliderAutoPlay: true,
       mainSliderSettings: {
         className: 'center',
         centerMode: true,
@@ -65,8 +45,7 @@ export default class HomePageCarouselContainer extends Component {
       .then(res => {
         if (res && res.data) {
           this.setState({
-            posts: res.data.data,
-            sliderBackgroudImage: res.data.data.length - 1
+            posts: res.data.data
           });
         }
       })
@@ -78,34 +57,17 @@ export default class HomePageCarouselContainer extends Component {
 
     this.setState({
       nav1: this.mainSlider,
-      nav2: this.thumbSlider
+      nav2: this.thumbSlider,
     });
   }
 
   changeBackgroundImage = index => {
-    this.setState({ sliderBackgroudImage: index });
+    this.setState({ sliderBackgroudImage: index, sliderAutoPlay :false });
   };
 
   handleResolution = () => {
-    let mainSliderSettings = {
-      className: 'center',
-      centerMode: true,
-      infinite: true,
-      focusOnSelect: true,
-      centerPadding: '250px',
-      slidesToShow: 1,
-      speed: 500,
-      arrows: true
-    };
-    let thumbSliderSettings = {
-      centerMode: true,
-      infinite: true,
-      speed: 500,
-      slidesToShow: 13,
-      slidesToScroll: 1,
-      focusOnSelect: true,
-      arrows: true
-    };
+    let mainSliderSettings = this.state.mainSliderSettings;
+    let thumbSliderSettings = this.state.thumbSliderSettings;
     let screen = Utilities.getScreenResolution();
     if (screen.width >= 1366 && screen.width <= 1980) {
       mainSliderSettings.centerPadding = '300px';
@@ -137,6 +99,7 @@ export default class HomePageCarouselContainer extends Component {
       // return null;
     }
 
+    console.log(posts)
     return (
       <div className="banner">
         <div className="banner-carousel">
@@ -154,6 +117,8 @@ export default class HomePageCarouselContainer extends Component {
             ref={slider => (this.mainSlider = slider)}
             afterChange={index => this.changeBackgroundImage(index)}
             className="slider-for"
+            autoplay={this.state.sliderAutoPlay}
+            autoplaySpeed={1000}
           >
             {posts.length
               ? posts.map((post, key) => (
@@ -161,7 +126,7 @@ export default class HomePageCarouselContainer extends Component {
                     <img
                       onClick={
                         sliderBackgroudImage == key
-                          ? () => window.open('someLink', '_blank')
+                          ? () => window.open(post.navigation_link, '_blank')
                           : ''
                       }
                       src={post.full_image}
@@ -181,6 +146,7 @@ export default class HomePageCarouselContainer extends Component {
             ref={slider => (this.thumbSlider = slider)}
             focusOnSelect={true}
             swipe={false}
+            initialSlide={1}
           >
             {posts.length
               ? posts.map(post => (

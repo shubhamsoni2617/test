@@ -184,7 +184,7 @@ class Home extends Component {
                   <CarouselConatiner
                     title={label}
                     classStr="whats-new"
-                    // arrows={true}
+                    arrows={true}
                     autoplay={false}
                     infinite={false}
                     api={HomeService.getNewRelease}
