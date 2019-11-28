@@ -32,11 +32,11 @@
   section{
     min-height: 598px;
     @media(max-width: 1024px){
-      min-height: auto;
+      min-height: 250px;
     }
     .shim-container{
       position: absolute;
-      height: 298px;
+      height: 250px;
       width: 99%;
       margin: 0 -45px;
       padding: 0 45px;

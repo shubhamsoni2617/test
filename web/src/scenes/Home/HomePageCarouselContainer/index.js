@@ -69,21 +69,24 @@ export default class HomePageCarouselContainer extends Component {
     let mainSliderSettings = this.state.mainSliderSettings;
     let thumbSliderSettings = this.state.thumbSliderSettings;
     let screen = Utilities.getScreenResolution();
-    if (screen.width >= 1366 && screen.width <= 1980) {
+    if (screen.width >= 1480 && screen.width <= 1980) {
+      mainSliderSettings.centerPadding = '380px';
+      thumbSliderSettings.slidesToShow = 13;
+    } else if (screen.width > 1280 && screen.width < 1480) {
       mainSliderSettings.centerPadding = '300px';
       thumbSliderSettings.slidesToShow = 13;
-    } else if (screen.width > 1024 && screen.width < 1366) {
-      mainSliderSettings.centerPadding = '180px';
-      thumbSliderSettings.slidesToShow = 13;
-    } else if (screen.width > 812 && screen.width <= 1024) {
-      mainSliderSettings.centerPadding = '140px';
-      thumbSliderSettings.slidesToShow = 8;
-    } else if (screen.width >= 568 && screen.width <= 840) {
-      mainSliderSettings.centerPadding = '100px';
-      thumbSliderSettings.slidesToShow = 6;
-    } else if (screen.width > 300 && screen.width <= 450) {
-      mainSliderSettings.centerPadding = '50px';
+    } else if (screen.width > 1136 && screen.width <= 1280) {
+        mainSliderSettings.centerPadding = '240px';
+        thumbSliderSettings.slidesToShow = 11;
+    } else if (screen.width >= 768 && screen.width <= 1024) {
+      mainSliderSettings.centerPadding = '110px';
+      thumbSliderSettings.slidesToShow = 7;
+    } else if (screen.width >= 568 && screen.width <= 767) {
+      mainSliderSettings.centerPadding = '70px';
       thumbSliderSettings.slidesToShow = 5;
+    } else if (screen.width > 320 && screen.width <= 450) {
+      mainSliderSettings.centerPadding = '40px';
+      thumbSliderSettings.slidesToShow = 4;
     }
 
     this.setState({
