@@ -103,8 +103,10 @@
                 overflow: hidden;
                 height: auto;
                 /* autoprefixer: off */ -webkit-box-orient: vertical; /* autoprefixer: on */
-                &:hover{
-                    color: #0098FF;
+                @media(min-width: 991px){
+                    &:hover{
+                        color: #0098FF;
+                    }
                 }
                 @media(max-width: 767px){
                     font-size: 14px;
@@ -254,10 +256,12 @@
                 }
             }
             &:hover{
-                h3{
-                    color: #0098ff;
-                    a{
+                @media(min-width: 991px){
+                    h3{
                         color: #0098ff;
+                        a{
+                            color: #0098ff;
+                        }
                     }
                 }
             }

@@ -86,7 +86,7 @@ export default class HomePageCarouselContainer extends Component {
       mainSliderSettings.centerPadding = '70px';
       thumbSliderSettings.slidesToShow = 5;
     } else if (screen.width > 320 && screen.width <= 450) {
-      mainSliderSettings.centerPadding = '40px';
+      mainSliderSettings.centerPadding = '30px';
       thumbSliderSettings.slidesToShow = 4;
     }
 

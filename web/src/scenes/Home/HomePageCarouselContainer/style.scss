@@ -21,6 +21,7 @@
 	position: relative;
     width: 100%;
     background: #eaeced;
+   
     .main-image{
       opacity: 0;
 	  transition: opacity .5s;
@@ -31,10 +32,7 @@
     .show-image{
         opacity: 1 !important;
     }
-	@media(max-width: 991px) {
-		background-color: transparent;
-		// margin-top: -114px;
-	}
+	
 	.banner-carousel {
 		padding-top: 172px;
 		height: 100%;
