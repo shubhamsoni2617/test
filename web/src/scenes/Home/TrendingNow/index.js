@@ -42,6 +42,44 @@ const TrendingNow = ({ heading }) => {
 
   if (error) return null;
 
+  let shimmerWebTab = (
+    <div class="trending-shimmer-effect">
+      <ShimmerEffect
+        height={Utilities.mobilecheck() ? 180 : 460}
+        count={1}
+        type="TILE"
+        propCls={`trending-col-3`}
+      />
+      <div className="trending-inner-items">
+        <ShimmerEffect
+          height={Utilities.mobilecheck() ? 60 : 150}
+          count={
+            Utilities.mobilecheck()
+              ? 2
+              : Utilities.mobileAndTabletcheck()
+              ? 3
+              : 4
+          }
+          type="TILE"
+          propCls={`trending-inner-child`}
+        />
+        <br />
+        <ShimmerEffect
+          height={Utilities.mobilecheck() ? 60 : 150}
+          count={
+            Utilities.mobilecheck()
+              ? 2
+              : Utilities.mobileAndTabletcheck()
+              ? 3
+              : 4
+          }
+          type="TILE"
+          propCls={`trending-inner-child`}
+        />
+      </div>
+    </div>
+  );
+
   return (
     <section className="trending-now">
       <div className="container-fluid">
@@ -54,12 +92,7 @@ const TrendingNow = ({ heading }) => {
           transitionLeaveTimeout={1000}
         > */}
         {loading ? (
-          <ShimmerEffect
-            propCls={`shm_col-xs-6 col-md-2`}
-            height={300}
-            count={2}
-            type="TILE"
-          />
+          shimmerWebTab
         ) : (
           <div className="grid-container">
             <div className="item">
