@@ -30,7 +30,7 @@ const SamplePrevArrow = props => {
 };
 
 const Carousel = props => {
-  const [width, setWidth] = useState(window.innerWidth);
+  // const [width, setWidth] = useState(window.innerWidth);
   const {
     imgArray,
     arrows,
@@ -83,23 +83,23 @@ const Carousel = props => {
     ]
   };
 
-  useEffect(() => {
-    window.addEventListener('resize', handleWindowResize);
-    return () => {
-      window.removeEventListener('resize', handleWindowResize);
-    };
-  }, []);
+  // useEffect(() => {
+  //   window.addEventListener('resize', handleWindowResize);
+  //   return () => {
+  //     window.removeEventListener('resize', handleWindowResize);
+  //   };
+  // }, []);
 
-  const handleWindowResize = () => {
-    setWidth(window.innerWidth);
-  };
+  // const handleWindowResize = () => {
+  //   setWidth(window.innerWidth);
+  // };
 
   if (!imgArray || imgArray.length < 0) {
     return null;
   } else {
     return (
       <>
-        {width <= Constants.MOBILE_BREAK_POINT ? (
+        {Utilities.mobilecheck() ? (
           <div className="row">
             <div className="grid-container">
               {imgArray.map(elem => {
