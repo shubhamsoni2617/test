@@ -7,6 +7,7 @@ import Image from '../../../shared/components/Image';
 import { CSSTransition } from 'react-transition-group';
 import ShimmerEffect from '../../../shared/components/ShimmerEffect';
 import videoImage from '../../../assets/images/video-icon.svg';
+import OneBigEightSmall from '../../../shared/components/ShimmerEffect/OneBigEightSmall';
 
 const TrendingNow = ({ heading }) => {
   const [data, setData] = useState([]);
@@ -28,7 +29,7 @@ const TrendingNow = ({ heading }) => {
           setTimeout(() => {
             setLoading(false);
             setData(res.data.data);
-          }, 2000);
+          }, 5000);
         }
       })
       .catch(() => {
@@ -42,44 +43,6 @@ const TrendingNow = ({ heading }) => {
 
   if (error) return null;
 
-  let shimmerWebTab = (
-    <div class="trending-shimmer-effect">
-      <ShimmerEffect
-        height={Utilities.mobilecheck() ? 180 : 460}
-        count={1}
-        type="TILE"
-        propCls={`trending-col-3`}
-      />
-      <div className="trending-inner-items">
-        <ShimmerEffect
-          height={Utilities.mobilecheck() ? 60 : 150}
-          count={
-            Utilities.mobilecheck()
-              ? 2
-              : Utilities.mobileAndTabletcheck()
-              ? 3
-              : 4
-          }
-          type="TILE"
-          propCls={`trending-inner-child`}
-        />
-        <br />
-        <ShimmerEffect
-          height={Utilities.mobilecheck() ? 60 : 150}
-          count={
-            Utilities.mobilecheck()
-              ? 2
-              : Utilities.mobileAndTabletcheck()
-              ? 3
-              : 4
-          }
-          type="TILE"
-          propCls={`trending-inner-child`}
-        />
-      </div>
-    </div>
-  );
-
   return (
     <section className="trending-now">
       <div className="container-fluid">
@@ -92,7 +55,7 @@ const TrendingNow = ({ heading }) => {
           transitionLeaveTimeout={1000}
         > */}
         {loading ? (
-          shimmerWebTab
+          <OneBigEightSmall />
         ) : (
           <div className="grid-container">
             <div className="item">
