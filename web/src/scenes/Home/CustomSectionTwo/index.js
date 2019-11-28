@@ -108,16 +108,15 @@ const CustomSectionTwo = ({ heading, customData, isMoreFrom, id }) => {
                         key={i}
                         className="item-wrapper"
                       >
-                        {elem && elem.full_image && (
-                          <div className="item-img">
-                            <Image
-                              src={elem.full_image}
-                              alt={elem.alt_text}
-                              className="img-fluid"
-                              type="Smaller"
-                            />
-                          </div>
-                        )}
+                        <div className="item-img">
+                          <Image
+                            src={elem.full_image}
+                            alt={elem.alt_text}
+                            className="img-fluid"
+                            type="Smaller"
+                          />
+                        </div>
+
                         <div className="royal-item-content">
                           <h3>{elem.title}</h3>
                           <p>{elem.section_date}</p>
