@@ -36,7 +36,7 @@
 		// margin-top: -114px;
 	}
 	.banner-carousel {
-		padding-top: 158px;
+		padding-top: 172px;
 		height: 100%;
 		position: relative;
         z-index: 1;
@@ -45,13 +45,19 @@
             padding-bottom: 25px;
         }
 		@media(max-width: 991px) {
-			padding-top: 90px;
 			width: 100%;
-			text-align: center;
+            text-align: center;
+            padding-top: 100px;
         }
         @media(max-width: 767px) {
             padding-bottom: 15px;
-            padding-top: 116px;
+            padding-top: 150px;
+        }
+        @media(max-width: 576px) {
+            padding-top: 145px;
+        }
+        @media(min-width: 1360px) {
+            padding-top: 190px;
         }
 		ul {
 			display: grid;

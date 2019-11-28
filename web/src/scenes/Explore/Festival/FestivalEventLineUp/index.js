@@ -12,7 +12,7 @@ const EventItem = ({ title, description, button_url, button_text, image }) => {
       <Image src={image} type="Horizontal" />
       <div className="event-desc">
         <h2>
-          {Utilities.showLimitedChars(title, Utilities.mobilecheck() ? 25 : 40)}
+          {Utilities.showLimitedChars(title, Utilities.mobilecheck() ? 25 : 50)}
         </h2>
         <p
           dangerouslySetInnerHTML={{
@@ -66,7 +66,7 @@ const FestivalEventLineUp = ({ sectionOne, sectionTwo }) => {
                     <h3>
                       {Utilities.showLimitedChars(
                         sectionOne[0].title,
-                        Utilities.mobilecheck() ? 25 : 50
+                        Utilities.mobilecheck() ? 25 : 60
                       )}
                     </h3>
                   )}
