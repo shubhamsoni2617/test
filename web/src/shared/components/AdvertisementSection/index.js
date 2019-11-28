@@ -7,7 +7,7 @@ function AdvertisementBlock({ image, url, type }) {
   if (!image) return null;
   if (url) {
     return (
-      <a href={Utilities.mobilecheck() ? mobile_url : url}>
+      <a href={url}>
         <Image src={image} type={type} />
       </a>
     );
@@ -17,13 +17,12 @@ function AdvertisementBlock({ image, url, type }) {
 }
 function AdvertisementSection({ data, current }) {
   useRemoveFixedBody(current);
-
   if (!data) return null;
-  if (data && data.image) {
+  if (data && data.hasOwnProperty('image')) {
     return (
       <div className="advertisement-banner">
         <AdvertisementBlock
-          image={Utilities.mobilecheck() ? data.mobile_image : data.image}
+          image={data.image}
           url={data.url}
           type="BigBanner"
         />
@@ -37,7 +36,7 @@ function AdvertisementSection({ data, current }) {
         return (
           <div key={item.image} className="advertisement-block">
             <AdvertisementBlock
-              image={Utilities.mobilecheck() ? item.mobile_image : item.image}
+              image={item.image}
               url={item.url}
               type="Vertical"
             />

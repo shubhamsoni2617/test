@@ -474,7 +474,7 @@ export default class EventsDetail extends Component {
                   ref={node => {
                     if (!eventDetailBannerHeight && node && node.offsetHeight) {
                       this.setState({
-                        eventDetailBannerHeight: node.offsetHeight - 140
+                        eventDetailBannerHeight: node.offsetHeight - 33
                       });
                     }
                   }}
@@ -523,7 +523,17 @@ export default class EventsDetail extends Component {
 
                 <section>
                   <AdvertisementSection
-                    data={detailData.wallpaper}
+                    data={
+                      Utilities.mobilecheck()
+                        ? {
+                            image: detailData.wallpaper.mobile_image,
+                            url: detailData.wallpaper.mobile_url
+                          }
+                        : {
+                            image: detailData.wallpaper.image,
+                            url: detailData.wallpaper.url
+                          }
+                    }
                     current={this.props.current}
                   />
                 </section>

@@ -113,9 +113,9 @@ const TrendingNow = ({ heading }) => {
                       </span>
                       <div className="trending-now-image">
                         <div className="item-img">
-                          {now && now.horizontal_image && (
+                          {now && (
                             <Image
-                              src={now && now.horizontal_image}
+                              src={now.horizontal_image}
                               className="img-fluid"
                               alt="trending-now"
                               type="Horizontal"

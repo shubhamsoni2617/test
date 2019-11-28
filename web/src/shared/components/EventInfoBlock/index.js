@@ -28,16 +28,27 @@ function Button({ styleObj, url, text }) {
   );
 }
 
-function BuyTicketsButton({ url, buttons, buttonGroups, setFlag }) {
+function BuyTicketsButton({
+  url,
+  buttons,
+  buttonGroups,
+  setFlag,
+  setScrollbarHeight
+}) {
   if (
     (buttons && buttons.length && buttons[0].text) ||
     (buttonGroups && buttonGroups.length && buttonGroups[0].title)
   ) {
+    setTimeout(() => {
+      setScrollbarHeight(true);
+    }, 2000);
     return <a onClick={() => setFlag(true)}>Buy Tickets</a>;
   }
 
   if (!url) return null;
-
+  setTimeout(() => {
+    setScrollbarHeight(true);
+  }, 2000);
   return (
     <a href={url} target="_blank" rel="noopener noreferrer">
       Buy Tickets
@@ -69,6 +80,7 @@ function BuyTicketsButtonPopup(props) {
           buttonGroups={detailData.button_groups}
           url={detailData.buy_now_url}
           setFlag={setFlag}
+          setScrollbarHeight={props.setScrollbarHeight}
         />
       </div>
       <ModalPopup
@@ -224,32 +236,14 @@ function EventInfoBlock(props) {
 
   const setScrollbarHeight = (button = false) => {
     if (detailData.is_available_for_booking === 0) {
-      setScrollHeight(eventDetailBannerHeight + 26);
-    } else if (
-      buyPackages &&
-      !detailData.buttons &&
-      !detailData.buttons.length &&
-      !detailData.buttons[0].text &&
-      !detailData.buttonGroups &&
-      !detailData.buttonGroups.length &&
-      !detailData.buttonGroups[0].title &&
-      !detailData.buy_now_url
-    ) {
-      setScrollHeight(eventDetailBannerHeight + 41);
-    } else if (
-      !buyPackages &&
-      !(
-        !detailData.buttons &&
-        !detailData.buttons.length &&
-        !detailData.buttons[0].text &&
-        !detailData.buttonGroups &&
-        !detailData.buttonGroups.length &&
-        !detailData.buttonGroups[0].title &&
-        !detailData.buy_now_url
-      )
-    ) {
-      setScrollHeight(eventDetailBannerHeight + 41);
-    } else {
+      setScrollHeight(eventDetailBannerHeight - 60);
+    } else if (buyPackages.props.buyPackageUrl && button === false) {
+      setScrollHeight(eventDetailBannerHeight - 60);
+    } else if (!buyPackages.props.buyPackageUrl && button === true) {
+      setScrollHeight(eventDetailBannerHeight - 60);
+    } else if (buyPackages.props.buyPackageUrl && button === true) {
+      setScrollHeight(eventDetailBannerHeight - 120);
+    } else if (!buyPackages.props.buyPackageUrl && button === false) {
       setScrollHeight(eventDetailBannerHeight);
     }
   };
@@ -298,7 +292,9 @@ function EventInfoBlock(props) {
             </ul>
 
             <div className="title top">
-              <h3 dangerouslySetInnerHTML={{ __html: detailData.title }}></h3>
+              <h3
+                dangerouslySetInnerHTML={{ __html: detailData.rich_title }}
+              ></h3>
             </div>
 
             <div className="promoters">
@@ -372,8 +368,9 @@ function EventInfoBlock(props) {
                     <>
                       <img
                         className="location-gray"
-                        width={16}
+                        width={19}
                         height={19}
+                        style={{ height: 19, width: 19 }}
                         src={locationGray}
                         alt="location"
                       />
@@ -528,8 +525,9 @@ function EventInfoBlock(props) {
                     <>
                       <img
                         className="location-gray"
-                        width={16}
+                        width={19}
                         height={19}
+                        style={{ height: 20, width: 19 }}
                         src={locationGray}
                         alt="location"
                       />
