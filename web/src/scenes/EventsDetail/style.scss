@@ -211,7 +211,7 @@
         padding-top: 10px;
         > div{
             > div{
-                overflow: inherit !important;
+                // overflow: inherit !important;
             }
         }
         @media(min-width: 768px) and (max-width: 980px){
@@ -262,7 +262,7 @@
         }
           .title{
               h3{
-                    min-height: 60px;
+                    min-height: 31px;
                   @media(max-width: 1024px){
                     font-size: 20px;
                     margin-bottom: 0px;
@@ -562,6 +562,11 @@
                           align-items: center;
                           color: #0098FF;
                           line-height: 30px;
+                          span{
+                              &:hover{
+                                color: #0098FF;
+                              }
+                          }
                       }
                       span{
                         a{
