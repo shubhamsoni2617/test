@@ -164,6 +164,7 @@ class Home extends Component {
                   <FeaturedEvents
                     api={AdvertisementService.getFeaturedEvents}
                     heading={label}
+                    seeAll={true}
                   />
                 );
               case 'CURRENTLY_SHOWING':
@@ -200,6 +201,7 @@ class Home extends Component {
                     heading={label}
                     api={AdvertisementService.getCustomizeSectionOne}
                     cssClassName="alternate-featured-events"
+                    seeAll={false}
                   />
                 );
               case 'CUS_SEC_2':
