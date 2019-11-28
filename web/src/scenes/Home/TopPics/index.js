@@ -39,17 +39,17 @@ const TopPics = props => {
   const [error, setError] = useState(false);
 
   useEffect(() => {
-    setWidth(window.innerWidth);
-    window.addEventListener('resize', handleWindowResize);
+    // setWidth(window.innerWidth);
+    // window.addEventListener('resize', handleWindowResize);
     getTopPics();
-    return () => {
-      window.removeEventListener('resize', handleWindowResize);
-    };
+    // return () => {
+    //   window.removeEventListener('resize', handleWindowResize);
+    // };
   }, []);
 
-  const handleWindowResize = () => {
-    setWidth(window.innerWidth);
-  };
+  // const handleWindowResize = () => {
+  //   setWidth(window.innerWidth);
+  // };
 
   const getTopPics = () => {
     const params = {
@@ -75,15 +75,15 @@ const TopPics = props => {
     speed: 500,
     slidesToShow: 6,
     slidesToScroll: 6,
-    initialSlide: 0,
-    nextArrow: <SampleNextArrow />,
-    prevArrow: <SamplePrevArrow />,
+    // initialSlide: 0,
+    // nextArrow: <SampleNextArrow />,
+    // prevArrow: <SamplePrevArrow />,
     responsive: [
       {
         breakpoint: 1024,
         settings: {
-          slidesToShow: 3,
-          slidesToScroll: 3,
+          slidesToShow: 4,
+          slidesToScroll: 4,
           infinite: false,
           dots: false
         }
@@ -101,11 +101,11 @@ const TopPics = props => {
     <section className="top-picks">
       <div className="container-fluid">
         <h2>{props.heading}</h2>
-        {width <= Constants.MOBILE_BREAK_POINT ? (
+        {Utilities.mobilecheck() ? (
           !data.length ? (
             <ShimmerEffect
-              height={100}
-              count={2}
+              height={60}
+              count={3}
               type="TILE"
               propCls={`shm_col-xs-2 col-md-2`}
             />
@@ -194,13 +194,13 @@ const TopPics = props => {
         ) : !data.length ? (
           <ShimmerEffect
             height={200}
-            count={6}
+            count={Utilities.mobileAndTabletcheck() ? 4 : 6}
             type="TILE"
             propCls={`shm_col-xs-2 col-md-2`}
           />
         ) : (
           <Slider {...settings}>
-            {data.map((pic, index) => {
+            {data.map(pic => {
               return (
                 <div className="grid-container" key={pic.id}>
                   <div className="item">
