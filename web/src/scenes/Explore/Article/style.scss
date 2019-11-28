@@ -363,6 +363,7 @@ section.whats-new {
             }
             @media(max-width: 576px){
                 margin-bottom: 15px;
+                text-align: center;
             }
         }
         span{
@@ -507,6 +508,9 @@ section.whats-new {
                             @media(max-width: 767px){
                                 min-height: 104px;
                             }
+                        }
+                        .category{
+                            min-height: 18px;
                         }
                         .image-conatiner{
                             img{
@@ -709,6 +713,12 @@ section.whats-new {
 //feedback CSS
 .articledetail-wrapper{
     margin-top: -2px;
+    .container-fluid{
+        @media(min-width: 601px) and (max-width: 965px){
+            padding-right: 15px;
+            padding-left: 15px;
+        }
+    }
     .festival-top-slider{
         max-height: 460px;
         overflow: hidden;
