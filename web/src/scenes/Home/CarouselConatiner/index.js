@@ -74,7 +74,7 @@ const CarouselConatiner = props => {
           <div className="section-top-wrapper">
             <h2>{props.title}</h2>
             <div className="carousel-dots">
-              <Link to="/events" id={props.classStr}>
+              <Link to={props.link} id={props.classStr}>
                 See all{' '}
                 <img src={rightArrow} className="img-fluid" alt="arrow" />
                 &nbsp;

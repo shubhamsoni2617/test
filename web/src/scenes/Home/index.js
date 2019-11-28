@@ -1,6 +1,7 @@
 import React, { Component, createRef } from 'react';
 import { withRouter } from 'react-router-dom';
 import './style.scss';
+import moment from 'moment';
 import InstagramFeed from '../../shared/components/InstagramFeed/InstagramFeed';
 import CarouselConatiner from './CarouselConatiner';
 import PromotionCarousel from './PromotionCarousel';
@@ -173,6 +174,7 @@ class Home extends Component {
                     autoplay={true}
                     infinite={false}
                     api={HomeService.getCurrentlyShowing}
+                    link={`${"/events?s="+moment().format('YYYY-MM-DD')+"--"+moment().add(6, 'days').format('YYYY-MM-DD')+"&"}`}
                   />
                 );
               case 'PROMOTIONS':
