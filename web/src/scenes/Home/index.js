@@ -151,67 +151,69 @@ class Home extends Component {
         </div>
         {this.state.itemsOrder &&
           this.state.itemsOrder.length > 0 &&
-          this.state.itemsOrder.map(({ sec_key, label, hide_section }) => {
-            if (hide_section === '1') return null;
-            switch (sec_key) {
-              case 'TOP_PICKS':
-                return <TopPics heading={label} />;
-              case 'MID_PANEL':
-                return <GiftCard />;
-              case 'FEATURED_EVENTS':
-                return (
-                  <FeaturedEvents
-                    api={AdvertisementService.getFeaturedEvents}
-                    heading={label}
-                  />
-                );
-              case 'CURRENTLY_SHOWING':
-                return (
-                  <CarouselConatiner
-                    title={label}
-                    classStr="currently-showing"
-                    autoplay={true}
-                    infinite={false}
-                    api={HomeService.getCurrentlyShowing}
-                  />
-                );
-              case 'PROMOTIONS':
-                return <PromotionCarousel heading={label} />;
-              case 'TRENDING_NOW':
-                return <TrendingNow heading={label} />;
-              case 'WHATS_NEW':
-                return (
-                  <CarouselConatiner
-                    title={label}
-                    classStr="whats-new"
-                    arrows={true}
-                    autoplay={false}
-                    infinite={false}
-                    api={HomeService.getNewRelease}
-                  />
-                );
-              case 'EXPLORE':
-                return <Explore heading={label} />;
-              case 'CUS_SEC_1':
-                return (
-                  <FeaturedEvents
-                    heading={label}
-                    api={AdvertisementService.getCustomizeSectionOne}
-                    cssClassName="alternate-featured-events"
-                  />
-                );
-              case 'CUS_SEC_2':
-                return <CustomSectionTwo heading={label} customData={[]} />;
-              case 'CUS_SEC_3':
-                return (
-                  <CustomSectionThree
-                    heading={label}
-                    customData={[]}
-                    isHomePage={true}
-                  />
-                );
+          this.state.itemsOrder.map(
+            ({ sec_key, label, hide_section, description }) => {
+              if (hide_section === '1') return null;
+              switch (sec_key) {
+                case 'TOP_PICKS':
+                  return <TopPics heading={label} />;
+                case 'MID_PANEL':
+                  return <GiftCard />;
+                case 'FEATURED_EVENTS':
+                  return (
+                    <FeaturedEvents
+                      api={AdvertisementService.getFeaturedEvents}
+                      heading={label}
+                    />
+                  );
+                case 'CURRENTLY_SHOWING':
+                  return (
+                    <CarouselConatiner
+                      title={label}
+                      classStr="currently-showing"
+                      autoplay={true}
+                      infinite={false}
+                      api={HomeService.getCurrentlyShowing}
+                    />
+                  );
+                case 'PROMOTIONS':
+                  return <PromotionCarousel heading={label} />;
+                case 'TRENDING_NOW':
+                  return <TrendingNow heading={label} />;
+                case 'WHATS_NEW':
+                  return (
+                    <CarouselConatiner
+                      title={label}
+                      classStr="whats-new"
+                      arrows={true}
+                      autoplay={false}
+                      infinite={false}
+                      api={HomeService.getNewRelease}
+                    />
+                  );
+                case 'EXPLORE':
+                  return <Explore heading={label} description={description} />;
+                case 'CUS_SEC_1':
+                  return (
+                    <FeaturedEvents
+                      heading={label}
+                      api={AdvertisementService.getCustomizeSectionOne}
+                      cssClassName="alternate-featured-events"
+                    />
+                  );
+                case 'CUS_SEC_2':
+                  return <CustomSectionTwo heading={label} customData={[]} />;
+                case 'CUS_SEC_3':
+                  return (
+                    <CustomSectionThree
+                      heading={label}
+                      customData={[]}
+                      isHomePage={true}
+                    />
+                  );
+              }
             }
-          })}
+          )}
 
         <InstagramFeed />
         <Cookies />

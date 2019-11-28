@@ -49,11 +49,10 @@ const Explore = props => {
           )}
         </div>
         {!props.article && (
-          <span className="explore-text">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas
-            varius tortor nibh, sit amet tempor nibh finibus et. Aenean eu enim
-            justo.{' '}
-          </span>
+          <span
+            className="explore-text"
+            dangerouslySetInnerHTML={{ __html: props.description }}
+          ></span>
         )}
         <div className="grid-container">
           <div className="item">
