@@ -11,6 +11,7 @@ $black-opacity-10:rgba($black,.15);
 .shm_row{
   display: flex;
   flex-wrap: wrap;
+  justify-content: space-between;
   &> div{
     padding: 0 10px 0 0;
   }

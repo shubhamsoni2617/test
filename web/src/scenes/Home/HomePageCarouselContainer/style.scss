@@ -41,6 +41,12 @@
 		position: relative;
         z-index: 1;
         padding-bottom: 35px;
+        @media(max-width: 1980px) {
+            padding-top: 190px;
+        }
+        @media(max-width: 1480px) {
+            padding-top: 156px;
+        }
         @media(max-width: 1260px) {
             padding-bottom: 25px;
         }
@@ -55,9 +61,6 @@
         }
         @media(max-width: 576px) {
             padding-top: 145px;
-        }
-        @media(min-width: 1360px) {
-            padding-top: 190px;
         }
 		ul {
 			display: grid;

@@ -7,6 +7,7 @@ import Image from '../../../shared/components/Image';
 import { CSSTransition } from 'react-transition-group';
 import ShimmerEffect from '../../../shared/components/ShimmerEffect';
 import videoImage from '../../../assets/images/video-icon.svg';
+import OneBigEightSmall from '../../../shared/components/ShimmerEffect/OneBigEightSmall';
 
 const TrendingNow = ({ heading }) => {
   const [data, setData] = useState([]);
@@ -54,12 +55,7 @@ const TrendingNow = ({ heading }) => {
           transitionLeaveTimeout={1000}
         > */}
         {loading ? (
-          <ShimmerEffect
-            propCls={`shm_col-xs-6 col-md-2`}
-            height={300}
-            count={2}
-            type="TILE"
-          />
+          <OneBigEightSmall />
         ) : (
           <div className="grid-container">
             <div className="item">

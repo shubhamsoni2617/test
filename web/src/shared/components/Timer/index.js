@@ -8,8 +8,8 @@ class Timer extends Component {
       hours: 0,
       minutes: 0,
       second: 0,
-      expired: ""
-    }
+      expired: ''
+    };
   }
 
   componentDidMount() {
@@ -21,16 +21,18 @@ class Timer extends Component {
       var distance = countDownDate - now;
 
       var days = Math.floor(distance / (1000 * 60 * 60 * 24));
-      var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      var hours = Math.floor(
+        (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+      );
       var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
       var seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
       if (this.mount) {
         this.setState({
-          days: days,
-          hours: hours,
-          minutes: minutes,
-          seconds: seconds
+          days: this.appendZero(days.toString()),
+          hours: this.appendZero(hours.toString()),
+          minutes: this.appendZero(minutes.toString()),
+          seconds: this.appendZero(seconds.toString())
         });
       }
 
@@ -38,7 +40,7 @@ class Timer extends Component {
         if (this.mount) {
           clearInterval(x);
           promotionExpired('EXPIRED');
-          this.setState({expired:'EXPIRED'});
+          this.setState({ expired: 'EXPIRED' });
         }
       }
     }, 1000);
@@ -48,11 +50,21 @@ class Timer extends Component {
     this.mount = false;
   }
 
+  appendZero = digit => {
+    let appendZero;
+    if (digit && digit.length < 2) {
+      appendZero = '0' + digit;
+      return appendZero;
+    } else {
+      return digit;
+    }
+  };
+
   render() {
     const { days, hours, minutes, seconds, expired } = this.state;
     return (
       <Fragment>
-        {expired === "EXPIRED" ? null :
+        {expired === 'EXPIRED' ? null : (
           <Fragment>
             <li className="timer-days">
               <span>{days}</span>
@@ -71,9 +83,9 @@ class Timer extends Component {
               <span className="timer-label">Sec</span>
             </li>
           </Fragment>
-        }
+        )}
       </Fragment>
-    )
+    );
   }
 }
 export default Timer;

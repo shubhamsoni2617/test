@@ -431,7 +431,7 @@ export default class EventsDetail extends Component {
           handleClose={this.handleClose}
           htmlContent={true}
         />
-        <CSSTransition
+        {/* <CSSTransition
           // transitionName="shimmer"
           // transitionEnter={true}
           // transitionEnterTimeout={500}
@@ -439,7 +439,8 @@ export default class EventsDetail extends Component {
           in={shimmer}
           timeout={500}
           classNames="shimmer"
-        >
+        > */}
+        {shimmer && (
           <ShimmerEffect
             propCls="col-md-12"
             height={400}
@@ -447,7 +448,8 @@ export default class EventsDetail extends Component {
             type="DETAIL"
             detail={true}
           />
-        </CSSTransition>
+        )}
+        {/* </CSSTransition> */}
         {!shimmer && detailData && (
           <div
             className={`main-container ${
@@ -553,12 +555,7 @@ export default class EventsDetail extends Component {
                         noIcon={Utilities.mobileAndTabletcheck() ? false : true}
                         preExpanded={accrodian}
                         dynamicClass="synopsis-accordian"
-                        uuid={`${
-                          detailData.is_available_for_booking === 1 &&
-                          !Utilities.mobileAndTabletcheck()
-                            ? 'synopsis'
-                            : ''
-                        }`}
+                        uuid={`synopsis`}
                       />
                     )}
                     {detailData.tabs &&
