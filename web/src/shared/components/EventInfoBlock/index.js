@@ -276,158 +276,158 @@ function EventInfoBlock(props) {
       <div className="tickets-desc">
         {!Utilities.mobilecheck() && (
           <Scrollbars style={{ height: scrollHeight }}>
-            <ul className="zoner-group">
-              {detailData.genres &&
-                detailData.genres.length > 0 &&
-                detailData.genres.map((obj, index) => {
-                  return (
-                    <li
-                      className={`${obj.is_primary === 1 ? 'active' : ''}`}
-                      key={index}
-                    >
-                      {obj.name}
-                    </li>
-                  );
-                })}
-            </ul>
-
-            <div className="title top">
-              <h3
-                dangerouslySetInnerHTML={{ __html: detailData.rich_title }}
-              ></h3>
-            </div>
-
-            <div className="promoters">
-              {detailData.promoters && detailData.promoters.length > 0 && (
-                <>
-                  <span>by </span>
-                  {detailData.promoters.map((item, index) => {
-                    if (item.url) {
-                      return (
-                        <a
-                          key={`${item.name}-${index}`}
-                          href={item.url}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                        >
-                          {item.name}
-                        </a>
-                      );
-                    }
+            <div style={{ paddingRight: '20px' }}>
+              <ul className="zoner-group">
+                {detailData.genres &&
+                  detailData.genres.length > 0 &&
+                  detailData.genres.map((obj, index) => {
                     return (
-                      <span key={`${item.name}-${index}`}>{item.name} </span>
+                      <li
+                        className={`${obj.is_primary === 1 ? 'active' : ''}`}
+                        key={index}
+                      >
+                        {obj.name}
+                      </li>
                     );
                   })}
-                </>
-              )}
-            </div>
+              </ul>
 
-            {detailData.pop_up_message.title && (
-              <div className="info-tooltip">
-                <span className="info" onClick={() => props.openNotice()}>
-                  <img src={Info} alt="Info" />
+              <div className="title top">
+                <h3
+                  dangerouslySetInnerHTML={{ __html: detailData.rich_title }}
+                ></h3>
+              </div>
+
+              <div className="promoters">
+                {detailData.promoters && detailData.promoters.length > 0 && (
+                  <>
+                    <span>by </span>
+                    {detailData.promoters.map((item, index) => {
+                      if (item.url) {
+                        return (
+                          <a
+                            key={`${item.name}-${index}`}
+                            href={item.url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                          >
+                            {item.name}
+                          </a>
+                        );
+                      }
+                      return (
+                        <span key={`${item.name}-${index}`}>{item.name} </span>
+                      );
+                    })}
+                  </>
+                )}
+              </div>
+
+              {detailData.pop_up_message.title && (
+                <div className="info-tooltip">
+                  <span className="info" onClick={() => props.openNotice()}>
+                    <img src={Info} alt="Info" />
+                  </span>
+                </div>
+              )}
+              <div className="share-tooltip">
+                <span className="share" onClick={() => props.openSocialShare()}>
+                  <img src={shareIcon} alt="" />
+                  <SocialShare
+                    shareUrl={shareUrl}
+                    showSocialShare={showSocialShare}
+                  />
                 </span>
               </div>
-            )}
-            <div className="share-tooltip">
-              <span className="share" onClick={() => props.openSocialShare()}>
-                <img src={shareIcon} alt="" />
-                <SocialShare
-                  shareUrl={shareUrl}
-                  showSocialShare={showSocialShare}
-                />
-              </span>
-            </div>
 
-            <div className="ticket-date-price">
-              <ul className="date-address">
-                <li className="event-date">
-                  {detailData.event_date && (
-                    <>
-                      <img
-                        src={calendarImg}
-                        height={16}
-                        width="16"
-                        alt="cal-icon"
-                      />
-                      <div>
-                        <span>{detailData.event_date}</span>
-                        <ViewAllDateTimeButton
-                          data={detailData.event_date_details}
-                          eventDate={detailData.event_date}
-                          altEventStartDate={detailData.alt_event_start_date}
-                          eventDateNotes={detailData.event_date_notes}
-                          setEventDateBlock={setEventDateBlock}
+              <div className="ticket-date-price">
+                <ul className="date-address">
+                  <li className="event-date">
+                    {detailData.event_date && (
+                      <>
+                        <img
+                          src={calendarImg}
+                          height={16}
+                          width="16"
+                          alt="cal-icon"
                         />
-                      </div>
-                    </>
-                  )}
-                </li>
-                <li className="event-address">
-                  {detailData.venue_name && detailData.venue_name.name && (
-                    <>
-                      <img
-                        className="location-gray"
-                        width={19}
-                        height={19}
-                        style={{ height: 19, width: 19 }}
-                        src={locationGray}
-                        alt="location"
-                      />
-                      <div>
-                        <Link to={`/venues?id=${detailData.venue_name.id}`}>
-                          {sticky ? (
-                            <TitleToolTip
-                              title={detailData.venue_name.name}
-                              lines={1}
-                              tag={false}
-                              height={20}
-                              eventDetail
-                            />
-                          ) : (
-                            <div>
+                        <div>
+                          <span>{detailData.event_date}</span>
+                          <ViewAllDateTimeButton
+                            data={detailData.event_date_details}
+                            eventDate={detailData.event_date}
+                            altEventStartDate={detailData.alt_event_start_date}
+                            eventDateNotes={detailData.event_date_notes}
+                            setEventDateBlock={setEventDateBlock}
+                          />
+                        </div>
+                      </>
+                    )}
+                  </li>
+                  <li className="event-address">
+                    {detailData.venue_name && detailData.venue_name.name && (
+                      <>
+                        <img
+                          className="location-gray"
+                          width={19}
+                          height={19}
+                          style={{ height: 19, width: 19 }}
+                          src={locationGray}
+                          alt="location"
+                        />
+                        <div>
+                          <Link to={`/venues?id=${detailData.venue_name.id}`}>
+                            {sticky ? (
+                              <TitleToolTip
+                                title={detailData.venue_name.name}
+                                lines={1}
+                                tag={false}
+                                height={20}
+                                eventDetail
+                              />
+                            ) : (
                               <span>{detailData.venue_name.name}</span>
-                            </div>
+                            )}
+                          </Link>
+                          {detailData.venue_name.description && (
+                            <>
+                              <button
+                                className="link"
+                                onClick={() => setVenueDetailsPopup(true)}
+                              >
+                                View all Venues
+                              </button>
+                              <ModalPopup
+                                showModal={venueDetailsPopup}
+                                content={detailData.venue_name.description}
+                                title="Venue Details"
+                                handleClose={() => setVenueDetailsPopup(false)}
+                                htmlContent={true}
+                              />
+                            </>
                           )}
-                        </Link>
-                        {detailData.venue_name.description && (
-                          <>
-                            <button
-                              className="link"
-                              onClick={() => setVenueDetailsPopup(true)}
-                            >
-                              View all Venues
-                            </button>
-                            <ModalPopup
-                              showModal={venueDetailsPopup}
-                              content={detailData.venue_name.description}
-                              title="Venue Details"
-                              handleClose={() => setVenueDetailsPopup(false)}
-                              htmlContent={true}
-                            />
-                          </>
-                        )}
-                      </div>
-                    </>
-                  )}
-                </li>
-                <li className="event-date">{seatMapButton}</li>
+                        </div>
+                      </>
+                    )}
+                  </li>
+                  <li className="event-date">{seatMapButton}</li>
 
-                <li className="event-date">
-                  {detailData.price && (
-                    <>
-                      <img
-                        src={coinsImg}
-                        className="coin"
-                        width={19}
-                        height={19}
-                        alt="cal-icon"
-                      />
-                      <span className="detail">{detailData.price}</span>
-                    </>
-                  )}
-                </li>
-              </ul>
+                  <li className="event-date">
+                    {detailData.price && (
+                      <>
+                        <img
+                          src={coinsImg}
+                          className="coin"
+                          width={19}
+                          height={19}
+                          alt="cal-icon"
+                        />
+                        <span className="detail">{detailData.price}</span>
+                      </>
+                    )}
+                  </li>
+                </ul>
+              </div>
             </div>
           </Scrollbars>
         )}
