@@ -245,66 +245,13 @@ function StickyHeader(props) {
           />
         </div>
       )}
-      <EventDateTime
-        show={showEventDateBlock}
-        showBlock={setEventDateBlock}
-        data={detailData.event_date_details}
-        eventDate={detailData.event_date}
-        altEventStartDate={detailData.alt_event_start_date}
-        eventDateNotes={detailData.event_date_notes}
-        setEventDateBlock={setEventDateBlock}
-      />
       <div className="tickets-desc">
-        <ul className="zoner-group">
-          {detailData.genres &&
-            detailData.genres.length > 0 &&
-            detailData.genres.map((obj, index) => {
-              return (
-                <li
-                  className={`${obj.is_primary === 1 ? 'active' : ''}`}
-                  key={index}
-                >
-                  {obj.name}
-                </li>
-              );
-            })}
-        </ul>
-
-        {sticky ? (
-          <TitleToolTip
-            title={
-              <h3 dangerouslySetInnerHTML={{ __html: detailData.title }}></h3>
-            }
-            lines={props.lines}
-            height={Utilities.mobileAndTabletcheck() ? 25 : 30}
-            eventDetail
-          />
-        ) : (
-          <div className="title top">
-            <h3 dangerouslySetInnerHTML={{ __html: detailData.title }}></h3>
-          </div>
-        )}
-
-        {detailData.promoters && detailData.promoters.length > 0 && (
-          <div className="promoters">
-            <span>by </span>
-            {detailData.promoters.map((item, index) => {
-              if (item.url) {
-                return (
-                  <a
-                    key={`${item.name}-${index}`}
-                    href={item.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    {item.name}
-                  </a>
-                );
-              }
-              return <span key={`${item.name}-${index}`}>{item.name} </span>;
-            })}
-          </div>
-        )}
+        <TitleToolTip
+          title={detailData.title}
+          lines={props.lines}
+          height={Utilities.mobileAndTabletcheck() ? 25 : 30}
+          eventDetail
+        />
 
         {detailData.pop_up_message.title && (
           <div className="info-tooltip">
@@ -336,13 +283,6 @@ function StickyHeader(props) {
                 />
                 <div>
                   <span>{detailData.event_date}</span>
-                  <ViewAllDateTimeButton
-                    data={detailData.event_date_details}
-                    eventDate={detailData.event_date}
-                    altEventStartDate={detailData.alt_event_start_date}
-                    eventDateNotes={detailData.event_date_notes}
-                    setEventDateBlock={setEventDateBlock}
-                  />
                 </div>
               </li>
             )}
@@ -384,7 +324,6 @@ function StickyHeader(props) {
                   </div>
                 </li>
               )}
-            {seatMapButton && <li className="event-date">{seatMapButton}</li>}
 
             {detailData.price && (
               <li className="event-date">
