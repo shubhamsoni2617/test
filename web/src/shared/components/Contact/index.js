@@ -45,7 +45,7 @@ const Contact = ({ attachement, handleEnquiry, type }) => {
 
   const fetchEnquiry = () => {
     let params = {
-      page: 'corporate'
+      page: 'b2b'
     };
     if (type === 'contact') {
       delete params.page;
