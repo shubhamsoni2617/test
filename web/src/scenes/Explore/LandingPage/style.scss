@@ -29,7 +29,7 @@
     .banner-content{
         flex: 0 0 100%;
         width: 100%;
-        padding: 0px 0px 0px 83px;
+        padding: 0px 0px 0px 40px;
         position: relative;
         height: 100%;
         @media(max-width: 1024px){
@@ -102,6 +102,7 @@
             padding: 7px 25px;
             font-family: 'Montserrat', sans-serif;
             display: inline-block;
+            font-weight: 600;
             @media(max-width: 768px){
                 padding: 7px 0px;
                 display: block;
@@ -157,8 +158,8 @@
                 position: relative;
             }
             .explore-content{
-                flex: 1 0 45%;
-                max-width: 45%;
+                flex: 1 0 40%;
+                max-width: 40%;
                 margin-right: 20px;
                 position: relative;
                 display: flex;
@@ -227,8 +228,8 @@
                 }
             }
             img{
-                flex: 1 0 50%;
-                max-width: 50%;
+                flex: 1 0 55%;
+                max-width: 55%;
                 margin-left: auto;
                 width: 100%;
                 min-height: 377px;
@@ -249,7 +250,7 @@
         width: 55%;
         position: absolute;
         right: 20px;
-        bottom: 7px;
+        bottom: 2px;
         @media(max-width: 768px){
             flex: 0 0 100%;
             width: 100%;
@@ -263,7 +264,9 @@
             border: 1px solid transparent;
             transition: all 0.3s ease-out;
         }
-        
+        .slick-arrow{
+            margin-top: -7px;
+        }
         .slick-prev{
             left: 4px;
             background-image: url('../../../assets/images/left-arrow-white.svg');
@@ -366,7 +369,7 @@
             margin: -5px;
         }
         .item-wrapper{
-            padding: 8px;
+            padding: 8px 19px;
             flex: 0 0 25%;
             width: 25%;
             position: relative;
@@ -437,8 +440,8 @@
                 content: "";
                 position: absolute;
                 top: 0;
-                left: 0;
-                width: 100%;
+                left: 10px;
+                width: calc(100% - 20px);
                 height: 100%;
                 transform: scaleY(0);
                 transform-origin: bottom center;
@@ -677,6 +680,13 @@
                 &:last-child{
                     border: none;
                 }
+            }
+        }
+    }
+    .carousel-dots{
+        a{
+            img{
+                margin-left: 4px;
             }
         }
     }
@@ -942,7 +952,7 @@
             .slick-track{
                 display: flex;
                 .slick-slide{
-                    margin: 0 5px;
+                    margin: 0 7px;
                     &:first-child{
                         margin-left: 0;
                     }
@@ -1015,6 +1025,50 @@
         }
         @media (max-width: 768px){
             height: auto;
+        }
+    }
+}
+
+.explore-wrapper{
+    .trending-wrapper{
+        .slick-arrow{
+            height: 85px;
+            width: 35px;
+            background-position: 10px 32px;
+            background-color: rgba(0, 0, 0, 0.7);
+            margin-top: -22px;
+            background-size: 13px;
+            @media(max-width: 768px){
+                display: none !important;
+            }
+            &:hover{
+                border: none;
+                outline: none;
+            }
+            &.slick-prev{
+                background-image: url('../../../assets/images/left-arrow-white.svg');
+                &:hover{
+                    border: none;
+                }
+                
+            }
+            &.slick-next{                
+                background-image: url('../../../assets/images/right-arrow-white.svg');
+                &:hover{
+                    border: none;
+                }
+            }
+        }
+    }
+    .royal-wrapper{
+        .royal-items-wrapper{
+            .royal-rightsection{
+                p{
+                    font-size: 15px;
+                    line-height: 22px;
+                    font-weight: normal;
+                }
+            }
         }
     }
 }
