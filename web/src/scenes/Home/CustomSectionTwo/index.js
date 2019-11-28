@@ -50,46 +50,29 @@ const CustomSectionTwo = ({ heading, customData, isMoreFrom, id }) => {
       type="TILE"
     />
   ) : (
-    <section className="royal-wrapper">
-      <div className="container-fluid">
-        <div className="section-top-wrapper">
-          <h2>{heading}</h2>
-          {isMoreFrom && (
-            <a
-              href={`/explore/articles?c=${id}`}
-              target="_blank"
-              className="text-right"
-            >
-              More from {heading}{' '}
-              <img src={Arrow} className="img-fluid" alt="arrow" />
-            </a>
-          )}
-        </div>
-        <div className="royal-items-wrapper">
-          {!Utilities.mobilecheck() && (
-            <a
-              href={data && data[0] && data[0].navigation_link}
-              target="_blank"
-              className="royal-leftsection"
-            >
-              <div>
-                {data && data[0] && (
-                  <Image
-                    src={data[0].full_image}
-                    alt={data[0].alt_text}
-                    className="img-fluid"
-                    type="BigBanner"
-                  />
-                )}
+      <section className="royal-wrapper">
+        <div className="container-fluid">
+          <div className="section-top-wrapper">
+            <h2>{heading}</h2>
+            {isMoreFrom && (
+              <div className="carousel-dots">
+                <a
+                  href={`/explore/articles?c=${id}`}
+                  target="_blank"
+                  className="text-right"
+                >
+                  More from {heading}{' '}
+                  <img src={Arrow} className="img-fluid" alt="arrow" />
+                </a>
               </div>
-            </a>
-          )}
-          <div className="royal-rightsection">
+            )}
+          </div>
+          <div className="royal-items-wrapper">
             {!Utilities.mobilecheck() && (
               <a
                 href={data && data[0] && data[0].navigation_link}
                 target="_blank"
-                className="royal-rightside-textwrapper"
+                className="royal-leftsection"
               >
                 <h3>{data && data[0] && data[0].title}</h3>
                 <p>{data && data[0] && data[0].event_date}</p>
@@ -127,9 +110,8 @@ const CustomSectionTwo = ({ heading, customData, isMoreFrom, id }) => {
             </div>
           </div>
         </div>
-      </div>
-    </section>
-  );
+      </section>
+    );
 };
 
 export default CustomSectionTwo;
