@@ -209,11 +209,11 @@
         display: block;
         margin-top: -10px;
         padding-top: 10px;
-        > div{
-            > div{
-                // overflow: inherit !important;
-            }
+        div{
+          div:first-child {
+            overflow: auto !important;
         }
+      }
         @media(min-width: 768px) and (max-width: 980px){
             > div{
                 overflow: inherit !important;
@@ -371,7 +371,7 @@
                   line-height: 18px;
                   font-weight: 500;
                   @media(max-width: 767px){
-                    border: 1px solid rgba(106, 106, 106, 0.25); 
+                    border: 1px solid rgba(106, 106, 106, 0.25);
                     padding: 0px 2px;
                     font-size: 12px;
                     line-height: 17px;
@@ -516,7 +516,7 @@
                       .calenderIcon{
                           width: 19px;
                           height: 19px;
-                          
+
                       }
                       .coin{
                           width: 21px;
@@ -706,7 +706,7 @@
                 width: 100%;
                 margin-right: 0;
             }
-            
+
         }
         &.shows-over-tickets{
             @media(max-width: 991px){
@@ -738,7 +738,7 @@
         flex-direction: column;
       }
       @media(max-width: 991px){
-          box-shadow: 0 2px 3px #e8e8e8; 
+          box-shadow: 0 2px 3px #e8e8e8;
       }
       &:after{
           position: absolute;
@@ -1336,7 +1336,7 @@
                   cursor: pointer;
                   background-color: #fff;
                   border-color: #0098ff;
-                  
+
                   }
               }
           }
@@ -1345,7 +1345,7 @@
               @media(min-width: 1024px) and (max-width: 1280px) {
                 right: 0;
               }
-              
+
           }
           h2{
               font-size: 22px;
