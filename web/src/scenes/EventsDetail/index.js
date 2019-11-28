@@ -474,7 +474,7 @@ export default class EventsDetail extends Component {
                   ref={node => {
                     if (!eventDetailBannerHeight && node && node.offsetHeight) {
                       this.setState({
-                        eventDetailBannerHeight: node.offsetHeight - 140
+                        eventDetailBannerHeight: node.offsetHeight - 33
                       });
                     }
                   }}
