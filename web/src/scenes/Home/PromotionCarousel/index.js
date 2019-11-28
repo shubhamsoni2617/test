@@ -62,8 +62,6 @@ const ItemWrapper = ({ promotion, expiredText, handlePromotionExpired }) => {
   );
 };
 
-
-
 export default class PromotionCarousel extends Component {
   constructor(props) {
     super(props);
@@ -155,6 +153,23 @@ export default class PromotionCarousel extends Component {
         }
       ]
     };
+    let shimmerWebTab = (
+      <>
+        <ShimmerEffect
+          height={150}
+          count={Utilities.mobileAndTabletcheck() ? 3 : 4}
+          type="TILE"
+          propCls={`shm_col-xs-2 col-md-2`}
+        />
+        <br />
+        <ShimmerEffect
+          height={150}
+          count={Utilities.mobileAndTabletcheck() ? 3 : 4}
+          type="TILE"
+          propCls={`shm_col-xs-2 col-md-2`}
+        />
+      </>
+    );
     return (
       <section className="promotions" ref={node => (this.element = node)}>
         <div className="container-fluid">
@@ -202,18 +217,32 @@ export default class PromotionCarousel extends Component {
               transitionLeaveTimeout={1000}
             > */}
             {loading ? (
-              <ShimmerEffect
-                propCls={`shm_col-xs-6 col-md-${
-                  Utilities.mobileAndTabletcheck() || Utilities.mobilecheck()
-                    ? 6
-                    : 2
-                  }`}
-                height={150}
-                count={2}
-                type="TILE"
-              />
+              Utilities.mobilecheck() ? (
+                <ShimmerEffect
+                  height={60}
+                  count={2}
+                  type="TILE"
+                  propCls={`shm_col-xs-2 col-md-2`}
+                />
+              ) : (
+                shimmerWebTab
+              )
             ) : Utilities.mobilecheck() ? (
               <div className="promotions-grid-wrapper">
+                {promotions &&
+                  promotions.map(promotion => {
+                    return (
+                      // <div key={promotion.id} className="item-wrapper">
+                      <ItemWrapper
+                        promotion={promotion}
+                        expiredText={expiredText}
+                        handlePromotionExpired={this.handlePromotionExpired}
+                      />
+                    );
+                  })}
+              </div>
+            ) : (
+              <Slider {...settings}>
                 {promotions &&
                   promotions.map((promotion, index, array) => {
                     if (index % 2 === 0) {
@@ -251,48 +280,8 @@ export default class PromotionCarousel extends Component {
                       }
                     }
                   })}
-              </div>
-            ) : (
-                <Slider {...settings}>
-                {promotions &&
-                promotions.map((promotion, index, array) => {
-                if (index % 2 === 0) {
-                if (array[index] && array[index + 1]) {
-                return (
-                <div key={promotion.id} className="item-wrapper">
-                <ItemWrapper
-                promotion={array[index]}
-                expiredText={expiredText}
-                handlePromotionExpired={
-                this.handlePromotionExpired
-                }
-                />
-                <ItemWrapper
-                promotion={array[index + 1]}
-                expiredText={expiredText}
-                handlePromotionExpired={
-                this.handlePromotionExpired
-                }
-                />
-                </div>
-                );
-                } else if (array[index]) {
-                return (
-                <div key={promotion.id} className="item-wrapper">
-                <ItemWrapper
-                promotion={array[index]}
-                expiredText={expiredText}
-                handlePromotionExpired={
-                this.handlePromotionExpired
-                }
-                />
-                </div>
-                );
-                }
-                }
-                })}
-                </Slider>
-                )}
+              </Slider>
+            )}
             {/* </CSSTransitionGroup> */}
           </div>
         </div>

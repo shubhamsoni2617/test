@@ -8,12 +8,12 @@
         }
         .breadcrumb{
             li{
-                color: rgba(255, 255, 255, 0.9);
+                color: rgba(255, 255, 255, 0.7);
                 a{
-                    color: rgba(255, 255, 255, 0.9);
+                    color: rgba(255, 255, 255, 0.7);
                 }
                 &:after{
-                    color: rgba(255, 255, 255, 0.9);
+                    color: rgba(255, 255, 255, 0.7);
                 }
             }
         }
@@ -222,7 +222,7 @@
                         }
                     }
                     .article-show-more{
-                        color: #2698ff;
+                        color: #0098ff;
                         text-transform: lowercase;
                         text-decoration: none;
                     }
@@ -287,19 +287,14 @@
                     -webkit-transition: 0.3s background-color;
                     -moz-transition: 0.3s background-color;
                     -o-transition: 0.3s background-color;
-                    font-family: 'Montserrat', sans-serif;
-                    font-size: 14px;
-                    line-height: 18px;
-                    font-weight: 400;
-                    color: #0098FF;
+                    border: 1px solid rgba(2, 152, 255, 0.15);
+                    margin: 0px 5px 5px 0px;
                     span{
-                        border: 1px solid rgba(2, 152, 255, 0.15);
                         padding: 4px 5px;
-                        margin: 0px 5px 5px 0px;
                         display: inline-block;
-                        font-size: 14px;
-                        line-height: 18px;
-                        font-weight: 400;
+                        font-size: 12px;
+                        line-height: 14px;
+                        font-weight: normal;
                         color: #0098FF;
                         &:empty{
                             display: none;
@@ -407,9 +402,9 @@
                 .category-group{
                     li{
                         span{
-                            font-size: 14px;
-                            line-height: 18px;
-                            font-weight: 400;
+                            font-size: 12px;
+                            line-height: 14px;
+                            font-weight: normal;
                             color: #0098FF;
                         }
                     }

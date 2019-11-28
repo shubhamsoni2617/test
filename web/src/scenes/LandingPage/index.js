@@ -29,7 +29,7 @@ const LandingPage = ({ location }) => {
         .getElementById(location.hash)
         .getBoundingClientRect().top;
       animateScroll.scrollMore(offset - 75);
-    } else {
+    } else if (landingPageData) {
       window && window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
     }
   }, [landingPageData, location.hash]);

@@ -6,7 +6,6 @@ import ContactUs from './ContactUs';
 import ApiPartnersService from '../../shared/services/ApiPartnersService';
 // import './style.scss';
 
-
 class ApiPartner extends Component {
   constructor(props) {
     super(props);
@@ -47,7 +46,7 @@ class ApiPartner extends Component {
         <ApiBanner title={banner_title} description={banner_description} />
         {/* <h2>View some of the partners that we work with</h2> */}
         <Partners partnersLogo={data} />
-        <ContactUs />
+        <ContactUs type={'contact'} />
       </div>
     );
   }

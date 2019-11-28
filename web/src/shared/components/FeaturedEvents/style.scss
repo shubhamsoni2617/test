@@ -16,3 +16,12 @@
     min-height: 40px;
     max-height: 40px;
   }
+  .featured-wrapper{
+    display: flex;
+    align-items: center;
+  }
+  .featured-wrapper a{
+    margin-right: 10px;
+    flex: 1 0 42%;
+    max-width: 42%;
+  }
