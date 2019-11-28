@@ -213,6 +213,7 @@ class Home extends Component {
                   />
                 );
             }
+            }
           )}
 
         <InstagramFeed />
