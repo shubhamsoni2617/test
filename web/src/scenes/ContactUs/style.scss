@@ -184,6 +184,9 @@
           width: calc(100% - 50px);
         }
       }
+      &:last-child{
+        margin-bottom: 0px;
+      }
     }
   }
   .customer-enquiry-wrapper{
@@ -218,7 +221,7 @@
   .contact-find-us{
     width: calc(100% - 517px);
     flex: 0 0 calc(100% - 517px);
-    padding: 32px 90px 70px 27px;
+    padding: 32px 90px 32px 27px;
     background-color: #F0F9FF;
     @media(max-width: 991px){
       width: 40%;
