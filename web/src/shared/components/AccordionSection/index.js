@@ -134,7 +134,7 @@ export default class AccordionSection extends Component {
                 {noIcon ? (
                   <LoadMore
                     limit={600}
-                    content={desc}
+                    content={this.state.description}
                     showMore={showMore}
                     handleMore={this.handleMore}
                   />
