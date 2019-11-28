@@ -127,9 +127,9 @@
 			}
 			.header-search {
 				position: relative;
-				width: 643px;
+				width: 531px;
 				@media(max-width: 1366px) {
-					width: 643px;
+					width: 531px;
 				}
 				@media(max-width: 1068px) {
 					max-width: 450px;
@@ -593,7 +593,7 @@
 						padding-right: 0px;
 						a {
 							font-size: 16px;
-							font-weight: 400;
+							font-weight: 300;
 							line-height: 17px;
 						}
 						@media(max-width: 991px) {
@@ -1441,7 +1441,7 @@
             &.slick-active{
                 span{
                     opacity: 1;
-                    background-color: #0077C8;
+                    background-color: #0077C8 !important;
                 }
             }
         }
@@ -2101,9 +2101,12 @@
                         line-height: 16px;
                     }
                     &.featured-event-date{
-                        min-height: 40px;
+                        min-height: 18px;
                         @media(min-width: 1480px) and (max-width: 2200px) {
                             min-height: 18px;
+                        }
+                        @media(min-width: 1136px) and (max-width: 1280px) {
+                            min-height: 40px;
                         }
                     }
 					&:last-child {
@@ -2293,29 +2296,7 @@ section.whats-new {
 					min-height: 130px;
 					width: 100%;
 				}
-				// @media(min-width: 1280px){
-				// 	min-height: 440px;
-				// 	max-height: 440px;
-				// }
-				// @media(max-width: 1366px){
-				// 	max-height: 318px;
-				// 	height: 100%;
-				// 	min-height: 318px;
-				// 	width: 100%;
-				// }
-				// @media(min-width: 768px) and (max-width: 1024px){
-				// 	max-height: 350px;
-				// 	height: 100%;
-				// 	min-height: 350px;
-				// 	width: 100%;
-				// }
-				// @media(max-width: 767px){
-				// 	max-height: 100%;
-				// 	height: 100%;
-				// 	width: 100%;
-				// 	min-height: 130px;
-				// 	max-height: 130px;
-				// }
+				
 				img {
 					width: 100%;
 					height: 100%;
@@ -2353,29 +2334,7 @@ section.whats-new {
 						max-height: 130px;
 					}
 
-					// @media(min-width: 1280px){
-					// 	min-height: 440px;
-					// 	max-height: 440px;
-					// }
-					// @media(max-width: 1366px){
-					// 	height: 100%;
-					// 	width: 100%;
-					// 	min-height: 318px;
-					// 	max-height: 318px;
-					// }
-					// @media(min-width: 768px) and (max-width: 1024px){
-					// 	height: 100%;
-					// 	width: 100%;
-					// 	min-height: 350px;
-					// 	max-height: 350px;
-					// }
-					// @media (max-width: 767px) {
-					// 	height: auto;
-					// 	width: auto;
-					// 	max-width: 100%;
-					// 	max-height: 130px;
-					// 	min-height: 130px;
-					// }
+					
 				}
 			}
 			@media(min-width: 991px){
@@ -2465,9 +2424,10 @@ section.whats-new {
         color: rgba(255, 255, 255, 0.7);
         margin-bottom: 5px;
 		font-size: 13px;
-		word-break: break-all;
+        word-break: break-all;
+        min-height: 18px;
         &.dt-srt-end{
-			font-size: 11px;
+			font-size: 12px;
 			@media(max-width: 1024px){
 				min-height: 35px;
 			}
@@ -2540,9 +2500,6 @@ p {
                         @media(max-width: 991px) {
                             padding-top: 10px;
                             grid-template-columns: repeat(3, minmax(31%, 1fr));
-                        }
-                        @media(min-width: 992px) and (max-width: 1280px) {
-                            grid-template-columns: repeat(3, minmax(27%, 1fr));
                         }
                         @media (max-width: 767px) {
                             grid-template-columns: repeat(3, minmax(55%, 1fr));
@@ -2918,10 +2875,15 @@ section.trending-now {
 				}
             }
             p{
-                margin-bottom: 6px;
+                margin-bottom: 3px;
+                min-height: 18px;
+                @media(min-width: 1136px) and (max-width: 1280px){
+                    font-size: 13px;
+                }
             }
             p + p{
                 margin-bottom: 0;
+                min-height: 18px;
             }
 		}
 		.item-wrapper {
@@ -3002,7 +2964,6 @@ section.trending-now {
 				@media(min-width: 767px) {
 					cursor: pointer;
 					box-shadow: 0 2px 27px 0 rgba(0, 0, 0, 0.12);
-					transform: translateY(-10px);
 					&:after {
 						transform: scaleY(1);
 					}
