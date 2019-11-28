@@ -246,12 +246,15 @@ function StickyHeader(props) {
         </div>
       )}
       <div className="tickets-desc">
-        <TitleToolTip
-          title={detailData.title}
-          lines={props.lines}
-          height={Utilities.mobileAndTabletcheck() ? 25 : 30}
-          eventDetail
-        />
+        {detailData.title && (
+          <TitleToolTip
+            title={detailData.title}
+            lines={props.lines}
+            height={Utilities.mobileAndTabletcheck() ? 25 : 30}
+            eventDetail
+          />
+        )}
+        {!detailData.title && <h3></h3>}
 
         {detailData.pop_up_message.title && (
           <div className="info-tooltip">
@@ -286,44 +289,29 @@ function StickyHeader(props) {
                 </div>
               </li>
             )}
-            {detailData.venue_name &&
-              detailData.venue_name.name &&
-              detailData.venue_name.description && (
-                <li className="event-address">
-                  <img
-                    className="location-gray"
-                    style={{ height: 20, width: 19 }}
-                    width={19}
-                    height={19}
-                    src={locationGray}
-                    alt="location"
-                  />
-                  <div>
-                    <Link to={`/venues?id=${detailData.venue_name.id}`}>
-                      <TitleToolTip
-                        title={detailData.venue_name.name}
-                        lines={1}
-                        tag={false}
-                        height={20}
-                        eventDetail
-                      />
-                    </Link>
-                    <button
-                      className="link"
-                      onClick={() => setVenueDetailsPopup(true)}
-                    >
-                      View all Venues
-                    </button>
-                    <ModalPopup
-                      showModal={venueDetailsPopup}
-                      content={detailData.venue_name.description}
-                      title="Venue Details"
-                      handleClose={() => setVenueDetailsPopup(false)}
-                      htmlContent={true}
+            {detailData.venue_name && detailData.venue_name.name && (
+              <li className="event-address">
+                <img
+                  className="location-gray"
+                  style={{ height: 20, width: 19 }}
+                  width={19}
+                  height={19}
+                  src={locationGray}
+                  alt="location"
+                />
+                <div>
+                  <Link to={`/venues?id=${detailData.venue_name.id}`}>
+                    <TitleToolTip
+                      title={detailData.venue_name.name}
+                      lines={1}
+                      tag={false}
+                      height={20}
+                      eventDetail
                     />
-                  </div>
-                </li>
-              )}
+                  </Link>
+                </div>
+              </li>
+            )}
 
             {detailData.price && (
               <li className="event-date">
