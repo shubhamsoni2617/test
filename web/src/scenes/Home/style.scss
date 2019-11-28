@@ -2437,7 +2437,28 @@ p {
 	}
 	@media (max-width: 767px) {
 		padding: 20px 0px 10px;
-    }
+	}
+	.promotions-grid-wrapper{
+		@media(max-width: 576px){
+			display: flex;
+			overflow-x: auto;
+			-ms-overflow-style: none; // IE 10+ 
+			scrollbar-width: none; // Firefox
+			padding-bottom: 15px;
+			&::-webkit-scrollbar { 
+				display: none; // Safari and Chrome 
+			}
+			a{
+				flex: 1 0 42%;
+				max-width: 42%;
+				margin-right: 10px;
+			}
+		}
+		.promotions-img{
+			margin-bottom: 12px;
+			position: relative;
+		}
+	}
     .carousel-dots{
         margin-top: 3px;
         @media(min-width: 991px) and (max-width: 1024px) {
@@ -2735,6 +2756,9 @@ section.trending-now {
             grid-template-columns: repeat(5, minmax(35%, 1fr));
             margin: 0;
 		}
+		@media(max-width: 576px){
+			overflow-y: hidden;
+		}
 		// @media(min-width: 992px) and (max-width: 1280px) {
         //     grid-template-columns: 1.4fr repeat(4, 1fr);
 		// }
@@ -2968,6 +2992,11 @@ section.trending-now {
 //what's new style start
 .carousel-container section.whats-new {
 	background-color: #F0F9FF;
+	.item-wrapper{
+		p{
+			height: 30px;
+		}
+	}
 	h2 {
 		color: #343434;
         padding-bottom: 18px;
