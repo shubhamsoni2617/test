@@ -149,7 +149,7 @@
                 min-height: 222px;
                 max-height: 222px;
                 @media(max-width: 601px){
-                    height: auto; 
+                    height: auto;
                     min-height: 122px;
                     max-height: 122px;
                 }
@@ -209,8 +209,8 @@
                         //min-height: 108px;
                         min-height: auto;
                     }
-                    .sub-text, span, p{                
-                        font-family: 'Rubik', sans-serif;	
+                    .sub-text, span, p{
+                        font-family: 'Rubik', sans-serif;
                         font-size: 14px;
                         line-height: 22px;
                         color: #626262;
@@ -230,7 +230,7 @@
             }
             .article-category-group{
                 top: 15px;
-                left: 14px;                
+                left: 14px;
                 padding: 0px 5px;
                 z-index: 1;
                 height: auto;
@@ -303,14 +303,14 @@
                 }
             }
             h3{
-                color: #343434;	
-                font-family: 'Rubik', sans-serif;	
-                font-size: 17px;	
+                color: #343434;
+                font-family: 'Rubik', sans-serif;
+                font-size: 17px;
                 line-height: 20px;
                 min-height: 40px;
-                display: -webkit-box; 
+                display: -webkit-box;
                 -webkit-line-clamp: 2;
-                overflow: hidden; 
+                overflow: hidden;
                 text-overflow: ellipsis;
                 /* autoprefixer: off */ -webkit-box-orient: vertical; /* autoprefixer: on */
                 @media(max-width: 1024px){
@@ -322,9 +322,9 @@
                     font-size: 14px;
                     max-height: 40px;
                     min-height: 40px;
-                    display: -webkit-box; 
-                    -webkit-line-clamp: 2; 
-                    overflow: hidden; 
+                    display: -webkit-box;
+                    -webkit-line-clamp: 2;
+                    overflow: hidden;
                     text-overflow: ellipsis;
                     /* autoprefixer: off */ -webkit-box-orient: vertical; /* autoprefixer: on */
                 }
@@ -338,9 +338,9 @@
                 align-items: flex-start;
                 min-height: 18px;
                 span{
-                    color: #626262;	
-                    font-family: 'Rubik', sans-serif;	
-                    font-size: 14px;	
+                    color: #626262;
+                    font-family: 'Rubik', sans-serif;
+                    font-size: 14px;
                     line-height: 22px;
                     flex: 0 0 60%;
                     width: 60%;
@@ -354,7 +354,7 @@
                     }
                     @media(max-width:767px){
                         font-size: 12px;
-                        line-height: 18px;                        
+                        line-height: 18px;
                     }
                     @media(max-width: 450px){
                         font-size: 11px;
@@ -524,6 +524,7 @@
                     display: block;
                 }
                 ul{
+                    -webkit-overflow-scrolling: touch;
                     li{
                         @media(max-width: 767px){
                             padding: 18px 21px;
@@ -596,7 +597,7 @@
                     }
                 }
             }
-            
+
         }
     }
 }
