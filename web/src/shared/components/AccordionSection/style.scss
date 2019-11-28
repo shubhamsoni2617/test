@@ -51,6 +51,13 @@
                 right: 15px;
             }
         }
+        .noicon{
+          .accordion__button{
+            &::before{
+              display: none;
+            }
+          }
+        }
         .accordion__button{
             background-color: #F0F9FF;
             height: auto;
@@ -84,7 +91,7 @@
                 -moz-transition: 0.5s transform;
                 -o-transition: 0.5s transform;
                 right: 30px;
-                transform: rotate(-45deg); 
+                transform: rotate(-45deg);
             }
             span{
                 color: #626262;

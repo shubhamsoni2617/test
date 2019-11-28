@@ -15,8 +15,10 @@ import selectOrClearAll from './selectOrClearAll';
 import fetchFilterData from './fetchFilterData';
 import handleFilter from './handleFilters';
 import Constants from '../../../shared/constants';
+import { useCustomWidth } from '../../../shared/components/CustomHooks';
 
 const ArticleList = ({ history, location }) => {
+  useCustomWidth();
   let stickyObj = {
     sticky: { top: 153 },
     pixelBuffer: 153,
@@ -44,12 +46,10 @@ const ArticleList = ({ history, location }) => {
     filteredCategoriesForMobile,
     setFilteredCategoriesForMobile
   ] = useState([]);
-
   let mobileCheck = showTags || showCategories;
   useEffect(() => {
     fetchFilterData(setCategories, ExploreService.getCategories);
     fetchFilterData(setTags, ExploreService.getTags);
-    console.log(node);
   }, []);
 
   useEffect(() => {
@@ -294,7 +294,12 @@ const ArticleList = ({ history, location }) => {
                 Tags
                 <img src={filterIcon} alt="icon" />
               </a>
-              <a className="filter" onClick={() => setShowCategories(true)}>
+              <a
+                className="filter"
+                onClick={() => {
+                  setShowCategories(true);
+                }}
+              >
                 Categories
                 <img src={filterIcon} alt="icon" />
               </a>

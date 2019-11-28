@@ -43,9 +43,10 @@ export default class HomePageCarouselContainer extends Component {
     window.addEventListener('resize', this.handleResolution);
     HomeService.getRotationalBanner()
       .then(res => {
-        if (res && res.data) {
+        if (res && res.data && res.data.data && res.data.data.length > 0 ) {
           this.setState({
-            posts: res.data.data
+            posts: res.data.data,
+            sliderBackgroudImage: 0
           });
         }
       })
@@ -102,14 +103,13 @@ export default class HomePageCarouselContainer extends Component {
       // return null;
     }
 
-    console.log(posts)
     return (
       <div className="banner">
         <div className="banner-carousel">
           <div className="shadow">
             <img src={Shadow} />
           </div>
-          {posts.length > 0 && (
+          {posts && posts.length > 0 && (
             <div className="active-banner-image">
               <img src={posts[sliderBackgroudImage].full_image} />
             </div>
