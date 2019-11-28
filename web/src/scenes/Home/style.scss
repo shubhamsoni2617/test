@@ -1745,7 +1745,12 @@
 				-webkit-transition: 0.3s opacity, 0.5s transform;
 				-moz-transition: 0.3s opacity, 0.5s transform;
 				-o-transition: 0.3s opacity, 0.5s transform;
-				opacity: 0;
+                opacity: 0;
+                .overlay-wrapper{
+                    position: absolute;
+                    bottom: 0;
+                    padding: 10px;
+                }
 				h3 {
 					font-size: 19.95px;
 					line-height: 24px;
@@ -1796,7 +1801,7 @@
                 }
 			}
 			&:hover {
-				@media(min-width: 767px) {
+				@media(min-width: 768px) {
 					.item-overlay {
 						transform: translateY(-50%);
 						opacity: 1;
