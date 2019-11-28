@@ -22,6 +22,7 @@ import Header from '../../../shared/components/Header';
 import sendImage from '../../../assets/images/send.svg';
 import AdvertisementService from '../../../shared/services/AdvertisementService';
 import Constants from '../../../shared/constants';
+import { HelpfulLinkSubmenu, OurCompanySubmenu } from './HeaderNavLinks';
 
 function List({ data, type, menueStatus, setMenuStatus, closeSubmenu, link }) {
   if (!data || !data.length) return null;
@@ -637,27 +638,18 @@ const TopNav = props => {
                         setMenuStatus={setMenuStatus}
                       >
                         <ul className="submenu">
-                          <li className="has-submenu">
-                            <Link to="/corporate/about-us">About Us</Link>
-                          </li>
-                          <li className="has-submenu">
-                            <Link to="/corporate/ticket-with-us">
-                              Sell with Us
-                            </Link>
-                          </li>
-                          <li className="has-submenu">
-                            <Link to="/corporate/ticketing-technology">
-                              Ticketing Technology
-                            </Link>
-                          </li>
-                          <li className="has-submenu">
-                            <Link to="/corporate/partner-with-us">
-                              Partner with Us
-                            </Link>
-                          </li>
-                          <li className="has-submenu">
-                            <Link to="/corporate/careers">Careers</Link>
-                          </li>
+                          {OurCompanySubmenu.map(item => {
+                            return (
+                              <li className="has-submenu">
+                                <Link
+                                  to={item.link}
+                                  onClick={handleNavigationClose}
+                                >
+                                  {item.name}
+                                </Link>
+                              </li>
+                            );
+                          })}
                         </ul>
                       </SubmenuWrap>
                     </>
@@ -680,23 +672,18 @@ const TopNav = props => {
                         setMenuStatus={setMenuStatus}
                       >
                         <ul className="submenu">
-                          <li className="has-submenu">
-                            <Link to="/where-to-buy-tickets">
-                              Where to Buy Tickets
-                            </Link>
-                          </li>
-                          <li className="has-submenu">
-                            <Link to="/agents">Locate an Agent</Link>
-                          </li>
-                          <li className="has-submenu">
-                            <Link to="/venues">Locate a Venue</Link>
-                          </li>
-                          <li className="has-submenu">
-                            <Link to="/articles">Blog</Link>
-                          </li>
-                          <li className="has-submenu">
-                            <Link to="/events">Media</Link>
-                          </li>
+                          {HelpfulLinkSubmenu.map(item => {
+                            return (
+                              <li className="has-submenu">
+                                <Link
+                                  to={item.link}
+                                  onClick={handleNavigationClose}
+                                >
+                                  {item.name}
+                                </Link>
+                              </li>
+                            );
+                          })}
                         </ul>
                       </SubmenuWrap>
                     </>

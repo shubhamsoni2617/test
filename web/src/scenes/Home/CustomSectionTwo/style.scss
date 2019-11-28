@@ -134,6 +134,7 @@
         display: flex;
         flex-wrap: wrap;
         justify-content: space-between;
+        align-items: flex-end;
         @media(min-width: 1580px){
             height: 50%;
         }
@@ -160,6 +161,7 @@
         .item-wrapper{
             display: flex;
             flex-wrap: wrap;
+            justify-content: space-between;
             margin-bottom: 10px;
             @media(max-width: 1180px){
                 margin-bottom: 0px;
