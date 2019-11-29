@@ -27,7 +27,7 @@ const CustomSectionThree = ({ heading, customData, isHomePage }) => {
     if (customData && customData.length > 0) {
       setData(customData);
       setUrl(customData[0].video_url);
-      setTitle(isHomePage ? customData[0].title : customData[0].youtube_title);
+      setTitle(customData[0].title);
       setVdoIndex(0);
       setLoading(false);
     } else if (customData && !customData.length) {
@@ -114,7 +114,7 @@ const CustomSectionThree = ({ heading, customData, isHomePage }) => {
                         key={index}
                         onClick={() => {
                           setUrl(vdo.video_url);
-                          setTitle(isHomePage ? vdo.title : vdo.youtube_title);
+                          setTitle(vdo.title);
                           setControls(true);
                           setPip(true);
                           setLight(false);
@@ -160,12 +160,7 @@ const CustomSectionThree = ({ heading, customData, isHomePage }) => {
                           </div>
                         </span>
                         <div className="video-subwrapper-text">
-                          <a>
-                            {Utilities.showLimitedChars(
-                              isHomePage ? vdo.title : vdo.youtube_title,
-                              60
-                            )}
-                          </a>
+                          <a>{vdo.title}</a>
                           {!isHomePage && <span>{vdo.channel_title}</span>}
 
                           {!isHomePage && (
