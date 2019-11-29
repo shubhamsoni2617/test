@@ -39,6 +39,14 @@
 		position: relative;
         z-index: 1;
         padding-bottom: 28px;
+        .banner-background{
+            background-color: #000;
+            height: 100px;
+            background-color: #e4e4e4;
+            height: 204px;
+            margin: 10px;
+            display: none;
+        }
         @media(max-width: 1980px) {
             padding-top: 190px;
         }
