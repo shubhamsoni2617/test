@@ -106,6 +106,8 @@ export default class HomePageCarouselContainer extends Component {
     return (
       <div className="banner">
         <div className="banner-carousel">
+            <div className="banner-background">
+            </div>
           <div className="shadow">
             <img src={Shadow} />
           </div>
