@@ -2110,17 +2110,24 @@
 				h3 {
 					margin: 0px;
 					display: inline-block;
-					min-height: 40px !important;
+					min-height: 38px !important;
 					white-space: normal;
-					max-height: 40px;
-					overflow: hidden;
+					max-height: 38px;
 					width: 100%;
 					padding-bottom: 0px !important;
+					text-overflow: ellipsis;        
+					overflow: hidden;
+					line-height: 18px;
+					/* autoprefixer: off */ -webkit-box-orient: vertical; /* autoprefixer: on */ 
+					display: block;
+					display: -webkit-box;
+					-webkit-line-clamp: 2;				
+					height: 38px;
 					@media (max-width: 767px) {
 						padding-bottom: 8px;
 						min-height: auto;
 						white-space: normal;
-						max-height: 40px;
+						max-height: 36px;
 						// text-overflow: ellipsis;
 						// white-space: nowrap;
 						// overflow: hidden;
@@ -2474,6 +2481,42 @@ p {
 				margin-right: 10px;
 			}
 		}
+		h3 {
+			font-size: 16px;
+			line-height: 19px;
+			text-decoration: none;
+			height: 40px;
+			display: block;
+			margin: 0 0 30px;
+			white-space: normal;
+			transition: 1s all;
+			-webkit-transition: 1s all;
+			-moz-transition: 1s all;
+			-o-transition: 1s all;
+			/* autoprefixer: off */ -webkit-box-orient: vertical; /* autoprefixer: on */ 
+			display: block; 
+			display: -webkit-box; 
+			-webkit-line-clamp: 2; 
+			overflow: hidden; 
+			text-overflow: ellipsis;
+			white-space: normal;
+			max-height: 40px;
+			@media (max-width: 1024px) {
+				font-size: 15px;
+				width: 235px;
+			}
+			@media (max-width: 768px) {
+				font-size: 14px;
+				line-height: 18px;
+				width: auto;
+			}
+			@media (max-width: 640px) {
+				font-size: 14px;
+				line-height: 18px;
+				width: auto;
+				max-height: 36px;
+			}
+		}
 		.promotions-img{
 			margin-bottom: 12px;
             position: relative;
@@ -2581,9 +2624,7 @@ p {
                                     }
                                 }
                             }
-                        
-                        
-                        h3 {
+                        	h3 {
                             font-size: 16px;
                             line-height: 19px;
                             text-decoration: none;
@@ -2594,7 +2635,15 @@ p {
                             transition: 1s all;
                             -webkit-transition: 1s all;
                             -moz-transition: 1s all;
-                            -o-transition: 1s all;
+							-o-transition: 1s all;
+							/* autoprefixer: off */ -webkit-box-orient: vertical; /* autoprefixer: on */ 
+							display: block; 
+							display: -webkit-box; 
+							-webkit-line-clamp: 2; 
+							overflow: hidden; 
+							text-overflow: ellipsis;
+							white-space: normal;
+							max-height: 40px;
                             @media (max-width: 1024px) {
                                 font-size: 15px;
                                 width: 235px;
