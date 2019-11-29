@@ -163,6 +163,9 @@
         @media(max-width: 991px) and (orientation: landscape){
             flex-direction: row;
         }
+        @media(min-width: 601px) and (max-width: 965px) and (orientation: portrait){
+            align-items: flex-start;
+        }
         .item-wrapper{
             display: flex;
             flex-wrap: wrap;
@@ -173,6 +176,9 @@
                 margin-right: 10px;
             }
             @media(max-width: 1024px) and (min-width: 992px){
+                flex: 0 0 100%;
+                width: 100%;
+                margin: 0px;
                 margin-bottom: 10px;
             }
             @media(max-width: 991px){
