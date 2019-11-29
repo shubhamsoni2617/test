@@ -2,7 +2,7 @@ import React from 'react';
 import ShimmerEffect from '..';
 import Utilities from '../../../utilities';
 
-const OneBigEightSmall = () => {
+export const OneBigEightSmall = () => {
   return (
     <div class="trending-shimmer-effect">
       <ShimmerEffect
@@ -42,4 +42,25 @@ const OneBigEightSmall = () => {
   );
 };
 
-export default OneBigEightSmall;
+export const OneBigTwoSmall = () => {
+  return (
+    <div class="trending-shimmer-effect">
+      <ShimmerEffect height={360} count={1} type="SOLID" />
+      <div className="trending-inner-items">
+        <ShimmerEffect
+          height={70}
+          count={1}
+          type="TILE"
+          propCls={`trending-inner-child`}
+        />
+        <br />
+        <ShimmerEffect
+          height={70}
+          count={1}
+          type="TILE"
+          propCls={`trending-inner-child`}
+        />
+      </div>
+    </div>
+  );
+};
