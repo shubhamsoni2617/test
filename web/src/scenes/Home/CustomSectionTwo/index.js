@@ -6,6 +6,7 @@ import AdvertisementService from '../../../shared/services/AdvertisementService'
 import Arrow from '../../../assets/images/right-arrow.svg';
 import Image from '../../../shared/components/Image';
 import Utilities from '../../../shared/utilities';
+import { OneBigTwoSmall } from '../../../shared/components/ShimmerEffect/HomeShimmer';
 
 const CustomSectionTwo = ({ heading, customData, url, isMoreFrom }) => {
   const [data, setData] = useState(null);
@@ -30,7 +31,7 @@ const CustomSectionTwo = ({ heading, customData, url, isMoreFrom }) => {
           setTimeout(() => {
             setData(res.data.data);
             setLoading(false);
-          }, 2000);
+          }, 20000);
         }
       })
       .catch(err => {
@@ -44,12 +45,16 @@ const CustomSectionTwo = ({ heading, customData, url, isMoreFrom }) => {
   }
 
   return loading ? (
-    <ShimmerEffect
-      propCls={`shm_col-xs-6 col-md-6`}
-      height={300}
-      count={2}
-      type="TILE"
-    />
+    Utilities.mobilecheck() ? (
+      <ShimmerEffect
+        height={60}
+        count={2}
+        type="TILE"
+        propCls={`shm_col-xs-2 col-md-2`}
+      />
+    ) : (
+      <OneBigTwoSmall />
+    )
   ) : (
     <section className="royal-wrapper">
       <div className="container-fluid">

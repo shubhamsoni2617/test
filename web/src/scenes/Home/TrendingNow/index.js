@@ -7,7 +7,7 @@ import Image from '../../../shared/components/Image';
 import { CSSTransition } from 'react-transition-group';
 import ShimmerEffect from '../../../shared/components/ShimmerEffect';
 import videoImage from '../../../assets/images/video-icon.svg';
-import OneBigEightSmall from '../../../shared/components/ShimmerEffect/OneBigEightSmall';
+import { OneBigEightSmall } from '../../../shared/components/ShimmerEffect/HomeShimmer';
 
 const TrendingNow = ({ heading }) => {
   const [data, setData] = useState([]);

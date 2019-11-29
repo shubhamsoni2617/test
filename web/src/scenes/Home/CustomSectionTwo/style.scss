@@ -276,3 +276,22 @@
         }
     }
 }
+
+.trending-shimmer-effect{
+    display: flex;
+    & > .shim-container{
+        flex: 1 0 30%;
+        max-width: 30%;
+        & > div{
+            width: 100%;
+        }
+    }
+    .trending-inner-items{
+        flex: 1 0 70%;
+        max-width: 70%;
+        .trending-inner-child{
+            flex: 1 0 24%;
+            max-width: 24%;
+        }
+    }
+}
