@@ -71,8 +71,6 @@ const CustomSectionThree = ({ heading, customData, isHomePage }) => {
     return null;
   }
 
-  console.log(duration);
-
   return (
     <div>
       {loading ? (
@@ -162,11 +160,13 @@ const CustomSectionThree = ({ heading, customData, isHomePage }) => {
                           </div>
                         </span>
                         <div className="video-subwrapper-text">
-                          <a>{Utilities.showLimitedChars(vdo.title, 60)}</a>
+                          <a>{vdo.title}</a>
+                          {!isHomePage && <span>{vdo.channel_title}</span>}
+
                           {!isHomePage && (
                             <span>
                               {vdo.count !== ' views' ? vdo.count : null}{' '}
-                              {vdo.count !== ' views' ? '.' : null}
+                              {vdo.count !== ' views' ? '. ' : null}
                               {vdo.posted_date}
                             </span>
                           )}
