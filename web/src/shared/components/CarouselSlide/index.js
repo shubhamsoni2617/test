@@ -21,7 +21,7 @@ const ItemWrapper = (elem, genre) => {
         <Ellipsis
           title={elem.event_date}
           lines={2}
-          height={Utilities.mobilecheck() ? 20 : 18}
+          height={Utilities.mobilecheck() ? 15 : 18}
           allowTooltip={false}
           customClass="dt-srt-end"
         />
@@ -36,7 +36,14 @@ const ItemWrapper = (elem, genre) => {
           allowTooltip={false}
         />
       )}
-      <p>{Utilities.showLimitedChars(elem.venue_name, 25)}</p>
+      {/* <p>{Utilities.showLimitedChars(elem.venue_name, 25)}</p> */}
+      <Ellipsis
+        title={elem.venue_name}
+        lines={1}
+        height={Utilities.mobilecheck() ? 15 : 18}
+        allowTooltip={true}
+        customClass="venue-name"
+      />
     </div>
   );
 };
