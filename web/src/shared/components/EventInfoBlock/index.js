@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import { Scrollbars } from 'react-custom-scrollbars';
+import Scrollbar from '../../../shared/components/Scrollbar';
 import calendarImg from '../../../assets/images/event-calender.svg';
 import coinsImg from '../../../assets/images/price.svg';
 import locationGray from '../../../assets/images/location-gray.svg';
@@ -204,9 +204,9 @@ function EventDateTime({
         <h3>Event Dates & Time</h3>
       </div>
       <div className="tickets-desc">
-        <Scrollbars>
+        <Scrollbar>
           <HtmlDescription />
-        </Scrollbars>
+        </Scrollbar>
       </div>
     </div>
   );
@@ -307,10 +307,10 @@ function EventInfoBlock(props) {
           eventDateNotes={detailData.event_date_notes}
           setEventDateBlock={setEventDateBlock}
         />
-        <div className="tickets-desc">
+        <div className="tickets-desc" style={{ height: scrollHeight }}>
           {!Utilities.mobilecheck() && (
-            <Scrollbars style={{ height: scrollHeight }}>
-              <div style={{ paddingRight: '20px' }}>
+            <Scrollbar>
+              <div>
                 <ul className="zoner-group">
                   {detailData.genres &&
                     detailData.genres.length > 0 &&
@@ -472,7 +472,7 @@ function EventInfoBlock(props) {
                   </ul>
                 </div>
               </div>
-            </Scrollbars>
+            </Scrollbar>
           )}
           {Utilities.mobilecheck() && (
             <>

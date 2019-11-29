@@ -225,7 +225,7 @@
                 margin-top: 10px;
                 @media(max-width: 1180px){
                     padding-left: 0px;
-                    padding-top: 10px;
+                    padding-top: 0px;
                 }
                 @media(max-width: 1024px){
                     padding-left: 10px;
@@ -241,6 +241,13 @@
                     -webkit-transition: 0.5s color;
                     -moz-transition: 0.5s color;
                     -o-transition: 0.5s color;
+                    text-overflow: ellipsis;
+                    display: -webkit-box;
+                    -webkit-line-clamp: 2;
+                    transition: all 0.3s ease-in-out;
+                    overflow: hidden;
+                    height: 40px;
+                    /* autoprefixer: off */ -webkit-box-orient: vertical; /* autoprefixer: on */
                 }
                 p{
                     font-size: 14px;
@@ -271,8 +278,28 @@
             &:last-child{
                 @media(max-width: 1180px){
                     margin-right: 0px;
+                    margin-top: 10px;
                 }
             }
+        }
+    }
+}
+
+.trending-shimmer-effect{
+    display: flex;
+    & > .shim-container{
+        flex: 1 0 30%;
+        max-width: 30%;
+        & > div{
+            width: 100%;
+        }
+    }
+    .trending-inner-items{
+        flex: 1 0 70%;
+        max-width: 70%;
+        .trending-inner-child{
+            flex: 1 0 24%;
+            max-width: 24%;
         }
     }
 }

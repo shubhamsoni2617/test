@@ -7,7 +7,9 @@ import Image from '../../../shared/components/Image';
 import { CSSTransition } from 'react-transition-group';
 import ShimmerEffect from '../../../shared/components/ShimmerEffect';
 import videoImage from '../../../assets/images/video-icon.svg';
-import OneBigEightSmall from '../../../shared/components/ShimmerEffect/OneBigEightSmall';
+import { OneBigEightSmall } from '../../../shared/components/ShimmerEffect/HomeShimmer';
+import Ellipsis from '../../../shared/components/Ellipsis';
+import EventHeading from '../../../shared/components/EventHeading';
 
 const TrendingNow = ({ heading }) => {
   const [data, setData] = useState([]);
@@ -80,19 +82,37 @@ const TrendingNow = ({ heading }) => {
                     />
                   </div>
                 </div>
-                <h3>
+                {/* <h3>
                   {Utilities.showLimitedChars(
                     data && data[0] && data[0].title,
                     Utilities.mobilecheck() ? 25 : 50
                   )}
-                </h3>
-                <p>{data && data[0] && data[0].event_date}</p>
-                <p>
+                </h3> */}
+                <EventHeading
+                  title={data && data[0] && data[0].title}
+                  lines={2}
+                  height={Utilities.mobileAndTabletcheck() ? 16 : 20}
+                />
+                {/* <p>{data && data[0] && data[0].event_date}</p> */}
+                <Ellipsis
+                  title={data && data[0] && data[0].event_date}
+                  lines={2}
+                  height={Utilities.mobilecheck() ? 20 : 18}
+                  // size={13}
+                  allowTooltip={true}
+                />
+                {/* <p>
                   {Utilities.showLimitedChars(
                     data && data[0] && data[0].venue_name,
                     Utilities.mobilecheck() ? 25 : 50
                   )}
-                </p>
+                </p> */}
+                <Ellipsis
+                  title={data && data[0] && data[0].venue_name}
+                  lines={1}
+                  height={Utilities.mobilecheck() ? 20 : 18}
+                  allowTooltip={false}
+                />
               </div>
             </div>
 
@@ -120,19 +140,37 @@ const TrendingNow = ({ heading }) => {
                           )}
                         </div>
                       </div>
-                      <h3>
+                      {/* <h3>
                         {Utilities.showLimitedChars(
                           now && now.title,
                           Utilities.mobilecheck() ? 25 : 40
                         )}
-                      </h3>
-                      <p>{now && now.event_date}</p>
-                      <p>
+                      </h3> */}
+                      <EventHeading
+                        title={now && now.title}
+                        lines={2}
+                        height={Utilities.mobileAndTabletcheck() ? 16 : 20}
+                      />
+                      {/* <p>{now && now.event_date}</p> */}
+                      <Ellipsis
+                        title={now && now.event_date}
+                        lines={2}
+                        height={Utilities.mobilecheck() ? 15 : 18}
+                        // size={13}
+                        allowTooltip={true}
+                      />
+                      {/* <p>
                         {Utilities.showLimitedChars(
                           now && now.venue_name,
                           Utilities.mobilecheck() ? 25 : 40
                         )}
-                      </p>
+                      </p> */}
+                      <Ellipsis
+                        title={now && now.venue_name}
+                        lines={1}
+                        height={Utilities.mobilecheck() ? 15 : 18}
+                        allowTooltip={false}
+                      />
                     </div>
                   </div>
                 );
