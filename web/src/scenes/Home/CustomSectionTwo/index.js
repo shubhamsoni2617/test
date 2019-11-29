@@ -7,7 +7,7 @@ import Arrow from '../../../assets/images/right-arrow.svg';
 import Image from '../../../shared/components/Image';
 import Utilities from '../../../shared/utilities';
 
-const CustomSectionTwo = ({ heading, customData, isMoreFrom, id }) => {
+const CustomSectionTwo = ({ heading, customData, url, isMoreFrom }) => {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
   useEffect(() => {
@@ -42,6 +42,7 @@ const CustomSectionTwo = ({ heading, customData, isMoreFrom, id }) => {
   if (!loading && data && data.length === 0) {
     return null;
   }
+
   return loading ? (
     <ShimmerEffect
       propCls={`shm_col-xs-6 col-md-6`}
@@ -50,39 +51,61 @@ const CustomSectionTwo = ({ heading, customData, isMoreFrom, id }) => {
       type="TILE"
     />
   ) : (
-      <section className="royal-wrapper">
-        <div className="container-fluid">
+    <section className="royal-wrapper">
+      <div className="container-fluid">
+        <div className="royal-side-padding">
           <div className="section-top-wrapper">
             <h2>{heading}</h2>
             {isMoreFrom && (
-              <div className="carousel-dots">
-                <a
-                  href={`/explore/articles?c=${id}`}
-                  target="_blank"
-                  className="text-right"
-                >
-                  More from {heading}{' '}
-                  <img src={Arrow} className="img-fluid" alt="arrow" />
-                </a>
-              </div>
+              <a href={url && url} target="_blank" className="text-right">
+                More from {heading}{' '}
+                <img src={Arrow} className="img-fluid" alt="arrow" />
+              </a>
             )}
           </div>
           <div className="royal-items-wrapper">
-            {!Utilities.mobilecheck() && (
-              <a
-                href={data && data[0] && data[0].navigation_link}
-                target="_blank"
-                className="royal-leftsection"
-              >
-                <h3>{data && data[0] && data[0].title}</h3>
-                <p>{data && data[0] && data[0].event_date}</p>
-              </a>
-            )}
-            <div className="royal-items">
-              {data &&
-                data
-                  .slice(Utilities.mobilecheck() ? 0 : 1, data.length)
-                  .map((elem, i) => {
+            <a
+              href={data && data[0] && data[0].navigation_link}
+              target="_blank"
+              className="royal-leftsection"
+            >
+              <div>
+                <Image
+                  src={data[0].full_image}
+                  alt={data[0].alt_text}
+                  className="img-fluid"
+                  type="BigBanner"
+                />
+              </div>
+              {Utilities.mobilecheck() && (
+                <a
+                  href={data && data[0] && data[0].navigation_link}
+                  target="_blank"
+                  className="royal-rightside-textwrapper"
+                >
+                  <a>
+                    <h3>{data && data[0] && data[0].title}</h3>
+                  </a>
+                  <p>{data && data[0] && data[0].section_date}</p>
+                </a>
+              )}
+            </a>
+            <div className="royal-rightsection">
+              {!Utilities.mobilecheck() && (
+                <a
+                  href={data && data[0] && data[0].navigation_link}
+                  target="_blank"
+                  className="royal-rightside-textwrapper"
+                >
+                  <a>
+                    <h3>{data && data[0] && data[0].title}</h3>
+                  </a>
+                  <p>{data && data[0] && data[0].event_date}</p>
+                </a>
+              )}
+              <div className="royal-items">
+                {data &&
+                  data.slice(1, data.length).map((elem, i) => {
                     return (
                       <a
                         className="item-img"
@@ -101,17 +124,21 @@ const CustomSectionTwo = ({ heading, customData, isMoreFrom, id }) => {
                         </div>
 
                         <div className="royal-item-content">
-                          <h3>{elem.title}</h3>
+                          <h3>
+                            <a>{elem.title}</a>
+                          </h3>
                           <p>{elem.event_date}</p>
                         </div>
                       </a>
                     );
                   })}
+              </div>
             </div>
           </div>
         </div>
-      </section>
-    );
+      </div>
+    </section>
+  );
 };
 
 export default CustomSectionTwo;

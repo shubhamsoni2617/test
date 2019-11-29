@@ -52,10 +52,11 @@ const ItemWrapper = ({ promotion, expiredText, handlePromotionExpired }) => {
           </div>
         )}
         <h3>
-          {Utilities.showLimitedChars(
+          {/* {Utilities.showLimitedChars(
             promotion.title,
             Utilities.mobilecheck() ? 25 : 55
-          )}
+          )} */}
+          {promotion.title}
         </h3>
       </div>
     </a>
@@ -153,18 +154,30 @@ export default class PromotionCarousel extends Component {
         }
       ]
     };
-    let shimmerWebTab = (
+    let shimmer = (
       <>
         <ShimmerEffect
-          height={150}
-          count={Utilities.mobileAndTabletcheck() ? 3 : 4}
+          height={Utilities.mobilecheck() ? 60 : 150}
+          count={
+            Utilities.mobilecheck()
+              ? 2
+              : Utilities.mobileAndTabletcheck()
+              ? 3
+              : 4
+          }
           type="TILE"
           propCls={`shm_col-xs-2 col-md-2`}
         />
         <br />
         <ShimmerEffect
-          height={150}
-          count={Utilities.mobileAndTabletcheck() ? 3 : 4}
+          height={Utilities.mobilecheck() ? 60 : 150}
+          count={
+            Utilities.mobilecheck()
+              ? 2
+              : Utilities.mobileAndTabletcheck()
+              ? 3
+              : 4
+          }
           type="TILE"
           propCls={`shm_col-xs-2 col-md-2`}
         />
@@ -217,28 +230,45 @@ export default class PromotionCarousel extends Component {
               transitionLeaveTimeout={1000}
             > */}
             {loading ? (
-              Utilities.mobilecheck() ? (
-                <ShimmerEffect
-                  height={60}
-                  count={2}
-                  type="TILE"
-                  propCls={`shm_col-xs-2 col-md-2`}
-                />
-              ) : (
-                shimmerWebTab
-              )
+              shimmer
             ) : Utilities.mobilecheck() ? (
               <div className="promotions-grid-wrapper">
                 {promotions &&
-                  promotions.map(promotion => {
-                    return (
-                      // <div key={promotion.id} className="item-wrapper">
-                      <ItemWrapper
-                        promotion={promotion}
-                        expiredText={expiredText}
-                        handlePromotionExpired={this.handlePromotionExpired}
-                      />
-                    );
+                  promotions.map((promotion, index, array) => {
+                    if (index % 2 === 0) {
+                      if (array[index] && array[index + 1]) {
+                        return (
+                          <div key={promotion.id} className="item-wrapper">
+                            <ItemWrapper
+                              promotion={array[index]}
+                              expiredText={expiredText}
+                              handlePromotionExpired={
+                                this.handlePromotionExpired
+                              }
+                            />
+                            <ItemWrapper
+                              promotion={array[index + 1]}
+                              expiredText={expiredText}
+                              handlePromotionExpired={
+                                this.handlePromotionExpired
+                              }
+                            />
+                          </div>
+                        );
+                      } else if (array[index]) {
+                        return (
+                          <div key={promotion.id} className="item-wrapper">
+                            <ItemWrapper
+                              promotion={array[index]}
+                              expiredText={expiredText}
+                              handlePromotionExpired={
+                                this.handlePromotionExpired
+                              }
+                            />
+                          </div>
+                        );
+                      }
+                    }
                   })}
               </div>
             ) : (

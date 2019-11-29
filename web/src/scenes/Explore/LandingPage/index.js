@@ -82,6 +82,7 @@ const Explore = () => {
           heading={royals.heading}
           customData={royals.sub_section_two}
           id={royals && royals.id}
+          url={royals && royals.url}
           isMoreFrom={true}
         />
       </div>

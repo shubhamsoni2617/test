@@ -13,9 +13,17 @@ const ItemWrapper = (elem, genre) => {
         </div>
       </div>
       <span className={`category ${genre}`}>{elem.primary_genre}</span>
-      {elem.event_date === null || elem.event_date === "" ? <p></p> : <p className="dt-srt-end">{elem.event_date}</p>}
-      {elem.title === null || elem.title === "" ? <h3></h3> : <EventHeading title={elem.title} lines={2} height={19} />}
-      <p>{Utilities.showLimitedChars(elem.venue_name, 25) }</p>
+      {elem.event_date === null || elem.event_date === '' ? (
+        <p className="dt-srt-end"></p>
+      ) : (
+        <p className="dt-srt-end">{elem.event_date}</p>
+      )}
+      {elem.title === null || elem.title === '' ? (
+        <h3></h3>
+      ) : (
+        <EventHeading title={elem.title} lines={2} height={19} />
+      )}
+      <p>{Utilities.showLimitedChars(elem.venue_name, 25)}</p>
     </div>
   );
 };
