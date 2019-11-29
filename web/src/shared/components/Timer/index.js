@@ -15,17 +15,18 @@ class Timer extends Component {
   componentDidMount() {
     this.mount = true;
     const { endDate, promotionExpired } = this.props;
-    var countDownDate = new Date(endDate).getTime();
-    var x = setInterval(() => {
-      var now = new Date().getTime();
-      var distance = countDownDate - now;
+    // let countDownDate = new Date(endDate).getTime();
+    let countDownDate = this.convertDateForIos(endDate);
+    let x = setInterval(() => {
+      let now = new Date().getTime();
+      let distance = countDownDate - now;
 
-      var days = Math.floor(distance / (1000 * 60 * 60 * 24));
-      var hours = Math.floor(
+      let days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      let hours = Math.floor(
         (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
       );
-      var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-      var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+      let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      let seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
       if (this.mount) {
         this.setState({
@@ -50,6 +51,11 @@ class Timer extends Component {
     this.mount = false;
   }
 
+  convertDateForIos = date => {
+    var arr = date.split(/[- :]/);
+    date = new Date(arr[0], arr[1] - 1, arr[2], arr[3], arr[4], arr[5]);
+    return date;
+  };
   appendZero = digit => {
     let appendZero;
     if (digit && digit.length < 2) {
