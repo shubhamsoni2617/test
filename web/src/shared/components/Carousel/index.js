@@ -46,6 +46,7 @@ const Carousel = props => {
     dots: props.dots === false ? false : true,
     infinite: infinite || false,
     autoplay: autoplay || false,
+    autoplaySpeed: 2000,
     speed: 500,
     slidesToShow: slidesToShow,
     slidesToScroll: slidesToScroll,

@@ -34,6 +34,7 @@ class Home extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      orientation:'',
       offsetRadius: 0,
       showNavigation: '',
       config: {},
@@ -104,6 +105,11 @@ class Home extends Component {
 
   componentDidMount() {
     this.getItemsOrder();
+    window.addEventListener('resize', this.handleResize)
+  }
+
+  handleResize = () => {
+    this.setState({orientation : 'landscape'});
   }
 
   showNewsTicker = data => {

@@ -106,6 +106,8 @@ export default class HomePageCarouselContainer extends Component {
     return (
       <div className="banner">
         <div className="banner-carousel">
+            <div className="banner-background">
+            </div>
           <div className="shadow">
             <img src={Shadow} />
           </div>
@@ -148,8 +150,7 @@ export default class HomePageCarouselContainer extends Component {
             asNavFor={this.mainSlider}
             ref={slider => (this.thumbSlider = slider)}
             focusOnSelect={true}
-            swipe={false}
-            initialSlide={1}
+            swipe={true}
           >
             {posts.length
               ? posts.map(post => (

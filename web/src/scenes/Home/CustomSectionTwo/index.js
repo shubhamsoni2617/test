@@ -6,6 +6,7 @@ import AdvertisementService from '../../../shared/services/AdvertisementService'
 import Arrow from '../../../assets/images/right-arrow.svg';
 import Image from '../../../shared/components/Image';
 import Utilities from '../../../shared/utilities';
+import { OneBigTwoSmall } from '../../../shared/components/ShimmerEffect/HomeShimmer';
 
 const CustomSectionTwo = ({ heading, customData, url, isMoreFrom }) => {
   const [data, setData] = useState(null);
@@ -44,12 +45,16 @@ const CustomSectionTwo = ({ heading, customData, url, isMoreFrom }) => {
   }
 
   return loading ? (
-    <ShimmerEffect
-      propCls={`shm_col-xs-6 col-md-6`}
-      height={300}
-      count={2}
-      type="TILE"
-    />
+    Utilities.mobilecheck() ? (
+      <ShimmerEffect
+        height={60}
+        count={2}
+        type="TILE"
+        propCls={`shm_col-xs-2 col-md-2`}
+      />
+    ) : (
+      <OneBigTwoSmall />
+    )
   ) : (
     <section className="royal-wrapper">
       <div className="container-fluid">
@@ -64,20 +69,21 @@ const CustomSectionTwo = ({ heading, customData, url, isMoreFrom }) => {
             )}
           </div>
           <div className="royal-items-wrapper">
-            <a
-              href={data && data[0] && data[0].navigation_link}
-              target="_blank"
-              className="royal-leftsection"
-            >
-              <div>
-                <Image
-                  src={data[0].full_image}
-                  alt={data[0].alt_text}
-                  className="img-fluid"
-                  type="BigBanner"
-                />
-              </div>
-              {Utilities.mobilecheck() && (
+            {!Utilities.mobilecheck() && (
+              <a
+                href={data && data[0] && data[0].navigation_link}
+                target="_blank"
+                className="royal-leftsection"
+              >
+                <div>
+                  <Image
+                    src={data[0].full_image}
+                    alt={data[0].alt_text}
+                    className="img-fluid"
+                    type="BigBanner"
+                  />
+                </div>
+                {/* {Utilities.mobilecheck() && (
                 <a
                   href={data && data[0] && data[0].navigation_link}
                   target="_blank"
@@ -88,8 +94,9 @@ const CustomSectionTwo = ({ heading, customData, url, isMoreFrom }) => {
                   </a>
                   <p>{data && data[0] && data[0].section_date}</p>
                 </a>
-              )}
-            </a>
+              )} */}
+              </a>
+            )}
             <div className="royal-rightsection">
               {!Utilities.mobilecheck() && (
                 <a
@@ -105,33 +112,35 @@ const CustomSectionTwo = ({ heading, customData, url, isMoreFrom }) => {
               )}
               <div className="royal-items">
                 {data &&
-                  data.slice(1, data.length).map((elem, i) => {
-                    return (
-                      <a
-                        className="item-img"
-                        href={elem.navigation_link}
-                        target="_blank"
-                        key={i}
-                        className="item-wrapper"
-                      >
-                        <div className="item-img">
-                          <Image
-                            src={elem.full_image}
-                            alt={elem.alt_text}
-                            className="img-fluid"
-                            type="Smaller"
-                          />
-                        </div>
+                  data
+                    .slice(Utilities.mobilecheck() ? 0 : 1, data.length)
+                    .map((elem, i) => {
+                      return (
+                        <a
+                          className="item-img"
+                          href={elem.navigation_link}
+                          target="_blank"
+                          key={i}
+                          className="item-wrapper"
+                        >
+                          <div className="item-img">
+                            <Image
+                              src={elem.full_image}
+                              alt={elem.alt_text}
+                              className="img-fluid"
+                              type="Smaller"
+                            />
+                          </div>
 
-                        <div className="royal-item-content">
-                          <h3>
-                            <a>{elem.title}</a>
-                          </h3>
-                          <p>{elem.event_date}</p>
-                        </div>
-                      </a>
-                    );
-                  })}
+                          <div className="royal-item-content">
+                            <h3>
+                              <a>{elem.title}</a>
+                            </h3>
+                            <p>{elem.event_date}</p>
+                          </div>
+                        </a>
+                      );
+                    })}
               </div>
             </div>
           </div>

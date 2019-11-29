@@ -1,5 +1,6 @@
 import React, { useState, useEffect, Fragment } from 'react';
 import ReactPlayer from 'react-player';
+import Scrollbar from '../../../shared/components/Scrollbar';
 import ShimmerEffect from '../../../shared/components/ShimmerEffect';
 import './style.scss';
 import Constants from '../../../shared/constants';
@@ -60,6 +61,21 @@ const CustomSectionThree = ({ heading, customData, isHomePage }) => {
       });
   };
 
+  const renderThumb = ({ style, ...props }) => {
+    const thumbStyle = {
+      borderRadius: 6,
+      backgroundColor: 'rgba(35, 49, 86, 0.8)'
+    };
+    return <div style={{ ...style, ...thumbStyle }} {...props} />;
+  };
+  const renderThumbHorizontal = ({ style, ...props }) => {
+    const thumbStyle = {
+      borderRadius: 6,
+      backgroundColor: 'rgba(35, 49, 86, 0.8)'
+    };
+    return <span />;
+  };
+
   const secondToMinute = sec => {
     let minutes = Math.floor(sec / 60);
     let seconds = sec - minutes * 60;
@@ -117,78 +133,83 @@ const CustomSectionThree = ({ heading, customData, isHomePage }) => {
                 )}
               </div>
               <div className="video-subwrapper">
-                {data &&
-                  data.map((vdo, index) => {
-                    return (
-                      <div
-                        className={
-                          vdoIndex === index
-                            ? 'video-item-image active'
-                            : 'video-item-image'
-                        }
-                        key={index}
-                        onClick={() => {
-                          setUrl(vdo.video_url);
-                          setTitle(vdo.title);
-                          setControls(true);
-                          setPip(true);
-                          setLight(false);
-                          setMuted(false);
-                          setVolume(0.5);
-                          setPlaying(true);
-                          setVdoIndex(index);
-                        }}
-                      >
-                        <span className="video-subwrapper-image">
-                          <Fragment>
-                            <div
-                              className="video-restrict-overlay"
-                              style={{ display: 'none' }}
-                            >
-                              <ReactPlayer
-                                width="100%"
-                                height="70px"
-                                muted={true}
-                                url={vdo.video_url}
-                                playing={false}
-                                pip={false}
-                                controls={false}
-                                onDuration={sec => {
-                                  duration = [...duration, secondToMinute(sec)];
-                                  setDuration(duration);
-                                }}
+                <Scrollbar>
+                  {data &&
+                    data.map((vdo, index) => {
+                      return (
+                        <div
+                          className={
+                            vdoIndex === index
+                              ? 'video-item-image active'
+                              : 'video-item-image'
+                          }
+                          key={index}
+                          onClick={() => {
+                            setUrl(vdo.video_url);
+                            setTitle(vdo.title);
+                            setControls(true);
+                            setPip(true);
+                            setLight(false);
+                            setMuted(false);
+                            setVolume(0.5);
+                            setPlaying(true);
+                            setVdoIndex(index);
+                          }}
+                        >
+                          <span className="video-subwrapper-image">
+                            <Fragment>
+                              <div
+                                className="video-restrict-overlay"
+                                style={{ display: 'none' }}
+                              >
+                                <ReactPlayer
+                                  width="100%"
+                                  height="70px"
+                                  muted={true}
+                                  url={vdo.video_url}
+                                  playing={false}
+                                  pip={false}
+                                  controls={false}
+                                  onDuration={sec => {
+                                    duration = [
+                                      ...duration,
+                                      secondToMinute(sec)
+                                    ];
+                                    setDuration(duration);
+                                  }}
+                                />
+                              </div>
+                            </Fragment>
+                            <div className="video-restrict-overlay">
+                              <Image
+                                src={vdo.video_thumb}
+                                alt=""
+                                className="img-fluid"
+                                type="VdoSmall"
                               />
+                              {!isHomePage && (
+                                <span className="video-duration">
+                                  {duration && duration[index]}
+                                </span>
+                              )}
                             </div>
-                          </Fragment>
-                          <div className="video-restrict-overlay">
-                            <Image
-                              src={vdo.video_thumb}
-                              alt=""
-                              className="img-fluid"
-                              type="VdoSmall"
-                            />
+                          </span>
+                          <div className="video-subwrapper-text">
+                            <a>{vdo.title}</a>
+                            {!isHomePage && <span>{vdo.channel_title}</span>}
+
                             {!isHomePage && (
-                              <span className="video-duration">
-                                {duration && duration[index]}
+                              <span>
+                                {vdo.count !== ' views' ? vdo.count : null}{' '}
+                                {vdo.count !== ' views' ? '. ' : null}
+                                {vdo.posted_date}
                               </span>
                             )}
                           </div>
-                        </span>
-                        <div className="video-subwrapper-text">
-                          <a>{vdo.title}</a>
-                          {!isHomePage && <span>{vdo.channel_title}</span>}
-
-                          {!isHomePage && (
-                            <span>
-                              {vdo.count !== ' views' ? vdo.count : null}{' '}
-                              {vdo.count !== ' views' ? ' . ' : null}
-                              {vdo.posted_date}
-                            </span>
-                          )}
                         </div>
-                      </div>
-                    );
-                  })}
+                      );
+                    })}
+                </Scrollbar>
               </div>
             </div>
           </div>
