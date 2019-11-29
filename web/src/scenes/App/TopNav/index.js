@@ -330,15 +330,15 @@ const TopNav = props => {
                     </a>
                     <span></span>
                   </li>
-                  <li className="user-icon has-submenu">
+                  <li className="user-icon">
                     <a href="https://ticketing.sistic.com.sg/sistic/patron/management">
                       <img src={MainLogo} className="img-fluid" alt="send" />
                     </a>
                     <span></span>
-                    <ul class="header-submenu">
+                    {/* <ul class="header-submenu">
                       <li><a href="">My Account</a></li>
                       <li><a href="">Logout</a></li>
-                    </ul>
+                    </ul> */}
                   </li>
                   <MiniCart data={miniCartData} />
                   <li className="ticket-withus">
