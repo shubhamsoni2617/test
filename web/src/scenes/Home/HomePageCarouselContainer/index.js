@@ -149,7 +149,6 @@ export default class HomePageCarouselContainer extends Component {
             ref={slider => (this.thumbSlider = slider)}
             focusOnSelect={true}
             swipe={true}
-            initialSlide={1}
           >
             {posts.length
               ? posts.map(post => (
