@@ -3,6 +3,11 @@
     @media(max-width: 991px){
         padding: 20px 0px 20px;
     }
+    .section-top-wrapper{
+        @media(max-width: 767px){
+            padding-bottom: 15px;
+        }
+    }
 }
 .video-gallery-wrapper{
     display: flex;
@@ -86,6 +91,9 @@
                     min-height: 144px;
                 }
                 @media(max-width: 767px){
+                    min-height: 144px;
+                }
+                @media(max-width: 556px){
                     min-height: inherit;
                 }
                 img{
