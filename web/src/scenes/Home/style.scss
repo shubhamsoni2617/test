@@ -1514,7 +1514,16 @@
 			font-size: 13px;
 			line-height: 15px;
 		}
-	}
+    }
+    &.news-ticker-hide{
+        .banner{
+            .banner-carousel{
+                @media (max-width: 1480px){
+                    padding-top: 145px;
+                }
+            }
+        }
+    }
 }
 
 //top-picks-for-you style start
@@ -2466,7 +2475,7 @@ p {
 		padding: 20px 0px 10px;
 	}
 	.promotions-grid-wrapper{
-		@media(max-width: 576px){
+		@media(max-width: 767px){
 			display: flex;
 			overflow-x: auto;
 			-ms-overflow-style: none; // IE 10+ 
@@ -2479,7 +2488,12 @@ p {
 				flex: 1 0 42%;
 				max-width: 42%;
 				margin-right: 10px;
-			}
+            }
+            .item-wrapper{
+                flex: 1 0 42%;
+                max-width: 42%;
+                margin-right: 10px;
+            }
 		}
 		h3 {
 			font-size: 16px;
@@ -2514,7 +2528,8 @@ p {
 				font-size: 14px;
 				line-height: 18px;
 				width: auto;
-				max-height: 36px;
+                max-height: 36px;
+                margin-bottom: 10px;
 			}
 		}
 		.promotions-img{

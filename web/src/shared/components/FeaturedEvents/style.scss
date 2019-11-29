@@ -25,7 +25,7 @@
     flex: 1 0 42%;
     max-width: 42%;
   }
-  @media(max-width: 576px){
+  @media(max-width: 767px){
     .featured-wrapper {
       align-items: flex-start;
       -ms-overflow-style: none; // IE 10+ 
