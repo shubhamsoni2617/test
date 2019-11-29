@@ -17,8 +17,6 @@ import Utilities from '../../utilities';
 import TitleToolTip from './TitleToolTip';
 
 function Button({ styleObj, url, text }) {
-  // if (!text) return null;
-  console.log('url', url);
   return (
     <div className="buy-tickets-btn">
       <a style={styleObj} href={url} target="_blank">
@@ -46,7 +44,6 @@ function BuyTicketsButton({ url, buttons, buttonGroups, setFlag }) {
 }
 
 function BuyTicketsButtonPopup({ detailData, flag, setFlag }) {
-  console.log('flag', flag);
   if (
     !detailData.buttons &&
     !detailData.buttons.length &&
@@ -117,84 +114,6 @@ function BuyTicketsButtonPopup({ detailData, flag, setFlag }) {
           })}
       </ModalPopup>
     </>
-  );
-}
-
-function ViewAllDateTimeButton({
-  data,
-  eventDate,
-  altEventStartDate,
-  eventDateNotes,
-  setEventDateBlock
-}) {
-  // if (!show) return null;
-  if (!altEventStartDate && !eventDateNotes) return null;
-
-  return (
-    <button className="link" onClick={() => setEventDateBlock(true)}>
-      View all Dates & Time
-    </button>
-  );
-}
-
-function EventDateTime({
-  show,
-  showBlock,
-  data,
-  eventDate,
-  altEventStartDate,
-  eventDateNotes,
-  setEventDateBlock
-}) {
-  if (!show) return null;
-  // if (!data || !data.length) return null;
-
-  const HtmlDescription = () => {
-    return (
-      <ul className="date-address">
-        {altEventStartDate && (
-          <li className="event-date">
-            <span
-              dangerouslySetInnerHTML={{ __html: altEventStartDate }}
-            ></span>
-          </li>
-        )}
-        {eventDateNotes && (
-          <li className="event-date">
-            <span dangerouslySetInnerHTML={{ __html: eventDateNotes }}></span>
-          </li>
-        )}
-      </ul>
-    );
-  };
-
-  if (Utilities.mobilecheck()) {
-    return (
-      <ModalPopup
-        showModal={setEventDateBlock}
-        title="Event Dates & Time"
-        handleClose={() => setEventDateBlock(false)}
-      >
-        <HtmlDescription />
-      </ModalPopup>
-    );
-  }
-
-  return (
-    <div className="event-dates-time-block">
-      <button className="close-button" onClick={() => showBlock(false)}>
-        <img src={closeIcon} alt="Close Icon" />
-      </button>
-      <div className="block-header">
-        <img src={calendarImg} alt="cal-icon" />
-        <h3>Event Dates & Time</h3>
-      </div>
-      <div className="tickets-desc">
-        <Scrollbars>
-          <HtmlDescription />
-        </Scrollbars>
-      </div>
-    </div>
   );
 }
 

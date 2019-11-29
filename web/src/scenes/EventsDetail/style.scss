@@ -197,7 +197,7 @@
                     flex: 0 0 100%;
                     width: 100%;
                 }
-            } 
+            }
             div {
                 div {
                     &:first-child{
@@ -220,11 +220,11 @@
         display: block;
         margin-top: -10px;
         padding-top: 10px;
-        div{
-          div:first-child {
-            overflow: auto !important;
-        }
-      }
+        // div{
+        //   div:first-child {
+        //     overflow: auto !important;
+        // }
+      // }
         @media(min-width: 768px) and (max-width: 980px){
             > div{
                 overflow: inherit !important;
