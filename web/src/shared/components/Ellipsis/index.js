@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import Tooltip from '../Tooltip';
 import './style.scss';
 
-function EventHeading(props) {
+function Ellipsis(props) {
   const [allowTooltip, setAllowTooltip] = useState(props.allowTooltip);
   const [styleObj, setStyleObj] = useState(null);
   const element = useRef();
@@ -24,13 +24,12 @@ function EventHeading(props) {
     let styleObjectDefault = {
       overflow: 'hidden',
       LineHeight: `${props.height}px`,
-      maxHeight: `${props.height * props.lines}px`,
-      minHeight: `${props.height * props.lines}px`,
       width: '91%',
       fontSize: props.size,
       fontWeight: props.weight
     };
     if (
+      props.lines !== 1 &&
       element.current &&
       element.current.offsetHeight >= props.height * props.lines
     ) {
@@ -39,7 +38,22 @@ function EventHeading(props) {
         display: props.lines === 1 ? 'block' : '-webkit-box',
         WebkitLineClamp: `${props.lines}`,
         WebkitBoxOrient: 'vertical',
+        maxHeight: `${props.height * props.lines}px`,
+        minHeight: `${props.height * props.lines}px`,
         ...styleObjectDefault
+      });
+    } else if (
+      element.current &&
+      element.current.offsetHeight >= props.height * props.lines
+    ) {
+      setStyleObj({
+        ...styleObjectDefault,
+        textOverflow: 'ellipsis',
+        display: 'block',
+        WebkitLineClamp: `${props.lines}`,
+        WebkitBoxOrient: 'vertical',
+        whiteSpace: 'nowrap',
+        width: '100%'
       });
     } else {
       setStyleObj({
@@ -53,26 +67,20 @@ function EventHeading(props) {
     return null;
   }
 
-  if (props.allowTooltip && allowTooltip) {
-    return (
-      <Tooltip title={props.title} height={props.height * props.lines + 5}>
-        <h3 style={styleObj} ref={element}>
-          {props.title}
-        </h3>
-      </Tooltip>
-    );
-  }
-
   return (
-    <h3 style={styleObj} ref={element}>
+    <p
+      style={styleObj}
+      ref={element}
+      className={`${props.customClass ? props.customClass : ''}`}
+    >
       {props.title}
-    </h3>
+    </p>
   );
 }
 
-export default EventHeading;
+export default Ellipsis;
 
-EventHeading.propTypes = {
+Ellipsis.propTypes = {
   title: PropTypes.string.isRequired,
   height: PropTypes.number.isRequired,
   lines: PropTypes.number.isRequired,
