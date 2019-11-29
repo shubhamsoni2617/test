@@ -1944,14 +1944,15 @@
     .section-top-wrapper{
         @media (max-width: 991px) {
             padding-bottom: 0;
-        }
-        @media (max-width: 767px) {
-            padding-bottom: 15px;
-        }
+		}
+		h2{
+			padding-bottom: 0;
+			@media(max-width: 576px){
+				padding-bottom: 10px;
+			}
+		}
     }
-    h2{
-        padding-bottom: 0;
-    }
+    
     .carousel-dots{
         position: relative;
         top: -5px;
