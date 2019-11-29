@@ -35,14 +35,21 @@
         display: none; // Safari and Chrome 
       }
       h3{
-        text-overflow: ellipsis;
-        display: -webkit-box;
-        -webkit-line-clamp: 2;
+        text-overflow: ellipsis;        
         overflow: hidden;
         line-height: 18px;
+        white-space: normal;        
+        /* autoprefixer: off */ -webkit-box-orient: vertical; /* autoprefixer: on */ 
+        display: block; 
+        display: -webkit-box; 
+        -webkit-line-clamp: 2;        
         white-space: normal;
-        height: 36px;
-        /* autoprefixer: off */ -webkit-box-orient: vertical; /* autoprefixer: on */
+        max-height: 40px;
+        height: 40px;
+        @media(max-width: 767px){
+          max-height: 36px;
+          height: 36px;
+        }
       }
       .featured-item-img{
         .category{
