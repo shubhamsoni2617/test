@@ -148,7 +148,7 @@ export default class HomePageCarouselContainer extends Component {
             asNavFor={this.mainSlider}
             ref={slider => (this.thumbSlider = slider)}
             focusOnSelect={true}
-            swipe={false}
+            swipe={true}
             initialSlide={1}
           >
             {posts.length

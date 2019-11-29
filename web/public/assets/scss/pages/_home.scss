@@ -1222,6 +1222,7 @@
 				&.comedy-overlay {
 					background: linear-gradient(180deg, rgba(242, 177, 25, 0) -5%, $comedy-color 70%);
 				}
+				
 			}
 			&:hover {
 				@include desktop-only{
