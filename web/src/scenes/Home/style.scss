@@ -19,7 +19,11 @@
 		transition: 0.3s margin-top;
 		-webkit-transition: 0.3s margin-top;
 		-moz-transition: 0.3s margin-top;
-		-o-transition: 0.3s margin-top;
+        -o-transition: 0.3s margin-top;
+        padding-bottom: 3px;
+        @media(max-width: 767px) {
+            padding-bottom: 6px;
+        }
 		img{
 			max-width: 100%;
 			height: auto;
@@ -1389,6 +1393,7 @@
         justify-content: center;
         align-items: center;
         z-index: 1;
+        top: calc(50% - 40px);
 		transition: 0.3s all ease-in-out;
 		-webkit-transition: 0.3s all ease-in-out;
 		-moz-transition: 0.3s all ease-in-out;
@@ -1408,7 +1413,7 @@
             left: -30px;
 		}
 		@media (max-width: 768px){
-			left: -20px;
+			left: -30px;
 		}
     }
     .slick-next{
@@ -1422,7 +1427,7 @@
             right: -30px;
         }
         @media (max-width: 768px){
-			right: -20px;
+			right: -30px;
 		}
     }
     .slick-dots{
@@ -1518,7 +1523,7 @@
 	h2 {
 		padding-bottom: 19px;
 		@media (max-width: 767px) {
-			padding-bottom: 10px;
+			padding-bottom: 15px;
 		}
     }
     .slick-slider{
@@ -1746,6 +1751,9 @@
 				-moz-transition: 0.3s opacity, 0.5s transform;
 				-o-transition: 0.3s opacity, 0.5s transform;
                 opacity: 0;
+                @media (max-width: 991px) {
+                    display: none;
+                }
                 .overlay-wrapper{
                     position: absolute;
                     bottom: 0;
@@ -1939,6 +1947,9 @@
     .carousel-dots{
         position: relative;
         top: -5px;
+        @media (max-width: 991px) {
+            top: 0;
+        }
     }
 	.slick-arrow{
 		background-position: 0px 0px;
@@ -1984,7 +1995,7 @@
     .slick-dots{
         top: -24px;
         @media (max-width: 991px) {
-            top: -25px
+            top: -28px
         }
         @media (max-width: 767px) {
             top: -15px;
@@ -2165,7 +2176,7 @@
 					-o-transition: transform 0.3s;
 				}
 				&:hover {
-					@media(min-width: 767px) {
+					@media(min-width: 991px) {
 						box-shadow: 0 2px 10px 0 rgba(207, 146, 146, 0.12);
 						transform: translateY(0px);
 						&:after {
@@ -2194,7 +2205,10 @@
 section.currently-showing,
 section.whats-new {
 	background-color: #092438;
-	padding-bottom: 40px;
+    padding-bottom: 40px;
+    @media (max-width: 991px) {
+        min-height: 400px;
+    }
 	@media (max-width: 767px) {
 		padding: 20px 0;
 		min-height: unset !important;
@@ -2230,7 +2244,7 @@ section.whats-new {
         top: -15px;
         position: relative;
         @media (max-width: 991px) {
-            top: -8px;
+            top: 0px;
         }
     }
 	.dots-group {
@@ -2265,7 +2279,7 @@ section.whats-new {
 	h2 {
 		color: #ffffff;
 		@media (max-width: 767px) {
-			padding-bottom: 15px;
+			padding-bottom: 0;
 		}
 	}
 	.item {
@@ -2316,7 +2330,10 @@ section.whats-new {
 				.image-conatiner{
 					position: relative;
 					overflow: visible;
-					transform: translateY(-10px);
+                    transform: translateY(-10px);
+                    @media(min-width: 991px) {
+                        transform: translateY(0);
+                    }
 					&::after {
 						position: absolute;
 						content: "";
@@ -2326,7 +2343,7 @@ section.whats-new {
 						background-color: transparent;
 						border-left: 5px solid transparent;
 						border-right: 5px solid transparent;
-						border-bottom: 20px solid rgba(0, 0, 0, 0.1);
+						border-bottom: 20px solid rgba(0, 0, 0, 0.2);
 						bottom: 0;
 						opacity: 1;
 						z-index: -1;
@@ -2337,7 +2354,7 @@ section.whats-new {
 					}
 				}
 			}
-			@media(min-width: 767px) {
+			@media(min-width: 991px) {
 				cursor: pointer;
 				h3 {
 					color: #0098ff;
@@ -2460,7 +2477,10 @@ p {
 		}
 		.promotions-img{
 			margin-bottom: 12px;
-			position: relative;
+            position: relative;
+            @media(max-width: 576px){
+                height: 86px; 
+            }
 		}
 	}
     .carousel-dots{
@@ -2548,7 +2568,7 @@ p {
                                 }
                             }
                             &:hover {
-                                @media(min-width: 767px) {
+                                @media(min-width: 991px) {
                                     cursor: pointer;
                                     .promotions-img img {
                                         transform: scale(1.05);
@@ -2739,7 +2759,12 @@ section.trending-now {
 	}
 	@media (max-width: 767px) {
 		padding: 20px 0px 10px;
-	}
+    }
+    @media (max-width: 767px) {
+        h2{
+            padding-bottom: 15px;
+        }
+    }
 	.grid-container {
 		display: grid;
 		grid-gap: 16px;
@@ -2859,7 +2884,7 @@ section.trending-now {
 					overflow: hidden;
 				}
 				@media (max-width: 767px) {
-					min-height: auto;
+					min-height: 40px;
 					margin: 3px 0 0px 0;
 					max-height: 100%;
 					text-overflow: unset;
@@ -2954,7 +2979,7 @@ section.trending-now {
 				}
 			}
 			&:hover {
-				@media(min-width: 767px) {
+				@media(min-width: 991px) {
 					cursor: pointer;
 					box-shadow: 0 2px 27px 0 rgba(0, 0, 0, 0.12);
 					&:after {
@@ -2966,11 +2991,12 @@ section.trending-now {
 						@media (max-width: 767px) {
 							top: 0px;
 						}
-					}
+                    }
+                    h3 {
+                        color: #0098ff;
+                    }
 				}
-				h3 {
-					color: #0098ff;
-				}
+				
 			}
 			&::after {
 				content: "";
@@ -3008,7 +3034,7 @@ section.trending-now {
             padding-bottom: 0;
         }
 		@media (max-width: 767px) {
-			padding-bottom: 20px;
+			padding-bottom: 0;
 		}
 	}
 	h3 {
@@ -3211,26 +3237,27 @@ section.explore {
 				}
 			}
 			&:hover {
-				@media(min-width: 767px) {
+				@media(min-width: 991px) {
 					cursor: pointer;
 					.explore-image {
 						img {
 							transform: scale(1.05);
 						}
-					}
-				}
-				&.explore-article {
-					img {
-						width: 100%;
                     }
-                }
-                h3{
-                    color: #0098ff;
-                    transition: 1s all;
-					-webkit-transition: 1s all;
-					-moz-transition: 1s all;
-					-o-transition: 1s all;
-                }
+                    &.explore-article {
+                        img {
+                            width: 100%;
+                        }
+                    }
+                    h3{
+                        color: #0098ff;
+                        transition: 1s all;
+                        -webkit-transition: 1s all;
+                        -moz-transition: 1s all;
+                        -o-transition: 1s all;
+                    }
+				}
+				
 			}
 		}
 		.explore-rightside-content {
@@ -3303,6 +3330,12 @@ section{
         padding-bottom: 0;
         @media (max-width: 767px) {
             padding-top: 20px;
+        }
+        h2{
+            @media (max-width: 767px) {
+                padding-bottom: 20px;
+                padding-top: 2px;
+            }
         }
         .slick-slider{
             .slick-next, .slick-prev{

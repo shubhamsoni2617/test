@@ -23,6 +23,9 @@
         @media(max-width: 1180px) and (min-width: 1025px){
             align-items: center;
         }
+        h3{
+            color: #FFF;
+        }
         .royal-leftsection{
             flex: 0 0 65%;
             width: 65%;
@@ -100,8 +103,10 @@
                 overflow: hidden;
                 height: auto;
                 /* autoprefixer: off */ -webkit-box-orient: vertical; /* autoprefixer: on */
-                &:hover{
-                    color: #0098FF;
+                @media(min-width: 991px){
+                    &:hover{
+                        color: #0098FF;
+                    }
                 }
                 @media(max-width: 767px){
                     font-size: 14px;
@@ -240,6 +245,10 @@
                 p{
                     font-size: 14px;
                     line-height: 22px;
+                    color: #B5BDC3;
+                    @media(max-width: 767px){
+                        font-size: 12px;
+                    }
                     @media(max-width: 576px){
                         font-size: 13px;
                         margin-top: 10px;
@@ -247,10 +256,12 @@
                 }
             }
             &:hover{
-                h3{
-                    color: #0098ff;
-                    a{
+                @media(min-width: 991px){
+                    h3{
                         color: #0098ff;
+                        a{
+                            color: #0098ff;
+                        }
                     }
                 }
             }

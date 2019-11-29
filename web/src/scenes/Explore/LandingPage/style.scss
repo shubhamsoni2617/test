@@ -10,7 +10,7 @@
             padding-bottom: 0px;
         }
         @media(max-width: 576px){
-            font-size: 18px;
+            font-size: 19px;
             line-height: 20px;
         }
     }
@@ -522,6 +522,7 @@
                 .royal-items{
                     flex-direction: row;
                     flex-wrap: nowrap;
+                    align-items: flex-start;
                     .item-wrapper{
                         flex: 0 0 32%;
                         max-width: 32%;
@@ -538,7 +539,7 @@
                 }
         }
         p{
-            color: #B5BDC3;
+            color: #626262;
         }
     }
 }
