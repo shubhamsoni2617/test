@@ -61,6 +61,11 @@
 	-moz-transition: 0.9s top;
 	-o-transition: 0.9s top;
 	position: relative;
+	& > .container-fluid{
+		@media(max-width: 1023px){
+			overflow: visible;
+		}
+	}
 	&.sticky-header, &.homepage{
 		position: fixed;
 		top: 0px;
@@ -471,7 +476,10 @@
 					}
 					&.user-icon {
 						position: relative;
-						height: auto;
+						@media(min-width: 767px) {
+							height: auto;
+							width: auto;
+						}
                         span {
                             content: '';
 							height: 10px;
@@ -506,6 +514,10 @@
 						}
 					}
 					&.cart-icon {
+						@media(min-width: 767px){
+							height: auto;
+							width: auto;
+						}
 						>a {
 							position: relative;
                             display: inline-block;
@@ -638,6 +650,15 @@
 							top: 60px;
 							z-index: 1;
 							transform: translateX(-50%);
+							@media(max-width: 991px){
+								min-width: 140px;
+								top: 70px;
+							}
+							@media(max-width: 767px){
+								top: 57px;
+								margin-left: -48px;
+								min-width: 170px;
+							}
 							&:before{
 								position: absolute;
 								content: "";
@@ -649,6 +670,13 @@
 								transform: translateX(-50%);
 								border-bottom: 10px solid #fff;
 								margin-left: -34px;
+								@media(max-width: 991px){
+									
+								}
+								@media(max-width: 767px){
+									margin-left: 45px;
+									top: -9px;
+								}
 							}
 							li{
 								flex: 0 0 100% !important;
