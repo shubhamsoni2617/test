@@ -50,7 +50,7 @@ const Filter = ({
             }}
             className={`${!activeSelectButton ? `active` : ``}`}
           >
-            <span>Clear Filter</span>
+            <span>Clear Filters</span>
           </li>
         </ul>
       </div>

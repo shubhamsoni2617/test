@@ -100,6 +100,21 @@ const CustomSectionThree = ({ heading, customData, isHomePage }) => {
                   volume={volume}
                 />
                 <h3>{title}</h3>
+                {!isHomePage && (
+                  <span>{data && data[0] && data[0].channel_title}</span>
+                )}
+
+                {!isHomePage && (
+                  <span>
+                    {data && data[0] && data[0].count !== ' views'
+                      ? data[0].count
+                      : null}{' '}
+                    {data && data[0] && data[0].count !== ' views'
+                      ? ' . '
+                      : null}
+                    {data && data[0] && data[0].posted_date}
+                  </span>
+                )}
               </div>
               <div className="video-subwrapper">
                 {data &&
@@ -166,7 +181,7 @@ const CustomSectionThree = ({ heading, customData, isHomePage }) => {
                           {!isHomePage && (
                             <span>
                               {vdo.count !== ' views' ? vdo.count : null}{' '}
-                              {vdo.count !== ' views' ? '. ' : null}
+                              {vdo.count !== ' views' ? ' . ' : null}
                               {vdo.posted_date}
                             </span>
                           )}

@@ -11,9 +11,13 @@ const EventItem = ({ title, description, button_url, button_text, image }) => {
     <div className="event" key={title}>
       <Image src={image} type="Horizontal" />
       <div className="event-desc">
-        <div><h2>
-          {Utilities.showLimitedChars(title, Utilities.mobilecheck() ? 25 : 50)}
-        </h2>
+        <div>
+          <h2>
+            {Utilities.showLimitedChars(
+              title,
+              Utilities.mobilecheck() ? 25 : 50
+            )}
+          </h2>
           <p
             dangerouslySetInnerHTML={{
               __html:
@@ -23,7 +27,8 @@ const EventItem = ({ title, description, button_url, button_text, image }) => {
                   256
                 )
             }}
-          ></p></div>
+          ></p>
+        </div>
         {button_text && <a href={button_url}>{button_text}</a>}
       </div>
     </div>
@@ -40,118 +45,115 @@ const FestivalEventLineUp = ({ sectionOne, sectionTwo }) => {
     slidesToShow: 3,
     slidesToScroll: 3
   };
-  return (sectionOne && (sectionOne[0].heading || sectionOne[0].image)) ||
-    (sectionTwo && sectionTwo.length > 0) ? (
-      <section className="featured-wrapper">
-        <div className="container-fluid featured-container">
-          <div className="featured-box">
-            {sectionOne &&
-              sectionOne[0] &&
-              (sectionOne[0].heading || sectionOne[0].image) && (
-                <div className="featured">
-                  {sectionOne && sectionOne[0] && (
-                    <h3>
-                      {Utilities.showLimitedChars(
-                        sectionOne[0].title,
-                        Utilities.mobilecheck() ? 25 : 60
-                      )}
-                    </h3>
-                  )}
-                  <a
-                    className="featured-title-link"
-                    href={sectionOne && sectionOne[0] && sectionOne[0].url}
-                    target="_blank"
-                  >
-                    <Image
-                      src={sectionOne && sectionOne[0] && sectionOne[0].image}
-                      type="Vertical"
-                    />
 
-                    {sectionOne && sectionOne[0] && (
-                      <h3>
-                        {Utilities.showLimitedChars(
-                          sectionOne[0].title,
-                          Utilities.mobilecheck() ? 25 : 50
-                        )}
-                      </h3>
+  console.log(sectionOne);
+  console.log(sectionTwo);
+
+  return (sectionOne && (sectionOne.heading || sectionOne.image)) ||
+    (sectionTwo &&
+      (sectionTwo.heading ||
+        (sectionTwo.sub_section_two && sectionTwo.sub_section_two > 0))) ? (
+    <section className="featured-wrapper">
+      <div className="container-fluid featured-container">
+        <div className="featured-box">
+          {sectionOne && (sectionOne.heading || sectionOne.image) && (
+            <div className="featured">
+              {sectionOne && sectionOne.title && (
+                <h3>
+                  {Utilities.showLimitedChars(
+                    sectionOne.title,
+                    Utilities.mobilecheck() ? 25 : 60
+                  )}
+                </h3>
+              )}
+              <a
+                className="featured-title-link"
+                href={sectionOne && sectionOne.url}
+                target="_blank"
+              >
+                <Image src={sectionOne && sectionOne.image} type="Vertical" />
+
+                {sectionOne && sectionOne.title && (
+                  <h3>
+                    {Utilities.showLimitedChars(
+                      sectionOne.title,
+                      Utilities.mobilecheck() ? 25 : 50
                     )}
-                    <p
-                      dangerouslySetInnerHTML={{
-                        __html:
-                          sectionOne &&
-                          sectionOne[0] &&
-                          sectionOne[0].description &&
-                          Utilities.showLimitedChars(
-                            sectionOne[0].description.replace(
-                              /(<([^>]+)>)/gi,
-                              ''
-                            ),
-                            80
-                          )
-                      }}
-                    ></p>
-                  </a>
-                </div>
-              )}
-            {sectionTwo &&
-              sectionTwo.sub_section_two &&
-              sectionTwo.sub_section_two.length > 0 && (
-                <div className="festival-lineup">
-                  <h2>{sectionTwo && sectionTwo.heading}</h2>
-                  <div className="festival-event">
-                    {Utilities.mobilecheck() ? (
-                      sectionTwo &&
-                      sectionTwo.sub_section_two.map(
-                        ({
-                          title,
-                          button_text,
-                          button_url,
-                          description,
-                          image
-                        }) => {
-                          return (
-                            <EventItem
-                              title={title}
-                              description={description}
-                              button_url={button_url}
-                              button_text={button_text}
-                              image={image}
-                            />
-                          );
-                        }
+                  </h3>
+                )}
+                <p
+                  dangerouslySetInnerHTML={{
+                    __html:
+                      sectionOne &&
+                      sectionOne.description &&
+                      Utilities.showLimitedChars(
+                        sectionOne.description.replace(/(<([^>]+)>)/gi, ''),
+                        80
                       )
-                    ) : (
-                        <Slider {...settings}>
-                          {sectionTwo &&
-                            sectionTwo.sub_section_two.map(
-                              ({
-                                title,
-                                button_text,
-                                button_url,
-                                description,
-                                image
-                              }) => {
-                                return (
-                                  <EventItem
-                                    key={title}
-                                    title={title}
-                                    description={description}
-                                    button_url={button_url}
-                                    button_text={button_text}
-                                    image={image}
-                                  />
-                                );
-                              }
-                            )}
-                        </Slider>
-                      )}
-                  </div>
+                  }}
+                ></p>
+              </a>
+            </div>
+          )}
+          {sectionTwo &&
+            sectionTwo.sub_section_two &&
+            sectionTwo.sub_section_two.length > 0 && (
+              <div className="festival-lineup">
+                <h2>{sectionTwo && sectionTwo.heading}</h2>
+                <div className="festival-event">
+                  {Utilities.mobilecheck() ? (
+                    sectionTwo &&
+                    sectionTwo.sub_section_two.map(
+                      ({
+                        title,
+                        button_text,
+                        button_url,
+                        description,
+                        image
+                      }) => {
+                        return (
+                          <EventItem
+                            title={title}
+                            description={description}
+                            button_url={button_url}
+                            button_text={button_text}
+                            image={image}
+                          />
+                        );
+                      }
+                    )
+                  ) : (
+                    <Slider {...settings}>
+                      {sectionTwo &&
+                        sectionTwo.sub_section_two.map(
+                          ({
+                            title,
+                            button_text,
+                            button_url,
+                            description,
+                            image
+                          }) => {
+                            return (
+                              <EventItem
+                                key={title}
+                                title={title}
+                                description={description}
+                                button_url={button_url}
+                                button_text={button_text}
+                                image={image}
+                              />
+                            );
+                          }
+                        )}
+                    </Slider>
+                  )}
                 </div>
-              )}
-          </div>
+              </div>
+            )}
         </div>
-      </section>
-    ) : null;
+      </div>
+    </section>
+  ) : null;
 };
 
 export default FestivalEventLineUp;
