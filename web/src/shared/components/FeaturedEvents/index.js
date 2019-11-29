@@ -5,6 +5,8 @@ import Constants from '../../constants';
 import Utilities from '../../utilities';
 import ShimmerEffect from '../ShimmerEffect';
 import Image from '../Image';
+import Ellipsis from '../Ellipsis';
+import EventHeading from '../EventHeading';
 const Item = ({ event }) => {
   return (
     <a href={event && event.navigation_link} target="_blank">
@@ -26,25 +28,43 @@ const Item = ({ event }) => {
               {event.primary_genre}
             </span>
           </div>
-          {event && event.title && (
+          <EventHeading
+            title={event && event.title}
+            lines={2}
+            height={Utilities.mobileAndTabletcheck() ? 16 : 20}
+          />
+          {/* {event && event.title && (
             <h3>
               {Utilities.showLimitedChars(
                 event && event.title,
                 Utilities.mobilecheck() ? 30 : 40
               )}
             </h3>
-          )}
-          {event && event.event_date && (
+          )} */}
+          <Ellipsis
+            title={event.event_date}
+            lines={2}
+            height={Utilities.mobilecheck() ? 20 : 18}
+            // size={13}
+            allowTooltip={true}
+          />
+          {/* {event && event.event_date && (
             <p className="featured-event-date">{event.event_date}</p>
-          )}
-          {event && event.venue_name && (
+          )} */}
+          <Ellipsis
+            title={event.venue_name}
+            lines={1}
+            height={Utilities.mobilecheck() ? 20 : 18}
+            allowTooltip={true}
+          />
+          {/* {event && event.venue_name && (
             <p className="venue-name">
               {Utilities.showLimitedChars(
                 event && event.venue_name,
                 Utilities.mobilecheck() ? 35 : 50
               )}
             </p>
-          )}
+          )} */}
         </div>
       </div>
     </a>
@@ -143,14 +163,16 @@ const FeaturedEvents = props => {
           <h2>{heading}</h2>
           {!props.explore && (
             <div className="carousel-dots">
-              {props.seeAll && <a href="/events">
-                See all{' '}
-                <img
-                  src="assets/images/right-arrow.svg"
-                  className="img-fluid"
-                  alt="arrow"
-                />
-              </a>}
+              {props.seeAll && (
+                <a href="/events">
+                  See all{' '}
+                  <img
+                    src="assets/images/right-arrow.svg"
+                    className="img-fluid"
+                    alt="arrow"
+                  />
+                </a>
+              )}
             </div>
           )}
         </div>
@@ -178,6 +200,7 @@ const FeaturedEvents = props => {
         ) : (
           <Slider {...settings}>
             {featuredEvents &&
+              featuredEvents.length > 0 &&
               featuredEvents.map((event, index, array) => {
                 if (index % 2 === 0) {
                   if (array[index] && array[index + 1]) {
