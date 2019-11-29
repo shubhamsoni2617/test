@@ -555,12 +555,7 @@ export default class EventsDetail extends Component {
                         noIcon={Utilities.mobileAndTabletcheck() ? false : true}
                         preExpanded={accrodian}
                         dynamicClass="synopsis-accordian"
-                        uuid={`${
-                          detailData.is_available_for_booking === 1 &&
-                          !Utilities.mobileAndTabletcheck()
-                            ? 'synopsis'
-                            : ''
-                        }`}
+                        uuid={`synopsis`}
                       />
                     )}
                     {detailData.tabs &&
