@@ -40,12 +40,13 @@ const Carousel = props => {
     infinite
   } = props;
 
+  const [autoplayValue, setAutoplayValue] = useState(autoplay);
   const settings = {
     dots: true,
     arrows: arrows,
     dots: props.dots === false ? false : true,
     infinite: infinite || false,
-    autoplay: autoplay || false,
+    autoplay: autoplayValue || false,
     autoplaySpeed: 2000,
     speed: 500,
     slidesToShow: slidesToShow,
@@ -55,7 +56,11 @@ const Carousel = props => {
     prevArrow: <SamplePrevArrow />,
     appendDots: dots => {
       if (props.dots) {
-        return <ul style={{ margin: '0px' }}> {dots} </ul>;
+        return (
+          <ul onClick={() => setAutoplayValue(false)} style={{ margin: '0px' }}>
+            {dots}
+          </ul>
+        );
       } else {
         return <ul style={{ margin: '0px' }}> {null} </ul>;
       }
