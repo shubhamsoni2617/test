@@ -1927,11 +1927,15 @@
     .section-top-wrapper{
         @media (max-width: 991px) {
             padding-bottom: 0;
-        }
+		}
+		h2{
+			padding-bottom: 0;
+			@media(max-width: 576px){
+				padding-bottom: 10px;
+			}
+		}
     }
-    h2{
-        padding-bottom: 0;
-    }
+    
     .carousel-dots{
         position: relative;
         top: -5px;
@@ -2439,7 +2443,7 @@ p {
 		padding: 20px 0px 10px;
 	}
 	.promotions-grid-wrapper{
-		@media(max-width: 576px){
+		@media(max-width: 767px){
 			display: flex;
 			overflow-x: auto;
 			-ms-overflow-style: none; // IE 10+ 
