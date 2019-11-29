@@ -44,7 +44,7 @@ const Item = ({ event }) => {
           <Ellipsis
             title={event.event_date}
             lines={2}
-            height={Utilities.mobilecheck() ? 20 : 18}
+            height={Utilities.mobilecheck() ? 15 : 18}
             // size={13}
             allowTooltip={true}
             customClass="featured-event-date"
@@ -55,8 +55,8 @@ const Item = ({ event }) => {
           <Ellipsis
             title={event.venue_name}
             lines={1}
-            height={Utilities.mobilecheck() ? 20 : 18}
-            allowTooltip={true}
+            height={Utilities.mobilecheck() ? 15 : 18}
+            allowTooltip={false}
             customClass="venue-name"
           />
           {/* {event && event.venue_name && (
