@@ -114,8 +114,7 @@ const TrendingNow = ({ heading }) => {
                               src={now.horizontal_image}
                               className="img-fluid"
                               alt="trending-now"
-                              // type="Horizontal"
-                              type="HorizontalMin"
+                              type="Vertical"
                             />
                           )}
                         </div>
