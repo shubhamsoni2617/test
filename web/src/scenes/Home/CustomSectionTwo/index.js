@@ -100,7 +100,7 @@ const CustomSectionTwo = ({ heading, customData, url, isMoreFrom }) => {
                   <a>
                     <h3>{data && data[0] && data[0].title}</h3>
                   </a>
-                  <p>{data && data[0] && data[0].section_date}</p>
+                  <p>{data && data[0] && data[0].event_date}</p>
                 </a>
               )}
               <div className="royal-items">
@@ -127,7 +127,7 @@ const CustomSectionTwo = ({ heading, customData, url, isMoreFrom }) => {
                           <h3>
                             <a>{elem.title}</a>
                           </h3>
-                          <p>{elem.section_date}</p>
+                          <p>{elem.event_date}</p>
                         </div>
                       </a>
                     );
