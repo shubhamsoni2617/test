@@ -324,12 +324,12 @@ const TopNav = props => {
             </div>
             <div className="top-header-right">
               <ul>
-                <li className="search-icon">
+                {/* <li className="search-icon">
                   <a href="">
                     <img src={searchImage} className="img-fluid" alt="search" />
                   </a>
                   <span></span>
-                </li>
+                </li> */}
                 <li className="user-icon">
                   <a href="https://ticketing.sistic.com.sg/sistic/patron/management">
                     <img src={MainLogo} className="img-fluid" alt="send" />
