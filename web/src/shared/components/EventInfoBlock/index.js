@@ -307,10 +307,10 @@ function EventInfoBlock(props) {
           eventDateNotes={detailData.event_date_notes}
           setEventDateBlock={setEventDateBlock}
         />
-        <div className="tickets-desc">
+        <div className="tickets-desc" style={{ height: scrollHeight }}>
           {!Utilities.mobilecheck() && (
-            <Scrollbar style={{ height: scrollHeight }}>
-              <div style={{ paddingRight: '20px' }}>
+            <Scrollbar>
+              <div>
                 <ul className="zoner-group">
                   {detailData.genres &&
                     detailData.genres.length > 0 &&
