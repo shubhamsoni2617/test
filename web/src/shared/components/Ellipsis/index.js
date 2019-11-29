@@ -71,9 +71,7 @@ function Ellipsis(props) {
     <p
       style={styleObj}
       ref={element}
-      className={`${
-        props.customClass ? props.customClass : 'featured-event-date'
-      }`}
+      className={`${props.customClass ? props.customClass : ''}`}
     >
       {props.title}
     </p>
