@@ -47,6 +47,7 @@ const Item = ({ event }) => {
             height={Utilities.mobilecheck() ? 20 : 18}
             // size={13}
             allowTooltip={true}
+            customClass="featured-event-date"
           />
           {/* {event && event.event_date && (
             <p className="featured-event-date">{event.event_date}</p>
@@ -56,6 +57,7 @@ const Item = ({ event }) => {
             lines={1}
             height={Utilities.mobilecheck() ? 20 : 18}
             allowTooltip={true}
+            customClass="venue-name"
           />
           {/* {event && event.venue_name && (
             <p className="venue-name">

@@ -53,7 +53,7 @@ function EventHeading(props) {
     return null;
   }
 
-  if (allowTooltip) {
+  if (props.allowTooltip && allowTooltip) {
     return (
       <Tooltip title={props.title} height={props.height * props.lines + 5}>
         <h3 style={styleObj} ref={element}>
