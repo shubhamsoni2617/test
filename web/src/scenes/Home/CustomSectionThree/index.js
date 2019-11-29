@@ -27,7 +27,7 @@ const CustomSectionThree = ({ heading, customData, isHomePage }) => {
     if (customData && customData.length > 0) {
       setData(customData);
       setUrl(customData[0].video_url);
-      setTitle(customData[0].title);
+      setTitle(isHomePage ? customData[0].title : customData[0].youtube_title);
       setVdoIndex(0);
       setLoading(false);
     } else if (customData && !customData.length) {
@@ -70,8 +70,6 @@ const CustomSectionThree = ({ heading, customData, isHomePage }) => {
   if (!loading && data && data.length === 0) {
     return null;
   }
-
-  console.log(duration);
 
   return (
     <div>
@@ -116,7 +114,7 @@ const CustomSectionThree = ({ heading, customData, isHomePage }) => {
                         key={index}
                         onClick={() => {
                           setUrl(vdo.video_url);
-                          setTitle(vdo.title);
+                          setTitle(isHomePage ? vdo.title : vdo.youtube_title);
                           setControls(true);
                           setPip(true);
                           setLight(false);
@@ -162,11 +160,18 @@ const CustomSectionThree = ({ heading, customData, isHomePage }) => {
                           </div>
                         </span>
                         <div className="video-subwrapper-text">
-                          <a>{Utilities.showLimitedChars(vdo.title, 60)}</a>
+                          <a>
+                            {Utilities.showLimitedChars(
+                              isHomePage ? vdo.title : vdo.youtube_title,
+                              60
+                            )}
+                          </a>
+                          {!isHomePage && <span>{vdo.channel_title}</span>}
+
                           {!isHomePage && (
                             <span>
                               {vdo.count !== ' views' ? vdo.count : null}{' '}
-                              {vdo.count !== ' views' ? '.' : null}
+                              {vdo.count !== ' views' ? '. ' : null}
                               {vdo.posted_date}
                             </span>
                           )}
