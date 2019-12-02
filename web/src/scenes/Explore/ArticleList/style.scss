@@ -269,6 +269,9 @@
             .category-group{
                 margin-bottom: 5px;
                 height: 100%;
+                @media(max-width: 1024px) and (min-width: 768px){
+                    height: auto;
+                }
                 @media(max-width: 576px){
                     min-height: auto;
                     height: auto;
