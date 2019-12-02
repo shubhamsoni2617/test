@@ -12,6 +12,7 @@ class AccordianSectionQA extends Component {
 
     if (
       this.categoryLinkRef.current.innerText
+        .replace(/\//g, '-')
         .replace(/\s/g, '-')
         .toLowerCase() === this.props.paramId
     ) {
@@ -34,7 +35,10 @@ class AccordianSectionQA extends Component {
         className={`nav-item nav-link  ${
           currentCategoryId === categoryId ? `active` : ``
         }`}
-        to={`/faq/${categoryName.replace(/\s/g, '-').toLowerCase()}`}
+        to={`/faq/${categoryName
+          .replace(/\//g, '-')
+          .replace(/\s/g, '-')
+          .toLowerCase()}`}
         onClick={() => {
           if (window.innerWidth > 991) {
             window.scrollTo({
