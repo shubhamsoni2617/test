@@ -5,7 +5,8 @@ import ReactPlayer from 'react-player';
 import articleBanner from '../../../assets/images/article-banner.jpg';
 
 const SliderBanner = ({ data }) => {
-  const [activeSlide, setActiveSlide] = useState(0);
+  const [playing, setPlaying] = useState(false);
+  const [autoplay, setAutoPlay] = useState(true);
 
   const settings = {
     dots: true,
@@ -14,9 +15,14 @@ const SliderBanner = ({ data }) => {
     speed: 500,
     rows: 1,
     slidesPerRow: 1,
-    autoplay: true,
-    beforeChange: current => {
-      setActiveSlide(current);
+    autoplay: autoplay,
+    beforeChange: () => {
+      setPlaying(false);
+      setAutoPlay(true);
+    },
+    afterChange: () => {
+      setPlaying(false);
+      setAutoPlay(true);
     }
   };
 
@@ -31,18 +37,20 @@ const SliderBanner = ({ data }) => {
               );
             } else {
               return (
-                <div className="article-video-banner">
-                  <img className="video-banner-bg" src={articleBanner} alt="video-bg" />
-                  <ReactPlayer
-                    key={dataObj.thumb_image + i}
-                    className="react-player"
-                    url={dataObj.video_url}
-                    width="100%"
-                    height="349px"
-                    controls
-                    playing={activeSlide === i && true}
-                  />
-                </div>
+                <ReactPlayer
+                  key={dataObj.thumb_image + i}
+                  className="react-player"
+                  url={dataObj.video_url}
+                  width="100%"
+                  height="349px"
+                  loop={false}
+                  controls
+                  onPlay={() => {
+                    setPlaying(true);
+                    setAutoPlay(false);
+                  }}
+                  playing={playing}
+                />
               );
             }
           })}

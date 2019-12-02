@@ -70,7 +70,7 @@ export default class Card extends Component {
                       this.showPopUp(
                         true,
                         cardData.rich_synopsis,
-                        cardData.title
+                        cardData.rich_title
                       )
                     }
                   >
