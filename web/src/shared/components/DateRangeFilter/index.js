@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect, memo } from 'react';
 import PropTypes from 'prop-types';
 import moment from 'moment';
 import DayPickerInput from 'react-day-picker/DayPickerInput';
@@ -207,4 +207,4 @@ DateRangeFilter.propTypes = {
   filteredDateRange: PropTypes.object.isRequired
 };
 
-export default DateRangeFilter;
+export default memo(DateRangeFilter);
