@@ -14,6 +14,9 @@
         @media(max-width: 991px){
             padding: 0 10px;
         }
+        @media(max-width: 767px){
+            padding: 0;
+        }
     }
     .royal-items-wrapper {
         display: flex;
@@ -158,7 +161,9 @@
             flex-direction: row;
         }
         @media(max-width: 767px){
-            flex-direction: column;
+            flex-direction: row;
+            justify-content: flex-start;
+            align-items: flex-start;
         }
         @media(max-width: 991px) and (orientation: landscape){
             flex-direction: row;
@@ -187,6 +192,12 @@
                 flex: 0 0 100%;
                 width: 100%;
             }
+            @media(max-width: 767px){
+                flex: 0 0 42%;
+                width: 42%;
+                flex-direction: column;
+                margin-right: 10px;
+            }
             @media(max-width: 576px){
                 margin-bottom: 15px;
                 margin-right: 10px;
@@ -214,13 +225,19 @@
                     flex: auto;
                     width: auto;
                 }
+                @media(max-width: 767px){
+                    height: auto;
+                    flex: auto;
+                    width: 100%;
+                    max-width: unset;
+                }
                 @media(max-width: 991px) and (orientation: landscape){
                     flex: 0 0 auto;
                     width: auto;
                 }
                 img{
                     @media(max-width: 650px){
-                        max-width: 140px;
+                        width: 100%;
                     }
                 }
             }
@@ -239,6 +256,11 @@
                 @media(max-width: 768px){
                     padding-left: 15px;
                     padding-top: 0px;
+                }
+                @media(max-width: 767px){
+                    flex-basis: auto;
+                    width: auto;
+                    padding-left: 0;
                 }
                 h3{
                     font-size: 14px;
@@ -285,6 +307,9 @@
                 @media(max-width: 1180px){
                     margin-right: 0px;
                     margin-top: 10px;
+                }
+                @media(max-width: 767px){
+                    margin-top: 0px;
                 }
             }
         }
