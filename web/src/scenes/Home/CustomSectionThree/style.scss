@@ -87,11 +87,17 @@
                 overflow: hidden;
                 max-height: 87px;
                 border: 2px transparent solid;
+                @media(max-width: 1024px){
+                    max-height: 65px;
+                }
                 @media(max-width: 991px){
                     min-height: unset;
                 }
                 @media(max-width: 767px){
-                    min-height: 144px;
+                    min-height: 120px;
+                }
+                @media(min-width: 601px) and (max-width: 965px) and (orientation: landscape){
+                    max-height: 62px;
                 }
                 @media(max-width: 556px){
                     min-height: inherit;

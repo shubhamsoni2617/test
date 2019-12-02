@@ -10,7 +10,7 @@ import MediumHorizontal from '../../../assets/images/mediumHorizontal.jpg';
 import HorizontalMin from '../../../assets/images/HorizontalMin.png';
 import VerticalTopPic from '../../../assets/images/rsz_vertical.png';
 // import BigBannerMobile from '../../../assets/images/big_banner.png';
-// import BigBanner from '../../../assets/images/big_banner.png';
+import BigBanner from '../../../assets/images/royals-banner.png';
 import NoImage from '../../../assets/images/No image-.png';
 import Smaller from '../../../assets/images/smaller.png';
 import './style.scss';
@@ -60,9 +60,9 @@ function Image(props) {
         newImg = VerticalTopPic;
         break;
 
-      // case 'BigBanner':
-      //   newImg = BigBanner;
-      //   break;
+      case 'BigBanner':
+        newImg = BigBanner;
+        break;
 
       // case 'BigBannerMobile':
       //   newImg = BigBannerMobile;
