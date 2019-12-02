@@ -130,7 +130,7 @@ const TopPics = props => {
                                   src={pic.thumb_image}
                                   className="img-fluid item-image"
                                   alt="kurios"
-                                  type="Vertical"
+                                  type="TopPicks"
                                 />
                               </div>
                               <span
@@ -218,7 +218,7 @@ const TopPics = props => {
                               src={pic.thumb_image}
                               className="img-fluid item-image"
                               alt="kurios"
-                              type="Vertical"
+                              type="TopPicks"
                             />
                           </div>
                           <span
@@ -256,7 +256,7 @@ const TopPics = props => {
                           <EventHeading
                             title={pic.title}
                             lines={2}
-                            height={Utilities.mobileAndTabletcheck() ? 25 : 25}
+                            height={Utilities.mobileAndTabletcheck() ? 22 : 25}
                           />
                         </h3>
 

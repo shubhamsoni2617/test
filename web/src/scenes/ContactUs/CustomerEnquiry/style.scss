@@ -74,9 +74,14 @@
                         color: #343434;
                         font-size: 15px;
                         line-height: 23px;
+                        border-bottom: 1px solid rgba(151, 151, 151, 0.2);
+                        transition: 0.3s background-color;
                         @media(max-width: 991px){
                             font-size: 13px;
                             line-height: 16px;
+                        }
+                        &:hover{
+                            background-color: rgba(151, 151, 151, 0.1);
                         }
                     }
                 }

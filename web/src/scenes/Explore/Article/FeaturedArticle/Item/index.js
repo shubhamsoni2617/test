@@ -12,7 +12,7 @@ const Item = ({ event, history }) => {
               <Image
                 src={event && event.image}
                 className="img-fluid"
-                type="Small"
+                type="Horizontal"
               />
             </div>
             <span
@@ -23,23 +23,25 @@ const Item = ({ event, history }) => {
               {event.primary_genre}
             </span>
           </div>
-          {event && <p className="featured-event-date">{event.event_date}</p>}
-          {event && event.title && (
-            <h3>
-              {Utilities.showLimitedChars(
-                event && event.title,
-                Utilities.mobilecheck() ? 30 : 40
-              )}
-            </h3>
-          )}
-          {event && event.venue && (
-            <p className="venue-name">
-              {Utilities.showLimitedChars(
-                event && event.venue,
-                Utilities.mobilecheck() ? 20 : 30
-              )}
-            </p>
-          )}
+          <div className="featured-desc">
+            {event && event.title && (
+              <h3>
+                {Utilities.showLimitedChars(
+                  event && event.title,
+                  Utilities.mobilecheck() ? 30 : 40
+                )}
+              </h3>
+            )}
+            {event && <p className="featured-event-date">{event.event_date}</p>}
+            {event && event.venue && (
+              <p className="venue-name">
+                {Utilities.showLimitedChars(
+                  event && event.venue,
+                  Utilities.mobilecheck() ? 20 : 30
+                )}
+              </p>
+            )}
+          </div>
         </div>
       </div>
     </Link>

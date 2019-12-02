@@ -67,15 +67,15 @@ app.get('*', (req, res, next) => {
       );
       Promise.all(promiseArray)
         .then(result => {
-          if (result && result[0].data) {
+          if (result && result.length > 0) {
             // const helmet = Helmet.renderStatic();
 
             var dataObject = {
-              metaData: result[0].data,
-              leaderBoardData: result[1].data,
-              venuesData: result[2].data,
-              genreData: result[3].data,
-              findAnEventAddsData: result[4].data,
+              metaData: result[0] && result[0].data,
+              leaderBoardData: result[1] && result[1].data,
+              venuesData: result[2] && result[2].data,
+              genreData: result[3] && result[3].data,
+              findAnEventAddsData: result[4] && result[4].data,
               pageData: result[5] ? result[5].data : null
             };
             const markup = renderToString(
@@ -112,7 +112,7 @@ app.get('*', (req, res, next) => {
           }
         })
         .catch(err => {
-          // console.log('error', err);
+          console.log('error', err);
           res.writeHead(200, {
             'Content-Type': 'text/html'
           });

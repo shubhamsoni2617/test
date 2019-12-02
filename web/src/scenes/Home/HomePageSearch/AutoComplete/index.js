@@ -10,7 +10,7 @@ import cross from '../../../../assets/images/cross-grey.svg';
 import { setLocalStorage, setValuesInLocalStorage } from './setLocalStorage';
 import searchImageBlue from '../../../../assets/images/search-blue.svg';
 import './style.scss';
-import navigateToLink from '../../../../shared/navigateToLink';
+import navigateToLink from '../../../../shared/HelperFunctions/navigateToLink';
 import Utilities from '../../../../shared/utilities';
 
 const Autocomplete = ({ history, buttonActiveHandler, mostViewed }) => {
@@ -45,7 +45,7 @@ const Autocomplete = ({ history, buttonActiveHandler, mostViewed }) => {
     if (history.location.pathname.split('/')[1] !== 'search') {
       setUserInput('');
     }
-  }, [history.location.pathname]);
+  }, [history && history.location.pathname]);
   const handleClick = e => {
     if (node.current.contains(e.target)) {
       return;

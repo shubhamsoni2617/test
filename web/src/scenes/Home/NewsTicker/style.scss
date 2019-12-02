@@ -56,12 +56,6 @@ $duration: 10s;
   }
   &.hide-news {
     max-height: 40px;
-    & ~ .banner{
-      margin-top: -139px;
-      @media(max-width: 1100px){
-        margin-top: -115px;
-      }
-    }
   }
   .ticker-container {
     width: 100%;

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Slider from 'react-slick';
 import './style.scss';
 import ReactPlayer from 'react-player';
+import articleBanner from '../../../assets/images/article-banner.jpg';
 
 const SliderBanner = ({ data }) => {
   const [playing, setPlaying] = useState(false);

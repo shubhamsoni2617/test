@@ -16,7 +16,7 @@ import fetchFilterData from './fetchFilterData';
 import handleFilter from './handleFilters';
 import Constants from '../../../shared/constants';
 import { useCustomWidth } from '../../../shared/components/CustomHooks';
-
+import query from '../../../shared/HelperFunctions/queryString';
 const ArticleList = ({ history, location }) => {
   useCustomWidth();
   let stickyObj = {
@@ -34,7 +34,7 @@ const ArticleList = ({ history, location }) => {
   const [first, setFirst] = useState(0);
   const [filteredTags, setFilteredTags] = useState([]);
   const [filteredCategories, setFilteredCategories] = useState(
-    location.search ? [location.search.split('=')[1]] : []
+    query(location).c ? [query(location).c] : []
   );
   const [tags, setTags] = useState([]);
   const [categories, setCategories] = useState([]);
@@ -47,13 +47,16 @@ const ArticleList = ({ history, location }) => {
     setFilteredCategoriesForMobile
   ] = useState([]);
   let mobileCheck = showTags || showCategories;
+
+  console.log('test', history);
+
   useEffect(() => {
     fetchFilterData(setCategories, ExploreService.getCategories);
     fetchFilterData(setTags, ExploreService.getTags);
   }, []);
 
   useEffect(() => {
-    if (articleList.length && location.search) {
+    if (articleList.length && query(location).c) {
       handleFilter(
         false,
         categories,
@@ -62,10 +65,10 @@ const ArticleList = ({ history, location }) => {
         setFilteredCategoriesForMobile,
         setFilteredCategories,
         mobileCheck,
-        location.search.split('=')[1]
+        query(location).c
       );
     }
-  }, [location.search, articleList.length]);
+  }, [query(location).c, articleList.length]);
 
   useEffect(() => {
     getArticleList();
@@ -79,6 +82,9 @@ const ArticleList = ({ history, location }) => {
       category: filteredCategories.toString(),
       tags: filteredTags.toString()
     };
+    if (query(location).id) {
+      params.id = query(location).id;
+    }
     if (!loadMore) {
       setLoadWithFilters(true);
       params.first = 0;
@@ -235,7 +241,7 @@ const ArticleList = ({ history, location }) => {
             <div
               className={`events-listing ${
                 isNaN(totalResults) ? `article-list-notfound` : ``
-              }`}
+                }`}
             >
               <div className="events-section">
                 <CardList
@@ -255,7 +261,7 @@ const ArticleList = ({ history, location }) => {
                   <ShimmerEffect
                     propCls={`${
                       Utilities.mobileAndTabletcheck() ? 'shm_col-xs-6' : ''
-                    } col-md-4`}
+                      } col-md-4`}
                     height={150}
                     count={Utilities.mobileAndTabletcheck() ? 2 : 3}
                     type="LIST"
@@ -271,8 +277,8 @@ const ArticleList = ({ history, location }) => {
                       window.scrollTo(
                         0,
                         node.current.clientHeight *
-                          (articleList.length / cardInViewConstant).toFixed() -
-                          node.current.clientHeight / 2
+                        (articleList.length / cardInViewConstant).toFixed() -
+                        node.current.clientHeight / 2
                       );
                     }}
                     className="btn-link load-more-btn"
