@@ -130,7 +130,7 @@ const TopPics = props => {
                                   src={pic.thumb_image}
                                   className="img-fluid item-image"
                                   alt="kurios"
-                                  type="Vertical"
+                                  type="TopPicks"
                                 />
                               </div>
                               <span
@@ -218,7 +218,7 @@ const TopPics = props => {
                               src={pic.thumb_image}
                               className="img-fluid item-image"
                               alt="kurios"
-                              type="Vertical"
+                              type="TopPicks"
                             />
                           </div>
                           <span

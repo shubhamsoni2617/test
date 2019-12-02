@@ -50,6 +50,8 @@ const PromotionCard = props => {
   let shareUrl =
     window.location.origin + `/promotions/${defaultTabId}/${data.id}`;
 
+  let mainTitle = <p dangerouslySetInnerHTML={{ __html: data.title }}></p>;
+
   return (
     <div
       className={
@@ -80,7 +82,8 @@ const PromotionCard = props => {
               showSocialShare={socialShare}
             />
           </span>
-          <EventHeading title={data.title} lines={2} height={22} />
+          <h2 dangerouslySetInnerHTML={{ __html: data.title }}></h2>
+          {/* <EventHeading title={mainTitle} lines={2} height={22} /> */}
           <div className="promotion-btn-wrapper">
             {/* <a href={data.buttons.length > 0 && data.buttons[0].url ? data.buttons[0].url : undefined}>
               <button style={{ color: data.buttons.length > 0 ? `#${data.buttons[0].color}` : "" }}>
@@ -155,9 +158,15 @@ const PromotionCard = props => {
                 </div>
               );
             })}
-          {events && events.length > 0 &&
+          {events && events.length > 0 && (
             <section className="related-event">
-              <div className={events.length > 4 ? "container-fluid arrow-appear" : "container-fluid"}>
+              <div
+                className={
+                  events.length > 4
+                    ? 'container-fluid arrow-appear'
+                    : 'container-fluid'
+                }
+              >
                 <div className="section-top-wrapper">
                   <h2>Related Events</h2>
                 </div>
@@ -170,7 +179,7 @@ const PromotionCard = props => {
                 />
               </div>
             </section>
-          }
+          )}
         </div>
       </div>
     </div>

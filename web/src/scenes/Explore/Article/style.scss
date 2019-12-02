@@ -63,9 +63,11 @@ section.whats-new {
 				-o-transition: 0.3s width;
 			}
 			&:hover{
-				&:after{
-					width: 100%;
-				}
+                @media (min-width: 991px) {
+                    &:after{
+                        width: 100%;
+                    }
+                }
 			}
 		}
     }

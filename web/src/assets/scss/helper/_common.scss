@@ -333,6 +333,10 @@ button,
 	background: linear-gradient(180deg, rgba(242, 177, 25, 0) -5%, #F2B119 70%);
 }
 
+.concert-overlay {
+	background: linear-gradient(180deg, rgba(242, 177, 25, 0) -5%, #75AA46 70%);
+}
+
 .section-top-wrapper {
 	display: grid;
 	grid-template-columns: auto auto;
@@ -458,9 +462,11 @@ button,
 			}
 		}
 		&:hover{
-			&:after{
-				width: 100%;
-			}
+			@media (min-width: 991px) {
+                &:after{
+                    width: 100%;
+                }
+            }
 		}
 	}
 }
