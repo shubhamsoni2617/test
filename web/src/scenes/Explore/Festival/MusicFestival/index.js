@@ -15,15 +15,17 @@ const MusicFestival = ({ sectionThree }) => {
     slidesToShow: 1,
     slidesToScroll: 1
   };
+
   return sectionThree &&
-    sectionThree.sub_section_three &&
-    sectionThree.sub_section_three.length > 0 ? (
+    ((sectionThree.sub_section_three &&
+      sectionThree.sub_section_three.length > 0) ||
+      sectionThree.heading) ? (
     <section>
       <div className="container-fluid">
         <div className="music-fest">
-          <h2>{sectionThree && sectionThree.heading}</h2>
+          <h2>{sectionThree.heading}</h2>
           <Slider {...settings}>
-            {sectionThree &&
+            {sectionThree.sub_section_three &&
               sectionThree.sub_section_three.map(
                 ({ description, title, url, image }) => {
                   return (
