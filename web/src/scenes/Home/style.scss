@@ -1618,15 +1618,6 @@
 			line-height: 15px;
 		}
     }
-    &.news-ticker-hide{
-        .banner{
-            .banner-carousel{
-                @media (max-width: 1480px){
-                    padding-top: 145px;
-                }
-            }
-        }
-    }
 }
 
 //top-picks-for-you style start
@@ -2208,7 +2199,7 @@
 							opacity: 1;
 							position: relative;
 							right: 0;
-							margin: 5px 0px;
+							margin: 5px 0px 7px;
 							min-width: auto;
 							left: 0px;
 						}
@@ -2683,6 +2674,7 @@ p {
                         grid-gap: 25px;
                         @media(max-width: 1024px){
                             padding-top: 20px;
+                            grid-template-columns: repeat(3, minmax(31%, 1fr));
                         }
                         @media(max-width: 991px) {
                             padding-top: 10px;

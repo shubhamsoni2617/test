@@ -86,6 +86,7 @@
             }
             .royal-rightside-textwrapper{
                 height: 35%;
+                padding: 0 8px;
                 @media(min-width: 1580px){
                     height: 50%;
                 }
@@ -197,6 +198,7 @@
             flex-wrap: wrap;
             justify-content: space-between;
             margin-bottom: 10px;
+            padding: 8px;
             @media(max-width: 1180px){
                 margin-bottom: 0px;
                 margin-right: 10px;
@@ -314,11 +316,12 @@
                 }
             }
             &:hover{
+                background-color: rgba(0, 152, 255, 0.1);
                 @media(min-width: 991px){
                     h3{
-                        color: #0098ff;
+                        color: #ffffff;
                         a{
-                            color: #0098ff;
+                            color: #FFF;
                         }
                     }
                 }
