@@ -78,6 +78,9 @@
                 }
                 .video-subwrapper-text{
                     color: #0098ff;
+                    a{
+                        color: #0098ff;
+                    }
                 }
             }
             .video-subwrapper-image{
@@ -91,7 +94,7 @@
                     max-height: 65px;
                 }
                 @media(max-width: 991px){
-                    min-height: unset;
+                    min-height: 106px;
                 }
                 @media(max-width: 767px){
                     min-height: 120px;
