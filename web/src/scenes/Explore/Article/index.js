@@ -91,8 +91,8 @@ const Article = props => {
                     ))}
                   </ul>
                 ) : (
-                  <ShimmerEffect count={4} type="BLOCK" />
-                )}
+                    <ShimmerEffect count={4} type="BLOCK" />
+                  )}
               </div>
             </div>
           </div>
@@ -127,14 +127,14 @@ const Article = props => {
                     }}
                   />
                 ) : (
-                  <div className="simmerOuter">
-                    <ShimmerEffect
-                      height={Utilities.mobilecheck() ? 100 : 200}
-                      count={2}
-                      type="LIST"
-                    />
-                  </div>
-                )}
+                    <div className="simmerOuter">
+                      <ShimmerEffect
+                        height={Utilities.mobilecheck() ? 100 : 200}
+                        count={2}
+                        type="LIST"
+                      />
+                    </div>
+                  )}
               </div>
             </div>
           </div>

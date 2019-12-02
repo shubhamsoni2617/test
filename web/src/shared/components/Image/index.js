@@ -7,6 +7,7 @@ import Small from '../../../assets/images/small.png';
 import Medium from '../../../assets/images/noimage.png';
 import MediumVertical from '../../../assets/images/mediumVertical.png';
 import MediumHorizontal from '../../../assets/images/mediumHorizontal.jpg';
+import TopPicks from '../../../assets/images/noimage-420-652.png';
 import HorizontalMin from '../../../assets/images/HorizontalMin.png';
 import VerticalTopPic from '../../../assets/images/rsz_vertical.png';
 // import BigBannerMobile from '../../../assets/images/big_banner.png';
@@ -52,7 +53,9 @@ function Image(props) {
       case 'Tile':
         newImg = Tile;
         break;
-
+        case 'TopPicks':
+            newImg = TopPicks;
+            break;
       case 'HorizontalMin':
         newImg = HorizontalMin;
         break;

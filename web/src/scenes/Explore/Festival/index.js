@@ -65,7 +65,7 @@ const Festival = ({ match }) => {
         type={type}
         propCls={`shm_col-xs-${
           Utilities.mobilecheck() ? 12 : 2
-        } col-md-${propCls}`}
+          } col-md-${propCls}`}
       />
     );
   };
@@ -164,19 +164,19 @@ const Festival = ({ match }) => {
 
   const articlesPart =
     section_six &&
-    section_six.sub_section_six &&
-    section_six.sub_section_six.length > 0 ? (
-      <Articles sectionSix={section_six} />
-    ) : loading ? (
-      <div className="shimmer-margin">
-        {reusedShimmer(
-          Utilities.mobilecheck() ? 150 : 300,
-          Utilities.mobilecheck() ? 1 : 2,
-          'TILE',
-          Utilities.mobilecheck() ? 12 : 6
-        )}
-      </div>
-    ) : null;
+      section_six.sub_section_six &&
+      section_six.sub_section_six.length > 0 ? (
+        <Articles sectionSix={section_six} />
+      ) : loading ? (
+        <div className="shimmer-margin">
+          {reusedShimmer(
+            Utilities.mobilecheck() ? 150 : 300,
+            Utilities.mobilecheck() ? 1 : 2,
+            'TILE',
+            Utilities.mobilecheck() ? 12 : 6
+          )}
+        </div>
+      ) : null;
 
   const pollNSurveysPart = section_seven ? (
     <PollNServeys sectionSeven={section_seven} />
@@ -196,10 +196,9 @@ const Festival = ({ match }) => {
   );
 
   const sectionArray = [
-    { orderNo: 'section_one', returnPart: festivalPart },
-    { orderNo: 'section_two', returnPart: musicalPart },
-    { orderNo: 'section_three', returnPart: allEventPart },
-    { orderNo: 'section_four', returnPart: socialWallPart },
+    { orderNo: 'section_three', returnPart: musicalPart },
+    { orderNo: 'section_four', returnPart: allEventPart },
+    { orderNo: 'social_wall_url', returnPart: socialWallPart },
     { orderNo: 'section_five', returnPart: ticketDealsPart },
     { orderNo: 'section_six', returnPart: articlesPart },
     { orderNo: 'section_seven', returnPart: pollNSurveysPart },
@@ -210,6 +209,7 @@ const Festival = ({ match }) => {
     <div className="festival-wrapper">
       {bannerPart}
       {welcomePart}
+      {festivalPart}
       {order && order.length > 0 ? (
         sectionArray.map(({ orderNo, returnPart }, index, array) => {
           return order.map(serverOrderNo => {
@@ -219,17 +219,17 @@ const Festival = ({ match }) => {
           });
         })
       ) : (
-        <Fragment>
-          {festivalPart}
-          {musicalPart}
-          {allEventPart}
-          {socialWallPart}
-          {ticketDealsPart}
-          {articlesPart}
-          {pollNSurveysPart}
-          {videoGalleryPart}
-        </Fragment>
-      )}
+          <Fragment>
+            {festivalPart}
+            {musicalPart}
+            {allEventPart}
+            {socialWallPart}
+            {ticketDealsPart}
+            {articlesPart}
+            {pollNSurveysPart}
+            {videoGalleryPart}
+          </Fragment>
+        )}
     </div>
   );
 };

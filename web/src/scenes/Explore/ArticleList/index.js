@@ -241,7 +241,7 @@ const ArticleList = ({ history, location }) => {
             <div
               className={`events-listing ${
                 isNaN(totalResults) ? `article-list-notfound` : ``
-              }`}
+                }`}
             >
               <div className="events-section">
                 <CardList
@@ -261,7 +261,7 @@ const ArticleList = ({ history, location }) => {
                   <ShimmerEffect
                     propCls={`${
                       Utilities.mobileAndTabletcheck() ? 'shm_col-xs-6' : ''
-                    } col-md-4`}
+                      } col-md-4`}
                     height={150}
                     count={Utilities.mobileAndTabletcheck() ? 2 : 3}
                     type="LIST"
@@ -277,8 +277,8 @@ const ArticleList = ({ history, location }) => {
                       window.scrollTo(
                         0,
                         node.current.clientHeight *
-                          (articleList.length / cardInViewConstant).toFixed() -
-                          node.current.clientHeight / 2
+                        (articleList.length / cardInViewConstant).toFixed() -
+                        node.current.clientHeight / 2
                       );
                     }}
                     className="btn-link load-more-btn"
