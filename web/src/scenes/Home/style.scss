@@ -2265,7 +2265,8 @@
                         }
                     }
 					&:last-child {
-						padding-bottom: 14px;
+                        padding-bottom: 14px;
+                        min-height: auto;
 						@media(max-width: 767px){
 							white-space: normal;
 						}
@@ -3076,9 +3077,7 @@ section.trending-now {
             p{
                 margin-bottom: 3px;
                 min-height: 35px;
-                @media(min-width: 1136px) and (max-width: 1280px){
-                    font-size: 13px;
-                }
+                font-size: 13px;
             }
             p + p{
                 margin-bottom: 0;
@@ -3219,7 +3218,11 @@ section.trending-now {
 	background-color: #F0F9FF;
 	.item-wrapper{
 		p{
-			height: 30px;
+            height: 30px;
+            &:last-child{
+                height: auto;
+                margin: 0;
+            }
 		}
 	}
 	h2 {
@@ -3279,12 +3282,24 @@ section.explore {
 		font-size: 17px;
 		margin-bottom: 22px;
 		display: inline-block;
-		line-height: 20px;
+        line-height: 20px;
+        p{
+            color: #626262;
+            font-family: 'Rubik', sans-serif;
+            font-size: 17px;
+            margin-bottom: 0;
+        }
 		@media (max-width: 767px) {
 			font-size: 13px;
 			margin-bottom: 10px;
 			line-height: 18px;
-			font-weight: 100;
+            font-weight: 100;
+            p{
+                font-size: 13px;
+                margin-bottom: 0;
+                line-height: 18px;
+                font-weight: 100;
+            }
         }
 	}
 	.grid-container {
