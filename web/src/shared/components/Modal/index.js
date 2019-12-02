@@ -28,9 +28,11 @@ function ModalPopup({
       >
         <div className="modal-content">
           <div className="modal-header">
-            <h5 className="modal-title" id="exampleModalLabel">
-              {title}
-            </h5>
+            <h5
+              className="modal-title"
+              id="exampleModalLabel"
+              dangerouslySetInnerHTML={{ __html: title }}
+            ></h5>
           </div>
           <div className="modal-body">
             {htmlContent ? (
