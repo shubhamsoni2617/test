@@ -168,6 +168,7 @@
                 justify-content: center;
                 align-items: flex-start;
                 z-index: 0;
+                width: 100%;
                 &:after{
                     position: absolute;
                     content: "";
@@ -247,11 +248,11 @@
         }
     }
     .banner-slider{
-        flex: 0 0 55%;
-        width: 55%;
+        flex: 0 0 59%;
+        width: 59%;
         position: absolute;
         right: 20px;
-        bottom: 2px;
+        bottom: 0px;
         @media(max-width: 768px){
             flex: 0 0 100%;
             width: 100%;
@@ -265,15 +266,12 @@
             border: 1px solid transparent;
             transition: all 0.3s ease-out;
         }
-        .slick-arrow{
-            margin-top: -7px;
-        }
-        .slick-prev{
+        .slick-prev, .slick-next{
             left: 4px;
             background-image: url('../../../assets/images/left-arrow-white.svg');
             background-color: rgba(141,141,141,0.76);
-            width: 20px;
-            height: 20px;
+            width: 21px;
+            height: 21px;
             border-radius: 50%;
             background-size: 10px 10px;
             background-position: center;
@@ -282,17 +280,17 @@
             }
         }
         .slick-next{
+            left: auto;
             right: 4px;
             background-image: url('../../../assets/images/right-arrow-white.svg');
-            background-color: rgba(141,141,141,0.76);
-            width: 20px;
-            height: 20px;
-            border-radius: 50%;
-            background-size: 10px 10px;
-            background-position: center;
             &:hover{
                 border: none;
             }
+            
+        }
+        .slick-arrow{
+            margin-top: 0;
+            top: 50%;
         }
         .slick-slider{
             .slick-list{
@@ -306,15 +304,16 @@
                         margin: 0 2px;
                         overflow: hidden;
                         transition: all 0.3s ease-out;
-                        width: auto !important;
                         cursor: pointer;
                         &:first-child{
                             margin-left: 0;
                         }
                         img{
                             border: 1px solid transparent;
-                            width: 92px;
                             height: 48px;
+                            @media(max-width: 576px){
+                                height: 45px !important;
+                            }
                         }
                         &:hover{
                             img{
@@ -1042,9 +1041,9 @@
         @media(max-width: 768px){
             display: none !important;
         }
-        @media(min-width: 768px) and (max-width: 1024px) and (orientation: landscape){
-            margin-top: 32px !important;;
-        }
+        // @media(min-width: 768px) and (max-width: 1024px) and (orientation: landscape){
+        //     margin-top: 32px !important;;
+        // }
         &:hover{
             border: none;
             outline: none;
@@ -1104,18 +1103,19 @@
 .explore-wrapper{
     .trending-wrapper{
         .slick-arrow{
-            height: 85px;
+            height: 82px;
             width: 35px;
             background-position: 10px 32px;
             background-color: rgba(0, 0, 0, 0.7);
-            margin-top: -22px;
+            margin-top: 0px;
+            top: 50%;
             background-size: 13px;
             @media(max-width: 768px){
                 display: none !important;
             }
-            @media(min-width: 768px) and (max-width: 1024px) and (orientation: portrait){
-                margin-top: 32px !important;
-            }
+            // @media(min-width: 768px) and (max-width: 1024px) and (orientation: portrait){
+            //     margin-top: 32px !important;
+            // }
             &:hover{
                 border: none;
                 outline: none;
