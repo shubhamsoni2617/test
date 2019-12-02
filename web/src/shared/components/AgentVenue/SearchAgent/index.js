@@ -263,9 +263,7 @@ const SearchAgent = props => {
                       </Link>
                     </span>
                   </h3>
-                  <p>
-                    {item.address},{item.country}
-                  </p>
+                  <p dangerouslySetInnerHTML={{ __html: item.address }}></p>
                   {/* <CSSTransitionGroup
                     transitionName="mega"
                     transitionEnter={true}

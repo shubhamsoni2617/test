@@ -1,44 +1,33 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import './style.scss';
 import Image from '../../../../shared/components/Image';
 import Utilities from '../../../../shared/utilities';
 
 const PollsNServeys = ({ sectionSeven }) => {
-  return sectionSeven[0].image || sectionSeven[0].heading ? (
+  return sectionSeven && (sectionSeven.image || sectionSeven.heading) ? (
     <section className="polls-survey">
       <div className="container-fluid">
         <div className="polls-wrapper">
-          {sectionSeven &&
-            sectionSeven.map(
-              ({
-                heading,
-                button_text,
-                button_url,
-                description,
-                image,
-                title
-              }) => {
-                return (
-                  <Fragment key={heading}>
-                    {heading && <h2>{heading}</h2>}
-                    <div className="polls-box">
-                      <div className="polls-img">
-                        <Image src={image} type="BigBanner" />
-                      </div>
-                      <div className="polls-cont">
-                        {title && <h2>{title}</h2>}
-                        <p
-                          dangerouslySetInnerHTML={{
-                            __html: Utilities.showLimitedChars(description, 500)
-                          }}
-                        ></p>
-                        {button_text && <a href={button_url}>{button_text}</a>}
-                      </div>
-                    </div>
-                  </Fragment>
-                );
-              }
-            )}
+          {sectionSeven.heading && <h2>{sectionSeven.heading}</h2>}
+          <div className="polls-box">
+            <div className="polls-img">
+              <Image src={sectionSeven.image} type="BigBanner" />
+            </div>
+            <div className="polls-cont">
+              {sectionSeven.title && <h2>{sectionSeven.title}</h2>}
+              <p
+                dangerouslySetInnerHTML={{
+                  __html: Utilities.showLimitedChars(
+                    sectionSeven.description,
+                    500
+                  )
+                }}
+              ></p>
+              {sectionSeven.button_text && (
+                <a href={sectionSeven.button_url}>{sectionSeven.button_text}</a>
+              )}
+            </div>
+          </div>
         </div>
       </div>
     </section>
