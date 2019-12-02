@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect, memo } from 'react';
 import PropTypes from 'prop-types';
 import moment from 'moment';
 import DayPickerInput from 'react-day-picker/DayPickerInput';
@@ -18,6 +18,14 @@ function DateRangeFilter(props) {
   // useEffect(() => {
   //   setFlag(false);
   // }, [props.filterFlag]);
+
+  useEffect(() => {
+    if (from && element.current) {
+      element.current.input.disabled = false;
+    } else {
+      element.current.input.disabled = true;
+    }
+  }, [element.current, from]);
 
   useEffect(() => {
     const getDate = dateStr => {
@@ -139,7 +147,10 @@ function DateRangeFilter(props) {
                 toMonth: to ? new Date(moment(to).format('YYYY-MM-DD')) : null,
                 modifiers,
                 numberOfMonths: 1,
-                onDayClick: () => element.current.getInput().focus()
+                onDayClick: () => {
+                  element.current.input.disabled = false;
+                  element.current.getInput().focus();
+                }
               }}
               onDayChange={handleFromChange}
             />
@@ -207,4 +218,4 @@ DateRangeFilter.propTypes = {
   filteredDateRange: PropTypes.object.isRequired
 };
 
-export default DateRangeFilter;
+export default memo(DateRangeFilter);
