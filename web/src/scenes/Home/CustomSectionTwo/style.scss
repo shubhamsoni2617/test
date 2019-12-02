@@ -15,7 +15,11 @@
             padding: 0 10px;
         }
         @media(max-width: 767px){
+<<<<<<< HEAD
             padding: 0;
+=======
+            padding: 0px;
+>>>>>>> b91fce801b4eda42deb79ebff58f44c38dd162a9
         }
     }
     .royal-items-wrapper {
@@ -34,6 +38,17 @@
             width: 65%;
             padding-right: 20px;
             display: flex;
+            @media(min-width: 768px) and (max-width: 1024px) and (orientation: landscape){
+                max-height: 275px;
+                height: 100%;
+            }
+            @media(max-width: 768px) and (orientation: portrait){
+                max-height: 300px;
+            }
+            @media(max-width: 767px){
+                max-height: 100%;
+                height: auto;
+            }
             .image-conatiner{
                 align-items: stretch;
                 display: flex;
@@ -143,6 +158,11 @@
         flex-wrap: wrap;
         justify-content: space-between;
         align-items: flex-end;
+        -ms-overflow-style: none; // IE 10+ 
+        scrollbar-width: none; // Firefox 
+        &::-webkit-scrollbar { 
+            display: none; // Safari and Chrome
+        }
         @media(min-width: 1580px){
             height: 50%;
         }
@@ -167,6 +187,11 @@
         }
         @media(max-width: 991px) and (orientation: landscape){
             flex-direction: row;
+        }
+        @media(max-width: 767px) and (orientation: landscape){
+            flex-direction: row;
+            flex-wrap: unset;
+            overflow-x: auto;
         }
         @media(min-width: 601px) and (max-width: 965px) and (orientation: portrait){
             align-items: flex-start;
@@ -208,6 +233,8 @@
                 flex: 0 0 calc(50% - 5px);
                 width: calc(50% - 5px);
                 margin: 0px;
+                margin-right: 10px;
+                padding-right: 5px;
             }
             &:first-child{
                 @media(max-width: 991px) and (orientation: landscape){
@@ -286,7 +313,7 @@
                     }
                     @media(max-width: 576px){
                         font-size: 13px;
-                        margin-top: 10px;
+                        margin-top: 5px;
                     }
                 }
             }
