@@ -4,25 +4,26 @@ import { Helmet, HelmetProvider } from 'react-helmet-async';
 import HomeService from '../../services/HomeService';
 
 export default function MetaData({ location, data }) {
-  const [title, setTitle] = useState(data && data.title ? data.title : '');
+  const [metaData, setMetaData] = useState(
+    (data &&
+      data.response &&
+      data.response.metaData &&
+      data.response.metaData.data) ||
+      {}
+  );
   useEffect(() => {
-    if (
-      window.__INITIAL_DATA__ &&
-      window.__INITIAL_DATA__.metaData &&
-      window.__INITIAL_DATA__.metaData.data &&
-      window.__INITIAL_DATA__.metaData.data.title
-    ) {
-      setTitle(window.__INITIAL_DATA__.metaData.data.title);
+    if (window.__INITIAL_DATA__) {
+      setMetaData(
+        (window.__INITIAL_DATA__.metaData &&
+          window.__INITIAL_DATA__.metaData.data) ||
+          {}
+      );
       delete window.__INITIAL_DATA__.metaData;
     } else {
+      //Call Meta data API
       getMetaData(location.pathname).then(response => {
-        if (
-          response &&
-          response.data &&
-          response.data.data &&
-          response.data.data.title
-        ) {
-          setTitle(response.data.data.title);
+        if (response && response.data && response.data.data) {
+          setMetaData(response.data.data || {});
         }
       });
     }
@@ -34,7 +35,7 @@ export default function MetaData({ location, data }) {
   return (
     <Helmet>
       <meta charSet="utf-8" />
-      <title>{title}</title>
+      <title>{metaData.title}</title>
       <link rel="canonical" href="http://mysite.com/example" />
     </Helmet>
   );
