@@ -84,7 +84,7 @@ const Review = ({ reviewData }) => {
         {reviewData.name && (
           <a
             className="more-review"
-            href={`/explore/articles?c=${reviewData.id}`}
+            href={`/explore/articles?id=${reviewData.id}`}
             target="_blank"
           >
             More from {reviewData.name} <img src={rightArrow} alt="arrow" />

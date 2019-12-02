@@ -10,7 +10,7 @@ import cross from '../../../../assets/images/cross-grey.svg';
 import { setLocalStorage, setValuesInLocalStorage } from './setLocalStorage';
 import searchImageBlue from '../../../../assets/images/search-blue.svg';
 import './style.scss';
-import navigateToLink from '../../../../shared/navigateToLink';
+import navigateToLink from '../../../../shared/HelperFunctions/navigateToLink';
 import Utilities from '../../../../shared/utilities';
 
 const Autocomplete = ({ history, buttonActiveHandler, mostViewed }) => {
