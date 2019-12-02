@@ -168,6 +168,7 @@
                 justify-content: center;
                 align-items: flex-start;
                 z-index: 0;
+                width: 100%;
                 &:after{
                     position: absolute;
                     content: "";
@@ -247,11 +248,11 @@
         }
     }
     .banner-slider{
-        flex: 0 0 55%;
-        width: 55%;
+        flex: 0 0 59%;
+        width: 59%;
         position: absolute;
         right: 20px;
-        bottom: 2px;
+        bottom: 0px;
         @media(max-width: 768px){
             flex: 0 0 100%;
             width: 100%;
@@ -309,8 +310,10 @@
                         }
                         img{
                             border: 1px solid transparent;
-                            
                             height: 48px;
+                            @media(max-width: 576px){
+                                height: 45px !important;
+                            }
                         }
                         &:hover{
                             img{
