@@ -85,6 +85,7 @@ export default class Promotions extends Component {
   }
 
   componentDidMount() {
+    window.scrollTo(0, 0);
     this.fetchPromotionCategoriesData();
     this.fetchPromotionListingData();
   }
