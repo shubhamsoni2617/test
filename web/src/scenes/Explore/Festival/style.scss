@@ -266,6 +266,7 @@
                     @media (max-width: 768px) {
                         overflow: auto;
                         padding: 10px 22px 15px 3px;
+                        overflow: hidden;
                     }
                     @media(max-width: 767px){
                         padding : 5px 0px 15px 3px;
@@ -310,6 +311,9 @@
                         @media(max-width: 767px){
                             flex-wrap: unset;
                             align-items: flex-start;
+                        }
+                        @media(min-width: 601px) and (max-width: 965px){
+                            height: calc(100% - 10px);
                         }
                         div{
                             width: 100%;
@@ -369,7 +373,7 @@
                                 max-width: 42%;
                             }
                             @media(min-width: 601px) and (max-width: 965px){
-                                margin: 0 5px;
+                                margin: 0 8px;
                                 flex: 1 0 100%;
                                 max-width: 100%;
                             }
@@ -412,14 +416,19 @@
                                 overflow: hidden;
                                 height: auto;
                                 -webkit-box-orient: vertical;
+                                min-height: 53px;
                                 @media (max-width: 768px) {
                                     font-size: 13px;
                                     max-height: 70px;
                                     overflow: hidden;
                                     height: 70px !important;
+                                    padding-top: 7px;
                                 }
                                 @media(max-width: 767px){
                                     min-height: 65px;
+                                }
+                                @media(max-width: 601px) and (max-width: 965px){
+                                    min-height: 52px;
                                 }
                             }
                             p{
@@ -436,8 +445,19 @@
                                     line-height: 18px;
                                     padding: 6px 0 8px;
                                     max-height: 154px;
-                                    overflow: hidden;
+                                    overflow-y: auto;
                                     min-height: 154px;
+                                }
+                                @media(min-width: 601px) and (max-width: 1024px){
+                                    overflow-y: auto;
+                                    max-height: 177px;
+                                    min-height: 177px;
+                                    padding-top: 0px;
+                                    margin-top: 10px;                             
+                                }
+                                @media(min-width: 601px) and (max-width: 1024px) and (orientation: portrait){
+                                    min-height: 190px;
+                                    max-height: 190px;
                                 }
                             }
                             a{
