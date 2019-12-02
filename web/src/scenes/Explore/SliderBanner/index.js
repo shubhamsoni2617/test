@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Slider from 'react-slick';
 import './style.scss';
 import ReactPlayer from 'react-player';
+import articleBanner from '../../../assets/images/article-banner.jpg';
 
 const SliderBanner = ({ data }) => {
   const [activeSlide, setActiveSlide] = useState(0);
@@ -30,15 +31,18 @@ const SliderBanner = ({ data }) => {
               );
             } else {
               return (
-                <ReactPlayer
-                  key={dataObj.thumb_image + i}
-                  className="react-player"
-                  url={dataObj.video_url}
-                  width="100%"
-                  height="349px"
-                  controls
-                  playing={activeSlide === i && true}
-                />
+                <div className="article-video-banner">
+                  <img className="video-banner-bg" src={articleBanner} alt="video-bg" />
+                  <ReactPlayer
+                    key={dataObj.thumb_image + i}
+                    className="react-player"
+                    url={dataObj.video_url}
+                    width="100%"
+                    height="349px"
+                    controls
+                    playing={activeSlide === i && true}
+                  />
+                </div>
               );
             }
           })}
