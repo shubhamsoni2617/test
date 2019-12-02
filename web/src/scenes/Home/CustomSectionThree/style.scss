@@ -96,6 +96,7 @@
                 }
                 @media(max-width: 991px){
                     min-height: 106px;
+                    max-height: inherit;
                 }
                 @media(max-width: 767px){
                     min-height: 120px;

@@ -484,7 +484,10 @@
 						@media(min-width: 767px) {
 							height: auto;
 							width: auto;
-						}
+                        }
+                        @media(max-width: 991px) {
+                            padding: 18px 13px 19px;
+                        }
                         span {
                             content: '';
 							height: 10px;
