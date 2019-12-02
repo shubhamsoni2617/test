@@ -9,6 +9,7 @@ import insta from '../../../assets/images/insta-unfill.svg';
 import instaFill from '../../../assets/images/insta-fill.svg';
 import stixImage from '../../../assets/images/stix.png';
 import BackToTop from '../../../shared/components/BackToTop';
+import scrollTop from '../../../assets/images/arrow-to-top.svg';
 import Utilities from '../../../shared/utilities';
 import NewsLetterForm from '../../../shared/components/NewsLetterForm';
 
@@ -156,7 +157,10 @@ const Footer = () => {
         </div>
       </section>
       {!Utilities.mobilecheck() && (
-        <BackToTop scrollStepInPx="50" delayInMs="20" />
+        <span className="scroll-top" onClick={() => window.scrollTo(0, 0)}>
+          <img src={scrollTop} alt="Scroll to top" />
+        </span>
+        // <BackToTop scrollStepInPx="50" delayInMs="20" />
       )}
     </footer>
   );
