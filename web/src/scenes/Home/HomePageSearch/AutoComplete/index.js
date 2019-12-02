@@ -45,7 +45,7 @@ const Autocomplete = ({ history, buttonActiveHandler, mostViewed }) => {
     if (history.location.pathname.split('/')[1] !== 'search') {
       setUserInput('');
     }
-  }, [history.location.pathname]);
+  }, [history && history.location.pathname]);
   const handleClick = e => {
     if (node.current.contains(e.target)) {
       return;
