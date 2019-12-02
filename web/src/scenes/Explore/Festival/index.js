@@ -196,10 +196,9 @@ const Festival = ({ match }) => {
   );
 
   const sectionArray = [
-    { orderNo: 'section_one', returnPart: festivalPart },
-    { orderNo: 'section_two', returnPart: musicalPart },
-    { orderNo: 'section_three', returnPart: allEventPart },
-    { orderNo: 'section_four', returnPart: socialWallPart },
+    { orderNo: 'section_three', returnPart: musicalPart },
+    { orderNo: 'section_four', returnPart: allEventPart },
+    { orderNo: 'social_wall_url', returnPart: socialWallPart },
     { orderNo: 'section_five', returnPart: ticketDealsPart },
     { orderNo: 'section_six', returnPart: articlesPart },
     { orderNo: 'section_seven', returnPart: pollNSurveysPart },
@@ -210,6 +209,7 @@ const Festival = ({ match }) => {
     <div className="festival-wrapper">
       {bannerPart}
       {welcomePart}
+      {festivalPart}
       {order && order.length > 0 ? (
         sectionArray.map(({ orderNo, returnPart }, index, array) => {
           return order.map(serverOrderNo => {

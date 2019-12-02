@@ -15,12 +15,15 @@ import Utilities from '../../../shared/utilities';
 const Article = props => {
   const [articleData, setArticleData] = useState(null);
   const [showSocialShare, setShowSocialShare] = useState(false);
+  const [loading, setLoading] = useState(false);
+
   const handleSocialShare = () => {
     setShowSocialShare(!showSocialShare);
   };
 
   useEffect(() => {
     setArticleData(null);
+    setLoading(true);
     getArticle();
   }, [props.match.params.id]);
 
@@ -37,32 +40,20 @@ const Article = props => {
     setTimeout(() => {
       ExploreService.getArticle(params)
         .then(res => {
-          console.log(res.data.data[0]);
           setArticleData(res.data.data[0]);
+          setLoading(false);
         })
         .catch(err => {
-          console.log(err);
+          setLoading(false);
         });
     }, 1000);
   };
+
   return (
     <section className="articledetail-wrapper">
-      {/* {articleData && articleData.image ? (
-        <SliderBanner data={articleData.image} />
-      ) : (
-          <div className="simmerOuter">
-            <ShimmerEffect
-              height={Utilities.mobilecheck() ? 130 : 250}
-              count={1}
-              type="SOLID"
-            />
-          </div>
-        )} */}
-
       {articleData && articleData.image && (
         <SliderBanner data={articleData.image} />
       )}
-
       <div className="acticle">
         <div className="container-fluid">
           <div className="offset-lg-2 breadcrumb-category-group">
@@ -72,8 +63,14 @@ const Article = props => {
                   <BreadcrumbSlug
                     breadcrumbSlug={[
                       { path: '/', title: 'Home' },
-                      { path: '/explore', title: 'Explore' },
-                      { path: '/article', title: 'Article' }
+                      {
+                        path: '/explore',
+                        title: 'Explore'
+                      },
+                      {
+                        path: '/article',
+                        title: 'Article'
+                      }
                     ]}
                   />
                   <span className="share" onClick={handleSocialShare}>
@@ -90,15 +87,14 @@ const Article = props => {
                       <li key={tag}>{tag}</li>
                     ))}
                   </ul>
-                ) : (
+                ) : loading ? (
                   <ShimmerEffect count={4} type="BLOCK" />
-                )}
+                ) : null}
               </div>
             </div>
           </div>
           <div className="row">
             <div className="col-xs-12 col-lg-2 pl-lg-0">
-              {/* {articleData && articleData.author_name && ( */}
               <div className="artist-block">
                 {articleData && (
                   <Image
@@ -111,7 +107,6 @@ const Article = props => {
                   {articleData && <span>{articleData.author_posted_date}</span>}
                 </div>
               </div>
-              {/* )} */}
             </div>
 
             <div className="col-xs-8 col-lg-8 mb-5 col-lg-offset-4">
@@ -126,7 +121,7 @@ const Article = props => {
                       __html: articleData.description
                     }}
                   />
-                ) : (
+                ) : loading ? (
                   <div className="simmerOuter">
                     <ShimmerEffect
                       height={Utilities.mobilecheck() ? 100 : 200}
@@ -134,7 +129,7 @@ const Article = props => {
                       type="LIST"
                     />
                   </div>
-                )}
+                ) : null}
               </div>
             </div>
           </div>

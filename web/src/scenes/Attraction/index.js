@@ -43,7 +43,8 @@ export default class Attractions extends Component {
       queryParams: {},
       count: 0,
       filterFlag: false,
-      sortByFlag: false
+      sortByFlag: false,
+      mode: ''
     };
 
     this.breadCrumbData = {
@@ -287,6 +288,23 @@ export default class Attractions extends Component {
     });
   };
 
+  changeMode = mode => {
+    if (this.state.mode === mode) return;
+
+    if (this.state.mode !== '') {
+      window.document.body.classList.remove('fixed-body');
+      this.closeFilter();
+    }
+    this.setState({ mode: mode });
+  };
+
+  closeFilter = () => {
+    this.setState({
+      filterFlag: false,
+      sortByFlag: false
+    });
+  };
+
   render() {
     const {
       attractionCategories,
@@ -329,6 +347,7 @@ export default class Attractions extends Component {
                   filteredSearch={filteredSearch}
                   filteredCategory={filteredCategory}
                   attractions={true}
+                  changeMode={this.changeMode}
                 >
                   {fixed => (
                     <div
@@ -417,10 +436,10 @@ export default class Attractions extends Component {
               <div className={this.state.viewTypeClass}>
                 {loader && <img className="filter-loader" src={loaderImage} />}
                 {attractionsData &&
-                  attractionsData.map(attraction => {
+                  attractionsData.map((attraction, i) => {
                     // onClick={() => this.redirectToTarget(attraction.event_alias)}
                     return (
-                      <div>
+                      <div key={i}>
                         <Card
                           cardData={attraction}
                           redirectTo={this.redirectToTarget}

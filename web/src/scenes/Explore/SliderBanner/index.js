@@ -4,7 +4,8 @@ import './style.scss';
 import ReactPlayer from 'react-player';
 
 const SliderBanner = ({ data }) => {
-  const [activeSlide, setActiveSlide] = useState(0);
+  const [playing, setPlaying] = useState(false);
+  const [autoplay, setAutoPlay] = useState(true);
 
   const settings = {
     dots: true,
@@ -13,9 +14,14 @@ const SliderBanner = ({ data }) => {
     speed: 500,
     rows: 1,
     slidesPerRow: 1,
-    autoplay: true,
-    beforeChange: current => {
-      setActiveSlide(current);
+    autoplay: autoplay,
+    beforeChange: () => {
+      setPlaying(false);
+      setAutoPlay(true);
+    },
+    afterChange: () => {
+      setPlaying(false);
+      setAutoPlay(true);
     }
   };
 
@@ -36,8 +42,13 @@ const SliderBanner = ({ data }) => {
                   url={dataObj.video_url}
                   width="100%"
                   height="349px"
+                  loop={false}
                   controls
-                  playing={activeSlide === i && true}
+                  onPlay={() => {
+                    setPlaying(true);
+                    setAutoPlay(false);
+                  }}
+                  playing={playing}
                 />
               );
             }
