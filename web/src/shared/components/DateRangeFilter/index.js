@@ -20,6 +20,14 @@ function DateRangeFilter(props) {
   // }, [props.filterFlag]);
 
   useEffect(() => {
+    if (from && element.current) {
+      element.current.input.disabled = false;
+    } else {
+      element.current.input.disabled = true;
+    }
+  }, [element.current, from]);
+
+  useEffect(() => {
     const getDate = dateStr => {
       const date = new Date(dateStr);
       return date.toString() === 'Invalid Date' ? '' : date;
@@ -139,7 +147,10 @@ function DateRangeFilter(props) {
                 toMonth: to ? new Date(moment(to).format('YYYY-MM-DD')) : null,
                 modifiers,
                 numberOfMonths: 1,
-                onDayClick: () => element.current.getInput().focus()
+                onDayClick: () => {
+                  element.current.input.disabled = false;
+                  element.current.getInput().focus();
+                }
               }}
               onDayChange={handleFromChange}
             />
