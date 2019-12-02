@@ -33,7 +33,7 @@ const CarouselConatiner = props => {
             // Utilities.preloadImages(res.data.data, "thumb_image", () => {
             setData(res.data.data);
             setTimeout(() => {
-              // setLoading(false);
+              setLoading(false);
             }, 1000);
             // });
           } else {
