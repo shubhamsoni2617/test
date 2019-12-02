@@ -604,6 +604,7 @@
             flex-wrap: wrap;
             -ms-overflow-style: none; // IE 10+
             scrollbar-width: none; // Firefox
+            -webkit-overflow-scrolling: touch;
             &::-webkit-scrollbar {
                 display: none; // Safari and Chrome
             }
@@ -662,8 +663,15 @@
                 &:hover{
                     box-shadow: 0 2px 10px 0 rgba(207, 146, 146, 0.12);
                     transform: translateY(0px);
+                    @media(max-width: 991px){
+                        box-shadow: none;
+                        transform: translateY(0px);
+                    }
                     &:after{
                         transform: scaleY(1);
+                        @media(max-width: 991px){
+                            content: none;
+                        }
                     }
                 }
                 .image-conatiner{
@@ -743,10 +751,14 @@
            img{
                width: 300px;
                height: 300px;
-               @media(max-width: 767px){
+               @media(max-width: 1024px){
                    width: auto;
-                   height: auto;;
+                   height: auto;
                }
+               @media(min-width: 601px) and (max-width: 965px) and (orientation: landscape){
+                    width: auto;
+                    height: auto;
+                }
            }
        }
    }

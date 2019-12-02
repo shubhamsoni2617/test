@@ -178,26 +178,25 @@ const Festival = ({ match }) => {
       </div>
     ) : null;
 
-  const pollNSurveysPart =
-    section_seven && section_seven.length > 0 ? (
-      <PollNServeys sectionSeven={section_seven} />
-    ) : loading ? (
-      <div className="shimmer-margin">
-        {reusedShimmer(
-          300,
-          Utilities.mobilecheck() ? 1 : 2,
-          'TILE',
-          Utilities.mobilecheck() ? 12 : 6
-        )}
-      </div>
-    ) : null;
+  const pollNSurveysPart = section_seven ? (
+    <PollNServeys sectionSeven={section_seven} />
+  ) : loading ? (
+    <div className="shimmer-margin">
+      {reusedShimmer(
+        300,
+        Utilities.mobilecheck() ? 1 : 2,
+        'TILE',
+        Utilities.mobilecheck() ? 12 : 6
+      )}
+    </div>
+  ) : null;
 
   const videoGalleryPart = section_eigth && section_eigth.length > 0 && (
     <VideoGallery sectionEight={section_eigth} />
   );
 
   const sectionArray = [
-    { orderNo: 'section_two', returnPart: festivalPart },
+    { orderNo: 'section_one', returnPart: festivalPart },
     { orderNo: 'section_two', returnPart: musicalPart },
     { orderNo: 'section_three', returnPart: allEventPart },
     { orderNo: 'section_four', returnPart: socialWallPart },
@@ -212,9 +211,8 @@ const Festival = ({ match }) => {
       {bannerPart}
       {welcomePart}
       {order && order.length > 0 ? (
-        order &&
-        order.map(serverOrderNo => {
-          return sectionArray.map(({ orderNo, returnPart }) => {
+        sectionArray.map(({ orderNo, returnPart }, index, array) => {
+          return order.map(serverOrderNo => {
             if (serverOrderNo === orderNo) {
               return returnPart;
             }

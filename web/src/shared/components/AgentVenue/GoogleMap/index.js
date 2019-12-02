@@ -13,24 +13,39 @@ import EventConstantZoom from './EventConstantZoom';
 import useStickyPanel from '../../../hooks/useStickyPanel';
 import Utilities from '../../../utilities';
 
-const InfowindowData = ({ selectedPlace, DirectionIcon }) => (
-  <div className="map-info-popup">
-    <div className="map-img">
-      <div id="iwc" />
+const InfowindowData = ({ selectedPlace, DirectionIcon }) => {
+  let latitude = selectedPlace.latitude
+    ? selectedPlace.latitude
+    : selectedPlace.position && selectedPlace.position.lat;
+
+  let longitude = selectedPlace.longitude
+    ? selectedPlace.longitude
+    : selectedPlace.position && selectedPlace.position.lng;
+
+  return (
+    <div className="map-info-popup">
+      <div className="map-img">
+        <div id="iwc" />
+      </div>
+      <div className="map-name-address">
+        <h5>{selectedPlace.name}</h5>
+        <p
+          dangerouslySetInnerHTML={{
+            __html: selectedPlace.address
+          }}
+        ></p>
+
+        <a
+          href={`http://maps.google.com/?q=${latitude},${longitude}`}
+          className="direcrtion-icn"
+          target="_blank"
+        >
+          <img height="20" width="20" src={DirectionIcon} alt="direction" />
+        </a>
+      </div>
     </div>
-    <div className="map-name-address">
-      <h5>{selectedPlace.name}</h5>
-      <p>{selectedPlace.address}</p>
-      <a
-        href={`https://www.google.com/maps/dir//${selectedPlace.address}`}
-        className="direcrtion-icn"
-        target="_blank"
-      >
-        <img height="20" width="20" src={DirectionIcon} alt="direction" />
-      </a>
-    </div>
-  </div>
-);
+  );
+};
 
 const GoogleMap = ({
   google,
@@ -117,8 +132,8 @@ const GoogleMap = ({
           style={{
             display:
               Utilities.mobileAndTabletcheck &&
-                window.innerWidth <= 960 &&
-                !mapInMobile
+              window.innerWidth <= 960 &&
+              !mapInMobile
                 ? 'none'
                 : 'block'
           }}
@@ -154,23 +169,23 @@ const GoogleMap = ({
                     icon={
                       elem.map_pin_icon !== '' && venue
                         ? {
-                          url: elem.map_pin_icon,
-                          scaledSize: new google.maps.Size(45, 45)
-                        }
+                            url: elem.map_pin_icon,
+                            scaledSize: new google.maps.Size(45, 45)
+                          }
                         : elem.map_pin_color !== '#FFFFFF' && venue
-                          ? {
+                        ? {
                             path: Constants.MAP_PATH,
                             scale: 1,
                             fillColor: elem.map_pin_color,
                             fillOpacity: 1,
                             strokeWeight: 2
                           }
-                          : elem.id === selectedPlace.id
-                            ? {
-                              url: showingInfoWindow && BluePin,
-                              scaledSize: new google.maps.Size(50, 50)
-                            }
-                            : null
+                        : elem.id === selectedPlace.id
+                        ? {
+                            url: showingInfoWindow && BluePin,
+                            scaledSize: new google.maps.Size(50, 50)
+                          }
+                        : null
                     }
                   />
                 );
