@@ -9,7 +9,10 @@ export default function navigateToLink(history, type, category, id, code, tid) {
       break;
     case 'faq':
       history.push(
-        `/faq/${category.toLowerCase().replace(/\s/g, '-')}?id=${id}`
+        `/faq/${category
+          .toLowerCase()
+          .replace(/\//g, '-')
+          .replace(/\s/g, '-')}?id=${id}`
       );
       break;
     case 'explore':

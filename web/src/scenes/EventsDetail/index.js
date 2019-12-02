@@ -263,24 +263,8 @@ export default class EventsDetail extends Component {
   }
 
   componentWillUnmount() {
-    // window.removeEventListener('scroll', this.handleScroll);
     this.unlisten();
   }
-
-  // handleScroll = () => {
-  //   if (
-  //     !this.state.setHeader &&
-  //     window.pageYOffset >= this.elemOffsetTop + 100
-  //   ) {
-  //     this.setState({
-  //       setHeader: true
-  //     });
-  //   } else if (window.pageYOffset < this.elemOffsetTop) {
-  //     this.setState({
-  //       setHeader: false
-  //     });
-  //   }
-  // };
 
   openBuyTicketPopup = () => {
     let flag;
@@ -349,15 +333,6 @@ export default class EventsDetail extends Component {
     }
   };
 
-  // changeLang = synopsisObject => {
-  //   this.setState({
-  //     synopsis: {
-  //       language: synopsisObject.language,
-  //       description: synopsisObject.description
-  //     }
-  //   });
-  // };
-
   handleClose = () => {
     if (this.state.showNotice) {
       this.setState(
@@ -404,18 +379,12 @@ export default class EventsDetail extends Component {
     // getSynopsisData.languageArr = [];
     let accrodian = ['synopsis', 'pricedetail'];
     // this.onSynopsisData(detailData, getSynopsisData);
-    console.log('detail');
     return (
       <div className="event-detail-wrapper">
         {this.props.location && (
           <MetaData
             location={this.props.location}
-            data={
-              this.props.staticContext &&
-              this.props.staticContext.response &&
-              this.props.staticContext.response.metaData &&
-              this.props.staticContext.response.metaData.data
-            }
+            data={this.props.staticContext}
           />
         )}
         <ModalPopup

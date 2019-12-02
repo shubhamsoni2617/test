@@ -120,7 +120,7 @@
                 /* autoprefixer: off */ -webkit-box-orient: vertical; /* autoprefixer: on */
                 @media(min-width: 991px){
                     &:hover{
-                        color: #0098FF;
+                        color: #FFF;
                     }
                 }
                 @media(max-width: 767px){
@@ -316,8 +316,8 @@
                 }
             }
             &:hover{
-                background-color: rgba(0, 152, 255, 0.1);
                 @media(min-width: 991px){
+                    background-color: rgba(0, 152, 255, 0.2);
                     h3{
                         color: #ffffff;
                         a{

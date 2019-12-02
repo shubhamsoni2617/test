@@ -34,7 +34,9 @@ export default class HomePageCarouselContainer extends Component {
         slidesToScroll: 1,
         focusOnSelect: true,
         arrows: true
-      }
+      },
+      loading: true,
+      loadingThumbnail: true
     };
   }
 
@@ -43,11 +45,21 @@ export default class HomePageCarouselContainer extends Component {
     window.addEventListener('resize', this.handleResolution);
     HomeService.getRotationalBanner()
       .then(res => {
-        if (res && res.data && res.data.data && res.data.data.length > 0 ) {
-          this.setState({
-            posts: res.data.data,
-            sliderBackgroudImage: 0
-          });
+        if (res && res.data && res.data.data && res.data.data.length > 0) {
+          setTimeout(() => {
+            this.setState(
+              {
+                posts: res.data.data,
+                sliderBackgroudImage: 0,
+                loading: false
+              },
+              () => {
+                this.setState({
+                  loadingThumbnail: false
+                });
+              }
+            );
+          }, 500);
         }
       })
       .catch(err => {
@@ -58,12 +70,12 @@ export default class HomePageCarouselContainer extends Component {
 
     this.setState({
       nav1: this.mainSlider,
-      nav2: this.thumbSlider,
+      nav2: this.thumbSlider
     });
   }
 
   changeBackgroundImage = index => {
-    this.setState({ sliderBackgroudImage: index, sliderAutoPlay :false });
+    this.setState({ sliderBackgroudImage: index, sliderAutoPlay: false });
   };
 
   handleResolution = () => {
@@ -77,8 +89,8 @@ export default class HomePageCarouselContainer extends Component {
       mainSliderSettings.centerPadding = '300px';
       thumbSliderSettings.slidesToShow = 13;
     } else if (screen.width > 1136 && screen.width <= 1280) {
-        mainSliderSettings.centerPadding = '240px';
-        thumbSliderSettings.slidesToShow = 11;
+      mainSliderSettings.centerPadding = '240px';
+      thumbSliderSettings.slidesToShow = 11;
     } else if (screen.width >= 768 && screen.width <= 1024) {
       mainSliderSettings.centerPadding = '110px';
       thumbSliderSettings.slidesToShow = 7;
@@ -105,67 +117,70 @@ export default class HomePageCarouselContainer extends Component {
 
     return (
       <div className="banner">
-        <div className="banner-carousel">
-            <div className="banner-background">
+        {!this.state.loading && (
+          <div className="banner-carousel">
+            <div className="banner-background"></div>
+            <div className="shadow">
+              <img src={Shadow} />
             </div>
-          <div className="shadow">
-            <img src={Shadow} />
+            {posts && posts.length > 0 && (
+              <div className="active-banner-image">
+                <img src={posts[sliderBackgroudImage].full_image} />
+              </div>
+            )}
+            <Slider
+              {...this.state.mainSliderSettings}
+              asNavFor={this.thumbSlider}
+              ref={slider => (this.mainSlider = slider)}
+              afterChange={index => this.changeBackgroundImage(index)}
+              className="slider-for"
+              // autoplay={this.state.sliderAutoPlay}
+              // autoplaySpeed={1000}
+            >
+              {posts.length
+                ? posts.map((post, key) => (
+                    <div>
+                      <img
+                        onClick={
+                          sliderBackgroudImage == key
+                            ? () => window.open(post.navigation_link, '_blank')
+                            : ''
+                        }
+                        src={post.full_image}
+                        alt="image1"
+                        className="img1 img-responsive"
+                      ></img>
+                    </div>
+                  ))
+                : null}
+              {errorMsg ? <div>{errorMsg}</div> : null}
+            </Slider>
           </div>
-          {posts && posts.length > 0 && (
-            <div className="active-banner-image">
-              <img src={posts[sliderBackgroudImage].full_image} />
-            </div>
-          )}
-          <Slider
-            {...this.state.mainSliderSettings}
-            asNavFor={this.thumbSlider}
-            ref={slider => (this.mainSlider = slider)}
-            afterChange={index => this.changeBackgroundImage(index)}
-            className="slider-for"
-            autoplay={this.state.sliderAutoPlay}
-            autoplaySpeed={1000}
-          >
-            {posts.length
-              ? posts.map((post, key) => (
-                  <div>
-                    <img
-                      onClick={
-                        sliderBackgroudImage == key
-                          ? () => window.open(post.navigation_link, '_blank')
-                          : ''
-                      }
-                      src={post.full_image}
-                      alt="image1"
-                      className="img1 img-responsive"
-                    ></img>
-                  </div>
-                ))
-              : null}
-            {errorMsg ? <div>{errorMsg}</div> : null}
-          </Slider>
-        </div>
-        <div className="banner-thumbnail">
-          <Slider
-            {...this.state.thumbSliderSettings}
-            asNavFor={this.mainSlider}
-            ref={slider => (this.thumbSlider = slider)}
-            focusOnSelect={true}
-            swipe={true}
-          >
-            {posts.length
-              ? posts.map(post => (
-                  <div>
-                    <img
-                      src={post.full_image}
-                      alt="image1"
-                      className="img img-responsive"
-                    ></img>
-                  </div>
-                ))
-              : null}
-            {errorMsg ? <div>{errorMsg}</div> : null}
-          </Slider>
-        </div>
+        )}
+        {!this.state.loadingThumbnail && (
+          <div className="banner-thumbnail">
+            <Slider
+              {...this.state.thumbSliderSettings}
+              asNavFor={this.mainSlider}
+              ref={slider => (this.thumbSlider = slider)}
+              focusOnSelect={true}
+              swipe={true}
+            >
+              {posts.length
+                ? posts.map(post => (
+                    <div>
+                      <img
+                        src={post.full_image}
+                        alt="image1"
+                        className="img img-responsive"
+                      ></img>
+                    </div>
+                  ))
+                : null}
+              {errorMsg ? <div>{errorMsg}</div> : null}
+            </Slider>
+          </div>
+        )}
       </div>
     );
   }
