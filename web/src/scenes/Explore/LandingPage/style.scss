@@ -352,7 +352,7 @@
     .whtsup-container, .festivals-container{
         display: flex;
         flex-wrap: wrap;
-        margin: -8px;
+        margin: -8px -19px;
         @media(max-width: 991px){
             margin: 0px;
         }
