@@ -13,6 +13,10 @@ const CustomSectionThree = ({ heading, customData, isHomePage }) => {
   const [loading, setLoading] = useState(true);
   const [url, setUrl] = useState(null);
   const [title, setTitle] = useState(null);
+  const [channelTitle, setChannelTitle] = useState(null);
+  const [views, setViews] = useState(null);
+  const [postedDate, setPostedDate] = useState(null);
+
   const [controls, setControls] = useState(false);
   let [duration, setDuration] = useState([]);
 
@@ -29,6 +33,8 @@ const CustomSectionThree = ({ heading, customData, isHomePage }) => {
       setData(customData);
       setUrl(customData[0].video_url);
       setTitle(customData[0].title);
+      setViews(!isHomePage && customData[0].count);
+      setPostedDate(!isHomePage && customData[0].posted_date);
       setVdoIndex(0);
       setLoading(false);
     } else if (customData && !customData.length) {
@@ -117,18 +123,8 @@ const CustomSectionThree = ({ heading, customData, isHomePage }) => {
                   />
                   <h3>{title}</h3>
                   {!isHomePage && (
-                    <span>{data && data[0] && data[0].channel_title}</span>
-                  )}
-
-                  {!isHomePage && (
                     <span>
-                      {data && data[0] && data[0].count !== ' views'
-                        ? data[0].count
-                        : null}{' '}
-                      {data && data[0] && data[0].count !== ' views'
-                        ? ' . '
-                        : null}
-                      {data && data[0] && data[0].posted_date}
+                      {channelTitle} {channelTitle ? " . " : null} {views !== ' views' ? views : null} {views ? " . " : null} {postedDate}
                     </span>
                   )}
                 </div>
@@ -147,6 +143,9 @@ const CustomSectionThree = ({ heading, customData, isHomePage }) => {
                             onClick={() => {
                               setUrl(vdo.video_url);
                               setTitle(vdo.title);
+                              setChannelTitle(vdo.channel_title);
+                              setPostedDate(vdo.posted_date);
+                              setViews(vdo.count)
                               setControls(true);
                               setPip(true);
                               setLight(false);
@@ -178,6 +177,11 @@ const CustomSectionThree = ({ heading, customData, isHomePage }) => {
                                       setDuration(duration);
                                     }}
                                   />
+                                  {!isHomePage && (
+                                    <span className="video-duration">
+                                      {duration && duration[index]}
+                                    </span>
+                                  )}
                                 </div>
                               </Fragment>
                               <div className="video-restrict-overlay">
@@ -185,13 +189,10 @@ const CustomSectionThree = ({ heading, customData, isHomePage }) => {
                                   src={vdo.video_thumb}
                                   alt=""
                                   className="img-fluid"
-                                  type="VdoSmall"
-                                />
-                                {!isHomePage && (
-                                  <span className="video-duration">
-                                    {duration && duration[index]}
-                                  </span>
-                                )}
+                                  type="VdoSmall" />
+                                <span className="video-duration">
+                                  {duration && duration[index]}
+                                </span>
                               </div>
                             </span>
                             <div className="video-subwrapper-text">

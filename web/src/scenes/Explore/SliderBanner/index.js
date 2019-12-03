@@ -45,6 +45,7 @@ const SliderBanner = ({ data }) => {
                   height="349px"
                   loop={false}
                   controls
+                  light={true}
                   onPlay={() => {
                     setPlaying(true);
                     setAutoPlay(false);
