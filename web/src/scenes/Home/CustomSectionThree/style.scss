@@ -171,6 +171,8 @@
             .video-restrict-overlay{
               pointer-events: none;
               position: relative;
+              height: 100%;
+              width: 100%;
               .video-duration {
                 position: absolute;
                 right: 3px;

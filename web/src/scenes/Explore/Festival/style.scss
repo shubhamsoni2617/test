@@ -157,6 +157,7 @@
                 display: flex;
                 flex-wrap: wrap;
                 width: 100%;
+                padding-right: 0px;
                 .featured{
                     padding-right: 30px;
                     width: 25%;
@@ -426,7 +427,7 @@
                                 overflow: hidden;
                                 height: auto;
                                 -webkit-box-orient: vertical;
-                                min-height: 53px;
+                                min-height: 73px;
                                 @media (max-width: 768px) {
                                     font-size: 13px;
                                     max-height: 70px;
