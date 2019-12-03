@@ -102,6 +102,7 @@
                     margin-bottom: 20px;
                 }
                 @media(max-width: 991px){
+                    padding: 0;
                     padding-top: 10px;
                 }
             }
@@ -214,6 +215,7 @@
                 margin-right: 20px;
                 flex: 0 0 100%;
                 width: 100%;
+                padding: 0;
             }
             @media(max-width: 767px){
                 flex: 0 0 42%;
@@ -242,7 +244,7 @@
             .item-img{
                 flex: 0 0 167px;
                 width: 167px;
-                height: 78px;
+                height: auto;
                 max-width: 167px;
                 overflow: hidden;
                 @media(max-width: 576px){
@@ -303,7 +305,7 @@
                     /* autoprefixer: off */ -webkit-box-orient: vertical; /* autoprefixer: on */
                 }
                 p{
-                    font-size: 14px;
+                    font-size: 13px;
                     line-height: 22px;
                     color: #B5BDC3;
                     @media(max-width: 767px){
