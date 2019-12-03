@@ -171,23 +171,34 @@
                         flex: 0 0 32%;
                         padding: 5px 10px 0px 0px;
                     }
-                    h2{
+                    h3{
                         color: #FFFFFF;
                         padding-top: 10px;
                         font-family: 'Montserrat', sans-serif;
                         font-size: 30px;
                         font-weight: 600;
                         line-height: 37px;
+                        margin-bottom: 25px;
+                        padding-bottom: 0px;
                         @media(max-width: 768px){
                             font-size: 18px;
                             line-height: 28px;
                             padding-bottom: 10px;
+                            margin-bottom: 0px;
                         }
                         @media(max-width: 767px){
                             padding-bottom: 5px;
                             font-size: 16px;
                             line-height: 21px;
                             padding-top: 0px;
+                        }
+                        @media(min-width: 601px) and (max-width: 965px){
+                            padding-bottom: 0px;
+                            font-size: 16px;
+                            line-height: 21px;
+                            padding-top: 0px;
+                            height: auto;
+                            margin-bottom: 10px;
                         }
                     }
                     .featured-title-link{
@@ -224,6 +235,8 @@
                             @media(max-width:768px){
                                 font-size: 14px;
                                 line-height: 18px;
+                                max-height: 100%;
+                                height: 100%;
                             }
                         }
                         &:hover{
@@ -253,6 +266,7 @@
                     @media (max-width: 768px) {
                         overflow: auto;
                         padding: 10px 22px 15px 3px;
+                        overflow: hidden;
                     }
                     @media(max-width: 767px){
                         padding : 5px 0px 15px 3px;
@@ -298,12 +312,18 @@
                             flex-wrap: unset;
                             align-items: flex-start;
                         }
+                        @media(min-width: 601px) and (max-width: 965px){
+                            height: calc(100% - 10px);
+                        }
                         div{
                             width: 100%;
                             height: auto;
-                            @media(min-width: 1024px){
-                                height: 100%;
+                            @media(min-width: 601px) and (max-width: 965px){
+                                overflow: hidden;
                             }
+                            // @media(min-width: 1024px){
+                            //     height: 100%;
+                            // }
                         }
                         .slick-arrow {
                             position: absolute;
@@ -352,6 +372,11 @@
                                 flex: 1 0 42%;
                                 max-width: 42%;
                             }
+                            @media(min-width: 601px) and (max-width: 965px){
+                                margin: 0 8px;
+                                flex: 1 0 100%;
+                                max-width: 100%;
+                            }
                             @media(min-width: 1024px){
                                 display: flex;
                                 flex-direction: column;
@@ -391,14 +416,19 @@
                                 overflow: hidden;
                                 height: auto;
                                 -webkit-box-orient: vertical;
+                                min-height: 53px;
                                 @media (max-width: 768px) {
                                     font-size: 13px;
-                                    max-height: 65px;
+                                    max-height: 70px;
                                     overflow: hidden;
-                                    height: auto;
+                                    height: 70px !important;
+                                    padding-top: 7px;
                                 }
                                 @media(max-width: 767px){
                                     min-height: 65px;
+                                }
+                                @media(max-width: 601px) and (max-width: 965px){
+                                    min-height: 52px;
                                 }
                             }
                             p{
@@ -415,8 +445,19 @@
                                     line-height: 18px;
                                     padding: 6px 0 8px;
                                     max-height: 154px;
-                                    overflow: hidden;
+                                    overflow-y: auto;
                                     min-height: 154px;
+                                }
+                                @media(min-width: 601px) and (max-width: 1024px){
+                                    overflow-y: auto;
+                                    max-height: 177px;
+                                    min-height: 177px;
+                                    padding-top: 0px;
+                                    margin-top: 10px;                             
+                                }
+                                @media(min-width: 601px) and (max-width: 1024px) and (orientation: portrait){
+                                    min-height: 190px;
+                                    max-height: 190px;
                                 }
                             }
                             a{
@@ -433,6 +474,9 @@
                                 max-height: 30px;
                                 max-width: 130px;
                                 text-align: center;
+                                @media(max-width: 768px){
+                                    margin-top: 0px;
+                                }
                                 @media(max-width: 767px){
                                     margin: 0 5px 0 0;
                                 }
@@ -460,6 +504,9 @@
     }
     .music-fest{
         padding: 54px 0 50px 0;
+        @media(max-width: 1024px){
+            padding: 54px 0 20px 0;
+        }
         @media(max-width: 768px){
             padding: 23px 0;
         }
@@ -573,6 +620,11 @@
                 &:hover{
                     border: none;
                 }
+            }
+        }
+        .slick-slide{
+            @media(max-width: 1024px){
+                height: 100%;
             }
         }
     }
@@ -766,7 +818,7 @@
        background-color: #F0F9FF;
        padding: 45px 0;
        @media (max-width: 768px) {
-            padding: 0;
+            padding: 20px 0px;
         }
         .container-fluid{
             @media(max-width: 576px){
@@ -816,10 +868,13 @@
                     @media(max-width: 768px){
                         flex: 1 0 40%;
                         max-width: 40%;
-                        margin: 10px;
+                        margin: 0px 10px;
                     }
                     @media(max-width: 767px){
                         margin: 6px;
+                    }
+                    &:first-child{
+                        margin-left: 0px;
                     }
                     .image-conatiner{
                         overflow: hidden;
