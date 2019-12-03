@@ -190,9 +190,9 @@ const CustomSectionThree = ({ heading, customData, isHomePage }) => {
                                   alt=""
                                   className="img-fluid"
                                   type="VdoSmall" />
-                                <span className="video-duration">
+                                {!isHomePage && <span className="video-duration">
                                   {duration && duration[index]}
-                                </span>
+                                </span>}
                               </div>
                             </span>
                             <div className="video-subwrapper-text">
