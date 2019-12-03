@@ -332,8 +332,8 @@ export default class Select extends Component {
             {isOpen ? (
               <img src={ArrowDropdownUp} alt="UpArrow" />
             ) : (
-              <img src={ArrowDropdown} alt="DownArrow" />
-            )}
+                <img src={ArrowDropdown} alt="DownArrow" />
+              )}
           </span>
         </div>
         {this.renderOptions()}

@@ -65,7 +65,7 @@ ul {
 .accent-text {
 	color: #0098ff;
 }
-// Common Table UI 
+// Common Table UI
 table{
     width: 100%;
     border-top: 1px #e8e8e8 solid;
@@ -81,7 +81,7 @@ table{
     }
 }
 
-// Caption 
+// Caption
 caption {
     caption-side: top;
   }
@@ -335,6 +335,9 @@ button,
 
 .concert-overlay {
 	background: linear-gradient(180deg, rgba(242, 177, 25, 0) -5%, #75AA46 70%);
+}
+.theatre-overlay {
+	background: linear-gradient(180deg, rgba(242, 177, 25, 0) -5%, #BF659A 70%);
 }
 
 .section-top-wrapper {
@@ -1468,6 +1471,34 @@ input:disabled {
 				@media(max-width: 991px){
 					color: #343434;
 				}
+			}
+		}
+	}
+}
+
+// video 
+.react-player__preview{
+	.react-player__shadow{
+		border: 3px solid #FFFFFF;
+		width: 83px !important;
+		height: 81px !important;
+		background: none !important;
+		
+		.react-player__play-icon{
+			background-image: url('../images/playwithoutcircle.svg');
+			border: none !important;
+			height: 30px;
+			width: 30px;
+			background-size: contain;
+			background-repeat: no-repeat;
+			margin-left: 0 !important;
+		}
+		@media(max-width: 576px){
+			width: 40px !important;
+			height: 40px !important;
+			.react-player__play-icon{
+				height: 15px;
+    			width: 15px;
 			}
 		}
 	}

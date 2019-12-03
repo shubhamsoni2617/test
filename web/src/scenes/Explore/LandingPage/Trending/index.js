@@ -26,8 +26,8 @@ const Trending = ({ trending }) => {
     infinite: false,
     speed: 500,
     row: 1,
-    slidesToShow: 4,
-    slidesToScroll: 4
+    slidesToShow: 5,
+    slidesToScroll: 5
   };
 
   return (
