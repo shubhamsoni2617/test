@@ -48,6 +48,7 @@ const SliderBanner = ({ data }) => {
                   height="349px"
                   loop={false}
                   controls
+                  light={true}
                   onPlay={() => {
                     let arr = [...imageArr];
                     arr[i].isPlaying = true;
