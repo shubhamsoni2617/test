@@ -30,11 +30,11 @@
     .banner-content{
         flex: 0 0 100%;
         width: 100%;
-        padding: 0px 0px 0px 40px;
+        padding: 0px 0px 0px 80px;
         position: relative;
         height: 100%;
         @media(max-width: 1024px){
-            padding: 0px 0px 0px 40px;
+            padding: 0px 0px 0px 50px;
         }
         @media(max-width: 768px){
             padding: 0px;
@@ -1162,6 +1162,42 @@
                         }
                     }
                 }
+            }
+        }
+    }
+    // .container-fluid{
+    //     padding-right: 80px;
+    //     padding-left: 80px;
+    //     @media (min-width: 767px){
+    //         padding-right: 80px;
+    //         padding-left: 80px;
+    //     }
+    //     @media (max-width: 1024px){
+    //         padding-right: 30px;
+    //         padding-left: 30px;
+    //     }
+    //     @media (max-width: 767px){
+    //         padding-right: 10px;
+    //         padding-left: 10px;
+    //     }
+        
+    // }
+    .container-fluid > div {
+        padding-left: 40px;
+        padding-right: 40px;
+        @media(max-width: 1024px){
+            padding-left: 10px;
+            padding-right: 10px;
+        }
+        @media(max-width: 767px){
+            padding-left: 0px;
+            padding-right: 0px;
+        }
+    }
+    .whtsup-wrapper, .festivals-wrapper{
+        @media (max-width: 768px){
+            .container-fluid{
+                padding-right: 0;
             }
         }
     }
