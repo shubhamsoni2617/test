@@ -270,6 +270,7 @@
                 background-color: transparent;
                 @media(max-width: 991px){
                     flex: 0 0 100%;
+                    min-height: inherit;
                 }
             }
             .hotshow-content{
