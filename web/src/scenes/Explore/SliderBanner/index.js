@@ -4,13 +4,19 @@ import './style.scss';
 import ReactPlayer from 'react-player';
 
 const SliderBanner = ({ data }) => {
+  console.log(
+    data.map(el => {
+      return { ...el, isPlaying: true };
+    })
+  );
   const [imageArr, setImageArr] = useState(
     data.map(el => {
-      return { ...el, isPlaying: false };
+      return { ...el, isPlaying: true };
     })
   );
 
   const [autoplay, setAutoPlay] = useState(true);
+  const [light, set] = useState(true);
 
   const settings = {
     dots: true,
@@ -19,7 +25,7 @@ const SliderBanner = ({ data }) => {
     speed: 500,
     rows: 1,
     slidesPerRow: 1,
-    autoplay: autoplay,
+    // autoplay: autoplay,
     beforeChange: () => {
       let arr = [...imageArr];
       let newArr = arr.map(el => {
