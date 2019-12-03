@@ -6,7 +6,7 @@ import ReactPlayer from 'react-player';
 const SliderBanner = ({ data }) => {
   const [imageArr, setImageArr] = useState(
     data.map(el => {
-      return { ...el, isPlaying: false };
+      return { ...el, isPlaying: true };
     })
   );
 
