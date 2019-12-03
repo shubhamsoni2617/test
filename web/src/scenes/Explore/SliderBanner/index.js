@@ -19,11 +19,12 @@ const SliderBanner = ({ data }) => {
     speed: 500,
     rows: 1,
     slidesPerRow: 1,
-    autoplay: autoplay,
-    beforeChange: () => {
+    // autoplay: autoplay,
+    beforeChange: (prev, currentIndex) => {
       let arr = [...imageArr];
       let newArr = arr.map(el => {
-        return { ...el, isPlaying: false };
+        console.log(el);
+        return { ...el, isPlaying: true };
       });
       setImageArr(newArr);
     }

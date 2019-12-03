@@ -125,8 +125,8 @@ const CustomSectionThree = ({ heading, customData, isHomePage }) => {
                 {!isHomePage && (
                   <span>
                     {channelTitle} {channelTitle ? ' . ' : null}{' '}
-                    {views !== ' views' ? views : null} {views ? ' . ' : null}{' '}
-                    {postedDate}
+                    {views !== ' views' ? views : null}{' '}
+                    {views !== ' views' ? ' . ' : null} {postedDate}
                   </span>
                 )}
               </div>
