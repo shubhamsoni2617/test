@@ -128,7 +128,7 @@ const CustomSectionTwo = ({ heading, customData, url, isMoreFrom }) => {
                               src={elem.full_image}
                               alt={elem.alt_text}
                               className="img-fluid"
-                              type="Smaller"
+                              type="BigBanner"
                             />
                           </div>
 

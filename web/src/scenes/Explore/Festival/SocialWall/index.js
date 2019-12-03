@@ -16,7 +16,7 @@ const SocialWall = ({ socialUrl }) => {
         // .get(`${socialUrl}/?access_token=` + Constants.INSTAGRAM_ACCESS_TOKEN)
         .get(
           `https://api.instagram.com/v1/users/self/media/recent/?access_token=` +
-            Constants.INSTAGRAM_ACCESS_TOKEN
+          Constants.INSTAGRAM_ACCESS_TOKEN
         )
         .then(result => {
           setFeeds(result.data.data);
@@ -39,19 +39,21 @@ const SocialWall = ({ socialUrl }) => {
         {feeds && (
           <section className="sistic-moments">
             <div className="container-fluid">
-              <h2>SocialWall</h2>
-              <div className="sistic-moments-wrapper">
-              {feeds &&
-                feeds.map(feed => (
-                  <img
-                    key={feed.id}
-                    src={feed.images.thumbnail.url}
-                    height={feed.images.thumbnail.height}
-                    width={feed.images.thumbnail.width}
-                    alt=""
-                  />
-                ))}
-            </div>
+              <div className="social-wall">
+                <h2>SocialWall</h2>
+                <div className="sistic-moments-wrapper">
+                  {feeds &&
+                    feeds.map(feed => (
+                      <img
+                        key={feed.id}
+                        src={feed.images.thumbnail.url}
+                        height={feed.images.thumbnail.height}
+                        width={feed.images.thumbnail.width}
+                        alt=""
+                      />
+                    ))}
+                </div>
+              </div>
             </div>
           </section>
         )}

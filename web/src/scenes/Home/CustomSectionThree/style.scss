@@ -38,7 +38,8 @@
         }
         h3{
             padding-top: 15px;
-            font-size: 15px;
+            font-size: 16px;
+            color: #343434;
             line-height: 18px;
             transition: 0.5s color;
             -webkit-transition: 0.5s color;
@@ -53,6 +54,11 @@
             h3{
                 color: #0098ff;
             }
+        }
+        span{
+            color: #626262;
+            font-size: 14px;
+            line-height: 22px;
         }
     }
     .video-subwrapper{
@@ -165,6 +171,8 @@
             .video-restrict-overlay{
               pointer-events: none;
               position: relative;
+              height: 100%;
+              width: 100%;
               .video-duration {
                 position: absolute;
                 right: 3px;

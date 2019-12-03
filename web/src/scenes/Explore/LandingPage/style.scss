@@ -18,8 +18,6 @@
 .explore-page-banner {
     background-color: #091118;
     color: #fff;
-    display: flex;
-    flex-wrap: wrap;
     overflow: hidden;
     min-height: 377px;
     position: relative;
@@ -30,11 +28,11 @@
     .banner-content{
         flex: 0 0 100%;
         width: 100%;
-        padding: 0px 0px 0px 40px;
+        padding: 0px 0px 0px 80px;
         position: relative;
         height: 100%;
         @media(max-width: 1024px){
-            padding: 0px 0px 0px 40px;
+            padding: 0px 0px 0px 50px;
         }
         @media(max-width: 768px){
             padding: 0px;
@@ -83,9 +81,9 @@
                 line-height: 20px;
                 padding-bottom: 0px;
                 margin-bottom: 5px;
-                height: 40px;
+                height: 36px;
                 overflow: hidden;
-                min-height: 40px;
+                min-height: 36px;
                 display: -webkit-box;
                 -webkit-line-clamp: 2;
                 overflow: hidden;
@@ -503,6 +501,16 @@
         }
     }
 }
+.festivals-wrapper{
+    .carousel-dots{
+        @media(max-width: 1023px){
+            padding-right: 30px;
+        }
+        @media(max-width: 767px){
+            padding-right: 10px;
+        }
+    }
+}
 .home-page-wrapper{
     .section-top-wrapper{
         a{
@@ -825,6 +833,7 @@
                         display: flex;
                         flex-direction: column;
                         justify-content: space-between;
+                        padding-bottom: 8px;
                     }
                     @media(max-width: 576px){
                         padding-left: 10px;
@@ -849,6 +858,7 @@
                             margin-bottom: 0px;
                             padding-bottom: 0px;
                             padding-top: 0px;
+                            height: 80px;
                         }
                     }
                     .review-subtext{
@@ -859,6 +869,9 @@
                         padding-bottom: 0px;
                         margin-bottom: 0px;
                         display: inline-block;
+                        @media(max-width: 768px){
+                            margin-top: -14px;
+                        }
                     }
                 }
                 &:hover{
@@ -1162,6 +1175,42 @@
                         }
                     }
                 }
+            }
+        }
+    }
+    // .container-fluid{
+    //     padding-right: 80px;
+    //     padding-left: 80px;
+    //     @media (min-width: 767px){
+    //         padding-right: 80px;
+    //         padding-left: 80px;
+    //     }
+    //     @media (max-width: 1024px){
+    //         padding-right: 30px;
+    //         padding-left: 30px;
+    //     }
+    //     @media (max-width: 767px){
+    //         padding-right: 10px;
+    //         padding-left: 10px;
+    //     }
+        
+    // }
+    .container-fluid > div {
+        padding-left: 40px;
+        padding-right: 40px;
+        @media(max-width: 1024px){
+            padding-left: 10px;
+            padding-right: 10px;
+        }
+        @media(max-width: 767px){
+            padding-left: 0px;
+            padding-right: 0px;
+        }
+    }
+    .whtsup-wrapper, .festivals-wrapper{
+        @media (max-width: 768px){
+            .container-fluid{
+                padding-right: 0;
             }
         }
     }

@@ -8,6 +8,7 @@
     .section-top-wrapper{
         h2{
             color: #fff;
+            padding-left: 5px;
         }
     }
     .royal-side-padding{
@@ -22,7 +23,7 @@
         display: flex;
         flex-wrap: wrap;
         width: 100%;
-        padding-top: 5px;
+        padding: 5px 5px 0;
         @media(max-width: 1180px) and (min-width: 1025px){
             align-items: center;
         }
@@ -305,7 +306,7 @@
                     /* autoprefixer: off */ -webkit-box-orient: vertical; /* autoprefixer: on */
                 }
                 p{
-                    font-size: 13px;
+                    font-size: 14px;
                     line-height: 22px;
                     color: #B5BDC3;
                     @media(max-width: 767px){
