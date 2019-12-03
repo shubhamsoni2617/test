@@ -81,9 +81,9 @@
                 line-height: 20px;
                 padding-bottom: 0px;
                 margin-bottom: 5px;
-                height: 40px;
+                height: 36px;
                 overflow: hidden;
-                min-height: 40px;
+                min-height: 36px;
                 display: -webkit-box;
                 -webkit-line-clamp: 2;
                 overflow: hidden;
@@ -501,6 +501,16 @@
         }
     }
 }
+.festivals-wrapper{
+    .carousel-dots{
+        @media(max-width: 1023px){
+            padding-right: 30px;
+        }
+        @media(max-width: 767px){
+            padding-right: 10px;
+        }
+    }
+}
 .home-page-wrapper{
     .section-top-wrapper{
         a{
@@ -823,6 +833,7 @@
                         display: flex;
                         flex-direction: column;
                         justify-content: space-between;
+                        padding-bottom: 8px;
                     }
                     @media(max-width: 576px){
                         padding-left: 10px;
@@ -847,6 +858,7 @@
                             margin-bottom: 0px;
                             padding-bottom: 0px;
                             padding-top: 0px;
+                            height: 80px;
                         }
                     }
                     .review-subtext{
@@ -857,6 +869,9 @@
                         padding-bottom: 0px;
                         margin-bottom: 0px;
                         display: inline-block;
+                        @media(max-width: 768px){
+                            margin-top: -14px;
+                        }
                     }
                 }
                 &:hover{
