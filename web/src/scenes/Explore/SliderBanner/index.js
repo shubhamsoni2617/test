@@ -11,6 +11,7 @@ const SliderBanner = ({ data }) => {
   );
 
   const [autoplay, setAutoPlay] = useState(true);
+  const [vdoIndex, setVdoIndex] = useState(null);
 
   const settings = {
     dots: true,
@@ -19,14 +20,13 @@ const SliderBanner = ({ data }) => {
     speed: 500,
     rows: 1,
     slidesPerRow: 1,
-    // autoplay: autoplay,
-    beforeChange: (prev, currentIndex) => {
-      let arr = [...imageArr];
-      let newArr = arr.map(el => {
-        console.log(el);
-        return { ...el, isPlaying: true };
-      });
-      setImageArr(newArr);
+    autoplay: autoplay,
+    beforeChange: () => {
+      if (vdoIndex) {
+        let arr = [...imageArr];
+        arr[vdoIndex].isPlaying = false;
+        setImageArr(arr);
+      }
     }
   };
 
@@ -55,6 +55,7 @@ const SliderBanner = ({ data }) => {
                     arr[i].isPlaying = true;
                     setImageArr(arr);
                     setAutoPlay(false);
+                    setVdoIndex(i);
                   }}
                   playing={dataObj.isPlaying}
                 />
