@@ -1,10 +1,16 @@
 .articlelist-wrapper.events-page-wrapper{
     .breadcrumbs{
         margin-top: -123px;
+        @media(max-width: 768px){
+            margin-top: -30px;
+        }
         .banner-overlay{
             top: 50%;
             transform: translateY(-50%);
             padding-top: 120px;
+            @media(max-width: 768px){
+                padding-top: 100px;
+            }
         }
         .breadcrumb{
             li{
@@ -353,11 +359,14 @@
             .item-bottom {
                 display: flex;
                 flex-wrap: wrap;
-                align-items: flex-start;
+                align-items: flex-end;
                 min-height: 18px;
                 @media(max-width: 1024px){
                     height: 100%;
                     margin-top: 5px;
+                }
+                @media(min-width: 601px) and (max-width: 965px) and (orientation: portrait){
+                    height: auto;
                 }
                 span{
                     color: #626262;
