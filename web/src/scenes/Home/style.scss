@@ -4719,7 +4719,8 @@ section{
 								line-height: 13px;
 								padding-right: 4px;
 								flex: 0 0 100%;
-								max-width: 100%;
+                                max-width: 100%;
+                                min-height: 18px;
 							}
 							.category {
 								color: #ffffff;
