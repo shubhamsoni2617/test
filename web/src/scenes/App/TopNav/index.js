@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import jsonp from 'jsonp';
 import { Link } from 'react-router-dom';
 import { CSSTransition } from 'react-transition-group';
 import moment from 'moment';
@@ -60,6 +61,7 @@ function List({ data, type, menueStatus, setMenuStatus, closeSubmenu, link }) {
 
 const TopNav = props => {
   let refValue = useRef();
+  const [cartData, setCartData] = useState({});
   const [showMegaMenu, setShowMegaMenu] = useState(false);
   const [filteredDateRange, setFilteredDateRange] = useState({
     from: '',
@@ -93,12 +95,38 @@ const TopNav = props => {
       : []
   );
   const miniCartData = [
-    { id: '1', img: 'assets/images/explore.png' },
-    { id: '2', img: 'assets/images/explore.png' },
-    { id: '3', img: 'assets/images/explore.png' }
+    {
+      product: {
+        productId: 1433134,
+        productName: 'Dream Reminiscences 声琴忆梦',
+        productDate: '2019-12-07T20:00:00+08:00',
+        venue: 'SCO Concert Hall'
+      },
+      quantity: 1
+    },
+    {
+      product: {
+        productId: 1479345,
+        productName: 'In Conversation with President Barack Obama',
+        productDate: '2019-12-16T11:30:00+08:00',
+        venue: 'Singapore Expo Hall 3'
+      },
+      quantity: 1
+    }
   ];
-
   useEffect(() => {
+    jsonp(
+      'https://ticketing.stixcloudtest.com/sistic/patron/checkcart/portal',
+      null,
+      (err, data) => {
+        if (err) {
+          console.error(err.message);
+        } else {
+          console.log(data);
+          setCartData(data);
+        }
+      }
+    );
     fetchMostViewedService();
     if (window.__INITIAL_DATA__ && window.__INITIAL_DATA__.venuesData) {
       setByVenueEvent(window.__INITIAL_DATA__.venuesData.data);
@@ -335,17 +363,41 @@ const TopNav = props => {
                     </a>
                     <span></span>
                   </li> */}
-                <li className="user-icon">
-                  <a href="https://ticketing.sistic.com.sg/sistic/patron/management">
-                    <img src={MainLogo} className="img-fluid" alt="send" />
-                  </a>
-                  <span></span>
-                  {/* <ul class="header-submenu">
-                      <li><a href="">My Account</a></li>
-                      <li><a href="">Logout</a></li>
-                    </ul> */}
+                <li className="user-icon has-submenu">
+                  <img src={MainLogo} className="img-fluid" alt="send" />
+
+                  {cartData && cartData.loginStatus === 0 ? (
+                    <>
+                      <span className="login"></span>
+                      <ul class="header-submenu">
+                        <li>
+                          <a href={Constants.SISTIC_MY_ACCOUNT_URL}>
+                            My Account
+                          </a>
+                        </li>
+                        <li>
+                          <a href={Constants.SISTIC_LOGOUT_URL}>Logout</a>
+                        </li>
+                      </ul>
+                    </>
+                  ) : (
+                    <>
+                      <span className=""></span>
+
+                      <ul class="header-submenu">
+                        <li>
+                          <a href={Constants.SISTIC_LOGIN_URL}>
+                            Login/ Sign Up
+                          </a>
+                        </li>
+                      </ul>
+                    </>
+                  )}
                 </li>
-                <MiniCart data={miniCartData} />
+                <MiniCart
+                  data={cartData.lineItemList || miniCartData}
+                  cartDataCount={cartData.totalLineItems}
+                />
                 <li className="ticket-withus">
                   <Link to="/corporate/ticket-with-us">Ticket With Us</Link>
                 </li>
@@ -432,11 +484,17 @@ const TopNav = props => {
             ></a>
             <ul className="user-details">
               <li className="user-icon">
-                <a href="https://ticketing.sistic.com.sg/sistic/patron/management">
+                <a>
                   <img src={MainLogo} className="img-fluid" alt="send" />
-                  <span></span>
+                  <span
+                    className={
+                      cartData && cartData.loginStatus === 0 ? 'login' : ''
+                    }
+                  ></span>
                 </a>
-                <span>Login/ Register</span>
+                {cartData.loginStatus === 1 && (
+                  <a href={Constants.SISTIC_LOGIN_URL}>Login/ Sign Up</a>
+                )}
               </li>
               <li className="ticket-withus">
                 <Link to="/corporate/ticket-with-us">Ticket With Us</Link>
@@ -567,7 +625,7 @@ const TopNav = props => {
                 </Link>
               </li>
             </ul>
-            <ul>
+            {/* <ul>
               <li className="has-submenu">
                 <Submenu>
                   {(menueStatus, setMenuStatus) => (
@@ -591,7 +649,7 @@ const TopNav = props => {
                             <Link to="/">Booking History</Link>
                           </li>
                           <li className="has-submenu">
-                            <Link to="/">Logout</Link>
+                            <a href={Constants.SISTIC_LOGOUT_URL}>Logout</a>
                           </li>
                         </ul>
                       </SubmenuWrap>
@@ -630,7 +688,8 @@ const TopNav = props => {
                   )}
                 </Submenu>
               </li>
-            </ul>
+            </ul> */}
+
             <ul>
               <li className="has-submenu">
                 <Submenu>
@@ -666,6 +725,14 @@ const TopNav = props => {
                   )}
                 </Submenu>
               </li>
+              <ul>
+                <li>
+                  <a href={Constants.SISTIC_MY_ACCOUNT_URL}>My Account</a>
+                </li>
+                <li>
+                  <a href={Constants.SISTIC_LOGOUT_URL}>Logout</a>
+                </li>
+              </ul>
               <li className="has-submenu">
                 <Submenu>
                   {(menueStatus, setMenuStatus) => (
@@ -724,6 +791,7 @@ const TopNav = props => {
                 <Link to="/">For Business</Link>
               </li>
             </ul>
+
             <ul>
               <li className="social-links">
                 <span>Follow us on</span>

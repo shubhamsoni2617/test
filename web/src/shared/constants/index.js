@@ -19,8 +19,18 @@ class Constants {
   static SOURCE_FROM_MOBILE_RESPONSIVE = 3;
   static LIMIT = Utilities.mobileAndTabletcheck() ? 6 : 9;
   static SITE_KEY = '6LedScEUAAAAALMkHkGFibsc4yNxrajcV6wijeuP';
-  static SISTIC_APP_STORE_URL ='https://itunes.apple.com/sg/app/sistic/id500601166?mt=8';
-  static SISTIC_PLAY_STORE_URL = 'https://play.google.com/store/apps/details?id=com.rainmakerlabs.sistic&hl=en';
+  static SISTIC_APP_STORE_URL =
+    'https://itunes.apple.com/sg/app/sistic/id500601166?mt=8';
+  static SISTIC_PLAY_STORE_URL =
+    'https://play.google.com/store/apps/details?id=com.rainmakerlabs.sistic&hl=en';
+  static SISTIC_MY_ACCOUNT_URL =
+    'https://ticketing.stixcloudtest.com/sistic/patron/management';
+  static GO_TO_URL = 'http://localhost:3000';
+  static SISTIC_LOGIN_URL = `https://ticketing.stixcloudtest.com/sistic/loginredirect?gotoUrl=${encodeURIComponent(
+    this.GO_TO_URL
+  )}`;
+  static SISTIC_LOGOUT_URL =
+    'https://ticketing.stixcloudtest.com/sistic/logout';
 }
 
 export default Constants;

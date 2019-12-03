@@ -1,8 +1,8 @@
-import React, { Component } from "react";
-import { Link } from "react-router-dom";
-import "./style.scss";
-import MiniCartLogo from "../../../assets/images/cart.svg";
-import exploreImg from "../../../assets/images/explore.png";
+import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
+import './style.scss';
+import MiniCartLogo from '../../../assets/images/cart.svg';
+import exploreImg from '../../../assets/images/explore.png';
 
 class MiniCart extends Component {
   constructor(props) {
@@ -14,11 +14,11 @@ class MiniCart extends Component {
 
   toggle = () => {
     if (!this.state.isOpen) {
-      window.addEventListener("click", this.handleOutsideClick, false);
-      this.node.classList.add("active");
+      window.addEventListener('click', this.handleOutsideClick, false);
+      this.node.classList.add('active');
     } else {
-      window.removeEventListener("click", this.handleOutsideClick, false);
-      this.node.classList.remove("active");
+      window.removeEventListener('click', this.handleOutsideClick, false);
+      this.node.classList.remove('active');
     }
     this.setState({ isOpen: !this.state.isOpen });
   };
@@ -30,7 +30,7 @@ class MiniCart extends Component {
   };
 
   render() {
-    const { data } = this.props;
+    const { data, cartDataCount } = this.props;
     return (
       <li
         className="cart-icon"
@@ -40,7 +40,7 @@ class MiniCart extends Component {
       >
         <Link to="/" onClick={this.toggle}>
           <img src={MiniCartLogo} className="img-fluid" alt="cart" />
-          <span>{data.length}</span>
+          <span>{cartDataCount || 0}</span>
         </Link>
         <div className="my-cart-popup">
           <div className="my-cart-wrapper">
@@ -52,9 +52,9 @@ class MiniCart extends Component {
             </div>
             <div className="cart-body">
               <ul>
-                {data.map((cart, index) => {
+                {data.map((cartElem, index) => {
                   return (
-                    <li key={cart.id}>
+                    <li key={cartElem.product.productId}>
                       <div className="product-img">
                         <img
                           src={exploreImg}
@@ -64,15 +64,15 @@ class MiniCart extends Component {
                       </div>
                       <div className="product-details">
                         <span className="product-date-time">
-                          Fri, 19 Apr- Sun, 19 May 2019
+                          {cartElem.product.productDate}
                         </span>
                         <h4 className="product-name">
-                          The Phantom Of The Opera
+                          {cartElem.product.productName}
                         </h4>
-                        <p className="product-desc">
-                          Sands Theatre, Marina Bay Sands
-                        </p>
-                        <span className="product-price">S$ 250 (Qty: 1)</span>
+                        <p className="product-desc">{cartElem.product.venue}</p>
+                        <span className="product-price">
+                          S$ 250 (Qty: {cartElem.product.productName})
+                        </span>
                       </div>
                     </li>
                   );
