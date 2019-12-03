@@ -277,6 +277,9 @@
                         width: 68%;
                         flex: 0 0 68%;
                     }
+                    @media(min-width: 601px) and (max-width: 965px){
+                        padding-right: 10px;
+                    }
                     h2{
                         color: #343434;
                         font-family: 'Montserrat', sans-serif;
@@ -437,6 +440,7 @@
                                 }
                                 @media(max-width: 767px){
                                     min-height: 65px;
+                                    width: 95%;
                                 }
                                 @media(max-width: 601px) and (max-width: 965px){
                                     min-height: 52px;
@@ -457,6 +461,16 @@
                                 &::-webkit-scrollbar-thumb{                
                                     border: none;
                                     outline: none;
+                                    @media(max-width: 991px){
+                                        max-width: 2px;
+                                        width: 2px;
+                                    }
+                                }
+                                &::-webkit-scrollbar{
+                                    @media(max-width: 991px){
+                                        max-width: 2px;
+                                        width: 2px;
+                                    }
                                 }
                                 @media (max-width: 768px) {
                                     font-size: 11px;
@@ -503,6 +517,12 @@
                                 }
                                 @media(max-width: 767px){
                                     margin: 0 5px 0 0;
+                                }
+                                @media(min-width: 601px) and (max-width: 965px){
+                                    max-width: 110px;
+                                    text-align: center;
+                                    font-size: 14px;
+                                    padding: 2px 0px;
                                 }
                                 @media(max-width: 567px){
                                     font-size: 11px;
@@ -965,9 +985,11 @@
     .polls-survey{
         background-color: #F0F9FF;
         .polls-wrapper{
-            padding: 48px 0 33px;
+            padding-top: 48px;
+            padding-bottom: 33px;
             @media(max-width: 768px){
-                padding: 20px 0 20px;
+                padding-top: 20px;
+                padding-bottom: 20px;
             }
             h2{
                 padding-bottom: 35px;
