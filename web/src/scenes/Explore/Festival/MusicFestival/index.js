@@ -13,43 +13,44 @@ const MusicFestival = ({ sectionThree }) => {
     autoplay: false,
     speed: 500,
     slidesToShow: 1,
-    slidesToScroll: 1
+    slidesToScroll: 1,
+    adaptiveHeight: true
   };
 
   return sectionThree &&
     ((sectionThree.sub_section_three &&
       sectionThree.sub_section_three.length > 0) ||
       sectionThree.heading) ? (
-    <section>
-      <div className="container-fluid">
-        <div className="music-fest">
-          <h2>{sectionThree.heading}</h2>
-          <Slider {...settings}>
-            {sectionThree.sub_section_three &&
-              sectionThree.sub_section_three.map(
-                ({ description, title, url, image }) => {
-                  return (
-                    <div className="music-fest-box" key={title}>
-                      <div className="fest-img">
-                        <Image src={image} type="BigBanner" />
+      <section>
+        <div className="container-fluid">
+          <div className="music-fest">
+            <h2>{sectionThree.heading}</h2>
+            <Slider {...settings}>
+              {sectionThree.sub_section_three &&
+                sectionThree.sub_section_three.map(
+                  ({ description, title, url, image }) => {
+                    return (
+                      <div className="music-fest-box" key={title}>
+                        <div className="fest-img">
+                          <Image src={image} type="BigBanner" />
+                        </div>
+                        <div className="fest-cont">
+                          <h2>{title}</h2>
+                          <p
+                            dangerouslySetInnerHTML={{
+                              __html: Utilities.showLimitedChars(description, 500)
+                            }}
+                          ></p>
+                        </div>
                       </div>
-                      <div className="fest-cont">
-                        <h2>{title}</h2>
-                        <p
-                          dangerouslySetInnerHTML={{
-                            __html: Utilities.showLimitedChars(description, 500)
-                          }}
-                        ></p>
-                      </div>
-                    </div>
-                  );
-                }
-              )}
-          </Slider>
+                    );
+                  }
+                )}
+            </Slider>
+          </div>
         </div>
-      </div>
-    </section>
-  ) : null;
+      </section>
+    ) : null;
 };
 
 export default MusicFestival;
