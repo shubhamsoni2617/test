@@ -1475,3 +1475,31 @@ input:disabled {
 		}
 	}
 }
+
+// video 
+.react-player__preview{
+	.react-player__shadow{
+		border: 3px solid #FFFFFF;
+		width: 83px !important;
+		height: 81px !important;
+		background: none !important;
+		
+		.react-player__play-icon{
+			background-image: url('../images/playwithoutcircle.svg');
+			border: none !important;
+			height: 30px;
+			width: 30px;
+			background-size: contain;
+			background-repeat: no-repeat;
+			margin-left: 0 !important;
+		}
+		@media(max-width: 576px){
+			width: 40px !important;
+			height: 40px !important;
+			.react-player__play-icon{
+				height: 15px;
+    			width: 15px;
+			}
+		}
+	}
+}
