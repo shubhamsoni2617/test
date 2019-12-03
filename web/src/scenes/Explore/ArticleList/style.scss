@@ -626,7 +626,11 @@
                     }
                 }
             }
-
+            .filter-fixed-btn{
+              @media(min-width: 601px) and (max-width: 965px) and (orientation: landscape){
+                display: none !important;
+              }
+            }
         }
     }
 }
