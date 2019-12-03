@@ -80,6 +80,7 @@
                     color: #0098ff;
                     a{
                         color: #0098ff;
+                        font-size: 16px;
                     }
                 }
             }
@@ -95,6 +96,7 @@
                 }
                 @media(max-width: 991px){
                     min-height: 106px;
+                    max-height: inherit;
                 }
                 @media(max-width: 767px){
                     min-height: 120px;
@@ -136,6 +138,8 @@
                 a{
                     color: #343434;
                     font-weight: 500;
+                    font-size: 16px;
+                    line-height: 20px;
                 }
                 span{
                     margin-top: 10px;
