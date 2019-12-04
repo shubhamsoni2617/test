@@ -33,6 +33,7 @@ const CustomSectionThree = ({ heading, customData, isHomePage }) => {
       setData(customData);
       setUrl(customData[0].video_url);
       setTitle(customData[0].title);
+      setChannelTitle(!isHomePage && customData[0].channel_title);
       setViews(!isHomePage && customData[0].count);
       setPostedDate(!isHomePage && customData[0].posted_date);
       setVdoIndex(0);

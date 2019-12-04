@@ -25,6 +25,52 @@ const AgentVenuePopUp = props => {
     isFile = Utilities.isFileExt(popUpDetail.festive_hours_file);
   }
 
+
+  const isContent = popUpDetail => {
+        if (popUpDetail) {
+          const {
+            address,
+            country,
+            festive_hours,
+          how_to_get_there,
+          image,
+           name,
+           nearest_mrt,
+           operating_hours,
+            parking,
+            payment_mode,
+            region,
+            reminder,
+            contact_details,
+            seating_capacity,
+          food_beverages
+          } = popUpDetail;
+          if (
+            !venue &&
+            (how_to_get_there ||
+              parking ||
+              operating_hours ||
+              payment_mode ||
+              isFile ||
+              payment_mode ||
+              reminder)
+          ) {
+            return true;
+        } else {
+           if (
+             venue &&
+            (how_to_get_there ||
+             parking ||
+             food_beverages.length > 0 ||
+               contact_details ||
+               seating_capacity)
+           ) {
+           return true;
+          }
+         }
+        }
+      };
+
   const showFoodNBeverage = foodNBeverage => {
     return foodNBeverage.map((elem, index) => {
       return (
@@ -51,10 +97,11 @@ const AgentVenuePopUp = props => {
   }
 
   return (
+   
     <div
-      className={`pop-up-list ${item.id === popUpDetail.id ? 'active' : ''}`}
+      className={`pop-up-list ${item.id === popUpDetail.id && isContent(popUpDetail) !== undefined ? 'active' : ''}`}
     >
-      <div className="popup-inner">
+      {isContent(popUpDetail) && <div className="popup-inner">
         <a
           href={`http://maps.google.com/?q=${popUpDetail &&
             popUpDetail.latitude},${popUpDetail && popUpDetail.longitude}`}
@@ -191,7 +238,7 @@ const AgentVenuePopUp = props => {
             </div>
             <div className="details">
               <h3>Ticket pick up Reminder</h3>
-              <p dangerouslySetInnerHTML={{ _html: popUpDetail.reminder }}></p>
+              <p dangerouslySetInnerHTML={{__html:popUpDetail.reminder}}></p>
             </div>
           </div>
         ) : null}
@@ -250,7 +297,7 @@ const AgentVenuePopUp = props => {
             </div>
           </div>
         )}
-      </div>
+      </div>}
     </div>
   );
 };
