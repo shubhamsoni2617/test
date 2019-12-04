@@ -60,7 +60,7 @@ const StayUpdated = ({
                   options={submit ? [] : options}
                   multiple
                   onSelect={onSelect}
-                  placeholder="Select Area(s) of interest *"
+                  placeholder="Select Area(s) of interest"
                   onClickSubmit={onClickSubmit}
                 />
               </div>
@@ -73,13 +73,14 @@ const StayUpdated = ({
                 className={errMsg && !email ? 'form-group err' : 'form-group'}
               >
                 <input
-                  className="form-control email"
+                  className="form-control email custom-required"
                   name="email"
                   type="email"
-                  placeholder="Enter Your Email *"
+                  //placeholder=""
                   value={email}
                   onChange={e => handleEmail(e.target.value)}
                 />
+                {!email && <label className="custom-label">Enter Your Email</label>}
               </div>
               {errMsg && !email ? (
                 <span className="text-danger">Please enter your email    </span>
