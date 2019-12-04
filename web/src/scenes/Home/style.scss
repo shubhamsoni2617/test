@@ -584,7 +584,7 @@
 								}
                             }
                         }
-						&.active {
+						&:hover {
 							.my-cart-popup {
 								width: 400px;
 								opacity: 1;
@@ -4946,7 +4946,7 @@ section{
 						flex: 0 0 75%;
 						text-align: right;
 					}
-					button {
+					button, a {
 						height: auto;
 						width: auto;
 						font-family: 'Montserrat', sans-serif;
@@ -4955,6 +4955,14 @@ section{
 						line-height: 19px;
 						padding: 8px 14px;
 						display: inline-block;
+						background-color: #0098ff;
+						border: 1px solid transparent;
+						transition: 0.5s background-color, 0.3s border-color, 0.3s color;
+						&:hover{
+							color: #0098ff;
+							background-color: transparent;
+							border-color: #0098ff;
+						}
 						@media (max-width: 767px) {
 							height: 30px;
 							width: 90%;

@@ -95,24 +95,24 @@ const TopNav = props => {
       : []
   );
   const miniCartData = [
-    {
-      product: {
-        productId: 1433134,
-        productName: 'Dream Reminiscences 声琴忆梦',
-        productDate: '2019-12-07T20:00:00+08:00',
-        venue: 'SCO Concert Hall'
-      },
-      quantity: 1
-    },
-    {
-      product: {
-        productId: 1479345,
-        productName: 'In Conversation with President Barack Obama',
-        productDate: '2019-12-16T11:30:00+08:00',
-        venue: 'Singapore Expo Hall 3'
-      },
-      quantity: 1
-    }
+    // {
+    //   product: {
+    //     productId: 1433134,
+    //     productName: 'Dream Reminiscences 声琴忆梦',
+    //     productDate: '2019-12-07T20:00:00+08:00',
+    //     venue: 'SCO Concert Hall'
+    //   },
+    //   quantity: 1
+    // },
+    // {
+    //   product: {
+    //     productId: 1479345,
+    //     productName: 'In Conversation with President Barack Obama',
+    //     productDate: '2019-12-16T11:30:00+08:00',
+    //     venue: 'Singapore Expo Hall 3'
+    //   },
+    //   quantity: 1
+    // }
   ];
   useEffect(() => {
     jsonp(
@@ -397,6 +397,7 @@ const TopNav = props => {
                 <MiniCart
                   data={cartData.lineItemList || miniCartData}
                   cartDataCount={cartData.totalLineItems}
+                  timeLeft={cartData.timeLeftSeconds}
                 />
                 <li className="ticket-withus">
                   <Link to="/corporate/ticket-with-us">Ticket With Us</Link>

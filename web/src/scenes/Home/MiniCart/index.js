@@ -3,7 +3,9 @@ import { Link } from 'react-router-dom';
 import './style.scss';
 import MiniCartLogo from '../../../assets/images/cart.svg';
 import exploreImg from '../../../assets/images/explore.png';
-
+import moment from 'moment';
+import CartTimer from './CartTimer';
+import Constants from '../../../shared/constants';
 class MiniCart extends Component {
   constructor(props) {
     super(props);
@@ -30,7 +32,8 @@ class MiniCart extends Component {
   };
 
   render() {
-    const { data, cartDataCount } = this.props;
+    const { data, cartDataCount, timeLeft } = this.props;
+    console.log(timeLeft);
     return (
       <li
         className="cart-icon"
@@ -52,6 +55,7 @@ class MiniCart extends Component {
             </div>
             <div className="cart-body">
               <ul>
+                {!cartDataCount && <h3>No Item in Shopping Cart</h3>}
                 {data.map((cartElem, index) => {
                   return (
                     <li key={cartElem.product.productId}>
@@ -64,14 +68,21 @@ class MiniCart extends Component {
                       </div>
                       <div className="product-details">
                         <span className="product-date-time">
-                          {cartElem.product.productDate}
+                          {moment(cartElem.product.productDate).format(
+                            'MMMM Do YYYY'
+                          )}{' '}
+                          ({moment(cartElem.product.productDate).format('ddd')})
+                          <br />
+                          {moment(cartElem.product.productDate).format(
+                            'hh:mm A'
+                          )}
                         </span>
                         <h4 className="product-name">
                           {cartElem.product.productName}
                         </h4>
                         <p className="product-desc">{cartElem.product.venue}</p>
                         <span className="product-price">
-                          S$ 250 (Qty: {cartElem.product.productName})
+                          S$ 250 (Qty: {cartElem.quantity})
                         </span>
                       </div>
                     </li>
@@ -79,15 +90,22 @@ class MiniCart extends Component {
                 })}
               </ul>
             </div>
-            <div className="cart-footer">
-              <div className="cart-timer">
-                <span className="timer-label">Time left</span>
-                <span className="timer-time">14:59</span>
+            {cartDataCount ? (
+              <div className="cart-footer">
+                <div className="cart-timer">
+                  <span className="timer-label">Time left</span>
+                  {timeLeft > 0 ? (
+                    <CartTimer timeLeft={timeLeft} />
+                  ) : (
+                    <span className="timer-time">00:00</span>
+                  )}
+                </div>
+                <div className="cart-checkout-btn">
+                  <a href={Constants.SISTIC_GO_TO_CART}>Go to Cart</a>
+                  {/* <button>Go to Cart</button> */}
+                </div>
               </div>
-              <div className="cart-checkout-btn">
-                <button>Go to Cart</button>
-              </div>
-            </div>
+            ) : null}
           </div>
         </div>
       </li>
