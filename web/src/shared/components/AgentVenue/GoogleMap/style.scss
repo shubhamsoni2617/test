@@ -70,9 +70,9 @@
         }
         .direcrtion-icn{
             position: absolute;
-            right: 10px;
-            top: 50%;
-            transform: translateY(-50%);
+            position: absolute;
+            right: 17px;
+            top: 1px;
             @media(max-width: 767px){
                 right: 15px;
             }

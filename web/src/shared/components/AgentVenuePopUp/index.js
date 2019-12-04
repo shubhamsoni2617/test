@@ -51,6 +51,7 @@ const AgentVenuePopUp = props => {
   }
 
   return (
+   
     <div
       className={`pop-up-list ${item.id === popUpDetail.id ? 'active' : ''}`}
     >
@@ -191,7 +192,7 @@ const AgentVenuePopUp = props => {
             </div>
             <div className="details">
               <h3>Ticket pick up Reminder</h3>
-              {/* <p dangerouslySetInnerHTML={{ _html: popUpDetail.reminder }}></p> */}
+              <p dangerouslySetInnerHTML={{__html:popUpDetail.reminder}}></p>
             </div>
           </div>
         ) : null}
