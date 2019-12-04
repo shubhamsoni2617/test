@@ -7,7 +7,8 @@ class Constants {
   //     ? 'http://192.168.10.197:8081'
   //     : '';
   static API_URL = '';
-  static BASE_URL = this.API_URL + '/sistic/docroot/';
+  static DOC_ROOT_URL = '/sistic/docroot/';
+  static BASE_URL = this.API_URL + this.DOC_ROOT_URL;
   static INSTAGRAM_ACCESS_TOKEN =
     '3225660226.f09c095.d66beeb477664e4091320bcfe6e3991a';
   static MOBILE_BREAK_POINT = 767;
