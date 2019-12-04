@@ -1,9 +1,9 @@
 .banner .banner-carousel{
     .slick-slide:not(.slick-active) > div { 
         // transform: scale(.85); 
-        transform: scaleX(.86) scaleY(.8) translateY(40px) !important; 
+        transform: scaleX(.9) scaleY(.8) translateY(40px) !important; 
         @media(max-width: 991px) {
-            transform: scaleX(.86) scaleY(.7) translateY(40px) !important; 
+            transform: scaleX(.9) scaleY(.7) translateY(40px) !important; 
         }
         @media(max-width: 767px) {
             transform: scaleX(0.9) scaleY(0.7) translateY(15px) !important; 
