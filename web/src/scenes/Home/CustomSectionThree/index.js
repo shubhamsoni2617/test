@@ -125,8 +125,8 @@ const CustomSectionThree = ({ heading, customData, isHomePage }) => {
                 {!isHomePage && (
                   <span>
                     {channelTitle} {channelTitle ? ' . ' : null}{' '}
-                    {views !== ' views' ? views : null} {views ? ' . ' : null}{' '}
-                    {postedDate}
+                    {views !== ' views' ? views : null}{' '}
+                    {views !== ' views' ? ' . ' : null} {postedDate}
                   </span>
                 )}
               </div>
@@ -193,11 +193,10 @@ const CustomSectionThree = ({ heading, customData, isHomePage }) => {
                                 className="img-fluid"
                                 type="VdoSmall"
                               />
-                              {!isHomePage && (
-                                <span className="video-duration">
-                                  {duration && duration[index]}
-                                </span>
-                              )}
+
+                              <span className="video-duration">
+                                {duration && duration[index]}
+                              </span>
                             </div>
                           </span>
                           <div className="video-subwrapper-text">
