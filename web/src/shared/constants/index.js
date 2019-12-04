@@ -4,7 +4,7 @@ class Constants {
   static WEBSITE_URL = 'http://sistic.com';
   static API_URL =
     typeof navigator === 'undefined' || typeof window === 'undefined'
-      ? 'http://35.240.148.94:8081'
+      ? 'http://192.168.10.197:8081'
       : '';
   static BASE_URL = this.API_URL + '/sistic/docroot/';
   static INSTAGRAM_ACCESS_TOKEN =
