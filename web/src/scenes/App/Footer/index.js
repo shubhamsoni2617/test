@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import './style.scss';
 import appleImage from '../../../assets/images/apple.svg';
@@ -14,6 +14,27 @@ import Utilities from '../../../shared/utilities';
 import NewsLetterForm from '../../../shared/components/NewsLetterForm';
 
 const Footer = () => {
+  const [yOffset, setYOffset] = useState(0);
+  useEffect(() => {
+    window.addEventListener('scroll', listenToScroll);
+    return () => {
+      window.removeEventListener('scroll', listenToScroll);
+    };
+  }, [window.screenTop]);
+
+  const listenToScroll = () => {
+    const winScroll =
+      document.body.scrollTop || document.documentElement.scrollTop;
+
+    const height =
+      document.documentElement.scrollHeight -
+      document.documentElement.clientHeight;
+
+    const scrolled = winScroll / height;
+
+    setYOffset(scrolled);
+  };
+
   const ourCompanyLinks = [
     { link: 'corporate/about-us', linkName: 'About Us' },
     {
@@ -46,6 +67,7 @@ const Footer = () => {
     { link: '', linkName: 'Cancellations/Refunds' },
     { link: 'contact-us', linkName: 'Contact Us' }
   ];
+
   return (
     <footer id="footer">
       <section className="footer">
@@ -156,7 +178,7 @@ const Footer = () => {
           </div>
         </div>
       </section>
-      {!Utilities.mobilecheck() && (
+      {!Utilities.mobilecheck() && yOffset && (
         <span className="scroll-top" onClick={() => window.scrollTo(0, 0)}>
           <img src={scrollTop} alt="Scroll to top" />
         </span>

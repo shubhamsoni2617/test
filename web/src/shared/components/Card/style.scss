@@ -114,10 +114,32 @@
                 }
                 .react-modal{
                     .react-modal-body{
+                        .modal-header{
+                            .modal-title{
+                                padding-right: 0;
+                                text-transform: capitalize;
+                                p{
+                                    font-size: 22px;
+                                    color: #343434;
+                                    font-weight: 500;
+                                    word-break: break-word;
+                                    padding-right: 0;
+                                    text-transform: capitalize;
+                                }
+                            }
+                        }
                         @media(max-width: 1600px) and (min-width: 991px){
                             margin-top: 110px;
                         }
                         .modal-body{
+                            .notice{
+                                h2{
+                                    font-size: 20px;
+                                    line-height: 20px;
+                                    padding-bottom: 10px;
+                                    padding-top: 20px;
+                                }
+                            }
                             @media(max-width: 1600px) and (min-width: 991px){
                                 max-height: 350px;
                             }

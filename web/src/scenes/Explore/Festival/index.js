@@ -65,7 +65,7 @@ const Festival = ({ match }) => {
         type={type}
         propCls={`shm_col-xs-${
           Utilities.mobilecheck() ? 12 : 2
-          } col-md-${propCls}`}
+        } col-md-${propCls}`}
       />
     );
   };
@@ -164,19 +164,19 @@ const Festival = ({ match }) => {
 
   const articlesPart =
     section_six &&
-      section_six.sub_section_six &&
-      section_six.sub_section_six.length > 0 ? (
-        <Articles sectionSix={section_six} />
-      ) : loading ? (
-        <div className="shimmer-margin">
-          {reusedShimmer(
-            Utilities.mobilecheck() ? 150 : 300,
-            Utilities.mobilecheck() ? 1 : 2,
-            'TILE',
-            Utilities.mobilecheck() ? 12 : 6
-          )}
-        </div>
-      ) : null;
+    section_six.sub_section_six &&
+    section_six.sub_section_six.length > 0 ? (
+      <Articles sectionSix={section_six} />
+    ) : loading ? (
+      <div className="shimmer-margin">
+        {reusedShimmer(
+          Utilities.mobilecheck() ? 150 : 300,
+          Utilities.mobilecheck() ? 1 : 2,
+          'TILE',
+          Utilities.mobilecheck() ? 12 : 6
+        )}
+      </div>
+    ) : null;
 
   const pollNSurveysPart = section_seven ? (
     <PollNServeys sectionSeven={section_seven} />
@@ -210,26 +210,15 @@ const Festival = ({ match }) => {
       {bannerPart}
       {welcomePart}
       {festivalPart}
-      {order && order.length > 0 ? (
-        sectionArray.map(({ orderNo, returnPart }, index, array) => {
-          return order.map(serverOrderNo => {
+      {order &&
+        order.length > 0 &&
+        order.map(serverOrderNo => {
+          return sectionArray.map(({ orderNo, returnPart }) => {
             if (serverOrderNo === orderNo) {
               return returnPart;
             }
           });
-        })
-      ) : (
-          <Fragment>
-            {festivalPart}
-            {musicalPart}
-            {allEventPart}
-            {socialWallPart}
-            {ticketDealsPart}
-            {articlesPart}
-            {pollNSurveysPart}
-            {videoGalleryPart}
-          </Fragment>
-        )}
+        })}
     </div>
   );
 };
