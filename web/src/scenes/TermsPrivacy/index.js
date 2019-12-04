@@ -2,12 +2,14 @@ import React, { Fragment, useState, useEffect } from 'react';
 import termsBanner from '../../assets/images/tc-banner.png';
 import TermsAndPrivacyService from '../../shared/services/TermsAndPrivacyService';
 import './style.scss';
+import LoaderImg from '../../assets/images/loader.gif';
 
 const TermsPrivacy = ({ cmsPageType }) => {
   const [termsprivacy, setTermsPrivacy] = useState(null);
   const [tabTitle, setTabTitle] = useState('');
   const [tabDescription, setTabDescription] = useState('');
-  const [tabIndex, setTabIndex] = useState(0);
+  const [tabIndex, setTabIndex] = useState('random no');
+  const [loader, setLoader] = useState(false);
 
   let termsPrivacyArr;
 
@@ -27,6 +29,12 @@ const TermsPrivacy = ({ cmsPageType }) => {
         console.log(err);
       });
   };
+
+  useEffect(() => {
+    setTimeout(() => {
+      setLoader(false);
+    }, 1000);
+  }, [tabIndex]);
 
   const cmsPageTypeRendering = (pageType, data) => {
     switch (pageType) {
@@ -51,6 +59,7 @@ const TermsPrivacy = ({ cmsPageType }) => {
   const handleActiveTab = (title, description, i) => {
     setTabTitle(title);
     setTabDescription(description);
+    setLoader(true);
     setTabIndex(i);
     let link;
     const routeParts = title.split(' ');
@@ -121,14 +130,20 @@ const TermsPrivacy = ({ cmsPageType }) => {
           </ul>
         </div>
 
-        <div className="terms-privacy-body">
-          <div
-            className="container"
-            dangerouslySetInnerHTML={{
-              __html: tabDescription
-            }}
-          />
-        </div>
+        {loader ? (
+          <div className="text-center">
+            <img src={LoaderImg} alt="loader" />
+          </div>
+        ) : (
+          <div className="terms-privacy-body">
+            <div
+              className="container"
+              dangerouslySetInnerHTML={{
+                __html: tabDescription
+              }}
+            />
+          </div>
+        )}
       </section>
     </Fragment>
   );
