@@ -6,6 +6,7 @@ import Utilities from '../../utilities';
 import EventHeading from '../EventHeading';
 import EventStatus from '../EventStatus';
 import ModalPopup from '../../components/Modal';
+import Ellipsis from '../Ellipsis';
 
 export default class Card extends Component {
   constructor(props) {
@@ -53,7 +54,7 @@ export default class Card extends Component {
               <EventHeading
                 title={cardData.title}
                 lines={2}
-                height={Utilities.mobileAndTabletcheck() ? 16 : 20}
+                height={Utilities.mobileAndTabletcheck() ? 15 : 20}
               />
             </div>
             {cardData.synopsis && (
@@ -89,8 +90,22 @@ export default class Card extends Component {
                 )}
               </React.Fragment>
             )}
-            <p className="event-date">{cardData.event_date}</p>
-            <p className="event-place">{cardData && cardData.venue_name}</p>
+            {/* <p className="event-date">{cardData.event_date}</p> */}
+            <Ellipsis
+              title={cardData.event_date}
+              lines={2}
+              height={Utilities.mobilecheck() ? 15 : 18}
+              allowTooltip={true}
+              customClass="event-date"
+            />
+            {/* <p className="event-place">{cardData && cardData.venue_name}</p> */}
+            <Ellipsis
+              title={cardData && cardData.venue_name}
+              lines={1}
+              height={Utilities.mobilecheck() ? 15 : 18}
+              allowTooltip={false}
+              customClass="event-place"
+            />
           </div>
           <div className="price-event">
             <div className="price">
