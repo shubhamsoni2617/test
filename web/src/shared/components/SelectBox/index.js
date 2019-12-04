@@ -244,8 +244,8 @@ export default class Select extends Component {
   renderValues = () => {
     const { placeholder, multiple, submit } = this.props;
     const values = submit ? [] : this.state.values;
-    if (values.length === 0) {
-      return <div className="placeholder">{placeholder}</div>;
+    if (values.length === 0 && placeholder) {
+      return <div className="placeholder custom-label">{placeholder}</div>;
     }
 
     if (multiple) {

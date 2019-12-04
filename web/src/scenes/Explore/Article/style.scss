@@ -335,6 +335,9 @@ section.whats-new {
             max-width: 420px;
             width: 100%;
         }
+        @media(max-width: 991px) and (orientation: portrait){
+            max-width: 320px;
+        }
         .image-conatiner{
             @media(max-width: 991px){
                 width: auto;

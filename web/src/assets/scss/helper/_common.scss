@@ -1503,3 +1503,38 @@ input:disabled {
 		}
 	}
 }
+//custom label
+.custom-label{
+	color: #626262;
+	font-size: 16px;
+	padding: 0.375rem 0.75rem;
+	position: absolute;
+	top: 0px;
+	bottom: 0px;
+	left: 0px;
+	margin: 0px;
+	line-height: 26px;
+	z-index: 1;
+	@media(max-width: 991px){
+		font-size: 14px;
+		line-height: 20px;
+		min-height: 30px;
+	}
+	@media(max-width: 768px){
+		font-size: 14px;
+		line-height: 21px;
+	}
+	@media(max-width: 767px){
+		line-height: 30px;
+		min-height: 30px;
+		padding: 0px 28px 0px 0.75rem;
+	}
+	&:after {
+		position: absolute;
+		content: "*";
+		color: red;
+	}
+	&:hover{
+		cursor: auto;
+	}
+}
