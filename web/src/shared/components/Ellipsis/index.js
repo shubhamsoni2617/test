@@ -64,7 +64,7 @@ function Ellipsis(props) {
   }, [element.current, allowTooltip, props]);
 
   if (!props.title) {
-    return null;
+    return <p className={`${props.customClass ? props.customClass : ''}`}></p>;
   }
 
   return (
