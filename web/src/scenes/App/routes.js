@@ -85,7 +85,7 @@ const routes = [
     cmsPageType: 2
   },
   {
-    path: '/condition-of-access',
+    path: '/conditions-of-access',
     component: TermsPrivacy,
     exact: true,
     cmsPageType: 3
