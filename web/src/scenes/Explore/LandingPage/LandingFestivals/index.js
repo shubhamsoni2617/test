@@ -46,14 +46,16 @@ const LandingFestivals = ({ festivals }) => {
                         // size={13}
                         allowTooltip={true}
                       />
-                      <p
-                        dangerouslySetInnerHTML={{
-                          __html: Utilities.showLimitedChars(
-                            description.replace(/(<([^>]+)>)/gi, ''),
-                            150
-                          )
-                        }}
-                      ></p>
+                      {description && (
+                        <p
+                          dangerouslySetInnerHTML={{
+                            __html: Utilities.showLimitedChars(
+                              description.replace(/(<([^>]+)>)/gi, ''),
+                              150
+                            )
+                          }}
+                        ></p>
+                      )}
                     </div>
                   </Link>
                 );
