@@ -72,7 +72,7 @@
         }
         .list-option{
             margin: 0;
-            padding: 0;
+            padding: 0 0 0 20px;
             list-style: none;
             li{
                 border: none;
@@ -81,7 +81,8 @@
                 font-size: 16px;
                 padding: 7px 0;
                 label{
-                    color: #343434
+                    color: #343434;
+                    padding-left: 7px;
                 }
             }
         }
@@ -164,6 +165,7 @@
             list-style-type: none;
             margin: 0;
             padding: 10px 0px 0px;
+            margin: 0 -5px;
             &::-webkit-scrollbar-thumb{                
                 border: none;
                 outline: none;

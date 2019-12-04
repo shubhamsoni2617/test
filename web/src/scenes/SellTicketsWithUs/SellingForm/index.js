@@ -60,14 +60,14 @@ const SellingForm = ({
                       <input
                         type="text"
                         name="name"
-                        placeholder="Name*"
                         className={
-                          error ? 'form-control error' : 'form-control'
+                          error ? 'form-control error custom-required' : 'form-control custom-required'
                         }
                         value={name}
                         maxLength={100}
                         onChange={handleChange}
                       />
+                      {!name && <label className="custom-label">Name</label>}
                       {error && !name && (
                         <span className="text-danger">Please enter name</span>
                       )}
@@ -76,14 +76,14 @@ const SellingForm = ({
                       <input
                         type="email"
                         name="email"
-                        placeholder="Email*"
                         className={
-                          error ? 'form-control error' : 'form-control'
+                          error ? 'form-control error custom-required' : 'form-control custom-required'
                         }
                         value={email}
                         maxLength={255}
                         onChange={handleChange}
                       />
+                      {!email && <label className="custom-label">Email</label>}
                       {error && !email && (
                         <span className="text-danger">Please enter email</span>
                       )}
@@ -107,14 +107,14 @@ const SellingForm = ({
                       <input
                         type="text"
                         name="contact-no"
-                        placeholder="Contact No.*"
                         className={
-                          error ? 'form-control error' : 'form-control'
+                          error ? 'form-control error custom-required' : 'form-control custom-required'
                         }
                         value={contactNo}
                         maxLength={10}
                         onChange={handleChange}
                       />
+                      {!contactNo && <label className="custom-label">Contact No.</label>}
                       {error && !contactNo && (
                         <span className="text-danger">
                           Please enter contact number
@@ -136,14 +136,14 @@ const SellingForm = ({
                       <input
                         type="text"
                         name="event-name"
-                        placeholder="Event Name*"
                         className={
-                          error ? 'form-control error' : 'form-control'
+                          error ? 'form-control error custom-required' : 'form-control custom-required'
                         }
                         value={eventName}
                         maxLength={150}
                         onChange={handleChange}
                       />
+                      {!eventName && <label className="custom-label">Event Name</label>}
                       {error && !eventName && (
                         <span className="text-danger">
                           Please enter event name
@@ -172,14 +172,14 @@ const SellingForm = ({
                       <input
                         type="text"
                         name="venue-name"
-                        placeholder="Venue Name*"
                         className={
-                          error ? 'form-control error' : 'form-control'
+                          error ? 'form-control error custom-required' : 'form-control custom-required'
                         }
                         value={venueName}
                         maxLength={100}
                         onChange={handleChange}
                       />
+                      {!venueName && <label className="custom-label">Venue Name</label>}
                       {error && !venueName && (
                         <span className="text-danger">
                           Please enter venue name
@@ -194,14 +194,14 @@ const SellingForm = ({
                       <input
                         type="text"
                         name="event-capacity"
-                        placeholder="Event Capacity (pax)*"
                         className={
-                          error ? 'form-control error' : 'form-control'
+                          error ? 'form-control error custom-required' : 'form-control custom-required'
                         }
                         value={eventCapacity}
                         maxLength={3}
                         onChange={handleChange}
                       />
+                      {!eventCapacity && <label className="custom-label">Event Capacity (pax)</label>}
                       {error && !eventCapacity && (
                         <span className="text-danger">
                           Please enter event capacity
