@@ -191,7 +191,7 @@ const AgentVenuePopUp = props => {
             </div>
             <div className="details">
               <h3>Ticket pick up Reminder</h3>
-              <p dangerouslySetInnerHTML={{ _html: popUpDetail.reminder }}></p>
+              {/* <p dangerouslySetInnerHTML={{ _html: popUpDetail.reminder }}></p> */}
             </div>
           </div>
         ) : null}
