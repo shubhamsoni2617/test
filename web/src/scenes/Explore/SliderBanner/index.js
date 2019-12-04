@@ -2,11 +2,16 @@ import React, { useState } from 'react';
 import Slider from 'react-slick';
 import './style.scss';
 import ReactPlayer from 'react-player';
-import articleBanner from '../../../assets/images/article-banner.jpg';
 
 const SliderBanner = ({ data }) => {
-  const [playing, setPlaying] = useState(false);
+  const [imageArr, setImageArr] = useState(
+    data.map(el => {
+      return { ...el, isPlaying: true };
+    })
+  );
+
   const [autoplay, setAutoPlay] = useState(true);
+  const [vdoIndex, setVdoIndex] = useState(null);
 
   const settings = {
     dots: true,
@@ -17,20 +22,19 @@ const SliderBanner = ({ data }) => {
     slidesPerRow: 1,
     autoplay: autoplay,
     beforeChange: () => {
-      setPlaying(false);
-      setAutoPlay(true);
-    },
-    afterChange: () => {
-      setPlaying(false);
-      setAutoPlay(true);
+      if (vdoIndex) {
+        let arr = [...imageArr];
+        arr[vdoIndex].isPlaying = false;
+        setImageArr(arr);
+      }
     }
   };
 
-  return data && data.length ? (
+  return imageArr && imageArr.length ? (
     <div className="sliderBottomDot festival-top-slider">
       <Slider {...settings}>
-        {data &&
-          data.map((dataObj, i) => {
+        {imageArr &&
+          imageArr.map((dataObj, i) => {
             if (dataObj.type.id == 1) {
               return (
                 <img src={dataObj.full_image} key={dataObj.thumb_image + i} />
@@ -47,10 +51,13 @@ const SliderBanner = ({ data }) => {
                   controls
                   light={true}
                   onPlay={() => {
-                    setPlaying(true);
+                    let arr = [...imageArr];
+                    arr[i].isPlaying = true;
+                    setImageArr(arr);
                     setAutoPlay(false);
+                    setVdoIndex(i);
                   }}
-                  playing={playing}
+                  playing={dataObj.isPlaying}
                 />
               );
             }
