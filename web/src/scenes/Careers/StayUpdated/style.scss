@@ -86,7 +86,7 @@
             .selection{
                 border: 0;
                 border-bottom: 1px solid rgba(151, 151, 151, 0.2);
-                height: 36px;
+                min-height: 36px;
                 line-height: 36px;
                 padding: 0.375rem 0.75rem;
                 background: transparent;
@@ -167,6 +167,9 @@
                     box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.1);
                     border: 0;
                     padding-left: 15px;
+                    .placeholder{
+                        padding-left: 15px;
+                    }
                 }
                 .options{
                     background: #fff;

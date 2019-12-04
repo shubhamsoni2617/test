@@ -1538,10 +1538,3 @@ input:disabled {
 		cursor: auto;
 	}
 }
-.custom-required{
-	&:focus{
-		& + .custom-label{
-			opacity: 0;
-		}
-	}
-}
