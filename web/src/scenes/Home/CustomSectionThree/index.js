@@ -97,6 +97,20 @@ const CustomSectionThree = ({
     }
   };
 
+  const displayDuration = duration => {
+    let allDuration;
+    let durationIndex = duration
+      .replace('M', ':')
+      .replace('S', '')
+      .indexOf(':');
+    if (durationIndex === -1) {
+      allDuration = '0' + ':' + duration.replace('M', ':').replace('S', '');
+    } else {
+      allDuration = duration.replace('M', ':').replace('S', '');
+    }
+    return allDuration;
+  };
+
   if (!loading && data && data.length === 0) {
     return null;
   }
@@ -130,10 +144,6 @@ const CustomSectionThree = ({
                   playing={playing}
                   light={light}
                   volume={volume}
-                  onError={err => {
-                    console.log(err);
-                    console.log('err');
-                  }}
                 />
                 <h3>{title}</h3>
                 {!isHomePage && (
@@ -175,24 +185,23 @@ const CustomSectionThree = ({
                             <Fragment>
                               <div
                                 className="video-restrict-overlay"
-                                style={{ display: 'none' }}
+                                style={{
+                                  display: 'none'
+                                }}
                               >
-                                <ReactPlayer
-                                  width="100%"
-                                  height="70px"
-                                  url={vdo.video_url}
-                                  onDuration={sec => {
-                                    duration = [
-                                      ...duration,
-                                      secondToMinute(sec)
-                                    ];
-                                    setDuration(duration);
-                                  }}
-                                />
-                                {!isHomePage && (
-                                  <span className="video-duration">
-                                    {duration && duration[index]}
-                                  </span>
+                                {isHomePage && (
+                                  <ReactPlayer
+                                    width="100%"
+                                    height="70px"
+                                    url={vdo.video_url}
+                                    onDuration={sec => {
+                                      duration = [
+                                        ...duration,
+                                        secondToMinute(sec)
+                                      ];
+                                      setDuration(duration);
+                                    }}
+                                  />
                                 )}
                               </div>
                             </Fragment>
@@ -204,7 +213,9 @@ const CustomSectionThree = ({
                                 type="VdoSmall"
                               />
                               <span className="video-duration">
-                                {duration && duration[index]}
+                                {isHomePage
+                                  ? duration && duration[index]
+                                  : displayDuration(vdo.duration)}
                               </span>
                             </div>
                           </span>
