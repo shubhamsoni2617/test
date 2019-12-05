@@ -10,6 +10,10 @@ class HomeService {
     );
   }
 
+  getFlashSale(params) {
+    return API.get(`adv/flash-sale`, { params });
+  }
+
   getNewsTicker(params) {
     return API.get(`news`, { params });
   }
@@ -57,7 +61,7 @@ class HomeService {
   }
 
   getRotationalBanner() {
-    return API.get(`adv/rotational-banner?client=1`, { });
+    return API.get(`adv/rotational-banner?client=1`, {});
   }
 }
 
