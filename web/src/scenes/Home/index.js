@@ -218,13 +218,20 @@ class Home extends Component {
                     />
                   );
                 case 'CUS_SEC_2':
-                  return <CustomSectionTwo heading={label} customData={[]} />;
+                  return (
+                    <CustomSectionTwo
+                      heading={label}
+                      customData={[]}
+                      orientation={this.state.orientation}
+                    />
+                  );
                 case 'CUS_SEC_3':
                   return (
                     <CustomSectionThree
                       heading={label}
                       customData={[]}
                       isHomePage={true}
+                      orientation={this.state.orientation}
                     />
                   );
               }

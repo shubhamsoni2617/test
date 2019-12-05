@@ -15,7 +15,7 @@ export default class Promotions extends Component {
     this.state = {
       defaultTabId: null,
       tabsArray: [],
-      sortBy: 'date',
+      sortBy: 'ASC',
       first: 0,
       totalRecords: 0,
       listingArray: [],
@@ -87,7 +87,7 @@ export default class Promotions extends Component {
   componentDidMount() {
     window.scrollTo(0, 0);
     this.fetchPromotionCategoriesData();
-    this.fetchPromotionListingData();
+    // this.fetchPromotionListingData();
   }
 
   componentDidUpdate(prevProps, prevState) {

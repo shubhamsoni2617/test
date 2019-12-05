@@ -8,7 +8,12 @@ import AdvertisementService from '../../../shared/services/AdvertisementService'
 import Image from '../../../shared/components/Image';
 import Utilities from '../../../shared/utilities';
 
-const CustomSectionThree = ({ heading, customData, isHomePage }) => {
+const CustomSectionThree = ({
+  heading,
+  customData,
+  isHomePage,
+  orientation
+}) => {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [url, setUrl] = useState(null);
@@ -38,7 +43,7 @@ const CustomSectionThree = ({ heading, customData, isHomePage }) => {
       setPostedDate(!isHomePage && customData[0].posted_date);
       setVdoIndex(0);
       setLoading(false);
-    } else if (customData && !customData.length) {
+    } else if (customData && !customData.length && !orientation) {
       getData();
     }
   }, [customData]);
@@ -84,15 +89,33 @@ const CustomSectionThree = ({ heading, customData, isHomePage }) => {
   };
 
   const secondToMinute = sec => {
-    let minutes = Math.floor(sec / 60);
-    let seconds = sec - minutes * 60;
-    let duration = minutes + ':' + seconds;
-    return duration;
+    if (sec) {
+      let minutes = Math.floor(sec / 60);
+      let seconds = sec - minutes * 60;
+      let duration = minutes + ':' + seconds;
+      return duration;
+    }
+  };
+
+  const displayDuration = duration => {
+    let allDuration;
+    let durationIndex = duration
+      .replace('M', ':')
+      .replace('S', '')
+      .indexOf(':');
+    if (durationIndex === -1) {
+      allDuration = '0' + ':' + duration.replace('M', ':').replace('S', '');
+    } else {
+      allDuration = duration.replace('M', ':').replace('S', '');
+    }
+    return allDuration;
   };
 
   if (!loading && data && data.length === 0) {
     return null;
   }
+
+  console.log(duration);
 
   return (
     <div>
@@ -162,28 +185,23 @@ const CustomSectionThree = ({ heading, customData, isHomePage }) => {
                             <Fragment>
                               <div
                                 className="video-restrict-overlay"
-                                style={{ display: 'none' }}
+                                style={{
+                                  display: 'none'
+                                }}
                               >
-                                <ReactPlayer
-                                  width="100%"
-                                  height="70px"
-                                  muted={true}
-                                  url={vdo.video_url}
-                                  playing={false}
-                                  pip={false}
-                                  controls={false}
-                                  onDuration={sec => {
-                                    duration = [
-                                      ...duration,
-                                      secondToMinute(sec)
-                                    ];
-                                    setDuration(duration);
-                                  }}
-                                />
-                                {!isHomePage && (
-                                  <span className="video-duration">
-                                    {duration && duration[index]}
-                                  </span>
+                                {isHomePage && (
+                                  <ReactPlayer
+                                    width="100%"
+                                    height="70px"
+                                    url={vdo.video_url}
+                                    onDuration={sec => {
+                                      duration = [
+                                        ...duration,
+                                        secondToMinute(sec)
+                                      ];
+                                      setDuration(duration);
+                                    }}
+                                  />
                                 )}
                               </div>
                             </Fragment>
@@ -194,9 +212,10 @@ const CustomSectionThree = ({ heading, customData, isHomePage }) => {
                                 className="img-fluid"
                                 type="VdoSmall"
                               />
-
                               <span className="video-duration">
-                                {duration && duration[index]}
+                                {isHomePage
+                                  ? duration && duration[index]
+                                  : displayDuration(vdo.duration)}
                               </span>
                             </div>
                           </span>
