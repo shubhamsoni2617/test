@@ -34,7 +34,7 @@ class Home extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      orientation:'',
+      orientation: '',
       offsetRadius: 0,
       showNavigation: '',
       config: {},
@@ -105,12 +105,12 @@ class Home extends Component {
 
   componentDidMount() {
     this.getItemsOrder();
-    window.addEventListener('resize', this.handleResize)
+    window.addEventListener('resize', this.handleResize);
   }
 
   handleResize = () => {
-    this.setState({orientation : 'landscape'});
-  }
+    this.setState({ orientation: 'landscape' });
+  };
 
   showNewsTicker = data => {
     this.setState(data);
@@ -233,7 +233,7 @@ class Home extends Component {
 
         <InstagramFeed />
         <Cookies />
-        {/* <ModalPopup
+        <ModalPopup
           showModal={this.state.modal}
           content={this.state.modalContent}
           title="News Ticker"
@@ -241,7 +241,7 @@ class Home extends Component {
             this.showNewsTicker({ modal: false, modalContent: '' })
           }
           htmlContent={true}
-        /> */}
+        />
       </div>
     );
   }
