@@ -96,7 +96,7 @@ class MiniCart extends Component {
                         </h4>
                         <p className="product-desc">{cartElem.product.venue}</p>
                         <span className="product-price">
-                          S$ 250 (Qty: {cartElem.quantity})
+                          (Qty: {cartElem.quantity})
                         </span>
                       </div>
                     </li>
