@@ -30,7 +30,6 @@ const HotShowPopup = () => {
           }
         })
         .catch(() => {
-          flashSale = false;
           removeOverlayClass();
         });
     }
