@@ -34,7 +34,7 @@ class Home extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      orientation:'',
+      orientation: '',
       offsetRadius: 0,
       showNavigation: '',
       config: {},
@@ -105,12 +105,12 @@ class Home extends Component {
 
   componentDidMount() {
     this.getItemsOrder();
-    window.addEventListener('resize', this.handleResize)
+    window.addEventListener('resize', this.handleResize);
   }
 
   handleResize = () => {
-    this.setState({orientation : 'landscape'});
-  }
+    this.setState({ orientation: 'landscape' });
+  };
 
   showNewsTicker = data => {
     this.setState(data);
@@ -218,13 +218,20 @@ class Home extends Component {
                     />
                   );
                 case 'CUS_SEC_2':
-                  return <CustomSectionTwo heading={label} customData={[]} />;
+                  return (
+                    <CustomSectionTwo
+                      heading={label}
+                      customData={[]}
+                      orientation={this.state.orientation}
+                    />
+                  );
                 case 'CUS_SEC_3':
                   return (
                     <CustomSectionThree
                       heading={label}
                       customData={[]}
                       isHomePage={true}
+                      orientation={this.state.orientation}
                     />
                   );
               }

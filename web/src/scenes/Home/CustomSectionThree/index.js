@@ -8,7 +8,12 @@ import AdvertisementService from '../../../shared/services/AdvertisementService'
 import Image from '../../../shared/components/Image';
 import Utilities from '../../../shared/utilities';
 
-const CustomSectionThree = ({ heading, customData, isHomePage }) => {
+const CustomSectionThree = ({
+  heading,
+  customData,
+  isHomePage,
+  orientation
+}) => {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [url, setUrl] = useState(null);
@@ -38,7 +43,7 @@ const CustomSectionThree = ({ heading, customData, isHomePage }) => {
       setPostedDate(!isHomePage && customData[0].posted_date);
       setVdoIndex(0);
       setLoading(false);
-    } else if (customData && !customData.length) {
+    } else if (customData && !customData.length && !orientation) {
       getData();
     }
   }, [customData]);
@@ -125,6 +130,10 @@ const CustomSectionThree = ({ heading, customData, isHomePage }) => {
                   playing={playing}
                   light={light}
                   volume={volume}
+                  onError={err => {
+                    console.log(err);
+                    console.log('err');
+                  }}
                 />
                 <h3>{title}</h3>
                 {!isHomePage && (

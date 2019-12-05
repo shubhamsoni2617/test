@@ -15,7 +15,7 @@ export default class Promotions extends Component {
     this.state = {
       defaultTabId: null,
       tabsArray: [],
-      sortBy: 'date',
+      sortBy: 'ASC',
       first: 0,
       totalRecords: 0,
       listingArray: [],

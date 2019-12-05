@@ -49,7 +49,8 @@ const LandingFestivals = ({ festivals }) => {
                       <p
                         dangerouslySetInnerHTML={{
                           __html: Utilities.showLimitedChars(
-                            description.replace(/(<([^>]+)>)/gi, ''),
+                            description &&
+                              description.replace(/(<([^>]+)>)/gi, ''),
                             150
                           )
                         }}
