@@ -23,7 +23,7 @@ export default class App extends React.Component {
       AdvertisementService.getFindAnEventAds({
         client: Constants.CLIENT,
         limit: 3,
-        first: 1
+        first: 0
       })
     ];
   }
