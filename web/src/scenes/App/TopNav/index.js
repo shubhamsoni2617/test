@@ -389,9 +389,9 @@ const TopNav = props => {
                       <ul class="header-submenu">
                         <li>
                           <a
-                            href={`Constants.SISTIC_LOGIN_URL${encodeURIComponent(
-                              url
-                            )}`}
+                            href={`${
+                              Constants.SISTIC_LOGIN_URL
+                            }${encodeURIComponent(url)}`}
                           >
                             Login/ Sign Up
                           </a>
@@ -501,7 +501,7 @@ const TopNav = props => {
                 </a>
                 {cartData.loginStatus === 1 && (
                   <a
-                    href={`Constants.SISTIC_LOGIN_URL${encodeURIComponent(
+                    href={`${Constants.SISTIC_LOGIN_URL}${encodeURIComponent(
                       url
                     )}`}
                   >
