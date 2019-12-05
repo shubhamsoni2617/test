@@ -10,7 +10,6 @@ const HotShowPopup = () => {
   const [flag, setFlag] = useState(false);
 
   useEffect(() => {
-    let flashSale = false;
     if (!sessionStorage.getItem('hotshow')) {
       setTimeout(() => setFlag(true), 1000);
       let params = { client: 1 };
@@ -18,25 +17,22 @@ const HotShowPopup = () => {
         .then(res => {
           setPopupData(res.data.data);
           if (res.data.data.length) {
-            flashSale = true;
             addOverlayClass();
+          } else {
+            HomeService.getHotShowPopupData()
+              .then(res => {
+                setPopupData(res.data.data);
+                if (res.data.data.length) addOverlayClass();
+              })
+              .catch(() => {
+                removeOverlayClass();
+              });
           }
         })
         .catch(() => {
           flashSale = false;
           removeOverlayClass();
         });
-
-      if (!flashSale) {
-        HomeService.getHotShowPopupData()
-          .then(res => {
-            setPopupData(res.data.data);
-            if (res.data.data.length) addOverlayClass();
-          })
-          .catch(() => {
-            removeOverlayClass();
-          });
-      }
     }
   }, []);
 
