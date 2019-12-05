@@ -6,6 +6,9 @@ import exploreImg from '../../../assets/images/explore.png';
 import moment from 'moment';
 import CartTimer from './CartTimer';
 import Constants from '../../../shared/constants';
+import BackButton from '../../../assets/images/next.svg';
+import Utilities from '../../../shared/utilities';
+
 class MiniCart extends Component {
   constructor(props) {
     super(props);
@@ -15,14 +18,16 @@ class MiniCart extends Component {
   }
 
   toggle = () => {
-    if (!this.state.isOpen) {
-      window.addEventListener('click', this.handleOutsideClick, false);
-      this.node.classList.add('active');
-    } else {
-      window.removeEventListener('click', this.handleOutsideClick, false);
-      this.node.classList.remove('active');
+    if (Utilities.mobilecheck()) {
+      if (!this.state.isOpen) {
+        window.addEventListener('click', this.handleOutsideClick, false);
+        this.node.classList.add('active');
+      } else {
+        window.removeEventListener('click', this.handleOutsideClick, false);
+        this.node.classList.remove('active');
+      }
+      this.setState({ isOpen: !this.state.isOpen });
     }
-    this.setState({ isOpen: !this.state.isOpen });
   };
   handleOutsideClick = e => {
     if (this.node.contains(e.target)) {
@@ -48,6 +53,14 @@ class MiniCart extends Component {
         <div className="my-cart-popup">
           <div className="my-cart-wrapper">
             <div className="cart-head">
+              {Utilities.mobilecheck() && (
+                <button
+                  type="button"
+                  onClick={() => this.node.classList.remove('active')}
+                >
+                  <img src={BackButton} alt="back" className="img-fluid"></img>
+                </button>
+              )}
               <h3>My Cart ({data.length})</h3>
               <a href="/" className="cart-close">
                 X
@@ -68,10 +81,11 @@ class MiniCart extends Component {
                       </div>
                       <div className="product-details">
                         <span className="product-date-time">
+                          {moment(cartElem.product.productDate).format('ddd')},{' '}
                           {moment(cartElem.product.productDate).format(
-                            'MMMM Do YYYY'
-                          )}{' '}
-                          ({moment(cartElem.product.productDate).format('ddd')})
+                            'DD MMMM  YYYY'
+                          )}
+
                           <br />
                           {moment(cartElem.product.productDate).format(
                             'hh:mm A'
@@ -97,8 +111,8 @@ class MiniCart extends Component {
                   {timeLeft > 0 ? (
                     <CartTimer timeLeft={timeLeft} />
                   ) : (
-                    <span className="timer-time">00:00</span>
-                  )}
+                      <span className="timer-time">00:00</span>
+                    )}
                 </div>
                 <div className="cart-checkout-btn">
                   <a href={Constants.SISTIC_GO_TO_CART}>Go to Cart</a>
