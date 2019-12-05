@@ -8,14 +8,20 @@ import Image from '../../../shared/components/Image';
 import Utilities from '../../../shared/utilities';
 import { OneBigTwoSmall } from '../../../shared/components/ShimmerEffect/HomeShimmer';
 
-const CustomSectionTwo = ({ heading, customData, url, isMoreFrom }) => {
+const CustomSectionTwo = ({
+  heading,
+  customData,
+  url,
+  isMoreFrom,
+  orientation
+}) => {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
   useEffect(() => {
     if (customData && customData.length > 0) {
       setData(customData);
       setLoading(false);
-    } else if (customData && !customData.length) {
+    } else if (customData && !customData.length && !orientation) {
       getData();
     }
   }, [customData]);
