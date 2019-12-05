@@ -9,6 +9,8 @@ import eventCalender from '../../../assets/images/cal.svg';
 import rightArrowImage from '../../../assets/images/right-arrow.svg';
 import seeAllEvent from '../../../assets/images/right-arrow.svg';
 import Image from '../Image';
+import Ellipsis from '../Ellipsis';
+import Utilities from '../../utilities';
 
 const MegaMenu = props => {
   const { byGenreEvent, featuredEvents } = props;
@@ -95,41 +97,51 @@ const MegaMenu = props => {
           </ul>
           <ul>
             {featuredEvents &&
-              featuredEvents.length > 0 &&
+              featuredEvents.length &&
               featuredEvents.map(event => {
                 return (
                   <li key={event.id}>
                     <div className="featured-event-img">
-                      {/* <Image
-                        src={event.full_image}
-                        largeImage={event.full_image}
-                      /> */}
-                      <img
+                      <Image src={event.full_image} className="img-fluid" />
+                      {/* <img
                         src={event.full_image}
                         className="img-fluid"
                         alt=""
-                      />
+                      /> */}
                     </div>
                     <div className="featured-date-category">
-                      {event.event_date && (
+                      {/* {event.event_date && (
                         <span className="date">{event.event_date}</span>
-                      )}
-                      {event.primary_genere && (
-                        <span
-                          className={
-                            event.primary_genere === 'Theatre'
-                              ? 'category theatre'
-                              : `category ${event.primary_genere.toLowerCase()}`
-                          }
-                        >
-                          {event.primary_genere}
-                        </span>
-                      )}
+                      )} */}
+
+                      <Ellipsis
+                        title={event.event_date}
+                        lines={2}
+                        height={Utilities.mobilecheck() ? 15 : 18}
+                        allowTooltip={false}
+                        customClass="date"
+                      />
+                      <span
+                        className={
+                          event.primary_genere === 'Theatre'
+                            ? 'category theatre'
+                            : `category ${event.primary_genere.toLowerCase()}`
+                        }
+                      >
+                        {event.primary_genere}
+                      </span>
                     </div>
                     <a href={event.navigation_link || ''} target="_blank">
-                      <span className="featured-event-title">
+                      {/* <span className="featured-event-title">
                         {event.title}
-                      </span>
+                      </span> */}
+                      <Ellipsis
+                        title={event.title}
+                        lines={2}
+                        height={Utilities.mobilecheck() ? 15 : 18}
+                        allowTooltip={false}
+                        customClass="featured-event-title"
+                      />
                     </a>
                   </li>
                 );

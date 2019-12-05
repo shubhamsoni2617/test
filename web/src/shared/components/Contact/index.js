@@ -237,18 +237,19 @@ const Contact = ({ attachement, handleEnquiry, type }) => {
       <form onSubmit={handleSubmit}>
         <div
           className={
-            errMsg && selectedId === null ? 'form-group err' : 'form-group'
+            errMsg && selectedId === null ? 'form-group err selectbox' : 'form-group selectbox'
           }
         >
           <Select
             submit={submit}
             options={submit ? [] : enquiryCategory}
+            className="form-control custom-required"
             placeholder={
-              handleEnquiry ? 'Select an Enquiry *' : 'Request type *'
+              handleEnquiry ? 'Select an Enquiry' : 'Request type'
             }
             onSelect={onSelect}
             onClickSubmit={onClickSubmit}
-            // multiple
+          // multiple
           />
         </div>
         {errMsg && selectedId === null ? (
@@ -257,13 +258,13 @@ const Contact = ({ attachement, handleEnquiry, type }) => {
         <div className={errMsg && !name ? 'form-group err' : 'form-group'}>
           <input
             name="name"
-            className="form-control"
+            className="form-control custom-required"
             type="text"
-            placeholder={handleEnquiry ? 'Name*' : 'Full Name*'}
             value={name}
             onChange={handleChange}
-            // required
+          // required
           />
+          {!name && <label className="custom-label">{handleEnquiry ? 'Name' : 'Full Name'}</label>}
         </div>
         {errMsg && !name ? (
           <span className="error-msg">
@@ -273,13 +274,13 @@ const Contact = ({ attachement, handleEnquiry, type }) => {
         <div className={errMsg && !email ? 'form-group err' : 'form-group'}>
           <input
             name="email"
-            className="form-control"
+            className="form-control custom-required"
             type="email"
-            placeholder={handleEnquiry ? 'Email Address *' : 'Email*'}
             value={email}
             onChange={handleChange}
-            // required
+          // required
           />
+          {!email && <label className="custom-label">{handleEnquiry ? 'Email Address' : 'Email'}</label>}
         </div>
         {errMsg && !email ? (
           <span className="error-msg">
@@ -289,18 +290,18 @@ const Contact = ({ attachement, handleEnquiry, type }) => {
         <div className={errMsg && !phone ? 'form-group err' : 'form-group'}>
           <input
             name="phone"
-            className="form-control"
+            className="form-control custom-required"
             type="text"
-            placeholder={handleEnquiry ? 'Phone Number *' : 'Mobile No.*'}
             value={phone}
             maxLength={10}
             onChange={handleChange}
-            // required
+          // required
           />
+          {!phone && <label className="custom-label">{handleEnquiry ? 'Phone Number' : 'Mobile No.'}</label>}
         </div>
         {errMsg && !phone ? (
           <span className="error-msg">
-            Please enter {handleEnquiry ? 'phone' : 'mobile'} number.   
+            Please enter {handleEnquiry ? 'phone' : 'mobile'} number.
           </span>
         ) : null}
         <div className={errMsg && !message ? 'form-group err' : 'form-group'}>
@@ -308,12 +309,12 @@ const Contact = ({ attachement, handleEnquiry, type }) => {
             name="message"
             className="form-control"
             rows="5"
-            placeholder="Message *"
             cols="30"
             value={message}
             onChange={handleChange}
-            // required
+          // required
           />
+          {!message && <label className="custom-label">Message</label>}
         </div>
         {errMsg && !message ? (
           <span className="error-msg">Please enter message</span>
