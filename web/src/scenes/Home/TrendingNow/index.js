@@ -70,7 +70,7 @@ const TrendingNow = ({ heading }) => {
                         src={data[0].vertical_image}
                         className="img-fluid"
                         alt="kurios"
-                        type="MediumVertical"
+                        type="Vertical"
                       />
                     )}
                   </div>

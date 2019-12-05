@@ -48,13 +48,13 @@ const PersonalInfo = ({
           <div className="form-group">
             <input
               name="firstName"
-              className="form-control"
-              placeholder="First Name *"
+              className="form-control custom-required"
               type="text"
               value={firstName}
               onChange={e => handleChange(e)}
-              // required
+            // required
             />
+            {!firstName && <label className="custom-label">First Name</label>}
             {errMsg && !firstName && (
               <span className="text-danger mt-1 d-block">
                 Please enter first name
@@ -65,13 +65,13 @@ const PersonalInfo = ({
           <div className="form-group">
             <input
               name="lastName"
-              className="form-control"
-              placeholder="Last Name *"
+              className="form-control custom-required"
               type="text"
               value={lastName}
               onChange={e => handleChange(e)}
-              // required
+            // required
             />
+            {!lastName && <label className="custom-label">Last Name</label>}
             {errMsg && !lastName && (
               <span className="text-danger mt-1 d-block">
                 Please enter last name
@@ -82,13 +82,13 @@ const PersonalInfo = ({
           <div className="form-group">
             <input
               name="email"
-              className="form-control"
-              placeholder="Email Address *"
+              className="form-control custom-required"
               type="email"
               value={email}
               onChange={e => handleChange(e)}
-              // required
+            // required
             />
+            {!email && <label className="custom-label">Email Address</label>}
             {errMsg && !email && (
               <span className="text-danger mt-1 d-block">
                 Please enter email address
@@ -100,14 +100,14 @@ const PersonalInfo = ({
             <input
               name="contact_number"
               className="form-control"
-              placeholder="Phone Number *"
               type="text"
               value={contact_number}
               minLength={0}
               maxLength={10}
               onChange={e => handleChange(e)}
-              // required
+            // required
             />
+            {!contact_number && <label className="custom-label">Phone Number</label>}
             {errMsg && !contact_number && (
               <span className="text-danger mt-1 d-block">
                 Please enter phone number

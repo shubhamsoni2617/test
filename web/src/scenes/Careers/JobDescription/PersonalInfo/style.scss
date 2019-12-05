@@ -77,6 +77,12 @@
     }
     .form-group{
       margin-bottom: 25px;
+      position: relative;
+      .custom-label{
+        @media(max-width: 767px){
+          line-height: 36px;
+        }
+      }
       input, textarea{
         @extend %placeholder;
         @media(max-width: 767px){
@@ -102,6 +108,9 @@
         font-size: 16px;
         line-height: 19px;
         margin-bottom: 0;
+        z-index: 2;
+        position: relative;
+        background-color: transparent;
         @media(max-width: 767px){
           font-size: 14px;
         }
@@ -259,6 +268,7 @@
     .earliest-date{
       display: flex;
       align-items: center;
+      z-index: 3;
       span{
         color: rgba(52, 52, 52, 0.7);
         font-family: 'Rubik', sans-serif;
@@ -295,6 +305,12 @@
             width: 20px;
             height: 20px;
             background-repeat: no-repeat;
+          }
+        }
+        .DayPicker-Caption{
+          padding-top: 20px;
+          @media(max-width: 767px){
+            padding-top: 15px;
           }
         }
       }

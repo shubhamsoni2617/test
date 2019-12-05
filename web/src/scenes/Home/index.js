@@ -240,7 +240,7 @@ class Home extends Component {
 
         <InstagramFeed />
         <Cookies />
-        {/* <ModalPopup
+        <ModalPopup
           showModal={this.state.modal}
           content={this.state.modalContent}
           title="News Ticker"
@@ -248,7 +248,7 @@ class Home extends Component {
             this.showNewsTicker({ modal: false, modalContent: '' })
           }
           htmlContent={true}
-        /> */}
+        />
       </div>
     );
   }
