@@ -108,17 +108,17 @@ function DateRangeFilter(props) {
     props.handleFilters(
       Utilities.mobilecheck()
         ? {
-            localfilteredDateRange: {
-              from: moment(fromDate).format('YYYY-MM-DD'),
-              to: moment(toDate).format('YYYY-MM-DD')
-            }
+          localfilteredDateRange: {
+            from: moment(fromDate).format('YYYY-MM-DD'),
+            to: moment(toDate).format('YYYY-MM-DD')
           }
+        }
         : {
-            filteredDateRange: {
-              from: moment(fromDate).format('YYYY-MM-DD'),
-              to: moment(toDate).format('YYYY-MM-DD')
-            }
+          filteredDateRange: {
+            from: moment(fromDate).format('YYYY-MM-DD'),
+            to: moment(toDate).format('YYYY-MM-DD')
           }
+        }
     );
   };
 
@@ -173,7 +173,7 @@ function DateRangeFilter(props) {
             <div
               className={`submenu-holder submenu-wrap ${
                 menueStatus ? 'active' : ''
-              }`}
+                }`}
             >
               <div className="subholder-wrapper">
                 <div className="filter-heading">

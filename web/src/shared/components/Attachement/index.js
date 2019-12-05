@@ -73,7 +73,7 @@ const Attachement = ({ attachedFiles, submit, mandatory, cv }) => {
     <div className="form-group attach-doc">
       <div className="row no-gutters">
         <span className="col-lg-5 col-5 pl-2 attach-text">
-          <span className="attach-text">Attach Documents <span className="astrick">*</span></span>
+          <span className="attach-text">Attach Document <span className="astrick">*</span></span>
         </span>
         <div className="col-lg-7 col-7 resume">
           <span className="placeholder">Resume/CV</span>

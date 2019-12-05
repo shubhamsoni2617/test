@@ -237,7 +237,7 @@ const Contact = ({ attachement, handleEnquiry, type }) => {
       <form onSubmit={handleSubmit}>
         <div
           className={
-            errMsg && selectedId === null ? 'form-group err' : 'form-group selectbox'
+            errMsg && selectedId === null ? 'form-group err selectbox' : 'form-group selectbox'
           }
         >
           <Select

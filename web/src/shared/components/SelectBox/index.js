@@ -268,7 +268,6 @@ export default class Select extends Component {
         );
       });
     }
-
     return <div className="value">{values[0]}</div>;
   };
 
