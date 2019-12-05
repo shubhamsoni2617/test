@@ -89,6 +89,7 @@ const TopNav = props => {
   const [headerClassScroll, setHeaderClassScroll] = useState(false);
   const [stickyHeader, setStickyHeader] = useState(false);
   const [mostViewed, setMostViewed] = useState(null);
+  const [url, setUrl] = useState('');
   const [featuredEvents, setFeaturedEvents] = useState(
     props.response && props.response.findAnEventAddsData
       ? props.response.findAnEventAddsData.data
@@ -115,6 +116,7 @@ const TopNav = props => {
     // }
   ];
   useEffect(() => {
+    setUrl(window.location.href);
     jsonp(
       'https://ticketing.stixcloudtest.com/sistic/patron/checkcart/portal',
       null,
@@ -386,7 +388,11 @@ const TopNav = props => {
 
                       <ul class="header-submenu">
                         <li>
-                          <a href={Constants.SISTIC_LOGIN_URL}>
+                          <a
+                            href={`Constants.SISTIC_LOGIN_URL${encodeURIComponent(
+                              url
+                            )}`}
+                          >
                             Login/ Sign Up
                           </a>
                         </li>
@@ -494,7 +500,13 @@ const TopNav = props => {
                   ></span>
                 </a>
                 {cartData.loginStatus === 1 && (
-                  <a href={Constants.SISTIC_LOGIN_URL}>Login/ Sign Up</a>
+                  <a
+                    href={`Constants.SISTIC_LOGIN_URL${encodeURIComponent(
+                      url
+                    )}`}
+                  >
+                    Login/ Sign Up
+                  </a>
                 )}
               </li>
               <li className="ticket-withus">

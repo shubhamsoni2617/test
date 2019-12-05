@@ -26,10 +26,8 @@ class Constants {
     'https://play.google.com/store/apps/details?id=com.rainmakerlabs.sistic&hl=en';
   static SISTIC_MY_ACCOUNT_URL =
     'https://ticketing.stixcloudtest.com/sistic/patron/management';
-  static GO_TO_URL = location.origin;
-  static SISTIC_LOGIN_URL = `https://ticketing.stixcloudtest.com/sistic/loginredirect?gotoUrl=${encodeURIComponent(
-    this.GO_TO_URL
-  )}`;
+  // static GO_TO_URL = location.origin;
+  static SISTIC_LOGIN_URL = `https://ticketing.stixcloudtest.com/sistic/loginredirect?gotoUrl=`;
   static SISTIC_LOGOUT_URL =
     'https://ticketing.stixcloudtest.com/sistic/logout';
 
