@@ -58,6 +58,9 @@
             margin-top: 16px;
             margin-bottom: 0;
             position: relative;
+            &.selectbox.err{
+                //height: 36px;
+            }
             &:first-child{
                 margin-top: 0;
             }

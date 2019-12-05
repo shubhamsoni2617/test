@@ -51,8 +51,8 @@ const StayUpdated = ({
               <div
                 className={
                   errMsg && !selectedAreas.length
-                    ? 'form-group err'
-                    : 'form-group'
+                    ? 'form-group err selectbox'
+                    : 'form-group selectbox'
                 }
               >
                 <Select

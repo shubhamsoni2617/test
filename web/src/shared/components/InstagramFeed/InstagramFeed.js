@@ -2,10 +2,11 @@ import React, { useState, useEffect } from 'react';
 import Slider from 'react-slick';
 import axios from 'axios';
 import Constant from '../../constants';
-import { useCustomWidth } from '../CustomHooks';
+// import { useCustomWidth } from '../CustomHooks';
+import Utilities from '../../utilities';
 
 const InstagramFeed = () => {
-  const [width] = useCustomWidth();
+  // const [width] = useCustomWidth();
 
   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
@@ -17,7 +18,8 @@ const InstagramFeed = () => {
     slidesToScroll: 4,
     centerPadding: '60px',
     slidesToShow: 7,
-    speed: 500
+    speed: 1000,
+    autoplay: true
   };
 
   useEffect(() => {
@@ -47,7 +49,7 @@ const InstagramFeed = () => {
           <h2>#SISTICMoments</h2>
         </div>
         <div className="sistic-moments-wrapper">
-          {width <= Constant.MOBILE_BREAK_POINT ? (
+          {Utilities.mobilecheck() ? (
             feeds &&
             feeds.map(feed => (
               <img key={feed.id} src={feed.images.thumbnail.url} alt="" />

@@ -25,7 +25,7 @@ export default class App extends React.Component {
       HomeService.getGenre(),
       AdvertisementService.getFindAnEventAds({
         client: Constants.CLIENT,
-        limit: 2,
+        limit: 3,
         first: 0
       })
     ];
