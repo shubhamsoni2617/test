@@ -84,15 +84,19 @@ const CustomSectionThree = ({ heading, customData, isHomePage }) => {
   };
 
   const secondToMinute = sec => {
-    let minutes = Math.floor(sec / 60);
-    let seconds = sec - minutes * 60;
-    let duration = minutes + ':' + seconds;
-    return duration;
+    if (sec) {
+      let minutes = Math.floor(sec / 60);
+      let seconds = sec - minutes * 60;
+      let duration = minutes + ':' + seconds;
+      return duration;
+    }
   };
 
   if (!loading && data && data.length === 0) {
     return null;
   }
+
+  console.log(duration);
 
   return (
     <div>
@@ -167,11 +171,7 @@ const CustomSectionThree = ({ heading, customData, isHomePage }) => {
                                 <ReactPlayer
                                   width="100%"
                                   height="70px"
-                                  muted={true}
                                   url={vdo.video_url}
-                                  playing={false}
-                                  pip={false}
-                                  controls={false}
                                   onDuration={sec => {
                                     duration = [
                                       ...duration,
@@ -194,7 +194,6 @@ const CustomSectionThree = ({ heading, customData, isHomePage }) => {
                                 className="img-fluid"
                                 type="VdoSmall"
                               />
-
                               <span className="video-duration">
                                 {duration && duration[index]}
                               </span>
