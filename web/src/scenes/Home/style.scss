@@ -5067,9 +5067,9 @@ section{
 						border: 1px solid transparent;
 						transition: 0.5s background-color, 0.3s border-color, 0.3s color;
 						&:hover{
-							color: #0098ff;
-							background-color: transparent;
-							border-color: #0098ff;
+							color: #FFF;
+							background-color: #1f82d7;
+							border-color: #1f82d7;
 						}
 						@media (max-width: 991px){
 							padding: 8px 14px !important;
