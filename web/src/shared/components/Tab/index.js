@@ -26,7 +26,7 @@ const Tab = props => {
           <div className="promotions-listing">
             {listingArray.length === 0 ? (
               <ShimmerEffect
-                height={Utilities.mobilecheck() ? 200 : 400}
+                height={Utilities.mobilecheck() ? 200 : 350}
                 count={Utilities.mobilecheck() ? 2 : 4}
                 type="SOLID"
                 propCls={`shm_col-xs-2 col-md-${

@@ -60,7 +60,7 @@ const PromotionCard = props => {
     >
       <div className="promotions-listing-wrapper">
         <div className="promotion-image">
-          <Image src={data.featured_image} type="Horizontal" />
+          <Image src={data.featured_image} type="BigBanner" />
         </div>
         <div className="promotion-desc">
           <div className="promotion-category-div">

@@ -101,10 +101,13 @@ export default class Promotions extends Component {
         prevState.defaultTabId !== defaultTabId ||
         prevState.sortBy !== sortBy
       ) {
-        this.setState({
-          listingArray: [],
-          first: 0
-        });
+        this.setState({ listingArray: [] });
+        setTimeout(() => {
+          this.setState({
+            listingArray: [],
+            first: 0
+          });
+        }, 1000);
       }
 
       const params = {
@@ -119,14 +122,17 @@ export default class Promotions extends Component {
       PromotionService.getPromotionList(params).then(res => {
         if (res.data && res.data.data) {
           const listing = res.data.data;
-          this.setState({
-            totalRecords: res.data.total_records,
-            listingArray:
-              prevState.first !== first
-                ? [...listingArray, ...listing]
-                : listing
-            // prevProps === defaultTabId ? [...listingArray, ...res.data.data[0]] : res.data.data[0]
-          });
+          this.setState({ listingArray: [] });
+          setTimeout(() => {
+            this.setState({
+              totalRecords: res.data.total_records,
+              listingArray:
+                prevState.first !== first
+                  ? [...listingArray, ...listing]
+                  : listing
+              // prevProps === defaultTabId ? [...listingArray, ...res.data.data[0]] : res.data.data[0]
+            });
+          }, 1000);
         }
       });
     }
@@ -149,16 +155,6 @@ export default class Promotions extends Component {
       .catch(err => {
         console.log(err);
       });
-  };
-
-  calculateSum = data => {
-    let count =
-      data &&
-      data
-        .filter(item => Number(item.promotions))
-        .map(item => +Number(item.promotions))
-        .reduce((sum, current) => sum + current);
-    return count;
   };
 
   fetchPromotionListingData = () => {
