@@ -155,7 +155,6 @@
             padding-right: 0;
             .featured-box{
                 display: flex;
-                flex-wrap: wrap;
                 width: 100%;
                 padding-right: 0px;
                 .featured{
@@ -856,17 +855,25 @@
        background-color: #fff;
        .sistic-moments-wrapper{
            margin-bottom: 40px;
+           @media(max-width: 767px){
+            margin-left: -10px;
+            width: calc(100% + 20px);
+        }
            img{
-               width: 300px;
-               height: 300px;
-               @media(max-width: 1024px){
-                   width: auto;
-                   height: auto;
-               }
-               @media(min-width: 601px) and (max-width: 965px) and (orientation: landscape){
-                    width: auto;
-                    height: auto;
-                }
+            width: 19%;
+            height: auto;
+            margin: 0 2px 2px 0;
+            @media(max-width: 767px){
+                margin: 0;
+            }
+            //    @media(max-width: 1024px){
+            //        width: auto;
+            //        height: auto;
+            //    }
+            //    @media(min-width: 601px) and (max-width: 965px) and (orientation: landscape){
+            //         width: auto;
+            //         height: auto;
+            //     }
            }
        }
        h2{
