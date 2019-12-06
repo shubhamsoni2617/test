@@ -1,34 +1,22 @@
-import React, { useRef } from 'react';
+import React, { Fragment } from 'react';
 import PromotionCard from '../PromotionCard';
 import './style.scss';
 import SortBy from '../SortBy';
 import ShimmerEffect from '../../../shared/components/ShimmerEffect';
 import DownArrow from '../../../assets/images/down-arrow-blue.svg';
+import Utilities from '../../utilities';
 
 const Tab = props => {
   const { handleLoadMore, tabsSort, handleFilters, limit } = props;
   const { first, listingArray, totalRecords } = props.state;
 
-  const getPosition = element => {
-    var xPosition = 0;
-    var yPosition = 0;
-
-    while (element) {
-      xPosition += element.offsetLeft - element.scrollLeft + element.clientLeft;
-      yPosition += element.offsetTop - element.scrollTop + element.clientTop;
-      element = element.offsetParent;
-    }
-    return { x: xPosition, y: yPosition };
-  };
-  const promotionWrapper = e => {};
-
   return (
-    <>
+    <Fragment>
       <div className="promotion-grid">
         <div className="sortby-filter">
           {tabsSort && tabsSort.isSortBy && (
             <SortBy
-              defaultSortType="Promotions - A to Z"
+              defaultSortType="Promotion Date - Earliest to Lates"
               handleFilters={handleFilters}
               sortList={tabsSort.sortList}
             />
@@ -38,32 +26,26 @@ const Tab = props => {
           <div className="promotions-listing">
             {listingArray.length === 0 ? (
               <ShimmerEffect
-                height={150}
-                count={4}
-                type="LIST"
-                propCls="shm_col-xs-2 col-md-5"
+                height={Utilities.mobilecheck() ? 200 : 400}
+                count={Utilities.mobilecheck() ? 2 : 4}
+                type="SOLID"
+                propCls={`shm_col-xs-2 col-md-${
+                  Utilities.mobilecheck() ? 12 : 6
+                }`}
               />
             ) : (
               listingArray.map((elem, index, array) => {
                 if (index % 2 === 0) {
                   if (array[index] && array[index + 1]) {
                     return (
-                      <div
-                        className="promotion-events-row"
-                        key={index}
-                        onClick={e => promotionWrapper(e)}
-                      >
+                      <div className="promotion-events-row" key={index}>
                         <PromotionCard data={array[index]} {...props} />
                         <PromotionCard data={array[index + 1]} {...props} />
                       </div>
                     );
                   } else if (array[index]) {
                     return (
-                      <div
-                        className="promotion-events-row"
-                        key={index}
-                        onClick={e => promotionWrapper(e)}
-                      >
+                      <div className="promotion-events-row" key={index}>
                         <PromotionCard
                           data={array[index]}
                           {...props}
@@ -89,7 +71,7 @@ const Tab = props => {
           </div>
         )}
       </div>
-    </>
+    </Fragment>
   );
 };
 

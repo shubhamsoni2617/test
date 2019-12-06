@@ -36,14 +36,14 @@ export default class Promotions extends Component {
         {
           sortType: '',
           sortOrder: 'ASC',
-          sortTitle: 'Promotions - A to Z',
-          sortTag: 'Promotions - A to Z'
+          sortTitle: 'Promotion Date - Earliest to Lates',
+          sortTag: 'Promotion Date - Earliest to Lates'
         },
         {
           sortType: '',
           sortOrder: 'DESC',
-          sortTitle: 'Promotions - Z to A',
-          sortTag: 'Promotions - Z to A'
+          sortTitle: 'Promotion Date - Latest to Earliest',
+          sortTag: 'Promotion Date - Latest to Earliest'
         },
         {
           sortType: '',
@@ -329,7 +329,7 @@ export default class Promotions extends Component {
                         >
                           <div className="event-listing-sorting">
                             <SortBy
-                              defaultSortType="Promotions - A to Z"
+                              defaultSortType="Promotion Date - Earliest to Lates"
                               handleFilters={this.handleFilters}
                               sortList={this.tabsSort.sortList}
                               sortByFlag={this.state.sortByFlag}

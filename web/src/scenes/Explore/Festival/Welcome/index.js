@@ -4,7 +4,7 @@ import BreadcrumbSlug from '../../../../shared/components/BreadcrumbSlug';
 import SocialShare from '../../../../shared/components/SocialShare';
 import shareIcon from '../../../../assets/images/share-icon.svg';
 
-const Welcome = ({ breadcrumbSlug, subtitle, title, description, date }) => {
+const Welcome = ({ breadcrumbSlug, subtitle, title, description }) => {
   const [socialShare, setSocialShare] = useState(false);
   const handleSocialShare = () => {
     setSocialShare(!socialShare);
@@ -35,7 +35,7 @@ const Welcome = ({ breadcrumbSlug, subtitle, title, description, date }) => {
         <div className="container-fluid">
           <div className="welcome-sifa">
             <h2>{title}</h2>
-            <span>{date}</span>
+            <span>{subtitle}</span>
             <p dangerouslySetInnerHTML={{ __html: description }}></p>
           </div>
         </div>
