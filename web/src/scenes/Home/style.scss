@@ -503,11 +503,12 @@
 							top: 35px;
 							right: 9px;
                             @media(max-width: 991px) {
-                                bottom: 12px;
-                                right: 12px;
+                                right: 9px;
+                                top: 34px;
                             }
                             @media(max-width: 767px) {
-                                right: 6px;
+                                right: -1px;
+                                top: 34px;
 							}
 							&.login{
 								background-color:#45eb01;
@@ -4921,13 +4922,13 @@ section{
 					background-color: #F5F7F9;
 					border-bottom: 1px solid #fff;
 					@media (max-width: 767px) {
-						padding: 10px;
+						padding: 15px 10px;
 					}
 					.product-img {
 						flex: 0 0 33%;
 						img{
 							width: 128px;
-    						height: 81px;
+    						height: auto;
 						}
 					}
 					.product-details {
@@ -4944,10 +4945,10 @@ section{
 							font-family: 'Rubik', sans-serif;
 							line-height: 17px;
 							padding-bottom: 5px;
-							
+							font-size: 13px;
 							@media (max-width: 767px) {
 								line-height: 15px;
-								font-size: 12px;
+								font-size: 11px;
 							}
 						}
 						.product-name {
@@ -4968,12 +4969,12 @@ section{
 						.product-desc {
 							color: #626262;
 							font-family: 'Rubik', sans-serif;
-							font-size: 14px;
+							font-size: 13px;
 							line-height: 17px;
                             padding-bottom: 5px;
                             margin: 0;
 							@media (max-width: 767px) {
-								font-size: 12px;
+								font-size: 11px;
 								line-height: 15px;
 								padding-bottom: 5px;
 							}
@@ -4986,7 +4987,7 @@ section{
 							line-height: 19px;
 							width: 100%;
 							@media (max-width: 767px) {
-								font-size: 14px;
+								font-size: 13px;
 								line-height: 18px;
 							}
 						}
