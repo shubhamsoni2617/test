@@ -24,6 +24,7 @@ const Item = ({ event, history }) => {
             </span>
           </div>
           <div className="featured-desc">
+            {event && <p className="featured-event-date">{event.event_date}</p>}
             {event && event.title && (
               <h3>
                 {Utilities.showLimitedChars(
@@ -32,7 +33,6 @@ const Item = ({ event, history }) => {
                 )}
               </h3>
             )}
-            {event && <p className="featured-event-date">{event.event_date}</p>}
             {event && event.venue && (
               <p className="venue-name">
                 {Utilities.showLimitedChars(

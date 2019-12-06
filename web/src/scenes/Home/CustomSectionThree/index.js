@@ -98,17 +98,20 @@ const CustomSectionThree = ({
   };
 
   const displayDuration = duration => {
-    let allDuration;
-    let durationIndex = duration
-      .replace('M', ':')
-      .replace('S', '')
-      .indexOf(':');
-    if (durationIndex === -1) {
-      allDuration = '0' + ':' + duration.replace('M', ':').replace('S', '');
-    } else {
-      allDuration = duration.replace('M', ':').replace('S', '');
+    if (duration) {
+      let allDuration;
+      let durationIndex = duration
+        .replace('M', ':')
+        .replace('S', '')
+        .indexOf(':');
+      let vdoDuration = duration.replace('M', ':').replace('S', '');
+      if (durationIndex === -1) {
+        allDuration = '0' + ':' + vdoDuration;
+      } else {
+        allDuration = vdoDuration;
+      }
+      return allDuration;
     }
-    return allDuration;
   };
 
   if (!loading && data && data.length === 0) {

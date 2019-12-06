@@ -94,7 +94,7 @@ class MiniCart extends Component {
             </div>
             <div className="cart-body">
               <ul>
-                {!cartDataCount && <h3>No Item in Shopping Cart</h3>}
+                {!cartDataCount && <h3 className="no-items">No Item in Shopping Cart</h3>}
                 {data.map((cartElem, index) => {
                   console.log(this.state.productImages[index]);
                   return (
