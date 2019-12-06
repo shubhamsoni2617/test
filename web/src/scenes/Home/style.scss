@@ -584,7 +584,7 @@
 								}
                             }
                         }
-						&:hover{
+						&.active{
 							.my-cart-popup {
 								width: 400px;
 								opacity: 1;
@@ -601,13 +601,6 @@
 									margin-top: 0;
 								}
 								@media (max-width: 767px) {
-									display: none;
-                                }
-							}
-						}
-						&.active {
-							.my-cart-popup {
-								@media (max-width: 767px) {
 									display: block;
 									min-width: auto;
 									position: fixed;
@@ -621,9 +614,26 @@
 									max-width: 100%;
                                     margin-top: 0px;
                                 }
-
 							}
 						}
+						// &.active {
+						// 	.my-cart-popup {
+						// 		@media (max-width: 767px) {
+						// 			display: block;
+						// 			min-width: auto;
+						// 			position: fixed;
+						// 			opacity: 1;
+						// 			width: 100%;
+						// 			height: 100%;
+						// 			top: 0;
+						// 			right: 0;
+						// 			left: 0;
+						// 			bottom: 0;
+						// 			max-width: 100%;
+                        //             margin-top: 0px;
+                        //         }
+						// 	}
+						// }
 					}
 					&.ticket-withus {
 						padding: 24px 27px 20px;
@@ -722,7 +732,7 @@
 								}
 							}
 						}
-						&:hover{
+						&.active{
 							.header-submenu{
 								opacity: 1;
 								visibility: visible;

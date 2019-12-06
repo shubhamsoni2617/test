@@ -18,16 +18,16 @@ class MiniCart extends Component {
   }
 
   toggle = () => {
-    if (Utilities.mobilecheck()) {
-      if (!this.state.isOpen) {
-        window.addEventListener('click', this.handleOutsideClick, false);
-        this.node.classList.add('active');
-      } else {
-        window.removeEventListener('click', this.handleOutsideClick, false);
-        this.node.classList.remove('active');
-      }
-      this.setState({ isOpen: !this.state.isOpen });
+    // if (Utilities.mobilecheck()) {
+    if (!this.state.isOpen) {
+      window.addEventListener('click', this.handleOutsideClick, false);
+      this.node.classList.add('active');
+    } else {
+      window.removeEventListener('click', this.handleOutsideClick, false);
+      this.node.classList.remove('active');
     }
+    this.setState({ isOpen: !this.state.isOpen });
+    // }
   };
   handleOutsideClick = e => {
     if (this.node.contains(e.target)) {
@@ -85,7 +85,6 @@ class MiniCart extends Component {
                           {moment(cartElem.product.productDate).format(
                             'DD MMMM  YYYY'
                           )}
-
                           <br />
                           {moment(cartElem.product.productDate).format(
                             'hh:mm A'
@@ -111,8 +110,8 @@ class MiniCart extends Component {
                   {timeLeft > 0 ? (
                     <CartTimer timeLeft={timeLeft} />
                   ) : (
-                      <span className="timer-time">00:00</span>
-                    )}
+                    <span className="timer-time">00:00</span>
+                  )}
                 </div>
                 <div className="cart-checkout-btn">
                   <a href={Constants.SISTIC_GO_TO_CART}>Go to Cart</a>
