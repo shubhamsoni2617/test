@@ -50,8 +50,6 @@ const PromotionCard = props => {
   let shareUrl =
     window.location.origin + `/promotions/${defaultTabId}/${data.id}`;
 
-  let mainTitle = <p dangerouslySetInnerHTML={{ __html: data.title }}></p>;
-
   return (
     <div
       className={
@@ -62,7 +60,7 @@ const PromotionCard = props => {
     >
       <div className="promotions-listing-wrapper">
         <div className="promotion-image">
-          <Image src={data.featured_image} />
+          <Image src={data.featured_image} type="BigBanner" />
         </div>
         <div className="promotion-desc">
           <div className="promotion-category-div">
@@ -83,13 +81,7 @@ const PromotionCard = props => {
             />
           </span>
           <h2 dangerouslySetInnerHTML={{ __html: data.title }}></h2>
-          {/* <EventHeading title={mainTitle} lines={2} height={22} /> */}
           <div className="promotion-btn-wrapper">
-            {/* <a href={data.buttons.length > 0 && data.buttons[0].url ? data.buttons[0].url : undefined}>
-              <button style={{ color: data.buttons.length > 0 ? `#${data.buttons[0].color}` : "" }}>
-                <span>{data.buttons.length > 0 && data.buttons[0].text}</span>
-              </button>
-            </a> */}
             <button
               onClick={() =>
                 fetchPromotionDetailData(
@@ -135,12 +127,7 @@ const PromotionCard = props => {
         </a>
         <span className="top-dropdown-bar"></span>
         <div className="promotion-tab-dropdown-content">
-          {/* <p>{short_description}</p> */}
           <p dangerouslySetInnerHTML={{ __html: description }}></p>
-          {/* <img src={featured_image} className="img-fluid" alt="feature-image" /> */}
-          {/* <p>Donec id sem et arcu fermentum pretium quis in metus. Ut dapibus sem ac iaculis pretium. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Donec malesuada feugiat odio in consequat. Sed non nisl tortor. Pellentesque luctus magna sollicitudin nulla accumsan, at molestie elit cursus. Phasellus et est justo. Vivamus nec risus bibendum, iaculis arcu a, tempus augue. Cras sollicitudin elit at vehicula pulvinar. In hac habitasse platea dictumst. Mauris facilisis risus et lorem dignissim placerat.</p> */}
-          {/* Related Events */}
-
           {buttons &&
             buttons.length > 0 &&
             buttons.map((e, i) => {

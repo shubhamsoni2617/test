@@ -308,6 +308,7 @@
                         overflow: hidden;
                         transition: all 0.3s ease-out;
                         cursor: pointer;
+                        width: 92px !important;
                         &:first-child{
                             margin-left: 0;
                         }
@@ -330,6 +331,7 @@
                             img{
                                 max-width: 100%;
                                 height: auto;
+                                width: 92px;
                                 
                             }
                         }

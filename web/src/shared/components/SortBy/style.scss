@@ -22,12 +22,16 @@
     z-index: 3;
     .sortby-filter{
         margin-bottom: 0px;
-        width: 334px;
+        width: auto;
+        min-width: 360px;
         .filter-topbar{
             box-shadow: none;
             padding: 5px 11px;
             height: 30px;
             cursor: pointer;
+            @media(min-width: 991px){
+              padding: 5px 30px 5px 11px;
+            }
             .sortby-text{
                 font-weight: 500;
             }
