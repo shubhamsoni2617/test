@@ -8,13 +8,39 @@ import CartTimer from './CartTimer';
 import Constants from '../../../shared/constants';
 import BackButton from '../../../assets/images/next.svg';
 import Utilities from '../../../shared/utilities';
+import Image from '../../../shared/components/Image';
+import HomeService from '../../../shared/services/HomeService';
 
 class MiniCart extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      isOpen: false
+      isOpen: false,
+      productImages: [],
+      productImage: ''
     };
+  }
+
+  componentDidUpdate(prevProp) {
+    if (prevProp.data && prevProp.data.length !== this.props.data.length) {
+      let images = [];
+
+      this.props.data.map((cartElem, index) => {
+        let params = {
+          client: 1,
+          pid: cartElem.product.productId
+        };
+
+        HomeService.getProductImage(params).then(res => {
+          images.push(res.data.data.thumb_image);
+          if (this.props.data.length - 1 == index) {
+            this.setState({
+              productImages: [...images]
+            });
+          }
+        });
+      });
+    }
   }
 
   toggle = () => {
@@ -38,7 +64,7 @@ class MiniCart extends Component {
 
   render() {
     const { data, cartDataCount, timeLeft } = this.props;
-    console.log(timeLeft);
+
     return (
       <li
         className="cart-icon"
@@ -70,13 +96,19 @@ class MiniCart extends Component {
               <ul>
                 {!cartDataCount && <h3>No Item in Shopping Cart</h3>}
                 {data.map((cartElem, index) => {
+                  console.log(this.state.productImages[index]);
                   return (
                     <li key={cartElem.product.productId}>
                       <div className="product-img">
-                        <img
-                          src={exploreImg}
+                        <Image
+                          src={
+                            this.state.productImages[index]
+                              ? this.state.productImages[index]
+                              : ''
+                          }
                           className="img-fluid"
                           alt="cart"
+                          type="Smaller"
                         />
                       </div>
                       <div className="product-details">
@@ -84,8 +116,7 @@ class MiniCart extends Component {
                           {moment(cartElem.product.productDate).format('ddd')},{' '}
                           {moment(cartElem.product.productDate).format(
                             'DD MMMM  YYYY'
-                          )}
-                          <br />
+                          )}{' '}
                           {moment(cartElem.product.productDate).format(
                             'hh:mm A'
                           )}
