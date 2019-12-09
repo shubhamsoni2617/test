@@ -102,18 +102,15 @@ const TopNav = props => {
 
   useEffect(() => {
     setUrl(window.location.href);
-    jsonp(
-      'https://ticketing.stixcloudtest.com/sistic/patron/checkcart/portal',
-      null,
-      (err, data) => {
-        if (err) {
-          console.error(err.message);
-        } else {
-          console.log(data);
-          setCartData(data);
-        }
+
+    jsonp(Constants.FETCH_CART_DATA_URL, null, (err, data) => {
+      if (err) {
+        console.error(err.message);
+      } else {
+        console.log(data);
+        setCartData(data);
       }
-    );
+    });
     fetchMostViewedService();
     if (window.__INITIAL_DATA__ && window.__INITIAL_DATA__.venuesData) {
       setByVenueEvent(window.__INITIAL_DATA__.venuesData.data);
@@ -183,8 +180,9 @@ const TopNav = props => {
   }, []);
 
   const handleClick = e => {
+    console.log;
     if (node.current && node.current.contains(e.target)) {
-      setLoginPopUp(!loginPopUp);
+      // setLoginPopUp(!loginPopUp);
       return;
     }
 
@@ -369,13 +367,17 @@ const TopNav = props => {
                   ref={node}
                 >
                   {cartData.loginStatus === 0 ? (
-                    <img src={MainLogo} className="img-fluid" alt="send" />
+                    <p
+                      className="login-parent"
+                      onClick={() => setLoginPopUp(!loginPopUp)}
+                    >
+                      <img src={MainLogo} className="img-fluid" alt="send" />
+                    </p>
                   ) : (
                     <a
                       href={`${Constants.SISTIC_LOGIN_URL}${encodeURIComponent(
                         url
                       )}`}
-                      target="_blank"
                     >
                       <img src={MainLogo} className="img-fluid" alt="send" />
                     </a>
@@ -394,9 +396,7 @@ const TopNav = props => {
                         </a>
                       </li>
                       <li>
-                        <a href={Constants.SISTIC_LOGOUT_URL} target="_blank">
-                          Logout
-                        </a>
+                        <a href={Constants.SISTIC_LOGOUT_URL}>Logout</a>
                       </li>
                     </ul>
                   )}
@@ -492,7 +492,11 @@ const TopNav = props => {
             ></a>
             <ul className="user-details">
               <li className="user-icon">
-                <a href={Constants.SISTIC_LOGIN_URL} target="_blank">
+                <a
+                  href={`${Constants.SISTIC_LOGIN_URL}${encodeURIComponent(
+                    url
+                  )}`}
+                >
                   <img src={MainLogo} className="img-fluid" alt="send" />
                   <span
                     className={
@@ -675,9 +679,7 @@ const TopNav = props => {
                   </a>
                 </li>
                 <li>
-                  <a href={Constants.SISTIC_LOGOUT_URL} target="_blank">
-                    Logout
-                  </a>
+                  <a href={Constants.SISTIC_LOGOUT_URL}>Logout</a>
                 </li>
               </ul>
               <li className="has-submenu">

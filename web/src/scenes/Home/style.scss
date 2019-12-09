@@ -432,24 +432,26 @@
 				padding: 0px;
 				>li {
 					list-style: none;
-					padding: 21px 13px 20px;
+					padding: 0px;
 					transition: 0.8s background-color;
 					-webkit-transition: 0.8s background-color;
 					-moz-transition: 0.8s background-color;
 					-o-transition: 0.8s background-color;
 					@media(max-width: 767px){
-						padding: 21px 5px 8px;
+						padding: 0px;
                     }
                     &.user-icon, &.cart-icon, &.search-icon{
-                        height: 45px;
-                        width: 45px;
+                        height: auto;
+                        width: auto;
                         @media (max-width: 767px){
-                            height: 35px;
-                            width: 35px;
+                            height: auto;
+                            width: auto;
                         }
-                        a{
-                            @media (max-width: 991px){
-                                padding: 0;
+                        a, .login-parent{
+							padding: 21px 13px 20px;
+							margin-bottom: 0px;
+                            @media (max-width: 767px){
+								padding: 21px 5px 8px;
                             }
                         }
 					}
@@ -489,7 +491,7 @@
 							width: auto;
                         }
                         @media(max-width: 991px) {
-                            padding: 18px 13px 19px;
+                            padding: 0px
                         }
                         span {
                             content: '';
@@ -507,8 +509,8 @@
                                 top: 34px;
                             }
                             @media(max-width: 767px) {
-                                right: -1px;
-                                top: 34px;
+                                right: 0px;
+                                top: 35px;
 							}
 							&.login{
 								background-color:#45eb01;
@@ -533,9 +535,10 @@
 						>a {
 							position: relative;
                             display: inline-block;
-                            width: 27px;
-							height: 23px;
-							padding: 0;
+                            // width: 27px;
+							// height: 23px;
+							width: auto;
+							height: auto;
                             cursor: pointer;
 							span {
 								height: 16px;
@@ -550,14 +553,18 @@
 								font-weight: 500;
 								line-height: 16px;
 								position: absolute;
-								top: -5px;
-								left: 13px;
+								top: 16px;
+    							left: 26px;
 								font-size: 11px;
 								@media(max-width: 991px) {
 									height: 13px;
 									width: 20px;
 									font-size: 10px;
 									line-height: 13px;
+								}
+								@media(max-width: 767px){
+									height: 14px;
+									left: 20px;
 								}
 							}
 							img {
@@ -685,7 +692,7 @@
 							}
 							@media(max-width: 767px){
 								top: 57px;
-								margin-left: -48px;
+								margin-left: -45px;
 								min-width: 170px;
 							}
 							&:before{
@@ -1160,6 +1167,7 @@
 				display: inline-block;
 				margin-right: 10px;
 				position: relative;
+				cursor: pointer;
 				span {
 					content: '';
 					height: 11px;
@@ -4924,6 +4932,13 @@ section{
 					right: 0px;
 					width: 100%;
 				}
+				&::-webkit-scrollbar {
+					width: 6px;
+				}
+				&::-webkit-scrollbar-thumb {
+					border-radius: 10px;
+					width: 2px;
+				}
 				.no-items{
 					font-weight: 400;
 					padding-bottom: 10px;
@@ -4944,8 +4959,6 @@ section{
 					}
 					.product-img {
 						flex: 0 0 33%;
-						max-width: 125px;
-						height: auto;
 						@media(max-width: 767px){
 							max-width: inherit;
 						}
@@ -5084,14 +5097,14 @@ section{
 						font-weight: 600;
 						font-size: 16px;
 						line-height: 19px;
-						padding: 8px 14px;
+						padding: 8px 14px !important;
 						display: inline-block;
 						background-color: #0098ff;
 						border: 1px solid transparent;
 						transition: 0.5s background-color, 0.3s border-color, 0.3s color;
 						&:hover{
-							color: #FFF;
-							background-color: #1f82d7;
+							color: #1f82d7;
+							background-color: transparent;
 							border-color: #1f82d7;
 						}
 						@media (max-width: 991px){

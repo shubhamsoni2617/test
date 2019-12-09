@@ -43,7 +43,6 @@ class MiniCart extends Component {
       });
     }
   }
-
   componentWillUnmount() {
     document.removeEventListener('mousedown', this.handleOutsideClick);
   }
@@ -143,7 +142,7 @@ class MiniCart extends Component {
                           }
                           className="img-fluid"
                           alt="cart"
-                          type="Smaller"
+                          // type="Smaller"
                         />
                       </div>
                       <div className="product-details">
