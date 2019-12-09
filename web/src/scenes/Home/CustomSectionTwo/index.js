@@ -59,37 +59,39 @@ const CustomSectionTwo = ({
         propCls={`shm_col-xs-2 col-md-2`}
       />
     ) : (
-      <OneBigTwoSmall />
-    )
+        <OneBigTwoSmall />
+      )
   ) : (
-    <section className="royal-wrapper">
-      <div className="container-fluid">
-        <div className="royal-side-padding">
-          <div className="section-top-wrapper">
-            <h2>{heading}</h2>
-            {isMoreFrom && (
-              <a href={url && url} target="_blank" className="text-right">
-                More from {heading}{' '}
-                <img src={Arrow} className="img-fluid" alt="arrow" />
-              </a>
-            )}
-          </div>
-          <div className="royal-items-wrapper">
-            {!Utilities.mobilecheck() && (
-              <a
-                href={data && data[0] && data[0].navigation_link}
-                target="_blank"
-                className="royal-leftsection"
-              >
-                <div>
-                  <Image
-                    src={data[0].full_image}
-                    alt={data[0].alt_text}
-                    className="img-fluid"
-                    type="BigBanner"
-                  />
-                </div>
-                {/* {Utilities.mobilecheck() && (
+      <section className="royal-wrapper">
+        <div className="container-fluid">
+          <div className="royal-side-padding">
+            <div className="section-top-wrapper">
+              <h2>{heading}</h2>
+              <div className="carousel-dots">
+                {isMoreFrom && (
+                  <a href={url && url} target="_blank" className="text-right">
+                    More from {heading}{' '}
+                    <img src={Arrow} className="img-fluid" alt="arrow" />
+                  </a>
+                )}
+              </div>
+            </div>
+            <div className="royal-items-wrapper">
+              {!Utilities.mobilecheck() && (
+                <a
+                  href={data && data[0] && data[0].navigation_link}
+                  target="_blank"
+                  className="royal-leftsection"
+                >
+                  <div>
+                    <Image
+                      src={data[0].full_image}
+                      alt={data[0].alt_text}
+                      className="img-fluid"
+                      type="BigBanner"
+                    />
+                  </div>
+                  {/* {Utilities.mobilecheck() && (
                 <a
                   href={data && data[0] && data[0].navigation_link}
                   target="_blank"
@@ -101,59 +103,59 @@ const CustomSectionTwo = ({
                   <p>{data && data[0] && data[0].section_date}</p>
                 </a>
               )} */}
-              </a>
-            )}
-            <div className="royal-rightsection">
-              {!Utilities.mobilecheck() && (
-                <a
-                  href={data && data[0] && data[0].navigation_link}
-                  target="_blank"
-                  className="royal-rightside-textwrapper"
-                >
-                  <a>
-                    <h3>{data && data[0] && data[0].title}</h3>
-                  </a>
-                  <p>{data && data[0] && data[0].event_date}</p>
                 </a>
               )}
-              <div className="royal-items">
-                {data &&
-                  data
-                    .slice(Utilities.mobilecheck() ? 0 : 1, data.length)
-                    .map((elem, i) => {
-                      return (
-                        <a
-                          className="item-img"
-                          href={elem.navigation_link}
-                          target="_blank"
-                          key={i}
-                          className="item-wrapper"
-                        >
-                          <div className="item-img">
-                            <Image
-                              src={elem.full_image}
-                              alt={elem.alt_text}
-                              className="img-fluid"
-                              type="BigBanner"
-                            />
-                          </div>
+              <div className="royal-rightsection">
+                {!Utilities.mobilecheck() && (
+                  <a
+                    href={data && data[0] && data[0].navigation_link}
+                    target="_blank"
+                    className="royal-rightside-textwrapper"
+                  >
+                    <a>
+                      <h3>{data && data[0] && data[0].title}</h3>
+                    </a>
+                    <p>{data && data[0] && data[0].event_date}</p>
+                  </a>
+                )}
+                <div className="royal-items">
+                  {data &&
+                    data
+                      .slice(Utilities.mobilecheck() ? 0 : 1, data.length)
+                      .map((elem, i) => {
+                        return (
+                          <a
+                            className="item-img"
+                            href={elem.navigation_link}
+                            target="_blank"
+                            key={i}
+                            className="item-wrapper"
+                          >
+                            <div className="item-img">
+                              <Image
+                                src={elem.full_image}
+                                alt={elem.alt_text}
+                                className="img-fluid"
+                                type="BigBanner"
+                              />
+                            </div>
 
-                          <div className="royal-item-content">
-                            <h3>
-                              <a>{elem.title}</a>
-                            </h3>
-                            <p>{elem.event_date}</p>
-                          </div>
-                        </a>
-                      );
-                    })}
+                            <div className="royal-item-content">
+                              <h3>
+                                <a>{elem.title}</a>
+                              </h3>
+                              <p>{elem.event_date}</p>
+                            </div>
+                          </a>
+                        );
+                      })}
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
-    </section>
-  );
+      </section>
+    );
 };
 
 export default CustomSectionTwo;
