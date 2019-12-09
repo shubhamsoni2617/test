@@ -12,14 +12,12 @@ import Image from '../../../shared/components/Image';
 import HomeService from '../../../shared/services/HomeService';
 
 class MiniCart extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      isOpen: false,
-      productImages: [],
-      productImage: ''
-    };
-  }
+  state = {
+    isOpen: false,
+    productImages: [],
+    productImage: ''
+  };
+
   componentDidMount() {
     document.addEventListener('mousedown', this.handleOutsideClick);
   }
