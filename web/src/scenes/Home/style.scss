@@ -807,14 +807,20 @@
 								-webkit-transition: 1s all;
 								-moz-transition: 1s all;
 								-o-transition: 1s all;
-                            }
+							}
 						}
-
 					}
-					&:last-child {
+					&.dropdown {
 						a {
-                            padding-right: 0px;
-                            background: none;
+							padding-right: 14px;
+							background: none;
+						}
+						&:hover{
+							a{
+								&:before{
+									width: 0px;
+								}
+							}
 						}
 					}
 					&.has-submenu {
@@ -850,12 +856,6 @@
                 padding: 0px 15px;
                 &:last-child{
                     padding-right: 0;
-                    a{
-                        padding-right: 14px;
-                        &::before{
-                            display: none;
-                        }
-                    }
                 }
                 &.active{
                     .dropdown-icon {

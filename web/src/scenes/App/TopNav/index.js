@@ -181,7 +181,7 @@ const TopNav = props => {
   }, []);
 
   const handleClick = e => {
-    if (node.current.contains(e.target)) {
+    if (node.current && node.current.contains(e.target)) {
       setLoginPopUp(!loginPopUp);
       return;
     }
