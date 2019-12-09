@@ -464,10 +464,12 @@ const TopNav = props => {
                         </li>
                       );
                     })}
-                <DropDown
-                  showElementsInHeader={showElementsInHeader}
-                  byGenreEvent={byGenreEvent}
-                />
+                {byGenreEvent.length > 4 && (
+                  <DropDown
+                    showElementsInHeader={showElementsInHeader}
+                    byGenreEvent={byGenreEvent}
+                  />
+                )}
               </ul>
             </div>
           </nav>

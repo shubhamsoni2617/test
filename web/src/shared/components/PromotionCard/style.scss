@@ -55,8 +55,9 @@
         .promotion-image {
             overflow: hidden;
             cursor: default;
-            @media(min-width: 991px){
-              min-height: 270px;
+            min-height: 270px;
+            @media(max-width: 991px){
+              min-height: 200px;
             }
             img {
                 width: 100%;

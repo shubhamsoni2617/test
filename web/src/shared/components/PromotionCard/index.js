@@ -8,6 +8,7 @@ import ShareIcon from '../../../assets/images/share-icon.svg';
 import StopWatch from '../../../assets/images/stopwatch-grey.svg';
 import Image from '../Image';
 import EventHeading from '../EventHeading';
+import Utilities from '../../utilities';
 
 const PromotionCard = props => {
   const { data, fetchPromotionDetailData, handlePromotionDetailTab } = props;
@@ -80,7 +81,14 @@ const PromotionCard = props => {
               showSocialShare={socialShare}
             />
           </span>
-          <h2 dangerouslySetInnerHTML={{ __html: data.title }}></h2>
+          <h2
+            dangerouslySetInnerHTML={{
+              __html: Utilities.showLimitedChars(
+                data.title,
+                Utilities.mobilecheck() ? 50 : 75
+              )
+            }}
+          ></h2>
           <div className="promotion-btn-wrapper">
             <button
               onClick={() =>
