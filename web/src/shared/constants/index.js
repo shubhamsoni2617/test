@@ -9,7 +9,7 @@ class Constants {
   static DOC_ROOT_URL = '/sistic/docroot/';
   static BASE_URL = this.API_URL + this.DOC_ROOT_URL;
   static INSTAGRAM_ACCESS_TOKEN =
-    '3225660226.f09c095.d66beeb477664e4091320bcfe6e3991a';
+    '1108663717.0a26e12.3b399a8ef949401c91c25755caf3ae39';
   static MOBILE_BREAK_POINT = 767;
   static CLIENT = 1;
   static LIMIT = 4;
