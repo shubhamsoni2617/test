@@ -143,7 +143,7 @@ class MiniCart extends Component {
                           }
                           className="img-fluid"
                           alt="cart"
-                          type="Smaller"
+                          // type="Smaller"
                         />
                       </div>
                       <div className="product-details">

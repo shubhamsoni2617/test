@@ -367,9 +367,11 @@ const TopNav = props => {
                   ref={node}
                 >
                   {cartData.loginStatus === 0 ? (
-                    <img src={MainLogo} className="img-fluid" alt="send" />
+                    <p className="login-parent">
+                      <img src={MainLogo} className="img-fluid" alt="send" />
+                    </p>
                   ) : (
-                    <a href={Constants.SISTIC_LOGIN_URL} target="_blank">
+                    <a href={Constants.SISTIC_LOGIN_URL}>
                       <img src={MainLogo} className="img-fluid" alt="send" />
                     </a>
                   )}
@@ -387,9 +389,7 @@ const TopNav = props => {
                         </a>
                       </li>
                       <li>
-                        <a href={Constants.SISTIC_LOGOUT_URL} target="_blank">
-                          Logout
-                        </a>
+                        <a href={Constants.SISTIC_LOGOUT_URL}>Logout</a>
                       </li>
                     </ul>
                   )}
@@ -485,7 +485,7 @@ const TopNav = props => {
             ></a>
             <ul className="user-details">
               <li className="user-icon">
-                <a href={Constants.SISTIC_LOGIN_URL} target="_blank">
+                <a href={Constants.SISTIC_LOGIN_URL}>
                   <img src={MainLogo} className="img-fluid" alt="send" />
                   <span
                     className={
@@ -668,9 +668,7 @@ const TopNav = props => {
                   </a>
                 </li>
                 <li>
-                  <a href={Constants.SISTIC_LOGOUT_URL} target="_blank">
-                    Logout
-                  </a>
+                  <a href={Constants.SISTIC_LOGOUT_URL}>Logout</a>
                 </li>
               </ul>
               <li className="has-submenu">
