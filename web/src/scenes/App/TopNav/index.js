@@ -100,18 +100,14 @@ const TopNav = props => {
   const [loginPopUp, setLoginPopUp] = useState(false);
 
   useEffect(() => {
-    jsonp(
-      'https://ticketing.stixcloudtest.com/sistic/patron/checkcart/portal',
-      null,
-      (err, data) => {
-        if (err) {
-          console.error(err.message);
-        } else {
-          console.log(data);
-          setCartData(data);
-        }
+    jsonp(Constants.FETCH_CART_DATA_URL, null, (err, data) => {
+      if (err) {
+        console.error(err.message);
+      } else {
+        console.log(data);
+        setCartData(data);
       }
-    );
+    });
     fetchMostViewedService();
     if (window.__INITIAL_DATA__ && window.__INITIAL_DATA__.venuesData) {
       setByVenueEvent(window.__INITIAL_DATA__.venuesData.data);
@@ -181,8 +177,9 @@ const TopNav = props => {
   }, []);
 
   const handleClick = e => {
+    console.log;
     if (node.current && node.current.contains(e.target)) {
-      setLoginPopUp(!loginPopUp);
+      // setLoginPopUp(!loginPopUp);
       return;
     }
 
@@ -367,7 +364,10 @@ const TopNav = props => {
                   ref={node}
                 >
                   {cartData.loginStatus === 0 ? (
-                    <p className="login-parent">
+                    <p
+                      className="login-parent"
+                      onClick={() => setLoginPopUp(!loginPopUp)}
+                    >
                       <img src={MainLogo} className="img-fluid" alt="send" />
                     </p>
                   ) : (
