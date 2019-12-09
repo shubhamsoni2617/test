@@ -4944,8 +4944,13 @@ section{
 					}
 					.product-img {
 						flex: 0 0 33%;
+						max-width: 125px;
+						height: auto;
+						@media(max-width: 767px){
+							max-width: inherit;
+						}
 						img{
-							width: 128px;
+							width: auto;
     						height: auto;
 						}
 					}
