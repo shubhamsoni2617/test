@@ -35,6 +35,8 @@ class Constants {
 
   static SISTIC_GO_TO_CART =
     'https://ticketing.stixcloudtest.com/sistic/confirm/shoppingcart';
+  static FETCH_CART_DATA_URL =
+    'https://ticketing.stixcloudtest.com/sistic/patron/checkcart/portal';
 }
 
 export default Constants;
