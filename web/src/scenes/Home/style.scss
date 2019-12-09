@@ -4907,6 +4907,14 @@ section{
 				}
 			}
 			&.cart-body {
+				overflow-y: auto;
+				max-height: 350px; 
+				height: auto;	
+				@media(max-width: 767px){
+					overflow-y: auto;
+					max-height: 100%;
+					height: auto;
+				}
 				@media(max-width: 767px){
 					height: calc(100% - 134px);
 					overflow: auto;

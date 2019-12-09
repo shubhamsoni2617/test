@@ -369,7 +369,7 @@ const TopNav = props => {
                   {cartData.loginStatus === 0 ? (
                     <img src={MainLogo} className="img-fluid" alt="send" />
                   ) : (
-                    <a href={Constants.SISTIC_LOGIN_URL}>
+                    <a href={Constants.SISTIC_LOGIN_URL} target="_blank">
                       <img src={MainLogo} className="img-fluid" alt="send" />
                     </a>
                   )}
@@ -379,10 +379,17 @@ const TopNav = props => {
                   {cartData.loginStatus === 0 && (
                     <ul class="header-submenu">
                       <li>
-                        <a href={Constants.SISTIC_MY_ACCOUNT_URL}>My Account</a>
+                        <a
+                          href={Constants.SISTIC_MY_ACCOUNT_URL}
+                          target="_blank"
+                        >
+                          My Account
+                        </a>
                       </li>
                       <li>
-                        <a href={Constants.SISTIC_LOGOUT_URL}>Logout</a>
+                        <a href={Constants.SISTIC_LOGOUT_URL} target="_blank">
+                          Logout
+                        </a>
                       </li>
                     </ul>
                   )}
@@ -478,7 +485,7 @@ const TopNav = props => {
             ></a>
             <ul className="user-details">
               <li className="user-icon">
-                <a>
+                <a href={Constants.SISTIC_LOGIN_URL} target="_blank">
                   <img src={MainLogo} className="img-fluid" alt="send" />
                   <span
                     className={
@@ -486,9 +493,9 @@ const TopNav = props => {
                     }
                   ></span>
                 </a>
-                {cartData.loginStatus === 1 && (
+                {/* {cartData.loginStatus === 1 && (
                   <a href={Constants.SISTIC_LOGIN_URL}>Login/ Sign Up</a>
-                )}
+                )} */}
               </li>
               <li className="ticket-withus">
                 <Link to="/corporate/ticket-with-us">Ticket With Us</Link>
@@ -656,10 +663,14 @@ const TopNav = props => {
               </li>
               <ul>
                 <li>
-                  <a href={Constants.SISTIC_MY_ACCOUNT_URL}>My Account</a>
+                  <a href={Constants.SISTIC_MY_ACCOUNT_URL} target="_blank">
+                    My Account
+                  </a>
                 </li>
                 <li>
-                  <a href={Constants.SISTIC_LOGOUT_URL}>Logout</a>
+                  <a href={Constants.SISTIC_LOGOUT_URL} target="_blank">
+                    Logout
+                  </a>
                 </li>
               </ul>
               <li className="has-submenu">
