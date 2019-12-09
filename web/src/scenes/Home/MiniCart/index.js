@@ -43,7 +43,6 @@ class MiniCart extends Component {
       });
     }
   }
-
   componentWillUnmount() {
     document.removeEventListener('mousedown', this.handleOutsideClick);
   }
