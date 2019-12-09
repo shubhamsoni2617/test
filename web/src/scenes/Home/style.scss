@@ -4939,6 +4939,9 @@ section{
 					border-radius: 10px;
 					width: 2px;
 				}
+				&::-webkit-scrollbar-track-piece {
+					background-color: #d0d0d0;
+				}
 				.no-items{
 					font-weight: 400;
 					padding-bottom: 10px;
