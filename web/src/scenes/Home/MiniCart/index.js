@@ -20,6 +20,9 @@ class MiniCart extends Component {
       productImage: ''
     };
   }
+  componentDidMount() {
+    document.addEventListener('mousedown', this.handleOutsideClick);
+  }
 
   componentDidUpdate(prevProp) {
     if (prevProp.data && prevProp.data.length !== this.props.data.length) {
@@ -43,23 +46,31 @@ class MiniCart extends Component {
     }
   }
 
+  componentWillUnmount() {
+    document.removeEventListener('mousedown', this.handleOutsideClick);
+  }
   toggle = () => {
-    // if (Utilities.mobilecheck()) {
-    if (!this.state.isOpen) {
-      window.addEventListener('click', this.handleOutsideClick, false);
-      this.node.classList.add('active');
-    } else {
-      window.removeEventListener('click', this.handleOutsideClick, false);
-      this.node.classList.remove('active');
-    }
-    this.setState({ isOpen: !this.state.isOpen });
-    // }
+    window.removeEventListener('click', this.handleOutsideClick, false);
+    this.node.classList.remove('active');
+
+    this.setState({ isOpen: false });
   };
   handleOutsideClick = e => {
     if (this.node.contains(e.target)) {
       return;
     }
-    this.toggle();
+    this.setState({ isOpen: false });
+  };
+
+  addFixedBody = () => {
+    if (Utilities.mobilecheck()) {
+      document.getElementsByTagName('body')[0].classList.add('fixed-body');
+    }
+  };
+  removeFixedBody = () => {
+    if (Utilities.mobilecheck()) {
+      document.getElementsByTagName('body')[0].classList.remove('fixed-body');
+    }
   };
 
   render() {
@@ -67,22 +78,44 @@ class MiniCart extends Component {
 
     return (
       <li
-        className="cart-icon"
         ref={node => {
           this.node = node;
         }}
+        className={`cart-icon ${this.state.isOpen ? 'active' : ''}`}
       >
-        <Link to="/" onClick={this.toggle}>
+        <a
+          to="/"
+          onClick={e => {
+            e.preventDefault();
+            this.setState(
+              {
+                isOpen: !this.state.isOpen
+              },
+              () => {
+                this.addFixedBody();
+              }
+            );
+          }}
+        >
           <img src={MiniCartLogo} className="img-fluid" alt="cart" />
           <span>{cartDataCount || 0}</span>
-        </Link>
+        </a>
         <div className="my-cart-popup">
           <div className="my-cart-wrapper">
             <div className="cart-head">
               {Utilities.mobilecheck() && (
                 <button
                   type="button"
-                  onClick={() => this.node.classList.remove('active')}
+                  onClick={() => {
+                    this.setState(
+                      {
+                        isOpen: false
+                      },
+                      () => {
+                        this.removeFixedBody();
+                      }
+                    );
+                  }}
                 >
                   <img src={BackButton} alt="back" className="img-fluid"></img>
                 </button>
@@ -94,7 +127,9 @@ class MiniCart extends Component {
             </div>
             <div className="cart-body">
               <ul>
-                {!cartDataCount && <h3 className="no-items">No Item in Shopping Cart</h3>}
+                {!cartDataCount && (
+                  <h3 className="no-items">No Item in Shopping Cart</h3>
+                )}
                 {data.map((cartElem, index) => {
                   console.log(this.state.productImages[index]);
                   return (
@@ -145,8 +180,22 @@ class MiniCart extends Component {
                   )}
                 </div>
                 <div className="cart-checkout-btn">
-                  <a href={Constants.SISTIC_GO_TO_CART}>Go to Cart</a>
-                  {/* <button>Go to Cart</button> */}
+                  <a
+                    href={Constants.SISTIC_GO_TO_CART}
+                    target="_blank"
+                    onClick={() => {
+                      this.setState(
+                        {
+                          isOpen: false
+                        },
+                        () => {
+                          this.removeFixedBody();
+                        }
+                      );
+                    }}
+                  >
+                    Go to Cart
+                  </a>
                 </div>
               </div>
             ) : null}
