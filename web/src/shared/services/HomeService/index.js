@@ -7,6 +7,10 @@ class HomeService {
   getMetadata(url) {
     return API.get(`/get-metatags?url=${url}`);
   }
+
+  getProductImage(params) {
+    return API.get(`get-ticket-wallet`, { params });
+  }
   getData() {
     return API.get(
       `search/repositories?q=stars:>1+language:javascript&sort=stars&order=desc&type=Repositories`
