@@ -61,6 +61,8 @@ function List({ data, type, menueStatus, setMenuStatus, closeSubmenu, link }) {
 
 const TopNav = props => {
   let refValue = useRef();
+  const node = useRef(null);
+
   const [cartData, setCartData] = useState({});
   const [showMegaMenu, setShowMegaMenu] = useState(false);
   const [filteredDateRange, setFilteredDateRange] = useState({
@@ -94,26 +96,9 @@ const TopNav = props => {
       ? props.response.findAnEventAddsData.data
       : []
   );
-  const miniCartData = [
-    // {
-    //   product: {
-    //     productId: 1433134,
-    //     productName: 'Dream Reminiscences 声琴忆梦',
-    //     productDate: '2019-12-07T20:00:00+08:00',
-    //     venue: 'SCO Concert Hall'
-    //   },
-    //   quantity: 1
-    // },
-    // {
-    //   product: {
-    //     productId: 1479345,
-    //     productName: 'In Conversation with President Barack Obama',
-    //     productDate: '2019-12-16T11:30:00+08:00',
-    //     venue: 'Singapore Expo Hall 3'
-    //   },
-    //   quantity: 1
-    // }
-  ];
+
+  const [loginPopUp, setLoginPopUp] = useState(false);
+
   useEffect(() => {
     jsonp(
       'https://ticketing.stixcloudtest.com/sistic/patron/checkcart/portal',
@@ -186,11 +171,23 @@ const TopNav = props => {
     });
 
     window.addEventListener('scroll', handleScroll);
+    document.addEventListener('mousedown', handleClick);
+
     return () => {
       unlisten();
       window.removeEventListener('scroll', handleScroll);
+      document.removeEventListener('mousedown', handleClick);
     };
   }, []);
+
+  const handleClick = e => {
+    if (node.current.contains(e.target)) {
+      setLoginPopUp(!loginPopUp);
+      return;
+    }
+
+    setLoginPopUp(false);
+  };
 
   const handleScroll = () => {
     if (props.history.location.pathname === '/') {
@@ -363,39 +360,35 @@ const TopNav = props => {
                     </a>
                     <span></span>
                   </li> */}
-                <li className="user-icon has-submenu">
-                  <img src={MainLogo} className="img-fluid" alt="send" />
-
-                  {cartData && cartData.loginStatus === 0 ? (
-                    <>
-                      <span className="login"></span>
-                      <ul class="header-submenu">
-                        <li>
-                          <a href={Constants.SISTIC_MY_ACCOUNT_URL}>
-                            My Account
-                          </a>
-                        </li>
-                        <li>
-                          <a href={Constants.SISTIC_LOGOUT_URL}>Logout</a>
-                        </li>
-                      </ul>
-                    </>
+                <li
+                  className={`user-icon has-submenu ${
+                    loginPopUp ? `active` : ``
+                  }`}
+                  ref={node}
+                >
+                  {cartData.loginStatus === 0 ? (
+                    <img src={MainLogo} className="img-fluid" alt="send" />
                   ) : (
-                    <>
-                      <span className=""></span>
-
-                      <ul class="header-submenu">
-                        <li>
-                          <a href={Constants.SISTIC_LOGIN_URL}>
-                            Login/ Sign Up
-                          </a>
-                        </li>
-                      </ul>
-                    </>
+                    <a href={Constants.SISTIC_LOGIN_URL}>
+                      <img src={MainLogo} className="img-fluid" alt="send" />
+                    </a>
+                  )}
+                  <span
+                    className={cartData.loginStatus === 0 ? `login` : ``}
+                  ></span>
+                  {cartData.loginStatus === 0 && (
+                    <ul class="header-submenu">
+                      <li>
+                        <a href={Constants.SISTIC_MY_ACCOUNT_URL}>My Account</a>
+                      </li>
+                      <li>
+                        <a href={Constants.SISTIC_LOGOUT_URL}>Logout</a>
+                      </li>
+                    </ul>
                   )}
                 </li>
                 <MiniCart
-                  data={cartData.lineItemList || miniCartData}
+                  data={cartData.lineItemList || []}
                   cartDataCount={cartData.totalLineItems}
                   timeLeft={cartData.timeLeftSeconds}
                 />
