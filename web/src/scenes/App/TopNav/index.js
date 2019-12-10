@@ -148,7 +148,7 @@ const TopNav = props => {
     } else {
       AdvertisementService.getFindAnEventAds({
         client: Constants.CLIENT,
-        limit: 2,
+        limit: 3,
         first: 0
       })
         .then(res => {
@@ -180,7 +180,6 @@ const TopNav = props => {
   }, []);
 
   const handleClick = e => {
-    console.log('tessgjhjijlkn', node);
     if (node.current && node.current.contains(e.target)) {
       // setLoginPopUp(!loginPopUp);
       return;
