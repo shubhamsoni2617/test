@@ -2759,22 +2759,19 @@ p {
 									.image-conatiner{
 										position: relative;
 										background: #fff;
-										&:after{
-											background: linear-gradient(to bottom, rgba(255,255,255,0) 0%, rgb(62, 62, 62) 124%);
-											position: absolute;
-											content: "";
-											left: 0px;
-											right: 0px;
-											top: auto;
-											bottom: 0px;
-											width: 100%;
-											height: 50px;
-										}
 									}
 									&.promotion-timer-exist{
 										.image-conatiner{
 											&:after{
-												content: none;
+												background: linear-gradient(to bottom, rgba(255,255,255,0) 0%, rgb(62, 62, 62) 124%);
+												position: absolute;
+												content: "";
+												left: 0px;
+												right: 0px;
+												top: auto;
+												bottom: 0px;
+												width: 100%;
+												height: 50px;
 											}
 										}
 									}
