@@ -240,6 +240,10 @@
         }
         @media(max-width: 991px){
             overflow: inherit;
+            height: 100% !important;
+        }
+        .tHuMbY:empty{
+            display: none;
         }
           .promoters {
             padding: 1px 0px 10px;
