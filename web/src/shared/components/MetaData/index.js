@@ -39,6 +39,9 @@ export default function MetaData({ location, data }) {
       {metaData.description && (
         <meta name="description" content={metaData.description} />
       )}
+      {metaData.keywords && (
+        <meta name="keywords" content={metaData.keywords} />
+      )}
 
       {metaData.canonical_url && (
         <link rel="canonical" href={metaData.canonical_url} />
