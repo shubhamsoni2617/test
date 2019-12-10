@@ -2690,6 +2690,9 @@ p {
 				@media(max-width: 767px){
 					height: 85px;
 				}
+				@media(max-width: 767px) and (orientation: landscape){
+					height: 120px;
+				}
 			}
 			&.promotion-timer-exist{
 				.image-conatiner{
