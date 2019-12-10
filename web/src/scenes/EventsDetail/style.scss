@@ -205,7 +205,7 @@
                     }
                 }
               div:nth-last-child(1) {
-              background: #ebebeb;
+              //background: #ebebeb;
             }
           }
         }
@@ -273,12 +273,17 @@
         }
           .title{
               h3{
-                    min-height: 31px;
-                  @media(max-width: 1024px){
+                min-height: 31px;
+                @media(max-width: 1024px){
                     font-size: 20px;
                     margin-bottom: 0px;
                     min-height: auto;
-                  }
+                }
+                > *{
+                    font-size: inherit;
+                    line-height: inherit;
+                    font-weight: inherit;
+                }
               }
           }
           .breadcrumb-share{
