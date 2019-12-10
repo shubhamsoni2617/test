@@ -180,7 +180,7 @@ const TopNav = props => {
   }, []);
 
   const handleClick = e => {
-    console.log;
+    console.log('tessgjhjijlkn', node);
     if (node.current && node.current.contains(e.target)) {
       // setLoginPopUp(!loginPopUp);
       return;
@@ -674,16 +674,18 @@ const TopNav = props => {
                   )}
                 </Submenu>
               </li>
-              <ul>
-                <li>
-                  <a href={Constants.SISTIC_MY_ACCOUNT_URL} target="_blank">
-                    My Account
-                  </a>
-                </li>
-                <li>
-                  <a href={Constants.SISTIC_LOGOUT_URL}>Logout</a>
-                </li>
-              </ul>
+              {cartData.loginStatus === 0 && (
+                <ul>
+                  <li>
+                    <a href={Constants.SISTIC_MY_ACCOUNT_URL} target="_blank">
+                      My Account
+                    </a>
+                  </li>
+                  <li>
+                    <a href={Constants.SISTIC_LOGOUT_URL}>Logout</a>
+                  </li>
+                </ul>
+              )}
               <li className="has-submenu">
                 <Submenu>
                   {(menueStatus, setMenuStatus) => (
