@@ -1,6 +1,9 @@
 import API from '../../../shared/api';
 
 class HomeService {
+  setBaseURL(url) {
+    API.defaults.baseURL = url;
+  }
   getMetadata(url) {
     return API.get(`/get-metatags?url=${url}`);
   }
