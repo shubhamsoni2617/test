@@ -2747,24 +2747,35 @@ p {
                                     transition: 0.9s transform;
                                     -webkit-transition: 0.9s transform;
                                     -moz-transition: 0.9s transform;
-                                    -o-transition: 0.9s transform;
-                                }
-                            }
-                            .image-conatiner{
-                                position: relative;
-                                background: #000;
-                                &:after{
-                                    background: linear-gradient(to bottom, rgba(255,255,255,0) 0%, rgb(62, 62, 62) 124%);
-                                    position: absolute;
-                                    content: "";
-                                    left: 0px;
-                                    right: 0px;
-                                    top: auto;
-                                    bottom: 0px;
-                                    width: 100%;
-                                    height: 50px;
-                                }
-                            }
+									-o-transition: 0.9s transform;
+									text-align: center;
+									margin: 0 auto;
+								}
+								.item-img{								
+									.image-conatiner{
+										position: relative;
+										background: #fff;
+										&:after{
+											background: linear-gradient(to bottom, rgba(255,255,255,0) 0%, rgb(62, 62, 62) 124%);
+											position: absolute;
+											content: "";
+											left: 0px;
+											right: 0px;
+											top: auto;
+											bottom: 0px;
+											width: 100%;
+											height: 50px;
+										}
+									}
+									&.promotion-timer-exist{
+										.image-conatiner{
+											&:after{
+												content: none;
+											}
+										}
+									}
+								}
+							}
                             &:hover {
                                 @media(min-width: 991px) {
                                     cursor: pointer;
