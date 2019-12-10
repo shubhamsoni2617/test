@@ -11,8 +11,7 @@
     }
     // Carousel section
     .banner-carousel{
-        position: relative;
-        height: 100%;
+        position: relative;        
         width: 65.3%;
         @media(max-width: 991px){
           flex: 0 0 100%;
@@ -45,7 +44,7 @@
           }
         .image-gallery {
           position: relative;
-
+          height: 100%;
           .image-gallery-image{
             .image-conatiner{
                 height: 414px;
@@ -67,10 +66,20 @@
                 }
             }
           }
+          .image-gallery-content{
+            height: 100%;
+            .image-gallery-slide-wrapper{
+              position: relative;
+              height: calc(100% - 60px);
+              .image-gallery-thumbnails-wrapper{
+                height: 60px;
+              }
+            }
+          }
         }
         .image-gallery-thumbnails{
           padding: 0;
-          height: 61px;
+          height: 60px;
           .image-gallery-thumbnails-container{
             text-align: left;
             // display: flex;
@@ -156,6 +165,9 @@
             z-index: 2;
             height: 55px;
             width: 26px;
+            @media(max-width: 1440px){
+              bottom: -73px;
+            }
             @media(max-width: 767px){
                 bottom: -53px;
                 height: 48px;

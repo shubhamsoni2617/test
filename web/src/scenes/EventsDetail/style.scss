@@ -182,7 +182,7 @@
         .tickets-desc{
             overflow-y: auto;
             position: absolute;
-            height: calc(100% - 95px);
+            height: calc(100% - 90px);
             width: calc(100% + 10px);
             left: 0;
             padding: 0 30px;
@@ -202,6 +202,9 @@
                 div {
                     &:first-child{
                         margin-bottom: -16px !important;
+                    }
+                    .ScrollbarsCustom-Content{
+                        margin-bottom: 0px !important;
                     }
                 }
               div:nth-last-child(1) {

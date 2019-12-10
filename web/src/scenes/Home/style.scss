@@ -894,7 +894,12 @@
                             right: 18px;
                             border-bottom: 8px solid #fff;
                             margin-left: -10px;
-                        }
+						}
+						&:empty{
+							&::before{
+								content: none;
+							}
+						}
                         li{
                             padding: 0;
                             display: block;
