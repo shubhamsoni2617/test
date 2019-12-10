@@ -1,5 +1,6 @@
 import React from 'react';
 import './style.scss';
+import { Link } from 'react-router-dom';
 import Arrow from '../../../../assets/images/right-arrow.svg';
 import Article from './Article';
 
@@ -10,10 +11,10 @@ const LandingArticles = ({ articles }) => {
         <div className="section-top-wrapper">
           <h2>{articles && articles.heading}</h2>
           <div className="carousel-dots">
-            <a href={`/explore/articles?c=${articles.id}`} target="_blank">
+            <Link to={`/explore/articles?c=${articles.id}`}>
               More from Articles
               <img src={Arrow} className="img-fluid" alt="arrow" />
-            </a>
+            </Link>
           </div>
         </div>
         <div className="articles-item-wrapper">
