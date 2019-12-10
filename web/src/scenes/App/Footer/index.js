@@ -5,11 +5,11 @@ import appleImage from '../../../assets/images/apple.svg';
 import androidImage from '../../../assets/images/android.png';
 import fb from '../../../assets/images/fb.svg';
 import fbFill from '../../../assets/images/fb-fill.svg';
+import topArrow from '../../../assets/images/arrow-to-top.svg';
 import insta from '../../../assets/images/insta-unfill.svg';
 import instaFill from '../../../assets/images/insta-fill.svg';
 import stixImage from '../../../assets/images/stix.png';
 import BackToTop from '../../../shared/components/BackToTop';
-import scrollTop from '../../../assets/images/arrow-to-top.svg';
 import Utilities from '../../../shared/utilities';
 import NewsLetterForm from '../../../shared/components/NewsLetterForm';
 
@@ -184,7 +184,7 @@ const Footer = () => {
       </section>
       {!Utilities.mobilecheck() && yOffset && (
         <span className="scroll-top" onClick={() => scrollTop()}>
-          <img src={scrollTop} alt="Scroll to top" />
+          <img src={topArrow} alt="Scroll to top" />
         </span>
         // <BackToTop scrollStepInPx="50" delayInMs="20" />
       )}
