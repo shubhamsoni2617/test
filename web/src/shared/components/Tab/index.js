@@ -16,7 +16,7 @@ const Tab = props => {
         <div className="sortby-filter">
           {tabsSort && tabsSort.isSortBy && (
             <SortBy
-              defaultSortType="Promotion Date - Earliest to Lates"
+              defaultSortType="Promotion Date - Earliest to Latest"
               handleFilters={handleFilters}
               sortList={tabsSort.sortList}
             />

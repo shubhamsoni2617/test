@@ -7,7 +7,8 @@ import CloseIcon from '../../../assets/images/close-blue.svg';
 import ShareIcon from '../../../assets/images/share-icon.svg';
 import StopWatch from '../../../assets/images/stopwatch-grey.svg';
 import Image from '../Image';
-import EventHeading from '../EventHeading';
+import Utilities from '../../utilities';
+import Ellipsis from '../Ellipsis';
 
 const PromotionCard = props => {
   const { data, fetchPromotionDetailData, handlePromotionDetailTab } = props;
@@ -60,7 +61,7 @@ const PromotionCard = props => {
     >
       <div className="promotions-listing-wrapper">
         <div className="promotion-image">
-          <Image src={data.featured_image} type="BigBanner" />
+          <Image src={data.featured_image} type="Promotion" />
         </div>
         <div className="promotion-desc">
           <div className="promotion-category-div">
@@ -80,7 +81,15 @@ const PromotionCard = props => {
               showSocialShare={socialShare}
             />
           </span>
-          <h2 dangerouslySetInnerHTML={{ __html: data.title }}></h2>
+          <Ellipsis
+            title={data.title}
+            lines={2}
+            height={Utilities.mobilecheck() ? 18 : 22}
+            size={Utilities.mobilecheck() ? 14 : 18}
+            weight={600}
+            customClass={'promotion-title'}
+            allowTooltip={true}
+          />
           <div className="promotion-btn-wrapper">
             <button
               onClick={() =>
