@@ -279,6 +279,9 @@
             }
         }
           .title{
+            font-size: 1.75rem;
+            font-weight: 500;
+            line-height: 1.2;
               h3{
                 min-height: 31px;
                 @media(max-width: 1024px){
@@ -286,10 +289,11 @@
                     margin-bottom: 0px;
                     min-height: auto;
                 }
-                > *{
+                > *, *{
                     font-size: inherit;
                     line-height: inherit;
                     font-weight: inherit;
+                    margin-bottom: 0.5rem;
                 }
               }
           }
