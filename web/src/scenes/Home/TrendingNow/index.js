@@ -51,7 +51,7 @@ const TrendingNow = ({ heading }) => {
           <OneBigEightSmall />
         ) : (
           <div className="grid-container">
-            <Link to={`/events/${data[0].alias}`} className="item">
+            <Link to={`/events/${data[0] && data[0].alias}`} className="item">
               <div className="item-wrapper">
                 <span className="category dance">Dance</span>
                 <div className="trending-now-image">
