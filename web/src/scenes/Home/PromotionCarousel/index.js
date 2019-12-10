@@ -19,12 +19,18 @@ const ItemWrapper = ({ promotion, expiredText, handlePromotionExpired }) => {
       <div className="promotions-home-item">
         {promotion && (
           <div className="promotions-img">
-            <div className="item-img">
+            <div
+              className={
+                promotion.show_timer === '1' && !expiredText
+                  ? 'item-img promotion-timer-exist'
+                  : 'item-img'
+              }
+            >
               <Image
                 src={promotion.featured_image}
                 className="img-fluid"
                 alt="promotion-img"
-                type="Horizontal"
+                type="Promotion"
               />
             </div>
             {promotion.show_timer === '1' && (
