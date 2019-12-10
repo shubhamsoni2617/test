@@ -20,7 +20,7 @@ const Footer = () => {
     return () => {
       window.removeEventListener('scroll', listenToScroll);
     };
-  }, [window.screenTop]);
+  }, []);
 
   const listenToScroll = () => {
     const winScroll =
@@ -33,6 +33,10 @@ const Footer = () => {
     const scrolled = winScroll / height;
 
     setYOffset(scrolled);
+  };
+
+  const scrollTop = () => {
+    window.scrollTo(0, 0);
   };
 
   const ourCompanyLinks = [
@@ -179,7 +183,7 @@ const Footer = () => {
         </div>
       </section>
       {!Utilities.mobilecheck() && yOffset && (
-        <span className="scroll-top" onClick={() => window.scrollTo(0, 0)}>
+        <span className="scroll-top" onClick={() => scrollTop()}>
           <img src={scrollTop} alt="Scroll to top" />
         </span>
         // <BackToTop scrollStepInPx="50" delayInMs="20" />
