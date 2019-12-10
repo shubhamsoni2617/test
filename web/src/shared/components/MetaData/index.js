@@ -35,8 +35,23 @@ export default function MetaData({ location, data }) {
   return (
     <Helmet>
       <meta charSet="utf-8" />
-      <title>{metaData.title}</title>
-      <link rel="canonical" href="http://mysite.com/example" />
+      {metaData.title && <title>{metaData.title}</title>}
+      {metaData.description && (
+        <meta name="description" content={metaData.description} />
+      )}
+
+      {metaData.canonical_url && (
+        <link rel="canonical" href={metaData.canonical_url} />
+      )}
+      {metaData.og_description && (
+        <meta property="og:description" content={metaData.og_description} />
+      )}
+      {metaData.og_image && (
+        <meta property="og:image" content={metaData.og_image} />
+      )}
+      {metaData.og_title && (
+        <meta property="og:title" content={metaData.og_title} />
+      )}
     </Helmet>
   );
 }
