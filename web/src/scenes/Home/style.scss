@@ -2975,6 +2975,12 @@ p {
 				@media (max-width: 767px) {
 					font-size: 13px;
 					line-height: 13px;
+					min-width: 17px;
+				}
+				@media(max-width: 576px){
+					font-size: 11px;
+					line-height: 11px;
+					min-width: 15px;
 				}
 				&.timer-label {
 					font-size: 10px;
