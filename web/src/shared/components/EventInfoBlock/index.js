@@ -307,7 +307,7 @@ function EventInfoBlock(props) {
           eventDateNotes={detailData.event_date_notes}
           setEventDateBlock={setEventDateBlock}
         />
-        <div className="tickets-desc" style={{ height: scrollHeight }}>
+        <div className="tickets-desc" style={{ height: scrollHeight + 5 }}>
           {!Utilities.mobilecheck() && (
             <Scrollbar>
               <div>
