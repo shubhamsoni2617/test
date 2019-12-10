@@ -7,7 +7,6 @@ import Timer from '../../../shared/components/Timer';
 import Image from '../../../shared/components/Image';
 import ShimmerEffect from '../../../shared/components/ShimmerEffect';
 import './style.scss';
-import { CSSTransition } from 'react-transition-group';
 import { Link } from 'react-router-dom';
 import promoImg1 from '../../../assets/images/promo-img1.svg';
 import promoImg2 from '../../../assets/images/promo-img2.svg';
@@ -16,7 +15,7 @@ import promoImg4 from '../../../assets/images/promo-img4.svg';
 
 const ItemWrapper = ({ promotion, expiredText, handlePromotionExpired }) => {
   return (
-    <a href="/promotions" target="_blank">
+    <Link to="/promotions">
       <div className="promotions-home-item">
         {promotion && (
           <div className="promotions-img">
@@ -51,15 +50,9 @@ const ItemWrapper = ({ promotion, expiredText, handlePromotionExpired }) => {
             )}
           </div>
         )}
-        <h3>
-          {/* {Utilities.showLimitedChars(
-            promotion.title,
-            Utilities.mobilecheck() ? 25 : 55
-          )} */}
-          {promotion.title}
-        </h3>
+        <h3>{promotion.title}</h3>
       </div>
-    </a>
+    </Link>
   );
 };
 
@@ -148,7 +141,6 @@ export default class PromotionCarousel extends Component {
         {
           breakpoint: 1140,
           settings: {
-            //rows: 2,
             slidesPerRow: 3
           }
         }
@@ -189,13 +181,6 @@ export default class PromotionCarousel extends Component {
           <div className="section-top-wrapper">
             <h2>
               {this.props.heading}
-              {/* <span className="promotions-animated-img">
-                <img
-                  src="assets/images/illustration.svg"
-                  className="img-fluid"
-                  alt="promotions"
-                />
-              </span> */}
               <div className="promo-animation-wrap">
                 <div className="promo-animation-img first">
                   <img src={promoImg1} className="img-fluid" alt="promotions" />
@@ -223,12 +208,6 @@ export default class PromotionCarousel extends Component {
             </div>
           </div>
           <div className="grid-container">
-            {/* <CSSTransitionGroup
-              transitionName="shimmer-carousel"
-              transitionEnter={true}
-              transitionEnterTimeout={1000}
-              transitionLeaveTimeout={1000}
-            > */}
             {loading ? (
               shimmer
             ) : Utilities.mobilecheck() ? (
@@ -312,7 +291,6 @@ export default class PromotionCarousel extends Component {
                   })}
               </Slider>
             )}
-            {/* </CSSTransitionGroup> */}
           </div>
         </div>
       </section>
