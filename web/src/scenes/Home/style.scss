@@ -448,11 +448,15 @@
                             width: auto;
                         }
                         a, .login-parent{
+							cursor: pointer;
 							padding: 21px 13px 20px;
 							margin-bottom: 0px;
                             @media (max-width: 767px){
 								padding: 21px 5px 8px;
-                            }
+							}
+							&:hover{
+								cursor: pointer;
+							}
                         }
 					}
 					&.search-icon{
