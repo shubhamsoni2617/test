@@ -11,7 +11,8 @@
     }
     // Carousel section
     .banner-carousel{
-        position: relative;        
+        position: relative;
+        height: 100%;
         width: 65.3%;
         @media(max-width: 991px){
           flex: 0 0 100%;
@@ -19,19 +20,19 @@
         }
         .image-gallery-image{
             .image-conatiner{
-                height: 431px;
+                height: 414px;
                 display: flex;
                 justify-content: center;
                 align-items: center;
                 margin-top: -2px;
                 @media (min-device-width: 1500px) and (max-device-width: 1980px) {
-                  height: 538px;
+                    height: 521px;
                 }
                 @media (min-device-width: 1135px) and (max-device-width: 1280px) {
-                    height: 407px;
+                    height: 388px;
                 }
                 @media(max-width: 1024px){
-                    height: 377px;
+                    height: 360px;
                 }
                 @media(max-width: 767px){
                     height: 172px;
@@ -44,43 +45,32 @@
           }
         .image-gallery {
           position: relative;
-          height: 100%;
+
           .image-gallery-image{
             .image-conatiner{
-                height: 431px;
+                height: 414px;
                 display: flex;
                 justify-content: center;
                 align-items: center;
                 margin-top: -2px;
-                height: auto;
                 @media (min-device-width: 1500px) and (max-device-width: 1980px) {
-                    height: 538px;
+                    height: 521px;
                 }
                 @media (min-device-width: 1135px) and (max-device-width: 1280px) {
-                    height: 407px;
+                    height: 388px;
                 }
                 @media(max-width: 1024px){
-                    height: 377px;
+                    height: 360px;
                 }
                 @media(max-width: 767px){
                     height: 172px;
                 }
             }
           }
-          .image-gallery-content{
-            height: 100%;
-            .image-gallery-slide-wrapper{
-              position: relative;
-              height: calc(100% - 60px);
-              .image-gallery-thumbnails-wrapper{
-                height: 60px;
-              }
-            }
-          }
         }
         .image-gallery-thumbnails{
           padding: 0;
-          height: 60px;
+          height: 61px;
           .image-gallery-thumbnails-container{
             text-align: left;
             // display: flex;
@@ -186,7 +176,6 @@
             }
             @media(max-width: 767px){
                 background-position: 8px 15px;
-                bottom: -53px;
             }
           }
           .prev{
