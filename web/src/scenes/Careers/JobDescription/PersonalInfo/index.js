@@ -141,12 +141,12 @@ const PersonalInfo = ({
             <textarea
               name="message"
               className="form-control"
-              placeholder="Message *"
               rows="5"
               cols="30"
               value={message}
               onChange={e => handleChange(e)}
             />
+            {!message && <label className="custom-label">Message</label>}
             {errMsg && !message && (
               <span className="text-danger mt-1 d-block">
                 Please enter message
