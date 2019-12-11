@@ -37,10 +37,16 @@ function PriceRangeFilter(props) {
   // }, [filterFlag]);
 
   useEffect(() => {
-    if (!filteredPriceRange.min) {
+    if (
+      filteredPriceRange.hasOwnProperty('min') &&
+      filteredPriceRange.min === ''
+    ) {
       clearPriceRange(false);
     }
-    if (filteredPriceRange.min) {
+    if (
+      filteredPriceRange.hasOwnProperty('min') &&
+      filteredPriceRange.min !== ''
+    ) {
       setPriceRange(filteredPriceRange);
     }
   }, [filteredPriceRange]);
