@@ -1,12 +1,10 @@
-import React, { useState, useEffect, Fragment } from 'react';
+import React, { useState, useEffect } from 'react';
 import './style.scss';
+import { Link } from 'react-router-dom';
 import Utilities from '../../../shared/utilities';
 import HomeService from '../../../shared/services/HomeService';
 import Constants from '../../../shared/constants';
 import Image from '../../../shared/components/Image';
-import { CSSTransition } from 'react-transition-group';
-import ShimmerEffect from '../../../shared/components/ShimmerEffect';
-import videoImage from '../../../assets/images/video-icon.svg';
 import { OneBigEightSmall } from '../../../shared/components/ShimmerEffect/HomeShimmer';
 import Ellipsis from '../../../shared/components/Ellipsis';
 import EventHeading from '../../../shared/components/EventHeading';
@@ -49,18 +47,11 @@ const TrendingNow = ({ heading }) => {
     <section className="trending-now">
       <div className="container-fluid">
         <h2>{heading}</h2>
-
-        {/* <CSSTransitionGroup
-          transitionName="shimmer-carousel"
-          transitionEnter={true}
-          transitionEnterTimeout={1000}
-          transitionLeaveTimeout={1000}
-        > */}
         {loading ? (
           <OneBigEightSmall />
         ) : (
           <div className="grid-container">
-            <div className="item">
+            <Link to={`/events/${data[0] && data[0].alias}`} className="item">
               <div className="item-wrapper">
                 <span className="category dance">Dance</span>
                 <div className="trending-now-image">
@@ -82,18 +73,11 @@ const TrendingNow = ({ heading }) => {
                     />
                   </div>
                 </div>
-                {/* <h3>
-                  {Utilities.showLimitedChars(
-                    data && data[0] && data[0].title,
-                    Utilities.mobilecheck() ? 25 : 50
-                  )}
-                </h3> */}
                 <EventHeading
                   title={data && data[0] && data[0].title}
                   lines={2}
                   height={Utilities.mobileAndTabletcheck() ? 16 : 20}
                 />
-                {/* <p>{data && data[0] && data[0].event_date}</p> */}
                 <Ellipsis
                   title={data && data[0] && data[0].event_date}
                   lines={2}
@@ -101,12 +85,6 @@ const TrendingNow = ({ heading }) => {
                   // size={13}
                   allowTooltip={true}
                 />
-                {/* <p>
-                  {Utilities.showLimitedChars(
-                    data && data[0] && data[0].venue_name,
-                    Utilities.mobilecheck() ? 25 : 50
-                  )}
-                </p> */}
                 <Ellipsis
                   title={data && data[0] && data[0].venue_name}
                   lines={1}
@@ -114,12 +92,16 @@ const TrendingNow = ({ heading }) => {
                   allowTooltip={false}
                 />
               </div>
-            </div>
+            </Link>
 
             {data &&
               data.slice(1, data.length).map((now, index) => {
                 return (
-                  <div key={index} className="item">
+                  <Link
+                    to={`/events/${now.alias}`}
+                    key={index}
+                    className="item"
+                  >
                     <div className="item-wrapper">
                       <span
                         className={`category ${now &&
@@ -139,12 +121,6 @@ const TrendingNow = ({ heading }) => {
                           )}
                         </div>
                       </div>
-                      {/* <h3>
-                        {Utilities.showLimitedChars(
-                          now && now.title,
-                          Utilities.mobilecheck() ? 25 : 40
-                        )}
-                      </h3> */}
                       <EventHeading
                         title={now && now.title}
                         lines={2}
@@ -158,12 +134,6 @@ const TrendingNow = ({ heading }) => {
                         // size={13}
                         allowTooltip={true}
                       />
-                      {/* <p>
-                        {Utilities.showLimitedChars(
-                          now && now.venue_name,
-                          Utilities.mobilecheck() ? 25 : 40
-                        )}
-                      </p> */}
                       <Ellipsis
                         title={now && now.venue_name}
                         lines={1}
@@ -171,12 +141,11 @@ const TrendingNow = ({ heading }) => {
                         allowTooltip={false}
                       />
                     </div>
-                  </div>
+                  </Link>
                 );
               })}
           </div>
         )}
-        {/* </CSSTransitionGroup> */}
       </div>
     </section>
   );
