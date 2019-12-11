@@ -20,6 +20,7 @@ function EventHeading(props) {
     ) {
       // debugger;
       setAllowTooltip(true);
+      console.log(props.height)
     }
     let styleObjectDefault = {
       overflow: 'hidden',
