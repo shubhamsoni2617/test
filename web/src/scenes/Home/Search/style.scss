@@ -209,6 +209,15 @@
             }
         }
     }
+    &.attraction-wrapper-listing{
+        .events-listing{
+            .events-section{
+                & > div{
+                    margin-bottom: 30px;
+                }
+            }
+        }
+    }
 }
 
 //load more button

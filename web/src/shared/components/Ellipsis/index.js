@@ -53,7 +53,7 @@ function Ellipsis(props) {
         WebkitLineClamp: `${props.lines}`,
         WebkitBoxOrient: 'vertical',
         whiteSpace: 'nowrap',
-        width: '100%'
+        width: '95%'
       });
     } else {
       setStyleObj({

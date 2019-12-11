@@ -103,6 +103,11 @@
                     }
                 }
                 &.dropdown.active{
+                    > a{
+                        &:before{
+                            content: none;
+                        }
+                    }
                     .dropdown-content{
                         right: 0;
                         background: #FFF;

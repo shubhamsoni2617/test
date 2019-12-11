@@ -57,14 +57,21 @@
 
 }
 /******** Listing  **********/
-.container-fluid .wrapper-events-listing .events-listing .events-section > div{
-    @media(min-width: 1400px) and (max-width: 1980px){
-        flex: 0 0 calc(25% - 17px);
-        width: calc(25% - 17px);
-    }
-    .event-block .event-img{
+.container-fluid .wrapper-events-listing .events-listing .events-section{
+    > div{
         @media(min-width: 1400px) and (max-width: 1980px){
-            height: 264px;
+            flex: 0 0 calc(25% - 17px);
+            width: calc(25% - 17px);
+        }
+        .event-block .event-img{
+            @media(min-width: 1400px) and (max-width: 1980px){
+                height: auto;
+            }
+        }
+    }
+    &.list-view{
+        .event-block .event-img{
+            height: auto;
         }
     }
 }
@@ -118,6 +125,9 @@
                 > div{
                     flex: 0 0 100%;
                     width: 100%;
+                    .event-img{
+                        height: auto;
+                    }
                     &:last-child{
                         .event-block{
                             border-bottom: 1px solid transparent;

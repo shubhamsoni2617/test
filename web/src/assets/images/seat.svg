@@ -3,16 +3,18 @@
     <!-- Generator: Sketch 55.2 (78181) - https://sketchapp.com -->
     <title>Group 4 Copy 3</title>
     <desc>Created with Sketch.</desc>
-    <g id="Detail-Page-Without-Package" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <g id="Event-Detail-Page-V8.0---all-information---V1" transform="translate(-920.000000, -414.000000)" stroke="#6A6A6A" stroke-width="1.5">
-            <g id="Group-7" transform="translate(891.000000, 109.000000)">
-                <g id="Group-16" transform="translate(29.000000, 305.000000)">
-                    <g id="Group-18">
-                        <g id="Group-4-Copy-3">
-                            <rect id="Rectangle" x="0.75" y="12.6325004" width="1" height="5.2900002"></rect>
-                            <rect id="Rectangle-Copy-12" x="19.3065223" y="12.6325004" width="1" height="5.2900002"></rect>
-                            <path d="M4.12391314,14.5275005 L15.2760874,14.5275005 L15.2760874,5.02848021 C15.2760874,2.66554084 13.3605466,0.75 10.9976072,0.75 L8.40239336,0.75 C6.03945398,0.75 4.12391314,2.66554084 4.12391314,5.02848021 L4.12391314,14.5275005 Z" id="Rectangle"></path>
-                            <rect id="Rectangle" x="0.75" y="16.8762505" width="17.9000006" height="2.74375013"></rect>
+    <g id="updates" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Event-Detail-Page-V8.0---all-information---V1" transform="translate(-920.000000, -406.000000)" stroke="#6A6A6A" stroke-width="1.5">
+            <g id="Group-7" transform="translate(889.000000, 109.000000)">
+                <g id="Group-37" transform="translate(31.000000, 165.000000)">
+                    <g id="Group-16" transform="translate(0.000000, 132.000000)">
+                        <g id="Group-18">
+                            <g id="Group-4-Copy-3">
+                                <rect id="Rectangle" x="0.75" y="12.6325004" width="1" height="5.2900002"></rect>
+                                <rect id="Rectangle-Copy-12" x="19.3065223" y="12.6325004" width="1" height="5.2900002"></rect>
+                                <path d="M4.12391314,14.5275005 L15.2760874,14.5275005 L15.2760874,5.02848021 C15.2760874,2.66554084 13.3605466,0.75 10.9976072,0.75 L8.40239336,0.75 C6.03945398,0.75 4.12391314,2.66554084 4.12391314,5.02848021 L4.12391314,14.5275005 Z" id="Rectangle"></path>
+                                <rect id="Rectangle" x="0.75" y="16.8762505" width="17.9000006" height="2.74375013"></rect>
+                            </g>
                         </g>
                     </g>
                 </g>
