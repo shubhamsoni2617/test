@@ -78,7 +78,7 @@
             }
             .custom-label{
                 padding: 0.375rem 0rem;
-                color: #898989;
+                color: rgba(52, 52, 52, 0.7);
             }
         }
         .select{
@@ -236,7 +236,7 @@
             .attach-text{
                 padding-right: 10px;
                 font-size: 16px;
-                color: rgba(52, 52, 52, 0.6);
+                color: rgba(52, 52, 52, 0.7);
                 padding: 0 0 0 0 !important;
                 @media(max-width: 767px){
                     font-size: 14px;
@@ -276,7 +276,7 @@
                     position: absolute;
                     bottom: 10px;
                     font-size: 16px;
-                    color: rgba(52, 52, 52, 0.5);
+                    color: rgba(52, 52, 52, 0.7);
                     padding-left: 0;
                     @media(max-width: 767px){
                         bottom: 1px;
