@@ -785,7 +785,7 @@
 						font-weight: normal;
 						line-height: 19px;
 						font-family: 'Rubik', sans-serif;
-                        padding: 9px 5px 14px;
+                        padding: 8px 5px 13px;
                         font-weight: 300;
 						&:before {
 							left: 0;
@@ -926,7 +926,7 @@
 					font-weight: 300;
 					line-height: 17px;
 					font-family: 'Rubik', sans-serif;
-					padding: 10px 0px;
+					padding: 9px 0px;
 					color: #dedede;
 					&:before {
 						bottom: -2px;
@@ -4802,6 +4802,7 @@ section{
 								flex: 0 0 100%;
                                 max-width: 100%;
                                 min-height: 26px;
+								margin-bottom: 0px;
 							}
 							.category {
 								color: #ffffff;
@@ -4816,7 +4817,9 @@ section{
 								width: auto;
 								margin-top: 4px;
 								&:empty{
-									padding: 0px;
+									opacity: 0;
+									display: block !important;
+									padding: 0px 5px;
 								}
 							}
 						}
@@ -4831,7 +4834,8 @@ section{
 							-webkit-transition: 1s all;
 							-moz-transition: 1s all;
 							-o-transition: 1s all;
-                            display: block;
+							display: block;
+							margin-bottom: 0px;
 						}
 					}
 				}

@@ -101,7 +101,8 @@ function PriceRangeFilter(props) {
       </div>
       <div className={`filters-panel ${flag ? 'open' : ''}`}>
         <span className="input-range-label-container min">
-          S$ {priceRange.min}
+          {/* S$ {priceRange.min} */}
+          S$ {priceRange.min == 0 || !priceRange.min ? '0' : priceRange.min}
         </span>
         <span className="input-range-label-container max">
           S$ {priceRange.max}
