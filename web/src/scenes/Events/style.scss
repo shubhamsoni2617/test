@@ -108,6 +108,7 @@
                 flex: 0 0 calc(33.33% - 19px);
                 width: calc(33.33% - 19px);
                 margin-right: 17px;
+                margin-bottom: 30px;
                 @media(max-width: 991px){
                     flex: 0 0 calc(50% - 19px);
                     width: calc(50% - 19px);
@@ -325,7 +326,7 @@
 }
 .event-listing-ads{
     padding-top: 45px;
-    padding-left: 8px;
+    padding-left: 0px;
     @media(min-width: 1400px) and (max-width: 1980px){
         padding-left: 0;
     }
@@ -345,6 +346,9 @@
             margin-left: -10px;
             width: calc(100% + 20px);
         }
+        @media(min-width: 1280px){
+            justify-content: flex-start;
+        }
         li{
             list-style: none;
             display: inline-block;
@@ -357,6 +361,9 @@
             @media(max-width: 767px){
                 width: 100%;
                 padding: 0 0 7px;
+            }
+            @media(min-width: 1280px){
+                width: auto;
             }
             &:last-child{
                 padding-right: 0px;

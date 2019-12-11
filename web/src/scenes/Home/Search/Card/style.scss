@@ -5,7 +5,7 @@
     -webkit-box-shadow: 0 0px 2px rgba(154, 154, 154, 0.5);
     -moz-box-shadow: 0 0px 2px rgba(154, 154, 154, 0.5);
     border: 2px solid transparent;
-    margin-bottom: 35px;
+    margin-bottom: 0px;
     width: 100%;
     transition: .5s box-shadow;
     -webkit-transition: .5s box-shadow;
@@ -13,6 +13,8 @@
     -o-transition: .5s box-shadow;
     cursor: pointer;
     position: relative;
+    height: 100%;
+    justify-content: space-between;
     @supports (-ms-ime-align:auto) {
         box-shadow: 0 0px 2px rgba(154, 154, 154, 0.7);
     }
@@ -51,7 +53,8 @@
     &.attraction-block{
         padding-bottom: 0px;
         position: relative;
-        margin-bottom: 30px;
+        margin-bottom: 0px;
+        height: 100%;
         @supports (-ms-ime-align:auto) {
             box-shadow: 0 0px 1px rgba(154, 154, 154, 0.7);
         }
@@ -277,6 +280,8 @@
             }
             @media (max-width: 767px) {
                 font-size: 14px;
+                max-height: 30px !important;
+                min-height: 30px !important;
             }
           }
 
@@ -348,6 +353,7 @@
                         font-weight: 400;
                         font-size: 12px;
                         color: #EB9C00;
+                        padding-left: 0px !important;
                     }
                 }
                 p{
