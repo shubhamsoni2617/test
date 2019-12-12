@@ -1353,13 +1353,16 @@
                     top: 0;
                     display: inline-block;
                     margin-left: 0;
-                    margin-top: 0;
-                    margin-bottom: 4px;
+                    margin-top: 0;                    
+                    margin-bottom: 8px;
                   @media(max-width: 1280px){
                     //   margin-left: 10px;
                     //   margin-top: -14px;
                     margin-left: 0px;
                     margin-top: 0px;
+                 }
+                 @media(max-width: 1024px){
+                    margin-bottom: 0;
                  }
                  .share:hover, .info:hover{
                   cursor: pointer;
@@ -1395,7 +1398,7 @@
               display: flex;
               flex-wrap: wrap;
               align-items: center;
-              margin-bottom: 10px;
+              margin-bottom: 0px;
               .date-address{
                   display: flex;
                   flex-wrap: wrap;
@@ -1470,9 +1473,13 @@
           h3{
               min-height: auto;
               padding-right: 22px;
+              margin-bottom: 13px;
             @media(max-width: 1280px){
                 // width: 90% !important;
                 width: auto !important;
+            }
+            @media(max-width: 1024px){
+                margin-bottom: 0px;
             }
             @media(max-width:767px){
                 padding-right: 10px;
