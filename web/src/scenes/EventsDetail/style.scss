@@ -1184,6 +1184,7 @@
     h3{
     //   width: 575px;
         width: auto;
+        max-width: 575px;
     }
     .tickets-desc{
           .promoters {
@@ -1474,6 +1475,7 @@
               min-height: auto;
               padding-right: 22px;
               margin-bottom: 13px;
+                max-width: 575px;
             @media(max-width: 1280px){
                 // width: 90% !important;
                 width: auto !important;
