@@ -335,6 +335,8 @@
     font-size: 16px;
     .astrick{
       display: contents;
+      color: red;
+      display: inline;
     }
     @media(max-width: 767px){
         font-size: 14px;

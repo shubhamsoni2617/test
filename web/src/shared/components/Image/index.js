@@ -14,6 +14,8 @@ import VerticalTopPic from '../../../assets/images/rsz_vertical.png';
 import BigBanner from '../../../assets/images/royals-banner.png';
 import NoImage from '../../../assets/images/No image-.png';
 import Smaller from '../../../assets/images/smaller.png';
+import Promotion from '../../../assets/images/promotion.png';
+import SimilarPicks from '../../../assets/images/similar-picks-noimage.png';
 import './style.scss';
 
 function Image(props) {
@@ -53,9 +55,9 @@ function Image(props) {
       case 'Tile':
         newImg = Tile;
         break;
-        case 'TopPicks':
-            newImg = TopPicks;
-            break;
+      case 'TopPicks':
+        newImg = TopPicks;
+        break;
       case 'HorizontalMin':
         newImg = HorizontalMin;
         break;
@@ -82,6 +84,12 @@ function Image(props) {
         break;
       case 'Smaller':
         newImg = Smaller;
+        break;
+      case 'Promotion':
+        newImg = Promotion;
+        break;
+      case 'SimilarPicksImg':
+        newImg = SimilarPicks;
         break;
       default:
         newImg = Horizontal;

@@ -6,6 +6,13 @@ import { Link } from 'react-router-dom';
 import EventHeading from '../../../../shared/components/EventHeading';
 
 const WhatsUp = ({ whatsUpData }) => {
+  const calculateLength = str => {
+    if (str && str.length > 30) {
+      return true;
+    } else {
+      return false;
+    }
+  };
   return (
     <section className="whtsup-wrapper">
       <div className="container-fluid">
@@ -43,7 +50,7 @@ const WhatsUp = ({ whatsUpData }) => {
                         lines={1}
                         height={Utilities.mobilecheck() ? 20 : 23}
                         // size={13}
-                        allowTooltip={true}
+                        allowTooltip={calculateLength(title)}
                       />
                       <p>
                         {Utilities.showLimitedChars(

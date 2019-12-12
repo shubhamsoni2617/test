@@ -7,15 +7,22 @@ import Utilities from '../../../../shared/utilities';
 import EventHeading from '../../../../shared/components/EventHeading';
 
 const LandingFestivals = ({ festivals }) => {
+  const calculateLength = str => {
+    if (str && str.length > 30) {
+      return true;
+    } else {
+      return false;
+    }
+  };
   return (
     <section className="festivals-wrapper">
       <div className="container-fluid">
         <div className="section-top-wrapper">
           <h2>{festivals && festivals.heading}</h2>
           <div className="carousel-dots">
-            <a href={`/explore/articles?c=${festivals.id}`} target="_blank">
+            <Link to={`/explore/articles?c=${festivals.id}`}>
               See all <img src={Arrow} className="img-fluid" alt="arrow" />
-            </a>
+            </Link>
           </div>
         </div>
         <div className="festivals-container">
@@ -44,18 +51,17 @@ const LandingFestivals = ({ festivals }) => {
                         lines={1}
                         height={Utilities.mobilecheck() ? 20 : 23}
                         // size={13}
-                        allowTooltip={true}
+                        allowTooltip={calculateLength(title)}
                       />
-                      {description && (
-                        <p
-                          dangerouslySetInnerHTML={{
-                            __html: Utilities.showLimitedChars(
+                      <p
+                        dangerouslySetInnerHTML={{
+                          __html: Utilities.showLimitedChars(
+                            description &&
                               description.replace(/(<([^>]+)>)/gi, ''),
-                              150
-                            )
-                          }}
-                        ></p>
-                      )}
+                            150
+                          )
+                        }}
+                      ></p>
                     </div>
                   </Link>
                 );

@@ -123,6 +123,20 @@
 
     .promotions-listing {
         position: relative;
+        .shm_row > div{
+          @media(max-width: 767px){
+            flex: 0 0 100%;
+          }
+          .contentLoader{
+            padding-right: 0px;
+            @media(max-width: 767px){
+              padding-right: 0px;
+            }
+            .animated-background{
+                margin: 0 15px 0px;
+            }
+          }
+        }
     }
 
     //load more button

@@ -222,7 +222,11 @@ class Utilities {
   }
 
   static getScreenResolution() {
-    let resolution = { width: screen.width, height: screen.height };
+    let devicePixelRatio = window.devicePixelRatio || 1;
+    let resolution = {
+      width: screen.width / devicePixelRatio,
+      height: screen.height / devicePixelRatio
+    };
     return resolution;
   }
 }

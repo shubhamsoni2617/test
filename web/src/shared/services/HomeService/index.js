@@ -1,8 +1,15 @@
 import API from '../../../shared/api';
 
 class HomeService {
+  setBaseURL(url) {
+    API.defaults.baseURL = url;
+  }
   getMetadata(url) {
     return API.get(`/get-metatags?url=${url}`);
+  }
+
+  getProductImage(params) {
+    return API.get(`get-ticket-wallet`, { params });
   }
   getData() {
     return API.get(

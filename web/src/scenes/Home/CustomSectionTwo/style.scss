@@ -157,9 +157,9 @@
         flex-wrap: wrap;
         justify-content: space-between;
         align-items: flex-end;
-        -ms-overflow-style: none; // IE 10+ 
-        scrollbar-width: none; // Firefox 
-        &::-webkit-scrollbar { 
+        -ms-overflow-style: none; // IE 10+
+        scrollbar-width: none; // Firefox
+        &::-webkit-scrollbar {
             display: none; // Safari and Chrome
         }
         @media(min-width: 1580px){
@@ -201,6 +201,7 @@
             justify-content: space-between;
             margin-bottom: 10px;
             padding: 8px;
+            width: 100%;
             @media(max-width: 1180px){
                 margin-bottom: 0px;
                 margin-right: 10px;

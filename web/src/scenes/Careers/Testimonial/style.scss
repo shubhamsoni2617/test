@@ -58,7 +58,7 @@
                     background-position: 14px 11px;
                     left: 190px;
                     background-image: url('../../../assets/images/arrow-right.svg');
-                    transform: rotate(180deg);
+                    transform: translateY(-50%) rotateY(180deg);
                     background-position: 18px 14px;
                     @media(max-width: 1024px){
                         left: 30px;
@@ -74,9 +74,6 @@
                         background-size: 10px 13px;
                         border-width: 1px;
                       }
-                      &:hover{
-                        border: none;
-                    }
                 }
                 .slick-next{
                     right: 0;
@@ -103,9 +100,6 @@
                         background-size: 10px 13px;
                         border-width: 1px;
                       }
-                      &:hover{
-                        border: none;
-                    }
                 }
             }
             li{

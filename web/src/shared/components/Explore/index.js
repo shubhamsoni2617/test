@@ -55,7 +55,14 @@ const Explore = props => {
           ></span>
         )}
         <div className="grid-container">
-          <div className="item">
+          <Link
+            to={
+              exploreData[0].type === 'multi_show_template'
+                ? `/explore/2/${exploreData[0].id}`
+                : `/explore/1/${exploreData[0].id}`
+            }
+            className="item"
+          >
             <div className="item-wrapper explore-article">
               <div className="explore-image item-img">
                 <Image
@@ -79,10 +86,18 @@ const Explore = props => {
                 <h3>{exploreData[0].title.slice(0, 60)}</h3>
               </div>
             </div>
-          </div>
+          </Link>
           {exploreData.slice(1).map(cardData => {
             return (
-              <div key={cardData.id} className="item explore-rightside-content">
+              <Link
+                to={
+                  cardData.type === 'multi_show_template'
+                    ? `/explore/2/${cardData.id}`
+                    : `/explore/1/${cardData.id}`
+                }
+                key={cardData.id}
+                className="item explore-rightside-content"
+              >
                 <div className="item-wrapper">
                   <div className="explore-image item-img">
                     <Image src={cardData.thumb_image} className="img-fluid" />
@@ -99,7 +114,7 @@ const Explore = props => {
                     <h3>{cardData.title.slice(0, 50)}</h3>
                   </div>
                 </div>
-              </div>
+              </Link>
             );
           })}
         </div>

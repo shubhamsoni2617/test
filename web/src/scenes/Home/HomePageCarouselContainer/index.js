@@ -1,21 +1,18 @@
-import React, { Component } from 'react';
+import React, { Component, memo } from 'react';
 import Slider from 'react-slick';
 import './style.scss';
 import HomeService from '../../../shared/services/HomeService';
 import Utilities from '../../../shared/utilities';
 import Shadow from '../../../assets/images/shadow.png';
 
-export default class HomePageCarouselContainer extends Component {
+class HomePageCarouselContainer extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      nav1: null,
-      nav2: null,
       posts: [],
       errorMsg: '',
       sliderBackgroudImage: 0,
-      sliderAutoPlay: true,
       mainSliderSettings: {
         className: 'center',
         centerMode: true,
@@ -68,65 +65,72 @@ export default class HomePageCarouselContainer extends Component {
           console.log(err.res);
         }
       });
-
-    this.setState({
-      nav1: this.mainSlider,
-      nav2: this.thumbSlider
-    });
   }
 
   changeBackgroundImage = index => {
-    this.setState({ sliderBackgroudImage: index, sliderAutoPlay: false });
+    setTimeout(() => {
+      this.setState({ sliderBackgroudImage: index });
+    }, 200);
+    this.thumbSlider.slickGoTo(index);
   };
 
   handleResolution = (postLength = 0) => {
     let mainSliderSettings = this.state.mainSliderSettings;
     let thumbSliderSettings = this.state.thumbSliderSettings;
     let screen = Utilities.getScreenResolution();
-    if (screen.width >= 1480 && screen.width <= 1980) {
-      mainSliderSettings.centerPadding = '380px';
-      thumbSliderSettings.slidesToShow = 13;
-      if (postLength && postLength < 13) {
-        thumbSliderSettings.slidesToShow = postLength;
-        thumbSliderSettings.centerMode = false;
-      }
-    } else if (screen.width > 1280 && screen.width < 1480) {
-      mainSliderSettings.centerPadding = '290px';
-      thumbSliderSettings.slidesToShow = 13;
-      if (postLength && postLength < 13) {
-        thumbSliderSettings.slidesToShow = postLength;
-        thumbSliderSettings.centerMode = false;
-      }
-    } else if (screen.width > 1136 && screen.width <= 1280) {
-      mainSliderSettings.centerPadding = '240px';
-      thumbSliderSettings.slidesToShow = 11;
-      if (postLength && postLength < 11) {
-        thumbSliderSettings.slidesToShow = postLength;
-        thumbSliderSettings.centerMode = false;
-      }
-    } else if (screen.width >= 768 && screen.width <= 1024) {
-      mainSliderSettings.centerPadding = '110px';
-      thumbSliderSettings.slidesToShow = 7;
-      if (postLength && postLength < 7) {
-        thumbSliderSettings.slidesToShow = postLength;
-        thumbSliderSettings.centerMode = false;
-      }
-    } else if (screen.width >= 568 && screen.width <= 767) {
-      mainSliderSettings.centerPadding = '70px';
-      thumbSliderSettings.slidesToShow = 5;
-      if (postLength && postLength < 5) {
-        thumbSliderSettings.slidesToShow = postLength;
-        thumbSliderSettings.centerMode = false;
-      }
-    } else if (screen.width > 320 && screen.width <= 450) {
-      mainSliderSettings.centerPadding = '48px';
-      // mainSliderSettings.slidesToShow = 0.9;
-      thumbSliderSettings.slidesToShow = 4;
-      if (postLength && postLength < 4) {
-        thumbSliderSettings.slidesToShow = postLength;
-        thumbSliderSettings.centerMode = false;
-      }
+    mainSliderSettings.centerPadding = `${Math.round(
+      (290 / 1366) * screen.width
+    )}px`;
+    thumbSliderSettings.slidesToShow = Math.round((13 / 1366) * screen.width);
+    if (this.state.posts.length < thumbSliderSettings.slidesToShow) {
+      thumbSliderSettings.slidesToShow = this.state.posts.length;
+      thumbSliderSettings.centerMode = false;
     }
+    // if (screen.width >= 1480 && screen.width <= 1980) {
+    //   // debugger;
+    //   mainSliderSettings.centerPadding = '380px';
+    //   // thumbSliderSettings.slidesToShow = 13;
+    //   if (this.state.posts.length < 13) {
+    //     thumbSliderSettings.slidesToShow = this.state.posts.length;
+    //     thumbSliderSettings.centerMode = false;
+    //   }
+    // } else if (screen.width > 1280 && screen.width < 1480) {
+    //   mainSliderSettings.centerPadding = '290px';
+    //   // thumbSliderSettings.slidesToShow = 13;
+    //   if (this.state.posts.length < 13) {
+    //     thumbSliderSettings.slidesToShow = this.state.posts.length;
+    //     thumbSliderSettings.centerMode = false;
+    //   }
+    // } else if (screen.width > 1136 && screen.width <= 1280) {
+    //   mainSliderSettings.centerPadding = '240px';
+    //   // thumbSliderSettings.slidesToShow = 11;
+    //   if (this.state.posts.length < 11) {
+    //     thumbSliderSettings.slidesToShow = this.state.posts.length;
+    //     thumbSliderSettings.centerMode = false;
+    //   }
+    // } else if (screen.width >= 768 && screen.width <= 1024) {
+    //   mainSliderSettings.centerPadding = '110px';
+    //   // thumbSliderSettings.slidesToShow = 7;
+    //   if (this.state.posts.length < 7) {
+    //     thumbSliderSettings.slidesToShow = this.state.posts.length;
+    //     thumbSliderSettings.centerMode = false;
+    //   }
+    // } else if (screen.width >= 568 && screen.width <= 767) {
+    //   mainSliderSettings.centerPadding = '70px';
+    //   // thumbSliderSettings.slidesToShow = 5;
+    //   if (this.state.posts.length < 5) {
+    //     thumbSliderSettings.slidesToShow = this.state.posts.length;
+    //     thumbSliderSettings.centerMode = false;
+    //   }
+    // } else if (screen.width > 320 && screen.width <= 450) {
+    //   mainSliderSettings.centerPadding = '48px';
+    //   // mainSliderSettings.slidesToShow = 0.9;
+    //   // thumbSliderSettings.slidesToShow = 4;
+    //   if (this.state.posts.length < 4) {
+    //     thumbSliderSettings.slidesToShow = this.state.posts.length;
+    //     thumbSliderSettings.centerMode = false;
+    //   }
+    // }
 
     this.setState({
       mainSliderSettings: mainSliderSettings,
@@ -135,6 +139,7 @@ export default class HomePageCarouselContainer extends Component {
   };
 
   render() {
+    console.log('rerender main slider');
     const { posts, errorMsg, sliderBackgroudImage } = this.state;
 
     if (posts && posts.length == 0) {
@@ -160,6 +165,8 @@ export default class HomePageCarouselContainer extends Component {
               ref={slider => (this.mainSlider = slider)}
               afterChange={index => this.changeBackgroundImage(index)}
               className="slider-for"
+              swipe={true}
+              focusOnSelect={true}
               // autoplay={this.state.sliderAutoPlay}
               // autoplaySpeed={1000}
             >
@@ -211,3 +218,5 @@ export default class HomePageCarouselContainer extends Component {
     );
   }
 }
+
+export default memo(HomePageCarouselContainer);

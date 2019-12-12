@@ -1,6 +1,6 @@
 .contact-us{
   background: url('../../assets//images/contact-us-banner.png') no-repeat;
-  background-size: 100% 492px;
+  background-size: 100% 520px;
   object-fit: cover;
   object-position: center;
   margin-top: -112px;
@@ -17,7 +17,7 @@
 }
 .contact-us-header{
   color:white;
-  padding: 202px 0px 50px;
+  padding: 206px 0px 50px;
   font-family: 'Montserrat', sans-serif;
   font-size: 40px;
   line-height: 49px;
@@ -32,7 +32,7 @@
   @media(max-width: 768px){
     font-size: 28px;
     line-height: 30px;
-    padding: 170px 0 40px;
+    padding: 170px 0 50px;
   }
   @media (max-width: 767px) {
     font-size: 20px;

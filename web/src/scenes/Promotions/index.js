@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import Tabs from '../../shared/components/Tabs';
 import './style.scss';
 import PromotionService from '../../shared/services/PromotionService';
@@ -15,7 +15,7 @@ export default class Promotions extends Component {
     this.state = {
       defaultTabId: null,
       tabsArray: [],
-      sortBy: 'date',
+      sortBy: 'ASC',
       first: 0,
       totalRecords: 0,
       listingArray: [],
@@ -36,21 +36,21 @@ export default class Promotions extends Component {
         {
           sortType: '',
           sortOrder: 'ASC',
-          sortTitle: 'Promotions - A to Z',
-          sortTag: 'Promotions - A to Z'
+          sortTitle: 'Promotion Date - Earliest to Latest',
+          sortTag: 'Promotion Date - Earliest to Latest'
         },
         {
           sortType: '',
           sortOrder: 'DESC',
-          sortTitle: 'Promotions - Z to A',
-          sortTag: 'Promotions - Z to A'
-        },
-        {
-          sortType: '',
-          sortOrder: 'date',
-          sortTitle: 'Date',
-          sortTag: 'Date'
+          sortTitle: 'Promotion Date - Latest to Earliest',
+          sortTag: 'Promotion Date - Latest to Earliest'
         }
+        // {
+        //   sortType: '',
+        //   sortOrder: 'date',
+        //   sortTitle: 'Date',
+        //   sortTag: 'Date'
+        // }
       ]
     };
     this.breadCrumbData = {
@@ -87,7 +87,7 @@ export default class Promotions extends Component {
   componentDidMount() {
     window.scrollTo(0, 0);
     this.fetchPromotionCategoriesData();
-    this.fetchPromotionListingData();
+    // this.fetchPromotionListingData();
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -101,10 +101,13 @@ export default class Promotions extends Component {
         prevState.defaultTabId !== defaultTabId ||
         prevState.sortBy !== sortBy
       ) {
-        this.setState({
-          listingArray: [],
-          first: 0
-        });
+        this.setState({ listingArray: [] });
+        setTimeout(() => {
+          this.setState({
+            listingArray: [],
+            first: 0
+          });
+        }, 1000);
       }
 
       const params = {
@@ -119,14 +122,17 @@ export default class Promotions extends Component {
       PromotionService.getPromotionList(params).then(res => {
         if (res.data && res.data.data) {
           const listing = res.data.data;
-          this.setState({
-            totalRecords: res.data.total_records,
-            listingArray:
-              prevState.first !== first
-                ? [...listingArray, ...listing]
-                : listing
-            // prevProps === defaultTabId ? [...listingArray, ...res.data.data[0]] : res.data.data[0]
-          });
+          this.setState({ listingArray: [] });
+          setTimeout(() => {
+            this.setState({
+              totalRecords: res.data.total_records,
+              listingArray:
+                prevState.first !== first
+                  ? [...listingArray, ...listing]
+                  : listing
+              // prevProps === defaultTabId ? [...listingArray, ...res.data.data[0]] : res.data.data[0]
+            });
+          }, 1000);
         }
       });
     }
@@ -149,16 +155,6 @@ export default class Promotions extends Component {
       .catch(err => {
         console.log(err);
       });
-  };
-
-  calculateSum = data => {
-    let count =
-      data &&
-      data
-        .filter(item => Number(item.promotions))
-        .map(item => +Number(item.promotions))
-        .reduce((sum, current) => sum + current);
-    return count;
   };
 
   fetchPromotionListingData = () => {
@@ -184,27 +180,7 @@ export default class Promotions extends Component {
     });
   };
 
-  getPosition = element => {
-    var xPosition = 0;
-    var yPosition = 0;
-
-    while (element) {
-      xPosition += element.offsetLeft - element.scrollLeft + element.clientLeft;
-      yPosition += element.offsetTop - element.scrollTop + element.clientTop;
-      element = element.offsetParent;
-    }
-    console.log(yPosition, 'yPosition');
-
-    return { x: xPosition, y: yPosition };
-  };
-
   fetchPromotionDetailData = (alias, id, defaultTabId, promotionTab) => {
-    // var element = document.getElementsByClassName("promotion-events-row");
-    // for (var i = 0; i < element.length; i++) {
-    //   // console.log(element.item(i),"class");
-    //   this.getPosition(element.item(i))
-    // }
-    // console.log(element, "element")
     const params = {
       client: Constants.CLIENT,
       alias: alias
@@ -306,7 +282,7 @@ export default class Promotions extends Component {
           <div className="container-fluid">
             <div className="container">
               {this.state.listingArray && (
-                <>
+                <Fragment>
                   {' '}
                   <Tabs
                     state={this.state}
@@ -329,7 +305,7 @@ export default class Promotions extends Component {
                         >
                           <div className="event-listing-sorting">
                             <SortBy
-                              defaultSortType="Promotions - A to Z"
+                              defaultSortType="Promotion Date - Earliest to Latest"
                               handleFilters={this.handleFilters}
                               sortList={this.tabsSort.sortList}
                               sortByFlag={this.state.sortByFlag}
@@ -378,7 +354,7 @@ export default class Promotions extends Component {
                       </div>
                     </>
                   )}
-                </>
+                </Fragment>
               )}
             </div>
           </div>

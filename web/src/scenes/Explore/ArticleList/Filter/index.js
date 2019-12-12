@@ -12,6 +12,7 @@ const Filter = ({
   handleFiltersForMobile
 }) => {
   const [activeSelectButton, setActiveSelectButton] = useState(false);
+  const [filtersToShow, setFiltersToShow] = useState(5);
 
   const activeSelectButtonhandler = toggle => {
     setActiveSelectButton(toggle);
@@ -50,14 +51,14 @@ const Filter = ({
             }}
             className={`${!activeSelectButton ? `active` : ``}`}
           >
-            <span>Clear Filters</span>
+            <span>Clear</span>
           </li>
         </ul>
       </div>
       <div className="filters-panel">
         <ul>
           {dataToFilter.length ? (
-            dataToFilter.map(data => {
+            dataToFilter.slice(0, filtersToShow).map(data => {
               return (
                 <li key={data.id}>
                   <input
@@ -81,6 +82,26 @@ const Filter = ({
               type="TILE"
             />
           )}
+          {dataToFilter.length && filtersToShow < dataToFilter.length ? (
+            <span
+              onClick={e => {
+                setFiltersToShow(dataToFilter.length + 1);
+              }}
+              className="view-all-filters"
+            >
+              {`+ ${`${dataToFilter.length - filtersToShow} More`}`}
+            </span>
+          ) : null}
+          {dataToFilter.length && filtersToShow > dataToFilter.length ? (
+            <span
+              onClick={e => {
+                setFiltersToShow(5);
+              }}
+              className="view-all-filters"
+            >
+              {'- Show Less'}
+            </span>
+          ) : null}
         </ul>
       </div>
 

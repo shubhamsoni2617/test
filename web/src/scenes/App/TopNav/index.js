@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import jsonp from 'jsonp';
 import { Link } from 'react-router-dom';
 import { CSSTransition } from 'react-transition-group';
 import moment from 'moment';
@@ -60,6 +61,9 @@ function List({ data, type, menueStatus, setMenuStatus, closeSubmenu, link }) {
 
 const TopNav = props => {
   let refValue = useRef();
+  const node = useRef(null);
+
+  const [cartData, setCartData] = useState({});
   const [showMegaMenu, setShowMegaMenu] = useState(false);
   const [filteredDateRange, setFilteredDateRange] = useState({
     from: '',
@@ -87,18 +91,26 @@ const TopNav = props => {
   const [headerClassScroll, setHeaderClassScroll] = useState(false);
   const [stickyHeader, setStickyHeader] = useState(false);
   const [mostViewed, setMostViewed] = useState(null);
+  const [url, setUrl] = useState('');
   const [featuredEvents, setFeaturedEvents] = useState(
     props.response && props.response.findAnEventAddsData
       ? props.response.findAnEventAddsData.data
       : []
   );
-  const miniCartData = [
-    { id: '1', img: 'assets/images/explore.png' },
-    { id: '2', img: 'assets/images/explore.png' },
-    { id: '3', img: 'assets/images/explore.png' }
-  ];
+
+  const [loginPopUp, setLoginPopUp] = useState(false);
 
   useEffect(() => {
+    setUrl(window.location.href);
+
+    jsonp(Constants.FETCH_CART_DATA_URL, null, (err, data) => {
+      if (err) {
+        console.error(err.message);
+      } else {
+        console.log(data);
+        setCartData(data);
+      }
+    });
     fetchMostViewedService();
     if (window.__INITIAL_DATA__ && window.__INITIAL_DATA__.venuesData) {
       setByVenueEvent(window.__INITIAL_DATA__.venuesData.data);
@@ -158,11 +170,23 @@ const TopNav = props => {
     });
 
     window.addEventListener('scroll', handleScroll);
+    document.addEventListener('mousedown', handleClick);
+
     return () => {
       unlisten();
       window.removeEventListener('scroll', handleScroll);
+      document.removeEventListener('mousedown', handleClick);
     };
   }, []);
+
+  const handleClick = e => {
+    if (node.current && node.current.contains(e.target)) {
+      // setLoginPopUp(!loginPopUp);
+      return;
+    }
+
+    setLoginPopUp(false);
+  };
 
   const handleScroll = () => {
     if (props.history.location.pathname === '/') {
@@ -335,17 +359,52 @@ const TopNav = props => {
                     </a>
                     <span></span>
                   </li> */}
-                <li className="user-icon">
-                  <a href="https://ticketing.sistic.com.sg/sistic/patron/management">
-                    <img src={MainLogo} className="img-fluid" alt="send" />
-                  </a>
-                  <span></span>
-                  {/* <ul class="header-submenu">
-                      <li><a href="">My Account</a></li>
-                      <li><a href="">Logout</a></li>
-                    </ul> */}
+                <li
+                  className={`user-icon has-submenu ${
+                    loginPopUp ? `active` : ``
+                  }`}
+                  ref={node}
+                >
+                  {cartData.loginStatus === 0 ? (
+                    <p
+                      className="login-parent"
+                      onClick={() => setLoginPopUp(!loginPopUp)}
+                    >
+                      <img src={MainLogo} className="img-fluid" alt="send" />
+                    </p>
+                  ) : (
+                    <a
+                      href={`${Constants.SISTIC_LOGIN_URL}${encodeURIComponent(
+                        url
+                      )}`}
+                    >
+                      <img src={MainLogo} className="img-fluid" alt="send" />
+                    </a>
+                  )}
+                  <span
+                    className={cartData.loginStatus === 0 ? `login` : ``}
+                  ></span>
+                  {cartData.loginStatus === 0 && (
+                    <ul class="header-submenu">
+                      <li>
+                        <a
+                          href={Constants.SISTIC_MY_ACCOUNT_URL}
+                          target="_blank"
+                        >
+                          My Account
+                        </a>
+                      </li>
+                      <li>
+                        <a href={Constants.SISTIC_LOGOUT_URL}>Logout</a>
+                      </li>
+                    </ul>
+                  )}
                 </li>
-                <MiniCart data={miniCartData} />
+                <MiniCart
+                  data={cartData.lineItemList || []}
+                  cartDataCount={cartData.totalLineItems}
+                  timeLeft={cartData.timeLeftSeconds}
+                />
                 <li className="ticket-withus">
                   <Link to="/corporate/ticket-with-us">Ticket With Us</Link>
                 </li>
@@ -411,10 +470,12 @@ const TopNav = props => {
                         </li>
                       );
                     })}
-                <DropDown
-                  showElementsInHeader={showElementsInHeader}
-                  byGenreEvent={byGenreEvent}
-                />
+                {byGenreEvent.length > 4 && (
+                  <DropDown
+                    showElementsInHeader={showElementsInHeader}
+                    byGenreEvent={byGenreEvent}
+                  />
+                )}
               </ul>
             </div>
           </nav>
@@ -432,11 +493,21 @@ const TopNav = props => {
             ></a>
             <ul className="user-details">
               <li className="user-icon">
-                <a href="https://ticketing.sistic.com.sg/sistic/patron/management">
+                <a
+                  href={`${Constants.SISTIC_LOGIN_URL}${encodeURIComponent(
+                    url
+                  )}`}
+                >
                   <img src={MainLogo} className="img-fluid" alt="send" />
-                  <span></span>
+                  <span
+                    className={
+                      cartData && cartData.loginStatus === 0 ? 'login' : ''
+                    }
+                  ></span>
                 </a>
-                <span>Login/ Register</span>
+                {/* {cartData.loginStatus === 1 && (
+                  <a href={Constants.SISTIC_LOGIN_URL}>Login/ Sign Up</a>
+                )} */}
               </li>
               <li className="ticket-withus">
                 <Link to="/corporate/ticket-with-us">Ticket With Us</Link>
@@ -577,70 +648,6 @@ const TopNav = props => {
                         type="button"
                         onClick={() => setMenuStatus(!menueStatus)}
                       >
-                        My Account
-                      </button>
-                      <SubmenuWrap
-                        menueStatus={menueStatus}
-                        setMenuStatus={setMenuStatus}
-                      >
-                        <ul className="submenu">
-                          <li className="has-submenu">
-                            <Link to="/">Subscription</Link>
-                          </li>
-                          <li className="has-submenu">
-                            <Link to="/">Booking History</Link>
-                          </li>
-                          <li className="has-submenu">
-                            <Link to="/">Logout</Link>
-                          </li>
-                        </ul>
-                      </SubmenuWrap>
-                    </>
-                  )}
-                </Submenu>
-              </li>
-              <li className="has-submenu mycart">
-                <Submenu>
-                  {(menueStatus, setMenuStatus) => (
-                    <>
-                      <button
-                        className={`backbutton ${menueStatus ? 'active' : ''}`}
-                        type="button"
-                        onClick={() => setMenuStatus(!menueStatus)}
-                      >
-                        My cart
-                      </button>
-                      <SubmenuWrap
-                        menueStatus={menueStatus}
-                        setMenuStatus={setMenuStatus}
-                      >
-                        <ul className="submenu">
-                          <li className="has-submenu">
-                            <Link to="/">Subscription</Link>
-                          </li>
-                          <li className="has-submenu">
-                            <Link to="/">Booking History</Link>
-                          </li>
-                          <li className="has-submenu">
-                            <Link to="/">Logout</Link>
-                          </li>
-                        </ul>
-                      </SubmenuWrap>
-                    </>
-                  )}
-                </Submenu>
-              </li>
-            </ul>
-            <ul>
-              <li className="has-submenu">
-                <Submenu>
-                  {(menueStatus, setMenuStatus) => (
-                    <>
-                      <button
-                        className={`backbutton ${menueStatus ? 'active' : ''}`}
-                        type="button"
-                        onClick={() => setMenuStatus(!menueStatus)}
-                      >
                         Our Company
                       </button>
                       <SubmenuWrap
@@ -666,6 +673,18 @@ const TopNav = props => {
                   )}
                 </Submenu>
               </li>
+              {cartData.loginStatus === 0 && (
+                <ul>
+                  <li>
+                    <a href={Constants.SISTIC_MY_ACCOUNT_URL} target="_blank">
+                      My Account
+                    </a>
+                  </li>
+                  <li>
+                    <a href={Constants.SISTIC_LOGOUT_URL}>Logout</a>
+                  </li>
+                </ul>
+              )}
               <li className="has-submenu">
                 <Submenu>
                   {(menueStatus, setMenuStatus) => (
@@ -724,6 +743,7 @@ const TopNav = props => {
                 <Link to="/">For Business</Link>
               </li>
             </ul>
+
             <ul>
               <li className="social-links">
                 <span>Follow us on</span>

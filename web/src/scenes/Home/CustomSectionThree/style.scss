@@ -147,6 +147,7 @@
                     font-weight: 500;
                     font-size: 16px;
                     line-height: 20px;
+                    word-break: break-word;
                 }
                 span{
                     margin-top: 10px;
@@ -186,6 +187,9 @@
                 border-radius: 4px;
                 font-size: 12px;
                 line-height: 14px;
+                &:empty{
+                    display: none;
+                }
               }
               .ytp-large-play-button,
               .ytp-button:not([aria-disabled=true]):not([disabled]):not([aria-hidden=true]) {
