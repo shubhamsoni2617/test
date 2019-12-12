@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import './style.scss';
 import appleImage from '../../../assets/images/apple.svg';
 import androidImage from '../../../assets/images/android.png';
+import preview from '../../../assets/images/preview.png';
 import fb from '../../../assets/images/fb.svg';
 import fbFill from '../../../assets/images/fb-fill.svg';
 import topArrow from '../../../assets/images/arrow-to-top.svg';
@@ -12,9 +13,11 @@ import stixImage from '../../../assets/images/stix.png';
 import BackToTop from '../../../shared/components/BackToTop';
 import Utilities from '../../../shared/utilities';
 import NewsLetterForm from '../../../shared/components/NewsLetterForm';
+import Preview from '../../../shared/components/Preview';
 
 const Footer = () => {
   const [yOffset, setYOffset] = useState(0);
+  const [showPreview, setShowPreview] = useState(false);
   useEffect(() => {
     window.addEventListener('scroll', listenToScroll);
     return () => {
@@ -188,6 +191,18 @@ const Footer = () => {
         </span>
         // <BackToTop scrollStepInPx="50" delayInMs="20" />
       )}
+      {!Utilities.mobilecheck() && (
+        <span
+          className="scroll-left"
+          onClick={() => {
+            setShowPreview(!showPreview);
+          }}
+        >
+          <img src={preview} alt="preview" />
+        </span>
+        // <BackToTop scrollStepInPx="50" delayInMs="20" />
+      )}
+      {showPreview && <Preview />}
     </footer>
   );
 };
