@@ -1,9 +1,11 @@
 import React from 'react';
 import { CSSTransition } from 'react-transition-group';
 import Utilities from '../../utilities';
+import moreLessImg from '../../../assets/images/more-less.svg';
 
 const LoadMore = props => {
   const { showMore, content, limit, handleMore } = props;
+  console.log(showMore, "showMore")
 
   let contentToShow = '';
   if (!content.length) {
@@ -30,8 +32,7 @@ const LoadMore = props => {
             __html: contentToShow
           }}
         />
-
-        {content.length > limit && <a className="more-content" onClick={() => handleMore()}>{showMore ? 'Less' : 'More'}</a>}
+        {content.length > limit && <a className={showMore ? "more-content less" : "more-content more"} onClick={() => handleMore()}>{showMore ? 'Less' : 'More'} <img src={moreLessImg} alt="more-less" className="" /></a>}
       </div>
     </CSSTransition>
   );

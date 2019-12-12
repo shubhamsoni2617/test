@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import { useSpring, animated } from 'react-spring';
 import { Link } from 'react-router-dom';
 import closeIcon from '../../../assets/images/close-ad.svg';
+import closeIconhover from '../../../assets/images/cross.svg';
 import './style.scss';
 import Utilities from '../../utilities';
 
@@ -51,6 +52,7 @@ const Cookies = () => {
         </Link>
         <Link to="/" className="hide-cookie" onClick={handleDecline}>
           <img src={closeIcon} alt="" />
+          <img src={closeIconhover} className="hover-img" alt="" />
         </Link>
       </div>
     </animated.div>

@@ -447,6 +447,10 @@
                     color: #343434;
                     max-height: 22px !important;
                     min-height: 22px !important;
+                    transition: 0.5s color;
+                    -webkit-transition: 0.5s color;
+                    -moz-transition: 0.5s color;
+                    -o-transition: 0.5s color;
                     @media(max-width: 991px){
                         max-height: 20px !important;
                         min-height: 20px !important;
@@ -498,6 +502,9 @@
                 .category{
                     opacity: 1;
                     top: 18px;
+                }
+                h3{
+                    color: #0098FF;
                 }
                 &:after{
                     transform: scaleY(1);                   
@@ -718,6 +725,10 @@
             color: #343434;
             margin-bottom: 0px;
             padding-bottom: 9px;
+            transition: 0.5s color;
+            -webkit-transition: 0.5s color;
+            -moz-transition: 0.5s color;
+            -o-transition: 0.5s color;
             @media(max-width: 768px){
                 padding-bottom: 15px;
             }
@@ -744,6 +755,11 @@
                 &:last-child{
                     border: none;
                 }
+            }
+        }
+        &:hover{
+            h3{
+                color: #0098ff;
             }
         }
     }
