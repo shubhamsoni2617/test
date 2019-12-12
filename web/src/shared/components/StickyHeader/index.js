@@ -15,6 +15,7 @@ import ModalPopup from '../../../shared/components/Modal';
 import Image from '../../../shared/components/Image';
 import Utilities from '../../utilities';
 import TitleToolTip from './TitleToolTip';
+import './style.scss';
 
 function Button({ styleObj, url, text }) {
   return (
@@ -118,42 +119,32 @@ function BuyTicketsButtonPopup({ detailData, flag, setFlag }) {
 }
 
 function StickyHeader(props) {
-  const [showEventDateBlock, setEventDateBlock] = useState(false);
-  const [venueDetailsPopup, setVenueDetailsPopup] = useState(false);
-  const [stickyHeader, setStickyHeader] = useState(false);
+  const element = useRef();
   const [flag, setFlag] = useState(false);
 
   useEffect(() => {
-    if (props.sticky && props.elemOffsetTop > 100) {
-      const handleScroll = () => {
-        if (!stickyHeader && window.pageYOffset >= props.elemOffsetTop + 100) {
-          setStickyHeader(true);
-        } else if (window.pageYOffset < props.elemOffsetTop) {
-          setStickyHeader(false);
-          setFlag(false);
-        }
-      };
-      window.addEventListener('scroll', handleScroll);
-      return () => {
-        window.removeEventListener('scroll', handleScroll);
-      };
-    }
-  }, [props.elemOffsetTop, props.sticky]);
+    const handleScroll = () => {
+      if (
+        element &&
+        element.current &&
+        !element.current.classList.contains('animate') &&
+        window.pageYOffset >= props.elemOffsetTop - 30
+      ) {
+        element.current.classList.add('animate');
+      } else if (window.pageYOffset < props.elemOffsetTop - 30) {
+        element.current.classList.remove('animate');
+      }
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, [props.elemOffsetTop]);
 
-  const {
-    detailData,
-    sticky,
-    showSocialShare,
-    shareUrl,
-    seatMapButton,
-    buyPackages
-  } = props;
+  const { detailData, showSocialShare, shareUrl, buyPackages } = props;
+
   return (
-    <div
-      className={`event-detail ${sticky ? 'sticky-topbar' : ''} ${
-        sticky && stickyHeader ? 'animate' : ''
-      }`}
-    >
+    <div className="event-detail sticky-topbar" ref={element}>
       {detailData.images && detailData.images.length > 0 && (
         <div className="tickets-demo-img">
           <Image
