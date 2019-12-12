@@ -1184,6 +1184,10 @@
     h3{
     //   width: 575px;
         width: auto;
+        max-width: 575px;
+        @media(max-width: 1024px){
+            max-width: 500px;
+        }
     }
     .tickets-desc{
           .promoters {
@@ -1315,6 +1319,7 @@
               flex: 0 0 63%;
           }
           .title{
+                display: inline-block;
               .info-popover{
                   display: none !important;
               }
@@ -1474,12 +1479,14 @@
               min-height: auto;
               padding-right: 22px;
               margin-bottom: 13px;
+                max-width: 575px;
             @media(max-width: 1280px){
                 // width: 90% !important;
                 width: auto !important;
             }
             @media(max-width: 1024px){
                 margin-bottom: 0px;
+                max-width: 500px;
             }
             @media(max-width:767px){
                 padding-right: 10px;
