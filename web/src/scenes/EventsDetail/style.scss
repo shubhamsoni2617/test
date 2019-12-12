@@ -1185,6 +1185,9 @@
     //   width: 575px;
         width: auto;
         max-width: 575px;
+        @media(max-width: 1024px){
+            max-width: 500px;
+        }
     }
     .tickets-desc{
           .promoters {
@@ -1482,6 +1485,7 @@
             }
             @media(max-width: 1024px){
                 margin-bottom: 0px;
+                max-width: 500px;
             }
             @media(max-width:767px){
                 padding-right: 10px;
