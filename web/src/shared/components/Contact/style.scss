@@ -236,6 +236,9 @@
                     background-color: transparent;
                     border: 1px solid #D3D3D3;
                     transition: 0.3s border-color;
+                    -webkit-transition: 0.3s border-color;
+                    -moz-transition: 0.3s border-color;
+                    -o-transition: 0.3s border-color;
                     z-index: 2;
                     position: relative;
                     &:focus, &:active{

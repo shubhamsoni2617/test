@@ -268,6 +268,9 @@
             max-height: 377px;
             border: 1px solid transparent;
             transition: all 0.3s ease-out;
+            -webkit-transition: all 0.3s ease-out;
+            -moz-transition: all 0.3s ease-out;
+            -o-transition: all 0.3s ease-out;
         }
         .slick-prev, .slick-next{
             left: 4px;
@@ -853,6 +856,9 @@
                         display: -webkit-box;
                         -webkit-line-clamp: 3;
                         transition: all 0.3s ease-in-out;
+                        -webkit-transition: all 0.3s ease-in-out;
+                        -moz-transition: all 0.3s ease-in-out;
+                        -o-transition: all 0.3s ease-in-out;
                         overflow: hidden;
                         height: 90px;
                         -webkit-box-orient: vertical;
@@ -924,6 +930,9 @@
                                 font-weight: 500;
                                 line-height: 22px;
                                 transition: 0.3s color;
+                                -webkit-transition: 0.3s color;
+                                -moz-transition: 0.3s color;
+                                -o-transition: 0.3s color;
                             }
                             span{
                                 color: #626262;

@@ -90,6 +90,9 @@
             display: inline-block;
             margin-top: 13px;
             transition: 0.5s background-color;
+            -webkit-transition: 0.5s background-color;
+            -moz-transition: 0.5s background-color;
+            -o-transition: 0.5s background-color;
             @media(max-width: 768px){
                 line-height: 30px;
                 height: 30px;

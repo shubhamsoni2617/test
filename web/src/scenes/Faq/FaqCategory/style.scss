@@ -190,6 +190,9 @@
         line-height: 27px;
         padding-bottom: 30px;
         transition: 0.3s height;
+        -webkit-transition: 0.3s height;
+        -moz-transition: 0.3s height;
+        -o-transition: 0.3s height;
         @media(max-width: 991px){
           display: none;
           height: 0px;
@@ -261,6 +264,8 @@
           .accordion__panel{
             transition: 0.1s all;
             -webkit-transition: 0.1s all;
+            -moz-transition: 0.1s all;
+            -o-transition: 0.1s all;
           }
         }
         .accordion__button {
@@ -273,6 +278,9 @@
           padding: 0px 70px 0px 0px;
           margin: 0px;
           transition: 0.5s color, 1s margin;
+          -webkit-transition: 0.5s color, 1s margin;
+          -moz-transition: 0.5s color, 1s margin;
+          -o-transition: 0.5s color, 1s margin;
           @media (max-width: 991px) {
             font-size: 14px;
             line-height: 18px;

@@ -62,6 +62,9 @@ a{
     background: #fff;
     overflow-Y: auto;
     transition: .3s left;
+    -webkit-transition: .3s left;
+    -moz-transition: .3s left;
+    -o-transition: .3s left;
     display: none;
     .subholder-wrapper{
       z-index: 2;
