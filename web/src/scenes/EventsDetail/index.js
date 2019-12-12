@@ -172,12 +172,12 @@ export default class EventsDetail extends Component {
   }
 
   setOffsetTop = elem => {
-    if (elem) {
-      setTimeout(() => {
-        this.setState({ elemOffsetTop: elem.offsetTop });
-      }, 1000);
-      // this.elemOffsetTop = elem.offsetTop;
-    }
+    // if (elem) {
+    //   setTimeout(() => {
+    //     this.setState({ elemOffsetTop: elem.offsetTop });
+    //   }, 1000);
+    // this.elemOffsetTop = elem.offsetTop;
+    // }
   };
 
   componentDidMount() {
@@ -445,7 +445,8 @@ export default class EventsDetail extends Component {
                   ref={node => {
                     if (!eventDetailBannerHeight && node && node.offsetHeight) {
                       this.setState({
-                        eventDetailBannerHeight: node.offsetHeight - 33
+                        eventDetailBannerHeight: node.offsetHeight - 33,
+                        elemOffsetTop: node.offsetTop + node.offsetHeight
                       });
                     }
                   }}
