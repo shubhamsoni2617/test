@@ -1182,7 +1182,8 @@
     height: auto;
     z-index: 99;
     h3{
-      width: 575px;
+    //   width: 575px;
+        width: auto;
     }
     .tickets-desc{
           .promoters {
@@ -1219,7 +1220,7 @@
       .tickets-desc{
         h3{
         margin-top: 10px;
-         width: 500px !important;
+         width: auto !important;
       }
       }
 
@@ -1322,27 +1323,43 @@
               display: none;
           }
           .info-tooltip, .share-tooltip {
-              position: absolute;
-              right: 190px;
-              display: inline-block;
-              top: 8px;
+            //   position: absolute;
+            //   right: 190px;
+            //   display: inline-block;
+            //   top: 8px;
+                    width: auto;
+                    display: inline-block;
+                    margin-right: 9px;
+                    height: auto;
+                    top: 0px;
+                    right: 0px;
+                    position: relative;
               @media(min-width: 1024px) and (max-width: 1280px) {
-                right: 45px;
+                // right: 45px;
+                right: 0px;
               }
               .share, .info {
-                  position: relative;
-                  right: 0px;
-                  top: 8px;
-                  display: inline-block;
-                  margin-left: 15px;
-                  margin-top: -15px;
-                  transition: 0.3s background-color, 0.3s border-color;
-                  -webkit-transition: 0.3s background-color, 0.3s border-color;
-                  -moz-transition: 0.3s background-color, 0.3s border-color;
-                  -o-transition: 0.3s background-color, 0.3s border-color;
+                    position: relative;
+                    //   right: 0px;
+                    //   top: 8px;
+                    display: inline-block;
+                    //   margin-left: 15px;
+                    //   margin-top: -15px;
+                    transition: 0.3s background-color, 0.3s border-color;
+                    -webkit-transition: 0.3s background-color, 0.3s border-color;
+                    -moz-transition: 0.3s background-color, 0.3s border-color;
+                    -o-transition: 0.3s background-color, 0.3s border-color;
+                    right: 0px;
+                    top: 0;
+                    display: inline-block;
+                    margin-left: 0;
+                    margin-top: 0;
+                    margin-bottom: 4px;
                   @media(max-width: 1280px){
-                      margin-left: 10px;
-                      margin-top: -14px;
+                    //   margin-left: 10px;
+                    //   margin-top: -14px;
+                    margin-left: 0px;
+                    margin-top: 0px;
                  }
                  .share:hover, .info:hover{
                   cursor: pointer;
@@ -1353,7 +1370,8 @@
               }
           }
           .share-tooltip {
-              right: 145px;
+            //   right: 145px;
+                right: auto;
               @media(min-width: 1024px) and (max-width: 1280px) {
                 right: 0;
               }
@@ -1451,8 +1469,13 @@
           }
           h3{
               min-height: auto;
+              padding-right: 22px;
             @media(max-width: 1280px){
-                width: 90% !important;
+                // width: 90% !important;
+                width: auto !important;
+            }
+            @media(max-width:767px){
+                padding-right: 10px;
             }
           }
       }

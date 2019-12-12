@@ -10,7 +10,7 @@ const ItemWrapper = (elem, genre) => {
     <div className="item-wrapper">
       <div className="currently-showing-img">
         <div className="item-img">
-          <Image src={elem.thumb_image} className="img-fluid" type="SimilarPicksImg" />
+          <Image src={elem.thumb_image} className="img-fluid" type="Tile" />
         </div>
       </div>
       <span className={`category ${genre}`}>{elem.primary_genre}</span>
