@@ -85,6 +85,9 @@
                         line-height: 23px;
                         border-bottom: none;
                         transition: 0.3s background-color;
+                        -webkit-transition: 0.3s background-color;
+                        -moz-transition: 0.3s background-color;
+                        -o-transition: 0.3s background-color;
                         @media(max-width: 991px){
                             font-size: 13px;
                             line-height: 16px;
@@ -209,6 +212,9 @@
                 padding: 0px;
                 border: 1px solid #0098FF;
                 transition: 0.3s color, 0.3s background-color;
+                -webkit-transition: 0.3s color, 0.3s background-color;
+                -moz-transition: 0.3s color, 0.3s background-color;
+                -o-transition: 0.3s color, 0.3s background-color;
                 margin-top: 20px;
                 background-clip: unset;
                 @media(max-width: 991px){

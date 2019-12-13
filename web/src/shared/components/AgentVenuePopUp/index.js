@@ -7,7 +7,7 @@ import clock from '../../../assets/images/clock.svg';
 import contact from '../../../assets/images/contact-icon.svg';
 import price from '../../../assets/images/price.svg';
 import closePopupImage from '../../../assets/images/cross-grey.svg';
-import seat from '../../../assets/images/seat.svg';
+import chair from '../../../assets/images/chair.svg';
 import notification from '../../../assets/images/notification.svg';
 import event from '../../../assets/images/current-event.svg';
 import download from '../../../assets/images/download-blue.svg';
@@ -27,49 +27,49 @@ const AgentVenuePopUp = props => {
 
 
   const isContent = popUpDetail => {
-        if (popUpDetail) {
-          const {
-            address,
-            country,
-            festive_hours,
-          how_to_get_there,
-          image,
-           name,
-           nearest_mrt,
-           operating_hours,
-            parking,
-            payment_mode,
-            region,
-            reminder,
-            contact_details,
-            seating_capacity,
-          food_beverages
-          } = popUpDetail;
-          if (
-            !venue &&
-            (how_to_get_there ||
-              parking ||
-              operating_hours ||
-              payment_mode ||
-              isFile ||
-              payment_mode ||
-              reminder)
-          ) {
-            return true;
-        } else {
-           if (
-             venue &&
-            (how_to_get_there ||
-             parking ||
-             food_beverages.length > 0 ||
-               contact_details ||
-               seating_capacity)
-           ) {
-           return true;
-          }
-         }
+    if (popUpDetail) {
+      const {
+        address,
+        country,
+        festive_hours,
+        how_to_get_there,
+        image,
+        name,
+        nearest_mrt,
+        operating_hours,
+        parking,
+        payment_mode,
+        region,
+        reminder,
+        contact_details,
+        seating_capacity,
+        food_beverages
+      } = popUpDetail;
+      if (
+        !venue &&
+        (how_to_get_there ||
+          parking ||
+          operating_hours ||
+          payment_mode ||
+          isFile ||
+          payment_mode ||
+          reminder)
+      ) {
+        return true;
+      } else {
+        if (
+          venue &&
+          (how_to_get_there ||
+            parking ||
+            food_beverages.length > 0 ||
+            contact_details ||
+            seating_capacity)
+        ) {
+          return true;
         }
-      };
+      }
+    }
+  };
 
   const showFoodNBeverage = foodNBeverage => {
     return foodNBeverage.map((elem, index) => {
@@ -97,7 +97,7 @@ const AgentVenuePopUp = props => {
   }
 
   return (
-   
+
     <div
       className={`pop-up-list ${item.id === popUpDetail.id && isContent(popUpDetail) !== undefined ? 'active' : ''}`}
     >
@@ -115,7 +115,7 @@ const AgentVenuePopUp = props => {
           style={{
             display:
               !Utilities.mobileAndTabletcheck() &&
-              window.innerHeight < window.innerWidth
+                window.innerHeight < window.innerWidth
                 ? 'none'
                 : 'block'
           }}
@@ -158,20 +158,20 @@ const AgentVenuePopUp = props => {
         ) : null}
 
         {venue &&
-        popUpDetail.food_beverages &&
-        popUpDetail.food_beverages[0].name ? (
-          <div className="agent-info">
-            <div className="icon">
-              <img src={food} alt="icon" />
+          popUpDetail.food_beverages &&
+          popUpDetail.food_beverages[0].name ? (
+            <div className="agent-info">
+              <div className="icon">
+                <img src={food} alt="icon" />
+              </div>
+              <div className="details">
+                <h3>Food & Beverage</h3>
+                <ul className="currently-list">
+                  {showFoodNBeverage(popUpDetail.food_beverages)}
+                </ul>
+              </div>
             </div>
-            <div className="details">
-              <h3>Food & Beverage</h3>
-              <ul className="currently-list">
-                {showFoodNBeverage(popUpDetail.food_beverages)}
-              </ul>
-            </div>
-          </div>
-        ) : null}
+          ) : null}
 
         {!venue && popUpDetail.operating_hours ? (
           <div className="agent-info">
@@ -223,7 +223,7 @@ const AgentVenuePopUp = props => {
         {venue && popUpDetail.seating_capacity ? (
           <div className="agent-info">
             <div className="icon">
-              <img src={seat} alt="icon" />
+              <img src={chair} alt="icon" className="chair-icon" />
             </div>
             <div className="details">
               <h3>Seating Capacity</h3>
@@ -238,7 +238,7 @@ const AgentVenuePopUp = props => {
             </div>
             <div className="details">
               <h3>Ticket pick up Reminder</h3>
-              <p dangerouslySetInnerHTML={{__html:popUpDetail.reminder}}></p>
+              <p dangerouslySetInnerHTML={{ __html: popUpDetail.reminder }}></p>
             </div>
           </div>
         ) : null}

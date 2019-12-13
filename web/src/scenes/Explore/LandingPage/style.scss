@@ -268,6 +268,9 @@
             max-height: 377px;
             border: 1px solid transparent;
             transition: all 0.3s ease-out;
+            -webkit-transition: all 0.3s ease-out;
+            -moz-transition: all 0.3s ease-out;
+            -o-transition: all 0.3s ease-out;
         }
         .slick-prev, .slick-next{
             left: 4px;
@@ -444,6 +447,10 @@
                     color: #343434;
                     max-height: 22px !important;
                     min-height: 22px !important;
+                    transition: 0.5s color;
+                    -webkit-transition: 0.5s color;
+                    -moz-transition: 0.5s color;
+                    -o-transition: 0.5s color;
                     @media(max-width: 991px){
                         max-height: 20px !important;
                         min-height: 20px !important;
@@ -495,6 +502,9 @@
                 .category{
                     opacity: 1;
                     top: 18px;
+                }
+                h3{
+                    color: #0098FF;
                 }
                 &:after{
                     transform: scaleY(1);                   
@@ -715,6 +725,10 @@
             color: #343434;
             margin-bottom: 0px;
             padding-bottom: 9px;
+            transition: 0.5s color;
+            -webkit-transition: 0.5s color;
+            -moz-transition: 0.5s color;
+            -o-transition: 0.5s color;
             @media(max-width: 768px){
                 padding-bottom: 15px;
             }
@@ -741,6 +755,11 @@
                 &:last-child{
                     border: none;
                 }
+            }
+        }
+        &:hover{
+            h3{
+                color: #0098ff;
             }
         }
     }
@@ -853,6 +872,9 @@
                         display: -webkit-box;
                         -webkit-line-clamp: 3;
                         transition: all 0.3s ease-in-out;
+                        -webkit-transition: all 0.3s ease-in-out;
+                        -moz-transition: all 0.3s ease-in-out;
+                        -o-transition: all 0.3s ease-in-out;
                         overflow: hidden;
                         height: 90px;
                         -webkit-box-orient: vertical;
@@ -924,6 +946,9 @@
                                 font-weight: 500;
                                 line-height: 22px;
                                 transition: 0.3s color;
+                                -webkit-transition: 0.3s color;
+                                -moz-transition: 0.3s color;
+                                -o-transition: 0.3s color;
                             }
                             span{
                                 color: #626262;

@@ -274,8 +274,13 @@
                     > div{
                         transform: scale(0.95);
                     }
+                    img{
+                        transition: 1s transform;
+                        -webkit-transition: 1s transform;
+                        -moz-transition: 1s transform;
+                        -o-transition: 1s transform;
+                    }
                     &.slick-current{
-                        
                         div > div{
                             position: relative;
                             &::before{
@@ -290,6 +295,11 @@
                                     height: 3px;
                                 }
                             }
+                        }
+                    }
+                    &:hover{
+                        img{
+                            transform: translateY(-5px);
                         }
                     }
                 }

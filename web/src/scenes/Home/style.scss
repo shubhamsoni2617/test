@@ -682,6 +682,9 @@
 							padding: 15px 10px 10px;
 							min-width: 170px;
 							transition: 0.5s opacity;
+							-webkit-transition: 0.5s opacity;
+							-moz-transition: 0.5s opacity;
+							-o-transition: 0.5s opacity;
 							opacity: 0;
 							visibility: hidden;
 							left: 50%;
@@ -722,6 +725,9 @@
 								flex: 0 0 100% !important;
 								width: 100% !important;
 								transition: 0.3s background-color;
+								-webkit-transition: 0.3s background-color;
+								-moz-transition: 0.3s background-color;
+								-o-transition: 0.3s background-color;
 								margin-bottom: 10px;
 								list-style: none;
 								&:last-child{
@@ -775,9 +781,9 @@
 					&:hover {
 						a {
 							color: #0098ff;
-							&:before {
-								width: 100%;
-							}
+							// &:before {
+							// 	width: 100%;
+							// }
 						}
 					}
 					>a {
@@ -802,9 +808,9 @@
 						&:hover {
 							text-decoration: none;
 							color: #0098ff;
-							&:before {
-								width: 100%;
-                            }
+							// &:before {
+							// 	width: 100%;
+                            // }
                             .dropdown-icon{
                                 background: url(../../assets/images/more-arrow-white-blue.svg) no-repeat;
 								transition: 1s all;
@@ -2042,7 +2048,10 @@
 	padding: 40px 0px 0px;
 	@media (max-width: 767px) {
 		padding: 20px 0px 0px;
-    }
+	}
+	.slick-dots{
+		height: 0px;
+	}
     .section-top-wrapper{
         @media (max-width: 991px) {
             padding-bottom: 0;
@@ -2250,6 +2259,10 @@
 					display: -webkit-box;
 					-webkit-line-clamp: 2;				
 					height: 38px;
+					transition: color 0.3s;
+					-webkit-transition: color 0.3s;
+					-moz-transition: color 0.3s;
+					-o-transition: color 0.3s;
 					@media (max-width: 767px) {
 						padding-bottom: 8px;
 						min-height: auto;
@@ -2325,7 +2338,7 @@
 							}
                         }
                         h3 {
-                            color: #343434;
+                            color: #0098FF;
                         }
 					}
 				}
@@ -2802,7 +2815,12 @@ p {
                             .promotions-img {
                                 margin-bottom: 12px;
                                 position: relative;
-                                overflow: hidden;
+								overflow: hidden;
+								box-shadow: 0 2px 10px 0 transparent;
+								transition: 0.6s box-shadow;
+								-webkit-transition: 0.6s box-shadow;
+								-moz-transition: 0.6s box-shadow;
+								-o-transition: 0.6s box-shadow;
                                 @media (max-width: 767px) {
                                     margin-bottom: 4px;
                                 }
@@ -2853,9 +2871,12 @@ p {
                             &:hover {
                                 @media(min-width: 991px) {
                                     cursor: pointer;
-                                    .promotions-img img {
-                                        transform: scale(1.05);
-                                    }
+                                    .promotions-img{
+										box-shadow: 0 2px 10px 0 rgba(207, 146, 146, 0.12);
+										img {
+											transform: scale(1.05);
+										}
+									}
                                     h3{
                                         color: #0098ff;
                                         transition: 1s all;
@@ -3261,6 +3282,9 @@ section.trending-now {
 				}
 			}
 			&:hover {
+				h3{
+					color: #0098ff;
+				}
 				@media(min-width: 991px) {
 					cursor: pointer;
 					box-shadow: 0 2px 27px 0 rgba(0, 0, 0, 0.12);
@@ -3275,7 +3299,7 @@ section.trending-now {
 						}
                     }
                     h3 {
-                        color: #343434;
+                        color: #0098ff;
                     }
 				}
 				
@@ -3653,7 +3677,7 @@ section{
                     }
                     &:hover{
                         img{
-                            transform: scale(1.1);
+                            transform: translateY(-10px);
 							transition: 1s transform;
 							-webkit-transition: 1s transform;
 							-moz-transition: 1s transform;

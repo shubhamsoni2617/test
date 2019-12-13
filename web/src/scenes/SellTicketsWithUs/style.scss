@@ -56,6 +56,9 @@
                 display: inline-block;
                 width: fit-content;
                 transition: all .3s ease-in;
+                -webkit-transition: all .3s ease-in;
+                -moz-transition: all .3s ease-in;
+                -o-transition: all .3s ease-in;
                 max-width: 100%;
                 margin-top: 0px;
                 &:hover{
@@ -63,6 +66,9 @@
                 background-color: #fff;
                 color: #0098FF;
                 transition: all .3s ease-in;
+                -webkit-transition: all .3s ease-in;
+                -moz-transition: all .3s ease-in;
+                -o-transition: all .3s ease-in;
                 }
             }
         }
@@ -235,12 +241,18 @@
                 padding: 11px 19px;
                 display: inline-block;
                 transition: all .3s ease-in;
+                -webkit-transition: all .3s ease-in;
+                -moz-transition: all .3s ease-in;
+                -o-transition: all .3s ease-in;
                 margin-top: 44px;
                 &:hover{
                 background-color: #0098FF;
                 border: 2px solid #0098FF;
                 color: #fff;
                 transition: all .3s ease-in;
+                -webkit-transition: all .3s ease-in;
+                -moz-transition: all .3s ease-in;
+                -o-transition: all .3s ease-in;
                 }
             }
         }
@@ -444,6 +456,9 @@
                 font-size: 18px;
                 line-height: 22px;
                 transition: all 0.3s ease-in;
+                -webkit-transition: all .3s ease-in;
+                -moz-transition: all .3s ease-in;
+                -o-transition: all .3s ease-in;
                 width: 210px;
                 max-width: 100%;
                 max-height: 43px;
@@ -455,6 +470,9 @@
                     color: #0098FF;
                     border: 2px solid #0098FF;
                     transition: all .3s ease-in;
+                    -webkit-transition: all .3s ease-in;
+                    -moz-transition: all .3s ease-in;
+                    -o-transition: all .3s ease-in;
                 }
                 &:focus{
                     box-shadow: none;
@@ -469,6 +487,9 @@
                 font-size: 18px;
                 line-height: 22px;
                 transition: all .3s ease-in;
+                -webkit-transition: all .3s ease-in;
+                -moz-transition: all .3s ease-in;
+                -o-transition: all .3s ease-in;
                 width: 210px;
                 max-width: 100%;
                 max-height: 43px;
@@ -480,6 +501,9 @@
                     color: #fff;
                     border: 2px solid #0098FF;
                     transition: all .3s ease-in;
+                    -webkit-transition: all .3s ease-in;
+                    -moz-transition: all .3s ease-in;
+                    -o-transition: all .3s ease-in;
                 }
                 &:focus{
                     box-shadow: none;
@@ -513,6 +537,9 @@
             margin: 10px;
             position: relative;
             transition: all .3s ease-in;
+            -webkit-transition: all .3s ease-in;
+            -moz-transition: all .3s ease-in;
+            -o-transition: all .3s ease-in;
             min-height: 260px;
             background-color: #fff;
             width: 100%;
@@ -520,16 +547,25 @@
                 height: 173px;
                 overflow: hidden;
                 transition: all 0.3s ease-in;
+                -webkit-transition: all .3s ease-in;
+                -moz-transition: all .3s ease-in;
+                -o-transition: all .3s ease-in;
                 img{
                     width: 100%;
                     min-height: 100%;
                     transition: all 0.3s ease-in;
+                    -webkit-transition: all .3s ease-in;
+                    -moz-transition: all .3s ease-in;
+                    -o-transition: all .3s ease-in;
                 }
             }
             .article-content{
                 background-color: #fff;
                 padding: 11px 18px;
                 transition: width .3s ease-in;
+                -webkit-transition: all .3s ease-in;
+                -moz-transition: all .3s ease-in;
+                -o-transition: all .3s ease-in;
                 width: auto;
                a,span{
                 color: #0098FF;
@@ -565,6 +601,9 @@
                     line-height: 16px;
                     display: none;
                     transition: all .3s ease-in-out;
+                    -webkit-transition: all .3s ease-in-out;
+                    -moz-transition: all .3s ease-in-out;
+                    -o-transition: all .3s ease-in-out;
                     text-overflow: ellipsis;
                     display: -webkit-box;
                     -webkit-line-clamp: 2;                
@@ -593,6 +632,9 @@
                 visibility: hidden;
                 opacity: 0;
                 transition: all .3s ease-in;
+                -webkit-transition: all .3s ease-in;
+                -moz-transition: all .3s ease-in;
+                -o-transition: all .3s ease-in;
                 img{
                     height: auto;
                     width: auto;
@@ -607,13 +649,22 @@
                     max-height: 144px;
                     overflow: hidden;
                     transition: all .3s ease-in;
+                    -webkit-transition: all .3s ease-in;
+                    -moz-transition: all .3s ease-in;
+                    -o-transition: all .3s ease-in;
                 }
                 .article-content{
                     transition: width .3s ease-in;
+                    -webkit-transition: width .3s ease-in;
+                    -moz-transition: width .3s ease-in;
+                    -o-transition: width .3s ease-in;
                     p{
                         opacity: 1;
                         height: auto;
                         transition: all .3s ease-in;
+                        -webkit-transition: all .3s ease-in;
+                        -moz-transition: all .3s ease-in;
+                        -o-transition: all .3s ease-in;
                     }
 
                 }
@@ -621,6 +672,9 @@
                     visibility: visible;
                     opacity: 1;
                     transition: all .3s ease-in;
+                    -webkit-transition: all .3s ease-in;
+                    -moz-transition: all .3s ease-in;
+                    -o-transition: all .3s ease-in;
                 }
             }
         }
