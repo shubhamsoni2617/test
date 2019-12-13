@@ -131,6 +131,9 @@
                         background-position: 98%;
                         transform: rotate(-90deg);
                         transition: 0.5s transform, 0.5s right;
+                        -webkit-transition: 0.5s transform, 0.5s right;
+                        -moz-transition: 0.5s transform, 0.5s right;
+                        -o-transition: 0.5s transform, 0.5s right;
                     }
                 }
                 &.active{

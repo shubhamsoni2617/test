@@ -24,6 +24,9 @@
         }
         img{
             transition: 0.7s transform;
+            -webkit-transition: 0.7s transform;
+            -moz-transition: 0.7s transform;
+            -o-transition: 0.7s transform;
             max-width: 100%;
             height: auto;
         }

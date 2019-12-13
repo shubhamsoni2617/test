@@ -117,6 +117,9 @@
                 display: -webkit-box;
                 -webkit-line-clamp: 3;
                 transition: all 0.3s ease-in-out;
+                -webkit-transition: all 0.3s ease-in-out;
+                -moz-transition: all 0.3s ease-in-out;
+                -o-transition: all 0.3s ease-in-out;
                 overflow: hidden;
                 height: auto;
                 /* autoprefixer: off */ -webkit-box-orient: vertical; /* autoprefixer: on */
@@ -325,7 +328,7 @@
                     h3{
                         color: #ffffff;
                         a{
-                            color: #FFF;
+                            color: #0098ff;
                         }
                     }
                 }

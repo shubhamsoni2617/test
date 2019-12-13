@@ -20,6 +20,9 @@
             margin-right: 5%;
             transform: translateY(0px);
             transition: 0.7s transform;
+            -webkit-transition: 0.7s transform;
+            -moz-transition: 0.7s transform;
+            -o-transition: 0.7s transform;
             // @media(max-width: 768px){
             //     flex: 0 0 calc(55% - 10%);
             //     width: calc(55% - 10%);

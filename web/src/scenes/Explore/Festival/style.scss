@@ -232,6 +232,9 @@
                             padding: 12px 0;
                             margin: 0;
                             transition: 0.5s color;
+                            -webkit-transition: 0.5s color;
+                            -moz-transition: 0.5s color;
+                            -o-transition: 0.5s color;
                             @media(max-width:768px){
                                 font-size: 14px;
                                 line-height: 18px;

@@ -162,6 +162,9 @@
                 -webkit-box-shadow: 0 2px 4px 0 rgba(154, 154, 154, 0.5);
                 -moz-box-shadow: 0 2px 4px 0 rgba(154, 154, 154, 0.5);
                 transition: 0.3s top, 0.3s opacity;
+                -webkit-transition: 0.3s top, 0.3s opacity;
+                -moz-transition: 0.3s top, 0.3s opacity;
+                -o-transition: 0.3s top, 0.3s opacity;
                 opacity: 0;
                 @media(max-width: 1024px){
                     opacity: 0;

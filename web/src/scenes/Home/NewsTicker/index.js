@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef, memo } from "react";
 import closeNews from "../../../assets/images/close-ad.svg";
+import closeNewshover from '../../../assets/images/cross.svg';
 import "./style.scss";
 import HomeService from "../../../shared/services/HomeService";
 
@@ -48,7 +49,7 @@ const NewsTicker = props => {
       <div
         className={`ticker-wrap ${
           !sessionStorage.getItem("ticker") ? "hide-news" : ""
-        }`}
+          }`}
         ref={refValue}
       >
         <div className="ticker-container">
@@ -87,6 +88,7 @@ const NewsTicker = props => {
         </div>
         <span className="close-ticker" onClick={() => handleClose()}>
           <img src={closeNews} alt="Close" />
+          <img src={closeNewshover} alt="Close" className="hover-img" />
         </span>
       </div>
     </>

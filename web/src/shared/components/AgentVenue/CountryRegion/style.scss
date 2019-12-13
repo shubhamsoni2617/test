@@ -127,6 +127,9 @@
             background-color: #fff;
             border-color: #fff;
             transition: 0.5s background-color, 0.5s color;
+            -webkit-transition: 0.5s background-color, 0.5s color;
+            -moz-transition: 0.5s background-color, 0.5s color;
+            -o-transition: 0.5s background-color, 0.5s color;
             padding: 4px 15px;
             font-size: 13px;
             border: none;

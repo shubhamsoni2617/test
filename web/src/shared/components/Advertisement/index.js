@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import './style.scss';
 import closeAd from '../../../assets/images/close-ad.svg';
+import closeAdhover from '../../../assets/images/cross.svg';
 import AdvertisementService from '../../services/AdvertisementService';
 import Constants from '../../constants';
 const Advertisement = props => {
@@ -91,6 +92,7 @@ const Advertisement = props => {
                 onClick={() => handleClose()}
               >
                 <img src={closeAd} className="img-fluid" alt="close" />
+                <img src={closeAdhover} className="img-fluid hover-img" alt="close" />
               </button>
             </div>
           );

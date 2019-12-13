@@ -201,12 +201,35 @@
         }
         img{
             width: 14px;
+            transition: 0.5s opacity;
+            -webkit-transition: 0.5s opacity;
+            -moz-transition: 0.5s opacity;
+            -o-transition: 0.5s opacity;
+            &.hover-img{
+                position: absolute;
+                width: 14px;
+                height: auto;
+                left: 0px;
+                top: 2px;
+                opacity: 0;
+                @media(max-width: 767px){
+                    width: 12px;
+                }
+            }
         }
         @media(max-width: 767px){
             top: 50%;
             transform: translateY(-50%);
             img{
                 width: 12px;
+            }
+        }
+        &:hover{
+             img{
+                opacity: 0;
+                &.hover-img{
+                    opacity: 1;
+                }
             }
         }
 	}

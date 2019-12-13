@@ -44,6 +44,9 @@
           padding: 0px 70px 0px 0px;
           margin: 0px;
           transition: 0.5s color, 1s margin;
+          -webkit-transition: 0.5s color, 1s margin;
+          -moz-transition: 0.5s color, 1s margin;
+          -o-transition: 0.5s color, 1s margin;
           border-bottom: none;
           margin-bottom: 0px;
           background-color: transparent;
