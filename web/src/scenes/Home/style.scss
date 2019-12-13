@@ -3669,12 +3669,18 @@ section{
             .slick-list{
                 padding: 0;
                 .slick-slide{
-                    overflow: hidden;
+					overflow: hidden;
+					width: 181px !important;
+					height: 181px !important;
                     img{
 						transition: 1s transform;
 						-webkit-transition: 1s transform;
 						-moz-transition: 1s transform;
 						-o-transition: 1s transform;
+						max-width: 100%;
+						height: 181px;
+						object-fit: cover;
+						object-position: center;
                     }
                     &:hover{
                         img{
