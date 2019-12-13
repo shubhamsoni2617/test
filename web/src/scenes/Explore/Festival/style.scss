@@ -515,10 +515,10 @@
                                 max-height: 30px;
                                 max-width: 130px;
                                 text-align: center;
-                                transition: 0.5s background-color;
-                                -webkit-transition: 0.5s background-color;
-                                -moz-transition: 0.5s background-color;
-                                -o-transition: 0.5s background-color;
+                                transition: 0.5s background-color, 0.5s border-color;
+                                -webkit-transition: 0.5s background-color, 0.5s border-color;
+                                -moz-transition: 0.5s background-color, 0.5s border-color;
+                                -o-transition: 0.5s background-color, 0.5s border-color;
                                 @media(max-width: 768px){
                                     margin-top: 0px;
                                 }
@@ -539,8 +539,9 @@
                                 }
                                 &:hover{
                                     @media(min-width: 767px){
-                                        background-color: transparent;
-                                        color: #0098FF;
+                                        background-color: #1f82d7;
+                                        color: #ffffff;
+                                        border-color: #1f82d7;
                                     }
                                 }
                             }
@@ -1098,8 +1099,9 @@
                             font-size: 12px;
                         }
                         &:hover{
-                            background-color: transparent;
-                            color: #0098FF;
+                            background-color: #1f82d7;
+                            color: #ffffff;
+                            border-color: #1f82d7;
                         }
                     }
                 }
