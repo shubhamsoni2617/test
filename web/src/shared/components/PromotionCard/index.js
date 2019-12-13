@@ -167,6 +167,7 @@ const PromotionCard = props => {
                   <h2>Related Events</h2>
                 </div>
                 <Carousel
+                  type="Horizontal"
                   imgArray={events}
                   arrows={true}
                   slidesToShow={4}
