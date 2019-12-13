@@ -82,6 +82,7 @@
         cursor: pointer;
         border: none;
         z-index: 2;
+        position: relative;
         &:hover, &:focus{
             border: none;
             background: none;
@@ -90,6 +91,26 @@
         img{
             width: 15px;
             height: 15px;
+            &.hover-img{
+                position: absolute;
+                width: 20px;
+                height: 20px;
+                left: -1px; 
+                top: -1px;
+                opacity: 0;
+                transition: 0.5s opacity;
+                -webkit-transition: 0.5s opacity;
+                -moz-transition: 0.5s opacity;
+                -o-transition: 0.5s opacity;
+            }
+        }
+        &:hover{
+            img{
+                opacity: 0;
+                &.hover-img{
+                    opacity: 1;
+                }
+            }
         }
     }
 }

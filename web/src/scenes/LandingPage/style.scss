@@ -76,6 +76,9 @@
             display: inline-block;
             width: fit-content;
             transition: all .5s ease-in;
+            -webkit-transition: all .5s ease-in;
+            -moz-transition: all .5s ease-in;
+            -o-transition: all .5s ease-in;
             min-width: 130px;
             margin-top: 37px;
             @media(max-width: 680px){
@@ -90,6 +93,9 @@
                 background-color: #fff;
                 color: #0098FF;
                 transition: all .5s ease-in;
+                -webkit-transition: all .5s ease-in;
+                -moz-transition: all .5s ease-in;
+                -o-transition: all .5s ease-in;
             }
         }
     }
@@ -1204,6 +1210,9 @@
                             max-width: 100%;
                             height: auto;
                             transition: 0.5s transform;
+                            -webkit-transition: 0.5s transform;
+                            -moz-transition: 0.5s transform;
+                            -o-transition: 0.5s transform;
                         }
                     }
                 }

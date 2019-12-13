@@ -480,6 +480,11 @@
                             height: auto;
                         }
                     }
+                    img{
+                        &.chair-icon{
+                            width: 16px;
+                        }
+                    }
                 }
                 .details{
                     width: calc(100% - 50px);

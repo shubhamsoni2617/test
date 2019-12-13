@@ -50,10 +50,10 @@
             border: none;
             position: relative;
             padding: 9px 20px;
-            transition: 0.2s color;
-            -webkit-transition: 0.2s color;
-            -moz-transition: 0.2s color;
-            -o-transition: 0.2s color;
+            transition: 0.7s color;
+            -webkit-transition: 0.7s color;
+            -moz-transition: 0.7s color;
+            -o-transition: 0.7s color;
             cursor: pointer;
             @media(max-width: 1200px){
                 padding: 9px 25px;
@@ -106,8 +106,9 @@
                     width: 100%;
                 }
             }
-            &.active{
+            &.active, &.nav-link.active{
                 font-weight: 600;
+                color: #0098FF;
             }
         }
     }

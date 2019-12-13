@@ -50,11 +50,6 @@
             }
 
         }
-        &:hover{
-            h3{
-                color: #0098ff;
-            }
-        }
         span{
             color: #626262;
             font-size: 14px;
@@ -167,7 +162,9 @@
                     }
                 }
                 .video-subwrapper-text{
-                    color: #0098ff;
+                    a{
+                        color: #0098ff;
+                    }
                 }
             }
             .video-restrict-overlay{

@@ -21,8 +21,24 @@
                 div *{
                     color: #5a5a5a;
                 }
-                div .more-content{
-                    color: #0098FF;
+                div{
+                    .more-content{
+                        color: #0098FF;
+                        img {
+                            max-width: 10px;
+                            height: auto;
+                            transform: rotate(180deg);
+                            transition: 0.6s transform;
+                            -webkit-transition: 0.6s transform;
+                            -moz-transition: 0.6s transform;
+                            -o-transition: 0.6s transform;
+                        }
+                        &.less{
+                            img{
+                                transform: rotate(0deg);
+                            }
+                        }
+                    }
                 }
             }
         }
