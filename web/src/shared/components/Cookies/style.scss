@@ -40,12 +40,15 @@
             margin-right: 45px;
             overflow: hidden;
             position: relative;
-            border: 1px solid transparent;
+            border: 1px solid #0098FF;
+            transition: 0.5s background-color, 0,5s border-color;
+            -webkit-transition: 0.5s background-color, 0,5s border-color;
+            -moz-transition: 0.5s background-color, 0,5s border-color;
+            -o-transition: 0.5s background-color, 0,5s border-color;
             &:hover {
                 cursor: pointer;
-                background-color: transparent;
-                color: #0098FF;	
-                border: 1px solid #0098FF;
+                background-color: #1f82d7;
+                border: 1px solid #1f82d7;
             }
         }
         .hide-cookie{

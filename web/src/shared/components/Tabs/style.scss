@@ -98,17 +98,18 @@
             }
             &:hover, &.active {
                 font-family: 'Montserrat', sans-serif;
+                color: #0098FF;
                 @media(max-width: 991px) {
                     background-color: #0098FF;
                     color: #ffffff;
-                }
-                &::before {
-                    width: 100%;
                 }
             }
             &.active, &.nav-link.active{
                 font-weight: 600;
                 color: #0098FF;
+                &::before {
+                    width: 100%;
+                }
             }
         }
     }

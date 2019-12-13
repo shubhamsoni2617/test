@@ -115,8 +115,9 @@
 				padding: 10px;
 				transition: 0.5s background-color, 0.5s color;
 				margin-top: 0px;
+				border: 1px solid #0098ff;
 				&:hover{
-					background-color: #fff;
+					background-color: transparent;
 					color: #0098FF;
 				}
 				@media(max-width: 736px){

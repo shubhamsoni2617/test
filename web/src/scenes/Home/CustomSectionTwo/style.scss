@@ -123,6 +123,10 @@
                 overflow: hidden;
                 height: auto;
                 /* autoprefixer: off */ -webkit-box-orient: vertical; /* autoprefixer: on */
+                transition: 0.5s color;
+                -webkit-transition: 0.5s color;
+                -moz-transition: 0.5s color;
+                -o-transition: 0.5s color;
                 @media(min-width: 991px){
                     &:hover{
                         color: #FFF;
@@ -143,6 +147,9 @@
                     font-weight: 500;
                     line-height: 20px;
                     word-break: break-word;
+                }
+                &:hover{
+                    color: #0098ff;
                 }
             }
             p{

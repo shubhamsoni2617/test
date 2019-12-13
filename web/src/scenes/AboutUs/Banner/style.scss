@@ -89,10 +89,11 @@
             width: auto;
             display: inline-block;
             margin-top: 13px;
-            transition: 0.5s background-color;
-            -webkit-transition: 0.5s background-color;
-            -moz-transition: 0.5s background-color;
-            -o-transition: 0.5s background-color;
+            transition: 0.5s background-color, 0.5s border-color;
+            -webkit-transition: 0.5s background-color, 0.5s border-color;
+            -moz-transition: 0.5s background-color, 0.5s border-color;
+            -o-transition: 0.5s background-color, 0.5s border-color;
+            border: 1px solid #0098FF;
             @media(max-width: 768px){
                 line-height: 30px;
                 height: 30px;
@@ -107,7 +108,8 @@
                 }
             }
             &:hover{
-                background-color: #fff;
+                background-color: transparent;
+                border-color: #0098FF;
                 span{
                     color: #0098FF;
                 }

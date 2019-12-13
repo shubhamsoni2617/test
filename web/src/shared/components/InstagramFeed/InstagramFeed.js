@@ -52,13 +52,25 @@ const InstagramFeed = () => {
           {Utilities.mobilecheck() ? (
             feeds &&
             feeds.map(feed => (
-              <img key={feed.id} src={feed.images.thumbnail.url} alt="" />
+              <a href={feed.link} target="_blank">
+                <img
+                  key={feed.id}
+                  src={feed.images.low_resolution.url}
+                  alt=""
+                />
+              </a>
             ))
           ) : (
             <Slider {...settings}>
               {feeds &&
                 feeds.map(feed => (
-                  <img key={feed.id} src={feed.images.thumbnail.url} alt="" />
+                  <a href={feed.link} target="_blank">
+                    <img
+                      key={feed.id}
+                      src={feed.images.low_resolution.url}
+                      alt=""
+                    />
+                  </a>
                 ))}
             </Slider>
           )}

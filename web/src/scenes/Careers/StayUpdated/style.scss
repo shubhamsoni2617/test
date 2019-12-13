@@ -305,10 +305,20 @@
             font-size: 18px;
             border-radius: 0;
             text-decoration: none;
+            transition: 0.5s background-color, 0.5s border-color;
+            -webkit-transition: 0.5s background-color, 0.5s border-color;
+            -moz-transition: 0.5s background-color, 0.5s border-color;
+            -o-transition: 0.5s background-color, 0.5s border-color;
+            border: 1px solid #0098ff;
             @media(max-width: 767px){
                 padding: 2px 20px;
                 font-size: 14px;
                 width: 100%;
+            }
+            &:hover{
+                background-color: #1f82d7;
+                color: #ffffff;
+                border-color: #1f82d7;
             }
         }
     }
