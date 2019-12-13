@@ -326,8 +326,9 @@
             border: 1px solid #0098FF;
             transition: 0.5s border-color, 0.5s color, 0.5s background-color;
                 &:hover{
-                    color: #0098FF;
-                    background-color: transparent;
+                    color: #ffffff;
+                    background-color: #1f82d7;
+                    border-color: #1f82d7;
                 }
             @media(max-width: 768px){
                 font-size: 15px;

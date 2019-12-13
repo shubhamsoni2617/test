@@ -1186,6 +1186,19 @@
                 }
             }
         }
+        .item{
+            img{
+                transition: 0.9s transform;
+                -webkit-transition: 0.9s transform;
+                -moz-transition: 0.9s transform;
+                -o-transition: 0.9s transform;
+            }
+            &:hover{
+                img{
+                    transform: scale(1.05);
+                }
+            }
+        }
     }
     .royal-wrapper{
         .royal-items-wrapper{

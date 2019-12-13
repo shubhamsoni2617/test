@@ -295,15 +295,15 @@ button,
 	font-size: 14px;
 	line-height: 30px;
     overflow: hidden;
-    border: 1px solid transparent;
+    border: 1px solid #0098ff;
 	transition: 0.8s all;
 	-webkit-transition: 0.8s all;
 	-moz-transition: 0.8s all;
 	-o-transition: 0.8s all;
 	&:hover {
-        background-color: #FFF;
-        color: #0098ff;
-        border: 1px solid #0098ff;
+        background-color: #1f82d7;
+        color: #ffffff;
+        border: 1px solid #1f82d7;
 		transition: 0.8s all;
 		-webkit-transition: 0.8s all;
 		-moz-transition: 0.8s all;
