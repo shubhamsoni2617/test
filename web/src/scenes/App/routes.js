@@ -189,6 +189,16 @@ const routes = [
     component: EventsDetail
   },
   {
+    path: '/preview/explore/1/:id',
+    component: Article,
+    exact: true
+  },
+  {
+    path: '/preview/explore/2/:id',
+    component: Festival,
+    exact: true
+  },
+  {
     path: '/preview',
     exact: true,
     component: Home

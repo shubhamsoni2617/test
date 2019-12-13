@@ -18,7 +18,6 @@ const Modal = ({ handleClose, show, children }) => {
 const Preview = props => {
   return (
     <>
-      <h1>React Modal</h1>
       <Modal show={true}>
         <div>
           <DayPickerInput

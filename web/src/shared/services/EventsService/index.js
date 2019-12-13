@@ -5,7 +5,6 @@ class EventsService {
     return API.get(`/events`, { params: params });
   }
   getEventDetails(params, pathname) {
-    console.log('testkhkl', pathname.split('/')[1] === 'preview');
     if (pathname.split('/')[1] === 'preview') {
       return API.get(`/preview/event-detail`, { params: params });
     }
