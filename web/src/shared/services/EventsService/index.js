@@ -4,7 +4,11 @@ class EventsService {
   getData(params) {
     return API.get(`/events`, { params: params });
   }
-  getEventDetails(params) {
+  getEventDetails(params, pathname) {
+    console.log('testkhkl', pathname.split('/')[1] === 'preview');
+    if (pathname.split('/')[1] === 'preview') {
+      return API.get(`/preview/event-detail`, { params: params });
+    }
     return API.get(`/event-detail`, { params: params });
   }
   getFilterConfig() {
@@ -15,8 +19,8 @@ class EventsService {
     return API.get(`/similar-events`, { params: params });
   }
 
-  getArticleData(params){
-    return API.get(`/get-articles-on-event-detail`, {params: params});
+  getArticleData(params) {
+    return API.get(`/get-articles-on-event-detail`, { params: params });
   }
 }
 export default new EventsService();

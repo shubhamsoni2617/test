@@ -57,7 +57,7 @@ export default class App extends React.Component {
         <Advertisement {...this.props} />
         <TopNav {...this.props} />
         <Navigator {...this.props} />
-        <Footer />
+        <Footer {...this.props} />
       </div>
     );
   }

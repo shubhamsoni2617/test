@@ -182,6 +182,17 @@ const routes = [
     component: Explore,
     exact: true
   },
+
+  {
+    path: '/preview/events/:icc',
+    exact: true,
+    component: EventsDetail
+  },
+  {
+    path: '/preview',
+    exact: true,
+    component: Home
+  },
   {
     path: '*',
     component: PageNotFound

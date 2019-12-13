@@ -217,7 +217,7 @@ export default class EventsDetail extends Component {
   callAPI(payload) {
     window.scrollTo(0, 0);
     this.setState({ shimmer: true });
-    EventsService.getEventDetails(payload)
+    EventsService.getEventDetails(payload, this.props.history.location.pathname)
       .then(res => {
         let newState = { detailData: res.data };
         if (res.data && res.data.synopsis && res.data.synopsis.length > 0) {
