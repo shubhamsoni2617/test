@@ -32,6 +32,7 @@ const SamplePrevArrow = props => {
 const Carousel = props => {
   // const [width, setWidth] = useState(window.innerWidth);
   const {
+    type,
     imgArray,
     arrows,
     slidesToShow,
@@ -113,14 +114,14 @@ const Carousel = props => {
                   elem.venue_name,
                   25
                 );
-                return <CarouselSlide elem={elem} key={elem.id} />;
+                return <CarouselSlide type={type} elem={elem} key={elem.id} />;
               })}
             </div>
           </div>
         ) : (
           <Slider {...settings}>
             {imgArray.map(elem => {
-              return <CarouselSlide elem={elem} key={elem.id} />;
+              return <CarouselSlide type={type} elem={elem} key={elem.id} />;
             })}
           </Slider>
         )}
