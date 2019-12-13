@@ -515,6 +515,10 @@
                                 max-height: 30px;
                                 max-width: 130px;
                                 text-align: center;
+                                transition: 0.5s background-color;
+                                -webkit-transition: 0.5s background-color;
+                                -moz-transition: 0.5s background-color;
+                                -o-transition: 0.5s background-color;
                                 @media(max-width: 768px){
                                     margin-top: 0px;
                                 }
@@ -535,7 +539,7 @@
                                 }
                                 &:hover{
                                     @media(min-width: 767px){
-                                        background-color: #ffffff;
+                                        background-color: transparent;
                                         color: #0098FF;
                                     }
                                 }

@@ -655,7 +655,7 @@
               line-height: 22px;
               text-align: center;
               font-weight: 500;
-              border: 1px solid transparent;
+              border: 1px solid #0098ff;
               margin-top: 10px;
               @media(max-width: 1024px){
                 padding: 5px 0px;
@@ -665,8 +665,7 @@
               }
               &:hover{
                   background-color: #1f82d7;
-                  color: #FFF;
-                  border: 1px solid #1f82d7;
+                  color: #ffffff;
                   @media(max-width: 991px){
                     background-color: #0098ff;
                     color: #FFF;

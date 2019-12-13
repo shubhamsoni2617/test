@@ -283,8 +283,15 @@
             padding-left: 0;
             a {
                margin: 27px auto 10px;
+               transition: 0.5s background-color;
+               -webkit-transition: 0.5s background-color;
+                -moz-transition: 0.5s background-color;
+                -o-transition: 0.5s background-color;
                @media(max-width: 680px){
                    margin: 0px auto 15px;
+               }
+               &:hover{
+                    background-color: transparent;
                }
             }
             .sub-text{
@@ -617,11 +624,19 @@
                         display: inline-block;
                         margin: 10px auto 0px;
                         max-width: 150px;
+                        transition: 0.5s color;
+                        -webkit-transition: 0.5s color;
+                        -moz-transition: 0.5s color;
+                        -o-transition: 0.5s color;
                         @media(max-width: 680px){
                             padding: 1px 11px;
                             margin: 5px auto 0;
                             font-size: 10px;
                             line-height: 18px;
+                        }
+                        &:hover{
+                            background-color: transparent;
+                            color: #0098ff;
                         }
                     }
                 }

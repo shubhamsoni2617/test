@@ -557,6 +557,10 @@ section.whats-new {
                         padding-bottom: 11px !important;
                         height: auto;
                         max-height: 100%;
+                        transition: 0.5s color;
+                        -webkit-transition: 0.5s color;
+                        -moz-transition: 0.5s color;
+                        -o-transition: 0.5s color;
                         @media(max-width: 965px){
                             min-height: 51px !important;
                         }
@@ -600,6 +604,13 @@ section.whats-new {
                             @media(max-width: 767px){
                                 min-height: 32px;
                                 margin-bottom: 5px;
+                            }
+                        }
+                    }
+                    &:hover{
+                        .featured-desc{
+                            h3{
+                                color: #0098ff;
                             }
                         }
                     }
