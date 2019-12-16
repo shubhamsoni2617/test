@@ -14,31 +14,6 @@ import Utilities from '../../../shared/utilities';
 import NewsLetterForm from '../../../shared/components/NewsLetterForm';
 
 const Footer = () => {
-  const [yOffset, setYOffset] = useState(0);
-  useEffect(() => {
-    window.addEventListener('scroll', listenToScroll);
-    return () => {
-      window.removeEventListener('scroll', listenToScroll);
-    };
-  }, []);
-
-  const listenToScroll = () => {
-    const winScroll =
-      document.body.scrollTop || document.documentElement.scrollTop;
-
-    const height =
-      document.documentElement.scrollHeight -
-      document.documentElement.clientHeight;
-
-    const scrolled = winScroll / height;
-
-    setYOffset(scrolled);
-  };
-
-  const scrollTop = () => {
-    window.scrollTo(0, 0);
-  };
-
   const ourCompanyLinks = [
     { link: 'corporate/about-us', linkName: 'About Us' },
     {
@@ -182,12 +157,8 @@ const Footer = () => {
           </div>
         </div>
       </section>
-      {!Utilities.mobilecheck() && yOffset && (
-        <span className="scroll-top" onClick={() => scrollTop()}>
-          <img src={topArrow} alt="Scroll to top" />
-        </span>
-        // <BackToTop scrollStepInPx="50" delayInMs="20" />
-      )}
+
+      <BackToTop scrollStepInPx="50" delayInMs="20" />
     </footer>
   );
 };
