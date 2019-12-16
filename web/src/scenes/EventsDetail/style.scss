@@ -7,6 +7,65 @@
     &.shimmer{
       opacity: 0;
     }
+    .custom-container{
+        max-width: 1310px;
+        margin: 0 auto;
+        padding: 0 15px;
+        @media(min-width: 1360px){
+            max-width: 1360px;
+        }
+        @media(max-width: 1279px){
+            padding: 0 15px;
+        }
+        @media(max-width: 767px){
+            padding: 0;
+        }
+        .advertisement-banner{
+            padding: 0;
+        }
+        .event-detail-panel{
+            padding-left: 0;
+        }
+        .event-detail-sidebar{
+            padding-right: 0;
+        }
+        .event-zoner-group{
+            .container-fluid{
+                padding: 0;
+                ul{
+                    padding: 0;
+                }
+            }
+        }
+        
+    }
+    .event-articles{
+        padding: 40px 0;
+        .container-fluid{
+            max-width: 1310px;
+            margin: 0 auto;
+            padding: 0;
+            @media(max-width: 1279px){
+                padding: 0 15px;
+            }
+            @media(min-width: 1360px){
+                max-width: 1360px;
+            }
+        }
+    }
+    .similar-picks{
+        .container-fluid{
+            max-width: 1310px;
+            margin: 0 auto;
+            padding: 0 15px;
+            @media(max-width: 1279px){
+                padding: 0 15px;
+            }
+            @media(min-width: 1360px){
+                max-width: 1360px;
+            }
+        }
+    }
   }
   .shimmer-enter {
     top: 120%;
