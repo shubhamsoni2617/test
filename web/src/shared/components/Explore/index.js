@@ -19,15 +19,13 @@ const Explore = props => {
       limit: 5,
       client: 1
     };
-    setTimeout(() => {
-      ExploreService.getExploreArticleList(params)
-        .then(res => {
-          setExploreData(res.data.data);
-        })
-        .catch(err => {
-          console.log(err);
-        });
-    }, 1000);
+    ExploreService.getExploreArticleList(params)
+      .then(res => {
+        setExploreData(res.data.data);
+      })
+      .catch(err => {
+        console.log(err);
+      });
   };
 
   return exploreData && exploreData.length ? (

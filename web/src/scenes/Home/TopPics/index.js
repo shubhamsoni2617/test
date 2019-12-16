@@ -58,10 +58,8 @@ const TopPics = props => {
     HomeService.getTopPics(params)
       .then(res => {
         if (res && res.data) {
-          setTimeout(() => {
-            setData(res.data.data);
-            setLoading(false);
-          }, 2000);
+          setData(res.data.data);
+          setLoading(false);
         }
       })
       .catch(() => {
