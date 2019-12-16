@@ -270,6 +270,7 @@
         z-index: 1;
         .slick-slider{
             .slick-list{
+                overflow: visible;
                 .slick-slide{
                     > div{
                         transform: scale(0.95);
