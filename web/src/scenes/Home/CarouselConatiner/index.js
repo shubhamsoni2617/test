@@ -49,7 +49,7 @@ const CarouselConatiner = props => {
       !callAPI &&
       element &&
       element.current &&
-      window.pageYOffset >= element.current.offsetTop - 400
+      window.pageYOffset >= element.current.offsetTop - 550
     ) {
       setCallAPI(true);
     }
