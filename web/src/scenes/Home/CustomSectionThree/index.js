@@ -55,15 +55,13 @@ const CustomSectionThree = ({
     AdvertisementService.getCustomizeSectionThree(params)
       .then(res => {
         if (res && res.data) {
-          setTimeout(() => {
-            setData(res.data.data);
-            setLoading(false);
-            if (res.data.data && res.data.data[0]) {
-              setUrl(res.data.data[0].video_url);
-              setTitle(res.data.data[0].title);
-              setVdoIndex(0);
-            }
-          }, 2000);
+          setData(res.data.data);
+          setLoading(false);
+          if (res.data.data && res.data.data[0]) {
+            setUrl(res.data.data[0].video_url);
+            setTitle(res.data.data[0].title);
+            setVdoIndex(0);
+          }
         }
       })
       .catch(err => {

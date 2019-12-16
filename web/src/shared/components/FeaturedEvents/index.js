@@ -103,10 +103,8 @@ const FeaturedEvents = props => {
     api(params)
       .then(res => {
         if (res && res.data) {
-          setTimeout(() => {
-            setFeaturedEvents(res.data.data);
-            setLoading(false);
-          }, 2000);
+          setFeaturedEvents(res.data.data);
+          setLoading(false);
         }
       })
       .catch(err => {

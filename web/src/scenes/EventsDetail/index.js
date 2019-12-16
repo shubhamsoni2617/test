@@ -242,16 +242,12 @@ export default class EventsDetail extends Component {
               popupTitle: res.data.pop_up_message.title
             },
             () => {
-              setTimeout(() => {
-                this.setState(newState);
-              }, 1000);
+              this.setState(newState);
             }
           );
         } else {
           this.setState(newState);
-          setTimeout(() => {
-            this.setState({ shimmer: false });
-          }, 1000);
+          this.setState({ shimmer: false });
         }
       })
       .catch(err => {
