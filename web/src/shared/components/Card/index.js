@@ -93,7 +93,7 @@ export default class Card extends Component {
             {/* <p className="event-date">{cardData.event_date}</p> */}
             <Ellipsis
               title={cardData.event_date}
-              lines={2}
+              lines={1}
               height={Utilities.mobilecheck() ? 15 : 18}
               allowTooltip={true}
               customClass="event-date"

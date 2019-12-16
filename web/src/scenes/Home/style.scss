@@ -3727,6 +3727,10 @@ section{
 					flex: 1 0 34%;
 					max-width: 34%;
 				}
+				@media(max-width: 767px) and (orientation: landscape){
+					flex: 1 0 20%;
+					max-width: 20%;
+				}
 				img{
 					@media(max-width: 767px){
 						max-width: 100%;
