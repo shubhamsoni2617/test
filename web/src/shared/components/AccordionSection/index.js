@@ -101,8 +101,9 @@ export default class AccordionSection extends Component {
             )}
             <AccordionItemPanel>
               <div>
-                {langArr && (
+                {langArr && langArr.length > 1 && (
                   <ul className="languages-group">
+                    {/* <li>view in: </li> */}
                     {langArr.map((obj, idx) => {
                       if (obj.language && obj.description) {
                         return (

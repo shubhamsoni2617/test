@@ -113,9 +113,7 @@ export default class PromotionCarousel extends Component {
     HomeService.getPromotions(params)
       .then(res => {
         if (res && res.data) {
-          setTimeout(() => {
-            this.setState({ promotions: res.data.data, loading: false });
-          }, 2000);
+          this.setState({ promotions: res.data.data, loading: false });
         }
       })
       .catch(err => {

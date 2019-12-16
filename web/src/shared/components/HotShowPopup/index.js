@@ -12,10 +12,22 @@ const HotShowPopup = () => {
   useEffect(() => {
     if (!sessionStorage.getItem('hotshow')) {
       setTimeout(() => setFlag(true), 1000);
-      HomeService.getHotShowPopupData()
+      let params = { client: 1 };
+      HomeService.getFlashSale(params)
         .then(res => {
           setPopupData(res.data.data);
-          if (res.data.data.length) addOverlayClass();
+          if (res.data.data.length) {
+            addOverlayClass();
+          } else {
+            HomeService.getHotShowPopupData()
+              .then(res => {
+                setPopupData(res.data.data);
+                if (res.data.data.length) addOverlayClass();
+              })
+              .catch(() => {
+                removeOverlayClass();
+              });
+          }
         })
         .catch(() => {
           removeOverlayClass();
@@ -134,6 +146,7 @@ const HotShowPopup = () => {
                         )}
                       </div>
                       <div className="hotshow-content">
+                        {objData.title && <h3>{objData.title}</h3>}
                         {objData.description && (
                           <div
                             dangerouslySetInnerHTML={{
