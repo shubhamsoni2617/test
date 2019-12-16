@@ -143,15 +143,13 @@ export default class Attractions extends Component {
           attractionsData = [...res.data.data];
         }
         const isdataAvailable = attractionsData.length ? false : true;
-        setTimeout(() => {
-          this.setState({
-            loader: false,
-            attractionsData: attractionsData,
-            shimmer: false,
-            totalRecords: res.data.total_records,
-            isdataAvailable: isdataAvailable
-          });
-        }, 1000);
+        this.setState({
+          loader: false,
+          attractionsData: attractionsData,
+          shimmer: false,
+          totalRecords: res.data.total_records,
+          isdataAvailable: isdataAvailable
+        });
       })
       .catch(err => {
         console.log(err);
