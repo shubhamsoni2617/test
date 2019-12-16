@@ -117,8 +117,9 @@
 				margin-top: 0px;
 				border: 1px solid #0098ff;
 				&:hover{
-					background-color: transparent;
-					color: #0098FF;
+					background-color: #1f82d7;
+					color: #ffffff;
+					border-color: #1f82d7;
 				}
 				@media(max-width: 736px){
 					padding: 5px 10px;

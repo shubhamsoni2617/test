@@ -2766,8 +2766,13 @@ p {
                 display: grid;
                 grid-auto-flow: column;
 				margin: 0 -12px;
+				-ms-overflow-style: none; // IE 10+ 
+				scrollbar-width: none; // Firefox 
 				@media(min-width: 601px) and (max-width: 962px){
 					margin-bottom: -3px;
+				}
+				&::-webkit-scrollbar { 
+					display: none !important; // Safari and Chrome 					
 				}
                 .slick-slide{
                     display: grid;
@@ -3667,11 +3672,21 @@ section{
                 display: none !important;
             }
             .slick-list{
-                padding: 0;
+				padding: 0;
+				.slick-track{
+					@media(max-width: 1024px){
+						display: flex;
+						flex-wrap: nowrap;
+					}
+				}
                 .slick-slide{
 					overflow: hidden;
 					width: 181px !important;
 					height: 181px !important;
+					@media(max-width: 767px){
+						width: auto !important;
+						height: auto !important;
+					}
                     img{
 						transition: 1s transform;
 						-webkit-transition: 1s transform;
@@ -3707,10 +3722,19 @@ section{
 				flex-wrap: nowrap;
 				overflow-x: auto;
 			}
-			img{
+			a{
 				@media(max-width: 767px){
 					flex: 1 0 34%;
 					max-width: 34%;
+				}
+				img{
+					@media(max-width: 767px){
+						max-width: 100%;
+						max-height: 140px;
+						object-fit: cover;
+						object-position: center;
+						height: 100%;
+					}
 				}
 			}
 			&::-webkit-scrollbar {
