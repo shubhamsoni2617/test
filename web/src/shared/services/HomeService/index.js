@@ -17,6 +17,10 @@ class HomeService {
     );
   }
 
+  getFlashSale(params) {
+    return API.get(`adv/flash-sale`, { params });
+  }
+
   getNewsTicker(params) {
     return API.get(`news`, { params });
   }

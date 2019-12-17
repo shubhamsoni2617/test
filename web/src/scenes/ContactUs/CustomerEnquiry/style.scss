@@ -214,7 +214,7 @@
                 transition: 0.3s color, 0.3s background-color;
                 -webkit-transition: 0.3s color, 0.3s background-color;
                 -moz-transition: 0.3s color, 0.3s background-color;
-                -o-transition: 0.3s color, 0.3s background-color;
+                -o-transition: 0.3s color, 0.3s background-color, 0.5s border-color;
                 margin-top: 20px;
                 background-clip: unset;
                 @media(max-width: 991px){
@@ -223,8 +223,9 @@
                     line-height: 32px;
                 }
                 &:hover{
-                    background-color:transparent;
-                    color: #0098FF;
+                    background-color:#1f82d7;
+                    color: #ffffff;
+                    border-color: #1f82d7;
                     cursor: pointer;
                 }
             }

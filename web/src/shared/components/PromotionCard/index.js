@@ -86,7 +86,7 @@ const PromotionCard = props => {
             lines={2}
             height={Utilities.mobilecheck() ? 18 : 22}
             size={Utilities.mobilecheck() ? 14 : 18}
-            weight={600}
+            weight={500}
             customClass={'promotion-title'}
             allowTooltip={true}
           />

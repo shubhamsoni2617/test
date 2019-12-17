@@ -242,16 +242,12 @@ export default class EventsDetail extends Component {
               popupTitle: res.data.pop_up_message.title
             },
             () => {
-              setTimeout(() => {
-                this.setState(newState);
-              }, 1000);
+              this.setState(newState);
             }
           );
         } else {
           this.setState(newState);
-          setTimeout(() => {
-            this.setState({ shimmer: false });
-          }, 1000);
+          this.setState({ shimmer: false });
         }
       })
       .catch(err => {
@@ -425,22 +421,7 @@ export default class EventsDetail extends Component {
               detailData.is_show_over ? 'show-over' : ''
             } ${shimmer ? 'shimmer' : ''}`}
           >
-            <ShowOver isShowOver={detailData.is_show_over} />
-            {detailData.is_show_over === 0 && (
-              <div>
-                {/* {detailData.pop_up_message &&
-                  detailData.pop_up_message.description &&
-                  showNotice && (
-                    <ModalPopup
-                      showModal={showNotice}
-                      content={detailData.pop_up_message.description}
-                      title={detailData.pop_up_message.title}
-                      handleClose={this.handleClose}
-                      htmlContent={true}
-                    />
-                  )} */}
-
-                <section
+            <section
                   className="event-detail-banner"
                   ref={node => {
                     if (!eventDetailBannerHeight && node && node.offsetHeight) {
@@ -492,6 +473,22 @@ export default class EventsDetail extends Component {
                     />
                   )}
                 </section>
+            <ShowOver isShowOver={detailData.is_show_over} />
+            {detailData.is_show_over === 0 && (
+              <div className="custom-container">
+                {/* {detailData.pop_up_message &&
+                  detailData.pop_up_message.description &&
+                  showNotice && (
+                    <ModalPopup
+                      showModal={showNotice}
+                      content={detailData.pop_up_message.description}
+                      title={detailData.pop_up_message.title}
+                      handleClose={this.handleClose}
+                      htmlContent={true}
+                    />
+                  )} */}
+
+                
 
                 <section>
                   <AdvertisementSection
@@ -597,9 +594,10 @@ export default class EventsDetail extends Component {
                   <AdvertisementSection data={detailData.rectangle_image} />
                 )}
 
-                <ArticleSection flag={true} code={code} />
+                
               </div>
             )}
+            <ArticleSection flag={true} code={code} />
             <SimilarPicksSection data={similarEventsData} />
             {detailData.is_show_over === 1 && (
               <>

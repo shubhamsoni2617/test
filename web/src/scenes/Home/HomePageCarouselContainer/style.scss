@@ -270,6 +270,7 @@
         z-index: 1;
         .slick-slider{
             .slick-list{
+                overflow: visible;
                 .slick-slide{
                     > div{
                         transform: scale(0.95);
@@ -298,8 +299,11 @@
                         }
                     }
                     &:hover{
+                        cursor: pointer;
+                        z-index: 1;
+                        position: relative;
                         img{
-                            transform: translateY(-5px);
+                            transform: scale(1.1) translateY(-10px);
                         }
                     }
                 }

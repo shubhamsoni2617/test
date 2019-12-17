@@ -291,7 +291,9 @@
                    margin: 0px auto 15px;
                }
                &:hover{
-                    background-color: transparent;
+                    background-color: #1f82d7;
+                    color: #ffffff;
+                    border-color: #1f82d7;
                }
             }
             .sub-text{
@@ -624,10 +626,10 @@
                         display: inline-block;
                         margin: 10px auto 0px;
                         max-width: 150px;
-                        transition: 0.5s color;
-                        -webkit-transition: 0.5s color;
-                        -moz-transition: 0.5s color;
-                        -o-transition: 0.5s color;
+                        transition: 0.5s background-color, 0.5s border-color;
+                        -webkit-transition: 0.5s background-color, 0.5s border-color;
+                        -moz-transition: 0.5s background-color, 0.5s border-color;
+                        -o-transition: 0.5s background-color, 0.5s border-color;
                         @media(max-width: 680px){
                             padding: 1px 11px;
                             margin: 5px auto 0;
@@ -635,8 +637,9 @@
                             line-height: 18px;
                         }
                         &:hover{
-                            background-color: transparent;
-                            color: #0098ff;
+                            background-color: #1f82d7;
+                            color: #ffffff;
+                            border-color: #1f82d7;
                         }
                     }
                 }

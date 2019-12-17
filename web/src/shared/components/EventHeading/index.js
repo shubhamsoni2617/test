@@ -26,7 +26,7 @@ function EventHeading(props) {
       overflow: 'hidden',
       LineHeight: `${props.height}px`,
       maxHeight: `${props.height * props.lines}px`,
-      minHeight: `${props.height * props.lines}px`,
+      // minHeight: `${props.height * props.lines}px`,
       width: '91%',
       fontSize: props.size,
       fontWeight: props.weight

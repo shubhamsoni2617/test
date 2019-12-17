@@ -202,15 +202,13 @@ export default class Events extends Component {
           eventData = [...res.data.data];
         }
         const isdataAvailable = eventData.length ? false : true;
-        setTimeout(() => {
-          this.setState({
-            loader: false,
-            eventsData: eventData,
-            shimmer: false,
-            totalRecords: res.data.total_records,
-            isdataAvailable: isdataAvailable
-          });
-        }, 1000);
+        this.setState({
+          loader: false,
+          eventsData: eventData,
+          shimmer: false,
+          totalRecords: res.data.total_records,
+          isdataAvailable: isdataAvailable
+        });
       })
       .catch(err => {
         console.log(err);
