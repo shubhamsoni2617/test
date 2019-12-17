@@ -112,6 +112,21 @@ const TopNav = props => {
           localStorage.setItem('email', JSON.stringify(data.patron.email));
         }
         setCartData(data);
+        //Emarsys code
+        if (data.lineItemList != null && data.lineItemList.length != 0) {
+          window.ScarabQueue.push(['setEmail', data.patron.email]); //patron had signed in
+
+          var cartItems = [];
+          for (var i = 0; i < data.lineItemList.length; i++) {
+            cartItems.push({
+              item: data.lineItemList[i].product.productId,
+              price: 0,
+              quantity: data.lineItemList[i].quantity
+            });
+          }
+          window.ScarabQueue.push(['cart', cartItems]);
+          window.ScarabQueue.push(['go']);
+        }
       }
     });
     fetchMostViewedService();
