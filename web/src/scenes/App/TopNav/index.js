@@ -24,6 +24,7 @@ import sendImage from '../../../assets/images/send.svg';
 import AdvertisementService from '../../../shared/services/AdvertisementService';
 import Constants from '../../../shared/constants';
 import { HelpfulLinkSubmenu, OurCompanySubmenu } from './HeaderNavLinks';
+import API from '../../../shared/api';
 
 function List({ data, type, menueStatus, setMenuStatus, closeSubmenu, link }) {
   if (!data || !data.length) return null;
@@ -108,7 +109,13 @@ const TopNav = props => {
       if (err) {
         console.error(err.message);
       } else {
-        console.log(data);
+        if (data.patron && data.patron.email) {
+          API.defaults.headers.common['email'] = data.patron.email;
+          localStorage.setItem('email', data.patron.email);
+        }
+        if (!data.patron) {
+          localStorage.setItem('email', '');
+        }
         setCartData(data);
         //Emarsys code
         if (data.lineItemList != null && data.lineItemList.length != 0) {
