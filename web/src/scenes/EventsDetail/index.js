@@ -217,7 +217,7 @@ export default class EventsDetail extends Component {
   callAPI(payload) {
     window.scrollTo(0, 0);
     this.setState({ shimmer: true });
-    EventsService.getEventDetails(payload, this.props.history.location.pathname)
+    EventsService.getEventDetails(payload)
       .then(res => {
         let newState = { detailData: res.data };
         if (res.data && res.data.synopsis && res.data.synopsis.length > 0) {
@@ -422,57 +422,55 @@ export default class EventsDetail extends Component {
             } ${shimmer ? 'shimmer' : ''}`}
           >
             <section
-                  className="event-detail-banner"
-                  ref={node => {
-                    if (!eventDetailBannerHeight && node && node.offsetHeight) {
-                      this.setState({
-                        eventDetailBannerHeight: node.offsetHeight - 33,
-                        elemOffsetTop: node.offsetTop + node.offsetHeight
-                      });
-                    }
-                  }}
-                >
-                  <EventCarousel images={detailData.images} />
+              className="event-detail-banner"
+              ref={node => {
+                if (!eventDetailBannerHeight && node && node.offsetHeight) {
+                  this.setState({
+                    eventDetailBannerHeight: node.offsetHeight - 33,
+                    elemOffsetTop: node.offsetTop + node.offsetHeight
+                  });
+                }
+              }}
+            >
+              <EventCarousel images={detailData.images} />
 
-                  <EventInfoBlock
-                    lines={2}
-                    sticky={false}
-                    detailData={detailData}
-                    showSocialShare={showSocialShare}
-                    openNotice={this.openNotice}
-                    openSocialShare={this.openSocialShare}
-                    shareUrl={shareUrl}
-                    eventDetailBannerHeight={eventDetailBannerHeight}
-                    seatMapButton={
-                      detailData.seating_plan &&
-                      detailData.seating_plan.length > 0 && (
-                        <SeatMapButton seatingPlan={detailData.seating_plan} />
-                      )
-                    }
-                    buyPackages={
-                      <BuyPackages
-                        isAvailableForBooking={
-                          detailData.is_available_for_booking
-                        }
-                        buyPackageUrl={detailData.buy_package_url}
-                      />
-                    }
+              <EventInfoBlock
+                lines={2}
+                sticky={false}
+                detailData={detailData}
+                showSocialShare={showSocialShare}
+                openNotice={this.openNotice}
+                openSocialShare={this.openSocialShare}
+                shareUrl={shareUrl}
+                eventDetailBannerHeight={eventDetailBannerHeight}
+                seatMapButton={
+                  detailData.seating_plan &&
+                  detailData.seating_plan.length > 0 && (
+                    <SeatMapButton seatingPlan={detailData.seating_plan} />
+                  )
+                }
+                buyPackages={
+                  <BuyPackages
+                    isAvailableForBooking={detailData.is_available_for_booking}
+                    buyPackageUrl={detailData.buy_package_url}
                   />
+                }
+              />
 
-                  {detailData && detailData.is_available_for_booking === 1 && (
-                    <StickyHeader
-                      lines={1}
-                      sticky={true}
-                      elemOffsetTop={this.state.elemOffsetTop}
-                      // setHeader={setHeader}
-                      detailData={detailData}
-                      showSocialShare={showSocialShare}
-                      openNotice={this.openNotice}
-                      openSocialShare={this.openSocialShare}
-                      shareUrl={shareUrl}
-                    />
-                  )}
-                </section>
+              {detailData && detailData.is_available_for_booking === 1 && (
+                <StickyHeader
+                  lines={1}
+                  sticky={true}
+                  elemOffsetTop={this.state.elemOffsetTop}
+                  // setHeader={setHeader}
+                  detailData={detailData}
+                  showSocialShare={showSocialShare}
+                  openNotice={this.openNotice}
+                  openSocialShare={this.openSocialShare}
+                  shareUrl={shareUrl}
+                />
+              )}
+            </section>
             <ShowOver isShowOver={detailData.is_show_over} />
             {detailData.is_show_over === 0 && (
               <div className="custom-container">
@@ -487,8 +485,6 @@ export default class EventsDetail extends Component {
                       htmlContent={true}
                     />
                   )} */}
-
-                
 
                 <section>
                   <AdvertisementSection
@@ -581,6 +577,7 @@ export default class EventsDetail extends Component {
                           title="Promotion"
                           children={detailData.promotions}
                           dynamicClass="promotion-accordian"
+                          uuid={`promotion`}
                         />
                       )}
                     {!Utilities.mobilecheck() && (
@@ -593,8 +590,6 @@ export default class EventsDetail extends Component {
                 {Utilities.mobilecheck() && (
                   <AdvertisementSection data={detailData.rectangle_image} />
                 )}
-
-                
               </div>
             )}
             <ArticleSection flag={true} code={code} />

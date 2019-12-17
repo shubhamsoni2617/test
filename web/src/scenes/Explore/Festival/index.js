@@ -14,7 +14,7 @@ import SliderBanner from '../SliderBanner';
 import ShimmerEffect from '../../../shared/components/ShimmerEffect';
 import Utilities from '../../../shared/utilities';
 
-const Festival = ({ match, history }) => {
+const Festival = ({ match }) => {
   const [templateTwoContent, setTemplateTwoContent] = useState([]);
   const [loading, setLoading] = useState(false);
 
@@ -34,7 +34,7 @@ const Festival = ({ match, history }) => {
     const params = {
       id: match.params.id
     };
-    ExploreService.getTemplateTwo(params, history.location.pathname)
+    ExploreService.getTemplateTwo(params)
       .then(res => {
         if (res && res.data.data && res.data.data.length > 0) {
           setTimeout(() => {

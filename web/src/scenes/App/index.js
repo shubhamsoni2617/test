@@ -12,9 +12,16 @@ import DownloadAppPopup from '../../shared/components/DownloadAppPopup';
 
 export default class App extends React.Component {
   static getInitialData(req) {
-    HomeService.setBaseURL(
-      `http://${req.hostname}:8081${Constants.DOC_ROOT_URL}`
-    );
+    if (this.props.history.location.pathname.split('/')[1] === 'preview') {
+      HomeService.setBaseURL(
+        `http://${req.hostname}:8081${Constants.DOC_ROOT_URL}/preview`
+      );
+    } else {
+      HomeService.setBaseURL(
+        `http://${req.hostname}:8081${Constants.DOC_ROOT_URL}`
+      );
+    }
+
     return [
       HomeService.getMetadata(req.url && req.url.substr(1)),
       AdvertisementService.getLeaderboardImage({

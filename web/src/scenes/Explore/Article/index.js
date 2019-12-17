@@ -38,7 +38,7 @@ const Article = props => {
       id: props.match.params.id
     };
     setTimeout(() => {
-      ExploreService.getArticle(params, props.history.location.pathname)
+      ExploreService.getArticle(params)
         .then(res => {
           setArticleData(res.data.data[0]);
           setLoading(false);
