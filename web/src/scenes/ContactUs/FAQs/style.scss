@@ -26,8 +26,7 @@
     .sidebar-accordion {
       border-bottom: 1px solid rgba(126, 126, 126, 0.2);
       padding: 0px;
-      padding: 0 0 0px 0;
-      margin-bottom: 26px;
+      padding: 25px 0 25px 0;
       @media(max-width: 991px){
         padding: 0px 0px 15px;
         margin-bottom: 15px;
@@ -110,6 +109,8 @@
     font-size: 18px;	
     line-height: 22px;
     font-weight: 400;
+    margin-top: 26px;
+    display: inline-block;
     @media(max-width: 991px){
       font-size: 14px;
       line-height: 18px;
