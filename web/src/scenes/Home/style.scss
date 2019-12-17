@@ -70,7 +70,7 @@
 	-o-transition: 0.9s top;
 	position: relative;
 	& > .container-fluid{
-		max-width: 1980px;
+		// max-width: 1980px;
 		margin: 0 auto;
 		@media(max-width: 1023px){
 			overflow: visible;
@@ -3806,7 +3806,7 @@ section{
 	border-top: 1px solid rgba(151, 151, 151, 0.2);
 	padding: 40px 0px 0px;
 	.container-fluid{
-		max-width: 1980px;
+		// max-width: 1980px;
     	margin: 0 auto;
 		.footer-top {
 			padding: 0px 0 50px;

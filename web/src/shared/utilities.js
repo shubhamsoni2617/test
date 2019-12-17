@@ -1,4 +1,15 @@
+import uuid from 'uuid';
+
 class Utilities {
+  static getDeviceID() {
+    const testIp = '192.168.10.197';
+    if (!localStorage.getItem('deviceId')) {
+      localStorage.setItem('deviceId', new Date().getTime() + uuid() + testIp);
+    }
+
+    return localStorage.getItem('deviceId');
+  }
+
   static removeNulls(object) {
     for (const key of Object.keys(object)) {
       if (object.hasOwnProperty(key)) {
