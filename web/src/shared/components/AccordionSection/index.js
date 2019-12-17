@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import {
   Accordion,
@@ -14,7 +14,6 @@ import infoIcon from '../../../assets/images/info-icon.svg';
 import Utilities from '../../utilities';
 import Image from '../Image';
 import ReactPlayer from 'react-player';
-import { CSSTransition } from 'react-transition-group';
 import LoadMore from '../LoadMore';
 
 export default class AccordionSection extends Component {
@@ -61,14 +60,14 @@ export default class AccordionSection extends Component {
       infoTag,
       gallery,
       dynamicClass,
-      noIcon
+      noIcon,
+      image
     } = this.props;
 
     const { showMore } = this.state;
-    console.log('accordian sectio');
     return (
       <div className={`sidebar-accordion ${dynamicClass}`}>
-        <Accordion allowZeroExpanded={true} preExpanded={preExpanded}>
+        <Accordion allowZeroExpanded={true} preExpanded={[uuid]}>
           <AccordionItem uuid={uuid}>
             <AccordionItemHeading className={`${noIcon ? 'noicon' : ''}`}>
               <AccordionItemButton>
@@ -101,8 +100,9 @@ export default class AccordionSection extends Component {
             )}
             <AccordionItemPanel>
               <div>
-                {langArr && (
+                {langArr && langArr.length > 1 && (
                   <ul className="languages-group">
+                    {/* <li>view in: </li> */}
                     {langArr.map((obj, idx) => {
                       if (obj.language && obj.description) {
                         return (
@@ -139,9 +139,14 @@ export default class AccordionSection extends Component {
                     handleMore={this.handleMore}
                   />
                 ) : (
-                  <div
-                    dangerouslySetInnerHTML={{ __html: this.state.description }}
-                  />
+                  <Fragment>
+                    <div
+                      dangerouslySetInnerHTML={{
+                        __html: this.state.description
+                      }}
+                    />
+                    {image && <Image src={image} type="Horizontal" />}
+                  </Fragment>
                 )}
 
                 {children &&
@@ -150,6 +155,7 @@ export default class AccordionSection extends Component {
                       key={obj.title}
                       title={obj.title}
                       desc={obj.description}
+                      image={obj.image}
                     />
                   ))}
 
@@ -195,5 +201,6 @@ AccordionSection.propTypes = {
   changeLang: PropTypes.func,
   uuid: PropTypes.string,
   preExpanded: PropTypes.array,
-  infoTag: PropTypes.string
+  infoTag: PropTypes.string,
+  image: PropTypes.string
 };

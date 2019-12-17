@@ -30,12 +30,8 @@ const CarouselConatiner = props => {
         .api(params)
         .then(res => {
           if (res.data.data.length) {
-            // Utilities.preloadImages(res.data.data, "thumb_image", () => {
             setData(res.data.data);
-            setTimeout(() => {
-              setLoading(false);
-            }, 1000);
-            // });
+            setLoading(false);
           } else {
             setLoading(false);
             element.current.classList.add('hide-container');
@@ -53,7 +49,7 @@ const CarouselConatiner = props => {
       !callAPI &&
       element &&
       element.current &&
-      window.pageYOffset >= element.current.offsetTop - 400
+      window.pageYOffset >= element.current.offsetTop - 550
     ) {
       setCallAPI(true);
     }

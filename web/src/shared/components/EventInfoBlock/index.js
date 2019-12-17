@@ -146,7 +146,7 @@ function ViewAllDateTimeButton({
 
   return (
     <button className="link" onClick={() => setEventDateBlock(true)}>
-      View all Dates & Time
+      View all Dates and Timings
     </button>
   );
 }
@@ -210,6 +210,14 @@ function EventDateTime({
       </div>
     </div>
   );
+}
+
+function Delimiter({ length, index }) {
+  if (index === length - 1) return null;
+  if (length !== 2 && index === length - 2) {
+    return <span> & </span>;
+  }
+  return <span>, </span>;
 }
 
 function EventInfoBlockInner(props) {}
@@ -339,20 +347,32 @@ function EventInfoBlock(props) {
                       {detailData.promoters.map((item, index) => {
                         if (item.url) {
                           return (
-                            <a
-                              key={`${item.name}-${index}`}
-                              href={item.url}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                            >
-                              {item.name}
-                            </a>
+                            <>
+                              <a
+                                key={`${item.name}-${index}`}
+                                href={item.url}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                              >
+                                {item.name}
+                              </a>
+                              <Delimiter
+                                length={detailData.promoters.length}
+                                index={index}
+                              />
+                            </>
                           );
                         }
                         return (
-                          <span key={`${item.name}-${index}`}>
-                            {item.name}{' '}
-                          </span>
+                          <>
+                            <span key={`${item.name}-${index}`}>
+                              {item.name}{' '}
+                            </span>
+                            <Delimiter
+                              length={detailData.promoters.length}
+                              index={index}
+                            />
+                          </>
                         );
                       })}
                     </>

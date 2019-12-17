@@ -183,6 +183,10 @@
                 padding-bottom: 0px;
                 margin-bottom: 18px;
                 min-height: 44px;
+                transition: 0.5s color;
+                -webkit-transition: 0.5s color;
+                -moz-transition: 0.5s color;
+                -o-transition: 0.5s color;
                 @media(max-width: 1024px) {
                     min-height: 44px;
                     font-size: 16px;
@@ -338,7 +342,7 @@
                 color: #6C6C6C;
                 font-family: 'Rubik', sans-serif;
                 font-size: 14px;
-                line-height: 26px;
+                line-height: 18px;
                 margin-bottom: 0px;
                 p{
                     &:last-child{
@@ -654,12 +658,17 @@
     }
     &:hover {
         .promotions-listing-wrapper {
-            transform: translateY(-10px);
+            // transform: translateY(-10px);
             cursor: pointer;
-            border-color: transparent;
-            box-shadow: 0 3px 18px 12px rgba(223, 223, 223, 0.29);
+            // border-color: transparent;
+            box-shadow: 0 3px 18px 7px rgba(223, 223, 223, 0.29);
             @media(max-width: 991px) {
                 transform: none;
+            }
+            .promotion-title{
+                @media(min-width: 991px){
+                    color: #0098ff;
+                }
             }
         }
     }

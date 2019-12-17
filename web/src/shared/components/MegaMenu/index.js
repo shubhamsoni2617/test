@@ -90,7 +90,7 @@ const MegaMenu = props => {
           </ul>
         </div>
         <div className="featured-event">
-          <ul>
+          <ul className="featured-header-title">
             <li>
               <h5 className="submenu-subtitle">Featured Events</h5>
             </li>
@@ -153,7 +153,13 @@ const MegaMenu = props => {
         </div>
       </div>
       <div className="see-all-evevts">
-        <Link to="/events" className="seeall-btn">
+        <Link
+          to="/events"
+          onClick={() => {
+            props.handleMouseStatus(false);
+          }}
+          className="seeall-btn"
+        >
           See All Events
           <img src={seeAllEvent} alt="" />
         </Link>

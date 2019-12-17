@@ -26,10 +26,8 @@ const TrendingNow = ({ heading }) => {
     HomeService.getTrandingNow(params)
       .then(res => {
         if (res && res.data) {
-          setTimeout(() => {
-            setLoading(false);
-            setData(res.data.data);
-          }, 2000);
+          setLoading(false);
+          setData(res.data.data);
         }
       })
       .catch(() => {
