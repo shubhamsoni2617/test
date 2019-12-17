@@ -15,7 +15,7 @@ class Masonry extends Component {
     const { brakePoints } = this.props;
     return (
       brakePoints.reduceRight((prevValue, currentValue, i) => {
-        return currentValue < w ? prevValue : i;
+        return currentValue < w ? prevValue : i + 1;
       }, brakePoints.length) + 1
     );
   }

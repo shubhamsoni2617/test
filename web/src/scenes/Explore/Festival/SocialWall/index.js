@@ -6,7 +6,7 @@ import Tiles from '../SocialWall/Tiles';
 import Utilities from '../../../../shared/utilities';
 
 const SocialWall = ({ socialUrl }) => {
-  let brakePoints = [350, 500, 750];
+  let brakePoints = [375, 500, 750];
 
   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
