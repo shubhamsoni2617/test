@@ -24,6 +24,7 @@ import sendImage from '../../../assets/images/send.svg';
 import AdvertisementService from '../../../shared/services/AdvertisementService';
 import Constants from '../../../shared/constants';
 import { HelpfulLinkSubmenu, OurCompanySubmenu } from './HeaderNavLinks';
+import API from '../../../shared/api';
 
 function List({ data, type, menueStatus, setMenuStatus, closeSubmenu, link }) {
   if (!data || !data.length) return null;
@@ -108,8 +109,29 @@ const TopNav = props => {
       if (err) {
         console.error(err.message);
       } else {
-        console.log(data);
+        if (data.patron && data.patron.email) {
+          API.defaults.headers.common['email'] = data.patron.email;
+          localStorage.setItem('email', data.patron.email);
+        }
+        if (!data.patron) {
+          localStorage.setItem('email', '');
+        }
         setCartData(data);
+        //Emarsys code
+        if (data.lineItemList != null && data.lineItemList.length != 0) {
+          window.ScarabQueue.push(['setEmail', data.patron.email]); //patron had signed in
+
+          var cartItems = [];
+          for (var i = 0; i < data.lineItemList.length; i++) {
+            cartItems.push({
+              item: data.lineItemList[i].product.productId,
+              price: 0,
+              quantity: data.lineItemList[i].quantity
+            });
+          }
+          window.ScarabQueue.push(['cart', cartItems]);
+          window.ScarabQueue.push(['go']);
+        }
       }
     });
     fetchMostViewedService();
