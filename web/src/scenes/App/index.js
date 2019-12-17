@@ -10,6 +10,7 @@ import Constants from '../../shared/constants';
 import HomeService from '../../shared/services/HomeService';
 import DownloadAppPopup from '../../shared/components/DownloadAppPopup';
 import API from '../../shared/api';
+import Utilities from '../../shared/utilities';
 
 export default class App extends React.Component {
   static getInitialData(req) {
