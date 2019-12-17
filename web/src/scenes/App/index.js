@@ -12,6 +12,7 @@ import DownloadAppPopup from '../../shared/components/DownloadAppPopup';
 import API from '../../shared/api';
 import preview from '../../assets/images/preview.png';
 import Preview from '../../shared/components/Preview';
+import Utilities from '../../shared/utilities';
 
 export default class App extends React.Component {
   static getInitialData(req) {
@@ -52,9 +53,7 @@ export default class App extends React.Component {
     if (localStorage.getItem('email')) {
       API.defaults.headers.common['email'] = localStorage.getItem('email');
     }
-    if (localStorage.getItem('device_id')) {
-      API.defaults.headers.common['device_id'] = Utilities.getDeviceID();
-    }
+    API.defaults.headers.common['device_id'] = Utilities.getDeviceID();
 
     setTimeout(() => {
       document.body.classList.remove('fix-height');
