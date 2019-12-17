@@ -16,7 +16,7 @@ import Utilities from '../../shared/utilities';
 
 export default class App extends React.Component {
   static getInitialData(req) {
-    let url = '';
+    let url = `http://${req.hostname}:8081${Constants.DOC_ROOT_URL}`;
     if (req.url.split('/')[1] === 'preview') {
       url = `http://${req.hostname}:8081${Constants.DOC_ROOT_URL}preview`;
     }
