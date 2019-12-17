@@ -24,8 +24,7 @@ export default class AccordionSection extends Component {
       showInfo: false,
       showMore: false,
       language: props.activeLang,
-      description: props.desc,
-      image: props.imagePath
+      description: props.desc
     };
   }
 
@@ -61,7 +60,8 @@ export default class AccordionSection extends Component {
       infoTag,
       gallery,
       dynamicClass,
-      noIcon
+      noIcon,
+      image
     } = this.props;
 
     const { showMore } = this.state;
@@ -145,9 +145,7 @@ export default class AccordionSection extends Component {
                         __html: this.state.description
                       }}
                     />
-                    {this.state.image && (
-                      <Image src={this.state.image} type="Horizontal" />
-                    )}
+                    {image && <Image src={image} type="Horizontal" />}
                   </Fragment>
                 )}
 
@@ -157,7 +155,7 @@ export default class AccordionSection extends Component {
                       key={obj.title}
                       title={obj.title}
                       desc={obj.description}
-                      imagePath={obj.image}
+                      image={obj.image}
                     />
                   ))}
 
