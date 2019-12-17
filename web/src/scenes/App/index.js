@@ -36,14 +36,15 @@ export default class App extends React.Component {
     this.state = {
       collapsed: false
     };
-    // if (localStorage.getItem('email')) {
-    //   API.defaults.headers.common['email'] = localStorage.getItem('email');
-    // }
   }
 
   componentDidMount() {
-    console.log('test');
-    // localStorage.setItem('device_id', JSON.stringify(data.patron.device_id));
+    if (localStorage.getItem('email')) {
+      API.defaults.headers.common['email'] = localStorage.getItem('email');
+    }
+    if (localStorage.getItem('device_id')) {
+      API.defaults.headers.common['device_id'] = Utilities.getDeviceID();
+    }
 
     setTimeout(() => {
       document.body.classList.remove('fix-height');
