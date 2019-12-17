@@ -42,9 +42,7 @@ export default class App extends React.Component {
     if (localStorage.getItem('email')) {
       API.defaults.headers.common['email'] = localStorage.getItem('email');
     }
-    if (localStorage.getItem('device_id')) {
-      API.defaults.headers.common['device_id'] = Utilities.getDeviceID();
-    }
+    API.defaults.headers.common['device_id'] = Utilities.getDeviceID();
 
     setTimeout(() => {
       document.body.classList.remove('fix-height');
