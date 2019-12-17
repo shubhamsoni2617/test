@@ -108,7 +108,9 @@ const TopNav = props => {
       if (err) {
         console.error(err.message);
       } else {
-        console.log(data);
+        if (data.patron && data.patron.email) {
+          localStorage.setItem('email', JSON.stringify(data.patron.email));
+        }
         setCartData(data);
       }
     });
