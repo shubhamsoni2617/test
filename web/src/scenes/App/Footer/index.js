@@ -1,24 +1,19 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import './style.scss';
 import appleImage from '../../../assets/images/apple.svg';
 import androidImage from '../../../assets/images/android.png';
-import preview from '../../../assets/images/preview.png';
 import fb from '../../../assets/images/fb.svg';
 import fbFill from '../../../assets/images/fb-fill.svg';
+import topArrow from '../../../assets/images/arrow-to-top.svg';
 import insta from '../../../assets/images/insta-unfill.svg';
 import instaFill from '../../../assets/images/insta-fill.svg';
 import stixImage from '../../../assets/images/stix.png';
 import BackToTop from '../../../shared/components/BackToTop';
+import Utilities from '../../../shared/utilities';
 import NewsLetterForm from '../../../shared/components/NewsLetterForm';
-import Preview from '../../../shared/components/Preview';
 
-const Footer = props => {
-  console.log(props);
-  let showPreviewButton =
-    props.history.location.pathname.split('/')[1] === 'preview';
-  const [showPreview, setShowPreview] = useState(false);
-
+const Footer = () => {
   const ourCompanyLinks = [
     { link: 'corporate/about-us', linkName: 'About Us' },
     {
@@ -162,18 +157,8 @@ const Footer = props => {
           </div>
         </div>
       </section>
-      <BackToTop />
-      {showPreviewButton && (
-        <span
-          className="scroll-left"
-          onClick={() => {
-            setShowPreview(!showPreview);
-          }}
-        >
-          <img src={preview} alt="preview" />
-        </span>
-      )}
-      {showPreview && <Preview />}
+
+      <BackToTop scrollStepInPx="50" delayInMs="20" />
     </footer>
   );
 };

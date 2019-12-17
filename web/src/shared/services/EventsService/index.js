@@ -4,10 +4,7 @@ class EventsService {
   getData(params) {
     return API.get(`/events`, { params: params });
   }
-  getEventDetails(params, pathname) {
-    if (pathname.split('/')[1] === 'preview') {
-      return API.get(`/preview/event-detail`, { params: params });
-    }
+  getEventDetails(params) {
     return API.get(`/event-detail`, { params: params });
   }
   getFilterConfig() {

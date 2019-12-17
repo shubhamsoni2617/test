@@ -10,18 +10,14 @@ import Constants from '../../shared/constants';
 import HomeService from '../../shared/services/HomeService';
 import DownloadAppPopup from '../../shared/components/DownloadAppPopup';
 import API from '../../shared/api';
+import preview from '../../assets/images/preview.png';
+import Preview from '../../shared/components/Preview';
 
 export default class App extends React.Component {
   static getInitialData(req) {
-    if (this.props.history.location.pathname.split('/')[1] === 'preview') {
-      HomeService.setBaseURL(
-        `http://${req.hostname}:8081${Constants.DOC_ROOT_URL}/preview`
-      );
-    } else {
-      HomeService.setBaseURL(
-        `http://${req.hostname}:8081${Constants.DOC_ROOT_URL}`
-      );
-    }
+    HomeService.setBaseURL(
+      `http://${req.hostname}:8081${Constants.DOC_ROOT_URL}`
+    );
 
     return [
       HomeService.getMetadata(req.url && req.url.substr(1)),
@@ -41,11 +37,18 @@ export default class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      collapsed: false
+      collapsed: false,
+      showPreviewButton:
+        this.props.history.location.pathname.split('/')[1] === 'preview',
+      showPreview: false
     };
   }
 
   componentDidMount() {
+    if (this.props.history.location.pathname.split('/')[1] === 'preview') {
+      API.defaults.baseURL += 'preview';
+    }
+
     if (localStorage.getItem('email')) {
       API.defaults.headers.common['email'] = localStorage.getItem('email');
     }
@@ -72,7 +75,22 @@ export default class App extends React.Component {
         <Advertisement {...this.props} />
         <TopNav {...this.props} />
         <Navigator {...this.props} />
-        <Footer {...this.props} />
+        {/* <Footer {...this.props} /> */}
+        {!this.state.showPreviewButton && <Footer {...this.props} />}
+
+        {/* {this.state.showPreviewButton && (
+          <span
+            className="scroll-left"
+            onClick={() => {
+              this.setState({
+                showPreview: !this.state.showPreview
+              });
+            }}
+          >
+            <img src={preview} alt="preview" />
+          </span>
+        )} */}
+        {/* {this.state.showPreview && <Preview />} */}
       </div>
     );
   }

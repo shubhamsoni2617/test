@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import './style.scss';
 import DayPickerInput from 'react-day-picker/DayPickerInput';
 import 'react-day-picker/lib/style.css';
+import moment from 'moment';
 
 const Modal = ({ handleClose, show, children }) => {
   const showHideClassName = show

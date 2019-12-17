@@ -182,11 +182,10 @@ const routes = [
     component: Explore,
     exact: true
   },
-
   {
-    path: '/preview/events/:icc',
-    exact: true,
-    component: EventsDetail
+    path: '/preview/explore/articles',
+    component: ArticleList,
+    exact: true
   },
   {
     path: '/preview/explore/1/:id',
@@ -197,6 +196,32 @@ const routes = [
     path: '/preview/explore/2/:id',
     component: Festival,
     exact: true
+  },
+  {
+    path: '/preview/events/search',
+    exact: true,
+    component: Events
+  },
+  {
+    path: '/preview/events/:icc',
+    exact: true,
+    component: EventsDetail
+  },
+  {
+    path: '/preview/events',
+    component: Events,
+    exact: true,
+    fetchInitialData: (path = '') => HomeService.getData()
+  },
+  {
+    path: '/preview/promotions',
+    exact: true,
+    component: Promotions
+  },
+  {
+    path: '/preview/attractions',
+    exact: true,
+    component: Attraction
   },
   {
     path: '/preview',
