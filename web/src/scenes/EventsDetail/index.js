@@ -577,6 +577,7 @@ export default class EventsDetail extends Component {
                           title="Promotion"
                           children={detailData.promotions}
                           dynamicClass="promotion-accordian"
+                          uuid={`promotion`}
                         />
                       )}
                     {!Utilities.mobilecheck() && (

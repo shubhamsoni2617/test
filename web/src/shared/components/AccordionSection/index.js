@@ -67,7 +67,7 @@ export default class AccordionSection extends Component {
     const { showMore } = this.state;
     return (
       <div className={`sidebar-accordion ${dynamicClass}`}>
-        <Accordion allowZeroExpanded={true} preExpanded={preExpanded}>
+        <Accordion allowZeroExpanded={true} preExpanded={[uuid]}>
           <AccordionItem uuid={uuid}>
             <AccordionItemHeading className={`${noIcon ? 'noicon' : ''}`}>
               <AccordionItemButton>
