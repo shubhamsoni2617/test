@@ -17,9 +17,6 @@
       }
     }
     .festival-top-slider{
-        max-height: 460px;
-        overflow: hidden;
-        padding-bottom: 40px;
         @media(max-width: 767px){
             padding-bottom: 25px;
             .slick-slider{
@@ -31,10 +28,16 @@
             }
         }
         .slick-slide{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 460px;
             img{
-                max-height: 349px;
-                object-fit: cover;
-                object-position: center;
+                max-height: 460px;
+                width: auto !important;
+                // max-height: 349px;
+                // object-fit: cover;
+                // object-position: center;
                 @media(max-width: 768px){
                     min-height: 190px;
                 }

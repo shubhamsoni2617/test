@@ -48,7 +48,7 @@ const Media = ({ mediaData }) => {
                         download
                         target="_blank"
                       >
-                        <Image src={downloadIcon} alt="Download" />{' '}
+                        <img src={downloadIcon} alt="Download" />{' '}
                       </a>
                     )}
                   </div>

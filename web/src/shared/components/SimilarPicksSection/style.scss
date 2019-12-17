@@ -37,9 +37,12 @@
 		}
 	}
     .slick-slider{
+		.slick-list{
+			overflow: hidden;
+		}
         .slick-track{
             .slick-slide{
-                padding: 0 5px;
+                padding: 5px 5px;
             }
         }
         .slick-dots{
@@ -65,85 +68,100 @@
                 display: none;
             }
         }
-		.item {
-			position: relative;
-			z-index: 1;
-			transition: 0.5s box-shadow;
-			-webkit-transition: 0.5s box-shadow;
-			-moz-transition: 0.5s box-shadow;
-			-o-transition: 0.5s box-shadow;
-			@media (max-width: 767px) {
-                flex: 1 0 50%;
-				max-width: 50%;
-				margin-right: 10px;
-            }
-			.currently-showing-img {
-				img {
-					width: 100%;
-					height: auto;
-					transition: 0.5s transform;
-					-webkit-transition: 0.5s transform;
-					-moz-transition: 0.5s transform;
-					-o-transition: 0.5s transform;
-					@media(max-width: 1366px) {
-						height: 100%;
-						width: 100%;
-                        object-fit: cover;
-                        
-					}
-					@media (max-width: 767px) {
-						height: auto;
-						width: auto;
-						max-width: 100%;
-					}
-				}
-			}
-			&:hover {
-				@media(min-width: 767px) {
-					cursor: pointer;
-					h3 {
-                        color: #0098ff;
-						transition: 1s all;
-						-webkit-transition: 1s all;
-						-moz-transition: 1s all;
-						-o-transition: 1s all;
-                    }
-                    p{
-						transition: 1s all;
-						-webkit-transition: 1s all;
-						-moz-transition: 1s all;
-						-o-transition: 1s all;
-                    }
-				}
-				.currently-showing-img {
-					&::after {
-						position: absolute;
-						content: "";
-						width: 100%;
-						height: auto;
-						filter: blur(10px);
-						background-color: transparent;
-						border-left: 5px solid transparent;
-						border-right: 5px solid transparent;
-						border-bottom: 20px solid rgba(0, 0, 0, 0.1);
-						bottom: 0;
-						opacity: 1;
-						z-index: -1;
-						transition: 0.5s all;
-						-webkit-transition:  0.5s all;
-						-moz-transition:  0.5s all;
-						-o-transition:  0.5s all;
-					}
-					img {
-						transform: translateY(0);
-					}
-				}
-			}
-		}
 		@media (max-width: 767px) {
 			display: flex;
 			padding-right: 15px;
     		padding-left: 15px;
+		}
+	}
+	.item {
+		position: relative;
+		z-index: 1;
+		transition: 0.5s box-shadow;
+		-webkit-transition: 0.5s box-shadow;
+		-moz-transition: 0.5s box-shadow;
+		-o-transition: 0.5s box-shadow;
+		padding: 5px;
+		@media (max-width: 767px) {
+			flex: 1 0 50%;
+			max-width: 50%;
+			margin-right: 10px;
+		}
+		&:after{
+			content: "";
+			position: absolute;
+			top: 0px;
+			left: 0px;
+			width: 100%;
+			height: 100%;
+			transform: scaleY(0);
+			transform-origin: bottom center;
+			background: #ffffff;
+			z-index: -1;
+			transition: transform 0.3s;
+			-webkit-transition: transform 0.3s;
+			-moz-transition: transform 0.3s;
+			-o-transition: transform 0.3s;
+			right: 0px;
+			bottom: 0px;
+			box-shadow: 0 2px 7px 0px rgba(0, 0, 0, 0.12);
+		}
+		.currently-showing-img {
+			img {
+				width: auto;
+				height: auto;
+				transition: 0.5s transform;
+				-webkit-transition: 0.5s transform;
+				-moz-transition: 0.5s transform;
+				-o-transition: 0.5s transform;
+				@media (max-width: 767px) {
+					height: auto;
+					width: auto;
+					max-width: 100%;
+				}
+			}
+		}
+		&:hover {
+			@media(min-width: 767px) {
+				cursor: pointer;
+				h3 {
+					color: #0098ff;
+					transition: 1s all;
+					-webkit-transition: 1s all;
+					-moz-transition: 1s all;
+					-o-transition: 1s all;
+				}
+				p{
+					transition: 1s all;
+					-webkit-transition: 1s all;
+					-moz-transition: 1s all;
+					-o-transition: 1s all;
+				}
+			}
+			.currently-showing-img {
+				&::after {
+					// position: absolute;
+					// content: "";
+					// width: 100%;
+					// height: auto;
+					// filter: blur(10px);
+					// background-color: transparent;
+					// border-left: 5px solid transparent;
+					// border-right: 5px solid transparent;
+					// border-bottom: 20px solid rgba(0, 0, 0, 0.1);
+					// bottom: 0;
+					// opacity: 1;
+					// z-index: -1;
+					// transition: 0.5s all;
+					// -webkit-transition:  0.5s all;
+					// -moz-transition:  0.5s all;
+					// -o-transition:  0.5s all;
+					content: none;
+				}
+				img {
+					transform: translateY(0);
+				}
+			}
 		}
 	}
     h3 {
@@ -179,6 +197,9 @@
         &.dt-srt-end{
             @media(max-width: 1024px) {
                 font-size: 13px;
+			}
+			@media(max-width: 991px){
+                line-height: 17px;
             }
         }
         

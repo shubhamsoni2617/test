@@ -107,6 +107,9 @@
             &.active, &.nav-link.active{
                 font-weight: 600;
                 color: #0098FF;
+                @media(max-width: 991px){
+                    color: #ffffff;
+                }
                 &::before {
                     width: 100%;
                 }
