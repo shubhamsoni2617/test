@@ -201,5 +201,6 @@ AccordionSection.propTypes = {
   changeLang: PropTypes.func,
   uuid: PropTypes.string,
   preExpanded: PropTypes.array,
-  infoTag: PropTypes.string
+  infoTag: PropTypes.string,
+  image: PropTypes.string
 };
