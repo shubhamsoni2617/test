@@ -201,12 +201,20 @@ export default class EventsDetail extends Component {
         detailData: window.__INITIAL_DATA__.pageData,
         shimmer: false
       });
-      delete window.__INITIAL_DATA__.pageData;
+
       //Emarsys code for view & category
       if (localStorage.getItem('email')) {
         window.ScarabQueue.push(['setEmail', localStorage.getItem('email')]);
       }
-      window.ScarabQueue.push(['view', window.__INITIAL_DATA__.pageData.alias]);
+      if (
+        window.__INITIAL_DATA__.pageData &&
+        window.__INITIAL_DATA__.pageData.alias
+      ) {
+        window.ScarabQueue.push([
+          'view',
+          window.__INITIAL_DATA__.pageData.alias
+        ]);
+      }
       if (window.__INITIAL_DATA__.pageData.genres) {
         window.__INITIAL_DATA__.pageData.genres.map(item => {
           if (item.is_primary === '1') {
@@ -222,6 +230,7 @@ export default class EventsDetail extends Component {
       }
       window.ScarabQueue.push(['go']);
       //End Emarsys code for view & category
+      delete window.__INITIAL_DATA__.pageData;
     } else {
       this.callAPI(payload);
     }
