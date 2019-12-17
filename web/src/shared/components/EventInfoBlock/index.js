@@ -146,7 +146,7 @@ function ViewAllDateTimeButton({
 
   return (
     <button className="link" onClick={() => setEventDateBlock(true)}>
-      View all Dates and Times
+      View all Dates and Timings
     </button>
   );
 }

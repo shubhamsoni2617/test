@@ -12,6 +12,7 @@ import EventsService from '../../services/EventsService';
 import Constants from '../../constants';
 import Utilities from '../../utilities';
 import ModalPopup from '../../../shared/components/Modal';
+import EventHeading from '../EventHeading';
 
 const ArticleSection = ({ flag, code }) => {
   const [articleData, setArticleData] = useState([]);
@@ -69,7 +70,7 @@ const ArticleSection = ({ flag, code }) => {
           )}
         </div>
         <div className="grid-container">
-          {articleData.slice(0, 3).map((item, index) => {
+          {articleData.slice(0, 5).map((item, index) => {
             return (
               <div className="item">
                 <div className="item-wrArticleSectioner">
@@ -82,7 +83,12 @@ const ArticleSection = ({ flag, code }) => {
                     />
                   </div>
                   <Link to={`/explore/1/${item.id}`}>
-                    <h3>{item.title}</h3>
+                    <EventHeading
+                      title={item.title}
+                      lines={2}
+                      height={19}
+                      allowTooltip={false}
+                    />
                   </Link>
                   {item.plain_description && (
                     <React.Fragment>
