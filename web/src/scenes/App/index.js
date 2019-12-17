@@ -9,6 +9,8 @@ import AdvertisementService from '../../shared/services/AdvertisementService';
 import Constants from '../../shared/constants';
 import HomeService from '../../shared/services/HomeService';
 import DownloadAppPopup from '../../shared/components/DownloadAppPopup';
+import API from '../../shared/api';
+import Utilities from '../../shared/utilities';
 
 export default class App extends React.Component {
   static getInitialData(req) {
@@ -38,6 +40,11 @@ export default class App extends React.Component {
   }
 
   componentDidMount() {
+    if (localStorage.getItem('email')) {
+      API.defaults.headers.common['email'] = localStorage.getItem('email');
+    }
+    API.defaults.headers.common['device_id'] = Utilities.getDeviceID();
+
     setTimeout(() => {
       document.body.classList.remove('fix-height');
       document.getElementById('loader').classList.add('loaded');
