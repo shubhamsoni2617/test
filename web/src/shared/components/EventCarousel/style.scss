@@ -22,12 +22,12 @@
         }
         .image-gallery-image{
             .image-conatiner{
-                height: 414px;
+                height: 460px;
                 display: flex;
                 justify-content: center;
                 align-items: center;
                 margin-top: -2px;
-                @media (min-device-width: 1500px) and (max-device-width: 1980px) {
+                @media (min-width: 1500px) and (max-width: 1980px) {
                     height: 521px;
                 }
                 @media (min-device-width: 1135px) and (max-device-width: 1280px) {
@@ -50,12 +50,12 @@
 
           .image-gallery-image{
             .image-conatiner{
-                height: 414px;
+                height: 460px;
                 display: flex;
                 justify-content: center;
                 align-items: center;
                 margin-top: -2px;
-                @media (min-device-width: 1500px) and (max-device-width: 1980px) {
+                @media (min-width: 1500px) and (max-width: 1980px) {
                     height: 521px;
                 }
                 @media (min-device-width: 1135px) and (max-device-width: 1280px) {
