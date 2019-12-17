@@ -264,6 +264,9 @@
                     }
                     .ScrollbarsCustom-Content{
                         margin-bottom: 0px !important;
+                        .video-item-image:nth-child(1){
+                            margin-top: 10px;
+                        }
                     }
                 }
               div:nth-last-child(1) {

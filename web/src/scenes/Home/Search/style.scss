@@ -476,10 +476,23 @@
                             padding: 10px 5px 0px;
                             align-items: flex-end;
                         }
+                        .item-title{
+                            h5{
+                                transition: 0.5s color;
+                                -webkit-transition: 0.5s color;
+                                -moz-transition: 0.5s color;
+                                -o-transition: 0.5s color;
+                            }
+                        }
                         &:hover{
                             cursor: default;
-                            border: 1px solid transparent;
-                            border-bottom: 1px solid rgba(151, 151, 151, 0.2);
+                            border: 1px solid #0098FF;
+                            border-bottom: 1px solid #0098FF;
+                            .item-title{
+                                h5{
+                                    color: #0098ff;
+                                }
+                            }
                         }
                         button{
                             padding: 6px 22px;
@@ -510,7 +523,7 @@
                             }
                         }
                         .event-details{
-                            padding: 15px 0px 8px 30px !important;
+                            padding: 15px 20px 8px 30px !important;
                             @media(max-width: 767px){
                                 width: 100%;
                                 flex: 0 0 100%;
@@ -525,12 +538,14 @@
                             h6{
                                 position: relative;
                                 margin-bottom: 0px;
+                                display: inline-block;
+                                color: #343434;
                                 &:after{
                                     position: absolute;
                                     content: "";
-                                    background-color: #0077C8;
+                                    background-color: rgba(52, 52, 52, 0.2);
                                     height: 2px;
-                                    width: 27px;
+                                    width: 100%;
                                     left: 0px;
                                     bottom: -3px;
                                 }
@@ -603,7 +618,7 @@
                     .event-block{
                         border-bottom: 1px solid rgba(151, 151, 151, 0.2);
                         &:hover{
-                            border-bottom: none;
+                            border-bottom: 2px solid #0098FF;
                             @media(max-width: 991px){
                                 // border: 1px solid transparent;
                                 border-bottom: 1px solid rgba(151, 151, 151, 0.2);

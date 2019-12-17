@@ -90,7 +90,7 @@ const MegaMenu = props => {
           </ul>
         </div>
         <div className="featured-event">
-          <ul>
+          <ul className="featured-header-title">
             <li>
               <h5 className="submenu-subtitle">Featured Events</h5>
             </li>
