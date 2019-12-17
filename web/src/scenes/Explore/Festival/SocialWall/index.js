@@ -3,7 +3,6 @@ import './style.scss';
 import axios from 'axios';
 import Masonry from '../SocialWall/Masonry';
 import Tiles from '../SocialWall/Tiles';
-import Utilities from '../../../../shared/utilities';
 
 const SocialWall = ({ socialUrl }) => {
   let brakePoints = [375, 500, 750];

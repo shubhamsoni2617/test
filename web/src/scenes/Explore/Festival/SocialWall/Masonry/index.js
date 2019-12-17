@@ -41,6 +41,10 @@ class Masonry extends Component {
     }, col);
   }
 
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.onResize);
+  }
+
   render() {
     return (
       <div className="masonry" ref="Masonry">
