@@ -3492,6 +3492,7 @@ section.explore {
 		}
 		.item {
 			position: relative;
+			z-index: 1;
 			@media(min-width: 992px) and (max-width: 1280px) {
 				height: calc(100% - 25px);
             }
