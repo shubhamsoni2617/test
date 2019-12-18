@@ -635,7 +635,7 @@ export default class EventsDetail extends Component {
               </div>
             )}
             <ArticleSection flag={true} code={code} />
-            <SimilarPicksSection data={similarEventsData} />
+            <SimilarPicksSection data={similarEventsData} type="Horizontal" />
             {detailData.is_show_over === 1 && (
               <>
                 {/* <GiftCard flag={true} /> */}
