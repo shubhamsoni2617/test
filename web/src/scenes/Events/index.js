@@ -553,7 +553,7 @@ export default class Events extends Component {
           />
         )}
         <Breadcrub breadCrumbData={this.breadCrumbData} />
-        <section className="">
+        <section className="event-list-content">
           <div className="container-fluid">
             <div className="wrapper-events-listing">
               <div className={`filters ${this.state.filterFlag ? 'open' : ''}`}>
