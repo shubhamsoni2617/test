@@ -59,7 +59,7 @@ const HotShowPopup = () => {
     // >
     <>
       {flag && popupData.length && (
-        <div className="hotshow-popup">
+        <div className="hotshow-popup flashsale-wrapper">
           <div className="hotshow-overlay" />
           <div className="hotshow container">
             <div className="hotshow-topbar">
@@ -92,12 +92,12 @@ const HotShowPopup = () => {
                             height="100%"
                           />
                         ) : (
-                          <img
-                            src={objData.full_image}
-                            alt=""
-                            className="img-fluid"
-                          />
-                        )}
+                            <img
+                              src={objData.full_image}
+                              alt=""
+                              className="img-fluid"
+                            />
+                          )}
                       </div>
 
                       <div className="hotshow-content">
@@ -144,12 +144,12 @@ const HotShowPopup = () => {
                         {objData.type && objData.type.id === 2 ? (
                           <ReactPlayer url={objData.video_url} controls />
                         ) : (
-                          <img
-                            src={objData.full_image}
-                            alt=""
-                            className="img-fluid"
-                          />
-                        )}
+                            <img
+                              src={objData.full_image}
+                              alt=""
+                              className="img-fluid"
+                            />
+                          )}
                       </a>
                       <div className="hotshow-content">
                         {objData.title && (

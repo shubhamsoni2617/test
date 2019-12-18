@@ -327,3 +327,49 @@
 .hotshowpopup-overlay{
     overflow: hidden;
 }
+
+.flashsale-wrapper{
+    &.hotshow-popup{
+        .hotshow-wrapper{
+            .hotshow-block{
+                .hotshow-block-fullwidth{
+                    .hotshowimg{
+                        min-height: auto;
+                        max-height: 100%;
+                        img{
+                            width: auto !important;
+                            height: auto;
+                            max-width: 100%;
+                        }
+                    }
+                }
+                .hotshow-content{
+                    max-height: 575px;
+                    overflow-y: auto;
+                    overflow-x: hidden;
+                    &::-webkit-scrollbar {
+                        width: 6px;
+                    }
+                    &::-webkit-scrollbar-thumb {
+                        border-radius: 10px;
+                        width: 2px;
+                    }
+                    &::-webkit-scrollbar-track-piece {
+                        background-color: #d0d0d0;
+                    }
+                    a{
+                        font-size: inherit;
+                        font-weight: inherit;
+                        line-height: inherit;
+                        text-align: center;
+                        padding: 0px;
+                        display: inline-block;
+                        background: transparent;
+                        color: #0098ff;
+                        margin-top: 0;
+                    }
+                }
+            }
+        }
+    }
+}
