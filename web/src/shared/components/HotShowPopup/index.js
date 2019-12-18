@@ -10,6 +10,7 @@ import Image from '../Image';
 const HotShowPopup = () => {
   const [popupData, setPopupData] = useState([]);
   const [flag, setFlag] = useState(false);
+  const [flashsaleClass, setFlashsaleClass] = useState('')
 
   useEffect(() => {
     if (!sessionStorage.getItem('hotshow')) {
@@ -19,10 +20,11 @@ const HotShowPopup = () => {
         .then(res => {
           setPopupData(res.data.data);
           if (
-            res.data.data.length &&
-            !Utilities.mobilecheck() &&
-            res.data.data.hide_smartphone !== '1'
+            res.data.data.length && !Utilities.mobilecheck() ||
+            Utilities.mobilecheck() &&
+            res.data.data[0].hide_smartphone !== '1'
           ) {
+            setFlashsaleClass('flashsale-wrapper')
             addOverlayClass();
           } else {
             setPopupData([]);
@@ -60,7 +62,7 @@ const HotShowPopup = () => {
     // >
     <>
       {flag && popupData.length && (
-        <div className="hotshow-popup flashsale-wrapper">
+        <div className={`hotshow-popup ${flashsaleClass}`}>
           <div className="hotshow-overlay" />
           <div className="hotshow container">
             <div className="hotshow-topbar">
