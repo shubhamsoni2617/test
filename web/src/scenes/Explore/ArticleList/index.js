@@ -8,7 +8,7 @@ import ShimmerEffect from '../../../shared/components/ShimmerEffect';
 import Utilities from '../../../shared/utilities';
 import ExploreService from '../../../shared/services/ExploreService';
 import Filter from './Filter';
-import loaderImage from '../../../assets/images/loader-tick3.gif';
+import loaderImage from '../../../assets/images/sistic-loader.gif';
 import useStickyPanel from '../../../shared/hooks/useStickyPanel';
 import BreadCrumbData from './breadCrumbData';
 import selectOrClearAll from './selectOrClearAll';
@@ -241,7 +241,7 @@ const ArticleList = ({ history, location }) => {
             <div
               className={`events-listing ${
                 isNaN(totalResults) ? `article-list-notfound` : ``
-                }`}
+              }`}
             >
               <div className="events-section">
                 <CardList
@@ -261,7 +261,7 @@ const ArticleList = ({ history, location }) => {
                   <ShimmerEffect
                     propCls={`${
                       Utilities.mobileAndTabletcheck() ? 'shm_col-xs-6' : ''
-                      } col-md-4`}
+                    } col-md-4`}
                     height={150}
                     count={Utilities.mobileAndTabletcheck() ? 2 : 3}
                     type="LIST"
@@ -277,8 +277,8 @@ const ArticleList = ({ history, location }) => {
                       window.scrollTo(
                         0,
                         node.current.clientHeight *
-                        (articleList.length / cardInViewConstant).toFixed() -
-                        node.current.clientHeight / 2
+                          (articleList.length / cardInViewConstant).toFixed() -
+                          node.current.clientHeight / 2
                       );
                     }}
                     className="btn-link load-more-btn"

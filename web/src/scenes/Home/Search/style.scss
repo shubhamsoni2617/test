@@ -62,7 +62,7 @@
                 > div{
                     flex: 0 0 100%;
                     width: 100%;
-                    margin-bottom: 0;                    
+                    margin-bottom: 0;
                     &:last-child{
                         .event-block{
                             border-bottom: 1px solid transparent;
@@ -96,14 +96,14 @@
                                 @media(max-width: 768px){
                                     text-align: left;
                                 }
-                              
+
                             }
                           }
                         }
                       }
                     }
                 }
-                
+
             }
 
         }
@@ -280,13 +280,14 @@
     position: fixed;
     left: 50%;
     top: 50%;
-    width: 60px;
+    width: 100px;
     box-shadow: none;
     border-radius: 50%;
     overflow: hidden;
     margin-left: 150px;
     margin-top: 70px;
     z-index: 5;
+    transform: translate(-50%, -50%);
 }
 .ReactModalPortal{
     .ril-toolbar.ril__toolbar{
@@ -576,7 +577,7 @@
                                         // min-height: 38px;
                                         min-height: auto;
                                     }
-                                    &:empty{                                        
+                                    &:empty{
                                         display: none !important;
                                     }
                                 }
@@ -585,11 +586,11 @@
                         &.full-desc{
                             h5{
                                 @media(max-width: 767px){
-                                    -webkit-line-clamp: 4;                                                                         
+                                    -webkit-line-clamp: 4;
                                     white-space: normal;
                                     text-overflow: unset;
                                     overflow: hidden;
-                                    display: -webkit-box;                                    
+                                    display: -webkit-box;
                                     /* autoprefixer: off */ -webkit-box-orient: vertical; /* autoprefixer: on */
                                 }
                             }

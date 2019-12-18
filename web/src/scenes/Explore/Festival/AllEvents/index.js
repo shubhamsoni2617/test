@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import './style.scss';
 import Image from '../../../../shared/components/Image';
 import Utilities from '../../../../shared/utilities';
@@ -19,9 +20,13 @@ const AllEvents = ({ sectionFour }) => {
               sectionFour.events &&
               sectionFour.events
                 .slice(0, limit)
-                .map(({ image, event_date, title, venue }) => {
+                .map(({ image, event_date, title, venue, code }) => {
                   return (
-                    <div className="event-box" key={title}>
+                    <Link
+                      to={`/events/${code}`}
+                      className="event-box"
+                      key={title}
+                    >
                       <Image src={image} type="Horizontal" />
                       <h2>
                         {Utilities.showLimitedChars(
@@ -36,7 +41,7 @@ const AllEvents = ({ sectionFour }) => {
                           Utilities.mobilecheck() ? 25 : 50
                         )}
                       </p>
-                    </div>
+                    </Link>
                   );
                 })}
           </div>
