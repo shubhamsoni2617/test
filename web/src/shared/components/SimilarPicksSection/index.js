@@ -4,7 +4,7 @@ import './style.scss';
 import RightArrow from '../../../assets/images/right-arrow.svg';
 import PropTypes from 'prop-types';
 
-const SimilarPicksSection = ({ data }) => {
+const SimilarPicksSection = ({ data, type }) => {
   if (!data || !data.length) return null;
   return (
     <section className="similar-picks">
@@ -18,6 +18,7 @@ const SimilarPicksSection = ({ data }) => {
           arrows={true}
           slidesToShow={5}
           slidesToScroll={5}
+          type={type}
         />
       </div>
     </section>
