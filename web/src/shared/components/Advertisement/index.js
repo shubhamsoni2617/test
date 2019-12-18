@@ -21,14 +21,28 @@ const Advertisement = props => {
 
   useEffect(() => {
     refValue.current.flag = true;
-    if (props.history.location.pathname === '/') {
+    if (
+      props.history.location.pathname === '/' ||
+      props.history.location.pathname.split('/')[1] === 'attractions' ||
+      props.history.location.pathname.split('/')[1] === 'promotions' ||
+      props.history.location.pathname.split('/')[1] === 'explore'
+    ) {
       !sessionStorage.getItem('advertisment') &&
         refValue.current.classList.add('show-add');
     }
     const unlisten = props.history.listen(location => {
       setTimeout(() => {
         if (location.pathname !== '/') {
-          refValue.current.classList.remove('show-add');
+          if (
+            location.pathname.split('/')[1] === 'attractions' ||
+            location.pathname.split('/')[1] === 'promotions' ||
+            location.pathname.split('/')[1] === 'explore'
+          ) {
+            !sessionStorage.getItem('advertisment') &&
+              refValue.current.classList.add('show-add');
+          } else {
+            refValue.current.classList.remove('show-add');
+          }
         } else if (refValue.current.flag) {
           !sessionStorage.getItem('advertisment') &&
             refValue.current.classList.add('show-add');
@@ -92,7 +106,11 @@ const Advertisement = props => {
                 onClick={() => handleClose()}
               >
                 <img src={closeAd} className="img-fluid" alt="close" />
-                <img src={closeAdhover} className="img-fluid hover-img" alt="close" />
+                <img
+                  src={closeAdhover}
+                  className="img-fluid hover-img"
+                  alt="close"
+                />
               </button>
             </div>
           );
