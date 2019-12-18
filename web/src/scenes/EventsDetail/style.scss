@@ -956,6 +956,9 @@
       @media(max-width: 767px){
           padding: 0px;
       }
+      .advertisement-block{
+          padding: 0;
+      }
       & > .sidebar-accordion{
         .accordion__panel{
             p, table, li{
