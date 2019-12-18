@@ -89,7 +89,10 @@ function BuyTicketsButtonPopup(props) {
         handleClose={() => setFlag(false)}
       >
         <div className="buy-tickets-btn">
-          <BuyTicketsButton url={detailData.buy_now_url} />
+          <BuyTicketsButton
+            url={detailData.buy_now_url}
+            setScrollbarHeight={props.setScrollbarHeight}
+          />
         </div>
         {detailData.buttons &&
           detailData.buttons.length > 0 &&
@@ -379,7 +382,7 @@ function EventInfoBlock(props) {
                   )}
                 </div>
 
-                {detailData.pop_up_message.title && (
+                {detailData.pop_up_message && detailData.pop_up_message.title && (
                   <div className="info-tooltip">
                     <span className="info" onClick={() => props.openNotice()}>
                       <img src={Info} alt="Info" />
