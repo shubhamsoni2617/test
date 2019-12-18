@@ -201,6 +201,35 @@ export default class EventsDetail extends Component {
         detailData: window.__INITIAL_DATA__.pageData,
         shimmer: false
       });
+
+      //Emarsys code for view & category
+      if (localStorage.getItem('email')) {
+        window.ScarabQueue.push(['setEmail', localStorage.getItem('email')]);
+      }
+      if (
+        window.__INITIAL_DATA__.pageData &&
+        window.__INITIAL_DATA__.pageData.alias
+      ) {
+        window.ScarabQueue.push([
+          'view',
+          window.__INITIAL_DATA__.pageData.alias
+        ]);
+      }
+      if (window.__INITIAL_DATA__.pageData.genres) {
+        window.__INITIAL_DATA__.pageData.genres.map(item => {
+          if (item.is_primary === '1') {
+            ScarabQueue.push(['category', item.name]);
+          }
+        });
+        if (window.__INITIAL_DATA__.pageData.primary_genre) {
+          ScarabQueue.push([
+            'category',
+            window.__INITIAL_DATA__.pageData.primary_genre
+          ]);
+        }
+      }
+      window.ScarabQueue.push(['go']);
+      //End Emarsys code for view & category
       delete window.__INITIAL_DATA__.pageData;
     } else {
       this.callAPI(payload);
@@ -245,6 +274,19 @@ export default class EventsDetail extends Component {
               this.setState(newState);
             }
           );
+          //Emarsys code for view
+          if (localStorage.getItem('email')) {
+            window.ScarabQueue.push([
+              'setEmail',
+              localStorage.getItem('email')
+            ]);
+          }
+          window.ScarabQueue.push(['view', res.data.alias]);
+          if (res.data.primary_genre) {
+            ScarabQueue.push(['category', res.data.primary_genre]);
+          }
+          window.ScarabQueue.push(['go']);
+          //End Emarsys code for view
         } else {
           this.setState(newState);
           this.setState({ shimmer: false });

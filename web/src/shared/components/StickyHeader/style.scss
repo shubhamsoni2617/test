@@ -153,6 +153,14 @@
         //           padding-bottom: 10px;
         //       }
         //   }
+        .event-date {
+                      span{
+                        max-width: 211px;
+                            white-space: nowrap !important;
+                            text-overflow: ellipsis !important;
+                            overflow: hidden !important;
+                      }
+                    }
           .ticket-date-price{
               display: flex;
               flex-wrap: wrap;

@@ -2592,6 +2592,9 @@ section.whats-new {
 			@media(max-width: 1024px){
 				min-height: 30px;
 			}
+			@media(max-width: 991px){
+                line-height: 17px;
+            }
 			@media(max-width: 576px){
                 font-size: 11px;
                 margin-bottom: 5px;
@@ -3489,6 +3492,7 @@ section.explore {
 		}
 		.item {
 			position: relative;
+			z-index: 1;
 			@media(min-width: 992px) and (max-width: 1280px) {
 				height: calc(100% - 25px);
             }
@@ -5038,7 +5042,7 @@ section{
         border-left: 20px solid transparent;
         border-right: 20px solid transparent;
         top: -10px;
-        right: 122px;
+        right: 123px;
         transform: translateX(-50%);
         border-bottom: 15px solid #fff;
         z-index: 2;

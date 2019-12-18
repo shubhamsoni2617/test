@@ -14,6 +14,7 @@
     -o-transition: .5s box-shadow;
     cursor: pointer;
     position: relative;
+    justify-content: space-between;
     @supports (-ms-ime-align:auto) {
         box-shadow: 0 0px 2px rgba(154, 154, 154, 0.7);
     }
@@ -79,6 +80,12 @@
             }
         }
         .event-img{
+            min-height: 223px;
+            max-height: 223px;
+            @media(max-width: 991px){
+                min-height: auto;
+                max-height: auto;
+            }
           &:hover{
             cursor: pointer;
           }
@@ -90,7 +97,8 @@
             }
             .event-detail-prime{
                 margin-bottom: 26px;
-                min-height: 142px;
+                // min-height: 142px;
+                min-height: auto;
                 height: auto;
                 @media(max-width: 1024px){
                     margin-bottom: 5px;
@@ -98,6 +106,9 @@
                 @media(max-width: 768px){
                     min-height: auto;
                     margin-bottom: 10px;
+                }
+                span{
+                    word-break: break-all;
                 }
                 .category{
                     background-color: #092438;
@@ -409,7 +420,7 @@
                 p{
                     margin: 3px 0 0 0;
                     color: #343434;
-                    font-size: 16px;
+                    font-size: 14px;
                     line-height: 11px;
                     font-weight: 500;
                     padding-bottom: 0px;

@@ -51,7 +51,8 @@
     .banner-wrapper {
         margin: 0 auto;
         text-align: center;
-        height: 290px;
+        // height: 290px;
+        height: auto;
         img {
             object-fit: cover;
             height: 100%;
