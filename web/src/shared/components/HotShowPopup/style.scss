@@ -348,20 +348,15 @@
             }
         }
         .hotshow{
+            width: 100%;
+            -ms-overflow-style: none; // IE 10+ 
+            scrollbar-width: none; // Firefox 
+            &::-webkit-scrollbar { 
+                display: none; // Safari and Chrome 
+            }
             @media(max-width: 767px){
                 padding-top: 30px;
-                &::-webkit-scrollbar {
-                    display: none;
-                }
-                &::-webkit-scrollbar-thumb {
-                    border-radius: 10px;
-                    width: 2px;
-                    border: none;
-                    outline: none;
-                }
-                &::-webkit-scrollbar-track-piece {
-                    background-color: #d0d0d0;
-                }
+                overflow: hidden;
             }
             .hotshow-topbar{
                 .hotshow-topbar-right{
@@ -373,6 +368,21 @@
             }
         }
         .hotshow-wrapper{
+            @media(max-width: 767px){
+                height: calc(100% - 130px);
+                overflow-y: auto;
+            }
+            @media(max-width: 991px) and (orientation: landscape){
+                height: calc(100% - 150px);
+            }
+            @media(max-width: 690px) and (orientation: landscape){
+                height: calc(100% - 70px);
+            }
+            -ms-overflow-style: none; // IE 10+ 
+            scrollbar-width: none; // Firefox 
+            &::-webkit-scrollbar { 
+                display: none; // Safari and Chrome 
+            }
             .hotshow-block{
                 &.hotshow-block-fullwidth{
                     align-items: flex-start;
@@ -390,12 +400,6 @@
                     &::-webkit-scrollbar-track-piece {
                         background-color: #d0d0d0;
                     }
-                    // @media(max-width: 767px){
-                    //     max-height: 480px;
-                    // }
-                    // @media(max-width: 320px){
-                    //     max-height: 400px;
-                    // }
                     @media(max-width: 767px){
                         max-height: 100%;
                     }
