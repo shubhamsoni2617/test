@@ -273,6 +273,20 @@ h2 {
 	// 	padding-right: 15px;
 	// 	padding-left: 15px;
 	// }
+	&.custom-container{
+        max-width: 1360px;
+        margin: 0 auto;
+        padding: 0 40px;
+        @media(min-width: 1360px){
+            max-width: 1440px;
+        }
+        @media(max-width: 1024px){
+            padding: 0 30px;
+        }
+        @media(max-width: 767px){
+            padding: 0 10px;
+        }
+    }
 }
 
 // Slider
