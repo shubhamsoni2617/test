@@ -8,14 +8,14 @@
       opacity: 0;
     }
     .custom-container{
-        max-width: 1310px;
+        max-width: 1360px;
         margin: 0 auto;
-        padding: 0 15px;
+        padding: 0 40px;
         @media(min-width: 1360px){
-            max-width: 1360px;
+            max-width: 1440px;
         }
-        @media(max-width: 1279px){
-            padding: 0 15px;
+        @media(max-width: 1024px){
+            padding: 0 30px;
         }
         @media(max-width: 767px){
             padding: 0;
@@ -42,27 +42,33 @@
     .event-articles{
         padding: 40px 0;
         .container-fluid{
-            max-width: 1310px;
+            max-width: 1360px;
             margin: 0 auto;
-            padding: 0 15px;
-            @media(max-width: 1279px){
-                padding: 0 15px;
-            }
+            padding: 0 40px;
             @media(min-width: 1360px){
-                max-width: 1360px;
+                max-width: 1440px;
+            }
+            @media(max-width: 1024px){
+                padding: 0 30px;
+            }
+            @media(max-width: 767px){
+                padding: 0 0 0 10px;
             }
         }
     }
     .similar-picks{
         .container-fluid{
-            max-width: 1310px;
+            max-width: 1360px;
             margin: 0 auto;
-            padding: 0 15px;
-            @media(max-width: 1279px){
-                padding: 0 15px;
-            }
+            padding: 0 40px;
             @media(min-width: 1360px){
-                max-width: 1360px;
+                max-width: 1440px;
+            }
+            @media(max-width: 1024px){
+                padding: 0 30px;
+            }
+            @media(max-width: 767px){
+                padding: 0 0 0 10px;
             }
             // & > div{
             //     padding: 0 40px;
@@ -929,6 +935,11 @@
               white-space: unset;
           }
       }
+      #accordion__panel-3{
+          .image-conatiner{
+              margin-bottom: 15px;
+          }
+      }
   }
   //sidebar
   .accordion__item{
@@ -944,6 +955,9 @@
       }
       @media(max-width: 767px){
           padding: 0px;
+      }
+      .advertisement-block{
+          padding: 0;
       }
       & > .sidebar-accordion{
         .accordion__panel{
@@ -1150,7 +1164,7 @@
   .event-zoner-group{
     padding: 20px 0px 0;
     @media(max-width: 767px){
-        padding: 25px 15px  15px !important;
+        padding: 25px 10px 15px !important;
     }
     ul {
         display: flex;

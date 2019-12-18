@@ -4,10 +4,13 @@ import HomeService from '../../services/HomeService';
 import nextarrow from '../../../assets/images/next-arrow-white.svg';
 import ReactPlayer from 'react-player';
 import { CSSTransition } from 'react-transition-group';
+import Utilities from '../../utilities';
+import Image from '../Image';
 
 const HotShowPopup = () => {
   const [popupData, setPopupData] = useState([]);
   const [flag, setFlag] = useState(false);
+  const [flashsaleClass, setFlashsaleClass] = useState('')
 
   useEffect(() => {
     if (!sessionStorage.getItem('hotshow')) {
@@ -16,9 +19,15 @@ const HotShowPopup = () => {
       HomeService.getFlashSale(params)
         .then(res => {
           setPopupData(res.data.data);
-          if (res.data.data.length) {
+          if (
+            res.data.data.length && !Utilities.mobilecheck() ||
+            Utilities.mobilecheck() &&
+            res.data.data[0].hide_smartphone !== '1'
+          ) {
+            setFlashsaleClass('flashsale-wrapper')
             addOverlayClass();
           } else {
+            setPopupData([]);
             HomeService.getHotShowPopupData()
               .then(res => {
                 setPopupData(res.data.data);
@@ -53,14 +62,14 @@ const HotShowPopup = () => {
     // >
     <>
       {flag && popupData.length && (
-        <div className="hotshow-popup">
+        <div className={`hotshow-popup ${flashsaleClass}`}>
           <div className="hotshow-overlay" />
           <div className="hotshow container">
             <div className="hotshow-topbar">
               <div className="hotshow-topbar-left">
                 <span>
-                  We are anticipating very high demand for the following
-                  show(s).
+                  We are anticipating very high demand for the following show
+                  {popupData.length === 1 ? '' : '(s)'}.
                 </span>
               </div>
               <div className="hotshow-topbar-right">
@@ -86,12 +95,12 @@ const HotShowPopup = () => {
                             height="100%"
                           />
                         ) : (
-                          <img
-                            src={objData.full_image}
-                            alt=""
-                            className="img-fluid"
-                          />
-                        )}
+                            <Image
+                              src={objData.full_image}
+                              alt=""
+                              className="img-fluid"
+                            />
+                          )}
                       </div>
 
                       <div className="hotshow-content">
@@ -134,19 +143,21 @@ const HotShowPopup = () => {
                       className="hotshow-block hotshow-block-fullwidth"
                       key={index}
                     >
-                      <div className="hotshowimg">
+                      <a href={objData.navigation_link} className="hotshowimg">
                         {objData.type && objData.type.id === 2 ? (
                           <ReactPlayer url={objData.video_url} controls />
                         ) : (
-                          <img
-                            src={objData.full_image}
-                            alt=""
-                            className="img-fluid"
-                          />
-                        )}
-                      </div>
+                            <Image
+                              src={objData.full_image}
+                              alt=""
+                              className="img-fluid"
+                            />
+                          )}
+                      </a>
                       <div className="hotshow-content">
-                        {objData.title && <h3>{objData.title}</h3>}
+                        {objData.title && (
+                          <a href={objData.navigation_link}>{objData.title}</a>
+                        )}
                         {objData.description && (
                           <div
                             dangerouslySetInnerHTML={{
