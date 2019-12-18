@@ -152,7 +152,9 @@ const HotShowPopup = () => {
                         )}
                       </a>
                       <div className="hotshow-content">
-                        {objData.title && <h3>{objData.title}</h3>}
+                        {objData.title && (
+                          <a href={objData.navigation_link}>{objData.title}</a>
+                        )}
                         {objData.description && (
                           <div
                             dangerouslySetInnerHTML={{
