@@ -21,25 +21,25 @@ const ItemWrapper = (elem, genre, type) => {
       {elem.event_date === null || elem.event_date === '' ? (
         <p className="dt-srt-end"></p>
       ) : (
-          // <p className="dt-srt-end">{elem.event_date}</p>
-          <Ellipsis
-            title={elem.event_date}
-            lines={2}
-            height={Utilities.mobilecheck() ? 17 : 18}
-            allowTooltip={false}
-            customClass="dt-srt-end"
-          />
-        )}
+        // <p className="dt-srt-end">{elem.event_date}</p>
+        <Ellipsis
+          title={elem.event_date}
+          lines={2}
+          height={Utilities.mobilecheck() ? 17 : 18}
+          allowTooltip={false}
+          customClass="dt-srt-end"
+        />
+      )}
       {elem.title === null || elem.title === '' ? (
         <h3></h3>
       ) : (
-          <EventHeading
-            title={elem.title}
-            lines={2}
-            height={19}
-            allowTooltip={false}
-          />
-        )}
+        <EventHeading
+          title={elem.title}
+          lines={2}
+          height={19}
+          allowTooltip={false}
+        />
+      )}
       {/* <p>{Utilities.showLimitedChars(elem.venue_name, 25)}</p> */}
       <Ellipsis
         title={elem.venue_name}

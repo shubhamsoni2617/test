@@ -15,7 +15,7 @@ const WhatsUp = ({ whatsUpData }) => {
   };
   return (
     <section className="whtsup-wrapper">
-      <div className="container-fluid">
+      <div className="container-fluid custom-container">
         <div className="section-top-wrapper">
           <h2>{whatsUpData && whatsUpData.heading}</h2>
         </div>

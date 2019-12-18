@@ -93,7 +93,7 @@ const EventCarousel = ({ images }) => {
 
   return (
     <div id="banner-carousel" className="banner-carousel">
-      {items.length > 0 ? (
+      {items && items.length > 0 ? (
         <ImageGallery
           items={items}
           renderItem={renderItem}
