@@ -326,4 +326,144 @@
 // hotshow overlay
 .hotshowpopup-overlay{
     overflow: hidden;
+    @media(max-width: 1024px){
+        overflow: hidden !important;
+        position: fixed;
+        top: 0px;
+        left: 0px;
+        right: 0px;
+        bottom: 0px;
+        height: 100%;
+        width: 100%;
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+    }
+}
+
+.flashsale-wrapper{
+    &.hotshow-popup{
+        .hotshow-overlay{
+            @media(max-width: 767px){
+                width: calc(100% - 0px);
+            }
+        }
+        .hotshow{
+            width: 100%;
+            -ms-overflow-style: none; // IE 10+ 
+            scrollbar-width: none; // Firefox 
+            &::-webkit-scrollbar { 
+                display: none; // Safari and Chrome 
+            }
+            @media(max-width: 767px){
+                padding-top: 30px;
+                overflow: hidden;
+            }
+            .hotshow-topbar{
+                .hotshow-topbar-right{
+                    @media(min-width: 600px) and (max-width: 767px) and (orientation: landscape){
+                        margin-left: auto;
+                        margin-top: 0px;
+                    }
+                }
+            }
+        }
+        .hotshow-wrapper{
+            @media(max-width: 767px){
+                height: calc(100% - 130px);
+                overflow-y: auto;
+            }
+            @media(max-width: 991px) and (orientation: landscape){
+                height: calc(100% - 150px);
+            }
+            @media(max-width: 690px) and (orientation: landscape){
+                height: calc(100% - 70px);
+            }
+            -ms-overflow-style: none; // IE 10+ 
+            scrollbar-width: none; // Firefox 
+            &::-webkit-scrollbar { 
+                display: none; // Safari and Chrome 
+            }
+            .hotshow-block{
+                &.hotshow-block-fullwidth{
+                    align-items: flex-start;
+                    max-height: 550px;
+                    overflow-y: auto;
+                    &::-webkit-scrollbar {
+                        width: 6px;
+                    }
+                    &::-webkit-scrollbar-thumb {
+                        border-radius: 10px;
+                        width: 2px;
+                        border: none;
+                        outline: none;
+                    }
+                    &::-webkit-scrollbar-track-piece {
+                        background-color: #d0d0d0;
+                    }
+                    @media(max-width: 767px){
+                        max-height: 100%;
+                    }
+                    .hotshowimg{
+                        min-height: auto;
+                        max-height: 100%;
+                        img{
+                            width: auto !important;
+                            height: auto;
+                            max-width: 100%;
+                        }
+                    }
+                }
+                .hotshow-content{
+                    max-height: 100%;
+                    overflow-y: auto;
+                    overflow-x: hidden;
+                    margin: 0px;
+                    &::-webkit-scrollbar {
+                        width: 6px;
+                    }
+                    &::-webkit-scrollbar-thumb {
+                        border-radius: 10px;
+                        width: 2px;
+                        border: none;
+                        outline: none;
+                    }
+                    &::-webkit-scrollbar-track-piece {
+                        background-color: #d0d0d0;
+                    }
+                    a{
+                        font-size: inherit;
+                        font-weight: inherit;
+                        line-height: inherit;
+                        text-align: center;
+                        padding: 0px;
+                        display: inline-block;
+                        background: transparent;
+                        color: #0098ff;
+                        margin-top: 0;
+                    }
+                    & > a{
+                        font-size: 30px;
+                        line-height: 37px;
+                        font-weight: 600;
+                        color: #343434;
+                        text-align: left;
+                        transition: 0.5s color;
+                        -webkit-transition: 0.5s color;
+                        -moz-transition: 0.5s color;
+                        -o-transition: 0.5s color;
+                        &:hover{
+                            color: #0098ff;
+                        }
+                        @media(max-width: 768px){
+                            font-size: 18px;
+                            line-height: 20px;
+                            font-weight: 500;
+                            margin-bottom: 10px;
+                            color: #343434;
+                        }
+                    }
+                }
+            }
+        }
+    }
 }
