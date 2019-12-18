@@ -5,6 +5,7 @@ import nextarrow from '../../../assets/images/next-arrow-white.svg';
 import ReactPlayer from 'react-player';
 import { CSSTransition } from 'react-transition-group';
 import Utilities from '../../utilities';
+import Image from '../Image';
 
 const HotShowPopup = () => {
   const [popupData, setPopupData] = useState([]);
@@ -92,7 +93,7 @@ const HotShowPopup = () => {
                             height="100%"
                           />
                         ) : (
-                          <img
+                          <Image
                             src={objData.full_image}
                             alt=""
                             className="img-fluid"
@@ -144,7 +145,7 @@ const HotShowPopup = () => {
                         {objData.type && objData.type.id === 2 ? (
                           <ReactPlayer url={objData.video_url} controls />
                         ) : (
-                          <img
+                          <Image
                             src={objData.full_image}
                             alt=""
                             className="img-fluid"
