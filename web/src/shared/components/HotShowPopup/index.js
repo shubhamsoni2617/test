@@ -20,8 +20,8 @@ const HotShowPopup = () => {
         .then(res => {
           setPopupData(res.data.data);
           if (
-            res.data.data.length && !Utilities.mobilecheck() ||
-            Utilities.mobilecheck() &&
+            res.data.data.length && !Utilities.mobileAndTabletcheck() ||
+            Utilities.mobileAndTabletcheck() &&
             res.data.data[0].hide_smartphone !== '1'
           ) {
             setFlashsaleClass('flashsale-wrapper')
