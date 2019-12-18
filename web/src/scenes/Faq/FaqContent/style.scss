@@ -225,6 +225,9 @@
                 &[hidden=""]{
                     border-bottom: none;
                 }
+                li{
+                    list-style: disc;
+                }
             }
             &[hidden=""] {
                 // margin-top: 20px;
