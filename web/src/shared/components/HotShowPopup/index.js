@@ -4,6 +4,7 @@ import HomeService from '../../services/HomeService';
 import nextarrow from '../../../assets/images/next-arrow-white.svg';
 import ReactPlayer from 'react-player';
 import { CSSTransition } from 'react-transition-group';
+import Utilities from '../../utilities';
 
 const HotShowPopup = () => {
   const [popupData, setPopupData] = useState([]);
@@ -16,9 +17,14 @@ const HotShowPopup = () => {
       HomeService.getFlashSale(params)
         .then(res => {
           setPopupData(res.data.data);
-          if (res.data.data.length) {
+          if (
+            res.data.data.length &&
+            !Utilities.mobilecheck() &&
+            res.data.data.hide_smartphone !== '1'
+          ) {
             addOverlayClass();
           } else {
+            setPopupData([]);
             HomeService.getHotShowPopupData()
               .then(res => {
                 setPopupData(res.data.data);
@@ -59,8 +65,8 @@ const HotShowPopup = () => {
             <div className="hotshow-topbar">
               <div className="hotshow-topbar-left">
                 <span>
-                  We are anticipating very high demand for the following
-                  show(s).
+                  We are anticipating very high demand for the following show
+                  {popupData.length === 1 ? '' : '(s)'}.
                 </span>
               </div>
               <div className="hotshow-topbar-right">
@@ -134,7 +140,7 @@ const HotShowPopup = () => {
                       className="hotshow-block hotshow-block-fullwidth"
                       key={index}
                     >
-                      <div className="hotshowimg">
+                      <a href={objData.navigation_link} className="hotshowimg">
                         {objData.type && objData.type.id === 2 ? (
                           <ReactPlayer url={objData.video_url} controls />
                         ) : (
@@ -144,7 +150,7 @@ const HotShowPopup = () => {
                             className="img-fluid"
                           />
                         )}
-                      </div>
+                      </a>
                       <div className="hotshow-content">
                         {objData.title && <h3>{objData.title}</h3>}
                         {objData.description && (
