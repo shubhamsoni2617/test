@@ -80,6 +80,10 @@
                     font-family: 'Rubik', sans-serif;
                     padding: 33px 16px 22px;
                     font-weight: 400;
+                    transition: 0.5s color;
+                    -webkit-transition: 0.5s color;
+                    -moz-transition: 0.5s color;
+                    -o-transition: 0.5s color;
                     &:before{
                         left: 0;
                         bottom: -2px;
@@ -93,9 +97,9 @@
                         -o-transition: 0.4s width, 0.2s color;
                     }
                     &:hover{
-                        color: #fff;
+                        color: #8ecaff;
                         &:before{
-                            width: 100%;
+                            width: 0%;
                         }
                     }
                     &.dropbtn{
@@ -222,6 +226,14 @@
                         .small-header-submenu{
                             opacity: 1;
                             visibility: visible;
+                        }
+                    }
+                }
+                &.active-link{
+                    a{
+                        color: #8ecaff;
+                        &:before{
+                            width: 100%;
                         }
                     }
                 }

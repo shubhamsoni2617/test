@@ -823,7 +823,7 @@
             max-width: 22%;
             margin: 10px;
             position: relative;
-            transition: all .3s ease-in;
+            transition: 0.3s ease-in-all;
             min-height: 254px;
             background-color: #fff;
             width: 100%;
@@ -989,7 +989,7 @@
             }
             &:hover{
                 .article-img{
-                    max-height: 144px;
+                    // max-height: 144px;
                     overflow: hidden;
                     @media(max-width: 1024px){
                         max-height: 173px;
@@ -1002,6 +1002,7 @@
                     -o-transition: 0.3s bottom;
                     -ms-transition: 0.3s bottom;
                     transition: 0.3s bottom;
+                    height: 95px;
                     @media(max-width: 1024px){
                         bottom: 0px;
                     }             

@@ -174,7 +174,7 @@
                 display: flex;
                 justify-content: center;
                 align-items: center;
-                height: 222px;
+                height: auto;
                 overflow: hidden;
                 min-height: 222px;
                 max-height: 222px;
@@ -187,10 +187,6 @@
                     width: auto;
                     max-width: 100%;
                     height: auto;
-                    @media(min-width: 767px){
-                        object-fit: cover;
-                        object-position: center;
-                    }
                 }
             }
             .event-details{
