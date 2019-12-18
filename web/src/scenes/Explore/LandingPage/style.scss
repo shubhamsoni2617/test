@@ -28,11 +28,11 @@
     .banner-content{
         flex: 0 0 100%;
         width: 100%;
-        padding: 0px 0px 0px 80px;
+        padding: 0px 0px 0px 40px;
         position: relative;
         height: 100%;
         @media(max-width: 1024px){
-            padding: 0px 0px 0px 50px;
+            padding: 0px 0px 0px 30px;
         }
         @media(max-width: 768px){
             padding: 0px;
@@ -1175,6 +1175,10 @@
 
 .explore-wrapper{
     .trending-wrapper{
+        position: relative;
+        .slick-slider{
+            position: static;
+        }
         .slick-arrow{
             height: 82px;
             width: 35px;
@@ -1194,13 +1198,15 @@
                 outline: none;
             }
             &.slick-prev{
+                left: 0;
                 background-image: url('../../../assets/images/left-arrow-white.svg');
                 &:hover{
                     border: none;
                 }
                 
             }
-            &.slick-next{                
+            &.slick-next{     
+                right: 0;           
                 background-image: url('../../../assets/images/right-arrow-white.svg');
                 &:hover{
                     border: none;
@@ -1256,18 +1262,18 @@
     //     }
         
     // }
-    .container-fluid > div {
-        padding-left: 40px;
-        padding-right: 40px;
-        @media(max-width: 1024px){
-            padding-left: 10px;
-            padding-right: 10px;
-        }
-        @media(max-width: 767px){
-            padding-left: 0px;
-            padding-right: 0px;
-        }
-    }
+    // .container-fluid > div {
+    //     padding-left: 40px;
+    //     padding-right: 40px;
+    //     @media(max-width: 1024px){
+    //         padding-left: 10px;
+    //         padding-right: 10px;
+    //     }
+    //     @media(max-width: 767px){
+    //         padding-left: 0px;
+    //         padding-right: 0px;
+    //     }
+    // }
     .whtsup-wrapper, .festivals-wrapper{
         @media (max-width: 768px){
             .container-fluid{

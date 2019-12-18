@@ -129,7 +129,7 @@ const CustomSectionThree = ({
         />
       ) : (
         <section className="video-gallery">
-          <div className="container-fluid">
+          <div className="container-fluid custom-container">
             <div className="section-top-wrapper">
               <h2>{heading}</h2>
             </div>

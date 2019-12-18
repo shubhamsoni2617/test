@@ -61,7 +61,7 @@ const CustomSectionTwo = ({
     )
   ) : (
     <section className="royal-wrapper">
-      <div className="container-fluid">
+      <div className="container-fluid custom-container">
         <div className="royal-side-padding">
           <div className="section-top-wrapper">
             <h2>{heading}</h2>
