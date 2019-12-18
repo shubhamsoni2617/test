@@ -288,6 +288,12 @@ const TopNav = props => {
         setChangeHeader(false);
       }
       //For event header class
+      // if (
+      //   location.pathname === '/' ||
+      //   location.pathname.split('/')[1] === 'attractions' ||
+      //   location.pathname.split('/')[1] === 'promotions' ||
+      //   location.pathname.split('/')[1] === 'explore'
+      // ) {
       if (location.pathname === '/') {
         setHeaderClass(true);
       } else {

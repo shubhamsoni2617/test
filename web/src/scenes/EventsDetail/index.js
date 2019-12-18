@@ -197,39 +197,7 @@ export default class EventsDetail extends Component {
       }
     });
     if (window.__INITIAL_DATA__ && window.__INITIAL_DATA__.pageData) {
-      this.setState({
-        detailData: window.__INITIAL_DATA__.pageData,
-        shimmer: false
-      });
-
-      //Emarsys code for view & category
-      if (localStorage.getItem('email')) {
-        window.ScarabQueue.push(['setEmail', localStorage.getItem('email')]);
-      }
-      if (
-        window.__INITIAL_DATA__.pageData &&
-        window.__INITIAL_DATA__.pageData.alias
-      ) {
-        window.ScarabQueue.push([
-          'view',
-          window.__INITIAL_DATA__.pageData.alias
-        ]);
-      }
-      if (window.__INITIAL_DATA__.pageData.genres) {
-        window.__INITIAL_DATA__.pageData.genres.map(item => {
-          if (item.is_primary === '1') {
-            ScarabQueue.push(['category', item.name]);
-          }
-        });
-        if (window.__INITIAL_DATA__.pageData.primary_genre) {
-          ScarabQueue.push([
-            'category',
-            window.__INITIAL_DATA__.pageData.primary_genre
-          ]);
-        }
-      }
-      window.ScarabQueue.push(['go']);
-      //End Emarsys code for view & category
+      this.processData(window.__INITIAL_DATA__.pageData);
       delete window.__INITIAL_DATA__.pageData;
     } else {
       this.callAPI(payload);
@@ -247,57 +215,65 @@ export default class EventsDetail extends Component {
     window.scrollTo(0, 0);
     this.setState({ shimmer: true });
     EventsService.getEventDetails(payload)
-      .then(res => {
-        let newState = { detailData: res.data };
-        if (res.data && res.data.synopsis && res.data.synopsis.length > 0) {
-          newState = {
-            ...newState,
-            synopsis: {
-              language: res.data.synopsis[0].language,
-              description: res.data.synopsis[0].description
-            }
-          };
-        }
-        if (
-          res &&
-          res.data &&
-          res.data.pop_up_message &&
-          res.data.pop_up_message.description
-        ) {
-          this.setState(
-            {
-              showNotice: true,
-              popupContent: res.data.pop_up_message.description,
-              popupTitle: res.data.pop_up_message.title
-            },
-            () => {
-              this.setState(newState);
-            }
-          );
-          //Emarsys code for view
-          if (localStorage.getItem('email')) {
-            window.ScarabQueue.push([
-              'setEmail',
-              localStorage.getItem('email')
-            ]);
-          }
-          window.ScarabQueue.push(['view', res.data.alias]);
-          if (res.data.primary_genre) {
-            ScarabQueue.push(['category', res.data.primary_genre]);
-          }
-          window.ScarabQueue.push(['go']);
-          //End Emarsys code for view
-        } else {
-          this.setState(newState);
-          this.setState({ shimmer: false });
-        }
-      })
+      .then(res => this.processData(res.data))
       .catch(err => {
         this.setState({
           shimmer: false
         });
         console.log(err);
       });
+  }
+
+  processData(pageData) {
+    let newState = {
+      detailData: pageData
+    };
+    if (pageData.synopsis && pageData.synopsis.length > 0) {
+      newState = {
+        ...newState,
+        synopsis: {
+          language: pageData.synopsis[0].language,
+          description: pageData.synopsis[0].description
+        }
+      };
+    }
+    if (
+      pageData &&
+      pageData.pop_up_message &&
+      pageData.pop_up_message.description
+    ) {
+      this.setState(
+        {
+          showNotice: true,
+          popupContent: pageData.pop_up_message.description,
+          popupTitle: pageData.pop_up_message.title
+        },
+        () => {
+          this.setState(newState);
+        }
+      );
+      //Emarsys code for view & category
+      if (localStorage.getItem('email')) {
+        window.ScarabQueue.push(['setEmail', localStorage.getItem('email')]);
+      }
+      if (pageData.alias) {
+        window.ScarabQueue.push(['view', pageData.alias]);
+      }
+      if (pageData.genres) {
+        pageData.genres.map(item => {
+          if (item.is_primary === '1') {
+            ScarabQueue.push(['category', item.name]);
+          }
+        });
+        if (pageData.primary_genre) {
+          ScarabQueue.push(['category', pageData.primary_genre]);
+        }
+      }
+      window.ScarabQueue.push(['go']);
+      //End Emarsys code for view & category
+    } else {
+      this.setState({ ...newState, shimmer: false });
+    }
   }
 
   componentWillUnmount() {
@@ -635,7 +611,7 @@ export default class EventsDetail extends Component {
               </div>
             )}
             <ArticleSection flag={true} code={code} />
-            <SimilarPicksSection data={similarEventsData} />
+            <SimilarPicksSection data={similarEventsData} type="Horizontal" />
             {detailData.is_show_over === 1 && (
               <>
                 {/* <GiftCard flag={true} /> */}
