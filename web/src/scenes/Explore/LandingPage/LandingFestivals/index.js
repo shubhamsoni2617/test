@@ -16,7 +16,7 @@ const LandingFestivals = ({ festivals }) => {
   };
   return (
     <section className="festivals-wrapper">
-      <div className="container-fluid">
+      <div className="container-fluid custom-container">
         <div className="section-top-wrapper">
           <h2>{festivals && festivals.heading}</h2>
           <div className="carousel-dots">

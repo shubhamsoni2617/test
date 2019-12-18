@@ -205,7 +205,7 @@ const ArticleList = ({ history, location }) => {
     <div className="events-page-wrapper articlelist-wrapper">
       <Breadcrumb breadCrumbData={BreadCrumbData} />
       <section className="">
-        <div className="container-fluid">
+        <div className="container-fluid custom-container">
           <div className="wrapper-events-listing">
             <div className={`filters ${mobileCheck ? `open` : ``}`}>
               <div className="filter-conatiner">

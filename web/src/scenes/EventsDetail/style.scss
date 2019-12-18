@@ -18,7 +18,7 @@
             padding: 0 30px;
         }
         @media(max-width: 767px){
-            padding: 0 15px;
+            padding: 0;
         }
         .advertisement-banner{
             padding: 0;
@@ -52,7 +52,7 @@
                 padding: 0 30px;
             }
             @media(max-width: 767px){
-                padding: 0 0 0 15px;
+                padding: 0 0 0 10px;
             }
         }
     }
@@ -68,7 +68,7 @@
                 padding: 0 30px;
             }
             @media(max-width: 767px){
-                padding: 0 0 0 15px;
+                padding: 0 0 0 10px;
             }
             // & > div{
             //     padding: 0 40px;
@@ -935,6 +935,11 @@
               white-space: unset;
           }
       }
+      #accordion__panel-3{
+          .image-conatiner{
+              margin-bottom: 15px;
+          }
+      }
   }
   //sidebar
   .accordion__item{
@@ -1156,7 +1161,7 @@
   .event-zoner-group{
     padding: 20px 0px 0;
     @media(max-width: 767px){
-        padding: 25px 15px  15px !important;
+        padding: 25px 10px 15px !important;
     }
     ul {
         display: flex;
