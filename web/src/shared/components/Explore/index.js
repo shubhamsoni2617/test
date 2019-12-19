@@ -5,6 +5,7 @@ import ShimmerEffect from '../ShimmerEffect';
 import Utilities from '../../utilities';
 import ExploreService from '../../services/ExploreService';
 import { Link } from 'react-router-dom';
+import EventHeading from '../../../shared/components/EventHeading';
 
 const Explore = props => {
   const [exploreData, setExploreData] = useState(null);
@@ -81,7 +82,11 @@ const Explore = props => {
                     </span>
                   );
                 })}
-                <h3>{exploreData[0].title.slice(0, 60)}</h3>
+                <EventHeading
+                  title={exploreData[0].title}
+                  lines={1}
+                  height={Utilities.mobilecheck() ? 18 : Utilities.mobileAndTabletcheck() ? 18 : 20}
+                />
               </div>
             </div>
           </Link>
@@ -109,7 +114,11 @@ const Explore = props => {
                           </span>
                         );
                       })}
-                    <h3>{cardData.title.slice(0, 50)}</h3>
+                    <EventHeading
+                      title={cardData.title}
+                      lines={3}
+                      height={Utilities.mobilecheck() ? 18 : Utilities.mobileAndTabletcheck() ? 18 : 20}
+                    />
                   </div>
                 </div>
               </Link>
