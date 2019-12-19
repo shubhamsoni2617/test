@@ -31,27 +31,14 @@ const Item = ({ event }) => {
           <EventHeading
             title={event && event.title}
             lines={2}
-            height={Utilities.mobileAndTabletcheck() ? 16 : 20}
+            height={Utilities.mobilecheck() ? 18 : Utilities.mobileAndTabletcheck() ? 20 : 20}
           />
-          {/* {event && event.title && (
-            <h3>
-              {Utilities.showLimitedChars(
-                event && event.title,
-                Utilities.mobilecheck() ? 30 : 40
-              )}
-            </h3>
-          )} */}
           <Ellipsis
             title={event.event_date}
-            lines={2}
+            lines={1}
             height={Utilities.mobilecheck() ? 15 : 18}
-            // size={13}
-            allowTooltip={true}
             customClass="featured-event-date"
           />
-          {/* {event && event.event_date && (
-            <p className="featured-event-date">{event.event_date}</p>
-          )} */}
           <Ellipsis
             title={event.venue_name}
             lines={1}
@@ -59,14 +46,6 @@ const Item = ({ event }) => {
             allowTooltip={false}
             customClass="venue-name"
           />
-          {/* {event && event.venue_name && (
-            <p className="venue-name">
-              {Utilities.showLimitedChars(
-                event && event.venue_name,
-                Utilities.mobilecheck() ? 35 : 50
-              )}
-            </p>
-          )} */}
         </div>
       </div>
     </a>
@@ -185,8 +164,8 @@ const FeaturedEvents = props => {
               propCls={`shm_col-xs-2 col-md-2`}
             />
           ) : (
-            shimmerWebTab
-          )
+              shimmerWebTab
+            )
         ) : Utilities.mobilecheck() ? (
           <div
             className="featured-wrapper"
@@ -198,29 +177,29 @@ const FeaturedEvents = props => {
               })}
           </div>
         ) : (
-          <Slider {...settings}>
-            {featuredEvents &&
-              featuredEvents.length > 0 &&
-              featuredEvents.map((event, index, array) => {
-                if (index % 2 === 0) {
-                  if (array[index] && array[index + 1]) {
-                    return (
-                      <div className="grid-container" key={index}>
-                        <Item event={array[index]} />
-                        <Item event={array[index + 1]} />
-                      </div>
-                    );
-                  } else if (array[index]) {
-                    return (
-                      <div className="grid-container" key={index}>
-                        <Item event={array[index]} />
-                      </div>
-                    );
-                  }
-                }
-              })}
-          </Slider>
-        )}
+              <Slider {...settings}>
+                {featuredEvents &&
+                  featuredEvents.length > 0 &&
+                  featuredEvents.map((event, index, array) => {
+                    if (index % 2 === 0) {
+                      if (array[index] && array[index + 1]) {
+                        return (
+                          <div className="grid-container" key={index}>
+                            <Item event={array[index]} />
+                            <Item event={array[index + 1]} />
+                          </div>
+                        );
+                      } else if (array[index]) {
+                        return (
+                          <div className="grid-container" key={index}>
+                            <Item event={array[index]} />
+                          </div>
+                        );
+                      }
+                    }
+                  })}
+              </Slider>
+            )}
       </div>
     </section>
   );

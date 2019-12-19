@@ -18,8 +18,8 @@ export const OneBigEightSmall = () => {
             Utilities.mobilecheck()
               ? 2
               : Utilities.mobileAndTabletcheck()
-              ? 3
-              : 4
+                ? 3
+                : 4
           }
           type="TILE"
           propCls={`trending-inner-child`}
@@ -31,8 +31,8 @@ export const OneBigEightSmall = () => {
             Utilities.mobilecheck()
               ? 2
               : Utilities.mobileAndTabletcheck()
-              ? 3
-              : 4
+                ? 3
+                : 4
           }
           type="TILE"
           propCls={`trending-inner-child`}
@@ -61,6 +61,6 @@ export const OneBigTwoSmall = () => {
           propCls={`trending-inner-child`}
         />
       </div>
-    </div>
+    </div >
   );
 };

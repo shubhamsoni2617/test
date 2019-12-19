@@ -9,14 +9,14 @@ export default function MetaData({ location, data }) {
       data.response &&
       data.response.metaData &&
       data.response.metaData.data) ||
-      {}
+    {}
   );
   useEffect(() => {
     if (window.__INITIAL_DATA__ && window.__INITIAL_DATA__.metaData) {
       setMetaData(
         (window.__INITIAL_DATA__.metaData &&
           window.__INITIAL_DATA__.metaData.data) ||
-          {}
+        {}
       );
       delete window.__INITIAL_DATA__.metaData;
     } else {
@@ -31,11 +31,13 @@ export default function MetaData({ location, data }) {
   const getMetaData = url => {
     return HomeService.getMetadata(url && url.substr(1));
   };
+
+  const titleContent = metaData && metaData.title && metaData.title.replace(/(<([^>]+)>)/gi, '');
   // if (!title) return null;
   return (
     <Helmet>
       <meta charSet="utf-8" />
-      {metaData.title && <title>{metaData.title}</title>}
+      {metaData.title && <title>{titleContent}</title>}
       {metaData.description && (
         <meta name="description" content={metaData.description} />
       )}

@@ -12,6 +12,7 @@ import promoImg1 from '../../../assets/images/promo-img1.svg';
 import promoImg2 from '../../../assets/images/promo-img2.svg';
 import promoImg3 from '../../../assets/images/promo-img3.svg';
 import promoImg4 from '../../../assets/images/promo-img4.svg';
+import EventHeading from '../../../shared/components/EventHeading';
 
 const ItemWrapper = ({ promotion, expiredText, handlePromotionExpired }) => {
   return (
@@ -56,7 +57,11 @@ const ItemWrapper = ({ promotion, expiredText, handlePromotionExpired }) => {
             )}
           </div>
         )}
-        <h3>{promotion.title}</h3>
+        <EventHeading
+          title={promotion.title}
+          lines={2}
+          height={Utilities.mobilecheck() ? 18 : Utilities.mobileAndTabletcheck() ? 18 : 20}
+        />
       </div>
     </Link>
   );
@@ -158,8 +163,8 @@ export default class PromotionCarousel extends Component {
             Utilities.mobilecheck()
               ? 2
               : Utilities.mobileAndTabletcheck()
-              ? 3
-              : 4
+                ? 3
+                : 4
           }
           type="TILE"
           propCls={`shm_col-xs-2 col-md-2`}
@@ -171,8 +176,8 @@ export default class PromotionCarousel extends Component {
             Utilities.mobilecheck()
               ? 2
               : Utilities.mobileAndTabletcheck()
-              ? 3
-              : 4
+                ? 3
+                : 4
           }
           type="TILE"
           propCls={`shm_col-xs-2 col-md-2`}
@@ -255,46 +260,46 @@ export default class PromotionCarousel extends Component {
                   })}
               </div>
             ) : (
-              <Slider {...settings}>
-                {promotions &&
-                  promotions.map((promotion, index, array) => {
-                    if (index % 2 === 0) {
-                      if (array[index] && array[index + 1]) {
-                        return (
-                          <div key={promotion.id} className="item-wrapper">
-                            <ItemWrapper
-                              promotion={array[index]}
-                              expiredText={expiredText}
-                              handlePromotionExpired={
-                                this.handlePromotionExpired
-                              }
-                            />
-                            <ItemWrapper
-                              promotion={array[index + 1]}
-                              expiredText={expiredText}
-                              handlePromotionExpired={
-                                this.handlePromotionExpired
-                              }
-                            />
-                          </div>
-                        );
-                      } else if (array[index]) {
-                        return (
-                          <div key={promotion.id} className="item-wrapper">
-                            <ItemWrapper
-                              promotion={array[index]}
-                              expiredText={expiredText}
-                              handlePromotionExpired={
-                                this.handlePromotionExpired
-                              }
-                            />
-                          </div>
-                        );
-                      }
-                    }
-                  })}
-              </Slider>
-            )}
+                  <Slider {...settings}>
+                    {promotions &&
+                      promotions.map((promotion, index, array) => {
+                        if (index % 2 === 0) {
+                          if (array[index] && array[index + 1]) {
+                            return (
+                              <div key={promotion.id} className="item-wrapper">
+                                <ItemWrapper
+                                  promotion={array[index]}
+                                  expiredText={expiredText}
+                                  handlePromotionExpired={
+                                    this.handlePromotionExpired
+                                  }
+                                />
+                                <ItemWrapper
+                                  promotion={array[index + 1]}
+                                  expiredText={expiredText}
+                                  handlePromotionExpired={
+                                    this.handlePromotionExpired
+                                  }
+                                />
+                              </div>
+                            );
+                          } else if (array[index]) {
+                            return (
+                              <div key={promotion.id} className="item-wrapper">
+                                <ItemWrapper
+                                  promotion={array[index]}
+                                  expiredText={expiredText}
+                                  handlePromotionExpired={
+                                    this.handlePromotionExpired
+                                  }
+                                />
+                              </div>
+                            );
+                          }
+                        }
+                      })}
+                  </Slider>
+                )}
           </div>
         </div>
       </section>
