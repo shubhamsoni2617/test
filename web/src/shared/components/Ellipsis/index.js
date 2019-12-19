@@ -40,7 +40,7 @@ function Ellipsis(props) {
         WebkitLineClamp: `${props.lines}`,
         WebkitBoxOrient: 'vertical',
         maxHeight: `${props.height * props.lines}px`,
-        minHeight: `${props.height * props.lines}px`,
+        //minHeight: `${props.height * props.lines}px`,
         ...styleObjectDefault
       });
     } else if (

@@ -100,41 +100,29 @@ const MegaMenu = props => {
               featuredEvents.length &&
               featuredEvents.map(event => {
                 return (
-                  <li key={event.id}>
-                    <div className="featured-event-img">
-                      <Image src={event.full_image} className="img-fluid" />
-                      {/* <img
-                        src={event.full_image}
-                        className="img-fluid"
-                        alt=""
-                      /> */}
-                    </div>
-                    <div className="featured-date-category">
-                      {/* {event.event_date && (
-                        <span className="date">{event.event_date}</span>
-                      )} */}
-
-                      <Ellipsis
-                        title={event.event_date}
-                        lines={2}
-                        height={Utilities.mobilecheck() ? 15 : 18}
-                        allowTooltip={false}
-                        customClass="date"
-                      />
-                      <span
-                        className={
-                          event.primary_genere === 'Theatre'
-                            ? 'category theatre'
-                            : `category ${event.primary_genere.toLowerCase()}`
-                        }
-                      >
-                        {event.primary_genere}
-                      </span>
-                    </div>
-                    <a href={event.navigation_link || ''} target="_blank">
-                      {/* <span className="featured-event-title">
-                        {event.title}
-                      </span> */}
+                  <li>
+                    <a href={event.navigation_link || ""} key={event.id} target="_blank">
+                      <div className="featured-event-img">
+                        <Image src={event.full_image} className="img-fluid" />
+                      </div>
+                      <div className="featured-date-category">
+                        <Ellipsis
+                          title={event.event_date}
+                          lines={2}
+                          height={Utilities.mobilecheck() ? 15 : 18}
+                          allowTooltip={false}
+                          customClass="date"
+                        />
+                        <span
+                          className={
+                            event.primary_genere === 'Theatre'
+                              ? 'category theatre'
+                              : `category ${event.primary_genere.toLowerCase()}`
+                          }
+                        >
+                          {event.primary_genere}
+                        </span>
+                      </div>
                       <Ellipsis
                         title={event.title}
                         lines={2}
