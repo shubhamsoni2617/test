@@ -11,6 +11,7 @@ import FeaturedArticles from './FeaturedArticle';
 import Image from '../../../shared/components/Image';
 import ShimmerEffect from '../../../shared/components/ShimmerEffect';
 import Utilities from '../../../shared/utilities';
+import MetaData from '../../../shared/components/MetaData';
 
 const Article = props => {
   const [articleData, setArticleData] = useState(null);
@@ -51,6 +52,9 @@ const Article = props => {
 
   return (
     <section className="articledetail-wrapper">
+      {props.location && (
+        <MetaData location={props.location} data={props.staticContext} />
+      )}
       {articleData && articleData.image && (
         <SliderBanner data={articleData.image} />
       )}
