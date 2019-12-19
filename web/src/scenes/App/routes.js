@@ -199,7 +199,7 @@ const routes = [
   },
   {
     path: '/preview/explore',
-    component: Festival,
+    component: Explore,
     exact: true
   },
   {
