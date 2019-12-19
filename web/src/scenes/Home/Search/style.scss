@@ -219,22 +219,22 @@
         }
     }
 }
-.attractions-page-wrapper{
-    .container-fluid{
-        max-width: 1360px;
-        margin: 0 auto;
-        padding: 0 40px;
-        @media(min-width: 1360px){
-            max-width: 1440px;
-        }
-        @media(max-width: 1024px){
-            padding: 0 30px;
-        }
-        @media(max-width: 767px){
-            padding: 0 10px 0 10px;
-        }
-    }
-}
+// .attractions-page-wrapper{
+//     .container-fluid{
+//         max-width: 1360px;
+//         margin: 0 auto;
+//         padding: 0 40px;
+//         @media(min-width: 1360px){
+//             max-width: 1440px;
+//         }
+//         @media(max-width: 1024px){
+//             padding: 0 30px;
+//         }
+//         @media(max-width: 767px){
+//             padding: 0 10px 0 10px;
+//         }
+//     }
+// }
 //load more button
 .promotion-load-more {
 	display: block;
@@ -338,6 +338,9 @@
             padding-right: 0px;
             padding-left: 0px;
         }
+        @media(min-width: 1200px){
+            max-width: 1020px;
+        }
     }
     h2{
         color: #343434;
@@ -365,9 +368,6 @@
                 }
                 li{
                     margin: 0 10px;
-                    @media(max-width: 991px){
-                        margin: 0px 10px 10px;
-                    }
                     .nav-item{
                         text-transform: capitalize;
                         font-weight: 500;
@@ -380,6 +380,12 @@
                     }
                     &:last-child{
                         margin-right: 0px;
+                    }
+                    @media(max-width: 991px){
+                        margin: 0 5px 10px;
+                        &:first-child{
+                            margin-left: 5px;
+                        }
                     }
                 }
             }

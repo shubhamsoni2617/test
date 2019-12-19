@@ -51,7 +51,7 @@ const FestivalEventLineUp = ({ sectionOne, sectionTwo }) => {
       (sectionTwo.heading ||
         (sectionTwo.sub_section_two && sectionTwo.sub_section_two > 0))) ? (
     <section className="featured-wrapper">
-      <div className="container-fluid featured-container">
+      <div className="container-fluid custom-container featured-container">
         <div className="featured-box">
           {sectionOne && (sectionOne.heading || sectionOne.image) && (
             <div className="featured">

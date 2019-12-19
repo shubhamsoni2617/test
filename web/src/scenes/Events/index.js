@@ -554,7 +554,7 @@ export default class Events extends Component {
         )}
         <Breadcrub breadCrumbData={this.breadCrumbData} />
         <section className="event-list-content">
-          <div className="container-fluid">
+          <div className="container-fluid custom-container">
             <div className="wrapper-events-listing">
               <div className={`filters ${this.state.filterFlag ? 'open' : ''}`}>
                 {shimmerFilter && (

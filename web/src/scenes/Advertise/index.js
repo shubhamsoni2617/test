@@ -47,7 +47,7 @@ const Advertise = props => {
       <section>
         <div className="event-wrapper">
           <div className="event-banner">
-            <div className="container-fluid">
+            <div className="container-fluid custom-container">
               <div className="row advertise-banner">
                 <div className="col-md-7 col-sm-7 adv-banner-left">
                   {advertiseData && (
@@ -133,7 +133,7 @@ const Advertise = props => {
       </section>
 
       <section>
-        <div className="container-fluid">
+        <div className="container-fluid custom-container">
           <div className="app-wrapper flex-row-reverse">
             <div className="app-content text-right pl-5">
               {advertiseData && (
@@ -174,7 +174,7 @@ const Advertise = props => {
       </section>
 
       <section>
-        <div className="container-fluid">
+        <div className="container-fluid custom-container">
           <div className="app-wrapper">
             <div className="app-content pr-5">
               {advertiseData && (
@@ -200,7 +200,7 @@ const Advertise = props => {
       </section>
 
       <section>
-        <div className="container-fluid">
+        <div className="container-fluid custom-container">
           <div className="app-wrapper flex-row-reverse">
             <div className="app-content text-right pl-5">
               {advertiseData && (

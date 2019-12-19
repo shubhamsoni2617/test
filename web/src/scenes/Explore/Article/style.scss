@@ -336,14 +336,20 @@ section.whats-new {
         justify-content: center;
         align-items: center;
         min-height: 256px;
+        max-width: 189px;
+        margin-left: auto;
+        width: 100%;
         @media(max-width: 991px){
             max-width: 420px;
             width: 100%;
+            margin-left: unset;
+            min-height: 130px;
         }
         @media(max-width: 991px) and (orientation: portrait){
             max-width: 320px;
         }
         .image-conatiner{
+            overflow: visible;
             @media(max-width: 991px){
                 width: auto;
             }
@@ -380,7 +386,7 @@ section.whats-new {
             text-transform: capitalize;
             @media(max-width: 991px){
                 padding: 0px;
-                text-align: left;
+                text-align: center;
             }
             @media(max-width: 576px){
                 margin-bottom: 15px;
