@@ -24,10 +24,6 @@ export default class App extends React.Component {
 
     return [
       HomeService.getMetadata(req.url && req.url.substr(1)),
-      AdvertisementService.getLeaderboardImage({
-        client: Constants.CLIENT,
-        page: 1
-      }),
       HomeService.getHomepageVenues(0, 5, ''),
       HomeService.getGenre(),
       AdvertisementService.getFindAnEventAds({

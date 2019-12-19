@@ -129,6 +129,11 @@ export default class EventsDetail extends Component {
       if (pathArr[2]) {
         payload.code = pathArr[2];
       }
+    } else if (pathArr.length && pathArr[1] === 'preview') {
+      console.log('pathArr[1]', pathArr);
+      if (pathArr[3]) {
+        payload.code = pathArr[3];
+      }
     }
     return [EventsService.getEventDetails(payload)];
   }
