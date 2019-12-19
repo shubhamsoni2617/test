@@ -12,7 +12,7 @@ export default function MetaData({ location, data }) {
       {}
   );
   useEffect(() => {
-    if (window.__INITIAL_DATA__) {
+    if (window.__INITIAL_DATA__ && window.__INITIAL_DATA__.metaData) {
       setMetaData(
         (window.__INITIAL_DATA__.metaData &&
           window.__INITIAL_DATA__.metaData.data) ||

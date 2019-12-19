@@ -53,13 +53,20 @@ export default class App extends React.Component {
     ) {
       API.defaults.baseURL += 'preview';
     }
+    console.log('typeof window', typeof window);
+    if (typeof window == 'undefined') {
+      console.log('server');
+    }
+    if (typeof window != 'undefined') {
+      console.log('window');
+      API.defaults.headers.common['device_id'] = Utilities.getDeviceID();
+    }
   }
 
   componentDidMount() {
     if (localStorage.getItem('email')) {
       API.defaults.headers.common['email'] = localStorage.getItem('email');
     }
-    API.defaults.headers.common['device_id'] = Utilities.getDeviceID();
 
     setTimeout(() => {
       document.body.classList.remove('fix-height');
