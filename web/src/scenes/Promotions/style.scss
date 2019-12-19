@@ -69,7 +69,7 @@
                     }
                 }
             }
-        
+
         //load more button
         .promotion-load-more {
             display: block;
@@ -130,13 +130,14 @@
             position: fixed;
             left: 50%;
             top: 50%;
-            width: 60px;
+            width: 100px;
             box-shadow: 0 0 10px #DDD;
             border-radius: 50%;
             overflow: hidden;
             margin-left: 150px;
             margin-top: 70px;
             z-index: 5;
+            transform: translate(-50%, -50%);
         }
         .fixed-buttons-events{
             position: fixed;

@@ -5,7 +5,7 @@ import Card from '../../shared/components/Card';
 import AttractionsService from '../../shared/services/AttractionsService';
 import noEvent from '../../assets/images/no-event.svg';
 import Breadcrub from '../../scenes/App/Breadcrumb';
-import loaderImage from '../../assets/images/loader.svg';
+import loaderImage from '../../assets/images/sistic-loader.gif';
 import AttractionBreadcrumbImage from '../../assets/images/attractionbanner.png';
 import ShimmerEffect from '../../shared/components/ShimmerEffect';
 // import LoadMoreButton from "../../shared/components/LoadMoreButton";

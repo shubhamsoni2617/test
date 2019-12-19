@@ -299,7 +299,8 @@
     position: fixed;
     left: 50%;
     top: 50%;
-    width: 60px;
+    transform: translate(-50%, -50%);
+    width: 100px;
     box-shadow: none;
     border-radius: 50%;
     overflow: hidden;
@@ -400,7 +401,7 @@
                 a{
                     display: block;
                 }
-                .image-conatiner{        
+                .image-conatiner{
                     width: 100%;
                     max-width: 473px;
                     max-height: 122px;
