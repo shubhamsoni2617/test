@@ -47,7 +47,6 @@ app.get('/sistic/docroot/**', function(req, res) {
   request
     .get({
       url: newurl,
-      body: JSON.stringify(req.body),
       headers: req.headers
     })
     .on('error', function(err) {
