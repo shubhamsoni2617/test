@@ -12,6 +12,8 @@ import CustomtomSectionThree from '../../Home/CustomSectionThree';
 import GiftCard from '../../Home/GiftCard';
 import Utilities from '../../../shared/utilities';
 import ShimmerEffect from '../../../shared/components/ShimmerEffect';
+import AdvertisementService from '../../../shared/services/AdvertisementService';
+import Constants from '../../../shared/constants';
 
 const Explore = () => {
   const [data, setData] = useState([]);
@@ -92,7 +94,12 @@ const Explore = () => {
     articles.data &&
     articles.data.length > 0 && <LandingArticles articles={articles} />;
 
-  const giftCardPart = <GiftCard />;
+  const giftCardPart = (
+    <GiftCard
+      api={AdvertisementService.getLeaderboardImage}
+      params={{ client: Constants.CLIENT, page: 4 }}
+    />
+  );
 
   const festivalsPart = festivals &&
     festivals.data &&
