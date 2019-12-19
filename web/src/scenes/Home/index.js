@@ -27,7 +27,6 @@ import AdvertisementService from '../../shared/services/AdvertisementService';
 import TopPics from './TopPics';
 import MetaData from '../../shared/components/MetaData';
 // import Royals from './Royals';
-
 import HomePageCarouselContainer from './HomePageCarouselContainer';
 
 class Home extends Component {
@@ -165,7 +164,14 @@ class Home extends Component {
                 case 'TOP_PICKS':
                   return <TopPics heading={label} />;
                 case 'MID_PANEL':
-                  return <GiftCard />;
+                  return (
+                    <GiftCard
+                      api={
+                        AdvertisementService.getSidePanelBetweenTopPicksFeaturedEvents
+                      }
+                      params={{ client: Constants.CLIENT }}
+                    />
+                  );
                 case 'FEATURED_EVENTS':
                   return (
                     <FeaturedEvents
