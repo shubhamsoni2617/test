@@ -13,23 +13,20 @@ import Welcome from './Welcome';
 import SliderBanner from '../SliderBanner';
 import ShimmerEffect from '../../../shared/components/ShimmerEffect';
 import Utilities from '../../../shared/utilities';
-
-const Festival = ({ match }) => {
+import MetaData from '../../../shared/components/MetaData';
+const Festival = ({ match, location, staticContext }) => {
   const [templateTwoContent, setTemplateTwoContent] = useState([]);
   const [loading, setLoading] = useState(false);
-
   const breadcrumbSlug = [
     { path: '/', title: 'Home' },
     { path: '/explore', title: '/ Explore' },
     { path: '/festival', title: '/ Festival' }
   ];
-
   useEffect(() => {
     scrollToTop();
     setLoading(true);
     getTemplateTwo();
   }, []);
-
   const getTemplateTwo = () => {
     const params = {
       id: match.params.id
@@ -52,11 +49,9 @@ const Festival = ({ match }) => {
         }
       });
   };
-
   const scrollToTop = () => {
     window.scrollTo(0, 0);
   };
-
   const reusedShimmer = (height, count, type, propCls) => {
     return (
       <ShimmerEffect
@@ -69,7 +64,6 @@ const Festival = ({ match }) => {
       />
     );
   };
-
   const {
     title,
     subtitle,
@@ -87,7 +81,6 @@ const Festival = ({ match }) => {
     image,
     order
   } = templateTwoContent;
-
   const bannerPart = image && image.length > 0 && <SliderBanner data={image} />;
   const welcomePart = title ? (
     <Welcome
@@ -104,7 +97,6 @@ const Festival = ({ match }) => {
       </div>
     </div>
   ) : null;
-
   const festivalPart =
     section_one && section_two ? (
       <FestivalEventLineUp sectionOne={section_one} sectionTwo={section_two} />
@@ -118,7 +110,6 @@ const Festival = ({ match }) => {
         )}
       </div>
     ) : null;
-
   const musicalPart = section_three ? (
     <MusicFestival sectionThree={section_three} />
   ) : loading ? (
@@ -131,7 +122,6 @@ const Festival = ({ match }) => {
       )}
     </div>
   ) : null;
-
   const allEventPart = section_four ? (
     <AllEvents sectionFour={section_four} />
   ) : loading ? (
@@ -144,11 +134,9 @@ const Festival = ({ match }) => {
       )}
     </div>
   ) : null;
-
   const socialWallPart = social_wall_url && (
     <SocialWall socialUrl={social_wall_url} />
   );
-
   const ticketDealsPart = section_five ? (
     <TicketDeals sectionFive={section_five} />
   ) : loading ? (
@@ -161,7 +149,6 @@ const Festival = ({ match }) => {
       )}
     </div>
   ) : null;
-
   const articlesPart =
     section_six &&
     section_six.sub_section_six &&
@@ -177,7 +164,6 @@ const Festival = ({ match }) => {
         )}
       </div>
     ) : null;
-
   const pollNSurveysPart = section_seven ? (
     <PollNServeys sectionSeven={section_seven} />
   ) : loading ? (
@@ -190,11 +176,9 @@ const Festival = ({ match }) => {
       )}
     </div>
   ) : null;
-
   const videoGalleryPart = section_eigth && section_eigth.length > 0 && (
     <VideoGallery sectionEight={section_eigth} />
   );
-
   const sectionArray = [
     { orderNo: 'section_three', returnPart: musicalPart },
     { orderNo: 'section_four', returnPart: allEventPart },
@@ -204,9 +188,9 @@ const Festival = ({ match }) => {
     { orderNo: 'section_seven', returnPart: pollNSurveysPart },
     { orderNo: 'section_eight', returnPart: videoGalleryPart }
   ];
-
   return (
     <div className="festival-wrapper">
+      {location && <MetaData location={location} data={staticContext} />}
       {bannerPart}
       {welcomePart}
       {festivalPart}
@@ -222,5 +206,4 @@ const Festival = ({ match }) => {
     </div>
   );
 };
-
 export default Festival;

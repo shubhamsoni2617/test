@@ -198,6 +198,11 @@ const routes = [
     exact: true
   },
   {
+    path: '/preview/explore',
+    component: Explore,
+    exact: true
+  },
+  {
     path: '/preview/events/search',
     exact: true,
     component: Events
@@ -216,6 +221,10 @@ const routes = [
   {
     path: '/preview/promotions',
     exact: true,
+    component: Promotions
+  },
+  {
+    path: '/preview/promotions/:promoId',
     component: Promotions
   },
   {
