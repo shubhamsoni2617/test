@@ -9,7 +9,7 @@ import noEvent from '../../assets/images/no-event.svg';
 import Breadcrub from '../../scenes/App/Breadcrumb';
 import ListView from '../../assets/images/list-view.svg';
 import GridView from '../../assets/images/grid-view.svg';
-import loaderImage from '../../assets/images/loader-tick3.gif';
+import loaderImage from '../../assets/images/sistic-loader.gif';
 import EventBreadcrumbImage from '../../assets/images/events.png';
 import EventBreadcrumbImageBlur from '../../assets/images/events-blur.png';
 import filterIcon from '../../assets/images/events/filter.svg';

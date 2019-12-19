@@ -343,6 +343,10 @@
                 overflow: hidden;
                 text-overflow: ellipsis;
                 /* autoprefixer: off */ -webkit-box-orient: vertical; /* autoprefixer: on */
+                transition: 0.5s color;
+                -webkit-transition: 0.5s color;
+                -moz-transition: 0.5s color;
+                -o-transition: 0.5s color;
                 @media(max-width: 1024px){
                     font-size: 15px;
                     max-height: 35px;
@@ -442,6 +446,9 @@
                         opacity: 0;
                         content: none;
                     }
+                }
+                h3{
+                    color: #0098ff;
                 }
                 .category-group{
                     li{

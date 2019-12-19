@@ -780,6 +780,9 @@ section.whats-new {
             justify-content: center;
             align-items: center;
             height: 460px;
+            @media(max-width: 1024px){
+                height: auto;
+            }
             img{
                 max-height: 460px;
                 width: auto !important;
@@ -787,9 +790,15 @@ section.whats-new {
                 // min-height: 200px;
                 // object-fit: cover;
                 // object-position: center;
-                @media(max-width: 576px){
-                    height: 190px;
+                @media(max-width: 1024px){
+                    max-width: 100%;
+                    width: auto;
+                    height: auto;
+                    max-height: 100%;
                 }
+                // @media(max-width: 576px){
+                //     height: 190px;
+                // }
             }
         }
         .slick-arrow{
