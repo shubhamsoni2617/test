@@ -183,6 +183,11 @@ const routes = [
     exact: true
   },
   {
+    path: '/preview/search',
+    component: Search,
+    exact: true
+  },
+  {
     path: '/preview/explore/articles',
     component: ArticleList,
     exact: true
