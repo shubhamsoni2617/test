@@ -325,9 +325,9 @@ const TopNav = props => {
       // if (status === false) {
       //   document.body.classList.remove('body-overlay');
       // }
-      // setTimeout(() => {
-      setMegaMenuAnimating(false);
-      // }, 500);
+      setTimeout(() => {
+        setMegaMenuAnimating(false);
+      }, 500);
     }, 100);
   };
 
