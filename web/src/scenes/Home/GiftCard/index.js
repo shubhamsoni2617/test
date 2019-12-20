@@ -1,8 +1,6 @@
-import React, { useState, useEffect } from 'react';
-import Constants from '../../../shared/constants';
-import AdvertisementService from '../../../shared/services/AdvertisementService';
+import React, { useState, useEffect, Fragment } from 'react';
 
-const GiftCard = () => {
+const GiftCard = ({ api, params }) => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
@@ -10,13 +8,7 @@ const GiftCard = () => {
     getData();
   }, []);
   const getData = () => {
-    const params = {
-      client: Constants.CLIENT,
-      limit: 1,
-      first: 0,
-      sort_order: 'DESC'
-    };
-    AdvertisementService.getSidePanelBetweenTopPicksFeaturedEvents(params)
+    api(params)
       .then(res => {
         if (res && res.data) {
           setTimeout(() => {
@@ -36,27 +28,27 @@ const GiftCard = () => {
   if (error) return null;
 
   return (
-    <>
-      {data.map(elem => {
-        return (
-          <div className="adds-container" key={elem.title}>
-            <a
-              href={elem && elem.navigation_link}
-              className="giftcard-anchor"
-              target="_blank"
-              key={elem.title}
-            >
-              <img
-                src={elem && elem.full_image}
-                className="img-fluid"
-                alt={elem && elem.alt_text}
-                title={elem && elem.title}
-              />
-            </a>
-          </div>
-        );
-      })}
-    </>
+    <Fragment>
+      {data &&
+        data.map(elem => {
+          return (
+            <div className="adds-container" key={elem.title}>
+              <a
+                href={elem && elem.navigation_link}
+                className="giftcard-anchor"
+                target="_blank"
+              >
+                <img
+                  src={elem && elem.full_image}
+                  className="img-fluid"
+                  alt={elem && elem.alt_text}
+                  title={elem && elem.title}
+                />
+              </a>
+            </div>
+          );
+        })}
+    </Fragment>
   );
 };
 

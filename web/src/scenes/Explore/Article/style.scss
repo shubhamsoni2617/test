@@ -191,15 +191,8 @@ section.whats-new {
 		-o-transition: 0.3s color;
 		margin-bottom: 0px;
 		color: #ffffff;
-		min-height: 54px;
         padding-bottom: 13px;
         margin-bottom: 10px;
-		@media(max-width: 1366px) {
-			min-height: 54px;
-		}
-		@media(max-width: 991px) {
-			min-height: auto;
-		}
 		@media (max-width: 767px) {
             margin-bottom: 8px;
             padding-bottom: 0;
@@ -211,16 +204,16 @@ section.whats-new {
         font-size: 13px;
         &.dt-srt-end{
             font-size: 13px;
-            min-height: 36px;
+            min-height: auto;
             margin-bottom: 1px;
             @media(min-width: 1136px) and (max-width: 1280px){
-                min-height: 36px;
+                min-height: auto;
             }
             @media(max-width: 991px){
                 line-height: 17px;
             }
             @media(max-width: 576px){
-                font-size: 11px;
+                font-size: 14px;
             }
         }
 	}
@@ -602,16 +595,9 @@ section.whats-new {
                             min-height: 32px;
                         }
                         &.featured-event-date{
-                            min-height: 34px;
+                            min-height: auto;
                             margin-bottom: 10px;
-                            @media(max-width: 1024px){
-                                min-height: 34px;
-                            }
-                            @media(max-width: 768px){
-                                min-height: 34px;
-                            }
                             @media(max-width: 767px){
-                                min-height: 32px;
                                 margin-bottom: 5px;
                             }
                         }

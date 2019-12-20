@@ -37,10 +37,11 @@
             display: flex;
             @media(min-width: 768px) and (max-width: 1024px) and (orientation: landscape){
                 max-height: 275px;
-                height: 100%;
+                height: auto;
+                overflow: hidden;
             }
             @media(max-width: 768px) and (orientation: portrait){
-                max-height: 300px;
+                max-height: 100%;
             }
             @media(max-width: 767px){
                 max-height: 100%;
@@ -113,16 +114,6 @@
                 color: #fff;
                 padding: 0px;
                 margin: 0px;
-                text-overflow: ellipsis;
-                display: -webkit-box;
-                -webkit-line-clamp: 3;
-                transition: all 0.3s ease-in-out;
-                -webkit-transition: all 0.3s ease-in-out;
-                -moz-transition: all 0.3s ease-in-out;
-                -o-transition: all 0.3s ease-in-out;
-                overflow: hidden;
-                height: auto;
-                /* autoprefixer: off */ -webkit-box-orient: vertical; /* autoprefixer: on */
                 transition: 0.5s color;
                 -webkit-transition: 0.5s color;
                 -moz-transition: 0.5s color;
@@ -137,7 +128,7 @@
                     line-height: 18px;
                 }
                 @media(max-width: 576px){
-                    height: 55px;
+                    height: auto;
                     overflow: hidden;
                 }
                 a{
@@ -154,7 +145,7 @@
             }
             p{
                 color: #B5BDC3;
-                padding-top: 3px;
+                margin-top: 3px;
                 @media(max-width: 767px){
                     font-size: 12px;
                 }
@@ -236,7 +227,7 @@
                 margin-right: 10px;
             }
             @media(max-width: 576px){
-                margin-bottom: 15px;
+                margin-bottom: 5px;
                 margin-right: 10px;
                 flex: 0 0 100%;
                 width: 100%;
@@ -308,13 +299,6 @@
                     -webkit-transition: 0.5s color;
                     -moz-transition: 0.5s color;
                     -o-transition: 0.5s color;
-                    text-overflow: ellipsis;
-                    display: -webkit-box;
-                    -webkit-line-clamp: 2;
-                    transition: all 0.3s ease-in-out;
-                    overflow: hidden;
-                    height: 40px;
-                    /* autoprefixer: off */ -webkit-box-orient: vertical; /* autoprefixer: on */
                 }
                 p{
                     font-size: 14px;
@@ -332,9 +316,9 @@
             &:hover{
                 @media(min-width: 991px){
                     background-color: rgba(0, 152, 255, 0.2);
-                    h3{
-                        color: #ffffff;
-                        a{
+                    a{
+                        color: #0098ff;
+                        h3{
                             color: #0098ff;
                         }
                     }

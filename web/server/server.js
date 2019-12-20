@@ -75,11 +75,10 @@ app.get('*', (req, res, next) => {
 
             var dataObject = {
               metaData: result[0] && result[0].data,
-              leaderBoardData: result[1] && result[1].data,
-              venuesData: result[2] && result[2].data,
-              genreData: result[3] && result[3].data,
-              findAnEventAddsData: result[4] && result[4].data,
-              pageData: result[5] ? result[5].data : null
+              venuesData: result[1] && result[1].data,
+              genreData: result[2] && result[2].data,
+              findAnEventAddsData: result[3] && result[3].data,
+              pageData: result[4] ? result[4].data : null
             };
             const markup = renderToString(
               <HelmetProvider context={helmetContext}>
