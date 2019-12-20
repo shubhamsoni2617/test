@@ -70,9 +70,6 @@
         @media(max-width: 767px){
             padding-top: 10px;
         }
-        // .ScrollbarsCustom, .ScrollbarsCustom-Wrapper, .ScrollbarsCustom-Scroller{
-        //     overflow: visible !important;
-        // }
         .video-item-image{
             display: flex;
             flex-wrap: wrap;
@@ -196,26 +193,29 @@
                 }
             }
             .video-restrict-overlay{
-              pointer-events: none;
-              position: relative;
-              height: 100%;
-              width: 100%;
-              .video-duration {
-                position: absolute;
-                right: 3px;
-                bottom: 3px;
-                background: #000;
-                width: auto;
-                text-align: right;
-                padding: 2px 5px;
-                color: #fff;
-                border-radius: 4px;
-                font-size: 12px;
-                line-height: 14px;
+                pointer-events: none;
+                position: relative;
+                height: 100%;
+                width: 100%;
+                .image-conatiner{
+                    height: 100%;
+                }
+                .video-duration {
+                    position: absolute;
+                    right: 3px;
+                    bottom: 3px;
+                    background: #000;
+                    width: auto;
+                    text-align: right;
+                    padding: 2px 5px;
+                    color: #fff;
+                    border-radius: 4px;
+                    font-size: 12px;
+                    line-height: 14px;
                 &:empty{
                     display: none;
                 }
-              }
+            }
               .ytp-large-play-button,
               .ytp-button:not([aria-disabled=true]):not([disabled]):not([aria-hidden=true]) {
                 display: none;

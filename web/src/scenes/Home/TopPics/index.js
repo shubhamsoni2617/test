@@ -243,7 +243,7 @@ const TopPics = props => {
                                   <EventHeading
                                     title={pic.title}
                                     lines={2}
-                                    height={Utilities.mobileAndTabletcheck() ? 22 : 25}
+                                    height={Utilities.mobileAndTabletcheck() ? 22 : 28}
                                   />
                                   <span>
                                     <Ellipsis

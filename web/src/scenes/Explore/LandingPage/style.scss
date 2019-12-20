@@ -1169,6 +1169,7 @@
         }
         @media (max-width: 768px){
             height: 300px;
+            margin-top: 0px;
         }
     }
 }
@@ -1190,9 +1191,6 @@
             @media(max-width: 768px){
                 display: none !important;
             }
-            // @media(min-width: 768px) and (max-width: 1024px) and (orientation: portrait){
-            //     margin-top: 32px !important;
-            // }
             &:hover{
                 border: none;
                 outline: none;
@@ -1249,6 +1247,24 @@
         @media (max-width: 768px){
             .container-fluid{
                 padding-right: 0;
+            }
+        }
+    }
+    .video-gallery-wrapper{
+        .video-subwrapper{
+            .video-item-image{
+                .video-subwrapper-text{
+                    a{
+                        margin-bottom: 0px;
+                        h3{
+                            margin-bottom: 5px;
+                        }
+                    }
+                    span{
+                        margin-top: 0px;
+                        margin-bottom: 3px;
+                    }
+                }
             }
         }
     }
