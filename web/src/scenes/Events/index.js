@@ -549,7 +549,7 @@ export default class Events extends Component {
         {this.props.location && (
           <MetaData
             location={this.props.location}
-            data={{ title: 'Event listing' }}
+            data={this.props.staticContext}
           />
         )}
         <Breadcrub breadCrumbData={this.breadCrumbData} />
@@ -618,7 +618,7 @@ export default class Events extends Component {
                         <div
                           className={`fixed-buttons ${
                             fixed ? 'hide-inner' : ''
-                            }`}
+                          }`}
                         >
                           <a
                             onClick={() => {
@@ -647,7 +647,7 @@ export default class Events extends Component {
               <div
                 className={`events-listing ${
                   this.state.sortByFlag ? 'open' : ''
-                  }`}
+                }`}
               >
                 <div className="event-listing-sorting">
                   <SearchFilter
@@ -763,7 +763,7 @@ export default class Events extends Component {
                     <ShimmerEffect
                       propCls={`${
                         Utilities.mobileAndTabletcheck() ? 'shm_col-xs-6' : ''
-                        } col-md-4`}
+                      } col-md-4`}
                       height={150}
                       count={Utilities.mobileAndTabletcheck() ? 2 : 3}
                       type="LIST"

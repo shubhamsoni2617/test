@@ -11,7 +11,7 @@ import Network from './Network';
 import ContactUs from '../ApiPartner/ContactUs';
 import { animateScroll } from 'react-scroll';
 
-const LandingPage = ({ location }) => {
+const LandingPage = ({ location, staticContext }) => {
   const [landingPageData, setLandingPageData] = useState(null);
   const [testimonial, setTestimonial] = useState(null);
   useEffect(() => {
@@ -53,6 +53,7 @@ const LandingPage = ({ location }) => {
   };
   return (
     <div className="b2b-landing">
+      <MetaData location={location} data={staticContext} />
       <Banner bannerData={landingPageData} />
       <GetStarted
         getStartedData={landingPageData && landingPageData.content.get_started}
