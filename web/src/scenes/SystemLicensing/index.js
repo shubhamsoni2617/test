@@ -7,8 +7,9 @@ import TicketingSystem from './TicketingSystem';
 import Partners from '../ApiPartner/Partners';
 import ContactUs from '../ApiPartner/ContactUs';
 import Clients from './Clients';
+import MetaData from '../../shared/components/MetaData';
 
-const SystemLicensing = ({}) => {
+const SystemLicensing = ({ location, staticContext }) => {
   const [systemLicensing, setSystemLicensing] = useState([]);
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -36,6 +37,7 @@ const SystemLicensing = ({}) => {
 
   return (
     <div className="system-licence">
+      <MetaData location={location} data={staticContext} />
       <Banner
         title={banner_title}
         buttonLink={button_link}

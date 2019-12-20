@@ -17,6 +17,7 @@ import Utilities from '../../shared/utilities';
 import SearchFilter from '../../shared/components/SearchFilter';
 import Constants from '../../shared/constants';
 import FilterSelected from '../../shared/components/FilterSelected';
+import MetaData from '../../shared/components/MetaData';
 export default class Attractions extends Component {
   constructor(props) {
     super(props);
@@ -321,6 +322,10 @@ export default class Attractions extends Component {
 
     return (
       <div className="attractions-page-wrapper">
+        <MetaData
+          location={this.props.location}
+          data={this.props.staticContext}
+        />
         <Breadcrub breadCrumbData={this.breadCrumbData} />
         <div className="container-fluid">
           <div className="wrapper-events-listing attraction-wrapper-listing">
