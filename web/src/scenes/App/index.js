@@ -17,7 +17,7 @@ import Utilities from '../../shared/utilities';
 export default class App extends React.Component {
   static getInitialData(req) {
     let url = `http://${req.hostname}:8081${Constants.DOC_ROOT_URL}`;
-    if (req.url.split('/')[1] === 'preview') {
+    if (req.hostname === 'previewuat.sistic.com.sg') {
       url = `http://${req.hostname}:8081${Constants.DOC_ROOT_URL}preview`;
     }
     HomeService.setBaseURL(url);
@@ -42,24 +42,23 @@ export default class App extends React.Component {
         this.props.history.location.pathname.split('/')[1] === 'preview',
       showPreview: false
     };
-    if (
-      props &&
-      props.history &&
-      props.history.location.pathname.split('/')[1] === 'preview'
-    ) {
-      API.defaults.baseURL += 'preview';
-    }
-    console.log('typeof window', typeof window);
-    if (typeof window == 'undefined') {
-      console.log('server');
-    }
+    // if (typeof window == 'undefined') {
+    //   console.log('server');
+    // }
     if (typeof window != 'undefined') {
-      console.log('window');
+      if (window.location.hostname === 'previewuat.sistic.com.sg') {
+        API.defaults.baseURL += 'preview';
+      }
       API.defaults.headers.common['device_id'] = Utilities.getDeviceID();
     }
   }
 
   componentDidMount() {
+    if (window.location.hostname === 'previewuat.sistic.com.sg') {
+      this.setState({
+        showPreviewButton: true
+      });
+    }
     if (localStorage.getItem('email')) {
       API.defaults.headers.common['email'] = localStorage.getItem('email');
     }
