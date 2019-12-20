@@ -144,7 +144,7 @@ class Home extends Component {
         {this.props.location && (
           <MetaData
             location={this.props.location}
-            data={{ title: 'SISTIC Singapore' }}
+            data={this.props.staticContext}
           />
         )}
         <NewsTicker
