@@ -5,7 +5,7 @@ class HomeService {
     API.defaults.baseURL = url;
   }
   getMetadata(url) {
-    return API.get(`/get-metatags?url=${url || '/'}`);
+    return API.get(`/get-metatags?url=${url || 'home'}`);
   }
 
   getProductImage(params) {
