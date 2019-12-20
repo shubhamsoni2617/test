@@ -25,7 +25,6 @@ const AgentVenuePopUp = props => {
     isFile = Utilities.isFileExt(popUpDetail.festive_hours_file);
   }
 
-
   const isContent = popUpDetail => {
     if (popUpDetail) {
       const {
@@ -97,67 +96,89 @@ const AgentVenuePopUp = props => {
   }
 
   return (
-
     <div
-      className={`pop-up-list ${item.id === popUpDetail.id && isContent(popUpDetail) !== undefined ? 'active' : ''}`}
+      className={`pop-up-list ${
+        item.id === popUpDetail.id && isContent(popUpDetail) !== undefined
+          ? 'active'
+          : ''
+      }`}
     >
-      {isContent(popUpDetail) && <div className="popup-inner">
-        <a
-          href={`http://maps.google.com/?q=${popUpDetail &&
-            popUpDetail.latitude},${popUpDetail && popUpDetail.longitude}`}
-          className="direction"
-          target="_blank"
-        >
-          <img height="20" width="20" src={redirect} alt="direction" />
-        </a>
-        <div
-          className="popup-close-icon"
-          style={{
-            display:
-              !Utilities.mobileAndTabletcheck() &&
+      {isContent(popUpDetail) && (
+        <div className="popup-inner">
+          <a
+            href={`http://maps.google.com/?q=${popUpDetail &&
+              popUpDetail.latitude},${popUpDetail && popUpDetail.longitude}`}
+            className="direction"
+            target="_blank"
+          >
+            <img height="20" width="20" src={redirect} alt="direction" />
+          </a>
+          <div
+            className="popup-close-icon"
+            style={{
+              display:
+                !Utilities.mobileAndTabletcheck() &&
                 window.innerHeight < window.innerWidth
-                ? 'none'
-                : 'block'
-          }}
-        >
-          <img
-            height="20"
-            width="20"
-            onClick={closePopup}
-            src={closePopupImage}
-            alt="closePopup"
-          />
-        </div>
-
-        {popUpDetail.how_to_get_there ? (
-          <div className="agent-info">
-            <div className="icon">
-              <img src={address} alt="icon" />
-            </div>
-            <div className="details">
-              <h3>How To Get There</h3>
-              <p
-                dangerouslySetInnerHTML={{
-                  __html: popUpDetail.how_to_get_there
-                }}
-              ></p>
-            </div>
+                  ? 'none'
+                  : 'block'
+            }}
+          >
+            <img
+              height="20"
+              width="20"
+              onClick={closePopup}
+              src={closePopupImage}
+              alt="closePopup"
+            />
           </div>
-        ) : null}
 
-        {popUpDetail.parking ? (
-          <div className="agent-info">
-            <div className="icon">
-              <img src={parking} alt="icon" />
+          {popUpDetail.how_to_get_there ? (
+            <div className="agent-info">
+              <div className="icon">
+                <img src={address} alt="icon" />
+              </div>
+              <div className="details">
+                <h3>How To Get There</h3>
+                <p
+                  dangerouslySetInnerHTML={{
+                    __html: popUpDetail.how_to_get_there
+                  }}
+                ></p>
+              </div>
             </div>
-            <div className="details">
-              <h3>Parking</h3>
-              <p dangerouslySetInnerHTML={{ __html: popUpDetail.parking }}></p>
-            </div>
-          </div>
-        ) : null}
+          ) : null}
 
-        {venue &&
+          {popUpDetail.nearest_mrt ? (
+            <div className="agent-info">
+              <div className="icon">
+                <img src={address} alt="icon" />
+              </div>
+              <div className="details">
+                <h3>Nearest Metro Station</h3>
+                <p
+                  dangerouslySetInnerHTML={{
+                    __html: popUpDetail.nearest_mrt
+                  }}
+                ></p>
+              </div>
+            </div>
+          ) : null}
+
+          {popUpDetail.parking ? (
+            <div className="agent-info">
+              <div className="icon">
+                <img src={parking} alt="icon" />
+              </div>
+              <div className="details">
+                <h3>Parking</h3>
+                <p
+                  dangerouslySetInnerHTML={{ __html: popUpDetail.parking }}
+                ></p>
+              </div>
+            </div>
+          ) : null}
+
+          {venue &&
           popUpDetail.food_beverages &&
           popUpDetail.food_beverages[0].name ? (
             <div className="agent-info">
@@ -173,131 +194,136 @@ const AgentVenuePopUp = props => {
             </div>
           ) : null}
 
-        {!venue && popUpDetail.operating_hours ? (
-          <div className="agent-info">
-            <div className="icon">
-              <img src={clock} alt="icon" />
+          {!venue && popUpDetail.operating_hours ? (
+            <div className="agent-info">
+              <div className="icon">
+                <img src={clock} alt="icon" />
+              </div>
+              <div className="details">
+                <h3>Operating Hours</h3>
+                <p
+                  dangerouslySetInnerHTML={{
+                    __html: popUpDetail.operating_hours
+                  }}
+                ></p>
+                {popUpDetail.festive_hours && (
+                  <p style={{ color: '#FF8300' }}>
+                    {popUpDetail.festive_hours}
+                  </p>
+                )}
+              </div>
             </div>
-            <div className="details">
-              <h3>Operating Hours</h3>
-              <p
-                dangerouslySetInnerHTML={{
-                  __html: popUpDetail.operating_hours
-                }}
-              ></p>
-              {popUpDetail.festive_hours && (
-                <p style={{ color: '#FF8300' }}>{popUpDetail.festive_hours}</p>
-              )}
-            </div>
-          </div>
-        ) : null}
+          ) : null}
 
-        {venue && popUpDetail.contact_details ? (
-          <div className="agent-info popup-contact-details">
-            <div className="icon">
-              <img src={contact} alt="icon" />
+          {venue && popUpDetail.contact_details ? (
+            <div className="agent-info popup-contact-details">
+              <div className="icon">
+                <img src={contact} alt="icon" />
+              </div>
+              <div className="details">
+                <h3>Contact Detail</h3>
+                <div
+                  dangerouslySetInnerHTML={{
+                    __html: popUpDetail.contact_details
+                  }}
+                ></div>
+              </div>
             </div>
-            <div className="details">
-              <h3>Contact Detail</h3>
-              <div
-                dangerouslySetInnerHTML={{
-                  __html: popUpDetail.contact_details
-                }}
-              ></div>
+          ) : null}
+          {!venue && popUpDetail.payment_mode ? (
+            <div className="agent-info">
+              <div className="icon">
+                <img src={price} alt="icon" />
+              </div>
+              <div className="details">
+                <h3>Payment Mode</h3>
+                <p
+                  dangerouslySetInnerHTML={{ __html: popUpDetail.payment_mode }}
+                ></p>
+              </div>
             </div>
-          </div>
-        ) : null}
-        {!venue && popUpDetail.payment_mode ? (
-          <div className="agent-info">
-            <div className="icon">
-              <img src={price} alt="icon" />
+          ) : null}
+          {venue && popUpDetail.seating_capacity ? (
+            <div className="agent-info">
+              <div className="icon">
+                <img src={chair} alt="icon" className="chair-icon" />
+              </div>
+              <div className="details">
+                <h3>Seating Capacity</h3>
+                <p>{popUpDetail.seating_capacity}</p>
+              </div>
             </div>
-            <div className="details">
-              <h3>Payment Mode</h3>
-              <p
-                dangerouslySetInnerHTML={{ __html: popUpDetail.payment_mode }}
-              ></p>
+          ) : null}
+          {!venue && popUpDetail.reminder ? (
+            <div className="agent-info">
+              <div className="icon">
+                <img src={notification} alt="icon" />
+              </div>
+              <div className="details">
+                <h3>Ticket pick up Reminder</h3>
+                <p
+                  dangerouslySetInnerHTML={{ __html: popUpDetail.reminder }}
+                ></p>
+              </div>
             </div>
-          </div>
-        ) : null}
-        {venue && popUpDetail.seating_capacity ? (
-          <div className="agent-info">
-            <div className="icon">
-              <img src={chair} alt="icon" className="chair-icon" />
-            </div>
-            <div className="details">
-              <h3>Seating Capacity</h3>
-              <p>{popUpDetail.seating_capacity}</p>
-            </div>
-          </div>
-        ) : null}
-        {!venue && popUpDetail.reminder ? (
-          <div className="agent-info">
-            <div className="icon">
-              <img src={notification} alt="icon" />
-            </div>
-            <div className="details">
-              <h3>Ticket pick up Reminder</h3>
-              <p dangerouslySetInnerHTML={{ __html: popUpDetail.reminder }}></p>
-            </div>
-          </div>
-        ) : null}
+          ) : null}
 
-        {venue &&
-          popUpDetail.currentlyShowingData &&
-          popUpDetail.currentlyShowingData.length > 0 && (
+          {venue &&
+            popUpDetail.currentlyShowingData &&
+            popUpDetail.currentlyShowingData.length > 0 && (
+              <div className="agent-info">
+                <div className="icon">
+                  <img src={event} alt="icon" />
+                </div>
+                <div className="details">
+                  <h3>Currently Showing</h3>
+                  <ul className="currently-list">
+                    {popUpDetail.currentlyShowingData.map((elem, index) => {
+                      return (
+                        <li key={index}>
+                          <Image
+                            src={elem.thumb_image}
+                            alt="specific-event"
+                            type="Small"
+                          />
+                          <Link to={`/events/${elem.alias}`}>
+                            <EventHeading
+                              title={elem.title}
+                              lines={2}
+                              height={18}
+                              size={13}
+                              allowTooltip={false}
+                            />
+                          </Link>
+                        </li>
+                      );
+                    })}
+                  </ul>
+                </div>
+              </div>
+            )}
+
+          {isFile && (
             <div className="agent-info">
               <div className="icon">
                 <img src={event} alt="icon" />
               </div>
               <div className="details">
-                <h3>Currently Showing</h3>
-                <ul className="currently-list">
-                  {popUpDetail.currentlyShowingData.map((elem, index) => {
-                    return (
-                      <li key={index}>
-                        <Image
-                          src={elem.thumb_image}
-                          alt="specific-event"
-                          type="Small"
-                        />
-                        <Link to={`/events/${elem.alias}`}>
-                          <EventHeading
-                            title={elem.title}
-                            lines={2}
-                            height={18}
-                            size={13}
-                            allowTooltip={false}
-                          />
-                        </Link>
-                      </li>
-                    );
-                  })}
-                </ul>
+                <h3>Festive hours</h3>
+                <p>
+                  <a
+                    href={popUpDetail.festive_hours_file}
+                    download
+                    target="_blank"
+                  >
+                    Festive Hours file <img src={download} alt="Download" />
+                  </a>
+                </p>
               </div>
             </div>
           )}
-
-        {isFile && (
-          <div className="agent-info">
-            <div className="icon">
-              <img src={event} alt="icon" />
-            </div>
-            <div className="details">
-              <h3>Festive hours</h3>
-              <p>
-                <a
-                  href={popUpDetail.festive_hours_file}
-                  download
-                  target="_blank"
-                >
-                  Festive Hours file <img src={download} alt="Download" />
-                </a>
-              </p>
-            </div>
-          </div>
-        )}
-      </div>}
+        </div>
+      )}
     </div>
   );
 };
