@@ -2644,6 +2644,7 @@ p {
 			display: block;
 			margin: 0px;
 			white-space: normal;
+			min-height: 40px;
 			transition: 1s all;
 			-webkit-transition: 1s all;
 			-moz-transition: 1s all;
@@ -2655,6 +2656,7 @@ p {
 			@media (max-width: 768px) {
 				font-size: 14px;
 				line-height: 18px;
+				min-height: 36px;
 				width: auto;
 				height: auto;
 			}
