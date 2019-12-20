@@ -66,7 +66,7 @@ const CarouselConatiner = props => {
   return (
     <div ref={element} className="carousel-container">
       <section className={props.classStr}>
-        <div className="container-fluid">
+        <div className="container-fluid custom-container">
           <div className="section-top-wrapper">
             <h2>{props.title}</h2>
             <div className="carousel-dots">

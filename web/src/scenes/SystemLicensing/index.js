@@ -46,7 +46,7 @@ const SystemLicensing = ({}) => {
       <TicketingSystem ticketingSystem={content && content.tickeying_system} />
       <section>
         <div className="methodology">
-          <div className="container-fluid">
+          <div className="container-fluid custom-container">
             {content && content.product_design && (
               <div>
                 <h2 className="text-center section-title">

@@ -43,7 +43,7 @@ const TrendingNow = ({ heading }) => {
 
   return (
     <section className="trending-now">
-      <div className="container-fluid">
+      <div className="container-fluid custom-container">
         <h2>{heading}</h2>
         {loading ? (
           <OneBigEightSmall />

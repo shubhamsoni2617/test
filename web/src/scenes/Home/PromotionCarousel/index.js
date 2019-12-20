@@ -181,7 +181,7 @@ export default class PromotionCarousel extends Component {
     );
     return (
       <section className="promotions" ref={node => (this.element = node)}>
-        <div className="container-fluid">
+        <div className="container-fluid custom-container">
           <div className="section-top-wrapper">
             <h2>
               {this.props.heading}
