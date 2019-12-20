@@ -36,7 +36,7 @@
     }
     h3{
         transition: 0.5s color;
-        -webkit-transition: 0.5s color;
+        -webkit-transition: 0.5s color; 
         -moz-transition: 0.5s color;
         -o-transition: 0.5s color;
     }
@@ -56,26 +56,28 @@
             margin: 0px;
         }
         &:hover{
-          cursor: default;
-            transition: 0.3s border;
-            .event-details {
-                .price-event{
-                    .buy-btn{
-                        background: #0098FF url(../../../assets/images/buy-arrow.png) 94% 12px no-repeat;
-                        color: #FFF;
-                        border: none;
-                        @media(max-width: 991px){
-                            background: #0098ff url(../../../assets/images/buy-arrow.png) 94% 13px no-repeat;
-                            background-size: 20px;
-                        }
-                        @media(max-width: 767px){
-                            background: #0098ff url(../../../assets/images/buy-arrow.png) 94% 10px no-repeat;
-                            background-size: 18px;
+            @media(min-width: 767px){
+                cursor: default;
+                transition: 0.3s border;
+                .event-details {
+                    .price-event{
+                        .buy-btn{
+                            background: #0098FF url(../../../assets/images/buy-arrow.png) 94% 12px no-repeat;
+                            color: #FFF;
+                            border: none;
+                            @media(max-width: 991px){
+                                background: #0098ff url(../../../assets/images/buy-arrow.png) 94% 13px no-repeat;
+                                background-size: 20px;
+                            }
+                            @media(max-width: 767px){
+                                background: #0098ff url(../../../assets/images/buy-arrow.png) 94% 10px no-repeat;
+                                background-size: 18px;
+                            }
                         }
                     }
-                }
-                p{
-                    color: #626262;
+                    p{
+                        color: #626262;
+                    }
                 }
             }
         }
@@ -83,7 +85,7 @@
             min-height: 223px;
             max-height: 223px;
             @media(max-width: 991px){
-                min-height: auto;
+                min-height: 160px;
                 max-height: auto;
             }
           &:hover{
@@ -108,7 +110,7 @@
                     margin-bottom: 10px;
                 }
                 span{
-                    word-break: break-all;
+                    word-break: break-word;
                 }
                 .category{
                     background-color: #092438;
@@ -331,16 +333,11 @@
             margin-bottom: 0;
             @media(max-width: 1024px){
                 font-size: 15px;
-                max-height: 35px !important;
-                min-height: 35px !important;
             }
             @media (max-width: 767px) {
                 font-size: 14px;
-                max-height: 40px !important;
-                min-height: 20px !important;
             }
           }
-
         }
         .event-date{
             color: #626262;
@@ -551,6 +548,7 @@
                 p{
                     color: #626262;
                     font-size: 14px;
+                    max-width: 400px;
                     @media(max-width: 767px){
                         word-break: break-all;
                         white-space: normal;

@@ -395,17 +395,13 @@
             padding-top: 10px;
         }
         .item-title{
-            h5{
+            h3{
                 color: #343434;
                 font-size: 17px;
                 line-height: 20px;
                 font-weight: 500;
                 margin-bottom: 0px;
                 @media(max-width: 767px){
-                    white-space: nowrap;
-                    text-overflow: ellipsis;
-                    overflow: hidden;
-                    display: block;
                     font-size: 15px;
                     line-height: 19px;
                 }
@@ -423,7 +419,7 @@
                     margin-top: 8px;
                     @media(max-width: 767px){
                         font-size: 13px;
-                        line-height: 20px;
+                        line-height: 17px;
                     }
                 }
             }
@@ -501,12 +497,14 @@
                             }
                         }
                         &:hover{
-                            cursor: default;
-                            border: 1px solid #0098FF;
-                            border-bottom: 1px solid #0098FF;
-                            .item-title{
-                                h5{
-                                    color: #0098ff;
+                            @media(min-width: 767px){
+                                cursor: default;
+                                border: 1px solid #0098FF;
+                                border-bottom: 1px solid #0098FF;
+                                .item-title{
+                                    h5{
+                                        color: #0098ff;
+                                    }
                                 }
                             }
                         }
@@ -589,8 +587,8 @@
                                     @media(max-width: 767px){
                                         text-align: left;
                                         height: auto;
-                                        // min-height: 38px;
-                                        min-height: auto;
+                                        min-height: 40px;
+                                        // min-height: auto;
                                     }
                                     &:empty{
                                         display: none !important;
