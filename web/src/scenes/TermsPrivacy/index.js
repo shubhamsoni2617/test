@@ -2,9 +2,10 @@ import React, { Fragment, useState, useEffect } from 'react';
 import termsBanner from '../../assets/images/tc-banner.png';
 import TermsAndPrivacyService from '../../shared/services/TermsAndPrivacyService';
 import './style.scss';
+import MetaData from '../../shared/components/MetaData';
 // import LoaderImg from '../../assets/images/loader.gif';
 
-const TermsPrivacy = ({ cmsPageType }) => {
+const TermsPrivacy = ({ cmsPageType, location, staticContext }) => {
   const [termsprivacy, setTermsPrivacy] = useState(null);
   const [tabTitle, setTabTitle] = useState('');
   const [tabDescription, setTabDescription] = useState('');
@@ -99,6 +100,7 @@ const TermsPrivacy = ({ cmsPageType }) => {
   return (
     <Fragment>
       <section className="terms-privacy-wrapper">
+        <MetaData location={location} data={staticContext} />
         <div className="banner-wrapper">
           <img src={termsBanner} className="img-fluid" alt="page-banner" />
           <div className="banner-overlay">

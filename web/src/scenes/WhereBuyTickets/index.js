@@ -8,8 +8,9 @@ import ApiPartnerService from '../../shared/services/ApiPartnersService';
 import './style.scss';
 import Content from './Content';
 import ShimmerEffect from '../../shared/components/ShimmerEffect';
+import MetaData from '../../shared/components/MetaData';
 
-const WhereBuyTicket = () => {
+const WhereBuyTicket = props => {
   const [whereBuyTicketsDetails, setwhereBuyTicketsDetails] = useState(null);
   const [apiPartners, setapiPartners] = useState(null);
 
@@ -52,6 +53,7 @@ const WhereBuyTicket = () => {
 
   return (
     <Fragment>
+      <MetaData location={props.location} data={props.staticContext} />
       <section className="where-to-buy-tickets">
         <div className="banner-wrapper">
           <img src={banner} className="img-fluid" alt="page-banner" />
