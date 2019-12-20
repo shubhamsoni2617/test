@@ -9,14 +9,14 @@ export default function MetaData({ location, data }) {
       data.response &&
       data.response.metaData &&
       data.response.metaData.data) ||
-    {}
+      {}
   );
   useEffect(() => {
     if (window.__INITIAL_DATA__ && window.__INITIAL_DATA__.metaData) {
       setMetaData(
         (window.__INITIAL_DATA__.metaData &&
           window.__INITIAL_DATA__.metaData.data) ||
-        {}
+          {}
       );
       delete window.__INITIAL_DATA__.metaData;
     } else {
@@ -32,8 +32,8 @@ export default function MetaData({ location, data }) {
     return HomeService.getMetadata(url && url.substr(1));
   };
 
-  const titleContent = metaData && metaData.title && metaData.title.replace(/(<([^>]+)>)/gi, '');
-  // if (!title) return null;
+  const titleContent =
+    metaData && metaData.title && metaData.title.replace(/(<([^>]+)>)/gi, '');
   return (
     <Helmet>
       <meta charSet="utf-8" />
@@ -107,9 +107,6 @@ export default function MetaData({ location, data }) {
       {metaData.fb_admins && (
         <meta property="article:author" content={metaData.fb_admins} />
       )}
-
-      <meta name="twitter:card" content="summary" />
-      <meta name="twitter:site" content="@site_account" />
       {metaData.twitter_cards_creator_id && (
         <meta
           name="twitter:creatorId"
