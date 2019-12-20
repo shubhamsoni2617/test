@@ -23,7 +23,6 @@ const Advertisement = props => {
     refValue.current.flag = true;
     if (
       props.history.location.pathname === '/' ||
-      props.history.location.pathname.split('/')[1] === 'preview' ||
       props.history.location.pathname.split('/')[1] === 'attractions' ||
       props.history.location.pathname.split('/')[1] === 'promotions' ||
       props.history.location.pathname.split('/')[1] === 'explore'
@@ -33,10 +32,7 @@ const Advertisement = props => {
     }
     const unlisten = props.history.listen(location => {
       setTimeout(() => {
-        if (
-          location.pathname !== '/' ||
-          location.pathname.split('/')[1] !== 'preview'
-        ) {
+        if (location.pathname !== '/') {
           if (
             location.pathname.split('/')[1] === 'attractions' ||
             location.pathname.split('/')[1] === 'promotions' ||
