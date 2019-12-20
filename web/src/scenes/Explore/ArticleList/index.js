@@ -17,7 +17,8 @@ import handleFilter from './handleFilters';
 import Constants from '../../../shared/constants';
 import { useCustomWidth } from '../../../shared/components/CustomHooks';
 import query from '../../../shared/HelperFunctions/queryString';
-const ArticleList = ({ history, location }) => {
+import MetaData from '../../../shared/components/MetaData';
+const ArticleList = ({ history, location, staticContext }) => {
   useCustomWidth();
   let stickyObj = {
     sticky: { top: 153 },
@@ -203,6 +204,7 @@ const ArticleList = ({ history, location }) => {
 
   return (
     <div className="events-page-wrapper articlelist-wrapper">
+      <MetaData location={location} data={staticContext} />
       <Breadcrumb breadCrumbData={BreadCrumbData} />
       <section className="">
         <div className="container-fluid custom-container">
