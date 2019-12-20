@@ -121,7 +121,7 @@
                     .react-modal-body{
                         .modal-header{
                             .modal-title{
-                                padding-right: 0;
+                                padding-right: 20px;
                                 text-transform: capitalize;
                                 p{
                                     font-size: 22px;
@@ -551,6 +551,10 @@
                 p{
                     color: #626262;
                     font-size: 14px;
+                    @media(max-width: 767px){
+                        word-break: break-all;
+                        white-space: normal;
+                    }
                 }
                 h6{
                     font-size: 14px;
