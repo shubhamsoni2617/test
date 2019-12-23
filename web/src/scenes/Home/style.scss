@@ -2314,7 +2314,7 @@
 					&:last-child, &.venue-name {
                         margin-bottom: 14px;
 						min-height: auto;
-						margin-bottom: 0px;				
+						margin-bottom: 0px;
 					}
 				}
 				.venue-name{
@@ -2815,10 +2815,10 @@ p {
                             padding-left: 0;
 						}
 						& > a{
-							height: calc(50% - 20px);
+							height: calc(100% - 20px);
 							margin-bottom: 20px;
 							@media(max-width: 768px){
-								height: calc(50% - 10px);
+								height: calc(100% - 10px);
 								margin-bottom: 10px;
 							}
 						}
@@ -3110,7 +3110,7 @@ section.trending-now {
 		}
 		@media(max-width: 576px){
 			overflow-y: hidden;
-		}		
+		}
 		.item {
 			height: 100%;
 			display: flex;
