@@ -37,9 +37,7 @@ export default class App extends React.Component {
     super(props);
     this.state = {
       collapsed: false,
-      showPreviewButton:
-        this.props.history &&
-        this.props.history.location.pathname.split('/')[1] === 'preview',
+      showPreviewButton: true,
       showPreview: false
     };
     // if (typeof window == 'undefined') {
@@ -75,29 +73,34 @@ export default class App extends React.Component {
     });
   }
 
+  previewDate = previewDate => {
+    this.setState({ previewDate });
+  };
+
   render() {
+    console.log(this.state.previewDate);
+    const { showPreview, showPreviewButton } = this.state;
     return (
       <div className="wrapper">
         {/* <DownloadAppPopup /> */}
         <Advertisement {...this.props} />
         <TopNav {...this.props} />
-        <Navigator {...this.props} />
+        <Navigator {...this.props} previewDate={this.state.previewDate} />
         {/* <Footer {...this.props} /> */}
-        {!this.state.showPreviewButton && <Footer {...this.props} />}
-
-        {/* {this.state.showPreviewButton && (
+        {!showPreviewButton && <Footer {...this.props} />}
+        {showPreviewButton && (
           <span
             className="scroll-left"
             onClick={() => {
               this.setState({
-                showPreview: !this.state.showPreview
+                showPreview: !showPreview
               });
             }}
           >
             <img src={preview} alt="preview" />
           </span>
-        )} */}
-        {/* {this.state.showPreview && <Preview />} */}
+        )}
+        {showPreview && <Preview previewDate={this.previewDate} />}
       </div>
     );
   }

@@ -17,16 +17,25 @@ const Modal = ({ handleClose, show, children }) => {
 };
 
 const Preview = props => {
+  const [currentDate, setCurrentDate] = useState('');
   return (
     <>
       <Modal show={true}>
         <div>
           <DayPickerInput
-            onDayChange={day => console.log(day)}
+            onDayChange={day =>
+              setCurrentDate(moment(day).format('YYYY-MM-DD'))
+            }
             placeholder={`YYYY-MM-DD`}
           />
         </div>
-        <button>Preview</button>
+        <button
+          onClick={() => {
+            props.previewDate(currentDate);
+          }}
+        >
+          Preview
+        </button>
       </Modal>
     </>
   );
