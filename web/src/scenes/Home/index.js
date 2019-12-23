@@ -33,6 +33,7 @@ class Home extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      disableCookies: false,
       orientation: '',
       offsetRadius: 0,
       showNavigation: '',
@@ -103,6 +104,11 @@ class Home extends Component {
   }
 
   componentDidMount() {
+    if (window.location.hostname === 'previewuat.sistic.com.sg') {
+      this.setState({
+        disableCookies: true
+      });
+    }
     this.getItemsOrder();
     window.addEventListener('resize', this.handleResize);
   }
@@ -138,7 +144,7 @@ class Home extends Component {
         {this.props.location && (
           <MetaData
             location={this.props.location}
-            data={{ title: 'SISTIC Singapore' }}
+            data={this.props.staticContext}
           />
         )}
         <NewsTicker
@@ -245,7 +251,7 @@ class Home extends Component {
           )}
 
         <InstagramFeed />
-        <Cookies />
+        {!this.state.disableCookies && <Cookies />}
         <ModalPopup
           showModal={this.state.modal}
           content={this.state.modalContent}

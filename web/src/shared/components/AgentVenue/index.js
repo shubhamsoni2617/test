@@ -7,6 +7,7 @@ import SearchAgent from './SearchAgent';
 import GoogleMap from './GoogleMap';
 import Utilities from '../../utilities';
 import './style.scss';
+import MetaData from '../MetaData';
 
 const AgentVenue = props => {
   const { venue } = props;
@@ -209,6 +210,7 @@ const AgentVenue = props => {
   };
   return (
     <section className={`agents-wrapper ${venue ? 'venue' : ''}`}>
+      <MetaData location={props.location} data={props.staticContext} />
       <CountryRegion
         countryNRegion={venueId ? countryNRegionSorted : countryNRegion}
         countryIdHandler={countryIdHandler}

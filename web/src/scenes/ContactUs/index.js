@@ -3,6 +3,7 @@ import './style.scss';
 import FindUs from './FindUs';
 import Faqs from './FAQs';
 import CustomerEnquiry from './CustomerEnquiry';
+import MetaData from '../../shared/components/MetaData';
 
 class ContactUs extends Component {
   constructor(props) {
@@ -25,6 +26,10 @@ class ContactUs extends Component {
 
     return (
       <div className="contact-us banner-overlay">
+        <MetaData
+          location={this.props.location}
+          data={this.props.staticContext}
+        />
         <h1 className="text-center contact-us-header">Contact Us</h1>
         <div className="container">
           <div className="contact-us-block">

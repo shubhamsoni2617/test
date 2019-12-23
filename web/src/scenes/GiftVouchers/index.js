@@ -6,8 +6,9 @@ import Vouchers from './Vouchers';
 import SendGiftCard from './SendGiftCard';
 import './style.scss';
 import ShimmerEffect from '../../shared/components/ShimmerEffect';
+import MetaData from '../../shared/components/MetaData';
 
-const GiftVouchers = () => {
+const GiftVouchers = props => {
   const [GiftVouchersDetails, SetGiftVouchersDetails] = useState(null);
 
   useEffect(() => {
@@ -29,6 +30,7 @@ const GiftVouchers = () => {
   return GiftVouchersDetails ? (
     <Fragment>
       <div className="giftvoucher-wrapper">
+        <MetaData location={props.location} data={props.staticContext} />
         <GiftVoucherHeader
           bannerDescription={GiftVouchersDetails.banner_description}
           bannerUrl={GiftVouchersDetails.banner_url}

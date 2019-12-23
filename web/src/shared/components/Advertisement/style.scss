@@ -1,7 +1,7 @@
 // Top-advertisment style start
 .homeTop {
 	background-color: #121212;    
-    z-index: 2;
+    z-index: 3;
     max-height: 0;
     transition: max-height 0.5s height;
     -webkit-transition: max-height 0.5s height;
@@ -134,18 +134,18 @@
                 top: 0px;
             }
             & + div{
-                padding-top: 202px;
+                padding-top: 200px;
                 @media(max-width: 1440px){
-                    padding-top: 185px;
+                    padding-top: 183px;
                 }
                 @media(max-width: 1024px){
-                    padding-top: 177px;
+                    padding-top: 175px;
                 }
                 @media(max-width: 991px){
-                    padding-top: 165px;
+                    padding-top: 163px;
                 }
                 @media(max-width: 768px){
-                    padding-top: 162px;
+                    padding-top: 160px;
                 }
                 @media(max-width: 767px){
                     padding-top: 7px;

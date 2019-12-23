@@ -7,6 +7,7 @@ import FaqService from '../../shared/services/FaqService';
 import { Link } from 'react-router-dom';
 import PageNotFound from '../PageNotFound';
 import ShimmerEffect from '../../shared/components/ShimmerEffect';
+import MetaData from '../../shared/components/MetaData';
 
 const Faq = props => {
   const [faqContentData, setFaqContentData] = useState(null);
@@ -88,6 +89,7 @@ const Faq = props => {
     />
   ) : loading === false ? (
     <div onClick={() => setSuggestions(!suggestions)}>
+      <MetaData location={props.location} data={props.staticContext} />
       <FaqSearch
         suggestions={faqContentData}
         categories={faqCategoryData}

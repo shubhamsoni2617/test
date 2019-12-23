@@ -9,6 +9,7 @@ import AboutUsService from '../../shared/services/AboutUsService';
 import './style.scss';
 import Careers from '../../shared/components/Careers';
 import CareerService from '../../shared/services/CareerService';
+import MetaData from '../../shared/components/MetaData';
 
 class AboutUs extends Component {
   constructor(props) {
@@ -57,6 +58,10 @@ class AboutUs extends Component {
     } = this.state.aboutUsContent;
     return (
       <div className="about-us-wrapper">
+        <MetaData
+          location={this.props.location}
+          data={this.props.staticContext}
+        />
         <Banner
           title={banner_title}
           description={banner_description}
