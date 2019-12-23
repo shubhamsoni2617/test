@@ -210,7 +210,13 @@
 					height: 90%;
 				}
 			}
-		}
+        }
+        .slick-track{
+            @media(max-width: 767px){
+                display: flex;
+                align-items: center;
+            }
+        }
 		.slick-slider  {
             margin-left: 0px;
             z-index: 10;
@@ -271,6 +277,12 @@
         .slick-slider{
             .slick-list{
                 overflow: visible;
+                .slick-track{
+                    @media(max-width: 767px){
+                        display: flex;
+                        align-items: center;
+                    }
+                }
                 .slick-slide{
                     > div{
                         transform: scale(0.95);

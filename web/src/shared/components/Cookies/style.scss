@@ -85,6 +85,7 @@
         .hide-cookie{
             margin-top: 0px;
             position: relative;
+            cursor: pointer;
             @media(max-width: 767px){
                 position: absolute;
                 top: 50%;
@@ -107,6 +108,10 @@
                     left: 0;
                     top: 0;
                     opacity: 0;
+                    @media(max-width: 767px){
+                        width: 15px;
+                        height: 15px;
+                    }
                 }
             }
              &:hover{
