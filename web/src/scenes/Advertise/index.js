@@ -14,6 +14,7 @@ import apple from '../../assets/images/apple.svg';
 import android from '../../assets/images/android.png';
 import ContactUs from '../ApiPartner/ContactUs';
 import NewsLetterForm from '../../shared/components/NewsLetterForm';
+import MetaData from '../../shared/components/MetaData';
 
 const Advertise = props => {
   const [advertiseData, setAdvertiseData] = useState(null);
@@ -44,6 +45,7 @@ const Advertise = props => {
   console.log(advertiseData);
   return (
     <div className="advertise-withus-wrapper">
+      <MetaData location={props.location} data={props.staticContext} />
       <section>
         <div className="event-wrapper">
           <div className="event-banner">

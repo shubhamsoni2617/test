@@ -14,8 +14,9 @@ import Utilities from '../../../shared/utilities';
 import ShimmerEffect from '../../../shared/components/ShimmerEffect';
 import AdvertisementService from '../../../shared/services/AdvertisementService';
 import Constants from '../../../shared/constants';
+import MetaData from '../../../shared/components/MetaData';
 
-const Explore = () => {
+const Explore = props => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
 
@@ -174,6 +175,7 @@ const Explore = () => {
         </Fragment>
       ) : (
         <Fragment>
+          <MetaData location={props.location} data={props.staticContext} />
           {bannerPart}
           {whatsUpPart}
           {royalsPart}

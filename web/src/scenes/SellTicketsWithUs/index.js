@@ -8,8 +8,9 @@ import EventTicket from './EventTicket';
 import Banner from './Banner';
 import SellTicketService from '../../../src/shared/services/SellTicketService';
 import moment from 'moment';
+import MetaData from '../../shared/components/MetaData';
 
-const SellTicketsWithUs = () => {
+const SellTicketsWithUs = props => {
   const [sellTicketWithUs, setSellTicketWithUs] = useState('');
   const [name, setName] = useState('');
   const [companyName, setCompanyName] = useState('');
@@ -185,6 +186,7 @@ const SellTicketsWithUs = () => {
   return (
     <div className="sell-ticket-wrapper">
       {/* SISTIC banner starts here */}
+      <MetaData location={props.location} data={props.staticContext} />
       {banner_title && (
         <Banner
           bannerTitle={banner_title}

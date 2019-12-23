@@ -4,6 +4,7 @@ import ApiBanner from './ApiBanner';
 import Partners from './Partners';
 import ContactUs from './ContactUs';
 import ApiPartnersService from '../../shared/services/ApiPartnersService';
+import MetaData from '../../shared/components/MetaData';
 // import './style.scss';
 
 class ApiPartner extends Component {
@@ -43,6 +44,10 @@ class ApiPartner extends Component {
     const { banner_title, banner_description, data } = partners;
     return (
       <div className="apipartners-wrapper">
+        <MetaData
+          location={this.props.location}
+          data={this.props.staticContext}
+        />
         <ApiBanner title={banner_title} description={banner_description} />
         {/* <h2>View some of the partners that we work with</h2> */}
         <Partners partnersLogo={data} />

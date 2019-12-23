@@ -8,6 +8,7 @@ import StayUpdated from './StayUpdated';
 import Testimonials from './Testimonial';
 import CareerService from '../../shared/services/CareerService';
 import Constants from '../../shared/constants';
+import MetaData from '../../shared/components/MetaData';
 
 class Careers extends Component {
   constructor(props) {
@@ -211,6 +212,10 @@ class Careers extends Component {
     } = this.state;
     return (
       <div>
+        <MetaData
+          location={this.props.location}
+          data={this.props.staticContext}
+        />
         <OurTeam banner={staticContent.banner} />
         <Mission mission={staticContent.section_one} />
         <CoreValues coreValues={staticContent.section_two} />

@@ -8,6 +8,7 @@ import PageBanner from '../../assets/images/promotions-banner.png';
 import Utilities from '../../shared/utilities';
 import SortBy from '../../shared/components/SortBy';
 import sortbyIcon from '../../assets/images/events/sortby.svg';
+import MetaData from '../../shared/components/MetaData';
 
 export default class Promotions extends Component {
   constructor(props) {
@@ -277,6 +278,10 @@ export default class Promotions extends Component {
     this.breadCrumbData.count = this.state.count;
     return (
       <div className="promotions-full-wrapper">
+        <MetaData
+          location={this.props.location}
+          data={this.props.staticContext}
+        />
         <Breadcrumb breadCrumbData={this.breadCrumbData} />
         <section className="promotions-wrapper">
           <div className="container-fluid">
