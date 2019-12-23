@@ -12,6 +12,8 @@ import DownloadAppPopup from '../../shared/components/DownloadAppPopup';
 import API from '../../shared/api';
 import preview from '../../assets/images/preview.png';
 import Preview from '../../shared/components/Preview';
+import { Provider } from './store';
+import { initialState } from './store/reducers';
 import Utilities from '../../shared/utilities';
 
 export default class App extends React.Component {
@@ -33,9 +35,35 @@ export default class App extends React.Component {
       })
     ];
   }
+  static getInitialState(response) {
+    // console.log('response', response);
+    let result = { ...initialState };
+    if (response.length > 0) {
+      for (let i = 0; i < response.length; i++) {
+        let urlArray =
+          response &&
+          response[i] &&
+          response[i].config &&
+          response[i].config.url &&
+          response[i].config.url.split('/');
+        if (urlArray.length > 0) {
+          if (urlArray[urlArray.length - 1] === 'genres') {
+            result.global['genreData'] = Object.keys(response[i].data.data).map(
+              key => {
+                return response[i].data.data[key];
+              }
+            );
+          }
+        }
+      }
+    }
+    return result;
+  }
   constructor(props) {
     super(props);
+
     this.state = {
+      initialState: props.response,
       collapsed: false,
       showPreviewButton:
         this.props.history &&
@@ -77,15 +105,16 @@ export default class App extends React.Component {
 
   render() {
     return (
-      <div className="wrapper">
-        {/* <DownloadAppPopup /> */}
-        <Advertisement {...this.props} />
-        <TopNav {...this.props} />
-        <Navigator {...this.props} />
-        {/* <Footer {...this.props} /> */}
-        {!this.state.showPreviewButton && <Footer {...this.props} />}
+      <Provider initialState={this.state.initialState}>
+        <div className="wrapper">
+          {/* <DownloadAppPopup /> */}
+          <Advertisement {...this.props} />
+          <TopNav {...this.props} />
+          <Navigator {...this.props} />
+          {/* <Footer {...this.props} /> */}
+          {!this.state.showPreviewButton && <Footer {...this.props} />}
 
-        {/* {this.state.showPreviewButton && (
+          {/* {this.state.showPreviewButton && (
           <span
             className="scroll-left"
             onClick={() => {
@@ -97,8 +126,9 @@ export default class App extends React.Component {
             <img src={preview} alt="preview" />
           </span>
         )} */}
-        {/* {this.state.showPreview && <Preview />} */}
-      </div>
+          {/* {this.state.showPreview && <Preview />} */}
+        </div>
+      </Provider>
     );
   }
 }
