@@ -14,7 +14,10 @@ const history = createBrowserHistory();
 ReactDOM.hydrate(
   <HelmetProvider>
     <Router history={history}>
-      <App history={history} />
+      <App
+        history={history}
+        response={window.__INITIAL_DATA__ && window.__INITIAL_DATA__.response}
+      />
     </Router>
   </HelmetProvider>,
   document.getElementById('root')

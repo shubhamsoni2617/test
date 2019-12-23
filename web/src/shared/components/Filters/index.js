@@ -7,6 +7,7 @@ import './style.scss';
 import DateRangeFilter from '../DateRangeFilter/filters';
 import SearchFilter from '../SearchFilter';
 import Utilities from '../../utilities';
+import { useGlobalState } from '../../../scenes/App/store';
 
 function useDebounce(value, delay) {
   const [debouncedValue, setDebouncedValue] = useState(value);
@@ -135,6 +136,7 @@ function PriceRangeFilter(props) {
 function Filters(props) {
   const element = useRef();
   const [fixed, setFixed] = useState(false);
+  const [state] = useGlobalState('global');
   // const [elementOffsetTop, setElementOffsetTop] = useState('');
   let stickyObj = {
     sticky: { bottom: -10 },
@@ -168,7 +170,6 @@ function Filters(props) {
   };
 
   const {
-    genreData,
     venueData,
     attractionCategories,
     filterConfig,
@@ -185,6 +186,7 @@ function Filters(props) {
     filterFlag,
     toggleFilterSection
   } = props;
+  const { genreData } = state;
   const { price_config } = filterConfig ? filterConfig : 0;
 
   if (props.shimmerFilter) {

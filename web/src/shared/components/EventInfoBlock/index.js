@@ -185,17 +185,17 @@ function EventDateTime({
     );
   };
 
-  if (Utilities.mobilecheck()) {
-    return (
-      <ModalPopup
-        showModal={setEventDateBlock}
-        title="Event Dates & Time"
-        handleClose={() => setEventDateBlock(false)}
-      >
-        <HtmlDescription />
-      </ModalPopup>
-    );
-  }
+  // if (Utilities.mobilecheck()) {
+  return (
+    <ModalPopup
+      showModal={setEventDateBlock}
+      title="Event Dates & Time"
+      handleClose={() => setEventDateBlock(false)}
+    >
+      <HtmlDescription />
+    </ModalPopup>
+  );
+  // }
 
   return (
     <div className="event-dates-time-block">
@@ -220,7 +220,7 @@ function Delimiter({ length, index }) {
   if (length !== 2 && index === length - 2) {
     return <span> & </span>;
   }
-  return <span>, </span>;
+  return <span>& </span>;
 }
 
 function EventInfoBlockInner(props) {}
