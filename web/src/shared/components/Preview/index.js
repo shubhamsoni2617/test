@@ -11,6 +11,7 @@ const Modal = ({ handleClose, show, children }) => {
 
   return (
     <div className={showHideClassName}>
+      <h5>Please pick a date</h5>
       <section className="modal-main">{children}</section>
     </div>
   );

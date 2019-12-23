@@ -90,14 +90,14 @@ export default class App extends React.Component {
         {!showPreviewButton && <Footer {...this.props} />}
         {showPreviewButton && (
           <span
-            className="scroll-left"
+            className="preview-btn"
             onClick={() => {
               this.setState({
                 showPreview: !showPreview
               });
             }}
           >
-            <img src={preview} alt="preview" />
+            {/* <img src={preview} alt="preview" /> */}
           </span>
         )}
         {showPreview && <Preview previewDate={this.previewDate} />}
