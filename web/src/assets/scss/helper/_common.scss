@@ -1559,7 +1559,7 @@ input:disabled {
 
 .preview-btn{
     position: fixed;
-    left:  10px;
+    right: 10px;
     background: #0098FF;
     width: 50px;
     height: 50px;
@@ -1572,16 +1572,16 @@ input:disabled {
     color: #FFF;
     font-family: 'Rubik', sans-serif;
     font-weight: 500;
-	z-index: 2;
-	box-shadow: 0 3px 12px rgba(0, 0, 0, 0.15);
+    z-index: 2;
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.15);
     transition-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.275);
     transition-duration: 400ms;
-	transform: scale(1, 1) translate3d(0, 0, 0) translateY(-50%);
-	transition: all ease-out 200ms;
-	top: 50%;
-	cursor: pointer;
+    transform: scale(1, 1) translate3d(0, 0, 0);
+    transition: all ease-out 200ms;
+    bottom: 10px;
+    cursor: pointer;
 	&:hover{
-		transform: scale(1.1, 1.1) translate3d(0, 0, 0) translateY(-50%);
+		transform: scale(1.1, 1.1) translate3d(0, 0, 0);
 		box-shadow: 0 5px 24px rgba(87, 62, 62, 0.3);
 	}
 	&:after{
@@ -1593,6 +1593,18 @@ input:disabled {
 		top: 50%;
 		left: 50%;
 		transform: translate(-50%, -50%);
+	}
+	&.close-btn{
+		&:after{
+			content: '\f00d';
+			font-family: 'FontAwesome';
+			display: inline-block;
+			position: absolute;
+			font-size: 22px;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+		}
 	}
 	@media(max-width: 767px){
 		width: 35px;

@@ -90,7 +90,7 @@ export default class App extends React.Component {
         {!showPreviewButton && <Footer {...this.props} />}
         {showPreviewButton && (
           <span
-            className="preview-btn"
+            className={`preview-btn ${showPreview?'close-btn':''}`}
             onClick={() => {
               this.setState({
                 showPreview: !showPreview
