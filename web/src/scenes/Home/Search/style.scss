@@ -339,6 +339,9 @@
 //searchbar page
 .searchbar-page-wrapper{
     margin-top: 17px;
+    @media(max-width: 767px){
+        margin-top: 0px;
+    }
     & > .container{
         @media(max-width: 768px){
             padding-right: 0px;
@@ -353,7 +356,7 @@
         font-weight: 400;
         padding: 42px 0px 0px;
         @media(max-width: 767px){
-            padding: 20px 0px 0px;
+            padding: 18px 0px 0px;
             font-size: 20px;
             line-height: 22px;
         }
@@ -372,7 +375,7 @@
                 li{
                     margin: 0 10px;
                     @media(max-width: 991px){
-                        margin: 0px 10px 10px;
+                        margin: 0px 10px 10px 0px;
                     }
                     .nav-item{
                         text-transform: capitalize;
@@ -632,6 +635,30 @@
                             }
                         }
                     }
+                    &.shim-container{
+                        @media(max-width: 767px){
+                            flex: 0 0 100% !important;
+                            width: 100% !important;
+                        }
+                        .contentLoader{
+                            @media(max-width: 767px){
+                                padding: 10px;
+                            }
+                            .shm_row{
+                                & > div{
+                                    @media(max-width: 767px){
+                                        padding: 0px;
+                                    }
+                                    .animated-background{
+                                        @media(max-width: 767px){
+                                            width: 100%;
+                                            margin-right: 0px;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
                 }
                 div:last-child{
                     .event-block{
@@ -654,6 +681,9 @@
         justify-content: center;
         margin: 0 auto;
         text-align: center;
+        @media(max-width: 767px){
+            padding-top: 20px;
+        }
         li{
             list-style: none;
             display: inline-block;

@@ -91,24 +91,25 @@ const Search = props => {
         propCls="shm_col-xs-2 col-md-5"
       />
     ) : (
-      <ShimmerEffect
-        height={10}
-        count={4}
-        type="LIST"
-        propCls="shm_col-xs-1 col-md-12"
-      />
-    );
+        <ShimmerEffect
+          height={10}
+          count={4}
+          type="LIST"
+          propCls="shm_col-xs-1 col-md-12"
+        />
+      );
   };
 
   const searchResultHandler = searchResults => {
     return searchResults
-      ? searchResults.map(cardData => {
-          return (
-            <div key={cardData.id}>
-              <Card cardData={cardData} {...props} />
-            </div>
-          );
-        })
+      ?
+      searchResults.map(cardData => {
+        return (
+          <div key={cardData.id}>
+            <Card cardData={cardData} {...props} />
+          </div>
+        );
+      })
       : handleShimmerEffect();
   };
   return (
@@ -151,8 +152,8 @@ const Search = props => {
           </div>
         </div>
       ) : (
-        <SearchNotFound searchKeyword={searchKeyword} />
-      )}
+          <SearchNotFound searchKeyword={searchKeyword} />
+        )}
     </div>
   );
 };
