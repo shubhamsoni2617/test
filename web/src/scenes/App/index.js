@@ -109,6 +109,7 @@ export default class App extends React.Component {
     console.log(this.state.previewDate);
     const { showPreview, showPreviewButton } = this.state;
     return (
+      <Provider initialState={this.state.initialState}>
       <div className="wrapper">
         {/* <DownloadAppPopup /> */}
         <Advertisement {...this.props} />
@@ -130,8 +131,8 @@ export default class App extends React.Component {
         )}
         {showPreview && <Preview previewDate={this.previewDate} />}
         
-        {/* </Provider> */}
       </div>
+        </Provider>
      
     );
   }
