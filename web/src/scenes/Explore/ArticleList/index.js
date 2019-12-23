@@ -18,7 +18,7 @@ import Constants from '../../../shared/constants';
 import { useCustomWidth } from '../../../shared/components/CustomHooks';
 import query from '../../../shared/HelperFunctions/queryString';
 import MetaData from '../../../shared/components/MetaData';
-const ArticleList = ({ history, location, staticContext }) => {
+const ArticleList = ({ history, location, staticContext, previewDate }) => {
   useCustomWidth();
   let stickyObj = {
     sticky: { top: 153 },
@@ -49,8 +49,6 @@ const ArticleList = ({ history, location, staticContext }) => {
   ] = useState([]);
   let mobileCheck = showTags || showCategories;
 
-  console.log('test', history);
-
   useEffect(() => {
     fetchFilterData(setCategories, ExploreService.getCategories);
     fetchFilterData(setTags, ExploreService.getTags);
@@ -72,6 +70,15 @@ const ArticleList = ({ history, location, staticContext }) => {
   }, [query(location).c, articleList.length]);
 
   useEffect(() => {
+    if (previewDate) {
+      history.push({
+        search: `date=${previewDate}`
+      });
+      getArticleList();
+    }
+  }, [previewDate]);
+
+  useEffect(() => {
     getArticleList();
   }, [first, filteredTags.toString(), filteredCategories.toString()]);
 
@@ -85,6 +92,9 @@ const ArticleList = ({ history, location, staticContext }) => {
     };
     if (query(location).id) {
       params.id = query(location).id;
+    }
+    if (query(location).date) {
+      params.date = query(location).date;
     }
     if (!loadMore) {
       setLoadWithFilters(true);

@@ -1,6 +1,8 @@
 import React, { useState, useRef, useEffect } from 'react';
 import './style.scss';
-import DayPickerInput from 'react-day-picker/DayPickerInput';
+// import DayPickerInput from 'react-day-picker/DayPickerInput';
+import DayPicker, { DateUtils } from 'react-day-picker';
+
 import 'react-day-picker/lib/style.css';
 import moment from 'moment';
 
@@ -22,10 +24,11 @@ const Preview = props => {
     <>
       <Modal show={true}>
         <div>
-          <DayPickerInput
-            onDayChange={day =>
-              setCurrentDate(moment(day).format('YYYY-MM-DD'))
-            }
+          <DayPicker
+            onDayClick={day => {
+              setCurrentDate(moment(day).format('YYYY-MM-DD'));
+              console.log(moment(day).format('YYYY-MM-DD'));
+            }}
             placeholder={`YYYY-MM-DD`}
           />
         </div>

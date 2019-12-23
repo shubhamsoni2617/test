@@ -80,6 +80,15 @@ export default class Attractions extends Component {
     this.loadAttractions(this.getInitialFilters(true));
   }
 
+  componentDidUpdate(prevProps) {
+    if (this.props.previewDate !== prevProps.previewDate) {
+      this.props.history.push({
+        search: `date=${this.props.previewDate}`
+      });
+      this.loadAttractions(this.getFilters());
+    }
+  }
+
   resetFilters = () => {
     let obj = {};
     if (Utilities.mobilecheck()) {
@@ -115,6 +124,10 @@ export default class Attractions extends Component {
       sort_order: 'ASC',
       client: Constants.CLIENT
     };
+    const query = new URLSearchParams(this.props.location.search);
+    if (query.get('date')) {
+      payload.date = query.get('date');
+    }
     return payload;
   };
 
@@ -188,6 +201,12 @@ export default class Attractions extends Component {
       sort_type: filteredSortType,
       sort_order: filteredSortOrder
     };
+    const query = new URLSearchParams(this.props.location.search);
+
+    if (this.props.previewDate || query.get('date')) {
+      params.date = this.props.previewDate || query.get('date');
+      params.first = 0;
+    }
 
     return params;
   };
