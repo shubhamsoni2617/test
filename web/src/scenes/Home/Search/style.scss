@@ -83,12 +83,17 @@
                       }
                       .event-details{
                         @media(max-width: 768px){
-                            flex-direction: column;
-                            align-items: flex-start;
+                            // flex-direction: column;
+                            // align-items: flex-start;
+                            flex-direction: row;
+                            align-items: center;
                             padding: 15px 20px 8px 15px;
                         }
                         .price-event{
                             @media(max-width: 768px){
+                                align-items: flex-end;
+                            }
+                            @media(max-width: 767px){
                                 align-items: flex-start;
                             }
                           .price{
@@ -547,7 +552,7 @@
                                 display: flex;
                                 flex-direction: column;
                                 justify-content: space-between;
-                                padding-bottom: 6px !important;
+                                padding: 15px 0px 8px 0px !important
                             }
                             h6{
                                 position: relative;
@@ -579,7 +584,7 @@
                                         @media(max-width: 767px){
                                             display: block;
                                             width: 100%;
-                                            padding: 4px 22px;
+                                            padding: 4px 10px;
                                         }
                                     }
                                 }

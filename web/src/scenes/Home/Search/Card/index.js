@@ -42,7 +42,7 @@ const Card = props => {
             <EventHeading
               title={cardData.title}
               lines={2}
-              height={Utilities.mobilecheck() ? 19 : Utilities.mobileAndTabletcheck() ? 20 : 20}
+              height={Utilities.mobilecheck() ? 20 : Utilities.mobileAndTabletcheck() ? 20 : 20}
             />
             {cardData.date &&
               <Ellipsis
