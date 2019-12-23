@@ -179,7 +179,7 @@ const FeaturedEvents = props => {
           >
             {featuredEvents &&
               featuredEvents.map(event => {
-                return <Item event={event} />;
+                return <Item event={event} key={event.id} />;
               })}
           </div>
         ) : (
