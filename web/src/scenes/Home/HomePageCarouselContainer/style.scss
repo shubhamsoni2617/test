@@ -237,8 +237,8 @@
                     border: none;
                 }
                 &::before{
-                    box-shadow: 1px -1px 0 1px #fff inset;
-                    -webkit-box-shadow: 2px -2px #fff inset;
+                    box-shadow: 1px -1px 0 1px #0098FF inset;
+                    -webkit-box-shadow: 2px -2px #0098FF inset;
                 }
                 @media(max-width: 767px) {
                     display: none !important;
@@ -250,8 +250,8 @@
                     border: none;
                 }
                 &::before{
-                    box-shadow: 1px -1px 0 1px #fff inset;
-                    -webkit-box-shadow: 2px -2px #fff inset;
+                    box-shadow: 1px -1px 0 1px #0098FF inset;
+                    -webkit-box-shadow: 2px -2px #0098FF inset;
                 }
                 @media(max-width: 767px) {
                     display: none !important;
