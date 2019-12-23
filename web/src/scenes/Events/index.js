@@ -22,6 +22,7 @@ import SearchFilter from '../../shared/components/SearchFilter';
 import Constants from '../../shared/constants';
 import EventAdvertisement from './EventAdvertisement';
 import MetaData from '../../shared/components/MetaData';
+import { useGlobalState } from '../App/store';
 
 export default class Events extends Component {
   constructor(props) {
@@ -29,7 +30,7 @@ export default class Events extends Component {
 
     this.state = {
       shimmer: true,
-      shimmerFilter: true,
+      shimmerFilter: false,
       filteredGnere: [],
       filteredSearch: [],
       filteredPromotions: [],
@@ -130,7 +131,7 @@ export default class Events extends Component {
   }
 
   componentDidMount() {
-    this.getGenre();
+    // this.getGenre();
     this.getVenue();
     this.getFilterConfig();
     const payload = this.getInitialFilters();
@@ -138,7 +139,7 @@ export default class Events extends Component {
     this.loadEvents(payload);
     window.scrollTo(0, 0);
   }
-  eventsData;
+
   componentDidUpdate(prevProps) {
     if (
       this.props.location.search &&
@@ -162,20 +163,20 @@ export default class Events extends Component {
       });
   };
 
-  getGenre = () => {
-    HomeService.getGenre()
-      .then(res => {
-        let genre = Object.keys(res.data.data).map(key => {
-          return res.data.data[key];
-        });
-        setTimeout(() => {
-          this.setState({ shimmerFilter: false, genre: genre });
-        }, 1000);
-      })
-      .catch(error => {
-        console.error(error);
-      });
-  };
+  // getGenre = () => {
+  //   HomeService.getGenre()
+  //     .then(res => {
+  //       let genre = Object.keys(res.data.data).map(key => {
+  //         return res.data.data[key];
+  //       });
+  //       setTimeout(() => {
+  //         this.setState({ shimmerFilter: false, genre: genre });
+  //       }, 1000);
+  //     })
+  //     .catch(error => {
+  //       console.error(error);
+  //     });
+  // };
 
   getVenue = () => {
     const first = 0;
@@ -566,82 +567,73 @@ export default class Events extends Component {
                   />
                 )}
 
-                {!shimmerFilter &&
-                  genre.length > 0 &&
-                  // venues.length > 0 &&
-                  filterConfig &&
-                  filterConfig.price_config &&
-                  filterConfig.promotion_categories && (
-                    <Filters
-                      queryParams={queryParams}
-                      resetFilters={this.resetFilters}
-                      handleFilters={this.handleFilters}
-                      toggleFilterSection={this.toggleFilterSection}
-                      genreData={genre}
-                      venueData={venues}
-                      filterConfig={filterConfig}
-                      filteredSearch={filteredSearch}
-                      filteredPriceRange={
-                        Utilities.mobilecheck()
-                          ? localfilteredPriceRange
-                          : filteredPriceRange
-                      }
-                      filteredGnere={
-                        Utilities.mobilecheck()
-                          ? localfilteredGnere
-                          : filteredGnere
-                      }
-                      filteredPromotions={
-                        Utilities.mobilecheck()
-                          ? localfilteredPromotions
-                          : filteredPromotions
-                      }
-                      filteredVenues={
-                        Utilities.mobilecheck()
-                          ? localfilteredVenues
-                          : filteredVenues
-                      }
-                      filteredTags={
-                        Utilities.mobilecheck()
-                          ? localfilteredTags
-                          : filteredTags
-                      }
-                      filteredDateRange={
-                        Utilities.mobilecheck()
-                          ? localfilteredDateRange
-                          : filteredDateRange
-                      }
-                      filterFlag={filterFlag}
-                      changeMode={this.changeMode}
-                    >
-                      {fixed => (
-                        <div
-                          className={`fixed-buttons ${
-                            fixed ? 'hide-inner' : ''
-                          }`}
+                {!shimmerFilter && (
+                  <Filters
+                    queryParams={queryParams}
+                    resetFilters={this.resetFilters}
+                    handleFilters={this.handleFilters}
+                    toggleFilterSection={this.toggleFilterSection}
+                    genreData={genre}
+                    venueData={venues}
+                    filterConfig={filterConfig}
+                    filteredSearch={filteredSearch}
+                    filteredPriceRange={
+                      Utilities.mobilecheck()
+                        ? localfilteredPriceRange
+                        : filteredPriceRange
+                    }
+                    filteredGnere={
+                      Utilities.mobilecheck()
+                        ? localfilteredGnere
+                        : filteredGnere
+                    }
+                    filteredPromotions={
+                      Utilities.mobilecheck()
+                        ? localfilteredPromotions
+                        : filteredPromotions
+                    }
+                    filteredVenues={
+                      Utilities.mobilecheck()
+                        ? localfilteredVenues
+                        : filteredVenues
+                    }
+                    filteredTags={
+                      Utilities.mobilecheck() ? localfilteredTags : filteredTags
+                    }
+                    filteredDateRange={
+                      Utilities.mobilecheck()
+                        ? localfilteredDateRange
+                        : filteredDateRange
+                    }
+                    filterFlag={filterFlag}
+                    changeMode={this.changeMode}
+                  >
+                    {fixed => (
+                      <div
+                        className={`fixed-buttons ${fixed ? 'hide-inner' : ''}`}
+                      >
+                        <a
+                          onClick={() => {
+                            this.toggleFilterSection();
+                            this.toggleFilters();
+                          }}
+                          className="close"
                         >
-                          <a
-                            onClick={() => {
-                              this.toggleFilterSection();
-                              this.toggleFilters();
-                            }}
-                            className="close"
-                          >
-                            Close
-                          </a>
-                          <a
-                            onClick={() => {
-                              this.toggleFilterSection();
-                              this.callAPI();
-                            }}
-                            className="apply"
-                          >
-                            Apply
-                          </a>
-                        </div>
-                      )}
-                    </Filters>
-                  )}
+                          Close
+                        </a>
+                        <a
+                          onClick={() => {
+                            this.toggleFilterSection();
+                            this.callAPI();
+                          }}
+                          className="apply"
+                        >
+                          Apply
+                        </a>
+                      </div>
+                    )}
+                  </Filters>
+                )}
               </div>
 
               <div

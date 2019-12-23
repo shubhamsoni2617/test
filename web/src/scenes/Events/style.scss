@@ -114,8 +114,8 @@
                         width: calc(50% - 19px);
                     }
                     @media(max-width: 767px){
-                        flex: 0 0 calc(50% - 12px);
-                        width: calc(50% - 12px);
+                        flex: 0 0 calc(50% - 13px);
+                        width: calc(50% - 13px);
                         margin-bottom: 10px;
                         margin-right: 12px;
                     }
@@ -407,11 +407,13 @@
                     max-height: 122px;
                     overflow: hidden;
                     @media(max-width: 991px){
-                        width: 100%;
+                        width: auto;
                         height: auto;
+                        max-width: 100%;
                     }
                     @media(max-width: 767px){
                         max-width: 100%;
+                        max-height: 100%;
                     }
                     img{
                         max-width: 100%;
