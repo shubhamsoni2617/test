@@ -1107,43 +1107,8 @@
         }
     }
     .slick-arrow{
-        height: 85px;
-        width: 35px;
-        background-color: rgba(0, 0, 0, 0.7);
         @media(max-width: 768px){
             display: none !important;
-        }
-        // @media(min-width: 768px) and (max-width: 1024px) and (orientation: landscape){
-        //     margin-top: 32px !important;;
-        // }
-        &:hover{
-            border: none;
-            outline: none;
-        }
-        &.slick-prev{
-            left: -40px;
-            background: url('../../../assets/images/left-arrow-white.svg') 10px 32px no-repeat;
-            background-color: rgba(0, 0, 0, 0.7);
-            background-size: 10px 18px;
-            &:hover{
-                border: none;
-            }
-
-        }
-        &.slick-next{
-            right: -40px;
-            background: url('../../../assets/images/right-arrow-white.svg') 10px 32px no-repeat;
-            background-color: rgba(0, 0, 0, 0.7);
-            background-size: 10px 18px;
-            &:hover{
-                border: none;
-            }
-            // &:hover,
-            // &:focus{
-            //     border: none;
-            //     outline: none;
-            //     background-position: 12px 0;
-            // }
         }
     }
 }
@@ -1176,41 +1141,13 @@
 .explore-wrapper{
     .trending-wrapper{
         position: relative;
-        .slick-slider{
-            position: static;
-        }
         .slick-arrow{
-            height: 82px;
-            width: 35px;
-            background-position: 10px 32px;
-            background-color: rgba(0, 0, 0, 0.7);
-            margin-top: 0px;
-            top: 50%;
-            background-size: 13px;
             @media(max-width: 768px){
                 display: none !important;
             }
-            // @media(min-width: 768px) and (max-width: 1024px) and (orientation: portrait){
-            //     margin-top: 32px !important;
-            // }
-            &:hover{
-                border: none;
-                outline: none;
-            }
-            &.slick-prev{
-                left: 0;
-                background-image: url('../../../assets/images/left-arrow-white.svg');
-                &:hover{
-                    border: none;
-                }
-                
-            }
-            &.slick-next{     
-                right: 0;           
-                background-image: url('../../../assets/images/right-arrow-white.svg');
-                &:hover{
-                    border: none;
-                }
+            &::before{
+                box-shadow: 1px -1px 0 1px #fff inset;
+                -webkit-box-shadow: 2px -2px #fff inset;
             }
         }
         .item{

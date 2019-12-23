@@ -10,15 +10,15 @@
 		}
 
 	}
-	.slick-slider{
-		position: static;
-		.slick-prev{
-			left: 0;
-		}
-		.slick-next{
-			right: 0;
-		}
-	}
+	// .slick-slider{
+	// 	position: static;
+	// 	.slick-prev{
+	// 		left: 0;
+	// 	}
+	// 	.slick-next{
+	// 		right: 0;
+	// 	}
+	// }
 	@media (max-width: 767px) {
 		padding-top: 0px;
     }
@@ -1568,8 +1568,8 @@
 // Slider Arrow common CSS
 .slick-slider{
     .slick-prev, .slick-next{
-        height: 82px;
-        width: 35px;
+        height: 25px;
+        width: 25px;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -1579,17 +1579,34 @@
 		-webkit-transition: 0.3s all ease-in-out;
 		-moz-transition: 0.3s all ease-in-out;
 		-o-transition: 0.3s all ease-in-out;
-        &::before, &::after{
-            display: none;
-        }
+        &::before{
+			content: '';
+			position: absolute;
+			padding: 8px;
+			box-shadow: 1px -1px 0 1px #0098FF inset;
+			-webkit-box-shadow: 2px -2px #0098FF inset;
+			border: solid transparent;
+			border-width: 0 0 8px 8px;
+			transition: 0.2s;
+			top: 2px;
+		}
+		&.slick-disabled{
+			&::before{
+				opacity: .75;
+			}
+		}
     }
     .slick-prev{
-        left: -40px;
-        background: url(../../assets/images/left-arrow-blue.svg) 0 0px no-repeat;
+        // background: url(../../assets/images/left-arrow-blue.svg) 0 0px no-repeat;
         &:hover, &:focus{
-            background: url(../../assets/images/left-arrow-blue.svg) 0 0px no-repeat;
+            // background: url(../../assets/images/left-arrow-blue.svg) 0 0px no-repeat;
             border: none;
-        }
+		}
+		&::before{
+			left: -5px;
+			transform: rotate(45deg);
+		}
+		
         @media(min-width: 768px) and (max-width: 1023px) {
             left: -30px;
 		}
@@ -1598,10 +1615,13 @@
 		}
     }
     .slick-next{
-        right: -40px;
-        background: url(../../assets/images/right-arrow-blue.svg) 0 0px no-repeat;
+		// background: url(../../assets/images/right-arrow-blue.svg) 0 0px no-repeat;
+		&::before{
+			transform: rotate(-135deg);
+			right: 0;
+		}
         &:hover, &:focus{
-            background: url(../../assets/images/right-arrow-blue.svg) 0 0px no-repeat;
+            // background: url(../../assets/images/right-arrow-blue.svg) 0 0px no-repeat;
             border: none;
         }
         @media(min-width: 768px) and (max-width: 1023px) {

@@ -115,6 +115,7 @@ const Advertise = props => {
       </section>
 
       <section>
+      <div className="container-fluid custom-container pr-0">
         <div className="website-wrapper">
           {advertiseData && (
             <div className="website-content">
@@ -129,6 +130,7 @@ const Advertise = props => {
           <div className="website-image text-right">
             <img src={img1} alt="websiter-image" className="img-fluid" />
           </div>
+        </div>
         </div>
       </section>
 
