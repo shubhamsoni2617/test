@@ -11,6 +11,7 @@ import chair from '../../../assets/images/chair.svg';
 import notification from '../../../assets/images/notification.svg';
 import event from '../../../assets/images/current-event.svg';
 import download from '../../../assets/images/download-blue.svg';
+import mtr from '../../../assets/images/mtr.svg';
 import Utilities from '../../utilities';
 import Image from '../Image';
 import { Link } from 'react-router-dom';
@@ -151,7 +152,7 @@ const AgentVenuePopUp = props => {
           {popUpDetail.nearest_mrt ? (
             <div className="agent-info">
               <div className="icon">
-                <img src={address} alt="icon" />
+                <img src={mtr} alt="icon" />
               </div>
               <div className="details">
                 <h3>Nearest Metro Station</h3>
