@@ -38,15 +38,16 @@ export default class App extends React.Component {
     this.state = {
       collapsed: false,
       showPreviewButton: true,
-      showPreview: false
+      showPreview: false,
+      previewDate: ''
     };
     // if (typeof window == 'undefined') {
     //   console.log('server');
     // }
     if (typeof window != 'undefined') {
-      if (window.location.hostname === 'previewuat.sistic.com.sg') {
-        API.defaults.baseURL += 'preview';
-      }
+      // if (window.location.hostname === 'previewuat.sistic.com.sg') {
+      API.defaults.baseURL += 'preview';
+      // }
       API.defaults.headers.common['device_id'] = Utilities.getDeviceID();
     }
   }
@@ -78,7 +79,6 @@ export default class App extends React.Component {
   };
 
   render() {
-    console.log(this.state.previewDate);
     const { showPreview, showPreviewButton } = this.state;
     return (
       <div className="wrapper">
@@ -86,7 +86,6 @@ export default class App extends React.Component {
         <Advertisement {...this.props} />
         <TopNav {...this.props} />
         <Navigator {...this.props} previewDate={this.state.previewDate} />
-        {/* <Footer {...this.props} /> */}
         {!showPreviewButton && <Footer {...this.props} />}
         {showPreviewButton && (
           <span
