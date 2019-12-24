@@ -88,6 +88,19 @@
             .promotion-category-div{
                 min-height: 20px;
                 margin-bottom: 12px;
+                .promotion-category-title{
+                  border: 1px solid rgba(52, 52, 52, 0.2);
+                  color: #343434;
+                  font-size: 14px;
+                  line-height: 20px;
+                  padding: 0px 6px;
+                  font-weight: 500;
+                  margin-top: 0px;
+                  display: inline-block;
+                  font-family: 'Montserrat', sans-serif;
+                  background-color: #fff;
+                  box-shadow: 0 0 0 1px #e2e2e2;
+                }
             }
             .promotion-category {
                 color: #0077C8;
@@ -101,6 +114,7 @@
                 display: inline-block;
                 text-align: center;
                 font-weight: 600;
+                margin-right: 10px;
             }
             .share{
                 margin-top: 20px;
@@ -300,6 +314,11 @@
                     }
                 }
             }
+        }
+        &:hover{
+          .promotion-image, .promotion-desc {
+            cursor: pointer;
+          }
         }
     }
     .promotion-tab-dropdown {
@@ -530,10 +549,10 @@
                     .grid-container {
                         color: #ffffff;
                         padding: 0 5px;
-                        -ms-overflow-style: none; // IE 10+ 
-                        scrollbar-width: none; // Firefox 
-                        &::-webkit-scrollbar { 
-                            display: none; // Safari and Chrome 
+                        -ms-overflow-style: none; // IE 10+
+                        scrollbar-width: none; // Firefox
+                        &::-webkit-scrollbar {
+                            display: none; // Safari and Chrome
                         }
                         @media(max-width: 767px){
                             display: flex;
