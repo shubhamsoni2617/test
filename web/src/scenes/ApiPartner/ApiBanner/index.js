@@ -5,7 +5,7 @@ import apibanner from '../../../assets/images/api-partners-banner.png';
 const ApiBanner = ({ title, description }) => {
   return (
     <div className="banner-leftalign-wrapper">
-      <div className="container">
+      <div className="container-fluid custom-container">
         <div className="banner-leftalign">
           <div className="banner-desc">
             <p>{title}</p>

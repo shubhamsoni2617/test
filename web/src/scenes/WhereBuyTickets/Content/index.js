@@ -29,7 +29,7 @@ const Content = ({ whereBuyTicketsDetails, apiPartners }) => {
     <Fragment>
       <div className="">
         <div className="sistic-singapore-section">
-          <div className="container">
+          <div className="container-fluid custom-container">
             <div className="wtbt-desc">
               <div className="wtbt-content">
                 <h1 id={whereBuyTicketsDetails[0].title}>
@@ -51,7 +51,7 @@ const Content = ({ whereBuyTicketsDetails, apiPartners }) => {
           </div>
         </div>
         <div className="mobile-app-section">
-          <div className="container">
+          <div className="container-fluid custom-container">
             <div className="wtbt-desc">
               <div className="wtbt-content">
                 <h1 id={whereBuyTicketsDetails[1].title}>
@@ -88,7 +88,7 @@ const Content = ({ whereBuyTicketsDetails, apiPartners }) => {
           </div>
         </div>
         <div className="agent-section">
-          <div className="container">
+          <div className="container-fluid custom-container">
             <div className="wtbt-desc">
               <div className="wtbt-content">
                 <h1 id={whereBuyTicketsDetails[2].title}>
@@ -110,7 +110,7 @@ const Content = ({ whereBuyTicketsDetails, apiPartners }) => {
           </div>
         </div>
         <div className="api-partners-section">
-          <div className="container">
+          <div className="container-fluid custom-container">
             <div className="wtbt-desc">
               <div className="wtbt-image">
                 {/* <div className="img-fluid"> */}
@@ -153,7 +153,7 @@ const Content = ({ whereBuyTicketsDetails, apiPartners }) => {
           </div>
         </div>
         <div className="hotline-section">
-          <div className="container">
+          <div className="container-fluid custom-container">
             <div className="wtbt-desc">
               <div className="wtbt-content">
                 <h1 id={whereBuyTicketsDetails[4].title}>

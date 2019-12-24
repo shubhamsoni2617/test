@@ -59,7 +59,17 @@ const PromotionCard = props => {
           : 'promotion-block'
       }
     >
-      <div className="promotions-listing-wrapper">
+      <div
+        className="promotions-listing-wrapper"
+        onClick={() =>
+          fetchPromotionDetailData(
+            data.alias,
+            data.id,
+            defaultTabId,
+            promotionTab
+          )
+        }
+      >
         <div className="promotion-image">
           <Image src={data.featured_image} type="Promotion" />
         </div>
@@ -73,6 +83,7 @@ const PromotionCard = props => {
                 {data.custom_label_text}
               </span>
             ) : null}
+            <span className="promotion-category-title">{data.category}</span>
           </div>
           <span className="share" onClick={handleSocialShare}>
             <img src={ShareIcon} alt="share-icon" />
@@ -91,16 +102,7 @@ const PromotionCard = props => {
             allowTooltip={true}
           />
           <div className="promotion-btn-wrapper">
-            <button
-              onClick={() =>
-                fetchPromotionDetailData(
-                  data.alias,
-                  data.id,
-                  defaultTabId,
-                  promotionTab
-                )
-              }
-            >
+            <button>
               <span>See More</span>
             </button>
             {data.show_timer === '1' ? (

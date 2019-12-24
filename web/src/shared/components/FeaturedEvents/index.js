@@ -31,7 +31,13 @@ const Item = ({ event }) => {
           <EventHeading
             title={event && event.title}
             lines={2}
-            height={Utilities.mobilecheck() ? 18 : Utilities.mobileAndTabletcheck() ? 20 : 20}
+            height={
+              Utilities.mobilecheck()
+                ? 18
+                : Utilities.mobileAndTabletcheck()
+                ? 20
+                : 20
+            }
           />
           <Ellipsis
             title={event.event_date}
@@ -96,7 +102,7 @@ const FeaturedEvents = props => {
     dots: true,
     infinite: false,
     speed: 500,
-    rows: 1,
+    rows: 2,
     slidesPerRow: 5,
     responsive: [
       {
@@ -137,7 +143,7 @@ const FeaturedEvents = props => {
       }
       ref={element}
     >
-      <div className="container-fluid">
+      <div className="container-fluid custom-container">
         <div className="section-top-wrapper">
           <h2>{heading}</h2>
           {!props.explore && (
@@ -164,8 +170,8 @@ const FeaturedEvents = props => {
               propCls={`shm_col-xs-2 col-md-2`}
             />
           ) : (
-              shimmerWebTab
-            )
+            shimmerWebTab
+          )
         ) : Utilities.mobilecheck() ? (
           <div
             className="featured-wrapper"
@@ -173,33 +179,22 @@ const FeaturedEvents = props => {
           >
             {featuredEvents &&
               featuredEvents.map(event => {
-                return <Item event={event} />;
+                return <Item event={event} key={event.id} />;
               })}
           </div>
         ) : (
-              <Slider {...settings}>
-                {featuredEvents &&
-                  featuredEvents.length > 0 &&
-                  featuredEvents.map((event, index, array) => {
-                    if (index % 2 === 0) {
-                      if (array[index] && array[index + 1]) {
-                        return (
-                          <div className="grid-container" key={index}>
-                            <Item event={array[index]} />
-                            <Item event={array[index + 1]} />
-                          </div>
-                        );
-                      } else if (array[index]) {
-                        return (
-                          <div className="grid-container" key={index}>
-                            <Item event={array[index]} />
-                          </div>
-                        );
-                      }
-                    }
-                  })}
-              </Slider>
-            )}
+          <Slider {...settings}>
+            {featuredEvents &&
+              featuredEvents.length > 0 &&
+              featuredEvents.map((event, index, array) => {
+                return (
+                  <div className="grid-container" key={index}>
+                    <Item event={array[index]} />
+                  </div>
+                );
+              })}
+          </Slider>
+        )}
       </div>
     </section>
   );

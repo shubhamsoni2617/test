@@ -77,15 +77,15 @@
             //         padding-right: 0px;
             //     }
             // }
-            .slick-slider{
-                position: static;
-                .slick-prev{
-                    left: 0;
-                }
-                .slick-next{
-                    right: 0;
-                }
-            }
+            // .slick-slider{
+            //     position: static;
+            //     .slick-prev{
+            //         left: 0;
+            //     }
+            //     .slick-next{
+            //         right: 0;
+            //     }
+            // }
         }
     }
   }
@@ -665,17 +665,19 @@
                     @media(max-width: 1024px){
                         margin-bottom: 15px;
                     }
+                    .link{
+                      margin-bottom: 10px;
+                      padding-top: 5px;
+                    }
                       a{
                           display: flex;
                           align-items: center;
                           color: #0098FF;
                           line-height: 30px;
                           span{
-                            max-width: 247px;
+                            max-width: 100%;
                             width: 100% !important;
-                            white-space: nowrap;
-                            text-overflow: ellipsis;
-                            overflow: hidden;
+                            white-space: normal;
                               &:hover{
                                 color: #0098FF;
                               }

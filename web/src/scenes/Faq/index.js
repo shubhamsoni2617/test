@@ -97,7 +97,7 @@ const Faq = props => {
         toggleContentHandler={toggleContentHandler}
       />
       <div className="faq-body-wrapper">
-        <div className="container-fluid">
+        <div className="container-fluid custom-container">
           <FaqCategory
             {...props}
             categoryId={categoryId}

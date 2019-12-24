@@ -40,6 +40,7 @@
                 justify-content: center;
                 height: 100%;
                 width: 100%;
+                padding-left: 0;
                 @media(max-width: 991px){
                     width: 100%;
                 }
@@ -304,9 +305,9 @@
         margin-bottom: 40px;
     }
     .website-content{
-        flex: 0 0 calc(50% - 50px);
-        min-width: calc(50% - 50px);
-        padding-left: 50px;
+        flex: 0 0 calc(50% - 40px);
+        min-width: calc(50% - 40px);
+        padding-left: 40px;
         align-self: center;
         @media(max-width: 768px){
             text-align: center !important;

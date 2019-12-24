@@ -1,4 +1,4 @@
-export default function getQueryStringParams() {
+export default function getQueryStringParams(location) {
   return location.search
     ? (/^[?#]/.test(location.search)
         ? location.search.slice(1)

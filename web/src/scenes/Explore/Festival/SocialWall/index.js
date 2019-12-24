@@ -35,7 +35,7 @@ const SocialWall = ({ socialUrl }) => {
       <Fragment>
         {feeds && (
           <section className="sistic-moments">
-            <div className="container-fluid">
+            <div className="container-fluid custom-container">
               <div className="social-wall">
                 <h2>SocialWall</h2>
                 <div className="sistic-moments-wrapper">
