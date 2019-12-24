@@ -10,9 +10,10 @@ const SearchNotFound = ({ searchKeyword }) => {
         <div className="no-data">
           <img src={noEvent} alt="no-event" className="img-fluid" />
           <p>
-            <strong>Opps! No Result Found For '{searchKeyword}'</strong>
+            {/* <strong>Opps! No Result Found For '{searchKeyword}'</strong> */}
+            <strong>No events found </strong>
           </p>
-          <p>You can also visit</p>
+          <p>Try again with more general search events</p>
           <ul className="no-result-search-listing">
             <li>
               <Link to="/attractions">Go to Attractions</Link>

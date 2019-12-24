@@ -107,11 +107,10 @@ const EventCarousel = ({ images }) => {
           renderRightNav={renderRightNav}
           onSlide={index => pauseVideoOnSlide(index)}
         />
-      ) : (
-        <div className="image-gallery-image">
-          <Image largeImage="" src="" type="BigBanner" />
-        </div>
-      )}
+      ) : // <div className="image-gallery-image">
+      //   <Image largeImage="" src="" type="BigBanner" />
+      // </div>
+      null}
     </div>
   );
 };

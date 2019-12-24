@@ -1613,7 +1613,7 @@
 			left: -5px;
 			transform: rotate(45deg);
 		}
-		
+
         @media(min-width: 768px) and (max-width: 1023px) {
             left: -30px;
 		}
@@ -2174,7 +2174,7 @@
 					    width: 25%;
 					}
 					& > a{
-						height: calc(50% - 23px);
+						height: calc(100% - 23px);
 						margin-bottom: 23px;
 						@media(max-width: 1024px){
 							height: calc(50% - 23px);
@@ -2347,7 +2347,7 @@
 					&:last-child, &.venue-name {
                         margin-bottom: 14px;
 						min-height: auto;
-						margin-bottom: 0px;				
+						margin-bottom: 0px;
 					}
 				}
 				.venue-name{
@@ -2816,8 +2816,8 @@ p {
                     > div{
                         display: grid;
                         grid-template-columns: repeat(4, minmax(20%, 1fr));
-						grid-gap: 17px;
-						height: 50%;
+                        grid-gap: 17px;
+                        height: 50%;
                         @media(max-width: 1024px){
                             padding-top: 20px;
                             grid-template-columns: repeat(3, minmax(31%, 1fr));
@@ -2849,10 +2849,10 @@ p {
                             padding-left: 0;
 						}
 						& > a{
-							height: calc(50% - 20px);
+							height: calc(100% - 20px);
 							margin-bottom: 20px;
 							@media(max-width: 768px){
-								height: calc(50% - 10px);
+								height: calc(100% - 10px);
 								margin-bottom: 10px;
 							}
 						}
@@ -2997,7 +2997,7 @@ p {
 		}
 		@media(min-width: 601px) and (max-width: 962px){
 			.slick-arrow{
-				display: none !important;
+				// display: none !important;
 			}
 		}
     }
@@ -3144,7 +3144,7 @@ section.trending-now {
 		}
 		@media(max-width: 576px){
 			overflow-y: hidden;
-		}		
+		}
 		.item {
 			height: 100%;
 			display: flex;
