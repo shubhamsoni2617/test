@@ -3,7 +3,7 @@ import SearchService from '../../../../shared/services/SearchService';
 import Constants from '../../../../shared/constants';
 import useDebounce from '../../../../shared/hooks/useDebounce';
 import RecentlySearched from './RecentlySearched';
-import loaderImage from '../../../../assets/images/loader.svg';
+import loaderImage from '../../../../assets/images/sistic-loader.gif';
 import previousArrow from '../../../../assets/images/next.svg';
 import searchImage from '../../../../assets/images/search.svg';
 import cross from '../../../../assets/images/cross-grey.svg';
