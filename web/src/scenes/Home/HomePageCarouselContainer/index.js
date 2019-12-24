@@ -81,56 +81,50 @@ class HomePageCarouselContainer extends Component {
     mainSliderSettings.centerPadding = `${Math.round(
       (290 / 1366) * screen.width
     )}px`;
-    thumbSliderSettings.slidesToShow = Math.round((13 / 1366) * screen.width);
-    if (this.state.posts.length < thumbSliderSettings.slidesToShow) {
-      thumbSliderSettings.slidesToShow = this.state.posts.length;
-      thumbSliderSettings.centerMode = false;
-    }
-    // if (screen.width >= 1480 && screen.width <= 1980) {
-    //   // debugger;
-    //   mainSliderSettings.centerPadding = '380px';
-    //   // thumbSliderSettings.slidesToShow = 13;
-    //   if (this.state.posts.length < 13) {
-    //     thumbSliderSettings.slidesToShow = this.state.posts.length;
-    //     thumbSliderSettings.centerMode = false;
-    //   }
-    // } else if (screen.width > 1280 && screen.width < 1480) {
-    //   mainSliderSettings.centerPadding = '290px';
-    //   // thumbSliderSettings.slidesToShow = 13;
-    //   if (this.state.posts.length < 13) {
-    //     thumbSliderSettings.slidesToShow = this.state.posts.length;
-    //     thumbSliderSettings.centerMode = false;
-    //   }
-    // } else if (screen.width > 1136 && screen.width <= 1280) {
-    //   mainSliderSettings.centerPadding = '240px';
-    //   // thumbSliderSettings.slidesToShow = 11;
-    //   if (this.state.posts.length < 11) {
-    //     thumbSliderSettings.slidesToShow = this.state.posts.length;
-    //     thumbSliderSettings.centerMode = false;
-    //   }
-    // } else if (screen.width >= 768 && screen.width <= 1024) {
-    //   mainSliderSettings.centerPadding = '110px';
-    //   // thumbSliderSettings.slidesToShow = 7;
-    //   if (this.state.posts.length < 7) {
-    //     thumbSliderSettings.slidesToShow = this.state.posts.length;
-    //     thumbSliderSettings.centerMode = false;
-    //   }
-    // } else if (screen.width >= 568 && screen.width <= 767) {
-    //   mainSliderSettings.centerPadding = '70px';
-    //   // thumbSliderSettings.slidesToShow = 5;
-    //   if (this.state.posts.length < 5) {
-    //     thumbSliderSettings.slidesToShow = this.state.posts.length;
-    //     thumbSliderSettings.centerMode = false;
-    //   }
-    // } else if (screen.width > 320 && screen.width <= 450) {
-    //   mainSliderSettings.centerPadding = '48px';
-    //   // mainSliderSettings.slidesToShow = 0.9;
-    //   // thumbSliderSettings.slidesToShow = 4;
-    //   if (this.state.posts.length < 4) {
-    //     thumbSliderSettings.slidesToShow = this.state.posts.length;
-    //     thumbSliderSettings.centerMode = false;
-    //   }
+    // let slidesToShow = Math.round((13 / 1366) * screen.width);
+    // thumbSliderSettings.slidesToShow = 9;
+    // if (this.state.posts.length < thumbSliderSettings.slidesToShow) {
+    //   thumbSliderSettings.slidesToShow =
+    //     this.state.posts.length < 5 ? 4 : this.state.posts.length;
+    //   thumbSliderSettings.centerMode = false;
     // }
+    if (window.innerWidth >= 1480 && window.innerWidth <= 1980) {
+      thumbSliderSettings.slidesToShow = 13;
+      if (this.state.posts.length < 13) {
+        thumbSliderSettings.slidesToShow = this.state.posts.length;
+        thumbSliderSettings.centerMode = false;
+      }
+    } else if (window.innerWidth > 1280 && window.innerWidth < 1480) {
+      thumbSliderSettings.slidesToShow = 13;
+      if (this.state.posts.length < 13) {
+        thumbSliderSettings.slidesToShow = this.state.posts.length;
+        thumbSliderSettings.centerMode = false;
+      }
+    } else if (window.innerWidth > 1136 && window.innerWidth <= 1280) {
+      thumbSliderSettings.slidesToShow = 11;
+      if (this.state.posts.length < 11) {
+        thumbSliderSettings.slidesToShow = this.state.posts.length;
+        thumbSliderSettings.centerMode = false;
+      }
+    } else if (window.innerWidth >= 768 && window.innerWidth <= 1024) {
+      thumbSliderSettings.slidesToShow = 9;
+      if (this.state.posts.length < 9) {
+        thumbSliderSettings.slidesToShow = this.state.posts.length;
+        thumbSliderSettings.centerMode = false;
+      }
+    } else if (window.innerWidth >= 568 && window.innerWidth <= 767) {
+      thumbSliderSettings.slidesToShow = 5;
+      if (this.state.posts.length < 5) {
+        thumbSliderSettings.slidesToShow = this.state.posts.length;
+        thumbSliderSettings.centerMode = false;
+      }
+    } else if (window.innerWidth >= 320 && window.innerWidth <= 450) {
+      thumbSliderSettings.slidesToShow = 4;
+      if (this.state.posts.length < 4) {
+        thumbSliderSettings.slidesToShow = this.state.posts.length;
+        thumbSliderSettings.centerMode = false;
+      }
+    }
 
     this.setState({
       mainSliderSettings: mainSliderSettings,
