@@ -1824,7 +1824,10 @@
 				-moz-transition: 0.3s transform, 0.3s opacity, 0.3s color;
 				-o-transition: 0.3s transform, 0.3s opacity, 0.3s color;
                 margin-bottom: 0px;
-                min-height: auto;
+				min-height: auto;
+				@media(max-width: 1024px){
+					padding: 4px 3px;
+				}
 				@media (max-width: 767px) {
                     min-height: auto;
 				}
@@ -1889,6 +1892,9 @@
 					padding: 10px;
 					width: 100%;
 					height: auto;
+					h3{
+						line-height: 22px;
+					}
                 }
 				h3 {
 					font-size: 19.95px;
@@ -1940,7 +1946,7 @@
                 }
 			}
 			&:hover {
-				@media(min-width: 768px) {
+				@media(min-width: 991px) {
 					.item-overlay {
 						transform: translateY(-50%);
 						opacity: 1;
@@ -3457,6 +3463,7 @@ section.explore {
 			margin-top: 10px;
 			@media (max-width: 991px) {
 				margin-bottom: 20px;
+				line-height: 18px;
 			}
 			@media(max-width: 767px){
 				margin-bottom: 0px;
