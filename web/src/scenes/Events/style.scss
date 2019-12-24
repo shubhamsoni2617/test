@@ -99,7 +99,7 @@
                     display: none;
                 }
                 @media(max-width: 1024px){
-                    height: 100%;
+                    height: auto;
                 }
                 @media (max-width: 767px) {
                     margin-bottom: 10px;
@@ -114,8 +114,8 @@
                         width: calc(50% - 19px);
                     }
                     @media(max-width: 767px){
-                        flex: 0 0 calc(50% - 12px);
-                        width: calc(50% - 12px);
+                        flex: 0 0 calc(50% - 13px);
+                        width: calc(50% - 13px);
                         margin-bottom: 10px;
                         margin-right: 12px;
                     }
@@ -313,22 +313,22 @@
     }
 }
 .events-page-wrapper{
-    .event-list-content{
-        .container-fluid{
-            max-width: 1360px;
-            margin: 0 auto;
-            padding: 0 40px;
-            @media(min-width: 1360px){
-                max-width: 1440px;
-            }
-            @media(max-width: 1024px){
-                padding: 0 30px;
-            }
-            @media(max-width: 767px){
-                padding: 0 10px;
-            }
-        }
-    }
+    // .event-list-content{
+    //     .container-fluid{
+    //         max-width: 1360px;
+    //         margin: 0 auto;
+    //         padding: 0 40px;
+    //         @media(min-width: 1360px){
+    //             max-width: 1440px;
+    //         }
+    //         @media(max-width: 1024px){
+    //             padding: 0 30px;
+    //         }
+    //         @media(max-width: 767px){
+    //             padding: 0 10px;
+    //         }
+    //     }
+    // }
     .filters-search{
         @media(max-width: 767px){
             padding: 8px 0 8px;
@@ -407,11 +407,13 @@
                     max-height: 122px;
                     overflow: hidden;
                     @media(max-width: 991px){
-                        width: 100%;
+                        width: auto;
                         height: auto;
+                        max-width: 100%;
                     }
                     @media(max-width: 767px){
                         max-width: 100%;
+                        max-height: 100%;
                     }
                     img{
                         max-width: 100%;

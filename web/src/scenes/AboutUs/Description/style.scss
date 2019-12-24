@@ -3,6 +3,9 @@
     background-color: #F0F9FF;
     position: relative;
     z-index: 1;
+    .custom-container{
+        overflow: visible;
+    }
     @media(max-width: 768px){
         padding: 31px 0px 44px;
     }
@@ -15,7 +18,7 @@
         display: flex;
         flex-wrap: wrap;
         align-items: center;
-        padding-top: 24px;
+        padding: 24px 24px 0 24px;
         @media(max-width: 768px){
             margin-bottom: 35px;
         }

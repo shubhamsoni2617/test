@@ -7,7 +7,7 @@ import promise from '../../../assets/images/our-promise.png';
 const Description = ({ content }) => {
   return (
     <div className="aboutus-description-wrapper">
-      <div className="container">
+      <div className="container-fluid custom-container">
         <section className="our-mission">
           <div className="about-desc-img">
             <img src={mission} alt="our-mission" />

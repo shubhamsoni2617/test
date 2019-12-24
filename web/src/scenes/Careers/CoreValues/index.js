@@ -4,7 +4,7 @@ import CoreValImg from '../../../../src/assets/images/core-value.png';
 
 const CoreValues = ({ coreValues }) => {
   return (
-    <div className="container">
+    <div className="container-fluid custom-container">
       <div className="row core-value">
         <div className="col-lg-7 col-md-6 blue-line">
           <img src={CoreValImg} alt="team" />

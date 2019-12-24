@@ -6,7 +6,7 @@ import Utilities from '../../../../shared/utilities';
 const PollsNServeys = ({ sectionSeven }) => {
   return sectionSeven && (sectionSeven.image || sectionSeven.heading) ? (
     <section className="polls-survey">
-      <div className="container-fluid">
+      <div className="container-fluid custom-container">
         <div className="polls-wrapper">
           {sectionSeven.heading && <h2>{sectionSeven.heading}</h2>}
           <div className="polls-box">

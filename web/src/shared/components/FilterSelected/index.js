@@ -3,10 +3,12 @@ import * as moment from 'moment';
 import './style.scss';
 import closeBlueImg from '../../../assets/images/close-blue.svg';
 import Utilities from '../../utilities';
+import { useGlobalState } from '../../../scenes/App/store';
 
 function FilterSelected(props) {
+  const [state] = useGlobalState('global');
+  const { genreData } = state;
   const {
-    genreData,
     venueData,
     attractionCategories,
     filterConfig,
@@ -28,12 +30,17 @@ function FilterSelected(props) {
     return (
       <>
         {text}
-        <button onClick={() => {
-          setTimeout(() => {
-            handleFilters(obj, true)
-            // props.type == "EVENTS" ? props.history.push(`/events/search`) : props.history.push(`/attraction`) ;
-          }, 100); 
-        }} className="filtered-tags-close-btn"><img src={closeBlueImg} alt="close-btn" /></button>
+        <button
+          onClick={() => {
+            setTimeout(() => {
+              handleFilters(obj, true);
+              // props.type == "EVENTS" ? props.history.push(`/events/search`) : props.history.push(`/attraction`) ;
+            }, 100);
+          }}
+          className="filtered-tags-close-btn"
+        >
+          <img src={closeBlueImg} alt="close-btn" />
+        </button>
       </>
     );
   };
@@ -78,7 +85,10 @@ function FilterSelected(props) {
           <li>
             <Button
               text={`S$${filteredPriceRange.min} - S$${filteredPriceRange.max}`}
-              obj={{ filteredPriceRange: { min: '', max: '' }, localfilteredPriceRange: { min: '', max: '' }  }}
+              obj={{
+                filteredPriceRange: { min: '', max: '' },
+                localfilteredPriceRange: { min: '', max: '' }
+              }}
             />
           </li>
         )}

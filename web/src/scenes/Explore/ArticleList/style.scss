@@ -226,23 +226,15 @@
                     }
                 }
                 .item-title{
-                    @media(max-width: 1024px){
-                        min-height: 86px;
-                    }
                     @media(max-width: 767px){
-                        min-height: 65px;
                         padding-top: 5px;
-                    }
-                    @media(max-width: 576px){
-                        //min-height: 108px;
-                        min-height: 70px;
                     }
                     .sub-text, span, p{
                         font-family: 'Rubik', sans-serif;
                         font-size: 14px;
                         line-height: 22px;
                         color: #626262;
-                        min-height: 50px;
+                        min-height: auto;
                         word-break: break-word;
                         @media(max-width: 767px){
                             font-size: 13px;

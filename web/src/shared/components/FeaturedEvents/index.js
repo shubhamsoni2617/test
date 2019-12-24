@@ -143,7 +143,7 @@ const FeaturedEvents = props => {
       }
       ref={element}
     >
-      <div className="container-fluid">
+      <div className="container-fluid custom-container">
         <div className="section-top-wrapper">
           <h2>{heading}</h2>
           {!props.explore && (

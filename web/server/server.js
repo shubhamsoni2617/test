@@ -73,12 +73,15 @@ app.get('*', (req, res, next) => {
           if (result && result.length > 0) {
             // const helmet = Helmet.renderStatic();
 
+            //Process response
+            let response = App.getInitialState(result);
             var dataObject = {
               metaData: result[0] && result[0].data,
               venuesData: result[1] && result[1].data,
               genreData: result[2] && result[2].data,
               findAnEventAddsData: result[3] && result[3].data,
-              pageData: result[4] ? result[4].data : null
+              pageData: result[4] ? result[4].data : null,
+              response
             };
             const markup = renderToString(
               <HelmetProvider context={helmetContext}>
@@ -86,7 +89,7 @@ app.get('*', (req, res, next) => {
                   location={req.url}
                   context={{ response: dataObject }}
                 >
-                  <App response={dataObject} />
+                  <App response={response} />
                 </StaticRouter>
               </HelmetProvider>
             );

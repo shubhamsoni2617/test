@@ -9,7 +9,7 @@ import Image from '../../../shared/components/Image';
 const OurPeople = ({ content }) => {
   return (
     <div className="our-people-wrapper">
-      <div className="container">
+      <div className="container-fluid custom-container">
         <div className="our-people-desc">
           <h3>{content && content[3].title}</h3>
           <p

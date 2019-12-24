@@ -98,7 +98,7 @@ const TopPics = props => {
 
   return (
     <section className="top-picks">
-      <div className="container-fluid">
+      <div className="container-fluid custom-container">
         <h2>{props.heading}</h2>
         {Utilities.mobilecheck() ? (
           !data.length ? (

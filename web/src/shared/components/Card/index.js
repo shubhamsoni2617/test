@@ -54,7 +54,7 @@ export default class Card extends Component {
               <EventHeading
                 title={cardData.title}
                 lines={2}
-                height={Utilities.mobileAndTabletcheck() ? 15 : 20}
+                height={Utilities.mobilecheck() ? 16 : Utilities.mobileAndTabletcheck() ? 20 : 20}
               />
             </div>
             {cardData.synopsis && (
