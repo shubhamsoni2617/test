@@ -13,7 +13,7 @@ const Welcome = ({ breadcrumbSlug, subtitle, title, description }) => {
   return (
     <Fragment>
       <section>
-        <div className="container-fluid">
+        <div className="container-fluid custom-container">
           <div className="Home-tab ">
             <div className="explore-nav">
               <BreadcrumbSlug breadcrumbSlug={breadcrumbSlug} />
@@ -32,7 +32,7 @@ const Welcome = ({ breadcrumbSlug, subtitle, title, description }) => {
       </section>
 
       <section>
-        <div className="container-fluid">
+        <div className="container-fluid custom-container">
           <div className="welcome-sifa">
             <h2>{title}</h2>
             <span>{subtitle}</span>

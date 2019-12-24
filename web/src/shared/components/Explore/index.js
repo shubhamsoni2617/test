@@ -31,7 +31,7 @@ const Explore = props => {
 
   return exploreData && exploreData.length ? (
     <section className="explore">
-      <div className="container-fluid">
+      <div className="container-fluid custom-container">
         <div className="section-top-wrapper">
           <h2>{props.heading}</h2>
           {!props.article && (

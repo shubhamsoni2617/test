@@ -7,7 +7,7 @@ const TicketDeals = ({ sectionFive }) => {
     sectionFive.sub_section_five &&
     sectionFive.sub_section_five.length > 0 ? (
     <section className="deal-wrapper">
-      <div className="container-fluid">
+      <div className="container-fluid custom-container">
         <div className="tickets">
           {sectionFive && sectionFive.heading && <h2>{sectionFive.heading}</h2>}
           <div className="tickets-deal">

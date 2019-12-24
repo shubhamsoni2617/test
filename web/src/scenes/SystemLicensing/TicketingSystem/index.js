@@ -7,7 +7,7 @@ const TicketingSystem = ({ ticketingSystem }) => {
   return (
     <section>
       <div className="ticket-system">
-        <div className="container">
+        <div className="container-fluid custom-container">
           <div className="row">
             <div className="col-md-6 mb-5">
               <h2 className="section-title">

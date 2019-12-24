@@ -5,7 +5,7 @@ import play from '../../../../src/assets/images/career/our-mission.svg';
 
 const Mission = ({ mission }) => {
   return (
-    <div className="container">
+    <div className="container-fluid custom-container">
       <div className="row mission-container">
         <div className="col-lg-5 col-md-6 mission-content">
           <div className="mission">

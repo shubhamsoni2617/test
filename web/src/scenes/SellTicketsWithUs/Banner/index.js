@@ -6,10 +6,12 @@ const Banner = ({ bannerTitle, bannerDescription, buttonLink, buttonText }) => {
     <section>
       <div className="event-wrapper">
         <div className="event-banner">
-          <div className="banner-content">
-            <h2>{bannerTitle}</h2>
-            <p dangerouslySetInnerHTML={{ __html: bannerDescription }}></p>
-            {buttonText && <a href={buttonLink}>{buttonText}</a>}
+          <div className="container-fluid custom-container">
+            <div className="banner-content">
+              <h2>{bannerTitle}</h2>
+              <p dangerouslySetInnerHTML={{ __html: bannerDescription }}></p>
+              {buttonText && <a href={buttonLink}>{buttonText}</a>}
+            </div>
           </div>
         </div>
       </div>

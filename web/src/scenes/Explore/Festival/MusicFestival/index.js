@@ -22,7 +22,7 @@ const MusicFestival = ({ sectionThree }) => {
       sectionThree.sub_section_three.length > 0) ||
       sectionThree.heading) ? (
       <section>
-        <div className="container-fluid">
+        <div className="container-fluid custom-container">
           <div className="music-fest">
             <h2>{sectionThree.heading}</h2>
             <Slider {...settings}>

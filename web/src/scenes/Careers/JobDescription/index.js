@@ -204,7 +204,7 @@ class JobDescription extends Component {
     return (
       <div className="">
         <Breadcrub breadCrumbData={this.breadCrumbData} />
-        <div className="container-fluid">
+        <div className="container-fluid custom-container">
           <div className="row px-lg-4">
             <div className="col-lg-7">
               <Description jobDetail={jobDetail} jobDetailErr={jobDetailErr} />
