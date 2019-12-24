@@ -74,7 +74,7 @@ const TrendingNow = ({ heading }) => {
                   <EventHeading
                     title={data && data[0] && data[0].title}
                     lines={2}
-                    height={Utilities.mobileAndTabletcheck() ? 20 : 20}
+                    height={Utilities.mobilecheck() ? 18 : Utilities.mobileAndTabletcheck() ? 20 : 20}
                   />
                   <Ellipsis
                     title={data && data[0] && data[0].event_date}
@@ -122,7 +122,8 @@ const TrendingNow = ({ heading }) => {
                         <EventHeading
                           title={now && now.title}
                           lines={2}
-                          height={Utilities.mobileAndTabletcheck() ? 20 : 20}
+                          // height={Utilities.mobileAndTabletcheck() ? 20 : 20}
+                          height={Utilities.mobilecheck() ? 18 : Utilities.mobileAndTabletcheck() ? 20 : 20}
                         />
                         <Ellipsis
                           title={now && now.event_date}
