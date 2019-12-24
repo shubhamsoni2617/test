@@ -63,7 +63,7 @@ export default class App extends React.Component {
     super(props);
 
     this.state = {
-      initialState: props.response,
+      initialState: props.response || initialState,
       collapsed: false,
       showPreviewButton:
         this.props.history &&
