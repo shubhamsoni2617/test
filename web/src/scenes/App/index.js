@@ -15,6 +15,8 @@ import Preview from '../../shared/components/Preview';
 import { Provider } from './store';
 import { initialState } from './store/reducers';
 import Utilities from '../../shared/utilities';
+import query from '../../shared/HelperFunctions/queryString';
+import cal from '../../assets/images/preview-calendar.svg';
 
 export default class App extends React.Component {
   static getInitialData(req) {
@@ -65,17 +67,20 @@ export default class App extends React.Component {
     this.state = {
       initialState: props.response || initialState,
       collapsed: false,
-      showPreviewButton:
-        this.props.history &&
-        this.props.history.location.pathname.split('/')[1] === 'preview',
-      showPreview: false
+      showPreviewButton: false,
+      showPreview: false,
+      previewDate: ''
     };
     // if (typeof window == 'undefined') {
     //   console.log('server');
     // }
     if (typeof window != 'undefined') {
       if (window.location.hostname === 'previewuat.sistic.com.sg') {
+        document.body.classList.add('preview');
         API.defaults.baseURL += 'preview';
+        if (query(window.location).date) {
+          API.defaults.headers.common['dated'] = query(window.location).date;
+        }
       }
       API.defaults.headers.common['device_id'] = Utilities.getDeviceID();
     }
@@ -104,6 +109,7 @@ export default class App extends React.Component {
   }
 
   render() {
+    const { showPreview, showPreviewButton } = this.state;
     return (
       <Provider initialState={this.state.initialState}>
         <div className="wrapper">
@@ -111,22 +117,26 @@ export default class App extends React.Component {
           <Advertisement {...this.props} />
           <TopNav {...this.props} />
           <Navigator {...this.props} />
-          {/* <Footer {...this.props} /> */}
-          {!this.state.showPreviewButton && <Footer {...this.props} />}
-
-          {/* {this.state.showPreviewButton && (
-          <span
-            className="scroll-left"
-            onClick={() => {
-              this.setState({
-                showPreview: !this.state.showPreview
-              });
-            }}
-          >
-            <img src={preview} alt="preview" />
-          </span>
-        )} */}
-          {/* {this.state.showPreview && <Preview />} */}
+          {!showPreviewButton && <Footer {...this.props} />}
+          {showPreviewButton && (
+            <span
+              className={`preview-btn ${showPreview ? 'close-btn' : ''}`}
+              onClick={() => {
+                this.setState({
+                  showPreview: !showPreview
+                });
+              }}
+            >
+              <img src={cal} alt="cal" />
+              <i class="fa fa-calendar" aria-hidden="true"></i>
+            </span>
+          )}
+          {showPreview && (
+            <Preview
+              history={this && this.props && this.props.history}
+              urlDate={query(window.location).date}
+            />
+          )}
         </div>
       </Provider>
     );
