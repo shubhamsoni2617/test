@@ -104,7 +104,12 @@ export default class App extends React.Component {
 
   componentDidUpdate(prevProps) {
     let { previewDate } = this.state;
-    if (previewDate && previewDate !== prevProps.previewDate) {
+    if (
+      previewDate &&
+      previewDate !== prevProps.previewDate &&
+      this.props &&
+      this.props.history
+    ) {
       let search = `date=${previewDate}`;
       this.props.history.push({
         search
