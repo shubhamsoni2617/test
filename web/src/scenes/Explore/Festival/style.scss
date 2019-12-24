@@ -1163,18 +1163,18 @@
             }
         }
     }
-    .container-fluid > div {
-        padding-left: 40px;
-        padding-right: 40px;
-        @media(max-width: 1024px){
-            padding-left: 10px;
-            padding-right: 10px;
-        }
-        @media(max-width: 767px){
-            padding-left: 0px;
-            padding-right: 0px;
-        }
-    }
+    // .container-fluid > div {
+    //     padding-left: 40px;
+    //     padding-right: 40px;
+    //     @media(max-width: 1024px){
+    //         padding-left: 10px;
+    //         padding-right: 10px;
+    //     }
+    //     @media(max-width: 767px){
+    //         padding-left: 0px;
+    //         padding-right: 0px;
+    //     }
+    // }
 }
 
 .shimmer-margin{

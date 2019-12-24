@@ -33,18 +33,20 @@ const GiftCard = ({ api, params }) => {
         data.map(elem => {
           return (
             <div className="adds-container" key={elem.title}>
-              <a
-                href={elem && elem.navigation_link}
-                className="giftcard-anchor"
-                target="_blank"
-              >
-                <img
-                  src={elem && elem.full_image}
-                  className="img-fluid"
-                  alt={elem && elem.alt_text}
-                  title={elem && elem.title}
-                />
-              </a>
+              <div className="container-fluid custom-container p-0">
+                <a
+                  href={elem && elem.navigation_link}
+                  className="giftcard-anchor"
+                  target="_blank"
+                >
+                  <img
+                    src={elem && elem.full_image}
+                    className="img-fluid"
+                    alt={elem && elem.alt_text}
+                    title={elem && elem.title}
+                  />
+                </a>
+              </div>
             </div>
           );
         })}

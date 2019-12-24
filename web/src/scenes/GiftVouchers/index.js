@@ -47,13 +47,13 @@ const GiftVouchers = props => {
             </div>
           </div>
           <div className="pick-voucher">
-            <div className="container">
+            <div className="container-fluid custom-container">
               <h3>Pick a Voucher that suits you best</h3>
               <Vouchers vouchers={GiftVouchersDetails.vouchers} />
             </div>
           </div>
           <div className="gift-card">
-            <div className="container">
+            <div className="container-fluid custom-container">
               <h3>How to Send a Gift Card</h3>
               <SendGiftCard />
             </div>

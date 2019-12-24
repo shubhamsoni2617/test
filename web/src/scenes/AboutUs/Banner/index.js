@@ -4,7 +4,7 @@ import './style.scss';
 const Banner = ({ title, description, buttonText, buttonLink }) => {
   return (
     <div className="banner-leftalign-wrapper">
-      <div className="container-fluid">
+      <div className="container-fluid custom-container">
         <div className="banner-leftalign">
           <div className="banner-desc">
             <div className="banner-title">

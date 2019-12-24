@@ -327,7 +327,7 @@ export default class Attractions extends Component {
           data={this.props.staticContext}
         />
         <Breadcrub breadCrumbData={this.breadCrumbData} />
-        <div className="container-fluid">
+        <div className="container-fluid custom-container">
           <div className="wrapper-events-listing attraction-wrapper-listing">
             <div className={`filters ${this.state.filterFlag ? 'open' : ''}`}>
               {shimmer && (

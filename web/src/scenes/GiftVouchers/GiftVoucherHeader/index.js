@@ -4,7 +4,7 @@ import './style.scss';
 const giftVoucherHeader = ({ bannerDescription, bannerUrl }) => {
   return (
     <div className="banner-leftalign-wrapper">
-      <div className="container-fluid">
+      <div className="container-fluid custom-container">
         <div className="banner-leftalign">
           <div className="banner-desc">
             <div

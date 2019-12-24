@@ -17,7 +17,7 @@ const WhySistic = ({ whySistic }) => {
   return (
     <section>
       <div className="why-sistic">
-        <div className="container-fluid">
+        <div className="container-fluid custom-container">
           <h2 className="text-center section-title">Why SISTIC</h2>
           <div className="row no-gutters">
             {whySistic &&

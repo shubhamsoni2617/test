@@ -16,7 +16,7 @@
             flex-direction: column;
             justify-content: center;
             height: 100%;
-            padding: 30px 0px 30px 74px;            
+            padding: 30px 0px 30px 0px;            
             width: 100%;
             h2{
                 font-size: 40px;
@@ -749,11 +749,11 @@
 }
 @media (max-width: 768px) {
     .sell-ticket-wrapper{
-         .event-banner{
-            .banner-content{
-                padding-left: 21px;
-            }
-        }
+        //  .event-banner{
+        //     .banner-content{
+        //         padding-left: 21px;
+        //     }
+        // }
         .event-list{
             flex-wrap: wrap;
             padding: 45px 0px;

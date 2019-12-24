@@ -59,7 +59,7 @@ const Article = props => {
         <SliderBanner data={articleData.image} />
       )}
       <div className="acticle">
-        <div className="container-fluid">
+        <div className="container-fluid custom-container">
           <div className="offset-lg-2 breadcrumb-category-group">
             <div className="row">
               <div className="breadcrumb-category-group col-md-10">
@@ -140,7 +140,7 @@ const Article = props => {
         </div>
       </div>
       <div className="article-featured featured-events">
-        <div className="container-fluid">
+        <div className="container-fluid custom-container">
           <div class="section-top-wrapper">
             {articleData && articleData.featured_articles.length ? (
               <h2>Featured in Article</h2>
