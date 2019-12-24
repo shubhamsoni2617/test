@@ -1893,7 +1893,9 @@
 					width: 100%;
 					height: auto;
 					h3{
-						line-height: 22px;
+						@media(max-width: 1024px){
+							line-height: 22px;
+						}						
 					}
                 }
 				h3 {
