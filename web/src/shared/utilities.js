@@ -154,8 +154,7 @@ class Utilities {
     return 'unknown';
   }
 
-  static updateUrl(history, state, previewDate) {
-    console.log(state);
+  static updateUrl(history, state) {
     let url;
     let searchParam = '';
     searchParam = '?';
@@ -211,9 +210,6 @@ class Utilities {
             '&'}`
         : '';
     url = url + filteredPriceRange;
-
-    let date = previewDate ? `${'date=' + previewDate}` : '';
-    url = url + date;
 
     history.push({
       search: url

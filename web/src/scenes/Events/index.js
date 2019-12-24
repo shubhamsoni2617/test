@@ -141,13 +141,6 @@ export default class Events extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    if (this.props.previewDate !== prevProps.previewDate) {
-      Utilities.updateUrl(
-        this.props.history,
-        this.state,
-        this.props.previewDate
-      );
-    }
     if (
       this.props.location.search &&
       this.props.location.search !== prevProps.location.search
@@ -283,9 +276,6 @@ export default class Events extends Component {
       max_price: reset ? '' : priceRange.max,
       client: 1
     };
-    if (query.get('date')) {
-      payload.date = query.get('date');
-    }
     return payload;
   };
 
@@ -365,11 +355,8 @@ export default class Events extends Component {
       sort_type: filteredSortType,
       sort_order: filteredSortOrder
     };
-    Utilities.updateUrl(this.props.history, this.state, this.props.previewDate);
-    const query = new URLSearchParams(this.props.location.search);
-    if (query.get('date')) {
-      params.date = query.get('date');
-    }
+    Utilities.updateUrl(this.props.history, this.state);
+
     return params;
   };
 
