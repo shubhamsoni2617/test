@@ -102,31 +102,11 @@ export default class App extends React.Component {
     }, 1000);
   }
 
-  componentDidUpdate(prevProps) {
-    let { previewDate } = this.state;
-    if (
-      previewDate &&
-      previewDate !== prevProps.previewDate &&
-      this.props &&
-      this.props.history
-    ) {
-      let search = `date=${previewDate}`;
-      this.props.history.push({
-        search
-      });
-      window.location.reload();
-    }
-  }
-
   toggle() {
     this.setState({
       collapsed: !this.state.collapsed
     });
   }
-
-  previewDate = previewDate => {
-    this.setState({ previewDate });
-  };
 
   render() {
     const { showPreview, showPreviewButton } = this.state;
@@ -151,7 +131,12 @@ export default class App extends React.Component {
               <i class="fa fa-calendar" aria-hidden="true"></i>
             </span>
           )}
-          {showPreview && <Preview previewDate={this.previewDate} />}
+          {showPreview && (
+            <Preview
+              history={this && this.props && this.props.history}
+              urlDate={query(window.location).date}
+            />
+          )}
         </div>
       </Provider>
     );

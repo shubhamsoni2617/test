@@ -1589,7 +1589,10 @@ input:disabled {
     transform: scale(1, 1) translate3d(0, 0, 0);
     transition: all ease-out 200ms;
     bottom: 10px;
-    cursor: pointer;
+	cursor: pointer;
+	img{
+		width: 20px;
+	}
 	&:hover{
 		transform: scale(1.1, 1.1) translate3d(0, 0, 0);
 		box-shadow: 0 5px 24px rgba(87, 62, 62, 0.3);
