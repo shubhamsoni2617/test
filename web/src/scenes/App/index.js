@@ -16,6 +16,7 @@ import { Provider } from './store';
 import { initialState } from './store/reducers';
 import Utilities from '../../shared/utilities';
 import query from '../../shared/HelperFunctions/queryString';
+import cal from '../../assets/images/preview-calendar.svg';
 
 export default class App extends React.Component {
   static getInitialData(req) {
@@ -66,7 +67,7 @@ export default class App extends React.Component {
     this.state = {
       initialState: props.response || initialState,
       collapsed: false,
-      showPreviewButton: true,
+      showPreviewButton: false,
       showPreview: false,
       previewDate: ''
     };
@@ -75,8 +76,8 @@ export default class App extends React.Component {
     // }
     if (typeof window != 'undefined') {
       if (window.location.hostname === 'previewuat.sistic.com.sg') {
+        document.body.classList.add('preview');
         API.defaults.baseURL += 'preview';
-        console.log(query(window.location));
         if (query(window.location).date) {
           API.defaults.headers.common['dated'] = query(window.location).date;
         }
@@ -87,7 +88,6 @@ export default class App extends React.Component {
 
   componentDidMount() {
     if (window.location.hostname === 'previewuat.sistic.com.sg') {
-      document.body.classList.add('preview');
       this.setState({
         showPreviewButton: true
       });
@@ -141,7 +141,10 @@ export default class App extends React.Component {
                   showPreview: !showPreview
                 });
               }}
-            ></span>
+            >
+              <img src={cal} alt="cal" />
+              <i class="fa fa-calendar" aria-hidden="true"></i>
+            </span>
           )}
           {showPreview && <Preview previewDate={this.previewDate} />}
         </div>
