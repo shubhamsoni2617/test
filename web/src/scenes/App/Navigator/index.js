@@ -3,26 +3,17 @@ import { Route, Switch } from 'react-router-dom';
 
 import routes from '../routes';
 
-const Routes = ({ match, previewDate }) => {
+const Routes = ({ match }) => {
   return (
     <Switch>
-      {routes.map(({ path, exact, component: C, ...rest }) => {
-        return (
-          <Route
-            key={path}
-            path={path}
-            exact={exact}
-            render={props => (
-              <C
-                {...props}
-                {...rest}
-                data={props.data}
-                previewDate={previewDate}
-              />
-            )}
-          />
-        );
-      })}
+      {routes.map(({ path, exact, component: C, ...rest }) => (
+        <Route
+          key={path}
+          path={path}
+          exact={exact}
+          render={props => <C {...props} {...rest} data={props.data} />}
+        />
+      ))}
       {/*  <Route render={(props) => <NoMatch {...props} />} /> */}
     </Switch>
   );

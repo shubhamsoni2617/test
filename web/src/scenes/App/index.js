@@ -15,6 +15,7 @@ import Preview from '../../shared/components/Preview';
 import { Provider } from './store';
 import { initialState } from './store/reducers';
 import Utilities from '../../shared/utilities';
+import query from '../../shared/HelperFunctions/queryString';
 
 export default class App extends React.Component {
   static getInitialData(req) {
@@ -73,15 +74,20 @@ export default class App extends React.Component {
     //   console.log('server');
     // }
     if (typeof window != 'undefined') {
-      // if (window.location.hostname === 'previewuat.sistic.com.sg') {
-      API.defaults.baseURL += 'preview';
-      // }
+      if (window.location.hostname === 'previewuat.sistic.com.sg') {
+        API.defaults.baseURL += 'preview';
+        console.log(query(window.location));
+        if (query(window.location).date) {
+          API.defaults.headers.common['dated'] = query(window.location).date;
+        }
+      }
       API.defaults.headers.common['device_id'] = Utilities.getDeviceID();
     }
   }
 
   componentDidMount() {
     if (window.location.hostname === 'previewuat.sistic.com.sg') {
+      document.body.classList.add('preview');
       this.setState({
         showPreviewButton: true
       });
@@ -94,6 +100,17 @@ export default class App extends React.Component {
       document.body.classList.remove('fix-height');
       document.getElementById('loader').classList.add('loaded');
     }, 1000);
+  }
+
+  componentDidUpdate(prevProps) {
+    let { previewDate } = this.state;
+    if (previewDate && previewDate !== prevProps.previewDate) {
+      let search = `date=${previewDate}`;
+      this.props.history.push({
+        search
+      });
+      window.location.reload();
+    }
   }
 
   toggle() {
@@ -110,29 +127,25 @@ export default class App extends React.Component {
     const { showPreview, showPreviewButton } = this.state;
     return (
       <Provider initialState={this.state.initialState}>
-      <div className="wrapper">
-        {/* <DownloadAppPopup /> */}
-        <Advertisement {...this.props} />
-        <TopNav {...this.props} />
-        <Navigator {...this.props} previewDate={this.state.previewDate} />
-        {!showPreviewButton && <Footer {...this.props} />}
-        {showPreviewButton && (
-          <span
-            className={`preview-btn ${showPreview?'close-btn':''}`}
-            onClick={() => {
-              this.setState({
-                showPreview: !showPreview
-              });
-            }}
-          >
-            {/* <img src={preview} alt="preview" /> */}
-          </span>
-        )}
-        {showPreview && <Preview previewDate={this.previewDate} />}
-        
-      </div>
-        </Provider>
-     
+        <div className="wrapper">
+          {/* <DownloadAppPopup /> */}
+          <Advertisement {...this.props} />
+          <TopNav {...this.props} />
+          <Navigator {...this.props} />
+          {!showPreviewButton && <Footer {...this.props} />}
+          {showPreviewButton && (
+            <span
+              className={`preview-btn ${showPreview ? 'close-btn' : ''}`}
+              onClick={() => {
+                this.setState({
+                  showPreview: !showPreview
+                });
+              }}
+            ></span>
+          )}
+          {showPreview && <Preview previewDate={this.previewDate} />}
+        </div>
+      </Provider>
     );
   }
 }

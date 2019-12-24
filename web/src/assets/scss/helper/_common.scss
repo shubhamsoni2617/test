@@ -7,6 +7,11 @@ body,
 }
 
 body {
+	&.preview{
+		#widget-menu{
+			display: none !important;
+		}
+	}
 	position: relative;
 	&.body-overlay {
 		position: relative;
