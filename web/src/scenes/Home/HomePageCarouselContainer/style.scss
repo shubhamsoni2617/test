@@ -335,7 +335,7 @@
                 position: absolute;
                 left: 15px;
                 top: 48%;
-                background: url(../../../assets/images/left-oval-arrow.svg) no-repeat;
+                // background: url(../../../assets/images/left-oval-arrow.svg) no-repeat;
                 height: 28px;
                 width: 28px;
                 &:hover{
@@ -347,13 +347,17 @@
                     width: 20px;
                     background-size: 100% 100%;
                     left: 10px;
+                    &:before{
+                        padding: 6px;
+                        border-width: 0 0 6px 6px;
+                    }
                 }
             }
             .slick-next{
                 position: absolute;
                 right: 15px;
                 top: 48%;
-                background: url(../../../assets/images/right-oval-arrow.svg) no-repeat;
+                // background: url(../../../assets/images/right-oval-arrow.svg) no-repeat;
                 height: 28px;
                 width: 28px;
                 &:hover{
@@ -365,6 +369,10 @@
                     width: 20px;
                     background-size: 100% 100%;
                     right: 10px;
+                    &:before{
+                        padding: 6px;
+                        border-width: 0 0 6px 6px;
+                    }
                 }
             }
         }
