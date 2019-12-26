@@ -161,24 +161,24 @@ class HomePageCarouselContainer extends Component {
               className="slider-for"
               swipe={true}
               focusOnSelect={true}
-              // autoplay={this.state.sliderAutoPlay}
-              // autoplaySpeed={1000}
+            // autoplay={this.state.sliderAutoPlay}
+            // autoplaySpeed={1000}
             >
               {posts.length
                 ? posts.map((post, key) => (
-                    <div>
-                      <img
-                        onClick={
-                          sliderBackgroudImage == key
-                            ? () => window.open(post.navigation_link, '_blank')
-                            : ''
-                        }
-                        src={post.full_image}
-                        alt="image1"
-                        className="img1 img-responsive"
-                      ></img>
-                    </div>
-                  ))
+                  <div>
+                    <img
+                      onClick={
+                        sliderBackgroudImage == key
+                          ? () => window.open(post.navigation_link, '_blank')
+                          : ''
+                      }
+                      src={post.full_image}
+                      alt="image1"
+                      className="img1 img-responsive"
+                    ></img>
+                  </div>
+                ))
                 : null}
               {errorMsg ? <div>{errorMsg}</div> : null}
             </Slider>
@@ -195,14 +195,14 @@ class HomePageCarouselContainer extends Component {
             >
               {posts.length
                 ? posts.map(post => (
-                    <div>
-                      <img
-                        src={post.full_image}
-                        alt="image1"
-                        className="img img-responsive"
-                      ></img>
-                    </div>
-                  ))
+                  <div>
+                    <img
+                      src={post.full_image}
+                      alt="image1"
+                      className="img img-responsive"
+                    ></img>
+                  </div>
+                ))
                 : null}
               {errorMsg ? <div>{errorMsg}</div> : null}
             </Slider>
