@@ -10,6 +10,7 @@ class HomePageCarouselContainer extends Component {
     super(props);
 
     this.state = {
+      imageLoaded: '',
       posts: [],
       errorMsg: '',
       sliderBackgroudImage: 0,
@@ -74,6 +75,13 @@ class HomePageCarouselContainer extends Component {
     this.thumbSlider.slickGoTo(index);
   };
 
+  onLoad = () => {
+    setTimeout(() => {
+      this.setState({
+        imageLoaded: 'show-shadow'
+      })
+    }, 500);
+  };
   handleResolution = (postLength = 0) => {
     let mainSliderSettings = this.state.mainSliderSettings;
     let thumbSliderSettings = this.state.thumbSliderSettings;
@@ -141,7 +149,7 @@ class HomePageCarouselContainer extends Component {
     }
 
     return (
-      <div className="banner">
+      <div className={`banner ${this.state.imageLoaded}`}>
         {!this.state.loading && (
           <div className="banner-carousel">
             <div className="banner-background"></div>
@@ -176,7 +184,8 @@ class HomePageCarouselContainer extends Component {
                       src={post.full_image}
                       alt="image1"
                       className="img1 img-responsive"
-                    ></img>
+                      onLoad={this.onLoad}
+                    />
                   </div>
                 ))
                 : null}

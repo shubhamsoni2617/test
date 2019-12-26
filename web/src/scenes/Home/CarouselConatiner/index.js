@@ -91,8 +91,8 @@ const CarouselConatiner = props => {
                 Utilities.mobilecheck()
                   ? 3
                   : Utilities.mobileAndTabletcheck()
-                  ? 4
-                  : 6
+                    ? 4
+                    : 6
               }
               type="TILE"
             />

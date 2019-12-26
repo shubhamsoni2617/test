@@ -2632,6 +2632,10 @@ section.whats-new {
 		padding: 0 !important;
 		flex-wrap: nowrap;
 		justify-content: flex-start;
+		overflow: hidden;
+		@media(min-width: 1360px){
+			width: 1360px;
+		}
 		.shimmer-inner{
 			flex: 1 0 28%;
 			max-width: 28%;
