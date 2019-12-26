@@ -220,7 +220,7 @@ function Delimiter({ length, index }) {
   if (length !== 2 && index === length - 2) {
     return <span> & </span>;
   }
-  return <span>& </span>;
+  return <span> & </span>;
 }
 
 function EventInfoBlockInner(props) {}

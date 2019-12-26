@@ -100,7 +100,7 @@ const ArticleSection = ({ flag, code }) => {
 
                         {item.plain_description.length > 100 && (
                           <span className="attraction-show-more">
-                            <Link to={`/explore/1/${item.id}`}>More</Link>
+                            <Link to={`/explore/1/${item.id}`}>Read More</Link>
                           </span>
                         )}
                       </p>
