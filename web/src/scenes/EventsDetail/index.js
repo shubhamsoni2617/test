@@ -1,4 +1,4 @@
-import React, { Component, useState } from 'react';
+import React, { Component, useState, Fragment } from 'react';
 import { CSSTransition } from 'react-transition-group';
 import EventsService from '../../shared/services/EventsService';
 import Constants from '../../shared/constants';
@@ -23,24 +23,26 @@ import AdvertisementSection from '../../shared/components/AdvertisementSection';
 import HomeService from '../../shared/services/HomeService';
 import MetaData from '../../shared/components/MetaData';
 import Utilities from '../../shared/utilities';
+import showOverImage from '../../../src/assets/images/showOver.png';
 
 function ShowOver({ isShowOver }) {
   if (isShowOver !== 1) return null;
   return (
-    <div className="shows-over-banner">
-      <div className="shows-over">
-        <div className="shows-over-icon">
-          <img src={faceImg} alt="" />
-        </div>
-        <div className="shows-over-desc">
-          <h4>Show's over!</h4>
-          <p>
-            This event is no longer available for booking. But we have something
-            which you might like
-          </p>
-        </div>
-      </div>
-    </div>
+    // <div className="shows-over-banner">
+    //   <div className="shows-over">
+    //     <div className="shows-over-icon">
+    //       <img src={showOverImage} alt="" />
+    //     </div>
+    //     <div className="shows-over-desc">
+    //       <h4>Show's over!</h4>
+    //       <p>
+    //         This event is no longer available for booking. But we have something
+    //         which you might like
+    //       </p>
+    //     </div>
+    //   </div>
+    // </div>
+    <img src={showOverImage} alt="" />
   );
 }
 
@@ -218,9 +220,11 @@ export default class EventsDetail extends Component {
 
   callAPI(payload) {
     window.scrollTo(0, 0);
-    this.setState({ shimmer: true });
+    this.setState({ shimmer: false });
     EventsService.getEventDetails(payload)
-      .then(res => this.processData(res.data))
+      .then(res => {
+        this.processData(res.data);
+      })
       .catch(err => {
         this.setState({
           shimmer: false
@@ -444,60 +448,65 @@ export default class EventsDetail extends Component {
               detailData.is_show_over ? 'show-over' : ''
             } ${shimmer ? 'shimmer' : ''}`}
           >
-            <section
-              className="event-detail-banner"
-              ref={node => {
-                if (!eventDetailBannerHeight && node && node.offsetHeight) {
-                  this.setState({
-                    eventDetailBannerHeight: node.offsetHeight - 33,
-                    elemOffsetTop: node.offsetTop + node.offsetHeight
-                  });
-                }
-              }}
-            >
-              <EventCarousel images={detailData.images} />
+            {/*   */}
+            {detailData.id && (
+              <Fragment>
+                <section
+                  className="event-detail-banner"
+                  ref={node => {
+                    if (!eventDetailBannerHeight && node && node.offsetHeight) {
+                      this.setState({
+                        eventDetailBannerHeight: node.offsetHeight - 33,
+                        elemOffsetTop: node.offsetTop + node.offsetHeight
+                      });
+                    }
+                  }}
+                >
+                  <EventCarousel images={detailData.images} />
 
-              <EventInfoBlock
-                lines={2}
-                sticky={false}
-                detailData={detailData}
-                showSocialShare={showSocialShare}
-                openNotice={this.openNotice}
-                openSocialShare={this.openSocialShare}
-                shareUrl={shareUrl}
-                eventDetailBannerHeight={eventDetailBannerHeight}
-                seatMapButton={
-                  detailData.seating_plan &&
-                  detailData.seating_plan.length > 0 && (
-                    <SeatMapButton seatingPlan={detailData.seating_plan} />
-                  )
-                }
-                buyPackages={
-                  <BuyPackages
-                    isAvailableForBooking={detailData.is_available_for_booking}
-                    buyPackageUrl={detailData.buy_package_url}
+                  <EventInfoBlock
+                    lines={2}
+                    sticky={false}
+                    detailData={detailData}
+                    showSocialShare={showSocialShare}
+                    openNotice={this.openNotice}
+                    openSocialShare={this.openSocialShare}
+                    shareUrl={shareUrl}
+                    eventDetailBannerHeight={eventDetailBannerHeight}
+                    seatMapButton={
+                      detailData.seating_plan &&
+                      detailData.seating_plan.length > 0 && (
+                        <SeatMapButton seatingPlan={detailData.seating_plan} />
+                      )
+                    }
+                    buyPackages={
+                      <BuyPackages
+                        isAvailableForBooking={
+                          detailData.is_available_for_booking
+                        }
+                        buyPackageUrl={detailData.buy_package_url}
+                      />
+                    }
                   />
-                }
-              />
 
-              {detailData && detailData.is_available_for_booking === 1 && (
-                <StickyHeader
-                  lines={1}
-                  sticky={true}
-                  elemOffsetTop={this.state.elemOffsetTop}
-                  // setHeader={setHeader}
-                  detailData={detailData}
-                  showSocialShare={showSocialShare}
-                  openNotice={this.openNotice}
-                  openSocialShare={this.openSocialShare}
-                  shareUrl={shareUrl}
-                />
-              )}
-            </section>
-            <ShowOver isShowOver={detailData.is_show_over} />
-            {detailData.is_show_over === 0 && (
-              <div className="custom-container">
-                {/* {detailData.pop_up_message &&
+                  {detailData && detailData.is_available_for_booking === 1 && (
+                    <StickyHeader
+                      lines={1}
+                      sticky={true}
+                      elemOffsetTop={this.state.elemOffsetTop}
+                      // setHeader={setHeader}
+                      detailData={detailData}
+                      showSocialShare={showSocialShare}
+                      openNotice={this.openNotice}
+                      openSocialShare={this.openSocialShare}
+                      shareUrl={shareUrl}
+                    />
+                  )}
+                </section>
+                <ShowOver isShowOver={detailData.is_show_over} />
+                {detailData.is_show_over === 0 && (
+                  <div className="custom-container">
+                    {/* {detailData.pop_up_message &&
                   detailData.pop_up_message.description &&
                   showNotice && (
                     <ModalPopup
@@ -509,122 +518,144 @@ export default class EventsDetail extends Component {
                     />
                   )} */}
 
-                <section>
-                  <AdvertisementSection
-                    data={
-                      Utilities.mobilecheck()
-                        ? {
-                            image: detailData.wallpaper.mobile_image,
-                            url: detailData.wallpaper.mobile_url
-                          }
-                        : {
-                            image: detailData.wallpaper.image,
-                            url: detailData.wallpaper.url
-                          }
-                    }
-                    current={this.props.current}
-                  />
-                </section>
-
-                <section
-                  className="event-detail-section"
-                  ref={this.setOffsetTop}
-                >
-                  <div className="event-detail-panel">
-                    {detailData.synopsis && detailData.synopsis.length > 0 && (
-                      <AccordionSection
-                        title="Synopsis"
-                        activeLang={detailData.synopsis[0].language}
-                        desc={detailData.synopsis[0].description}
-                        langArr={detailData.synopsis}
-                        // changeLang={this.changeLang}
-                        noIcon={Utilities.mobileAndTabletcheck() ? false : true}
-                        preExpanded={accrodian}
-                        dynamicClass="synopsis-accordian"
-                        uuid={`synopsis`}
+                    <section>
+                      <AdvertisementSection
+                        data={
+                          Utilities.mobilecheck()
+                            ? {
+                                image: detailData.wallpaper.mobile_image,
+                                url: detailData.wallpaper.mobile_url
+                              }
+                            : {
+                                image: detailData.wallpaper.image,
+                                url: detailData.wallpaper.url
+                              }
+                        }
+                        current={this.props.current}
                       />
-                    )}
-                    {detailData.tabs &&
-                      detailData.tabs.length > 0 &&
-                      detailData.tabs.map((obj, idx) => {
-                        if (obj.title && obj.description) {
-                          return (
+                    </section>
+
+                    <section
+                      className="event-detail-section"
+                      ref={this.setOffsetTop}
+                    >
+                      <div className="event-detail-panel">
+                        {detailData.synopsis && detailData.synopsis.length > 0 && (
+                          <AccordionSection
+                            title="Synopsis"
+                            activeLang={detailData.synopsis[0].language}
+                            desc={detailData.synopsis[0].description}
+                            langArr={detailData.synopsis}
+                            // changeLang={this.changeLang}
+                            noIcon={
+                              Utilities.mobileAndTabletcheck() ? false : true
+                            }
+                            preExpanded={accrodian}
+                            dynamicClass="synopsis-accordian"
+                            uuid={`synopsis`}
+                          />
+                        )}
+                        {detailData.tabs &&
+                          detailData.tabs.length > 0 &&
+                          detailData.tabs.map((obj, idx) => {
+                            if (obj.title && obj.description) {
+                              return (
+                                <AccordionSection
+                                  key={obj.title}
+                                  title={obj.title}
+                                  desc={obj.description}
+                                  dynamicClass="othertabs-accordian"
+                                />
+                              );
+                            } else {
+                              return null;
+                            }
+                          })}
+                        {detailData.gallery_images_videos &&
+                          detailData.gallery_images_videos.length > 0 && (
                             <AccordionSection
-                              key={obj.title}
-                              title={obj.title}
-                              desc={obj.description}
+                              title="Gallery"
+                              gallery={detailData.gallery_images_videos}
                               dynamicClass="othertabs-accordian"
                             />
-                          );
-                        } else {
-                          return null;
-                        }
-                      })}
-                    {detailData.gallery_images_videos &&
-                      detailData.gallery_images_videos.length > 0 && (
-                        <AccordionSection
-                          title="Gallery"
-                          gallery={detailData.gallery_images_videos}
-                          dynamicClass="othertabs-accordian"
-                        />
-                      )}
-                  </div>
-                  <div className="event-detail-sidebar">
-                    {detailData.ticket_pricing && (
-                      <AccordionSection
-                        title="Price Details"
-                        infoTag={
-                          detailData.hide_booking_fee &&
-                          detailData.hide_booking_fee !== '1'
-                            ? detailData.hide_booking_fee
-                            : null
-                        }
-                        // preExpanded={accrodian}
-                        uuid={`${
-                          detailData.is_available_for_booking === 1 &&
-                          !Utilities.mobileAndTabletcheck()
-                            ? 'pricedetail'
-                            : ''
-                        }`}
-                        desc={detailData.ticket_pricing}
-                        openInfoPopup={this.openInfoPopup}
-                        showInfo={showInfo}
-                        dynamicClass="price-accordian"
-                      />
-                    )}
+                          )}
+                      </div>
+                      <div className="event-detail-sidebar">
+                        {detailData.ticket_pricing && (
+                          <AccordionSection
+                            title="Price Details"
+                            infoTag={
+                              detailData.hide_booking_fee &&
+                              detailData.hide_booking_fee !== '1'
+                                ? detailData.hide_booking_fee
+                                : null
+                            }
+                            // preExpanded={accrodian}
+                            uuid={`${
+                              detailData.is_available_for_booking === 1 &&
+                              !Utilities.mobileAndTabletcheck()
+                                ? 'pricedetail'
+                                : ''
+                            }`}
+                            desc={detailData.ticket_pricing}
+                            openInfoPopup={this.openInfoPopup}
+                            showInfo={showInfo}
+                            dynamicClass="price-accordian"
+                          />
+                        )}
 
-                    {detailData.promotions &&
-                      detailData.promotions.length > 0 &&
-                      detailData.promotions[0].title && (
-                        <AccordionSection
-                          title="Promotion"
-                          children={detailData.promotions}
-                          dynamicClass="promotion-accordian"
-                          uuid={`promotion`}
-                        />
-                      )}
-                    {!Utilities.mobilecheck() && (
+                        {detailData.promotions &&
+                          detailData.promotions.length > 0 &&
+                          detailData.promotions[0].title && (
+                            <AccordionSection
+                              title="Promotion"
+                              children={detailData.promotions}
+                              dynamicClass="promotion-accordian"
+                              uuid={`promotion`}
+                            />
+                          )}
+                        {!Utilities.mobilecheck() && (
+                          <AdvertisementSection
+                            data={detailData.rectangle_image}
+                          />
+                        )}
+                      </div>
+                    </section>
+                    <EventTags tags={detailData.tags} />
+
+                    {Utilities.mobilecheck() && (
                       <AdvertisementSection data={detailData.rectangle_image} />
                     )}
                   </div>
-                </section>
-                <EventTags tags={detailData.tags} />
-
-                {Utilities.mobilecheck() && (
-                  <AdvertisementSection data={detailData.rectangle_image} />
                 )}
-              </div>
-            )}
-            <ArticleSection flag={true} code={code} />
-            <SimilarPicksSection data={similarEventsData} type="Horizontal" />
-            {detailData.is_show_over === 1 && (
-              <>
-                {/* <GiftCard flag={true} /> */}
                 <ArticleSection flag={true} code={code} />
-              </>
+                <SimilarPicksSection
+                  data={similarEventsData}
+                  type="Horizontal"
+                />
+                {detailData.is_show_over === 1 && (
+                  <>
+                    {/* <GiftCard flag={true} /> */}
+                    <ArticleSection flag={true} code={code} />
+                  </>
+                )}
+              </Fragment>
             )}
-
-            {detailData && !detailData.id && !detailData.is_show_over && (
+            {/* {detailData && !detailData.id && !detailData.is_show_over && (
+              <EventNotAvailable />
+            )} */}
+            {detailData &&
+              !detailData.id &&
+              Object.keys(detailData).length === 0 && (
+                <ShimmerEffect
+                  propCls="col-md-12"
+                  height={400}
+                  count={2}
+                  type="DETAIL"
+                  detail={true}
+                />
+              )}
+            {detailData && detailData.data && detailData.data.length === 0 && (
               <EventNotAvailable />
             )}
           </div>
