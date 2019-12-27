@@ -50,6 +50,9 @@
             .image-conatiner{
                 align-items: stretch;
                 display: flex;
+                @media(max-width: 991px){
+                    max-height: 325px;
+                }
             }
             @media(max-width: 1180px){
                 flex: 0 0 50%;
@@ -184,6 +187,7 @@
             flex-direction: row;
             justify-content: flex-start;
             align-items: flex-start;
+            flex-wrap: nowrap;
         }
         @media(max-width: 991px) and (orientation: landscape){
             flex-direction: row;
