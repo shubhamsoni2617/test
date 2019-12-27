@@ -34,13 +34,16 @@ const Review = ({ reviewData }) => {
               Utilities.mobilecheck() ? 30 : 60
             )}
           </h3>
-          {reviewData && reviewData.data[0] && (
-            <span className="review-subtext">
-              By{' '}
-              {reviewData.data[0].author_name[0].toUpperCase() +
-                reviewData.data[0].author_name.slice(1)}
-            </span>
-          )}
+          {reviewData &&
+            reviewData.data[0] &&
+            reviewData.data[0].author_name &&
+            reviewData.data[0].author_name[0] && (
+              <span className="review-subtext">
+                By{' '}
+                {reviewData.data[0].author_name[0].toUpperCase() +
+                  reviewData.data[0].author_name.slice(1)}
+              </span>
+            )}
         </div>
       </Link>
       <div className="all-reviews">
@@ -70,7 +73,7 @@ const Review = ({ reviewData }) => {
                           Utilities.mobilecheck() ? 20 : 40
                         )}
                       </h3>
-                      {author_name && (
+                      {author_name && author_name[0] && (
                         <span>
                           By{' '}
                           {author_name[0].toUpperCase() + author_name.slice(1)}
