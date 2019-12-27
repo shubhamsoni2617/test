@@ -75,6 +75,7 @@ const PromotionCard = props => {
         </div>
         <div className="promotion-desc">
           <div className="promotion-category-div">
+            <span className="promotion-category-title">{data.category}</span>
             {data && data.custom_label_text ? (
               <span
                 className="promotion-category"
@@ -83,7 +84,6 @@ const PromotionCard = props => {
                 {data.custom_label_text}
               </span>
             ) : null}
-            <span className="promotion-category-title">{data.category}</span>
           </div>
           <span className="share" onClick={handleSocialShare}>
             <img src={ShareIcon} alt="share-icon" />

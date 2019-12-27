@@ -10,6 +10,7 @@ import Careers from '../../shared/components/Careers';
 import Network from './Network';
 import ContactUs from '../ApiPartner/ContactUs';
 import { animateScroll } from 'react-scroll';
+import MetaData from '../../shared/components/MetaData';
 
 const LandingPage = ({ location, staticContext }) => {
   const [landingPageData, setLandingPageData] = useState(null);
