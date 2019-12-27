@@ -73,6 +73,7 @@
             flex-wrap: wrap;
             flex-direction: column;
             justify-content: space-between;
+            padding-top: 5px;
             @media(max-width: 1180px){
                 flex: 0 0 50%;
                 width: 50%;
@@ -106,6 +107,30 @@
                 @media(max-width: 991px){
                     padding: 0;
                     padding-top: 10px;
+                }
+                h3{
+                    position: relative;
+                    overflow: visible !important;
+                    &:after{
+                        position: absolute;
+                        content: "";
+                        background-color: rgba(0, 152, 255, 0.2);
+                        height: calc(100% + 10px);
+                        width: calc(100% + 20px);
+                        left: -10px;
+                        top: -5px;
+                        bottom: auto;
+                        right: auto;
+                        opacity: 0;
+                        transition: 0.5s opacity;
+                    }
+                    &:hover{
+                        @media(min-width: 767px){
+                            &:after{
+                                opacity: 1;
+                            }
+                        }
+                    }
                 }
             }
             h3{

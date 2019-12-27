@@ -590,6 +590,9 @@
 								top: 50%;
 								transform: translateY(-50%);
 								margin-top: -9px;
+								@media(min-width: 991px){
+									left: 23px;
+								}
 								@media(max-width: 991px) {
 									height: 14px;
 									width: 20px;
@@ -606,6 +609,9 @@
 								max-width: 28px;
 								height: auto;
 								margin-top: 0;
+								@media(min-width: 991px){
+									margin-left: -3px;
+								}
 							}
 							.cart-close {
 								display: none;
