@@ -73,9 +73,16 @@
         .image-gallery-thumbnails{
           padding: 0;
           height: 61px;
+          @media(max-width: 767px){
+            height: 52px;
+          }
           .image-gallery-thumbnails-container{
             text-align: left;
             // display: flex;
+            @media(max-width: 767px){
+              display: flex;
+              height: auto;
+            }
             .image-gallery-thumbnail-inner{
                 .image-conatiner{
                     img{
@@ -178,6 +185,7 @@
             }
             @media(max-width: 767px){
                 background-position: 8px 15px;
+                bottom: -53px;
             }
           }
           .prev{
