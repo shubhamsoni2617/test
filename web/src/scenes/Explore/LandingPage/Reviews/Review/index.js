@@ -34,6 +34,14 @@ const Review = ({ reviewData }) => {
               Utilities.mobilecheck() ? 30 : 60
             )}
           </h3>
+          <span>
+            {Utilities.showLimitedChars(
+              reviewData &&
+                reviewData.data[0] &&
+                reviewData.data[0].description,
+              Utilities.mobilecheck() ? 25 : 30
+            )}
+          </span>
           {reviewData && reviewData.data[0] && (
             <span className="review-subtext">
               By{' '}
@@ -49,37 +57,49 @@ const Review = ({ reviewData }) => {
             reviewData.data &&
             reviewData.data
               .slice(1, reviewData.data.length)
-              .map(({ image, title, author_name, type, id }, index) => {
-                return (
-                  <Link
-                    to={
-                      type === 'multi_show_template'
-                        ? `/explore/2/${id}`
-                        : `/explore/1/${id}`
-                    }
-                    className="review-item"
-                    key={index}
-                  >
-                    <div className="review-item-image">
-                      <Image src={image} type="VdoSmall" />
-                    </div>
-                    <div className="review-content">
-                      <h3>
-                        {Utilities.showLimitedChars(
-                          title,
-                          Utilities.mobilecheck() ? 20 : 40
-                        )}
-                      </h3>
-                      {author_name && (
+              .map(
+                (
+                  { image, title, author_name, type, id, description },
+                  index
+                ) => {
+                  return (
+                    <Link
+                      to={
+                        type === 'multi_show_template'
+                          ? `/explore/2/${id}`
+                          : `/explore/1/${id}`
+                      }
+                      className="review-item"
+                      key={index}
+                    >
+                      <div className="review-item-image">
+                        <Image src={image} type="VdoSmall" />
+                      </div>
+                      <div className="review-content">
+                        <h3>
+                          {Utilities.showLimitedChars(
+                            title,
+                            Utilities.mobilecheck() ? 20 : 40
+                          )}
+                        </h3>
                         <span>
-                          By{' '}
-                          {author_name[0].toUpperCase() + author_name.slice(1)}
+                          {Utilities.showLimitedChars(
+                            description,
+                            Utilities.mobilecheck() ? 15 : 18
+                          )}
                         </span>
-                      )}
-                    </div>
-                  </Link>
-                );
-              })}
+                        {author_name && (
+                          <span>
+                            By{' '}
+                            {author_name[0].toUpperCase() +
+                              author_name.slice(1)}
+                          </span>
+                        )}
+                      </div>
+                    </Link>
+                  );
+                }
+              )}
         </div>
         {reviewData.name && (
           <a

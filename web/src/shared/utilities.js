@@ -45,6 +45,9 @@ class Utilities {
 
   static showLimitedChars = (string, limit, showDotted = true) => {
     let dots;
+    if (!string) {
+      return;
+    }
     if (string && string.length > limit) {
       if (showDotted) {
         dots = '...';
