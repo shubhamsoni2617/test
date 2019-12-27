@@ -96,7 +96,7 @@
   .event-detail-wrapper{
     .react-modal-overlay{
       background-color: rgba(0, 0, 0, 0.85);
-      opacity: 1 !important;
+      // opacity: 1 !important;
     }
     .shimmer-container{
       position: absolute;
@@ -162,7 +162,7 @@
     margin-left: auto;
     .react-modal-overlay{
       background-color: rgba(0, 0, 0, 0.85);
-      opacity: 1 !important;
+      // opacity: 1 !important;
     }
     @media(max-width: 1280px){
         padding: 20px 20px 15px;
@@ -672,7 +672,7 @@
                     min-height: 24px;
                     .react-modal-overlay{
                       background-color: rgba(0, 0, 0, 0.85);
-                      opacity: 1 !important;
+                      // opacity: 1 !important;
                     }
                     @media(max-width: 1024px){
                         margin-bottom: 15px;

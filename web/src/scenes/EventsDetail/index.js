@@ -235,7 +235,8 @@ export default class EventsDetail extends Component {
 
   processData(pageData) {
     let newState = {
-      detailData: pageData
+      detailData: pageData,
+      shimmer: false
     };
     if (pageData.synopsis && pageData.synopsis.length > 0) {
       newState = {
