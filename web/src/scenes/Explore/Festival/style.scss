@@ -697,6 +697,11 @@
                 height: 100%;
             }
         }
+        .slick-slider{
+          .slick-list{
+            height: 100% !important;
+          }
+        }
     }
    .festival-event-banner{
     background-color: #F0F9FF;

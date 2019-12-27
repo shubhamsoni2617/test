@@ -72,7 +72,7 @@ const ArticleSection = ({ flag, code }) => {
         <div className="grid-container">
           {articleData.slice(0, 5).map((item, index) => {
             return (
-              <div className="item">
+              <Link to={`/explore/1/${item.id}`} className="item">
                 <div className="item-wrArticleSectioner">
                   <div className="item-img">
                     <Image
@@ -100,14 +100,14 @@ const ArticleSection = ({ flag, code }) => {
 
                         {item.plain_description.length > 100 && (
                           <span className="attraction-show-more">
-                            <Link to={`/explore/1/${item.id}`}>Read More</Link>
+                            <a>Read More</a>
                           </span>
                         )}
                       </p>
                     </React.Fragment>
                   )}
                 </div>
-              </div>
+              </Link>
             );
           })}
         </div>

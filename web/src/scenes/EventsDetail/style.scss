@@ -94,6 +94,10 @@
     opacity: 0;
   }
   .event-detail-wrapper{
+    .react-modal-overlay{
+      background-color: rgba(0, 0, 0, 0.85);
+      // opacity: 1 !important;
+    }
     .shimmer-container{
       position: absolute;
       width: 100%;
@@ -156,6 +160,10 @@
     flex: 0 0 34.7%;
     width: 34.7%;
     margin-left: auto;
+    .react-modal-overlay{
+      background-color: rgba(0, 0, 0, 0.85);
+      // opacity: 1 !important;
+    }
     @media(max-width: 1280px){
         padding: 20px 20px 15px;
     }
@@ -662,6 +670,10 @@
                   &.event-address{
                     margin-bottom: 15px;
                     min-height: 24px;
+                    .react-modal-overlay{
+                      background-color: rgba(0, 0, 0, 0.85);
+                      // opacity: 1 !important;
+                    }
                     @media(max-width: 1024px){
                         margin-bottom: 15px;
                     }
@@ -858,10 +870,10 @@
           position: absolute;
           content: "";
           border-bottom: 1px solid rgba(126, 126, 126, 0.15);
-          width: calc(100% - 60px);
+          width: 100%;
           height: 1px;
           bottom: 0px;
-          left: 30px;
+          left: 0px;
           @media (max-width:980px) {
               left: 0px;
               width: 100%;
@@ -1164,7 +1176,7 @@
   }
   //event zoner
   .event-zoner-group{
-    padding: 20px 0px 0;
+    padding: 20px 0px 0 30px;
     @media(max-width: 767px){
         padding: 25px 10px 15px !important;
     }

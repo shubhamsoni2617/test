@@ -667,6 +667,9 @@ section.whats-new {
             }
             h3{
                 margin-bottom: 0px;
+                @media(max-width: 1024px){
+                    line-height: 18px;
+                }
                 @media(max-width: 576px){
                     font-size: 14px;
                     line-height: 18px;
@@ -788,10 +791,10 @@ section.whats-new {
             }
         }
         .slick-arrow{
-            height: 85px;
+            height: 35px;
             width: 35px;
-            background-position: 10px 32px;
-            background-color: rgba(0, 0, 0, 0.7);
+            // background-position: 10px 32px;
+            // background-color: rgba(0, 0, 0, 0.7);
             margin-top: -22px;
             @media(max-width: 768px){
                 display: none !important;
@@ -802,20 +805,25 @@ section.whats-new {
             }
             &.slick-prev{
                 left: -5px;
-                background-image: url('../../../assets/images/left-arrow-white.svg');
+                // background-image: url('../../../assets/images/left-arrow-white.svg');
                 @media(max-width: 1440px){
                     left: 0px;
                 }
                 &:hover{
                     border: none;
                 }
-
+                &:before{
+                    left: 10px;
+                }
             }
             &.slick-next{
                 right: 0px;
-                background-image: url('../../../assets/images/right-arrow-white.svg');
+                // background-image: url('../../../assets/images/right-arrow-white.svg');
                 &:hover{
                     border: none;
+                }
+                &:before{
+                    right: 10px;
                 }
             }
         }

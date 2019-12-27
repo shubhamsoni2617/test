@@ -39,7 +39,6 @@ const Explore = props => {
       })
       .catch(err => {
         if (err && err.response) {
-          console.log(err.response);
           setLoading(false);
         }
       });

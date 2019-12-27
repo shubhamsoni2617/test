@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import Scrollbar from '../../../shared/components/Scrollbar';
@@ -168,20 +168,20 @@ function EventDateTime({
 
   const HtmlDescription = () => {
     return (
-      <ul className="date-address">
-        {altEventStartDate && (
-          <li className="event-date">
+      <Fragment>
+        {/* {altEventStartDate && (
+          <Fragment>
             <span
               dangerouslySetInnerHTML={{ __html: altEventStartDate }}
             ></span>
-          </li>
-        )}
+          </Fragment>
+        )} */}
         {eventDateNotes && (
-          <li className="event-date">
+          <Fragment>
             <span dangerouslySetInnerHTML={{ __html: eventDateNotes }}></span>
-          </li>
+          </Fragment>
         )}
-      </ul>
+      </Fragment>
     );
   };
 
@@ -189,7 +189,7 @@ function EventDateTime({
   return (
     <ModalPopup
       showModal={setEventDateBlock}
-      title="Event Dates & Time"
+      title="Event Dates & Timings"
       handleClose={() => setEventDateBlock(false)}
     >
       <HtmlDescription />

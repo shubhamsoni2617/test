@@ -221,6 +221,13 @@
                     margin-bottom: 30px;
                 }
             }
+            &.open{
+                @media(max-width: 767px){
+                    top: 0px;
+                    left: 0px;
+                    z-index: 4;
+                }
+            }
         }
     }
 }

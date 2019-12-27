@@ -3,17 +3,15 @@ import './Modal.css';
 import { CSSTransition } from 'react-transition-group';
 
 const ModalBody = memo(({ type, animateBody, closemodal, children }) => {
-  console.log('trans', animateBody);
   return (
     <CSSTransition
       in={animateBody}
-      timeout={450}
+      timeout={0}
       mountOnEnter
       unmountOnExit
       classNames={type !== undefined ? type : 'flipInX'}
     >
       {transitionState => {
-        console.log('transitionState', transitionState);
         return (
           <div className="react-modal-body">
             <div
@@ -29,11 +27,10 @@ const ModalBody = memo(({ type, animateBody, closemodal, children }) => {
 });
 
 const ModalOverlay = memo(({ animateOverlay, closemodal }) => {
-  console.log('ModalOverlay', animateOverlay);
   return (
     <CSSTransition
       in={animateOverlay}
-      timeout={500}
+      timeout={0}
       classNames="animate-modal-overlay"
     >
       <div className="react-modal-overlay" onClick={() => closemodal()} />
@@ -50,7 +47,6 @@ export default class Modal extends React.Component {
     };
   }
   componentDidMount() {
-    console.log('mount');
     if (this.props.visible) {
       setTimeout(() => {
         this.setState({ animateOverlay: true }, () => {
@@ -70,7 +66,6 @@ export default class Modal extends React.Component {
     }
   }
   componentWillReceiveProps(nextProps) {
-    console.log('nextProps', nextProps);
     if (nextProps.visible) {
       setTimeout(() => {
         this.setState({ animateOverlay: true }, () => {
@@ -90,16 +85,15 @@ export default class Modal extends React.Component {
     }
   }
   closemodal = () => {
-    console.log('closepopup');
     setTimeout(() => {
       this.setState({ animateBody: false }, () => {
         setTimeout(() => {
           this.setState({ animateOverlay: false }, () => {
             setTimeout(() => {
               this.props.closemodal();
-            }, 501);
+            }, 0);
           });
-        }, 501);
+        }, 0);
       });
     }, 1);
   };
