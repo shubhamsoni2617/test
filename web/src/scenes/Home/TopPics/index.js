@@ -176,7 +176,7 @@ const TopPics = props => {
                               <EventHeading
                                 title={pic.title}
                                 lines={2}
-                                height={Utilities.mobileAndTabletcheck() ? 22 : 20}
+                                height={Utilities.mobilecheck() ? 19 : Utilities.mobileAndTabletcheck() ? 20 : 22}
                               />
                               <Link
                                 to={`/events/${pic.alias}`}

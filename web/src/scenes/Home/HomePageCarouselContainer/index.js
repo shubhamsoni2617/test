@@ -10,6 +10,7 @@ class HomePageCarouselContainer extends Component {
     super(props);
 
     this.state = {
+      imageLoaded: '',
       posts: [],
       errorMsg: '',
       sliderBackgroudImage: 0,
@@ -74,6 +75,13 @@ class HomePageCarouselContainer extends Component {
     this.thumbSlider.slickGoTo(index);
   };
 
+  onLoad = () => {
+    setTimeout(() => {
+      this.setState({
+        imageLoaded: 'show-shadow'
+      })
+    }, 500);
+  };
   handleResolution = (postLength = 0) => {
     let mainSliderSettings = this.state.mainSliderSettings;
     let thumbSliderSettings = this.state.thumbSliderSettings;
@@ -141,7 +149,7 @@ class HomePageCarouselContainer extends Component {
     }
 
     return (
-      <div className="banner">
+      <div className={`banner ${this.state.imageLoaded}`}>
         {!this.state.loading && (
           <div className="banner-carousel">
             <div className="banner-background"></div>
@@ -161,24 +169,25 @@ class HomePageCarouselContainer extends Component {
               className="slider-for"
               swipe={true}
               focusOnSelect={true}
-              // autoplay={this.state.sliderAutoPlay}
-              // autoplaySpeed={1000}
+            // autoplay={this.state.sliderAutoPlay}
+            // autoplaySpeed={1000}
             >
               {posts.length
                 ? posts.map((post, key) => (
-                    <div>
-                      <img
-                        onClick={
-                          sliderBackgroudImage == key
-                            ? () => window.open(post.navigation_link, '_blank')
-                            : ''
-                        }
-                        src={post.full_image}
-                        alt="image1"
-                        className="img1 img-responsive"
-                      ></img>
-                    </div>
-                  ))
+                  <div>
+                    <img
+                      onClick={
+                        sliderBackgroudImage == key
+                          ? () => window.open(post.navigation_link, '_blank')
+                          : ''
+                      }
+                      src={post.full_image}
+                      alt="image1"
+                      className="img1 img-responsive"
+                      onLoad={this.onLoad}
+                    />
+                  </div>
+                ))
                 : null}
               {errorMsg ? <div>{errorMsg}</div> : null}
             </Slider>
@@ -195,14 +204,14 @@ class HomePageCarouselContainer extends Component {
             >
               {posts.length
                 ? posts.map(post => (
-                    <div>
-                      <img
-                        src={post.full_image}
-                        alt="image1"
-                        className="img img-responsive"
-                      ></img>
-                    </div>
-                  ))
+                  <div>
+                    <img
+                      src={post.full_image}
+                      alt="image1"
+                      className="img img-responsive"
+                    ></img>
+                  </div>
+                ))
                 : null}
               {errorMsg ? <div>{errorMsg}</div> : null}
             </Slider>
