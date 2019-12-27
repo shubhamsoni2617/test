@@ -18,6 +18,15 @@
                 display: none;
                 padding-top: 15px;
             }
+            .events-listing{
+                &.open{
+                    @media(max-width: 767px){
+                        top: 0px;
+                        left: 0px;
+                        z-index: 9;
+                    }
+                }
+            }
         }
         .fixed-buttons-events{
                 display: none;
