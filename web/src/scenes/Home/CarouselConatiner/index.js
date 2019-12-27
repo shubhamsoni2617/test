@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
-import { CSSTransition } from 'react-transition-group';
 import Carousel from '../../../shared/components/Carousel';
 import rightArrow from '../../../assets/images/right-arrow.svg';
 import ShimmerEffect from '../../../shared/components/ShimmerEffect';
@@ -8,52 +7,30 @@ import './style.scss';
 import Utilities from '../../../shared/utilities';
 
 const CarouselConatiner = props => {
-  const element = useRef(null);
   const [data, setData] = useState(null);
   const [error, setError] = useState(false);
   const [loading, setLoading] = useState(true);
-  const [callAPI, setCallAPI] = useState(false);
-
-  useEffect(() => {
-    window.addEventListener('scroll', scrollHandler, true);
-    return () => {
-      window.removeEventListener('scroll', scrollHandler, true);
-    };
-  }, []);
 
   useEffect(() => {
     const params = {
       client: 1
     };
-    if (callAPI) {
-      props
-        .api(params)
-        .then(res => {
-          if (res.data.data.length) {
-            setData(res.data.data);
-            setLoading(false);
-          } else {
-            setLoading(false);
-            element.current.classList.add('hide-container');
-          }
-        })
-        .catch(() => {
-          setError(true);
+    props
+      .api(params)
+      .then(res => {
+        if (res.data.data.length) {
+          setData(res.data.data);
           setLoading(false);
-        });
-    }
-  }, [callAPI]);
-
-  const scrollHandler = () => {
-    if (
-      !callAPI &&
-      element &&
-      element.current &&
-      window.pageYOffset >= element.current.offsetTop - 550
-    ) {
-      setCallAPI(true);
-    }
-  };
+        } else {
+          setLoading(false);
+          element.current.classList.add('hide-container');
+        }
+      })
+      .catch(() => {
+        setError(true);
+        setLoading(false);
+      });
+  }, []);
 
   if (error) {
     return null;
@@ -64,7 +41,7 @@ const CarouselConatiner = props => {
   }
 
   return (
-    <div ref={element} className="carousel-container">
+    <div className="carousel-container">
       <section className={props.classStr}>
         <div className="container-fluid custom-container">
           <div className="section-top-wrapper">
@@ -77,12 +54,6 @@ const CarouselConatiner = props => {
               </Link>
             </div>
           </div>
-          {/* <CSSTransitionGroup
-            transitionName="shimmer-carousel"
-            transitionEnter={true}
-            transitionEnterTimeout={1000}
-            transitionLeaveTimeout={1000}
-          > */}
           {loading && (
             <ShimmerEffect
               propCls={`shimmer-inner`}
@@ -91,19 +62,12 @@ const CarouselConatiner = props => {
                 Utilities.mobilecheck()
                   ? 3
                   : Utilities.mobileAndTabletcheck()
-                    ? 4
-                    : 6
+                  ? 4
+                  : 6
               }
               type="TILE"
             />
           )}
-          {/* </CSSTransitionGroup>
-          <CSSTransitionGroup
-            transitionName="shimmer-carousel"
-            transitionEnter={true}
-            transitionEnterTimeout={1000}
-            transitionLeaveTimeout={1000}
-          > */}
           {!loading && data && data.length && (
             <Carousel
               imgArray={data}
@@ -115,7 +79,6 @@ const CarouselConatiner = props => {
               infinite={props.infinite}
             />
           )}
-          {/* </CSSTransitionGroup> */}
         </div>
       </section>
     </div>
