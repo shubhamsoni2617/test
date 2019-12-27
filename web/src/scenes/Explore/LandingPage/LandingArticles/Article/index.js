@@ -6,7 +6,14 @@ import Utilities from '../../../../../shared/utilities';
 
 const Article = ({ article }) => {
   return (
-    <div className="articles-item">
+    <Link
+      className="articles-item"
+      to={
+        article.type === 'multi_show_template'
+          ? `/explore/2/${article.id}`
+          : `/explore/1/${article.id}`
+      }
+    >
       <div className="article-item-desc">
         <div className="category-group">
           <ul>
@@ -21,15 +28,9 @@ const Article = ({ article }) => {
               })}
           </ul>
         </div>
-        <Link
-          to={
-            article.type === 'multi_show_template'
-              ? `/explore/2/${article.id}`
-              : `/explore/1/${article.id}`
-          }
-        >
+        <a>
           <h3>{article.title}</h3>
-        </Link>
+        </a>
         <div className="article-place-date">
           {article.author_name && (
             <span className="article-place">
@@ -45,15 +46,7 @@ const Article = ({ article }) => {
             article.description,
             Utilities.mobilecheck() ? 80 : 98
           )}
-          <Link
-            to={
-              article.type === 'multi_show_template'
-                ? `/explore/2/${article.id}`
-                : `/explore/1/${article.id}`
-            }
-          >
-            More
-          </Link>
+          <a>More</a>
         </p>
       </div>
       <div className="article-item-img">
@@ -63,7 +56,7 @@ const Article = ({ article }) => {
           className="img-fluid"
         />
       </div>
-    </div>
+    </Link>
   );
 };
 

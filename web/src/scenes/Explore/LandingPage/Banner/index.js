@@ -3,7 +3,7 @@ import './style.scss';
 import Slider from 'react-slick';
 import Image from '../../../../shared/components/Image';
 import Utilities from '../../../../shared/utilities';
-import NoImage from '../../../../assets/images/noimage.png';
+import NoImage from '../../../../assets/images/medium.png';
 
 const BannerSlider = ({ bannerData }) => {
   const [nav1, setNav1] = useState(null);
@@ -58,8 +58,12 @@ const BannerSlider = ({ bannerData }) => {
                     )}
                   </div>
                   <div className="explore-banner-image">
-                    {banner && banner.image && <img src={banner.image} alt="banner_image" />}
-                    {banner && !banner.image && <img src={NoImage} alt="banner_image" />}
+                    {banner && banner.image && (
+                      <img src={banner.image} alt="banner_image" />
+                    )}
+                    {banner && !banner.image && (
+                      <img src={NoImage} alt="banner_image" />
+                    )}
                   </div>
                 </div>
               );

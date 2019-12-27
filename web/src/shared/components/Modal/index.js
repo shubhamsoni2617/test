@@ -27,14 +27,15 @@ function ModalPopup({
         type="fadeInDown"
       >
         <div className="modal-content">
-          
-          {title && <div className="modal-header">
-            <h5
-              className="modal-title"
-              id="exampleModalLabel"
-              dangerouslySetInnerHTML={{ __html: title }}
-            ></h5>
-          </div>}
+          {title && (
+            <div className="modal-header">
+              <h5
+                className="modal-title"
+                id="exampleModalLabel"
+                dangerouslySetInnerHTML={{ __html: title }}
+              ></h5>
+            </div>
+          )}
           <div className="modal-body">
             {htmlContent ? (
               <div
