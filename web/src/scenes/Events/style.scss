@@ -72,7 +72,11 @@
             overflow: hidden;
             z-index: 0;
             &.open{
-            z-index: 5;
+            // z-index: 5;
+            z-index: 9;
+            position: fixed;
+            top: 0;
+            left: 0;
             }
             .contentLoader{
             margin-top: -10px;

@@ -43,7 +43,7 @@ export default class Card extends Component {
           className="event-img"
           onClick={() => redirectTo && redirectTo(cardData.alias)}
         >
-          <Image src={cardData.thumb_image} />
+          <Image src={cardData.thumb_image} type="MediumVertical" />
         </div>
         <div className="event-details">
           <div className="event-detail-prime">
@@ -54,7 +54,13 @@ export default class Card extends Component {
               <EventHeading
                 title={cardData.title}
                 lines={2}
-                height={Utilities.mobilecheck() ? 16 : Utilities.mobileAndTabletcheck() ? 20 : 20}
+                height={
+                  Utilities.mobilecheck()
+                    ? 16
+                    : Utilities.mobileAndTabletcheck()
+                    ? 20
+                    : 20
+                }
               />
             </div>
             {cardData.synopsis && (
