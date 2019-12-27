@@ -14,7 +14,7 @@ const Modal = ({ handleClose, show, children }) => {
 
   return (
     <div className={showHideClassName}>
-      <h5>pick a date</h5>
+      <h5>Pick a date</h5>
       <section className="modal-main">{children}</section>
     </div>
   );
@@ -23,13 +23,16 @@ const Modal = ({ handleClose, show, children }) => {
 const Preview = ({ history, urlDate }) => {
   const [currentDate, setCurrentDate] = useState('');
   const prevCurrentDate = usePrevious(currentDate);
-  console.log(currentDate, prevCurrentDate);
+
   return (
     <>
       <Modal show={true}>
         <div>
           <DayPicker
             showOverlay={false}
+            selectedDays={
+              currentDate ? [new Date(currentDate)] : [new Date(urlDate)]
+            }
             onDayClick={day => {
               setCurrentDate(moment(day).format('YYYY-MM-DD'));
             }}

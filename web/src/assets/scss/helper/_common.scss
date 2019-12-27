@@ -290,7 +290,22 @@ h2 {
         }
         @media(max-width: 767px){
             padding: 0 10px;
-        }
+		}
+		.shim-container{
+			max-width: 1360px;
+			margin: 0 auto;
+			padding: 0 40px;
+			height: auto;
+			@media(min-width: 1360px){
+				max-width: 1440px;
+			}
+			@media(max-width: 1024px){
+				padding: 0 30px;
+			}
+			@media(max-width: 767px){
+				padding: 0 10px;
+			}
+		}
     }
 }
 .container{
