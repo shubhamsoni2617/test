@@ -155,7 +155,7 @@ const AgentVenuePopUp = props => {
                 <img src={mtr} alt="icon" />
               </div>
               <div className="details">
-                <h3>Nearest Metro Station</h3>
+                <h3>Nearest MRT</h3>
                 <p
                   dangerouslySetInnerHTML={{
                     __html: popUpDetail.nearest_mrt

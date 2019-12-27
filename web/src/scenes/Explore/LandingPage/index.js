@@ -39,7 +39,6 @@ const Explore = props => {
       })
       .catch(err => {
         if (err && err.response) {
-          console.log(err.response);
           setLoading(false);
         }
       });
@@ -106,9 +105,9 @@ const Explore = props => {
     festivals.data &&
     festivals.data.length > 0 && <LandingFestivals festivals={festivals} />;
 
-  const reviewsPart = section_five &&
-    section_five &&
-    section_five.length > 0 && <Reviews reviewsData={section_five} />;
+  const reviewsPart = section_five && section_five.length > 0 && (
+    <Reviews reviewsData={section_five} />
+  );
 
   const trendingPart = trending &&
     trending.sub_section_six &&
