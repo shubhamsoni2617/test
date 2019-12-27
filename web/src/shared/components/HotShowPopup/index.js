@@ -6,11 +6,12 @@ import ReactPlayer from 'react-player';
 import { CSSTransition } from 'react-transition-group';
 import Utilities from '../../utilities';
 import Image from '../Image';
+import popupClose from '../../../assets/images/cross.svg';
 
 const HotShowPopup = () => {
   const [popupData, setPopupData] = useState([]);
   const [flag, setFlag] = useState(false);
-  const [flashsaleClass, setFlashsaleClass] = useState('')
+  const [flashsaleClass, setFlashsaleClass] = useState(false);
 
   useEffect(() => {
     if (!sessionStorage.getItem('hotshow')) {
@@ -20,11 +21,11 @@ const HotShowPopup = () => {
         .then(res => {
           setPopupData(res.data.data);
           if (
-            res.data.data.length && !Utilities.mobilecheck() ||
-            Utilities.mobilecheck() &&
-            res.data.data[0].hide_smartphone !== '1'
+            (res.data.data.length && !Utilities.mobilecheck()) ||
+            (Utilities.mobilecheck() &&
+              res.data.data[0].hide_smartphone !== '1')
           ) {
-            setFlashsaleClass('flashsale-wrapper')
+            setFlashsaleClass(true);
             addOverlayClass();
           } else {
             setPopupData([]);
@@ -62,22 +63,39 @@ const HotShowPopup = () => {
     // >
     <>
       {flag && popupData.length && (
-        <div className={`hotshow-popup ${flashsaleClass}`}>
-          <div className="hotshow-overlay" />
+        <div
+          className={`hotshow-popup ${
+            flashsaleClass ? `flashsale-wrapper` : ``
+          }`}
+        >
+          <div
+            className="hotshow-overlay"
+            onClick={() => {
+              console.log('test');
+              removeOverlayClass();
+            }}
+          />
           <div className="hotshow container">
-            <div className="hotshow-topbar">
-              <div className="hotshow-topbar-left">
-                <span>
-                  We are anticipating very high demand for the following show
-                  {popupData.length === 1 ? '' : '(s)'}.
-                </span>
+            {flashsaleClass && (
+              <span onClick={removeOverlayClass}>
+                <img src={popupClose} alt="Close Popup" />
+              </span>
+            )}
+            {!flashsaleClass && (
+              <div className="hotshow-topbar">
+                <div className="hotshow-topbar-left">
+                  <span>
+                    We are anticipating very high demand for the following show
+                    {popupData.length === 1 ? '' : '(s)'}.
+                  </span>
+                </div>
+                <div className="hotshow-topbar-right">
+                  <span onClick={() => removeOverlayClass()}>
+                    Continue to SISTIC <img src={nextarrow} alt="" />
+                  </span>
+                </div>
               </div>
-              <div className="hotshow-topbar-right">
-                <span onClick={() => removeOverlayClass()}>
-                  Continue to SISTIC <img src={nextarrow} alt="" />
-                </span>
-              </div>
-            </div>
+            )}
 
             <div className="hotshow-wrapper">
               {popupData.length === 2 &&
@@ -95,12 +113,12 @@ const HotShowPopup = () => {
                             height="100%"
                           />
                         ) : (
-                            <Image
-                              src={objData.full_image}
-                              alt=""
-                              className="img-fluid"
-                            />
-                          )}
+                          <Image
+                            src={objData.full_image}
+                            alt=""
+                            className="img-fluid"
+                          />
+                        )}
                       </div>
 
                       <div className="hotshow-content">
@@ -147,12 +165,12 @@ const HotShowPopup = () => {
                         {objData.type && objData.type.id === 2 ? (
                           <ReactPlayer url={objData.video_url} controls />
                         ) : (
-                            <Image
-                              src={objData.full_image}
-                              alt=""
-                              className="img-fluid"
-                            />
-                          )}
+                          <Image
+                            src={objData.full_image}
+                            alt=""
+                            className="img-fluid"
+                          />
+                        )}
                       </a>
                       <div className="hotshow-content">
                         {objData.title && (

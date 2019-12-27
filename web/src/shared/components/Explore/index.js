@@ -85,8 +85,15 @@ const Explore = props => {
                 <EventHeading
                   title={exploreData[0].title}
                   lines={1}
-                  height={Utilities.mobilecheck() ? 18 : Utilities.mobileAndTabletcheck() ? 18 : 20}
+                  height={
+                    Utilities.mobilecheck()
+                      ? 18
+                      : Utilities.mobileAndTabletcheck()
+                      ? 18
+                      : 20
+                  }
                 />
+                <span>{exploreData[0].description.slice(0, 30)}...</span>
               </div>
             </div>
           </Link>
@@ -117,8 +124,15 @@ const Explore = props => {
                     <EventHeading
                       title={cardData.title}
                       lines={3}
-                      height={Utilities.mobilecheck() ? 18 : Utilities.mobileAndTabletcheck() ? 18 : 20}
+                      height={
+                        Utilities.mobilecheck()
+                          ? 18
+                          : Utilities.mobileAndTabletcheck()
+                          ? 18
+                          : 20
+                      }
                     />
+                    <span>{cardData.description.slice(0, 30)}...</span>
                   </div>
                 </div>
               </Link>
