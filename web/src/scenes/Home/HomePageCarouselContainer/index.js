@@ -81,20 +81,6 @@ class HomePageCarouselContainer extends Component {
     }
   }
 
-  SampleArrow = props => {
-    const { className, style, onClick, currentSlide } = props;
-    this.setState({
-      currentSlide
-    });
-    return (
-      <div
-        className={className}
-        style={{ ...style, display: 'block' }}
-        onClick={onClick}
-      />
-    );
-  };
-
   changeBackgroundImage = index => {
     setTimeout(() => {
       this.setState({ sliderBackgroudImage: index });
@@ -167,8 +153,21 @@ class HomePageCarouselContainer extends Component {
     });
   };
 
+  SampleArrow = props => {
+    const { className, style, onClick, currentSlide } = props;
+    this.setState({
+      currentSlide
+    });
+    return (
+      <div
+        className={className}
+        style={{ ...style, display: 'block' }}
+        onClick={onClick}
+      />
+    );
+  };
+
   render() {
-    console.log('rerender main slider');
     const { posts, errorMsg, sliderBackgroudImage } = this.state;
 
     if (posts && posts.length == 0) {
