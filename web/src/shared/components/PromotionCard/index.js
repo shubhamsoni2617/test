@@ -61,19 +61,41 @@ const PromotionCard = props => {
     >
       <div
         className="promotions-listing-wrapper"
-        onClick={() =>
-          fetchPromotionDetailData(
-            data.alias,
-            data.id,
-            defaultTabId,
-            promotionTab
-          )
-        }
+
       >
-        <div className="promotion-image">
-          <Image src={data.featured_image} type="Promotion" />
+        <div className="promotion-relative-wrapper">
+          <div
+            className="promotion-image"
+            onClick={() =>
+              fetchPromotionDetailData(
+                data.alias,
+                data.id,
+                defaultTabId,
+                promotionTab
+              )
+            }
+          >
+            <Image src={data.featured_image} type="Promotion" />
+          </div>
+          <span className="share" onClick={handleSocialShare}>
+            <img src={ShareIcon} alt="share-icon" />
+            <SocialShare
+              shareUrl={shareUrl && shareUrl}
+              showSocialShare={socialShare}
+            />
+          </span>
         </div>
-        <div className="promotion-desc">
+        <div
+          className="promotion-desc"
+          onClick={() =>
+            fetchPromotionDetailData(
+              data.alias,
+              data.id,
+              defaultTabId,
+              promotionTab
+            )
+          }
+        >
           <div className="promotion-category-div">
             <span className="promotion-category-title">{data.category}</span>
             {data && data.custom_label_text ? (
@@ -85,13 +107,6 @@ const PromotionCard = props => {
               </span>
             ) : null}
           </div>
-          <span className="share" onClick={handleSocialShare}>
-            <img src={ShareIcon} alt="share-icon" />
-            <SocialShare
-              shareUrl={shareUrl && shareUrl}
-              showSocialShare={socialShare}
-            />
-          </span>
           <Ellipsis
             title={data.title}
             lines={2}

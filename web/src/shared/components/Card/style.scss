@@ -414,6 +414,9 @@
             .price{
                 @media(min-width: 1024px){
                     height: 32px;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: space-between;
                 }
                 @media (max-width: 768px) {
                     height: 30px !important;
@@ -422,17 +425,22 @@
                     font-size: 12px;
                     color: #EB9C00;
                     font-style: italic;
-                    height: 16px;
+                    // height: 16px;
+                    height: auto;
                     display: block;
+                    margin-top: -1px;
                     strong{
                         font-weight: 400;
                         font-size: 12px;
                         color: #EB9C00;
                         padding-left: 0px !important;
                     }
+                    &:only-child{
+                        line-height: 32px;
+                    }
                 }
                 p{
-                    margin: 3px 0 0 0;
+                    margin: 0px;
                     color: #343434;
                     font-size: 14px;
                     line-height: 11px;
@@ -443,6 +451,9 @@
                     }
                     @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
                         margin-bottom: 5px;
+                    }
+                    &:only-child{
+                        line-height: 32px;
                     }
                 }
             }

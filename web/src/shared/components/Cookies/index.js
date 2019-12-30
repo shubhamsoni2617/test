@@ -47,11 +47,11 @@ const Cookies = () => {
         <Link to="/" className="accept-btn" onClick={handleAccept}>
           Accept
         </Link>
-        <Link to="/" className="hide-cookie" onClick={handleDecline}>
-          <img src={closeIcon} alt="" />
-          <img src={closeIconhover} className="hover-img" alt="" />
-        </Link>
       </div>
+      <Link to="/" className="hide-cookie" onClick={handleDecline}>
+        <img src={closeIcon} alt="" />
+        <img src={closeIconhover} className="hover-img" alt="" />
+      </Link>
     </animated.div>
   );
 };
