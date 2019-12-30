@@ -152,7 +152,7 @@
   //event detail section
   .event-detail {
     background-color: #F0F9FF;
-    padding: 22px 29px 0px;
+    padding: 18px 29px 0px;
     position: relative;
     // top: 30px;
     // margin-top: -30px;
@@ -314,8 +314,8 @@
         // height: 354px;
         overflow: auto;
         display: block;
-        margin-top: -10px;
-        padding-top: 10px;
+        margin-top: -5px;
+        padding-top: 5px;
         .ScrollbarsCustom-Scroller{
             overflow-x: hidden !important;
         }
@@ -475,16 +475,19 @@
               }
           }
           .zoner-group{
-              margin-bottom: 14px;
-              padding-right: 83px;
-              min-height: 26px;
+            margin-bottom: 14px;
+            padding-right: 83px;
+            min-height: 33px;
+            align-items: center;
+            display: flex;
+            flex-wrap: wrap;
               @media(max-width: 1024px){
                 margin-bottom: 10px;
               }
               li {
                   display: inline-block;
                   list-style: none;
-                  margin: 0px 8px 4px 0;
+                  margin: 2px 8px 2px 0;
                   border: 2px solid rgba(106, 106, 106, 0.25);
                   padding: 1px 5px;
                   background-color: transparent;
