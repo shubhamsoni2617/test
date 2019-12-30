@@ -81,6 +81,10 @@ class HomePageCarouselContainer extends Component {
     }
   }
 
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.handleResolution);
+  }
+
   changeBackgroundImage = index => {
     setTimeout(() => {
       this.setState({ sliderBackgroudImage: index });
@@ -243,7 +247,7 @@ class HomePageCarouselContainer extends Component {
                         src={post.full_image}
                         alt="image1"
                         className="img img-responsive"
-                      ></img>
+                      />
                     </div>
                   ))
                 : null}
