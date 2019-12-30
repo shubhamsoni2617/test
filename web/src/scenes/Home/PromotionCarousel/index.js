@@ -80,36 +80,14 @@ export default class PromotionCarousel extends Component {
       promotions: [],
       expiredText: '',
       loading: true,
-      callAPI: false,
       error: false
     };
     this.element = createRef(null);
   }
 
   componentDidMount() {
-    window.addEventListener('scroll', this.scrollHandler, true);
+    this.getPromotions();
   }
-
-  componentDidUpdate(prevProps, prevState) {
-    if (prevState.callAPI !== this.state.callAPI) {
-      if (this.state.callAPI) {
-        this.getPromotions();
-      }
-    }
-  }
-
-  componentWillUnmount() {
-    window.removeEventListener('scroll', this.scrollHandler, true);
-  }
-
-  scrollHandler = () => {
-    if (
-      !this.state.callAPI &&
-      window.pageYOffset >= this.element.offsetTop - 300
-    ) {
-      this.setState({ callAPI: true });
-    }
-  };
 
   handlePromotionExpired = expiredText => {
     this.setState({ expiredText });
