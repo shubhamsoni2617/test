@@ -206,7 +206,6 @@ export default class Promotions extends Component {
         console.log(err);
       });
     let shareUrl = window.location.origin + `/promotions/${defaultTabId}/${id}`;
-    // let randomString = Math.random().toString(36).substring(7);
     window.history.pushState('string', 'Title', shareUrl);
   };
 
@@ -222,8 +221,6 @@ export default class Promotions extends Component {
   };
 
   handleFilters = obj => {
-    // this.handleSortFilters(obj);
-
     if (!Utilities.mobilecheck()) {
       this.setState({
         sortBy: obj.filteredSortOrder,
@@ -239,6 +236,8 @@ export default class Promotions extends Component {
 
   handlePromotionDetailTab = data => {
     this.setState({ promotionTab: data });
+    let initialUrl = window.location.origin + `/promotions`;
+    window.history.pushState('string', 'initialUrl', initialUrl);
   };
 
   toggleSortBy = () => {
