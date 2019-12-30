@@ -312,7 +312,7 @@
             &:hover{
                 border: none;
             }
-            
+
         }
         .slick-arrow{
             margin-top: 0;
@@ -355,7 +355,7 @@
                                 max-width: 100%;
                                 height: auto;
                                 width: 92px;
-                                
+
                             }
                         }
                         @media(max-width: 576px){
@@ -527,7 +527,7 @@
                     color: #0098FF;
                 }
                 &:after{
-                    transform: scaleY(1);                   
+                    transform: scaleY(1);
                 }
             }
         }
@@ -878,6 +878,7 @@
                     }
                     @media(max-width: 576px){
                         padding-left: 10px;
+                        padding-bottom: 0px;
                     }
                     h3{
                         color: #343434;
@@ -886,26 +887,20 @@
                         font-weight: 500;
                         line-height: 22px;
                         margin-bottom: 0px;
-                        padding-bottom: 27px;
-                        padding-top: 18px;
-                        text-overflow: ellipsis;
-                        display: -webkit-box;
-                        -webkit-line-clamp: 3;
+                        margin-bottom: 15px;
+                        margin-top: 12px;
                         transition: all 0.3s ease-in-out;
                         -webkit-transition: all 0.3s ease-in-out;
                         -moz-transition: all 0.3s ease-in-out;
                         -o-transition: all 0.3s ease-in-out;
                         overflow: hidden;
-                        height: 90px;
-                        -webkit-box-orient: vertical;
                         @media(max-width: 768px){
-                            margin-bottom: 0px;
-                            padding-bottom: 0px;
-                            padding-top: 0px;
-                            height: 80px;
+                          margin: 0px;
+                          padding-bottom: 0px;
+                          padding-top: 0px;
                         }
                     }
-                    .review-subtext{
+                    .review-subtext, p{
                         color: #626262;
                         font-family: 'Rubik', sans-serif;
                         font-size: 14px;
@@ -916,6 +911,9 @@
                         @media(max-width: 768px){
                             margin-top: -14px;
                         }
+                    }
+                    .review-subtext{
+                      margin-top: 10px;
                     }
                 }
                 &:hover{
@@ -939,6 +937,7 @@
                         display: flex;
                         flex-wrap: wrap;
                         padding-bottom: 23px;
+                        width: 100%;
                         @media(max-width: 768px){
                             padding-bottom: 15px;
                         }
@@ -970,10 +969,11 @@
                                 -moz-transition: 0.3s color;
                                 -o-transition: 0.3s color;
                             }
-                            span{
+                            p{
                                 color: #626262;
                                 font-size: 14px;
-                                line-height: 22px
+                                line-height: 22px;
+                                margin-bottom: 0px;
                             }
                         }
                         &:hover{
@@ -1175,7 +1175,7 @@
                 }
                 .royal-items{
                     .item-wrapper{
-                        .royal-item-content{                                
+                        .royal-item-content{
                             margin-top: 4px;
                         }
                     }

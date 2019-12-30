@@ -63,6 +63,7 @@
       .tickets-desc{
           padding-left: 27px;
           flex: 0 0 65%;
+          width: 65%;
           padding-right: 15px;
           height: auto;
           margin-top: 0;
@@ -71,6 +72,19 @@
           @media(max-width: 1280px){
               padding-left: 10px;
               flex: 0 0 63%;
+          }
+          .tickets-title-social-icons {
+              display: flex;
+              h3{
+                max-width: calc(100% - 66px);
+                flex: 0 0 auto;
+                width: auto;
+              }
+              .info-tooltip, .share-tooltip{
+                max-width: 33px;
+                flex: 0 0 33px;
+                width: 33px;
+              }
           }
           .title{
                 display: inline-block;
