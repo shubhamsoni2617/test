@@ -52,6 +52,14 @@
         -webkit-transition: 0.3s box-shadow, 0.5s transform;
         -moz-transition: 0.3s box-shadow, 0.5s transform;
         -o-transition: 0.3s box-shadow, 0.5s transform;
+        .promotion-relative-wrapper{
+            position: relative;
+            .share{
+                top: calc(100% + 20px);
+                right: 15px;
+                z-index: 9;
+            }
+        }
         .promotion-image {
             overflow: hidden;
             cursor: default;
@@ -639,6 +647,9 @@
             @media (max-width: 767px) {
                 height: auto;
                 width: 100%;
+            }
+            @media(min-width: 1280px){
+                width: 1024px;
             }
             .promotion-tab-close-btn {
                 position: absolute;

@@ -58,8 +58,8 @@ export default class Card extends Component {
                   Utilities.mobilecheck()
                     ? 16
                     : Utilities.mobileAndTabletcheck()
-                    ? 20
-                    : 20
+                      ? 20
+                      : 20
                 }
               />
             </div>
@@ -115,7 +115,7 @@ export default class Card extends Component {
           </div>
           <div className="price-event">
             <div className="price">
-              <span>
+              {cardData.event_status && <span>
                 <EventStatus
                   status={cardData.event_status}
                   color={cardData.event_status_text_color}
@@ -123,8 +123,8 @@ export default class Card extends Component {
                   paddingLeft={'2px'}
                   paddingRight={'2px'}
                 />
-              </span>
-              <p>{cardData.price ? cardData.price : ' '}</p>
+              </span>}
+              {cardData.price && <p>{cardData.price}</p>}
             </div>
             <button
               id="event-buy"
