@@ -22,7 +22,9 @@ class HomePageCarouselContainer extends Component {
         centerPadding: '250px',
         slidesToShow: 1,
         speed: 500,
-        arrows: true
+        arrows: true,
+        prevArrow: <this.SampleArrow />,
+        nextArrow: <this.SampleArrow />
       },
       thumbSliderSettings: {
         centerMode: true,
@@ -31,10 +33,13 @@ class HomePageCarouselContainer extends Component {
         slidesToShow: 13,
         slidesToScroll: 1,
         focusOnSelect: true,
-        arrows: true
+        arrows: true,
+        prevArrow: <this.SampleArrow />,
+        nextArrow: <this.SampleArrow />
       },
       loading: true,
-      loadingThumbnail: true
+      loadingThumbnail: true,
+      currentSlide: 0
     };
   }
 
@@ -68,18 +73,40 @@ class HomePageCarouselContainer extends Component {
       });
   }
 
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState.currentSlide !== this.state.currentSlide) {
+      this.thumbSlider.slickGoTo(this.state.currentSlide);
+      this.mainSlider.slickGoTo(this.state.currentSlide);
+      this.changeBackgroundImage(this.state.currentSlide);
+    }
+  }
+
+  SampleArrow = props => {
+    const { className, style, onClick, currentSlide } = props;
+    this.setState({
+      currentSlide
+    });
+    return (
+      <div
+        className={className}
+        style={{ ...style, display: 'block' }}
+        onClick={onClick}
+      />
+    );
+  };
+
   changeBackgroundImage = index => {
     setTimeout(() => {
       this.setState({ sliderBackgroudImage: index });
     }, 200);
-    this.thumbSlider.slickGoTo(index);
+    // this.thumbSlider.slickGoTo(index);
   };
 
   onLoad = () => {
     setTimeout(() => {
       this.setState({
         imageLoaded: 'show-shadow'
-      })
+      });
     }, 500);
   };
   handleResolution = (postLength = 0) => {
@@ -163,31 +190,33 @@ class HomePageCarouselContainer extends Component {
             )}
             <Slider
               {...this.state.mainSliderSettings}
-              asNavFor={this.thumbSlider}
+              // asNavFor={this.thumbSlider}
               ref={slider => (this.mainSlider = slider)}
-              afterChange={index => this.changeBackgroundImage(index)}
+              // afterChange={index => this.changeBackgroundImage(index)}
               className="slider-for"
               swipe={true}
               focusOnSelect={true}
-            // autoplay={this.state.sliderAutoPlay}
-            // autoplaySpeed={1000}
+              // autoplay={this.state.sliderAutoPlay}
+              // autoplaySpeed={1000}
             >
               {posts.length
                 ? posts.map((post, key) => (
-                  <div>
-                    <img
-                      onClick={
-                        sliderBackgroudImage == key
-                          ? () => window.open(post.navigation_link, '_blank')
-                          : ''
-                      }
-                      src={post.full_image}
-                      alt="image1"
-                      className="img1 img-responsive"
-                      onLoad={this.onLoad}
-                    />
-                  </div>
-                ))
+                    <div>
+                      <img
+                        onClick={() => {
+                          this.thumbSlider.slickGoTo(key);
+                          this.changeBackgroundImage(key);
+                          if (sliderBackgroudImage == key) {
+                            window.open(post.navigation_link, '_blank');
+                          }
+                        }}
+                        src={post.full_image}
+                        alt="image1"
+                        className="img1 img-responsive"
+                        onLoad={this.onLoad}
+                      />
+                    </div>
+                  ))
                 : null}
               {errorMsg ? <div>{errorMsg}</div> : null}
             </Slider>
@@ -197,21 +226,27 @@ class HomePageCarouselContainer extends Component {
           <div className="banner-thumbnail">
             <Slider
               {...this.state.thumbSliderSettings}
-              asNavFor={this.mainSlider}
+              // asNavFor={this.mainSlider}
               ref={slider => (this.thumbSlider = slider)}
               focusOnSelect={true}
               swipe={true}
             >
               {posts.length
-                ? posts.map(post => (
-                  <div>
-                    <img
-                      src={post.full_image}
-                      alt="image1"
-                      className="img img-responsive"
-                    ></img>
-                  </div>
-                ))
+                ? posts.map((post, key) => (
+                    <div
+                      key={post.title}
+                      onClick={() => {
+                        this.mainSlider.slickGoTo(key);
+                        this.changeBackgroundImage(key);
+                      }}
+                    >
+                      <img
+                        src={post.full_image}
+                        alt="image1"
+                        className="img img-responsive"
+                      ></img>
+                    </div>
+                  ))
                 : null}
               {errorMsg ? <div>{errorMsg}</div> : null}
             </Slider>
