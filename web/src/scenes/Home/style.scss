@@ -100,7 +100,7 @@
 			position: relative;
 		}
 		& + div , & + section{
-			padding-top: 104px;
+			padding-top: 102px;
 			@media(max-width: 991px){
 				padding-top: 54px;
 			}
@@ -286,9 +286,10 @@
 					padding-right: 60px;
 					&:focus {
 						// background: linear-gradient(to bottom, #fcfcfc, #f3f3f3, #eaeaea, #E1E1E0, #d8d8d8);
+						background: linear-gradient(to bottom, #fcfcfc, #f3f3f3, #ffffff, #f4f4f4, #f2f2f2);
 						opacity: 1;
-						// color: #343434;
-						color: #ffffff;
+						color: #343434;
+						// color: #ffffff;
 						box-shadow: none;
 						outline: none;
 						&::placeholder {
@@ -5629,6 +5630,11 @@ section{
 				@media screen and (orientation:landscape) {
 					flex: 0 0 33%;
 					width: 33%;
+				}
+				a{
+					display: flex;
+					flex-direction: column;
+					height: 100%;
 				}
                 .most-viewed-img{
                     overflow: hidden;
