@@ -42,11 +42,12 @@ const Review = ({ reviewData }) => {
               Utilities.mobilecheck() ? 25 : 30
             )}
           </span>
-          {reviewData && reviewData.data[0] && (
+          {reviewData && reviewData.data.length > 0 && (
             <span className="review-subtext">
               By{' '}
-              {reviewData.data[0].author_name[0].toUpperCase() +
-                reviewData.data[0].author_name.slice(1)}
+              {reviewData.data[0].author_name &&
+                reviewData.data[0].author_name[0].toUpperCase() +
+                  reviewData.data[0].author_name.slice(1)}
             </span>
           )}
         </div>
