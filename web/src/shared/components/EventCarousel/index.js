@@ -14,9 +14,14 @@ const EventCarousel = ({ images }) => {
   const [items, setItems] = useState(images);
   const [index, setIndex] = useState(0);
 
-  const renderItem = item => {
-    console.log(item.playing);
+  const imageLength = images.length;
+  const imageCount = Utilities.mobilecheck()
+    ? imageLength > 4
+    : Utilities.mobileAndTabletcheck()
+    ? imageLength > 6
+    : imageLength > 7;
 
+  const renderItem = item => {
     return (
       <div className="image-gallery-image">
         {item.video_url !== '' && (
@@ -64,23 +69,27 @@ const EventCarousel = ({ images }) => {
   };
 
   const renderLeftNav = (onClick, disabled) => {
-    return (
-      <button
-        className="image-gallery-custom-nav prev"
-        disabled={disabled}
-        onClick={onClick}
-      />
-    );
+    if (imageCount) {
+      return (
+        <button
+          className="image-gallery-custom-nav prev"
+          disabled={disabled}
+          onClick={onClick}
+        />
+      );
+    }
   };
 
   const renderRightNav = (onClick, disabled) => {
-    return (
-      <button
-        className="image-gallery-custom-nav next"
-        disabled={disabled}
-        onClick={onClick}
-      />
-    );
+    if (imageCount) {
+      return (
+        <button
+          className="image-gallery-custom-nav next"
+          disabled={disabled}
+          onClick={onClick}
+        />
+      );
+    }
   };
 
   const pauseVideoOnSlide = index => {
