@@ -26,7 +26,7 @@
                         margin-top: 15px;
                     }
                 }
-            }
+            }    
         }
         .slick-slide{
             display: flex;
@@ -52,11 +52,11 @@
             }
         }
         .slick-arrow{
-            height: 85px;
+            height: 35px;
             width: 35px;
-            background-position: 10px 32px;
-            background-color: rgba(0, 0, 0, 0.7);
-            background-size: 10px 18px;
+            // background-position: 10px 32px;
+            // background-color: rgba(0, 0, 0, 0.7);
+            margin-top: -22px;
             @media(max-width: 768px){
                 display: none !important;
             }
@@ -64,16 +64,30 @@
                 border: none;
                 outline: none;
             }
+            &:before{
+                border-width: 0 0 8px 7px;
+            }
             &.slick-prev{
-                left: -5px;
-                background-image: url('../../../assets/images/left-arrow-white.svg');
+                left: 10px;
+                // background-image: url('../../../assets/images/left-arrow-white.svg');
                 @media(max-width: 1440px){
-                    left: 0px;
+                    left: 10px;
+                }
+                 &:before{
+                    left: 10px;
+                    margin-left: -5px;
+                    margin-top: 3px;
                 }
             }
             &.slick-next{
-                right: 0px;
-                background-image: url('../../../assets/images/right-arrow-white.svg');
+                right: 10px;
+                // background-image: url('../../../assets/images/right-arrow-white.svg');
+                &:before{
+                    right: 10px;
+                    margin-right: -5px;
+                    margin-top: 2px;
+                    margin-left: 0px;
+                }
             }
         }
     }
@@ -362,6 +376,11 @@
                             margin-top: -46px;
                             background-position: 0px;
                             background-image: url('../../../assets/images/arrow-right.svg');
+                            background-repeat: no-repeat;
+                            box-shadow: none;
+                            &:before{
+                                content: none;
+                            }
                             &.slick-prev{
                                 right: 0px;
                                 transform: none;
@@ -660,6 +679,11 @@
             margin-top: -46px;
             background-position: 0px;
             background-image: url('../../../assets/images/arrow-right.svg');
+            background-repeat: no-repeat;
+            box-shadow: none;
+            &:before{
+                box-shadow: none;
+            }
             @media(max-width: 767px){
                 margin-top: -34px;
             }
@@ -676,7 +700,7 @@
                     margin-top: -34px !important;
                 }
                 &:hover{
-                    border: none;
+                    // border: none;
                 }
             }
             &.slick-next{
@@ -688,7 +712,8 @@
                     margin-right: 0px;
                 }
                 &:hover{
-                    border: none;
+                    background-color: rgba(255, 255, 255, 0.7);
+                    // border: none;
                 }
             }
         }
@@ -992,7 +1017,7 @@
                         margin-left: 0px;
                     }
                     .image-conatiner{
-                        overflow: hidden;
+                        overflow: visible;
                         height: auto;
                     }
                     img{
@@ -1011,6 +1036,10 @@
                         font-weight: 500;
                         line-height: 20px;
                         padding-top: 16px;
+                        transition: 0.5s color;
+                        -webkit-transition: 0.5s color;
+                        -moz-transition: 0.5s color;
+                        -o-transition: 0.5s color;
                         @media(max-width: 768px){
                             font-size: 13px;
                             padding-top: 8px;
@@ -1018,7 +1047,10 @@
                     }
                     &:hover{
                         img{
-                            transform: scale(1.05);
+                            transform: translateY(-10px);
+                        }
+                        h3{
+                            color: #0098ff;
                         }
                     }
                     // &:last-child{

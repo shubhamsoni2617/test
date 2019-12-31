@@ -320,6 +320,7 @@
         }
         .slick-slider{
             .slick-list{
+                overflow: visible;
                 .slick-track{
                     display: flex;
                     justify-content: flex-end;
@@ -328,16 +329,23 @@
                     }
                     .slick-slide{
                         margin: 0 2px;
-                        overflow: hidden;
+                        overflow: visible;
                         transition: all 0.3s ease-out;
                         cursor: pointer;
                         width: 92px !important;
                         &:first-child{
                             margin-left: 0;
                         }
+                        .image-conatiner{
+                            overflow: visible;
+                        }
                         img{
                             border: 1px solid transparent;
                             height: 48px;
+                            transition: 0.6s transform;
+                            -webkit-transition: 0.6s transform;
+                            -moz-transition: 0.6s transform;
+                            -o-transition: 0.6s transform;
                             @media(max-width: 576px){
                                 height: 45px !important;
                                 width: 65px !important;
@@ -347,7 +355,7 @@
                         &:hover{
                             img{
                                 border: 1px solid #0098ff;
-                                transform: scale(1.1);
+                                transform: scale(1.1) translateY(-10px);
                             }
                         }
                         .image-conatiner{
@@ -1185,6 +1193,18 @@
             &::before{
                 box-shadow: 1px -1px 0 1px #fff inset;
                 -webkit-box-shadow: 2px -2px #fff inset;
+            }
+            &.slick-prev{
+                &:before{
+                    margin-left: -14px;
+                    margin-top: 4px;
+                }
+            }
+            &.slick-next{
+                &:before{
+                    margin-left: -9px;
+                    margin-top: 4px;
+                }
             }
         }
         .item{

@@ -69,15 +69,22 @@
                     position: absolute;
                     top: 50%;
                     transform: translateY(30%);
+                    height: 80px;
+                    box-shadow: none;
+                    background-repeat: no-repeat;
                     &:hover{
                         border: none;
                         outline: none;
+                    }
+                    &:before{
+                        box-shadow: none;
                     }
                 }
                 .slick-prev{
                     background-image: url('../../../assets/images/prev-arrow.svg');
                     background-color: transparent;
                     background-position: 0px 30px;
+                    left: -30px;
                     @media(max-width: 991px){
                         left: -45px;
                     }
@@ -91,7 +98,8 @@
                 .slick-next{
                     background-image: url('../../../assets/images/next-arrow.svg');
                     background-color: transparent;
-                    background-position: 0px 30px;
+                    background-position: 10px 30px;
+                    right: -30px;
                     @media(max-width: 991px){
                         right: -45px;
                     }

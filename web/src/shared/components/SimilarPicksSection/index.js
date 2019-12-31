@@ -8,7 +8,7 @@ const SimilarPicksSection = ({ data, type }) => {
   if (!data || !data.length) return null;
   return (
     <section className="similar-picks">
-      <div className="container-fluid">
+      <div className="container-fluid custom-container">
         <div className="section-top-wrapper">
           <h2>Similar Picks</h2>
           {/* <div className="carousel-dots"><a href="">See all <img src={RightArrow} className="img-fluid" alt="arrow" /></a></div> */}
