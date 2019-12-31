@@ -71,12 +71,12 @@
           overflow: inherit;
           @media(max-width: 1280px){
               padding-left: 10px;
-              flex: 0 0 63%;
+              // flex: 0 0 63%;
           }
           .tickets-title-social-icons {
               display: flex;
               h3{
-                max-width: calc(100% - 66px);
+                max-width: 100%;
                 flex: 0 0 auto;
                 width: auto;
               }
@@ -84,10 +84,13 @@
                 max-width: 33px;
                 flex: 0 0 33px;
                 width: 33px;
+                align-items: center;
+                display: flex;
               }
           }
           .title{
                 display: inline-block;
+                width :calc(100% - 66px);
               .info-popover{
                   display: none !important;
               }
@@ -280,7 +283,7 @@
             bottom: 0;
             display: flex;
           @media(max-width: 1280px){
-              flex: 0 0 calc(37% - 105px);
+              // flex: 0 0 calc(37% - 105px);
           }
           .buy-tickets-btn{
                 width: auto;

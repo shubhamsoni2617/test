@@ -81,16 +81,14 @@
             // display: flex;
             position: relative;
             &:after{
-              @media(min-width: 767px){
-                position: absolute;
-                content: "";
-                top: 5px;
-                right: 0px;
-                left: 0px;
-                bottom: 0px;
-                background-color: rgba(6, 16, 24, 0.1);
-                z-index: -1;
-              }
+              position: absolute;
+              content: "";
+              top: 5px;
+              right: 0px;
+              left: 0px;
+              bottom: 0px;
+              background-color: rgba(6, 16, 24, 0.1);
+              z-index: -1;
             }
             @media(max-width: 767px){
               display: flex;
