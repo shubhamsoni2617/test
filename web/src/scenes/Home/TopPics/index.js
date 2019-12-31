@@ -12,27 +12,6 @@ import ShimmerEffect from '../../../shared/components/ShimmerEffect';
 import EventHeading from '../../../shared/components/EventHeading';
 import Ellipsis from '../../../shared/components/Ellipsis';
 
-// const SampleNextArrow = props => {
-//   const { className, style, onClick } = props;
-//   return (
-//     <div
-//       className={className}
-//       style={{ ...style, display: 'block' }}
-//       onClick={onClick}
-//     />
-//   );
-// };
-
-// const SamplePrevArrow = props => {
-//   const { className, style, onClick } = props;
-//   return (
-//     <div
-//       className={className}
-//       style={{ ...style, display: 'block' }}
-//       onClick={onClick}
-//     />
-//   );
-// };
 const TopPics = props => {
   const [data, setData] = useState([]);
   const [width, setWidth] = useState('');
@@ -40,17 +19,8 @@ const TopPics = props => {
   const [error, setError] = useState(false);
 
   useEffect(() => {
-    // setWidth(window.innerWidth);
-    // window.addEventListener('resize', handleWindowResize);
     getTopPics();
-    // return () => {
-    //   window.removeEventListener('resize', handleWindowResize);
-    // };
   }, []);
-
-  // const handleWindowResize = () => {
-  //   setWidth(window.innerWidth);
-  // };
 
   const getTopPics = () => {
     const params = {
@@ -74,9 +44,6 @@ const TopPics = props => {
     speed: 500,
     slidesToShow: 6,
     slidesToScroll: 6,
-    // initialSlide: 0,
-    // nextArrow: <SampleNextArrow />,
-    // prevArrow: <SamplePrevArrow />,
     responsive: [
       {
         breakpoint: 1024,
@@ -109,114 +76,19 @@ const TopPics = props => {
               propCls={`shm_col-xs-2 col-md-2`}
             />
           ) : (
-              <div className="col-xs-12">
-                <div className="grid-container">
-                  {data &&
-                    data.map((pic, i) => {
-                      return (
-                        <div key={pic.id} className="item">
-                          <Link to={`/events/${pic.alias}`}>
-                            <div className="item-wrapper">
-                              <div className="item-desc">
-                                <span className="video-icon">
-                                  <img
-                                    src="assets/images/video-icon.svg"
-                                    alt="video"
-                                  />
-                                </span>
-                                <div className="item-img">
-                                  <Image
-                                    src={pic.thumb_image}
-                                    className="img-fluid item-image"
-                                    alt="kurios"
-                                    type="TopPicks"
-                                  />
-                                </div>
-                                <span
-                                  className={`category ${pic.primary_genre
-                                    .split('/')[0]
-                                    .toLowerCase()} top-picks-category`}
-                                >
-                                  {pic.primary_genre}
-                                </span>
-                                <div
-                                  className={`item-overlay ${pic.primary_genre
-                                    .split('/')[0]
-                                    .toLowerCase()}-overlay`}
-                                >
-                                  <div className="overlay-wrapper">
-                                    <EventHeading
-                                      title={pic.title}
-                                      lines={2}
-                                      height={20}
-                                    />
-                                    <span>
-                                      <Ellipsis
-                                        title={pic.event_date}
-                                        lines={1}
-                                        height={14}
-                                      />
-                                    </span>
-                                    {pic.description && (
-                                      <p
-                                        dangerouslySetInnerHTML={{
-                                          __html: Utilities.showLimitedChars(
-                                            pic.description.replace(
-                                              /(<([^>]+)>)/gi,
-                                              ''
-                                            ),
-                                            50
-                                          )
-                                        }}
-                                      ></p>
-                                    )}
-                                  </div>
-                                </div>
-                              </div>
-                              <EventHeading
-                                title={pic.title}
-                                lines={2}
-                                height={Utilities.mobilecheck() ? 19 : Utilities.mobileAndTabletcheck() ? 20 : 22}
-                              />
-                              <Link
-                                to={`/events/${pic.alias}`}
-                                className="item-title-overlay"
-                              >
-                                <span>BUY NOW </span>
-                                <img
-                                  src="assets/images/next-arrow.svg"
-                                  className="img-fluid"
-                                  alt="buy-now"
-                                />
-                              </Link>
-                            </div>
-                          </Link>
-                        </div>
-                      );
-                    })}
-                </div>
-              </div>
-            )
-        ) : !data.length ? (
-          <ShimmerEffect
-            height={200}
-            count={Utilities.mobileAndTabletcheck() ? 4 : 6}
-            type="TILE"
-            propCls={`shm_col-xs-2 col-md-2`}
-          />
-        ) : (
-              <Slider {...settings}>
-                {data.map(pic => {
-                  return (
-                    <div className="grid-container" key={pic.id}>
-                      <div className="item">
+            <div className="col-xs-12">
+              <div className="grid-container">
+                {data &&
+                  data.map((pic, i) => {
+                    return (
+                      <div key={pic.id} className="item">
                         <Link to={`/events/${pic.alias}`}>
                           <div className="item-wrapper">
                             <div className="item-desc">
                               <span className="video-icon">
                                 <img
                                   src="assets/images/video-icon.svg"
-                                  alt="video-icon"
+                                  alt="video"
                                 />
                               </span>
                               <div className="item-img">
@@ -243,7 +115,7 @@ const TopPics = props => {
                                   <EventHeading
                                     title={pic.title}
                                     lines={2}
-                                    height={Utilities.mobileAndTabletcheck() ? 22 : 28}
+                                    height={20}
                                   />
                                   <span>
                                     <Ellipsis
@@ -260,7 +132,7 @@ const TopPics = props => {
                                             /(<([^>]+)>)/gi,
                                             ''
                                           ),
-                                          200
+                                          50
                                         )
                                       }}
                                     ></p>
@@ -268,31 +140,134 @@ const TopPics = props => {
                                 </div>
                               </div>
                             </div>
-                            <h3>
-                              <EventHeading
-                                title={pic.title}
-                                lines={2}
-                                height={Utilities.mobileAndTabletcheck() ? 22 : 23}
+                            <EventHeading
+                              title={pic.title}
+                              lines={2}
+                              height={
+                                Utilities.mobilecheck()
+                                  ? 19
+                                  : Utilities.mobileAndTabletcheck()
+                                  ? 20
+                                  : 22
+                              }
+                            />
+                            <Link
+                              to={`/events/${pic.alias}`}
+                              className="item-title-overlay"
+                            >
+                              <span>BUY NOW </span>
+                              <img
+                                src="assets/images/next-arrow.svg"
+                                className="img-fluid"
+                                alt="buy-now"
                               />
-                            </h3>
-                            <Link to={`/events/${pic.alias}`}>
-                              <span className="item-title-overlay">
-                                <span>BUY NOW </span>
-                                <img
-                                  src="assets/images/next-arrow.svg"
-                                  className="img-fluid"
-                                  alt="buy-now"
-                                />
-                              </span>
                             </Link>
                           </div>
                         </Link>
                       </div>
-                    </div>
-                  );
-                })}
-              </Slider>
-            )}
+                    );
+                  })}
+              </div>
+            </div>
+          )
+        ) : !data.length ? (
+          <ShimmerEffect
+            height={200}
+            count={Utilities.mobileAndTabletcheck() ? 4 : 6}
+            type="TILE"
+            propCls={`shm_col-xs-2 col-md-2`}
+          />
+        ) : (
+          <Slider {...settings}>
+            {data.map(pic => {
+              return (
+                <div className="grid-container" key={pic.id}>
+                  <div className="item">
+                    <Link to={`/events/${pic.alias}`}>
+                      <div className="item-wrapper">
+                        <div className="item-desc">
+                          <span className="video-icon">
+                            <img
+                              src="assets/images/video-icon.svg"
+                              alt="video-icon"
+                            />
+                          </span>
+                          <div className="item-img">
+                            <Image
+                              src={pic.thumb_image}
+                              className="img-fluid item-image"
+                              alt="kurios"
+                              type="TopPicks"
+                            />
+                          </div>
+                          <span
+                            className={`category ${pic.primary_genre
+                              .split('/')[0]
+                              .toLowerCase()} top-picks-category`}
+                          >
+                            {pic.primary_genre}
+                          </span>
+                          <div
+                            className={`item-overlay ${pic.primary_genre
+                              .split('/')[0]
+                              .toLowerCase()}-overlay`}
+                          >
+                            <div className="overlay-wrapper">
+                              <EventHeading
+                                title={pic.title}
+                                lines={2}
+                                height={
+                                  Utilities.mobileAndTabletcheck() ? 22 : 28
+                                }
+                              />
+                              <span>
+                                <Ellipsis
+                                  title={pic.event_date}
+                                  lines={1}
+                                  height={14}
+                                />
+                              </span>
+                              {pic.description && (
+                                <p
+                                  dangerouslySetInnerHTML={{
+                                    __html: Utilities.showLimitedChars(
+                                      pic.description.replace(
+                                        /(<([^>]+)>)/gi,
+                                        ''
+                                      ),
+                                      200
+                                    )
+                                  }}
+                                ></p>
+                              )}
+                            </div>
+                          </div>
+                        </div>
+                        <h3>
+                          <EventHeading
+                            title={pic.title}
+                            lines={2}
+                            height={Utilities.mobileAndTabletcheck() ? 22 : 23}
+                          />
+                        </h3>
+                        <Link to={`/events/${pic.alias}`}>
+                          <span className="item-title-overlay">
+                            <span>BUY NOW </span>
+                            <img
+                              src="assets/images/next-arrow.svg"
+                              className="img-fluid"
+                              alt="buy-now"
+                            />
+                          </span>
+                        </Link>
+                      </div>
+                    </Link>
+                  </div>
+                </div>
+              );
+            })}
+          </Slider>
+        )}
       </div>
     </section>
   );

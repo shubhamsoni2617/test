@@ -4,6 +4,8 @@ import rightArrow from '../../../../../assets/images/right-arrow.svg';
 import Image from '../../../../../shared/components/Image';
 import Utilities from '../../../../../shared/utilities';
 import { Link } from 'react-router-dom';
+import EventHeading from '../../../../../shared/components/EventHeading';
+import Ellipsis from '../../../../../shared/components/Ellipsis';
 
 const Review = ({ reviewData }) => {
   return (
@@ -28,19 +30,28 @@ const Review = ({ reviewData }) => {
           />
         </div>
         <div className="review-content">
-          <h3>
-            {Utilities.showLimitedChars(
-              reviewData && reviewData.data[0] && reviewData.data[0].title,
-              Utilities.mobilecheck() ? 30 : 60
+          <EventHeading
+            title={reviewData && reviewData.data[0] && reviewData.data[0].title}
+            lines={1}
+            height={22}
+          />
+          <Ellipsis
+            title={
+              reviewData && reviewData.data[0] && reviewData.data[0].description
+            }
+            lines={2}
+            height={22}
+          />
+          {reviewData &&
+            reviewData.data.length > 0 &&
+            reviewData.data[0].author_name && (
+              <span className="review-subtext">
+                By{' '}
+                {reviewData.data[0].author_name &&
+                  reviewData.data[0].author_name[0].toUpperCase() +
+                    reviewData.data[0].author_name.slice(1)}
+              </span>
             )}
-          </h3>
-          {reviewData && reviewData.data[0] && (
-            <span className="review-subtext">
-              By{' '}
-              {reviewData.data[0].author_name[0].toUpperCase() +
-                reviewData.data[0].author_name.slice(1)}
-            </span>
-          )}
         </div>
       </Link>
       <div className="all-reviews">
@@ -49,37 +60,39 @@ const Review = ({ reviewData }) => {
             reviewData.data &&
             reviewData.data
               .slice(1, reviewData.data.length)
-              .map(({ image, title, author_name, type, id }, index) => {
-                return (
-                  <Link
-                    to={
-                      type === 'multi_show_template'
-                        ? `/explore/2/${id}`
-                        : `/explore/1/${id}`
-                    }
-                    className="review-item"
-                    key={index}
-                  >
-                    <div className="review-item-image">
-                      <Image src={image} type="VdoSmall" />
-                    </div>
-                    <div className="review-content">
-                      <h3>
-                        {Utilities.showLimitedChars(
-                          title,
-                          Utilities.mobilecheck() ? 20 : 40
+              .map(
+                (
+                  { image, title, author_name, type, id, description },
+                  index
+                ) => {
+                  return (
+                    <Link
+                      to={
+                        type === 'multi_show_template'
+                          ? `/explore/2/${id}`
+                          : `/explore/1/${id}`
+                      }
+                      className="review-item"
+                      key={index}
+                    >
+                      <div className="review-item-image">
+                        <Image src={image} type="VdoSmall" />
+                      </div>
+                      <div className="review-content">
+                        <EventHeading title={title} lines={1} height={22} />
+                        <Ellipsis title={description} lines={1} height={22} />
+                        {author_name && (
+                          <span>
+                            By{' '}
+                            {author_name[0].toUpperCase() +
+                              author_name.slice(1)}
+                          </span>
                         )}
-                      </h3>
-                      {author_name && (
-                        <span>
-                          By{' '}
-                          {author_name[0].toUpperCase() + author_name.slice(1)}
-                        </span>
-                      )}
-                    </div>
-                  </Link>
-                );
-              })}
+                      </div>
+                    </Link>
+                  );
+                }
+              )}
         </div>
         {reviewData.name && (
           <a

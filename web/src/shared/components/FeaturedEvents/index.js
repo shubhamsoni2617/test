@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, Fragment } from 'react';
 import Slider from 'react-slick';
 import './style.scss';
 import Constants from '../../constants';
@@ -60,27 +60,14 @@ const Item = ({ event }) => {
 
 const FeaturedEvents = props => {
   const { api, heading, cssClassName } = props;
-  const element = useRef(null);
   const [featuredEvents, setFeaturedEvents] = useState([]);
   const [serverErr, setServerErr] = useState('');
   const [loading, setLoading] = useState(true);
-  const [callAPI, setCallAPI] = useState(false);
+
   useEffect(() => {
-    window.addEventListener('scroll', scrollHandler, true);
-    return () => {
-      window.removeEventListener('scroll', scrollHandler, true);
-    };
+    getFeaturedEvents();
   }, []);
-  useEffect(() => {
-    if (callAPI) {
-      getFeaturedEvents();
-    }
-  }, [callAPI]);
-  const scrollHandler = () => {
-    if (!callAPI) {
-      setCallAPI(true);
-    }
-  };
+
   const getFeaturedEvents = () => {
     const params = {
       client: Constants.CLIENT
@@ -119,7 +106,7 @@ const FeaturedEvents = props => {
   }
 
   let shimmerWebTab = (
-    <>
+    <Fragment>
       <ShimmerEffect
         height={150}
         count={Utilities.mobileAndTabletcheck() ? 4 : 5}
@@ -133,7 +120,7 @@ const FeaturedEvents = props => {
         type="TILE"
         propCls={`shm_col-xs-2 col-md-2`}
       />
-    </>
+    </Fragment>
   );
 
   return (
@@ -141,7 +128,6 @@ const FeaturedEvents = props => {
       className={
         cssClassName ? `featured-events ${cssClassName}` : 'featured-events'
       }
-      ref={element}
     >
       <div className="container-fluid custom-container">
         <div className="section-top-wrapper">

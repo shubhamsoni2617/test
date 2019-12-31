@@ -51,7 +51,8 @@
         }
         .accept-btn{
             height: 36px;	
-            width: 81px;	
+            // width: 81px;
+            width: 130px;
             background-color: #0098FF;
             color: #FFFFFF;	
             font-family: 'Montserrat', sans-serif;	
@@ -59,9 +60,10 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            font-size: 14px;	
+            // font-size: 14px;	
+            font-size: 17px;
             letter-spacing: -0.09px;
-            margin-right: 45px;
+            margin-right: 25px;
             overflow: hidden;
             position: relative;
             border: 1px solid #0098FF;
@@ -70,7 +72,7 @@
             -moz-transition: 0.5s background-color, 0,5s border-color;
             -o-transition: 0.5s background-color, 0,5s border-color;
             @media(max-width: 1024px){
-                margin-right: 30px;
+                margin-right: 10px;
             }
             @media(max-width: 767px){
                 margin-right: 30px;
@@ -82,49 +84,70 @@
                 border: 1px solid #1f82d7;
             }
         }
-        .hide-cookie{
-            margin-top: 0px;
-            position: relative;
-            cursor: pointer;
-            @media(max-width: 767px){
-                position: absolute;
-                top: 50%;
-                right: 0px;
-                transform: translateY(-50%);
+        @media(max-width: 767px){
+            margin-left: 0;
+        }
+    }
+    .hide-cookie{
+        // margin-top: 0px;
+        // position: relative;
+        // cursor: pointer;
+        margin-top: 0px;
+        position: absolute;
+        cursor: pointer;
+        top: 5px;
+        right: 5px;
+        background-color: rgba(3, 13, 21, 0.4);
+        width: 25px;
+        height: 25px;
+        line-height: 25px;
+        text-align: center;
+        @media(max-width: 1024px){
+            top: 3px;
+            right: 3px;         
+        }
+        @media(max-width: 767px){
+            position: absolute;
+            top: 20px;
+            right: 2px;
+            transform: none;
+        }
+        img{
+            transition: 0.5s opacity;
+            -webkit-transition: 0.5s opacity;
+            -moz-transition: 0.5s opacity;
+            -o-transition: 0.5s opacity;
+            width: 13px;
+            height: auto;
+            @media(max-width: 1024px){
+                width: 11px;                
             }
-            img{
-                transition: 0.5s opacity;
-                -webkit-transition: 0.5s opacity;
-                -moz-transition: 0.5s opacity;
-                -o-transition: 0.5s opacity;
+            @media(max-width: 767px){
+                width: 15px;
+                height: 15px;
+            }
+            &.hover-img{
+                position: absolute;
+                width: 13px;
+                height: auto;
+                // left: 0;
+                // top: 0;
+                left: 6px;
+                top: 7px;
+                opacity: 0;
                 @media(max-width: 767px){
                     width: 15px;
                     height: 15px;
                 }
-                &.hover-img{
-                    position: absolute;
-                    width: 18px;
-                    height: 18px;
-                    left: 0;
-                    top: 0;
-                    opacity: 0;
-                    @media(max-width: 767px){
-                        width: 15px;
-                        height: 15px;
-                    }
-                }
-            }
-             &:hover{
-                img{
-                    opacity: 0;
-                    &.hover-img{
-                        opacity: 1;
-                    }
-                }
             }
         }
-        @media(max-width: 767px){
-            margin-left: 0;
+            &:hover{
+            img{
+                opacity: 0;
+                &.hover-img{
+                    opacity: 1;
+                }
+            }
         }
     }
     .cookie-detail{

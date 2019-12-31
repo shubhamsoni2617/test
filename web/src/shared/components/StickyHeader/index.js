@@ -156,33 +156,34 @@ function StickyHeader(props) {
         </div>
       )}
       <div className="tickets-desc">
-        {detailData.title && (
-          <TitleToolTip
-            title={detailData.title}
-            lines={props.lines}
-            height={Utilities.mobileAndTabletcheck() ? 25 : 30}
-            eventDetail
-          />
-        )}
-        {!detailData.title && <h3></h3>}
+        <div className="tickets-title-social-icons">
+          {detailData.title && (
+            <TitleToolTip
+              title={detailData.title}
+              lines={props.lines}
+              height={Utilities.mobileAndTabletcheck() ? 25 : 30}
+              eventDetail
+            />
+          )}
+          {!detailData.title && <h3></h3>}
 
-        {detailData.pop_up_message.title && (
-          <div className="info-tooltip">
-            <span className="info" onClick={() => props.openNotice()}>
-              <img src={Info} alt="Info" />
+          {detailData.pop_up_message.title && (
+            <div className="info-tooltip">
+              <span className="info" onClick={() => props.openNotice()}>
+                <img src={Info} alt="Info" />
+              </span>
+            </div>
+          )}
+          <div className="share-tooltip">
+            <span className="share" onClick={() => props.openSocialShare()}>
+              <img src={shareIcon} alt="" />
+              <SocialShare
+                shareUrl={shareUrl}
+                showSocialShare={showSocialShare}
+              />
             </span>
           </div>
-        )}
-        <div className="share-tooltip">
-          <span className="share" onClick={() => props.openSocialShare()}>
-            <img src={shareIcon} alt="" />
-            <SocialShare
-              shareUrl={shareUrl}
-              showSocialShare={showSocialShare}
-            />
-          </span>
         </div>
-
         <div className="ticket-date-price">
           <ul className="date-address">
             {detailData.event_date && (

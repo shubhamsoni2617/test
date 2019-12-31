@@ -115,13 +115,15 @@ const CustomSectionTwo = ({
                     <EventHeading
                       title={data && data[0] && data[0].title}
                       lines={2}
-                      height={Utilities.mobileAndTabletcheck() ? 26 : 26}
+                      height={Utilities.mobilecheck() ? 20 : Utilities.mobileAndTabletcheck() ? 32 : 32}
                     />
-                    <Ellipsis
-                      title={data && data[0] && data[0].event_date}
-                      lines={1}
-                      height={Utilities.mobilecheck() ? 15 : 17}
-                    />
+                    {data && data[0] && data[0].description && (
+                      <Ellipsis
+                        title={data && data[0] && data[0].description}
+                        lines={1}
+                        height={Utilities.mobilecheck() ? 25 : 30}
+                      />
+                    )}
                   </a>
                 )}
                 <div className="royal-items">
@@ -147,16 +149,22 @@ const CustomSectionTwo = ({
                             </div>
 
                             <div className="royal-item-content">
-                              <a><EventHeading
-                                title={elem.title}
-                                lines={2}
-                                height={Utilities.mobileAndTabletcheck() ? 20 : 20}
-                              /></a>
-                              <Ellipsis
-                                title={elem.event_date}
-                                lines={1}
-                                height={Utilities.mobilecheck() ? 15 : 18}
-                              />
+                              <a>
+                                <EventHeading
+                                  title={elem.title}
+                                  lines={2}
+                                  height={
+                                    Utilities.mobileAndTabletcheck() ? 20 : 20
+                                  }
+                                />
+                              </a>
+                              {elem.description && (
+                                <Ellipsis
+                                  title={elem.description}
+                                  lines={1}
+                                  height={Utilities.mobilecheck() ? 15 : 18}
+                                />
+                              )}
                             </div>
                           </a>
                         );

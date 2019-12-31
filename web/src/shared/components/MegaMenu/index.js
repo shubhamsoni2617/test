@@ -101,7 +101,10 @@ const MegaMenu = props => {
               featuredEvents.map(event => {
                 return (
                   <li>
-                    <a href={event.navigation_link || ""} key={event.id} target="_blank">
+                    <Link
+                      to={`events/${event.navigation_link}` || ''}
+                      key={event.id}
+                    >
                       <div className="featured-event-img">
                         <Image src={event.full_image} className="img-fluid" />
                       </div>
@@ -130,7 +133,7 @@ const MegaMenu = props => {
                         allowTooltip={false}
                         customClass="featured-event-title"
                       />
-                    </a>
+                    </Link>
                   </li>
                 );
               })}
