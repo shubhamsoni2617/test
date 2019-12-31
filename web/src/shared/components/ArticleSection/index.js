@@ -39,7 +39,7 @@ const ArticleSection = ({ flag, code }) => {
 
   return (
     <section className="event-articles">
-      <div className="container-fluid">
+      <div className="container-fluid custom-container">
         {shimmer && (
           <CSSTransition
             // transitionName="shimmer"

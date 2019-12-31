@@ -5,7 +5,7 @@ import Review from './Review';
 const Reviews = ({ reviewsData }) => {
   return (
     <section className="review-guide-surveys-wrapper">
-      <div className="container-fluid">
+      <div className="container-fluid custom-container">
         <div className="rgs-wrapper">
           {reviewsData &&
             reviewsData.map(data => {

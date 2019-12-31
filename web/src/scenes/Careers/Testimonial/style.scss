@@ -63,6 +63,10 @@
                     background-image: url('../../../assets/images/arrow-right.svg');
                     transform: translateY(-50%) rotateY(180deg);
                     background-position: 18px 14px;
+                    background-repeat: no-repeat;
+                    &:before{
+                        box-shadow: none;
+                    }
                     @media(max-width: 1024px){
                         left: 30px;
                       }
@@ -89,6 +93,10 @@
                     right: 165px;
                     background-image: url('../../../assets/images/arrow-right.svg');
                     background-position: 18px 14px;
+                    background-repeat: no-repeat;
+                    &:before{
+                        box-shadow: none;
+                    }
                     @media(max-width: 1024px){
                         right: 30px;
                       }
