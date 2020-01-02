@@ -6,6 +6,7 @@ import Map from '../../../assets/images/map.png';
 import Contact from '../../../assets/images/contact-us.png';
 import appleImage from '../../../assets/images/apple.svg';
 import androidImage from '../../../assets/images/android.png';
+import Image from '../../../shared/components/Image';
 
 const Content = ({ whereBuyTicketsDetails, apiPartners }) => {
   let contactNumber;
@@ -45,7 +46,7 @@ const Content = ({ whereBuyTicketsDetails, apiPartners }) => {
                 </Link>
               </div>
               <div className="wtbt-image">
-                <img src={MacBook} alt="partner" className="img-fluid" />
+                <Image src={MacBook} alt="partner" className="img-fluid" />
               </div>
             </div>
           </div>
@@ -64,7 +65,7 @@ const Content = ({ whereBuyTicketsDetails, apiPartners }) => {
                 />
                 <div className="download-option">
                   <a>
-                    <img src={appleImage} className="ios" alt="" />
+                    <Image src={appleImage} className="ios" alt="" />
                     <span>
                       Available on the
                       <br />
@@ -72,7 +73,7 @@ const Content = ({ whereBuyTicketsDetails, apiPartners }) => {
                     </span>
                   </a>
                   <a>
-                    <img src={androidImage} className="android" alt="" />
+                    <Image src={androidImage} className="android" alt="" />
                     <span>
                       Get it on
                       <br />
@@ -82,7 +83,7 @@ const Content = ({ whereBuyTicketsDetails, apiPartners }) => {
                 </div>
               </div>
               <div className="wtbt-image">
-                <img src={Iphone} alt="partner" className="img-fluid" />
+                <Image src={Iphone} alt="partner" className="img-fluid" />
               </div>
             </div>
           </div>
@@ -99,12 +100,12 @@ const Content = ({ whereBuyTicketsDetails, apiPartners }) => {
                     __html: whereBuyTicketsDetails[2].description
                   }}
                 />
-                <Link className="wtbt-btn" to="/events">
+                <Link className="wtbt-btn" to="/agents">
                   Find Agents
                 </Link>
               </div>
               <div className="wtbt-image">
-                <img src={Map} alt="partner" className="img-fluid" />
+                <Image src={Map} alt="partner" className="img-fluid" />
               </div>
             </div>
           </div>
@@ -122,7 +123,7 @@ const Content = ({ whereBuyTicketsDetails, apiPartners }) => {
                         key={partner.logo}
                         className="api-images"
                       >
-                        <img
+                        <Image
                           src={partner.logo}
                           key={partner.logo}
                           alt="partner-logo"
@@ -166,12 +167,12 @@ const Content = ({ whereBuyTicketsDetails, apiPartners }) => {
                     __html: whereBuyTicketsDetails[4].description
                   }}
                 />
-                <Link className="wtbt-btn" to="/events">
+                <Link className="wtbt-btn" to="/contact-us">
                   Contact Us
                 </Link>
               </div>
               <div className="wtbt-image">
-                <img src={Contact} alt="partner" className="img-fluid" />
+                <Image src={Contact} alt="partner" className="img-fluid" />
               </div>
             </div>
           </div>
