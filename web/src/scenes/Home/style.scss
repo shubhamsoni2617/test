@@ -604,10 +604,10 @@
 								top: 50%;
 								transform: translateY(-50%);
 								margin-top: -9px;
-								height: 15.45px;	
-								width: 22.73px;	
-								border: 0.91px solid #FFFFFF;	
-								border-radius: 7.73px;	
+								height: 15.45px;
+								width: 22.73px;
+								border: 0.91px solid #FFFFFF;
+								border-radius: 7.73px;
 								background-color: #E4002B;
 								@media(min-width: 991px){
 									left: 23px;
@@ -1980,7 +1980,7 @@
 					h3{
 						@media(max-width: 1024px){
 							line-height: 22px;
-						}						
+						}
 					}
                 }
 				h3 {
@@ -2690,17 +2690,35 @@ section.whats-new {
 		}
 	}
 	.shim-container{
-		margin: 0 !important;
-		padding: 0 !important;
-		flex-wrap: nowrap;
-		justify-content: flex-start;
-		overflow: hidden;
+		// margin: 0 !important;
+		// padding: 0 !important;
+		// flex-wrap: nowrap;
+		// justify-content: flex-start;
+    overflow: hidden;
+    max-width: 1220px;
+    margin: 0 auto;
+    padding: 0 0px;
+    height: auto;
+    @media(max-width: 1024px){
+      max-width: 973px;
+    }
+    @media(max-width: 768px){
+      max-width: 718px;
+    }
 		@media(min-width: 1360px){
 			width: 1360px;
-		}
+    }
 		.shimmer-inner{
-			flex: 1 0 28%;
-			max-width: 28%;
+			flex: 1 0 16.66%;
+      max-width: 16.66%;
+      @media(max-width: 1024px){
+        flex: 1 0 25%;
+        max-width: 25%;
+      }
+      @media(max-width: 767px){
+        flex: 1 0 33%;
+        max-width: 33%;
+      }
 		}
 	}
 }
@@ -3673,7 +3691,7 @@ section.explore {
 				margin-bottom: 0;
 				position: relative;
 				overflow: hidden;
-				
+
 				@media (max-width: 767px) {
 					margin-bottom: 10px;
 					//height: 150px;
