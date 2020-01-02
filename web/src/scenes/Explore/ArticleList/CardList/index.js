@@ -1,9 +1,10 @@
 import React from 'react';
 import './style.scss';
 import Image from '../../../../shared/components/Image';
-import Utilities from '../../../../shared/utilities';
 import ShimmerEffect from '../../../../shared/components/ShimmerEffect';
 import noEvent from '../../../../assets/images/no-event.svg';
+import Utilities from '../../../../shared/utilities';
+import EventHeading from '../../../../shared/components/EventHeading';
 
 const CardList = React.forwardRef((props, ref) => {
   const { history, articleList, totalRecords } = props;
@@ -40,17 +41,24 @@ const CardList = React.forwardRef((props, ref) => {
                   <ul>
                     {cardData.tags &&
                       cardData.tags.slice(0, 4).map(genreName => {
-                        return (
-                          <li key={genreName}>
-                            <span className="">{genreName}</span>
-                          </li>
-                        );
+                        if (genreName) {
+                          return (
+                            <li key={genreName}>
+                              <span className="">{genreName}</span>
+                            </li>
+                          );
+                        }
                       })}
                   </ul>
                 </div>
                 <div className="article-bottom-details">
                   <div className="article-text-content">
-                    <h3>{cardData.title}</h3>
+                    {/* <h3>{cardData.title}</h3> */}
+                    <EventHeading
+                      title={cardData.title}
+                      lines={2}
+                      height={20}
+                    />
                     <div className="item-title">
                       <span>{cardData.description.slice(0, textLimit)}</span>
                       <span className="article-show-more">...More</span>
@@ -75,19 +83,19 @@ const CardList = React.forwardRef((props, ref) => {
     <ShimmerEffect
       propCls={`${
         Utilities.mobileAndTabletcheck() ? 'shm_col-xs-6' : ''
-      } col-md-4`}
+        } col-md-4`}
       height={150}
       count={Utilities.mobileAndTabletcheck() ? 2 : 3}
       type="LIST"
     />
   ) : (
-    <div className="no-data">
-      <img src={noEvent} alt="No Event Data" />
-      <p>
-        <strong>No Data found</strong>
-      </p>
-      <p>Try again with more general search</p>
-    </div>
-  );
+        <div className="no-data">
+          <img src={noEvent} alt="No Event Data" />
+          <p>
+            <strong>No Data found</strong>
+          </p>
+          <p>Try again with more general search</p>
+        </div>
+      );
 });
 export default CardList;

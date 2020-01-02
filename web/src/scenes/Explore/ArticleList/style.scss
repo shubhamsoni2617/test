@@ -211,8 +211,10 @@
                     flex-direction: column;
                     justify-content: space-between;
                     width: 100%;
-                    height: auto;
                     @media(max-width: 767px) and (orientation: landscape){
+                        height: 100%;
+                    }
+                    @media(min-width: 1024px){
                         height: 100%;
                     }
                     .article-bottom-details{
@@ -228,6 +230,9 @@
                 .item-title{
                     @media(max-width: 767px){
                         padding-top: 5px;
+                    }
+                    &:empty{
+                        display: none;
                     }
                     .sub-text, span, p{
                         font-family: 'Rubik', sans-serif;
@@ -295,8 +300,11 @@
                     min-height: auto;
                     height: auto;
                 }
+                &:empty{
+                    display: none;
+                }
                 ul{
-                    min-height: 52px;
+                    min-height: auto;
                     @media(max-width: 576px){
                         min-height: 60px;
                     }
@@ -329,30 +337,16 @@
                 font-family: 'Rubik', sans-serif;
                 font-size: 17px;
                 line-height: 20px;
-                min-height: 40px;
-                display: -webkit-box;
-                -webkit-line-clamp: 2;
-                overflow: hidden;
-                text-overflow: ellipsis;
-                /* autoprefixer: off */ -webkit-box-orient: vertical; /* autoprefixer: on */
+                min-height: auto;
                 transition: 0.5s color;
                 -webkit-transition: 0.5s color;
                 -moz-transition: 0.5s color;
                 -o-transition: 0.5s color;
                 @media(max-width: 1024px){
                     font-size: 15px;
-                    max-height: 35px;
-                    min-height: 35px;
                 }
                 @media (max-width: 768px) {
                     font-size: 14px;
-                    max-height: 40px;
-                    min-height: 40px;
-                    display: -webkit-box;
-                    -webkit-line-clamp: 2;
-                    overflow: hidden;
-                    text-overflow: ellipsis;
-                    /* autoprefixer: off */ -webkit-box-orient: vertical; /* autoprefixer: on */
                 }
                 @media(max-width: 767px){
                     margin-bottom: 5px;
