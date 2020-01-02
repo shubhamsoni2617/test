@@ -17,8 +17,8 @@ const Search = props => {
   const [allResultCount, setAllResultCount] = useState('');
   const [totalResults, setTotalResults] = useState(0);
   const [defaultCategoryId, setDefaultCategoryId] = useState('all');
-  const [allSearchResults, setAllSearchResults] = useState(null);
-  const [constant, setConstant] = useState(6);
+  const [allSearchResults, setAllSearchResults] = useState([]);
+  const [constant, setConstant] = useState(0);
   const [error, setError] = useState(false);
   const [loadMore, setLoadMore] = useState(false);
   const searchKeyword = decodeURI(props.location.search.split('?')[1]);
@@ -30,22 +30,21 @@ const Search = props => {
     fetchSearchCategoriesService();
   }, [searchKeyword]);
   useEffect(() => {
-    if (!loadMore) {
-      setAllSearchResults(null);
+    if (constant === 0) {
+      setAllSearchResults([]);
     }
     const params = {
       client: Constants.CLIENT,
-      limit: constant,
-      first: 0,
+      limit: 6,
+      first: constant,
       search: searchKeyword
     };
     if (prevSearchKeyword !== searchKeyword) {
-      params.limit = 6;
-      setConstant(6);
+      setConstant(0);
     }
     if (
       prevSearchKeyword !== searchKeyword ||
-      loadMore ||
+      constant ||
       prevDefaultCategoryId !== defaultCategoryId
     ) {
       searchApi(
@@ -53,7 +52,9 @@ const Search = props => {
         defaultCategoryId,
         setAllSearchResults,
         setLoadMore,
-        setError
+        setError,
+        allSearchResults,
+        loadMore
       );
     }
   }, [defaultCategoryId, searchKeyword, constant]);
@@ -77,8 +78,9 @@ const Search = props => {
   };
 
   const handleActiveCategory = id => {
+    setAllSearchResults([]);
     setDefaultCategoryId(id);
-    setConstant(6);
+    setConstant(0);
     setTotalResults(searchCategories.find(obj => obj.type === id).total);
   };
 
@@ -91,25 +93,24 @@ const Search = props => {
         propCls="shm_col-xs-2 col-md-5"
       />
     ) : (
-        <ShimmerEffect
-          height={10}
-          count={4}
-          type="LIST"
-          propCls="shm_col-xs-1 col-md-12"
-        />
-      );
+      <ShimmerEffect
+        height={10}
+        count={4}
+        type="LIST"
+        propCls="shm_col-xs-1 col-md-12"
+      />
+    );
   };
 
   const searchResultHandler = searchResults => {
-    return searchResults
-      ?
-      searchResults.map(cardData => {
-        return (
-          <div key={cardData.id}>
-            <Card cardData={cardData} {...props} />
-          </div>
-        );
-      })
+    return searchResults.length
+      ? searchResults.map(cardData => {
+          return (
+            <div key={cardData.id}>
+              <Card cardData={cardData} {...props} />
+            </div>
+          );
+        })
       : handleShimmerEffect();
   };
   return (
@@ -132,18 +133,20 @@ const Search = props => {
                 {searchResultHandler(allSearchResults)}
               </div>
               {loadMore && handleShimmerEffect()}
-              {totalResults - constant > 0 && (
+              {totalResults - allSearchResults.length > 0 && (
                 <div className="promotion-load-more">
                   <button
                     id="search-load-more"
                     onClick={() => {
-                      setConstant(totalResults);
+                      setConstant(constant + 6);
                       setLoadMore(true);
                     }}
                     className="btn-link load-more-btn"
                     target=""
                   >
-                    <span>Load More ({totalResults - constant})</span>
+                    <span>
+                      Load More ({totalResults - allSearchResults.length})
+                    </span>
                     <img src={DownArrowBlue} alt="down arrow blue" />
                   </button>
                 </div>
@@ -152,8 +155,8 @@ const Search = props => {
           </div>
         </div>
       ) : (
-          <SearchNotFound searchKeyword={searchKeyword} />
-        )}
+        <SearchNotFound searchKeyword={searchKeyword} />
+      )}
     </div>
   );
 };

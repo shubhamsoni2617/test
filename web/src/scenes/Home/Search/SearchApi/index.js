@@ -5,138 +5,54 @@ export default function searchApi(
   defaultCategoryId,
   setAllSearchResults,
   setLoadMore,
-  setError
+  setError,
+  allSearchResults,
+  loadMore
 ) {
+  let apiToCall = '';
   switch (defaultCategoryId.toLowerCase()) {
     case 'all':
-      setTimeout(() => {
-        SearchService.getAllSearchResults(params)
-          .then(res => {
-            setAllSearchResults(res.data.data);
-            setLoadMore(false);
-            if (!res.data.data || !res.data.data.length) {
-              setError(true);
-            } else {
-              setError(false);
-            }
-          })
-          .catch(err => {
-            setError(true);
-            console.log(err);
-          });
-      }, 500);
+      apiToCall = SearchService.getAllSearchResults;
       break;
-
     case 'events':
-      setTimeout(() => {
-        SearchService.getEventsSearchResults(params)
-          .then(res => {
-            setAllSearchResults(res.data.data);
-            console.log(res.data.data);
-            setLoadMore(false);
-            if (!res.data.data || !res.data.data.length) {
-              setError(true);
-            } else {
-              setError(false);
-            }
-          })
-          .catch(err => {
-            setError(true);
-            console.log(err);
-          });
-      }, 500);
+      apiToCall = SearchService.getEventsSearchResults;
       break;
     case 'promotions':
     case 'promotion':
-      setTimeout(() => {
-        SearchService.getPromotionSearchResults(params)
-          .then(res => {
-            setAllSearchResults(res.data.data);
-            setLoadMore(false);
-            if (!res.data.data || !res.data.data.length) {
-              setError(true);
-            } else {
-              setError(false);
-            }
-          })
-          .catch(err => {
-            setError(true);
-            console.log(err);
-          });
-      }, 500);
+      apiToCall = SearchService.getPromotionSearchResults;
       break;
     case 'attractions':
     case 'attraction':
-      setTimeout(() => {
-        SearchService.getAttractionsSearchResults(params)
-          .then(res => {
-            setAllSearchResults(res.data.data);
-            setLoadMore(false);
-            if (!res.data.data || !res.data.data.length) {
-              setError(true);
-            } else {
-              setError(false);
-            }
-          })
-          .catch(err => {
-            setError(true);
-            console.log(err);
-          });
-      }, 500);
+      apiToCall = SearchService.getAttractionsSearchResults;
       break;
     case 'faq':
-      setTimeout(() => {
-        SearchService.getFaqSearchResults(params)
-          .then(res => {
-            setAllSearchResults(res.data.data);
-            setLoadMore(false);
-            if (!res.data.data || !res.data.data.length) {
-              setError(true);
-            } else {
-              setError(false);
-            }
-          })
-          .catch(err => {
-            setError(true);
-            console.log(err);
-          });
-      }, 500);
+      apiToCall = SearchService.getFaqSearchResults;
       break;
     case 'explore':
-      setTimeout(() => {
-        SearchService.getFaqSearchResults(params)
-          .then(res => {
-            setAllSearchResults(res.data.data);
-            setLoadMore(false);
-            if (!res.data.data || !res.data.data.length) {
-              setError(true);
-            } else {
-              setError(false);
-            }
-          })
-          .catch(err => {
-            setError(true);
-            console.log(err);
-          });
-      }, 500);
+      apiToCall = SearchService.getFaqSearchResults;
       break;
     default:
-      setTimeout(() => {
-        SearchService.getAllSearchResults(params)
-          .then(res => {
-            setAllSearchResults(res.data.data);
-            console.log(res.data.data);
-            setLoadMore(false);
-            if (!res.data.data || !res.data.data.length) {
-              setError(true);
-            } else {
-              setError(false);
-            }
-          })
-          .catch(err => {
-            setError(true);
-            console.log(err);
-          });
-      }, 500);
+      apiToCall = SearchService.getAllSearchResults;
   }
+
+  setTimeout(() => {
+    apiToCall(params)
+      .then(res => {
+        if (loadMore) {
+          setAllSearchResults([...allSearchResults, ...res.data.data]);
+        } else {
+          setAllSearchResults(res.data.data);
+        }
+        setLoadMore(false);
+        if (!res.data.data || !res.data.data.length) {
+          setError(true);
+        } else {
+          setError(false);
+        }
+      })
+      .catch(err => {
+        setError(true);
+        console.log(err);
+      });
+  }, 500);
 }
