@@ -3,19 +3,14 @@ import getStartedimg1 from '../../../assets/images/Tile-1.png';
 import getStartedimg2 from '../../../assets/images/Tile-2.png';
 import getStartedimg3 from '../../../assets/images/Tile-3.png';
 import { Link } from 'react-router-dom';
+import Image from '../../../shared/components/Image';
 const GetStarted = ({ getStartedData }) => {
   let imgArr = [getStartedimg1, getStartedimg2, getStartedimg3];
-  let navigateArr = [
-    '/corporate/ticket-with-us',
-    '/corporate/ticketing-technology',
-    '/corporate/partner-with-us'
-  ];
   if (getStartedData) {
     getStartedData = getStartedData.map((el, i) => {
       return {
         ...el,
-        img: imgArr[i],
-        button_link: el.button_link || navigateArr[i]
+        img: imgArr[i]
       };
     });
   }
@@ -35,7 +30,7 @@ const GetStarted = ({ getStartedData }) => {
                     <div className="view">
                       <div className="front">
                         <p className="programmes-img">
-                          <img src={getStarted.img} alt="reach-img" />
+                          <Image src={getStarted.img} alt="reach-img" />
                         </p>
                         <h3 className="programmes-text">{getStarted.title}</h3>
                       </div>
