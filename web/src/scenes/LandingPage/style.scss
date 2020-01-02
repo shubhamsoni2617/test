@@ -898,13 +898,13 @@
                     line-height: 22px;
                     padding-bottom: 0;
                     padding-top: 4px;
-                    max-height: 51px;
+                    max-height: 22px;
                     overflow: hidden;
                     padding: 0px;
                     margin-bottom: 11px;
                     text-overflow: ellipsis;
                     display: -webkit-box;
-                    -webkit-line-clamp: 2;                
+                    -webkit-line-clamp: 1;                
                     overflow: hidden;
                     height: auto;
                     /* autoprefixer: off */ -webkit-box-orient: vertical; /* autoprefixer: on */
