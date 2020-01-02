@@ -78,6 +78,8 @@ const TopNav = props => {
   const [wholePath, setWholePath] = useState('/');
   const [hashPath, setHashPath] = useState('');
   const [headerClass, setHeaderClass] = useState(false);
+  const [headerClassAdv, setHeaderClassAdv] = useState(false);
+
   const [byVenueEvent, setByVenueEvent] = useState(
     props.response && props.response.venuesData
       ? props.response.venuesData.data
@@ -304,6 +306,15 @@ const TopNav = props => {
       } else {
         setHeaderClass(false);
       }
+      if (
+        location.pathname.split('/')[1] === 'attractions' ||
+        location.pathname.split('/')[1] === 'promotions' ||
+        location.pathname.split('/')[1] === 'explore'
+      ) {
+        setHeaderClassAdv(true);
+      } else {
+        setHeaderClassAdv(false);
+      }
     }
   };
   const handleNavigationOpen = () => {
@@ -366,6 +377,7 @@ const TopNav = props => {
     <header
       className={`header ${headerClass ? 'homepage' : ''}
       ${headerClassScroll ? `hompage-header-scroll` : ``}
+      ${headerClassAdv ? 'leaderboard-show' : ''}
       ${stickyHeader ? `sticky-header` : ``}`}
     >
       <div className="container-fluid">
