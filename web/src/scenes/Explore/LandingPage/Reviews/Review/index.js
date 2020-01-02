@@ -43,15 +43,17 @@ const Review = ({ reviewData }) => {
             height={22}
           />
           {reviewData &&
-            reviewData.data.length > 0 &&
-            reviewData.data[0].author_name && (
-              <span className="review-subtext">
-                By{' '}
-                {reviewData.data[0].author_name &&
-                  reviewData.data[0].author_name[0].toUpperCase() +
-                    reviewData.data[0].author_name.slice(1)}
-              </span>
-            )}
+          reviewData.data.length > 0 &&
+          reviewData.data[0].author_name ? (
+            <span className="review-subtext">
+              By{' '}
+              {reviewData.data[0].author_name &&
+                reviewData.data[0].author_name[0].toUpperCase() +
+                  reviewData.data[0].author_name.slice(1)}
+            </span>
+          ) : (
+            <span />
+          )}
         </div>
       </Link>
       <div className="all-reviews">
@@ -81,12 +83,14 @@ const Review = ({ reviewData }) => {
                       <div className="review-content">
                         <EventHeading title={title} lines={1} height={22} />
                         <Ellipsis title={description} lines={1} height={22} />
-                        {author_name && (
+                        {author_name ? (
                           <span>
                             By{' '}
                             {author_name[0].toUpperCase() +
                               author_name.slice(1)}
                           </span>
+                        ) : (
+                          <span />
                         )}
                       </div>
                     </Link>
