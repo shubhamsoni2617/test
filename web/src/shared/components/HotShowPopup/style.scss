@@ -497,7 +497,7 @@
             position: absolute;
             right: 0px;
             top: -15px;
-            background-color: #fff;
+            background-color: rgba(1, 3, 6, 0.9);
             border-radius: 50%;
             cursor: pointer;
             width: 30px;
@@ -509,6 +509,26 @@
             img{
                 width: 12px;
                 height: auto;
+                transition: 0.5s opacity;
+                -webkit-transition: 0.5s opacity;
+                -moz-transition: 0.5s opacity;
+                -o-transition: 0.5s opacity;
+                &.hover-img{
+                    position: absolute;
+                    width: 12px;
+                    height: auto;
+                    left: 9px;
+                    top: 9px;
+                    opacity: 0;
+                }
+            }
+            &:hover{
+                img{
+                    opacity: 0;
+                    &.hover-img{
+                        opacity: 1;
+                    }   
+                }
             }
         }
     }

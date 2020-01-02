@@ -7,6 +7,7 @@ import { CSSTransition } from 'react-transition-group';
 import Utilities from '../../utilities';
 import Image from '../Image';
 import popupClose from '../../../assets/images/cross.svg';
+import popupCloseWhite from '../../../assets/images/cross-white.svg';
 
 const HotShowPopup = () => {
   const [popupData, setPopupData] = useState([]);
@@ -78,7 +79,8 @@ const HotShowPopup = () => {
           <div className="hotshow container">
             {flashsaleClass && (
               <span onClick={removeOverlayClass} className="close-flashsale">
-                <img src={popupClose} alt="Close Popup" />
+                <img src={popupCloseWhite} alt="Close Popup" />
+                <img src={popupClose} className="hover-img" alt="Close Popup" />
               </span>
             )}
             {!flashsaleClass && (
