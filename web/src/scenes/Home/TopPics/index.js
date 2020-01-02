@@ -28,8 +28,11 @@ const TopPics = props => {
     };
     HomeService.getTopPics(params)
       .then(res => {
-        if (res && res.data) {
+        if (res && res.data && res.data.data) {
           setData(res.data.data);
+          setLoading(false);
+        } else {
+          setData([]);
           setLoading(false);
         }
       })
@@ -170,7 +173,7 @@ const TopPics = props => {
               </div>
             </div>
           )
-        ) : data && !data.length ? (
+        ) : !data.length ? (
           <ShimmerEffect
             height={200}
             count={Utilities.mobileAndTabletcheck() ? 4 : 6}
@@ -179,97 +182,93 @@ const TopPics = props => {
           />
         ) : (
           <Slider {...settings}>
-            {data &&
-              data.map(pic => {
-                console.log(pic, 'picshim-container shm_row');
-                return (
-                  <div className="grid-container" key={pic.id}>
-                    <div className="item">
-                      <Link to={`/events/${pic.alias}`}>
-                        <div className="item-wrapper">
-                          <div className="item-desc">
-                            <span className="video-icon">
-                              <img
-                                src="assets/images/video-icon.svg"
-                                alt="video-icon"
+            {data.map(pic => {
+              return (
+                <div className="grid-container" key={pic.id}>
+                  <div className="item">
+                    <Link to={`/events/${pic.alias}`}>
+                      <div className="item-wrapper">
+                        <div className="item-desc">
+                          <span className="video-icon">
+                            <img
+                              src="assets/images/video-icon.svg"
+                              alt="video-icon"
+                            />
+                          </span>
+                          <div className="item-img">
+                            <Image
+                              src={pic.thumb_image}
+                              className="img-fluid item-image"
+                              alt="kurios"
+                              type="TopPicks"
+                            />
+                          </div>
+                          <span
+                            className={`category ${pic.primary_genre
+                              .split('/')[0]
+                              .toLowerCase()} top-picks-category`}
+                          >
+                            {pic.primary_genre}
+                          </span>
+                          <div
+                            className={`item-overlay ${pic.primary_genre
+                              .split('/')[0]
+                              .toLowerCase()}-overlay`}
+                          >
+                            <div className="overlay-wrapper">
+                              <EventHeading
+                                title={pic.title}
+                                lines={2}
+                                height={
+                                  Utilities.mobileAndTabletcheck() ? 22 : 28
+                                }
                               />
-                            </span>
-                            <div className="item-img">
-                              <Image
-                                src={pic.thumb_image}
-                                className="img-fluid item-image"
-                                alt="kurios"
-                                type="TopPicks"
-                              />
-                            </div>
-                            <span
-                              className={`category ${pic.primary_genre
-                                .split('/')[0]
-                                .toLowerCase()} top-picks-category`}
-                            >
-                              {pic.primary_genre}
-                            </span>
-                            <div
-                              className={`item-overlay ${pic.primary_genre
-                                .split('/')[0]
-                                .toLowerCase()}-overlay`}
-                            >
-                              <div className="overlay-wrapper">
-                                <EventHeading
-                                  title={pic.title}
-                                  lines={2}
-                                  height={
-                                    Utilities.mobileAndTabletcheck() ? 22 : 28
-                                  }
+                              <span>
+                                <Ellipsis
+                                  title={pic.event_date}
+                                  lines={1}
+                                  height={14}
                                 />
-                                <span>
-                                  <Ellipsis
-                                    title={pic.event_date}
-                                    lines={1}
-                                    height={14}
-                                  />
-                                </span>
-                                {pic.description && (
-                                  <p
-                                    dangerouslySetInnerHTML={{
-                                      __html: Utilities.showLimitedChars(
-                                        pic.description.replace(
-                                          /(<([^>]+)>)/gi,
-                                          ''
-                                        ),
-                                        200
-                                      )
-                                    }}
-                                  ></p>
-                                )}
-                              </div>
+                              </span>
+                              {pic.description && (
+                                <p
+                                  dangerouslySetInnerHTML={{
+                                    __html: Utilities.showLimitedChars(
+                                      pic.description.replace(
+                                        /(<([^>]+)>)/gi,
+                                        ''
+                                      ),
+                                      200
+                                    )
+                                  }}
+                                ></p>
+                              )}
                             </div>
                           </div>
-                          <h3>
-                            <EventHeading
-                              title={pic.title}
-                              lines={2}
-                              height={
-                                Utilities.mobileAndTabletcheck() ? 22 : 23
-                              }
-                            />
-                          </h3>
-                          <Link to={`/events/${pic.alias}`}>
-                            <span className="item-title-overlay">
-                              <span>BUY NOW </span>
-                              <img
-                                src="assets/images/next-arrow.svg"
-                                className="img-fluid"
-                                alt="buy-now"
-                              />
-                            </span>
-                          </Link>
                         </div>
-                      </Link>
-                    </div>
+                        <h3>
+                          <EventHeading
+                            title={pic.title}
+                            lines={2}
+                            height={Utilities.mobileAndTabletcheck() ? 22 : 23}
+                          />
+                        </h3>
+                        <Link to={`/events/${pic.alias}`}>
+                          <span className="item-title-overlay">
+                            <span>BUY NOW </span>
+                            <img
+                              src="assets/images/next-arrow.svg"
+                              className="img-fluid"
+                              alt="buy-now"
+                            />
+                          </span>
+                        </Link>
+                      </div>
+                    </Link>
                   </div>
-                );
-              })}
+                </div>
+              );
+            })}
           </Slider>
         )}
       </div>
