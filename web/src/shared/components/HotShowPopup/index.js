@@ -66,7 +66,7 @@ const HotShowPopup = () => {
         <div
           className={`hotshow-popup ${
             flashsaleClass ? `flashsale-wrapper` : ``
-          }`}
+            }`}
         >
           <div
             className="hotshow-overlay"
@@ -77,7 +77,7 @@ const HotShowPopup = () => {
           />
           <div className="hotshow container">
             {flashsaleClass && (
-              <span onClick={removeOverlayClass}>
+              <span onClick={removeOverlayClass} className="close-flashsale">
                 <img src={popupClose} alt="Close Popup" />
               </span>
             )}
@@ -113,12 +113,12 @@ const HotShowPopup = () => {
                             height="100%"
                           />
                         ) : (
-                          <Image
-                            src={objData.full_image}
-                            alt=""
-                            className="img-fluid"
-                          />
-                        )}
+                            <Image
+                              src={objData.full_image}
+                              alt=""
+                              className="img-fluid"
+                            />
+                          )}
                       </div>
 
                       <div className="hotshow-content">
@@ -165,12 +165,12 @@ const HotShowPopup = () => {
                         {objData.type && objData.type.id === 2 ? (
                           <ReactPlayer url={objData.video_url} controls />
                         ) : (
-                          <Image
-                            src={objData.full_image}
-                            alt=""
-                            className="img-fluid"
-                          />
-                        )}
+                            <Image
+                              src={objData.full_image}
+                              alt=""
+                              className="img-fluid"
+                            />
+                          )}
                       </a>
                       <div className="hotshow-content">
                         {objData.title && (
