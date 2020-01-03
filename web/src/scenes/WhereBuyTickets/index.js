@@ -9,6 +9,7 @@ import './style.scss';
 import Content from './Content';
 import ShimmerEffect from '../../shared/components/ShimmerEffect';
 import MetaData from '../../shared/components/MetaData';
+import Image from '../../shared/components/Image';
 
 const WhereBuyTicket = props => {
   const [whereBuyTicketsDetails, setwhereBuyTicketsDetails] = useState(null);
@@ -56,7 +57,7 @@ const WhereBuyTicket = props => {
       <MetaData location={props.location} data={props.staticContext} />
       <section className="where-to-buy-tickets">
         <div className="banner-wrapper">
-          <img src={banner} className="img-fluid" alt="page-banner" />
+          <Image src={banner} className="img-fluid" alt="page-banner" />
           <div className="banner-overlay">
             <h1>Where to Buy Tickets</h1>
           </div>
