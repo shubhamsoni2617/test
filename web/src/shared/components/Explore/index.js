@@ -6,6 +6,7 @@ import Utilities from '../../utilities';
 import ExploreService from '../../services/ExploreService';
 import { Link } from 'react-router-dom';
 import EventHeading from '../../../shared/components/EventHeading';
+import Ellipsis from '../Ellipsis';
 
 const Explore = props => {
   const [exploreData, setExploreData] = useState(null);
@@ -89,11 +90,18 @@ const Explore = props => {
                     Utilities.mobilecheck()
                       ? 18
                       : Utilities.mobileAndTabletcheck()
-                      ? 18
-                      : 20
+                        ? 18
+                        : 20
                   }
                 />
-                <span>{exploreData[0].description.slice(0, 30)}...</span>
+                {/* <span>{exploreData[0].description.slice(0, 30)}...</span> */}
+                <Ellipsis
+                  title={
+                    exploreData[0].description
+                  }
+                  lines={1}
+                  height={17}
+                />
               </div>
             </div>
           </Link>
@@ -128,11 +136,18 @@ const Explore = props => {
                         Utilities.mobilecheck()
                           ? 18
                           : Utilities.mobileAndTabletcheck()
-                          ? 18
-                          : 20
+                            ? 18
+                            : 20
                       }
                     />
-                    <span>{cardData.description.slice(0, 30)}...</span>
+                    {/* <span>{cardData.description.slice(0, 30)}...</span> */}
+                    <Ellipsis
+                      title={
+                        cardData.description
+                      }
+                      lines={2}
+                      height={17}
+                    />
                   </div>
                 </div>
               </Link>
