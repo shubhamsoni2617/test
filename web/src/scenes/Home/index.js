@@ -167,8 +167,8 @@ class Home extends Component {
             ({ sec_key, label, hide_section, description }) => {
               if (hide_section === '1') return null;
               switch (sec_key) {
-                // case 'TOP_PICKS':
-                //   return <TopPics heading={label} />;
+                case 'TOP_PICKS':
+                  return <TopPics heading={label} />;
                 case 'MID_PANEL':
                   return (
                     <GiftCard
