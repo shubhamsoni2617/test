@@ -119,7 +119,7 @@ export default class App extends React.Component {
           <TopNav {...this.props} />
           {/* <Navigator {...this.props} /> */}
           <PreviewNavigator {...this.props} />
-          {!showPreviewButton && <Footer {...this.props} />}
+          {/* {!showPreviewButton && <Footer {...this.props} />} */}
           {showPreviewButton && (
             <span
               className={`preview-btn ${showPreview ? 'close-btn' : ''}`}

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Route, Switch, Redirect } from 'react-router-dom';
-import previewRoutes from './PreviewRoutes';
+import routes from '../routes';
 import Login from './PreviewLogin';
 
 const PrivateRoute = ({ component: Component, isAuthenticated, ...rest }) => (
@@ -38,7 +38,7 @@ const Routes = () => {
           />
         )}
       />
-      {previewRoutes.map(({ path, exact, component: C, ...rest }) => (
+      {routes.map(({ path, exact, component: C, ...rest }) => (
         <PrivateRoute
           key={path}
           path={path}
