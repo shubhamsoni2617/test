@@ -17,6 +17,7 @@ import { initialState } from './store/reducers';
 import Utilities from '../../shared/utilities';
 import query from '../../shared/HelperFunctions/queryString';
 import cal from '../../assets/images/preview-calendar.svg';
+import PreviewNavigator from './PreviewNavigator';
 
 export default class App extends React.Component {
   static getInitialData(req) {
@@ -116,7 +117,8 @@ export default class App extends React.Component {
           <DownloadAppPopup />
           <Advertisement {...this.props} />
           <TopNav {...this.props} />
-          <Navigator {...this.props} />
+          {/* <Navigator {...this.props} /> */}
+          <PreviewNavigator {...this.props} />
           {!showPreviewButton && <Footer {...this.props} />}
           {showPreviewButton && (
             <span
