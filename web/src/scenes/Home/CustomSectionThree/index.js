@@ -1,4 +1,4 @@
-import React, { useState, useEffect, Fragment } from 'react';
+import React, { useState, useEffect, useRef, createRef } from 'react';
 import ReactPlayer from 'react-player';
 import Scrollbar from '../../../shared/components/Scrollbar';
 import ShimmerEffect from '../../../shared/components/ShimmerEffect';
@@ -8,6 +8,7 @@ import AdvertisementService from '../../../shared/services/AdvertisementService'
 import Image from '../../../shared/components/Image';
 import Utilities from '../../../shared/utilities';
 import EventHeading from '../../../shared/components/EventHeading';
+import { useCustomWidth } from '../../../shared/components/CustomHooks';
 
 const CustomSectionThree = ({
   heading,
@@ -15,6 +16,8 @@ const CustomSectionThree = ({
   isHomePage,
   orientation
 }) => {
+  useCustomWidth();
+  let vdoSectionRef = useRef();
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [url, setUrl] = useState(null);
@@ -31,6 +34,7 @@ const CustomSectionThree = ({
   const [light, setLight] = useState(true);
   const [volume, setVolume] = useState(null);
   const [vdoIndex, setVdoIndex] = useState(0);
+  const [isPlaying, setIsPlaying] = useState('');
 
   useEffect(() => {
     if (customData && customData.length > 0) {
@@ -108,8 +112,17 @@ const CustomSectionThree = ({
     }
   };
 
+  const scrollInToView = isPlaying => {
+    setIsPlaying(isPlaying);
+  };
+
   if (!loading && data && data.length === 0) {
     return null;
+  }
+
+  if (isPlaying === 'playing' || isPlaying === 'finished') {
+    vdoSectionRef.current &&
+      window.scrollTo(0, vdoSectionRef.current.offsetTop);
   }
 
   return (
@@ -122,7 +135,7 @@ const CustomSectionThree = ({
           type="LIST"
         />
       ) : (
-        <section className="video-gallery">
+        <section className="video-gallery" ref={vdoSectionRef}>
           <div className="container-fluid custom-container">
             <div className="section-top-wrapper">
               <h2>{heading}</h2>
@@ -139,6 +152,8 @@ const CustomSectionThree = ({
                   playing={playing}
                   light={light}
                   volume={volume}
+                  onPlay={() => scrollInToView('playing')}
+                  onEnded={() => scrollInToView('finished')}
                 />
                 <EventHeading
                   title={title}
