@@ -506,6 +506,9 @@
             align-items: center;
             justify-content: center;
             box-shadow: 0px 0px 1px 0px #000;
+            @media(max-width: 767px){
+                margin-top: 25px;
+            }
             img{
                 width: 12px;
                 height: auto;
