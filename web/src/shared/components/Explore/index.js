@@ -6,6 +6,7 @@ import Utilities from '../../utilities';
 import ExploreService from '../../services/ExploreService';
 import { Link } from 'react-router-dom';
 import EventHeading from '../../../shared/components/EventHeading';
+import { OneBigEightSmall } from '../ShimmerEffect/HomeShimmer';
 
 const Explore = props => {
   const [exploreData, setExploreData] = useState(null);
@@ -22,7 +23,7 @@ const Explore = props => {
     };
     ExploreService.getExploreArticleList(params)
       .then(res => {
-        setExploreData(res.data.data);
+        // setExploreData(res.data.data);
       })
       .catch(err => {
         console.log(err);
@@ -85,7 +86,13 @@ const Explore = props => {
                 <EventHeading
                   title={exploreData[0].title}
                   lines={1}
-                  height={Utilities.mobilecheck() ? 18 : Utilities.mobileAndTabletcheck() ? 18 : 20}
+                  height={
+                    Utilities.mobilecheck()
+                      ? 18
+                      : Utilities.mobileAndTabletcheck()
+                      ? 18
+                      : 20
+                  }
                 />
               </div>
             </div>
@@ -117,7 +124,13 @@ const Explore = props => {
                     <EventHeading
                       title={cardData.title}
                       lines={3}
-                      height={Utilities.mobilecheck() ? 18 : Utilities.mobileAndTabletcheck() ? 18 : 20}
+                      height={
+                        Utilities.mobilecheck()
+                          ? 18
+                          : Utilities.mobileAndTabletcheck()
+                          ? 18
+                          : 20
+                      }
                     />
                   </div>
                 </div>
@@ -128,13 +141,14 @@ const Explore = props => {
       </div>
     </section>
   ) : exploreData === null ? (
-    <ShimmerEffect
-      height={Utilities.mobilecheck() ? 100 : 200}
-      count={Utilities.mobilecheck() ? 2 : 6}
-      type="TILE"
-      propCls={'shm_col-xs-2 col-md-2'}
-    />
-  ) : null;
+    <OneBigEightSmall></OneBigEightSmall>
+  ) : // <ShimmerEffect
+  //   height={Utilities.mobilecheck() ? 100 : 200}
+  //   count={Utilities.mobilecheck() ? 2 : 6}
+  //   type="TILE"
+  //   propCls={'shm_col-xs-2 col-md-2'}
+  // />
+  null;
 };
 
 export default memo(Explore);

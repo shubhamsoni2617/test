@@ -102,7 +102,7 @@ export default class PromotionCarousel extends Component {
     HomeService.getPromotions(params)
       .then(res => {
         if (res && res.data) {
-          this.setState({ promotions: res.data.data, loading: false });
+          this.setState({ promotions: res.data.data, loading: true });
         }
       })
       .catch(err => {
@@ -142,7 +142,7 @@ export default class PromotionCarousel extends Component {
     let shimmer = (
       <>
         <ShimmerEffect
-          height={Utilities.mobilecheck() ? 60 : 150}
+          height={Utilities.mobilecheck() ? 80 : 150}
           count={
             Utilities.mobilecheck()
               ? 2
@@ -151,11 +151,17 @@ export default class PromotionCarousel extends Component {
               : 4
           }
           type="TILE"
-          propCls={`shm_col-xs-2 col-md-2`}
+          propCls={`shm_col-xs-2 col-md-${
+            Utilities.mobilecheck()
+              ? 6
+              : Utilities.mobileAndTabletcheck()
+              ? 4
+              : 3
+          }`}
         />
         <br />
         <ShimmerEffect
-          height={Utilities.mobilecheck() ? 60 : 150}
+          height={Utilities.mobilecheck() ? 80 : 150}
           count={
             Utilities.mobilecheck()
               ? 2
@@ -164,7 +170,13 @@ export default class PromotionCarousel extends Component {
               : 4
           }
           type="TILE"
-          propCls={`shm_col-xs-2 col-md-2`}
+          propCls={`shm_col-xs-2 col-md-${
+            Utilities.mobilecheck()
+              ? 6
+              : Utilities.mobileAndTabletcheck()
+              ? 4
+              : 3
+          }`}
         />
       </>
     );

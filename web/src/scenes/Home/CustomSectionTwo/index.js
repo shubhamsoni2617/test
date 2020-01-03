@@ -52,12 +52,14 @@ const CustomSectionTwo = ({
 
   return loading ? (
     Utilities.mobilecheck() ? (
-      <ShimmerEffect
-        height={60}
-        count={2}
-        type="TILE"
-        propCls={`shm_col-xs-2 col-md-2`}
-      />
+      <div className="custom-section-two">
+        <ShimmerEffect
+          height={80}
+          count={2}
+          type="TILE"
+          propCls={`shm_col-xs-2 col-md-6`}
+        />
+      </div>
     ) : (
       <OneBigTwoSmall customClass="custom-section-two" />
     )

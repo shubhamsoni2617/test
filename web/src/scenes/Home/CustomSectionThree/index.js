@@ -9,6 +9,7 @@ import Image from '../../../shared/components/Image';
 import Utilities from '../../../shared/utilities';
 import EventHeading from '../../../shared/components/EventHeading';
 import { useCustomWidth } from '../../../shared/components/CustomHooks';
+import { OneBigTwoSmall } from '../../../shared/components/ShimmerEffect/HomeShimmer';
 
 const CustomSectionThree = ({
   heading,
@@ -128,12 +129,7 @@ const CustomSectionThree = ({
   return (
     <div>
       {loading ? (
-        <ShimmerEffect
-          propCls={`shm_col-xs-6 col-md-6`}
-          height={300}
-          count={2}
-          type="LIST"
-        />
+        <OneBigTwoSmall customClass="custom-section-two" />
       ) : (
         <section className="video-gallery" ref={vdoSectionRef}>
           <div className="container-fluid custom-container">
