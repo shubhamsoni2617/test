@@ -38,7 +38,7 @@
             min-height: 110px;
             max-height: 110px;
         }
-        & + div{
+        & + div, & + .header.leaderboard-show + div{
             padding-top: 112px;
             @media(max-width: 767px){
                 padding-top: 7px;
@@ -151,7 +151,7 @@
                     padding-top: 7px;
                 }
             }
-             & + .home-page-wrapper{
+            & + .home-page-wrapper{
                 .ticker-wrap.hide-news{
                     top: 196px;
                     @media(max-width: 1980px){
@@ -178,6 +178,48 @@
                     @media(max-width: 767px){
                         top: 0px;
                     }
+                }
+            }
+        }
+        & + .header.leaderboard-show{
+            top: 89px;
+            @media(max-width: 1366px){
+                top: 73px;
+            }
+            @media(max-width: 1024px){
+                top: 65px;
+            }
+            @media(max-width: 991px){
+                top: 55px;
+            }
+            @media(max-width: 768px){
+                top: 50px;
+            }
+            @media(max-width: 767px){
+                top: 0px;
+            }
+            @media(max-width: 740px){
+                top: 0px;
+            }
+            & + div{
+                padding-top: 191px;
+                @media(max-width: 1440px){
+                    padding-top: 191px;
+                }
+                @media(max-width: 1366px){
+                    padding-top: 175px;
+                }
+                @media(max-width: 1024px){
+                    padding-top: 167px;
+                }
+                @media(max-width: 991px){
+                    padding-top: 110px;
+                }
+                @media(max-width: 768px){
+                    padding-top: 104px;
+                }
+                @media(max-width: 767px){
+                    padding-top: 0px;
                 }
             }
         }

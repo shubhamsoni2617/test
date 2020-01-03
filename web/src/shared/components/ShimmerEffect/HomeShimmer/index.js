@@ -19,7 +19,7 @@ export const OneBigEightSmall = ({ customClass }) => {
               ? 2
               : Utilities.mobileAndTabletcheck()
               ? 3
-              : 4
+              : 3
           }
           type="TILE"
           propCls={`trending-inner-child`}
@@ -32,7 +32,7 @@ export const OneBigEightSmall = ({ customClass }) => {
               ? 2
               : Utilities.mobileAndTabletcheck()
               ? 3
-              : 4
+              : 3
           }
           type="TILE"
           propCls={`trending-inner-child`}
@@ -45,17 +45,21 @@ export const OneBigEightSmall = ({ customClass }) => {
 export const OneBigTwoSmall = ({ customClass }) => {
   return (
     <div className={`trending-shimmer-effect ${customClass} `}>
-      <ShimmerEffect height={360} count={1} type="SOLID" />
+      <ShimmerEffect
+        height={Utilities.mobilecheck() ? 250 : 360}
+        count={1}
+        type="SOLID"
+      />
       <div className="trending-inner-items">
         <ShimmerEffect
-          height={70}
+          height={'auto'}
           count={1}
           type="TILE"
           propCls={`trending-inner-child`}
         />
         <br />
         <ShimmerEffect
-          height={70}
+          height={'auto'}
           count={1}
           type="TILE"
           propCls={`trending-inner-child`}
