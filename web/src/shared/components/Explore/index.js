@@ -23,7 +23,7 @@ const Explore = props => {
     };
     ExploreService.getExploreArticleList(params)
       .then(res => {
-        // setExploreData(res.data.data);
+        setExploreData(res.data.data);
       })
       .catch(err => {
         console.log(err);

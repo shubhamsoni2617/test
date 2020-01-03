@@ -90,7 +90,6 @@
 		border-radius: 50%;
 		padding: 5px;
 		line-height: 40px;
-		box-shadow: 0px 0px 10px 0px #d1d1d1;
         &::before{
 			content: '';
 			position: absolute;
@@ -177,6 +176,13 @@
                 }
             }
         }
+	}
+}
+.banner-carousel{
+	.slick-slider{
+		.slick-prev, .slick-next{
+			box-shadow: 0px 0px 10px 0px #d1d1d1;
+		}
 	}
 }
 .custom-container{
@@ -1886,6 +1892,7 @@ section.trending-now {
 					position: absolute;
 					top: 11px;
 					left: 18px;
+					display: none;
 				}
 				.item-img {
 					height: 100%;
@@ -2036,6 +2043,7 @@ section.trending-now {
 }
 
 //what's new style end
+
 //explore style start
 section.explore {
     padding: 40px 0px 40px;
@@ -2108,11 +2116,16 @@ section.explore {
 				margin-bottom: 0px;
 			}
 		}
+		span{
+            color: #343434;
+            margin-top: 10px;
+            display: inline-block;
+		}
 		.item {
 			position: relative;
 			z-index: 1;
 			@media(min-width: 992px) and (max-width: 1280px) {
-				height: calc(100% - 25px);
+				height: 100%;
             }
             @media (max-width: 991px) {
                 padding: 0 12px;
@@ -2309,6 +2322,8 @@ section.explore {
 }
 
 //explore style end
+
+
 // SISTICMoments Start
 .instafeeds-loading{
 	text-align: center;
