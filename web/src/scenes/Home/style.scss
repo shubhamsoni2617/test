@@ -2117,10 +2117,17 @@ section.explore {
 			}
 		}
 		span{
-            color: #343434;
-            margin-top: 10px;
-            display: inline-block;
-		}
+      color: #343434;
+      margin-top: 10px;
+      display: inline-block;
+      word-wrap: break-word;
+    }
+    p{
+      word-wrap: break-word;
+      margin-top: 5px;
+      white-space: normal !important;
+      display: -webkit-box !important;
+    }
 		.item {
 			position: relative;
 			z-index: 1;

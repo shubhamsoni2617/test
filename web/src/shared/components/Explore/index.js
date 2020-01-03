@@ -7,6 +7,7 @@ import ExploreService from '../../services/ExploreService';
 import { Link } from 'react-router-dom';
 import EventHeading from '../../../shared/components/EventHeading';
 import { OneBigEightSmall } from '../ShimmerEffect/HomeShimmer';
+import Ellipsis from '../Ellipsis';
 
 const Explore = props => {
   const [exploreData, setExploreData] = useState(null);
@@ -94,6 +95,11 @@ const Explore = props => {
                       : 20
                   }
                 />
+                <Ellipsis
+                  title={exploreData[0].description}
+                  lines={1}
+                  height={17}
+                />
               </div>
             </div>
           </Link>
@@ -131,6 +137,11 @@ const Explore = props => {
                           ? 18
                           : 20
                       }
+                    />
+                    <Ellipsis
+                      title={cardData.description}
+                      lines={2}
+                      height={17}
                     />
                   </div>
                 </div>
