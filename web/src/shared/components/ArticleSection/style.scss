@@ -26,14 +26,13 @@
 			left: -5px;
 			width: calc(100% + 10px);
 			height: calc(100% + 20px);
-			transform: scaleY(0);
-			transform-origin: bottom center;
+			opacity: 0;
 			background: #ffffff;
 			z-index: -1;
-			transition: transform 0.3s;
-			-webkit-transition: transform 0.3s;
-			-moz-transition: transform 0.3s;
-			-o-transition: transform 0.3s;
+			transition: opacity 0.3s;
+			-webkit-transition: opacity 0.3s;
+			-moz-transition: opacity 0.3s;
+			-o-transition: opacity 0.3s;
 			right: 0px;
             bottom: 0px;
             box-shadow: 0 2px 27px 0 rgba(0, 0, 0, 0.12);
@@ -42,7 +41,7 @@
             @media(min-width: 767px){
                 cursor: pointer;            
                 &:after{
-                    transform: scale(1);
+                   opacity: 1;
                 }
                 .currently-showing-img{
                     &:after{
@@ -114,21 +113,20 @@
             left: -10px;
             width: calc(100% + 20px);
             height: calc(100% + 20px);
-            transform: scaleY(0);
-            transform-origin: bottom center;
+            opacity: 0;
             background: #ffffff;
             z-index: -1;
-            transition: transform 0.3s;
-            -webkit-transition: transform 0.3s;
-            -moz-transition: transform 0.3s;
-            -o-transition: transform 0.3s;
+            transition: opacity 0.3s;
+            -webkit-transition: opacity 0.3s;
+            -moz-transition: opacity 0.3s;
+            -o-transition: opacity 0.3s;
             right: 0px;
             bottom: 0px;
         }
         &:hover{
             @media(min-width: 767px){
                 &:after{
-                    transform: scaleY(1);
+                    opacity: 1;
                 }
                 h3{
                     color: #07B3F0;
@@ -235,20 +233,19 @@
                 left: -10px;
                 width: calc(100% + 20px);
                 height: calc(100% + 20px);
-                transform: scaleY(0);
-                transform-origin: bottom center;
+                opacity: 0;
                 background: #ffffff;
                 z-index: -1;
-                transition: transform 0.3s;
-                -webkit-transition: transform 0.3s;
-                -moz-transition: transform 0.3s;
-                -o-transition: transform 0.3s;
+                transition: opacity 0.3s;
+                -webkit-transition: opacity 0.3s;
+                -moz-transition: opacity 0.3s;
+                -o-transition: opacity 0.3s;
                 right: 0px;
                 bottom: 0px;
             }
             &:hover{
                 &:after{
-                    transform: scaleY(1);
+                    opacity: 1;
                 }
             }
         }

@@ -24,7 +24,12 @@ a{
   .mega-enter-done{
     display: block;
     top: 100%;
-    opacity: 1;
+	opacity: 1;
+	@media(min-width: 1024px) and (max-width: 1280px){
+		overflow-y: auto;
+		max-height: 350px;
+    	margin-bottom: 20px;
+	}
   }
   .mega-exit {
     top: 100%;
@@ -1286,6 +1291,7 @@ a{
 	display: none;
 	.user-details{
 		li{
+			list-style: none;
 			button{
 				background-color: transparent;
 				color: #626262;
@@ -1963,7 +1969,8 @@ a{
 			&:last-child {
                 padding-right: 0px;
                 @media(max-width: 1279px) and (min-width: 990px){
-                    grid-column: 1/-1;
+					grid-column: 1/-1;
+					padding-left: 0px;
 				}
 				@media(max-width: 1024px){
 					grid-column: auto;
@@ -2243,15 +2250,14 @@ a{
 							left: -4px;
 							width: calc(100% + 5px);
 							height: calc(100% + 5px);
-							transform: scaleY(0);
-							transform-origin: bottom center;
+							opacity: 0;
 							background: #ffffff;
 							box-shadow: 0 0px 10px 0 rgba(0, 0, 0, 0.12);
 							z-index: -1;
-							transition: transform 0.3s;
-							-webkit-transition: transform 0.3s;
-							-moz-transition: transform 0.3s;
-							-o-transition: transform 0.3s;
+							transition: opacity 0.3s;
+							-webkit-transition: opacity 0.3s;
+							-moz-transition: opacity 0.3s;
+							-o-transition: opacity 0.3s;
 						}
                         .featured-event-img{
                             overflow: hidden;
@@ -2273,7 +2279,7 @@ a{
 								-o-transition: 1s all;
 							}
 							&:after{
-								transform: scaleY(1);
+								opacity: 1;
 							}
                         }
                         img{
@@ -3012,19 +3018,18 @@ a{
 						left: -5px;
 						width: calc(100% + 0px);
 						height: calc(100% + 10px);
-						transform: scaleY(0);
-						transform-origin: bottom center;
+						opacity: 0;
 						background: #ffffff;
 						z-index: -1;
 						box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.12);
-						transition: transform 0.3s;
-						-webkit-transition: transform 0.3s;
-						-moz-transition: transform 0.3s;
-						-o-transition: transform 0.3s;
+						transition: opacity 0.3s;
+						-webkit-transition: opacity 0.3s;
+						-moz-transition: opacity 0.3s;
+						-o-transition: opacity 0.3s;
 					}
 					&:hover{
 						&:after{
-							transform: scaleY(1);
+							opacity: 1;
 						}
 					}
 				}
