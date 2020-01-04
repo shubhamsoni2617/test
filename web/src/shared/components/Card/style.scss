@@ -251,6 +251,9 @@
                     line-height: 20px;
                     max-height: 100%;
                     min-height: auto;
+                    @media(max-width: 767px){
+                        line-height: 16px;
+                    }
                 }
             }
         }
@@ -340,7 +343,7 @@
             }
             @media(max-width: 767px){
                 height: 103px;
-                margin-bottom: 10px;
+                margin-bottom: 5px;
             }
             .category{
                 height: auto;

@@ -1046,11 +1046,13 @@
                         }
                     }
                     &:hover{
-                        img{
-                            transform: translateY(-10px);
-                        }
-                        h3{
-                            color: #0098ff;
+                        @media(min-width: 991px){
+                            img{
+                                transform: translateY(-10px);
+                            }
+                            h3{
+                                color: #0098ff;
+                            }
                         }
                     }
                     // &:last-child{

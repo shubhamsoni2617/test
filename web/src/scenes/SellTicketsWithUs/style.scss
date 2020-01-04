@@ -374,6 +374,20 @@
             @media(max-width: 576px){
                 width: auto;
             }
+            .custom-label{
+                font-size: 16px;
+                line-height: 25px;
+                padding: 0.375rem 0.75rem;
+                height: 36px;
+                color: #6c747d;
+                @media(max-width: 576px){
+                    color: #6c747d;
+                    line-height: 32px;
+                    min-height: 32px;
+                    font-size: 13px;
+                    padding: 0px 0.75rem;
+                }
+            }
             .form-group {
                 margin-bottom: 10px;
                 position: relative;

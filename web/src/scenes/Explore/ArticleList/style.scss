@@ -178,6 +178,10 @@
                 overflow: hidden;
                 min-height: 222px;
                 max-height: 222px;
+                @media(max-width: 1024px){
+                    min-height: 190px;
+                    max-height: 190px;
+                }
                 @media(max-width: 601px){
                     height: auto;
                     min-height: 122px;
@@ -211,6 +215,7 @@
                     flex-direction: column;
                     justify-content: space-between;
                     width: 100%;
+                    height: auto;
                     @media(max-width: 767px) and (orientation: landscape){
                         height: 100%;
                     }
@@ -306,7 +311,7 @@
                 ul{
                     min-height: auto;
                     @media(max-width: 576px){
-                        min-height: 60px;
+                        min-height: auto;
                     }
                 }
                 li{
