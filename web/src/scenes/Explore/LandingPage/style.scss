@@ -513,14 +513,13 @@
                 left: 10px;
                 width: calc(100% - 20px);
                 height: 100%;
-                transform: scaleY(0);
-                transform-origin: bottom center;
+                opacity: 0;
                 background: #ffffff;
                 z-index: -1;
-                transition: transform 0.3s;
-                -webkit-transition: transform 0.3s;
-                -moz-transition: transform 0.3s;
-                -o-transition: transform 0.3s;
+                transition: opacity 0.3s;
+                -webkit-transition: opacity 0.3s;
+                -moz-transition: opacity 0.3s;
+                -o-transition: opacity 0.3s;
                 box-shadow: 0 0 12px 0 rgba(0,0,0,0.08);
                 @media(max-width: 991px){
                     content: none;
@@ -535,7 +534,7 @@
                     color: #0098FF;
                 }
                 &:after{
-                    transform: scaleY(1);
+                    opacity: 1;
                 }
             }
         }
@@ -1187,20 +1186,32 @@
     .trending-wrapper{
         position: relative;
         .slick-arrow{
+            height: 82px;
+            width: 35px;
+            background-position: 10px 32px;
+            background-color: rgba(0,0,0,.7);
+            margin-top: 0;
+            top: 50%;
+            background-size: 13px;
+            border-radius: 0px;
             @media(max-width: 768px){
                 display: none !important;
             }
             &::before{
-                box-shadow: 1px -1px 0 1px #fff inset;
-                -webkit-box-shadow: 2px -2px #fff inset;
+                // box-shadow: 1px -1px 0 1px #fff inset;
+                // -webkit-box-shadow: 2px -2px #fff inset;
             }
             &.slick-prev{
+                left: -45px;
+                background-image: url("../../../assets/images/left-arrow-white.svg");
                 &:before{
                     margin-left: -14px;
                     margin-top: 4px;
                 }
             }
             &.slick-next{
+                right: -36px;
+                background-image: url("../../../assets/images/right-arrow-white.svg");
                 &:before{
                     margin-left: -9px;
                     margin-top: 4px;
