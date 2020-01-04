@@ -100,7 +100,7 @@
 			transition: all .3s ease-in-out;
 			-webkit-transition: all .3s ease-in-out;
 			-moz-transition: .3s all ease-in-out;
-			-o-transition: .3s all ease-in-out;
+			-o-transition: .3s all ease-in-out;			
         &::before{
 			// content: '';
 			// position: absolute;
@@ -2121,7 +2121,8 @@ section.explore {
     }
     p{
       word-wrap: break-word;
-      margin-top: 5px;
+	  margin-top: 5px;
+	  color: #626262;
       white-space: normal !important;
       display: -webkit-box !important;
     }

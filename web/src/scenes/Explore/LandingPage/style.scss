@@ -1131,7 +1131,7 @@
                 .slick-slide{
                     margin: 0 7px;
                     &:first-child{
-                        margin-left: 0;
+                        // margin-left: 0;
                     }
                     &:nth-child(4n){
                         @media(min-width: 767px){
@@ -1204,17 +1204,25 @@
             &.slick-prev{
                 left: -45px;
                 background-image: url("../../../assets/images/left-arrow-white.svg");
+                @media(max-width: 1024px){
+                    left: -33px;
+                }
                 &:before{
-                    margin-left: -14px;
-                    margin-top: 4px;
+                    // margin-left: -14px;
+                    // margin-top: 4px;
+                    content: none;
                 }
             }
             &.slick-next{
                 right: -36px;
                 background-image: url("../../../assets/images/right-arrow-white.svg");
+                @media(max-width: 1024px){
+                    right: -33px;
+                }
                 &:before{
-                    margin-left: -9px;
-                    margin-top: 4px;
+                    // margin-left: -9px;
+                    // margin-top: 4px;
+                    content: none;
                 }
             }
         }
