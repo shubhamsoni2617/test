@@ -49,7 +49,10 @@ const MegaMenu = props => {
             </li>
           </ul>
           <div className="month-cal">
-            <Calender handleEnter={props.handleMouseStatus} />
+            <Calender
+              handleEnter={props.handleMouseStatus}
+              submenuRef={submenuRef}
+            />
           </div>
         </div>
         <div className="events-listing">

@@ -104,24 +104,29 @@ const Calender = props => {
               <img src={crossArrow} alt="" />
               <img src={crossArrowWhite} alt="cross-arrow" className="active" />
             </a>
-            {(fromDateValue !== null && toDateValue !== null) ? <Link
-              to={
-                '/events/search?s=' +
-                moment(fromDateValue).format('YYYY-MM-DD') +
-                '--' +
-                moment(toDateValue).format('YYYY-MM-DD')
-              }
-              className="cal-apply-btn active"
-              onClick={() => {
-                props.handleEnter(false);
-              }}
-            >
-              <img src={tickArrow} alt="" />
-              <img src={tickArrowWhite} className="active" alt="" />
-            </Link> : <Link className="cal-apply-btn">
+            {fromDateValue !== null && toDateValue !== null ? (
+              <Link
+                to={
+                  '/events/search?s=' +
+                  moment(fromDateValue).format('YYYY-MM-DD') +
+                  '--' +
+                  moment(toDateValue).format('YYYY-MM-DD')
+                }
+                className="cal-apply-btn active"
+                onClick={() => {
+                  props.submenuRef.current.style.display = 'none';
+                  props.handleEnter(false);
+                }}
+              >
                 <img src={tickArrow} alt="" />
                 <img src={tickArrowWhite} className="active" alt="" />
-              </Link>}
+              </Link>
+            ) : (
+              <Link className="cal-apply-btn">
+                <img src={tickArrow} alt="" />
+                <img src={tickArrowWhite} className="active" alt="" />
+              </Link>
+            )}
           </div>
         </form>
       </div>
