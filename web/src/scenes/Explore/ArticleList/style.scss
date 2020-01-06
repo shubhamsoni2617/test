@@ -153,18 +153,18 @@
                 position: absolute;
                 content: "";
                 left: -11px;
-                top: -50px;
+                top: -10px;
                 background-color: #fff;
                 width: calc(100% + 22px);
-                height: calc(100% + 20px);
+                height: calc(100% + 10px);
                 z-index: -1;
                 box-shadow: 0 2px 4px 0 rgba(154, 154, 154, 0.5);
                 -webkit-box-shadow: 0 2px 4px 0 rgba(154, 154, 154, 0.5);
                 -moz-box-shadow: 0 2px 4px 0 rgba(154, 154, 154, 0.5);
-                transition: 0.3s top, 0.3s opacity;
-                -webkit-transition: 0.3s top, 0.3s opacity;
-                -moz-transition: 0.3s top, 0.3s opacity;
-                -o-transition: 0.3s top, 0.3s opacity;
+                transition: 0.3s opacity;
+                -webkit-transition: 0.3s opacity;
+                -moz-transition: 0.3s opacity;
+                -o-transition: 0.3s opacity;
                 opacity: 0;
                 @media(max-width: 1024px){
                     opacity: 0;
@@ -178,6 +178,10 @@
                 overflow: hidden;
                 min-height: 222px;
                 max-height: 222px;
+                @media(max-width: 1024px){
+                    min-height: 190px;
+                    max-height: 190px;
+                }
                 @media(max-width: 601px){
                     height: auto;
                     min-height: 122px;
@@ -215,6 +219,9 @@
                     @media(max-width: 767px) and (orientation: landscape){
                         height: 100%;
                     }
+                    @media(min-width: 1024px){
+                        height: 100%;
+                    }
                     .article-bottom-details{
                         display: flex;
                         flex-direction: column;
@@ -228,6 +235,9 @@
                 .item-title{
                     @media(max-width: 767px){
                         padding-top: 5px;
+                    }
+                    &:empty{
+                        display: none;
                     }
                     .sub-text, span, p{
                         font-family: 'Rubik', sans-serif;
@@ -295,10 +305,13 @@
                     min-height: auto;
                     height: auto;
                 }
+                &:empty{
+                    display: none;
+                }
                 ul{
-                    min-height: 52px;
+                    min-height: auto;
                     @media(max-width: 576px){
-                        min-height: 60px;
+                        min-height: auto;
                     }
                 }
                 li{
@@ -329,30 +342,16 @@
                 font-family: 'Rubik', sans-serif;
                 font-size: 17px;
                 line-height: 20px;
-                min-height: 40px;
-                display: -webkit-box;
-                -webkit-line-clamp: 2;
-                overflow: hidden;
-                text-overflow: ellipsis;
-                /* autoprefixer: off */ -webkit-box-orient: vertical; /* autoprefixer: on */
+                min-height: auto;
                 transition: 0.5s color;
                 -webkit-transition: 0.5s color;
                 -moz-transition: 0.5s color;
                 -o-transition: 0.5s color;
                 @media(max-width: 1024px){
                     font-size: 15px;
-                    max-height: 35px;
-                    min-height: 35px;
                 }
                 @media (max-width: 768px) {
                     font-size: 14px;
-                    max-height: 40px;
-                    min-height: 40px;
-                    display: -webkit-box;
-                    -webkit-line-clamp: 2;
-                    overflow: hidden;
-                    text-overflow: ellipsis;
-                    /* autoprefixer: off */ -webkit-box-orient: vertical; /* autoprefixer: on */
                 }
                 @media(max-width: 767px){
                     margin-bottom: 5px;
@@ -422,7 +421,6 @@
                     box-shadow: none;
                     &:after{
                         @media(min-width: 767px){
-                            top: -10px;
                             opacity: 1;
                         }
                     }

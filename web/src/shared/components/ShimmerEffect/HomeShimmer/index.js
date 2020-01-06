@@ -2,9 +2,9 @@ import React from 'react';
 import ShimmerEffect from '..';
 import Utilities from '../../../utilities';
 
-export const OneBigEightSmall = () => {
+export const OneBigEightSmall = ({ customClass }) => {
   return (
-    <div class="trending-shimmer-effect">
+    <div className={`trending-shimmer-effect ${customClass} `}>
       <ShimmerEffect
         height={Utilities.mobilecheck() ? 180 : 460}
         count={1}
@@ -18,8 +18,8 @@ export const OneBigEightSmall = () => {
             Utilities.mobilecheck()
               ? 2
               : Utilities.mobileAndTabletcheck()
-                ? 3
-                : 4
+              ? 3
+              : 3
           }
           type="TILE"
           propCls={`trending-inner-child`}
@@ -31,8 +31,8 @@ export const OneBigEightSmall = () => {
             Utilities.mobilecheck()
               ? 2
               : Utilities.mobileAndTabletcheck()
-                ? 3
-                : 4
+              ? 3
+              : 3
           }
           type="TILE"
           propCls={`trending-inner-child`}
@@ -42,25 +42,29 @@ export const OneBigEightSmall = () => {
   );
 };
 
-export const OneBigTwoSmall = () => {
+export const OneBigTwoSmall = ({ customClass }) => {
   return (
-    <div class="trending-shimmer-effect">
-      <ShimmerEffect height={360} count={1} type="SOLID" />
+    <div className={`trending-shimmer-effect ${customClass} `}>
+      <ShimmerEffect
+        height={Utilities.mobilecheck() ? 250 : 360}
+        count={1}
+        type="SOLID"
+      />
       <div className="trending-inner-items">
         <ShimmerEffect
-          height={70}
+          height={'auto'}
           count={1}
           type="TILE"
           propCls={`trending-inner-child`}
         />
         <br />
         <ShimmerEffect
-          height={70}
+          height={'auto'}
           count={1}
           type="TILE"
           propCls={`trending-inner-child`}
         />
       </div>
-    </div >
+    </div>
   );
 };

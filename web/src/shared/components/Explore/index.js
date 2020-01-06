@@ -6,6 +6,8 @@ import Utilities from '../../utilities';
 import ExploreService from '../../services/ExploreService';
 import { Link } from 'react-router-dom';
 import EventHeading from '../../../shared/components/EventHeading';
+import { OneBigEightSmall } from '../ShimmerEffect/HomeShimmer';
+import Ellipsis from '../Ellipsis';
 
 const Explore = props => {
   const [exploreData, setExploreData] = useState(null);
@@ -85,7 +87,18 @@ const Explore = props => {
                 <EventHeading
                   title={exploreData[0].title}
                   lines={1}
-                  height={Utilities.mobilecheck() ? 18 : Utilities.mobileAndTabletcheck() ? 18 : 20}
+                  height={
+                    Utilities.mobilecheck()
+                      ? 18
+                      : Utilities.mobileAndTabletcheck()
+                      ? 18
+                      : 20
+                  }
+                />
+                <Ellipsis
+                  title={exploreData[0].description}
+                  lines={1}
+                  height={17}
                 />
               </div>
             </div>
@@ -117,7 +130,18 @@ const Explore = props => {
                     <EventHeading
                       title={cardData.title}
                       lines={3}
-                      height={Utilities.mobilecheck() ? 18 : Utilities.mobileAndTabletcheck() ? 18 : 20}
+                      height={
+                        Utilities.mobilecheck()
+                          ? 18
+                          : Utilities.mobileAndTabletcheck()
+                          ? 18
+                          : 20
+                      }
+                    />
+                    <Ellipsis
+                      title={cardData.description}
+                      lines={2}
+                      height={17}
                     />
                   </div>
                 </div>
@@ -128,13 +152,14 @@ const Explore = props => {
       </div>
     </section>
   ) : exploreData === null ? (
-    <ShimmerEffect
-      height={Utilities.mobilecheck() ? 100 : 200}
-      count={Utilities.mobilecheck() ? 2 : 6}
-      type="TILE"
-      propCls={'shm_col-xs-2 col-md-2'}
-    />
-  ) : null;
+    <OneBigEightSmall></OneBigEightSmall>
+  ) : // <ShimmerEffect
+  //   height={Utilities.mobilecheck() ? 100 : 200}
+  //   count={Utilities.mobilecheck() ? 2 : 6}
+  //   type="TILE"
+  //   propCls={'shm_col-xs-2 col-md-2'}
+  // />
+  null;
 };
 
 export default memo(Explore);

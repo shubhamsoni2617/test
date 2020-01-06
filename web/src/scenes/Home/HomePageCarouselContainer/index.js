@@ -24,7 +24,8 @@ class HomePageCarouselContainer extends Component {
         speed: 500,
         arrows: true,
         prevArrow: <this.SampleArrow />,
-        nextArrow: <this.SampleArrow />
+        nextArrow: <this.SampleArrow />,
+        autoplay: true
       },
       thumbSliderSettings: {
         centerMode: true,

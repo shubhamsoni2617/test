@@ -311,6 +311,10 @@
                 padding: 0px;
                 margin: 0px;
                 border: none;
+                &:hover{
+                    background-color: transparent;
+                    color: #0098ff;
+                }
             }
         }
         a , button{

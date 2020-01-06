@@ -71,12 +71,12 @@
           overflow: inherit;
           @media(max-width: 1280px){
               padding-left: 10px;
-              flex: 0 0 63%;
+              // flex: 0 0 63%;
           }
           .tickets-title-social-icons {
               display: flex;
               h3{
-                max-width: calc(100% - 66px);
+                max-width: 100%;
                 flex: 0 0 auto;
                 width: auto;
               }
@@ -84,10 +84,13 @@
                 max-width: 33px;
                 flex: 0 0 33px;
                 width: 33px;
+                align-items: center;
+                display: flex;
               }
           }
           .title{
                 display: inline-block;
+                width :calc(100% - 66px);
               .info-popover{
                   display: none !important;
               }
@@ -169,10 +172,10 @@
         //   }
         .event-date {
                       span{
-                        max-width: 211px;
-                            white-space: nowrap !important;
-                            text-overflow: ellipsis !important;
-                            overflow: hidden !important;
+                        max-width: 100%;
+                        white-space: nowrap !important;
+                        text-overflow: ellipsis !important;
+                        overflow: hidden !important;
                       }
                     }
           .ticket-date-price{
@@ -184,13 +187,19 @@
                   display: flex;
                   flex-wrap: wrap;
                   align-items: center;
+                  width: 100%;
                   li {
                       margin: 0px;
                       margin-right: 15px;
                       border-right: 1px solid rgba(151,151,151,0.4);
                       padding-right: 20px;
+                      flex: 0 0 calc(33% - 10px);
+                      max-width: calc(33% - 10px);
+                      overflow: hidden;
                       &:last-child{
                           border-right: 0;
+                          margin-right: 0px;
+                          padding-right: 0px;
                       }
                       @media(max-width: 1280px){
                           margin: 0px;
@@ -202,6 +211,10 @@
                           width: 19px;
                           min-width: 19px;
                           margin-top: 0;
+                          & + div{
+                            width: 100%;
+                            overflow: hidden;
+                          }
                       }
                       span{
                           font-size: 15px;
@@ -280,7 +293,7 @@
             bottom: 0;
             display: flex;
           @media(max-width: 1280px){
-              flex: 0 0 calc(37% - 105px);
+              // flex: 0 0 calc(37% - 105px);
           }
           .buy-tickets-btn{
                 width: auto;

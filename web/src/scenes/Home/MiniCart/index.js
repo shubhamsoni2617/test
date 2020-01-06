@@ -95,7 +95,9 @@ class MiniCart extends Component {
           }}
         >
           <img src={MiniCartLogo} className="img-fluid" alt="cart" />
-          <span>{data.reduce((el, val) => el + val.quantity, 0) || 0}</span>
+          {data.reduce((el, val) => el + val.quantity, 0) ? (
+            <span>{data.reduce((el, val) => el + val.quantity, 0)}</span>
+          ) : null}
         </a>
         <div className="my-cart-popup">
           <div className="my-cart-wrapper">

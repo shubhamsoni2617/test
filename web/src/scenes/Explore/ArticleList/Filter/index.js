@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import BackButton from '../../../../assets/images/next.svg';
 import ShimmerEffect from '../../../../shared/components/ShimmerEffect';
+import '../../../../shared/components/Filters/style.scss';
 
 const Filter = ({
   dataToFilter,
@@ -75,13 +76,13 @@ const Filter = ({
               );
             })
           ) : (
-            <ShimmerEffect
-              propCls="shm_col-xs-6 col-md-12"
-              height={65}
-              count={1}
-              type="TILE"
-            />
-          )}
+              <ShimmerEffect
+                propCls="shm_col-xs-6 col-md-12"
+                height={65}
+                count={1}
+                type="TILE"
+              />
+            )}
           {dataToFilter.length && filtersToShow < dataToFilter.length ? (
             <span
               onClick={e => {

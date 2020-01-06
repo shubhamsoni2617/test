@@ -113,7 +113,7 @@ export default class App extends React.Component {
     return (
       <Provider initialState={this.state.initialState}>
         <div className="wrapper">
-          {/* <DownloadAppPopup /> */}
+          <DownloadAppPopup />
           <Advertisement {...this.props} />
           <TopNav {...this.props} />
           <Navigator {...this.props} />

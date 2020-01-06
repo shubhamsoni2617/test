@@ -898,13 +898,13 @@
                     line-height: 22px;
                     padding-bottom: 0;
                     padding-top: 4px;
-                    max-height: 51px;
+                    max-height: 22px;
                     overflow: hidden;
                     padding: 0px;
                     margin-bottom: 11px;
                     text-overflow: ellipsis;
                     display: -webkit-box;
-                    -webkit-line-clamp: 2;                
+                    -webkit-line-clamp: 1;                
                     overflow: hidden;
                     height: auto;
                     /* autoprefixer: off */ -webkit-box-orient: vertical; /* autoprefixer: on */
@@ -1075,6 +1075,7 @@
     }
     .video-box{
         display: flex;
+        flex-wrap: wrap;
         justify-content: center;
         margin-bottom: 17px;
         @media(max-width: 768px){
@@ -1084,9 +1085,10 @@
             margin-bottom: 15px;
         }
         .video{
-            flex: 0 0 49%;
-            max-width: 49%;
+            flex: 0 0 calc(50% - 20px);
+            max-width: calc(50% - 20px);
             margin-right: 20px;
+            margin-bottom: 20px;
             &:last-child{
                 margin-right: 0;
             }
@@ -1193,6 +1195,9 @@
     }
     .network-inner-wrapper{
         padding: 59px 0px 0px;
+        @media(max-width: 1024px){
+            padding: 30px 0px 0px;
+        }
         @media(max-width: 767px){
             padding: 20px 0px 0px;
         }
@@ -1209,6 +1214,9 @@
                 margin: 0px 5px 25px;
                 overflow: hidden;
                 height: 144px;
+                @media(max-width: 991px){
+                    height: auto;
+                }
                 @media(min-width: 769px) and (max-width: 980px){
                     flex: 0 0 calc(20% - 10px);
                     width: calc(20% - 10px);
@@ -1216,11 +1224,16 @@
                 @media(max-width: 767px){
                     flex: 0 0 calc(33.33% - 10px);
                     width: calc(33.33% - 10px);
+                    height: auto;
                 }
                 a{
                     max-height: 144px;
                     max-width: 154px;
                     overflow: hidden;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    height: 100%;
                     .image-conatiner{
                         padding: 20px;
                         display: flex;
@@ -1228,6 +1241,7 @@
                         img{
                             max-width: 100%;
                             height: auto;
+                            width: auto;
                             transition: 0.5s transform;
                             -webkit-transition: 0.5s transform;
                             -moz-transition: 0.5s transform;

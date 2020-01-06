@@ -218,10 +218,10 @@ function EventDateTime({
 
 function Delimiter({ length, index }) {
   if (index === length - 1) return null;
-  if (length !== 2 && index === length - 2) {
+  if (length === 2 || (length !== 2 && index === length - 2)) {
     return <span> & </span>;
   }
-  return <span> & </span>;
+  return <span> , </span>;
 }
 
 function EventInfoBlockInner(props) {}
