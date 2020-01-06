@@ -1,269 +1,161 @@
-import React, { Component, createRef } from 'react';
-import { withRouter } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import SearchCategory from './SearchCategory';
+import Card from './Card';
 import './style.scss';
-import moment from 'moment';
-import InstagramFeed from '../../shared/components/InstagramFeed/InstagramFeed';
-import CarouselConatiner from './CarouselConatiner';
-import PromotionCarousel from './PromotionCarousel';
-import HotShowPopup from '../../shared/components/HotShowPopup';
-import FeaturedEvents from '../../shared/components/FeaturedEvents';
-import TrendingNow from './TrendingNow';
-import CustomSectionTwo from './CustomSectionTwo';
-import CustomSectionThree from './CustomSectionThree';
-import GiftCard from './GiftCard';
-import Explore from '../../shared/components/Explore';
-import Cookies from '../../shared/components/Cookies';
-import Image from '../../shared/components/Image';
-import NewsTicker from './NewsTicker';
-import ModalPopup from '../../shared/components/Modal';
-import primeSlider from '../../assets/images/main-banner.png';
-import primeSlider2 from '../../assets/images/main-banner.png';
-import mobileBanner from '../../assets/images/home-mobile-banner.png';
-import HomeService from '../../shared/services/HomeService';
-import Utilities from '../../shared/utilities';
-import Constants from '../../shared/constants';
-import AdvertisementService from '../../shared/services/AdvertisementService';
-// import CustomSection from './CustomSection';
-import TopPics from './TopPics';
-import MetaData from '../../shared/components/MetaData';
-// import Royals from './Royals';
-import HomePageCarouselContainer from './HomePageCarouselContainer';
+import SearchService from '../../../shared/services/SearchService';
+import Constants from '../../../shared/constants';
+import ShimmerEffect from '../../../shared/components/ShimmerEffect';
+import DownArrowBlue from '../../../assets/images/down-arrow-blue.svg';
+import searchApi from './SearchApi';
+import SearchAdvertisement from './SearchAdvertisement';
+import SearchNotFound from './SearchNotFound';
+import Utilities from '../../../shared/utilities';
+import usePrevious from '../../../shared/hooks/usePrevious';
 
-class Home extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      disableCookies: false,
-      orientation: '',
-      offsetRadius: 0,
-      showNavigation: '',
-      config: {},
-      modal: false,
-      modalContent: '',
-      newsTickerStatus: true,
-      imageUrl: '',
-      itemsOrder: [
-        {
-          sec_key: 'TOP_PICKS',
-          label: 'Top Picks For You',
-          hide_section: '0'
-        },
-        {
-          sec_key: 'MID_PANEL',
-          label: 'Mid Panel Ad Slot',
-          hide_section: '0'
-        },
-        {
-          sec_key: 'FEATURED_EVENTS',
-          label: 'Featured Events',
-          hide_section: '0'
-        },
-        {
-          sec_key: 'CURRENTLY_SHOWING',
-          label: 'Currently Showing',
-          hide_section: '1'
-        },
-        {
-          sec_key: 'PROMOTIONS',
-          label: 'Promotions',
-          hide_section: '0'
-        },
-        {
-          sec_key: 'TRENDING_NOW',
-          label: 'Trending Now',
-          hide_section: '1'
-        },
-        {
-          sec_key: 'WHATS_NEW',
-          label: "What's New",
-          hide_section: '0'
-        },
-        {
-          sec_key: 'EXPLORE',
-          label: 'Explore',
-          hide_section: '0'
-        },
-        {
-          sec_key: 'CUS_SEC_1',
-          label: 'Featured Events',
-          hide_section: '0'
-        },
-        {
-          sec_key: 'CUS_SEC_2',
-          label: 'Royals',
-          hide_section: '0'
-        },
-        {
-          sec_key: 'CUS_SEC_3',
-          label: 'Videos',
-          hide_section: '1'
-        }
-      ]
-    };
-    this.homePageRef = createRef();
-  }
-
-  componentDidMount() {
-    if (window.location.hostname === 'previewuat.sistic.com.sg') {
-      this.setState({
-        disableCookies: true
-      });
+const Search = props => {
+  const [searchCategories, setSearchCategories] = useState(null);
+  const [allResultCount, setAllResultCount] = useState('');
+  const [totalResults, setTotalResults] = useState(0);
+  const [defaultCategoryId, setDefaultCategoryId] = useState('all');
+  const [allSearchResults, setAllSearchResults] = useState(null);
+  const [constant, setConstant] = useState(6);
+  const [error, setError] = useState(false);
+  const [loadMore, setLoadMore] = useState(false);
+  const searchKeyword = decodeURI(props.location.search.split('?')[1]);
+  const prevSearchKeyword = usePrevious(searchKeyword);
+  const prevDefaultCategoryId = usePrevious(defaultCategoryId);
+  useEffect(() => {
+    window.scrollTo(0, 0);
+    setDefaultCategoryId('all');
+    fetchSearchCategoriesService();
+  }, [searchKeyword]);
+  useEffect(() => {
+    if (!loadMore) {
+      setAllSearchResults(null);
     }
-    this.getItemsOrder();
-    window.addEventListener('resize', this.handleResize);
-  }
-
-  handleResize = () => {
-    this.setState({ orientation: 'landscape' });
-  };
-
-  showNewsTicker = data => {
-    this.setState(data);
-  };
-
-  getItemsOrder() {
     const params = {
-      client: Constants.CLIENT
+      client: Constants.CLIENT,
+      limit: constant,
+      first: 0,
+      search: searchKeyword
     };
-    HomeService.getItemsOrder(params)
+    if (prevSearchKeyword !== searchKeyword) {
+      params.limit = 6;
+      setConstant(6);
+    }
+    if (
+      prevSearchKeyword !== searchKeyword ||
+      loadMore ||
+      prevDefaultCategoryId !== defaultCategoryId
+    ) {
+      searchApi(
+        params,
+        defaultCategoryId,
+        setAllSearchResults,
+        setLoadMore,
+        setError
+      );
+    }
+  }, [defaultCategoryId, searchKeyword, constant]);
+
+  const fetchSearchCategoriesService = () => {
+    setSearchCategories(null);
+    setAllResultCount('');
+    const params = {
+      client: Constants.CLIENT,
+      search: searchKeyword
+    };
+    SearchService.getSearchCategories(params)
       .then(res => {
-        if (res && res.data) {
-          this.setState({ itemsOrder: res.data.data });
-        }
+        setSearchCategories(res.data.data);
+        setTotalResults(res.data.data.find(obj => obj.type === 'all').total);
+        setAllResultCount(res.data.data.find(obj => obj.type === 'all').total);
       })
       .catch(err => {
-        if (err && err.response) {
-          console.log(err.response);
-        }
+        console.log(err);
       });
-  }
+  };
 
-  render() {
-    return (
-      <div className="home-page-wrapper" ref={this.homePageRef}>
-        {this.props.location && (
-          <MetaData
-            location={this.props.location}
-            data={this.props.staticContext}
+  const handleActiveCategory = id => {
+    setDefaultCategoryId(id);
+    setConstant(6);
+    setTotalResults(searchCategories.find(obj => obj.type === id).total);
+  };
+
+  const handleShimmerEffect = () => {
+    return Utilities.mobileAndTabletcheck() ? (
+      <ShimmerEffect
+        height={150}
+        count={4}
+        type="LIST"
+        propCls="shm_col-xs-2 col-md-5"
+      />
+    ) : (
+        <ShimmerEffect
+          height={10}
+          count={4}
+          type="LIST"
+          propCls="shm_col-xs-1 col-md-12"
+        />
+      );
+  };
+
+  const searchResultHandler = searchResults => {
+    return searchResults
+      ?
+      searchResults.map(cardData => {
+        return (
+          <div key={cardData.id}>
+            <Card cardData={cardData} {...props} />
+          </div>
+        );
+      })
+      : handleShimmerEffect();
+  };
+  return (
+    <div className="searchbar-page-wrapper container-fluid">
+      {!error ? (
+        <div className="container">
+          <SearchAdvertisement />
+          <h2>
+            {allResultCount} results found for "<strong>{searchKeyword}</strong>
+            "
+          </h2>
+          <SearchCategory
+            searchCategories={searchCategories}
+            defaultCategoryId={defaultCategoryId}
+            handleActiveCategory={handleActiveCategory}
           />
-        )}
-        <NewsTicker
-          homePageRef={this.homePageRef}
-          showNewsTicker={this.showNewsTicker}
-          modal={this.state.modal}
-        />
-        <HotShowPopup />
-        <div className={`banner`}>
-          <HomePageCarouselContainer />
-          {/* <Image
-            src={Utilities.mobilecheck() ? mobileBanner : primeSlider2}
-            largeImage={Utilities.mobilecheck() ? mobileBanner : primeSlider}
-          /> */}
-          {/* <img className={`main-image ${this.state.imageUrl ? 'show-image' : ''}`} src={primeSlider} alt="prime Slider" /> */}
+          <div className="wrapper-events-listing">
+            <div className="events-listing">
+              <div className="events-section list-view">
+                {searchResultHandler(allSearchResults)}
+              </div>
+              {loadMore && handleShimmerEffect()}
+              {totalResults - constant > 0 && (
+                <div className="promotion-load-more">
+                  <button
+                    id="search-load-more"
+                    onClick={() => {
+                      setConstant(totalResults);
+                      setLoadMore(true);
+                    }}
+                    className="btn-link load-more-btn"
+                    target=""
+                  >
+                    <span>Load More ({totalResults - constant})</span>
+                    <img src={DownArrowBlue} alt="down arrow blue" />
+                  </button>
+                </div>
+              )}
+            </div>
+          </div>
         </div>
-        {this.state.itemsOrder &&
-          this.state.itemsOrder.length > 0 &&
-          this.state.itemsOrder.map(
-            ({ sec_key, label, hide_section, description }) => {
-              if (hide_section === '1') return null;
-              switch (sec_key) {
-                case 'TOP_PICKS':
-                  return <TopPics heading={label} />;
-                case 'MID_PANEL':
-                  return (
-                    <GiftCard
-                      api={
-                        AdvertisementService.getSidePanelBetweenTopPicksFeaturedEvents
-                      }
-                      params={{ client: Constants.CLIENT }}
-                    />
-                  );
-                case 'FEATURED_EVENTS':
-                  return (
-                    <FeaturedEvents
-                      api={AdvertisementService.getFeaturedEvents}
-                      heading={label}
-                      seeAll={true}
-                    />
-                  );
-                case 'CURRENTLY_SHOWING':
-                  return (
-                    <CarouselConatiner
-                      title={label}
-                      classStr="currently-showing"
-                      autoplay={true}
-                      infinite={false}
-                      api={HomeService.getCurrentlyShowing}
-                      link={`${'/events?s=' +
-                        moment().format('YYYY-MM-DD') +
-                        '--' +
-                        moment()
-                          .add(6, 'days')
-                          .format('YYYY-MM-DD') +
-                        '&'}`}
-                    />
-                  );
-                case 'PROMOTIONS':
-                  return <PromotionCarousel heading={label} />;
-                case 'TRENDING_NOW':
-                  return <TrendingNow heading={label} />;
-                case 'WHATS_NEW':
-                  return (
-                    <CarouselConatiner
-                      title={label}
-                      classStr="whats-new"
-                      arrows={true}
-                      autoplay={false}
-                      infinite={false}
-                      api={HomeService.getNewRelease}
-                    />
-                  );
-                case 'EXPLORE':
-                  return <Explore heading={label} description={description} />;
-                case 'CUS_SEC_1':
-                  return (
-                    <FeaturedEvents
-                      heading={label}
-                      api={AdvertisementService.getCustomizeSectionOne}
-                      cssClassName="alternate-featured-events"
-                      seeAll={false}
-                    />
-                  );
-                case 'CUS_SEC_2':
-                  return (
-                    <CustomSectionTwo
-                      heading={label}
-                      customData={[]}
-                      orientation={this.state.orientation}
-                    />
-                  );
-                case 'CUS_SEC_3':
-                  return (
-                    <CustomSectionThree
-                      heading={label}
-                      customData={[]}
-                      isHomePage={true}
-                      orientation={this.state.orientation}
-                    />
-                  );
-              }
-            }
-          )}
+      ) : (
+          <SearchNotFound searchKeyword={searchKeyword} />
+        )}
+    </div>
+  );
+};
 
-        <InstagramFeed />
-        {!this.state.disableCookies && <Cookies />}
-        <ModalPopup
-          showModal={this.state.modal}
-          content={this.state.modalContent}
-          title="News Ticker"
-          handleClose={() =>
-            this.showNewsTicker({ modal: false, modalContent: '' })
-          }
-          htmlContent={true}
-        />
-      </div>
-    );
-  }
-}
-
-export default withRouter(props => <Home {...props} />);
+export default Search;
