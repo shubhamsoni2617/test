@@ -466,22 +466,22 @@ const TopNav = props => {
                   className={`has-submenu ${
                     menuActive && pathName === 'events' ? 'active' : ''
                   }`}
-                  onMouseEnter={() => handleMouseStatus(true)}
-                  onMouseLeave={() => handleMouseStatus(false)}
+                  // onMouseEnter={() => handleMouseStatus(true)}
+                  // onMouseLeave={() => handleMouseStatus(false)}
                 >
                   <a>Events</a>
-                  <CSSTransition
+                  {/* <CSSTransition
                     in={showMegaMenu}
                     timeout={300}
                     classNames="mega"
-                  >
-                    <MegaMenu
-                      handleMouseStatus={handleMouseStatus}
-                      byGenreEvent={state.genreData}
-                      byVenueEvent={byVenueEvent}
-                      featuredEvents={featuredEvents}
-                    />
-                  </CSSTransition>
+                  > */}
+                  <MegaMenu
+                    handleMouseStatus={handleMouseStatus}
+                    byGenreEvent={state.genreData}
+                    byVenueEvent={byVenueEvent}
+                    featuredEvents={featuredEvents}
+                  />
+                  {/* </CSSTransition> */}
                 </li>
                 <li
                   className={

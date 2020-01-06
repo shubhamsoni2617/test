@@ -44,6 +44,13 @@ a{
     opacity: 0;
     display: none;
   }
+  &:hover{
+    @media(min-width: 991px){
+      .submenu{
+        display: block;
+      }
+    }
+  }
 }
 .submenu-wrap{
     .subholder-wrapper{
@@ -869,10 +876,10 @@ a{
 								top: 50%;
 								transform: translateY(-50%);
 								margin-top: -9px;
-								height: 15.45px;	
-								width: 22.73px;	
-								border: 0.91px solid #FFFFFF;	
-								border-radius: 7.73px;	
+								height: 15.45px;
+								width: 22.73px;
+								border: 0.91px solid #FFFFFF;
+								border-radius: 7.73px;
 								background-color: #E4002B;
 								@media(min-width: 991px){
 									left: 23px;
