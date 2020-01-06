@@ -470,10 +470,12 @@ const TopNav = props => {
                   menuActive && pathName === 'events' ? 'active' : ''
                 }`}
                 onMouseEnter={() => {
-                  submenuRef.current.style.display = 'block';
+                  if (submenuRef && submenuRef.current)
+                    submenuRef.current.style.display = 'block';
                 }}
                 onMouseLeave={() => {
-                  submenuRef.current.style.display = 'none';
+                  if (submenuRef && submenuRef.current)
+                    submenuRef.current.style.display = 'none';
                 }}
               >
                 <a>Events</a>

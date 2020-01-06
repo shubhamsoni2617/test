@@ -32,6 +32,9 @@ const MegaMenu = props => {
                     <Link
                       to={`/events/search?c=${event.id}`}
                       onClick={() => {
+                        if (submenuRef.current && submenuRef.current) {
+                          submenuRef.current.style.display = 'none';
+                        }
                         props.handleMouseStatus(false);
                       }}
                     >
@@ -65,7 +68,9 @@ const MegaMenu = props => {
             <li className="seeall-veneus">
               <Link
                 onClick={() => {
-                  submenuRef.current.style.display = 'none';
+                  if (submenuRef && submenuRef.current) {
+                    submenuRef.current.style.display = 'none';
+                  }
                 }}
                 to="/venues"
                 className="seeall-btn"
@@ -82,6 +87,9 @@ const MegaMenu = props => {
                     <Link
                       to={`/events/search?v=${event.id}`}
                       onClick={() => {
+                        if (submenuRef.current && submenuRef.current) {
+                          submenuRef.current.style.display = 'none';
+                        }
                         props.handleMouseStatus(false);
                       }}
                     >
@@ -105,6 +113,11 @@ const MegaMenu = props => {
                 return (
                   <li>
                     <Link
+                      onClick={() => {
+                        if (submenuRef.current && submenuRef.current) {
+                          submenuRef.current.style.display = 'none';
+                        }
+                      }}
                       to={`events/${event.navigation_link}` || ''}
                       key={event.id}
                     >
@@ -150,7 +163,9 @@ const MegaMenu = props => {
         <Link
           to="/events"
           onClick={() => {
-            submenuRef.current.style.display = 'none';
+            if (submenuRef.current && submenuRef.current) {
+              submenuRef.current.style.display = 'none';
+            }
           }}
           className="seeall-btn"
         >

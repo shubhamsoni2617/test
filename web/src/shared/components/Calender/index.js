@@ -114,7 +114,9 @@ const Calender = props => {
                 }
                 className="cal-apply-btn active"
                 onClick={() => {
-                  props.submenuRef.current.style.display = 'none';
+                  if (props.submenuRef && props.submenuRef.current) {
+                    props.submenuRef.current.style.display = 'none';
+                  }
                   props.handleEnter(false);
                 }}
               >
