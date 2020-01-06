@@ -466,8 +466,16 @@ const TopNav = props => {
                   className={`has-submenu ${
                     menuActive && pathName === 'events' ? 'active' : ''
                   }`}
-                  // onMouseEnter={() => handleMouseStatus(true)}
-                  // onMouseLeave={() => handleMouseStatus(false)}
+                  onMouseEnter={() =>
+                    (document.getElementsByClassName(
+                      'submenu'
+                    )[0].style.display = 'block')
+                  }
+                  onMouseLeave={() =>
+                    (document.getElementsByClassName(
+                      'submenu'
+                    )[0].style.display = 'none')
+                  }
                 >
                   <a>Events</a>
                   {/* <CSSTransition

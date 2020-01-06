@@ -62,7 +62,8 @@ const MegaMenu = props => {
             <li className="seeall-veneus">
               <Link
                 onClick={() => {
-                  props.handleMouseStatus(false);
+                  document.getElementsByClassName('submenu')[0].style.display =
+                    'none';
                 }}
                 to="/venues"
                 className="seeall-btn"
@@ -147,7 +148,8 @@ const MegaMenu = props => {
         <Link
           to="/events"
           onClick={() => {
-            props.handleMouseStatus(false);
+            document.getElementsByClassName('submenu')[0].style.display =
+              'none';
           }}
           className="seeall-btn"
         >
