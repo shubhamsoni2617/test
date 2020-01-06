@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import ReactPlayer from 'react-player';
 import moment from 'moment';
 import downArrow from '../../../assets/images/more-arrow-white-blue.svg';
-import upArrow from '../../../assets/images/more-up-arrow-white-blue.svg';
+import upArrow from '../../../assets/images/more-upArrow-white-blue.svg';
 
 const VideoBreak = ({ videoData, history }) => {
   const [seeMore, setSeeMore] = useState(false);
