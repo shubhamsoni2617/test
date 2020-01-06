@@ -63,6 +63,7 @@ function List({ data, type, menueStatus, setMenuStatus, closeSubmenu, link }) {
 
 const TopNav = props => {
   let refValue = useRef();
+  let submenuRef = useRef();
   const node = useRef(null);
   const [state, dispatch] = useGlobalState('global');
   const [cartData, setCartData] = useState({});
@@ -466,16 +467,12 @@ const TopNav = props => {
                   className={`has-submenu ${
                     menuActive && pathName === 'events' ? 'active' : ''
                   }`}
-                  onMouseEnter={() =>
-                    (document.getElementsByClassName(
-                      'submenu'
-                    )[0].style.display = 'block')
-                  }
-                  onMouseLeave={() =>
-                    (document.getElementsByClassName(
-                      'submenu'
-                    )[0].style.display = 'none')
-                  }
+                  onMouseEnter={() => {
+                    submenuRef.current.style.display = 'block';
+                  }}
+                  onMouseLeave={() => {
+                    submenuRef.current.style.display = 'none';
+                  }}
                 >
                   <a>Events</a>
                   {/* <CSSTransition
@@ -488,6 +485,7 @@ const TopNav = props => {
                     byGenreEvent={state.genreData}
                     byVenueEvent={byVenueEvent}
                     featuredEvents={featuredEvents}
+                    submenuRef={submenuRef}
                   />
                   {/* </CSSTransition> */}
                 </li>
