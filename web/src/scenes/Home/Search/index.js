@@ -17,8 +17,8 @@ const Search = props => {
   const [allResultCount, setAllResultCount] = useState('');
   const [totalResults, setTotalResults] = useState(0);
   const [defaultCategoryId, setDefaultCategoryId] = useState('all');
-  const [allSearchResults, setAllSearchResults] = useState([]);
-  const [constant, setConstant] = useState(0);
+  const [allSearchResults, setAllSearchResults] = useState(null);
+  const [constant, setConstant] = useState(6);
   const [error, setError] = useState(false);
   const [loadMore, setLoadMore] = useState(false);
   const searchKeyword = decodeURI(props.location.search.split('?')[1]);
@@ -30,21 +30,22 @@ const Search = props => {
     fetchSearchCategoriesService();
   }, [searchKeyword]);
   useEffect(() => {
-    if (constant === 0) {
-      setAllSearchResults([]);
+    if (!loadMore) {
+      setAllSearchResults(null);
     }
     const params = {
       client: Constants.CLIENT,
-      limit: 6,
-      first: constant,
+      limit: constant,
+      first: 0,
       search: searchKeyword
     };
     if (prevSearchKeyword !== searchKeyword) {
-      setConstant(0);
+      params.limit = 6;
+      setConstant(6);
     }
     if (
       prevSearchKeyword !== searchKeyword ||
-      constant ||
+      loadMore ||
       prevDefaultCategoryId !== defaultCategoryId
     ) {
       searchApi(
@@ -52,9 +53,7 @@ const Search = props => {
         defaultCategoryId,
         setAllSearchResults,
         setLoadMore,
-        setError,
-        allSearchResults,
-        loadMore
+        setError
       );
     }
   }, [defaultCategoryId, searchKeyword, constant]);
@@ -78,9 +77,8 @@ const Search = props => {
   };
 
   const handleActiveCategory = id => {
-    setAllSearchResults([]);
     setDefaultCategoryId(id);
-    setConstant(0);
+    setConstant(6);
     setTotalResults(searchCategories.find(obj => obj.type === id).total);
   };
 
@@ -103,7 +101,7 @@ const Search = props => {
   };
 
   const searchResultHandler = searchResults => {
-    return searchResults.length
+    return searchResults
       ? searchResults.map(cardData => {
           return (
             <div key={cardData.id}>
@@ -133,20 +131,18 @@ const Search = props => {
                 {searchResultHandler(allSearchResults)}
               </div>
               {loadMore && handleShimmerEffect()}
-              {totalResults - allSearchResults.length > 0 && (
+              {totalResults - constant > 0 && (
                 <div className="promotion-load-more">
                   <button
                     id="search-load-more"
                     onClick={() => {
-                      setConstant(constant + 6);
+                      setConstant(totalResults);
                       setLoadMore(true);
                     }}
                     className="btn-link load-more-btn"
                     target=""
                   >
-                    <span>
-                      Load More ({totalResults - allSearchResults.length})
-                    </span>
+                    <span>Load More ({totalResults - constant})</span>
                     <img src={DownArrowBlue} alt="down arrow blue" />
                   </button>
                 </div>
