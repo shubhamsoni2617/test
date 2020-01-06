@@ -13,10 +13,10 @@ import Ellipsis from '../Ellipsis';
 import Utilities from '../../utilities';
 
 const MegaMenu = props => {
-  const { byGenreEvent, featuredEvents } = props;
+  const { byGenreEvent, featuredEvents, submenuRef } = props;
 
   return (
-    <div className="submenu">
+    <div className="submenu" ref={submenuRef}>
       <h5 className="submenu-title">Find an Event</h5>
       <div className="submenu-wrapper">
         <div className="event-category">
@@ -49,7 +49,10 @@ const MegaMenu = props => {
             </li>
           </ul>
           <div className="month-cal">
-            <Calender handleEnter={props.handleMouseStatus} />
+            <Calender
+              handleEnter={props.handleMouseStatus}
+              submenuRef={submenuRef}
+            />
           </div>
         </div>
         <div className="events-listing">
@@ -62,8 +65,7 @@ const MegaMenu = props => {
             <li className="seeall-veneus">
               <Link
                 onClick={() => {
-                  document.getElementsByClassName('submenu')[0].style.display =
-                    'none';
+                  submenuRef.current.style.display = 'none';
                 }}
                 to="/venues"
                 className="seeall-btn"
@@ -148,8 +150,7 @@ const MegaMenu = props => {
         <Link
           to="/events"
           onClick={() => {
-            document.getElementsByClassName('submenu')[0].style.display =
-              'none';
+            submenuRef.current.style.display = 'none';
           }}
           className="seeall-btn"
         >
