@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
 import downloadIcon from '../../../assets/images/download-icon-blue.svg';
-import downArrow from '../../../assets/images/more-arrow-white-blue.svg';
+import upArrow from '../../../assets/images/more-up-arrow-white-blue.svg';
 import btnArrow from '../../../assets/images/downarrow-blue.svg';
 import Image from '../../../shared/components/Image';
-
-const Media = ({ mediaData }) => {
+const Media = ({ mediaData, history }) => {
   const [seeMore, setSeeMore] = useState(false);
   let fourMediaData;
   if (mediaData && mediaData.length > 2 && !seeMore) {
@@ -57,8 +56,27 @@ const Media = ({ mediaData }) => {
           </div>
           {mediaData && mediaData.length > 4 && !seeMore && (
             <div className="article-bottom">
-              <span className="view-all-media" onClick={() => setSeeMore(true)}>
+              <span
+                className="view-all-media"
+                onClick={() => {
+                  setSeeMore(true);
+                  history.push('/corporate');
+                }}
+              >
                 View all Media <img src={btnArrow} alt="down-arrow" />
+              </span>
+            </div>
+          )}
+          {mediaData && seeMore && (
+            <div className="article-bottom">
+              <span
+                className="view-all-media"
+                onClick={() => {
+                  setSeeMore(false);
+                  history.push('/corporate#media');
+                }}
+              >
+                Show Less <img src={upArrow} alt="down-arrow" />
               </span>
             </div>
           )}
