@@ -160,6 +160,9 @@
     list-style: none;
     display: flex;
     align-items: center;
+    @media(max-width: 991px){
+      display: none;
+    }
     li{
         padding: 0 8px;
         list-style: none;
