@@ -308,8 +308,9 @@ const TopNav = props => {
       }
       if (
         location.pathname.split('/')[1] === 'attractions' ||
-        location.pathname.split('/')[1] === 'promotions' ||
-        location.pathname.split('/')[1] === 'explore'
+        location.pathname.split('/')[1] === 'promotions'
+        ||
+        location.pathname.split('/')[1] === 'explore' && !location.pathname.split('/')[2]
       ) {
         setHeaderClassAdv(true);
       } else {
@@ -374,471 +375,471 @@ const TopNav = props => {
   return changeHeader ? (
     <Header menuActive={menuActive} location={wholePath} hashPath={hashPath} />
   ) : (
-    <header
-      className={`header ${headerClass ? 'homepage' : ''}
+      <header
+        className={`header ${headerClass ? 'homepage' : ''}
       ${headerClassScroll ? `hompage-header-scroll` : ``}
       ${headerClassAdv ? 'leaderboard-show' : ''}
       ${stickyHeader ? `sticky-header` : ``}`}
-    >
-      <div className="container-fluid">
-        <div className="row">
-          <div className="top-header">
-            <div className="top-header-left">
-              <div
-                className="hamburger-icon"
-                onClick={() => {
-                  handleNavigationOpen();
-                }}
-              >
-                <span></span>
+      >
+        <div className="container-fluid">
+          <div className="row">
+            <div className="top-header">
+              <div className="top-header-left">
+                <div
+                  className="hamburger-icon"
+                  onClick={() => {
+                    handleNavigationOpen();
+                  }}
+                >
+                  <span></span>
+                </div>
+                <div className="site-logo">
+                  <Link to="/">
+                    <img src={logo} className="img-fluid" alt="Logo" />
+                  </Link>
+                </div>
+                <HomePageSearch history={props.history} mostViewed={mostViewed} />
               </div>
-              <div className="site-logo">
-                <Link to="/">
-                  <img src={logo} className="img-fluid" alt="Logo" />
-                </Link>
-              </div>
-              <HomePageSearch history={props.history} mostViewed={mostViewed} />
-            </div>
-            <div className="top-header-right">
-              <ul>
-                {/* <li className="search-icon">
+              <div className="top-header-right">
+                <ul>
+                  {/* <li className="search-icon">
                     <a href="">
                       <img src={searchImage} className="img-fluid" alt="search" />
                     </a>
                     <span></span>
                   </li> */}
-                <li
-                  className={`user-icon has-submenu ${
-                    loginPopUp ? `active` : ``
-                  }`}
-                  ref={node}
-                >
-                  {cartData.loginStatus === 0 ? (
-                    <p
-                      className="login-parent"
-                      onClick={() => setLoginPopUp(!loginPopUp)}
-                    >
-                      <img src={MainLogo} className="img-fluid" alt="send" />
-                    </p>
-                  ) : (
-                    <a
-                      href={`${Constants.SISTIC_LOGIN_URL}${encodeURIComponent(
-                        url
-                      )}`}
-                    >
-                      <img src={MainLogo} className="img-fluid" alt="send" />
-                    </a>
-                  )}
-                  <span
-                    className={cartData.loginStatus === 0 ? `login` : ``}
-                  ></span>
-                  {cartData.loginStatus === 0 && (
-                    <ul class="header-submenu">
-                      <li>
+                  <li
+                    className={`user-icon has-submenu ${
+                      loginPopUp ? `active` : ``
+                      }`}
+                    ref={node}
+                  >
+                    {cartData.loginStatus === 0 ? (
+                      <p
+                        className="login-parent"
+                        onClick={() => setLoginPopUp(!loginPopUp)}
+                      >
+                        <img src={MainLogo} className="img-fluid" alt="send" />
+                      </p>
+                    ) : (
                         <a
-                          href={Constants.SISTIC_MY_ACCOUNT_URL}
-                          target="_blank"
+                          href={`${Constants.SISTIC_LOGIN_URL}${encodeURIComponent(
+                            url
+                          )}`}
                         >
-                          My Account
+                          <img src={MainLogo} className="img-fluid" alt="send" />
                         </a>
-                      </li>
-                      <li>
-                        <a href={Constants.SISTIC_LOGOUT_URL}>Logout</a>
-                      </li>
-                    </ul>
-                  )}
-                </li>
-                <MiniCart
-                  data={cartData.lineItemList || []}
-                  cartDataCount={cartData.totalLineItems}
-                  timeLeft={cartData.timeLeftSeconds}
-                />
-                <li className="ticket-withus">
-                  <Link to="/corporate/ticket-with-us">Ticket With Us</Link>
-                </li>
-              </ul>
+                      )}
+                    <span
+                      className={cartData.loginStatus === 0 ? `login` : ``}
+                    ></span>
+                    {cartData.loginStatus === 0 && (
+                      <ul class="header-submenu">
+                        <li>
+                          <a
+                            href={Constants.SISTIC_MY_ACCOUNT_URL}
+                            target="_blank"
+                          >
+                            My Account
+                        </a>
+                        </li>
+                        <li>
+                          <a href={Constants.SISTIC_LOGOUT_URL}>Logout</a>
+                        </li>
+                      </ul>
+                    )}
+                  </li>
+                  <MiniCart
+                    data={cartData.lineItemList || []}
+                    cartDataCount={cartData.totalLineItems}
+                    timeLeft={cartData.timeLeftSeconds}
+                  />
+                  <li className="ticket-withus">
+                    <Link to="/corporate/ticket-with-us">Ticket With Us</Link>
+                  </li>
+                </ul>
+              </div>
             </div>
-          </div>
-          <nav className="bottom-header">
-            <div className="bottom-header-left">
-              <ul>
-                <li
-                  className={`has-submenu ${
-                    menuActive && pathName === 'events' ? 'active' : ''
-                  }`}
+            <nav className="bottom-header">
+              <div className="bottom-header-left">
+                <ul>
+                  <li
+                    className={`has-submenu ${
+                      menuActive && pathName === 'events' ? 'active' : ''
+                      }`}
                   // onMouseEnter={() => handleMouseStatus(true)}
                   // onMouseLeave={() => handleMouseStatus(false)}
-                >
-                  <a>Events</a>
-                  {/* <CSSTransition
+                  >
+                    <a>Events</a>
+                    {/* <CSSTransition
                     in={showMegaMenu}
                     timeout={300}
                     classNames="mega"
                   > */}
-                  <MegaMenu
-                    handleMouseStatus={handleMouseStatus}
-                    byGenreEvent={state.genreData}
-                    byVenueEvent={byVenueEvent}
-                    featuredEvents={featuredEvents}
-                  />
-                  {/* </CSSTransition> */}
-                </li>
-                <li
-                  className={
-                    menuActive && pathName === 'attractions' ? 'active' : ''
-                  }
-                >
-                  <Link to="/attractions">Attractions</Link>
-                </li>
-                <li
-                  className={
-                    menuActive && pathName === 'promotions' ? 'active' : ''
-                  }
-                >
-                  <Link to="/promotions">Promotions</Link>
-                </li>
-                <li
-                  className={
-                    menuActive && pathName === 'explore' ? 'active' : ''
-                  }
-                >
-                  <Link to="/explore">Explore</Link>
-                </li>
-              </ul>
-            </div>
-            <div className="bottom-header-right">
-              <ul>
-                {state.genreData &&
-                  state.genreData
-                    .slice(0, showElementsInHeader)
-                    .map((event, index, arr) => {
-                      return (
-                        <li
-                          key={event.id}
-                          className={isActiveIndex === index ? 'active' : ''}
-                          onClick={() => {
-                            setIsActiveIndex(index);
-                          }}
-                        >
-                          <Link to={`/events?c=${event.id}`}>{event.name}</Link>
-                        </li>
-                      );
-                    })}
-                {state.genreData.length > 4 && (
-                  <DropDown
-                    showElementsInHeader={showElementsInHeader}
-                    byGenreEvent={state.genreData}
-                  />
-                )}
-              </ul>
-            </div>
-          </nav>
-          <div
-            className="responsive-nav-links"
-            ref={node => {
-              refValue = node;
-            }}
-          >
-            <a
-              className="responsive-nav-close"
-              onClick={() => {
-                handleNavigationClose();
-              }}
-            ></a>
-            <ul className="user-details">
-              <li className="user-icon">
-                <a
-                  href={`${Constants.SISTIC_LOGIN_URL}${encodeURIComponent(
-                    url
-                  )}`}
-                >
-                  <img src={MainLogo} className="img-fluid" alt="send" />
-                  <span
+                    <MegaMenu
+                      handleMouseStatus={handleMouseStatus}
+                      byGenreEvent={state.genreData}
+                      byVenueEvent={byVenueEvent}
+                      featuredEvents={featuredEvents}
+                    />
+                    {/* </CSSTransition> */}
+                  </li>
+                  <li
                     className={
-                      cartData && cartData.loginStatus === 0 ? 'login' : ''
+                      menuActive && pathName === 'attractions' ? 'active' : ''
                     }
-                  ></span>
-                </a>
-                {/* {cartData.loginStatus === 1 && (
+                  >
+                    <Link to="/attractions">Attractions</Link>
+                  </li>
+                  <li
+                    className={
+                      menuActive && pathName === 'promotions' ? 'active' : ''
+                    }
+                  >
+                    <Link to="/promotions">Promotions</Link>
+                  </li>
+                  <li
+                    className={
+                      menuActive && pathName === 'explore' ? 'active' : ''
+                    }
+                  >
+                    <Link to="/explore">Explore</Link>
+                  </li>
+                </ul>
+              </div>
+              <div className="bottom-header-right">
+                <ul>
+                  {state.genreData &&
+                    state.genreData
+                      .slice(0, showElementsInHeader)
+                      .map((event, index, arr) => {
+                        return (
+                          <li
+                            key={event.id}
+                            className={isActiveIndex === index ? 'active' : ''}
+                            onClick={() => {
+                              setIsActiveIndex(index);
+                            }}
+                          >
+                            <Link to={`/events?c=${event.id}`}>{event.name}</Link>
+                          </li>
+                        );
+                      })}
+                  {state.genreData.length > 4 && (
+                    <DropDown
+                      showElementsInHeader={showElementsInHeader}
+                      byGenreEvent={state.genreData}
+                    />
+                  )}
+                </ul>
+              </div>
+            </nav>
+            <div
+              className="responsive-nav-links"
+              ref={node => {
+                refValue = node;
+              }}
+            >
+              <a
+                className="responsive-nav-close"
+                onClick={() => {
+                  handleNavigationClose();
+                }}
+              ></a>
+              <ul className="user-details">
+                <li className="user-icon">
+                  <a
+                    href={`${Constants.SISTIC_LOGIN_URL}${encodeURIComponent(
+                      url
+                    )}`}
+                  >
+                    <img src={MainLogo} className="img-fluid" alt="send" />
+                    <span
+                      className={
+                        cartData && cartData.loginStatus === 0 ? 'login' : ''
+                      }
+                    ></span>
+                  </a>
+                  {/* {cartData.loginStatus === 1 && (
                   <a href={Constants.SISTIC_LOGIN_URL}>Login/ Sign Up</a>
                 )} */}
-              </li>
-              <li className="ticket-withus">
-                <Link to="/corporate/ticket-with-us">Ticket With Us</Link>
-              </li>
-            </ul>
-            <ul>
-              <li className="has-submenu">
-                <a
-                  className={`${showMegaMenu ? 'active' : ''}`}
-                  onClick={() => handleMouseStatusMobile(!showMegaMenu)}
-                >
-                  Events
+                </li>
+                <li className="ticket-withus">
+                  <Link to="/corporate/ticket-with-us">Ticket With Us</Link>
+                </li>
+              </ul>
+              <ul>
+                <li className="has-submenu">
+                  <a
+                    className={`${showMegaMenu ? 'active' : ''}`}
+                    onClick={() => handleMouseStatusMobile(!showMegaMenu)}
+                  >
+                    Events
                 </a>
-                <ul className={`submenu ${showMegaMenu ? 'active' : ''}`}>
-                  <li className="has-submenu">
-                    <Submenu>
-                      {(menueStatus, setMenuStatus) => (
-                        <>
-                          <button
-                            className={`backbutton ${
-                              menueStatus ? 'active' : ''
-                            }`}
-                            type="button"
-                            onClick={() => setMenuStatus(!menueStatus)}
-                          >
-                            By Genre
+                  <ul className={`submenu ${showMegaMenu ? 'active' : ''}`}>
+                    <li className="has-submenu">
+                      <Submenu>
+                        {(menueStatus, setMenuStatus) => (
+                          <>
+                            <button
+                              className={`backbutton ${
+                                menueStatus ? 'active' : ''
+                                }`}
+                              type="button"
+                              onClick={() => setMenuStatus(!menueStatus)}
+                            >
+                              By Genre
                           </button>
-                          <SubmenuWrap
-                            heading="Genre"
-                            submenuClass="genre submenu-wrap"
-                            menueStatus={menueStatus}
-                            setMenuStatus={setMenuStatus}
-                          >
-                            <List
-                              data={state.genreData}
-                              type="Events"
+                            <SubmenuWrap
+                              heading="Genre"
+                              submenuClass="genre submenu-wrap"
                               menueStatus={menueStatus}
                               setMenuStatus={setMenuStatus}
-                              closeSubmenu={handleNavigationClose}
-                              link="/events/search?c="
-                            />
-                          </SubmenuWrap>
-                        </>
-                      )}
-                    </Submenu>
-                  </li>
-                  <li className="has-submenu">
-                    <Submenu>
-                      {(menueStatus, setMenuStatus) => (
-                        <>
-                          <button
-                            className={`backbutton ${
-                              menueStatus ? 'active' : ''
-                            }`}
-                            type="button"
-                            onClick={() => setMenuStatus(!menueStatus)}
-                          >
-                            By Date
+                            >
+                              <List
+                                data={state.genreData}
+                                type="Events"
+                                menueStatus={menueStatus}
+                                setMenuStatus={setMenuStatus}
+                                closeSubmenu={handleNavigationClose}
+                                link="/events/search?c="
+                              />
+                            </SubmenuWrap>
+                          </>
+                        )}
+                      </Submenu>
+                    </li>
+                    <li className="has-submenu">
+                      <Submenu>
+                        {(menueStatus, setMenuStatus) => (
+                          <>
+                            <button
+                              className={`backbutton ${
+                                menueStatus ? 'active' : ''
+                                }`}
+                              type="button"
+                              onClick={() => setMenuStatus(!menueStatus)}
+                            >
+                              By Date
                           </button>
-                          <SubmenuWrap
-                            heading="Calendar"
-                            submenuClass="calendar submenu-wrap"
-                            menueStatus={menueStatus}
-                            setMenuStatus={setMenuStatus}
-                          >
-                            <DateRangeFilter
-                              filteredDateRange={filteredDateRange}
-                              type="TOP_NAV"
-                              handleFilters={data => {
-                                handleFilters(data);
-                                setMenuStatus();
-                              }}
-                              autoSubmit={false}
-                              filterFlag={false}
-                            />
-                          </SubmenuWrap>
-                        </>
-                      )}
-                    </Submenu>
-                  </li>
-                  <li className="has-submenu">
-                    <Submenu>
-                      {(menueStatus, setMenuStatus) => (
-                        <>
-                          <button
-                            className={`backbutton ${
-                              menueStatus ? 'active' : ''
-                            }`}
-                            type="button"
-                            onClick={() => setMenuStatus(!menueStatus)}
-                          >
-                            By Venue
-                          </button>
-                          <SubmenuWrap
-                            heading="Venue"
-                            submenuClass="venue submenu-wrap"
-                            menueStatus={menueStatus}
-                            setMenuStatus={setMenuStatus}
-                          >
-                            <List
-                              data={byVenueEvent}
-                              type="Venues"
+                            <SubmenuWrap
+                              heading="Calendar"
+                              submenuClass="calendar submenu-wrap"
                               menueStatus={menueStatus}
                               setMenuStatus={setMenuStatus}
-                              closeSubmenu={handleNavigationClose}
-                              link="/events/search?v="
-                            />
-                          </SubmenuWrap>
-                        </>
-                      )}
-                    </Submenu>
-                  </li>
-                </ul>
-              </li>
-              <li>
-                <Link to="/attractions" onClick={() => handleNavigationClose()}>
-                  Attractions
+                            >
+                              <DateRangeFilter
+                                filteredDateRange={filteredDateRange}
+                                type="TOP_NAV"
+                                handleFilters={data => {
+                                  handleFilters(data);
+                                  setMenuStatus();
+                                }}
+                                autoSubmit={false}
+                                filterFlag={false}
+                              />
+                            </SubmenuWrap>
+                          </>
+                        )}
+                      </Submenu>
+                    </li>
+                    <li className="has-submenu">
+                      <Submenu>
+                        {(menueStatus, setMenuStatus) => (
+                          <>
+                            <button
+                              className={`backbutton ${
+                                menueStatus ? 'active' : ''
+                                }`}
+                              type="button"
+                              onClick={() => setMenuStatus(!menueStatus)}
+                            >
+                              By Venue
+                          </button>
+                            <SubmenuWrap
+                              heading="Venue"
+                              submenuClass="venue submenu-wrap"
+                              menueStatus={menueStatus}
+                              setMenuStatus={setMenuStatus}
+                            >
+                              <List
+                                data={byVenueEvent}
+                                type="Venues"
+                                menueStatus={menueStatus}
+                                setMenuStatus={setMenuStatus}
+                                closeSubmenu={handleNavigationClose}
+                                link="/events/search?v="
+                              />
+                            </SubmenuWrap>
+                          </>
+                        )}
+                      </Submenu>
+                    </li>
+                  </ul>
+                </li>
+                <li>
+                  <Link to="/attractions" onClick={() => handleNavigationClose()}>
+                    Attractions
                 </Link>
-              </li>
-              <li>
-                <Link to="/promotions" onClick={() => handleNavigationClose()}>
-                  Promotions
+                </li>
+                <li>
+                  <Link to="/promotions" onClick={() => handleNavigationClose()}>
+                    Promotions
                 </Link>
-              </li>
-              <li>
-                <Link to="/explore" onClick={() => handleNavigationClose()}>
-                  Explore
+                </li>
+                <li>
+                  <Link to="/explore" onClick={() => handleNavigationClose()}>
+                    Explore
                 </Link>
-              </li>
-            </ul>
-            <ul>
-              <li className="has-submenu">
-                <Submenu>
-                  {(menueStatus, setMenuStatus) => (
-                    <>
-                      <button
-                        className={`backbutton ${menueStatus ? 'active' : ''}`}
-                        type="button"
-                        onClick={() => setMenuStatus(!menueStatus)}
-                      >
-                        Our Company
+                </li>
+              </ul>
+              <ul>
+                <li className="has-submenu">
+                  <Submenu>
+                    {(menueStatus, setMenuStatus) => (
+                      <>
+                        <button
+                          className={`backbutton ${menueStatus ? 'active' : ''}`}
+                          type="button"
+                          onClick={() => setMenuStatus(!menueStatus)}
+                        >
+                          Our Company
                       </button>
-                      <SubmenuWrap
-                        menueStatus={menueStatus}
-                        setMenuStatus={setMenuStatus}
-                      >
-                        <ul className="submenu">
-                          {OurCompanySubmenu.map(item => {
-                            return (
-                              <li className="has-submenu">
-                                <Link
-                                  to={item.link}
-                                  onClick={handleNavigationClose}
-                                >
-                                  {item.name}
-                                </Link>
-                              </li>
-                            );
-                          })}
-                        </ul>
-                      </SubmenuWrap>
-                    </>
-                  )}
-                </Submenu>
-              </li>
-              {cartData.loginStatus === 0 && (
-                <ul>
-                  <li>
-                    <a href={Constants.SISTIC_MY_ACCOUNT_URL} target="_blank">
-                      My Account
+                        <SubmenuWrap
+                          menueStatus={menueStatus}
+                          setMenuStatus={setMenuStatus}
+                        >
+                          <ul className="submenu">
+                            {OurCompanySubmenu.map(item => {
+                              return (
+                                <li className="has-submenu">
+                                  <Link
+                                    to={item.link}
+                                    onClick={handleNavigationClose}
+                                  >
+                                    {item.name}
+                                  </Link>
+                                </li>
+                              );
+                            })}
+                          </ul>
+                        </SubmenuWrap>
+                      </>
+                    )}
+                  </Submenu>
+                </li>
+                {cartData.loginStatus === 0 && (
+                  <ul>
+                    <li>
+                      <a href={Constants.SISTIC_MY_ACCOUNT_URL} target="_blank">
+                        My Account
                     </a>
-                  </li>
-                  <li>
-                    <a href={Constants.SISTIC_LOGOUT_URL}>Logout</a>
-                  </li>
-                </ul>
-              )}
-              <li className="has-submenu">
-                <Submenu>
-                  {(menueStatus, setMenuStatus) => (
-                    <>
-                      <button
-                        className={`backbutton ${menueStatus ? 'active' : ''}`}
-                        type="button"
-                        onClick={() => setMenuStatus(!menueStatus)}
-                      >
-                        Helpful Links
+                    </li>
+                    <li>
+                      <a href={Constants.SISTIC_LOGOUT_URL}>Logout</a>
+                    </li>
+                  </ul>
+                )}
+                <li className="has-submenu">
+                  <Submenu>
+                    {(menueStatus, setMenuStatus) => (
+                      <>
+                        <button
+                          className={`backbutton ${menueStatus ? 'active' : ''}`}
+                          type="button"
+                          onClick={() => setMenuStatus(!menueStatus)}
+                        >
+                          Helpful Links
                       </button>
-                      <SubmenuWrap
-                        menueStatus={menueStatus}
-                        setMenuStatus={setMenuStatus}
-                      >
-                        <ul className="submenu">
-                          {HelpfulLinkSubmenu.map(item => {
-                            return (
-                              <li className="has-submenu">
-                                <Link
-                                  to={item.link}
-                                  onClick={handleNavigationClose}
-                                >
-                                  {item.name}
-                                </Link>
-                              </li>
-                            );
-                          })}
-                        </ul>
-                      </SubmenuWrap>
-                    </>
-                  )}
-                </Submenu>
-              </li>
-              <li className="business">
-                <Link to="/contact-us">Contact Us</Link>
-              </li>
-              <li className="stay-connect">
-                <Link to={''}>Stay Connected</Link>
-                <div className="input-group">
-                  <input
-                    type="email"
-                    className="form-control"
-                    placeholder="Enter Your email"
-                    aria-label="Username"
-                    aria-describedby="basic-addon1"
-                  />
-                  <div className="input-group-prepend">
-                    <a className="input-group-text" id="basic-addon1">
-                      <img src={sendImage} className="img-fluid" alt="send" />
-                    </a>
+                        <SubmenuWrap
+                          menueStatus={menueStatus}
+                          setMenuStatus={setMenuStatus}
+                        >
+                          <ul className="submenu">
+                            {HelpfulLinkSubmenu.map(item => {
+                              return (
+                                <li className="has-submenu">
+                                  <Link
+                                    to={item.link}
+                                    onClick={handleNavigationClose}
+                                  >
+                                    {item.name}
+                                  </Link>
+                                </li>
+                              );
+                            })}
+                          </ul>
+                        </SubmenuWrap>
+                      </>
+                    )}
+                  </Submenu>
+                </li>
+                <li className="business">
+                  <Link to="/contact-us">Contact Us</Link>
+                </li>
+                <li className="stay-connect">
+                  <Link to={''}>Stay Connected</Link>
+                  <div className="input-group">
+                    <input
+                      type="email"
+                      className="form-control"
+                      placeholder="Enter Your email"
+                      aria-label="Username"
+                      aria-describedby="basic-addon1"
+                    />
+                    <div className="input-group-prepend">
+                      <a className="input-group-text" id="basic-addon1">
+                        <img src={sendImage} className="img-fluid" alt="send" />
+                      </a>
+                    </div>
                   </div>
-                </div>
-              </li>
-              <li className="has-submenu business">
-                <Link to="/">For Business</Link>
-              </li>
-            </ul>
+                </li>
+                <li className="has-submenu business">
+                  <Link to="/">For Business</Link>
+                </li>
+              </ul>
 
-            <ul>
-              <li className="social-links">
-                <span>Follow us on</span>
-                <ul className="social">
-                  <li>
-                    <Link to="/">
-                      <img src={fb} alt="" />
+              <ul>
+                <li className="social-links">
+                  <span>Follow us on</span>
+                  <ul className="social">
+                    <li>
+                      <Link to="/">
+                        <img src={fb} alt="" />
+                      </Link>
+                    </li>
+                    <li>
+                      <img src={insta} alt="" />
+                    </li>
+                  </ul>
+                </li>
+                <li className="sistic-on-mobile">
+                  <span>Sistic on Mobile</span>
+                  <div className="download-option">
+                    <Link to="https://itunes.apple.com/sg/app/sistic/id500601166?mt=8">
+                      <img src={AppleLogo} className="ios" alt="send" />
+                      <span>
+                        Available
+                      <br />
+                        <strong>App Store</strong>
+                      </span>
                     </Link>
-                  </li>
-                  <li>
-                    <img src={insta} alt="" />
-                  </li>
-                </ul>
-              </li>
-              <li className="sistic-on-mobile">
-                <span>Sistic on Mobile</span>
-                <div className="download-option">
-                  <Link to="https://itunes.apple.com/sg/app/sistic/id500601166?mt=8">
-                    <img src={AppleLogo} className="ios" alt="send" />
-                    <span>
-                      Available
+                    <Link to="/">
+                      <img src={AndroidLogo} className="android" alt="" />
+                      <span>
+                        Get it on
                       <br />
-                      <strong>App Store</strong>
-                    </span>
-                  </Link>
-                  <Link to="/">
-                    <img src={AndroidLogo} className="android" alt="" />
-                    <span>
-                      Get it on
-                      <br />
-                      <strong>Play Store</strong>
-                    </span>
-                  </Link>
-                </div>
-              </li>
-            </ul>
+                        <strong>Play Store</strong>
+                      </span>
+                    </Link>
+                  </div>
+                </li>
+              </ul>
+            </div>
           </div>
         </div>
-      </div>
-    </header>
-  );
+      </header>
+    );
 };
 
 export default TopNav;
