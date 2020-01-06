@@ -1,4 +1,4 @@
-import React, { useState, useEffect, Fragment } from 'react';
+import React, { useState, useEffect, useRef, createRef } from 'react';
 import ReactPlayer from 'react-player';
 import Scrollbar from '../../../shared/components/Scrollbar';
 import ShimmerEffect from '../../../shared/components/ShimmerEffect';
@@ -8,6 +8,8 @@ import AdvertisementService from '../../../shared/services/AdvertisementService'
 import Image from '../../../shared/components/Image';
 import Utilities from '../../../shared/utilities';
 import EventHeading from '../../../shared/components/EventHeading';
+import { useCustomWidth } from '../../../shared/components/CustomHooks';
+import { OneBigTwoSmall } from '../../../shared/components/ShimmerEffect/HomeShimmer';
 
 const CustomSectionThree = ({
   heading,
@@ -15,6 +17,8 @@ const CustomSectionThree = ({
   isHomePage,
   orientation
 }) => {
+  useCustomWidth();
+  let vdoSectionRef = useRef();
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [url, setUrl] = useState(null);
@@ -24,7 +28,6 @@ const CustomSectionThree = ({
   const [postedDate, setPostedDate] = useState(null);
 
   const [controls, setControls] = useState(false);
-  let [duration, setDuration] = useState([]);
 
   const [pip, setPip] = useState(false);
   const [muted, setMuted] = useState(true);
@@ -32,9 +35,9 @@ const CustomSectionThree = ({
   const [light, setLight] = useState(true);
   const [volume, setVolume] = useState(null);
   const [vdoIndex, setVdoIndex] = useState(0);
+  const [isPlaying, setIsPlaying] = useState('');
 
   useEffect(() => {
-    setDuration([]);
     if (customData && customData.length > 0) {
       setData(customData);
       setUrl(customData[0].video_url);
@@ -87,25 +90,22 @@ const CustomSectionThree = ({
     return <span />;
   };
 
-  const secondToMinute = sec => {
-    if (sec) {
-      let minutes = Math.floor(sec / 60);
-      let seconds = sec - minutes * 60;
-      let duration = minutes + ':' + seconds;
-      return duration;
-    }
-  };
-
   const displayDuration = duration => {
     if (duration) {
       let allDuration;
       let durationIndex = duration
+        .replace('H', ':')
         .replace('M', ':')
         .replace('S', '')
         .indexOf(':');
-      let vdoDuration = duration.replace('M', ':').replace('S', '');
+      let vdoDuration = duration
+        .replace('H', ':')
+        .replace('M', ':')
+        .replace('S', '');
       if (durationIndex === -1) {
-        allDuration = '0' + ':' + vdoDuration;
+        allDuration = 0 + ':' + vdoDuration;
+      } else if (vdoDuration.length === 2) {
+        allDuration = vdoDuration + 0;
       } else {
         allDuration = vdoDuration;
       }
@@ -113,143 +113,130 @@ const CustomSectionThree = ({
     }
   };
 
+  const scrollInToView = isPlaying => {
+    setIsPlaying(isPlaying);
+  };
+
   if (!loading && data && data.length === 0) {
     return null;
   }
 
-  console.log(duration);
+  if (isPlaying === 'playing' || isPlaying === 'finished') {
+    vdoSectionRef.current &&
+      window.scrollTo(0, vdoSectionRef.current.offsetTop);
+  }
 
   return (
     <div>
       {loading ? (
-        <ShimmerEffect
-          propCls={`shm_col-xs-6 col-md-6`}
-          height={300}
-          count={2}
-          type="LIST"
-        />
+        <OneBigTwoSmall customClass="custom-section-two" />
       ) : (
-          <section className="video-gallery">
-            <div className="container-fluid custom-container">
-              <div className="section-top-wrapper">
-                <h2>{heading}</h2>
+        <section className="video-gallery" ref={vdoSectionRef}>
+          <div className="container-fluid custom-container">
+            <div className="section-top-wrapper">
+              <h2>{heading}</h2>
+            </div>
+            <div className="video-gallery-wrapper">
+              <div className="video-only-section">
+                <ReactPlayer
+                  width="100%"
+                  height={Utilities.mobilecheck() ? '190px' : '465px'}
+                  controls
+                  pip={pip}
+                  muted={muted}
+                  url={url && url}
+                  playing={playing}
+                  light={light}
+                  volume={volume}
+                  onPlay={() => scrollInToView('playing')}
+                  onEnded={() => scrollInToView('finished')}
+                />
+                <EventHeading
+                  title={title}
+                  lines={1}
+                  height={Utilities.mobileAndTabletcheck() ? 20 : 20}
+                />
+                {!isHomePage && (
+                  <span>
+                    {channelTitle} {channelTitle ? ' . ' : null}{' '}
+                    {views !== ' views' ? views : null}{' '}
+                    {views !== ' views' ? ' . ' : null} {postedDate}
+                  </span>
+                )}
               </div>
-              <div className="video-gallery-wrapper">
-                <div className="video-only-section">
-                  <ReactPlayer
-                    width="100%"
-                    height={Utilities.mobilecheck() ? '190px' : '465px'}
-                    controls
-                    pip={pip}
-                    muted={muted}
-                    url={url && url}
-                    playing={playing}
-                    light={light}
-                    volume={volume}
-                  />
-                  <EventHeading
-                    title={title}
-                    lines={1}
-                    height={Utilities.mobileAndTabletcheck() ? 20 : 20}
-                  />
-                  {!isHomePage && (
-                    <span>
-                      {channelTitle} {channelTitle ? ' . ' : null}{' '}
-                      {views !== ' views' ? views : null}{' '}
-                      {views !== ' views' ? ' . ' : null} {postedDate}
-                    </span>
-                  )}
-                </div>
-                <div className="video-subwrapper">
-                  <Scrollbar>
-                    {data &&
-                      data.map((vdo, index) => {
-                        return (
-                          <div
-                            className={
-                              vdoIndex === index
-                                ? 'video-item-image active'
-                                : 'video-item-image'
-                            }
-                            key={index}
-                            onClick={() => {
-                              setUrl(vdo.video_url);
-                              setTitle(vdo.title);
-                              setChannelTitle(vdo.channel_title);
-                              setPostedDate(vdo.posted_date);
-                              setViews(vdo.count);
-                              setControls(true);
-                              setPip(true);
-                              setLight(false);
-                              setMuted(false);
-                              setVolume(0.5);
-                              setPlaying(true);
-                              setVdoIndex(index);
-                            }}
-                          >
-                            <span className="video-subwrapper-image">
-                              <Fragment>
-                                <div
-                                  className="video-restrict-overlay"
-                                  style={{
-                                    display: 'none'
-                                  }}
-                                >
-                                  {isHomePage && (
-                                    <ReactPlayer
-                                      width="100%"
-                                      height="70px"
-                                      url={vdo.video_url}
-                                      onDuration={sec => {
-                                        duration = [
-                                          ...duration,
-                                          secondToMinute(sec)
-                                        ];
-                                        setDuration(duration);
-                                      }}
-                                    />
-                                  )}
-                                </div>
-                              </Fragment>
-                              <div className="video-restrict-overlay">
-                                <Image
-                                  src={vdo.video_thumb}
-                                  alt=""
-                                  className="img-fluid"
-                                  type="VdoSmall"
-                                />
-                                <span className="video-duration">
-                                  {isHomePage
-                                    ? duration && duration[index]
-                                    : displayDuration(vdo.duration)}
-                                </span>
-                              </div>
-                            </span>
-                            <div className="video-subwrapper-text">
-                              <a><EventHeading
+              <div className="video-subwrapper">
+                <Scrollbar>
+                  {data &&
+                    data.map((vdo, index) => {
+                      return (
+                        <div
+                          className={
+                            vdoIndex === index
+                              ? 'video-item-image active'
+                              : 'video-item-image'
+                          }
+                          key={index}
+                          onClick={() => {
+                            setUrl(vdo.video_url);
+                            setTitle(vdo.title);
+                            setChannelTitle(vdo.channel_title);
+                            setPostedDate(vdo.posted_date);
+                            setViews(vdo.count);
+                            setControls(true);
+                            setPip(true);
+                            setLight(false);
+                            setMuted(false);
+                            setVolume(0.5);
+                            setPlaying(true);
+                            setVdoIndex(index);
+                          }}
+                        >
+                          <span className="video-subwrapper-image">
+                            <div className="video-restrict-overlay">
+                              <Image
+                                src={vdo.video_thumb}
+                                alt=""
+                                className="img-fluid"
+                                type="VdoSmall"
+                              />
+                              <span className="video-duration">
+                                {displayDuration(vdo.duration)}
+                              </span>
+                            </div>
+                          </span>
+                          <div className="video-subwrapper-text">
+                            <a>
+                              <EventHeading
                                 title={vdo.title}
                                 lines={isHomePage ? 3 : 2}
-                                height={Utilities.mobilecheck() ? 20 : Utilities.mobileAndTabletcheck() ? 20 : 20}
-                              /></a>
-                              {!isHomePage && <span>{vdo.channel_title}</span>}
+                                height={
+                                  Utilities.mobilecheck()
+                                    ? 20
+                                    : Utilities.mobileAndTabletcheck()
+                                    ? 20
+                                    : 20
+                                }
+                              />
+                            </a>
+                            {!isHomePage && <span>{vdo.channel_title}</span>}
 
-                              {!isHomePage && (
-                                <span>
-                                  {vdo.count !== ' views' ? vdo.count : null}{' '}
-                                  {vdo.count !== ' views' ? '. ' : null}
-                                  {vdo.posted_date}
-                                </span>
-                              )}
-                            </div>
+                            {!isHomePage && (
+                              <span>
+                                {vdo.count !== ' views' ? vdo.count : null}{' '}
+                                {vdo.count !== ' views' ? '. ' : null}
+                                {vdo.posted_date}
+                              </span>
+                            )}
                           </div>
-                        );
-                      })}
-                  </Scrollbar>
-                </div>
+                        </div>
+                      );
+                    })}
+                </Scrollbar>
               </div>
             </div>
-          </section>
-        )}
+          </div>
+        </section>
+      )}
     </div>
   );
 };

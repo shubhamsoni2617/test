@@ -57,7 +57,13 @@ const CarouselConatiner = props => {
           {loading && (
             <ShimmerEffect
               propCls={`shimmer-inner`}
-              height={Utilities.mobilecheck() ? 60 : 298}
+              height={
+                Utilities.mobilecheck()
+                  ? 100
+                  : Utilities.mobileAndTabletcheck()
+                  ? 160
+                  : 298
+              }
               count={
                 Utilities.mobilecheck()
                   ? 3

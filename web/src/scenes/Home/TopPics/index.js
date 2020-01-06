@@ -28,8 +28,11 @@ const TopPics = props => {
     };
     HomeService.getTopPics(params)
       .then(res => {
-        if (res && res.data) {
+        if (res && res.data && res.data.data) {
           setData(res.data.data);
+          setLoading(false);
+        } else {
+          setData([]);
           setLoading(false);
         }
       })
@@ -63,12 +66,12 @@ const TopPics = props => {
 
   if (error) return null;
 
-  return (
+  return data ? (
     <section className="top-picks">
       <div className="container-fluid custom-container">
         <h2>{props.heading}</h2>
         {Utilities.mobilecheck() ? (
-          !data.length ? (
+          data && !data.length ? (
             <ShimmerEffect
               height={60}
               count={3}
@@ -270,7 +273,7 @@ const TopPics = props => {
         )}
       </div>
     </section>
-  );
+  ) : null;
 };
 
 export default TopPics;

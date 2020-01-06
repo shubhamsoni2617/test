@@ -217,10 +217,10 @@ function EventDateTime({
 
 function Delimiter({ length, index }) {
   if (index === length - 1) return null;
-  if (length !== 2 && index === length - 2) {
+  if (length === 2 || (length !== 2 && index === length - 2)) {
     return <span> & </span>;
   }
-  return <span> & </span>;
+  return <span> , </span>;
 }
 
 function EventInfoBlockInner(props) {}
@@ -671,7 +671,7 @@ function EventInfoBlock(props) {
                 <img src={faceImg} alt="" />
               </div>
               <div className="shows-over-desc">
-                <h4>Shows over!</h4>
+                <h4>Events over!</h4>
                 <p>This event has ended and no longer available for booking.</p>
               </div>
             </div>

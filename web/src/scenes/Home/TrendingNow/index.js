@@ -46,104 +46,116 @@ const TrendingNow = ({ heading }) => {
       <div className="container-fluid custom-container">
         <h2>{heading}</h2>
         {loading ? (
-          <OneBigEightSmall />
+          <OneBigEightSmall customClass="trending-now-section" />
         ) : (
-            <div className="grid-container">
-              <Link to={`/events/${data[0] && data[0].alias}`} className="item">
-                <div className="item-wrapper">
-                  <span className="category dance">Dance</span>
-                  <div className="trending-now-image">
-                    <div className="item-img">
-                      {data && data[0] && (
-                        <Image
-                          src={data[0].vertical_image}
-                          className="img-fluid"
-                          alt="kurios"
-                          type="Vertical"
-                        />
-                      )}
-                    </div>
-                    <div className="video-icon">
-                      <img
-                        src="assets/images/video-icon.svg"
+          <div className="grid-container">
+            <Link to={`/events/${data[0] && data[0].alias}`} className="item">
+              <div className="item-wrapper">
+                <span className="category dance">Dance</span>
+                <div className="trending-now-image">
+                  <div className="item-img">
+                    {data && data[0] && (
+                      <Image
+                        src={data[0].vertical_image}
                         className="img-fluid"
-                        alt="video-icon"
+                        alt="kurios"
+                        type="Vertical"
+                      />
+                    )}
+                  </div>
+                  <div className="video-icon">
+                    <img
+                      src="assets/images/video-icon.svg"
+                      className="img-fluid"
+                      alt="video-icon"
+                    />
+                  </div>
+                </div>
+                <EventHeading
+                  title={data && data[0] && data[0].title}
+                  lines={2}
+                  height={
+                    Utilities.mobilecheck()
+                      ? 18
+                      : Utilities.mobileAndTabletcheck()
+                      ? 20
+                      : 20
+                  }
+                />
+                <Ellipsis
+                  title={data && data[0] && data[0].event_date}
+                  lines={1}
+                  height={Utilities.mobilecheck() ? 20 : 18}
+                  // size={13}
+                  allowTooltip={true}
+                />
+                <Ellipsis
+                  title={data && data[0] && data[0].venue_name}
+                  lines={1}
+                  height={Utilities.mobilecheck() ? 20 : 18}
+                  allowTooltip={false}
+                />
+              </div>
+            </Link>
+
+            {data &&
+              data.slice(1, data.length).map((now, index) => {
+                return (
+                  <Link
+                    to={`/events/${now.alias}`}
+                    key={index}
+                    className="item"
+                  >
+                    <div className="item-wrapper">
+                      <span
+                        className={`category ${now &&
+                          now.primary_genre.toLowerCase()}`}
+                      >
+                        {now && now.primary_genre}
+                      </span>
+                      <div className="trending-now-image">
+                        <div className="item-img">
+                          {now && (
+                            <Image
+                              src={now.horizontal_image}
+                              className="img-fluid"
+                              alt="trending-now"
+                              type="MediumVertical"
+                            />
+                          )}
+                        </div>
+                      </div>
+                      <EventHeading
+                        title={now && now.title}
+                        lines={2}
+                        // height={Utilities.mobileAndTabletcheck() ? 20 : 20}
+                        height={
+                          Utilities.mobilecheck()
+                            ? 18
+                            : Utilities.mobileAndTabletcheck()
+                            ? 20
+                            : 20
+                        }
+                      />
+                      <Ellipsis
+                        title={now && now.event_date}
+                        lines={1}
+                        height={Utilities.mobilecheck() ? 17 : 18}
+                        // size={13}
+                        allowTooltip={true}
+                      />
+                      <Ellipsis
+                        title={now && now.venue_name}
+                        lines={1}
+                        height={Utilities.mobilecheck() ? 17 : 18}
+                        allowTooltip={false}
                       />
                     </div>
-                  </div>
-                  <EventHeading
-                    title={data && data[0] && data[0].title}
-                    lines={2}
-                    height={Utilities.mobilecheck() ? 18 : Utilities.mobileAndTabletcheck() ? 20 : 20}
-                  />
-                  <Ellipsis
-                    title={data && data[0] && data[0].event_date}
-                    lines={1}
-                    height={Utilities.mobilecheck() ? 20 : 18}
-                    // size={13}
-                    allowTooltip={true}
-                  />
-                  <Ellipsis
-                    title={data && data[0] && data[0].venue_name}
-                    lines={1}
-                    height={Utilities.mobilecheck() ? 20 : 18}
-                    allowTooltip={false}
-                  />
-                </div>
-              </Link>
-
-              {data &&
-                data.slice(1, data.length).map((now, index) => {
-                  return (
-                    <Link
-                      to={`/events/${now.alias}`}
-                      key={index}
-                      className="item"
-                    >
-                      <div className="item-wrapper">
-                        <span
-                          className={`category ${now &&
-                            now.primary_genre.toLowerCase()}`}
-                        >
-                          {now && now.primary_genre}
-                        </span>
-                        <div className="trending-now-image">
-                          <div className="item-img">
-                            {now && (
-                              <Image
-                                src={now.horizontal_image}
-                                className="img-fluid"
-                                alt="trending-now"
-                                type="MediumVertical"
-                              />
-                            )}
-                          </div>
-                        </div>
-                        <EventHeading
-                          title={now && now.title}
-                          lines={2}
-                          // height={Utilities.mobileAndTabletcheck() ? 20 : 20}
-                          height={Utilities.mobilecheck() ? 18 : Utilities.mobileAndTabletcheck() ? 20 : 20}
-                        />
-                        <Ellipsis
-                          title={now && now.event_date}
-                          lines={1}
-                          height={Utilities.mobilecheck() ? 17 : 18}
-                          // size={13}
-                          allowTooltip={true}
-                        />
-                        <Ellipsis
-                          title={now && now.venue_name}
-                          lines={1}
-                          height={Utilities.mobilecheck() ? 17 : 18}
-                          allowTooltip={false}
-                        />
-                      </div>
-                    </Link>
-                  );
-                })}
-            </div>
-          )}
+                  </Link>
+                );
+              })}
+          </div>
+        )}
       </div>
     </section>
   );

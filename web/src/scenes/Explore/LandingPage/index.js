@@ -96,8 +96,8 @@ const Explore = props => {
 
   const giftCardPart = (
     <GiftCard
-      api={AdvertisementService.getLeaderboardImage}
-      params={{ client: Constants.CLIENT, page: 4 }}
+      api={AdvertisementService.getSidePanelBetweenTopPicksFeaturedEvents}
+      params={{ client: Constants.CLIENT }}
     />
   );
 
