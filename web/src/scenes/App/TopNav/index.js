@@ -308,8 +308,9 @@ const TopNav = props => {
       }
       if (
         location.pathname.split('/')[1] === 'attractions' ||
-        location.pathname.split('/')[1] === 'promotions' ||
-        location.pathname.split('/')[1] === 'explore'
+        location.pathname.split('/')[1] === 'promotions'
+        ||
+        location.pathname.split('/')[1] === 'explore' && !location.pathname.split('/')[2]
       ) {
         setHeaderClassAdv(true);
       } else {
@@ -374,89 +375,90 @@ const TopNav = props => {
   return changeHeader ? (
     <Header menuActive={menuActive} location={wholePath} hashPath={hashPath} />
   ) : (
-    <header
-      className={`header ${headerClass ? 'homepage' : ''}
+      <header
+        className={`header ${headerClass ? 'homepage' : ''}
       ${headerClassScroll ? `hompage-header-scroll` : ``}
       ${headerClassAdv ? 'leaderboard-show' : ''}
       ${stickyHeader ? `sticky-header` : ``}`}
-    >
-      <div className="container-fluid">
-        <div className="row">
-          <div className="top-header">
-            <div className="top-header-left">
-              <div
-                className="hamburger-icon"
-                onClick={() => {
-                  handleNavigationOpen();
-                }}
-              >
-                <span></span>
+      >
+        <div className="container-fluid">
+          <div className="row">
+            <div className="top-header">
+              <div className="top-header-left">
+                <div
+                  className="hamburger-icon"
+                  onClick={() => {
+                    handleNavigationOpen();
+                  }}
+                >
+                  <span></span>
+                </div>
+                <div className="site-logo">
+                  <Link to="/">
+                    <img src={logo} className="img-fluid" alt="Logo" />
+                  </Link>
+                </div>
+                <HomePageSearch history={props.history} mostViewed={mostViewed} />
               </div>
-              <div className="site-logo">
-                <Link to="/">
-                  <img src={logo} className="img-fluid" alt="Logo" />
-                </Link>
-              </div>
-              <HomePageSearch history={props.history} mostViewed={mostViewed} />
-            </div>
-            <div className="top-header-right">
-              <ul>
-                {/* <li className="search-icon">
+              <div className="top-header-right">
+                <ul>
+                  {/* <li className="search-icon">
                     <a href="">
                       <img src={searchImage} className="img-fluid" alt="search" />
                     </a>
                     <span></span>
                   </li> */}
-                <li
-                  className={`user-icon has-submenu ${
-                    loginPopUp ? `active` : ``
-                  }`}
-                  ref={node}
-                >
-                  {cartData.loginStatus === 0 ? (
-                    <p
-                      className="login-parent"
-                      onClick={() => setLoginPopUp(!loginPopUp)}
-                    >
-                      <img src={MainLogo} className="img-fluid" alt="send" />
-                    </p>
-                  ) : (
-                    <a
-                      href={`${Constants.SISTIC_LOGIN_URL}${encodeURIComponent(
-                        url
-                      )}`}
-                    >
-                      <img src={MainLogo} className="img-fluid" alt="send" />
-                    </a>
-                  )}
-                  <span
-                    className={cartData.loginStatus === 0 ? `login` : ``}
-                  ></span>
-                  {cartData.loginStatus === 0 && (
-                    <ul class="header-submenu">
-                      <li>
+                  <li
+                    className={`user-icon has-submenu ${
+                      loginPopUp ? `active` : ``
+                      }`}
+                    ref={node}
+                  >
+                    {cartData.loginStatus === 0 ? (
+                      <p
+                        className="login-parent"
+                        onClick={() => setLoginPopUp(!loginPopUp)}
+                      >
+                        <img src={MainLogo} className="img-fluid" alt="send" />
+                      </p>
+                    ) : (
                         <a
-                          href={Constants.SISTIC_MY_ACCOUNT_URL}
-                          target="_blank"
+                          href={`${Constants.SISTIC_LOGIN_URL}${encodeURIComponent(
+                            url
+                          )}`}
                         >
-                          My Account
+                          <img src={MainLogo} className="img-fluid" alt="send" />
                         </a>
-                      </li>
-                      <li>
-                        <a href={Constants.SISTIC_LOGOUT_URL}>Logout</a>
-                      </li>
-                    </ul>
-                  )}
-                </li>
-                <MiniCart
-                  data={cartData.lineItemList || []}
-                  cartDataCount={cartData.totalLineItems}
-                  timeLeft={cartData.timeLeftSeconds}
-                />
-                <li className="ticket-withus">
-                  <Link to="/corporate/ticket-with-us">Ticket With Us</Link>
-                </li>
-              </ul>
+                      )}
+                    <span
+                      className={cartData.loginStatus === 0 ? `login` : ``}
+                    ></span>
+                    {cartData.loginStatus === 0 && (
+                      <ul class="header-submenu">
+                        <li>
+                          <a
+                            href={Constants.SISTIC_MY_ACCOUNT_URL}
+                            target="_blank"
+                          >
+                            My Account
+                        </a>
+                        </li>
+                        <li>
+                          <a href={Constants.SISTIC_LOGOUT_URL}>Logout</a>
+                        </li>
+                      </ul>
+                    )}
+                  </li>
+                  <MiniCart
+                    data={cartData.lineItemList || []}
+                    cartDataCount={cartData.totalLineItems}
+                    timeLeft={cartData.timeLeftSeconds}
+                  />
+                  <li className="ticket-withus">
+                    <Link to="/corporate/ticket-with-us">Ticket With Us</Link>
+                  </li>
+                </ul>
+              </div>
             </div>
           </div>
           <nav className="bottom-header">
@@ -465,7 +467,7 @@ const TopNav = props => {
                 <li
                   className={`has-submenu ${
                     menuActive && pathName === 'events' ? 'active' : ''
-                  }`}
+                    }`}
                   onMouseEnter={() =>
                     (document.getElementsByClassName(
                       'submenu'
@@ -591,7 +593,7 @@ const TopNav = props => {
                           <button
                             className={`backbutton ${
                               menueStatus ? 'active' : ''
-                            }`}
+                              }`}
                             type="button"
                             onClick={() => setMenuStatus(!menueStatus)}
                           >
@@ -623,7 +625,7 @@ const TopNav = props => {
                           <button
                             className={`backbutton ${
                               menueStatus ? 'active' : ''
-                            }`}
+                              }`}
                             type="button"
                             onClick={() => setMenuStatus(!menueStatus)}
                           >
@@ -657,7 +659,7 @@ const TopNav = props => {
                           <button
                             className={`backbutton ${
                               menueStatus ? 'active' : ''
-                            }`}
+                              }`}
                             type="button"
                             onClick={() => setMenuStatus(!menueStatus)}
                           >
@@ -844,9 +846,9 @@ const TopNav = props => {
             </ul>
           </div>
         </div>
-      </div>
-    </header>
-  );
+        {/* </div> */}
+      </header >
+    );
 };
 
 export default TopNav;
