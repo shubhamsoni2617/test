@@ -153,18 +153,18 @@
                 position: absolute;
                 content: "";
                 left: -11px;
-                top: -50px;
+                top: -10px;
                 background-color: #fff;
                 width: calc(100% + 22px);
-                height: calc(100% + 20px);
+                height: calc(100% + 10px);
                 z-index: -1;
                 box-shadow: 0 2px 4px 0 rgba(154, 154, 154, 0.5);
                 -webkit-box-shadow: 0 2px 4px 0 rgba(154, 154, 154, 0.5);
                 -moz-box-shadow: 0 2px 4px 0 rgba(154, 154, 154, 0.5);
-                transition: 0.3s top, 0.3s opacity;
-                -webkit-transition: 0.3s top, 0.3s opacity;
-                -moz-transition: 0.3s top, 0.3s opacity;
-                -o-transition: 0.3s top, 0.3s opacity;
+                transition: 0.3s opacity;
+                -webkit-transition: 0.3s opacity;
+                -moz-transition: 0.3s opacity;
+                -o-transition: 0.3s opacity;
                 opacity: 0;
                 @media(max-width: 1024px){
                     opacity: 0;
@@ -421,7 +421,6 @@
                     box-shadow: none;
                     &:after{
                         @media(min-width: 767px){
-                            top: -10px;
                             opacity: 1;
                         }
                     }
