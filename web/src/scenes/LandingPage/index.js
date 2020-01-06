@@ -29,7 +29,7 @@ const LandingPage = ({ location, staticContext }) => {
       const offset = document
         .getElementById(location.hash)
         .getBoundingClientRect().top;
-      animateScroll.scrollMore(offset - 175);
+      animateScroll.scrollMore(offset - 140);
     } else if (landingPageData) {
       window && window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
     }

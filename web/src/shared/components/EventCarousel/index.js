@@ -109,6 +109,7 @@ const EventCarousel = ({ images }) => {
           renderThumbInner={renderThumbInner}
           infinite={false}
           // showNav={false}
+          showThumbnails={items.length > 1 ? true : false}
           showFullscreenButton={false}
           showPlayButton={false}
           // disableThumbnailScroll={true}
