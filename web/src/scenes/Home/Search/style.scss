@@ -307,7 +307,8 @@
     position: fixed;
     left: 50%;
     top: 50%;
-    width: 100px;
+    width: 60px;
+    height: 60px;
     box-shadow: none;
     border-radius: 50%;
     overflow: hidden;
@@ -628,7 +629,7 @@
                                 height: 70%;
                                 align-items: flex-end;
                                 display: flex;
-                                flex-direction: column;
+                                flex-direction: row;
                                 justify-content: space-between;
                                 padding: 15px 0px 8px 0px !important;
                             }
@@ -646,6 +647,11 @@
                                     width: 100%;
                                     left: 0px;
                                     bottom: -3px;
+                                }
+                            }
+                            .event-detail-prime{
+                                @media(max-width: 767px){
+                                    flex: 0 0 100%;
                                 }
                             }
                             .price-event{
@@ -668,11 +674,21 @@
                                     }
                                 }
                                 .price{
+                                    flex: 0 0 auto;
+                                    width: auto;
                                     @media(max-width: 767px){
                                         text-align: left;
                                         height: auto;
                                         min-height: 40px;
+                                        flex: 0 0 100%;
+                                        width: 100%;
                                         // min-height: auto;
+                                    }
+                                    span, p{
+                                        text-align: right;
+                                        @media(max-width: 991px){
+                                            text-align: left;
+                                        }
                                     }
                                     &:empty{
                                         display: none !important;

@@ -112,7 +112,7 @@
                     flex: 0 0 calc(33.33% - 19px);
                     width: calc(33.33% - 19px);
                     margin-right: 17px;
-                    margin-bottom: 30px;                    
+                    margin-bottom: 30px;
                     @media(max-width: 991px){
                         flex: 0 0 calc(50% - 19px);
                         width: calc(50% - 19px);
@@ -126,6 +126,10 @@
                     @media(min-width: 1500px) and (max-width: 1900px){
                         flex: 0 0 calc(25% - 17px);
                         width: calc(25% - 17px);
+                    }
+                    @media(min-width: 1025px){
+                        overflow: hidden;
+                        padding: 1px;
                     }
                 }
                 .category {
@@ -307,7 +311,8 @@
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
-    width: 100px;
+    width: 60px;
+    height: 60px;
     box-shadow: none;
     border-radius: 50%;
     overflow: hidden;
