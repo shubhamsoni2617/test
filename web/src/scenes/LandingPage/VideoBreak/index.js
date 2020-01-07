@@ -2,8 +2,9 @@ import React, { useState } from 'react';
 import ReactPlayer from 'react-player';
 import moment from 'moment';
 import downArrow from '../../../assets/images/more-arrow-white-blue.svg';
+import upArrow from '../../../assets/images/more-upArrow-white-blue.svg';
 
-const VideoBreak = ({ videoData }) => {
+const VideoBreak = ({ videoData, history }) => {
   const [seeMore, setSeeMore] = useState(false);
   let twoVideoData;
   if (videoData && videoData.length > 2 && !seeMore) {
@@ -16,7 +17,7 @@ const VideoBreak = ({ videoData }) => {
       <div className="video-wrapper">
         <div className="container">
           <div className="video-heading">
-            <h2>Video Break</h2>
+            <h2 id="#videoBreak">Video Break</h2>
           </div>
           <div className="video-box">
             {twoVideoData &&
@@ -37,8 +38,10 @@ const VideoBreak = ({ videoData }) => {
                     <div className="video-content">
                       <h3>{video.title}</h3>
                       {video.date ? (
-                        <span>{moment(video.date).format('DD MMM YYYY')}</span>) : <span></span>
-                      }
+                        <span>{moment(video.date).format('DD MMM YYYY')}</span>
+                      ) : (
+                        <span></span>
+                      )}
                       <div
                         dangerouslySetInnerHTML={{
                           __html: video.description
@@ -52,7 +55,28 @@ const VideoBreak = ({ videoData }) => {
         </div>
         {videoData && videoData.length > 2 && !seeMore && (
           <div className="video-bottom">
-            <span className="view-all-btn" onClick={() => setSeeMore(true)}>View all Video <img src={downArrow} alt="down-arrow" /></span>
+            <span
+              className="view-all-btn"
+              onClick={() => {
+                setSeeMore(true);
+                history.push('/corporate');
+              }}
+            >
+              View all Video <img src={downArrow} alt="down-arrow" />
+            </span>
+          </div>
+        )}
+        {videoData && seeMore && (
+          <div className="video-bottom">
+            <span
+              className="view-all-btn"
+              onClick={() => {
+                setSeeMore(false);
+                history.push('/corporate#videoBreak');
+              }}
+            >
+              Show Less <img src={upArrow} alt="down-arrow" />
+            </span>
           </div>
         )}
       </div>
