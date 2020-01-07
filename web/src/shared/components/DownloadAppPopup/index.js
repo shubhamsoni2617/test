@@ -7,17 +7,11 @@ import Utilities from '../../utilities';
 import Constants from '../../constants';
 
 const DownloadAppPopup = () => {
-  const isItem = sessionStorage.getItem('appDownloadPopup');
+  const [isItem, setIsItem] = useState(null);
   const [elheight, setElHeight] = useState(0);
-  const [display, setDisplay] = useState(isItem ? 'none' : 'block');
+  const [display, setDisplay] = useState(null);
 
-  const [navigationURL, setNavigationURL] = useState(
-    Utilities.getMobileOperatingSystem() != 'unknown'
-      ? Utilities.getMobileOperatingSystem() == 'Android'
-        ? Constants.SISTIC_PLAY_STORE_URL
-        : Constants.SISTIC_APP_STORE_URL
-      : ''
-  );
+  const [navigationURL, setNavigationURL] = useState(null);
   const el = useRef();
   const [propsAnimation, set, stop] = useSpring(() => ({ bottom: -1000 }));
   useEffect(() => {
@@ -29,6 +23,19 @@ const DownloadAppPopup = () => {
       setElHeight(el.current.clientHeight);
     }
   }, [elheight]);
+
+  useEffect(() => {
+    let isItem = sessionStorage.getItem('appDownloadPopup');
+    setIsItem(isItem);
+    setDisplay(isItem ? 'none' : 'block');
+    setNavigationURL(
+      Utilities.getMobileOperatingSystem() != 'unknown'
+        ? Utilities.getMobileOperatingSystem() == 'Android'
+          ? Constants.SISTIC_PLAY_STORE_URL
+          : Constants.SISTIC_APP_STORE_URL
+        : ''
+    );
+  }, []);
 
   let handleDecline = () => {
     sessionStorage.setItem('appDownloadPopup', true);

@@ -15,6 +15,7 @@ import ModalPopup from '../../../shared/components/Modal';
 import Image from '../../../shared/components/Image';
 import Utilities from '../../utilities';
 import TitleToolTip from './TitleToolTip';
+import eventOver from '../../../assets/images/eventOver.png';
 
 function Button({ styleObj, url, text }) {
   // if (!text) return null;
@@ -217,10 +218,10 @@ function EventDateTime({
 
 function Delimiter({ length, index }) {
   if (index === length - 1) return null;
-  if (length !== 2 && index === length - 2) {
+  if (length === 2 || (length !== 2 && index === length - 2)) {
     return <span> & </span>;
   }
-  return <span> & </span>;
+  return <span> , </span>;
 }
 
 function EventInfoBlockInner(props) {}
@@ -665,13 +666,14 @@ function EventInfoBlock(props) {
           {buyPackages}
         </div>
         {detailData.is_available_for_booking === 0 && (
+          // <img src={eventOver} atl="eventOver" />
           <div className="tickets-button shows-over-tickets">
             <div className="shows-over">
               <div className="shows-over-icon">
                 <img src={faceImg} alt="" />
               </div>
               <div className="shows-over-desc">
-                <h4>Shows over!</h4>
+                <h4>Event is over!</h4>
                 <p>This event has ended and no longer available for booking.</p>
               </div>
             </div>

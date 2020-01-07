@@ -12,13 +12,13 @@ class Constants {
     '1108663717.0a26e12.3b399a8ef949401c91c25755caf3ae39';
   static MOBILE_BREAK_POINT = 767;
   static CLIENT = 1;
-  static LIMIT = 4;
+  // static LIMIT = 4;
   static GOOGLE_MAP_API_KEY = 'AIzaSyAuQ9CrtvBbrYCVG5XZrLM1s-ZBH368Y04';
   static MAP_PATH =
     'M 0,0 C -2,-20 -10,-22 -10,-30 A 10,10 0 1,1 10,-30 C 10,-22 2,-20 0,0 z';
   static SOURCE_FROM_WEBSITE = 1;
   static SOURCE_FROM_MOBILE_RESPONSIVE = 3;
-  static LIMIT = Utilities.mobileAndTabletcheck() ? 6 : 9;
+  static LIMIT = Utilities.mobileAndTabletcheck() ? 6 : 12;
   static SITE_KEY = '6LedScEUAAAAALMkHkGFibsc4yNxrajcV6wijeuP';
   static SISTIC_APP_STORE_URL =
     'https://itunes.apple.com/sg/app/sistic/id500601166?mt=8';

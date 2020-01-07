@@ -256,7 +256,7 @@ function StickyHeader(props) {
               <img src={faceImg} alt="" />
             </div>
             <div className="shows-over-desc">
-              <h4>Shows over!</h4>
+              <h4>Events over!</h4>
               <p>This event has ended and no longer available for booking.</p>
             </div>
           </div>

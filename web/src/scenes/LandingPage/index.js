@@ -12,24 +12,19 @@ import ContactUs from '../ApiPartner/ContactUs';
 import { animateScroll } from 'react-scroll';
 import MetaData from '../../shared/components/MetaData';
 
-const LandingPage = ({ location, staticContext }) => {
+const LandingPage = ({ location, staticContext, history }) => {
   const [landingPageData, setLandingPageData] = useState(null);
   const [testimonial, setTestimonial] = useState(null);
   useEffect(() => {
     fetchLandingPageData();
     getTestimonial();
   }, []);
-  // useEffect(() => {
-  //   if (!location.hash) {
-  //     window && window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
-  //   }
-  // }, []);
   useEffect(() => {
     if (landingPageData && location.hash) {
       const offset = document
         .getElementById(location.hash)
         .getBoundingClientRect().top;
-      animateScroll.scrollMore(offset - 175);
+      animateScroll.scrollMore(offset - 140);
     } else if (landingPageData) {
       window && window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
     }
@@ -59,9 +54,13 @@ const LandingPage = ({ location, staticContext }) => {
       <GetStarted
         getStartedData={landingPageData && landingPageData.content.get_started}
       />
-      <Media mediaData={landingPageData && landingPageData.content.media} />
+      <Media
+        mediaData={landingPageData && landingPageData.content.media}
+        history={history}
+      />
       <VideoBreak
         videoData={landingPageData && landingPageData.content.video}
+        history={history}
       />
       <Careers sliderArr={testimonial && testimonial.testimonials} />
       <Network

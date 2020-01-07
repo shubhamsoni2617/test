@@ -178,11 +178,11 @@ const Autocomplete = ({ history, buttonActiveHandler, mostViewed }) => {
                 >
                   <h4 className="suggestion-title">{suggestion.title}</h4>
                   {suggestion.type === 'event' ||
-                  suggestion.type === 'attractions' ? (
-                    <button>{suggestion.category}</button>
-                  ) : (
-                    <p>{suggestion.category}</p>
-                  )}
+                    suggestion.type === 'attractions' ? (
+                      <button>{suggestion.category}</button>
+                    ) : (
+                      <p>{suggestion.category}</p>
+                    )}
                 </li>
               );
             })}
@@ -203,7 +203,7 @@ const Autocomplete = ({ history, buttonActiveHandler, mostViewed }) => {
     } else {
       suggestionsListComponent = (
         <div className="no-suggestions">
-          {isSearching && <img className="filter-loader" src={loaderImage} />}
+          {isSearching && <div className="filter-loader"><img src={loaderImage} alt="loading-image" /></div>}
         </div>
       );
     }
@@ -214,7 +214,7 @@ const Autocomplete = ({ history, buttonActiveHandler, mostViewed }) => {
       ref={node}
       className={`autocomplete ${
         Utilities.mobilecheck() && isFocused ? `search-open` : ``
-      }`}
+        }`}
     >
       <div className="search-popup-topbar">
         {Utilities.mobilecheck() && (
@@ -284,8 +284,8 @@ const Autocomplete = ({ history, buttonActiveHandler, mostViewed }) => {
               alt="search-icon"
             />
           ) : (
-            <img src={searchImage} className="img-fluid" alt="search-icon" />
-          )}
+              <img src={searchImage} className="img-fluid" alt="search-icon" />
+            )}
         </button>
       </div>
       {suggestionsListComponent}

@@ -1195,6 +1195,9 @@
     }
     .network-inner-wrapper{
         padding: 59px 0px 0px;
+        @media(max-width: 1024px){
+            padding: 30px 0px 0px;
+        }
         @media(max-width: 767px){
             padding: 20px 0px 0px;
         }
@@ -1211,6 +1214,9 @@
                 margin: 0px 5px 25px;
                 overflow: hidden;
                 height: 144px;
+                @media(max-width: 991px){
+                    height: auto;
+                }
                 @media(min-width: 769px) and (max-width: 980px){
                     flex: 0 0 calc(20% - 10px);
                     width: calc(20% - 10px);
@@ -1218,11 +1224,16 @@
                 @media(max-width: 767px){
                     flex: 0 0 calc(33.33% - 10px);
                     width: calc(33.33% - 10px);
+                    height: auto;
                 }
                 a{
                     max-height: 144px;
                     max-width: 154px;
                     overflow: hidden;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    height: 100%;
                     .image-conatiner{
                         padding: 20px;
                         display: flex;
@@ -1230,6 +1241,7 @@
                         img{
                             max-width: 100%;
                             height: auto;
+                            width: auto;
                             transition: 0.5s transform;
                             -webkit-transition: 0.5s transform;
                             -moz-transition: 0.5s transform;

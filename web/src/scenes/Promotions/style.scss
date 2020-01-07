@@ -139,14 +139,23 @@
             position: fixed;
             left: 50%;
             top: 50%;
-            width: 100px;
+            width: 61px !important;
+            padding: 0px !important;
+            height: 61px;
             box-shadow: 0 0 10px #DDD;
             border-radius: 50%;
             overflow: hidden;
             margin-left: 150px;
             margin-top: 70px;
             z-index: 5;
+            flex-basis: 100%;
+            background-color: #fff;
             transform: translate(-50%, -50%);
+            img{
+                width: auto;
+                max-width: 100%;
+                height: auto;
+            }
         }
         .fixed-buttons-events{
             position: fixed;

@@ -72,13 +72,13 @@ class MiniCart extends Component {
 
   render() {
     const { data, cartDataCount, timeLeft } = this.props;
-
+    let cartData = data.reduce((el, val) => el + val.quantity, 0)
     return (
       <li
         ref={node => {
           this.node = node;
         }}
-        className={`cart-icon ${this.state.isOpen ? 'active' : ''}`}
+        className={`cart-icon ${this.state.isOpen ? 'active' : ''} ${cartData ? 'item-exist' : ''}`}
       >
         <a
           to="/"
@@ -95,7 +95,9 @@ class MiniCart extends Component {
           }}
         >
           <img src={MiniCartLogo} className="img-fluid" alt="cart" />
-          <span>{data.reduce((el, val) => el + val.quantity, 0) || 0}</span>
+          {cartData ? (
+            <span>{cartData}</span>
+          ) : null}
         </a>
         <div className="my-cart-popup">
           <div className="my-cart-wrapper">
@@ -142,7 +144,7 @@ class MiniCart extends Component {
                           }
                           className="img-fluid"
                           alt="cart"
-                          // type="Smaller"
+                        // type="Smaller"
                         />
                       </div>
                       <div className="product-details">
@@ -175,8 +177,8 @@ class MiniCart extends Component {
                   {timeLeft > 0 ? (
                     <CartTimer timeLeft={timeLeft} />
                   ) : (
-                    <span className="timer-time">00:00</span>
-                  )}
+                      <span className="timer-time">00:00</span>
+                    )}
                 </div>
                 <div className="cart-checkout-btn">
                   <a

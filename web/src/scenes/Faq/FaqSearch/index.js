@@ -9,7 +9,7 @@ const FaqSearch = props => {
       <div className="banner-wrapper">
         <img src={banner} className="img-fluid" alt="page-banner" />
         <div className="banner-overlay">
-          <h1>How Can We Help You?</h1>
+          <h1>How can we help you?</h1>
           <div className="faq-searchbox">
             <AutoSuggest
               suggestions={props.suggestions}

@@ -145,10 +145,10 @@ export default class EventsDetail extends Component {
     this.state = {
       title:
         this.props.staticContext &&
-        this.props.staticContext.response &&
-        this.props.staticContext.response.metaData &&
-        this.props.staticContext.response.metaData.data &&
-        this.props.staticContext.response.metaData.data.title
+          this.props.staticContext.response &&
+          this.props.staticContext.response.metaData &&
+          this.props.staticContext.response.metaData.data &&
+          this.props.staticContext.response.metaData.data.title
           ? this.props.staticContext.response.metaData.data.title
           : '',
       code: props.match.params.icc,
@@ -377,7 +377,7 @@ export default class EventsDetail extends Component {
     }
   };
 
-  componentDidUpdate() {}
+  componentDidUpdate() { }
 
   render() {
     const {
@@ -414,8 +414,8 @@ export default class EventsDetail extends Component {
         <ModalPopup
           showModal={
             detailData.pop_up_message &&
-            detailData.pop_up_message.description &&
-            showNotice
+              detailData.pop_up_message.description &&
+              showNotice
               ? true
               : showNotice
           }
@@ -447,7 +447,7 @@ export default class EventsDetail extends Component {
           <div
             className={`main-container ${
               detailData.is_show_over ? 'show-over' : ''
-            } ${shimmer ? 'shimmer' : ''}`}
+              } ${shimmer ? 'shimmer' : ''}`}
           >
             {/*   */}
             {detailData.id && (
@@ -524,13 +524,13 @@ export default class EventsDetail extends Component {
                         data={
                           Utilities.mobilecheck()
                             ? {
-                                image: detailData.wallpaper.mobile_image,
-                                url: detailData.wallpaper.mobile_url
-                              }
+                              image: detailData.wallpaper.mobile_image,
+                              url: detailData.wallpaper.mobile_url
+                            }
                             : {
-                                image: detailData.wallpaper.image,
-                                url: detailData.wallpaper.url
-                              }
+                              image: detailData.wallpaper.image,
+                              url: detailData.wallpaper.url
+                            }
                         }
                         current={this.props.current}
                       />
@@ -587,17 +587,17 @@ export default class EventsDetail extends Component {
                             title="Price Details"
                             infoTag={
                               detailData.hide_booking_fee &&
-                              detailData.hide_booking_fee !== '1'
+                                detailData.hide_booking_fee !== '1'
                                 ? detailData.hide_booking_fee
                                 : null
                             }
                             // preExpanded={accrodian}
                             uuid={`${
                               detailData.is_available_for_booking === 1 &&
-                              !Utilities.mobileAndTabletcheck()
+                                !Utilities.mobileAndTabletcheck()
                                 ? 'pricedetail'
                                 : ''
-                            }`}
+                              }`}
                             desc={detailData.ticket_pricing}
                             openInfoPopup={this.openInfoPopup}
                             showInfo={showInfo}
