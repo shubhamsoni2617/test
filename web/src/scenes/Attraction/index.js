@@ -118,7 +118,7 @@ export default class Attractions extends Component {
     return payload;
   };
 
-  setInitialFilters({ first, limit }) {}
+  setInitialFilters({ first, limit }) { }
 
   getAttractionsCategory = () => {
     AttractionsService.getAttractionsCategory()
@@ -383,7 +383,7 @@ export default class Attractions extends Component {
             <div
               className={`events-listing ${
                 this.state.sortByFlag ? 'open' : ''
-              }`}
+                }`}
             >
               <div className="event-listing-sorting">
                 <SearchFilter
@@ -437,7 +437,7 @@ export default class Attractions extends Component {
                 </SortBy>
               </div>
               <div className={this.state.viewTypeClass}>
-                {loader && <img className="filter-loader" src={loaderImage} />}
+                {loader && <div className="filter-loader"><img src={loaderImage} alt="loading-image" /></div>}
                 {attractionsData &&
                   attractionsData.map((attraction, i) => {
                     // onClick={() => this.redirectToTarget(attraction.event_alias)}

@@ -639,7 +639,7 @@ export default class Events extends Component {
               <div
                 className={`events-listing ${
                   this.state.sortByFlag ? 'open' : ''
-                }`}
+                  }`}
               >
                 <div className="event-listing-sorting">
                   <SearchFilter
@@ -726,11 +726,7 @@ export default class Events extends Component {
                 <EventAdvertisement shimmer={shimmer} />
                 <div className={this.state.viewTypeClass}>
                   {loader && (
-                    <img
-                      className="filter-loader"
-                      alt="filter loader"
-                      src={loaderImage}
-                    />
+                    <div className="filter-loader"><img src={loaderImage} alt="loading-image" /></div>
                   )}
                   {eventsData &&
                     eventsData.map(event => {
@@ -755,7 +751,7 @@ export default class Events extends Component {
                     <ShimmerEffect
                       propCls={`${
                         Utilities.mobileAndTabletcheck() ? 'shm_col-xs-6' : ''
-                      } col-md-4`}
+                        } col-md-4`}
                       height={150}
                       count={Utilities.mobileAndTabletcheck() ? 2 : 3}
                       type="LIST"
