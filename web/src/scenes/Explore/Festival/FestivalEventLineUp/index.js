@@ -8,7 +8,7 @@ import Utilities from '../../../../shared/utilities';
 
 const EventItem = ({ title, description, button_url, button_text, image }) => {
   return (
-    <div className="event" key={title}>
+    <a href={button_url} className="event" key={title} target="_blank">
       <Image src={image} type="Horizontal" />
       <div className="event-desc">
         <div>
@@ -29,9 +29,13 @@ const EventItem = ({ title, description, button_url, button_text, image }) => {
             }}
           ></p>
         </div>
-        {button_text && <a href={button_url}>{button_text}</a>}
+        {button_text && (
+          <a href={button_url} target="_blank">
+            {button_text}
+          </a>
+        )}
       </div>
-    </div>
+    </a>
   );
 };
 

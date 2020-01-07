@@ -678,6 +678,17 @@
                       background-color: rgba(0, 0, 0, 0.85);
                       // opacity: 1 !important;
                     }
+                    .react-modal{
+                      .react-modal-body{
+                        .modal-content{
+                          .notice{
+                            p, a{
+                              line-height: normal;
+                            }
+                          }
+                        }
+                      }
+                    }
                     @media(max-width: 1024px){
                         margin-bottom: 15px;
                     }

@@ -1,4 +1,5 @@
-import React, { useState, useEffect, useRef, Fragment } from 'react';
+import React, { useState, useEffect, Fragment } from 'react';
+import { Link } from 'react-router-dom';
 import Slider from 'react-slick';
 import './style.scss';
 import Constants from '../../constants';
@@ -9,52 +10,50 @@ import Ellipsis from '../Ellipsis';
 import EventHeading from '../EventHeading';
 const Item = ({ event }) => {
   return (
-    <a href={event && event.navigation_link} target="_blank">
-      <div className="item">
-        <div className="item-wrapper">
-          <div className="featured-item-img">
-            <div className="item-img">
-              <Image
-                src={event && event.full_image}
-                className="img-fluid"
-                type="Small"
-              />
-            </div>
-            <span
-              className={`category ${event &&
-                event.primary_genre &&
-                event.primary_genre.toLowerCase()}`}
-            >
-              {event.primary_genre}
-            </span>
+    <div className="item">
+      <div className="item-wrapper">
+        <div className="featured-item-img">
+          <div className="item-img">
+            <Image
+              src={event && event.full_image}
+              className="img-fluid"
+              type="Small"
+            />
           </div>
-          <EventHeading
-            title={event && event.title}
-            lines={2}
-            height={
-              Utilities.mobilecheck()
-                ? 18
-                : Utilities.mobileAndTabletcheck()
-                ? 20
-                : 20
-            }
-          />
-          <Ellipsis
-            title={event.event_date}
-            lines={1}
-            height={Utilities.mobilecheck() ? 15 : 18}
-            customClass="featured-event-date"
-          />
-          <Ellipsis
-            title={event.venue_name}
-            lines={1}
-            height={Utilities.mobilecheck() ? 15 : 18}
-            allowTooltip={false}
-            customClass="venue-name"
-          />
+          <span
+            className={`category ${event &&
+              event.primary_genre &&
+              event.primary_genre.toLowerCase()}`}
+          >
+            {event.primary_genre}
+          </span>
         </div>
+        <EventHeading
+          title={event && event.title}
+          lines={2}
+          height={
+            Utilities.mobilecheck()
+              ? 18
+              : Utilities.mobileAndTabletcheck()
+              ? 20
+              : 20
+          }
+        />
+        <Ellipsis
+          title={event.event_date}
+          lines={1}
+          height={Utilities.mobilecheck() ? 15 : 18}
+          customClass="featured-event-date"
+        />
+        <Ellipsis
+          title={event.venue_name}
+          lines={1}
+          height={Utilities.mobilecheck() ? 15 : 18}
+          allowTooltip={false}
+          customClass="venue-name"
+        />
       </div>
-    </a>
+    </div>
   );
 };
 
@@ -165,7 +164,29 @@ const FeaturedEvents = props => {
           >
             {featuredEvents &&
               featuredEvents.map(event => {
-                return <Item event={event} key={event.id} />;
+                if (
+                  event.navigation_link.includes('http') ||
+                  event.navigation_link.includes('https')
+                ) {
+                  return (
+                    <a
+                      href={event && event.navigation_link}
+                      target="_blank"
+                      key={event.id}
+                    >
+                      <Item event={event} />
+                    </a>
+                  );
+                } else {
+                  return (
+                    <Link
+                      to={`/events/${event && event.navigation_link}`}
+                      key={event.id}
+                    >
+                      <Item event={event} />
+                    </Link>
+                  );
+                }
               })}
           </div>
         ) : (
@@ -175,7 +196,16 @@ const FeaturedEvents = props => {
               featuredEvents.map((event, index, array) => {
                 return (
                   <div className="grid-container" key={index}>
-                    <Item event={array[index]} />
+                    {event.navigation_link.includes('http') ||
+                    event.navigation_link.includes('https') ? (
+                      <a href={event && event.navigation_link} target="_blank">
+                        <Item event={array[index]} />
+                      </a>
+                    ) : (
+                      <Link to={`/events/${event && event.navigation_link}`}>
+                        <Item event={array[index]} />
+                      </Link>
+                    )}
                   </div>
                 );
               })}
