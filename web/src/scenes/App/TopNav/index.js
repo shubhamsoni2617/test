@@ -74,7 +74,6 @@ const TopNav = props => {
   });
   const [flag, setFlag] = useState(false);
   const [menuActive, setMenuActive] = useState(false);
-  const [megaMenuAnimating, setMegaMenuAnimating] = useState(false);
   const [pathName, setPathName] = useState('events');
   const [wholePath, setWholePath] = useState('/');
   const [hashPath, setHashPath] = useState('');
@@ -331,11 +330,9 @@ const TopNav = props => {
 
   const handleMouseStatus = status => {
     refValue.flag = status;
-    if (megaMenuAnimating || status === showMegaMenu) return;
-
+    if (status === showMegaMenu) return;
     setTimeout(() => {
       if (refValue && refValue.flag === showMegaMenu) return;
-      setMegaMenuAnimating(true);
       setShowMegaMenu(status);
       // if (status === true) {
       //   document.body.classList.add('body-overlay');
@@ -343,10 +340,7 @@ const TopNav = props => {
       // if (status === false) {
       //   document.body.classList.remove('body-overlay');
       // }
-      setTimeout(() => {
-        setMegaMenuAnimating(false);
-      }, 500);
-    }, 100);
+    }, 0);
   };
 
   const handleMouseStatusMobile = status => {
@@ -481,7 +475,7 @@ const TopNav = props => {
                 <a>Events</a>
                 {/* <CSSTransition
                     in={showMegaMenu}
-                    timeout={300}
+                    timeout={0}
                     classNames="mega"
                   > */}
                 <MegaMenu
