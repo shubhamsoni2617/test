@@ -209,12 +209,20 @@
     top: 50%;
     transform: translate(-50%, -50%);
     margin: -30px 0 0 -30px;
-    width: 60px;
-    height: 60px;
+    width: 61px !important;
+    padding: 0px !important;
+    height: 61px;
     box-shadow: none;
     border-radius: 50%;
     overflow: hidden;
     z-index: 5;
+    flex-basis: 100%;
+    background-color: #fff;
+    img{
+        width: auto;
+        max-width: 100%;
+        height: auto;
+    }
 }
 // breadcrumb
 .breadcrumbs{

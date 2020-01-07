@@ -243,7 +243,7 @@ const ArticleList = ({ history, location, staticContext }) => {
             <div
               className={`events-listing ${
                 isNaN(totalResults) ? `article-list-notfound` : ``
-              }`}
+                }`}
             >
               <div className="events-section">
                 <CardList
@@ -253,17 +253,13 @@ const ArticleList = ({ history, location, staticContext }) => {
                   ref={node}
                 />
                 {loadWithFilters && articleList.length ? (
-                  <img
-                    className="filter-loader"
-                    alt="filter loader"
-                    src={loaderImage}
-                  />
+                  <div className="filter-loader"><img src={loaderImage} alt="loading-image" /></div>
                 ) : null}
                 {loadMore && (
                   <ShimmerEffect
                     propCls={`${
                       Utilities.mobileAndTabletcheck() ? 'shm_col-xs-6' : ''
-                    } col-md-4`}
+                      } col-md-4`}
                     height={150}
                     count={Utilities.mobileAndTabletcheck() ? 2 : 3}
                     type="LIST"
@@ -279,8 +275,8 @@ const ArticleList = ({ history, location, staticContext }) => {
                       window.scrollTo(
                         0,
                         node.current.clientHeight *
-                          (articleList.length / cardInViewConstant).toFixed() -
-                          node.current.clientHeight / 2
+                        (articleList.length / cardInViewConstant).toFixed() -
+                        node.current.clientHeight / 2
                       );
                     }}
                     className="btn-link load-more-btn"
