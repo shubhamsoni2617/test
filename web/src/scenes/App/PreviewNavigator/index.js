@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Route, Switch, Redirect } from 'react-router-dom';
 import routes from '../routes';
 import Login from './PreviewLogin';
+import { withRouter } from 'react-router-dom';
 
 const PrivateRoute = ({
   path,
@@ -37,26 +38,21 @@ const PrivateRoute = ({
 
 const Routes = props => {
   const [pathAuthenticated, setPathAuthenticated] = useState('');
-  const [isAuthenticated, setIsAuthenticated] = useState(true);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
   const handleAuth = path => {
     setIsAuthenticated(true);
     setPathAuthenticated(path);
   };
 
-  //   useEffect(() => {
-  console.log(pathAuthenticated);
-  console.log(props.history.location.pathname);
-  console.log(props);
-  //   if (
-  //     props &&
-  //     props.history &&
-  //     props.history.location &&
-  //     props.history.location.pathname &&
-  //     pathAuthenticated !== props.history.location.pathname.slice(1)
-  //   ) {
-  //     setIsAuthenticated(false);
-  //   }
-  //   });
+  useEffect(() => {
+    let pathName = props.location.pathname;
+    if (pathName.length > 1) {
+      pathName = pathName.slice(1);
+    }
+    if (pathAuthenticated && pathAuthenticated !== pathName) {
+      setIsAuthenticated(false);
+    }
+  }, [props.location.pathname]);
 
   return (
     <Switch>
@@ -84,4 +80,4 @@ const Routes = props => {
   );
 };
 
-export default Routes;
+export default withRouter(Routes);

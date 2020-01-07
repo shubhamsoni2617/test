@@ -1,18 +1,13 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Redirect } from 'react-router-dom';
 import PreviewLoginService from '../../../../shared/services/PreviewLoginService';
-import loaderImage from '../../../../assets/images/sistic-loader.gif';
 import './style.scss';
-import { GlobalContext } from '../../store';
 
 const Login = props => {
-  const { reRender } = useContext(GlobalContext);
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const [submit, setSubmit] = useState(false);
   const [loading, setLoading] = useState(false);
-
-  console.log(reRender, 'reRenderreRenderreRender');
 
   const onChange = e => {
     setError('');
@@ -28,7 +23,7 @@ const Login = props => {
       PreviewLoginService.getUser(headers)
         .then(res => {
           setLoading(false);
-          if (res.data.data === 'Password is correct.') {
+          if (res.data.authenticated) {
             props.handleAuth(
               props.location.state.from.pathname.slice(1) || '/'
             );
@@ -53,7 +48,11 @@ const Login = props => {
 
   return (
     <div className="preview-form-wrapper">
-      {loading && <img src={loaderImage} />}
+      {loading && (
+        <div className="loading login-loader">
+          <div className="loading-image"></div>
+        </div>
+      )}
       <div className="preview-login">
         <h5>You must enter password to view this page</h5>
         <input
