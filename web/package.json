@@ -78,7 +78,7 @@
     "resolve": "1.10.0",
     "sass-loader": "7.1.0",
     "semver": "6.0.0",
-    "serialize-javascript": "^1.7.0",
+    "serialize-javascript": "^3.1.0",
     "slick-carousel": "^1.8.1",
     "style-loader": "0.23.1",
     "terser-webpack-plugin": "1.2.3",
